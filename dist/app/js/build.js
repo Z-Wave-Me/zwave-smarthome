@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 19-04-2017 15:53:18 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 19-04-2017 15:49:48 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -7725,11 +7725,544 @@ function(){return{}}});n.directive("ngView",x);n.directive("ngView",z);x.$inject
 ["$cookies",function(e){return{get:function(b){return(b=e[b])?f.fromJson(b):b},put:function(b,c){e[b]=f.toJson(c)},remove:function(b){delete e[b]}}}])})(window,window.angular);
 //# sourceMappingURL=angular-cookies.min.js.map
 
-/*
-	Copyright Kamil Pękala http://github.com/kamilkp
-	angular-sortable-view v0.0.13 2015/01/13
-*/
-!function(a,b){"use strict";function c(a){if(!("clientX"in a||"clientY"in a)){var b=a.touches||a.originalEvent.touches;b&&b.length&&(a.clientX=b[0].clientX,a.clientY=b[0].clientY),a.preventDefault()}}function d(a){if(a=a[0],a.previousElementSibling)return b.element(a.previousElementSibling);for(var c=a.previousSibling;null!=c&&1!=c.nodeType;)c=c.previousSibling;return b.element(c)}function e(a,b){var c=d(a);c.length>0?c.after(b):a.parent().prepend(b)}function f(a,c){return a instanceof b.element&&(a=a[0]),null!==i?a[i](c):void 0}var g=b.module("angular-sortable-view",[]);g.directive("svRoot",[function(){function a(a,b,c){return c?a.x-b.x<0:a.y-b.y<0}function b(a){return g[a]}function c(a){delete g[a]}var d,g=Object.create(null);return{restrict:"A",controller:["$scope","$attrs","$interpolate","$parse",function(h,i,j,k){var l=j(i.svRoot)(h)||h.$id;g[l]||(g[l]=[]);var m,n,o,p,q,r,s=!1,t=k(i.svOnSort);i.svOnStart=i.$$element[0].attributes["sv-on-start"],i.svOnStart=i.svOnStart&&i.svOnStart.value,i.svOnStop=i.$$element[0].attributes["sv-on-stop"],i.svOnStop=i.svOnStop&&i.svOnStop.value;var u=k(i.svOnStart),v=k(i.svOnStop);if(this.sortingInProgress=function(){return d},i.svGrid){if(s="true"===i.svGrid?!0:"false"===i.svGrid?!1:null,null===s)throw"Invalid value of sv-grid attribute"}else h.$watchCollection(function(){return b(l)},function(a){s=!1;var b=a.filter(function(a){return!a.container}).map(function(a){return{part:a.getPart().id,y:a.element[0].getBoundingClientRect().top}}),c=Object.create(null);b.forEach(function(a){c[a.part]?c[a.part].push(a.y):c[a.part]=[a.y]}),Object.keys(c).forEach(function(a){c[a].sort(),c[a].forEach(function(b,d){d<c[a].length-1&&b>0&&b===c[a][d+1]&&(s=!0)})})});this.$moveUpdate=function(c,g,i,j,k,t,v){var w=i[0].getBoundingClientRect();"element"===c.tolerance&&(g={x:~~(w.left+w.width/2),y:~~(w.top+w.height/2)}),d=!0,m=[],n||(k?(n=k.clone(),n.removeClass("ng-hide")):(n=j.clone(),n.addClass("sv-visibility-hidden"),n.addClass("sv-placeholder"),n.css({height:w.height+"px",width:w.width+"px"})),j.after(n),j.addClass("ng-hide"),q=j,o=c,p=i,u(h,{$helper:{element:p},$part:t.model(t.scope),$index:v,$item:t.model(t.scope)[v]}),h.$root&&h.$root.$$phase||h.$apply()),p[0].reposition({x:g.x+document.body.scrollLeft-g.offset.x*w.width,y:g.y+document.body.scrollTop-g.offset.y*w.height}),b(l).forEach(function(b){if(null==c.containment||f(b.element,c.containment)||f(b.element,c.containment+" *")){var d=b.element[0].getBoundingClientRect(),e={x:~~(d.left+d.width/2),y:~~(d.top+d.height/2)};b.container||!b.element[0].scrollHeight&&!b.element[0].scrollWidth||m.push({element:b.element,q:(e.x-g.x)*(e.x-g.x)+(e.y-g.y)*(e.y-g.y),view:b.getPart(),targetIndex:b.getIndex(),after:a(e,g,s)}),b.container&&!b.element[0].querySelector("[sv-element]:not(.sv-placeholder):not(.sv-source)")&&m.push({element:b.element,q:(e.x-g.x)*(e.x-g.x)+(e.y-g.y)*(e.y-g.y),view:b.getPart(),targetIndex:0,container:!0})}});var x=n[0].getBoundingClientRect(),y={x:~~(x.left+x.width/2),y:~~(x.top+x.height/2)};m.push({q:(y.x-g.x)*(y.x-g.x)+(y.y-g.y)*(y.y-g.y),element:n,placeholder:!0}),m.sort(function(a,b){return a.q-b.q}),m.forEach(function(a,b){0!==b||a.placeholder||a.container?0===b&&a.container?(r=a,a.element.append(n)):a.element.removeClass("sv-candidate"):(r=a,a.element.addClass("sv-candidate"),a.after?a.element.after(n):e(a.element,n))})},this.$drop=function(a,b,c){function e(){if(d=!1,n.remove(),p.remove(),q.removeClass("ng-hide"),m=void 0,n=void 0,c=void 0,p=void 0,q=void 0,v(h,{$part:a.model(a.scope),$index:b,$item:a.model(a.scope)[b]}),r){r.element.removeClass("sv-candidate");var e=a.model(a.scope).splice(b,1),f=r.targetIndex;r.view===a&&r.targetIndex>b&&f--,r.after&&f++,r.view.model(r.view.scope).splice(f,0,e[0]),(r.view!==a||b!==f)&&t(h,{$partTo:r.view.model(r.view.scope),$partFrom:a.model(a.scope),$item:e[0],$indexTo:f,$indexFrom:b})}r=void 0,h.$root&&h.$root.$$phase||h.$apply()}if(n)if(c.revert){var f=n[0].getBoundingClientRect(),g=p[0].getBoundingClientRect(),i=Math.sqrt(Math.pow(g.top-f.top,2)+Math.pow(g.left-f.left,2)),j=+c.revert*i/200;j=Math.min(j,+c.revert),["-webkit-","-moz-","-ms-","-o-",""].forEach(function(a){"undefined"!=typeof p[0].style[a+"transition"]&&(p[0].style[a+"transition"]="all "+j+"ms ease")}),setTimeout(e,j),p.css({top:f.top+document.body.scrollTop+"px",left:f.left+document.body.scrollLeft+"px"})}else e()},this.addToSortableElements=function(a){b(l).push(a)},this.removeFromSortableElements=function(a){var d=b(l),e=d.indexOf(a);e>-1&&(d.splice(e,1),0===d.length&&c(l))}}]}}]),g.directive("svPart",["$parse",function(a){return{restrict:"A",require:"^svRoot",controller:["$scope",function(a){a.$ctrl=this,this.getPart=function(){return a.part},this.$drop=function(b,c){a.$sortableRoot.$drop(a.part,b,c)}}],scope:!0,link:function(b,c,d,e){if(!d.svPart)throw new Error("no model provided");var f=a(d.svPart);if(!f.assign)throw new Error("model not assignable");b.part={id:b.$id,element:c,model:f,scope:b},b.$sortableRoot=e;var g={element:c,getPart:b.$ctrl.getPart,container:!0};e.addToSortableElements(g),b.$on("$destroy",function(){e.removeFromSortableElements(g)})}}}]),g.directive("svElement",["$parse",function(a){return{restrict:"A",require:["^svPart","^svRoot"],controller:["$scope",function(a){a.$ctrl=this}],link:function(d,e,f,g){function h(h){function i(a){c(a),n||(e.parent().prepend(q),n=!0),g[1].$moveUpdate(k,{x:a.clientX,y:a.clientY,offset:t},q,e,m,g[0].getPart(),d.$index)}if(c(h),!g[1].sortingInProgress()&&(0==h.button||"mousedown"!==h.type)){n=!1;var k=a(f.svElement)(d);if(k=b.extend({},{tolerance:"pointer",revert:200,containment:"html"},k),k.containment)var p=j.call(e,k.containment)[0].getBoundingClientRect();var q,r=e,s=e[0].getBoundingClientRect();l||(l=g[0].helper),m||(m=g[0].placeholder),l?(q=l.clone(),q.removeClass("ng-hide"),q.css({left:s.left+document.body.scrollLeft+"px",top:s.top+document.body.scrollTop+"px"}),r.addClass("sv-visibility-hidden")):(q=r.clone(),q.addClass("sv-helper").css({left:s.left+document.body.scrollLeft+"px",top:s.top+document.body.scrollTop+"px",width:s.width+"px"})),q[0].reposition=function(a){var b=a.x,c=a.y,d=q[0].getBoundingClientRect(),e=document.body;p&&(c<p.top+e.scrollTop&&(c=p.top+e.scrollTop),c+d.height>p.top+e.scrollTop+p.height&&(c=p.top+e.scrollTop+p.height-d.height),b<p.left+e.scrollLeft&&(b=p.left+e.scrollLeft),b+d.width>p.left+e.scrollLeft+p.width&&(b=p.left+e.scrollLeft+p.width-d.width)),this.style.left=b-e.scrollLeft+"px",this.style.top=c-e.scrollTop+"px"};var t={x:(h.clientX-s.left)/s.width,y:(h.clientY-s.top)/s.height};o.addClass("sv-sorting-in-progress"),o.on("mousemove touchmove",i).on("mouseup touchend touchcancel",function u(){o.off("mousemove touchmove",i),o.off("mouseup touchend touchcancel",u),o.removeClass("sv-sorting-in-progress"),n&&g[0].$drop(d.$index,k),e.removeClass("sv-visibility-hidden")})}}var i={element:e,getPart:g[0].getPart,getIndex:function(){return d.$index}};g[1].addToSortableElements(i),d.$on("$destroy",function(){g[1].removeFromSortableElements(i)});var k=e;k.on("mousedown touchstart",h),d.$watch("$ctrl.handle",function(a){a&&(k.off("mousedown touchstart",h),k=a,k.on("mousedown touchstart",h))});var l;d.$watch("$ctrl.helper",function(a){a&&(l=a)});var m;d.$watch("$ctrl.placeholder",function(a){a&&(m=a)});var n,o=(b.element(document.body),b.element(document.documentElement))}}}]),g.directive("svHandle",function(){return{require:"?^svElement",link:function(a,b,c,d){d&&(d.handle=b.add(d.handle))}}}),g.directive("svHelper",function(){return{require:["?^svPart","?^svElement"],link:function(a,b,c,d){b.addClass("sv-helper").addClass("ng-hide"),d[1]?d[1].helper=b:d[0]&&(d[0].helper=b)}}}),g.directive("svPlaceholder",function(){return{require:["?^svPart","?^svElement"],link:function(a,b,c,d){b.addClass("sv-placeholder").addClass("ng-hide"),d[1]?d[1].placeholder=b:d[0]&&(d[0].placeholder=b)}}}),b.element(document.head).append(["<style>.sv-helper{position: fixed !important;z-index: 99999;margin: 0 !important;}.sv-candidate{}.sv-placeholder{}.sv-sorting-in-progress{-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}.sv-visibility-hidden{visibility: hidden !important;opacity: 0 !important;}</style>"].join(""));var h=document.documentElement,i=h.matches?"matches":h.matchesSelector?"matchesSelector":h.webkitMatches?"webkitMatches":h.webkitMatchesSelector?"webkitMatchesSelector":h.msMatches?"msMatches":h.msMatchesSelector?"msMatchesSelector":h.mozMatches?"mozMatches":h.mozMatchesSelector?"mozMatchesSelector":null;if(null==i)throw"This browser doesn't support the HTMLElement.matches method";var j=b.element.prototype.closest||function(a){for(var c=this[0].parentNode;c!==document.documentElement&&!c[i](a);)c=c.parentNode;return c[i](a)?b.element(c):b.element()};"function"!=typeof b.element.prototype.add&&(b.element.prototype.add=function(a){var c,d=b.element();for(a=b.element(a),c=0;c<this.length;c++)d.push(this[c]);for(c=0;c<a.length;c++)d.push(a[c]);return d})}(window,window.angular);
+/**
+ * angular-drag-and-drop-lists v1.3.0
+ *
+ * Copyright (c) 2014 Marcel Juenemann mail@marcel-juenemann.de
+ * Copyright (c) 2014-2015 Google Inc.
+ * https://github.com/marceljuenemann/angular-drag-and-drop-lists
+ *
+ * License: MIT
+ */
+angular.module('dndLists', [])
+
+  /**
+   * Use the dnd-draggable attribute to make your element draggable
+   *
+   * Attributes:
+   * - dnd-draggable      Required attribute. The value has to be an object that represents the data
+   *                      of the element. In case of a drag and drop operation the object will be
+   *                      serialized and unserialized on the receiving end.
+   * - dnd-selected       Callback that is invoked when the element was clicked but not dragged.
+   *                      The original click event will be provided in the local event variable.
+   * - dnd-effect-allowed Use this attribute to limit the operations that can be performed. Options:
+   *                      - "move": The drag operation will move the element. This is the default.
+   *                      - "copy": The drag operation will copy the element. Shows a copy cursor.
+   *                      - "copyMove": The user can choose between copy and move by pressing the
+   *                        ctrl or shift key. *Not supported in IE:* In Internet Explorer this
+   *                        option will be the same as "copy". *Not fully supported in Chrome on
+   *                        Windows:* In the Windows version of Chrome the cursor will always be the
+   *                        move cursor. However, when the user drops an element and has the ctrl
+   *                        key pressed, we will perform a copy anyways.
+   *                      - HTML5 also specifies the "link" option, but this library does not
+   *                        actively support it yet, so use it at your own risk.
+   * - dnd-moved          Callback that is invoked when the element was moved. Usually you will
+   *                      remove your element from the original list in this callback, since the
+   *                      directive is not doing that for you automatically. The original dragend
+   *                      event will be provided in the local event variable.
+   * - dnd-canceled       Callback that is invoked if the element was dragged, but the operation was
+   *                      canceled and the element was not dropped. The original dragend event will
+   *                      be provided in the local event variable.
+   * - dnd-copied         Same as dnd-moved, just that it is called when the element was copied
+   *                      instead of moved. The original dragend event will be provided in the local
+   *                      event variable.
+   * - dnd-dragstart      Callback that is invoked when the element was dragged. The original
+   *                      dragstart event will be provided in the local event variable.
+   * - dnd-dragend        Callback that is invoked when the drag operation ended. Available local
+   *                      variables are event and dropEffect.
+   * - dnd-type           Use this attribute if you have different kinds of items in your
+   *                      application and you want to limit which items can be dropped into which
+   *                      lists. Combine with dnd-allowed-types on the dnd-list(s). This attribute
+   *                      should evaluate to a string, although this restriction is not enforced.
+   * - dnd-disable-if     You can use this attribute to dynamically disable the draggability of the
+   *                      element. This is useful if you have certain list items that you don't want
+   *                      to be draggable, or if you want to disable drag & drop completely without
+   *                      having two different code branches (e.g. only allow for admins).
+   *                      **Note**: If your element is not draggable, the user is probably able to
+   *                      select text or images inside of it. Since a selection is always draggable,
+   *                      this breaks your UI. You most likely want to disable user selection via
+   *                      CSS (see user-select).
+   *
+   * CSS classes:
+   * - dndDragging        This class will be added to the element while the element is being
+   *                      dragged. It will affect both the element you see while dragging and the
+   *                      source element that stays at it's position. Do not try to hide the source
+   *                      element with this class, because that will abort the drag operation.
+   * - dndDraggingSource  This class will be added to the element after the drag operation was
+   *                      started, meaning it only affects the original element that is still at
+   *                      it's source position, and not the "element" that the user is dragging with
+   *                      his mouse pointer.
+   */
+  .directive('dndDraggable', ['$parse', '$timeout', 'dndDropEffectWorkaround', 'dndDragTypeWorkaround',
+                      function($parse,   $timeout,   dndDropEffectWorkaround,   dndDragTypeWorkaround) {
+    return function(scope, element, attr) {
+      // Set the HTML5 draggable attribute on the element
+      element.attr("draggable", "true");
+
+      // If the dnd-disable-if attribute is set, we have to watch that
+      if (attr.dndDisableIf) {
+        scope.$watch(attr.dndDisableIf, function(disabled) {
+          element.attr("draggable", !disabled);
+        });
+      }
+
+      /**
+       * When the drag operation is started we have to prepare the dataTransfer object,
+       * which is the primary way we communicate with the target element
+       */
+      element.on('dragstart', function(event) {
+        event = event.originalEvent || event;
+
+        // Serialize the data associated with this element. IE only supports the Text drag type
+        event.dataTransfer.setData("Text", angular.toJson(scope.$eval(attr.dndDraggable)));
+
+        // Only allow actions specified in dnd-effect-allowed attribute
+        event.dataTransfer.effectAllowed = attr.dndEffectAllowed || "move";
+
+        // Add CSS classes. See documentation above
+        element.addClass("dndDragging");
+        $timeout(function() { element.addClass("dndDraggingSource"); }, 0);
+
+        // Workarounds for stupid browsers, see description below
+        dndDropEffectWorkaround.dropEffect = "none";
+        dndDragTypeWorkaround.isDragging = true;
+
+        // Save type of item in global state. Usually, this would go into the dataTransfer
+        // typename, but we have to use "Text" there to support IE
+        dndDragTypeWorkaround.dragType = attr.dndType ? scope.$eval(attr.dndType) : undefined;
+
+        // Invoke callback
+        $parse(attr.dndDragstart)(scope, {event: event});
+
+        event.stopPropagation();
+      });
+
+      /**
+       * The dragend event is triggered when the element was dropped or when the drag
+       * operation was aborted (e.g. hit escape button). Depending on the executed action
+       * we will invoke the callbacks specified with the dnd-moved or dnd-copied attribute.
+       */
+      element.on('dragend', function(event) {
+        event = event.originalEvent || event;
+
+        // Invoke callbacks. Usually we would use event.dataTransfer.dropEffect to determine
+        // the used effect, but Chrome has not implemented that field correctly. On Windows
+        // it always sets it to 'none', while Chrome on Linux sometimes sets it to something
+        // else when it's supposed to send 'none' (drag operation aborted).
+        var dropEffect = dndDropEffectWorkaround.dropEffect;
+        scope.$apply(function() {
+          switch (dropEffect) {
+            case "move":
+              $parse(attr.dndMoved)(scope, {event: event});
+              break;
+            case "copy":
+              $parse(attr.dndCopied)(scope, {event: event});
+              break;
+            case "none":
+              $parse(attr.dndCanceled)(scope, {event: event});
+              break;
+          }
+          $parse(attr.dndDragend)(scope, {event: event, dropEffect: dropEffect});
+        });
+
+        // Clean up
+        element.removeClass("dndDragging");
+        $timeout(function() { element.removeClass("dndDraggingSource"); }, 0);
+        dndDragTypeWorkaround.isDragging = false;
+        event.stopPropagation();
+      });
+
+      /**
+       * When the element is clicked we invoke the callback function
+       * specified with the dnd-selected attribute.
+       */
+      element.on('click', function(event) {
+        if (!attr.dndSelected) return;
+
+        event = event.originalEvent || event;
+        scope.$apply(function() {
+          $parse(attr.dndSelected)(scope, {event: event});
+        });
+
+        // Prevent triggering dndSelected in parant elements.
+        event.stopPropagation();
+      });
+
+      /**
+       * Workaround to make element draggable in IE9
+       */
+      element.on('selectstart', function() {
+        if (this.dragDrop) this.dragDrop();
+      });
+    };
+  }])
+
+  /**
+   * Use the dnd-list attribute to make your list element a dropzone. Usually you will add a single
+   * li element as child with the ng-repeat directive. If you don't do that, we will not be able to
+   * position the dropped element correctly. If you want your list to be sortable, also add the
+   * dnd-draggable directive to your li element(s). Both the dnd-list and it's direct children must
+   * have position: relative CSS style, otherwise the positioning algorithm will not be able to
+   * determine the correct placeholder position in all browsers.
+   *
+   * Attributes:
+   * - dnd-list             Required attribute. The value has to be the array in which the data of
+   *                        the dropped element should be inserted.
+   * - dnd-allowed-types    Optional array of allowed item types. When used, only items that had a
+   *                        matching dnd-type attribute will be dropable.
+   * - dnd-disable-if       Optional boolean expresssion. When it evaluates to true, no dropping
+   *                        into the list is possible. Note that this also disables rearranging
+   *                        items inside the list.
+   * - dnd-horizontal-list  Optional boolean expresssion. When it evaluates to true, the positioning
+   *                        algorithm will use the left and right halfs of the list items instead of
+   *                        the upper and lower halfs.
+   * - dnd-dragover         Optional expression that is invoked when an element is dragged over the
+   *                        list. If the expression is set, but does not return true, the element is
+   *                        not allowed to be dropped. The following variables will be available:
+   *                        - event: The original dragover event sent by the browser.
+   *                        - index: The position in the list at which the element would be dropped.
+   *                        - type: The dnd-type set on the dnd-draggable, or undefined if unset.
+   * - dnd-drop             Optional expression that is invoked when an element is dropped over the
+   *                        list. If the expression is set, it must return the object that will be
+   *                        inserted into the list. If it returns false, the drop will be aborted
+   *                        and the event is propagated. The following variables will be available:
+   *                        - event: The original drop event sent by the browser.
+   *                        - index: The position in the list at which the element would be dropped.
+   *                        - item: The transferred object.
+   *                        - type: The dnd-type set on the dnd-draggable, or undefined if unset.
+   * - dnd-inserted         Optional expression that is invoked after a drop if the element was
+   *                        actually inserted into the list. The same local variables as for
+   *                        dnd-drop will be available. Note that for reorderings inside the same
+   *                        list the old element will still be in the list due to the fact that
+   *                        dnd-moved was not called yet.
+   * - dnd-external-sources Optional boolean expression. When it evaluates to true, the list accepts
+   *                        drops from sources outside of the current browser tab. This allows to
+   *                        drag and drop accross different browser tabs. Note that this will allow
+   *                        to drop arbitrary text into the list, thus it is highly recommended to
+   *                        implement the dnd-drop callback to check the incoming element for
+   *                        sanity. Furthermore, the dnd-type of external sources can not be
+   *                        determined, therefore do not rely on restrictions of dnd-allowed-type.
+   *
+   * CSS classes:
+   * - dndPlaceholder       When an element is dragged over the list, a new placeholder child
+   *                        element will be added. This element is of type li and has the class
+   *                        dndPlaceholder set. Alternatively, you can define your own placeholder
+   *                        by creating a child element with dndPlaceholder class.
+   * - dndDragover          Will be added to the list while an element is dragged over the list.
+   */
+  .directive('dndList', ['$parse', '$timeout', 'dndDropEffectWorkaround', 'dndDragTypeWorkaround',
+                 function($parse,   $timeout,   dndDropEffectWorkaround,   dndDragTypeWorkaround) {
+    return function(scope, element, attr) {
+      // While an element is dragged over the list, this placeholder element is inserted
+      // at the location where the element would be inserted after dropping
+      var placeholder = getPlaceholderElement();
+      var placeholderNode = placeholder[0];
+      var listNode = element[0];
+      placeholder.remove();
+
+      var horizontal = attr.dndHorizontalList && scope.$eval(attr.dndHorizontalList);
+      var externalSources = attr.dndExternalSources && scope.$eval(attr.dndExternalSources);
+
+      /**
+       * The dragover event is triggered "every few hundred milliseconds" while an element
+       * is being dragged over our list, or over an child element.
+       */
+      element.on('dragover', function(event) {
+        event = event.originalEvent || event;
+
+        if (!isDropAllowed(event)) return true;
+
+        // First of all, make sure that the placeholder is shown
+        // This is especially important if the list is empty
+        if (placeholderNode.parentNode != listNode) {
+          element.append(placeholder);
+        }
+
+        if (event.target !== listNode) {
+          // Try to find the node direct directly below the list node.
+          var listItemNode = event.target;
+          while (listItemNode.parentNode !== listNode && listItemNode.parentNode) {
+            listItemNode = listItemNode.parentNode;
+          }
+
+          if (listItemNode.parentNode === listNode && listItemNode !== placeholderNode) {
+            // If the mouse pointer is in the upper half of the child element,
+            // we place it before the child element, otherwise below it.
+            if (isMouseInFirstHalf(event, listItemNode)) {
+              listNode.insertBefore(placeholderNode, listItemNode);
+            } else {
+              listNode.insertBefore(placeholderNode, listItemNode.nextSibling);
+            }
+          }
+        } else {
+          // This branch is reached when we are dragging directly over the list element.
+          // Usually we wouldn't need to do anything here, but the IE does not fire it's
+          // events for the child element, only for the list directly. Therefore we repeat
+          // the positioning algorithm for IE here.
+          if (isMouseInFirstHalf(event, placeholderNode, true)) {
+            // Check if we should move the placeholder element one spot towards the top.
+            // Note that display none elements will have offsetTop and offsetHeight set to
+            // zero, therefore we need a special check for them.
+            while (placeholderNode.previousElementSibling
+                 && (isMouseInFirstHalf(event, placeholderNode.previousElementSibling, true)
+                 || placeholderNode.previousElementSibling.offsetHeight === 0)) {
+              listNode.insertBefore(placeholderNode, placeholderNode.previousElementSibling);
+            }
+          } else {
+            // Check if we should move the placeholder element one spot towards the bottom
+            while (placeholderNode.nextElementSibling &&
+                 !isMouseInFirstHalf(event, placeholderNode.nextElementSibling, true)) {
+              listNode.insertBefore(placeholderNode,
+                  placeholderNode.nextElementSibling.nextElementSibling);
+            }
+          }
+        }
+
+        // At this point we invoke the callback, which still can disallow the drop.
+        // We can't do this earlier because we want to pass the index of the placeholder.
+        if (attr.dndDragover && !invokeCallback(attr.dndDragover, event, getPlaceholderIndex())) {
+          return stopDragover();
+        }
+
+        element.addClass("dndDragover");
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+      });
+
+      /**
+       * When the element is dropped, we use the position of the placeholder element as the
+       * position where we insert the transferred data. This assumes that the list has exactly
+       * one child element per array element.
+       */
+      element.on('drop', function(event) {
+        event = event.originalEvent || event;
+
+        if (!isDropAllowed(event)) return true;
+
+        // The default behavior in Firefox is to interpret the dropped element as URL and
+        // forward to it. We want to prevent that even if our drop is aborted.
+        event.preventDefault();
+
+        // Unserialize the data that was serialized in dragstart. According to the HTML5 specs,
+        // the "Text" drag type will be converted to text/plain, but IE does not do that.
+        var data = event.dataTransfer.getData("Text") || event.dataTransfer.getData("text/plain");
+        var transferredObject;
+        try {
+          transferredObject = JSON.parse(data);
+        } catch(e) {
+          return stopDragover();
+        }
+
+        // Invoke the callback, which can transform the transferredObject and even abort the drop.
+        var index = getPlaceholderIndex();
+        if (attr.dndDrop) {
+          transferredObject = invokeCallback(attr.dndDrop, event, index, transferredObject);
+          if (!transferredObject) {
+            return stopDragover();
+          }
+        }
+
+        // Retrieve the JSON array and insert the transferred object into it.
+        var targetArray = scope.$eval(attr.dndList);
+        scope.$apply(function() {
+          targetArray.splice(index, 0, transferredObject);
+        });
+        invokeCallback(attr.dndInserted, event, index, transferredObject);
+
+        // In Chrome on Windows the dropEffect will always be none...
+        // We have to determine the actual effect manually from the allowed effects
+        if (event.dataTransfer.dropEffect === "none") {
+          if (event.dataTransfer.effectAllowed === "copy" ||
+              event.dataTransfer.effectAllowed === "move") {
+            dndDropEffectWorkaround.dropEffect = event.dataTransfer.effectAllowed;
+          } else {
+            dndDropEffectWorkaround.dropEffect = event.ctrlKey ? "copy" : "move";
+          }
+        } else {
+          dndDropEffectWorkaround.dropEffect = event.dataTransfer.dropEffect;
+        }
+
+        // Clean up
+        stopDragover();
+        event.stopPropagation();
+        return false;
+      });
+
+      /**
+       * We have to remove the placeholder when the element is no longer dragged over our list. The
+       * problem is that the dragleave event is not only fired when the element leaves our list,
+       * but also when it leaves a child element -- so practically it's fired all the time. As a
+       * workaround we wait a few milliseconds and then check if the dndDragover class was added
+       * again. If it is there, dragover must have been called in the meantime, i.e. the element
+       * is still dragging over the list. If you know a better way of doing this, please tell me!
+       */
+      element.on('dragleave', function(event) {
+        event = event.originalEvent || event;
+
+        element.removeClass("dndDragover");
+        $timeout(function() {
+          if (!element.hasClass("dndDragover")) {
+            placeholder.remove();
+          }
+        }, 100);
+      });
+
+      /**
+       * Checks whether the mouse pointer is in the first half of the given target element.
+       *
+       * In Chrome we can just use offsetY, but in Firefox we have to use layerY, which only
+       * works if the child element has position relative. In IE the events are only triggered
+       * on the listNode instead of the listNodeItem, therefore the mouse positions are
+       * relative to the parent element of targetNode.
+       */
+      function isMouseInFirstHalf(event, targetNode, relativeToParent) {
+        var mousePointer = horizontal ? (event.offsetX || event.layerX)
+                                      : (event.offsetY || event.layerY);
+        var targetSize = horizontal ? targetNode.offsetWidth : targetNode.offsetHeight;
+        var targetPosition = horizontal ? targetNode.offsetLeft : targetNode.offsetTop;
+        targetPosition = relativeToParent ? targetPosition : 0;
+        return mousePointer < targetPosition + targetSize / 2;
+      }
+
+      /**
+       * Tries to find a child element that has the dndPlaceholder class set. If none was found, a
+       * new li element is created.
+       */
+      function getPlaceholderElement() {
+        var placeholder;
+        angular.forEach(element.children(), function(childNode) {
+          var child = angular.element(childNode);
+          if (child.hasClass('dndPlaceholder')) {
+            placeholder = child;
+          }
+        });
+        return placeholder || angular.element("<li class='dndPlaceholder'></li>");
+      }
+
+      /**
+       * We use the position of the placeholder node to determine at which position of the array the
+       * object needs to be inserted
+       */
+      function getPlaceholderIndex() {
+        return Array.prototype.indexOf.call(listNode.children, placeholderNode);
+      }
+
+      /**
+       * Checks various conditions that must be fulfilled for a drop to be allowed
+       */
+      function isDropAllowed(event) {
+        // Disallow drop from external source unless it's allowed explicitly.
+        if (!dndDragTypeWorkaround.isDragging && !externalSources) return false;
+
+        // Check mimetype. Usually we would use a custom drag type instead of Text, but IE doesn't
+        // support that.
+        if (!hasTextMimetype(event.dataTransfer.types)) return false;
+
+        // Now check the dnd-allowed-types against the type of the incoming element. For drops from
+        // external sources we don't know the type, so it will need to be checked via dnd-drop.
+        if (attr.dndAllowedTypes && dndDragTypeWorkaround.isDragging) {
+          var allowed = scope.$eval(attr.dndAllowedTypes);
+          if (angular.isArray(allowed) && allowed.indexOf(dndDragTypeWorkaround.dragType) === -1) {
+            return false;
+          }
+        }
+
+        // Check whether droping is disabled completely
+        if (attr.dndDisableIf && scope.$eval(attr.dndDisableIf)) return false;
+
+        return true;
+      }
+
+      /**
+       * Small helper function that cleans up if we aborted a drop.
+       */
+      function stopDragover() {
+        placeholder.remove();
+        element.removeClass("dndDragover");
+        return true;
+      }
+
+      /**
+       * Invokes a callback with some interesting parameters and returns the callbacks return value.
+       */
+      function invokeCallback(expression, event, index, item) {
+        return $parse(expression)(scope, {
+          event: event,
+          index: index,
+          item: item || undefined,
+          external: !dndDragTypeWorkaround.isDragging,
+          type: dndDragTypeWorkaround.isDragging ? dndDragTypeWorkaround.dragType : undefined
+        });
+      }
+
+      /**
+       * Check if the dataTransfer object contains a drag type that we can handle. In old versions
+       * of IE the types collection will not even be there, so we just assume a drop is possible.
+       */
+      function hasTextMimetype(types) {
+        if (!types) return true;
+        for (var i = 0; i < types.length; i++) {
+          if (types[i] === "Text" || types[i] === "text/plain") return true;
+        }
+
+        return false;
+      }
+    };
+  }])
+
+  /**
+   * Use the dnd-nodrag attribute inside of dnd-draggable elements to prevent them from starting
+   * drag operations. This is especially useful if you want to use input elements inside of
+   * dnd-draggable elements or create specific handle elements.
+   */
+  .directive('dndNodrag', function() {
+    return function(scope, element, attr) {
+      // Set as draggable so that we can cancel the events explicitly
+      element.attr("draggable", "true");
+
+      /**
+       * Since the element is draggable, the browser's default operation is to drag it on dragstart.
+       * We will prevent that and also stop the event from bubbling up.
+       */
+      element.on('dragstart', function(event) {
+        event = event.originalEvent || event;
+
+        // If a child element already reacted to dragstart and set a dataTransfer object, we will
+        // allow that. For example, this is the case for user selections inside of input elements.
+        if (!(event.dataTransfer.types && event.dataTransfer.types.length)) {
+          event.preventDefault();
+        }
+        event.stopPropagation();
+      });
+
+      /**
+       * Stop propagation of dragend events, otherwise dnd-moved might be triggered and the element
+       * would be removed.
+       */
+      element.on('dragend', function(event) {
+        event = event.originalEvent || event;
+        event.stopPropagation();
+      });
+    };
+  })
+
+  /**
+   * This workaround handles the fact that Internet Explorer does not support drag types other than
+   * "Text" and "URL". That means we can not know whether the data comes from one of our elements or
+   * is just some other data like a text selection. As a workaround we save the isDragging flag in
+   * here. When a dropover event occurs, we only allow the drop if we are already dragging, because
+   * that means the element is ours.
+   */
+  .factory('dndDragTypeWorkaround', function(){ return {} })
+
+  /**
+   * Chrome on Windows does not set the dropEffect field, which we need in dragend to determine
+   * whether a drag operation was successful. Therefore we have to maintain it in this global
+   * variable. The bug report for that has been open for years:
+   * https://code.google.com/p/chromium/issues/detail?id=39399
+   */
+  .factory('dndDropEffectWorkaround', function(){ return {} });
 
 /*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
@@ -10199,10 +10732,10 @@ var myApp = angular.module('myApp', [
     'myAppController',
     'myAppFactory',
     'myAppService',
+    'dndLists',
     'qAllSettled',
     'myAppTemplates',
-    'httpLatency',
-    'angular-sortable-view'
+    'httpLatency'
 
 ]);
 
@@ -10347,13 +10880,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.// Login
     when('/', {
         templateUrl: 'app/views/auth/auth.html'
-    }).// Autocomplete
-    when('/autocomplete', {
-        templateUrl: 'app/views/autocomplete.html',
-    }).
-    // Dragdrop
-    when('/dragdrop', {
-        templateUrl: 'app/views/dragdrop.html',
     }).// Home
     when('/home', {
         redirectTo: '/dashboard'
@@ -10408,14 +10934,9 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'app/views/apps/apps_local_id.html',
         requireLogin: true,
         roles: cfg.role_access.apps_local
-    }).//Apps online home
+    }).//Apps online
     when('/apps/online', {
         templateUrl: 'app/views/apps/apps_online.html',
-        requireLogin: true,
-        roles: cfg.role_access.apps
-    }). //Apps online filter
-    when('/apps/online/filter', {
-        templateUrl: 'app/views/apps/apps_online_filter.html',
         requireLogin: true,
         roles: cfg.role_access.apps
     }).//Apps - online detail
@@ -10429,7 +10950,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         requireLogin: true,
         roles: cfg.role_access.apps_online
     }).//Module
-    when('/module/:action/:id/:fromapp?/:instanceId?', {
+    when('/module/:action/:id/:fromapp?', {
         templateUrl: 'app/views/apps/app_module_alpaca.html',
         requireLogin: true,
         roles: cfg.role_access.module
@@ -10605,296 +11126,18 @@ myApp.config(['$routeProvider', function ($routeProvider) {
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('app/views/apps/_apps_online_slider.html',
-    "<style>.slider_w {\r" +
-    "\n" +
-    "        height: 320px;\r" +
-    "\n" +
-    "        overflow: hidden;\r" +
-    "\n" +
-    "        position: relative;\r" +
-    "\n" +
-    "        margin-top: 20px;\r" +
-    "\n" +
-    "        margin: 0 auto;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .slide_w {\r" +
-    "\n" +
-    "        position: absolute;\r" +
-    "\n" +
-    "        top: 0;\r" +
-    "\n" +
-    "        left: 0;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .arrow {\r" +
-    "\n" +
-    "        position: absolute;\r" +
-    "\n" +
-    "        z-index: 1002;\r" +
-    "\n" +
-    "        display: block;\r" +
-    "\n" +
-    "        top: 50%;\r" +
-    "\n" +
-    "        margin-top: -35px;\r" +
-    "\n" +
-    "        width: 36px;\r" +
-    "\n" +
-    "        height: 71px;\r" +
-    "\n" +
-    "        outline: none;\r" +
-    "\n" +
-    "        cursor: pointer;\r" +
-    "\n" +
-    "        width: 40px;\r" +
-    "\n" +
-    "        height: 40px;\r" +
-    "\n" +
-    "        border-radius: 50%;\r" +
-    "\n" +
-    "        background: #EEEEEE;\r" +
-    "\n" +
-    "        border: 1px solid #CCCCCC;\r" +
-    "\n" +
-    "        text-align: center;\r" +
-    "\n" +
-    "        display:table;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .arrow a {\r" +
-    "\n" +
-    "        text-decoration: none;\r" +
-    "\n" +
-    "        margin: 0 auto;\r" +
-    "\n" +
-    "        display:table-cell;\r" +
-    "\n" +
-    "        vertical-align:middle;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .arrow.prev {\r" +
-    "\n" +
-    "        left: 20px;\r" +
-    "\n" +
-    "        transition: 0.2s linear all;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .arrow.next {\r" +
-    "\n" +
-    "        right: 20px;\r" +
-    "\n" +
-    "        transition: 0.2s linear all;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .arrow.prev:hover {\r" +
-    "\n" +
-    "        border-color: #;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .arrow.next:hover {\r" +
-    "\n" +
-    "        border-color: #;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    /*---------------------------------------------------------\r" +
-    "\n" +
-    "    NAV\r" +
-    "\n" +
-    "    ---------------------------------------------------------*/\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .nav {\r" +
-    "\n" +
-    "        text-align: center;\r" +
-    "\n" +
-    "        display: block;\r" +
-    "\n" +
-    "        position: absolute;\r" +
-    "\n" +
-    "        z-index: 1002;\r" +
-    "\n" +
-    "        left: 0;\r" +
-    "\n" +
-    "        bottom: -4px;\r" +
-    "\n" +
-    "        right: 0;\r" +
-    "\n" +
-    "        height: 48px;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .nonDraggableImage{\r" +
-    "\n" +
-    "        -webkit-user-drag: none;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .nav .wrapper {\r" +
-    "\n" +
-    "        margin: 0 auto;\r" +
-    "\n" +
-    "        width: 100%;\r" +
-    "\n" +
-    "        padding: 1em 0 .8em;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .nav ul {\r" +
-    "\n" +
-    "        margin: 0;\r" +
-    "\n" +
-    "        width: 100%;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .nav .dot, .nav .dot a {\r" +
-    "\n" +
-    "        display: inline-block;\r" +
-    "\n" +
-    "        zoom: 1;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .dots .dot {\r" +
-    "\n" +
-    "        position: relative;\r" +
-    "\n" +
-    "        margin: 0 8px;\r" +
-    "\n" +
-    "        width: 12px;\r" +
-    "\n" +
-    "        height: 12px;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .dots .dot a {\r" +
-    "\n" +
-    "        position: absolute;\r" +
-    "\n" +
-    "        top: 2px;\r" +
-    "\n" +
-    "        left: 2px;\r" +
-    "\n" +
-    "        width: 20px;\r" +
-    "\n" +
-    "        height: 20px;\r" +
-    "\n" +
-    "        text-indent: 100%;\r" +
-    "\n" +
-    "        white-space: nowrap;\r" +
-    "\n" +
-    "        overflow: hidden;\r" +
-    "\n" +
-    "        background: #EEEEEE;\r" +
-    "\n" +
-    "        border: 1px solid #CCCCCC;\r" +
-    "\n" +
-    "        outline: none;\r" +
-    "\n" +
-    "        -webkit-box-shadow: none;\r" +
-    "\n" +
-    "        -moz-box-shadow: none;\r" +
-    "\n" +
-    "        box-shadow: none;\r" +
-    "\n" +
-    "        -webkit-border-radius: 50%;\r" +
-    "\n" +
-    "        -moz-border-radius: 50%;\r" +
-    "\n" +
-    "        border-radius: 50%;\r" +
-    "\n" +
-    "        -webkit-transition: background-color 0.25s, border-color 0.25s;\r" +
-    "\n" +
-    "        -moz-transition: background-color 0.25s, border-color 0.25s;\r" +
-    "\n" +
-    "        transition: background-color 0.25s, border-color 0.25s;\r" +
-    "\n" +
-    "    }\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    .dots .dot a.active {\r" +
-    "\n" +
-    "        border-color: #CCCCCC;\r" +
-    "\n" +
-    "        background-color: #dcdcdc;\r" +
-    "\n" +
-    "        box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);\r" +
-    "\n" +
-    "    }</style><div class=app-entry-online><div class=\"app-row app-row-widget clearfix slider_w\"><div class=\"slide-animation nonDraggableImage\" style=\"padding: 0 10%\" ng-repeat=\"slides in slider.slides\" ng-swipe-right=nextSlide() ng-swipe-left=prevSlide() ng-hide=!isCurrentSlideIndex($index)><div class=\"widget-entry widget-entry-app\" ng-repeat=\"slide in slides\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{slide.id}}><img class=widget-preview-img alt={{slide.title}} title={{slide.toolTipDescription}} ng-src=\"{{slide.icon ? onlineMediaUrl + slide.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + slide.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{slide.id}} title={{slide.title}}>{{slide.title|cutText:true:20}}</a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > slide.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(slide, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[slide.modulename] && dataHolder.modules.ids[slide.modulename].version == slide.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(slide, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[slide.modulename] && slide.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div><span class=\"arrow next\"><a class=\"fa fa-arrow-right\" href=\"\" ng-click=nextSlide()></a></span> <span class=\"arrow prev\"><a class=\"fa fa-arrow-left\" href=\"\" ng-click=prevSlide()></a></span><nav class=nav><div class=wrapper><ul class=dots><li class=dot ng-repeat=\"i in slider.slides track by $index\"><a href=\"\" ng-class=\"{'active':isCurrentSlideIndex($index)}\" ng-click=setCurrentSlideIndex($index);>{{i.modulename}}</a></li></ul></div></nav></div></div><div class=app-entry-online><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-repeat=\"v in dataHolder.onlineModules.all  | orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-if=v.featured ng-hide_=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:20}}</a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div>"
-  );
-
-
   $templateCache.put('app/views/apps/app_module_alpaca.html',
     "<div class=mobile-padding id=page_module_update ng-controller=AppModuleAlpacaController><bb-loader></bb-loader><div class=form-page ng-show=showForm><div class=\"fieldset clearfix\"><div class=app-detail-img><img class=app-image-detail ng-src=\"{{moduleMediaUrl + input.moduleName + '/' + input.icon}}\" ng-if=input.icon alt=\"img\"></div><div class=app-detail-body><h2 ng-bind=input.moduleTitle></h2><p class=app-detail-perex ng-bind-html=\"moduleId.find.defaults.description | toTrusted\"></p><p class=app-detail-list ng-if=moduleId.categoryName><i class=\"fa fa-list\"></i> <span ng-bind=moduleId.categoryName></span></p><p class=app-detail-list ng-if=moduleId.find.author><i class=\"fa fa-user\"></i> <span ng-show=!moduleId.find.homepage ng-bind=moduleId.find.author></span> <a ng-href={{moduleId.find.homepage}} ng-if=moduleId.find.homepage ng-bind=moduleId.find.author></a></p><p class=app-detail-list ng-if=moduleId.find.version><i class=\"fa fa-info-circle\"></i> <span class=app-version ng-bind=moduleId.find.version></span> <span class=label ng-class=\"moduleId.find.maturity == 'stable' ? 'label-success' : 'label-warning'\">{{moduleId.find.maturity}}</span></p><p class=app-detail-list ng-if=\"moduleId.find.dependencies.length > 0\"><i class=\"fa fa-link\"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat=\"i in moduleId.find.dependencies\">{{i}},</span></p><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.activate)><p>{{_t('war_dependency_module_activate')}}</p><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.activate\" ng-click=activateInstance(v)>{{v.moduleId}} <i class=\"fa fa-fire text-success\" title=\"{{_t('lb_activate')}}\"></i></a></div><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.add)><p>{{_t('war_dependency_module_add')}}</p><a ng-href=#module/post/{{v.modulename}}/{{input.moduleId}} class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.add\">{{v.modulename}} <i class=\"fa fa-plus text-success\" title=\"{{_t('lb_add_app')}}\"></i></a></div><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.download)><p>{{_t('war_dependency_module_install')}}</p><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.download\" ng-click=installModule(v)>{{v.modulename}} <i class=\"fa fa-download text-success\" title=\"{{_t('lb_download')}}\"></i></a></div><div class=form-group></div></div></div><div ng-if=moduleId.singletonActive><div class=\"fieldset clearfix\"><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('singleton_with_instance',{__module_title__:input.moduleTitle})}}</div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a class=\"btn btn-submit\" title=\"{{_t('lb_active')}}\" href=#apps/instance><i class=\"fa fa-fire\"></i> <span class=btn-name>{{_t('active_apps')}}</span></a></div></div><form id=form_module ng-if=!moduleId.singletonActive><input name=instanceId id=instanceId type=hidden class=form-control value=\"{{input.instanceId}}\"> <input name=moduleId id=moduleId type=hidden class=form-control value=\"{{input.moduleId}}\"><fieldset><div class=form-group><input type=checkbox name=active value={{input.active}} id=active ng-model=input.active ng-checked=\"input.active\"><label>{{_t('lb_active')}}</label></div><div class=form-group><label>{{_t('lb_name')}}</label><input name=title id=title class=form-control value={{input.title}} ng-model=\"input.title\"></div></fieldset><div id=alpaca_data ng-show=alpacaData data-module-postrender={{input.modulePostrender}}></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" id=btn_module_submit_ang class=\"btn btn-submit\" ng-click=store(input) ng-disabled=!moduleId.submit ng-if=!alpacaData><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" id=btn_module_submit class=\"btn btn-submit\" data-sid={{ZWAYSession}} data-fromapp={{moduleId.fromapp}} data-lang={{lang}} ng-disabled=!moduleId.submit ng-if=alpacaData><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div></div>"
   );
 
 
   $templateCache.put('app/views/apps/apps_instance.html',
-    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppInstanceController id=apps_instances><div ng-include=\"'app/views/apps/navi.html'\"></div><div ng-include=\"'app/views/apps/apps_instance_ctrl.html'\"></div><div ng-include=\"'app/views/apps/apps_instance_widget.html'\"></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/apps/apps_instance_ctrl.html',
-    "<div class=\"page-control form-inline\"><div class=form-group><label><input type=checkbox name=instances_expanded ng-change=expandInstances(dataHolder.instances.expanded) ng-model=dataHolder.instances.expanded ng-checked=\"dataHolder.instances.expanded\"> {{_t('expand_all')}}</label></div><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><div class=report-entry title={{v.title}} ng-repeat=\"v in autocomplete.results | orderBy:'title' track by $index\"><div class=\"report-col report-body\"><img class=report-img-s ng-src=\"{{moduleMediaUrl + v.moduleId + '/' + dataHolder.modules.imgs[v.moduleId]}}\" ng-if=dataHolder.modules.imgs[v.moduleId] alt=\"img\"> <img class=report-img-s ng-src=storage/img/placeholder-img.png ng-if=!dataHolder.modules.imgs[v.moduleId] alt=\"img\"> <a class=aoutocomplete-title href=#module/put/{{v.id}}>{{v.title|cutText:true:30}}</a>&nbsp;</div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-group><button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default btn-sm\" href=\"\" ng-if=v.active ng-class=\"v.active ? 'active' : ''\" ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default btn-sm\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <button title=\"{{_t('Copy instance')}}\" class=\"btn btn-default btn-sm\" ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-copy text-info\"></i></button> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default btn-sm\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/apps/apps_instance_widget.html',
-    "<div class=accordion-entry ng-repeat=\"g in dataHolder.instances.groups track by $index\"><h2 class=accordion-entry-title ng-click=expandElement(g.moduleId) ng-init=\"expand[g.moduleId] = dataHolder.instances.expanded\"><img class=report-img-s ng-src=\"{{moduleMediaUrl + g.moduleId + '/' + dataHolder.modules.imgs[g.moduleId]}}\" ng-if=dataHolder.modules.imgs[g.moduleId] alt=\"img\"> <img class=report-img-s ng-src=storage/img/placeholder-img.png ng-if=!dataHolder.modules.imgs[g.moduleId] alt=\"img\"> {{g.title}} <span class=item-cnt>({{dataHolder.instances.cnt.modules[g.moduleId]}})</span> <i class=\"fa accordion-arrow\" ng-class=\"expand[g.moduleId] ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-class=\"\" ng-if=expand[g.moduleId]><div class=\"app-row app-row-report app-row-event clearfix\"><div class=\"report-entry bcg-active\" id=instance_{{$index}} ng-repeat=\"v in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1\"><div class=\"report-col report-body\"><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default\" href=\"\" ng-if=v.active ng-class=\"v.active ? 'active' : ''\" ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.singleton[v.moduleId].singelton><i class=\"fa fa-clone\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div></div><div class=\"page-control form-inline\"><div class=\"form-group form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('Add new group')}}\" ng-model=search.text bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('Add new group')}}\" ng-click=addTag()><i class=\"fa fa-plus text-success\"></i></span></div></div></div>"
+    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppInstanceController id=apps_instances><div ng-include=\"'app/views/apps/navi.html'\"></div><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsInstancesOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.instances.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.appsInstancesOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.instances\" ng-click=setOrderBy(k) ng-class=\"dataHolder.instances.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-report app-row-event clearfix\"><div class=\"report-entry bcg-active\" id=instance_{{$index}} ng-repeat=\"v in dataHolder.instances.all|orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1\"><div class=\"report-col report-media\"><img class=report-img ng-src=\"{{moduleMediaUrl + v.moduleId + '/' + dataHolder.modules.imgs[v.moduleId]}}\" ng-if=dataHolder.modules.imgs[v.moduleId] alt=\"img\"> <img class=report-img ng-src=storage/img/placeholder-img.png ng-if=!dataHolder.modules.imgs[v.moduleId] alt=\"img\"></div><div class=\"report-col report-body\"><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default\" href=\"\" ng-if=v.active ng-class=\"v.active ? 'active' : ''\" ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div></div>"
   );
 
 
   $templateCache.put('app/views/apps/apps_local.html',
-    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppLocalController id=apps_local><div ng-include=\"'app/views/apps/navi.html'\"></div><div ng-include=\"'app/views/apps/apps_local_ctrl.html'\"></div><div ng-include=\"'app/views/apps/apps_local_widget.html'\"></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/apps/apps_local_ctrl.html',
-    "<div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.modules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.modules.filter.category>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.modules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.modules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsLocalOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('apps/local/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'toString()' track by $index\"><img class=report-img-s ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=report-img-s ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span>&nbsp; <span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></li></ul></div></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.modules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=item-cnt>({{dataHolder.modules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=\"dataHolder.modules.cats.indexOf(v.id) > -1 && dataHolder.modules.cnt.appsCat[v.id]\" ng-class=\"dataHolder.modules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\"><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.modules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul></div></div><div class=page-navi ng-if=naviExpanded.appsLocalOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appslocal\" ng-click=setOrderBy(k) ng-class=\"dataHolder.modules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div>"
+    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppLocalController id=apps_local><div ng-include=\"'app/views/apps/navi.html'\"></div><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.modules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.modules.filter.category>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.modules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.modules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsLocalOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.modules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=item-cnt>({{dataHolder.modules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=\"dataHolder.modules.cats.indexOf(v.id) > -1 && dataHolder.modules.cnt.appsCat[v.id]\" ng-class=\"dataHolder.modules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\"><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.modules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul></div></div><div class=page-navi ng-if=naviExpanded.appsLocalOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appslocal\" ng-click=setOrderBy(k) ng-class=\"dataHolder.modules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div ng-if=\"dataHolder.modules.cnt.appsCatFeatured[dataHolder.modules.filter.category] > 0\"><h1 style=\"margin: 0px 0px 10px 10px\">{{_t('featured_apps')}}</h1><span style=\"display:block; width:100%; height: 4px; float: left; background-color: #80ad80\"></span><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-repeat=\"v in dataHolder.modules.all|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-if=v.featured ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div><h1 style=\"margin: 30px 0px 10px 10px\">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</h1><h1 style=\"margin: 30px 0px 10px 10px\" ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</h1><span style=\"display:block; width:100%; height: 4px; float: left; background-color: #80ad80\"></span><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-if=!v.featured ng-repeat=\"v in dataHolder.modules.all|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div><div class=text-right ng-if=\"dataHolder.modules.filter.featured == true\"><button class=\"btn btn-default\" ng-click=setFilter()><i class=\"fa fa-search-plus text-success\"></i> {{_t('show_more_apps')}}</button></div></div></div>"
   );
 
 
@@ -10903,28 +11146,8 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/apps/apps_local_widget.html',
-    "<div class=app-entry-local ng-if=\"dataHolder.modules.cnt.appsCatFeatured[dataHolder.modules.filter.category] > 0\"><h2 class=app-entry-title>{{_t('featured_apps')}}</h2><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-repeat=\"v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-if=v.featured ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div><div class=app-entry-local><h2 ng-if=!_.isEmpty(dataHolder.modules.filter)>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</h2><h2 ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</h2><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-if=!v.featured ng-repeat=\"v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div>"
-  );
-
-
   $templateCache.put('app/views/apps/apps_online.html',
-    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppOnlineController id=apps_online><div ng-include=\"'app/views/apps/navi.html'\"></div><div ng-include=\"'app/views/apps/apps_online_slider.html'\"></div><div ng-include=\"'app/views/apps/apps_online_ctrl.html'\"></div><div ng-include=\"'app/views/apps/apps_online_widget.html'\"></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/apps/apps_online_ctrl.html',
-    "<div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\" ng-hide=\"routeMatch('/apps/online')\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.onlineModules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsOnlineOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('apps/online/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'toString()' track by $index\"><img class=report-img-s alt={{v.title}} ng-src=\"{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span>&nbsp; (<span class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in [1,2,3,4,5]\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></span>)</li></ul></div></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=dataHolder.onlineModules.cnt.appsCat[v.id] ng-class=\"dataHolder.onlineModules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\" ng-switch=v.id><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))\" ng-class=\"dataHolder.onlineModules.hideInstalled ? 'active': ''\"><i class=\"fa fa-eye-slash\"></i> {{_t('hide_installed_apps')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.appsOnlineOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appsonline\" ng-click=setOrderBy(k) ng-class=\"dataHolder.onlineModules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/apps/apps_online_filter.html',
-    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppOnlineController id=apps_online><div ng-include=\"'app/views/apps/navi.html'\"></div><div ng-if=_.isEmpty(dataHolder.onlineModules.filter) ng-include=\"'app/views/apps/apps_online_slider.html'\"></div><div ng-include=\"'app/views/apps/apps_online_ctrl.html'\"></div><div ng-include=\"'app/views/apps/apps_online_filter_widget.html'\"></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/apps/apps_online_filter_widget.html',
-    "<div class=app-entry-online><div class=\"app-entry-cat clearfix\"><div class=app-entry-title><h2><small><a class=\"btn btn-default btn-sm\" href=#apps/online><i class=\"fa fa-chevron-left\"></i></a></small> &nbsp; <span ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=item-cnt>({{dataHolder.onlineModules.cnt.collection}})</span></h2></div></div><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-if=!v.featured ng-repeat=\"v in dataHolder.onlineModules.collection| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-hide=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:20}}</a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div>"
+    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppOnlineController id=apps_online><div ng-include=\"'app/views/apps/navi.html'\"></div><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.onlineModules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsOnlineOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=dataHolder.onlineModules.cnt.appsCat[v.id] ng-class=\"dataHolder.onlineModules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\" ng-switch=v.id><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))\" ng-class=\"dataHolder.onlineModules.hideInstalled ? 'active': ''\"><i class=\"fa fa-eye-slash\"></i> {{_t('hide_installed_apps')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.appsOnlineOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appsonline\" ng-click=setOrderBy(k) ng-class=\"dataHolder.onlineModules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div ng-if=\"dataHolder.onlineModules.cnt.appsCatFeatured[dataHolder.onlineModules.filter.category] > 0\"><h1 style=\"margin: 0px 0px 10px 10px\">{{_t('featured_apps')}}</h1><span style=\"display:block; width:100%; height: 4px; float: left; background-color: #80ad80\"></span><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-repeat=\"v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-if=v.featured ng-hide=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:25}} <span class=btn-name>&raquo;</span></a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div><h1 style=\"margin: 30px 0px 10px 10px\">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</h1><h1 style=\"margin: 30px 0px 10px 10px\" ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</h1><span style=\"display:block; width:100%; height: 4px; float: left; background-color: #80ad80\"></span><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-if=!v.featured ng-repeat=\"v in dataHolder.onlineModules.all| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-hide=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:25}} <span class=btn-name>&raquo;</span></a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div><div class=text-right ng-if=\"dataHolder.onlineModules.filter.featured == true\"><button class=\"btn btn-default\" ng-click=setFilter()><i class=\"fa fa-search-plus text-success\"></i> {{_t('show_more_apps')}}</button></div></div></div>"
   );
 
 
@@ -10948,18 +11171,8 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/apps/apps_online_slider.html',
-    "<div class=app-online-slider ng-controller=AppOnlineFeaturedController><div class=\"container_ app-slider\"><div class=\"slide slide-animation\" ng-click=\"redirectToRoute('apps/online/' + v.id)\" ng-repeat=\"v in dataHolder.onlineModules.featured|appSliderSlice:slider.cfg track by $index\" ng-hide_=\"currentIndex != $index\"><img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{sliderImages[v.modulename]}}\"><div class=slider-label><h3 title={{v.title}}>{{v.title|cutText:true:35}}</h3><div class=slider-footer><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in _.range(1, 6)\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span> <button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\"><i class=\"fa fa-download text-success\"></i></button></div></div></div><button class=\"slider-btn slider-btn-prev\" ng-hide=\"slider.cfg.start == 0\" ng-click=prevSlide()>❮</button> <button class=\"slider-btn slider-btn-next\" ng-hide_=\"slider.cfg.start == cfg.max\" ng-click=nextSlide()>❯</button></div></div>"
-  );
-
-
-  $templateCache.put('app/views/apps/apps_online_widget.html',
-    "<div class=app-entry-online ng-repeat=\"c in dataHolder.modules.categories\" ng-if=dataHolder.onlineModules.cnt.appsCat[c.id]><div class=\"app-entry-cat clearfix\"><div class=app-entry-title><h2>{{c.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.appsCat[c.id]}})</span></h2><div>{{c.description}}</div></div><div class=app-entry-btn><a class=\"btn btn-info\" ng-href=#/apps/online/filter ng-click=\"setFilter({category: c.id})\" ng-if=\"_.size(c.onlineModules) > 5\">{{_t('show_more_apps')}} <i class=\"fa fa-chevron-right\"></i></a></div></div><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-if=\"v.category == c.id\" ng-repeat=\"v in c.onlineModules| limitTo: 5 | orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-hide=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:20}}</a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div>"
-  );
-
-
   $templateCache.put('app/views/apps/navi.html',
-    "<div class=\"tabs-wrap form-inline\"><div class=\"btn-group btn-goup-tabs btn-tabs-3\"><a class=\"btn btn-default\" title=\"{{_t('lb_local_modules')}}\" href=#apps/local ng-class=\"routeMatch('/apps/local') ? 'active' : ''\"><i class=\"fa fa-cloud-download\"></i> <span class=btn-name>{{_t('lb_local_modules')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('lb_online_modules')}}\" href=#apps/online ng-class=\"routeMatch('/apps/online') ||  routeMatch('/apps/online/filter') ? 'active' : ''\"><i class=\"fa fa-globe\"></i> <span class=btn-name>{{_t('lb_online_modules')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('lb_active')}}\" href=#apps/instance ng-class=\"routeMatch('/apps/instance') ? 'active' : ''\"><i class=\"fa fa-fire\"></i> <span class=btn-name>{{_t('lb_active')}}</span></a></div></div>"
+    "<div class=\"tabs-wrap form-inline\"><div class=\"btn-group btn-goup-tabs btn-tabs-3\"><a class=\"btn btn-default\" title=\"{{_t('lb_local_modules')}}\" href=#apps/local ng-class=\"routeMatch('/apps/local') ? 'active' : ''\"><i class=\"fa fa-cloud-download\"></i> <span class=btn-name>{{_t('lb_local_modules')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('lb_online_modules')}}\" href=#apps/online ng-class=\"routeMatch('/apps/online') ? 'active' : ''\"><i class=\"fa fa-globe\"></i> <span class=btn-name>{{_t('lb_online_modules')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('lb_active')}}\" href=#apps/instance ng-class=\"routeMatch('/apps/instance') ? 'active' : ''\"><i class=\"fa fa-fire\"></i> <span class=btn-name>{{_t('lb_active')}}</span></a></div></div>"
   );
 
 
@@ -10990,11 +11203,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/auth/password_reset.html',
     "<div ng-controller=PasswordResetController class=mobile-padding><bb-loader></bb-loader><bb-alert alert=passwordReset.alert></bb-alert><form name=form_password id=form_password class=\"form form-page\" ng-submit=changePassword(form_password) novalidate ng-if=\"passwordReset.input.userId !== null\"><fieldset><h3><i class=\"fa fa-chevron-down\"></i> {{_t('password_reset')}}</h3><div class=form-group><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=passwordReset.input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=passwordReset.input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_submit')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
-  );
-
-
-  $templateCache.put('app/views/autocomplete.html',
-    "<div ng-controller=AutoCompleteController><div class=\"form-group form-inline text-right\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_add_tag')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown app-dropdown-left_ autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('apps/online/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'toString()' track by $index\"><img class=report-img-s alt={{v.title}} ng-src=\"{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span>&nbsp; (<span class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in [1,2,3,4,5]\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></span>)</li></ul></div></div></div></div>"
   );
 
 
@@ -11053,16 +11261,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/dragdrop.html',
-    "<div ng-controller=DragDropController><div class=\"app-row app-row-widget app-row-element clearfix\" sv-root sv-part=dataHolder.devices.collection sv-on-start=\"dragDropStart($item, $part, $index, $helper)\" sv-on-sort=\"dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)\"><div sv-placeholder class=\"dd-placeholder dd-element\">&nbsp;</div><div id=Widget_{{v.id}} class=\"widget-entry widget-entry-element\" ng-repeat=\"v in dataHolder.devices.collection track by $index\" sv-element><div class=widget-entry-in><div class=widget-img><img class=\"widget-preview-img img-circle\" ng-src=\"storage/img/placeholder-img.png\"></div><div class=widget-header><a class=\"widget-icon widget-history\" href=\"\" title=\"{{_t('history')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\" ng-if=v.hasHistory><i class=\"fa fa-history\"></i></a> <a class=\"widget-icon widget-config\" href=#element/{{v.id}} title=\"{{_t('lb_cfg_view')}}\" ng-if=elementAccess(cfg.role_access.element)><i class=\"fa fa-cog\"></i></a></div><div class=widget-content><div class=widget-title><span class=widget-room><span ng-if=\"v.location !== 0\">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span><h3 title={{v.metrics.title}}>{{v.metrics.title|cutText:true:25}}</h3></div></div></div></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/elements/_elements_room.html',
-    "<link href=\"https://fonts.googleapis.com/css?family=Roboto:100\" rel=stylesheet><div ng-controller=ElementBaseController><bb-loader></bb-loader><div ng-controller=ElementRoomController><div class=full-bg-wrapper><div class=full-bg ng-style=\"{'background':'url(' + room.img_src + ')', 'background-position': 'center center', 'background-size': 'cover'}\"></div></div><div class=room-header><div class=room-header-in><div class=room-header-image><img class=room-preview-img ng-src={{room.img_src}}></div><div class=room-header-header><a><i class=\"fa fa-cog\"></i></a></div><div class=room-header-content><div class=room-title><h1>{{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}</h1></div><div class=room-sensors><span class=room-sensor><i class=\"fa fa-tint\"></i> 12 °C</span> <span class=divider-vertical></span> <span class=room-sensor><i class=\"fa fa-tint\"></i> 12 °C</span> <span class=divider-vertical></span> <span class=room-sensor><i class=\"fa fa-info\"></i> 12 °C</span></div><div class=room-header-footer><div class=quick-slots><span class=quick-slot><a class=\"btn btn-xs btn-default\" title=\"Add quick action\"><i class=\"fa fa-plus\"></i> Licht an/aus</a></span> <span class=quick-slot><a class=\"btn btn-xs btn-default\" title=\"Add quick action\"><i class=\"fa fa-plus\"></i> Licht an/aus</a></span></div></div></div></div></div><div class=room-search><div class=\"input-group search-group\"><input ng-model=q class=form-control value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div ng-if=!dataHolder.devices.show ng-include=\"'app/views/elements/no_elements_room.html'\"></div><div ng-if=dataHolder.devices.show ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
-  );
-
-
   $templateCache.put('app/views/elements/element_id.html',
     "<div ng-controller=ElementIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=elementId.show><h2><span ng-bind=\"_t('lb_cfg_view')\"></span>: <span ng-bind=elementId.input.metrics.title></span></h2><form name=form_element id=form_element class=\"form form-page\" autocomplete=off ng-submit=store(elementId.input) novalidate><fieldset ng-if=elementAccess(cfg.role_access.admin)><p class=form-control-static><span ng-bind=\"_t('element_id')\"></span>: <strong ng-bind=elementId.input.id></strong></p><div class=form-group_><label>{{_t('lb_element_name')}}:</label><input name=title id=title class=form-control value={{elementId.input.metrics.title}} placeholder=\"{{_t('lb_element_name')}}\" ng-model=\"elementId.input.metrics.title\"></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_configuration')\"></span></h3><div ng-if=elementAccess(cfg.role_access.admin)><div class=form-group ng-if=elementId.appType.instance><span ng-bind=\"_t('lb_gen_by_module')\"></span> <a class=\"btn btn-default\" ng-href=#module/put/{{elementId.appType.instance.id}}><strong>{{elementId.appType.instance.title}}</strong></a></div><div class=form-group ng-if=elementId.appType.zwave>{{_t('lb_gen_by')}} <a href=#zwave/devices/{{elementId.appType.zwave}} class=\"btn btn-default\">{{_t('lb_zwave_device')}} #{{elementId.appType.zwave}}</a></div><div class=form-group ng-if=elementId.appType.enocean>{{_t('lb_gen_by')}} <a href=#enocean/manage/{{elementId.appType.enocean}} class=\"btn btn-default\">{{_t('enocean_device')}} #{{elementId.appType.enocean}}</a></div><div class=form-group><input type=checkbox name=dashboard id=dashboard ng-init=\"visibility.checked = !elementId.input.visibility\" ng-model=visibility.checked ng-change=\"elementId.input.visibility = !visibility.checked\" ng-checked=\"!elementId.input.visibility\"><label>{{_t('hide_element')}}</label><bb-help-text trans=\"_t('hide_element_info')\"></bb-help-text></div></div><div class=form-group ng-if=\"elementAccess(cfg.role_access.admin) && elementId.appType.zwave\"><input type=checkbox name=permanently_hidden id=permanently_hidden ng-model=elementId.input.permanently_hidden ng-checked=\"elementId.input.permanently_hidden\"><label>{{_t('lb_deactivate')}}</label><bb-help-text trans=\"_t('deactivate_element_info')\"></bb-help-text></div><div class=form-group><div><input type=checkbox name=dashboard value={{elementId.input.onDashboard}} id=dashboard ng-model=elementId.input.onDashboard ng-checked=\"elementId.input.onDashboard\"><label>{{_t('lb_add_dashboard')}}</label></div><div><input type=checkbox name=hide_events value={{elementId.input.id}} id=hide_events ng-model=elementId.input.hide_events ng-checked=\"user.hide_single_device_events.indexOf(elementId.input.id) === -1 ? false : true\"><label>{{_t('lb_hide_events_device')}}</label></div></div><div class=\"form-group form-inline\" ng-if=elementAccess(cfg.role_access.admin)><h3>{{_t('lb_assign_room')}}</h3><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('elidDropDown', $event)\">{{elementId.locations[elementId.input.location].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.elidDropDown><ul><li class=clickable ng-class=\"elementId.input.location == v.id ? 'active':''\" ng-click=\"elementId.input.location = v.id\" ng-repeat=\"v in elementId.locations\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"elementId.input.location == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset ng-if=elementAccess(cfg.role_access.admin)><h3><span ng-bind=\"_t('lb_tags')\"></span></h3><div class=\"form-group form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_add_tag')}}\" ng-model=search.text bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fa fa-plus text-success\"></i></span><div class=\"app-dropdown app-dropdown-left\" ng-if=suggestions.length><ul><li href=\"\" ng-click=addTag(v) ng-repeat=\"v in suggestions | orderBy:'toString()'\"><a href=\"\"><i class=\"fa fa-plus text-success\"></i> {{v}}</a></li></ul></div></div></div><div class=\"form-group last\"><a href=\"\" class=\"btn btn-default btn-tag\" id=tag_{{$index}} ng-repeat=\"t in elementId.input.tags | orderBy:'toString()'\" ng-click=removeTag($index)>{{t}} <i class=\"fa fa-times text-danger\" title=\"{{_t('lb_remove')}}\"></i></a></div></fieldset><fieldset class=submit-entry><button type=button title=\"{{_t('lb_cancel')}}\" class=\"btn btn-default\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name ng-bind=\"_t('lb_cancel')\"></span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_save')\"></span></button></fieldset></form><div ng-if=elementAccess(cfg.role_access.admin) ng-include=\"'app/views/elements/element_id_icons.html'\"></div></div></div>"
   );
@@ -11079,12 +11277,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/elements_page.html',
-    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-3\"><button class=\"btn btn-default\" ng-click=\"expandNavi('elCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.devices.filter) ? 'active':''\"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.deviceType>{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span> <span class=btn-name ng-if=\"dataHolder.devices.filter.visibility === false\">{{_t('hidden_elements') | cutText:true:15}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.devices.filter)>{{_t('all_elements') | cutText:true:15}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elTags', $event)\" ng-class=\"dataHolder.devices.filter.tag ? 'active':''\"><i class=\"fa fa-tags\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.tag>{{dataHolder.devices.filter.tag|cutText:true:15}}</span> <span class=btn-name ng-if=!dataHolder.devices.filter.tag>{{_t('lb_tags')}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('element/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'title' track by $index\"><img class=report-img-s ng-src={{v.iconPath}} alt=\"{{v.title}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span></li></ul></div></div></div><div class=page-navi ng-if=naviExpanded.elCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_elements')}} <span class=item-cnt>({{dataHolder.cnt.devices}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v}} ng-repeat=\"(v,k) in dataHolder.devices.deviceType\" ng-class=\"dataHolder.devices.filter.deviceType == v ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({deviceType: v})\"><i class=\"fa {{v|getElCategoryIcon}}\"></i> {{_t(v) | cutText:true:30}} <span class=item-cnt>({{k}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"showHiddenEl((dataHolder.devices.showHidden ? false:true))\" ng-class=\"dataHolder.devices.showHidden ? 'active': ''\"><i class=\"fa fa-eye\"></i> {{_t('show_hidden')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elTags><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=setFilter() ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\">{{_t('all_elements')}}</a> <a class=\"btn btn-default btn-tag\" ng-repeat=\"v in dataHolder.devices.tags|orderBy:'toString()'\" ng-click=\"setFilter({tag: v})\" ng-class=\"dataHolder.devices.filter.tag == v ? 'active': ''\">{{v|cutText:true:30}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.elements\" ng-click=setOrderBy(k) ng-class=\"dataHolder.devices.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div ng-if=dataHolder.devices.noDevices ng-include=\"'app/views/elements/no_devices.html'\"></div><div ng-if=\"dataHolder.devices.show && !dataHolder.devices.noDevices\"><div ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
+    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-3\"><button class=\"btn btn-default\" ng-click=\"expandNavi('elCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.devices.filter) ? 'active':''\"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.deviceType>{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span> <span class=btn-name ng-if=\"dataHolder.devices.filter.visibility === false\">{{_t('hidden_elements') | cutText:true:15}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.devices.filter)>{{_t('all_elements') | cutText:true:15}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elTags', $event)\" ng-class=\"dataHolder.devices.filter.tag ? 'active':''\"><i class=\"fa fa-tags\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.tag>{{dataHolder.devices.filter.tag|cutText:true:15}}</span> <span class=btn-name ng-if=!dataHolder.devices.filter.tag>{{_t('lb_tags')}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span></button></div><div class=\"input-group search-group\"><input ng-model=q class=form-control value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.elCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_elements')}} <span class=item-cnt>({{dataHolder.cnt.devices}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v}} ng-repeat=\"(v,k) in dataHolder.devices.deviceType\" ng-class=\"dataHolder.devices.filter.deviceType == v ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({deviceType: v})\"><i class=\"fa {{v|getElCategoryIcon}}\"></i> {{_t(v) | cutText:true:30}} <span class=item-cnt>({{k}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"showHiddenEl((dataHolder.devices.showHidden ? false:true))\" ng-class=\"dataHolder.devices.showHidden ? 'active': ''\"><i class=\"fa fa-eye\"></i> {{_t('show_hidden')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elTags><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=setFilter() ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\">{{_t('all_elements')}}</a> <a class=\"btn btn-default btn-tag\" ng-repeat=\"v in dataHolder.devices.tags|orderBy:'toString()'\" ng-click=\"setFilter({tag: v})\" ng-class=\"dataHolder.devices.filter.tag == v ? 'active': ''\">{{v|cutText:true:30}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.elements\" ng-click=setOrderBy(k) ng-class=\"dataHolder.devices.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div ng-if=dataHolder.devices.noDevices ng-include=\"'app/views/elements/no_devices.html'\"></div><div ng-if=\"dataHolder.devices.show && !dataHolder.devices.noDevices\"><div ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
   );
 
 
   $templateCache.put('app/views/elements/elements_room.html',
-    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('element/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'title' track by $index\"><img class=report-img-s ng-src={{v.iconPath}} alt=\"{{v.title}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span></li></ul></div></div></div><div ng-controller=ElementRoomController><div class=full-bg-wrapper ng-show=\"!room.show_background && room.id != 0\"><div class=full-bg ng-style=\"{'background':'url(' + room.img_src + ')', 'background-position': 'center center', 'background-size': 'cover'}\"></div></div><h1><small><a class=\"btn btn-default btn-sm\" href=#rooms><i class=\"fa fa-chevron-left\"></i></a></small> {{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}</h1><div ng-if=!dataHolder.devices.show ng-include=\"'app/views/elements/no_elements_room.html'\"></div><div ng-if=dataHolder.devices.show ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
+    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div ng-controller=ElementRoomController><h1>{{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}</h1><div ng-if=!dataHolder.devices.show ng-include=\"'app/views/elements/no_elements_room.html'\"></div><div ng-if=dataHolder.devices.show ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
   );
 
 
@@ -11099,7 +11297,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/list.html',
-    "<div class=\"app-row app-row-widget app-row-element clearfix\" sv-root sv-part=dataHolder.devices.collection sv-on-start=\"dragDropStart($item, $part, $index, $helper)\" sv-on-sort=\"dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)\"><div sv-placeholder class=\"dd-placeholder dd-element\">&nbsp;</div><div id=Widget_{{v.id}} class=\"widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}\" sv-element ng-class=\"{'widget-success': v.isNew}\" ng-repeat=\"v in dataHolder.devices.collection track by v.id\"><div class=widget-entry-in><div class=widget-img title=\"{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}\"><img class=\"widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}} dd-handle\" ng-src={{v.iconPath}} alt=img ng-click=\"runCmd(v.id + '/command/' + v.updateCmd)\" ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) > -1\" draggable=false ondragstart=\"return false\" sv-handle> <img class=\"widget-preview-img img-circle dd-handle\" ng-src={{v.iconPath}} alt=img ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) === -1\" draggable=false ondragstart=\"return false\" sv-handle></div><div class=widget-header><a class=\"widget-icon widget-event\" href=\"\" ng-click=\"dataHolder.devices.find = v;handleModal('modalEvent', $event)\"><i class=\"fa fa-calendar\"></i></a> <a class=\"widget-icon widget-hidden\" href=\"\" ng-click=setVisibility(v,true) ng-if=!v.visibility><i class=\"fa fa-eye-slash\"></i></a> <a class=\"widget-icon widget-chart\" href=\"\" title=\"{{_t('chart')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalIntchart', $event)\" ng-if=v.metrics.intchartUrl><i class=\"fa fa-line-chart\"></i></a> <a class=\"widget-icon widget-history\" href=\"\" title=\"{{_t('history')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\" ng-if=v.hasHistory><i class=\"fa fa-history\"></i></a> <a class=\"widget-icon widget-config\" href=#element/{{v.id}} title=\"{{_t('lb_cfg_view')}}\" ng-if=elementAccess(cfg.role_access.element)><i class=\"fa fa-cog\"></i></a></div><div class=widget-content><div class=widget-title><span class=widget-room><span ng-if=\"v.location !== 0\">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span><h3 title={{v.metrics.title}}>{{v.metrics.title|cutText:true:25}}</h3></div><hr class=\"bottom-aligner\"><div class=widget-footer ng-switch=v.deviceType><div ng-switch-when=switchMultilevel><div ng-include=\"'app/views/elements/widgets/switchMultilevel.html'\"></div></div><div ng-switch-when=switchBinary><div ng-include=\"'app/views/elements/widgets/switchBinary.html'\"></div></div><div ng-switch-when=switchRGBW><div ng-include=\"'app/views/elements/widgets/switchRGBW.html'\"></div></div><div ng-switch-when=doorlock><div ng-include=\"'app/views/elements/widgets/doorlock.html'\"></div></div><div ng-switch-when=doorLockControl><div ng-include=\"'app/views/elements/widgets/doorLockControl.html'\"></div></div><div ng-switch-when=toggleButton><div ng-include=\"'app/views/elements/widgets/toggleButton.html'\"></div></div><div ng-switch-when=sensorMultilevel><div ng-include=\"'app/views/elements/widgets/sensorMultilevel.html'\"></div></div><div ng-switch-when=sensorBinary><div ng-include=\"'app/views/elements/widgets/sensorBinary.html'\"></div></div><div ng-switch-when=sensorDiscrete><div ng-include=\"'app/views/elements/widgets/sensorDiscrete.html'\"></div></div><div ng-switch-when=thermostat><div ng-include=\"'app/views/elements/widgets/thermostat.html'\"></div></div><div ng-switch-when=camera><div ng-include=\"'app/views/elements/widgets/camera.html'\"></div></div><div ng-switch-when=text><div ng-include=\"'app/views/elements/widgets/text.html'\"></div></div><div ng-switch-when=switchControl><div ng-include=\"'app/views/elements/widgets/switchControl.html'\"></div></div><div ng-switch-when=sensorMultiline><div ng-include=\"'app/views/elements/widgets/sensorMultiline.html'\"></div></div><div ng-switch-default><div ng-include=\"'app/views/elements/widgets/default.html'\"></div></div></div></div></div></div></div><div ng-include=\"'app/views/elements/widgets/intchartModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/historyModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/eventModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchMultilevelModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/thermostatModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/sensorMultilineModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/openWeatherModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/multiButtonModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/textModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/cameraModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/climateControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/doorLockControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchRGBWModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/securityControlModal.html'\"></div>"
+    "<div class=\"app-row app-row-widget app-row-element clearfix\"><div id=Widget_{{v.id}} class=\"widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}\" ng-class=\"{'widget-success': v.isNew}\" ng-repeat=\"v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id\"><div class=widget-entry-in><div class=widget-img title=\"{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}\"><img class=\"widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}\" ng-src={{v.iconPath}} alt=img ng-click=\"runCmd(v.id + '/command/' + v.updateCmd)\" ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) > -1\"> <img class=\"widget-preview-img img-circle\" ng-src={{v.iconPath}} alt=img ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) === -1\"></div><div class=widget-header><a class=\"widget-icon widget-hidden\" href=\"\" ng-click=setVisibility(v,true) ng-if=!v.visibility><i class=\"fa fa-eye-slash\"></i></a> <a class=\"widget-icon widget-chart\" href=\"\" title=\"{{_t('chart')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalIntchart', $event)\" ng-if=v.metrics.intchartUrl><i class=\"fa fa-line-chart\"></i></a> <a class=\"widget-icon widget-history\" href=\"\" title=\"{{_t('history')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\" ng-if=v.hasHistory><i class=\"fa fa-history\"></i></a> <a class=\"widget-icon widget-config\" href=#element/{{v.id}} title=\"{{_t('lb_cfg_view')}}\" ng-if=elementAccess(cfg.role_access.element)><i class=\"fa fa-cog\"></i></a></div><div class=widget-content><div class=widget-title><span class=widget-room><span ng-if=\"v.location !== 0\">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span><h3 title={{v.metrics.title}}>{{v.metrics.title|cutText:true:25}}</h3></div><hr class=\"bottom-aligner\"><div class=widget-footer ng-switch=v.deviceType><div ng-switch-when=switchMultilevel><div ng-include=\"'app/views/elements/widgets/switchMultilevel.html'\"></div></div><div ng-switch-when=switchBinary><div ng-include=\"'app/views/elements/widgets/switchBinary.html'\"></div></div><div ng-switch-when=switchRGBW><div ng-include=\"'app/views/elements/widgets/switchRGBW.html'\"></div></div><div ng-switch-when=doorlock><div ng-include=\"'app/views/elements/widgets/doorlock.html'\"></div></div><div ng-switch-when=doorLockControl><div ng-include=\"'app/views/elements/widgets/doorLockControl.html'\"></div></div><div ng-switch-when=toggleButton><div ng-include=\"'app/views/elements/widgets/toggleButton.html'\"></div></div><div ng-switch-when=sensorMultilevel><div ng-include=\"'app/views/elements/widgets/sensorMultilevel.html'\"></div></div><div ng-switch-when=sensorBinary><div ng-include=\"'app/views/elements/widgets/sensorBinary.html'\"></div></div><div ng-switch-when=sensorDiscrete><div ng-include=\"'app/views/elements/widgets/sensorDiscrete.html'\"></div></div><div ng-switch-when=thermostat><div ng-include=\"'app/views/elements/widgets/thermostat.html'\"></div></div><div ng-switch-when=camera><div ng-include=\"'app/views/elements/widgets/camera.html'\"></div></div><div ng-switch-when=text><div ng-include=\"'app/views/elements/widgets/text.html'\"></div></div><div ng-switch-when=switchControl><div ng-include=\"'app/views/elements/widgets/switchControl.html'\"></div></div><div ng-switch-when=sensorMultiline><div ng-include=\"'app/views/elements/widgets/sensorMultiline.html'\"></div></div><div ng-switch-default><div ng-include=\"'app/views/elements/widgets/default.html'\"></div></div></div></div></div></div></div><div ng-include=\"'app/views/elements/widgets/intchartModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/historyModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchMultilevelModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/thermostatModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/sensorMultilineModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/openWeatherModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/multiButtonModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/textModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/cameraModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/climateControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/doorLockControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchRGBWModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/securityControlModal.html'\"></div>"
   );
 
 
@@ -11155,11 +11353,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/elements/widgets/doorlock.html',
     "<div class=\"widget-ctrl ctrl-left\">&nbsp;</div><div class=\"widget-ctrl ctrl-right widget-ctrl-click\"><div class=btn-group><button class=\"btn btn-off\" ng-class=\"v.metrics.level=='close' ? 'btn-primary': 'btn-default'\" data-ng-click=\"runCmd(v.id + '/command/close', v.id)\"><i class=\"fa fa-lock\"></i></button> <button class=\"btn btn-on\" ng-class=\"v.metrics.level =='open' ? 'btn-primary': 'btn-default'\" data-ng-click=\"runCmd(v.id + '/command/open', v.id)\"><i class=\"fa fa-unlock\"></i></button></div></div>"
-  );
-
-
-  $templateCache.put('app/views/elements/widgets/eventModal.html',
-    "<div id=modalEvent class=appmodal ng-controller=ElementEventController ng-if=modalArr.modalEvent><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"resetDevices({byId:{}});handleModal('modalEvent', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{widgetEvent.find.metrics.title}}</h3></div><div class=appmodal-body><bb-alert alert=widgetEvent.alert></bb-alert><table class=\"table table-report table-condensed\"><tbody><tr class=event-level-{{v.level}} ng-repeat=\"v in widgetEvent.collection | orderBy: '-timestamp' | limitTo: 10\"><td class=td-img><img id=event_img_{{v.id}} class=report-img-s ng-src={{v.type|getEventIcon:v.message}} alt=\"{{v.type}}\"></td><td><span class=\"text-supp event-date\" title=\"{{v.timestamp| date:'dd.MM.yyyy H:mm'}}\">{{v.timestamp | eventDate}}</span></td><td><span ng-if=\"v.message | hasNode:'l'\"><span ng-bind=v.message.dev></span> {{_t('lb_is')}} <strong ng-bind=v.message.l></strong></span> <span ng-if=\"!(v.message | hasNode:'l')\" ng-bind=v.message></span></td></tr></tbody></table></div><div class=appmodal-footer><a class=\"btn btn-default\" ng-href=#events ng-click=\"handleModal('modalEvent', $event)\">{{_t('see_more')}} <i class=\"fa fa-chevron-right\"></i></a></div></div></div>"
   );
 
 
@@ -11568,28 +11761,18 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/rooms/_rooms.html',
-    "<div ng-controller=RoomController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-1\" ng-if=elementAccess(cfg.role_access.config_rooms)><a class=\"btn btn-default\" href=#config-rooms/0><i class=\"fa fa-plus\"></i> <span class=btn-name>{{_t('lb_add_room')}}</span></a></div><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('roomsOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(rooms.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.roomsOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.rooms\" ng-click=setOrderBy(k) ng-class=\"rooms.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-room clearfix\" ng-if=rooms.show><div class=\"widget-entry widget-entry-element\" id=panel_{{$index}} ng-hide=\"v.id === 0 && !rooms.cnt.devices[v.id]\" ng-repeat=\"v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id\"><div class=widget-entry-in><div class=widget-img title={{v.title}}><a ng-href=\"#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}\" ng-disabled=!rooms.cnt.devices[v.id] title=\"{{_t('lb_devices_room')}} {{v.title}}\"><img class=\"widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}\" ng-src={{v.img_src}} alt=img ng-click=\"\"></a></div><div class=widget-room-header><div class=slots><span class=slot1><i class=\"fa fa-cog\"></i> 2°C</span> <span class=divider-vertical></span> <span class=slot2><i class=\"fa fa-cog\"></i> 12°</span> <span class=divider-vertical></span> <span class=slot3><i class=\"fa fa-cog\"></i> 12°C</span> <span class=slot-conf><a class=widget-config href=#element/{{v.id}} title=\"{{_t('lb_cfg_view')}}\" ng-if=elementAccess(cfg.role_access.element)><i class=\"fa fa-cog\"></i></a></span></div></div><div class=widget-room-content><div class=widget-title><a ng-href=\"#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}\" ng-disabled=!rooms.cnt.devices[v.id] title=\"{{_t('lb_devices_room')}} {{v.title}}\"><h3 title={{v.title}}>{{v.title|cutText:true:25}}</h3></a></div><hr class=\"bottom-aligner\"><div class=widget-room-footer><div class=slots><span class=slot1><a class=\"btn btn-xs btn-default\"><i class=\"fa fa-cog\"></i> TV</a></span> <span class=slot2><a class=\"btn btn-xs btn-default\"><i class=\"fa fa-cog\"></i> Tor</a></span> <span class=slot3><a class=\"btn btn-xs btn-default\" title=\"Add quick action\"><i class=\"fa fa-plus\"></i></a></span></div></div></div></div></div></div></div>"
-  );
-
-
   $templateCache.put('app/views/rooms/config_rooms.html',
     "<div ng-controller=RoomController><bb-loader></bb-loader><div ng-if=rooms.show><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('roomsOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(rooms.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.roomsOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.rooms\" ng-click=setOrderBy(k) ng-class=\"rooms.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-report app-row-room clearfix\"><div id=row_{{v.id}} class=report-entry ng-repeat=\"v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id\" ng-if=\"v.id !== 0\"><div class=\"report-col report-media\"><img class=\"report-img img-circle\" ng-src=\"{{v.img_src}}\"></div><div class=\"report-col report-body\">{{v.title|cutText:true:25}} <span class=item-cnt>({{rooms.cnt.devices[v.id]||0}})</span></div><div class=\"report-col report-ctrl\"><div class=btn-group><a class=\"btn btn-default\" title=\"{{_t('lb_update')}}\" href=#config-rooms/{{v.id}}><i class=\"fa fa-pencil text-info\"></i></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteRoom(v.id, _t('lb_delete_confirm'))\"><i class=\"fa fa-times text-danger\"></i></button></div></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a type=button class=\"btn btn-submit\" title=\"{{_t('lb_add_room')}}\" ng-href=#config-rooms/0><i class=\"fa fa-plus\"></i> <span class=btn-name>{{_t('lb_add_room')}}</span></a></div></div></div>"
   );
 
 
   $templateCache.put('app/views/rooms/config_rooms_id.html',
-    "<div ng-controller=RoomConfigIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=input><h2><span ng-bind=\"_t('lb_room')\"></span>: <span ng-show=\"input.id > 0\">(#{{input.id}})</span> <span ng-bind=input.title></span></h2><form name=form_room id=form_room class=\"form form-page\" ng-submit=store(form_room,input) novalidate><fieldset><h3><span ng-bind=\"_t('lb_name')\"></span></h3><div><div class=form-group><input name=title id=title class=form-control placeholder=\"{{_t('lb_room_name')}}\" value={{input.title}} ng-model=input.title ng-blur=\"titleBlur = true\" ng-required=\"true\"><bb-validator input-name=form_room.title.$error.required trans=_t(&quot;field_required&quot;) has-blur=titleBlur></bb-validator></div></div></fieldset><fieldset class=mobile-hide><h3><span ng-bind=\"_t('lb_select_image')\"></span></h3><div class=clearfix><div class=form-group><img class=\"room-img-upload form-control-img\" ng-repeat=\"v in defaultImages\" ng-click=\"input.default_img = v;input.img_type = 'default'\" ng-class=\"input.img_type == 'default' && v == input.default_img ? 'control-active':''\" ng-src=storage/img/rooms/{{v}} alt=\"{{v}}\"> <img class=\"room-img-upload form-control-img\" ng-click=\"input.user_img = input.user_img;input.img_type = 'user'\" ng-class=\"input.img_type == 'user' ? 'control-active':''\" ng-src=\"{{userImageUrl + input.user_img}}\" ng-if=\"input.user_img\"></div></div><div class=form-group><label><input type=checkbox name=instances_expanded ng-model=input.show_background ng-checked=\"input.show_background\"> {{_t('selected_image_background')}}</label><div></div></div></fieldset><fieldset class=mobile-hide><div><div class=form-group><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().uploadFile(this.files)\"><label for=file{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload text-success\"></i> {{_t('lb_upload_image')}}</label><div ng-if=file.upload>{{file.upload|cutText:true:30}}</div><bb-help-text trans=\"_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})\"></bb-help-text></div></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_devices_in_room')\"></span></h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('lb_remove')}}\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) > -1 && d.location !== 0\" ng-click=removeDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-times text-danger\"></i></a></div></fieldset><fieldset><h3>{{_t('lb_available_devices')}}</h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) === -1 || d.location === 0\" ng-click=assignDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-plus text-success\"></i></a></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_room.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div></div>"
+    "<div ng-controller=RoomConfigIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=input><h2><span ng-bind=\"_t('lb_room')\"></span>: <span ng-show=\"input.id > 0\">(#{{input.id}})</span> <span ng-bind=input.title></span></h2><form name=form_room id=form_room class=\"form form-page\" ng-submit=store(form_room,input) novalidate><fieldset><h3><span ng-bind=\"_t('lb_name')\"></span></h3><div><div class=form-group><input name=title id=title class=form-control placeholder=\"{{_t('lb_room_name')}}\" value={{input.title}} ng-model=input.title ng-blur=\"titleBlur = true\" ng-required=\"true\"><bb-validator input-name=form_room.title.$error.required trans=_t(&quot;field_required&quot;) has-blur=titleBlur></bb-validator></div></div></fieldset><fieldset class=mobile-hide><h3><span ng-bind=\"_t('lb_select_image')\"></span></h3><div class=clearfix><div class=form-group><img class=\"room-img-upload form-control-img\" ng-repeat=\"v in defaultImages\" ng-click=\"input.default_img = v;input.img_type = 'default'\" ng-class=\"input.img_type == 'default' && v == input.default_img ? 'control-active':''\" ng-src=storage/img/rooms/{{v}} alt=\"{{v}}\"> <img class=\"room-img-upload form-control-img\" ng-click=\"input.user_img = input.user_img;input.img_type = 'user'\" ng-class=\"input.img_type == 'user' ? 'control-active':''\" ng-src=\"{{userImageUrl + input.user_img}}\" ng-if=\"input.user_img\"></div></div></fieldset><fieldset class=mobile-hide><div><div class=form-group><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().uploadFile(this.files)\"><label for=file{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload text-success\"></i> {{_t('lb_upload_image')}}</label><div ng-if=file.upload>{{file.upload|cutText:true:30}}</div><bb-help-text trans=\"_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})\"></bb-help-text></div></div></fieldset><fieldset><h3><span ng-bind=\"_t('lb_devices_in_room')\"></span></h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('lb_remove')}}\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) > -1 && d.location !== 0\" ng-click=removeDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-times text-danger\"></i></a></div></fieldset><fieldset><h3>{{_t('lb_available_devices')}}</h3><div class=device-available-block><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) === -1 || d.location === 0\" ng-click=assignDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-plus text-success\"></i></a></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_room.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div></div>"
   );
 
 
   $templateCache.put('app/views/rooms/rooms.html',
-    "<div ng-controller=RoomController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\" ng-if=elementAccess(cfg.role_access.config_rooms)><a class=\"btn btn-default\" href=#config-rooms/0><i class=\"fa fa-plus\"></i> <span class=btn-name>{{_t('lb_add_room')}}</span></a> <button class=\"btn btn-default\" ng-click=\"expandNavi('roomsOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(rooms.orderBy) | cutText:true:15}}</span></button></div><div class=\"input-group input-search\"><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.roomsOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.rooms\" ng-click=setOrderBy(k) ng-class=\"rooms.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-widget clearfix\" ng-if=rooms.show><div class=\"widget-entry widget-entry-room\" id=panel_{{$index}} ng-class=\"rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'\" ng-hide=\"v.id === 0 && !rooms.cnt.devices[v.id]\" ng-repeat=\"v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index\"><div class=widget-entry-in><div class=widget-img title={{v.title}}><a ng-href=\"#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}\" title=\"{{_t('lb_devices_room')}} {{v.title}}\"><img class=widget-preview-img ng-src={{v.img_src}} alt=\"img\"></a></div><div class=widget-header><a class=widget-icon href=#config-rooms/{{v.id}} title=\"{{_t('lb_update')}}\" ng-show=\"elementAccess(cfg.role_access.config_rooms) && v.id != 0\"><i class=\"fa fa-cog\"></i></a> <a class=\"widget-icon clickable\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteRoom(v.id, _t('lb_delete_confirm'))\" ng-show=\"elementAccess(cfg.role_access.config_rooms) && v.id != 0\"><i class=\"fa fa-times\"></i></a></div><div class=widget-content><div class=widget-title><h3 title={{v.title}}><a ng-href=\"#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}\" ng-disabled=!rooms.cnt.devices[v.id] title=\"{{_t('lb_devices_room')}} {{v.title}}\">{{v.title|cutText:true:25}} <span class=item-cnt>({{rooms.cnt.devices[v.id]|| 0}})</span></a></h3></div><hr class=\"bottom-aligner\"><div class=widget-room-footer>&nbsp</div></div></div></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/simple.html',
-    " ddfdfdfd<ul dnd-list=list><li ng-repeat=\"item in list\" dnd-draggable=item dnd-moved=\"list.splice($index, 1)\" dnd-effect-allowed=move dnd-selected=\"models.selected = item\" ng-class=\"{'selected': models.selected === item}\">{{item.label}}</li></ul>"
+    "<div ng-controller=RoomController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('roomsOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(rooms.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input ng-model=q class=\"form-control form-search\" value={{q}}> <span class=input-group-addon><i class=\"fa fa-search\"></i></span></div></div><div class=page-navi ng-if=naviExpanded.roomsOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.rooms\" ng-click=setOrderBy(k) ng-class=\"rooms.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div class=\"app-row app-row-room clearfix\" ng-if=rooms.show><div class=\"room-entry has-device-{{rooms.cnt.devices[v.id]||'false'}}\" id=panel_{{$index}} ng-hide=\"v.id === 0 && !rooms.cnt.devices[v.id]\" ng-repeat=\"v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id\"><div class=room-entry-in><h4><a href=#/rooms/{{v.id}} title=\"{{_t('lb_devices_room')}} {{v.title}}\" ng-if=rooms.cnt.devices[v.id]>{{v.title}} <span class=item-cnt>({{rooms.cnt.devices[v.id]}})</span></a> <span ng-if=!rooms.cnt.devices[v.id]>{{v.title}} <span class=item-cnt>(0)</span></span></h4><a ng-href=\"#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}\" ng-disabled=!rooms.cnt.devices[v.id] title=\"{{_t('lb_devices_room')}} {{v.title}}\"><img class=\"room-image-preview img-circle\" ng-src={{v.img_src}} alt=\"img\"></a></div></div><div class=room-entry id=panel_new_room ng-if=elementAccess(cfg.role_access.config_rooms)><div class=room-entry-in><h4><a href=#config-rooms/0 ng-bind=\"_t('lb_add_room')\"></a></h4><a href=#config-rooms/0><img class=\"room-image-preview img-circle\" src=storage/img/rooms/add-icon.png alt=\"{{_t('lb_add_room')}}\"></a></div></div></div></div>"
   );
 
 
@@ -11619,7 +11802,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_manage_id.html',
-    "<div ng-controller=ZwaveManageIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=formInput.show><h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1><form name=form_network_config id=form_profile class=\"form form-page\" ng-submit=updateAllDevices(formInput) novalidate><fieldset><label ng-bind=\"_t('rename_device')\"></label><input name=device_name id=device_name class=form-control value={{formInput.deviceName}} ng-model=\"formInput.deviceName\"></fieldset><div ng-if=\"devices.length > 0\"><fieldset><div class=\"form-group form-inline\"><div class=input-group><input name=appstore_token id=appstore_token class=form-control placeholder=\"{{_t('lb_add_room')}}\" ng-model=\"formInput.newRoom\"> <span class=\"input-group-addon clickable\" title=\"{{_t('add_new')}}\" ng-click=addRoom(formInput.newRoom)><i class=\"fa fa-plus text-success\"></i></span></div></div><div class=\"form-group form-inline\"><label class=display-block ng-bind=\"_t('devices_to_room')\"></label><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('devidDropDown', $event)\">{{rooms[formInput.room].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.devidDropDown><ul><li class=clickable ng-click=\"formInput.room = v.id\" ng-repeat=\"v in rooms\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"formInput.room == v.id\"></i></a></li></ul></div></div></div></fieldset><div class=\"app-row app-row-widget app-row-element clearfix\"><div class=widget-zwave-wrap ng-repeat=\"e in devices| orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><div id=Widget_{{v.id}} class=\"widget-entry widget-entry-element widget-zwave\"><div class=widget-entry-in><div class=widget-img><img class=\"widget-preview-img img-circle\" ng-src={{e.metrics.icon|getElementIcon:e:e.level}} alt=\"img\"></div><div class=widget-header>&nbsp;</div><div class=widget-content><div class=widget-title><div class=btn-group><span class=\"widget-room clickable\" ng-click=\"expandNavi('devidRooms_' + $index, $event)\">{{rooms[formInput.room].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></span><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['devidRooms' + '_' + $index]\"><ul><li class=clickable ng-click=\"formInput.room = v.id\" ng-repeat=\"v in rooms\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"formInput.room == v.id\"></i></a></li></ul></div><h3 class=clickable ng-click=\"expandNaviNotHide('devidTitle_' + $index, $event)\">{{formInput.elements[e.id].metrics.title|cutText:true:25}} <i class=\"fa fa-pencil text-info\"></i></h3><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpandedNotHide['devidTitle' + '_' + $index]\"><div class=app-dropdown-content><div class=input-group><input name=title_{{$index}} id=title_{{$index}} class=form-control ng-model=formInput.elements[e.id].metrics.title value=\"{{formInput.elements[e.id].metrics.title}}\"> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_save')}}\" ng-click=\"expandNaviNotHide('devidTitle_' + $index, $event, false)\"><i class=\"fa fa-check text-success\"></i></span></div></div></div></div></div><hr class=\"bottom-aligner\"><div class=widget-footer ng-switch=v.deviceType><input type=\"checkbox\"> Deactivate | <input type=\"checkbox\"> Hide</div></div></div></div><div id=Widget_{{v.id}}_2 class=\"widget-entry widget-entry-element widget-zwave widget-zwave-ctrl\"><div class=widget-entry-in><div class=\"app-row app-row-report app-row-icons clearfix\"><div class=report-entry><div class=\"report-col report-media\">Default</div><div class=\"report-col report-body\">&nbsp;</div><div class=\"report-col report-media\">Custom</div><div class=\"report-col report-ctrl\">&nbsp;</div></div><div class=\"report-entry clickable\" ng-class=\"k === icons.selected ? 'bcg-success' : ''\" ng-repeat=\"(k,v) in ['temperature.png','luminosity.png']\"><div class=\"report-col report-media\"><img class=report-img ng-src=\"{{cfg.img.icons + v}}\" alt=\"{{v}}\"></div><div class=\"report-col report-body\"><i class=\"fa fa-long-arrow-right\"></i></div><div class=\"report-col report-media\"><img class=\"report-img img-opacity-50\" ng-src={{cfg.img.icons}}cancel.png ng-if=!icons.all.custom[k] alt=\"img\"></div><div class=\"report-col report-ctrl\"><button type=button title=\"{{_t('lb_update')}}\" class=\"btn btn-default\"><i class=\"fa fa-pencil text-primary\"></i></button> <button type=button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\"><i class=\"fa fa-ban text-danger\"></i></button></div></div></div></div></div><div class=clearfix></div><div class=\"widget-zwave-footer clearfix\"><div class=\"widget-zwave-50 form-inline\"><div class=input-group><input class=form-control placeholder=\"Add tag\"> <span class=\"input-group-addon clickable\" title=\"{{_t('Addd')}}\"><i class=\"fa fa-plus text-success\"></i></span></div></div><div class=widget-zwave-50><strong>Tags:</strong> tag1, tag2, tag3, tag4</div></div></div></div><div class=clearfix></div><fieldset><div class=\"form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}\" ng-repeat=\"e in devices| orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><h3><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=formInput.elements[e.id].metrics.title></span></h3><div class=\"form-group form-inline\"><input name=title_{{$index}} id=title_{{$index}} class=form-control ng-model=formInput.elements[e.id].metrics.title value=\"{{formInput.elements[e.id].metrics.title}}\"> <span class=mobile-block><input type=checkbox name=permanently_hidden_{{$index}} id=permanently_hidden_{{$index}} ng-model=formInput.elements[e.id].permanently_hidden ng-checked=\"formInput.elements[e.id].permanently_hidden\"><label>{{_t('lb_deactivate')}}</label></span></div></div><div class=\"form-group form-inline\"><a class=\"btn btn-primary\" href=#deviceconfig/{{zWaveDevice.id}} title=\"{{_t('hardware_konfiguration')}}\" ng-if=\"zWaveDevice.cfg.length > 0\"><i class=\"fa fa-wrench\"></i> <span class=btn-name ng-bind=\"_t('hardware_konfiguration')\"></span></a></div></fieldset></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" ng-if=!nohistory bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageIdController class=mobile-padding><bb-loader></bb-loader><div ng-show=formInput.show><h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1><form name=form_network_config id=form_profile class=\"form form-page\" ng-submit=updateAllDevices(formInput) novalidate><fieldset><label ng-bind=\"_t('rename_device')\"></label><input name=device_name id=device_name class=form-control value={{formInput.deviceName}} ng-model=\"formInput.deviceName\"></fieldset><div ng-if=\"devices.length > 0\"><fieldset><div class=\"form-group form-inline\"><div class=input-group><input name=appstore_token id=appstore_token class=form-control placeholder=\"{{_t('lb_add_room')}}\" ng-model=\"formInput.newRoom\"> <span class=\"input-group-addon clickable\" title=\"{{_t('add_new')}}\" ng-click=addRoom(formInput.newRoom)><i class=\"fa fa-plus text-success\"></i></span></div></div><div class=\"form-group form-inline\"><label class=display-block ng-bind=\"_t('devices_to_room')\"></label><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('devidDropDown', $event)\">{{rooms[formInput.room].title|cutText:true:20}} <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.devidDropDown><ul><li class=clickable ng-click=\"formInput.room = v.id\" ng-repeat=\"v in rooms\"><a><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title|cutText:true:20}} <i class=\"fa fa-check menu-arrow\" ng-if=\"formInput.room == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset><div class=\"form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}\" ng-repeat=\"e in devices| orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><h3><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=formInput.elements[e.id].metrics.title></span></h3><div class=\"form-group form-inline\"><input name=title_{{$index}} id=title_{{$index}} class=form-control ng-model=formInput.elements[e.id].metrics.title value=\"{{formInput.elements[e.id].metrics.title}}\"> <span class=mobile-block><input type=checkbox name=permanently_hidden_{{$index}} id=permanently_hidden_{{$index}} ng-model=formInput.elements[e.id].permanently_hidden ng-checked=\"formInput.elements[e.id].permanently_hidden\"><label>{{_t('lb_deactivate')}}</label></span></div></div><div class=\"form-group form-inline\"><a class=\"btn btn-primary\" href=#deviceconfig/{{zWaveDevice.id}} title=\"{{_t('hardware_konfiguration')}}\" ng-if=\"zWaveDevice.cfg.length > 0\"><i class=\"fa fa-wrench\"></i> <span class=btn-name ng-bind=\"_t('hardware_konfiguration')\"></span></a></div></fieldset></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" ng-if=!nohistory bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -11630,11 +11813,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/zwave/zwave_network.html',
     "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_network_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\" ng-class=\"v.isFailed ? 'bcg-danger': ''\" ng-if=\"_.size(v.messages) > 0\"><div class=\"report-col report-body zwave-network\"><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span><div class=btn-group ng-if=\"_.size(v.elements) > 0\"><a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=\"clickable zwave-hidden-{{e.permanently_hidden}}\" ng-init=\"elUrl = (e.permanently_hidden ? '': '#/element/' + e.id)\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href={{elUrl}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\"><div ng-repeat=\"m in v.messages|unique:true\"><div class=text-danger ng-if=\"m.type !== 'config'\">{{m.error}}</div><button class=\"btn btn-default\" ng-if=\"!v.interviewDone  && !v.isFailed\" ng-click=\"devices.find = v;handleModal('zwaveNetworkModal', $event)\"><i class=\"fa fa-refresh text-primary\"></i> <span class=btn-name>{{_t('configure_device')}}</span></button></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div><div id=zwaveNetworkModal class=appmodal ng-controller=ZwaveInterviewController ng-if=\"modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelConfiguration($event)><i class=\"fa fa-times\"></i></span><h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3></div><div class=appmodal-body><div class=\"alert alert-warning\" ng-hide=\"zwaveInterview.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInterview.progress}}%\" ng-class=\"zwaveInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInterview.progress}}%</div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelConfiguration($event)><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/zwave/zwave_vendor_devices.html',
-    "<div ng-controller=ZwaveVendorDeviceController><bb-loader></bb-loader><div class=\"text-center device-autodetect\" ng-include=\"'app/views/zwave/zwave_vendors_autodetect.html'\"></div><h3><a href=#/zwave/vendors class=\"btn btn-default\"><i class=\"fa fa-arrow-left\"></i></a> <strong>{{zwaveProducts.vendor}}</strong> | {{_t('products')}} <span class=\"badge text-primary\">{{zwaveProducts.cnt}}</span> | {{_t('frequency')}} <span class=badge>{{zwaveProducts.frequencyName}}</span> <em ng-class=\"zwaveProducts.cnt == 0 ? 'text-danger': '' \"></em></h3><table class=\"table table-report\"><tbody><tr ng-repeat=\"v in zwaveProducts.all | orderBy:'name' track by $index\"><td><a href=#zwave/inclusion/{{v.id}}><img class=product-img ng-src=data:image/png;base64,{{v.product_image_base64}} err-src={{cfg.img.placeholder}} alt=\"img\"></a></td><td><a href=#zwave/inclusion/{{v.id}}>{{v.productcode}}</a></td><td><a href=#zwave/inclusion/{{v.id}}>{{v.name}}</a></td><td><span class=\"label label-info\">{{v.frequency}}</span></td><td class=td-action><a href=#zwave/inclusion/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_include_device')}}\"><i class=\"fa fa-plug text-primary\"></i></a></td></tr></tbody></table><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div>"
   );
 
 
@@ -12999,51 +13177,18 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {undefined}
      */
     this.logOut = function () {
-        this.setUser(null);
+       this.setUser(null);
         this.setZWAYSession(null);
-        $window.location.href = '#/?logout';
-        $window.location.reload();
-
-    };
-
-    /**
-     * Set dat for autocomplete
-     * @param {object} param
-     * @returns {array}
-     */
-    this.autocomplete = function (data,param) {
-        var results = [];
-        var term = param.term;
-        var searchInKeys = param.searchInKeys.split(',');
-        var returnKeys = param.returnKeys.split(',');
-        var strLength = param.strLength;
-        var resultLength = param.resultLength;
-        // Start search when min strLength entered
-        term = term.toLowerCase();
-        if (term.length < strLength) {
+        // Check if host is in the logout redirect list
+        var redirect = cfg.logout_redirect[$location.host()];
+        // Redirect to an url from list
+        if(redirect){
+            $window.location.href = redirect;
             return;
         }
-
-        // Find first resultLength states that start with `term`.
-        for (var i = 0; i <data.length && results.length < resultLength; i++) {
-            var obj = data[i];
-            var found = false;
-            var re = new RegExp(term, "ig");
-            // Search in given cols
-            for (var c = 0; c < searchInKeys.length; c++) {
-                if(obj[searchInKeys[c]] && re.test(obj[searchInKeys[c]])){
-                    found = true;
-                    // Avoid to duplicate results
-                    continue;
-                }
-
-            }
-            if(found){
-                results.push(_.pick(obj, returnKeys));
-            }
-        }
-        return results;
-
+        // Redirect to SHUI login page
+        $window.location.href = '#/?logout';
+        $window.location.reload();
 
     };
 
@@ -13128,7 +13273,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     {imgTrans: false},
                     {isNew: isNew},
                     {iconPath: assignElementIcon(v)},
-                    {title: v.metrics.title},
                     {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
                 );
                 if (v.metrics.color) {
@@ -14288,19 +14432,6 @@ myApp.directive("tcChartjs", [ "TcChartjsFactory", function(TcChartjsFactory) {
  * @overview Filters that are used to format data within views and controllers.
  * @author Martin Vach
  */
-
-
-myApp.filter('appSliderSlice', function() {
-    return function(arr, cfg) {
-        var start = cfg.start;
-        var end = cfg.start + cfg.show;
-        if(start < 0 ||  start > cfg.max){
-            start = 0;
-            end = cfg.show;
-        }
-        return arr.slice(start, end);
-    };
-});
 
 /**
  * Allow to display html tags in the scope
@@ -15794,126 +15925,14 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
  */
 
 /**
-* The controller that handles 404 Not found response.
-* @class Error404Controller
-*/
+ * The controller that handles 404 Not found response.
+ * @class Error404Controller
+ */
 myAppController.controller('Error404Controller', function($scope, cfg) {
     angular.extend(cfg.route.fatalError, {
         message: cfg.route.t['error_404'],
         hide: true
     });
-
-});
-
-/**
- * The controller that tests drag and drop feature.
- * @class DragDropController
- */
-myAppController.controller('DragDropController', function($scope, cfg,dataFactory) {
-    $scope.dataHolder = {
-        devices: {
-            collection: []
-        }
-    }
-    $scope.modelArray = [
-        {id: 1,title: 'Title 1'},
-        {id: 2,title: 'Title 2'},
-        {id: 3,title: 'Title 3'},
-    ];
-    $scope.load = function () {
-
-        dataFactory.getApi('devices', null, true).then(function(response) {
-
-            $scope.dataHolder.devices.collection = response.data.data.devices;
-
-        }, function(error) {
-            alertify.alertError($scope._t('error_load_data'));
-        });
-    }
-    $scope.load();
-    /**
-     * Function to run when when a user starts moving an element
-     * @param item -  is the item in model which started being moved
-     * @param part - is the part from which the $item originates
-     * @param index -  is the index of the $item in $part
-     * @param helper - is an object which contains the jqLite/jQuery object (as property element) of what is being dragged around
-     */
-    $scope.dragDropStart = function(item, part, index, helper){
-        console.log(helper.element.context.id)
-        angular.element('#' +  helper.element.context.id).addClass('dd-on-start');
-        //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
-
-
-    }
-
-    $scope.dragDropSort = function(item, partFrom, partTo, indexFrom, indexTo){
-        //console.log(partFrom)
-        var result = [];
-        angular.forEach(partFrom, function(v,k){
-            var obj = {id: v.id,position: k};
-            result.push(obj);
-
-        });
-        console.log(result)
-
-    }
-
-   /* $scope.models = {
-        selected: null,
-        lists: {"A": [], "B": []}
-    };
-
-
-
-    // Generate initial model
-    for (var i = 1; i <= 3; ++i) {
-        $scope.models.lists.A.push({label: "Item A" + i});
-        $scope.models.lists.B.push({label: "Item B" + i});
-    }
-
-    // Model to JSON for demo purpose
-    $scope.$watch('models', function(model) {
-        $scope.modelAsJson = angular.toJson(model, true);
-    }, true);*/
-
-
-
-
-});
-
-/**
- * The controller that handles search result - for testing purpose.
- * @class AutoCompleteController
- */
-myAppController.controller('AutoCompleteController', function($scope, cfg,dataFactory,dataService) {
-$scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,author',
-        returnKeys: 'id,title,author,installed,rating,icon',
-        strLength: 2,
-        resultLength: 10
-    };
-    $scope.onlineModules = [];
-
-        $scope.load = function () {
-
-            dataFactory.getOnlineModules({token: []}).then(function(response) {
-                //console.log(response.data.data)
-                $scope.modules = response.data.data;
-                $scope.autocomplete.source = response.data.data;
-                $scope.onlineModules = response.data.data;
-
-            }, function(error) {
-                alertify.alertError($scope._t('error_load_data'));
-            });
-        }
-    $scope.load();
-    // Search
-    $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.onlineModules,$scope.autocomplete);
-        return;
-    }
 
 });
 
@@ -16080,15 +16099,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
     $scope.apiDataInterval = null;
 
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title',
-        returnKeys: 'id,title,iconPath',
-        strLength: 2,
-        resultLength: 10
-    };
-
     /**
      * Cancel interval on page destroy
      */
@@ -16186,13 +16196,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.refreshDevices();
 
     /**
-     * Renders search result in the list
-     */
-    $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all,$scope.autocomplete);
-    }
-
-    /**
      * Set filter
      */
     $scope.setFilter = function (filter) {
@@ -16227,39 +16230,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $cookies.orderByElements = key;
         $scope.reloadData();
     };
-
-    /**
-     * Function to run when when a user starts moving an element
-     * @param item -  is the item in model which started being moved
-     * @param part - is the part from which the $item originates
-     * @param index -  is the index of the $item in $part
-     * @param helper - is an object which contains the jqLite/jQuery object (as property element) of what is being dragged around
-     */
-    $scope.dragDropStart = function(item, part, index, helper){
-        angular.element('#' +  helper.element.context.id).addClass('dd-on-start');
-        //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
-
-
-    }
-    /**
-     * Function to run when elements order has changed after sorting
-     * @param item - is the item in model which has been moved
-     * @param partFrom - is the part from which the $item originated
-     * @param partTo - is the part to which the $item has been moved
-     * @param indexFrom -  is the previous index of the $item in $partFrom
-     * @param indexTo -  is the index of the $item in $partTo
-     */
-    $scope.dragDropSort = function(item, partFrom, partTo, indexFrom, indexTo){
-        //console.log(partFrom)
-        var result = [];
-        angular.forEach(partFrom, function(v,k){
-            var obj = {id: v.id,position: k};
-            result.push(obj);
-
-        });
-        console.log(result)
-
-    }
 
     /**
      * Run command
@@ -16518,41 +16488,6 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
 
     };
     $scope.loadDeviceHistory();
-
-});
-
-/**
- * The controller that handles a device events.
- * @class ElementEventController
- */
-myAppController.controller('ElementEventController', function ($scope,$filter, dataFactory, dataService, _) {
-    $scope.widgetEvent = {
-        find: {},
-        alert: {message: false, status: 'is-hidden', icon: false},
-        collection: []
-    };
-
-    /**
-     * Load device events
-     */
-    $scope.loadDeviceEvents = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
-        console.log(device)
-        if (_.isEmpty(device)) {
-            $scope.widgetEvent.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-            return;
-        }
-        $scope.widgetEvent.find = device[0];
-        var urlParam = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
-        dataFactory.getApi('notifications', urlParam, true).then(function (response) {
-           // console.log(response.data.data.notifications.slice(1,10))
-            $scope.widgetEvent.collection = response.data.data.notifications;
-        }, function (error) {
-            $scope.widgetEvent.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-        });
-
-    };
-    $scope.loadDeviceEvents();
 
 });
 
@@ -16966,27 +16901,8 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg,dataFactory, dataService, myCache) {
-    $scope.room = {};
-
+myAppController.controller('ElementRoomController', function ($scope, $routeParams, $window, $location, $cookies, $filter, dataFactory, dataService, myCache) {
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
-
-    $scope.allSettled = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var promises = [
-            dataFactory.getApi('locations', '/' + $routeParams.id)
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            var location = response[0];
-            $scope.loading = false;
-            // Success - location
-            if (location.state === 'fulfilled') {
-               $scope.room = dataService.getRooms([location.value.data.data]).value()[0];
-            }
-        });
-    };
-    $scope.allSettled();
 
 });
 
@@ -17515,7 +17431,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
         var urlParam = '?since=' + ($scope.timeFilter.since * 1000);
 
@@ -17770,7 +17686,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
  * @class AppBaseController
  *
  */
-myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, cfg,dataFactory, dataService, _) {
+myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, dataFactory, dataService, _) {
     angular.copy({
         appsCategories: false
     }, $scope.expand);
@@ -17785,12 +17701,10 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 appsCatFeatured: 0,
                 featured: 0
             },
-            all: [],
-            collection: [],
+            all: {},
             featured: [],
             categories: {},
             ids: {},
-            singleton: {},
             filter: {},
             cameraIds: [],
             imgs: [],
@@ -17810,7 +17724,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 featured: 0
             },
             ratingRange: _.range(1, 6),
-            collection: [],
             all: {},
             featured: [],
             ids: {},
@@ -17822,9 +17735,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             all: {}
         },
         instances: {
-            expanded: ($cookies.instancesExpanded == 'true'),//$cookies.instancesExpanded,
             all: {},
-            groups: {},
             cnt: {
                 modules: 0
             },
@@ -17832,14 +17743,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         }
     };
 
-    $scope.slider = {
-        cfg: {
-            start: 0,
-            end: 3,
-            max: 0,
-            show: 3
-        }
-    }
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
 
@@ -17894,9 +17797,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                 var cat = categories.value.data.data;
                 if (cat) {
                     $scope.dataHolder.modules.categories = cat[$scope.lang] ? _.indexBy(cat[$scope.lang], 'id') : _.indexBy(cat[$scope.cfg.lang], 'id');
-                    angular.forEach($scope.dataHolder.modules.categories,function (v,k) {
-                        angular.extend($scope.dataHolder.modules.categories[k],{onlineModules: []});
-                    });
                 }
             }
             // Success - instances
@@ -17953,10 +17853,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var modules = _.chain(data)
                 .flatten()
                 .filter(function (item) {
-                    item.title = item.defaults.title;
-                    item.description = item.defaults.description;
                     $scope.dataHolder.modules.ids[item.id] = {version: item.version};
-                    $scope.dataHolder.modules.singleton[item.id] = {singelton: item.singleton};
                     var isHidden = false;
                     var items = [];
                     if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
@@ -18019,10 +17916,10 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
         // Count all apps
         $scope.dataHolder.modules.cnt.apps = modules.size().value();
-        $scope.dataHolder.modules.collection = modules.where($scope.dataHolder.modules.filter).value();
-        $scope.dataHolder.modules.all = modules.value();
+
+        $scope.dataHolder.modules.all = modules.where($scope.dataHolder.modules.filter).value();
         // Count collection
-        $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.collection);
+        $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.all);
     }
     ;
 
@@ -18030,17 +17927,11 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
      * Set online modules
      */
     function setOnlineModules(data) {
-        //console.log($scope.dataHolder.modules.categories)
         // Reset featured cnt
         $scope.dataHolder.onlineModules.cnt.featured = 0;
-        $scope.slider.cfg.max = 0;
         var onlineModules = _.chain(data)
                 .flatten()
                 .filter(function (item) {
-                    // Replacing categories
-                    if(cfg.replace_online_cat[item.category]){
-                        item.category = cfg.replace_online_cat[item.category];
-                    }
                     var isHidden = false;
                     var obj = {};
                     $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
@@ -18082,7 +17973,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                         item.featured = true;
                         // Count featured apps
                         $scope.dataHolder.onlineModules.cnt.featured += 1;
-                        $scope.slider.cfg.max += 1;
                     } else {
                         item.featured = false;
                     }
@@ -18094,14 +17984,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
                     item.installedSort = $filter('zeroFill')(item.installed);
                      //Tooltip description
                      angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
-                    var hasCat = $scope.dataHolder.modules.categories[item.category];
-                    if(hasCat){
-                        $scope.dataHolder.modules.categories[item.category].onlineModules.push(item);
-                        //console.log($scope.dataHolder.modules.categories[item.category].onlineModules);
-                    }
-
-                    //angular.extend($scope.dataHolder.modules.categories[item.category], {onlineModules: []});
-                    //$scope.dataHolder.modules.categories[item.category].onlineModules = [];
                     return item;
                 }).reject(function (v) {
             return v.isHidden === true;
@@ -18120,58 +18002,16 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
 
         // Count all apps
         $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
-        $scope.dataHolder.onlineModules.collection = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
-        $scope.dataHolder.onlineModules.all = onlineModules.value();
+        $scope.dataHolder.onlineModules.all = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
         // Count collection
-        $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.collection);
+        $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.all);
         $scope.loading = false;
     }
     ;
-
     /**
      * Set instances
      */
     function setInstances(data) {
-        $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
-            return v.moduleId;
-        });
-        _.filter(data, function (v) {
-            if(!$scope.dataHolder.instances.groups[v.moduleId]){
-                $scope.dataHolder.instances.groups[v.moduleId] = {
-                    id: v.id,
-                    moduleId: v.moduleId,
-                    title: v.title,
-                    instances: []
-                };
-            }
-        });
-
-        $scope.dataHolder.instances.all = _.chain(data)
-            .flatten()
-            .reject(function (v) {
-            if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
-                if ($scope.user.role !== 1) {
-                    return true;
-                } else {
-                    return ($scope.user.expert_view ? false : true);
-                }
-
-            } else {
-                return false;
-            }
-        }).filter(function(v){
-                if($scope.dataHolder.instances.groups[v.moduleId]){
-                    $scope.dataHolder.instances.groups[v.moduleId].instances.push(v);
-                }
-                return v;
-            }).value();
-    }
-    ;
-    /**
-     * todo: deprecated
-     * Set instances
-     */
-    /*function setInstances(data) {
         $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
                                     return v.moduleId;
                                 });
@@ -18188,7 +18028,7 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             }
         });
     }
-    ;*/
+    ;
 
 });
 /**
@@ -18197,21 +18037,6 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {});
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,author',
-        returnKeys: 'id,title,author,icon,moduleName,hasInstance',
-        strLength: 2,
-        resultLength: 10
-    };
-
-    /**
-     * Renders search result in the list
-     */
-    $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.modules.all,$scope.autocomplete);
-    }
     /**
      * Set order by
      */
@@ -18282,45 +18107,8 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
  * The controller that handles all online APPs actions.
  * @class AppOnlineController
  */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $routeParams,dataFactory, dataService, _) {
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, dataFactory, dataService, _) {
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,author',
-        returnKeys: 'id,title,author,installed,rating,icon',
-        strLength: 2,
-        resultLength: 10
-    };
-
-    /**
-     * Renders search result in the list
-     */
-    $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.onlineModules.all,$scope.autocomplete);
-    }
-
-    if($routeParams['category']){
-        var filter = {category:$routeParams['category']};
-        //console.log(filter);
-        angular.extend($scope.dataHolder.onlineModules, {filter: filter});
-        $cookies.filterAppsOnline = angular.toJson(filter);
-        //$scope.setFilter({category:$routeParams['category']});
-
-    }
-
-    /*$scope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
-        console.log('success', evt, absNewUrl, absOldUrl);
-        if($routeParams['category']){
-            var filter = {category:$routeParams['category']};
-            //console.log(filter);
-            angular.extend($scope.dataHolder.onlineModules, {filter: filter});
-            $cookies.filterAppsOnline = angular.toJson(filter);
-            //$scope.setFilter({category:$routeParams['category']});
-
-        }
-    });*/
-
 
     /**
      * Set order by
@@ -18352,10 +18140,8 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
             $cookies.filterAppsOnline = angular.toJson(filter);
         }
-         $scope.reloadData();
+        $scope.reloadData();
     };
-
-
 
     /**
      * Install module
@@ -18387,33 +18173,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
  * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,moduleId',
-        returnKeys: 'id,title,active,moduleId',
-        strLength: 2,
-        resultLength: 10
-    };
-
-    /**
-     * Expand instances
-     */
-    $scope.expandInstances = function (state) {
-        angular.forEach($scope.expand,function(v,k){
-            console.log(k)
-            $scope.expand[k] = state;
-        });
-        $cookies.instancesExpanded = state;
-    };
-
-    /**
-     * Renders search result in the list
-     */
-    $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all,$scope.autocomplete);
-    }
-
     /**
      * Set order by
      */
@@ -18431,7 +18190,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
                 $scope.loading = false;
-                //$scope.reloadData();
+                $scope.reloadData();
                 //$route.reload();
 
             }, function (error) {
@@ -18860,61 +18619,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
     };
 
-    /**
-     * Generates the form for clon an app instance
-     */
-    $scope.cloneModule = function (id, instanceId) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('instances', '/' + instanceId, true).then(function (instances) {
-            var instance = instances.data.data;
-            dataFactory.getApi('modules', '/' + id + '?lang=' + $scope.lang, true).then(function (module) {
-                // get module postRender data
-                var modulePR = null;
-                if (angular.isString(module.data.data.postRender) && module.data.data.postRender.indexOf('function') === 0) {
-                    modulePR = module.data.data.postRender;
-                }
-                var formData = dataService.getModuleFormData(module.data.data, instance.params);
-
-                var langCode = (angular.isDefined(cfg.lang_codes[$scope.lang]) ? cfg.lang_codes[$scope.lang] : null);
-                $scope.input = {
-                    'modulePostrender': modulePR,
-                    'instanceId': 0,
-                    'moduleId': id,
-                    'active': true,
-                    'title': $filter('hasNode')(formData, 'data.title'),
-                    'description': $filter('hasNode')(formData, 'data.description'),
-                    'moduleTitle': $filter('hasNode')(formData, 'data.title'),
-                    'icon': $filter('hasNode')(module, 'data.data.icon'),
-                    'moduleName': $filter('hasNode')(module, 'data.data.moduleName'),
-                    'category': module.data.data.category
-                };
-                angular.extend($scope.moduleId, {find: module.data.data});
-                $scope.loadCategories(module.data.data.category);
-                setDependencies(module.data.data.dependencies);
-                $scope.showForm = true;
-                $scope.loading = false;
-                // Is singelton and has already instance?
-                if (module.data.data.singleton && _.findWhere(instances.data.data, {moduleId: id})) {
-                    $scope.moduleId.singletonActive = true;
-                    return;
-                }
-                if (!$filter('hasNode')(formData, 'options.fields') || !$filter('hasNode')(formData, 'schema.properties')) {
-                    $scope.alpacaData = false;
-                    return;
-                }
-                $.alpaca.setDefaultLocale(langCode);
-                $('#alpaca_data').alpaca(formData);
-
-
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
-            });
-        }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
-            $scope.loading = false;
-        });
-    }
 
     /**
      * Load data
@@ -18926,8 +18630,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         case 'post':
             $scope.postModule($routeParams.id);
             break;
-        case 'clone':
-            $scope.cloneModule($routeParams.id, $routeParams.instanceId);
         default:
             break;
     }
@@ -19078,227 +18780,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     ;
 
 });
-/**
- * Apps online featured controller
- * @class AppOnlineFeaturedController
- *
- */
-myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
-    $scope.imgReplace = {
-        364: 'storage/img/slider/01-alarm.png',
-        342: 'storage/img/slider/02-dimmer.png',
-        304: 'storage/img/slider/03-power.png',
-        222: 'storage/img/slider/04-motion.png',
-        181: 'storage/img/slider/05-switch.png',
-        158: 'storage/img/slider/06-thermostat.png',
-        154: 'storage/img/slider/07-camera.png',
-        152: 'storage/img/slider/08-rgb.png'
-    };
-    $scope.sliderImages = {
-        'Alexa': 'storage/img/slider/Alexa.png',
-        'IntChart': 'storage/img/slider/IntChart.png',
-        'SecurityModule': 'storage/img/slider/SecurityModule.png',
-        'ToggleDevices': 'storage/img/slider/ToggleDevices.png',
-        'ClimateControl': 'storage/img/slider/ClimateControl.png',
-        'NotificationPushover': 'storage/img/slider/NotificationPushover.png',
-        'ImportRemoteHA': 'storage/img/slider/ImportRemoteHA.png',
-        'CustomUserCode': 'storage/img/slider/CustomUserCode.png',
-        'HTTPDevice': 'storage/img/slider/HTTPDevice.png'
-    };
-    //$scope.direction = 'left';
-    //$scope.currentIndex = 0;
-    /*$scope.slides = [
-        {image: 'storage/img/slider/01-alarm.png', title: 'Alarm 1 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/02-dimmer.png', title: 'Dimmer 2 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/03-power.png', title: 'Power 3 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/04-motion.png', title: 'Motion 4 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/05-switch.png', title: 'Switch 5 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/06-thermostat.png', title: 'Thermostat 6 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/07-camera.png', title: 'Camera 7 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/08-rgb.png', title: 'RGB 8 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/09-temp.png', title: 'Temperature 9 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/10-luminosity.png', title: 'Luminosity 10 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-    ];*/
-
-   /* $scope.isCurrentSlideIndex = function (index) {
-        return $scope.currentIndex === index;
-    };*/
-
-    $scope.prevSlide = function () {
-        $scope.slider.cfg.start -= 1;
-        $scope.slider.cfg.end -= 1;
-        if($scope.slider.cfg.start < 0){
-            $scope.slider.cfg.start = 0;
-            $scope.slider.cfg.end = $scope.slider.cfg.show;
-        }
-        //$scope.direction = 'right';
-        //$scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
-        //console.log($scope.currentIndex)
-    };
-
-    $scope.nextSlide = function () {
-        $scope.slider.cfg.start += 1;
-        $scope.slider.cfg.end += 1;
-        if($scope.slider.cfg.end > $scope.slider.cfg.max){
-            $scope.slider.cfg.start = 0;
-            $scope.slider.cfg.end = $scope.slider.cfg.show;
-        }
-       // $scope.direction = 'left';
-        //$scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
-        //console.log($scope.currentIndex)
-    };
-
-
-
-});
-    /*.animation('.slide-animation_', function () {
-        return {
-            beforeAddClass: function (element, className, done) {
-                var scope = element.scope();
-
-                if (className == 'ng-hide') {
-                    var finishPoint = element.parent().width();
-                    if(scope.direction !== 'right') {
-                        finishPoint = -finishPoint;
-                    }
-                    TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
-                }
-                else {
-                    done();
-                }
-            },
-            removeClass: function (element, className, done) {
-                var scope = element.scope();
-
-                if (className == 'ng-hide') {
-                    element.removeClass('ng-hide');
-
-                    var startPoint = element.parent().width();
-                    if(scope.direction === 'right') {
-                        startPoint = -startPoint;
-                    }
-
-                    TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
-                }
-                else {
-                    done();
-                }
-            }
-        };
-    });*/
-/**
- * todo: deprecated
- * Apps feature controller
- * @class AppModuleFeaturedController
- *
- */
-/*
-myAppController.controller('AppModuleFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
-
-    $scope.slider = {
-        direction: 'right',
-        currentIndex: 0,
-        slidesperslide: 5,
-        slides: []
-    };
-
-
-    $scope.allSettled = function (tokens) {
-        var promises = [
-            dataFactory.getOnlineModules({token: _.values(tokens)})
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            var onlineModules = response[0];
-
-            // Success - online modules
-            if (onlineModules.state === 'fulfilled') {
-                prepareSlides(onlineModules.value.data.data)
-            }
-        });
-    };
-    $scope.allSettled();
-
-    function prepareSlides(data) {
-
-        var slide = [];
-
-        _.each(data, function(item) {
-            if (item.featured == 1) {
-                item.featured = true;
-            } else {
-                item.featured = false;
-            }
-            if(item.featured) {
-                slide.push(item);
-                if(slide.length >= $scope.slider.slidesperslide) {
-                    $scope.slider.slides.push(slide);
-                    slide = [];
-                }
-            }
-        });
-        if(slide.length != 0) {
-            $scope.slider.slides.push(slide);
-        }
-
-        console.log( $scope.slider.slides);
-    };
-
-    $scope.setCurrentSlideIndex = function (index) {
-        $scope.slider.direction = (index > $scope.slider.currentIndex) ? 'left' : 'right';
-        $scope.slider.currentIndex = index;
-    };
-
-    $scope.isCurrentSlideIndex = function (index) {
-        return $scope.slider.currentIndex === index;
-    };
-
-    $scope.prevSlide = function () {
-        $scope.slider.direction = 'left';
-        $scope.currentIndex = ($scope.slider.currentIndex < $scope.slider.slides.length - 1) ? ++$scope.slider.currentIndex : 0;
-    };
-
-    $scope.nextSlide = function () {
-        $scope.slider.direction = 'right';
-        $scope.currentIndex = ($scope.slider.currentIndex > 0) ? --$scope.slider.currentIndex : $scope.slider.slides.length - 1;
-    };
-
-}).animation('.slide-animation', function () {
-    return {
-        beforeAddClass: function (element, className, done) {
-            var scope = element.scope();
-
-            if (className == 'ng-hide') {
-                var finishPoint = element.parent().width();
-                if(scope.direction !== 'right') {
-                    finishPoint = -finishPoint;
-                }
-                TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
-            }
-            else {
-                done();
-            }
-        },
-        removeClass: function (element, className, done) {
-            var scope = element.scope();
-
-            if (className == 'ng-hide') {
-                element.removeClass('ng-hide');
-
-                var startPoint = element.parent().width();
-                if(scope.direction === 'right') {
-                    startPoint = -startPoint;
-                }
-
-                TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
-            }
-            else {
-                done();
-            }
-        }
-    };
-});*/
-
 /**
  * @overview Controllers that handle all Skins actions.
  * @author Martin Vach

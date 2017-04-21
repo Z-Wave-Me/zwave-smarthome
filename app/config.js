@@ -278,9 +278,6 @@ var config_data = {
             'fr': 'fr_FR',
             'fi': 'fi_FI'
         },
-
-        // List of profile colors
-        'profile_colors': ['#dddddd', '#6c7a89', '#6494bc', '#80ad80', '#31b0d5', '#f0aD4e', '#d9534f', '#dd976e'],
         // Chart colors
         'chart_colors': {
             fillColor: 'rgba(151,187,205,0.5)',
@@ -326,6 +323,10 @@ var config_data = {
             'find.z-wave.me',
             'find.popp.eu'
         ],
+        // Redirect to the url after logout
+        'logout_redirect': {
+            'find.z-wave.me': 'https://find.zwave.me/zboxweb'
+        },
         // List of the forbidden licence app types
         'license_forbidden': [
             'popp',

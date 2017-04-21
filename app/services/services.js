@@ -257,8 +257,16 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {undefined}
      */
     this.logOut = function () {
-        this.setUser(null);
+       this.setUser(null);
         this.setZWAYSession(null);
+        // Check if host is in the logout redirect list
+        var redirect = cfg.logout_redirect[$location.host()];
+        // Redirect to an url from list
+        if(redirect){
+            $window.location.href = redirect;
+            return;
+        }
+        // Redirect to SHUI login page
         $window.location.href = '#/?logout';
         $window.location.reload();
 
