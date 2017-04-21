@@ -38,11 +38,13 @@
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="zwaveInclusion.exclusionProcess.process">
                             <div class="alert alert-warning">
-                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} {{zwaveInclusion.device.find.exc}}
-                                <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}" ng-click="startStopExclusion( false)"> 
-                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_exclusion_stop')}}</span>
-                                </button>
+                                <h4><i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} </h4>
+                                <p>{{zwaveInclusion.device.find.exc}}</p>
+
                             </div>
+                            <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}" ng-click="startStopExclusion( false)">
+                                <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_exclusion_stop')}}</span>
+                            </button>
                         </div>
 
                     </div>
@@ -81,12 +83,14 @@
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="zwaveInclusion.inclusionProcess.process">
                             <div class="alert alert-warning">
-                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} {{zwaveInclusion.device.find.inc}} 
-                                <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
-                                        ng-click="startStopInclusion(false)">
-                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
-                                </button>
+                                <h4><i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} </h4>
+                                <p>{{zwaveInclusion.device.find.inc}} </p>
+
                             </div>
+                            <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
+                                    ng-click="startStopInclusion(false)">
+                                <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
+                            </button>
                         </div>
                     </div>
                     <div class="report-col report-ctrl">

@@ -69,13 +69,17 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     /**
      * Load all promises
      */
-    $scope.allSettled = function (lang) {
+    $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
 
         var promises = [
-            dataFactory.getApi('zwave_devices'),
+            false,
             dataFactory.loadZwaveApiData(true)
         ];
+        // Loading device by ID
+        if ($routeParams.id) {
+            promises[0] = dataFactory.getApi('zwave_devices', '?lang=' + $scope.lang + '&id=' + $routeParams.id);
+        }
 
         $q.allSettled(promises).then(function (response) {
             var deviceId = response[0];
@@ -86,16 +90,12 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 alertify.alertError($scope._t('error_load_data'));
                 return;
             }
-            // Success - device by id
-            if ($routeParams.id) {
-                if (deviceId.state === 'fulfilled') {
-                    //setDeviceId(_.findWhere(deviceId.value.data, {id: $routeParams.id}));
-                    var device = dataService.getZwaveDevices(deviceId.value.data.zwave_devices)
-                            .findWhere({id: $routeParams.id})
-                            .value();
-                    setDeviceId(device);
 
-                }
+            // Success - device by id
+            if (deviceId.state === 'fulfilled') {
+                var device = dataService.getZwaveDevices([deviceId.value.data]).value();
+                setDeviceId(device[0]);
+
             }
             // Success - ZWaveAPIData
             if (ZWaveAPIData.state === 'fulfilled') {
@@ -107,14 +107,14 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         });
 
     };
-    $scope.allSettled($scope.lang);
+    $scope.allSettled();
 
     /**
      * Refresh ZwaveApiData
      */
     $scope.refreshZwaveApiData = function (maxcnt) {
         var cnt = 0;
-        if(typeof maxcnt !== 'undefined') {
+        if (typeof maxcnt !== 'undefined') {
             var refresh = function () {
                 cnt++;
                 dataFactory.refreshZwaveApiData().then(function (response) {
@@ -123,7 +123,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                     return;
                 });
 
-                if(cnt == maxcnt) {
+                if (cnt == maxcnt) {
                     $interval.cancel($scope.interval.api);
                     $scope.loading = false;
                 }
@@ -204,8 +204,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             if (interviewRepeatCnt > $scope.zwaveInclusion.cfg.checkInterviewRepeat && !$scope.zwaveInclusion.automatedConfiguration.done) {
                 $interval.cancel($scope.interval.api);
                 var batteryInfo = $scope.zwaveInclusion.automatedConfiguration.includedDevice.hasBattery
-                        ? '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('error_interview_battery') + '</div>'
-                        : '';
+                    ? '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('error_interview_battery') + '</div>'
+                    : '';
 
                 // Error switch
                 switch ($scope.zwaveInclusion.automatedConfiguration.includedDevice.errorType) {
@@ -216,39 +216,41 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                             $scope.startStopExclusion(true);
                         });
                         break;
-                        // Cc Version interview is not complete
+                    // Cc Version interview is not complete
                     case 'error_interview_again':
                         alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInclusion.automatedConfiguration.progress + '%' + batteryInfo)
-                                .setting('labels', {'ok': $scope._t('try_again_complete')})
-                                .set('onok', function (closeEvent) {//after clicking OK
-                                    $scope.forceInterview($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone);
-                                    $scope.startConfiguration({
-                                        nodeId: $scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId,
-                                        interviewDoneCnt: 0,
-                                        interviewRepeatCnt: 0,
-                                        errorType: ''});
-                                })
-                                .set('oncancel', function (closeEvent) {//after clicking Cancel
-                                    $scope.zwaveInclusion.cancelModal = true;
+                            .setting('labels', {'ok': $scope._t('try_again_complete')})
+                            .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.forceInterview($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone);
+                                $scope.startConfiguration({
+                                    nodeId: $scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId,
+                                    interviewDoneCnt: 0,
+                                    interviewRepeatCnt: 0,
+                                    errorType: ''
                                 });
+                            })
+                            .set('oncancel', function (closeEvent) {//after clicking Cancel
+                                $scope.zwaveInclusion.cancelModal = true;
+                            });
                         break;
-                        // Cc Version interview is complete but other interviews are not complete
+                    // Cc Version interview is complete but other interviews are not complete
                     case 'error_interview_retry':
                         alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInclusion.automatedConfiguration.progress + '%' + batteryInfo)
-                                .setting('labels', {'ok': $scope._t('retry_complete_inclusion')})
-                                .set('onok', function (closeEvent) {//after clicking OK
-                                    $scope.forceInterview($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone);
-                                    $scope.startConfiguration({
-                                        nodeId: $scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId,
-                                        interviewDoneCnt: 0,
-                                        interviewRepeatCnt: 0,
-                                        errorType: ''});
-                                })
-                                .set('oncancel', function (closeEvent) {//after clicking Cancel
-                                    $scope.zwaveInclusion.cancelModal = true;
+                            .setting('labels', {'ok': $scope._t('retry_complete_inclusion')})
+                            .set('onok', function (closeEvent) {//after clicking OK
+                                $scope.forceInterview($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone);
+                                $scope.startConfiguration({
+                                    nodeId: $scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId,
+                                    interviewDoneCnt: 0,
+                                    interviewRepeatCnt: 0,
+                                    errorType: ''
                                 });
+                            })
+                            .set('oncancel', function (closeEvent) {//after clicking Cancel
+                                $scope.zwaveInclusion.cancelModal = true;
+                            });
                         break;
-                        // Unexpected error
+                    // Unexpected error
                     default:
                         alertify.alertError($scope._t('error_interview_unexpected')).set('onok', function (closeEvent) {
                             $scope.reloadData();
@@ -322,7 +324,6 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * Set device by ID
      */
     var setDeviceId = function (data) {
-        console.log(data)
         $scope.zwaveInclusion.device.find = data;
         $scope.zwaveInclusion.device.secureInclusion = data.secure;
         if (data.inclusion_type === 'unsecure') {
@@ -393,7 +394,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     function resetExclusion(process, done, cmd, cancelInterval) {
         // Set scope
         angular.extend($scope.zwaveInclusion.exclusionProcess,
-                {process: process, done: done}
+            {process: process, done: done}
         );
         // Run CMD
         if (cmd) {
@@ -412,7 +413,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     function resetInclusion(process, done, cmd, cancelInterval) {
         // Set scope
         angular.extend($scope.zwaveInclusion.inclusionProcess,
-                {process: process, done: done}
+            {process: process, done: done}
         );
         // Run CMD
         if (cmd) {
@@ -431,7 +432,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     function resetConfiguration(process, done, includedDevice, cmd, cancelInterval) {
         /// Set scope
         angular.extend($scope.zwaveInclusion.automatedConfiguration,
-                {process: process, done: done, forceInterview: false, progress: 0}
+            {process: process, done: done, forceInterview: false, progress: 0}
         );
         // Set included device
         if (_.isObject(includedDevice)) {
@@ -491,7 +492,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                         delete $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone[id];
                         // Extending an interview counter
                         angular.extend($scope.zwaveInclusion.automatedConfiguration.includedDevice,
-                                {interviewDoneCnt: $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt + 1}
+                            {interviewDoneCnt: $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt + 1}
                         );
                     } else { // An interview is not done
                         // Extending interviewNotDone
@@ -547,7 +548,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     function resetManualConfiguration(process, done) {
         // Set scope
         angular.extend($scope.zwaveInclusion.manualConfiguration,
-                {process: process, done: done}
+            {process: process, done: done}
         );
     }
     ;
