@@ -118,6 +118,14 @@ var icon_data = {
                     }
 
                 },
+                security: {
+                    level: {
+                        on: 'security-on.png',
+                        pending: 'security-pending.png',
+                        off: 'security-off.png',
+                        alarmed: 'security-alarmed.png'
+                    }
+                },
                 gesture: {
                     level: {
                         press: 'press.png',// pressed / gedrückt
