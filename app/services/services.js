@@ -511,6 +511,41 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
+     * Get zwave devices - filtered data from zwave_devices API
+     * @param {object} data
+     * @returns {unresolved}
+     */
+    this.getZwaveDevices = function (data) {
+        return _.chain(data)
+            .flatten()
+            .map(function (v) {
+                return {
+                    id: v.Product_Code,
+                    name: v.Name,
+                    productcode: v.Product_Code,
+                    certification_id: v.Certification_ID,
+                    wake: v.WakeUp_Description,
+                    inc: v.Inclusion_Description,
+                    exc: v.Exclusion_Description,
+                    brandname: v.BrandName,
+                    brandid: v.BrandName,
+                    //brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+                    //product_image: (v.Certification_ID ? cfg.img.zwavedevices + v.Certification_ID + '.png' : false),
+                    product_image_base64: v.Product_Image_Base64,
+                    prep: v.Preperation_Description,
+                    secure: (v.Secure === '1'),
+                    zwplus: (v.ZWPLus === '1'),
+                    //frequencyid: v.frequencyid,
+                    frequency: v.Frequency,
+                    //ignore_ui: v.ignore_ui,
+                    reset: v.Reset_Description
+
+                };
+            });
+    };
+
+    /**
+     * todo: Will be deprecated
      * Get zwave products - filtered data from devices dataholder
      * @param {object} data
      * @returns {unresolved}

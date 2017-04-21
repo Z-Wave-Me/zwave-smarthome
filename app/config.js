@@ -116,6 +116,8 @@ var config_data = {
             'customicon': 'ZAutomation/api/v1/devices',
             'icons_upload': 'ZAutomation/api/v1/icons/upload',
             'cloudbackup': 'CloudBackupAPI/Backup',
+            'zwave_devices': 'ZWaveAPI/ZWaveDeviceInfoGet',
+            'zwave_vendors': 'http://manuals-backend.z-wave.info/export/ui_vendors.json',
             'update_device_database': 'ZWaveAPI/ZWaveDeviceInfoUpdate',
             'app_built_info': 'app/info.json',
             'configget_url': 'ZWaveAPI/ExpertConfigGet',
@@ -149,7 +151,8 @@ var config_data = {
             'custom_icons': 'user/icons/',
             'skin_screenshot': 'app/css/',
             'zwavedevices': 'storage/img/zwave/zwavedevices/',
-            'zwavevendors': 'storage/img/zwave/zwavevendors/'
+            'zwavevendors': 'storage/img/zwave/zwavevendors/',
+            'placeholder': 'storage/img/placeholder-img.png'
         },
         // Upload settings
         'upload': {

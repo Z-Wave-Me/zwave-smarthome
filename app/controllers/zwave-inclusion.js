@@ -73,7 +73,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
 
         var promises = [
-            dataFactory.getApiLocal('devices.json'),
+            dataFactory.getApi('zwave_devices'),
             dataFactory.loadZwaveApiData(true)
         ];
 
@@ -90,7 +90,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             if ($routeParams.id) {
                 if (deviceId.state === 'fulfilled') {
                     //setDeviceId(_.findWhere(deviceId.value.data, {id: $routeParams.id}));
-                    var device = dataService.getZwaveProducts(deviceId.value.data, lang)
+                    var device = dataService.getZwaveDevices(deviceId.value.data.zwave_devices)
                             .findWhere({id: $routeParams.id})
                             .value();
                     setDeviceId(device);
@@ -322,7 +322,9 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * Set device by ID
      */
     var setDeviceId = function (data) {
+        console.log(data)
         $scope.zwaveInclusion.device.find = data;
+        $scope.zwaveInclusion.device.secureInclusion = data.secure;
         if (data.inclusion_type === 'unsecure') {
             $scope.zwaveInclusion.device.secureInclusion = false;
         }
