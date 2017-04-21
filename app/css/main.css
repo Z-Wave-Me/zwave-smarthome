@@ -13913,54 +13913,66 @@ img.widget-promo-image {
     padding: 0 10px 0 0;
   }
 
+  /* Inclusion
+  -------------------------------------------------- */
+  /* line 387, ../sass/responsive/_mq_shared.scss */
+  .include-device-img, .include-device-body {
+    float: left;
+  }
+
+  /* line 390, ../sass/responsive/_mq_shared.scss */
+  .include-device-img {
+    width: 148px;
+  }
+
   /* Rooms
   -------------------------------------------------- */
-  /* line 388, ../sass/responsive/_mq_shared.scss */
+  /* line 398, ../sass/responsive/_mq_shared.scss */
   .widget-entry-room .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 391, ../sass/responsive/_mq_shared.scss */
+  /* line 401, ../sass/responsive/_mq_shared.scss */
   .widget-entry-room .widget-entry-in .widget-title {
     margin-top: 20px;
   }
-  /* line 394, ../sass/responsive/_mq_shared.scss */
+  /* line 404, ../sass/responsive/_mq_shared.scss */
   .widget-entry-room .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
-  /* line 400, ../sass/responsive/_mq_shared.scss */
+  /* line 410, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 33.33333%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 407, ../sass/responsive/_mq_shared.scss */
+  /* line 417, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 413, ../sass/responsive/_mq_shared.scss */
+  /* line 423, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 420, ../sass/responsive/_mq_shared.scss */
+  /* line 430, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 427, ../sass/responsive/_mq_shared.scss */
+  /* line 437, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 429, ../sass/responsive/_mq_shared.scss */
+  /* line 439, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
@@ -14400,54 +14412,66 @@ img.widget-promo-image {
     padding: 0 10px 0 0;
   }
 
+  /* Inclusion
+  -------------------------------------------------- */
+  /* line 387, ../sass/responsive/_mq_shared.scss */
+  .include-device-img, .include-device-body {
+    float: left;
+  }
+
+  /* line 390, ../sass/responsive/_mq_shared.scss */
+  .include-device-img {
+    width: 148px;
+  }
+
   /* Rooms
   -------------------------------------------------- */
-  /* line 388, ../sass/responsive/_mq_shared.scss */
+  /* line 398, ../sass/responsive/_mq_shared.scss */
   .widget-entry-room .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 391, ../sass/responsive/_mq_shared.scss */
+  /* line 401, ../sass/responsive/_mq_shared.scss */
   .widget-entry-room .widget-entry-in .widget-title {
     margin-top: 20px;
   }
-  /* line 394, ../sass/responsive/_mq_shared.scss */
+  /* line 404, ../sass/responsive/_mq_shared.scss */
   .widget-entry-room .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
-  /* line 400, ../sass/responsive/_mq_shared.scss */
+  /* line 410, ../sass/responsive/_mq_shared.scss */
   .room-entry {
     width: 25%;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 407, ../sass/responsive/_mq_shared.scss */
+  /* line 417, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 413, ../sass/responsive/_mq_shared.scss */
+  /* line 423, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 420, ../sass/responsive/_mq_shared.scss */
+  /* line 430, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 427, ../sass/responsive/_mq_shared.scss */
+  /* line 437, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 429, ../sass/responsive/_mq_shared.scss */
+  /* line 439, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }

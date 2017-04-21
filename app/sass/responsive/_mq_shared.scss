@@ -382,6 +382,16 @@ input[type=radio] {
     }
 }
 
+/* Inclusion
+-------------------------------------------------- */
+.include-device-img,.include-device-body{
+    float:left;
+}
+.include-device-img{
+    width: $include-detail-img + $spacing-double;
+}
+
+
 /* Rooms
 -------------------------------------------------- */
 .widget-entry-room{

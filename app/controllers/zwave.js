@@ -7,64 +7,117 @@
  * The controller that renders Z-Wave vendors.
  * @class ZwaveVendorController
  */
-myAppController.controller('ZwaveVendorController', function ($scope, $routeParams, cfg, dataFactory, dataService, _) {
+myAppController.controller('ZwaveVendorController', function ($scope, $routeParams,$q, cfg, dataFactory, dataService, _) {
     $scope.zwaveVendors = {
         frequency: false,
+        frequencyName: false,
         cnt: {
             vendorProducts: {
             }
         },
         all: {},
-        find: {}
+        products: {}
     };
+
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function (brandId) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.loadZwaveApiData(),
+            dataFactory.getApiLocal('ui_vendors.json'),
+            dataFactory.getApi('zwave_devices','?lang=' + $scope.lang)
+
+
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var zwdata = response[0];
+            var vendors = response[1];
+            var products = response[2];
+
+            $scope.loading = false;
+            // Error message
+            if (zwdata.state === 'rejected' || vendors.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - zwdata
+            if (zwdata.state === 'fulfilled') {
+                $scope.zwaveVendors.frequency = zwdata.value.controller.data.frequency.value;
+                $scope.zwaveVendors.frequencyName = cfg.frequency[zwdata.value.controller.data.frequency.value];
+            }
+            // Success - vendors
+            if (vendors.state === 'fulfilled') {
+                $scope.zwaveVendors.all = vendors.value.data;
+            }
+            // Success - products
+            if (products.state === 'fulfilled') {
+                $scope.zwaveVendors.products = dataService.getZwaveDevices(products.value.data.zwave_devices)
+                    .where()
+                    .value();
+            }
+
+
+        });
+    };
+    $scope.allSettled();
+
     /**
      * Load z-wave data
      */
-    $scope.loadZwdata = function () {
+    /*$scope.loadZwdata = function () {
         dataFactory.loadZwaveApiData().then(function (response) {
            $scope.zwaveVendors.frequency = response.controller.data.frequency.value;
+            $scope.zwaveVendors.frequencyName = cfg.frequency[response.controller.data.frequency.value];
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-    $scope.loadZwdata();
+    $scope.loadZwdata();*/
     /**
      * Load z-wave devices an parse vendors
      */
-    $scope.loadVendors = function () {
+    /*$scope.loadVendors = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        //dataFactory.getApiLocal('device.' + lang + '.json').then(function (response) {
-        dataFactory.getApiLocal('vendors.json').then(function (response) {
+        //dataFactory.getRemoteData(cfg.api.zwave_vendors).then(function (response) {
+        dataFactory.getApiLocal('ui_vendors.json').then(function (response) {
+            console.log(response.data)
             $scope.loading = false;
             $scope.zwaveVendors.all = response.data;
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-    $scope.loadVendors();
+    $scope.loadVendors();*/
 });
 
 /**
  * The controller that renders Z-Wave devices by vendor.
- * @class ZwaveVendorIdController
+ * @class ZwaveVendorDeviceController
  */
-myAppController.controller('ZwaveVendorIdController', function ($scope, $routeParams, $q,cfg, dataFactory, dataService, _) {
+myAppController.controller('ZwaveVendorDeviceController', function ($scope, $routeParams, $q,cfg, dataFactory, dataService, _) {
     $scope.zwaveProducts = {
         all: {},
         cnt: 0,
         frequency: false,
+        frequencyName: false,
         vendors: {},
         vendor: {}
     };
     /**
      * Load all promises
      */
-    $scope.allSettled = function (brandId,lang) {
+    $scope.allSettled = function (brandId) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.zwaveProducts.vendor = brandId;
         var promises = [
             dataFactory.loadZwaveApiData(),
-            dataFactory.getApiLocal('vendors.json'),
-            dataFactory.getApiLocal('devices.json')
+            dataFactory.getApi('zwave_devices','?lang=' + $scope.lang)
+            //dataFactory.getApiLocal('vendors.json'),
+            //dataFactory.getApiLocal('devices.json')
+
             
         ];
 
@@ -73,12 +126,12 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
                 brandid: brandId
             };
             var zwdata = response[0];
-            var vendors = response[1];
-            var products = response[2];
+            //var vendors = response[1];
+            var products = response[1];
             
             $scope.loading = false;
             // Error message
-            if (vendors.state === 'rejected' || products.state === 'rejected') {
+            if (products.state === 'rejected') {
                 alertify.alertError($scope._t('error_load_data'));
                 return;
             }
@@ -86,18 +139,20 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
             if (zwdata.state === 'fulfilled') {
                 if(zwdata.value.controller.data.frequency.value){
                     $scope.zwaveProducts.frequency = zwdata.value.controller.data.frequency.value;
-                    where.frequencyid =  $scope.zwaveProducts.frequency;
+                    $scope.zwaveProducts.frequencyName = cfg.frequency[zwdata.value.controller.data.frequency.value];
+                    where.frequency =  $scope.zwaveProducts.frequencyName;
                 }
             }
 
             // Success - vendors
-            if (vendors.state === 'fulfilled') {
-               $scope.zwaveProducts.vendors = vendors.value.data;
-               $scope.zwaveProducts.vendor = _.findWhere($scope.zwaveProducts.vendors,{brandid: brandId});
-            }
+            /*if (vendors.state === 'fulfilled') {
+               //$scope.zwaveProducts.vendors = vendors.value.data;
+               //$scope.zwaveProducts.vendor = _.findWhere($scope.zwaveProducts.vendors,{brandid: brandId});
+                $scope.zwaveProducts.vendor = brandid;
+            }*/
             // Success - products
             if (products.state === 'fulfilled') {
-                 $scope.zwaveProducts.all = dataService.getZwaveProducts(products.value.data,lang)
+                $scope.zwaveProducts.all = dataService.getZwaveDevices(products.value.data.zwave_devices)
                  .where(where)
                  .value();
                  $scope.zwaveProducts.cnt = _.size($scope.zwaveProducts.all);
@@ -106,7 +161,7 @@ myAppController.controller('ZwaveVendorIdController', function ($scope, $routePa
 
         });
     };
-    $scope.allSettled($routeParams.id,$scope.lang);
+    $scope.allSettled($routeParams.id);
 });
 
 /**
