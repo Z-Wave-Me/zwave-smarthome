@@ -104,16 +104,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         }
     };
     $scope.checkOnlineModules();
-/*
-    $rootScope.$on('$routeChangeStart', function (event, next, current) {
-        console.log(current.route())
-        if ($scope.routeMatch('/apps/online')) {
-            $http.pendingRequests.forEach(function(v) {
-                //console.log(v)
-            });
-        }
-
-    });*/
 
     /**
      * Load tokens
@@ -121,11 +111,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
     $scope.loadTokens = function () {
         dataFactory.getApi('tokens', null, true).then(function (response) {
             angular.extend($scope.dataHolder.tokens.all, response.data.data.tokens);
-            /*$http.pendingRequests.forEach(function(request) {
-                console.log(request)
-            });*/
             $scope.allSettled($scope.dataHolder.tokens.all);
-            //$scope.loadOnlineModules($scope.dataHolder.tokens.all);
 
         }, function (error) {
             $scope.allSettled($scope.dataHolder.tokens.all);
@@ -156,7 +142,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         var promises = [
             dataFactory.getApi('modules_categories'),
             dataFactory.getApi('modules', null, true),
-            //dataFactory.getOnlineModules({token: _.values(tokens)}),
             dataFactory.getApi('instances', null, true)
         ];
 
@@ -174,13 +159,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 alertify.alertError($scope._t('error_load_data'));
                 return;
             }
-            //if (onlineModules.state === 'rejected' && $scope.routeMatch('/apps/online')) {
-           /* if (onlineModules.state === 'rejected') {
-                $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
-                //$scope.dataHolder.onlineModules.connect = false;
-                //alertify.alertError($scope._t('error_load_data'));
-               // return;
-            }*/
 
             if (instances.state === 'rejected' && $scope.routeMatch('/apps/instance')) {
                 alertify.alertError($scope._t('error_load_data'));
@@ -207,14 +185,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 setModules(modules.value.data.data, $scope.dataHolder.instances.all);
             }
             $scope.loadOnlineModules(tokens);
-
-            // Success - online modules
-           /* if (onlineModules.state === 'fulfilled') {
-                $scope.dataHolder.onlineModules.connect = true;
-                setOnlineModules(onlineModules.value.data.data)
-            }*/
-
-
         });
     };
 
@@ -257,8 +227,11 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 .filter(function (item) {
                     item.title = item.defaults.title;
                     item.description = item.defaults.description;
+                    // Has already instance ?
+                    item.hasInstance = $scope.dataHolder.instances.cnt.modules[item.id]||0;
                     $scope.dataHolder.modules.ids[item.id] = {version: item.version};
                     $scope.dataHolder.modules.singleton[item.id] = {singelton: item.singleton};
+
                     var isHidden = false;
                     var items = [];
                     if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
@@ -269,8 +242,13 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                         }
 
                     }
+                    // Hides video item
                     if (item.category === 'surveillance') {
                         $scope.dataHolder.modules.cameraIds.push(item.id);
+                        isHidden = true;
+                    }
+                    // Hides singelton item with instance
+                    if (item.singleton && item.hasInstance) {
                         isHidden = true;
                     }
 
@@ -294,7 +272,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                             angular.extend(item, {featured: false});
                         }
                         // Has already instance ?
-                        angular.extend(item, {hasInstance: $scope.dataHolder.instances.cnt.modules[item.id]||0});
+                        //angular.extend(item, {hasInstance: $scope.dataHolder.instances.cnt.modules[item.id]||0});
                          
                         //Tooltip description
                         angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
