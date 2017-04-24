@@ -11222,12 +11222,12 @@ img {
   color: #80AD80;
 }
 
-/* line 18, ../sass/common/_button.scss */
+/* line 16, ../sass/common/_button.scss */
 .btn-goup-1 .btn {
   width: 100%;
 }
 
-/* line 23, ../sass/common/_button.scss */
+/* line 22, ../sass/common/_button.scss */
 .btn-goup-2 .btn {
   width: 50%;
 }
@@ -11308,43 +11308,51 @@ img {
 
 /* Button tabs
 -------------------------------------------------- */
-/* line 94, ../sass/common/_button.scss */
+/* line 92, ../sass/common/_button.scss */
 .btn-goup-tabs {
   display: table;
   width: 100%;
   margin: 0 0 10px 0;
 }
-/* line 98, ../sass/common/_button.scss */
+/* line 96, ../sass/common/_button.scss */
 .btn-goup-tabs .btn {
   padding: 10px;
   font-size: 120%;
   background-color: #EEEEEE;
 }
-/* line 102, ../sass/common/_button.scss */
+/* line 100, ../sass/common/_button.scss */
 .btn-goup-tabs .btn.active {
   background-color: gainsboro;
 }
-/* line 105, ../sass/common/_button.scss */
+/* line 103, ../sass/common/_button.scss */
 .btn-goup-tabs .btn .fa {
   font-size: 130%;
   color: #404040;
 }
-/* line 110, ../sass/common/_button.scss */
+/* line 106, ../sass/common/_button.scss */
+.btn-goup-tabs .btn .fa.text-danger {
+  color: #d9534f;
+}
+/* line 112, ../sass/common/_button.scss */
 .btn-goup-tabs .active .fa {
   color: #80AD80;
 }
+/* line 114, ../sass/common/_button.scss */
+.btn-goup-tabs .active .fa.text-danger {
+  color: #d9534f;
+}
 
-/* line 115, ../sass/common/_button.scss */
+/* line 123, ../sass/common/_button.scss */
 .btn-tabs-2 .btn {
   width: 50%;
 }
 
-/* line 120, ../sass/common/_button.scss */
+/* line 129, ../sass/common/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
 
-/* line 125, ../sass/common/_button.scss */
+/* line 135, ../sass/common/_button.scss */
 .btn-tabs-4 .btn {
   width: 25%;
 }
@@ -11352,7 +11360,7 @@ img {
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
-/* line 133, ../sass/common/_button.scss */
+/* line 143, ../sass/common/_button.scss */
 .switch {
   position: relative;
   display: inline-block;
@@ -11361,13 +11369,13 @@ img {
 }
 
 /* Hide default HTML checkbox */
-/* line 143, ../sass/common/_button.scss */
+/* line 153, ../sass/common/_button.scss */
 .switch input {
   display: none;
 }
 
 /* The slider */
-/* line 146, ../sass/common/_button.scss */
+/* line 158, ../sass/common/_button.scss */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -11381,7 +11389,7 @@ img {
   transition: .4s;
 }
 
-/* line 161, ../sass/common/_button.scss */
+/* line 173, ../sass/common/_button.scss */
 .slider:before {
   position: absolute;
   content: "";
@@ -11396,17 +11404,17 @@ img {
   transition: .4s;
 }
 
-/* line 178, ../sass/common/_button.scss */
+/* line 191, ../sass/common/_button.scss */
 input:checked + .slider:before {
   background-color: #80AD80;
 }
 
-/* line 183, ../sass/common/_button.scss */
+/* line 196, ../sass/common/_button.scss */
 input:focus + .slider {
   box-shadow: 0 0 1px #80AD80;
 }
 
-/* line 187, ../sass/common/_button.scss */
+/* line 200, ../sass/common/_button.scss */
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -11414,12 +11422,12 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-/* line 194, ../sass/common/_button.scss */
+/* line 207, ../sass/common/_button.scss */
 .slider.round {
   border-radius: 4px;
 }
 
-/* line 198, ../sass/common/_button.scss */
+/* line 211, ../sass/common/_button.scss */
 .slider.round:before {
   border-radius: 4px;
 }

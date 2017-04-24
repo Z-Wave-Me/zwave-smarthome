@@ -6,7 +6,7 @@
         </a>
         <a class="btn btn-default" title="{{_t('lb_online_modules')}}" href="#apps/online" 
            ng-class="routeMatch('/apps/online') ||  routeMatch('/apps/online/filter') ? 'active' : ''">
-            <i class="fa fa-globe"></i> <span class="btn-name">{{_t('lb_online_modules')}}</span>
+            <i class="fa {{dataHolder.onlineModules.connect.icon}}"></i> <span class="btn-name">{{_t('lb_online_modules')}}</span>
         </a>
         <a class="btn btn-default" title="{{_t('lb_active')}}" href="#apps/instance"  
            ng-class="routeMatch('/apps/instance') ? 'active' : ''">

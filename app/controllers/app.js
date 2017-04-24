@@ -8,7 +8,7 @@
  * @class AppBaseController
  *
  */
-myAppController.controller('AppBaseController', function ($scope, $filter, $cookies, $q, $route, cfg,dataFactory, dataService, _) {
+myAppController.controller('AppBaseController', function ($scope, $rootScope,$filter, $cookies, $q, $route, $http,$timeout,cfg,dataFactory, dataService, _) {
     angular.copy({
         appsCategories: false
     }, $scope.expand);
@@ -40,6 +40,11 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             orderBy: ($cookies.orderByAppsLocal ? $cookies.orderByAppsLocal : 'titleASC')
         },
         onlineModules: {
+            connect: {
+                status: false,
+                icon: 'fa-exclamation-triangle text-danger',
+            },
+            alert: {message: false, status: 'is-hidden', icon: false},
             cnt: {
                 apps: 0,
                 collection: 0,
@@ -82,17 +87,66 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
 
     /**
+     * Check if online modules are loaded
+     */
+    $scope.checkOnlineModules = function () {
+        if ($scope.routeMatch('/apps/online')) {
+            $timeout(function(){
+                $scope.loading = false;
+                $http.pendingRequests.forEach(function(v) {
+                    if(v.url === cfg.online_module_url){
+                        $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
+                    }
+                });
+            }, 10000);
+
+
+        }
+    };
+    $scope.checkOnlineModules();
+/*
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        console.log(current.route())
+        if ($scope.routeMatch('/apps/online')) {
+            $http.pendingRequests.forEach(function(v) {
+                //console.log(v)
+            });
+        }
+
+    });*/
+
+    /**
      * Load tokens
      */
     $scope.loadTokens = function () {
         dataFactory.getApi('tokens', null, true).then(function (response) {
             angular.extend($scope.dataHolder.tokens.all, response.data.data.tokens);
+            /*$http.pendingRequests.forEach(function(request) {
+                console.log(request)
+            });*/
             $scope.allSettled($scope.dataHolder.tokens.all);
+            //$scope.loadOnlineModules($scope.dataHolder.tokens.all);
+
         }, function (error) {
             $scope.allSettled($scope.dataHolder.tokens.all);
         });
     };
     $scope.loadTokens();
+
+    /**
+     * Load online modules
+     */
+    $scope.loadOnlineModules = function (tokens) {
+        dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
+            $scope.dataHolder.onlineModules.alert = false;
+            $scope.dataHolder.onlineModules.connect.status = true;
+            $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';
+            setOnlineModules(response.data.data)
+        }, function (error) {
+
+            $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
+        });
+    };
 
     /**
      * Load all promises
@@ -102,25 +156,31 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
         var promises = [
             dataFactory.getApi('modules_categories'),
             dataFactory.getApi('modules', null, true),
-            dataFactory.getOnlineModules({token: _.values(tokens)}),
+            //dataFactory.getOnlineModules({token: _.values(tokens)}),
             dataFactory.getApi('instances', null, true)
         ];
 
         $q.allSettled(promises).then(function (response) {
+            if (!$scope.routeMatch('/apps/online')){
+                $scope.loading = false;
+            }
+
             var categories = response[0];
             var modules = response[1];
-            var onlineModules = response[2];
-            var instances = response[3];
-            $scope.loading = false;
+            //var onlineModules = response[2];
+            var instances = response[2];
             // Error message
             if (modules.state === 'rejected' && $scope.routeMatch('/apps/local')) {
                 alertify.alertError($scope._t('error_load_data'));
                 return;
             }
-            if (onlineModules.state === 'rejected' && $scope.routeMatch('/apps/online')) {
-                alertify.alertError($scope._t('error_load_data'));
-                return;
-            }
+            //if (onlineModules.state === 'rejected' && $scope.routeMatch('/apps/online')) {
+           /* if (onlineModules.state === 'rejected') {
+                $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
+                //$scope.dataHolder.onlineModules.connect = false;
+                //alertify.alertError($scope._t('error_load_data'));
+               // return;
+            }*/
 
             if (instances.state === 'rejected' && $scope.routeMatch('/apps/instance')) {
                 alertify.alertError($scope._t('error_load_data'));
@@ -146,15 +206,19 @@ myAppController.controller('AppBaseController', function ($scope, $filter, $cook
             if (modules.state === 'fulfilled') {
                 setModules(modules.value.data.data, $scope.dataHolder.instances.all);
             }
+            $scope.loadOnlineModules(tokens);
 
             // Success - online modules
-            if (onlineModules.state === 'fulfilled') {
+           /* if (onlineModules.state === 'fulfilled') {
+                $scope.dataHolder.onlineModules.connect = true;
                 setOnlineModules(onlineModules.value.data.data)
-            }
+            }*/
 
 
         });
     };
+
+
 
     /**
      * Update module
