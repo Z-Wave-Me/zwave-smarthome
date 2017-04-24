@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 21-04-2017 16:13:10 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 24-04-2017 09:49:45 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -1046,7 +1046,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_vendors_ctrl.html',
-    "<div class=\"page-control form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\"><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=\"dropdown-entry clickable\" title={{v.name}} ng-click=\"redirectToRoute('zwave/inclusion/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'name' track by $index\"><span class=dropdown-col><img class=report-img-s ng-src=data:image/png;base64,{{v.product_image_base64}} err-src={{cfg.img.placeholder}} alt=\"img\"> <span class=aoutocomplete-title>{{v.name|cutText:true:30}}&nbsp; <em class=item-cnt>({{v.brandname}})</em>&nbsp;</span></span> <span class=\"dropdown-col dropdown-ctrl\">control</span></li></ul></div></div></div>"
+    "<div class=\"page-control form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\"><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=\"dropdown-entry clickable\" title={{v.name}} ng-click=\"redirectToRoute('zwave/inclusion/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'name' track by $index\"><span class=dropdown-col><img class=report-img-s ng-src=data:image/png;base64,{{v.product_image_base64}} err-src={{cfg.img.placeholder}} alt=\"img\"> <span class=aoutocomplete-title>{{v.name|cutText:true:30}}&nbsp; <em class=item-cnt>({{v.brandname}})</em>&nbsp;</span></span> <span class=\"dropdown-col dropdown-ctrl\"><i class=\"fa fa-plug text-primary\"></i></span></li></ul></div></div></div>"
   );
 
 }]);
