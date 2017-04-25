@@ -235,6 +235,10 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     when('/report', {
         templateUrl: 'app/views/report/report.html',
         requireLogin: true
+    }).//Rss
+    when('/rss', {
+        templateUrl: 'app/views/rss/rss.html',
+        requireLogin: true
     }).//Login
     when('/login', {
         redirectTo: '/'

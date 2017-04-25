@@ -42,6 +42,7 @@
     }
     a:hover{
         background-color: darken($header-a-active-color, 5%);
+        text-decoration: none;
     }
     .active{
         background-color:$header-a-active-color;

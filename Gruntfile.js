@@ -111,6 +111,7 @@ module.exports = function (grunt) {
                     'app/controllers/room.js',
                     'app/controllers/management.js',
                     'app/controllers/mysettings.js',
+                    'app/controllers/rss.js',
                     'app/controllers/auth.js',
                     // ExpertUI configuration js
                     'app/expertui/pyzw.js',
