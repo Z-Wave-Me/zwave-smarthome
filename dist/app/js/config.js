@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-20',
+        'app_version': '1.7.0-RC-21',
         // Application (DIST) built date
-        'app_built': '24-04-2017 16:11:43',
+        'app_built': '25-04-2017 15:00:31',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -315,11 +315,16 @@ var config_data = {
             'doorlock',
             'switchControl'
         ],
-        // List of the elements with update time button
+        // List of the element deviceType with update time button
         'element_update_time_btn': [
             'sensorMultilevel',
             'sensorBinary',
             'sensorMultiline'
+        ],
+        // List of the element deviceType with history icon
+        'element_history': [
+            'sensorBinary',
+            'switchBinary'
         ],
         // List of the find hosts
         'find_hosts': [

@@ -11709,44 +11709,53 @@ fieldset.submit-entry {
 /* line 66, ../sass/common/_dropdown.scss */
 .app-dropdown ul .fa {
   font-size: 120%;
-  padding-right: 10px;
+}
+/* line 70, ../sass/common/_dropdown.scss */
+.app-dropdown ul .btn {
+  display: inline-block;
+  position: static;
+  padding: 3px 10px;
+  vertical-align: middle;
+  color: #333333;
+  border: 0;
+  border-radius: 0;
 }
 
-/* line 73, ../sass/common/_dropdown.scss */
+/* line 83, ../sass/common/_dropdown.scss */
 .dropdown-100 {
   width: 100%;
 }
 
-/* line 76, ../sass/common/_dropdown.scss */
+/* line 86, ../sass/common/_dropdown.scss */
 .dropdown-50 {
   width: 50%;
 }
 
-/* line 79, ../sass/common/_dropdown.scss */
+/* line 89, ../sass/common/_dropdown.scss */
 .dropdown-lang {
   min-width: 250px;
 }
-/* line 82, ../sass/common/_dropdown.scss */
+/* line 92, ../sass/common/_dropdown.scss */
 .dropdown-lang ul li {
   display: inline-block;
   padding: 5px;
   border: 0;
 }
 
-/* line 90, ../sass/common/_dropdown.scss */
+/* line 100, ../sass/common/_dropdown.scss */
 .app-dropdown-left {
   float: left;
   left: 0;
   right: auto;
 }
 
-/* line 95, ../sass/common/_dropdown.scss */
+/* line 105, ../sass/common/_dropdown.scss */
 .app-dropdown-bottom {
   top: auto;
   bottom: 100%;
 }
 
-/* line 100, ../sass/common/_dropdown.scss */
+/* line 110, ../sass/common/_dropdown.scss */
 .app-dropdown-mxh-600 {
   height: auto;
   max-height: 600px;
@@ -12631,19 +12640,53 @@ img.widget-promo-image {
   margin: 20px 0 0 0;
 }
 
-/* App detail
+/* Apps instances
 -------------------------------------------------- */
 /* line 131, ../sass/modules/_apps.scss */
+#apps_instances .accordion-entry {
+  background-color: #FFFFFF;
+  margin: 0;
+}
+/* line 135, ../sass/modules/_apps.scss */
+#apps_instances .accordion-entry .accordion-entry-title {
+  font-size: 100%;
+  margin: 0;
+  padding: 10px 0;
+  font-weight: bold;
+}
+
+/* line 144, ../sass/modules/_apps.scss */
+.instance-entry-single .app-row-report {
+  border-bottom: 0;
+  border-top: 0;
+}
+
+/* line 150, ../sass/modules/_apps.scss */
+.instance-entry-multiple .app-row-report {
+  border-top: 0;
+}
+/* line 154, ../sass/modules/_apps.scss */
+.instance-entry-multiple .app-row-report .report-body {
+  padding: 0 0 0 32px;
+}
+/* line 158, ../sass/modules/_apps.scss */
+.instance-entry-multiple .report-entry {
+  border-bottom: 0;
+}
+
+/* App detail
+-------------------------------------------------- */
+/* line 165, ../sass/modules/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
 }
 
-/* line 135, ../sass/modules/_apps.scss */
+/* line 169, ../sass/modules/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
-/* line 139, ../sass/modules/_apps.scss */
+/* line 173, ../sass/modules/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #d3d3d3;
   margin: 10px 0 0 0;
@@ -12652,20 +12695,20 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 147, ../sass/modules/_apps.scss */
+/* line 181, ../sass/modules/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #8c8c8c;
 }
-/* line 151, ../sass/modules/_apps.scss */
+/* line 185, ../sass/modules/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 157, ../sass/modules/_apps.scss */
+/* line 191, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -12673,7 +12716,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 163, ../sass/modules/_apps.scss */
+/* line 197, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -12681,7 +12724,7 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 173, ../sass/modules/_apps.scss */
+/* line 207, ../sass/modules/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
