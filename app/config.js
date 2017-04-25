@@ -315,11 +315,16 @@ var config_data = {
             'doorlock',
             'switchControl'
         ],
-        // List of the elements with update time button
+        // List of the element deviceType with update time button
         'element_update_time_btn': [
             'sensorMultilevel',
             'sensorBinary',
             'sensorMultiline'
+        ],
+        // List of the element deviceType with history icon
+        'element_history': [
+            'sensorBinary',
+            'switchBinary'
         ],
         // List of the find hosts
         'find_hosts': [

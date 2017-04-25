@@ -21,7 +21,9 @@
             <div class="widget-header">
                 <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
                 <!-- Events -->
-                <a class="widget-icon widget-event" href="" ng-click="dataHolder.devices.find = v;handleModal('modalEvent', $event)">
+                <a class="widget-icon widget-event" href=""
+                   ng-show="v.hasNotification"
+                   ng-click="dataHolder.devices.find = v;handleModal('modalEvent', $event)">
                     <i class="fa fa-calendar"></i>
                 </a>
                 <!-- Is hidden -->
@@ -33,7 +35,9 @@
                     <i class="fa fa-line-chart"></i>
                 </a>
                 <!-- History -->
-                <a class="widget-icon widget-history" href="" title="{{_t('history')}}" ng-click="dataHolder.devices.find = v;handleModal('modalHistory', $event)" ng-if="v.hasHistory">
+                <a class="widget-icon widget-history" href="" title="{{_t('history')}}"
+                   ng-show="v.hasHistory"
+                   ng-click="dataHolder.devices.find = v;handleModal('modalHistory', $event)">
                     <i class="fa fa-history"></i>
                 </a>
                 <!-- Settings -->
