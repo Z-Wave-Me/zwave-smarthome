@@ -124,7 +124,41 @@
   }*/
 
 }
+/* Apps instances
+-------------------------------------------------- */
+#apps_instances{
 
+  .accordion-entry{
+    background-color: #FFFFFF;
+    //border: solid 2px $report-border-color;
+    margin: 0;
+    .accordion-entry-title {
+      font-size: 100%;
+      margin: 0;
+      padding: 10px 0;
+      font-weight: bold;
+    }
+  }
+}
+.instance-entry-single{
+  .app-row-report{
+    border-bottom: 0;
+    border-top: 0;
+  }
+}
+.instance-entry-multiple{
+  .app-row-report{
+   //border: solid 2px $report-border-color;
+    //border-bottom: 0;
+    border-top: 0;
+    .report-body{
+      padding: 0 0 0 $report-img-s;
+    }
+  }
+  .report-entry {
+    border-bottom: 0;
+  }
+}
 
 /* App detail
 -------------------------------------------------- */

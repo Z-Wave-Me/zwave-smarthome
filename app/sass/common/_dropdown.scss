@@ -65,7 +65,17 @@
         }
         .fa{
             font-size: $dropdown-icon-size;
-            padding-right: $spacing;
+            //padding-right: $spacing;
+        }
+        .btn{
+            display: inline-block;
+            position: static;
+            padding: 3px 10px;
+            vertical-align: middle;
+            color: $dropdown-color;
+            //vertical-align:baseline;
+            border: 0;
+            border-radius: 0;
         }
 
     }

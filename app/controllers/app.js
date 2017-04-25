@@ -42,7 +42,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         onlineModules: {
             connect: {
                 status: false,
-                icon: 'fa-exclamation-triangle text-danger',
+                icon: 'fa-globe fa-spin'
             },
             alert: {message: false, status: 'is-hidden', icon: false},
             cnt: {
@@ -95,6 +95,10 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 $scope.loading = false;
                 $http.pendingRequests.forEach(function(v) {
                     if(v.url === cfg.online_module_url){
+                        $scope.dataHolder.onlineModules.connect = {
+                            status: false,
+                                icon: 'fa-exclamation-triangle text-danger'
+                        };
                         $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
                     }
                 });
@@ -125,10 +129,18 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
     $scope.loadOnlineModules = function (tokens) {
         dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
             $scope.dataHolder.onlineModules.alert = false;
-            $scope.dataHolder.onlineModules.connect.status = true;
-            $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';
+            /*$scope.dataHolder.onlineModules.connect.status = true;
+            $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*/
+            $scope.dataHolder.onlineModules.connect = {
+                status: true,
+                icon: 'fa-globe'
+            };
             setOnlineModules(response.data.data)
         }, function (error) {
+            $scope.dataHolder.onlineModules.connect = {
+                status: false,
+                icon: 'fa-exclamation-triangle text-danger'
+            };
 
             $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
         });
@@ -229,9 +241,19 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                     item.description = item.defaults.description;
                     // Has already instance ?
                     item.hasInstance = $scope.dataHolder.instances.cnt.modules[item.id]||0;
-                    $scope.dataHolder.modules.ids[item.id] = {version: item.version};
-                    $scope.dataHolder.modules.singleton[item.id] = {singelton: item.singleton};
-
+                    // IDSs settings
+                    $scope.dataHolder.modules.ids[item.id] = {
+                        version: item.version,
+                        icon: $scope.moduleMediaUrl + item.id + '/' + item.icon,
+                        singleton: item.singleton,
+                        title: item.title
+                    };
+                    /**
+                     * todo: Deprecated
+                     */
+                    //$scope.dataHolder.modules.ids[item.id] = {version: item.version};
+                    //$scope.dataHolder.modules.singleton[item.id] = {singelton: item.singleton};
+                    //$scope.dataHolder.modules.imgs[item.id] = item.icon;
                     var isHidden = false;
                     var items = [];
                     if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
@@ -259,8 +281,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                         } else {
                             angular.extend(item, {custom: false});
                         }
-                        //$scope.modulesIds.push(item.id);
-                        $scope.dataHolder.modules.imgs[item.id] = item.icon;
                         if (item.category && $scope.dataHolder.modules.cats.indexOf(item.category) === -1) {
                             $scope.dataHolder.modules.cats.push(item.category);
                         }
@@ -271,8 +291,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                         } else {
                             angular.extend(item, {featured: false});
                         }
-                        // Has already instance ?
-                        //angular.extend(item, {hasInstance: $scope.dataHolder.instances.cnt.modules[item.id]||0});
                          
                         //Tooltip description
                         angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
@@ -681,7 +699,6 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
      */
     $scope.expandInstances = function (state) {
         angular.forEach($scope.expand,function(v,k){
-            console.log(k)
             $scope.expand[k] = state;
         });
         $cookies.instancesExpanded = state;

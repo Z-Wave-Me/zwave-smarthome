@@ -166,7 +166,7 @@ myApp.directive('bbValidator', function ($window) {
 });
 /**
 * Watch for an error loading an image and to replace the src
-* @class bbValidator
+* @class errSrc
 */
 myApp.directive('errSrc', function() {
     return {
