@@ -1,4 +1,52 @@
 <!-- Rss view -->
 <div ng-controller="RssController">
+    <bb-loader></bb-loader>
     <h1>{{_t('news')}}</h1>
-</div>
+    <bb-alert alert="rss.alert"></bb-alert>
+    <!--<pre>{{rss.all|json}}</pre>-->
+    <div class="app-row app-row-report clearfix">
+        <div class="report-entry read-{{v.read}} clickable"
+             ng-repeat="v in rss.all | orderBy: '-pubDate' track by $index" current-page="currentPage" id="row_{{v.id}}"
+             ng-click="readRss(v,'rssModal', $event)">
+            <!-- Control -->
+            <div class="report-col report-body">
+
+                    <span class="text-supp event-date">{{v.pubDate}}</span>
+                    <h2 class="rss-title">{{v.title}}</h2>
+                <div class="rss-description">
+                    {{v.description | cutText:true:128}}
+                </div>
+            </div>
+            <!-- Control -->
+            <div class="report-col report-ctrl">
+                <!--{{v.read}}-->
+            </div>
+        </div>
+    </div>
+
+    <div id="rssModal" class="appmodal" ng-if="modalArr.rssModal">
+        <div class="appmodal-in">
+            <div class="appmodal-header">
+                <span class="appmodal-close" ng-click="handleModal('rssModal', $event)"><i
+                        class="fa fa-times"></i></span>
+                <h3>{{_t('news')}}</h3>
+            </div>
+            <div class="appmodal-body">
+               <!-- <pre>{{rss.find|json}}</pre>-->
+                <div class="rss-title">
+                    <span class="text-supp event-date">{{v.pubDate}}</span>
+                    <h2>{{rss.find.title}}</h2>
+                </div>
+                <p class="rss-description">
+                    <strong>{{rss.find.description}} </strong>
+                </p>
+                <div class="rss-body">
+                    {{rss.find.content}}
+                </div>
+            </div>
+            <div class="appmodal-footer">
+                <button type="button" class="btn btn-default" ng-click="handleModal('rssModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+            </div>
+        </div>
+    </div>
+</div> <!-- /ng-controller -->

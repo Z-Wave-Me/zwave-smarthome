@@ -13254,6 +13254,18 @@ img.widget-promo-image {
   -ms-transform: translate(0%, -50%);
 }
 
+/* RSS
+-------------------------------------------------- */
+/* line 4, ../sass/modules/_rss.scss */
+.read-true .event-date, .read-true .rss-title, .read-true .rss-description {
+  color: #a6a6a6;
+}
+
+/* line 9, ../sass/modules/_rss.scss */
+.read-false .rss-title {
+  font-weight: bold;
+}
+
 /* POPP css
 -------------------------------------------------- */
 /* line 5, ../sass/common/_app_popp.scss */

@@ -1,6 +1,7 @@
 {
     "newtrans": "---",
     "---": "newtrans",
+    "no_news":"There are no news today",
     "no_internet_connection":"Looks like you've lost internet connection. Try to reconnect and refresh the page.",
     "selected_image_background":"Display selected image as background",
     "see_more":"See more",
