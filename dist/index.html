@@ -31,6 +31,9 @@
                         <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i></a>
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
+                        <span class="divider-vertical"></span>
+                        <a href="#rss" title="{{_t('news')}}"><i class="fa fa-comment"></i>
+                            <span class="item-cnt">(3)</span></a>
                         <span class="divider-vertical"></span> 
                         &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string"><i class="fa fa-clock-o"></i> {{cfg.route.time.string}}</span>
                     </div>
@@ -68,6 +71,10 @@
                             <!-- Management -->
                             <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
                                 <a href="#admin"><i class="fa fa-wrench"></i> <span>{{_t('management')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>
+                            <!-- Rss -->
+                            <li class="subnavi-admin" ng-class="isActive('rss')">
+                                <a href="#rss"><i class="fa fa-comment"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Logout -->
                             <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">

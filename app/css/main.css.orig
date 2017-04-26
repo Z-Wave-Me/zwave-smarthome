@@ -10593,30 +10593,31 @@ a.link-underline {
 /* line 43, ../sass/common/_header.scss */
 #main_navigation a:hover {
   background-color: #c6c6c6;
+  text-decoration: none;
 }
-/* line 46, ../sass/common/_header.scss */
+/* line 47, ../sass/common/_header.scss */
 #main_navigation .active {
   background-color: #d3d3d3;
   color: #ededed;
 }
 
-/* line 51, ../sass/common/_header.scss */
+/* line 52, ../sass/common/_header.scss */
 #header_logo {
   max-height: 40px;
   max-width: 100px;
 }
 
-/* line 55, ../sass/common/_header.scss */
+/* line 56, ../sass/common/_header.scss */
 #navigation_left {
   position: absolute;
 }
 
-/* line 59, ../sass/common/_header.scss */
+/* line 60, ../sass/common/_header.scss */
 #navigation_right {
   float: right;
 }
 
-/* line 62, ../sass/common/_header.scss */
+/* line 63, ../sass/common/_header.scss */
 #navi_settings {
   border-radius: 4px;
   height: 40px;
@@ -10625,34 +10626,34 @@ a.link-underline {
   margin-right: 15px;
 }
 
-/* line 70, ../sass/common/_header.scss */
+/* line 71, ../sass/common/_header.scss */
 .navi-time-link {
   cursor: pointer;
 }
 
-/* line 73, ../sass/common/_header.scss */
+/* line 74, ../sass/common/_header.scss */
 .navi-time {
   padding-left: 10px;
 }
 
-/* line 77, ../sass/common/_header.scss */
+/* line 78, ../sass/common/_header.scss */
 .mobile-icon {
   padding-left: 7px;
   color: #333333;
 }
-/* line 80, ../sass/common/_header.scss */
+/* line 81, ../sass/common/_header.scss */
 .mobile-icon .fa {
   font-size: 17px;
 }
 
 /* Subnavigation
 -------------------------------------------------- */
-/* line 87, ../sass/common/_header.scss */
+/* line 88, ../sass/common/_header.scss */
 #sub_navigation {
   position: relative;
 }
 
-/* line 91, ../sass/common/_header.scss */
+/* line 92, ../sass/common/_header.scss */
 #sub_navigation_in ul {
   padding: 0;
   list-style: none;
@@ -10663,12 +10664,12 @@ a.link-underline {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border: 1px solid #d3d3d3;
 }
-/* line 99, ../sass/common/_header.scss */
+/* line 100, ../sass/common/_header.scss */
 #sub_navigation_in ul li {
   padding: 10px 0;
   border-bottom: solid 1px #DDDDDD;
 }
-/* line 102, ../sass/common/_header.scss */
+/* line 103, ../sass/common/_header.scss */
 #sub_navigation_in ul li a {
   display: block;
   position: relative;
@@ -10676,29 +10677,29 @@ a.link-underline {
   vertical-align: middle;
   color: #333333;
 }
-/* line 109, ../sass/common/_header.scss */
+/* line 110, ../sass/common/_header.scss */
 #sub_navigation_in ul li a span {
   display: inline-block;
   position: absolute;
   left: 60px;
 }
-/* line 116, ../sass/common/_header.scss */
+/* line 117, ../sass/common/_header.scss */
 #sub_navigation_in ul li .subnavi-arrow {
   position: absolute;
   right: 1%;
   display: inline-block;
 }
-/* line 124, ../sass/common/_header.scss */
+/* line 125, ../sass/common/_header.scss */
 #sub_navigation_in ul .active a {
   color: #b3b3b3;
   font-weight: bold;
   text-decoration: underline;
 }
-/* line 129, ../sass/common/_header.scss */
+/* line 130, ../sass/common/_header.scss */
 #sub_navigation_in ul .active .fa {
   color: #b3b3b3;
 }
-/* line 133, ../sass/common/_header.scss */
+/* line 134, ../sass/common/_header.scss */
 #sub_navigation_in ul .fa {
   color: #666666;
 }
@@ -13251,6 +13252,18 @@ img.widget-promo-image {
 .slider-btn-next {
   right: 0%;
   -ms-transform: translate(0%, -50%);
+}
+
+/* RSS
+-------------------------------------------------- */
+/* line 4, ../sass/modules/_rss.scss */
+.read-true .event-date, .read-true .rss-title, .read-true .rss-description {
+  color: #a6a6a6;
+}
+
+/* line 9, ../sass/modules/_rss.scss */
+.read-false .rss-title {
+  font-weight: bold;
 }
 
 /* POPP css
