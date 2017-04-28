@@ -326,7 +326,10 @@ var config_data = {
         // List of the element deviceType with history icon
         'element_history': [
             'sensorBinary',
-            'switchBinary'
+            'switchBinary',
+            'switchControl',
+            'toggleButton',
+            'doorlock'
         ],
         // List of the find hosts
         'find_hosts': [
