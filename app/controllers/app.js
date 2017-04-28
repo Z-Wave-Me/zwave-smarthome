@@ -87,9 +87,10 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
 
     /**
+     * todo: deprecated
      * Check if online modules are loaded
      */
-    $scope.checkOnlineModules = function () {
+    /*$scope.checkOnlineModules = function () {
         if ($scope.routeMatch('/apps/online')) {
             $timeout(function(){
                 $scope.loading = false;
@@ -106,8 +107,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
 
 
         }
-    };
-    $scope.checkOnlineModules();
+    };*/
+    //$scope.checkOnlineModules();
 
     /**
      * Load tokens
@@ -137,12 +138,18 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             };
             setOnlineModules(response.data.data)
         }, function (error) {
-            $scope.dataHolder.onlineModules.connect = {
-                status: false,
-                icon: 'fa-exclamation-triangle text-danger'
-            };
+            if(error.status === 0){
+                $scope.dataHolder.onlineModules.connect = {
+                    status: false,
+                    icon: 'fa-exclamation-triangle text-danger'
+                };
+                $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
 
-            $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
+            }else{
+                alertify.alertError($scope._t('error_load_data'));
+            }
+        }).finally(function(){
+            $scope.loading = false;
         });
     };
 
@@ -814,9 +821,10 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
  * The controller that handles on-line app detail actions.
  * @class AppOnlineDetailController
  */
-myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, dataFactory, dataService, _) {
+myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, cfg,dataFactory, dataService, _) {
     $scope.local = {
-        installed: false
+        installed: false,
+        alert: false
     };
     $scope.module = [];
     $scope.comments = {
@@ -839,7 +847,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         }
     };
     $scope.categoryName = '';
-    $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
+    $scope.onlineMediaUrl = cfg.online_module_img_url;
 
     /**
      * Load Remote access data
@@ -866,7 +874,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             if (!cat) {
                 return;
             }
-            var category = _.findWhere(cat[$scope.lang] || cat[$scope.cfg.lang], {id: id});
+            var category = _.findWhere(cat[$scope.lang] || cat[cfg.lang], {id: id});
             if (category) {
                 $scope.categoryName = category.name;
             }
@@ -887,10 +895,9 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
      */
     $scope.loadModuleId = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.postToRemote($scope.cfg.online_moduleid_url, {id: id, lang: $scope.lang}).then(function (response) {
-            $scope.loading = false;
+        dataFactory.postToRemote(cfg.online_moduleid_url, {id: id, lang: $scope.lang}).then(function (response) {
             if (_.isEmpty(response.data.data)) {
-                alertify.alertWarning($scope._t('no_data'));
+                $scope.local.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             }
             $scope.module = response.data.data;
@@ -898,9 +905,43 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             $scope.loadLocalModules({moduleName: $scope.module.modulename});
             $scope.loadCategories($scope.module.category);
         }, function (error) {
+            if(error.status === 0){
+
+                $scope.local.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+
+            }else{
+                alertify.alertError($scope._t('error_load_data'));
+            }
+        }).finally(function(){
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
         });
+
+
+
+
+        /*dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
+            $scope.dataHolder.onlineModules.alert = false;
+            /!*$scope.dataHolder.onlineModules.connect.status = true;
+             $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*!/
+            $scope.dataHolder.onlineModules.connect = {
+                status: true,
+                icon: 'fa-globe'
+            };
+            setOnlineModules(response.data.data)
+        }, function (error) {
+            if(error.status === 0){
+                $scope.dataHolder.onlineModules.connect = {
+                    status: false,
+                    icon: 'fa-exclamation-triangle text-danger'
+                };
+                $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+
+            }else{
+                alertify.alertError($scope._t('error_load_data'));
+            }
+        }).finally(function(){
+            $scope.loading = false;
+        });*/
     };
     $scope.loadModuleId($routeParams.id);
 
@@ -908,7 +949,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
      * Load comments
      */
     $scope.loadComments = function (id) {
-        dataFactory.getRemoteData($scope.cfg.online_module_comments_url + '/' + id, true).then(function (response) {
+        dataFactory.getRemoteData(cfg.online_module_comments_url + '/' + id, true).then(function (response) {
             $scope.comments.all = response.data.data;
             if (_.isEmpty(response.data.data)) {
                 $scope.comments.show = false;
@@ -929,10 +970,10 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
     $scope.installModule = function (module) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + module.file
+            moduleUrl: cfg.online_module_download_url + module.file
         };
         dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
-            dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
+            dataFactory.postToRemote(cfg.online_module_installed_url, {id: module.id});
             dataService.showNotifier({message: $scope._t(response.data.data.key)});
             window.location = '#/module/post/' + module.modulename;
 
@@ -952,7 +993,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.postToRemote($scope.cfg.online_module_comment_create_url, input).then(function (response) {
+        dataFactory.postToRemote(cfg.online_module_comment_create_url, input).then(function (response) {
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('comment_add_successful')});
             $scope.expand.appcommentadd = false;
@@ -973,7 +1014,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
     $scope.rateModule = function (score) {
         $scope.rating.model.score = parseInt(score);
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.postToRemote($scope.cfg.online_module_rating_create_url, $scope.rating.model).then(function (response) {
+        dataFactory.postToRemote(cfg.online_module_rating_create_url, $scope.rating.model).then(function (response) {
             $scope.loading = false;
             $scope.loadModuleId($routeParams.id);
         }, function (error) {

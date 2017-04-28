@@ -105,6 +105,7 @@ myApp.config(function ($provide, $httpProvider) {
             },
             // On response success
             response: function (response) {
+
                 // Return the response or promise.
                 return response || $q.when(response);
             },
@@ -122,6 +123,14 @@ myApp.config(function ($provide, $httpProvider) {
                             hide: true
                         };
                         angular.extend(cfg.route.fatalError, fatalArray);
+                        break;*/
+                    /*case 0:
+                        console.log(rejection)
+                        console.log('Request took longer than ' + (cfg.pending_remote_limit/1000) + ' seconds.');
+                        angular.extend(cfg.route.fatalError, {
+                            message: 'Request took longer than ' + (cfg.pending_remote_limit/1000) + ' seconds.',
+                            hide: false
+                        });
                         break;*/
                     case 401:
                         if (path[1] !== '') {

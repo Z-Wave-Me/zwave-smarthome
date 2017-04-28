@@ -4,6 +4,33 @@
  */
 
 /**
+ * Test directive
+ * @class bbGoBack
+ */
+myApp.directive('bbTest',function (_) {
+    return {
+        restrict: 'E',
+        scope: {
+            val: '='
+        },
+        template: '<pre ng-if="show">{{show|json}}</pre>',
+        link: function(scope, element, attrs) {
+            scope.show = false;
+            scope.$watchCollection('val', function(newValue, oldValue) {
+                if (!_.isEqual(newValue, oldValue) ){
+                    scope.show = newValue;
+                    console.log('OLD',oldValue);
+                    console.log('NEW',newValue);
+                    console.log('I see a data change!',scope.val);
+                }
+
+
+            });
+        }
+    };
+});
+
+/**
  * Window history back
  * @class bbGoBack
  */

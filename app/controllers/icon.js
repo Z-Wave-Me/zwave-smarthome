@@ -232,6 +232,11 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
  */
 myAppController.controller('OnlineIconController', function ($scope, $filter, $timeout, $q, $location, cfg, dataFactory, dataService, _) {
     $scope.iconsOnline = {
+        connect: {
+            status: false,
+            icon: 'fa-globe fa-spin'
+        },
+        alert: {message: false, status: 'is-hidden', icon: false},
         all: {},
         find: {},
         preview: {}
@@ -251,7 +256,6 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
 
         $q.allSettled(promises).then(function (response) {
             var icons = response[0];
-            console.log(icons);
             // Error message
             if (icons.state === 'rejected') {
                 alertify.alertError($scope._t('error_load_data'));
@@ -272,14 +276,27 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     $scope.loadOnlineIcons = function () {
          $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getRemoteData(cfg.online_icon_url).then(function (response) {
-            $scope.loading = false;
+            $scope.iconsOnline.connect = {
+                status: true,
+                icon: 'fa-globe'
+            };
             if (_.size(response.data.data) < 1) {
                 alertify.alertError($scope._t('no_data'));
                 return;
             }
             setOnlineIcons(response.data.data);
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+            if(error.status === 0){
+                $scope.iconsOnline.connect = {
+                    status: false,
+                    icon: 'fa-exclamation-triangle text-danger'
+                };
+                $scope.iconsOnline.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+
+            }else{
+                alertify.alertError($scope._t('error_load_data'));
+            }
+        }).finally(function(){
             $scope.loading = false;
         });
     };

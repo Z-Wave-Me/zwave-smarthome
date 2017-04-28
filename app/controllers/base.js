@@ -177,92 +177,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
 
     /**
-     * todo: Deprecated
-     * Handle HTTP pending
-     * @returns {undefined}
-     */
-    $scope.handlePending = function () {
-       /* angular.forEach($http.pendingRequests, function(request) {
-            if (request.cancel && request.timeout) {
-               console.log(request)
-                //request.cancel.resolve();
-            }
-        });
-        return;*/
-        /*var countUp = function () {
-            var pending = _.findWhere($http.pendingRequests, {url: '/ZAutomation/api/v1/system/time/get'});
-            if (pending) {
-                console.log('HAS PENDING');
-                var fatalArray = {
-                    type: 'network',
-                    message: $scope._t('connection_refused'),
-                    info: $scope._t('connection_refused_info'),
-                    permanent: true,
-                    hide: true
-                };
-                if ($scope.routeMatch('/boxupdate')) {
-                    fatalArray.message = $scope._t('jamesbox_connection_refused');
-                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
-                        __reload_begintag__: '<div>',
-                        __reload_endtag__: '</div>',
-                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
-                        __attention_endtag__: '<div>'
-                    });
-                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                }
-                angular.extend(cfg.route.fatalError, fatalArray);
-            }
-            //handleError(pending);
-        }
-        $timeout(countUp, cfg.pending_timeout_limit);*/
-
-        /**
-         * todo: deprecated
-         * Handle error message
-         * @param {object} pending
-         */
-        /*function handleError(pending) {
-            if (pending) {
-                console.log('HAS PENDING');
-                var fatalArray = {
-                    type: 'network',
-                    message: $scope._t('connection_refused'),
-                    info: $scope._t('connection_refused_info'),
-                    permanent: true,
-                    hide: true
-                };
-                if ($scope.routeMatch('/boxupdate')) {
-                    fatalArray.message = $scope._t('jamesbox_connection_refused');
-                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
-                        __reload_begintag__: '<div>',
-                        __reload_endtag__: '</div>',
-                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
-                        __attention_endtag__: '<div>'
-                    });
-                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                }
-                angular.extend(cfg.route.fatalError, fatalArray);
-            } else {
-                console.log('!!!!NO PENDING');
-                if (cfg.route.fatalError.type === 'network') {
-                 dataFactory.sessionApi().then(function (sessionRes) {
-                 var user = sessionRes.data.data;
-                 if (sessionRes.data.data) {
-                 dataService.setZWAYSession(user.sid);
-                 dataService.setUser(user);
-                 if (dataService.getUser()) {
-                 $window.location.reload();
-                 }
-                 }
-
-                 }, function (error) {});
-                 }
-            }
-        }*/
-
-    };
-
-    /**
      * Route on change start
      */
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
@@ -278,7 +192,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
          * Set timestamp and ping server if request fails
          */
         $scope.setTimeStamp();
-        //$scope.handlePending();
     });
 
     /**

@@ -2,8 +2,11 @@
 <div ng-controller="SkinBaseController">
     <div ng-controller="SkinOnlineController" id="skins_online">
          <bb-loader></bb-loader>
-         <!-- Skins navigation -->
+       <!-- Skins navigation -->
             <div ng-include="'app/views/customize/navi.html'"></div>
+        <!-- Alert -->
+        <bb-alert alert="skins.online.alert"></bb-alert>
+        <!-- List -->
         <div ng-if="skins.online.show">
             <div class="app-row app-row-widget app-row-customize clearfix">
                 <div class="widget-entry widget-entry-customize"

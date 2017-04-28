@@ -486,12 +486,18 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         // NOT Cached data
         return $http({
             method: 'get',
+            timeout: cfg.pending_remote_limit,
             url: url
                     /*headers: {
                      'Accept-Language': lang
                      }*/
         }).then(function (response) {
-            return response;
+            if (typeof response.data === 'object') {
+                myCache.put(cacheName, response);
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
         }, function (error) {// something went wrong
 
             return $q.reject(error);
@@ -894,6 +900,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             method: "POST",
             url: url,
             data: $.param(data),
+            timeout: cfg.pending_remote_limit,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
                         //'ZWAYSession': ZWAYSession 
@@ -920,18 +927,26 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             deferred.resolve(cached);
             return deferred.promise;
         }
+        var canceller = $q.defer();
         // NOT Cached data
         return $http({
             method: 'post',
             url: cfg.online_module_url,
             data: $.param(data),
+            timeout:cfg.pending_remote_limit,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept-Language': lang
             }
         }).then(function (response) {
-            myCache.put(cacheName, response);
-            return response;
+            if (typeof response.data === 'object') {
+                myCache.put(cacheName, response);
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+
+            //return response;
         }, function (error) {// something went wrong
 
             return $q.reject(error);

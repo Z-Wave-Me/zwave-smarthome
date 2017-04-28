@@ -22,6 +22,11 @@
     position: relative;
     min-height: 1px;
 }
+// Grayscale
+@mixin appGrayscale($percent: 100%) {
+    -webkit-filter: grayscale($percent); /* Safari 6.0 - 9.0 */
+    filter: grayscale($percent);
+}
 // Gradient
 @mixin appGradient() {
     background: #f6f6f6; /* Old browsers */
