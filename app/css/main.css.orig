@@ -12835,31 +12835,36 @@ img.widget-promo-image {
   font-weight: bold;
 }
 
-/* line 18, ../sass/modules/_rooms.scss */
-.room-no-device .widget-header .widget-icon {
-  color: #d9d9d9 !important;
+/* line 17, ../sass/modules/_rooms.scss */
+.room-no-device .widget-header {
+  /* .widget-icon{
+      color: lighten($widget-icon-color,40%) !important;
+   }*/
 }
 /* line 22, ../sass/modules/_rooms.scss */
 .room-no-device .widget-img {
-  opacity: 0.4;
-  filter: alpha(opacity=40);
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
 }
-/* line 25, ../sass/modules/_rooms.scss */
+/* line 26, ../sass/modules/_rooms.scss */
 .room-no-device .widget-img a {
   /*color: lighten($widget-heading-color,40%) !important;
   text-decoration: none;*/
   cursor: text !important;
 }
-/* line 34, ../sass/modules/_rooms.scss */
+/* line 35, ../sass/modules/_rooms.scss */
 .room-no-device .widget-title h3 a {
-  color: #a6a6a6 !important;
+  color: #8c8c8c !important;
   text-decoration: none;
   cursor: text !important;
 }
 
 /* Elements in Rooms
 -------------------------------------------------- */
-/* line 46, ../sass/modules/_rooms.scss */
+/* line 47, ../sass/modules/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -12869,7 +12874,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 55, ../sass/modules/_rooms.scss */
+/* line 56, ../sass/modules/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: absolute;
   top: 0;

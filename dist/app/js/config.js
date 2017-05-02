@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-22',
+        'app_version': '1.7.0-RC-23',
         // Application (DIST) built date
-        'app_built': '26-04-2017 12:24:12',
+        'app_built': '02-05-2017 13:55:29',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -22,8 +22,10 @@ var config_data = {
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // Displays a connection error After reaching the limit (milisecons)
+        // Displays a connection error after reaching the limit (milisecons)
         'pending_timeout_limit': 10000,
+        // Displays an remote server connection warning after reaching the limit (milisecons)
+        'pending_remote_limit': 3000,
         /// Set to > 0 (milisecons) to simulate latency for http Calls
         'latency_timeout': 0,
         // User
@@ -127,17 +129,15 @@ var config_data = {
         // List of remote api URLs
         'api_remote': {
             // JamesBox request
-            //'jamesbox_request': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=request',
             'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
             // JamesBox update
-            //'jamesbox_update': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=update',
             'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
             // JamesBox update info
-            //'jamesbox_updateinfo': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=updateinfo',
             'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo',
             // JamesBox cancel update
-            //'jamesbox_cancel_update: 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=cancelupdate',
-            'jamesbox_cancel_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=cancelupdate'
+            'jamesbox_cancel_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=cancelupdate',
+            // RSS feed
+            'rss_feed': 'https://service.z-wave.me/rssFeed/index.php'
         },
         // Skin
         'skin': {
@@ -324,7 +324,10 @@ var config_data = {
         // List of the element deviceType with history icon
         'element_history': [
             'sensorBinary',
-            'switchBinary'
+            'switchBinary',
+            'switchControl',
+            'toggleButton',
+            'doorlock'
         ],
         // List of the find hosts
         'find_hosts': [
@@ -419,6 +422,7 @@ var config_data = {
         // Config
         'custom_cfg': {
             'default': {
+                'boxtype': 'razberry',
                 'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
@@ -450,6 +454,7 @@ var config_data = {
                 ]
             },
             'popp': {
+                'boxtype': 'popp',
                 'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
@@ -481,6 +486,7 @@ var config_data = {
                 ]
             },
             'jb': {
+                'boxtype': 'popp',
                 'logo': 'app-logo-popp.png',
                 hidden_apps: [
                     'Cron',
@@ -512,6 +518,7 @@ var config_data = {
                 ]
             },
             'wd': {
+                'boxtype': 'razberry',
                 'logo': 'app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
