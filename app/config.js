@@ -25,7 +25,7 @@ var config_data = {
         // Displays a connection error after reaching the limit (milisecons)
         'pending_timeout_limit': 10000,
         // Displays an remote server connection warning after reaching the limit (milisecons)
-        'pending_remote_limit': 3000,
+        'pending_remote_limit': 20000,
         /// Set to > 0 (milisecons) to simulate latency for http Calls
         'latency_timeout': 0,
         // User

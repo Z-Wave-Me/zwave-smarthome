@@ -33,7 +33,13 @@ myAppController.controller('RssController', function ($scope, cfg, dataFactory, 
             $scope.rss.all = rss[0];
 
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+            if(error.status === 0){
+
+                $scope.rss.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+
+            }else{
+                alertify.alertError($scope._t('error_load_data'));
+            }
         }).finally(function() {// Always execute this on both error and success
             $scope.loading = false;
         });
