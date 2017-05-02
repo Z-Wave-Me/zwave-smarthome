@@ -92,20 +92,29 @@
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
                     <div id="navigation_left">
+                        <!-- logo -->
                         <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
                             <img ng-src="{{getAppLogo()}}" id="header_logo" alt="App logo" />
                         </a>
+                        <!-- dashboard -->
                         <span class="divider-vertical"></span>
                         <a href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i></a>
+                        <!-- rooms -->
                         <span class="divider-vertical"></span>
                         <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i></a>
+                        <!-- elements -->
                         <span class="divider-vertical"></span>
                         <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i></a>
+                        <!-- events -->
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
-                        <span class="divider-vertical"></span>
-                        <a href="#rss" title="{{_t('news')}}"><i class="fa fa-comment"></i>
-                            <span class="item-cnt">(3)</span></a>
+                        <!-- rss -->
+                        <span class="divider-vertical" ng-show="rss.unread > 0"></span>
+                        <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
+                            <i class="fa fa-comment"></i>&nbsp;
+                            <span class="item-cnt">({{rss.unread}})</span>
+                        </a>
+                        <!-- time -->
                         <span class="divider-vertical"></span> 
                         &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string"><i class="fa fa-clock-o"></i> {{cfg.route.time.string}}</span>
                     </div>

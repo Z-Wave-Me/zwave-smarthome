@@ -3,15 +3,15 @@
     <bb-loader></bb-loader>
     <h1>{{_t('news')}}</h1>
     <bb-alert alert="rss.alert"></bb-alert>
-    <!--<pre>{{rss.all|json}}</pre>-->
-    <div class="app-row app-row-report clearfix">
-        <div class="report-entry read-{{v.read}} clickable"
-             ng-repeat="v in rss.all | orderBy: '-pubDate' track by $index" current-page="currentPage" id="row_{{v.id}}"
+    <!--<pre>{{rss|json}}</pre>-->
+    <div class="app-row app-row-report clearfix" ng-if=" _.size(rss.all) > 0">
+        <div class="report-entry clickable"
+             ng-repeat="v in rss.all | orderBy: '-pubDate' track by $index" id="row_{{v.id}}"
+             ng-class="rss.read.indexOf(v.id) > -1 ? 'read-true':'read-false'"
              ng-click="readRss(v,'rssModal', $event)">
             <!-- Control -->
             <div class="report-col report-body">
-
-                    <span class="text-supp event-date">{{v.pubDate}}</span>
+                <span class="text-supp event-date">{{v.pubDate}}</span>
                     <h2 class="rss-title">{{v.title}}</h2>
                 <div class="rss-description">
                     {{v.description | cutText:true:128}}
@@ -38,7 +38,7 @@
                     <h2>{{rss.find.title}}</h2>
                 </div>
                 <p class="rss-description">
-                    <strong>{{rss.find.description}} </strong>
+                    {{rss.find.description}}
                 </p>
                 <div class="rss-body">
                     {{rss.find.content}}

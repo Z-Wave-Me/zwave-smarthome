@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache,_) {
 
     // Global scopes
     $scope.$location = $location;
@@ -26,20 +26,27 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
+    $scope.rss = {
+        unread: 0,
+        read: [],
+        all: {},
+        find: {},
+        alert: {message: false, status: 'is-hidden', icon: false}
+    };
 
     /**
      * Extend an user
      * @returns {undefined}
      */
     $scope.extendUser = function () {
-    dataFactory.getApi('profiles', '/' + $scope.user.id).then(function (response) {
+        dataFactory.getApi('profiles', '/' + $scope.user.id).then(function (response) {
             angular.extend($scope.user, response.data.data);
             angular.extend(cfg.user, response.data.data);
         }, function (error) {
         });
 
     };
-    if($scope.user){
+    if ($scope.user) {
         $scope.extendUser();
     }
 
@@ -83,15 +90,36 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
 
     /**
-     * todo: deprecated
-     * Reset a fatal error.
-     * @param {object} obj
+     * Load a rss info
      * @returns {undefined}
      */
-    /*$scope.resetFatalError = function (obj) {
-        angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
+    $scope.loadRssInfo = function () {
+        dataFactory.getApi('configget_url', null, true).then(function (response) {
+            if (response.data.rss && !_.isEmpty(response.data.rss.read)) {//First loading - no read message
+                $scope.rss.read = response.data.rss.read;
+                $scope.rss.unread = response.data.rss.unread;
+            } else {// Another loading
+                dataFactory.xmlToJson(cfg.api_remote.rss_feed + '?boxtype=' + $scope.getCustomCfgArr('boxtype')).then(function (response) {
+                    var rss = _.filter(response.rss.channel, function (v, k) {
+                        if (k === 'item') {
+                            console.log( _.isArray(v))
+                            if( _.isArray(v)){
+                                angular.forEach(v, function (item) {
+                                    $scope.rss.unread += 1;
+                                });
+                            }else{// One item only
+                                $scope.rss.unread += 1;
+                            }
 
-    };*/
+                        }
+                    });
+
+                });
+            }
+        });
+
+    };
+    $scope.loadRssInfo();
 
     /**
      * Set timestamp and ping server if request fails
@@ -101,7 +129,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         if (!$scope.user) {
             return;
         }
-        dataFactory.pingServer( cfg.server_url + cfg.api['time']).then(function (response) {
+        dataFactory.pingServer(cfg.server_url + cfg.api['time']).then(function (response) {
             $interval.cancel($scope.timeZoneInterval);
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
                 {timestamp: response.data.data.localTimeUT});
@@ -109,7 +137,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
                 cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
                 if (cfg.route.fatalError.type === 'network') {
-                   $scope.reloadAfterError();
+                    $scope.reloadAfterError();
                 }
 
             };
@@ -117,7 +145,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
 
         }, function (error) {
             console.log(error)
-            if(error.status === 0){
+            if (error.status === 0) {
                 var fatalArray = {
                     type: 'network',
                     message: $scope._t('connection_refused'),
@@ -166,7 +194,9 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 dataService.setZWAYSession(user.sid);
                 dataService.setUser(user);
                 if (dataService.getUser()) {
-                    $timeout(function(){ $window.location.reload();}, 5000);
+                    $timeout(function () {
+                        $window.location.reload();
+                    }, 5000);
 
                 }
             }

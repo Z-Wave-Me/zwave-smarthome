@@ -129,17 +129,15 @@ var config_data = {
         // List of remote api URLs
         'api_remote': {
             // JamesBox request
-            //'jamesbox_request': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=request',
             'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
             // JamesBox update
-            //'jamesbox_update': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=update',
             'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
             // JamesBox update info
-            //'jamesbox_updateinfo': 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=updateinfo',
             'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo',
             // JamesBox cancel update
-            //'jamesbox_cancel_update: 'http://dev.dev/jamesbox/zbu_ui_handling.php?action=cancelupdate',
-            'jamesbox_cancel_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=cancelupdate'
+            'jamesbox_cancel_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=cancelupdate',
+            // RSS feed
+            'rss_feed': 'https://service.z-wave.me/rssFeed/index.php'
         },
         // Skin
         'skin': {
@@ -424,6 +422,7 @@ var config_data = {
         // Config
         'custom_cfg': {
             'default': {
+                'boxtype': 'razberry',
                 'logo': 'app-logo-default.png',
                 hidden_apps: [
                     'Cron',
@@ -455,6 +454,7 @@ var config_data = {
                 ]
             },
             'popp': {
+                'boxtype': 'popp',
                 'logo': 'app-logo-popp.png',
                 'hidden_apps': [
                     'Cron',
@@ -486,6 +486,7 @@ var config_data = {
                 ]
             },
             'jb': {
+                'boxtype': 'popp',
                 'logo': 'app-logo-popp.png',
                 hidden_apps: [
                     'Cron',
@@ -517,6 +518,7 @@ var config_data = {
                 ]
             },
             'wd': {
+                'boxtype': 'razberry',
                 'logo': 'app-logo-wd.png',
                 'hidden_apps': [
                     'Cron',
