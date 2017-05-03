@@ -50,8 +50,8 @@ myAppController.controller('RssController', function ($scope, cfg, dataFactory, 
      * Read a rss feed
      */
     $scope.readRss = function (v,modal,$event) {
-       /* This will clear unread and read - for testing purpose only
-       var input = {
+        //This will clear unread and read - for testing purpose only
+      /* var input = {
             rss: {
                 unread:  0,
                 read: []

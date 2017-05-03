@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache,_) {
+myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache, _) {
 
     // Global scopes
     $scope.$location = $location;
@@ -29,7 +29,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     $scope.rss = {
         unread: 0,
         read: [],
-        all: {},
+        all: [],
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
@@ -94,28 +94,30 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @returns {undefined}
      */
     $scope.loadRssInfo = function () {
+        var cached = myCache.get('rssinfo');
+        //console.log('CACHED rssinfo: ',cached)
+        if(cached){
+           angular.extend($scope.rss,cached);
+            return;
+        }
         dataFactory.getApi('configget_url', null, true).then(function (response) {
-            if (response.data.rss && !_.isEmpty(response.data.rss.read)) {//First loading - no read message
-                $scope.rss.read = response.data.rss.read;
-                $scope.rss.unread = response.data.rss.unread;
-            } else {// Another loading
-                dataFactory.xmlToJson(cfg.api_remote.rss_feed + '?boxtype=' + $scope.getCustomCfgArr('boxtype')).then(function (response) {
-                    var rss = _.filter(response.rss.channel, function (v, k) {
-                        if (k === 'item') {
-                            console.log( _.isArray(v))
-                            if( _.isArray(v)){
-                                angular.forEach(v, function (item) {
-                                    $scope.rss.unread += 1;
-                                });
-                            }else{// One item only
-                                $scope.rss.unread += 1;
-                            }
-
-                        }
-                    });
-
+            dataFactory.xmlToJson(cfg.api_remote.rss_feed + '?boxtype=' + $scope.getCustomCfgArr('boxtype')).then(function (data) {
+                // Count all items and set as unread
+                var unread = _.size(data.rss.channel.item);
+                var read = response.data.rss.read;
+                _.filter(data.rss.channel.item, function (v, k) {
+                    $scope.rss.all.push(v);
+                    // If item ID is in the array READ
+                    // subtracts 1 from unread
+                    if (read.indexOf(v.id) !== -1) {
+                        unread--;
+                    }
                 });
-            }
+                myCache.put('rssinfo', {read: read,unread: unread});
+                angular.extend($scope.rss,{read: read,unread: unread});
+
+            });
+            // }
         });
 
     };
