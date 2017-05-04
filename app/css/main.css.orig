@@ -11624,12 +11624,21 @@ fieldset.submit-entry {
 
 /* line 10, ../sass/common/_imglist.scss */
 .imglist-entry {
-  width: 40px;
-  height: 40px;
+  text-align: center;
+  width: 50px;
+  height: 60px;
   float: left;
   position: relative;
   min-height: 1px;
   margin: 10px;
+}
+/* line 16, ../sass/common/_imglist.scss */
+.imglist-entry.in-device {
+  background-color: #f2dede;
+}
+/* line 19, ../sass/common/_imglist.scss */
+.imglist-entry .imglist-img {
+  margin: 0 0 5px 0;
 }
 
 /* Dropdown
