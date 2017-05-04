@@ -19,6 +19,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             switchButton: [],
             noDashboard: false,
             noDevices: false,
+            noSearch: false,
             show: true,
             all: {},
             byId: {},
@@ -79,9 +80,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             if (devices.state === 'fulfilled') {
                 // Count hidden apps
                 $scope.dataHolder.cnt.hidden = _.chain(dataService.getDevicesData(devices.value.data.data.devices, true))
-                        .flatten().where({visibility: false})
-                        .size()
-                        .value();
+                    .flatten().where({visibility: false})
+                    .size()
+                    .value();
                 // Set devices
                 setDevices(dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden));
 
@@ -101,7 +102,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
 
 
-
     /**
      * Refresh data
      */
@@ -118,10 +118,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                             return;
                         }
                         angular.extend($scope.dataHolder.devices.all[index],
-                                {metrics: v.metrics},
-                                {imgTrans: false},
-                                {iconPath: dataService.assignElementIcon(v)},
-                                {updateTime: v.updateTime}
+                            {metrics: v.metrics},
+                            {imgTrans: false},
+                            {iconPath: dataService.assignElementIcon(v)},
+                            {updateTime: v.updateTime}
                         );
                         //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
                     });
@@ -143,17 +143,25 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all,$scope.autocomplete);
+
+        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete);
+        // Reset filter q if is input empty
+        if ($scope.dataHolder.devices.filter.q && $scope.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
     }
 
     /**
      * Set filter
      */
     $scope.setFilter = function (filter) {
-        if (!filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
             angular.extend($scope.dataHolder.devices, {filter: {}});
             $cookies.filterElements = angular.toJson({});
-        } else {
+        } else {// Set filter
             angular.extend($scope.dataHolder.devices, {filter: filter});
             $cookies.filterElements = angular.toJson(filter);
         }
@@ -189,8 +197,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param index -  is the index of the $item in $part
      * @param helper - is an object which contains the jqLite/jQuery object (as property element) of what is being dragged around
      */
-    $scope.dragDropStart = function(item, part, index, helper){
-        angular.element('#' +  helper.element.context.id).addClass('dd-on-start');
+    $scope.dragDropStart = function (item, part, index, helper) {
+        angular.element('#' + helper.element.context.id).addClass('dd-on-start');
         //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
 
 
@@ -203,11 +211,11 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param indexFrom -  is the previous index of the $item in $partFrom
      * @param indexTo -  is the index of the $item in $partTo
      */
-    $scope.dragDropSort = function(item, partFrom, partTo, indexFrom, indexTo){
+    $scope.dragDropSort = function (item, partFrom, partTo, indexFrom, indexTo) {
         //console.log(partFrom)
         var result = [];
-        angular.forEach(partFrom, function(v,k){
-            var obj = {id: v.id,position: k};
+        angular.forEach(partFrom, function (v, k) {
+            var obj = {id: v.id, position: k};
             result.push(obj);
 
         });
@@ -223,7 +231,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
             if ($scope.dataHolder.devices.all[index]) {
                 angular.extend($scope.dataHolder.devices.all[index],
-                        {imgTrans: true}
+                    {imgTrans: true}
                 );
             }
 
@@ -303,10 +311,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-         //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
+        //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
         //if (run) {
-            $scope.runCmd(cmd);
-       // }
+        $scope.runCmd(cmd);
+        // }
 
         //return cmd;
     };
@@ -340,9 +348,26 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             return;
         }
         // Collection
-        if ('tag' in $scope.dataHolder.devices.filter) {
+        if ('tag' in $scope.dataHolder.devices.filter) {// Filter by tag
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
                 if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
+                    return v;
+                }
+            });
+        } else if ('q' in $scope.dataHolder.devices.filter) {// Filter by query
+            //angular.element('#input_search').focus();
+            // Set autcomplete term
+            $scope.autocomplete.term = $scope.dataHolder.devices.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete), 'id');
+
+            /*if(_.isEmpty(searchResult)){
+             console.log(searchResult)
+             $scope.dataHolder.devices.noDevices = true;
+             return;
+             }*/
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
+
+                if (searchResult[v.id]) {
                     return v;
                 }
             });
@@ -353,7 +378,13 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             if ($scope.routeMatch('/dashboard')) {
                 $scope.dataHolder.devices.noDashboard = true;
             } else {
-                $scope.dataHolder.devices.noDevices = true;
+                if ($scope.dataHolder.devices.filter.q) {
+                    $scope.dataHolder.devices.noSearch = true;
+
+                } else {
+                    $scope.dataHolder.devices.noDevices = true;
+                }
+
             }
         }
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
@@ -370,10 +401,10 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
     $scope.widgetChart = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
-        hasURL : false,
-        intchartUrl : '',
-        url : {},
-        time : 0,
+        hasURL: false,
+        intchartUrl: '',
+        url: {},
+        time: 0,
         chartOptions: {
             // Chart.js options can go here.
             //responsive: true
@@ -381,13 +412,13 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
     };
 
     /**
-      * Reload chart url
-      */
+     * Reload chart url
+     */
     $scope.reloadUrl = function () {
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var device = response.data.data;
 
-            if($scope.widgetChart.time < device.metrics.intchartTime){
+            if ($scope.widgetChart.time < device.metrics.intchartTime) {
                 $scope.widgetChart.find = device;
                 $scope.widgetChart.intchartUrl = device.metrics.intchartUrl + '&' + new Date().getTime();
                 $scope.widgetChart.time = device.metrics.intchartTime;
@@ -397,35 +428,47 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
     };
 
     /**
-      * Load device
-      */
+     * Load device
+     */
     $scope.loadDeviceUrl = function () {
         $scope.widgetChart.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
 
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
-                var device = response.data.data;
-                if (!device) {
-                    $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-                    return;
-                }
-                $scope.widgetChart.find = device;
+            var device = response.data.data;
+            if (!device) {
+                $scope.widgetChart.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
+                return;
+            }
+            $scope.widgetChart.find = device;
 
-                if (!device.metrics.intchartUrl){
-                    $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-                    return;
-                }
+            if (!device.metrics.intchartUrl) {
+                $scope.widgetChart.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
+                return;
+            }
 
-                $scope.widgetChart.hasURL = true;
-                $scope.widgetChart.intchartUrl = device.metrics.intchartUrl;
-                $scope.widgetChart.time = device.metrics.intchartTime;
-                $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
+            $scope.widgetChart.hasURL = true;
+            $scope.widgetChart.intchartUrl = device.metrics.intchartUrl;
+            $scope.widgetChart.time = device.metrics.intchartTime;
+            $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
 
-                $scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
+            $scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
 
-                $scope.widgetChart.alert = {message: false};
+            $scope.widgetChart.alert = {message: false};
 
-            }, function (error) {
-            $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+        }, function (error) {
+            $scope.widgetChart.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
     };
 
@@ -453,21 +496,37 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
     $scope.loadDeviceHistory = function () {
         var device = !_.isEmpty($scope.dataHolder.devices.byId) ? $scope.dataHolder.devices.byId : $scope.dataHolder.devices.find;
         if (!device) {
-            $scope.widgetHistory.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetHistory.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetHistory.find = device;
-        $scope.widgetHistory.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+        $scope.widgetHistory.alert = {
+            message: $scope._t('loading'),
+            status: 'alert-warning',
+            icon: 'fa-spinner fa-spin'
+        };
         dataFactory.getApi('history', '/' + device.id + '?show=24', true).then(function (response) {
             $scope.widgetHistory.alert = {message: false};
             if (!response.data.data.deviceHistory) {
-                $scope.widgetHistory.alert = {message: $scope._t('no_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                $scope.widgetHistory.alert = {
+                    message: $scope._t('no_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
                 return;
             }
             $scope.widgetHistory.alert = {message: false};
             $scope.widgetHistory.chartData = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors);
         }, function (error) {
-            $scope.widgetHistory.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetHistory.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
 
     };
@@ -479,7 +538,7 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
  * The controller that handles a device events.
  * @class ElementEventController
  */
-myAppController.controller('ElementEventController', function ($scope,$filter, dataFactory, dataService, _) {
+myAppController.controller('ElementEventController', function ($scope, $filter, dataFactory, dataService, _) {
     $scope.widgetEvent = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
@@ -493,16 +552,24 @@ myAppController.controller('ElementEventController', function ($scope,$filter, d
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         console.log(device)
         if (_.isEmpty(device)) {
-            $scope.widgetEvent.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetEvent.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetEvent.find = device[0];
         var urlParam = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
         dataFactory.getApi('notifications', urlParam, true).then(function (response) {
-           // console.log(response.data.data.notifications.slice(1,10))
+            // console.log(response.data.data.notifications.slice(1,10))
             $scope.widgetEvent.collection = response.data.data.notifications;
         }, function (error) {
-            $scope.widgetEvent.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetEvent.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
 
     };
@@ -528,7 +595,11 @@ myAppController.controller('ElementSwitchMultilevelController', function ($scope
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (!device) {
-            $scope.widgetSwitchMultilevel.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSwitchMultilevel.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetSwitchMultilevel.find = device[0];
@@ -557,7 +628,11 @@ myAppController.controller('ElementThermostatController', function ($scope) {
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (!device) {
-            $scope.widgetSwitchMultilevel.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSwitchMultilevel.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetThermostat.find = device[0];
@@ -627,11 +702,11 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         });
 
         $('#wheel_picker').click(function (e) { // click event handler
-           // bCanPreview = true;//!bCanPreview;
+            // bCanPreview = true;//!bCanPreview;
             if (bCanPreview) {
                 var cmdColor = $('#rgbVal').val().split(',');
                 var cmd = input.id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
-                var rgbColors = 'rgb('+ cmdColor[0]+',' + cmdColor[1] + ',' + cmdColor[2] +')';
+                var rgbColors = 'rgb(' + cmdColor[0] + ',' + cmdColor[1] + ',' + cmdColor[2] + ')';
                 var rgbColorsObj = {
                     r: cmdColor[0],
                     g: cmdColor[1],
@@ -640,14 +715,18 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
                 $scope.widgetSwitchRGBW.process = true;
                 dataFactory.runApiCmd(cmd).then(function (response) {
                     var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
-                   //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
-                    angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics.color,rgbColorsObj);
-                    angular.extend(input.metrics.color,rgbColorsObj);
+                    //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
+                    angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
+                    angular.extend(input.metrics.color, rgbColorsObj);
                     $scope.widgetSwitchRGBW.process = false;
                     $scope.widgetSwitchRGBW.selectedColor = rgbColors;
                 }, function (error) {
                     $scope.widgetSwitchRGBW.process = false;
-                    $scope.widgetSwitchRGBW.alert = {message: $scope._t('error_update_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                    $scope.widgetSwitchRGBW.alert = {
+                        message: $scope._t('error_update_data'),
+                        status: 'alert-danger',
+                        icon: 'fa-exclamation-triangle'
+                    };
                 });
             }
         });
@@ -660,7 +739,11 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
-            $scope.widgetSwitchRGBW.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSwitchRGBW.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetSwitchRGBW.find = device[0];
@@ -691,12 +774,20 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
             arr[0] = response.data.data;
             $scope.widgetSensorMultiline.find = dataService.getDevicesData(arr).value()[0];
             if (_.isEmpty(response.data.data.metrics.sensors)) {
-                $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                $scope.widgetSensorMultiline.alert = {
+                    message: $scope._t('no_data'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
+                };
                 return;
             }
-           $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
+            $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
         }, function (error) {
-            $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSensorMultiline.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
     };
     $scope.loadDeviceId();
@@ -747,7 +838,11 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
-            $scope.widgetCamera.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetCamera.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetCamera.find = device[0];
@@ -776,7 +871,11 @@ myAppController.controller('ElementTextController', function ($scope) {
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
-            $scope.widgetText.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetText.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetText.find = device[0];
@@ -802,7 +901,11 @@ myAppController.controller('ElementOpenWeatherController', function ($scope) {
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
-            $scope.widgetOpenWeather.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetOpenWeather.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetOpenWeather.find = device[0];
@@ -832,26 +935,34 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var device = response.data.data;
             if (_.isEmpty(device)) {
-                $scope.widgetClimateControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                $scope.widgetClimateControl.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
                 return;
             }
             $scope.widgetClimateControl.find = device;
             $scope.widgetClimateControl.rooms = _.chain(device.metrics.rooms)
-                    .flatten()
-                    .filter(function (v) {
-                        angular.extend(v,
-                                {roomTitle: $scope.dataHolder.devices.rooms[v.room].title},
-                                {roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src},
-                                {sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null},
-                                {scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null}
-                        );
-                        return v;
-                    })
-                    .value();
+                .flatten()
+                .filter(function (v) {
+                    angular.extend(v,
+                        {roomTitle: $scope.dataHolder.devices.rooms[v.room].title},
+                        {roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src},
+                        {sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null},
+                        {scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null}
+                    );
+                    return v;
+                })
+                .value();
 
 
         }, function (error) {
-            $scope.widgetClimateControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetClimateControl.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
     };
     $scope.loadDeviceId();
@@ -865,7 +976,11 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
             $scope.widgetClimateControl.alert = {message: false};
             $scope.loadDeviceId();
         }, function (error) {
-            $scope.widgetClimateControl.alert = {message: $scope._t('error_update_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetClimateControl.alert = {
+                message: $scope._t('error_update_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             $scope.loading = false;
         });
 
@@ -889,14 +1004,22 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var lastTriggerList = response.data.data.metrics.lastTriggerList;
             if (_.isEmpty(lastTriggerList)) {
-                $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                $scope.widgetSecurityControl.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
                 return;
             }
 
             $scope.widgetSecurityControl.find = lastTriggerList;
 
         }, function (error) {
-            $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSecurityControl.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
     };
     $scope.loadDeviceId();
@@ -920,7 +1043,7 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg,dataFactory, dataService, myCache) {
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg, dataFactory, dataService, myCache) {
     $scope.room = {};
 
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
@@ -936,7 +1059,7 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
             $scope.loading = false;
             // Success - location
             if (location.state === 'fulfilled') {
-               $scope.room = dataService.getRooms([location.value.data.data]).value()[0];
+                $scope.room = dataService.getRooms([location.value.data.data]).value()[0];
             }
         });
     };
@@ -948,7 +1071,7 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, cfg,dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, cfg, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -1025,7 +1148,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.searchMe = function () {
         $scope.suggestions = [];
         if ($scope.search.text.length >= 2) {
-            findText($scope.tagList, $scope.search.text,$scope.elementId.input.tags);
+            findText($scope.tagList, $scope.search.text, $scope.elementId.input.tags);
         }
     };
 
@@ -1155,7 +1278,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             var re = new RegExp(search, "ig");
             var s = re.test(n[i]);
             if (s
-                && (! _.isArray(exclude) || exclude.indexOf(n[i]) === -1)) {
+                && (!_.isArray(exclude) || exclude.indexOf(n[i]) === -1)) {
                 $scope.suggestions.push(n[i]);
                 gotText = true;
             }
@@ -1247,23 +1370,23 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     $scope.updateWithCustomIcon = function () {
-        var customicons = function(icons,custom){
+        var customicons = function (icons, custom) {
             var obj = {};
-            if(_.isEmpty(custom)){
+            if (_.isEmpty(custom)) {
                 return obj;
-            }else if(icons['default']){
+            } else if (icons['default']) {
                 return custom;
-            }else{
+            } else {
                 obj['level'] = custom;
                 return obj;
             }
         }
         var input = {
-            customicons: customicons($scope.icons.all.default,$scope.icons.all.custom)
+            customicons: customicons($scope.icons.all.default, $scope.icons.all.custom)
         };
         var id = $scope.elementId.input.id;
         /*console.log(input)
-        return;*/
+         return;*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('customicon', id, input, '?icon').then(function (response) {
             $scope.icons.selected = false;
@@ -1291,38 +1414,38 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     /*$scope.checkUploadedFile = function (files) {
-        // Extends files object with a new property
-        files[0].newName = dataService.uploadFileNewName(files[0].name);
-        // Check allowed file formats
-        //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
-        if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
-            alertify.alertError(
-                    $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
-                    $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
-                    );
-            return;
+     // Extends files object with a new property
+     files[0].newName = dataService.uploadFileNewName(files[0].name);
+     // Check allowed file formats
+     //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
+     if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+     alertify.alertError(
+     $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
+     $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
+     );
+     return;
 
-        }
-        // Check allowed file size
-        if (files[0].size > cfg.upload.icon.size) {
-            alertify.alertError(
-                    $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
-                    $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
-                    );
-            return;
+     }
+     // Check allowed file size
+     if (files[0].size > cfg.upload.icon.size) {
+     alertify.alertError(
+     $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
+     $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
+     );
+     return;
 
-        }
-        // Check if uploaded filename already exists
-        if (_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-            // Displays a confirm dialog and on OK atempt to upload file
-            alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
-                uploadFile(files);
-            });
-        } else {
-            uploadFile(files);
-        }
+     }
+     // Check if uploaded filename already exists
+     if (_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
+     // Displays a confirm dialog and on OK atempt to upload file
+     alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
+     uploadFile(files);
+     });
+     } else {
+     uploadFile(files);
+     }
 
-    };*/
+     };*/
     /// --- Private functions --- ///
 
     /**
@@ -1332,75 +1455,75 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     /*function uploadFile(files) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        // Clear all alerts and file name selected
-        alertify.dismissAll();
-        // Set local variables
-        var fd = new FormData();
-        var input = {file: files[0].name, device: []};
-        // Set selected file name
-        $scope.icons.uploadedFileName = files[0].name;
-        // Set form data
-        fd.append('files_files', files[0]);
+     $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
+     // Clear all alerts and file name selected
+     alertify.dismissAll();
+     // Set local variables
+     var fd = new FormData();
+     var input = {file: files[0].name, device: []};
+     // Set selected file name
+     $scope.icons.uploadedFileName = files[0].name;
+     // Set form data
+     fd.append('files_files', files[0]);
 
-        // Atempt to upload a file
-        dataFactory.getApiLocal('icons.json').then(function (response) {
-            $timeout(function () {
-                if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-                    $scope.icons.uploaded.push({file: files[0].name});
-                }
-                $scope.icons.all.custom[$scope.icons.selected] = files[0].name;
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_upload')});
-            }, 1000);
+     // Atempt to upload a file
+     dataFactory.getApiLocal('icons.json').then(function (response) {
+     $timeout(function () {
+     if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
+     $scope.icons.uploaded.push({file: files[0].name});
+     }
+     $scope.icons.all.custom[$scope.icons.selected] = files[0].name;
+     $scope.loading = false;
+     dataService.showNotifier({message: $scope._t('success_upload')});
+     }, 1000);
 
-        }, function (error) {
-            alertify.alertError($scope._t('error_upload'));
-            $scope.loading = false;
-        });
-    }
-    ;*/
+     }, function (error) {
+     alertify.alertError($scope._t('error_upload'));
+     $scope.loading = false;
+     });
+     }
+     ;*/
 
     /**
      * todo: deprecated
      */
     /*function updateUploaded(input) {
-        var output = [];
-        angular.forEach(input.custom_icons, function (v, k) {
+     var output = [];
+     angular.forEach(input.custom_icons, function (v, k) {
 
-            var index = _.findIndex($scope.icons.uploaded, {file: v});
-            if (index === -1) {
-                return;
-            }
-            if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
-                $scope.icons.uploaded[index].device.push(input.id);
-            }
-            if (!_.findWhere(output, {file: v})) {
-                output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
-            }
-        });
-        console.log(output);
-    }
-    ;*/
+     var index = _.findIndex($scope.icons.uploaded, {file: v});
+     if (index === -1) {
+     return;
+     }
+     if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
+     $scope.icons.uploaded[index].device.push(input.id);
+     }
+     if (!_.findWhere(output, {file: v})) {
+     output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
+     }
+     });
+     console.log(output);
+     }
+     ;*/
 
     /**
      * todo: deprecated
      */
     /*function removeDeviceFromUploaded(input) {
-        var output = [];
-        angular.forEach(input.isset_icons, function (v, k) {
-            var index = _.findIndex($scope.icons.uploaded, {file: v});
-            if (index === -1) {
-                return;
-            }
-            if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
-                $scope.icons.uploaded[index].device.push(input.id);
-            }
-            if (!_.findWhere(output, {file: v})) {
-                output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
-            }
-        });
-        console.log(output);
-    }
-    ;*/
+     var output = [];
+     angular.forEach(input.isset_icons, function (v, k) {
+     var index = _.findIndex($scope.icons.uploaded, {file: v});
+     if (index === -1) {
+     return;
+     }
+     if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
+     $scope.icons.uploaded[index].device.push(input.id);
+     }
+     if (!_.findWhere(output, {file: v})) {
+     output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
+     }
+     });
+     console.log(output);
+     }
+     ;*/
 });

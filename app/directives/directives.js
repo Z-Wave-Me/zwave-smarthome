@@ -192,6 +192,26 @@ myApp.directive('bbValidator', function ($window) {
     };
 });
 /**
+ * Auto focus for input box
+ * @class bbValidator
+ */
+myApp.directive('focus',function($timeout) {
+        return {
+            scope : {
+                trigger : '@focus'
+            },
+            link : function(scope, element) {
+                scope.$watch('trigger', function(value) {
+                    if (value) {
+                        $timeout(function() {
+                            element[0].focus();
+                        });
+                    }
+                });
+            }
+        };
+    });
+/**
 * Watch for an error loading an image and to replace the src
 * @class errSrc
 */
