@@ -30,6 +30,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             extensions: cfg.upload.icon_packed.extension.toString()
         }
     };
+    $scope.checkAll = false;
     /**
      * Load all promises
      * @returns {undefined}
@@ -116,6 +117,22 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
     };
 
     /**
+     * Check all icons
+     * @param {boolean} status
+     * @returns {undefined}
+     */
+    $scope.toggleAll = function (status) {
+        if (typeof status === 'boolean') {
+            $scope.checkAll = status;
+        } else {
+            $scope.checkAll = !$scope.checkAll;
+        }
+        for(var k in $scope.icons.all) {
+            $scope.icons.all[k].checked = $scope.checkAll;
+        }
+    };
+
+    /**
      * Delete an icon from the storage
      * @param {object} icon
      * @param {string} message
@@ -138,6 +155,45 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        });
+
+    };
+
+    /**
+     * Delete all checked icons from the storage
+     * @param {string} message
+     * @returns {undefined}
+     */
+    $scope.deleteChecked = function (message) {
+        var cnt = 0;
+        var errors = 0;
+        alertify.dismissAll();
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            angular.forEach($scope.icons.all,function(v,k){
+                if(!v.checked){
+                    return;
+                }
+                cnt++;
+                dataFactory.deleteApi('icons', v.file).then(function (response) {
+
+                }, function (error) {
+                    errors++;
+                });
+                //console.log(v.file)
+            });
+            $scope.loading = false;
+            if(errors > 0){
+                alertify.alertError($scope._t('cannot_delete_all_icons'));
+
+            }else if(cnt == 0){
+                alertify.alertError($scope._t('nothing_deleted'));
+            }else{
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.allSettled();
+                $scope.toggleAll(false);
+            }
+
         });
 
     };
@@ -182,6 +238,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         var data = _.chain(icons)
                 .flatten()
                 .filter(function (v) {
+                    v.checked = false;
                     v.source_title = (!v.source_title ? 'Custom': v.source_title);
                     $scope.icons.source.title[v.source] = v.source_title;
                     return v;

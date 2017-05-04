@@ -8,8 +8,15 @@ $infowindow-w: 200px;
     background-color: $imglist-background-color;
 }
 .imglist-entry{
-    width: $imglist-img;
-    height: $imglist-img;
+    text-align: center;
+    width: $imglist-img + 10px;
+    height: $imglist-img + 20px;
     @include appFloat(left);
     margin: 10px;
+    &.in-device{
+        background-color: $app-bcg-danger;
+    }
+    .imglist-img{
+        margin: 0 0 $spacing-half 0;
+    }
 }
