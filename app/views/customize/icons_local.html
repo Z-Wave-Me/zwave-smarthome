@@ -48,7 +48,7 @@
                 <!-- Delete checked -->
                 <div class="btn-group" ng-if="checkAll">
                     <button class="btn btn-default"
-                            ng-click="deleteChecked(_t('remove_icon_confirm_device'))">
+                            ng-click="deleteChecked(_t('remove_icon_confirm'))">
                         <i class="fa fa-remove text-danger"></i> {{_t('delete_checked')}}
                     </button>
                 </div>
@@ -109,7 +109,7 @@
                                 <button title="{{_t('lb_remove')}}"
                                         class="btn btn-default"
                                         ng-hide_="icons.used.device[v.file]"
-                                        ng-click="deleteIcon(v, (icons.used.device[v.file] ? _t('remove_icon_confirm_device') :_t('remove_icon_confirm_device')))">
+                                        ng-click="deleteIcon(v, _t('remove_icon_confirm'))">
                                     <i class="fa fa-remove text-danger"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
                                 </button>
                             </div>

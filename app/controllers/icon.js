@@ -393,7 +393,11 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
             $location.path('/customize/iconslocal');
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_file_download'));
+            var message = $scope._t('error_file_download');
+            if(error.status == 409){
+                message = $scope._t('icon_from_url_already_exists',{__title__:icon.title});
+            }
+            alertify.alertError(message);
         });
     };
 
