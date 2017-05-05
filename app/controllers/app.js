@@ -8,7 +8,7 @@
  * @class AppBaseController
  *
  */
-myAppController.controller('AppBaseController', function ($scope, $rootScope,$filter, $cookies, $q, $route, $http,$timeout,cfg,dataFactory, dataService, _) {
+myAppController.controller('AppBaseController', function ($scope, $rootScope, $filter, $cookies, $q, $route, $http, $timeout, cfg, dataFactory, dataService, _) {
     angular.copy({
         appsCategories: false
     }, $scope.expand);
@@ -25,6 +25,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             },
             all: [],
             collection: [],
+            noSearch: false,
             featured: [],
             categories: {},
             ids: {},
@@ -37,7 +38,15 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 id: false,
                 name: ''
             },
-            orderBy: ($cookies.orderByAppsLocal ? $cookies.orderByAppsLocal : 'titleASC')
+            orderBy: ($cookies.orderByAppsLocal ? $cookies.orderByAppsLocal : 'titleASC'),
+            autocomplete: {
+                source: [],
+                term: '',
+                searchInKeys: 'id,title,description,author',
+                returnKeys: 'id,title,author,icon,moduleName,hasInstance',
+                strLength: 2,
+                resultLength: 10
+            }
         },
         onlineModules: {
             connect: {
@@ -52,6 +61,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 appsCatFeatured: 0,
                 featured: 0
             },
+            noSearch: false,
             ratingRange: _.range(1, 6),
             collection: [],
             all: {},
@@ -59,7 +69,15 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             ids: {},
             filter: {},
             hideInstalled: ($cookies.hideInstalledApps ? $filter('toBool')($cookies.hideInstalledApps) : false),
-            orderBy: ($cookies.orderByAppsOnline ? $cookies.orderByAppsOnline : 'creationTimeDESC')
+            orderBy: ($cookies.orderByAppsOnline ? $cookies.orderByAppsOnline : 'creationTimeDESC'),
+            autocomplete: {
+                source: [],
+                term: '',
+                searchInKeys: 'id,title,description,author',
+                returnKeys: 'id,title,author,installed,rating,icon',
+                strLength: 2,
+                resultLength: 10
+            }
         },
         tokens: {
             all: {}
@@ -91,23 +109,23 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
      * Check if online modules are loaded
      */
     /*$scope.checkOnlineModules = function () {
-        if ($scope.routeMatch('/apps/online')) {
-            $timeout(function(){
-                $scope.loading = false;
-                $http.pendingRequests.forEach(function(v) {
-                    if(v.url === cfg.online_module_url){
-                        $scope.dataHolder.onlineModules.connect = {
-                            status: false,
-                                icon: 'fa-exclamation-triangle text-danger'
-                        };
-                        $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
-                    }
-                });
-            }, 10000);
+     if ($scope.routeMatch('/apps/online')) {
+     $timeout(function(){
+     $scope.loading = false;
+     $http.pendingRequests.forEach(function(v) {
+     if(v.url === cfg.online_module_url){
+     $scope.dataHolder.onlineModules.connect = {
+     status: false,
+     icon: 'fa-exclamation-triangle text-danger'
+     };
+     $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
+     }
+     });
+     }, 10000);
 
 
-        }
-    };*/
+     }
+     };*/
     //$scope.checkOnlineModules();
 
     /**
@@ -131,24 +149,28 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
             $scope.dataHolder.onlineModules.alert = false;
             /*$scope.dataHolder.onlineModules.connect.status = true;
-            $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*/
+             $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*/
             $scope.dataHolder.onlineModules.connect = {
                 status: true,
                 icon: 'fa-globe'
             };
             setOnlineModules(response.data.data)
         }, function (error) {
-            if(error.status === 0){
+            if (error.status === 0) {
                 $scope.dataHolder.onlineModules.connect = {
                     status: false,
                     icon: 'fa-exclamation-triangle text-danger'
                 };
-                $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+                $scope.dataHolder.onlineModules.alert = {
+                    message: $scope._t('no_internet_connection', {__sec__: (cfg.pending_remote_limit / 1000)}),
+                    status: 'alert-warning',
+                    icon: 'fa-wifi'
+                };
 
-            }else{
+            } else {
                 alertify.alertError($scope._t('error_load_data'));
             }
-        }).finally(function(){
+        }).finally(function () {
             $scope.loading = false;
         });
     };
@@ -165,7 +187,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         ];
 
         $q.allSettled(promises).then(function (response) {
-            if (!$scope.routeMatch('/apps/online')){
+            if (!$scope.routeMatch('/apps/online')) {
                 $scope.loading = false;
             }
 
@@ -189,8 +211,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 var cat = categories.value.data.data;
                 if (cat) {
                     $scope.dataHolder.modules.categories = cat[$scope.lang] ? _.indexBy(cat[$scope.lang], 'id') : _.indexBy(cat[$scope.cfg.lang], 'id');
-                    angular.forEach($scope.dataHolder.modules.categories,function (v,k) {
-                        angular.extend($scope.dataHolder.modules.categories[k],{onlineModules: []});
+                    angular.forEach($scope.dataHolder.modules.categories, function (v, k) {
+                        angular.extend($scope.dataHolder.modules.categories[k], {onlineModules: []});
                     });
                 }
             }
@@ -206,7 +228,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             $scope.loadOnlineModules(tokens);
         });
     };
-
 
 
     /**
@@ -242,73 +263,73 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         // Reset featured cnt
         $scope.dataHolder.modules.cnt.featured = 0;
         var modules = _.chain(data)
-                .flatten()
-                .filter(function (item) {
-                    item.title = item.defaults.title;
-                    item.description = item.defaults.description;
-                    // Has already instance ?
-                    item.hasInstance = $scope.dataHolder.instances.cnt.modules[item.id]||0;
-                    // IDSs settings
-                    $scope.dataHolder.modules.ids[item.id] = {
-                        version: item.version,
-                        icon: $scope.moduleMediaUrl + item.id + '/' + item.icon,
-                        singleton: item.singleton,
-                        title: item.title
-                    };
-                    /**
-                     * todo: Deprecated
-                     */
+            .flatten()
+            .filter(function (item) {
+                item.title = item.defaults.title;
+                item.description = item.defaults.description;
+                // Has already instance ?
+                item.hasInstance = $scope.dataHolder.instances.cnt.modules[item.id] || 0;
+                // IDSs settings
+                $scope.dataHolder.modules.ids[item.id] = {
+                    version: item.version,
+                    icon: $scope.moduleMediaUrl + item.id + '/' + item.icon,
+                    singleton: item.singleton,
+                    title: item.title
+                };
+                /**
+                 * todo: Deprecated
+                 */
                     //$scope.dataHolder.modules.ids[item.id] = {version: item.version};
                     //$scope.dataHolder.modules.singleton[item.id] = {singelton: item.singleton};
                     //$scope.dataHolder.modules.imgs[item.id] = item.icon;
-                    var isHidden = false;
-                    var items = [];
-                    if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                        if ($scope.user.role !== 1) {
-                            isHidden = true;
-                        } else {
-                            isHidden = ($scope.user.expert_view ? false : true);
-                        }
-
-                    }
-                    // Hides video item
-                    if (item.category === 'surveillance') {
-                        $scope.dataHolder.modules.cameraIds.push(item.id);
+                var isHidden = false;
+                var items = [];
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                    if ($scope.user.role !== 1) {
                         isHidden = true;
-                    }
-                    // Hides singelton item with instance
-                    if (item.singleton && item.hasInstance) {
-                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
                     }
 
-                    if (!isHidden) {
-                        var findLocationStr = item.location.split('/');
-                        if (findLocationStr[0] === 'userModules') {
-                            angular.extend(item, {custom: true});
-                        } else {
-                            angular.extend(item, {custom: false});
-                        }
-                        if (item.category && $scope.dataHolder.modules.cats.indexOf(item.category) === -1) {
-                            $scope.dataHolder.modules.cats.push(item.category);
-                        }
-                        if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
-                            angular.extend(item, {featured: true});
-                            // Count featured apps
-                            $scope.dataHolder.modules.cnt.featured += 1;
-                        } else {
-                            angular.extend(item, {featured: false});
-                        }
-                         
-                        //Tooltip description
-                        angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
+                }
+                // Hides video item
+                if (item.category === 'surveillance') {
+                    $scope.dataHolder.modules.cameraIds.push(item.id);
+                    isHidden = true;
+                }
+                // Hides singelton item with instance
+                if (item.singleton && item.hasInstance) {
+                    isHidden = true;
+                }
 
-                        if(item.featured) {
-                            $scope.dataHolder.modules.featured.push(item);
-                        }
-
-                        return items;
+                if (!isHidden) {
+                    var findLocationStr = item.location.split('/');
+                    if (findLocationStr[0] === 'userModules') {
+                        angular.extend(item, {custom: true});
+                    } else {
+                        angular.extend(item, {custom: false});
                     }
-                });
+                    if (item.category && $scope.dataHolder.modules.cats.indexOf(item.category) === -1) {
+                        $scope.dataHolder.modules.cats.push(item.category);
+                    }
+                    if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
+                        angular.extend(item, {featured: true});
+                        // Count featured apps
+                        $scope.dataHolder.modules.cnt.featured += 1;
+                    } else {
+                        angular.extend(item, {featured: false});
+                    }
+
+                    //Tooltip description
+                    angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
+
+                    if (item.featured) {
+                        $scope.dataHolder.modules.featured.push(item);
+                    }
+
+                    return items;
+                }
+            });
 
         // Count apps in categories
         $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function (v) {
@@ -317,15 +338,34 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
 
         // Count featured apps in categories
         $scope.dataHolder.modules.cnt.appsCatFeatured = modules.countBy(function (v) {
-            if(v.featured) {
+            if (v.featured) {
                 return v.category;
             }
         }).value();
 
         // Count all apps
         $scope.dataHolder.modules.cnt.apps = modules.size().value();
-        $scope.dataHolder.modules.collection = modules.where($scope.dataHolder.modules.filter).value();
         $scope.dataHolder.modules.all = modules.value();
+
+        // Collection
+        if ('q' in $scope.dataHolder.modules.filter) {// Filter by query
+            // Set autcomplete term
+            $scope.dataHolder.modules.autocomplete.term = $scope.dataHolder.modules.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.modules.all, $scope.dataHolder.modules.autocomplete), 'id');
+            if (_.isEmpty(searchResult)) {
+                $scope.dataHolder.modules.noSearch = true;
+            }
+            $scope.dataHolder.modules.collection = _.filter($scope.dataHolder.modules.all, function (v) {
+                if (searchResult[v.id]) {
+                    return v;
+                }
+            });
+
+        } else {
+            $scope.dataHolder.modules.collection = modules.where($scope.dataHolder.modules.filter).value();
+        }
+
+
         // Count collection
         $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.collection);
     }
@@ -340,77 +380,81 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         $scope.dataHolder.onlineModules.cnt.featured = 0;
         $scope.slider.cfg.max = 0;
         var onlineModules = _.chain(data)
-                .flatten()
-                .filter(function (item) {
-                    // Replacing categories
-                    if(cfg.replace_online_cat[item.category]){
-                        item.category = cfg.replace_online_cat[item.category];
+            .flatten()
+            .filter(function (item) {
+                // Replacing categories
+                if (cfg.replace_online_cat[item.category]) {
+                    item.category = cfg.replace_online_cat[item.category];
+                }
+                var isHidden = false;
+                var obj = {};
+                $scope.dataHolder.onlineModules.ids[item.modulename] = {
+                    version: item.version,
+                    file: item.file,
+                    patchnotes: item.patchnotes
+                };
+                if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
                     }
-                    var isHidden = false;
-                    var obj = {};
-                    $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
-                    if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
-                        if ($scope.user.role !== 1) {
-                            isHidden = true;
+                }
+                if ($scope.dataHolder.modules.ids[item.modulename]) {
+                    item['status'] = 'installed';
+                    if ($scope.dataHolder.modules.ids[item.modulename].version !== item.version) {
+                        if (!$scope.dataHolder.modules.ids[item.modulename].version && !item.version) {
+                            item['status'] = 'error';
+                        } else if (!$scope.dataHolder.modules.ids[item.modulename].version && item.version) {
+                            item['status'] = 'upgrade';
                         } else {
-                            isHidden = ($scope.user.expert_view ? false : true);
-                        }
-                    }
-                    if ($scope.dataHolder.modules.ids[item.modulename]) {
-                        item['status'] = 'installed';
-                        if ($scope.dataHolder.modules.ids[item.modulename].version !== item.version) {
-                            if (!$scope.dataHolder.modules.ids[item.modulename].version && !item.version) {
-                                item['status'] = 'error';
-                            } else if (!$scope.dataHolder.modules.ids[item.modulename].version && item.version) {
-                                item['status'] = 'upgrade';
-                            } else {
-                                var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.toString().split('.'),
-                                        onlineVersion = item.version.toString().split('.');
+                            var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.toString().split('.'),
+                                onlineVersion = item.version.toString().split('.');
 
-                                for (var i = 0; i < localVersion.length; i++) {
-                                    if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
-                                        item['status'] = 'upgrade';
-                                        break;
-                                    }
+                            for (var i = 0; i < localVersion.length; i++) {
+                                if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
+                                    item['status'] = 'upgrade';
+                                    break;
                                 }
                             }
                         }
-                        isHidden = $scope.dataHolder.onlineModules.hideInstalled;
-                    } else {
-                        item['status'] = 'download';
                     }
+                    isHidden = $scope.dataHolder.onlineModules.hideInstalled;
+                } else {
+                    item['status'] = 'download';
+                }
 
-                    $scope.dataHolder.onlineModules.ids[item.modulename].status = item.status;
-                    angular.extend(item, {isHidden: isHidden});
+                $scope.dataHolder.onlineModules.ids[item.modulename].status = item.status;
+                angular.extend(item, {isHidden: isHidden});
 
-                    if (item.featured == 1) {
-                        item.featured = true;
-                        // Count featured apps
-                        $scope.dataHolder.onlineModules.cnt.featured += 1;
-                        $scope.slider.cfg.max += 1;
-                    } else {
-                        item.featured = false;
-                    }
+                if (item.featured == 1) {
+                    item.featured = true;
+                    // Count featured apps
+                    $scope.dataHolder.onlineModules.cnt.featured += 1;
+                    $scope.slider.cfg.max += 1;
+                } else {
+                    item.featured = false;
+                }
 
-                    if(item.featured) {
-                        $scope.dataHolder.onlineModules.featured.push(item)
-                    }
+                if (item.featured) {
+                    $scope.dataHolder.onlineModules.featured.push(item)
+                }
 
-                    item.installedSort = $filter('zeroFill')(item.installed);
-                     //Tooltip description
-                     angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
-                    var hasCat = $scope.dataHolder.modules.categories[item.category];
-                    if(hasCat){
-                        $scope.dataHolder.modules.categories[item.category].onlineModules.push(item);
-                        //console.log($scope.dataHolder.modules.categories[item.category].onlineModules);
-                    }
+                item.installedSort = $filter('zeroFill')(item.installed);
+                //Tooltip description
+                angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
+                var hasCat = $scope.dataHolder.modules.categories[item.category];
+                if (hasCat) {
+                    $scope.dataHolder.modules.categories[item.category].onlineModules.push(item);
+                    //console.log($scope.dataHolder.modules.categories[item.category].onlineModules);
+                }
 
-                    //angular.extend($scope.dataHolder.modules.categories[item.category], {onlineModules: []});
-                    //$scope.dataHolder.modules.categories[item.category].onlineModules = [];
-                    return item;
-                }).reject(function (v) {
-            return v.isHidden === true;
-        });
+                //angular.extend($scope.dataHolder.modules.categories[item.category], {onlineModules: []});
+                //$scope.dataHolder.modules.categories[item.category].onlineModules = [];
+                return item;
+            }).reject(function (v) {
+                return v.isHidden === true;
+            });
         // Count apps in categories
         $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
             return v.category;
@@ -418,15 +462,35 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
 
         // Count featured apps in categories
         $scope.dataHolder.onlineModules.cnt.appsCatFeatured = onlineModules.countBy(function (v) {
-            if(v.featured) {
+            if (v.featured) {
                 return v.category;
             }
         }).value();
 
         // Count all apps
-        $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
-        $scope.dataHolder.onlineModules.collection = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
         $scope.dataHolder.onlineModules.all = onlineModules.value();
+        $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
+
+        // Collection
+        if ('q' in $scope.dataHolder.onlineModules.filter) {// Filter by query
+            // Set autcomplete term
+            $scope.dataHolder.onlineModules.autocomplete.term = $scope.dataHolder.onlineModules.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.onlineModules.all, $scope.dataHolder.onlineModules.autocomplete), 'id');
+            if (_.isEmpty(searchResult)) {
+                $scope.dataHolder.onlineModules.noSearch = true;
+            }
+            $scope.dataHolder.onlineModules.collection = _.filter($scope.dataHolder.onlineModules.all, function (v) {
+                if (searchResult[v.id]) {
+                    return v;
+                }
+            });
+
+        } else {
+            $scope.dataHolder.onlineModules.collection = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
+            //$scope.dataHolder.onlineModules.collection = modules.where($scope.dataHolder.onlineModules.filter).value();
+        }
+
+
         // Count collection
         $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.collection);
         $scope.loading = false;
@@ -441,7 +505,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             return v.moduleId;
         });
         _.filter(data, function (v) {
-            if(!$scope.dataHolder.instances.groups[v.moduleId]){
+            if (!$scope.dataHolder.instances.groups[v.moduleId]) {
                 $scope.dataHolder.instances.groups[v.moduleId] = {
                     id: v.id,
                     moduleId: v.moduleId,
@@ -454,18 +518,18 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         $scope.dataHolder.instances.all = _.chain(data)
             .flatten()
             .reject(function (v) {
-            if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
-                if ($scope.user.role !== 1) {
-                    return true;
-                } else {
-                    return ($scope.user.expert_view ? false : true);
-                }
+                if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
+                    if ($scope.user.role !== 1) {
+                        return true;
+                    } else {
+                        return ($scope.user.expert_view ? false : true);
+                    }
 
-            } else {
-                return false;
-            }
-        }).filter(function(v){
-                if($scope.dataHolder.instances.groups[v.moduleId]){
+                } else {
+                    return false;
+                }
+            }).filter(function (v) {
+                if ($scope.dataHolder.instances.groups[v.moduleId]) {
                     $scope.dataHolder.instances.groups[v.moduleId].instances.push(v);
                 }
                 return v;
@@ -477,23 +541,23 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
      * Set instances
      */
     /*function setInstances(data) {
-        $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
-                                    return v.moduleId;
-                                });
-        $scope.dataHolder.instances.all = _.reject(data, function (v) {
-            if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
-                if ($scope.user.role !== 1) {
-                    return true;
-                } else {
-                    return ($scope.user.expert_view ? false : true);
-                }
+     $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
+     return v.moduleId;
+     });
+     $scope.dataHolder.instances.all = _.reject(data, function (v) {
+     if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
+     if ($scope.user.role !== 1) {
+     return true;
+     } else {
+     return ($scope.user.expert_view ? false : true);
+     }
 
-            } else {
-                return false;
-            }
-        });
-    }
-    ;*/
+     } else {
+     return false;
+     }
+     });
+     }
+     ;*/
 
 });
 /**
@@ -502,20 +566,16 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {});
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,author',
-        returnKeys: 'id,title,author,icon,moduleName,hasInstance',
-        strLength: 2,
-        resultLength: 10
-    };
 
     /**
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.modules.all,$scope.autocomplete);
+        $scope.dataHolder.modules.autocomplete.results = dataService.autocomplete($scope.dataHolder.modules.all, $scope.dataHolder.modules.autocomplete);
+        // Reset filter q if is input empty
+        if ($scope.dataHolder.modules.filter.q && $scope.dataHolder.modules.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
     }
     /**
      * Set order by
@@ -529,10 +589,13 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
      * Set filter
      */
     $scope.setFilter = function (filter) {
-        if (!filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
             angular.extend($scope.dataHolder.modules, {filter: {}});
             $cookies.filterAppsLocal = angular.toJson({});
-        } else {
+        } else {// Set filter
             angular.extend($scope.dataHolder.modules, {filter: filter});
             $cookies.filterAppsLocal = angular.toJson(filter);
         }
@@ -587,26 +650,22 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
  * The controller that handles all online APPs actions.
  * @class AppOnlineController
  */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $routeParams,dataFactory, dataService, _) {
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window,$location, $routeParams, dataFactory, dataService, _) {
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,author',
-        returnKeys: 'id,title,author,installed,rating,icon',
-        strLength: 2,
-        resultLength: 10
-    };
 
     /**
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.onlineModules.all,$scope.autocomplete);
+        $scope.dataHolder.onlineModules.autocomplete.results = dataService.autocomplete($scope.dataHolder.onlineModules.all, $scope.dataHolder.onlineModules.autocomplete);
+        // Reset filter q if is input empty
+        if ($scope.dataHolder.onlineModules.filter.q && $scope.dataHolder.onlineModules.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
     }
 
-    if($routeParams['category']){
-        var filter = {category:$routeParams['category']};
+    if ($routeParams['category']) {
+        var filter = {category: $routeParams['category']};
         //console.log(filter);
         angular.extend($scope.dataHolder.onlineModules, {filter: filter});
         $cookies.filterAppsOnline = angular.toJson(filter);
@@ -615,16 +674,16 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
     }
 
     /*$scope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
-        console.log('success', evt, absNewUrl, absOldUrl);
-        if($routeParams['category']){
-            var filter = {category:$routeParams['category']};
-            //console.log(filter);
-            angular.extend($scope.dataHolder.onlineModules, {filter: filter});
-            $cookies.filterAppsOnline = angular.toJson(filter);
-            //$scope.setFilter({category:$routeParams['category']});
+     console.log('success', evt, absNewUrl, absOldUrl);
+     if($routeParams['category']){
+     var filter = {category:$routeParams['category']};
+     //console.log(filter);
+     angular.extend($scope.dataHolder.onlineModules, {filter: filter});
+     $cookies.filterAppsOnline = angular.toJson(filter);
+     //$scope.setFilter({category:$routeParams['category']});
 
-        }
-    });*/
+     }
+     });*/
 
 
     /**
@@ -650,16 +709,25 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
      * Set filter
      */
     $scope.setFilter = function (filter) {
-        if (!filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
             angular.extend($scope.dataHolder.onlineModules, {filter: {}});
             $cookies.filterAppsOnline = angular.toJson({});
+            $scope.reloadData();
         } else {
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
             $cookies.filterAppsOnline = angular.toJson(filter);
+            $scope.reloadData();
+            if(!$scope.routeMatch('/apps/online/filter')){
+                //console.log('Redirect to /apps/online/filter')
+                $location.path('/apps/online/filter');
+            }
         }
-         $scope.reloadData();
-    };
 
+
+    };
 
 
     /**
@@ -705,7 +773,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
      * Expand instances
      */
     $scope.expandInstances = function (state) {
-        angular.forEach($scope.expand,function(v,k){
+        angular.forEach($scope.expand, function (v, k) {
             $scope.expand[k] = state;
         });
         $cookies.instancesExpanded = state;
@@ -715,7 +783,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all,$scope.autocomplete);
+        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all, $scope.autocomplete);
     }
 
     /**
@@ -787,7 +855,8 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
             if (category) {
                 $scope.categoryName = category.name;
             }
-        }, function (error) {});
+        }, function (error) {
+        });
     };
 
     /**
@@ -821,7 +890,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
  * The controller that handles on-line app detail actions.
  * @class AppOnlineDetailController
  */
-myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, cfg,dataFactory, dataService, _) {
+myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, cfg, dataFactory, dataService, _) {
     $scope.local = {
         installed: false,
         alert: false
@@ -860,7 +929,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
                 $scope.rating.model.remote_id = response.data.data[0].params.userId;
             }
 
-        }, function (error) {});
+        }, function (error) {
+        });
     };
 
     $scope.loadRemoteAccess();
@@ -878,7 +948,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             if (category) {
                 $scope.categoryName = category.name;
             }
-        }, function (error) {});
+        }, function (error) {
+        });
     };
     /**
      * Load local modules
@@ -897,7 +968,11 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.postToRemote(cfg.online_moduleid_url, {id: id, lang: $scope.lang}).then(function (response) {
             if (_.isEmpty(response.data.data)) {
-                $scope.local.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                $scope.local.alert = {
+                    message: $scope._t('no_data'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
+                };
                 return;
             }
             $scope.module = response.data.data;
@@ -905,43 +980,45 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             $scope.loadLocalModules({moduleName: $scope.module.modulename});
             $scope.loadCategories($scope.module.category);
         }, function (error) {
-            if(error.status === 0){
+            if (error.status === 0) {
 
-                $scope.local.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+                $scope.local.alert = {
+                    message: $scope._t('no_internet_connection', {__sec__: (cfg.pending_remote_limit / 1000)}),
+                    status: 'alert-warning',
+                    icon: 'fa-wifi'
+                };
 
-            }else{
+            } else {
                 alertify.alertError($scope._t('error_load_data'));
             }
-        }).finally(function(){
+        }).finally(function () {
             $scope.loading = false;
         });
 
 
-
-
         /*dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
-            $scope.dataHolder.onlineModules.alert = false;
-            /!*$scope.dataHolder.onlineModules.connect.status = true;
-             $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*!/
-            $scope.dataHolder.onlineModules.connect = {
-                status: true,
-                icon: 'fa-globe'
-            };
-            setOnlineModules(response.data.data)
-        }, function (error) {
-            if(error.status === 0){
-                $scope.dataHolder.onlineModules.connect = {
-                    status: false,
-                    icon: 'fa-exclamation-triangle text-danger'
-                };
-                $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+         $scope.dataHolder.onlineModules.alert = false;
+         /!*$scope.dataHolder.onlineModules.connect.status = true;
+         $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*!/
+         $scope.dataHolder.onlineModules.connect = {
+         status: true,
+         icon: 'fa-globe'
+         };
+         setOnlineModules(response.data.data)
+         }, function (error) {
+         if(error.status === 0){
+         $scope.dataHolder.onlineModules.connect = {
+         status: false,
+         icon: 'fa-exclamation-triangle text-danger'
+         };
+         $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
 
-            }else{
-                alertify.alertError($scope._t('error_load_data'));
-            }
-        }).finally(function(){
-            $scope.loading = false;
-        });*/
+         }else{
+         alertify.alertError($scope._t('error_load_data'));
+         }
+         }).finally(function(){
+         $scope.loading = false;
+         });*/
     };
     $scope.loadModuleId($routeParams.id);
 
@@ -1081,7 +1158,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             if (category) {
                 $scope.moduleId.categoryName = category.name;
             }
-        }, function (error) {});
+        }, function (error) {
+        });
     };
 
     /**
@@ -1446,26 +1524,26 @@ myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
     //$scope.direction = 'left';
     //$scope.currentIndex = 0;
     /*$scope.slides = [
-        {image: 'storage/img/slider/01-alarm.png', title: 'Alarm 1 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/02-dimmer.png', title: 'Dimmer 2 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/03-power.png', title: 'Power 3 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/04-motion.png', title: 'Motion 4 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/05-switch.png', title: 'Switch 5 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/06-thermostat.png', title: 'Thermostat 6 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/07-camera.png', title: 'Camera 7 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/08-rgb.png', title: 'RGB 8 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/09-temp.png', title: 'Temperature 9 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/10-luminosity.png', title: 'Luminosity 10 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-    ];*/
+     {image: 'storage/img/slider/01-alarm.png', title: 'Alarm 1 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/02-dimmer.png', title: 'Dimmer 2 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/03-power.png', title: 'Power 3 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/04-motion.png', title: 'Motion 4 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/05-switch.png', title: 'Switch 5 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/06-thermostat.png', title: 'Thermostat 6 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/07-camera.png', title: 'Camera 7 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/08-rgb.png', title: 'RGB 8 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/09-temp.png', title: 'Temperature 9 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     {image: 'storage/img/slider/10-luminosity.png', title: 'Luminosity 10 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
+     ];*/
 
-   /* $scope.isCurrentSlideIndex = function (index) {
-        return $scope.currentIndex === index;
-    };*/
+    /* $scope.isCurrentSlideIndex = function (index) {
+     return $scope.currentIndex === index;
+     };*/
 
     $scope.prevSlide = function () {
         $scope.slider.cfg.start -= 1;
         $scope.slider.cfg.end -= 1;
-        if($scope.slider.cfg.start < 0){
+        if ($scope.slider.cfg.start < 0) {
             $scope.slider.cfg.start = 0;
             $scope.slider.cfg.end = $scope.slider.cfg.show;
         }
@@ -1477,53 +1555,52 @@ myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
     $scope.nextSlide = function () {
         $scope.slider.cfg.start += 1;
         $scope.slider.cfg.end += 1;
-        if($scope.slider.cfg.end > $scope.slider.cfg.max){
+        if ($scope.slider.cfg.end > $scope.slider.cfg.max) {
             $scope.slider.cfg.start = 0;
             $scope.slider.cfg.end = $scope.slider.cfg.show;
         }
-       // $scope.direction = 'left';
+        // $scope.direction = 'left';
         //$scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
         //console.log($scope.currentIndex)
     };
 
 
-
 });
-    /*.animation('.slide-animation_', function () {
-        return {
-            beforeAddClass: function (element, className, done) {
-                var scope = element.scope();
+/*.animation('.slide-animation_', function () {
+ return {
+ beforeAddClass: function (element, className, done) {
+ var scope = element.scope();
 
-                if (className == 'ng-hide') {
-                    var finishPoint = element.parent().width();
-                    if(scope.direction !== 'right') {
-                        finishPoint = -finishPoint;
-                    }
-                    TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
-                }
-                else {
-                    done();
-                }
-            },
-            removeClass: function (element, className, done) {
-                var scope = element.scope();
+ if (className == 'ng-hide') {
+ var finishPoint = element.parent().width();
+ if(scope.direction !== 'right') {
+ finishPoint = -finishPoint;
+ }
+ TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
+ }
+ else {
+ done();
+ }
+ },
+ removeClass: function (element, className, done) {
+ var scope = element.scope();
 
-                if (className == 'ng-hide') {
-                    element.removeClass('ng-hide');
+ if (className == 'ng-hide') {
+ element.removeClass('ng-hide');
 
-                    var startPoint = element.parent().width();
-                    if(scope.direction === 'right') {
-                        startPoint = -startPoint;
-                    }
+ var startPoint = element.parent().width();
+ if(scope.direction === 'right') {
+ startPoint = -startPoint;
+ }
 
-                    TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
-                }
-                else {
-                    done();
-                }
-            }
-        };
-    });*/
+ TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
+ }
+ else {
+ done();
+ }
+ }
+ };
+ });*/
 /**
  * todo: deprecated
  * Apps feature controller
@@ -1531,108 +1608,108 @@ myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
  *
  */
 /*
-myAppController.controller('AppModuleFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
+ myAppController.controller('AppModuleFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
 
-    $scope.slider = {
-        direction: 'right',
-        currentIndex: 0,
-        slidesperslide: 5,
-        slides: []
-    };
+ $scope.slider = {
+ direction: 'right',
+ currentIndex: 0,
+ slidesperslide: 5,
+ slides: []
+ };
 
 
-    $scope.allSettled = function (tokens) {
-        var promises = [
-            dataFactory.getOnlineModules({token: _.values(tokens)})
-        ];
+ $scope.allSettled = function (tokens) {
+ var promises = [
+ dataFactory.getOnlineModules({token: _.values(tokens)})
+ ];
 
-        $q.allSettled(promises).then(function (response) {
-            var onlineModules = response[0];
+ $q.allSettled(promises).then(function (response) {
+ var onlineModules = response[0];
 
-            // Success - online modules
-            if (onlineModules.state === 'fulfilled') {
-                prepareSlides(onlineModules.value.data.data)
-            }
-        });
-    };
-    $scope.allSettled();
+ // Success - online modules
+ if (onlineModules.state === 'fulfilled') {
+ prepareSlides(onlineModules.value.data.data)
+ }
+ });
+ };
+ $scope.allSettled();
 
-    function prepareSlides(data) {
+ function prepareSlides(data) {
 
-        var slide = [];
+ var slide = [];
 
-        _.each(data, function(item) {
-            if (item.featured == 1) {
-                item.featured = true;
-            } else {
-                item.featured = false;
-            }
-            if(item.featured) {
-                slide.push(item);
-                if(slide.length >= $scope.slider.slidesperslide) {
-                    $scope.slider.slides.push(slide);
-                    slide = [];
-                }
-            }
-        });
-        if(slide.length != 0) {
-            $scope.slider.slides.push(slide);
-        }
+ _.each(data, function(item) {
+ if (item.featured == 1) {
+ item.featured = true;
+ } else {
+ item.featured = false;
+ }
+ if(item.featured) {
+ slide.push(item);
+ if(slide.length >= $scope.slider.slidesperslide) {
+ $scope.slider.slides.push(slide);
+ slide = [];
+ }
+ }
+ });
+ if(slide.length != 0) {
+ $scope.slider.slides.push(slide);
+ }
 
-        console.log( $scope.slider.slides);
-    };
+ console.log( $scope.slider.slides);
+ };
 
-    $scope.setCurrentSlideIndex = function (index) {
-        $scope.slider.direction = (index > $scope.slider.currentIndex) ? 'left' : 'right';
-        $scope.slider.currentIndex = index;
-    };
+ $scope.setCurrentSlideIndex = function (index) {
+ $scope.slider.direction = (index > $scope.slider.currentIndex) ? 'left' : 'right';
+ $scope.slider.currentIndex = index;
+ };
 
-    $scope.isCurrentSlideIndex = function (index) {
-        return $scope.slider.currentIndex === index;
-    };
+ $scope.isCurrentSlideIndex = function (index) {
+ return $scope.slider.currentIndex === index;
+ };
 
-    $scope.prevSlide = function () {
-        $scope.slider.direction = 'left';
-        $scope.currentIndex = ($scope.slider.currentIndex < $scope.slider.slides.length - 1) ? ++$scope.slider.currentIndex : 0;
-    };
+ $scope.prevSlide = function () {
+ $scope.slider.direction = 'left';
+ $scope.currentIndex = ($scope.slider.currentIndex < $scope.slider.slides.length - 1) ? ++$scope.slider.currentIndex : 0;
+ };
 
-    $scope.nextSlide = function () {
-        $scope.slider.direction = 'right';
-        $scope.currentIndex = ($scope.slider.currentIndex > 0) ? --$scope.slider.currentIndex : $scope.slider.slides.length - 1;
-    };
+ $scope.nextSlide = function () {
+ $scope.slider.direction = 'right';
+ $scope.currentIndex = ($scope.slider.currentIndex > 0) ? --$scope.slider.currentIndex : $scope.slider.slides.length - 1;
+ };
 
-}).animation('.slide-animation', function () {
-    return {
-        beforeAddClass: function (element, className, done) {
-            var scope = element.scope();
+ }).animation('.slide-animation', function () {
+ return {
+ beforeAddClass: function (element, className, done) {
+ var scope = element.scope();
 
-            if (className == 'ng-hide') {
-                var finishPoint = element.parent().width();
-                if(scope.direction !== 'right') {
-                    finishPoint = -finishPoint;
-                }
-                TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
-            }
-            else {
-                done();
-            }
-        },
-        removeClass: function (element, className, done) {
-            var scope = element.scope();
+ if (className == 'ng-hide') {
+ var finishPoint = element.parent().width();
+ if(scope.direction !== 'right') {
+ finishPoint = -finishPoint;
+ }
+ TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
+ }
+ else {
+ done();
+ }
+ },
+ removeClass: function (element, className, done) {
+ var scope = element.scope();
 
-            if (className == 'ng-hide') {
-                element.removeClass('ng-hide');
+ if (className == 'ng-hide') {
+ element.removeClass('ng-hide');
 
-                var startPoint = element.parent().width();
-                if(scope.direction === 'right') {
-                    startPoint = -startPoint;
-                }
+ var startPoint = element.parent().width();
+ if(scope.direction === 'right') {
+ startPoint = -startPoint;
+ }
 
-                TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
-            }
-            else {
-                done();
-            }
-        }
-    };
-});*/
+ TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
+ }
+ else {
+ done();
+ }
+ }
+ };
+ });*/

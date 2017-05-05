@@ -1,8 +1,13 @@
 <!-- Local apps widget -->
-
+<!-- No search result -->
+<div class="alert alert-warning" ng-if="dataHolder.modules.noSearch">
+    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" +
+    dataHolder.modules.filter.q + "\""})}}
+</div>
 
 <!-- Featured apps -->
-<div class="app-entry-local" ng-if="dataHolder.modules.cnt.appsCatFeatured[dataHolder.modules.filter.category] > 0">
+<div class="app-entry-local" ng-if="dataHolder.modules.cnt.appsCatFeatured[dataHolder.modules.filter.category] > 0"
+ng-hide="dataHolder.modules.filter.q">
     <h2 class="app-entry-title">{{_t('featured_apps')}}</h2>
     <div class="app-row app-row-widget clearfix">
 
@@ -87,7 +92,7 @@
 
         <div class="widget-entry widget-entry-app"
              id="local_module_{{v.id}}"
-             ng-if="!v.featured"
+             ng-hide="v.featured && !dataHolder.modules.filter.q"
              ng-repeat="v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id"
              ng-class="{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}">
             <div class="widget-entry-in">

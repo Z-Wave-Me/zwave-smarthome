@@ -29,7 +29,7 @@
         <form id="form_search" class="input-group" ng-submit="setFilter({q: autocomplete.term})" autocomplete="off" novalidate>
         <!--<div class="input-group">-->
             <!-- Input -->
-            <input name="add_tag" id="input_search" type="text" focus="{{dataHolder.devices.filter.q}}"
+            <input id="input_search" type="text" focus="{{dataHolder.devices.filter.q}}"
                    class="form-control"
                    placeholder="{{_t('lb_search')}}"
                    ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
@@ -40,10 +40,10 @@
 
             <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">
                 <ul>
-                    <li class="dropdown-entry" title="{{v.ti-- I}"
+                    <li class="dropdown-entry" title="{{v.title}}"
                         ng-repeat="v in autocomplete.results | orderBy:'title' track by $index">
                         <!-- Title -->
-                        <span class="dropdown-col clickable" ng-click="setFilter({q: autocomplete.term})">
+                        <span class="dropdown-col" ng-click="setFilter({q: autocomplete.term})">
                             <img class="report-img-s" ng-src="{{v.iconPath}}" alt="{{v.title}}"/>
                             <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>
                         </span>

@@ -193,7 +193,7 @@ myApp.directive('bbValidator', function ($window) {
 });
 /**
  * Auto focus for input box
- * @class bbValidator
+ * @class focus
  */
 myApp.directive('focus',function($timeout) {
         return {

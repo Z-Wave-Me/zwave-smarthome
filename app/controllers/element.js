@@ -143,7 +143,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-
         $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete);
         // Reset filter q if is input empty
         if ($scope.dataHolder.devices.filter.q && $scope.autocomplete.term.length < 1) {
@@ -359,14 +358,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             // Set autcomplete term
             $scope.autocomplete.term = $scope.dataHolder.devices.filter.q;
             var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete), 'id');
-
-            /*if(_.isEmpty(searchResult)){
-             console.log(searchResult)
-             $scope.dataHolder.devices.noDevices = true;
-             return;
-             }*/
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
-
                 if (searchResult[v.id]) {
                     return v;
                 }

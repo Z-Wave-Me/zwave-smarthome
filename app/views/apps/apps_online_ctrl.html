@@ -1,4 +1,5 @@
 <!-- Online apps control view -->
+<!--<pre>{{dataHolder.onlineModules.filter|json}}</pre>-->
 <div class="page-control form-inline">
     <div class="btn-group btn-goup-block btn-goup-2" ng-hide="routeMatch('/apps/online')">
         <!--Categories and order by -->
@@ -15,34 +16,50 @@
             <span class="btn-name">{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span>
         </button>
     </div>
+
     <!-- Search and autocomplete -->
-    <div class="input-group">
-        <input name="add_tag" id="add_tag" type="text"
+    <form id="form_search" class="input-group" ng-submit="setFilter({q: dataHolder.onlineModules.autocomplete.term})"
+          autocomplete="off" novalidate>
+        <!-- Input -->
+        <input id="input_search" type="text" focus="{{dataHolder.onlineModules.filter.q}}"
                class="form-control"
                placeholder="{{_t('lb_search')}}"
-               ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
-        <span class="input-group-addon clickable">
-                       <i class="fa fa-search"></i>
-                   </span>
-        <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">
+               ng-model="dataHolder.onlineModules.autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+        <!-- Search button -->
+        <span class="input-group-addon clickable" ng-click="setFilter({q: dataHolder.onlineModules.autocomplete.term})">
+            <i class="fa fa-search" ng-class="{'text-success':dataHolder.onlineModules.autocomplete.term}"></i>
+        </span>
+
+        <div class="app-dropdown autocomplete" ng-if="dataHolder.onlineModules.autocomplete.results.length">
             <ul>
-                <li class="clickable" title="{{v.title}}"
-                    ng-click="redirectToRoute('apps/online/' + v.id)"
-                    ng-repeat="v in autocomplete.results | orderBy:'toString()' track by $index">
-                    <img class="report-img-s" alt="{{v.title}}"
-                         ng-src="{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}"/>
-                    <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>&nbsp;
-                    (<span class="rating-group">
+                <li class="dropdown-entry" title="{{v.title}}"
+                    ng-repeat="v in dataHolder.onlineModules.autocomplete.results | orderBy:'toString()' track by $index">
+                    <!-- Title -->
+                    <span class="dropdown-col"
+                          ng-click="setFilter({q: dataHolder.onlineModules.autocomplete.term})">
+                            <img class="report-img-s" alt="{{v.title}}"
+                                 ng-src="{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}"/>
+                        <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>&nbsp;
+                        <span ng-if="v.hasInstance"><i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
+                        <!--(<span class="rating-group">
                                     <i class="fa widget-rating" title="{{r}}"
                                        ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'"
                                        ng-repeat="r in [1,2,3,4,5]"></i>
                                     <span class="widget-rating"> | <i
                                             class="fa fa-download"></i> {{v.installed}}&times;</span>
-                                </span>)
+                                </span>)-->
+
+                    </span>
+
+                    <!-- Ctrl -->
+                    <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
+                        <a ng-href="#apps/online/{{v.id}}"><i class="fa fa-chevron-circle-right"></i></a>
+                    </span>
+
                 </li>
             </ul>
         </div>
-    </div>
+    </form>
 
 </div>
 <!-- Page subnavi  categories -->

@@ -1,10 +1,17 @@
 <!-- Online apps widget view -->
-<div class="app-entry-online">
+<!-- No search result -->
+<div class="alert alert-warning" ng-if="dataHolder.onlineModules.noSearch">
+    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" +
+    dataHolder.modules.filter.q + "\""})}}
+</div>
+<!-- List -->
+<div class="app-entry-online" ng-if="_.size(dataHolder.onlineModules.collection) > 0">
     <div class="app-entry-cat clearfix">
         <div class="app-entry-title">
             <h2>
                <small><a class="btn btn-default btn-sm" href="#apps/online" ><i class="fa fa-chevron-left"></i></a></small> &nbsp;
                 <span ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
+                <span ng-if="dataHolder.onlineModules.filter.q">{{dataHolder.onlineModules.filter.q|cutText:true:30}}</span>
                 <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
                 <span class="item-cnt"> ({{dataHolder.onlineModules.cnt.collection}})</span>
             </h2>
@@ -15,7 +22,7 @@
     <div class="app-row app-row-widget clearfix">
         <div class="widget-entry widget-entry-app"
              ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}"
-             ng-if="!v.featured"
+             ng-if_="!v.featured"
              ng-repeat="v in dataHolder.onlineModules.collection| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id"
              ng-hide="v.status !== 'download' && dataHolder.onlineModules.hideInstalled">
             <div class="widget-entry-in">
