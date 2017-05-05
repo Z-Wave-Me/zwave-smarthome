@@ -14,8 +14,7 @@
     "cloudbackup_inactive" : "Cloud Backup inactive",
     "cloudbackup_install" : "install Cloud Backup",
     "download_backup_computer": "Download backup to your computer",
-    "remove_icon_confirm": "Are you sure you want to delete this? If you delete this icon, you will lost the actual file.",
-    "remove_icon_confirm_device": "Are you sure you want to delete this? The icon is used on device element. If you delete this icon, you will lost the actual file and device icon will be replaced with default icon.",
+    "remove_icon_confirm": "If you delete the icon, you will lost the actual file. The icon assigned to the device will be replaced with default icon.",
     "edit": "Edit",
     "used_in": "Used in",
     "activeASC": "Inactive",
@@ -638,5 +637,5 @@
     "success_backup": "Backup successful.",
     "add_mobile_device": "Add mobile device",
     "lb_make_qrcode": "Make qrcode",
-    "lb_clone": "Clone"S
+    "lb_clone": "Clone"
 }

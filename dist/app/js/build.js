@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 04-05-2017 08:48:16 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 05-05-2017 15:10:36 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -10892,12 +10892,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_instance_ctrl.html',
-    "<div class=\"page-control form-inline\"><div class=form-group><label><input type=checkbox name=instances_expanded ng-change=expandInstances(dataHolder.instances.expanded) ng-model=dataHolder.instances.expanded ng-checked=\"dataHolder.instances.expanded\"> {{_t('expand_all')}}</label></div><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\"><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=\"dropdown-entry clickable\" title={{v.name}} ng-click=\"redirectToRoute('zwave/inclusion/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'name' track by $index\"><span class=dropdown-col><img class=report-img-s ng-src={{dataHolder.modules.ids[v.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"> <a class=aoutocomplete-title href=#module/put/{{v.id}}>{{v.title|cutText:true:30}}</a>&nbsp;</span> <span class=\"dropdown-col dropdown-ctrl\"><div class=btn-group><button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default btn-sm\" href=\"\" ng-if=v.active ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default btn-sm\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default btn-sm\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></span></li></ul></div></div></div>"
+    "<div class=\"page-control form-inline\"><div class=form-group><label><input type=checkbox name=instances_expanded ng-change=expandInstances(dataHolder.instances.expanded) ng-model=dataHolder.instances.expanded ng-checked=\"dataHolder.instances.expanded\"> {{_t('expand_all')}}</label></div><form id=form_search class=input-group ng-submit=\"setFilter({q: dataHolder.instances.autocomplete.term})\" autocomplete=off novalidate><input id=input_search focus={{dataHolder.instances.filter.q}} class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=dataHolder.instances.autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" ng-click=\"setFilter({q: dataHolder.instances.autocomplete.term})\"><i class=\"fa fa-search\" ng-class=\"{'text-success':dataHolder.instances.autocomplete.term}\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=dataHolder.instances.autocomplete.results.length><ul><li class=dropdown-entry title={{v.title}} ng-repeat=\"v in dataHolder.instances.autocomplete.results | orderBy:'toString()' track by $index\"><span class=dropdown-col ng-click=\"setFilter({q: dataHolder.instances.autocomplete.term})\"><img class=report-img-s ng-src={{dataHolder.modules.ids[v.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span></span> <span class=\"dropdown-col dropdown-ctrl\" title=\"{{_t('lb_cfg_view')}}\"><div class=btn-group><button type=button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default btn-sm\" href=\"\" ng-if=v.active ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button type=button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default btn-sm\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i></a> <button type=button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default btn-sm\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button> <a class=\"btn btn-default btn-sm\" ng-href=#module/put/{{v.id}}><i class=\"fa fa-chevron-circle-right\"></i></a></div></span></li></ul></div></form></div>"
   );
 
 
   $templateCache.put('app/views/apps/apps_instance_widget.html',
-    "<div ng-repeat=\"g in dataHolder.instances.groups track by $index\" ng-init=\"instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]\"><div class=accordion-entry ng-if=\"instanveModuleCnt > 1\"><h2 class=accordion-entry-title ng-click=expandElement(g.moduleId) ng-init=\"expand[g.moduleId] = dataHolder.instances.expanded\"><img class=report-img-s ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"> {{dataHolder.modules.ids[g.moduleId].title}} <span class=item-cnt>({{dataHolder.instances.cnt.modules[g.moduleId]}})</span> <i class=\"fa accordion-arrow\" ng-class=\"expand[g.moduleId] ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=\"accordion-entry-ctrl instance-entry-multiple\" ng-class=\"\" ng-if=expand[g.moduleId]><div class=\"app-row app-row-report clearfix\"><div class=\"report-entry bcg-active\" id=instance_{{$index}} ng-repeat=\"v in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1\"><div class=\"report-col report-body\"><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default\" href=\"\" ng-if=v.active ng-class=\"v.active ? 'active' : ''\" ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div></div><div class=instance-entry-single ng-if=\"instanveModuleCnt < 2\"><div class=\"app-row app-row-report clearfix\"><div class=\"report-entry bcg-active\" id=instance_{{$index}} ng-repeat=\"v in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1\"><div class=\"report-col report-body\"><img class=report-img-s ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"> <a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default\" href=\"\" ng-if=v.active ng-class=\"v.active ? 'active' : ''\" ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div></div><div class=\"page-control form-inline\"><div class=\"form-group form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('Add new group')}}\" ng-model=search.text bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('Add new group')}}\"><i class=\"fa fa-plus text-success\"></i></span></div></div></div>"
+    "<div class=\"alert alert-warning\" ng-if=dataHolder.instances.noSearch><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('no_search_results',{__term__: \"\\\"\" + dataHolder.instances.filter.q + \"\\\"\"})}}</div><div ng-repeat=\"g in dataHolder.instances.groups track by $index\" ng-init=\"instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]\"><div class=accordion-entry ng-if=\"instanveModuleCnt > 1\"><h2 class=accordion-entry-title ng-click=expandElement(g.moduleId) ng-init=\"expand[g.moduleId] = dataHolder.instances.expanded\"><img class=report-img-s ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"> {{dataHolder.modules.ids[g.moduleId].title}} <span class=item-cnt>({{dataHolder.instances.cnt.modules[g.moduleId]}})</span> <i class=\"fa accordion-arrow\" ng-class=\"expand[g.moduleId] ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=\"accordion-entry-ctrl instance-entry-multiple\" ng-class=\"\" ng-if=expand[g.moduleId]><div class=\"app-row app-row-report clearfix\"><div class=\"report-entry bcg-active\" id=instance_{{$index}} ng-repeat=\"v in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1\"><div class=\"report-col report-body\"><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default\" href=\"\" ng-if=v.active ng-class=\"v.active ? 'active' : ''\" ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div></div><div class=instance-entry-single ng-if=\"instanveModuleCnt < 2\"><div class=\"app-row app-row-report clearfix\"><div class=\"report-entry bcg-active\" id=instance_{{$index}} ng-repeat=\"v in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1\"><div class=\"report-col report-body\"><img class=report-img-s ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"> <a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default\" href=\"\" ng-if=v.active ng-class=\"v.active ? 'active' : ''\" ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div></div><div class=\"page-control form-inline\"><div class=\"form-group form-inline\"><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('Add new group')}}\" ng-model=search.text bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" title=\"{{_t('Add new group')}}\"><i class=\"fa fa-plus text-success\"></i></span></div></div></div>"
   );
 
 
@@ -10907,7 +10907,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_local_ctrl.html',
-    "<div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.modules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.modules.filter.category>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.modules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.modules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsLocalOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\"><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('apps/local/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'toString()' track by $index\"><img class=report-img-s ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=report-img-s ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span>&nbsp; <span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></li></ul></div></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.modules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=item-cnt>({{dataHolder.modules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=\"dataHolder.modules.cats.indexOf(v.id) > -1 && dataHolder.modules.cnt.appsCat[v.id]\" ng-class=\"dataHolder.modules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\"><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.modules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul></div></div><div class=page-navi ng-if=naviExpanded.appsLocalOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appslocal\" ng-click=setOrderBy(k) ng-class=\"dataHolder.modules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div>"
+    "<div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.modules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.modules.filter.category>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.modules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.modules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsLocalOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span></button></div><form id=form_search class=input-group ng-submit=\"setFilter({q: dataHolder.modules.autocomplete.term})\" autocomplete=off novalidate><input id=input_search focus={{dataHolder.modules.filter.q}} class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=dataHolder.modules.autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" ng-click=\"setFilter({q: dataHolder.modules.autocomplete.term})\"><i class=\"fa fa-search\" ng-class=\"{'text-success':dataHolder.modules.autocomplete.term}\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=dataHolder.modules.autocomplete.results.length><ul><li class=dropdown-entry title={{v.title}} ng-repeat=\"v in dataHolder.modules.autocomplete.results | orderBy:'toString()' track by $index\"><span class=dropdown-col ng-click=\"setFilter({q: dataHolder.modules.autocomplete.term})\"><img class=report-img-s ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=report-img-s ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span>&nbsp; <span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></span> <span class=\"dropdown-col dropdown-ctrl\" title=\"{{_t('lb_cfg_view')}}\"><a ng-href=#apps/local/{{v.id}}><i class=\"fa fa-chevron-circle-right\"></i></a></span></li></ul></div></form></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.modules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=item-cnt>({{dataHolder.modules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=\"dataHolder.modules.cats.indexOf(v.id) > -1 && dataHolder.modules.cnt.appsCat[v.id]\" ng-class=\"dataHolder.modules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\"><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.modules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul></div></div><div class=page-navi ng-if=naviExpanded.appsLocalOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appslocal\" ng-click=setOrderBy(k) ng-class=\"dataHolder.modules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div>"
   );
 
 
@@ -10917,7 +10917,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_local_widget.html',
-    "<div class=app-entry-local ng-if=\"dataHolder.modules.cnt.appsCatFeatured[dataHolder.modules.filter.category] > 0\"><h2 class=app-entry-title>{{_t('featured_apps')}}</h2><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-repeat=\"v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-if=v.featured ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div><div class=app-entry-local><h2 ng-if=!_.isEmpty(dataHolder.modules.filter)>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</h2><h2 ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</h2><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-if=!v.featured ng-repeat=\"v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div>"
+    "<div class=\"alert alert-warning\" ng-if=dataHolder.modules.noSearch><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('no_search_results',{__term__: \"\\\"\" + dataHolder.modules.filter.q + \"\\\"\"})}}</div><div class=app-entry-local ng-if=\"dataHolder.modules.cnt.appsCatFeatured[dataHolder.modules.filter.category] > 0\" ng-hide=dataHolder.modules.filter.q><h2 class=app-entry-title>{{_t('featured_apps')}}</h2><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-repeat=\"v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-if=v.featured ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div><div class=app-entry-local><h2 ng-if=!_.isEmpty(dataHolder.modules.filter)>{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</h2><h2 ng-if=_.isEmpty(dataHolder.modules.filter)>{{_t('all_apps')}}</h2><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" id=local_module_{{v.id}} ng-hide=\"v.featured && !dataHolder.modules.filter.q\" ng-repeat=\"v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id\" ng-class=\"{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}\"><div class=widget-entry-in><div class=widget-img><a href=#apps/local/{{v.id}} title={{v.toolTipDescription}}><img class=widget-preview-img ng-src=\"{{moduleMediaUrl + v.moduleName + '/' + v.icon}}\" ng-if=v.icon alt=\"{{v.defaults.title}}\"> <img class=widget-preview-img ng-src=storage/img/placeholder-img.png ng-if=!v.icon alt=\"{{v.defaults.title}}\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a href=#apps/local/{{v.id}} title={{v.defaults.title}} ng-bind=v.defaults.title|cutText:true:25></a> <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><a ng-href=#module/post/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_add_app')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\"></span></a> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-click=\"deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && !v.hasReset\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name ng-bind=\"_t('lb_remove')\"></span></button> <button class=\"btn btn-default\" title=\"{{_t('reset')}}\" ng-click=\"resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)\" ng-if=\"v.custom && v.hasReset\"><i class=\"fa fa-remove fa-refresh text-warning\"></i> <span class=btn-name ng-bind=\"_t('reset')\"></span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))\" ng-if=\"dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div>"
   );
 
 
@@ -10927,17 +10927,17 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_online_ctrl.html',
-    "<div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\" ng-hide=\"routeMatch('/apps/online')\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.onlineModules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsOnlineOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\"><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('apps/online/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'toString()' track by $index\"><img class=report-img-s alt={{v.title}} ng-src=\"{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span>&nbsp; (<span class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in [1,2,3,4,5]\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></span>)</li></ul></div></div></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=dataHolder.onlineModules.cnt.appsCat[v.id] ng-class=\"dataHolder.onlineModules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\" ng-switch=v.id><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))\" ng-class=\"dataHolder.onlineModules.hideInstalled ? 'active': ''\"><i class=\"fa fa-eye-slash\"></i> {{_t('hide_installed_apps')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.appsOnlineOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appsonline\" ng-click=setOrderBy(k) ng-class=\"dataHolder.onlineModules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div>"
+    "<div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-2\" ng-hide=\"routeMatch('/apps/online')\"><button class=\"btn btn-default\" ng-click=\"expandNavi('appsCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' \"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span class=btn-name ng-if=dataHolder.onlineModules.filter.featured>{{_t('featured_apps')}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('appsOnlineOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span></button></div><form id=form_search class=input-group ng-submit=\"setFilter({q: dataHolder.onlineModules.autocomplete.term})\" autocomplete=off novalidate><input id=input_search focus={{dataHolder.onlineModules.filter.q}} class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=dataHolder.onlineModules.autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" ng-click=\"setFilter({q: dataHolder.onlineModules.autocomplete.term})\"><i class=\"fa fa-search\" ng-class=\"{'text-success':dataHolder.onlineModules.autocomplete.term}\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=dataHolder.onlineModules.autocomplete.results.length><ul><li class=dropdown-entry title={{v.title}} ng-repeat=\"v in dataHolder.onlineModules.autocomplete.results | orderBy:'toString()' track by $index\"><span class=dropdown-col ng-click=\"setFilter({q: dataHolder.onlineModules.autocomplete.term})\"><img class=report-img-s alt={{v.title}} ng-src=\"{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span>&nbsp; <span ng-if=v.hasInstance><i class=\"fa fa-fire text-success\"></i> ({{v.hasInstance}})</span></span> <span class=\"dropdown-col dropdown-ctrl\" title=\"{{_t('lb_cfg_view')}}\"><a ng-href=#apps/online/{{v.id}}><i class=\"fa fa-chevron-circle-right\"></i></a></span></li></ul></div></form></div><div class=page-navi ng-if=naviExpanded.appsCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_apps')}} <span class=\"btn-name item-cnt\">({{dataHolder.onlineModules.cnt.apps}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v.id}} ng-repeat=\"v in dataHolder.modules.categories\" ng-if=dataHolder.onlineModules.cnt.appsCat[v.id] ng-class=\"dataHolder.onlineModules.filter.category == v.id ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({category: v.id})\" ng-switch=v.id><i class=\"fa {{v.id|getAppCategoryIcon}}\"></i> {{v.name|cutText:true:30}} <span class=item-cnt>({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))\" ng-class=\"dataHolder.onlineModules.hideInstalled ? 'active': ''\"><i class=\"fa fa-eye-slash\"></i> {{_t('hide_installed_apps')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.appsOnlineOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.appsonline\" ng-click=setOrderBy(k) ng-class=\"dataHolder.onlineModules.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div>"
   );
 
 
   $templateCache.put('app/views/apps/apps_online_filter.html',
-    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppOnlineController id=apps_online><div ng-include=\"'app/views/apps/navi.html'\"></div><div ng-if=_.isEmpty(dataHolder.onlineModules.filter) ng-include=\"'app/views/apps/apps_online_slider.html'\"></div><div ng-include=\"'app/views/apps/apps_online_ctrl.html'\"></div><div ng-include=\"'app/views/apps/apps_online_filter_widget.html'\"></div></div></div>"
+    "<div ng-controller=AppBaseController><bb-loader></bb-loader><div ng-controller=AppOnlineController id=apps_online><div ng-include=\"'app/views/apps/navi.html'\"></div><div ng-include=\"'app/views/apps/apps_online_ctrl.html'\"></div><div ng-include=\"'app/views/apps/apps_online_filter_widget.html'\"></div></div></div>"
   );
 
 
   $templateCache.put('app/views/apps/apps_online_filter_widget.html',
-    "<div class=app-entry-online><div class=\"app-entry-cat clearfix\"><div class=app-entry-title><h2><small><a class=\"btn btn-default btn-sm\" href=#apps/online><i class=\"fa fa-chevron-left\"></i></a></small> &nbsp; <span ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=item-cnt>({{dataHolder.onlineModules.cnt.collection}})</span></h2></div></div><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-if=!v.featured ng-repeat=\"v in dataHolder.onlineModules.collection| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-hide=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:20}}</a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div>"
+    "<div class=\"alert alert-warning\" ng-if=dataHolder.onlineModules.noSearch><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('no_search_results',{__term__: \"\\\"\" + dataHolder.modules.filter.q + \"\\\"\"})}}</div><div class=app-entry-online ng-if=\"_.size(dataHolder.onlineModules.collection) > 0\"><div class=\"app-entry-cat clearfix\"><div class=app-entry-title><h2><small><a class=\"btn btn-default btn-sm\" href=#apps/online><i class=\"fa fa-chevron-left\"></i></a></small> &nbsp; <span ng-if=dataHolder.onlineModules.filter.category>{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span> <span ng-if=dataHolder.onlineModules.filter.q>{{dataHolder.onlineModules.filter.q|cutText:true:30}}</span> <span ng-if=_.isEmpty(dataHolder.onlineModules.filter)>{{_t('all_apps')}}</span> <span class=item-cnt>({{dataHolder.onlineModules.cnt.collection}})</span></h2></div></div><div class=\"app-row app-row-widget clearfix\"><div class=\"widget-entry widget-entry-app\" ng-class=\"{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}\" ng-if_=!v.featured ng-repeat=\"v in dataHolder.onlineModules.collection| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id\" ng-hide=\"v.status !== 'download' && dataHolder.onlineModules.hideInstalled\"><div class=widget-entry-in><div class=widget-img><a ng-href=#apps/online/{{v.id}}><img class=widget-preview-img alt={{v.title}} title={{v.toolTipDescription}} ng-src=\"{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}\" ng-click=\"redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)\"></a></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3><a ng-href=#apps/online/{{v.id}} title={{v.title}}>{{v.title|cutText:true:20}}</a></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\"><div class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in dataHolder.onlineModules.ratingRange\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></div></div><div class=\"widget-ctrl ctrl-right\"><div class=\"btn-group group-apps\"><button href=\"\" class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-click=\"installModule(v, 'online_install')\" ng-if=!dataHolder.modules.ids[v.modulename]><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" disabled title=\"{{_t('installed')}}\" ng-if=\"dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button href=\"\" class=\"btn btn-danger\" title=\"{{_t('update_to_latest')}}\" ng-click=\"updateModule(v, _t('app_update_confirm'))\" ng-if=\"dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' \"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></div></div></div></div></div></div></div></div>"
   );
 
 
@@ -11032,12 +11032,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/customize/icons_local.html',
-    "<div ng-controller=LocalIconController><bb-loader></bb-loader><div ng-include=\"'app/views/customize/navi.html'\"></div><div ng-if=icons.show><div class=\"form form-inline form-page clearfix\"><div class=\"fieldset block-50\"><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().checkUploadedFile(this.files, angular.element(this).scope().cfg.upload.icon)\"><label for=file{{v.id}} class=\"btn btn-success\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload\"></i> {{_t('upload_single_icon')}}</label><bb-help-text trans=\"_t('upload_file_info',{'__size__':icons.info.maxSize,'__extensions__': icons.info.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})\"></bb-help-text></div><div class=\"fieldset block-50\"><input class=inputfile type=file name=file_packed id=file_packed{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().checkUploadedFile(this.files, angular.element(this).scope().cfg.upload.icon_packed)\"><label for=file_packed{{v.id}} class=\"btn btn-primary\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload\"></i> {{_t('upload_packed_icon')}}</label><bb-help-text trans=\"_t('upload_file_info',{'__size__':icons.infoPacked.maxSize,'__extensions__': icons.infoPacked.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon_packed.dimension})\"></bb-help-text></div></div><div ng-if=!_.isEmpty(icons.all)><div class=\"page-control form-inline\"><input type=checkbox class=img-list-chbx ng-model=checkAll ng-click=\"toggleAll()\">&nbsp;{{_t('check_all')}}&nbsp;<div class=btn-group ng-if=checkAll><button class=\"btn btn-default\" ng-click=\"deleteChecked(_t('remove_icon_confirm_device'))\"><i class=\"fa fa-remove text-danger\"></i> {{_t('delete_checked')}}</button></div><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('iconsLocalFilter', $event)\" ng-class=\"icons.filter.source ? 'active' : ''\"><i class=\"fa fa-filter\"></i> <span ng-if=!icons.filter.source>{{_t('lb_show_all')}}</span> <span ng-if=icons.filter.source>{{icons.source.title[icons.filter.source]| cutText:true:30}}</span></button></div></div><div class=page-navi ng-if=naviExpanded.iconsLocalFilter><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"setFilter();$scope.checkAll = false;toggleAll(false)\" ng-class=\"!icons.filter.source ? 'active' : ''\">{{_t('lb_show_all')}}</a> <a class=\"btn btn-default btn-tag\" ng-repeat=\"(k,v) in icons.source.cnt\" ng-click=\"setFilter({source: k});$scope.checkAll = false;toggleAll(false)\" ng-class=\"k === icons.filter.source ? 'active' : ''\">{{icons.source.title[k]|cutText:true:30}}<span class=item-cnt>({{v}})</span></a></div></div></div><div class=\"app-row clearfix app-row-imglist\"><div class=imglist-entry ng-class=\"icons.used.device[v.file] ? 'in-device' :''\" ng-repeat=\"v in icons.all| orderBy : '-timestamp' track by $index\"><div class=\"imglist-entry-in infowindow-wrap\"><img class=\"imglist-img clickable\" alt={{v.file}} title={{v.file}} ng-click=\"expandNavi('iconInfowindow_' + $index, $event)\" ng-src=\"{{cfg.img.custom_icons + v.file}}\"> <input type=checkbox class=img-list-chbx ng-show=checkAll ng-model=\"v.checked\"><div class=\"infowindow top\" ng-if=\"naviExpanded['iconInfowindow' + '_' + $index]\"><div class=\"infowindow-in text-center\"><img class=imglist-img-preview alt={{v.file}} title={{v.file}} ng-src=\"{{cfg.img.custom_icons + v.file}}\"><p>{{_t('lb_category')}}: {{v.source_title}}</p><div ng-if=icons.used.device[v.file]><strong>{{_t('used_in')}}</strong><div ng-repeat=\"d in icons.used.device[v.file]\"><a class=text-danger ng-href=#element/{{d}}>{{d|cutText:true:20}}</a></div></div><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-hide_=icons.used.device[v.file] ng-click=\"deleteIcon(v, (icons.used.device[v.file] ? _t('remove_icon_confirm_device') :_t('remove_icon_confirm_device')))\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name>{{_t('lb_remove')}}</span></button></div></div></div></div></div></div></div></div>"
+    "<div ng-controller=LocalIconController><bb-loader></bb-loader><div ng-include=\"'app/views/customize/navi.html'\"></div><div ng-if=icons.show><div class=\"form form-inline form-page clearfix\"><div class=\"fieldset block-50\"><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().checkUploadedFile(this.files, angular.element(this).scope().cfg.upload.icon)\"><label for=file{{v.id}} class=\"btn btn-success\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload\"></i> {{_t('upload_single_icon')}}</label><bb-help-text trans=\"_t('upload_file_info',{'__size__':icons.info.maxSize,'__extensions__': icons.info.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})\"></bb-help-text></div><div class=\"fieldset block-50\"><input class=inputfile type=file name=file_packed id=file_packed{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().checkUploadedFile(this.files, angular.element(this).scope().cfg.upload.icon_packed)\"><label for=file_packed{{v.id}} class=\"btn btn-primary\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload\"></i> {{_t('upload_packed_icon')}}</label><bb-help-text trans=\"_t('upload_file_info',{'__size__':icons.infoPacked.maxSize,'__extensions__': icons.infoPacked.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon_packed.dimension})\"></bb-help-text></div></div><div ng-if=!_.isEmpty(icons.all)><div class=\"page-control form-inline\"><input type=checkbox class=img-list-chbx ng-model=checkAll ng-click=\"toggleAll()\">&nbsp;{{_t('check_all')}}&nbsp;<div class=btn-group ng-if=checkAll><button class=\"btn btn-default\" ng-click=\"deleteChecked(_t('remove_icon_confirm'))\"><i class=\"fa fa-remove text-danger\"></i> {{_t('delete_checked')}}</button></div><div class=\"btn-group btn-goup-block btn-goup-1\"><button class=\"btn btn-default\" ng-click=\"expandNavi('iconsLocalFilter', $event)\" ng-class=\"icons.filter.source ? 'active' : ''\"><i class=\"fa fa-filter\"></i> <span ng-if=!icons.filter.source>{{_t('lb_show_all')}}</span> <span ng-if=icons.filter.source>{{icons.source.title[icons.filter.source]| cutText:true:30}}</span></button></div></div><div class=page-navi ng-if=naviExpanded.iconsLocalFilter><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"setFilter();$scope.checkAll = false;toggleAll(false)\" ng-class=\"!icons.filter.source ? 'active' : ''\">{{_t('lb_show_all')}}</a> <a class=\"btn btn-default btn-tag\" ng-repeat=\"(k,v) in icons.source.cnt\" ng-click=\"setFilter({source: k});$scope.checkAll = false;toggleAll(false)\" ng-class=\"k === icons.filter.source ? 'active' : ''\">{{icons.source.title[k]|cutText:true:30}}<span class=item-cnt>({{v}})</span></a></div></div></div><div class=\"app-row clearfix app-row-imglist\"><div class=imglist-entry ng-class=\"icons.used.device[v.file] ? 'in-device' :''\" ng-repeat=\"v in icons.all| orderBy : '-timestamp' track by $index\"><div class=\"imglist-entry-in infowindow-wrap\"><img class=\"imglist-img clickable\" alt={{v.file}} title={{v.file}} ng-click=\"expandNavi('iconInfowindow_' + $index, $event)\" ng-src=\"{{cfg.img.custom_icons + v.file}}\"> <input type=checkbox class=img-list-chbx ng-show=checkAll ng-model=\"v.checked\"><div class=\"infowindow top\" ng-if=\"naviExpanded['iconInfowindow' + '_' + $index]\"><div class=\"infowindow-in text-center\"><img class=imglist-img-preview alt={{v.file}} title={{v.file}} ng-src=\"{{cfg.img.custom_icons + v.file}}\"><p>{{_t('lb_category')}}: {{v.source_title}}</p><div ng-if=icons.used.device[v.file]><strong>{{_t('used_in')}}</strong><div ng-repeat=\"d in icons.used.device[v.file]\"><a class=text-danger ng-href=#element/{{d}}>{{d|cutText:true:20}}</a></div></div><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-hide_=icons.used.device[v.file] ng-click=\"deleteIcon(v, _t('remove_icon_confirm'))\"><i class=\"fa fa-remove text-danger\"></i> <span class=btn-name>{{_t('lb_remove')}}</span></button></div></div></div></div></div></div></div></div>"
   );
 
 
   $templateCache.put('app/views/customize/icons_online.html',
-    "<div ng-controller=OnlineIconController><bb-loader></bb-loader><div ng-include=\"'app/views/customize/navi.html'\"></div><bb-alert alert=iconsOnline.alert></bb-alert><div class=\"app-row app-row-widget app-row-customize clearfix\"><div class=\"widget-entry widget-entry-customize\" id=icon_online_{{v.id}} ng-repeat=\"v in iconsOnline.all track by v.id\"><div class=widget-entry-in><div class=widget-img><img class=\"customize-preview-img clickable\" ng-src={{v.icon_path}} alt={{v.title}} ng-click=\"handleOnlineIconModal(v,'iconOnlineModal', $event)\"></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3 class=clickable title={{v.title}} ng-click=\"handleOnlineIconModal(v,'iconOnlineModal', $event)\">{{v.title|cutText:true:25}} <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\">&nbsp;</div><div class=\"widget-ctrl ctrl-right clearfix\"><div class=btn-group><button class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-if=\"v.status === 'download'\" ng-click=downloadIconSet(v)><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" title=\"{{_t('installed')}}\" disabled ng-if=\"v.status === 'installed'\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button></div></div></div></div></div></div></div><div id=iconOnlineModal class=appmodal ng-if=modalArr.iconOnlineModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('iconOnlineModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{iconsOnline.find.title|cutText:true:30}}</h3></div><div class=\"appmodal-body customize-detail\"><p class=customize-detail-title>{{iconsOnline.find.title}}</p><p class=customize-detail-list ng-if=iconsOnline.find.author><strong>{{_t('author')}}:</strong> <span ng-if=!iconsOnline.find.homepage>{{iconsOnline.find.author}}</span> <a ng-href={{iconsOnline.find.homepage}} ng-if=iconsOnline.find.homepage>{{iconsOnline.find.author}}</a></p><p class=customize-detail-list ng-if=iconsOnline.find.license><strong>{{_t('license')}}:</strong> {{iconsOnline.find.license}}</p><div class=customize-icon-list><img class=customize-icon-preview ng-src=\"{{iconsOnline.find.preview_path + v}}\" ng-repeat=\"v in iconsOnline.preview\"></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=\"handleModal('iconOnlineModal', $event)\"><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_close')}}</span></button> <button href=\"\" class=\"btn btn-submit\" title=\"{{_t('lb_download')}}\" ng-if=\"v.status === 'download'\" ng-click=\"handleModal('iconOnlineModal', $event);downloadIconSet(iconsOnline.find)\"><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button> <button class=\"btn btn-disabled\" title=\"{{_t('installed')}}\" disabled ng-if=\"v.status === 'installed'\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button></div></div></div></div>"
+    "<div ng-controller=OnlineIconController><bb-loader></bb-loader><div ng-include=\"'app/views/customize/navi.html'\"></div><bb-alert alert=iconsOnline.alert></bb-alert><div class=\"app-row app-row-widget app-row-customize clearfix\"><div class=\"widget-entry widget-entry-customize\" id=icon_online_{{v.id}} ng-repeat=\"v in iconsOnline.all track by v.id\"><div class=widget-entry-in><div class=widget-img><img class=\"customize-preview-img clickable\" ng-src={{v.icon_path}} alt={{v.title}} ng-click=\"handleOnlineIconModal(v,'iconOnlineModal', $event)\"></div><div class=widget-header></div><div class=widget-content><div class=widget-title><h3 class=clickable title={{v.title}} ng-click=\"handleOnlineIconModal(v,'iconOnlineModal', $event)\">{{v.title|cutText:true:25}} <span class=btn-name>&raquo;</span></h3></div><hr class=\"bottom-aligner\"><div class=widget-footer><div class=\"widget-ctrl ctrl-left\">&nbsp;</div><div class=\"widget-ctrl ctrl-right clearfix\"><button class=\"btn btn-disabled\" title=\"{{_t('installed')}}\" disabled ng-if=\"v.status === 'installed'\"><i class=\"fa fa-check\"></i> <span class=btn-name_>{{_t('installed')}}</span></button> <button class=\"btn btn-default\" title=\"{{_t('lb_download')}}\" ng-if_=\"v.status === 'download'\" ng-click=downloadIconSet(v)><i class=\"fa fa-download text-success\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button></div></div></div></div></div></div><div id=iconOnlineModal class=appmodal ng-if=modalArr.iconOnlineModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('iconOnlineModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{iconsOnline.find.title|cutText:true:30}}</h3></div><div class=\"appmodal-body customize-detail\"><p class=customize-detail-title>{{iconsOnline.find.title}}</p><p class=customize-detail-list ng-if=iconsOnline.find.author><strong>{{_t('author')}}:</strong> <span ng-if=!iconsOnline.find.homepage>{{iconsOnline.find.author}}</span> <a ng-href={{iconsOnline.find.homepage}} ng-if=iconsOnline.find.homepage>{{iconsOnline.find.author}}</a></p><p class=customize-detail-list ng-if=iconsOnline.find.license><strong>{{_t('license')}}:</strong> {{iconsOnline.find.license}}</p><div class=customize-icon-list><img class=customize-icon-preview ng-src=\"{{iconsOnline.find.preview_path + v}}\" ng-repeat=\"v in iconsOnline.preview\"></div></div><div class=appmodal-footer><button class=\"btn btn-disabled\" title=\"{{_t('installed')}}\" disabled ng-if=\"iconsOnline.find.status === 'installed'\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('installed')}}</span></button> <button type=button class=\"btn btn-default\" ng-click=\"handleModal('iconOnlineModal', $event)\"><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_close')}}</span></button> <button href=\"\" class=\"btn btn-submit\" title=\"{{_t('lb_download')}}\" ng-if_=\"iconsOnline.status === 'download' || v.status === 'installed'\" ng-click=\"handleModal('iconOnlineModal', $event);downloadIconSet(iconsOnline.find)\"><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('lb_download')}}</span></button></div></div></div></div>"
   );
 
 
@@ -11092,7 +11092,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/elements_page.html',
-    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-3\"><button class=\"btn btn-default\" ng-click=\"expandNavi('elCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.devices.filter) ? 'active':''\"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.deviceType>{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span> <span class=btn-name ng-if=\"dataHolder.devices.filter.visibility === false\">{{_t('hidden_elements') | cutText:true:15}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.devices.filter)>{{_t('all_elements') | cutText:true:15}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elTags', $event)\" ng-class=\"dataHolder.devices.filter.tag ? 'active':''\"><i class=\"fa fa-tags\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.tag>{{dataHolder.devices.filter.tag|cutText:true:15}}</span> <span class=btn-name ng-if=!dataHolder.devices.filter.tag>{{_t('lb_tags')}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span></button></div><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\"><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('element/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'title' track by $index\"><img class=report-img-s ng-src={{v.iconPath}} alt=\"{{v.title}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span></li></ul></div></div></div><div class=page-navi ng-if=naviExpanded.elCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_elements')}} <span class=item-cnt>({{dataHolder.cnt.devices}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v}} ng-repeat=\"(v,k) in dataHolder.devices.deviceType\" ng-class=\"dataHolder.devices.filter.deviceType == v ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({deviceType: v})\"><i class=\"fa {{v|getElCategoryIcon}}\"></i> {{_t(v) | cutText:true:30}} <span class=item-cnt>({{k}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"showHiddenEl((dataHolder.devices.showHidden ? false:true))\" ng-class=\"dataHolder.devices.showHidden ? 'active': ''\"><i class=\"fa fa-eye\"></i> {{_t('show_hidden')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elTags><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=setFilter() ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\">{{_t('all_elements')}}</a> <a class=\"btn btn-default btn-tag\" ng-repeat=\"v in dataHolder.devices.tags|orderBy:'toString()'\" ng-click=\"setFilter({tag: v})\" ng-class=\"dataHolder.devices.filter.tag == v ? 'active': ''\">{{v|cutText:true:30}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.elements\" ng-click=setOrderBy(k) ng-class=\"dataHolder.devices.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div ng-if=dataHolder.devices.noDevices ng-include=\"'app/views/elements/no_devices.html'\"></div><div ng-if=\"dataHolder.devices.show && !dataHolder.devices.noDevices\"><div ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
+    "<div ng-controller=ElementBaseController><bb-loader></bb-loader><div class=\"page-control form-inline\"><div class=\"btn-group btn-goup-block btn-goup-3\"><button class=\"btn btn-default\" ng-click=\"expandNavi('elCategories', $event)\" ng-class=\"!_.isEmpty(dataHolder.devices.filter) ? 'active':''\"><i class=\"fa fa-filter\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.deviceType>{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span> <span class=btn-name ng-if=\"dataHolder.devices.filter.visibility === false\">{{_t('hidden_elements') | cutText:true:15}}</span> <span class=btn-name ng-if=_.isEmpty(dataHolder.devices.filter)>{{_t('all_elements') | cutText:true:15}}</span> <span class=\"btn-name item-cnt\">({{dataHolder.cnt.collection}})</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elTags', $event)\" ng-class=\"dataHolder.devices.filter.tag ? 'active':''\"><i class=\"fa fa-tags\"></i> <span class=btn-name ng-if=dataHolder.devices.filter.tag>{{dataHolder.devices.filter.tag|cutText:true:15}}</span> <span class=btn-name ng-if=!dataHolder.devices.filter.tag>{{_t('lb_tags')}}</span></button> <button class=\"btn btn-default\" ng-click=\"expandNavi('elOrderBy', $event)\"><i class=\"fa fa-sort-alpha-asc\"></i> <span class=btn-name>{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span></button></div><form id=form_search class=input-group ng-submit=\"setFilter({q: autocomplete.term})\" autocomplete=off novalidate><input id=input_search focus={{dataHolder.devices.filter.q}} class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" ng-click=\"setFilter({q: autocomplete.term})\"><i class=\"fa fa-search\" ng-class=\"{'text-success':autocomplete.term}\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocomplete.results.length><ul><li class=dropdown-entry title={{v.title}} ng-repeat=\"v in autocomplete.results | orderBy:'title' track by $index\"><span class=dropdown-col ng-click=\"setFilter({q: autocomplete.term})\"><img class=report-img-s ng-src={{v.iconPath}} alt=\"{{v.title}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span></span> <span class=\"dropdown-col dropdown-ctrl\" title=\"{{_t('lb_cfg_view')}}\"><a ng-href=#element/{{v.id}}><i class=\"fa fa-cog\"></i></a></span></li></ul></div></form></div><div class=page-navi ng-if=naviExpanded.elCategories><div class=page-navi-in><ul><li class=page-cat-0 ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\"><a href=\"\" ng-click=setFilter()><i class=\"fa fa-check-circle-o\"></i> {{_t('all_elements')}} <span class=item-cnt>({{dataHolder.cnt.devices}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li><li class=page-cat-{{v}} ng-repeat=\"(v,k) in dataHolder.devices.deviceType\" ng-class=\"dataHolder.devices.filter.deviceType == v ? 'active': ''\"><a href=\"\" ng-click=\"setFilter({deviceType: v})\"><i class=\"fa {{v|getElCategoryIcon}}\"></i> {{_t(v) | cutText:true:30}} <span class=item-cnt>({{k}})</span> <span class=page-navi-icon><i class=\"fa fa-chevron-right\"></i></span></a></li></ul><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=\"showHiddenEl((dataHolder.devices.showHidden ? false:true))\" ng-class=\"dataHolder.devices.showHidden ? 'active': ''\"><i class=\"fa fa-eye\"></i> {{_t('show_hidden')}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elTags><div class=page-navi-in><div class=page-navi-content><a class=\"btn btn-default btn-tag\" ng-click=setFilter() ng-class=\"_.isEmpty(dataHolder.devices.filter) == true ? 'active': ''\">{{_t('all_elements')}}</a> <a class=\"btn btn-default btn-tag\" ng-repeat=\"v in dataHolder.devices.tags|orderBy:'toString()'\" ng-click=\"setFilter({tag: v})\" ng-class=\"dataHolder.devices.filter.tag == v ? 'active': ''\">{{v|cutText:true:30}}</a></div></div></div><div class=page-navi ng-if=naviExpanded.elOrderBy><div class=page-navi-in><div class=page-navi-content><p class=page-navi-title>{{_t('sortby')}}</p><a class=\"btn btn-default btn-tag\" href=\"\" ng-repeat=\"(k,v) in cfg.orderby.elements\" ng-click=setOrderBy(k) ng-class=\"dataHolder.devices.orderBy == k ? 'active': ''\">{{_t(k) | cutText:true:30}}</a></div></div></div><div ng-if=dataHolder.devices.noDevices ng-include=\"'app/views/elements/no_devices.html'\"></div><div class=\"alert alert-warning\" ng-if=dataHolder.devices.noSearch><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('no_search_results',{__term__: \"\\\"\" + dataHolder.devices.filter.q + \"\\\"\"})}}</div><div ng-if=\"dataHolder.devices.show && !dataHolder.devices.noDevices\"><div ng-include=\"'app/views/elements/list.html'\"></div></div></div>"
   );
 
 
@@ -13920,6 +13920,26 @@ myApp.directive('bbValidator', function ($window) {
     };
 });
 /**
+ * Auto focus for input box
+ * @class focus
+ */
+myApp.directive('focus',function($timeout) {
+        return {
+            scope : {
+                trigger : '@focus'
+            },
+            link : function(scope, element) {
+                scope.$watch('trigger', function(value) {
+                    if (value) {
+                        $timeout(function() {
+                            element[0].focus();
+                        });
+                    }
+                });
+            }
+        };
+    });
+/**
 * Watch for an error loading an image and to replace the src
 * @class errSrc
 */
@@ -16146,6 +16166,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             switchButton: [],
             noDashboard: false,
             noDevices: false,
+            noSearch: false,
             show: true,
             all: {},
             byId: {},
@@ -16206,9 +16227,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             if (devices.state === 'fulfilled') {
                 // Count hidden apps
                 $scope.dataHolder.cnt.hidden = _.chain(dataService.getDevicesData(devices.value.data.data.devices, true))
-                        .flatten().where({visibility: false})
-                        .size()
-                        .value();
+                    .flatten().where({visibility: false})
+                    .size()
+                    .value();
                 // Set devices
                 setDevices(dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden));
 
@@ -16228,7 +16249,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     };
 
 
-
     /**
      * Refresh data
      */
@@ -16245,10 +16265,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                             return;
                         }
                         angular.extend($scope.dataHolder.devices.all[index],
-                                {metrics: v.metrics},
-                                {imgTrans: false},
-                                {iconPath: dataService.assignElementIcon(v)},
-                                {updateTime: v.updateTime}
+                            {metrics: v.metrics},
+                            {imgTrans: false},
+                            {iconPath: dataService.assignElementIcon(v)},
+                            {updateTime: v.updateTime}
                         );
                         //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
                     });
@@ -16270,17 +16290,24 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all,$scope.autocomplete);
+        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete);
+        // Reset filter q if is input empty
+        if ($scope.dataHolder.devices.filter.q && $scope.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
     }
 
     /**
      * Set filter
      */
     $scope.setFilter = function (filter) {
-        if (!filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
             angular.extend($scope.dataHolder.devices, {filter: {}});
             $cookies.filterElements = angular.toJson({});
-        } else {
+        } else {// Set filter
             angular.extend($scope.dataHolder.devices, {filter: filter});
             $cookies.filterElements = angular.toJson(filter);
         }
@@ -16316,8 +16343,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param index -  is the index of the $item in $part
      * @param helper - is an object which contains the jqLite/jQuery object (as property element) of what is being dragged around
      */
-    $scope.dragDropStart = function(item, part, index, helper){
-        angular.element('#' +  helper.element.context.id).addClass('dd-on-start');
+    $scope.dragDropStart = function (item, part, index, helper) {
+        angular.element('#' + helper.element.context.id).addClass('dd-on-start');
         //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
 
 
@@ -16330,11 +16357,11 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param indexFrom -  is the previous index of the $item in $partFrom
      * @param indexTo -  is the index of the $item in $partTo
      */
-    $scope.dragDropSort = function(item, partFrom, partTo, indexFrom, indexTo){
+    $scope.dragDropSort = function (item, partFrom, partTo, indexFrom, indexTo) {
         //console.log(partFrom)
         var result = [];
-        angular.forEach(partFrom, function(v,k){
-            var obj = {id: v.id,position: k};
+        angular.forEach(partFrom, function (v, k) {
+            var obj = {id: v.id, position: k};
             result.push(obj);
 
         });
@@ -16350,7 +16377,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
             if ($scope.dataHolder.devices.all[index]) {
                 angular.extend($scope.dataHolder.devices.all[index],
-                        {imgTrans: true}
+                    {imgTrans: true}
                 );
             }
 
@@ -16430,10 +16457,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-         //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
+        //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
         //if (run) {
-            $scope.runCmd(cmd);
-       // }
+        $scope.runCmd(cmd);
+        // }
 
         //return cmd;
     };
@@ -16467,9 +16494,19 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             return;
         }
         // Collection
-        if ('tag' in $scope.dataHolder.devices.filter) {
+        if ('tag' in $scope.dataHolder.devices.filter) {// Filter by tag
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
                 if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
+                    return v;
+                }
+            });
+        } else if ('q' in $scope.dataHolder.devices.filter) {// Filter by query
+            //angular.element('#input_search').focus();
+            // Set autcomplete term
+            $scope.autocomplete.term = $scope.dataHolder.devices.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete), 'id');
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function (v) {
+                if (searchResult[v.id]) {
                     return v;
                 }
             });
@@ -16480,7 +16517,13 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             if ($scope.routeMatch('/dashboard')) {
                 $scope.dataHolder.devices.noDashboard = true;
             } else {
-                $scope.dataHolder.devices.noDevices = true;
+                if ($scope.dataHolder.devices.filter.q) {
+                    $scope.dataHolder.devices.noSearch = true;
+
+                } else {
+                    $scope.dataHolder.devices.noDevices = true;
+                }
+
             }
         }
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
@@ -16497,10 +16540,10 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
     $scope.widgetChart = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
-        hasURL : false,
-        intchartUrl : '',
-        url : {},
-        time : 0,
+        hasURL: false,
+        intchartUrl: '',
+        url: {},
+        time: 0,
         chartOptions: {
             // Chart.js options can go here.
             //responsive: true
@@ -16508,13 +16551,13 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
     };
 
     /**
-      * Reload chart url
-      */
+     * Reload chart url
+     */
     $scope.reloadUrl = function () {
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var device = response.data.data;
 
-            if($scope.widgetChart.time < device.metrics.intchartTime){
+            if ($scope.widgetChart.time < device.metrics.intchartTime) {
                 $scope.widgetChart.find = device;
                 $scope.widgetChart.intchartUrl = device.metrics.intchartUrl + '&' + new Date().getTime();
                 $scope.widgetChart.time = device.metrics.intchartTime;
@@ -16524,35 +16567,47 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
     };
 
     /**
-      * Load device
-      */
+     * Load device
+     */
     $scope.loadDeviceUrl = function () {
         $scope.widgetChart.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
 
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
-                var device = response.data.data;
-                if (!device) {
-                    $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-                    return;
-                }
-                $scope.widgetChart.find = device;
+            var device = response.data.data;
+            if (!device) {
+                $scope.widgetChart.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
+                return;
+            }
+            $scope.widgetChart.find = device;
 
-                if (!device.metrics.intchartUrl){
-                    $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
-                    return;
-                }
+            if (!device.metrics.intchartUrl) {
+                $scope.widgetChart.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
+                return;
+            }
 
-                $scope.widgetChart.hasURL = true;
-                $scope.widgetChart.intchartUrl = device.metrics.intchartUrl;
-                $scope.widgetChart.time = device.metrics.intchartTime;
-                $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
+            $scope.widgetChart.hasURL = true;
+            $scope.widgetChart.intchartUrl = device.metrics.intchartUrl;
+            $scope.widgetChart.time = device.metrics.intchartTime;
+            $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
 
-                $scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
+            $scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
 
-                $scope.widgetChart.alert = {message: false};
+            $scope.widgetChart.alert = {message: false};
 
-            }, function (error) {
-            $scope.widgetChart.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+        }, function (error) {
+            $scope.widgetChart.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
     };
 
@@ -16580,21 +16635,37 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
     $scope.loadDeviceHistory = function () {
         var device = !_.isEmpty($scope.dataHolder.devices.byId) ? $scope.dataHolder.devices.byId : $scope.dataHolder.devices.find;
         if (!device) {
-            $scope.widgetHistory.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetHistory.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetHistory.find = device;
-        $scope.widgetHistory.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+        $scope.widgetHistory.alert = {
+            message: $scope._t('loading'),
+            status: 'alert-warning',
+            icon: 'fa-spinner fa-spin'
+        };
         dataFactory.getApi('history', '/' + device.id + '?show=24', true).then(function (response) {
             $scope.widgetHistory.alert = {message: false};
             if (!response.data.data.deviceHistory) {
-                $scope.widgetHistory.alert = {message: $scope._t('no_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                $scope.widgetHistory.alert = {
+                    message: $scope._t('no_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
                 return;
             }
             $scope.widgetHistory.alert = {message: false};
             $scope.widgetHistory.chartData = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors);
         }, function (error) {
-            $scope.widgetHistory.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetHistory.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
 
     };
@@ -16606,7 +16677,7 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
  * The controller that handles a device events.
  * @class ElementEventController
  */
-myAppController.controller('ElementEventController', function ($scope,$filter, dataFactory, dataService, _) {
+myAppController.controller('ElementEventController', function ($scope, $filter, dataFactory, dataService, _) {
     $scope.widgetEvent = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
@@ -16620,16 +16691,24 @@ myAppController.controller('ElementEventController', function ($scope,$filter, d
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         console.log(device)
         if (_.isEmpty(device)) {
-            $scope.widgetEvent.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetEvent.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetEvent.find = device[0];
         var urlParam = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
         dataFactory.getApi('notifications', urlParam, true).then(function (response) {
-           // console.log(response.data.data.notifications.slice(1,10))
+            // console.log(response.data.data.notifications.slice(1,10))
             $scope.widgetEvent.collection = response.data.data.notifications;
         }, function (error) {
-            $scope.widgetEvent.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetEvent.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
 
     };
@@ -16655,7 +16734,11 @@ myAppController.controller('ElementSwitchMultilevelController', function ($scope
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (!device) {
-            $scope.widgetSwitchMultilevel.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSwitchMultilevel.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetSwitchMultilevel.find = device[0];
@@ -16684,7 +16767,11 @@ myAppController.controller('ElementThermostatController', function ($scope) {
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (!device) {
-            $scope.widgetSwitchMultilevel.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSwitchMultilevel.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetThermostat.find = device[0];
@@ -16754,11 +16841,11 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         });
 
         $('#wheel_picker').click(function (e) { // click event handler
-           // bCanPreview = true;//!bCanPreview;
+            // bCanPreview = true;//!bCanPreview;
             if (bCanPreview) {
                 var cmdColor = $('#rgbVal').val().split(',');
                 var cmd = input.id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
-                var rgbColors = 'rgb('+ cmdColor[0]+',' + cmdColor[1] + ',' + cmdColor[2] +')';
+                var rgbColors = 'rgb(' + cmdColor[0] + ',' + cmdColor[1] + ',' + cmdColor[2] + ')';
                 var rgbColorsObj = {
                     r: cmdColor[0],
                     g: cmdColor[1],
@@ -16767,14 +16854,18 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
                 $scope.widgetSwitchRGBW.process = true;
                 dataFactory.runApiCmd(cmd).then(function (response) {
                     var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
-                   //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
-                    angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics.color,rgbColorsObj);
-                    angular.extend(input.metrics.color,rgbColorsObj);
+                    //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
+                    angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
+                    angular.extend(input.metrics.color, rgbColorsObj);
                     $scope.widgetSwitchRGBW.process = false;
                     $scope.widgetSwitchRGBW.selectedColor = rgbColors;
                 }, function (error) {
                     $scope.widgetSwitchRGBW.process = false;
-                    $scope.widgetSwitchRGBW.alert = {message: $scope._t('error_update_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                    $scope.widgetSwitchRGBW.alert = {
+                        message: $scope._t('error_update_data'),
+                        status: 'alert-danger',
+                        icon: 'fa-exclamation-triangle'
+                    };
                 });
             }
         });
@@ -16787,7 +16878,11 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
-            $scope.widgetSwitchRGBW.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSwitchRGBW.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetSwitchRGBW.find = device[0];
@@ -16818,12 +16913,20 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
             arr[0] = response.data.data;
             $scope.widgetSensorMultiline.find = dataService.getDevicesData(arr).value()[0];
             if (_.isEmpty(response.data.data.metrics.sensors)) {
-                $scope.widgetSensorMultiline.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                $scope.widgetSensorMultiline.alert = {
+                    message: $scope._t('no_data'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
+                };
                 return;
             }
-           $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
+            $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
         }, function (error) {
-            $scope.widgetSensorMultiline.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSensorMultiline.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
     };
     $scope.loadDeviceId();
@@ -16874,7 +16977,11 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
-            $scope.widgetCamera.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetCamera.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetCamera.find = device[0];
@@ -16903,7 +17010,11 @@ myAppController.controller('ElementTextController', function ($scope) {
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
-            $scope.widgetText.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetText.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetText.find = device[0];
@@ -16929,7 +17040,11 @@ myAppController.controller('ElementOpenWeatherController', function ($scope) {
     $scope.loadDeviceId = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
-            $scope.widgetOpenWeather.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetOpenWeather.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             return;
         }
         $scope.widgetOpenWeather.find = device[0];
@@ -16959,26 +17074,34 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var device = response.data.data;
             if (_.isEmpty(device)) {
-                $scope.widgetClimateControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                $scope.widgetClimateControl.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
                 return;
             }
             $scope.widgetClimateControl.find = device;
             $scope.widgetClimateControl.rooms = _.chain(device.metrics.rooms)
-                    .flatten()
-                    .filter(function (v) {
-                        angular.extend(v,
-                                {roomTitle: $scope.dataHolder.devices.rooms[v.room].title},
-                                {roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src},
-                                {sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null},
-                                {scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null}
-                        );
-                        return v;
-                    })
-                    .value();
+                .flatten()
+                .filter(function (v) {
+                    angular.extend(v,
+                        {roomTitle: $scope.dataHolder.devices.rooms[v.room].title},
+                        {roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src},
+                        {sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null},
+                        {scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null}
+                    );
+                    return v;
+                })
+                .value();
 
 
         }, function (error) {
-            $scope.widgetClimateControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetClimateControl.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
     };
     $scope.loadDeviceId();
@@ -16992,7 +17115,11 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
             $scope.widgetClimateControl.alert = {message: false};
             $scope.loadDeviceId();
         }, function (error) {
-            $scope.widgetClimateControl.alert = {message: $scope._t('error_update_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetClimateControl.alert = {
+                message: $scope._t('error_update_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
             $scope.loading = false;
         });
 
@@ -17016,14 +17143,22 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var lastTriggerList = response.data.data.metrics.lastTriggerList;
             if (_.isEmpty(lastTriggerList)) {
-                $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+                $scope.widgetSecurityControl.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
                 return;
             }
 
             $scope.widgetSecurityControl.find = lastTriggerList;
 
         }, function (error) {
-            $scope.widgetSecurityControl.alert = {message: $scope._t('error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
+            $scope.widgetSecurityControl.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
     };
     $scope.loadDeviceId();
@@ -17047,7 +17182,7 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg,dataFactory, dataService, myCache) {
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg, dataFactory, dataService, myCache) {
     $scope.room = {};
 
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
@@ -17063,7 +17198,7 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
             $scope.loading = false;
             // Success - location
             if (location.state === 'fulfilled') {
-               $scope.room = dataService.getRooms([location.value.data.data]).value()[0];
+                $scope.room = dataService.getRooms([location.value.data.data]).value()[0];
             }
         });
     };
@@ -17075,7 +17210,7 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, cfg,dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, cfg, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -17152,7 +17287,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.searchMe = function () {
         $scope.suggestions = [];
         if ($scope.search.text.length >= 2) {
-            findText($scope.tagList, $scope.search.text,$scope.elementId.input.tags);
+            findText($scope.tagList, $scope.search.text, $scope.elementId.input.tags);
         }
     };
 
@@ -17282,7 +17417,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             var re = new RegExp(search, "ig");
             var s = re.test(n[i]);
             if (s
-                && (! _.isArray(exclude) || exclude.indexOf(n[i]) === -1)) {
+                && (!_.isArray(exclude) || exclude.indexOf(n[i]) === -1)) {
                 $scope.suggestions.push(n[i]);
                 gotText = true;
             }
@@ -17374,23 +17509,23 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     $scope.updateWithCustomIcon = function () {
-        var customicons = function(icons,custom){
+        var customicons = function (icons, custom) {
             var obj = {};
-            if(_.isEmpty(custom)){
+            if (_.isEmpty(custom)) {
                 return obj;
-            }else if(icons['default']){
+            } else if (icons['default']) {
                 return custom;
-            }else{
+            } else {
                 obj['level'] = custom;
                 return obj;
             }
         }
         var input = {
-            customicons: customicons($scope.icons.all.default,$scope.icons.all.custom)
+            customicons: customicons($scope.icons.all.default, $scope.icons.all.custom)
         };
         var id = $scope.elementId.input.id;
         /*console.log(input)
-        return;*/
+         return;*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         dataFactory.putApi('customicon', id, input, '?icon').then(function (response) {
             $scope.icons.selected = false;
@@ -17418,38 +17553,38 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     /*$scope.checkUploadedFile = function (files) {
-        // Extends files object with a new property
-        files[0].newName = dataService.uploadFileNewName(files[0].name);
-        // Check allowed file formats
-        //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
-        if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
-            alertify.alertError(
-                    $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
-                    $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
-                    );
-            return;
+     // Extends files object with a new property
+     files[0].newName = dataService.uploadFileNewName(files[0].name);
+     // Check allowed file formats
+     //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
+     if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+     alertify.alertError(
+     $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
+     $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
+     );
+     return;
 
-        }
-        // Check allowed file size
-        if (files[0].size > cfg.upload.icon.size) {
-            alertify.alertError(
-                    $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
-                    $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
-                    );
-            return;
+     }
+     // Check allowed file size
+     if (files[0].size > cfg.upload.icon.size) {
+     alertify.alertError(
+     $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
+     $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
+     );
+     return;
 
-        }
-        // Check if uploaded filename already exists
-        if (_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-            // Displays a confirm dialog and on OK atempt to upload file
-            alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
-                uploadFile(files);
-            });
-        } else {
-            uploadFile(files);
-        }
+     }
+     // Check if uploaded filename already exists
+     if (_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
+     // Displays a confirm dialog and on OK atempt to upload file
+     alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
+     uploadFile(files);
+     });
+     } else {
+     uploadFile(files);
+     }
 
-    };*/
+     };*/
     /// --- Private functions --- ///
 
     /**
@@ -17459,77 +17594,77 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
      * @returns {undefined}
      */
     /*function uploadFile(files) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-        // Clear all alerts and file name selected
-        alertify.dismissAll();
-        // Set local variables
-        var fd = new FormData();
-        var input = {file: files[0].name, device: []};
-        // Set selected file name
-        $scope.icons.uploadedFileName = files[0].name;
-        // Set form data
-        fd.append('files_files', files[0]);
+     $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
+     // Clear all alerts and file name selected
+     alertify.dismissAll();
+     // Set local variables
+     var fd = new FormData();
+     var input = {file: files[0].name, device: []};
+     // Set selected file name
+     $scope.icons.uploadedFileName = files[0].name;
+     // Set form data
+     fd.append('files_files', files[0]);
 
-        // Atempt to upload a file
-        dataFactory.getApiLocal('icons.json').then(function (response) {
-            $timeout(function () {
-                if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-                    $scope.icons.uploaded.push({file: files[0].name});
-                }
-                $scope.icons.all.custom[$scope.icons.selected] = files[0].name;
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_upload')});
-            }, 1000);
+     // Atempt to upload a file
+     dataFactory.getApiLocal('icons.json').then(function (response) {
+     $timeout(function () {
+     if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
+     $scope.icons.uploaded.push({file: files[0].name});
+     }
+     $scope.icons.all.custom[$scope.icons.selected] = files[0].name;
+     $scope.loading = false;
+     dataService.showNotifier({message: $scope._t('success_upload')});
+     }, 1000);
 
-        }, function (error) {
-            alertify.alertError($scope._t('error_upload'));
-            $scope.loading = false;
-        });
-    }
-    ;*/
+     }, function (error) {
+     alertify.alertError($scope._t('error_upload'));
+     $scope.loading = false;
+     });
+     }
+     ;*/
 
     /**
      * todo: deprecated
      */
     /*function updateUploaded(input) {
-        var output = [];
-        angular.forEach(input.custom_icons, function (v, k) {
+     var output = [];
+     angular.forEach(input.custom_icons, function (v, k) {
 
-            var index = _.findIndex($scope.icons.uploaded, {file: v});
-            if (index === -1) {
-                return;
-            }
-            if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
-                $scope.icons.uploaded[index].device.push(input.id);
-            }
-            if (!_.findWhere(output, {file: v})) {
-                output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
-            }
-        });
-        console.log(output);
-    }
-    ;*/
+     var index = _.findIndex($scope.icons.uploaded, {file: v});
+     if (index === -1) {
+     return;
+     }
+     if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
+     $scope.icons.uploaded[index].device.push(input.id);
+     }
+     if (!_.findWhere(output, {file: v})) {
+     output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
+     }
+     });
+     console.log(output);
+     }
+     ;*/
 
     /**
      * todo: deprecated
      */
     /*function removeDeviceFromUploaded(input) {
-        var output = [];
-        angular.forEach(input.isset_icons, function (v, k) {
-            var index = _.findIndex($scope.icons.uploaded, {file: v});
-            if (index === -1) {
-                return;
-            }
-            if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
-                $scope.icons.uploaded[index].device.push(input.id);
-            }
-            if (!_.findWhere(output, {file: v})) {
-                output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
-            }
-        });
-        console.log(output);
-    }
-    ;*/
+     var output = [];
+     angular.forEach(input.isset_icons, function (v, k) {
+     var index = _.findIndex($scope.icons.uploaded, {file: v});
+     if (index === -1) {
+     return;
+     }
+     if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
+     $scope.icons.uploaded[index].device.push(input.id);
+     }
+     if (!_.findWhere(output, {file: v})) {
+     output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
+     }
+     });
+     console.log(output);
+     }
+     ;*/
 });
 /**
  * @overview Handles all events.
@@ -17851,7 +17986,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
  * @class AppBaseController
  *
  */
-myAppController.controller('AppBaseController', function ($scope, $rootScope,$filter, $cookies, $q, $route, $http,$timeout,cfg,dataFactory, dataService, _) {
+myAppController.controller('AppBaseController', function ($scope, $rootScope, $filter, $cookies, $q, $route, $http, $timeout, cfg, dataFactory, dataService, _) {
     angular.copy({
         appsCategories: false
     }, $scope.expand);
@@ -17868,6 +18003,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             },
             all: [],
             collection: [],
+            noSearch: false,
             featured: [],
             categories: {},
             ids: {},
@@ -17880,7 +18016,15 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 id: false,
                 name: ''
             },
-            orderBy: ($cookies.orderByAppsLocal ? $cookies.orderByAppsLocal : 'titleASC')
+            orderBy: ($cookies.orderByAppsLocal ? $cookies.orderByAppsLocal : 'titleASC'),
+            autocomplete: {
+                source: [],
+                term: '',
+                searchInKeys: 'id,title,description,author',
+                returnKeys: 'id,title,author,icon,moduleName,hasInstance',
+                strLength: 2,
+                resultLength: 10
+            }
         },
         onlineModules: {
             connect: {
@@ -17895,6 +18039,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 appsCatFeatured: 0,
                 featured: 0
             },
+            noSearch: false,
             ratingRange: _.range(1, 6),
             collection: [],
             all: {},
@@ -17902,7 +18047,15 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             ids: {},
             filter: {},
             hideInstalled: ($cookies.hideInstalledApps ? $filter('toBool')($cookies.hideInstalledApps) : false),
-            orderBy: ($cookies.orderByAppsOnline ? $cookies.orderByAppsOnline : 'creationTimeDESC')
+            orderBy: ($cookies.orderByAppsOnline ? $cookies.orderByAppsOnline : 'creationTimeDESC'),
+            autocomplete: {
+                source: [],
+                term: '',
+                searchInKeys: 'id,title,description,author',
+                returnKeys: 'id,title,author,installed,rating,icon',
+                strLength: 2,
+                resultLength: 10
+            }
         },
         tokens: {
             all: {}
@@ -17914,7 +18067,17 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             cnt: {
                 modules: 0
             },
-            orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC')
+            noSearch: false,
+            filter: {},
+            orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC'),
+            autocomplete: {
+                source: [],
+                term: '',
+                searchInKeys: 'id,title,description,moduleId',
+                returnKeys: 'id,title,active,moduleId',
+                strLength: 2,
+                resultLength: 10
+            }
         }
     };
 
@@ -17928,30 +18091,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
     }
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     $scope.onlineMediaUrl = $scope.cfg.online_module_img_url;
-
-    /**
-     * todo: deprecated
-     * Check if online modules are loaded
-     */
-    /*$scope.checkOnlineModules = function () {
-        if ($scope.routeMatch('/apps/online')) {
-            $timeout(function(){
-                $scope.loading = false;
-                $http.pendingRequests.forEach(function(v) {
-                    if(v.url === cfg.online_module_url){
-                        $scope.dataHolder.onlineModules.connect = {
-                            status: false,
-                                icon: 'fa-exclamation-triangle text-danger'
-                        };
-                        $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection'), status: 'alert-warning', icon: 'fa-wifi'};
-                    }
-                });
-            }, 10000);
-
-
-        }
-    };*/
-    //$scope.checkOnlineModules();
 
     /**
      * Load tokens
@@ -17974,24 +18113,28 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
             $scope.dataHolder.onlineModules.alert = false;
             /*$scope.dataHolder.onlineModules.connect.status = true;
-            $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*/
+             $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*/
             $scope.dataHolder.onlineModules.connect = {
                 status: true,
                 icon: 'fa-globe'
             };
             setOnlineModules(response.data.data)
         }, function (error) {
-            if(error.status === 0){
+            if (error.status === 0) {
                 $scope.dataHolder.onlineModules.connect = {
                     status: false,
                     icon: 'fa-exclamation-triangle text-danger'
                 };
-                $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+                $scope.dataHolder.onlineModules.alert = {
+                    message: $scope._t('no_internet_connection', {__sec__: (cfg.pending_remote_limit / 1000)}),
+                    status: 'alert-warning',
+                    icon: 'fa-wifi'
+                };
 
-            }else{
+            } else {
                 alertify.alertError($scope._t('error_load_data'));
             }
-        }).finally(function(){
+        }).finally(function () {
             $scope.loading = false;
         });
     };
@@ -18008,7 +18151,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         ];
 
         $q.allSettled(promises).then(function (response) {
-            if (!$scope.routeMatch('/apps/online')){
+            if (!$scope.routeMatch('/apps/online')) {
                 $scope.loading = false;
             }
 
@@ -18032,8 +18175,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
                 var cat = categories.value.data.data;
                 if (cat) {
                     $scope.dataHolder.modules.categories = cat[$scope.lang] ? _.indexBy(cat[$scope.lang], 'id') : _.indexBy(cat[$scope.cfg.lang], 'id');
-                    angular.forEach($scope.dataHolder.modules.categories,function (v,k) {
-                        angular.extend($scope.dataHolder.modules.categories[k],{onlineModules: []});
+                    angular.forEach($scope.dataHolder.modules.categories, function (v, k) {
+                        angular.extend($scope.dataHolder.modules.categories[k], {onlineModules: []});
                     });
                 }
             }
@@ -18049,7 +18192,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
             $scope.loadOnlineModules(tokens);
         });
     };
-
 
 
     /**
@@ -18085,73 +18227,73 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         // Reset featured cnt
         $scope.dataHolder.modules.cnt.featured = 0;
         var modules = _.chain(data)
-                .flatten()
-                .filter(function (item) {
-                    item.title = item.defaults.title;
-                    item.description = item.defaults.description;
-                    // Has already instance ?
-                    item.hasInstance = $scope.dataHolder.instances.cnt.modules[item.id]||0;
-                    // IDSs settings
-                    $scope.dataHolder.modules.ids[item.id] = {
-                        version: item.version,
-                        icon: $scope.moduleMediaUrl + item.id + '/' + item.icon,
-                        singleton: item.singleton,
-                        title: item.title
-                    };
-                    /**
-                     * todo: Deprecated
-                     */
+            .flatten()
+            .filter(function (item) {
+                item.title = item.defaults.title;
+                item.description = item.defaults.description;
+                // Has already instance ?
+                item.hasInstance = $scope.dataHolder.instances.cnt.modules[item.id] || 0;
+                // IDSs settings
+                $scope.dataHolder.modules.ids[item.id] = {
+                    version: item.version,
+                    icon: $scope.moduleMediaUrl + item.id + '/' + item.icon,
+                    singleton: item.singleton,
+                    title: item.title
+                };
+                /**
+                 * todo: Deprecated
+                 */
                     //$scope.dataHolder.modules.ids[item.id] = {version: item.version};
                     //$scope.dataHolder.modules.singleton[item.id] = {singelton: item.singleton};
                     //$scope.dataHolder.modules.imgs[item.id] = item.icon;
-                    var isHidden = false;
-                    var items = [];
-                    if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                        if ($scope.user.role !== 1) {
-                            isHidden = true;
-                        } else {
-                            isHidden = ($scope.user.expert_view ? false : true);
-                        }
-
-                    }
-                    // Hides video item
-                    if (item.category === 'surveillance') {
-                        $scope.dataHolder.modules.cameraIds.push(item.id);
+                var isHidden = false;
+                var items = [];
+                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
+                    if ($scope.user.role !== 1) {
                         isHidden = true;
-                    }
-                    // Hides singelton item with instance
-                    if (item.singleton && item.hasInstance) {
-                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
                     }
 
-                    if (!isHidden) {
-                        var findLocationStr = item.location.split('/');
-                        if (findLocationStr[0] === 'userModules') {
-                            angular.extend(item, {custom: true});
-                        } else {
-                            angular.extend(item, {custom: false});
-                        }
-                        if (item.category && $scope.dataHolder.modules.cats.indexOf(item.category) === -1) {
-                            $scope.dataHolder.modules.cats.push(item.category);
-                        }
-                        if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
-                            angular.extend(item, {featured: true});
-                            // Count featured apps
-                            $scope.dataHolder.modules.cnt.featured += 1;
-                        } else {
-                            angular.extend(item, {featured: false});
-                        }
-                         
-                        //Tooltip description
-                        angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
+                }
+                // Hides video item
+                if (item.category === 'surveillance') {
+                    $scope.dataHolder.modules.cameraIds.push(item.id);
+                    isHidden = true;
+                }
+                // Hides singelton item with instance
+                if (item.singleton && item.hasInstance) {
+                    isHidden = true;
+                }
 
-                        if(item.featured) {
-                            $scope.dataHolder.modules.featured.push(item);
-                        }
-
-                        return items;
+                if (!isHidden) {
+                    var findLocationStr = item.location.split('/');
+                    if (findLocationStr[0] === 'userModules') {
+                        angular.extend(item, {custom: true});
+                    } else {
+                        angular.extend(item, {custom: false});
                     }
-                });
+                    if (item.category && $scope.dataHolder.modules.cats.indexOf(item.category) === -1) {
+                        $scope.dataHolder.modules.cats.push(item.category);
+                    }
+                    if ($scope.getCustomCfgArr('featured_apps').indexOf(item.moduleName) > -1) {
+                        angular.extend(item, {featured: true});
+                        // Count featured apps
+                        $scope.dataHolder.modules.cnt.featured += 1;
+                    } else {
+                        angular.extend(item, {featured: false});
+                    }
+
+                    //Tooltip description
+                    angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
+
+                    if (item.featured) {
+                        $scope.dataHolder.modules.featured.push(item);
+                    }
+
+                    return items;
+                }
+            });
 
         // Count apps in categories
         $scope.dataHolder.modules.cnt.appsCat = modules.countBy(function (v) {
@@ -18160,15 +18302,34 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
 
         // Count featured apps in categories
         $scope.dataHolder.modules.cnt.appsCatFeatured = modules.countBy(function (v) {
-            if(v.featured) {
+            if (v.featured) {
                 return v.category;
             }
         }).value();
 
         // Count all apps
         $scope.dataHolder.modules.cnt.apps = modules.size().value();
-        $scope.dataHolder.modules.collection = modules.where($scope.dataHolder.modules.filter).value();
         $scope.dataHolder.modules.all = modules.value();
+
+        // Collection
+        if ('q' in $scope.dataHolder.modules.filter) {// Filter by query
+            // Set autcomplete term
+            $scope.dataHolder.modules.autocomplete.term = $scope.dataHolder.modules.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.modules.all, $scope.dataHolder.modules.autocomplete), 'id');
+            if (_.isEmpty(searchResult)) {
+                $scope.dataHolder.modules.noSearch = true;
+            }
+            $scope.dataHolder.modules.collection = _.filter($scope.dataHolder.modules.all, function (v) {
+                if (searchResult[v.id]) {
+                    return v;
+                }
+            });
+
+        } else {
+            $scope.dataHolder.modules.collection = modules.where($scope.dataHolder.modules.filter).value();
+        }
+
+
         // Count collection
         $scope.dataHolder.modules.cnt.collection = _.size($scope.dataHolder.modules.collection);
     }
@@ -18183,77 +18344,81 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         $scope.dataHolder.onlineModules.cnt.featured = 0;
         $scope.slider.cfg.max = 0;
         var onlineModules = _.chain(data)
-                .flatten()
-                .filter(function (item) {
-                    // Replacing categories
-                    if(cfg.replace_online_cat[item.category]){
-                        item.category = cfg.replace_online_cat[item.category];
+            .flatten()
+            .filter(function (item) {
+                // Replacing categories
+                if (cfg.replace_online_cat[item.category]) {
+                    item.category = cfg.replace_online_cat[item.category];
+                }
+                var isHidden = false;
+                var obj = {};
+                $scope.dataHolder.onlineModules.ids[item.modulename] = {
+                    version: item.version,
+                    file: item.file,
+                    patchnotes: item.patchnotes
+                };
+                if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
+                    if ($scope.user.role !== 1) {
+                        isHidden = true;
+                    } else {
+                        isHidden = ($scope.user.expert_view ? false : true);
                     }
-                    var isHidden = false;
-                    var obj = {};
-                    $scope.dataHolder.onlineModules.ids[item.modulename] = {version: item.version, file: item.file, patchnotes: item.patchnotes};
-                    if ($scope.getHiddenApps().indexOf(item.modulename) > -1) {
-                        if ($scope.user.role !== 1) {
-                            isHidden = true;
+                }
+                if ($scope.dataHolder.modules.ids[item.modulename]) {
+                    item['status'] = 'installed';
+                    if ($scope.dataHolder.modules.ids[item.modulename].version !== item.version) {
+                        if (!$scope.dataHolder.modules.ids[item.modulename].version && !item.version) {
+                            item['status'] = 'error';
+                        } else if (!$scope.dataHolder.modules.ids[item.modulename].version && item.version) {
+                            item['status'] = 'upgrade';
                         } else {
-                            isHidden = ($scope.user.expert_view ? false : true);
-                        }
-                    }
-                    if ($scope.dataHolder.modules.ids[item.modulename]) {
-                        item['status'] = 'installed';
-                        if ($scope.dataHolder.modules.ids[item.modulename].version !== item.version) {
-                            if (!$scope.dataHolder.modules.ids[item.modulename].version && !item.version) {
-                                item['status'] = 'error';
-                            } else if (!$scope.dataHolder.modules.ids[item.modulename].version && item.version) {
-                                item['status'] = 'upgrade';
-                            } else {
-                                var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.toString().split('.'),
-                                        onlineVersion = item.version.toString().split('.');
+                            var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.toString().split('.'),
+                                onlineVersion = item.version.toString().split('.');
 
-                                for (var i = 0; i < localVersion.length; i++) {
-                                    if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
-                                        item['status'] = 'upgrade';
-                                        break;
-                                    }
+                            for (var i = 0; i < localVersion.length; i++) {
+                                if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
+                                    item['status'] = 'upgrade';
+                                    break;
                                 }
                             }
                         }
-                        isHidden = $scope.dataHolder.onlineModules.hideInstalled;
-                    } else {
-                        item['status'] = 'download';
                     }
+                    isHidden = $scope.dataHolder.onlineModules.hideInstalled;
+                } else {
+                    item['status'] = 'download';
+                }
 
-                    $scope.dataHolder.onlineModules.ids[item.modulename].status = item.status;
-                    angular.extend(item, {isHidden: isHidden});
+                $scope.dataHolder.onlineModules.ids[item.modulename].status = item.status;
+                angular.extend(item, {isHidden: isHidden});
 
-                    if (item.featured == 1) {
-                        item.featured = true;
-                        // Count featured apps
-                        $scope.dataHolder.onlineModules.cnt.featured += 1;
-                        $scope.slider.cfg.max += 1;
-                    } else {
-                        item.featured = false;
-                    }
+                if (item.featured == 1) {
+                    item.featured = true;
+                    // Count featured apps
+                    $scope.dataHolder.onlineModules.cnt.featured += 1;
+                    $scope.slider.cfg.max += 1;
+                } else {
+                    item.featured = false;
+                }
 
-                    if(item.featured) {
-                        $scope.dataHolder.onlineModules.featured.push(item)
-                    }
+                if (item.featured) {
+                    $scope.dataHolder.onlineModules.featured.push(item)
+                }
 
-                    item.installedSort = $filter('zeroFill')(item.installed);
-                     //Tooltip description
-                     angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
-                    var hasCat = $scope.dataHolder.modules.categories[item.category];
-                    if(hasCat){
-                        $scope.dataHolder.modules.categories[item.category].onlineModules.push(item);
-                        //console.log($scope.dataHolder.modules.categories[item.category].onlineModules);
-                    }
+                item.installedSort = $filter('zeroFill')(item.installed);
+                //Tooltip description
+                angular.extend(item, {toolTipDescription: $filter('stripTags')(item.description)});
+                var hasCat = $scope.dataHolder.modules.categories[item.category];
+                if (hasCat) {
+                    $scope.dataHolder.modules.categories[item.category].onlineModules.push(item);
+                    //console.log($scope.dataHolder.modules.categories[item.category].onlineModules);
+                }
 
-                    //angular.extend($scope.dataHolder.modules.categories[item.category], {onlineModules: []});
-                    //$scope.dataHolder.modules.categories[item.category].onlineModules = [];
-                    return item;
-                }).reject(function (v) {
-            return v.isHidden === true;
-        });
+                //angular.extend($scope.dataHolder.modules.categories[item.category], {onlineModules: []});
+                //$scope.dataHolder.modules.categories[item.category].onlineModules = [];
+                return item;
+            }).reject(function (v) {
+                return v.isHidden === true;
+            });
         // Count apps in categories
         $scope.dataHolder.onlineModules.cnt.appsCat = onlineModules.countBy(function (v) {
             return v.category;
@@ -18261,15 +18426,35 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
 
         // Count featured apps in categories
         $scope.dataHolder.onlineModules.cnt.appsCatFeatured = onlineModules.countBy(function (v) {
-            if(v.featured) {
+            if (v.featured) {
                 return v.category;
             }
         }).value();
 
         // Count all apps
-        $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
-        $scope.dataHolder.onlineModules.collection = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
         $scope.dataHolder.onlineModules.all = onlineModules.value();
+        $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
+
+        // Collection
+        if ('q' in $scope.dataHolder.onlineModules.filter) {// Filter by query
+            // Set autcomplete term
+            $scope.dataHolder.onlineModules.autocomplete.term = $scope.dataHolder.onlineModules.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.onlineModules.all, $scope.dataHolder.onlineModules.autocomplete), 'id');
+            if (_.isEmpty(searchResult)) {
+                $scope.dataHolder.onlineModules.noSearch = true;
+            }
+            $scope.dataHolder.onlineModules.collection = _.filter($scope.dataHolder.onlineModules.all, function (v) {
+                if (searchResult[v.id]) {
+                    return v;
+                }
+            });
+
+        } else {
+            $scope.dataHolder.onlineModules.collection = onlineModules.where($scope.dataHolder.onlineModules.filter).value();
+            //$scope.dataHolder.onlineModules.collection = modules.where($scope.dataHolder.onlineModules.filter).value();
+        }
+
+
         // Count collection
         $scope.dataHolder.onlineModules.cnt.collection = _.size($scope.dataHolder.onlineModules.collection);
         $scope.loading = false;
@@ -18283,8 +18468,9 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
             return v.moduleId;
         });
+
         _.filter(data, function (v) {
-            if(!$scope.dataHolder.instances.groups[v.moduleId]){
+            if (!$scope.dataHolder.instances.groups[v.moduleId]) {
                 $scope.dataHolder.instances.groups[v.moduleId] = {
                     id: v.id,
                     moduleId: v.moduleId,
@@ -18297,68 +18483,68 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope,$fi
         $scope.dataHolder.instances.all = _.chain(data)
             .flatten()
             .reject(function (v) {
-            if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
-                if ($scope.user.role !== 1) {
-                    return true;
-                } else {
-                    return ($scope.user.expert_view ? false : true);
-                }
+                if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
+                    if ($scope.user.role !== 1) {
+                        return true;
+                    } else {
+                        return ($scope.user.expert_view ? false : true);
+                    }
 
-            } else {
-                return false;
-            }
-        }).filter(function(v){
-                if($scope.dataHolder.instances.groups[v.moduleId]){
+                } else {
+                    return false;
+                }
+            }).filter(function (v) {
+                if ($scope.dataHolder.instances.groups[v.moduleId]) {
                     $scope.dataHolder.instances.groups[v.moduleId].instances.push(v);
                 }
                 return v;
             }).value();
+
+        if ('q' in $scope.dataHolder.instances.filter) {// Filter by query
+            // Set autcomplete term
+            $scope.dataHolder.instances.autocomplete.term = $scope.dataHolder.instances.filter.q;
+            var instancesGroup = $scope.dataHolder.instances.groups;
+            // Clear scoupe group
+            $scope.dataHolder.instances.groups = {};
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.instances.all, $scope.dataHolder.instances.autocomplete), 'id');
+            if (_.isEmpty(searchResult)) {
+                $scope.dataHolder.instances.noSearch = true;
+            }
+            _.filter($scope.dataHolder.instances.all, function (v) {
+                if (searchResult[v.id]) {
+                    $scope.dataHolder.instances.groups[v.moduleId] = instancesGroup[v.moduleId];
+                    return v;
+                }
+            });
+
+        }
     }
     ;
-    /**
-     * todo: deprecated
-     * Set instances
-     */
-    /*function setInstances(data) {
-        $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
-                                    return v.moduleId;
-                                });
-        $scope.dataHolder.instances.all = _.reject(data, function (v) {
-            if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
-                if ($scope.user.role !== 1) {
-                    return true;
-                } else {
-                    return ($scope.user.expert_view ? false : true);
-                }
-
-            } else {
-                return false;
-            }
-        });
-    }
-    ;*/
 
 });
+
+/**
+ * @overview Controllers that handle the Local apps.
+ * @author Martin Vach
+ */
+
+
 /**
  * The controller that handles all local APPs actions.
  * @class AppLocalController
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {});
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,author',
-        returnKeys: 'id,title,author,icon,moduleName,hasInstance',
-        strLength: 2,
-        resultLength: 10
-    };
 
     /**
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.modules.all,$scope.autocomplete);
+        $scope.dataHolder.modules.autocomplete.results = dataService.autocomplete($scope.dataHolder.modules.all, $scope.dataHolder.modules.autocomplete);
+        // Reset filter q if is input empty
+        if ($scope.dataHolder.modules.filter.q && $scope.dataHolder.modules.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
     }
     /**
      * Set order by
@@ -18372,10 +18558,13 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
      * Set filter
      */
     $scope.setFilter = function (filter) {
-        if (!filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
             angular.extend($scope.dataHolder.modules, {filter: {}});
             $cookies.filterAppsLocal = angular.toJson({});
-        } else {
+        } else {// Set filter
             angular.extend($scope.dataHolder.modules, {filter: filter});
             $cookies.filterAppsLocal = angular.toJson(filter);
         }
@@ -18425,189 +18614,6 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
     };
 
 });
-
-/**
- * The controller that handles all online APPs actions.
- * @class AppOnlineController
- */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $routeParams,dataFactory, dataService, _) {
-    $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,author',
-        returnKeys: 'id,title,author,installed,rating,icon',
-        strLength: 2,
-        resultLength: 10
-    };
-
-    /**
-     * Renders search result in the list
-     */
-    $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.onlineModules.all,$scope.autocomplete);
-    }
-
-    if($routeParams['category']){
-        var filter = {category:$routeParams['category']};
-        //console.log(filter);
-        angular.extend($scope.dataHolder.onlineModules, {filter: filter});
-        $cookies.filterAppsOnline = angular.toJson(filter);
-        //$scope.setFilter({category:$routeParams['category']});
-
-    }
-
-    /*$scope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
-        console.log('success', evt, absNewUrl, absOldUrl);
-        if($routeParams['category']){
-            var filter = {category:$routeParams['category']};
-            //console.log(filter);
-            angular.extend($scope.dataHolder.onlineModules, {filter: filter});
-            $cookies.filterAppsOnline = angular.toJson(filter);
-            //$scope.setFilter({category:$routeParams['category']});
-
-        }
-    });*/
-
-
-    /**
-     * Set order by
-     */
-    $scope.setOrderBy = function (key) {
-        angular.extend($scope.dataHolder.onlineModules, {orderBy: key});
-        $cookies.orderByAppsOnline = key;
-        $scope.reloadData();
-    };
-
-    /**
-     * Hide installed
-     */
-    $scope.hideInstalled = function (status) {
-        status = $filter('toBool')(status);
-        angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
-        $cookies.hideInstalledApps = status;
-        $scope.reloadData();
-    };
-
-    /**
-     * Set filter
-     */
-    $scope.setFilter = function (filter) {
-        if (!filter) {
-            angular.extend($scope.dataHolder.onlineModules, {filter: {}});
-            $cookies.filterAppsOnline = angular.toJson({});
-        } else {
-            angular.extend($scope.dataHolder.onlineModules, {filter: filter});
-            $cookies.filterAppsOnline = angular.toJson(filter);
-        }
-         $scope.reloadData();
-    };
-
-
-
-    /**
-     * Install module
-     */
-    $scope.installModule = function (module) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
-        var data = {
-            moduleUrl: $scope.cfg.online_module_download_url + module.file
-        };
-        dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
-            dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
-            $scope.loading = false;
-            dataService.showNotifier({message: $scope._t(response.data.data.key)});
-            window.location = '#/module/post/' + module.modulename;
-
-        }, function (error) {
-            $scope.loading = false;
-            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
-            alertify.alertError(message);
-        });
-
-    };
-
-
-});
-
-/**
- * The controller that handles all instances actions.
- * @class AppInstanceController
- */
-myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,moduleId',
-        returnKeys: 'id,title,active,moduleId',
-        strLength: 2,
-        resultLength: 10
-    };
-
-    /**
-     * Expand instances
-     */
-    $scope.expandInstances = function (state) {
-        angular.forEach($scope.expand,function(v,k){
-            $scope.expand[k] = state;
-        });
-        $cookies.instancesExpanded = state;
-    };
-
-    /**
-     * Renders search result in the list
-     */
-    $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all,$scope.autocomplete);
-    }
-
-    /**
-     * Set order by
-     */
-    $scope.setOrderBy = function (key) {
-        angular.extend($scope.dataHolder.instances, {orderBy: key});
-        $cookies.orderByAppsInstances = key;
-        $scope.reloadData();
-    };
-    /**
-     * Activate instance
-     */
-    $scope.activateInstance = function (input, activeStatus) {
-        input.active = activeStatus;
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        if (input.id) {
-            dataFactory.putApi('instances', input.id, input).then(function (response) {
-                $scope.loading = false;
-                //$scope.reloadData();
-                //$route.reload();
-
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-            });
-        }
-
-    };
-
-    /**
-     * Delete instance
-     */
-    $scope.deleteInstance = function (target, input, message) {
-        alertify.confirm(message, function () {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('instances', input.id).then(function (response) {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('delete_successful')});
-                $scope.reloadData();
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_delete_data'));
-            });
-
-        });
-    };
-
-});
 /**
  * The controller that handles local app detail actions.
  * @class AppLocalDetailController
@@ -18630,7 +18636,8 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
             if (category) {
                 $scope.categoryName = category.name;
             }
-        }, function (error) {});
+        }, function (error) {
+        });
     };
 
     /**
@@ -18660,11 +18667,126 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
 
 });
 
+
+/**
+ * @overview Controllers that handle the Online apps.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that handles all online APPs actions.
+ * @class AppOnlineController
+ */
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $location, $routeParams, dataFactory, dataService, _) {
+    $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
+
+    /**
+     * Renders search result in the list
+     */
+    $scope.searchMe = function () {
+        $scope.dataHolder.onlineModules.autocomplete.results = dataService.autocomplete($scope.dataHolder.onlineModules.all, $scope.dataHolder.onlineModules.autocomplete);
+        // Reset filter q if is input empty
+        if ($scope.dataHolder.onlineModules.filter.q && $scope.dataHolder.onlineModules.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
+    }
+
+    if ($routeParams['category']) {
+        var filter = {category: $routeParams['category']};
+        //console.log(filter);
+        angular.extend($scope.dataHolder.onlineModules, {filter: filter});
+        $cookies.filterAppsOnline = angular.toJson(filter);
+        //$scope.setFilter({category:$routeParams['category']});
+
+    }
+
+    /*$scope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
+     console.log('success', evt, absNewUrl, absOldUrl);
+     if($routeParams['category']){
+     var filter = {category:$routeParams['category']};
+     //console.log(filter);
+     angular.extend($scope.dataHolder.onlineModules, {filter: filter});
+     $cookies.filterAppsOnline = angular.toJson(filter);
+     //$scope.setFilter({category:$routeParams['category']});
+
+     }
+     });*/
+
+
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.dataHolder.onlineModules, {orderBy: key});
+        $cookies.orderByAppsOnline = key;
+        $scope.reloadData();
+    };
+
+    /**
+     * Hide installed
+     */
+    $scope.hideInstalled = function (status) {
+        status = $filter('toBool')(status);
+        angular.extend($scope.dataHolder.onlineModules, {hideInstalled: status});
+        $cookies.hideInstalledApps = status;
+        $scope.reloadData();
+    };
+
+    /**
+     * Set filter
+     */
+    $scope.setFilter = function (filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
+            angular.extend($scope.dataHolder.onlineModules, {filter: {}});
+            $cookies.filterAppsOnline = angular.toJson({});
+            $scope.reloadData();
+        } else {
+            angular.extend($scope.dataHolder.onlineModules, {filter: filter});
+            $cookies.filterAppsOnline = angular.toJson(filter);
+            $scope.reloadData();
+            if (!$scope.routeMatch('/apps/online/filter')) {
+                //console.log('Redirect to /apps/online/filter')
+                $location.path('/apps/online/filter');
+            }
+        }
+
+
+    };
+
+
+    /**
+     * Install module
+     */
+    $scope.installModule = function (module) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
+        var data = {
+            moduleUrl: $scope.cfg.online_module_download_url + module.file
+        };
+        dataFactory.installOnlineModule(data, 'online_install').then(function (response) {
+            dataFactory.postToRemote($scope.cfg.online_module_installed_url, {id: module.id});
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t(response.data.data.key)});
+            window.location = '#/module/post/' + module.modulename;
+
+        }, function (error) {
+            $scope.loading = false;
+            var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
+            alertify.alertError(message);
+        });
+
+    };
+
+
+});
+
 /**
  * The controller that handles on-line app detail actions.
  * @class AppOnlineDetailController
  */
-myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, cfg,dataFactory, dataService, _) {
+myAppController.controller('AppOnlineDetailController', function ($scope, $routeParams, $timeout, $location, $route, $filter, myCache, cfg, dataFactory, dataService, _) {
     $scope.local = {
         installed: false,
         alert: false
@@ -18703,7 +18825,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
                 $scope.rating.model.remote_id = response.data.data[0].params.userId;
             }
 
-        }, function (error) {});
+        }, function (error) {
+        });
     };
 
     $scope.loadRemoteAccess();
@@ -18721,7 +18844,8 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             if (category) {
                 $scope.categoryName = category.name;
             }
-        }, function (error) {});
+        }, function (error) {
+        });
     };
     /**
      * Load local modules
@@ -18740,7 +18864,11 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.postToRemote(cfg.online_moduleid_url, {id: id, lang: $scope.lang}).then(function (response) {
             if (_.isEmpty(response.data.data)) {
-                $scope.local.alert = {message: $scope._t('no_data'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                $scope.local.alert = {
+                    message: $scope._t('no_data'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
+                };
                 return;
             }
             $scope.module = response.data.data;
@@ -18748,43 +18876,45 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
             $scope.loadLocalModules({moduleName: $scope.module.modulename});
             $scope.loadCategories($scope.module.category);
         }, function (error) {
-            if(error.status === 0){
+            if (error.status === 0) {
 
-                $scope.local.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+                $scope.local.alert = {
+                    message: $scope._t('no_internet_connection', {__sec__: (cfg.pending_remote_limit / 1000)}),
+                    status: 'alert-warning',
+                    icon: 'fa-wifi'
+                };
 
-            }else{
+            } else {
                 alertify.alertError($scope._t('error_load_data'));
             }
-        }).finally(function(){
+        }).finally(function () {
             $scope.loading = false;
         });
 
 
-
-
         /*dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
-            $scope.dataHolder.onlineModules.alert = false;
-            /!*$scope.dataHolder.onlineModules.connect.status = true;
-             $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*!/
-            $scope.dataHolder.onlineModules.connect = {
-                status: true,
-                icon: 'fa-globe'
-            };
-            setOnlineModules(response.data.data)
-        }, function (error) {
-            if(error.status === 0){
-                $scope.dataHolder.onlineModules.connect = {
-                    status: false,
-                    icon: 'fa-exclamation-triangle text-danger'
-                };
-                $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+         $scope.dataHolder.onlineModules.alert = false;
+         /!*$scope.dataHolder.onlineModules.connect.status = true;
+         $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*!/
+         $scope.dataHolder.onlineModules.connect = {
+         status: true,
+         icon: 'fa-globe'
+         };
+         setOnlineModules(response.data.data)
+         }, function (error) {
+         if(error.status === 0){
+         $scope.dataHolder.onlineModules.connect = {
+         status: false,
+         icon: 'fa-exclamation-triangle text-danger'
+         };
+         $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
 
-            }else{
-                alertify.alertError($scope._t('error_load_data'));
-            }
-        }).finally(function(){
-            $scope.loading = false;
-        });*/
+         }else{
+         alertify.alertError($scope._t('error_load_data'));
+         }
+         }).finally(function(){
+         $scope.loading = false;
+         });*/
     };
     $scope.loadModuleId($routeParams.id);
 
@@ -18872,6 +19002,151 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
     };
 
 });
+
+/**
+ * Apps online featured controller
+ * @class AppOnlineFeaturedController
+ *
+ */
+myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
+
+    $scope.sliderImages = {
+        'Alexa': 'storage/img/slider/Alexa.png',
+        'IntChart': 'storage/img/slider/IntChart.png',
+        'SecurityModule': 'storage/img/slider/SecurityModule.png',
+        'ToggleDevices': 'storage/img/slider/ToggleDevices.png',
+        'ClimateControl': 'storage/img/slider/ClimateControl.png',
+        'NotificationPushover': 'storage/img/slider/NotificationPushover.png',
+        'ImportRemoteHA': 'storage/img/slider/ImportRemoteHA.png',
+        'CustomUserCode': 'storage/img/slider/CustomUserCode.png',
+        'HTTPDevice': 'storage/img/slider/HTTPDevice.png'
+    };
+
+    $scope.prevSlide = function () {
+        $scope.slider.cfg.start -= 1;
+        $scope.slider.cfg.end -= 1;
+        if ($scope.slider.cfg.start < 0) {
+            $scope.slider.cfg.start = 0;
+            $scope.slider.cfg.end = $scope.slider.cfg.show;
+        }
+    };
+
+    $scope.nextSlide = function () {
+        $scope.slider.cfg.start += 1;
+        $scope.slider.cfg.end += 1;
+        if ($scope.slider.cfg.end > $scope.slider.cfg.max) {
+            $scope.slider.cfg.start = 0;
+            $scope.slider.cfg.end = $scope.slider.cfg.show;
+        }
+    };
+
+
+});
+
+/**
+ * @overview Controllers that handle the Instances.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that handles all instances actions.
+ * @class AppInstanceController
+ */
+myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
+    $scope.dataHolder.instances.filter = ($cookies.filterAppsInstances ? angular.fromJson($cookies.filterAppsInstances) : {});
+
+    /**
+     * Expand instances
+     */
+    $scope.expandInstances = function (state) {
+        angular.forEach($scope.expand, function (v, k) {
+            $scope.expand[k] = state;
+        });
+        $cookies.instancesExpanded = state;
+    };
+
+    /**
+     * Renders search result in the list
+     */
+    $scope.searchMe = function () {
+        $scope.dataHolder.instances.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all, $scope.dataHolder.instances.autocomplete);
+        if ($scope.dataHolder.instances.filter.q && $scope.dataHolder.instances.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
+    }
+
+    /**
+     * Set filter
+     */
+    $scope.setFilter = function (filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
+            angular.extend($scope.dataHolder.instances, {filter: {}});
+            $cookies.filterAppsInstances = angular.toJson({});
+        } else {// Set filter
+            angular.extend($scope.dataHolder.instances, {filter: filter});
+            $cookies.filterAppsInstances = angular.toJson(filter);
+        }
+        $scope.reloadData();
+    };
+
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.dataHolder.instances, {orderBy: key});
+        $cookies.orderByAppsInstances = key;
+        $scope.reloadData();
+    };
+    /**
+     * Activate instance
+     */
+    $scope.activateInstance = function (input, activeStatus) {
+        input.active = activeStatus;
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                $scope.loading = false;
+                //$scope.reloadData();
+                //$route.reload();
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+            });
+        }
+
+    };
+
+    /**
+     * Delete instance
+     */
+    $scope.deleteInstance = function (target, input, message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('instances', input.id).then(function (response) {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.reloadData();
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_delete_data'));
+            });
+
+        });
+    };
+
+});
+
+
+
+/**
+ * @overview Controllers that handle the Alpaca.
+ * @author Martin Vach
+ */
+
 /**
  * The controller that handles Alpaca forms inputs and outputs.
  * @class AppModuleAlpacaController
@@ -18924,7 +19199,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             if (category) {
                 $scope.moduleId.categoryName = category.name;
             }
-        }, function (error) {});
+        }, function (error) {
+        });
     };
 
     /**
@@ -19259,226 +19535,6 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     ;
 
 });
-/**
- * Apps online featured controller
- * @class AppOnlineFeaturedController
- *
- */
-myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
-    $scope.imgReplace = {
-        364: 'storage/img/slider/01-alarm.png',
-        342: 'storage/img/slider/02-dimmer.png',
-        304: 'storage/img/slider/03-power.png',
-        222: 'storage/img/slider/04-motion.png',
-        181: 'storage/img/slider/05-switch.png',
-        158: 'storage/img/slider/06-thermostat.png',
-        154: 'storage/img/slider/07-camera.png',
-        152: 'storage/img/slider/08-rgb.png'
-    };
-    $scope.sliderImages = {
-        'Alexa': 'storage/img/slider/Alexa.png',
-        'IntChart': 'storage/img/slider/IntChart.png',
-        'SecurityModule': 'storage/img/slider/SecurityModule.png',
-        'ToggleDevices': 'storage/img/slider/ToggleDevices.png',
-        'ClimateControl': 'storage/img/slider/ClimateControl.png',
-        'NotificationPushover': 'storage/img/slider/NotificationPushover.png',
-        'ImportRemoteHA': 'storage/img/slider/ImportRemoteHA.png',
-        'CustomUserCode': 'storage/img/slider/CustomUserCode.png',
-        'HTTPDevice': 'storage/img/slider/HTTPDevice.png'
-    };
-    //$scope.direction = 'left';
-    //$scope.currentIndex = 0;
-    /*$scope.slides = [
-        {image: 'storage/img/slider/01-alarm.png', title: 'Alarm 1 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/02-dimmer.png', title: 'Dimmer 2 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/03-power.png', title: 'Power 3 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/04-motion.png', title: 'Motion 4 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/05-switch.png', title: 'Switch 5 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/06-thermostat.png', title: 'Thermostat 6 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/07-camera.png', title: 'Camera 7 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/08-rgb.png', title: 'RGB 8 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/09-temp.png', title: 'Temperature 9 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-        {image: 'storage/img/slider/10-luminosity.png', title: 'Luminosity 10 Morbi vitae pellentesque diam',installed: '42',rating: '4'},
-    ];*/
-
-   /* $scope.isCurrentSlideIndex = function (index) {
-        return $scope.currentIndex === index;
-    };*/
-
-    $scope.prevSlide = function () {
-        $scope.slider.cfg.start -= 1;
-        $scope.slider.cfg.end -= 1;
-        if($scope.slider.cfg.start < 0){
-            $scope.slider.cfg.start = 0;
-            $scope.slider.cfg.end = $scope.slider.cfg.show;
-        }
-        //$scope.direction = 'right';
-        //$scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
-        //console.log($scope.currentIndex)
-    };
-
-    $scope.nextSlide = function () {
-        $scope.slider.cfg.start += 1;
-        $scope.slider.cfg.end += 1;
-        if($scope.slider.cfg.end > $scope.slider.cfg.max){
-            $scope.slider.cfg.start = 0;
-            $scope.slider.cfg.end = $scope.slider.cfg.show;
-        }
-       // $scope.direction = 'left';
-        //$scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
-        //console.log($scope.currentIndex)
-    };
-
-
-
-});
-    /*.animation('.slide-animation_', function () {
-        return {
-            beforeAddClass: function (element, className, done) {
-                var scope = element.scope();
-
-                if (className == 'ng-hide') {
-                    var finishPoint = element.parent().width();
-                    if(scope.direction !== 'right') {
-                        finishPoint = -finishPoint;
-                    }
-                    TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
-                }
-                else {
-                    done();
-                }
-            },
-            removeClass: function (element, className, done) {
-                var scope = element.scope();
-
-                if (className == 'ng-hide') {
-                    element.removeClass('ng-hide');
-
-                    var startPoint = element.parent().width();
-                    if(scope.direction === 'right') {
-                        startPoint = -startPoint;
-                    }
-
-                    TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
-                }
-                else {
-                    done();
-                }
-            }
-        };
-    });*/
-/**
- * todo: deprecated
- * Apps feature controller
- * @class AppModuleFeaturedController
- *
- */
-/*
-myAppController.controller('AppModuleFeaturedController', function ($scope, $routeParams, $route, $filter, $location, $q, dataFactory, dataService, myCache, cfg) {
-
-    $scope.slider = {
-        direction: 'right',
-        currentIndex: 0,
-        slidesperslide: 5,
-        slides: []
-    };
-
-
-    $scope.allSettled = function (tokens) {
-        var promises = [
-            dataFactory.getOnlineModules({token: _.values(tokens)})
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            var onlineModules = response[0];
-
-            // Success - online modules
-            if (onlineModules.state === 'fulfilled') {
-                prepareSlides(onlineModules.value.data.data)
-            }
-        });
-    };
-    $scope.allSettled();
-
-    function prepareSlides(data) {
-
-        var slide = [];
-
-        _.each(data, function(item) {
-            if (item.featured == 1) {
-                item.featured = true;
-            } else {
-                item.featured = false;
-            }
-            if(item.featured) {
-                slide.push(item);
-                if(slide.length >= $scope.slider.slidesperslide) {
-                    $scope.slider.slides.push(slide);
-                    slide = [];
-                }
-            }
-        });
-        if(slide.length != 0) {
-            $scope.slider.slides.push(slide);
-        }
-
-        console.log( $scope.slider.slides);
-    };
-
-    $scope.setCurrentSlideIndex = function (index) {
-        $scope.slider.direction = (index > $scope.slider.currentIndex) ? 'left' : 'right';
-        $scope.slider.currentIndex = index;
-    };
-
-    $scope.isCurrentSlideIndex = function (index) {
-        return $scope.slider.currentIndex === index;
-    };
-
-    $scope.prevSlide = function () {
-        $scope.slider.direction = 'left';
-        $scope.currentIndex = ($scope.slider.currentIndex < $scope.slider.slides.length - 1) ? ++$scope.slider.currentIndex : 0;
-    };
-
-    $scope.nextSlide = function () {
-        $scope.slider.direction = 'right';
-        $scope.currentIndex = ($scope.slider.currentIndex > 0) ? --$scope.slider.currentIndex : $scope.slider.slides.length - 1;
-    };
-
-}).animation('.slide-animation', function () {
-    return {
-        beforeAddClass: function (element, className, done) {
-            var scope = element.scope();
-
-            if (className == 'ng-hide') {
-                var finishPoint = element.parent().width();
-                if(scope.direction !== 'right') {
-                    finishPoint = -finishPoint;
-                }
-                TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
-            }
-            else {
-                done();
-            }
-        },
-        removeClass: function (element, className, done) {
-            var scope = element.scope();
-
-            if (className == 'ng-hide') {
-                element.removeClass('ng-hide');
-
-                var startPoint = element.parent().width();
-                if(scope.direction === 'right') {
-                    startPoint = -startPoint;
-                }
-
-                TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
-            }
-            else {
-                done();
-            }
-        }
-    };
-});*/
 
 /**
  * @overview Controllers that handle all Skins actions.
@@ -20118,7 +20174,11 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
             $location.path('/customize/iconslocal');
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_file_download'));
+            var message = $scope._t('error_file_download');
+            if(error.status == 409){
+                message = $scope._t('icon_from_url_already_exists',{__title__:icon.title});
+            }
+            alertify.alertError(message);
         });
     };
 
