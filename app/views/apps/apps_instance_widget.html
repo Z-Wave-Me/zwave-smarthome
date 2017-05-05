@@ -1,5 +1,10 @@
 <!-- Instances widget view -->
-
+<!-- No search result -->
+<div class="alert alert-warning" ng-if="dataHolder.instances.noSearch">
+    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" +
+    dataHolder.instances.filter.q + "\""})}}
+</div>
+<!-- List -->
 <div ng-repeat="g in dataHolder.instances.groups track by $index"
      ng-init="instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]">
     <!-- ----------------------------------- Accordion ----------------------------------- -->

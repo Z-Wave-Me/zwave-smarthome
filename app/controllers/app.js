@@ -89,7 +89,17 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
             cnt: {
                 modules: 0
             },
-            orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC')
+            noSearch: false,
+            filter: {},
+            orderBy: ($cookies.orderByAppsInstances ? $cookies.orderByAppsInstances : 'creationTimeDESC'),
+            autocomplete: {
+                source: [],
+                term: '',
+                searchInKeys: 'id,title,description,moduleId',
+                returnKeys: 'id,title,active,moduleId',
+                strLength: 2,
+                resultLength: 10
+            }
         }
     };
 
@@ -504,6 +514,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         $scope.dataHolder.instances.cnt.modules = _.countBy(data, function (v) {
             return v.moduleId;
         });
+
         _.filter(data, function (v) {
             if (!$scope.dataHolder.instances.groups[v.moduleId]) {
                 $scope.dataHolder.instances.groups[v.moduleId] = {
@@ -534,6 +545,43 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 }
                 return v;
             }).value();
+
+        if ('q' in $scope.dataHolder.instances.filter) {// Filter by query
+            // Set autcomplete term
+            $scope.dataHolder.instances.autocomplete.term = $scope.dataHolder.instances.filter.q;
+            var instancesGroup = $scope.dataHolder.instances.groups;
+            // Clear scoupe group
+            $scope.dataHolder.instances.groups = {};
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.instances.all, $scope.dataHolder.instances.autocomplete), 'id');
+            if (_.isEmpty(searchResult)) {
+                $scope.dataHolder.instances.noSearch = true;
+            }
+            _.filter($scope.dataHolder.instances.all, function (v) {
+                if (searchResult[v.id]) {
+                    $scope.dataHolder.instances.groups[v.moduleId] = instancesGroup[v.moduleId];
+                    return v;
+                }
+            });
+
+        }
+
+        // Collection
+       /* if ('q' in $scope.dataHolder.instances.filter) {// Filter by query
+            // Set autcomplete term
+            $scope.dataHolder.instances.autocomplete.term = $scope.dataHolder.instances.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.instances.all, $scope.dataHolder.instances.autocomplete), 'id');
+            if (_.isEmpty(searchResult)) {
+                $scope.dataHolder.instances.noSearch = true;
+            }
+            $scope.dataHolder.instances.collection = _.filter($scope.dataHolder.instances.all, function (v) {
+                if (searchResult[v.id]) {
+                    return v;
+                }
+            });
+
+        } else {
+            $scope.dataHolder.instances.collection = $scope.dataHolder.instances.all;
+        }*/
     }
     ;
     /**
@@ -650,7 +698,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
  * The controller that handles all online APPs actions.
  * @class AppOnlineController
  */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window,$location, $routeParams, dataFactory, dataService, _) {
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $location, $routeParams, dataFactory, dataService, _) {
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
 
     /**
@@ -720,7 +768,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
             $cookies.filterAppsOnline = angular.toJson(filter);
             $scope.reloadData();
-            if(!$scope.routeMatch('/apps/online/filter')){
+            if (!$scope.routeMatch('/apps/online/filter')) {
                 //console.log('Redirect to /apps/online/filter')
                 $location.path('/apps/online/filter');
             }
@@ -760,14 +808,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
  * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
-    $scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,moduleId',
-        returnKeys: 'id,title,active,moduleId',
-        strLength: 2,
-        resultLength: 10
-    };
+    $scope.dataHolder.instances.filter = ($cookies.filterAppsInstances ? angular.fromJson($cookies.filterAppsInstances) : {});
 
     /**
      * Expand instances
@@ -783,8 +824,28 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all, $scope.autocomplete);
+        $scope.dataHolder.instances.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all, $scope.dataHolder.instances.autocomplete);
+        if ($scope.dataHolder.instances.filter.q && $scope.dataHolder.instances.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
     }
+
+    /**
+     * Set filter
+     */
+    $scope.setFilter = function (filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
+            angular.extend($scope.dataHolder.instances, {filter: {}});
+            $cookies.filterAppsInstances = angular.toJson({});
+        } else {// Set filter
+            angular.extend($scope.dataHolder.instances, {filter: filter});
+            $cookies.filterAppsInstances = angular.toJson(filter);
+        }
+        $scope.reloadData();
+    };
 
     /**
      * Set order by
