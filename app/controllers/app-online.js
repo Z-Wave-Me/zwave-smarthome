@@ -30,19 +30,6 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
 
     }
 
-    /*$scope.$on('$locationChangeSuccess',function(evt, absNewUrl, absOldUrl) {
-     console.log('success', evt, absNewUrl, absOldUrl);
-     if($routeParams['category']){
-     var filter = {category:$routeParams['category']};
-     //console.log(filter);
-     angular.extend($scope.dataHolder.onlineModules, {filter: filter});
-     $cookies.filterAppsOnline = angular.toJson(filter);
-     //$scope.setFilter({category:$routeParams['category']});
-
-     }
-     });*/
-
-
     /**
      * Set order by
      */
@@ -145,21 +132,14 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
     $scope.onlineMediaUrl = cfg.online_module_img_url;
 
     /**
-     * Load Remote access data
+     * Load Remote ID
      */
-    $scope.loadRemoteAccess = function () {
-        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
-            $scope.remoteAccess = response.data.data[0];
-            if (Object.keys(response.data.data[0]).length > 0) {
-                $scope.comments.model.remote_id = response.data.data[0].params.userId;
-                $scope.rating.model.remote_id = response.data.data[0].params.userId;
-            }
-
-        }, function (error) {
-        });
+    $scope.loadRemoteId = function () {
+        dataFactory.getApi('remote_id').then(function (response) {
+            $scope.rating.model.remote_id = response.data.data.remote_id;
+           });
     };
-
-    $scope.loadRemoteAccess();
+    $scope.loadRemoteId();
 
     /**
      * Load categories
@@ -220,31 +200,6 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
         }).finally(function () {
             $scope.loading = false;
         });
-
-
-        /*dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
-         $scope.dataHolder.onlineModules.alert = false;
-         /!*$scope.dataHolder.onlineModules.connect.status = true;
-         $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*!/
-         $scope.dataHolder.onlineModules.connect = {
-         status: true,
-         icon: 'fa-globe'
-         };
-         setOnlineModules(response.data.data)
-         }, function (error) {
-         if(error.status === 0){
-         $scope.dataHolder.onlineModules.connect = {
-         status: false,
-         icon: 'fa-exclamation-triangle text-danger'
-         };
-         $scope.dataHolder.onlineModules.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
-
-         }else{
-         alertify.alertError($scope._t('error_load_data'));
-         }
-         }).finally(function(){
-         $scope.loading = false;
-         });*/
     };
     $scope.loadModuleId($routeParams.id);
 
