@@ -7,16 +7,20 @@
  * The controller that renders Z-Wave vendors.
  * @class ZwaveVendorController
  */
-myAppController.controller('ZwaveVendorController', function ($scope, $routeParams,$q, cfg, dataFactory, dataService, _) {
+myAppController.controller('ZwaveVendorController', function ($scope, $routeParams,$q, cfg, $cookies,$location,dataFactory, dataService, _) {
     $scope.zwaveVendors = {
         frequency: false,
         frequencyName: false,
-        cnt: {
-            vendorProducts: {
-            }
-        },
+
         all: {},
-        products: {}
+        products: {
+            pageTitle: '',
+            cnt: 0,
+            all:{},
+            collection: {},
+            noSearch: false
+        },
+        filter: ($cookies.filterProducts ? angular.fromJson($cookies.filterProducts) : {}),
     };
 
     $scope.autocomplete = {
@@ -73,10 +77,32 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
             }
             // Success - products
             if (products.state === 'fulfilled') {
-                $scope.zwaveVendors.products = dataService.getZwaveDevices(products.value.data.zwave_devices)
+                $scope.zwaveVendors.products.all = dataService.getZwaveDevices(products.value.data.zwave_devices)
                     .where(productsWhere)
                     .value();
-                console.log($scope.zwaveVendors.products)
+
+                if ('brandid' in  $scope.zwaveVendors.filter) {// Filter by brand id
+                    $scope.zwaveVendors.products.pageTitle = $scope.zwaveVendors.filter.brandid;
+                    $scope.zwaveVendors.products.collection = _.where($scope.zwaveVendors.products.all, $scope.zwaveVendors.filter);
+                }else  if ('q' in  $scope.zwaveVendors.filter) {// Filter by query
+                    $scope.zwaveVendors.products.pageTitle = $scope.zwaveVendors.filter.q;
+                    // Set autcomplete term
+                    $scope.autocomplete.term = $scope.zwaveVendors.filter.q;
+                    // Set IDS
+                    var searchResult = _.indexBy(dataService.autocomplete($scope.zwaveVendors.products.all, $scope.autocomplete), 'id');
+                    $scope.zwaveVendors.products.collection = _.filter($scope.zwaveVendors.products.all, function (v) {
+                        if (searchResult[v.id]) {
+                            return v;
+                        }
+                    });
+                }else{
+                    $scope.zwaveVendors.products.collection = $scope.zwaveVendors.products.all;
+                }
+                $scope.zwaveVendors.products.cnt = _.size($scope.zwaveVendors.products.collection);
+                if ($scope.zwaveVendors.products.cnt < 1) {
+                    $scope.zwaveVendors.products.noSearch =  $scope.zwaveVendors.products.pageTitle;
+                }
+                //console.log($scope.zwaveVendors.products.collection)
             }
 
 
@@ -88,14 +114,42 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.zwaveVendors.products,$scope.autocomplete);
+        $scope.autocomplete.results = dataService.autocomplete($scope.zwaveVendors.products.all,$scope.autocomplete);
+        // Reset filter q if is input empty
+        if ($scope.zwaveVendors.filter.q && $scope.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
+    };
+
+    /**
+     * Set filter
+     */
+    $scope.setFilter = function (filter) {
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
+            angular.extend($scope.zwaveVendors, {filter: {}});
+            $cookies.filterProducts= angular.toJson({});
+            $scope.reloadData();
+        } else {// Set filter
+            angular.extend($scope.zwaveVendors, {filter: filter});
+            $scope.reloadData();
+            $cookies.filterProducts = angular.toJson(filter);
+            if ($scope.routeMatch('/zwave/vendors')) {
+                $location.path('/zwave/products');
+            }
+        }
+
+
     };
 });
 /**
+ * todo: deprecated
  * The controller that renders Z-Wave devices by vendor.
  * @class ZwaveVendorDeviceController
  */
-myAppController.controller('ZwaveVendorDeviceController', function ($scope, $routeParams, $q,cfg, dataFactory, dataService, _) {
+/*myAppController.controller('ZwaveVendorDeviceController', function ($scope, $routeParams, $q,cfg, dataFactory, dataService, _) {
     $scope.zwaveProducts = {
         all: {},
         cnt: 0,
@@ -104,9 +158,9 @@ myAppController.controller('ZwaveVendorDeviceController', function ($scope, $rou
         vendors: {},
         vendor: {}
     };
-    /**
+    /!**
      * Load all promises
-     */
+     *!/
     $scope.allSettled = function (brandId) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.zwaveProducts.vendor = brandId;
@@ -143,11 +197,11 @@ myAppController.controller('ZwaveVendorDeviceController', function ($scope, $rou
             }
 
             // Success - vendors
-            /*if (vendors.state === 'fulfilled') {
+            /!*if (vendors.state === 'fulfilled') {
                //$scope.zwaveProducts.vendors = vendors.value.data;
                //$scope.zwaveProducts.vendor = _.findWhere($scope.zwaveProducts.vendors,{brandid: brandId});
                 $scope.zwaveProducts.vendor = brandid;
-            }*/
+            }*!/
             // Success - products
             if (products.state === 'fulfilled') {
                 $scope.zwaveProducts.all = dataService.getZwaveDevices(products.value.data.zwave_devices)
@@ -160,7 +214,7 @@ myAppController.controller('ZwaveVendorDeviceController', function ($scope, $rou
         });
     };
     $scope.allSettled($routeParams.id);
-});
+});*/
 
 /**
  * The controller that renders and handles data in the Z-Wave/Manage section.

@@ -1,19 +1,33 @@
 <!-- Zwave device view -->
-<div ng-controller="ZwaveVendorDeviceController">
+<div ng-controller="ZwaveVendorController">
     <bb-loader></bb-loader>
-    <div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>
-    <h3>
-        <a ng-href="#/zwave/vendors" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
-        <strong>{{zwaveProducts.vendor}}</strong>
-        | {{_t('products')}} <span class="badge text-primary">{{zwaveProducts.cnt}}</span>
-        | {{_t('frequency')}} <span class="badge">{{zwaveProducts.frequencyName}}</span>
-        <em ng-class="zwaveProducts.cnt == 0 ? 'text-danger': '' ">
+    <!--<div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>-->
 
-        </em>
-    </h3>
+    <div class="row">
+        <!-- Info  -->
+        <div class="col-sm-6">
+            <h3>
+                <a ng-href="#/zwave/vendors" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
+                <strong>{{zwaveVendors.products.pageTitle}}</strong>
+                | {{_t('products')}} <span class="badge text-primary">{{zwaveVendors.products.cnt}}</span>
+                | {{_t('frequency')}} <span class="badge">{{zwaveVendors.frequencyName}}</span>
+                <em ng-class="zwaveProducts.cnt == 0 ? 'text-danger': '' ">
+
+                </em>
+            </h3>
+        </div>
+        <!-- Control  -->
+        <div class="col-sm-6" ng-include="'app/views/zwave/zwave_vendors_ctrl.html'"></div>
+    </div>
+    <!-- No search result -->
+    <div class="alert alert-warning" ng-if="zwaveVendors.products.noSearch">
+        <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" +
+        zwaveVendors.products.noSearch + "\""})}}
+    </div>
+    <!-- List  -->
     <table class="table table-report">
         <tbody>
-        <tr ng-repeat="v in zwaveProducts.all | orderBy:'name' track by $index">
+        <tr ng-repeat="v in zwaveVendors.products.collection | orderBy:'name' track by $index">
             <td>
                 <a ng-href="#zwave/inclusion/{{v.id}}">
                 <img class="product-img" ng-src="data:image/png;base64,{{v.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />

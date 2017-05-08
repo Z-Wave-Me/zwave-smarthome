@@ -6,10 +6,11 @@
     <!-- Control  -->
     <div ng-include="'app/views/zwave/zwave_vendors_ctrl.html'"></div>
     <div class="clearfix">
-        <div class="vendor-entry"
+        <div class="vendor-entry clickable"
+             ng-click="setFilter({brandid: v.Name})"
              ng-repeat="v in zwaveVendors.all| orderBy:'Name' track by $index"
              ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1">
-            <a ng-href="#zwave/vendors/{{v.Name}}" class="vendor-list" title="{{v.Name}}">
+            <a class="vendor-list" title="{{v.Name}}">
                 <p class="vendor-image" ng-if="v.Image_Base64">
                     <img ng-src="data:image/png;base64,{{v.Image_Base64}}" alt="{{v.Name|cutText:true:20}}" />
 
