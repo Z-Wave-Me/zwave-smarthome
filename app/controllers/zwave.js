@@ -125,16 +125,22 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
      * Set filter
      */
     $scope.setFilter = function (filter) {
+        // Reset
+        $scope.autocomplete.results = [];
+        $scope.zwaveVendors.products.noSearch = false;
+
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
 
         if (!filter || empty) {// Remove filter
             angular.extend($scope.zwaveVendors, {filter: {}});
             $cookies.filterProducts= angular.toJson({});
-            $scope.reloadData();
+            $scope.allSettled();
+            //$scope.reloadData();
         } else {// Set filter
             angular.extend($scope.zwaveVendors, {filter: filter});
-            $scope.reloadData();
+            $scope.allSettled();
+            //$scope.reloadData();
             $cookies.filterProducts = angular.toJson(filter);
             if ($scope.routeMatch('/zwave/vendors')) {
                 $location.path('/zwave/products');

@@ -2,7 +2,7 @@
 <!-- No search result -->
 <div class="alert alert-warning" ng-if="dataHolder.onlineModules.noSearch">
     <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" +
-    dataHolder.modules.filter.q + "\""})}}
+    dataHolder.onlineModules.filter.q + "\""})}}
 </div>
 <!-- List -->
 <div class="app-entry-online" ng-if="_.size(dataHolder.onlineModules.collection) > 0">

@@ -118,7 +118,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
      * Load tokens
      */
     $scope.loadTokens = function () {
-        dataFactory.getApi('tokens', null, true).then(function (response) {
+        dataFactory.getApi('tokens').then(function (response) {
             angular.extend($scope.dataHolder.tokens.all, response.data.data.tokens);
             $scope.allSettled($scope.dataHolder.tokens.all);
 
@@ -168,8 +168,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('modules_categories'),
-            dataFactory.getApi('modules', null, true),
-            dataFactory.getApi('instances', null, true)
+            dataFactory.getApi('modules'),
+            dataFactory.getApi('instances')
         ];
 
         $q.allSettled(promises).then(function (response) {

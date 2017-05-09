@@ -53,17 +53,22 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
      * Set filter
      */
     $scope.setFilter = function (filter) {
+        // Reset
+        $scope.dataHolder.onlineModules.autocomplete.results = [];
+        $scope.dataHolder.onlineModules.noSearch = false;
+
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
-
-        if (!filter || empty) {// Remove filter
+       if (!filter || empty) {// Remove filter
             angular.extend($scope.dataHolder.onlineModules, {filter: {}});
             $cookies.filterAppsOnline = angular.toJson({});
-            $scope.reloadData();
+           $scope.loadTokens();
+            //$scope.reloadData();
         } else {
             angular.extend($scope.dataHolder.onlineModules, {filter: filter});
             $cookies.filterAppsOnline = angular.toJson(filter);
-            $scope.reloadData();
+           $scope.loadTokens();
+            //$scope.reloadData();
             if (!$scope.routeMatch('/apps/online/filter')) {
                 //console.log('Redirect to /apps/online/filter')
                 $location.path('/apps/online/filter');

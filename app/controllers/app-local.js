@@ -33,9 +33,11 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
      * Set filter
      */
     $scope.setFilter = function (filter) {
+        // Reset some data
+        $scope.dataHolder.modules.autocomplete.results = [];
+        $scope.dataHolder.modules.noSearch = false;
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
-
         if (!filter || empty) {// Remove filter
             angular.extend($scope.dataHolder.modules, {filter: {}});
             $cookies.filterAppsLocal = angular.toJson({});
@@ -43,7 +45,10 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
             angular.extend($scope.dataHolder.modules, {filter: filter});
             $cookies.filterAppsLocal = angular.toJson(filter);
         }
-        $scope.reloadData();
+
+        $scope.loadTokens();
+        //$scope.reloadData();
+
     };
 
     /**

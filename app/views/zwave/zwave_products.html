@@ -54,10 +54,10 @@
         </tr>
         </tbody>
     </table>
-    <div class="fieldset submit-entry">
-        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-            <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
-        </button>
+    <div class="fieldset submit-entry_" ng-show="_.size(zwaveVendors.products.collection) > 10">
+        <a ng-href="#/zwave/vendors" class="btn btn-default">
+            <i class="fa fa-arrow-left"></i>
+        </a>
     </div>
 </div> <!-- /ng-controller --> 
 

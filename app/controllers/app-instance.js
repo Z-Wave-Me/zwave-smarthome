@@ -34,6 +34,8 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
      * Set filter
      */
     $scope.setFilter = function (filter) {
+        $scope.dataHolder.instances.autocomplete.results = [];
+        $scope.dataHolder.instances.noSearch = false;
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
 
@@ -44,7 +46,8 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
             angular.extend($scope.dataHolder.instances, {filter: filter});
             $cookies.filterAppsInstances = angular.toJson(filter);
         }
-        $scope.reloadData();
+        $scope.loadTokens();
+        //$scope.reloadData();
     };
 
     /**
