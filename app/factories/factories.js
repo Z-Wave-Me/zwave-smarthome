@@ -139,11 +139,19 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function getApiLocal(file) {
+        // Cached data
+        var cached = myCache.get(file);
+        if (cached) {
+            var deferred = $q.defer();
+            deferred.resolve(cached);
+            return deferred.promise;
+        }
         return $http({
             method: 'get',
             url: cfg.local_data_url + file
         }).then(function (response) {
             if (typeof response.data === 'object') {
+                myCache.put(file, response);
                 return response;
             } else {// invalid response
                 return $q.reject(response);
