@@ -54,11 +54,11 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     /**
      * Load all promises
      */
-    $scope.allSettled = function () {
+    $scope.allSettled = function (noCache) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('locations'),
-            dataFactory.getApi('devices', null, true)
+            dataFactory.getApi('devices', null, noCache)
         ];
 
         $q.allSettled(promises).then(function (response) {
@@ -89,7 +89,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             }
         });
     };
-    $scope.allSettled();
+    $scope.allSettled(true);
 
     /**
      * Get device by ID
@@ -127,7 +127,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                     });
                 }
                 if (response.data.data.structureChanged === true) {
-                    $scope.allSettled();
+                    $scope.allSettled(true);
                 }
 
             }, function (error) {
@@ -154,6 +154,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Set filter
      */
     $scope.setFilter = function (filter) {
+        // Reset data
+        $scope.autocomplete.results = [];
+        $scope.dataHolder.devices.noSearch = false;
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
 
@@ -164,8 +167,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             angular.extend($scope.dataHolder.devices, {filter: filter});
             $cookies.filterElements = angular.toJson(filter);
         }
+        $scope.allSettled();
 
-        $scope.reloadData();
+        //$scope.reloadData();
     };
 
     /**

@@ -33,7 +33,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
      * Set filter
      */
     $scope.setFilter = function (filter) {
-        // Reset some data
+        // Reset data
         $scope.dataHolder.modules.autocomplete.results = [];
         $scope.dataHolder.modules.noSearch = false;
         // Is fiter value empty?
