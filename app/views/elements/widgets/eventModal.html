@@ -28,9 +28,9 @@
                 </tbody>
                 </table>
         </div>
-        <div class="appmodal-footer">
+        <div class="appmodal-footer" ng-if="!_.isEmpty(widgetEvent.collection)">
             <!--<a class="btn btn-default" ng-href="#events/source/{{widgetEvent.find.id}}"-->
-            <a class="btn btn-default" ng-href="#events"
+            <a class="btn btn-default" ng-href="#events/source/{{widgetEvent.find.id}}"
             ng-click="handleModal('modalEvent', $event)">
                 {{_t('see_more')}} <i class="fa fa-chevron-right"></i>
             </a>

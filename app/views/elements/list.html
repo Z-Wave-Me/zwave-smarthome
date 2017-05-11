@@ -22,8 +22,8 @@
             <div class="widget-header">
                 <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
                 <!-- Events -->
-                <a class="widget-icon widget-event" href=""
-                   ng-show="v.hasNotification"
+                <a class="widget-icon widget-event" href="" title="{{_t('nav_events')}}"
+                   ng-show="v.showNotification"
                    ng-click="dataHolder.devices.find = v;handleModal('modalEvent', $event)">
                     <i class="fa fa-calendar"></i>
                 </a>

@@ -7,7 +7,7 @@
  * The element root controller
  * @class ElementBaseController
  */
-myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService) {
+myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService, myCache) {
     $scope.dataHolder = {
         firstLogin: false,
         cnt: {
@@ -30,7 +30,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             filter: ($cookies.filterElements ? angular.fromJson($cookies.filterElements) : {}),
             rooms: {},
             orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
-            showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false)
+            showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
+            notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
         }
     };
     $scope.apiDataInterval = null;
@@ -52,10 +53,36 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     });
 
     /**
+     * Load notifications
+     */
+    /*$scope.loadNotifications = function () {
+        // Attempt to recieve cached data
+        var cached = myCache.get('device_notifications');
+        if(cached){
+            $scope.dataHolder.devices.notifications = cached;
+            return;
+        }
+        // Data from api
+        var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
+        dataFactory.getApi('notifications', since, true).then(function (response) {
+            console.log(response.data.data.notifications)
+            $scope.dataHolder.devices.notifications =  _.countBy(response.data.data.notifications, function (v) {
+                return v.source;
+            });
+            myCache.put('device_notifications', $scope.dataHolder.devices.notifications);
+        }, function (error) {
+        });
+    };;
+    $scope.loadNotifications();*/
+
+
+    /**
      * Load all promises
      */
     $scope.allSettled = function (noCache) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        // Notifications since
+        var since = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
         var promises = [
             dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, noCache)
@@ -72,6 +99,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                 $scope.dataHolder.devices.show = false;
                 return;
             }
+
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.dataHolder.devices.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
@@ -546,7 +574,6 @@ myAppController.controller('ElementEventController', function ($scope, $filter, 
      */
     $scope.loadDeviceEvents = function () {
         var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
-        console.log(device)
         if (_.isEmpty(device)) {
             $scope.widgetEvent.alert = {
                 message: $scope._t('error_load_data'),
@@ -556,10 +583,18 @@ myAppController.controller('ElementEventController', function ($scope, $filter, 
             return;
         }
         $scope.widgetEvent.find = device[0];
-        var urlParam = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
-        dataFactory.getApi('notifications', urlParam, true).then(function (response) {
+        var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
+        dataFactory.getApi('notifications', since, true).then(function (response) {
             // console.log(response.data.data.notifications.slice(1,10))
-            $scope.widgetEvent.collection = response.data.data.notifications;
+            $scope.widgetEvent.collection = _.where(response.data.data.notifications,{source: $scope.widgetEvent.find.id});
+            if (_.isEmpty($scope.widgetEvent.collection)) {
+                $scope.widgetEvent.alert = {
+                    message: $scope._t('no_events'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
+                };
+                return;
+            }
         }, function (error) {
             $scope.widgetEvent.alert = {
                 message: $scope._t('error_load_data'),
