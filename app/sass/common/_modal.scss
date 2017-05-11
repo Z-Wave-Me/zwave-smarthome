@@ -9,6 +9,24 @@
     z-index: $zindex-modal;
      overflow: show;
      color: $modal-color;
+  // Animation
+  &.ng-animate {
+    transition: all ease 0.4s;
+    position: absolute;
+  }
+  &.ng-enter {
+    top: -200px;
+    opacity: 0;
+  }
+  &.ng-leave,
+  &.ng-enter.ng-enter-active {
+    top: 0;
+    opacity: 1;
+  }
+  .accordion-entry-ctrl.ng-leave.ng-leave-active {
+    top: 200px;
+    opacity: 0;
+  }
     .appmodal-in{
         width: $modal-w;
         position: relative;

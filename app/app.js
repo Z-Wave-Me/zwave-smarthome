@@ -11,6 +11,7 @@
 var myApp = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
+    'ngAnimate',
     'myAppConfig',
     'myAppController',
     'myAppFactory',

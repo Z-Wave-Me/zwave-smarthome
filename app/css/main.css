@@ -11983,7 +11983,27 @@ http://codepen.io/MattIn4D/pen/LiKFC
   overflow: show;
   color: #0d0d0d;
 }
-/* line 12, ../sass/common/_modal.scss */
+/* line 13, ../sass/common/_modal.scss */
+.appmodal.ng-animate {
+  transition: all ease 0.4s;
+  position: absolute;
+}
+/* line 17, ../sass/common/_modal.scss */
+.appmodal.ng-enter {
+  top: -200px;
+  opacity: 0;
+}
+/* line 21, ../sass/common/_modal.scss */
+.appmodal.ng-leave, .appmodal.ng-enter.ng-enter-active {
+  top: 0;
+  opacity: 1;
+}
+/* line 26, ../sass/common/_modal.scss */
+.appmodal .accordion-entry-ctrl.ng-leave.ng-leave-active {
+  top: 200px;
+  opacity: 0;
+}
+/* line 30, ../sass/common/_modal.scss */
 .appmodal .appmodal-in {
   width: 99%;
   position: relative;
@@ -11991,22 +12011,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: #FFFFFF;
 }
 
-/* line 20, ../sass/common/_modal.scss */
+/* line 38, ../sass/common/_modal.scss */
 .appmodal-100 .appmodal-in {
   width: 99% !important;
 }
 
-/* line 25, ../sass/common/_modal.scss */
+/* line 43, ../sass/common/_modal.scss */
 .appmodal-90 .appmodal-in {
   width: 90%;
 }
 
-/* line 29, ../sass/common/_modal.scss */
+/* line 47, ../sass/common/_modal.scss */
 #modalHistory {
   z-index: 2301;
 }
 
-/* line 33, ../sass/common/_modal.scss */
+/* line 51, ../sass/common/_modal.scss */
 .appmodal:before {
   content: '';
   display: block;
@@ -12018,16 +12038,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(37, 37, 37, 0.5);
 }
 
-/* line 43, ../sass/common/_modal.scss */
+/* line 61, ../sass/common/_modal.scss */
 .appmodal-header, .appmodal-body, .appmodal-footer {
   padding: 10px 15px;
 }
 
-/* line 47, ../sass/common/_modal.scss */
+/* line 65, ../sass/common/_modal.scss */
 .appmodal-header {
   border-bottom: solid 1px #d3d3d3;
 }
-/* line 49, ../sass/common/_modal.scss */
+/* line 67, ../sass/common/_modal.scss */
 .appmodal-header .appmodal-close {
   color: #404040;
   font-size: 180%;
@@ -12039,18 +12059,18 @@ http://codepen.io/MattIn4D/pen/LiKFC
   z-index: 2;
   cursor: pointer;
 }
-/* line 59, ../sass/common/_modal.scss */
+/* line 77, ../sass/common/_modal.scss */
 .appmodal-header .appmodal-close span {
   display: inline-block;
 }
-/* line 63, ../sass/common/_modal.scss */
+/* line 81, ../sass/common/_modal.scss */
 .appmodal-header h3 {
   font-size: 110%;
   margin: 0;
   color: #404040;
 }
 
-/* line 72, ../sass/common/_modal.scss */
+/* line 90, ../sass/common/_modal.scss */
 .appmodal-footer {
   border-top: solid 1px #d3d3d3;
   text-align: right;
@@ -12058,14 +12078,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal with knob
 -------------------------------------------------- */
-/* line 80, ../sass/common/_modal.scss */
+/* line 98, ../sass/common/_modal.scss */
 .app-row-knob .knob-col {
   padding: 10px;
 }
 
 /* Confirm content
 -------------------------------------------------- */
-/* line 87, ../sass/common/_modal.scss */
+/* line 105, ../sass/common/_modal.scss */
 .app-confirm-content {
   padding: 10px;
   border: solid 1px #d3d3d3;
@@ -12076,7 +12096,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal James Box
 -------------------------------------------------- */
-/* line 97, ../sass/common/_modal.scss */
+/* line 115, ../sass/common/_modal.scss */
 #jamesBoxUpdateModal #updateTimeout {
   text-align: center;
   font-weight: bold;
@@ -12084,19 +12104,19 @@ http://codepen.io/MattIn4D/pen/LiKFC
   font-size: 16px;
 }
 
-/* line 104, ../sass/common/_modal.scss */
+/* line 122, ../sass/common/_modal.scss */
 #jamesBoxUpdateModal ol {
   margin: 15px 0;
 }
 
-/* line 108, ../sass/common/_modal.scss */
+/* line 126, ../sass/common/_modal.scss */
 #jamesBoxUpdateModal li.jamesboxUpdateInfoList {
   margin: 0 0 5px 0;
 }
 
 /* Modal element event
 -------------------------------------------------- */
-/* line 115, ../sass/common/_modal.scss */
+/* line 133, ../sass/common/_modal.scss */
 #modalEvent .appmodal-body {
   height: auto;
   max-height: 500px;
