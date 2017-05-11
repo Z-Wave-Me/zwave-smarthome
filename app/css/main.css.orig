@@ -11311,8 +11311,8 @@ img {
 -------------------------------------------------- */
 /* line 92, ../sass/common/_button.scss */
 .btn-goup-tabs {
-  display: table;
-  width: 100%;
+  /* display: table;
+   width: 100%;*/
   margin: 0 0 10px 0;
 }
 /* line 96, ../sass/common/_button.scss */

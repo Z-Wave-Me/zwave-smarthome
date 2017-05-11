@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-28',
+        'app_version': '1.7.0-RC-29',
         // Application (DIST) built date
-        'app_built': '08-05-2017 14:04:00',
+        'app_built': '11-05-2017 12:25:07',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -323,11 +323,9 @@ var config_data = {
         ],
         // List of the element deviceType with history icon
         'element_history': [
-            'sensorBinary',
-            'switchBinary',
-            'switchControl',
-            'toggleButton',
-            'doorlock'
+            'switchMultilevel',
+            'sensorMultilevel',
+            'thermostat'
         ],
         // List of the find hosts
         'find_hosts': [
