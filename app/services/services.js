@@ -10,7 +10,7 @@ var myAppService = angular.module('myAppService', []);
  * Angular module initialization
  * @class dataService
  */
-myAppService.service('dataService', function ($filter, $log, $cookies, $window, $location,cfg, cfgicons, _) {
+myAppService.service('dataService', function ($filter, $log, $cookies, $window, $location, cfg, cfgicons, _) {
     /// --- Public functions --- ///
     /**
      * Resets the fatal error object
@@ -58,9 +58,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {undefined}
      */
     this.setTimeStamp = function () {
-       /* dataFactory.getApi('timezone', null, true).then(function (response) {
+        /* dataFactory.getApi('timezone', null, true).then(function (response) {
 
-        }, function (error) {});*/
+         }, function (error) {});*/
     };
 
     /**
@@ -257,12 +257,12 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @returns {undefined}
      */
     this.logOut = function () {
-       this.setUser(null);
+        this.setUser(null);
         this.setZWAYSession(null);
         // Check if host is in the logout redirect list
         var redirect = cfg.logout_redirect[$location.host()];
         // Redirect to an url from list
-        if(redirect){
+        if (redirect) {
             $window.location.href = redirect;
             return;
         }
@@ -427,7 +427,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
         // Set custom icons
         if (_.size(element.customIcons) > 0) {
-            icons.custom = (element.customIcons.level ?element.customIcons.level : element.customIcons);
+            icons.custom = (element.customIcons.level ? element.customIcons.level : element.customIcons);
         }
         // Set default icons by metrics.icon
         if (iconKey && iconKey !== '') {
@@ -462,7 +462,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             if (obj.level) {
                 return obj.level;
                 /*ret['level'] = obj.level;
-                return ret;*/
+                 return ret;*/
             }
             return obj;
 
@@ -794,6 +794,16 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             case 'tamper':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
+            //security
+            case 'security':
+                if (element.metrics.level === "on") {
+                    icon = iconArray.on;
+                } else if (element.metrics.level == "off") {
+                    icon = iconArray.off;
+                } else if (element.metrics.level == "alarmed") {
+                    icon = iconArray.alarmed;
+                } else icon = iconArray.pending;
+                break;
             // smoke
             case 'smoke':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
@@ -808,6 +818,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = iconArray.half;
                 }
                 break;
+
             // multilevel
             case 'multilevel':
                 if (element.metrics.level === 0) {
@@ -832,6 +843,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         return icon;
 
     }
+
     /**
      * Build an object with icons
      * @param {object} defaultIcon
@@ -849,7 +861,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return obj;
         } else {
             // If a custom icon exists set it otherwise set false
-            if(!_.isEmpty(customIcon.default)){
+            if (!_.isEmpty(customIcon.default)) {
                 obj['default'] = cfg.img.custom_icons + customIcon['default'];
                 return obj;
             }
@@ -857,6 +869,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         }
 
     }
+
     /**
      * Get a language string by key
      */
