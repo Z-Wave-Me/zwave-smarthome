@@ -3,14 +3,17 @@
     <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}"
          ng-class="{'widget-success': v.isNew}"
          ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
-        <div class="widget-entry-in">
+        <div class="widget-entry-in progress-{{v.progress}}">
+            <div class="loader"></div>
             <!-- Widget icon -->
             <div class="widget-img" title="{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}">
-                <img class="widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
+                <img class="widget-preview-img widget-icon-update img-circle" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
                 <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
             </div>
+
             <!-- Widget header -->
             <div class="widget-header">
+                <span ng-bind="v.progress"></span>
                 <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
                 <a class="widget-icon widget-hidden" href="" ng-click="setVisibility(v,true)" ng-if="!v.visibility"><i class="fa fa-eye-slash"></i></a>
                 <a class="widget-icon widget-chart" href="" title="{{_t('chart')}}" ng-click="dataHolder.devices.find = v;handleModal('modalIntchart', $event)" ng-if="v.metrics.intchartUrl"><i class="fa fa-line-chart"></i></a>

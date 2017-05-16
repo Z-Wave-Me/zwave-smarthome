@@ -350,7 +350,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
                     {minMax: minMax},
                     {hasHistory: (v.hasHistory === true ? true : false)},
-                    {imgTrans: false},
+                    {progress: false},
                     {isNew: isNew},
                     {iconPath: assignElementIcon(v)},
                     {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}

@@ -108,9 +108,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                         if (!$scope.dataHolder.devices.all[index]) {
                             return;
                         }
-                        angular.extend($scope.dataHolder.devices.all[index],
+                        angular.extend($scope.dataHolder.devices.collection[index],
                                 {metrics: v.metrics},
-                                {imgTrans: false},
+                                {progress: false},
                                 {iconPath: dataService.assignElementIcon(v)},
                                 {updateTime: v.updateTime}
                         );
@@ -170,11 +170,13 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Run command
      */
     $scope.runCmd = function (cmd, id) {
+        console.log(cmd,id)
         dataFactory.runApiCmd(cmd).then(function (response) {
-            var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
+            var index = _.findIndex($scope.dataHolder.devices.collection, {id: id});
+            console.log(index)
             if ($scope.dataHolder.devices.all[index]) {
-                angular.extend($scope.dataHolder.devices.all[index],
-                        {imgTrans: true}
+                angular.extend($scope.dataHolder.devices.collection[index],
+                        {progress: true}
                 );
             }
 
