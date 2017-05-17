@@ -13,7 +13,6 @@
 
             <!-- Widget header -->
             <div class="widget-header">
-                <span ng-bind="v.progress"></span>
                 <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
                 <a class="widget-icon widget-hidden" href="" ng-click="setVisibility(v,true)" ng-if="!v.visibility"><i class="fa fa-eye-slash"></i></a>
                 <a class="widget-icon widget-chart" href="" title="{{_t('chart')}}" ng-click="dataHolder.devices.find = v;handleModal('modalIntchart', $event)" ng-if="v.metrics.intchartUrl"><i class="fa fa-line-chart"></i></a>
