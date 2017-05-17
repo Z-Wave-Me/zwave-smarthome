@@ -5,7 +5,7 @@
             <button 
                 class="btn widget-btn-frostProtection" 
                 id="btn_frostProtection_{{ v.id}}"
-                ng-click="runCmd(v.id + '/command/' + cfg.climate_state[0] + '?room=null', false)"
+                ng-click="runCmd(v.id + '/command/' + cfg.climate_state[0] + '?room=null', v.id)"
                 ng-class="v.metrics.state == cfg.climate_state[0] ? 'btn-primary': 'btn-default'"
                 title="{{_t(cfg.climate_state[0])}}">
                 <i class="fa fa-asterisk"></i>
@@ -13,7 +13,7 @@
             <button 
                 class="btn widget-btn-energySave" 
                 id="btn_energySave_{{ v.id}}"
-                ng-click="runCmd(v.id + '/command/' + cfg.climate_state[1] + '?room=null', false)"
+                ng-click="runCmd(v.id + '/command/' + cfg.climate_state[1] + '?room=null', v.id)"
                ng-class="v.metrics.state ==cfg.climate_state[1] ? 'btn-primary': 'btn-default'"
                 title="{{_t(cfg.climate_state[1])}}">
                 <i class="fa fa-leaf"></i>
@@ -21,7 +21,7 @@
             <button 
                 class="btn widget-btn-comfort" 
                 id="btn_comfort_{{ v.id}}"
-                ng-click="runCmd(v.id + '/command/' + cfg.climate_state[2] + '?room=null', false)"
+                ng-click="runCmd(v.id + '/command/' + cfg.climate_state[2] + '?room=null', v.id)"
                 ng-class="v.metrics.state == cfg.climate_state[2] ? 'btn-primary': 'btn-default'"
                 title="{{_t(cfg.climate_state[2])}}">
                 <i class="fa fa-building"></i>

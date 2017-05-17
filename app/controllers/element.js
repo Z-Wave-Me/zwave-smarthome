@@ -146,10 +146,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                             return;
                         }
                         angular.extend($scope.dataHolder.devices.all[index],
-                            {metrics: v.metrics},
-                            {imgTrans: false},
-                            {iconPath: dataService.assignElementIcon(v)},
-                            {updateTime: v.updateTime}
+                                {metrics: v.metrics},
+                                {progress: false},
+                                {iconPath: dataService.assignElementIcon(v)},
+                                {updateTime: v.updateTime}
                         );
                         //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
                     });
@@ -260,9 +260,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.runCmd = function (cmd, id) {
         dataFactory.runApiCmd(cmd).then(function (response) {
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
-            if ($scope.dataHolder.devices.all[index]) {
+            if (index) {
                 angular.extend($scope.dataHolder.devices.all[index],
-                    {imgTrans: true}
+                    {progress: true}
                 );
             }
 

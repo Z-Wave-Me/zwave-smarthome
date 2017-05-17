@@ -1,0 +1,41 @@
+<div class="widget-ctrl ctrl-left">
+    <div class="btn-group">
+        <button class="btn btn-default" id="btn_play_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/play', v.id)"
+                ng-class="v.metrics.pStatus =='Play' ? 'btn-primary': 'btn-default'"
+                title="{{_t('lb_play')}}">
+            <i class="fa fa-play"></i>
+        </button>
+        <button class="btn btn-default" id="btn_pause_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/pause', v.id)"
+                ng-class="v.metrics.pStatus =='Pause' ? 'btn-primary': 'btn-default'"
+                title="{{_t('lb_pause')}}">
+            <i class="fa fa-pause"></i>
+        </button>
+        <button class="btn btn-default" id="btn_stop_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/stop', v.id)"
+                ng-class="v.metrics.pStatus =='Stop' ? 'btn-primary': 'btn-default'"
+                title="{{_t('lb_pause')}}">
+            <i class="fa fa-stop"></i>
+        </button>
+    </div>
+</div>
+<div class="widget-ctrl ctrl-right">
+    <div class="btn-group">
+        <button class="btn btn-default btn-label-on" id="btn_volume_down_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/quieter', v.id)"
+                title="{{_t('lb_volume_down')}}">
+            <i class="fa fa-volume-down"></i>
+        </button>
+        <button class="btn btn-default btn-label-on" id="btn_volume_{{ v.id}}"
+                ng-click="dataHolder.devices.find = v;handleModal('switchMultilevelModal', $event)"
+                title="{{_t('lb_volume')}}">
+            <span class="widget-btn-symbol">{{v.metrics.level | getMaxLevel:v.minMax.max}}</span>
+        </button>
+        <button class="btn btn-default btn-label-on" id="btn_volume_up_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/louder', v.id)"
+                title="{{_t('lb_volume_up')}}">
+            <i class="fa fa-volume-up"></i>
+        </button>
+    </div>
+</div>
