@@ -260,7 +260,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.runCmd = function (cmd, id) {
         dataFactory.runApiCmd(cmd).then(function (response) {
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
-            if (index) {
+            if ($scope.dataHolder.devices.all[index]) {
                 angular.extend($scope.dataHolder.devices.all[index],
                     {progress: true}
                 );
