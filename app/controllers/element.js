@@ -593,8 +593,9 @@ myAppController.controller('ElementEventController', function ($scope, $filter, 
                 .flatten()
                 .where({source: $scope.widgetEvent.find.id})
                 .filter(function(v){
-                    var icon = false;
-                    var hasL = $filter('hasNode')(v, 'message.l');
+                    var icon,hasL,defaultIcon,customIcon;
+                    // Has the event level?
+                    hasL = $filter('hasNode')(v, 'message.l');
                     if(!hasL){
                         return v;
                     }
