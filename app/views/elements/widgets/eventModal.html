@@ -14,7 +14,8 @@
                 <tbody>
                 <tr class="event-level-{{v.level}}" ng-repeat="v in widgetEvent.collection | orderBy: '-timestamp' | limitTo: 10">
                 <td class="td-img">
-                    <img id="event_img_{{v.id}}" class="report-img-s" ng-src="{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>
+                    <!--<img id="event_img_{{v.id}}" class="report-img-s" ng-src="{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>-->
+                    <img id="event_img_{{v.id}}" class="report-img-s" ng-src="{{v.iconPath}}" alt="{{v.type}}"/>
                 </td>
                     <td>
                         <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}">{{v.timestamp | eventDate}}</span>

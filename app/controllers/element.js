@@ -562,7 +562,7 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
  * The controller that handles a device events.
  * @class ElementEventController
  */
-myAppController.controller('ElementEventController', function ($scope, $filter, dataFactory, dataService, _) {
+myAppController.controller('ElementEventController', function ($scope, $filter, cfg,dataFactory, dataService, _) {
     $scope.widgetEvent = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
@@ -584,31 +584,35 @@ myAppController.controller('ElementEventController', function ($scope, $filter, 
         }
         // Get device icons
         var icons = dataService.getSingleElementIcons(device[0]);
-        console.log(icons)
+        //console.log(icons)
         $scope.widgetEvent.find = device[0];
         var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
         dataFactory.getApi('notifications', since, true).then(function (response) {
-            // console.log(response.data.data.notifications.slice(1,10))
             $scope.widgetEvent.collection = _.chain(response.data.data.notifications)
                 .flatten()
                 .where({source: $scope.widgetEvent.find.id})
                 .filter(function(v){
-                    var icon,hasL,defaultIcon,customIcon;
-                    // Has the event level?
+                    var hasL,defaultIcon,customIcon;
+                    // Default event icon
+                    v.iconPath = $filter('getEventIcon')(v.type,v.message);
+                    // Has an event level?
                     hasL = $filter('hasNode')(v, 'message.l');
                     if(!hasL){
+                        v.iconPath = iconPath;
                         return v;
                     }
-
-                    console.log(hasL)
-                    switch (v.type) {
-                        case 'device-OnOff':
-                            break;
-                        default:
-                            break;
-
+                    // Custom icon from device
+                    customIcon = $filter('hasNode')(icons, 'custom.' + hasL);
+                    if(customIcon){
+                        v.iconPath = cfg.img.custom_icons +  customIcon;
+                        return v;
                     }
-                    v.icon = icon;
+                    // Default icon from device
+                    defaultIcon = $filter('hasNode')(icons, 'default.' + + hasL);
+                    if(defaultIcon){
+                        v.iconPath = cfg.img.icons + defaultIcon;
+                        return v;
+                    }
                     return v;
 
                 })
