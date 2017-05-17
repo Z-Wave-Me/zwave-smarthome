@@ -11962,6 +11962,84 @@ http://codepen.io/MattIn4D/pen/LiKFC
   transition: opacity 7s;
 }
 
+/* Widget Loader
+/* https://github.com/lukehaas/css-loaders
+--------------------------------------------------------*/
+/* line 66, ../sass/common/_loader.scss */
+.progress-true .widget-preview-img {
+  opacity: 0.3;
+}
+/* line 70, ../sass/common/_loader.scss */
+.progress-true .widget-loader,
+.progress-true .widget-loader:before,
+.progress-true .widget-loader:after {
+  border-radius: 50%;
+}
+/* line 76, ../sass/common/_loader.scss */
+.progress-true .widget-loader {
+  top: 17px;
+  left: 7px;
+  position: absolute;
+  color: #184B7C;
+  width: 70px;
+  height: 70px;
+  box-shadow: inset 0 0 0 1em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+/* line 88, ../sass/common/_loader.scss */
+.progress-true .widget-loader:before, .progress-true .widget-loader:after {
+  position: absolute;
+  content: '';
+}
+/* line 94, ../sass/common/_loader.scss */
+.progress-true .widget-loader:before {
+  height: 72px;
+  width: 36px;
+  background: #FFF;
+  border-radius: 72px 0 0 72px;
+  top: -1px;
+  left: -1px;
+  -webkit-transform-origin: 36px 36px;
+  transform-origin: 36px 36px;
+  -webkit-animation: loadWidget 2s infinite ease 1.5s;
+  animation: loadWidget 2s infinite ease 1.5s;
+}
+/* line 107, ../sass/common/_loader.scss */
+.progress-true .widget-loader:after {
+  height: 72px;
+  width: 36px;
+  background: #FFF;
+  border-radius: 0 72px 72px 0;
+  top: -1px;
+  left: 35px;
+  -webkit-transform-origin: 0 36px;
+  transform-origin: 0 36px;
+  -webkit-animation: loadWidget 2s infinite ease;
+  animation: loadWidget 2s infinite ease;
+}
+
+@-webkit-keyframes loadWidget {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loadWidget {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 /* Alert
 -------------------------------------------------- */
 /* line 3, ../sass/common/_alert.scss */
@@ -11982,7 +12060,27 @@ http://codepen.io/MattIn4D/pen/LiKFC
   overflow: show;
   color: #0d0d0d;
 }
-/* line 12, ../sass/common/_modal.scss */
+/* line 13, ../sass/common/_modal.scss */
+.appmodal.ng-animate {
+  transition: all ease 0.4s;
+  position: absolute;
+}
+/* line 17, ../sass/common/_modal.scss */
+.appmodal.ng-enter {
+  top: -200px;
+  opacity: 0;
+}
+/* line 21, ../sass/common/_modal.scss */
+.appmodal.ng-leave, .appmodal.ng-enter.ng-enter-active {
+  top: 0;
+  opacity: 1;
+}
+/* line 26, ../sass/common/_modal.scss */
+.appmodal .accordion-entry-ctrl.ng-leave.ng-leave-active {
+  top: 200px;
+  opacity: 0;
+}
+/* line 30, ../sass/common/_modal.scss */
 .appmodal .appmodal-in {
   width: 99%;
   position: relative;
@@ -11990,22 +12088,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: #FFFFFF;
 }
 
-/* line 20, ../sass/common/_modal.scss */
+/* line 38, ../sass/common/_modal.scss */
 .appmodal-100 .appmodal-in {
   width: 99% !important;
 }
 
-/* line 25, ../sass/common/_modal.scss */
+/* line 43, ../sass/common/_modal.scss */
 .appmodal-90 .appmodal-in {
   width: 90%;
 }
 
-/* line 29, ../sass/common/_modal.scss */
+/* line 47, ../sass/common/_modal.scss */
 #modalHistory {
   z-index: 2301;
 }
 
-/* line 33, ../sass/common/_modal.scss */
+/* line 51, ../sass/common/_modal.scss */
 .appmodal:before {
   content: '';
   display: block;
@@ -12017,16 +12115,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: rgba(37, 37, 37, 0.5);
 }
 
-/* line 43, ../sass/common/_modal.scss */
+/* line 61, ../sass/common/_modal.scss */
 .appmodal-header, .appmodal-body, .appmodal-footer {
   padding: 10px 15px;
 }
 
-/* line 47, ../sass/common/_modal.scss */
+/* line 65, ../sass/common/_modal.scss */
 .appmodal-header {
   border-bottom: solid 1px #d3d3d3;
 }
-/* line 49, ../sass/common/_modal.scss */
+/* line 67, ../sass/common/_modal.scss */
 .appmodal-header .appmodal-close {
   color: #404040;
   font-size: 180%;
@@ -12038,18 +12136,18 @@ http://codepen.io/MattIn4D/pen/LiKFC
   z-index: 2;
   cursor: pointer;
 }
-/* line 59, ../sass/common/_modal.scss */
+/* line 77, ../sass/common/_modal.scss */
 .appmodal-header .appmodal-close span {
   display: inline-block;
 }
-/* line 63, ../sass/common/_modal.scss */
+/* line 81, ../sass/common/_modal.scss */
 .appmodal-header h3 {
   font-size: 110%;
   margin: 0;
   color: #404040;
 }
 
-/* line 72, ../sass/common/_modal.scss */
+/* line 90, ../sass/common/_modal.scss */
 .appmodal-footer {
   border-top: solid 1px #d3d3d3;
   text-align: right;
@@ -12057,14 +12155,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal with knob
 -------------------------------------------------- */
-/* line 80, ../sass/common/_modal.scss */
+/* line 98, ../sass/common/_modal.scss */
 .app-row-knob .knob-col {
   padding: 10px;
 }
 
 /* Confirm content
 -------------------------------------------------- */
-/* line 87, ../sass/common/_modal.scss */
+/* line 105, ../sass/common/_modal.scss */
 .app-confirm-content {
   padding: 10px;
   border: solid 1px #d3d3d3;
@@ -12075,7 +12173,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal James Box
 -------------------------------------------------- */
-/* line 97, ../sass/common/_modal.scss */
+/* line 115, ../sass/common/_modal.scss */
 #jamesBoxUpdateModal #updateTimeout {
   text-align: center;
   font-weight: bold;
@@ -12083,19 +12181,19 @@ http://codepen.io/MattIn4D/pen/LiKFC
   font-size: 16px;
 }
 
-/* line 104, ../sass/common/_modal.scss */
+/* line 122, ../sass/common/_modal.scss */
 #jamesBoxUpdateModal ol {
   margin: 15px 0;
 }
 
-/* line 108, ../sass/common/_modal.scss */
+/* line 126, ../sass/common/_modal.scss */
 #jamesBoxUpdateModal li.jamesboxUpdateInfoList {
   margin: 0 0 5px 0;
 }
 
 /* Modal element event
 -------------------------------------------------- */
-/* line 115, ../sass/common/_modal.scss */
+/* line 133, ../sass/common/_modal.scss */
 #modalEvent .appmodal-body {
   height: auto;
   max-height: 500px;
@@ -12513,302 +12611,6 @@ img.widget-promo-image {
   line-height: 80px;
 }
 
-/* RGB color wheel
---------------------------------------------------------*/
-/* line 296, ../sass/modules/_elements.scss */
-.progress-true_ {
-  position: relative;
-  border-radius: 50%;
-  width: 74px;
-  height: 74px;
-  margin: 0 auto;
-  background-color: #cccccc;
-  /* Single pixel data uri image http://jsfiddle.net/LPxrT/
-  /* background-image: gold, gold, white */
-  background-image: url("data:image/gif;base64,R0lGODlhAQABAPAAAMzMzP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="), url("data:image/gif;base64,R0lGODlhAQABAPAAAMzMzP///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="), url("data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==");
-  background-repeat: no-repeat;
-  background-size: 0 2px, 0 100%, 0% 2px;
-  background-position: top center, top center, bottom center;
-  animation: drawBorderFromCenter 3s ease infinite;
-  -webkit-animation: drawBorderFromCenter 3s ease infinite;
-}
-/* line 313, ../sass/modules/_elements.scss */
-.progress-true_ img {
-  background: white;
-  text-align: center;
-  text-transform: uppercase;
-  border-radius: 50%;
-  width: 64px;
-  height: 64px;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  -webkit-filter: grayscale(100%);
-  /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
-}
-
-/* Chrome, Safari, Opera */
-@-webkit-keyframes drawBorderFromCenter {
-  0% {
-    background-size: 0 2px, 0 0, 100% 100%;
-  }
-  20% {
-    background-size: 100% 2px, 100% 0, 100% 100%;
-  }
-  66% {
-    background-size: 100% 2px, 100% 98%, 100% 100%;
-  }
-  99% {
-    background-size: 100% 2px, 100% 98%, 0 2px;
-  }
-}
-@keyframes drawBorderFromCenter {
-  0% {
-    background-size: 0 2px, 0 0, 100% 100%;
-  }
-  20% {
-    background-size: 100% 2px, 100% 0, 100% 100%;
-  }
-  66% {
-    background-size: 100% 2px, 100% 98%, 100% 100%;
-  }
-  99% {
-    background-size: 100% 2px, 100% 98%, 0 2px;
-  }
-}
-/* Border animate
-/* http://www.hongkiat.com/blog/css-animated-dashed-border/
---------------------------------------------------------*/
-/* line 369, ../sass/modules/_elements.scss */
-.animation-examples {
-  width: 600px;
-  height: 120px;
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: cambria;
-}
-
-/* line 380, ../sass/modules/_elements.scss */
-.animation-examples.one {
-  color: #69D2E7;
-  outline: 5px dashed #E0E4CC;
-  box-shadow: 0 0 0 5px #69D2E7;
-  animation: 3s animateBorderOne ease infinite;
-}
-
-@keyframes animateBorderOne {
-  /*to {
-      outline-color: #69D2E7;
-      box-shadow: 0 0 0 5px #E0E4CC;
-  }*/
-  0% {
-    outline-color: #69D2E7;
-    box-shadow: 0 0 0 5px #E0E4CC;
-  }
-  20% {
-    outline-color: red;
-    box-shadow: 0 0 0 5px blue;
-  }
-  66% {
-    outline-color: green;
-    box-shadow: 0 0 0 5px yellow;
-  }
-  99% {
-    outline-color: teal;
-    box-shadow: 0 0 0 5px thistle;
-  }
-}
-/* line 411, ../sass/modules/_elements.scss */
-#animation-examples {
-  margin: 20px 10px;
-}
-
-/* Loaders
-/* https://github.com/lukehaas/css-loaders
---------------------------------------------------------*/
-/*.no-cssanimations {
-
-  .load-container {
-
-    .loaders {
-      text-indent:0;
-      text-align:center;
-      color:#FFF;
-      font-size:17px;
-      background:none;
-      border:0 none;
-      width:auto;
-      height:auto;
-      margin:1em auto;
-      overflow:visible;
-      box-shadow:none;
-      -webkit-animation:none;
-      animation:none;
-
-      &:before,
-      &:after {
-        display:none;
-      }
-
-    }
-
-  }
-
-}*/
-/*.load-container {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 240px;
-  height: 240px;
-  float: left;
-  position: relative;
-  overflow: hidden;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}*/
-/* line 465, ../sass/modules/_elements.scss */
-.progress-true .widget-preview-img {
-  opacity: 0.3;
-}
-/* line 469, ../sass/modules/_elements.scss */
-.progress-true .loader,
-.progress-true .loader:before,
-.progress-true .loader:after {
-  border-radius: 50%;
-  /*width:69px;
-  height:69px;*/
-}
-/* line 477, ../sass/modules/_elements.scss */
-.progress-true .loader {
-  top: 17px;
-  left: 7px;
-  position: absolute;
-  color: #184B7C;
-  /*width:10em;
-  height:10em;*/
-  width: 70px;
-  height: 70px;
-  box-shadow: inset 0 0 0 1em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-}
-/* line 497, ../sass/modules/_elements.scss */
-.progress-true .loader:before, .progress-true .loader:after {
-  position: absolute;
-  content: '';
-}
-/* line 503, ../sass/modules/_elements.scss */
-.progress-true .loader:before {
-  /*width:5.2em;
-  height:10.2em;*/
-  width: 36px;
-  height: 72px;
-  background: #FFF;
-  border-radius: 72px 0 0 72px;
-  top: -1px;
-  left: -1px;
-  -webkit-transform-origin: 36px 36px;
-  transform-origin: 36px 36px;
-  -webkit-animation: load2 2s infinite ease 1.5s;
-  animation: load2 2s infinite ease 1.5s;
-}
-/* line 518, ../sass/modules/_elements.scss */
-.progress-true .loader:after {
-  width: 36px;
-  height: 72px;
-  background: #FFF;
-  border-radius: 0 72px 72px 0;
-  top: -1px;
-  /* top:-0.1em;
-   left:4.9em;*/
-  left: 35px;
-  -webkit-transform-origin: 0 36px;
-  transform-origin: 0 36px;
-  -webkit-animation: load2 2s infinite ease;
-  animation: load2 2s infinite ease;
-}
-
-@-webkit-keyframes load2 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes load2 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-/* line 555, ../sass/modules/_elements.scss */
-.progress-true_ {
-  /*.loadimg{
-    width:64px;
-    height:64px;
-    position:absolute;
-    top: 10px;
-    left: 10px;
-  }*/
-}
-/* line 563, ../sass/modules/_elements.scss */
-.progress-true_ .widget-preview-img {
-  opacity: 0.5;
-}
-/* line 566, ../sass/modules/_elements.scss */
-.progress-true_ .widget-loader,
-.progress-true_ .widget-loader:after {
-  border-radius: 50%;
-  width: 69px;
-  height: 69px;
-}
-/* line 573, ../sass/modules/_elements.scss */
-.progress-true_ .widget-loader {
-  top: 17px;
-  left: 7px;
-  position: absolute;
-  border-top: 10px solid rgba(24, 75, 124, 0.2);
-  border-right: 10px solid rgba(24, 75, 124, 0.2);
-  border-bottom: 10px solid rgba(24, 75, 124, 0.2);
-  border-left: 10px solid #184b7c;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: load8 1.1s infinite linear;
-  animation: load8 1.1s infinite linear;
-}
-
-@-webkit-keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes load8 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
 /* Events
 -------------------------------------------------- */
 /* line 3, ../sass/modules/_events.scss */
