@@ -582,11 +582,36 @@ myAppController.controller('ElementEventController', function ($scope, $filter, 
             };
             return;
         }
+        // Get device icons
+        var icons = dataService.getSingleElementIcons(device[0]);
+        console.log(icons)
         $scope.widgetEvent.find = device[0];
         var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
         dataFactory.getApi('notifications', since, true).then(function (response) {
             // console.log(response.data.data.notifications.slice(1,10))
-            $scope.widgetEvent.collection = _.where(response.data.data.notifications,{source: $scope.widgetEvent.find.id});
+            $scope.widgetEvent.collection = _.chain(response.data.data.notifications)
+                .flatten()
+                .where({source: $scope.widgetEvent.find.id})
+                .filter(function(v){
+                    var icon = false;
+                    var hasL = $filter('hasNode')(v, 'message.l');
+                    if(!hasL){
+                        return v;
+                    }
+
+                    console.log(hasL)
+                    switch (v.type) {
+                        case 'device-OnOff':
+                            break;
+                        default:
+                            break;
+
+                    }
+                    v.icon = icon;
+                    return v;
+
+                })
+                .value();
             if (_.isEmpty($scope.widgetEvent.collection)) {
                 $scope.widgetEvent.alert = {
                     message: $scope._t('no_events'),
