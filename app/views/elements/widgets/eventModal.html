@@ -9,7 +9,7 @@
         </div>
         <div class="appmodal-body">
             <bb-alert alert="widgetEvent.alert"></bb-alert>
-            <pre>{{widgetEvent.collection|json}}</pre>
+            <!--<pre>{{widgetEvent.collection|json}}</pre>-->
             <table class="table table-report table-condensed">
                 <tbody>
                 <tr class="event-level-{{v.level}}" ng-repeat="v in widgetEvent.collection | orderBy: '-timestamp' | limitTo: 10">
