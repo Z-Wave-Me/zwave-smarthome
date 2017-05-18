@@ -31,10 +31,10 @@
         </div>
         <div class="appmodal-footer" ng-if="!_.isEmpty(widgetEvent.collection)">
             <!--<a class="btn btn-default" ng-href="#events/source/{{widgetEvent.find.id}}"-->
-            <a class="btn btn-default" ng-href="#events/source/{{widgetEvent.find.id}}"
-            ng-click="handleModal('modalEvent', $event)">
+            <button class="btn btn-default"
+                ng-click="handleModal('modalEvent', $event);redirectToEvents('events/source/' + widgetEvent.find.id)">
                 {{_t('see_more')}} <i class="fa fa-chevron-right"></i>
-            </a>
+            </button>
         </div>
     </div>
 </div>

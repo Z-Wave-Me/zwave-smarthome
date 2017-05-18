@@ -562,7 +562,7 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
  * The controller that handles a device events.
  * @class ElementEventController
  */
-myAppController.controller('ElementEventController', function ($scope, $filter, cfg,dataFactory, dataService, _) {
+myAppController.controller('ElementEventController', function ($scope, $filter,$cookies, cfg,dataFactory, dataService, _) {
     $scope.widgetEvent = {
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false},
@@ -631,6 +631,22 @@ myAppController.controller('ElementEventController', function ($scope, $filter, 
 
     };
     $scope.loadDeviceEvents();
+
+    /**
+     * Redirect to events
+     * @param {string} url
+     */
+    $scope.redirectToEvents = function (url) {
+        // Setting time filter to 7 days
+        var timeFilter = {
+            since: $filter('unixStartOfDay')('-', (86400 * 6)),
+            to: $filter('unixStartOfDay')('-', (86400 * 5)),
+            day: 7
+        };
+        $cookies.events_timeFilter = angular.toJson(timeFilter);
+        // Redirecting to events
+        $scope.redirectToRoute(url);
+    };
 
 });
 
