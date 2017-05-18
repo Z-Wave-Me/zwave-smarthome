@@ -845,6 +845,16 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     }
 
     /**
+     * Compare whether two versions of a resource are the same
+     * @param {string} v1
+     * @param {string} v2
+     * @returns {Boolean}
+     */
+    this.setIcon = function (defaultIcon, customIcon) {
+        return setIcon(defaultIcon, customIcon);
+    };
+
+    /**
      * Build an object with icons
      * @param {object} defaultIcon
      * @param {object} customIcon

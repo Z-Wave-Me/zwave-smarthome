@@ -583,8 +583,9 @@ myAppController.controller('ElementEventController', function ($scope, $filter, 
             return;
         }
         // Get device icons
-        var icons = dataService.getSingleElementIcons(device[0]);
-        //console.log(icons)
+        var deviceIcons = dataService.getSingleElementIcons(device[0]);
+        // Set default or custom icons
+        var icons = dataService.setIcon(deviceIcons['default'], deviceIcons['custom']);
         $scope.widgetEvent.find = device[0];
         var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
         dataFactory.getApi('notifications', since, true).then(function (response) {
@@ -592,25 +593,20 @@ myAppController.controller('ElementEventController', function ($scope, $filter, 
                 .flatten()
                 .where({source: $scope.widgetEvent.find.id})
                 .filter(function(v){
-                    var hasL,defaultIcon,customIcon;
+                    var hasL;
                     // Default event icon
                     v.iconPath = $filter('getEventIcon')(v.type,v.message);
                     // Has an event level?
                     hasL = $filter('hasNode')(v, 'message.l');
-                    if(!hasL){
-                        v.iconPath = iconPath;
+
+                    // Has device a level icon?
+                    if(icons[hasL]){
+                        v.iconPath = icons[hasL];
                         return v;
                     }
-                    // Custom icon from device
-                    customIcon = $filter('hasNode')(icons, 'custom.' + hasL);
-                    if(customIcon){
-                        v.iconPath = cfg.img.custom_icons +  customIcon;
-                        return v;
-                    }
-                    // Default icon from device
-                    defaultIcon = $filter('hasNode')(icons, 'default.' + + hasL);
-                    if(defaultIcon){
-                        v.iconPath = cfg.img.icons + defaultIcon;
+                    // Has device a default icon?
+                    if(icons['default']){
+                        v.iconPath = icons['default'];
                         return v;
                     }
                     return v;
