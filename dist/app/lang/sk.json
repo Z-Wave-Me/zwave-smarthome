@@ -1,4 +1,9 @@
 {
+    "reload":"Reload",
+    "no_search_results":"Sorry, your search __term__ did not return any results.",
+    "icon_from_url_already_exists": "Icons are already installed. Go to Local icons and delete all icons in __title__",
+    "cannot_delete_all_icons":"Cannot delete all specified icons",
+    "nothing_deleted":"Nothing has been deleted",
     "delete_checked":"Delete checked",
     "check_all":"Check all",
     "news":"News",
