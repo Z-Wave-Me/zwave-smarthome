@@ -11,6 +11,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     $scope.page = {
         title: false
     };
+    $scope.filter = {};
     $scope.collection = [];
     $scope.eventLevels = [];
     $scope.dayCount = [
@@ -63,7 +64,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
         var urlParam = '?since=' + ($scope.timeFilter.since * 1000);
 
@@ -165,6 +166,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     $scope.refreshData = function () {
         var refresh = function () {
             dataFactory.refreshApi('notifications').then(function (response) {
+                //console.log('Run refresh',response.data.data.notifications)
                 angular.forEach(response.data.data.notifications, function (v, k) {
                     //$scope.collection.push(v);
                     setEvent(v);
@@ -173,7 +175,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
-    $scope.refreshData();
+
+
     // Watch for pagination change
     $scope.$watch('currentPage', function (page) {
         paginationService.setCurrentPage(page);
@@ -237,7 +240,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     function setEvents(data) {
         $scope.collection = [];
         $scope.eventLevels = dataService.getEventLevel(data, [{'key': null, 'val': 'all'}]);
-        var filter = null;
+        //var filter = null;
         if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
             if ($routeParams.param === 'source' && $routeParams.val !== '') {
                 $scope.currSource = $routeParams.val;
@@ -245,29 +248,35 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             if ($routeParams.param === 'level' && $routeParams.val !== '') {
                 $scope.currLevel = $routeParams.val;
             }
-            filter = $routeParams;
+            $scope.filter = $routeParams;
             angular.forEach(data, function (v, k) {
-                if (filter && angular.isDefined(v[filter.param])) {
-                    if (v[filter.param] == filter.val) {
+                if ($scope.filter && angular.isDefined(v[$scope.filter.param])) {
+                    if (v[$scope.filter.param] == $scope.filter.val) {
                         $scope.collection.push(v);
                     }
                 }
             });
         } else if (angular.isDefined($routeParams.param) && $routeParams.param == 'source_type') {
-            filter = $routeParams;
+            $scope.filter = $routeParams;
             angular.forEach(data, function (v, k) {
-                if (v.source == filter.source && v.type == filter.type) {
+                if (v.source == $scope.filter.source && v.type == $scope.filter.type) {
                     $scope.collection.push(v);
                 }
             });
         } else {
+            $scope.filter = {};
             $scope.collection = data;
         }
-        
+
          // Count events in the device
          $scope.devices.cnt.deviceEvents =_.countBy(data,function (v) {
             return v.source;
         });
+        // Run refresh only when filter is empty
+        if(_.isEmpty($scope.filter)){
+            $scope.refreshData();
+        }
+        // No data in the collection
         if (_.size($scope.collection) < 1) {
             alertify.alertWarning($scope._t('no_events'));
             return;

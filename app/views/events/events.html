@@ -2,8 +2,8 @@
 <div ng-controller="EventController">
     <bb-loader></bb-loader>
     <div class="page-control form-inline">
-        <!-- Filter -->
-        <div class="btn-group btn-goup-block btn-goup-2">
+       <div class="btn-group btn-goup-block btn-goup-2">
+           <!-- Filter -->
             <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)" ng-class="devices.find.title || currLevel ? 'active':'' ">
                 <i class="fa fa-filter"></i>
                 <span ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
@@ -18,6 +18,10 @@
                  <span ng-switch-when="7">7 {{_t('lb_days')}}</span>
                 <span ng-switch-default>{{_t('lb_today')}}</span>
             </button>
+           <!-- Refresh -->
+           <button class="btn btn-default" title="{{_t('reload')}}" ng-click="reloadData()">
+               <i class="fa fa-repeat"></i>
+           </button>
         </div>
     </div>
     <!-- Page subnavi  filter-->
