@@ -1,0 +1,90 @@
+/* Meter
+https://css-tricks.com/css3-progress-bars/
+-------------------------------------------------- */
+.meter {
+    height: 40px;  /* Can be anything */
+    position: relative;
+    //background: #555;
+    //padding: 10px;
+}
+.meter > span {
+    display: block;
+    height: 100%;
+    background-color: rgb(43,194,83);
+    background-image: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    color-stop(0, rgb(43,194,83)),
+                    color-stop(1, rgb(84,240,84))
+    );
+    background-image: -moz-linear-gradient(
+                    center bottom,
+                    rgb(43,194,83) 37%,
+                    rgb(84,240,84) 69%
+    );
+    position: relative;
+    overflow: hidden;
+}
+.meter > span:after, .animate > span > span {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-image:
+            -webkit-gradient(linear, 0 0, 100% 100%,
+                    color-stop(.25, rgba(255, 255, 255, .2)),
+                    color-stop(.25, transparent), color-stop(.5, transparent),
+                    color-stop(.5, rgba(255, 255, 255, .2)),
+                    color-stop(.75, rgba(255, 255, 255, .2)),
+                    color-stop(.75, transparent), to(transparent)
+            );
+    background-image:
+            -moz-linear-gradient(
+                            -45deg,
+                            rgba(255, 255, 255, .2) 25%,
+                            transparent 25%,
+                            transparent 50%,
+                            rgba(255, 255, 255, .2) 50%,
+                            rgba(255, 255, 255, .2) 75%,
+                            transparent 75%,
+                            transparent
+            );
+    z-index: 1;
+    -webkit-background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    -webkit-animation: move 2s linear infinite;
+
+    overflow: hidden;
+}
+
+.animate > span:after {
+    display: none;
+}
+
+@-webkit-keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+.orange > span {
+    background-color: #f1a165;
+    background-image: -moz-linear-gradient(top, #f1a165, #f36d0a);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f1a165),color-stop(1, #f36d0a));
+    background-image: -webkit-linear-gradient(#f1a165, #f36d0a);
+}
+
+.red > span {
+    background-color: #f0a3a3;
+    background-image: -moz-linear-gradient(top, #f0a3a3, #f42323);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f0a3a3),color-stop(1, #f42323));
+    background-image: -webkit-linear-gradient(#f0a3a3, #f42323);
+}
+
+.nostripes > span > span, .nostripes > span:after {
+    -webkit-animation: none;
+    background-image: none;
+}
