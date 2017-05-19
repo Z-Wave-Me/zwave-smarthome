@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 18-05-2017 15:02:31 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 19-05-2017 14:21:18 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -1001,7 +1001,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/test.html',
-    ""
+    "<div class=meter><span style=\"width: 100%\"></span></div>"
   );
 
 

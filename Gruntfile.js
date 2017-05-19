@@ -77,6 +77,8 @@ module.exports = function (grunt) {
                     'vendor/upload/angular-file-upload.min.js',
                     'vendor/angular/angular-1.2.28/angular-route.min.js',
                     'vendor/angular/angular-1.2.28/angular-cookies.min.js',
+                    'vendor/angular/angular-1.2.28/angular-touch.js',
+                    'vendor/angular/angular-1.2.28/angular-animate.js',
                     'vendor/dragdrop/angular-sortable-view.min.js',
                     // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
