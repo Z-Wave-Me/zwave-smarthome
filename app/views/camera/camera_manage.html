@@ -32,7 +32,7 @@
                     </button>
                     <button title="{{_t('lb_remove')}}" 
                             class="btn btn-default"
-                            ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))">
+                            ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
                         <i class="fa fa-remove text-danger"></i>
                     </button>
                  </div>

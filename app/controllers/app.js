@@ -517,7 +517,12 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 }
             }).filter(function (v) {
                 if ($scope.dataHolder.instances.groups[v.moduleId]) {
-                    $scope.dataHolder.instances.groups[v.moduleId].instances.push(v);
+                    var index = _.findIndex($scope.dataHolder.instances.groups[v.moduleId].instances,{id:v.id});
+                    if(index === -1){
+                        $scope.dataHolder.instances.groups[v.moduleId].instances.push(v);
+                    }
+
+
                 }
                 return v;
             }).value();

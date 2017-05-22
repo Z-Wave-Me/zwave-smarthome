@@ -81,7 +81,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
     /**
      * Delete instance
      */
-    $scope.deleteInstance = function (target, input, message) {
+    $scope.deleteInstance = function (input, message) {
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('instances', input.id).then(function (response) {

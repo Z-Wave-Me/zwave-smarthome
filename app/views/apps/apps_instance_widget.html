@@ -5,7 +5,7 @@
     dataHolder.instances.filter.q + "\""})}}
 </div>
 <!-- List -->
-<div ng-repeat="g in dataHolder.instances.groups track by $index"
+<div ng-repeat="(indexG,g) in dataHolder.instances.groups track by indexG"
      ng-init="instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]">
     <!-- ----------------------------------- Accordion ----------------------------------- -->
     <div class="accordion-entry" ng-if="instanveModuleCnt > 1">
@@ -26,8 +26,7 @@
             <!-- Instances -->
             <div class="app-row app-row-report clearfix">
                 <div class="report-entry bcg-active"
-                     id="instance_{{$index}}"
-                     ng-repeat="v in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id"
+                    ng-repeat="(indexA,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexA"
                      ng-class="v.active ? 'true': 'false'"
                      ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
                     <div class="report-col report-body">
@@ -59,7 +58,7 @@
                             </a>
                             <button title="{{_t('lb_remove')}}"
                                     class="btn btn-default"
-                                    ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))">
+                                    ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
                                 <i class="fa fa-remove text-danger"></i>
                             </button>
                         </div>
@@ -74,8 +73,7 @@
         <!--<p>ROW: {{g.title}} ({{instanveModuleCnt}})</p>-->
         <div class="app-row app-row-report clearfix">
             <div class="report-entry bcg-active"
-                 id="instance_{{$index}}"
-                 ng-repeat="v in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id"
+                 ng-repeat="(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR"
                  ng-class="v.active ? 'true': 'false'"
                  ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
                 <div class="report-col report-body">
@@ -108,7 +106,7 @@
                         </a>
                         <button title="{{_t('lb_remove')}}"
                                 class="btn btn-default"
-                                ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))">
+                                ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
                             <i class="fa fa-remove text-danger"></i>
                         </button>
                     </div>
@@ -118,67 +116,9 @@
     </div>
 
 </div>
-<!--<div class="accordion-entry" ng-repeat="g in dataHolder.instances.groups track by $index">
 
-    <h2 class="accordion-entry-title"
-        ng-click="expandElement(g.moduleId)"
-        ng-init="expand[g.moduleId] = dataHolder.instances.expanded">
-        &lt;!&ndash; image &ndash;&gt;
-        <img class="report-img-s" ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-        &lt;!&ndash; Title &ndash;&gt;
-        {{g.title}} <span class="item-cnt">({{dataHolder.instances.cnt.modules[g.moduleId]}})</span>
-        &lt;!&ndash; Arrow &ndash;&gt;
-        <i class="fa accordion-arrow" ng-class="expand[g.moduleId] ? 'fa-chevron-up':'fa-chevron-down'"></i>
-    </h2>
 
-    <div class="accordion-entry-ctrl" ng-class="" ng-if="expand[g.moduleId]">
-        &lt;!&ndash; Instances &ndash;&gt;
-        <div class="app-row app-row-report app-row-event clearfix">
-            <div class="report-entry bcg-active"
-                 id="instance_{{$index}}"
-                 ng-repeat="v in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id"
-                 ng-class="v.active ? 'true': 'false'"
-                 ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
-                <div class="report-col report-body">
-                    <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
-                </div>
-                <div class="report-col report-ctrl report-ctrl-3">
-                    <div class="btn-group">
-                        <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
-                            <i class="fa fa-cog"></i>
-                        </a>
-                        <button title="{{_t('lb_deactivate')}}"
-                                class="btn btn-default" href=""
-                                ng-if="v.active"
-                                ng-class="v.active ? 'active' : ''"
-                                ng-click="activateInstance(v, false)">
-                            <i class="fa fa-fire text-success"></i>
-                        </button>
-                        <button title="{{_t('lb_activate')}}"
-                                class="btn btn-default"
-                                ng-if="!v.active"
-                                ng-click="activateInstance(v, true)">
-                            <i class="fa fa-power-off text-danger"></i>
-                        </button>
-                        <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
-                           class="btn btn-default"
-                           title="{{_t('lb_clone')}}"
-                           ng-hide="dataHolder.modules.ids[v.moduleId].singleton">
-                            <i class="fa fa-clone"></i>
-                        </a>
-                        <button title="{{_t('lb_remove')}}"
-                                class="btn btn-default"
-                                ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))">
-                            <i class="fa fa-remove text-danger"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>--> <!-- /app-entry-instance -->
-
-<!-- Add new group -->
+<!-- todo: backend support Add new group:
 <div class="page-control form-inline">
     <div class="form-group form-inline">
         <div class="input-group">
@@ -191,4 +131,4 @@
                        </span>
         </div>
     </div>
-</div>
+</div> -->

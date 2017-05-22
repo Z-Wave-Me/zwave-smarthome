@@ -266,10 +266,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     }).//Error 403
     when('/error403', {
         templateUrl: 'app/views/error_403.html'
-    }).//Test
-    when('/test', {
-        templateUrl: 'app/views/test.html'
-    }).otherwise({
+    }).//Not found
+    otherwise({
         template: ' ',
         controller: 'Error404Controller'
     });
