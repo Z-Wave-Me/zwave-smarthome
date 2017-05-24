@@ -2,20 +2,18 @@
 <div ng-controller="RoomController">
     <bb-loader></bb-loader>
     <div class="page-control form-inline">
-        <div class="btn-group btn-goup-block btn-goup-1"
+        <div class="btn-group btn-goup-block btn-goup-2"
              ng-if="elementAccess(cfg.role_access.config_rooms)">
             <a class="btn btn-default" href="#config-rooms/0">
                 <i class="fa fa-plus "></i>
                 <span class="btn-name">{{_t('lb_add_room')}}</span>
             </a>
-        </div>
-         <div class="btn-group btn-goup-block btn-goup-1">
             <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
                 <i class="fa fa-sort-alpha-asc"></i>
                 <span class="btn-name">{{_t(rooms.orderBy) | cutText:true:15}}</span>
             </button>
         </div>
-        <div class="input-group">
+        <div class="input-group input-search">
             <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
         </div>
@@ -36,92 +34,55 @@
         </div>
     </div>
 
-    <!-- OLD -->
-    <div class="app-row app-row-room clearfix" ng-if="rooms.show">
-        <div class="widget-entry widget-entry-element"
+    <!-- NEW -->
+    <div class="app-row app-row-widget clearfix" ng-if="rooms.show">
+        <div class="widget-entry widget-entry-room"
              id="panel_{{$index}}"
+             ng-class="rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
-             ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id">
+             ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
             <div class="widget-entry-in">
                 <!-- Widget icon -->
                 <div class="widget-img" title="{{v.title}}">
-                    <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
-                        <img class="widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.img_src}}" alt="img" ng-click="" />
+                    <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" title="{{_t('lb_devices_room')}} {{v.title}}">
+                        <img class="widget-preview-img " ng-src="{{v.img_src}}" alt="img" />
                     </a>
                 </div>
                 <!-- Widget header-->
-                <div class="widget-room-header">
-                    <div class="slots">
-                        <span class="slot1"><i class="fa fa-cog"></i> 2°C</span>
-                        <span class="divider-vertical"></span>
-                        <span class="slot2"><i class="fa fa-cog"></i> 12°</span>
-                        <span class="divider-vertical"></span>
-                        <span class="slot3"><i class="fa fa-cog"></i> 12°C</span>
-                        <span class="slot-conf">
-                            <a class="widget-config" href="#element/{{v.id}}" title="{{_t('lb_cfg_view')}}" ng-if="elementAccess(cfg.role_access.element)">
-                                <i class="fa fa-cog"></i>
-                            </a>
-                        </span>
-                    </div>
+                <div class="widget-header">
+                    <!-- Settings -->
+                    <a class="widget-icon" href="#config-rooms/{{v.id}}"  title="{{_t('lb_update')}}"
+                       ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <!-- Remove -->
+                    <a class="widget-icon clickable" title="{{_t('lb_remove')}}"
+                        ng-click="deleteRoom(v.id, _t('lb_delete_confirm'))"
+                       ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
+                        <i class="fa fa-times"></i>
+                    </a>
 
                 </div>
                 <!-- Widget content -->
-                <div class="widget-room-content">
+                <div class="widget-content">
                     <!-- Widget title -->
                     <div class="widget-title">
-                        <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
-                            <h3 title="{{v.title}}">{{v.title|cutText:true:25}}</h3>
-                        </a>
+
+                            <h3 title="{{v.title}}">
+                                <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
+                                {{v.title|cutText:true:25}}
+                                <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span>
+                                </a>
+                            </h3>
+
                     </div>
                     <hr class="bottom-aligner" />
                     <!--Widget footer -->
                     <div class="widget-room-footer">
-                        <div class="slots">
-                            <span class="slot1">
-                                <a class="btn btn-xs btn-default">
-                                    <i class="fa fa-cog"></i> TV
-                                </a>
-                            </span>
-                            <span class="slot2">
-                                <a class="btn btn-xs btn-default">
-                                    <i class="fa fa-cog"></i> Tor
-                                </a>
-                            </span>
-                            <span class="slot3">
-                                <a class="btn btn-xs btn-default" title="Add quick action">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </span>
-                        </div>
+                       &nbsp
                     </div>
                 </div>
             </div>
         </div>
-
-<!--
-        <div class="room-entry has-device-{{rooms.cnt.devices[v.id]||'false'}}"
-             id="panel_{{$index}}"
-             ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
-            ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by v.id">
-            <div class="room-entry-in">
-                 <h4>
-                    <a href="#/rooms/{{v.id}}" title="{{_t('lb_devices_room')}} {{v.title}}" ng-if="rooms.cnt.devices[v.id]">{{v.title}}  <span class="item-cnt">({{rooms.cnt.devices[v.id]}})</span></a>
-                    <span ng-if="!rooms.cnt.devices[v.id]">{{v.title}} <span class="item-cnt">(0)</span></span>
-                </h4>
-                <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
-                     <img class="room-image-preview img-circle" ng-src="{{v.img_src}}" alt="img" />
-                </a>
-            </div>
-        </div>-->
-        <!--
-        <div class="room-entry" id="panel_new_room" ng-if="elementAccess(cfg.role_access.config_rooms)">
-            <div class="room-entry-in">
-                <h4><a href="#config-rooms/0" ng-bind="_t('lb_add_room')"></a></h4>
-                <a href="#config-rooms/0">
-                    <img class="room-image-preview img-circle" src="storage/img/rooms/add-icon.png" alt="{{_t('lb_add_room')}}" />
-                </a>
-            </div>
-        </div>
-        -->
     </div>
 </div> <!-- /ng-controller --> 

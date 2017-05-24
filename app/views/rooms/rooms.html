@@ -35,7 +35,7 @@
     </div>
 
     <!-- NEW -->
-    <div class="app-row app-row-widget clearfix" ng-if="rooms.show">
+    <div class="app-row app-row-room clearfix" ng-if="rooms.show">
         <div class="widget-entry widget-entry-room"
              id="panel_{{$index}}"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'"
@@ -43,11 +43,13 @@
              ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
             <div class="widget-entry-in">
                 <!-- Widget icon -->
-                <div class="widget-img" title="{{v.title}}">
-                    <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" title="{{_t('lb_devices_room')}} {{v.title}}">
-                        <img class="widget-preview-img " ng-src="{{v.img_src}}" alt="img" />
-                    </a>
+                <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" title="{{_t('lb_devices_room')}} {{v.title}}">
+                <div class="room-img" title="{{v.title}}" style="background-image: url('{{v.img_src}}');">
+
+                       <!-- <img class="room-preview-img" ng-src="{{v.img_src}}" alt="img" />-->
+
                 </div>
+                </a>
                 <!-- Widget header-->
                 <div class="widget-header">
                     <!-- Settings -->
@@ -78,8 +80,8 @@
                     </div>
                     <hr class="bottom-aligner" />
                     <!--Widget footer -->
-                    <div class="widget-room-footer">
-                       &nbsp
+                    <div class="widget-footer">
+                       &nbsp;
                     </div>
                 </div>
             </div>
