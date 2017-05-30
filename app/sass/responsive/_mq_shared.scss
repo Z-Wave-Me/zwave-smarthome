@@ -321,40 +321,38 @@ input[type=radio] {
 /* Rooms
 -------------------------------------------------- */
 .card-room {
-  @include appFloat(left);
-  border: 0;
-  width: $room-card-w;
+  //@include appFloat(left);
+  //border: 0;
+  //width: $room-card-w;
   .card-room-in {
    // @include appGradient();
     //@include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
     //border: solid 4px $room-card-border-color;
-    margin: $spacing;
+   /* margin: $spacing;
     height: $room-card-h;
-    padding: 0;
+    padding: 0;*/
     .card-header {
-      width: 100%;
+     /* width: 100%;
       padding: $spacing-half;
-      top: 0;
+      top: 0;*/
 
     }
     .room-img {
       //border: solid 1px red;
-      position: static;
+      /*position: static;
       text-align: center;
       width: $room-img-w;
-      height: $room-img-h;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+      height: $room-img-h;*/
+
     }
 
     .card-content {
-      position: static;
+     /* position: static;
       margin: $spacing-double 0 0 0;
       .card-title {
         padding: 0;
         text-align: center;
-      }
+      }*/
     }
 
   }

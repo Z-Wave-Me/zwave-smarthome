@@ -45,6 +45,9 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         data: {},
         show: false
     };
+    $scope.rooms = {
+        all: {}
+    };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
     $scope.reset = function () {
@@ -69,13 +72,15 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         var urlParam = '?since=' + ($scope.timeFilter.since * 1000);
 
         var promises = [
+            dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, true),
             dataFactory.getApi('notifications', urlParam, true)
         ];
 
         $q.allSettled(promises).then(function (response) {
-            var devices = response[0];
-            var events = response[1];
+            var locations = response[0];
+            var devices = response[1];
+            var events = response[2];
 
             $scope.loading = false;
             // Error message
@@ -83,6 +88,14 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_load_data'));
                 return;
+            }
+            // Success - locations
+            if (locations.state === 'fulfilled') {
+                 _.filter(dataService.getRooms(locations.value.data.data).value(),function (v) {
+                       if(v.id != 0){
+                           $scope.rooms.all[v.id] = v.title;
+                       }
+                    });
             }
             // Success - devices
             if (devices.state === 'fulfilled') {

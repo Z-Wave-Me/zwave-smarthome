@@ -7,10 +7,14 @@ $grid-gutter: 15px;
 
 /*-------------------------------------*/
 // MEDIA QUERIES
-
-$media-lg: 1200px;
-$media-mid: 900px;
-$media-sm: 600px;
+// Extra Small Devices, Phones
+$break-esmall: 480px;
+//  Small Devices, Tablets
+$break-small: 768px;
+// Medium Devices, Desktops
+$break-medium: 992px;
+// Large Devices, Wide Screen
+$break-large: 1024px;
 
 /*-------------------------------------*/
 // SPACING

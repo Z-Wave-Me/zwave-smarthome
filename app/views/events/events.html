@@ -47,7 +47,7 @@
          </div>
         </div>
     </div>
-    
+    <!--<pre>{{rooms.all|json}}</pre>-->
     <!-- Page subnavi  days-->
     <div class="page-navi" ng-if="naviExpanded.evDays">
         <div class="page-navi-in">
@@ -81,6 +81,7 @@
                  </span>
                  </span>
                 <span class="report-message" ng-bind="v.message" ng-if="!v.source && !v.message"></span>
+                <span ng-if="rooms.all[v.message.location]"> | <em>{{rooms.all[v.message.location]}}</em></span>
             </div>
             <div class="report-col report-ctrl" ng-include="'app/views/events/dropdown.html'"></div>
         </div>
