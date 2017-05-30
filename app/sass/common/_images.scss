@@ -27,10 +27,12 @@ img {
     @include appBorderRadius(50%);
 }
 
+/*
 .room-preview-img{
     max-width: $room-img-w;
     max-height: $room-img-h;
 }
+*/
 
 .app-image-detail{
     max-width: $app-detail-img;

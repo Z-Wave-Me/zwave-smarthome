@@ -321,81 +321,44 @@ input[type=radio] {
 /* Rooms
 -------------------------------------------------- */
 .card-room {
-  .card-room-entry {
-    @include appFloat(left);
-    border: 0;
-    width: $room-col-w;
-    .widget-entry-in {
-      @include appGradient();
-      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
-      border-color: $widget-border-color;
-      border: solid 4px #fff;
-      margin: $spacing;
-      min-height: 1px;
-      height: $room-widget-col-h;
-      padding: 0;
-      //position: relative;
-      .widget-header {
-        opacity: 0.7;
-        width: 100%;
-        padding: $spacing-half;
-        background: #fff;
-        position: absolute;
-        top: 0;
+  @include appFloat(left);
+  border: 0;
+  width: $room-card-w;
+  .card-room-in {
+   // @include appGradient();
+    //@include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+    //border: solid 4px $room-card-border-color;
+    margin: $spacing;
+    height: $room-card-h;
+    padding: 0;
+    .card-header {
+      width: 100%;
+      padding: $spacing-half;
+      top: 0;
 
-      }
-      .room-img {
-        //border: solid 1px red;
-        position: static;
+    }
+    .room-img {
+      //border: solid 1px red;
+      position: static;
+      text-align: center;
+      width: $room-img-w;
+      height: $room-img-h;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .card-content {
+      position: static;
+      margin: $spacing-double 0 0 0;
+      .card-title {
+        padding: 0;
         text-align: center;
-        width: $room-img-w;
-        height: $room-img-h;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        .room-preview-img__ {
-
-          max-width: $room-widget-col-h;
-          max-height: $room-widget-col-h/2;
-          width: $room-widget-col-h;
-          height: $room-widget-col-h/2;
-        }
       }
-
-      .widget-content {
-        position: static;
-        margin: $spacing-double 0 0 0;
-        .widget-title {
-          padding: 0;
-          text-align: center;
-        }
-      }
-
-
     }
 
   }
 }
-
-/* todo: deprecated
-/* Rooms
--------------------------------------------------- */
-/*.widget-entry-room{
-    .widget-entry-in{
-        min-height: 1px;
-        height: $room-widget-col-h;
-        .widget-title{
-            margin-top: $spacing-double;
-        }
-        .widget-footer{
-            margin: $spacing 0 0 0;
-
-        }
-    }
-}
-.room-entry{
-    width: $room-col-w;
-}*/
 
 /* Apps
 -------------------------------------------------- */

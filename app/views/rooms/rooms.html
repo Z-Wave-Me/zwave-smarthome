@@ -18,64 +18,63 @@
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
         </div>
     </div>
-     
-        <!-- Page subnavi  sort by -->
-      <div class="page-navi" ng-if="naviExpanded.roomsOrderBy">
+
+    <!-- Page subnavi  sort by -->
+    <div class="page-navi" ng-if="naviExpanded.roomsOrderBy">
         <div class="page-navi-in">
             <div class="page-navi-content">
-                 <p class="page-navi-title"> {{_t('sortby')}}</p>
-                <a class="btn btn-default btn-tag" href="" 
-                        ng-repeat="(k,v) in cfg.orderby.rooms"
-                       ng-click="setOrderBy(k)"
-                       ng-class="rooms.orderBy == k ? 'active': ''">
-                     {{_t(k) | cutText:true:30}}
-                 </a>
+                <p class="page-navi-title"> {{_t('sortby')}}</p>
+                <a class="btn btn-default btn-tag" href=""
+                   ng-repeat="(k,v) in cfg.orderby.rooms"
+                   ng-click="setOrderBy(k)"
+                   ng-class="rooms.orderBy == k ? 'active': ''">
+                    {{_t(k) | cutText:true:30}}
+                </a>
             </div>
         </div>
     </div>
 
     <!-- NEW -->
-    <div class="card-room clearfix" ng-if="rooms.show">
-        <div class="widget-entry_ widget-entry-room_ card-room-entry"
-             id="panel_{{$index}}"
+    <div class="clearfix" ng-if="rooms.show">
+        <div class="widget-entry_ widget-entry-room_ card-room"
+             id="card_{{$index}}"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
              ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
-            <div class="widget-entry-in">
-                <!-- Widget icon -->
-                <a class="room-link" ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" title="{{_t('lb_devices_room')}} {{v.title}}">
-                <div class="room-img" title="{{v.title}}" style="background-image: url('{{v.img_src}}');">
+            <div class="widget-entry-in_ card-room-in">
+                <!-- Card image -->
+                <a class="room-link" ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
+                   title="{{_t('lb_devices_room')}} {{v.title}}">
+                <span class="room-img" title="{{v.title}}" style="background-image: url('{{v.img_src}}');">
 
-                       <!-- <img class="room-preview-img" ng-src="{{v.img_src}}" alt="img" />-->
-
-                </div>
+                </span>
                 </a>
-                <!-- Widget header-->
-                <div class="widget-header">
+                <!--Card header-->
+                <div class="card-header">
                     <!-- Settings -->
-                    <a class="widget-icon" href="#config-rooms/{{v.id}}"  title="{{_t('lb_update')}}"
+                    <a class="card-header-icon" href="#config-rooms/{{v.id}}" title="{{_t('lb_update')}}"
                        ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
                         <i class="fa fa-cog"></i>
                     </a>
                     <!-- Remove -->
-                    <a class="widget-icon clickable" title="{{_t('lb_remove')}}"
-                        ng-click="deleteRoom(v.id, _t('lb_delete_confirm'))"
+                    <a class="card-header-icon clickable" title="{{_t('lb_remove')}}"
+                       ng-click="deleteRoom(v.id, _t('lb_delete_confirm'))"
                        ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
                         <i class="fa fa-times"></i>
                     </a>
 
                 </div>
-                <!-- Widget content -->
-                <div class="widget-content">
-                    <!-- Widget title -->
-                    <div class="widget-title">
+                <!-- Card content -->
+                <div class="card-content">
+                    <!-- Card title -->
+                    <div class="card-title">
                         <h3 title="{{v.title}}">
-                                <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
+                            <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
+                               ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
                                 {{v.title|cutText:true:25}}
                                 <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span>
-                                </a>
-                            </h3>
-
+                            </a>
+                        </h3>
                     </div>
                 </div>
             </div>

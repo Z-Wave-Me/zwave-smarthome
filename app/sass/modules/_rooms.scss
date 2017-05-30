@@ -1,143 +1,139 @@
 /* Rooms
 -------------------------------------------------- */
+/* Variables for mobile first design
+-------------------------------------------------- */
+// Card width
+$room-card-w: 100%;
+// Card height
+$room-card-h: 100px;
+// Image width
+$room-img-w: 100%;
+// Image height
+$room-img-h: 100px;
+// Card color
+$room-card-color: #000000;
+// Card background color
+$room-card-bcg-color: #FFFFFF;
+// Card border color
+$room-card-border-color: #FFFFFF;
 
+/* Cards
+-------------------------------------------------- */
 .card-room {
-    .card-room-entry {
-        width: 100%;
-        //width: $room-col-w;
-        .widget-entry-in {
-            border-bottom: solid 1px #FFFFFF;
-            background-color: #FFFFFF;
-            position: relative;
-
-            min-height: 1px;
-            height: $room-widget-col-h;
-            //border: solid 4px $widget-border-color;
-            padding: 0;
-            margin: 0 0 $spacing-double 0;
-            .widget-header {
-                text-align: right;
-                min-height: 20px;
-                opacity: 0.8;
-                background: #fff;
-                position: absolute;
-                top: 30px;
-                right: 0;
-                padding: $spacing-half $spacing 0 0;
-               .widget-icon{
-                   color: lighten(#000000,30%);
-                   .fa{
-                       padding: 0 0 0 $spacing;
-                       font-size: $widget-icon-size;
-                   }
-               }
-
-            }
-
-            .room-img{
-                top: 0;
-                left: 0;
-                width: $room-img-w;
-                height: $room-img-h;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-               /* -webkit-filter: blur(5px);
-                -moz-filter: blur(5px);
-                -o-filter: blur(5px);
-                -ms-filter: blur(5px);
-                filter: blur(5px);*/
-
-            }
-            .widget-content {
-                 margin: 0;
-                position: absolute;
-                top: 30px;
-                left: 0;
-                .widget-title{
-                    height:50%;
-                    opacity: 0.8;
-                    padding: $spacing;
-                    background-color: #fff;
-                    h3{
-                        font-size: $widget-heading-font-size;
-                        padding: 0;
-                        margin: 0;
-                        a{
-                            color: #000000;
-                        }
-                    }
-                }
-             }
-
-
+  width: $room-card-w;
+  .card-room-in {
+    border: solid 4px $room-card-border-color;
+    background-color: $room-card-bcg-color;
+    @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+    position: relative;
+    height: $room-card-h;
+    padding: 0;
+    margin: 0 0 $spacing-double 0;
+    .card-header{
+      text-align: right;
+      min-height: $spacing-double;
+      opacity: 0.8;
+      background: $room-card-bcg-color;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      padding: $spacing-half $spacing 0 0;
+      .card-header-icon {
+        color: lighten($room-card-color, 30%);
+        .fa {
+          padding: 0 0 0 $spacing;
+          font-size: $widget-icon-size;
         }
+      }
 
     }
-}
-.widget-entry-room{
-    .widget-entry-in{
-        min-height: 1px;
-        height: $room-widget-col-h;
+
+    .room-img {
+      display: block;
+      top: 0;
+      left: 0;
+      width: $room-img-w;
+      height: $room-img-h - 8px;// - border width * 2
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      /* -webkit-filter: blur(5px);
+       -moz-filter: blur(5px);
+       -o-filter: blur(5px);
+       -ms-filter: blur(5px);
+       filter: blur(5px);*/
+
     }
-}
-.room-has-device{
-    .widget-title{
-        a{
-                font-weight: bold;
-            }
+    .card-content {
+      margin: 0;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      .card-title {
+        height: 50%;
+        opacity: 0.8;
+        padding: $spacing;
+        background-color: $room-card-bcg-color;
+        h3 {
+          font-size: $widget-heading-font-size;
+          padding: 0;
+          margin: 0;
+          a {
+            color: $room-card-color;
+            font-weight: bold;
+          }
+        }
+      }
     }
+
+  }
+
 }
-.room-no-device{
-    .widget-header {
-       /* .widget-icon{
-           color: lighten($widget-icon-color,40%) !important;
-        }*/
-    }
-    .room-link{
-        /*color: lighten($widget-heading-color,40%) !important;
-        text-decoration: none;*/
+/* Rooms without device
+-------------------------------------------------- */
+.room-no-device {
+  .room-link {
+    cursor: text !important;
+  }
+  .room-img {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    @include appGrayscale();
+
+  }
+  .card-title {
+    h3 {
+      a {
+        font-weight: normal;
+        color: lighten($room-card-color, 10%) !important;
+        text-decoration: none;
         cursor: text !important;
+      }
     }
-    .room-img{
-        opacity: 0.7;
-        filter: alpha(opacity=70);
-        @include appGrayscale();
-
-
-    }
-    .widget-title{
-        h3{
-            a{
-                color: lighten(#000000,10%) !important;
-                text-decoration: none;
-                cursor: text !important;
-            }
-        }
-    }
+  }
 }
 
 /* Elements in Rooms
 -------------------------------------------------- */
 // Background with image
 .full-bg-wrapper {
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    min-height: 100%;
-    min-width: 100%;
-    z-index: -100;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  min-height: 100%;
+  min-width: 100%;
+  z-index: -100;
 
-    .full-bg {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        filter: blur(15px);
-        transform: scale(1.1);
-    }
+  .full-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(15px);
+    transform: scale(1.1);
+  }
 }
