@@ -11005,12 +11005,12 @@ img {
 
 /* Widget
 -------------------------------------------------- */
-/* line 4, ../sass/common/_widget.scss */
+/* line 3, ../sass/common/_widget.scss */
 .widget-entry {
   width: 100%;
   color: #0d0d0d;
 }
-/* line 7, ../sass/common/_widget.scss */
+/* line 6, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in {
   border-bottom: solid 1px #FFFFFF;
   background-color: #FFFFFF;
@@ -11018,51 +11018,51 @@ img {
   position: relative;
   padding: 10px;
 }
-/* line 13, ../sass/common/_widget.scss */
+/* line 12, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-img {
   position: absolute;
   top: 20px;
   left: 10px;
 }
-/* line 20, ../sass/common/_widget.scss */
+/* line 19, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-header {
   position: relative;
   text-align: right;
   min-height: 20px;
 }
-/* line 24, ../sass/common/_widget.scss */
+/* line 23, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-header .widget-icon {
   color: #737373;
 }
-/* line 26, ../sass/common/_widget.scss */
+/* line 25, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-header .widget-icon .fa {
   padding: 0 0 0 10px;
   font-size: 180%;
 }
-/* line 32, ../sass/common/_widget.scss */
+/* line 31, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-content {
   margin: -10px 0 0 84px;
 }
-/* line 35, ../sass/common/_widget.scss */
+/* line 34, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title {
   height: 50%;
   color: #404040;
 }
-/* line 38, ../sass/common/_widget.scss */
+/* line 37, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title h3 {
   font-size: 115%;
   padding: 0;
   margin: 0;
 }
-/* line 42, ../sass/common/_widget.scss */
+/* line 41, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-title h3 a {
   color: #404040;
 }
-/* line 47, ../sass/common/_widget.scss */
+/* line 46, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-footer {
   height: 50%;
 }
-/* line 51, ../sass/common/_widget.scss */
+/* line 50, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .bottom-aligner {
   border: 0;
   display: inline-block;
@@ -11070,44 +11070,44 @@ img {
   vertical-align: bottom;
   width: 1px;
 }
-/* line 58, ../sass/common/_widget.scss */
+/* line 57, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl-click {
   cursor: pointer;
 }
-/* line 62, ../sass/common/_widget.scss */
+/* line 61, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl {
   width: 50%;
   float: left;
 }
-/* line 67, ../sass/common/_widget.scss */
+/* line 66, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-left .btn-group, .widget-entry .widget-entry-in .widget-ctrl.ctrl-left .switch-wrap {
   float: left;
 }
-/* line 70, ../sass/common/_widget.scss */
+/* line 69, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-left .switch-wrap {
   padding: 0 5px 0 0;
 }
-/* line 74, ../sass/common/_widget.scss */
+/* line 73, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-right {
   float: right;
   text-align: right;
 }
-/* line 77, ../sass/common/_widget.scss */
+/* line 76, ../sass/common/_widget.scss */
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
   float: right;
 }
 
-/* line 84, ../sass/common/_widget.scss */
+/* line 83, ../sass/common/_widget.scss */
 .tbl-widget-ctrl .widget-history {
   color: #737373;
 }
-/* line 86, ../sass/common/_widget.scss */
+/* line 85, ../sass/common/_widget.scss */
 .tbl-widget-ctrl .widget-history .fa {
   padding: 0 0 0 10px;
   font-size: 180%;
 }
 
-/* line 93, ../sass/common/_widget.scss */
+/* line 92, ../sass/common/_widget.scss */
 .widget-success .widget-entry-in {
   border-color: #bed5be !important;
   border-width: 4px;
@@ -11115,22 +11115,22 @@ img {
 
 /* Widget securityControl
 -------------------------------------------------- */
-/* line 101, ../sass/common/_widget.scss */
+/* line 100, ../sass/common/_widget.scss */
 .securityControl .ctrl-left {
   width: 70% !important;
 }
-/* line 104, ../sass/common/_widget.scss */
+/* line 103, ../sass/common/_widget.scss */
 .securityControl .ctrl-right {
   width: 30% !important;
 }
 
 /* Device sensorDiscrete
 -------------------------------------------------- */
-/* line 112, ../sass/common/_widget.scss */
+/* line 111, ../sass/common/_widget.scss */
 .sensorDiscrete .ctrl-left {
   width: 30% !important;
 }
-/* line 115, ../sass/common/_widget.scss */
+/* line 114, ../sass/common/_widget.scss */
 .sensorDiscrete .ctrl-right {
   width: 70% !important;
 }
@@ -13016,19 +13016,42 @@ img.widget-promo-image {
 
 /* Rooms
 -------------------------------------------------- */
-/* line 7, ../sass/modules/_rooms.scss */
-.app-row-room .widget-entry .widget-entry-in {
+/* line 5, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry {
+  width: 100%;
+}
+/* line 8, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in {
+  border-bottom: solid 1px #FFFFFF;
+  background-color: #FFFFFF;
+  position: relative;
   min-height: 1px;
-  height: 150px;
+  height: 100px;
   padding: 0;
   margin: 0 0 20px 0;
 }
-/* line 13, ../sass/modules/_rooms.scss */
-.app-row-room .widget-entry .widget-entry-in .widget-header {
+/* line 18, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in .widget-header {
+  text-align: right;
+  min-height: 20px;
+  opacity: 0.8;
+  background: #fff;
+  position: absolute;
+  top: 30px;
+  right: 0;
   padding: 5px 10px 0 0;
 }
-/* line 18, ../sass/modules/_rooms.scss */
-.app-row-room .widget-entry .widget-entry-in .room-img {
+/* line 27, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in .widget-header .widget-icon {
+  color: #4d4d4d;
+}
+/* line 29, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in .widget-header .widget-icon .fa {
+  padding: 0 0 0 10px;
+  font-size: 180%;
+}
+/* line 37, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in .room-img {
   top: 0;
   left: 0;
   width: 100%;
@@ -13042,61 +13065,72 @@ img.widget-promo-image {
    -ms-filter: blur(5px);
    filter: blur(5px);*/
 }
-/* line 37, ../sass/modules/_rooms.scss */
-.app-row-room .widget-entry .widget-entry-in .widget-content {
+/* line 52, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in .widget-content {
   margin: 0;
   position: absolute;
   top: 30px;
   left: 0;
 }
-/* line 42, ../sass/modules/_rooms.scss */
-.app-row-room .widget-entry .widget-entry-in .widget-content .widget-title {
-  opacity: 0.7;
+/* line 57, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in .widget-content .widget-title {
+  height: 50%;
+  opacity: 0.8;
   padding: 10px;
   background-color: #fff;
 }
-
-/* line 55, ../sass/modules/_rooms.scss */
-.widget-entry-room .widget-entry-in {
-  min-height: 1px;
-  height: 150px;
+/* line 62, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in .widget-content .widget-title h3 {
+  font-size: 115%;
+  padding: 0;
+  margin: 0;
+}
+/* line 66, ../sass/modules/_rooms.scss */
+.card-room .card-room-entry .widget-entry-in .widget-content .widget-title h3 a {
+  color: #000000;
 }
 
-/* line 62, ../sass/modules/_rooms.scss */
+/* line 79, ../sass/modules/_rooms.scss */
+.widget-entry-room .widget-entry-in {
+  min-height: 1px;
+  height: 100px;
+}
+
+/* line 86, ../sass/modules/_rooms.scss */
 .room-has-device .widget-title a {
   font-weight: bold;
 }
 
-/* line 68, ../sass/modules/_rooms.scss */
+/* line 92, ../sass/modules/_rooms.scss */
 .room-no-device .widget-header {
   /* .widget-icon{
       color: lighten($widget-icon-color,40%) !important;
    }*/
 }
-/* line 73, ../sass/modules/_rooms.scss */
-.room-no-device .widget-img {
-  opacity: 0.6;
-  filter: alpha(opacity=60);
-  -webkit-filter: grayscale(100%);
-  /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
-}
-/* line 77, ../sass/modules/_rooms.scss */
-.room-no-device .widget-img a {
+/* line 97, ../sass/modules/_rooms.scss */
+.room-no-device .room-link {
   /*color: lighten($widget-heading-color,40%) !important;
   text-decoration: none;*/
   cursor: text !important;
 }
-/* line 86, ../sass/modules/_rooms.scss */
+/* line 102, ../sass/modules/_rooms.scss */
+.room-no-device .room-img {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+/* line 111, ../sass/modules/_rooms.scss */
 .room-no-device .widget-title h3 a {
-  color: #8c8c8c !important;
+  color: #1a1a1a !important;
   text-decoration: none;
   cursor: text !important;
 }
 
 /* Elements in Rooms
 -------------------------------------------------- */
-/* line 98, ../sass/modules/_rooms.scss */
+/* line 123, ../sass/modules/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -13106,7 +13140,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 107, ../sass/modules/_rooms.scss */
+/* line 132, ../sass/modules/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: absolute;
   top: 0;
@@ -14126,18 +14160,43 @@ img.widget-promo-image {
   /* Rooms
   -------------------------------------------------- */
   /* line 324, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry {
+  .card-room .card-room-entry {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    border: 0;
     width: 50%;
   }
-  /* line 326, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in {
+  /* line 328, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in {
+    background: #f6f6f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0 );
+    /* IE6-9 */
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    border-color: #FFFFFF;
+    border: solid 4px #fff;
     margin: 10px;
     min-height: 1px;
     height: 236px;
     padding: 0;
   }
-  /* line 332, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-header {
+  /* line 338, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-header {
     opacity: 0.7;
     width: 100%;
     padding: 5px;
@@ -14145,12 +14204,8 @@ img.widget-promo-image {
     position: absolute;
     top: 0;
   }
-  /* line 339, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-header .widget-icon {
-    color: #737373;
-  }
-  /* line 344, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .room-img {
+  /* line 347, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .room-img {
     position: static;
     text-align: center;
     width: 100%;
@@ -14159,20 +14214,20 @@ img.widget-promo-image {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  /* line 353, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .room-img .room-preview-img__ {
+  /* line 356, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .room-img .room-preview-img__ {
     max-width: 236px;
     max-height: 118px;
     width: 236px;
     height: 118px;
   }
-  /* line 362, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-content {
+  /* line 365, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-content {
     position: static;
     margin: 20px 0 0 0;
   }
-  /* line 365, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-content .widget-title {
+  /* line 368, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-content .widget-title {
     padding: 0;
     text-align: center;
   }
@@ -14198,85 +14253,85 @@ img.widget-promo-image {
   }*/
   /* Apps
   -------------------------------------------------- */
-  /* line 400, ../sass/responsive/_mq_shared.scss */
+  /* line 403, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 403, ../sass/responsive/_mq_shared.scss */
+  /* line 406, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* Online widget
   -------------------------------------------------- */
-  /* line 413, ../sass/responsive/_mq_shared.scss */
+  /* line 416, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry {
     border: 0;
     width: 20%;
   }
-  /* line 416, ../sass/responsive/_mq_shared.scss */
+  /* line 419, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in {
     height: 256px;
   }
-  /* line 418, ../sass/responsive/_mq_shared.scss */
+  /* line 421, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-img {
     position: static;
     text-align: center;
   }
-  /* line 421, ../sass/responsive/_mq_shared.scss */
+  /* line 424, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
     max-width: 128px;
     max-height: 128px;
     width: 128px;
     height: 128px;
   }
-  /* line 429, ../sass/responsive/_mq_shared.scss */
+  /* line 432, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-content {
     margin: 20px 0 0 0;
   }
-  /* line 432, ../sass/responsive/_mq_shared.scss */
+  /* line 435, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-title {
     text-align: center;
   }
-  /* line 435, ../sass/responsive/_mq_shared.scss */
+  /* line 438, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
     width: 100%;
     float: none;
   }
-  /* line 439, ../sass/responsive/_mq_shared.scss */
+  /* line 442, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
     text-align: center;
   }
-  /* line 442, ../sass/responsive/_mq_shared.scss */
+  /* line 445, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
     margin: 5px 0 0 0;
   }
 
   /* Customize
   -------------------------------------------------- */
-  /* line 452, ../sass/responsive/_mq_shared.scss */
+  /* line 455, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in {
     min-height: 1px;
     height: 250px;
     text-align: center;
   }
-  /* line 456, ../sass/responsive/_mq_shared.scss */
+  /* line 459, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-img {
     position: static;
   }
-  /* line 460, ../sass/responsive/_mq_shared.scss */
+  /* line 463, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-content {
     margin: 10px 0 0 0;
   }
-  /* line 464, ../sass/responsive/_mq_shared.scss */
+  /* line 467, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 472, ../sass/responsive/_mq_shared.scss */
+  /* line 475, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -14284,24 +14339,24 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 478, ../sass/responsive/_mq_shared.scss */
+  /* line 481, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 484, ../sass/responsive/_mq_shared.scss */
+  /* line 487, ../sass/responsive/_mq_shared.scss */
   .vendor-entry {
     width: 20%;
   }
 
-  /* line 488, ../sass/responsive/_mq_shared.scss */
+  /* line 491, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
-  /* line 493, ../sass/responsive/_mq_shared.scss */
+  /* line 496, ../sass/responsive/_mq_shared.scss */
   .report-battery-info div {
     display: inline-block;
     padding: 0 10px 0 0;
@@ -14309,43 +14364,43 @@ img.widget-promo-image {
 
   /* Inclusion
   -------------------------------------------------- */
-  /* line 501, ../sass/responsive/_mq_shared.scss */
+  /* line 504, ../sass/responsive/_mq_shared.scss */
   .include-device-img, .include-device-body {
     float: left;
   }
 
-  /* line 505, ../sass/responsive/_mq_shared.scss */
+  /* line 508, ../sass/responsive/_mq_shared.scss */
   .include-device-img {
     width: 148px;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 512, ../sass/responsive/_mq_shared.scss */
+  /* line 515, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 519, ../sass/responsive/_mq_shared.scss */
+  /* line 522, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 527, ../sass/responsive/_mq_shared.scss */
+  /* line 530, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 534, ../sass/responsive/_mq_shared.scss */
+  /* line 537, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 536, ../sass/responsive/_mq_shared.scss */
+  /* line 539, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
@@ -14698,18 +14753,43 @@ img.widget-promo-image {
   /* Rooms
   -------------------------------------------------- */
   /* line 324, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry {
+  .card-room .card-room-entry {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    border: 0;
     width: 33.33333%;
   }
-  /* line 326, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in {
+  /* line 328, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in {
+    background: #f6f6f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0 );
+    /* IE6-9 */
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    border-color: #FFFFFF;
+    border: solid 4px #fff;
     margin: 10px;
     min-height: 1px;
     height: 236px;
     padding: 0;
   }
-  /* line 332, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-header {
+  /* line 338, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-header {
     opacity: 0.7;
     width: 100%;
     padding: 5px;
@@ -14717,12 +14797,8 @@ img.widget-promo-image {
     position: absolute;
     top: 0;
   }
-  /* line 339, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-header .widget-icon {
-    color: #737373;
-  }
-  /* line 344, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .room-img {
+  /* line 347, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .room-img {
     position: static;
     text-align: center;
     width: 100%;
@@ -14731,20 +14807,20 @@ img.widget-promo-image {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  /* line 353, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .room-img .room-preview-img__ {
+  /* line 356, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .room-img .room-preview-img__ {
     max-width: 236px;
     max-height: 118px;
     width: 236px;
     height: 118px;
   }
-  /* line 362, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-content {
+  /* line 365, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-content {
     position: static;
     margin: 20px 0 0 0;
   }
-  /* line 365, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-content .widget-title {
+  /* line 368, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-content .widget-title {
     padding: 0;
     text-align: center;
   }
@@ -14770,85 +14846,85 @@ img.widget-promo-image {
   }*/
   /* Apps
   -------------------------------------------------- */
-  /* line 400, ../sass/responsive/_mq_shared.scss */
+  /* line 403, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 403, ../sass/responsive/_mq_shared.scss */
+  /* line 406, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* Online widget
   -------------------------------------------------- */
-  /* line 413, ../sass/responsive/_mq_shared.scss */
+  /* line 416, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry {
     border: 0;
     width: 20%;
   }
-  /* line 416, ../sass/responsive/_mq_shared.scss */
+  /* line 419, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in {
     height: 256px;
   }
-  /* line 418, ../sass/responsive/_mq_shared.scss */
+  /* line 421, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-img {
     position: static;
     text-align: center;
   }
-  /* line 421, ../sass/responsive/_mq_shared.scss */
+  /* line 424, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
     max-width: 128px;
     max-height: 128px;
     width: 128px;
     height: 128px;
   }
-  /* line 429, ../sass/responsive/_mq_shared.scss */
+  /* line 432, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-content {
     margin: 20px 0 0 0;
   }
-  /* line 432, ../sass/responsive/_mq_shared.scss */
+  /* line 435, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-title {
     text-align: center;
   }
-  /* line 435, ../sass/responsive/_mq_shared.scss */
+  /* line 438, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
     width: 100%;
     float: none;
   }
-  /* line 439, ../sass/responsive/_mq_shared.scss */
+  /* line 442, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
     text-align: center;
   }
-  /* line 442, ../sass/responsive/_mq_shared.scss */
+  /* line 445, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
     margin: 5px 0 0 0;
   }
 
   /* Customize
   -------------------------------------------------- */
-  /* line 452, ../sass/responsive/_mq_shared.scss */
+  /* line 455, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in {
     min-height: 1px;
     height: 250px;
     text-align: center;
   }
-  /* line 456, ../sass/responsive/_mq_shared.scss */
+  /* line 459, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-img {
     position: static;
   }
-  /* line 460, ../sass/responsive/_mq_shared.scss */
+  /* line 463, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-content {
     margin: 10px 0 0 0;
   }
-  /* line 464, ../sass/responsive/_mq_shared.scss */
+  /* line 467, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 472, ../sass/responsive/_mq_shared.scss */
+  /* line 475, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -14856,24 +14932,24 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 478, ../sass/responsive/_mq_shared.scss */
+  /* line 481, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 484, ../sass/responsive/_mq_shared.scss */
+  /* line 487, ../sass/responsive/_mq_shared.scss */
   .vendor-entry {
     width: 20%;
   }
 
-  /* line 488, ../sass/responsive/_mq_shared.scss */
+  /* line 491, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
-  /* line 493, ../sass/responsive/_mq_shared.scss */
+  /* line 496, ../sass/responsive/_mq_shared.scss */
   .report-battery-info div {
     display: inline-block;
     padding: 0 10px 0 0;
@@ -14881,43 +14957,43 @@ img.widget-promo-image {
 
   /* Inclusion
   -------------------------------------------------- */
-  /* line 501, ../sass/responsive/_mq_shared.scss */
+  /* line 504, ../sass/responsive/_mq_shared.scss */
   .include-device-img, .include-device-body {
     float: left;
   }
 
-  /* line 505, ../sass/responsive/_mq_shared.scss */
+  /* line 508, ../sass/responsive/_mq_shared.scss */
   .include-device-img {
     width: 148px;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 512, ../sass/responsive/_mq_shared.scss */
+  /* line 515, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 519, ../sass/responsive/_mq_shared.scss */
+  /* line 522, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 527, ../sass/responsive/_mq_shared.scss */
+  /* line 530, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 534, ../sass/responsive/_mq_shared.scss */
+  /* line 537, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 536, ../sass/responsive/_mq_shared.scss */
+  /* line 539, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }
@@ -15270,18 +15346,43 @@ img.widget-promo-image {
   /* Rooms
   -------------------------------------------------- */
   /* line 324, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry {
+  .card-room .card-room-entry {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    border: 0;
     width: 25%;
   }
-  /* line 326, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in {
+  /* line 328, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in {
+    background: #f6f6f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0 );
+    /* IE6-9 */
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    border-color: #FFFFFF;
+    border: solid 4px #fff;
     margin: 10px;
     min-height: 1px;
     height: 236px;
     padding: 0;
   }
-  /* line 332, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-header {
+  /* line 338, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-header {
     opacity: 0.7;
     width: 100%;
     padding: 5px;
@@ -15289,12 +15390,8 @@ img.widget-promo-image {
     position: absolute;
     top: 0;
   }
-  /* line 339, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-header .widget-icon {
-    color: #737373;
-  }
-  /* line 344, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .room-img {
+  /* line 347, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .room-img {
     position: static;
     text-align: center;
     width: 100%;
@@ -15303,20 +15400,20 @@ img.widget-promo-image {
     background-repeat: no-repeat;
     background-size: cover;
   }
-  /* line 353, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .room-img .room-preview-img__ {
+  /* line 356, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .room-img .room-preview-img__ {
     max-width: 236px;
     max-height: 118px;
     width: 236px;
     height: 118px;
   }
-  /* line 362, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-content {
+  /* line 365, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-content {
     position: static;
     margin: 20px 0 0 0;
   }
-  /* line 365, ../sass/responsive/_mq_shared.scss */
-  .app-row-room .widget-entry .widget-entry-in .widget-content .widget-title {
+  /* line 368, ../sass/responsive/_mq_shared.scss */
+  .card-room .card-room-entry .widget-entry-in .widget-content .widget-title {
     padding: 0;
     text-align: center;
   }
@@ -15342,85 +15439,85 @@ img.widget-promo-image {
   }*/
   /* Apps
   -------------------------------------------------- */
-  /* line 400, ../sass/responsive/_mq_shared.scss */
+  /* line 403, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in {
     min-height: 1px;
     height: 110px;
   }
-  /* line 403, ../sass/responsive/_mq_shared.scss */
+  /* line 406, ../sass/responsive/_mq_shared.scss */
   .widget-entry-app .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* Online widget
   -------------------------------------------------- */
-  /* line 413, ../sass/responsive/_mq_shared.scss */
+  /* line 416, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry {
     border: 0;
     width: 20%;
   }
-  /* line 416, ../sass/responsive/_mq_shared.scss */
+  /* line 419, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in {
     height: 256px;
   }
-  /* line 418, ../sass/responsive/_mq_shared.scss */
+  /* line 421, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-img {
     position: static;
     text-align: center;
   }
-  /* line 421, ../sass/responsive/_mq_shared.scss */
+  /* line 424, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
     max-width: 128px;
     max-height: 128px;
     width: 128px;
     height: 128px;
   }
-  /* line 429, ../sass/responsive/_mq_shared.scss */
+  /* line 432, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-content {
     margin: 20px 0 0 0;
   }
-  /* line 432, ../sass/responsive/_mq_shared.scss */
+  /* line 435, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-title {
     text-align: center;
   }
-  /* line 435, ../sass/responsive/_mq_shared.scss */
+  /* line 438, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
     width: 100%;
     float: none;
   }
-  /* line 439, ../sass/responsive/_mq_shared.scss */
+  /* line 442, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
     text-align: center;
   }
-  /* line 442, ../sass/responsive/_mq_shared.scss */
+  /* line 445, ../sass/responsive/_mq_shared.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
     margin: 5px 0 0 0;
   }
 
   /* Customize
   -------------------------------------------------- */
-  /* line 452, ../sass/responsive/_mq_shared.scss */
+  /* line 455, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in {
     min-height: 1px;
     height: 250px;
     text-align: center;
   }
-  /* line 456, ../sass/responsive/_mq_shared.scss */
+  /* line 459, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-img {
     position: static;
   }
-  /* line 460, ../sass/responsive/_mq_shared.scss */
+  /* line 463, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-content {
     margin: 10px 0 0 0;
   }
-  /* line 464, ../sass/responsive/_mq_shared.scss */
+  /* line 467, ../sass/responsive/_mq_shared.scss */
   .widget-entry-customize .widget-entry-in .widget-footer {
     margin: 10px 0 0 0;
   }
 
   /* App detail
   -------------------------------------------------- */
-  /* line 472, ../sass/responsive/_mq_shared.scss */
+  /* line 475, ../sass/responsive/_mq_shared.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -15428,24 +15525,24 @@ img.widget-promo-image {
     width: 148px;
   }
 
-  /* line 478, ../sass/responsive/_mq_shared.scss */
+  /* line 481, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
   /* Devices
   -------------------------------------------------- */
-  /* line 484, ../sass/responsive/_mq_shared.scss */
+  /* line 487, ../sass/responsive/_mq_shared.scss */
   .vendor-entry {
     width: 20%;
   }
 
-  /* line 488, ../sass/responsive/_mq_shared.scss */
+  /* line 491, ../sass/responsive/_mq_shared.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 
-  /* line 493, ../sass/responsive/_mq_shared.scss */
+  /* line 496, ../sass/responsive/_mq_shared.scss */
   .report-battery-info div {
     display: inline-block;
     padding: 0 10px 0 0;
@@ -15453,43 +15550,43 @@ img.widget-promo-image {
 
   /* Inclusion
   -------------------------------------------------- */
-  /* line 501, ../sass/responsive/_mq_shared.scss */
+  /* line 504, ../sass/responsive/_mq_shared.scss */
   .include-device-img, .include-device-body {
     float: left;
   }
 
-  /* line 505, ../sass/responsive/_mq_shared.scss */
+  /* line 508, ../sass/responsive/_mq_shared.scss */
   .include-device-img {
     width: 148px;
   }
 
   /* Footer
   -------------------------------------------------- */
-  /* line 512, ../sass/responsive/_mq_shared.scss */
+  /* line 515, ../sass/responsive/_mq_shared.scss */
   #footer #footer_in {
     height: 40px;
     line-height: 40px;
   }
 
-  /* line 519, ../sass/responsive/_mq_shared.scss */
+  /* line 522, ../sass/responsive/_mq_shared.scss */
   #footer {
     display: none;
   }
 
   /* Auth
   -------------------------------------------------- */
-  /* line 527, ../sass/responsive/_mq_shared.scss */
+  /* line 530, ../sass/responsive/_mq_shared.scss */
   #page_login .container, #page_password .container, #page_passwordforgot .container, #page_passwordreset .container {
     max-width: 500px;
   }
 
   /* Others
   -------------------------------------------------- */
-  /* line 534, ../sass/responsive/_mq_shared.scss */
+  /* line 537, ../sass/responsive/_mq_shared.scss */
   .timestamp {
     font-size: 90% !important;
   }
-  /* line 536, ../sass/responsive/_mq_shared.scss */
+  /* line 539, ../sass/responsive/_mq_shared.scss */
   .timestamp .fa {
     font-size: 90% !important;
   }

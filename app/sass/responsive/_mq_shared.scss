@@ -320,10 +320,16 @@ input[type=radio] {
 
 /* Rooms
 -------------------------------------------------- */
-.app-row-room {
-  .widget-entry {
+.card-room {
+  .card-room-entry {
+    @include appFloat(left);
+    border: 0;
     width: $room-col-w;
     .widget-entry-in {
+      @include appGradient();
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      border-color: $widget-border-color;
+      border: solid 4px #fff;
       margin: $spacing;
       min-height: 1px;
       height: $room-widget-col-h;
@@ -336,9 +342,6 @@ input[type=radio] {
         background: #fff;
         position: absolute;
         top: 0;
-        .widget-icon {
-          color: #737373;
-        }
 
       }
       .room-img {

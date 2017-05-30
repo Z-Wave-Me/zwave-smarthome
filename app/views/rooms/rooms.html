@@ -35,15 +35,15 @@
     </div>
 
     <!-- NEW -->
-    <div class="app-row app-row-room clearfix" ng-if="rooms.show">
-        <div class="widget-entry widget-entry-room"
+    <div class="card-room clearfix" ng-if="rooms.show">
+        <div class="widget-entry_ widget-entry-room_ card-room-entry"
              id="panel_{{$index}}"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
              ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
             <div class="widget-entry-in">
                 <!-- Widget icon -->
-                <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" title="{{_t('lb_devices_room')}} {{v.title}}">
+                <a class="room-link" ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" title="{{_t('lb_devices_room')}} {{v.title}}">
                 <div class="room-img" title="{{v.title}}" style="background-image: url('{{v.img_src}}');">
 
                        <!-- <img class="room-preview-img" ng-src="{{v.img_src}}" alt="img" />-->
@@ -69,19 +69,13 @@
                 <div class="widget-content">
                     <!-- Widget title -->
                     <div class="widget-title">
-
-                            <h3 title="{{v.title}}">
+                        <h3 title="{{v.title}}">
                                 <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
                                 {{v.title|cutText:true:25}}
                                 <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span>
                                 </a>
                             </h3>
 
-                    </div>
-                    <hr class="bottom-aligner" />
-                    <!--Widget footer -->
-                    <div class="widget-footer">
-                       &nbsp;
                     </div>
                 </div>
             </div>

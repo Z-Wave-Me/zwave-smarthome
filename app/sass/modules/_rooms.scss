@@ -1,25 +1,40 @@
 /* Rooms
 -------------------------------------------------- */
 
-.app-row-room {
-    .widget-entry {
+.card-room {
+    .card-room-entry {
+        width: 100%;
         //width: $room-col-w;
         .widget-entry-in {
+            border-bottom: solid 1px #FFFFFF;
+            background-color: #FFFFFF;
+            position: relative;
+
             min-height: 1px;
             height: $room-widget-col-h;
             //border: solid 4px $widget-border-color;
             padding: 0;
             margin: 0 0 $spacing-double 0;
             .widget-header {
+                text-align: right;
+                min-height: 20px;
+                opacity: 0.8;
+                background: #fff;
+                position: absolute;
+                top: 30px;
+                right: 0;
                 padding: $spacing-half $spacing 0 0;
+               .widget-icon{
+                   color: lighten(#000000,30%);
+                   .fa{
+                       padding: 0 0 0 $spacing;
+                       font-size: $widget-icon-size;
+                   }
+               }
 
             }
 
             .room-img{
-                //border: solid 1px red;
-                //position: static;
-                //text-align: center;
-                //position: absolute;
                 top: 0;
                 left: 0;
                 width: $room-img-w;
@@ -40,9 +55,18 @@
                 top: 30px;
                 left: 0;
                 .widget-title{
-                    opacity: 0.7;
+                    height:50%;
+                    opacity: 0.8;
                     padding: $spacing;
                     background-color: #fff;
+                    h3{
+                        font-size: $widget-heading-font-size;
+                        padding: 0;
+                        margin: 0;
+                        a{
+                            color: #000000;
+                        }
+                    }
                 }
              }
 
@@ -70,21 +94,22 @@
            color: lighten($widget-icon-color,40%) !important;
         }*/
     }
-    .widget-img{
-        opacity: 0.6;
-        filter: alpha(opacity=60);
+    .room-link{
+        /*color: lighten($widget-heading-color,40%) !important;
+        text-decoration: none;*/
+        cursor: text !important;
+    }
+    .room-img{
+        opacity: 0.7;
+        filter: alpha(opacity=70);
         @include appGrayscale();
-        a{
-            /*color: lighten($widget-heading-color,40%) !important;
-            text-decoration: none;*/
-            cursor: text !important;
-        }
+
 
     }
     .widget-title{
         h3{
             a{
-                color: lighten($widget-heading-color,30%) !important;
+                color: lighten(#000000,10%) !important;
                 text-decoration: none;
                 cursor: text !important;
             }
