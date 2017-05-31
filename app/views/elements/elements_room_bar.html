@@ -1,0 +1,40 @@
+<!-- Elements room header -->
+<div class="elemnts-room-bar">
+    <!-- Bar row -->
+    <div class="bar-row">
+        <!-- Bar col -->
+        <div class="bar-col bar-media">
+            <img ng-src="{{room.img_src}}"/>
+        </div>
+        <!-- Bar col -->
+        <div class="bar-col bar-body">
+            <span>{{room.title}} </span>
+        </div>
+        <!-- Bar col -->
+        <div class="bar-col bar-ctrl">
+            <!-- Settings -->
+            <a class="bar-icon" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
+               ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
+                <i class="fa fa-cog"></i>
+            </a>
+        </div>
+    </div>
+
+</div>
+<pre>{{room|json}}</pre>
+
+
+<div class="app-row-report elemnts-room-header clearfix">
+    <div class="report-entry">
+        <div class="report-col report-media">
+            <!-- <img id="event_img_{{v.id}}" class="report-img" ng-src="{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>-->
+        </div>
+
+        <div class="report-col report-body">
+            {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}
+        </div>
+        <div class="report-col report-ctrl">
+            ctrl
+        </div>
+    </div>
+</div>

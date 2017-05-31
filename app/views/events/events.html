@@ -69,6 +69,7 @@
             </div>
             
             <div class="report-col report-body">
+                <span class="event-room" ng-if="rooms.all[v.message.location]">{{rooms.all[v.message.location]}}</span>
                 <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span> <span class="hide-on-mobile">|</span>
                 <span  ng-if="v.source && v.message">
                 <a ng-href="#element/{{v.source}}" ng-if="elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)">
@@ -81,7 +82,7 @@
                  </span>
                  </span>
                 <span class="report-message" ng-bind="v.message" ng-if="!v.source && !v.message"></span>
-                <span ng-if="rooms.all[v.message.location]"> | <em>{{rooms.all[v.message.location]}}</em></span>
+                <!--<span ng-if="rooms.all[v.message.location]"> | <em>{{rooms.all[v.message.location]}}</em></span>-->
             </div>
             <div class="report-col report-ctrl" ng-include="'app/views/events/dropdown.html'"></div>
         </div>

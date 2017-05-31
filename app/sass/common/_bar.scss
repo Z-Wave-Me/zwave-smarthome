@@ -1,0 +1,25 @@
+/* Bar
+-------------------------------------------------- */
+
+.bar-row{
+    display: table;
+    padding: $spacing $spacing-half;
+    width: 100%;
+    .bar-col{
+        display: table-cell;
+         vertical-align: middle;
+    }
+    .bar-media{
+        width: 64px + $spacing;
+        img{
+            max-width: 64px;
+            max-height: 64px;
+        }
+    }
+    .bar-body{}
+    .bar-ctrl{
+       min-width: 110px;
+        display: block;
+        text-align: right;
+    }
+}

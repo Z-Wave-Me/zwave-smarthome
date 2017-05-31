@@ -11648,6 +11648,35 @@ fieldset.submit-entry {
   margin: 0 0 5px 0;
 }
 
+/* Bar
+-------------------------------------------------- */
+/* line 4, ../sass/common/_bar.scss */
+.bar-row {
+  display: table;
+  padding: 10px 5px;
+  width: 100%;
+}
+/* line 8, ../sass/common/_bar.scss */
+.bar-row .bar-col {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 12, ../sass/common/_bar.scss */
+.bar-row .bar-media {
+  width: 74px;
+}
+/* line 14, ../sass/common/_bar.scss */
+.bar-row .bar-media img {
+  max-width: 64px;
+  max-height: 64px;
+}
+/* line 20, ../sass/common/_bar.scss */
+.bar-row .bar-ctrl {
+  min-width: 110px;
+  display: block;
+  text-align: right;
+}
+
 /* Dropdown
 -------------------------------------------------- */
 /* line 3, ../sass/common/_dropdown.scss */
@@ -12722,6 +12751,13 @@ img.widget-promo-image {
   width: 100%;
 }
 
+/* line 24, ../sass/modules/_events.scss */
+.event-room {
+  display: block;
+  font-size: 90%;
+  color: #737373;
+}
+
 /* Apps
 -------------------------------------------------- */
 /* line 7, ../sass/modules/_apps.scss */
@@ -13210,7 +13246,7 @@ img.widget-promo-image {
 
 /* Header */
 /* line 176, ../sass/modules/_rooms.scss */
-.elemnts-room-header {
+.elemnts-room-bar {
   background-color: #ffffff;
   opacity: 0.6;
   padding: 10px;
