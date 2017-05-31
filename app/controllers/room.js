@@ -67,7 +67,8 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
     $scope.setOrderBy = function (key) {
         angular.extend($scope.rooms, {orderBy: key});
         $cookies.roomsOrderBy = key;
-        $scope.allSettled();
+        $scope.reloadData();
+        //$scope.allSettled();
     };
 
     /**

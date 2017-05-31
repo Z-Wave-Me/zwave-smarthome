@@ -13,7 +13,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         cnt: {
             devices: 0,
             collection: 0,
-            hidden: 0
+            hidden: 0,
+            romms: {}
         },
         devices: {
             switchButton: [],
@@ -371,6 +372,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         }).value();
 
         $scope.dataHolder.cnt.devices = devices.size().value();
+        $scope.dataHolder.cnt.rooms =  _.countBy(devices.value(), function (v) {
+            return v.location;
+        });
 
         //All devices
         $scope.dataHolder.devices.all = devices.value();

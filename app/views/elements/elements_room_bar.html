@@ -8,12 +8,33 @@
         </div>
         <!-- Bar col -->
         <div class="bar-col bar-body">
-            <span>{{room.title}} </span>
+            <div class="btn-group">
+                <span class="bar-title clickable"
+                      ng-click="expandNavi('roomDropDown', $event)">{{room.title}}  <i class="fa fa-caret-down"></i>
+                </span>
+               <!-- <button type="button" class="btn btn-default"
+                        ng-click="expandNavi('roomDropDown', $event)">
+                        {{room.title}}  <i class="fa fa-caret-down"></i>
+                </button>-->
+                <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.roomDropDown">
+                    <ul>
+                        <li class="clickable" ng-repeat="v in dataHolder.devices.rooms"
+                            ng-if="dataHolder.cnt.rooms[v.id]"
+                        ng-hide="v.id == room.id">
+                            <a ng-href="#/rooms/{{v.id}}">
+                                <img class="navi-img" ng-src="{{v.img_src}}" alt="img"/>
+                                {{v.title|cutText:true:20}} <span class="item-cnt">({{dataHolder.cnt.rooms[v.id]}})</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
         <!-- Bar col -->
         <div class="bar-col bar-ctrl">
             <!-- Settings -->
-            <a class="bar-icon" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
+            <a class="btn btn-default _bar-icon" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
                ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
                 <i class="fa fa-cog"></i>
             </a>
@@ -21,20 +42,4 @@
     </div>
 
 </div>
-<pre>{{room|json}}</pre>
-
-
-<div class="app-row-report elemnts-room-header clearfix">
-    <div class="report-entry">
-        <div class="report-col report-media">
-            <!-- <img id="event_img_{{v.id}}" class="report-img" ng-src="{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>-->
-        </div>
-
-        <div class="report-col report-body">
-            {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}
-        </div>
-        <div class="report-col report-ctrl">
-            ctrl
-        </div>
-    </div>
-</div>
+<!--<pre>{{dataHolder.cnt.rooms|json}}</pre>-->

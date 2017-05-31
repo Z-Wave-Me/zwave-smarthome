@@ -46,7 +46,7 @@ $room-card-border-color: #FFFFFF;
       opacity: 0.8;
       background: $room-card-bcg-color;
       position: absolute;
-      top: 30px;
+      top: 24px;
       right: 0;
       padding: $spacing-half $spacing 0 0;
       // Media queries
@@ -58,9 +58,11 @@ $room-card-border-color: #FFFFFF;
       /* Header icons */
       .card-header-icon {
         color: lighten($room-card-color, 30%);
-        .fa {
-          padding: 0 0 0 $spacing;
-          font-size: $widget-icon-size;
+        font-size: 180%;
+        padding: 0 0 0 $spacing;
+        @include mediaQueries(min-small) {
+          font-size: 140%;
+          padding: 0 0 0 $spacing-half;
         }
       }
 
@@ -138,7 +140,7 @@ $room-card-border-color: #FFFFFF;
   .card-title {
     h3 {
       a {
-        font-weight: normal;
+        font-weight: normal !important;
         color: lighten($room-card-color, 10%) !important;
         text-decoration: none;
         cursor: text !important;
@@ -174,9 +176,12 @@ $room-card-border-color: #FFFFFF;
 
 /* Header */
 .elemnts-room-bar{
-
-  background-color: #ffffff;
-  opacity: 0.6;
-  padding: $spacing;
+  background-color: $room-card-bcg-color;
+  //border: solid 4px $room-card-border-color;
+  @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
   margin: 0 0 $spacing-double 0;
+  // Media queries
+  @include mediaQueries(min-small) {
+    @include appGradient();
+  }
 }

@@ -33,12 +33,12 @@
             <div class="full-bg" ng-style="{'background':'url(' + room.img_src + ')', 'background-position': 'center center', 'background-size': 'cover'}"></div>
         </div>
         <!-- Header -->
-        <!--<div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/elements_room_bar.html'"></div>-->
+        <div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/elements_room_bar.html'"></div>
         <!-- Title -->
-        <h1>
+        <!--<h1>
             <small><a class="btn btn-default btn-sm" href="#rooms"><i class="fa fa-chevron-left"></i></a></small>
             {{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}
-        </h1>
+        </h1>-->
         <!-- Alert -->
         <div ng-if="!dataHolder.devices.show" ng-include="'app/views/elements/no_elements_room.html'"></div>
         <!-- The list -->

@@ -11650,31 +11650,64 @@ fieldset.submit-entry {
 
 /* Bar
 -------------------------------------------------- */
-/* line 4, ../sass/common/_bar.scss */
-.bar-row {
-  display: table;
-  padding: 10px 5px;
-  width: 100%;
-}
+/* Variables */
+/* Style */
 /* line 8, ../sass/common/_bar.scss */
+.bar-row {
+  padding: 10px;
+  width: 100%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 8, ../sass/common/_bar.scss */
+  .bar-row {
+    display: table;
+  }
+}
+/* line 16, ../sass/common/_bar.scss */
 .bar-row .bar-col {
   display: table-cell;
   vertical-align: middle;
 }
-/* line 12, ../sass/common/_bar.scss */
+/* line 20, ../sass/common/_bar.scss */
 .bar-row .bar-media {
   width: 74px;
 }
-/* line 14, ../sass/common/_bar.scss */
+/* line 22, ../sass/common/_bar.scss */
 .bar-row .bar-media img {
   max-width: 64px;
   max-height: 64px;
 }
-/* line 20, ../sass/common/_bar.scss */
+/* line 29, ../sass/common/_bar.scss */
 .bar-row .bar-ctrl {
   min-width: 110px;
-  display: block;
   text-align: right;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 479px) {
+  /* line 29, ../sass/common/_bar.scss */
+  .bar-row .bar-ctrl {
+    display: block;
+  }
+}
+/* line 37, ../sass/common/_bar.scss */
+.bar-row .bar-icon {
+  font-size: 180%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 37, ../sass/common/_bar.scss */
+  .bar-row .bar-icon {
+    font-size: 140%;
+  }
+}
+/* line 43, ../sass/common/_bar.scss */
+.bar-row .bar-title {
+  font-size: 120%;
+  font-weight: bold;
 }
 
 /* Dropdown
@@ -13061,6 +13094,12 @@ img.widget-promo-image {
 /* line 15, ../sass/modules/_rooms.scss */
 .card-room {
   width: 100%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   /* Inner element */
 }
 @media only screen and (min-width: 768px) {
@@ -13095,6 +13134,8 @@ img.widget-promo-image {
   height: 100px;
   padding: 0;
   margin: 0 0 20px 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   /* Card header */
   /* Background image */
   /* Card content */
@@ -13114,9 +13155,11 @@ img.widget-promo-image {
   opacity: 0.8;
   background: #FFFFFF;
   position: absolute;
-  top: 30px;
+  top: 24px;
   right: 0;
   padding: 5px 10px 0 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   /* Header icons */
 }
 @media only screen and (min-width: 768px) {
@@ -13130,13 +13173,19 @@ img.widget-promo-image {
 /* line 59, ../sass/modules/_rooms.scss */
 .card-room .card-room-in .card-header .card-header-icon {
   color: #4d4d4d;
-}
-/* line 61, ../sass/modules/_rooms.scss */
-.card-room .card-room-in .card-header .card-header-icon .fa {
-  padding: 0 0 0 10px;
   font-size: 180%;
+  padding: 0 0 0 10px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 69, ../sass/modules/_rooms.scss */
+@media only screen and (min-width: 768px) {
+  /* line 59, ../sass/modules/_rooms.scss */
+  .card-room .card-room-in .card-header .card-header-icon {
+    font-size: 140%;
+    padding: 0 0 0 5px;
+  }
+}
+/* line 71, ../sass/modules/_rooms.scss */
 .card-room .card-room-in .bcg-img {
   display: block;
   top: 0;
@@ -13146,51 +13195,57 @@ img.widget-promo-image {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 69, ../sass/modules/_rooms.scss */
+  /* line 71, ../sass/modules/_rooms.scss */
   .card-room .card-room-in .bcg-img {
     position: static;
     text-align: center;
     height: 170px;
   }
 }
-/* line 90, ../sass/modules/_rooms.scss */
+/* line 92, ../sass/modules/_rooms.scss */
 .card-room .card-room-in .card-content {
   margin: 0;
   position: absolute;
   top: 30px;
   left: 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   /* Card Title */
 }
 @media only screen and (min-width: 768px) {
-  /* line 90, ../sass/modules/_rooms.scss */
+  /* line 92, ../sass/modules/_rooms.scss */
   .card-room .card-room-in .card-content {
     position: static;
     margin: 20px 0 0 0;
   }
 }
-/* line 101, ../sass/modules/_rooms.scss */
+/* line 103, ../sass/modules/_rooms.scss */
 .card-room .card-room-in .card-content .card-title {
   height: 50%;
   opacity: 0.8;
   padding: 10px;
   background-color: #FFFFFF;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 101, ../sass/modules/_rooms.scss */
+  /* line 103, ../sass/modules/_rooms.scss */
   .card-room .card-room-in .card-content .card-title {
     padding: 0;
     text-align: center;
   }
 }
-/* line 111, ../sass/modules/_rooms.scss */
+/* line 113, ../sass/modules/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 {
   font-size: 115%;
   padding: 0;
   margin: 0;
 }
-/* line 115, ../sass/modules/_rooms.scss */
+/* line 117, ../sass/modules/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 a {
   color: #000000;
   font-weight: bold;
@@ -13198,11 +13253,11 @@ img.widget-promo-image {
 
 /* Rooms without device
 -------------------------------------------------- */
-/* line 129, ../sass/modules/_rooms.scss */
+/* line 131, ../sass/modules/_rooms.scss */
 .room-no-device .room-link {
   cursor: text !important;
 }
-/* line 132, ../sass/modules/_rooms.scss */
+/* line 134, ../sass/modules/_rooms.scss */
 .room-no-device .room-img {
   opacity: 0.7;
   filter: alpha(opacity=70);
@@ -13210,9 +13265,9 @@ img.widget-promo-image {
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-/* line 140, ../sass/modules/_rooms.scss */
+/* line 142, ../sass/modules/_rooms.scss */
 .room-no-device .card-title h3 a {
-  font-weight: normal;
+  font-weight: normal !important;
   color: #1a1a1a !important;
   text-decoration: none;
   cursor: text !important;
@@ -13221,7 +13276,7 @@ img.widget-promo-image {
 /* Elements in Rooms
 -------------------------------------------------- */
 /* Background with image */
-/* line 153, ../sass/modules/_rooms.scss */
+/* line 155, ../sass/modules/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -13231,7 +13286,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 162, ../sass/modules/_rooms.scss */
+/* line 164, ../sass/modules/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: absolute;
   top: 0;
@@ -13245,12 +13300,36 @@ img.widget-promo-image {
 }
 
 /* Header */
-/* line 176, ../sass/modules/_rooms.scss */
+/* line 178, ../sass/modules/_rooms.scss */
 .elemnts-room-bar {
-  background-color: #ffffff;
-  opacity: 0.6;
-  padding: 10px;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   margin: 0 0 20px 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 178, ../sass/modules/_rooms.scss */
+  .elemnts-room-bar {
+    background: #f6f6f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
+    /* IE6-9 */
+  }
 }
 
 /* Devices

@@ -79,6 +79,7 @@
 
 // Media queries
 @mixin mediaQueries($media) {
+  /* MIN WIDTH */
   // Extra Small Devices, Phones
   @if $media == min-esmall {
     @media only screen and (min-width: $break-esmall) {
@@ -100,6 +101,13 @@
     // Large Devices, Wide Screen
   @else if $media == min-large {
     @media only screen and (min-width: $break-large) {
+      @content;
+    }
+  }
+  /* MAX WIDTH */
+  // Extra Small Devices, Phones
+  @if $media == max-esmall {
+    @media only screen and (max-width: $break-esmall - 1) {
       @content;
     }
   }

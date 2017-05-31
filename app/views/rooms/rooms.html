@@ -36,18 +36,16 @@
 
     <!-- NEW -->
     <div class="clearfix" ng-if="rooms.show">
-        <div class="widget-entry_ widget-entry-room_ card-room"
-             id="card_{{$index}}"
+        <div class="card-room"
+             id="card_{{v.id}}"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
              ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
-            <div class="widget-entry-in_ card-room-in">
+            <div class="card-room-in">
                 <!-- Card image -->
                 <a class="room-link" ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
                    title="{{_t('lb_devices_room')}} {{v.title}}">
-                <span class="bcg-img" title="{{v.title}}" style="background-image: url('{{v.img_src}}');">
-
-                </span>
+                <span class="bcg-img" title="{{v.title}}" style="background-image: url('{{v.img_src}}');"></span>
                 </a>
                 <!--Card header-->
                 <div class="card-header">
