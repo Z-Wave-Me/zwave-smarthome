@@ -1,5 +1,14 @@
 /* Accordion
 -------------------------------------------------- */
+/* Variables */
+$accordion-heading-font-size: 120%;
+$accordion-icon-size: 130%;
+$accordion-color: $app-a-color;
+$accordion-border-color: $app-border-color;
+$accordion-icon-color: lighten($accordion-color, 20%);
+$accordion-heading-color: $app-heading-color;
+
+/* Style */
 .accordion-entry{
     margin-bottom: $spacing;
     border-bottom: dotted 1px $accordion-border-color;
