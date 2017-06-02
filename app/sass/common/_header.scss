@@ -97,20 +97,31 @@
         background-color: $header-subnavi-bcg-color;
         @include appBoxShadow($app-mainsubnavi-box-shadow);
         border: 1px solid $header-subnavi-border-color;
+        // Media queries
+        @include mediaQueries(min-small) {
+            margin: 0 0 0 50%
+        }
+        // Media queries
+        @include mediaQueries(min-large) {
+            margin: 0 0 0 66%
+        }
         li{
             padding: $spacing 0;
             border-bottom: solid 1px $header-border-color;
             a{
                 display: block;
                 position:relative;
-                //w: padding: 0 10px;
-                padding:  $spacing  $spacing-double;
+                padding:  $spacing;
                 vertical-align: middle;
                 color: $header-subnavi-color;
+                // Media queries
+                @include mediaQueries(min-small) {
+                    padding: 0 $spacing;
+                }
                 span{
                     display: inline-block;
                     position: absolute;
-                    left:60px;
+                    left:50px;
                 }
             }
 

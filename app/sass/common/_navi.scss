@@ -34,11 +34,14 @@
         padding: $spacing;
         margin: 0;
         li{
-            //w: display: block;
-            //w: float: left;
-            //w: width: 25%;
             padding: $spacing;
             border-bottom: solid 1px $app-border-color;
+            // Media queries
+            @include mediaQueries(min-small) {
+                display: block;
+                float: left;
+                width: 33.33333%;
+            }
             a{
                  position:relative;
                 min-height: 1px;
@@ -47,8 +50,11 @@
                 text-align: left;
                 vertical-align: top;
                 display: block;
-               
                 margin: auto;
+                @include mediaQueries(min-small) {
+                    min-height: 30px;
+                    margin: auto $spacing;
+                }
             }
             .navi-img{
                 display: inline-block;
@@ -59,6 +65,9 @@
                 position: absolute;
                 right: 1%;
                 display: inline-block !important;
+                @include mediaQueries(min-small) {
+                    display: none !important;
+                }
             }
         }
         .active{

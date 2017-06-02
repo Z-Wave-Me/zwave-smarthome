@@ -3,41 +3,41 @@
 
 /* Body reset
 -------------------------------------------------- */
-html {
+/*html {
   font-size: $app-body-font-size;
-}
+}*/
 
-body {
+/*body {
   font-size: $app-body-font-size;
   line-height: $app-line-height-base;
-}
+}*/
 
 /* Header
 -------------------------------------------------- */
-#header {
+/*#header {
   .divider-vertical {
     height: $header-h;
   }
-}
+}*/
 
 /* Main navigation
 -------------------------------------------------- */
-#main_navigation_wrap {
+/*#main_navigation_wrap {
   height: $header-h;
-}
+}*/
 
-#main_navigation {
+/*#main_navigation {
   line-height: $header-h;
   a {
     line-height: $header-h;
   }
-}
+}*/
 
 /* Subnavigation
 -------------------------------------------------- */
-#sub_navigation_in {
+/*#sub_navigation_in {
   ul {
-    margin: $subnavigation-margin;
+    //margin: $subnavigation-margin;
     li {
       a {
         padding: 0 $spacing;
@@ -48,44 +48,46 @@ body {
 
     }
   }
-}
+}*/
 
 /* Gird
 -------------------------------------------------- */
+/*
 #main_content {
   margin-top: $header-h + $spacing-double;
   margin-bottom: $footer-h + $spacing-double;
 }
+*/
 
-.container {
+/*.container {
   max-width: $app-container-w;
 
-}
+}*/
 
-.block-50 {
+/*.block-50 {
   @include appFloat(left);
   width: 50%;
-}
+}*/
 
 /* Page navigation
 -------------------------------------------------- */
-.page-navi {
+/*.page-navi {
   ul {
     li {
-      display: block;
+     !* display: block;
       float: left;
-      width: $page-navi-w;
-      a {
+      width: $page-navi-w;*!
+     !* a {
         min-height: $page-navi-h;
         margin: auto 10px;
-      }
+      }*!
 
       .page-navi-icon {
         display: none !important;
       }
     }
   }
-}
+}*/
 
 /* Images
 -------------------------------------------------- */

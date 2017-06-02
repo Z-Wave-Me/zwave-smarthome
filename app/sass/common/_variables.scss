@@ -44,7 +44,6 @@ $header-icon-settings-h: 40px;
 
 // Page navigation
 $page-control-input-h: 22px;
-$page-navi-h: 50px;
 
 // Dropdown
 $dropdown-w: 300px;
@@ -215,7 +214,7 @@ $app-error-info-color: #000000;
 $app-border-color: lighten($app-color-primary, 80%);
 $app-body-color:  lighten($app-color-primary, 5%);
 $app-body-disabled-color:  lighten($app-body-color, 50%);
-$app-body-bcg-color:  #FFFFFF;
+$app-body-bcg-color: #FFFFFF;
 $app-a-color:  lighten($app-color-primary, 20%);
 $app-a-hover-color:  lighten($app-color-primary, 10%);
 $app-heading-color: lighten($app-body-color, 40%);
@@ -380,6 +379,8 @@ $imglist-background-color: #FFFFFF;
 
 /*-------------------------------------*/
 // EFFECTS
+// Body background image
+$app-body-bcg-img: 'wallpaper.png';
 // Radius
 $app-border-radius: 4px;
 

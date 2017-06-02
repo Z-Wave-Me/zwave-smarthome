@@ -1,53 +1,15 @@
 /* Skin default main css
 -------------------------------------------------- */
-/* Mixins
--------------------------------------------------- */
-// Profile colors
-@mixin appProfileColors($color) {
-    #main_navigation_wrap{
-        border-color: $color;
-    }
-    #main_navigation{
-        a:hover{
-            background-color: $color;
-        }
-        .active{
-            background-color: $color;
-            color: #FFFFFF;
-        }
-    }
+body {
+  background-color: $app-body-bcg-color;
+
 }
+
 
 /* Main navigation
 -------------------------------------------------- */
 #main_navigation_wrap{
     border-width: 4px;
-}
-
-/** Profile colors */
-.profile-dddddd{
-    @include appProfileColors(#dddddd);
-}
-.profile-6c7a89{
-    @include appProfileColors(#6c7a89);
-}
-.profile-6494bc{
-    @include appProfileColors(#6494bc);
-}
-.profile-80ad80{
-    @include appProfileColors(#80ad80);
-}
-.profile-31b0d5{
-    @include appProfileColors(#31b0d5);
-}
-.profile-f0aD4e{
-    @include appProfileColors(#f0aD4e);
-}
-.profile-d9534f{
-    @include appProfileColors(#d9534f);
-}
-.profile-dd976e{
-    @include appProfileColors(#dd976e);
 }
 
 /* Form
@@ -107,3 +69,45 @@
         }
     }
 }
+
+// Profile colors
+/*@mixin appProfileColors($color) {
+    #main_navigation_wrap{
+        border-color: $color;
+    }
+    #main_navigation{
+        a:hover{
+            background-color: $color;
+        }
+        .active{
+            background-color: $color;
+            color: #FFFFFF;
+        }
+    }
+}*/
+
+/** Profile colors */
+/*.profile-dddddd{
+  @include appProfileColors(#dddddd);
+}
+.profile-6c7a89{
+  @include appProfileColors(#6c7a89);
+}
+.profile-6494bc{
+  @include appProfileColors(#6494bc);
+}
+.profile-80ad80{
+  @include appProfileColors(#80ad80);
+}
+.profile-31b0d5{
+  @include appProfileColors(#31b0d5);
+}
+.profile-f0aD4e{
+  @include appProfileColors(#f0aD4e);
+}
+.profile-d9534f{
+  @include appProfileColors(#d9534f);
+}
+.profile-dd976e{
+  @include appProfileColors(#dd976e);
+}*/
