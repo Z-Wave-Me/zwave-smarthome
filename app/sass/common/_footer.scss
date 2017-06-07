@@ -7,12 +7,15 @@
     width:100%;
     text-align: center;
     z-index: $zindex-footer;
-    //height: $footer-h;
-     border-top: solid 1px $footer-border-color;
+     border-top: solid 1px $app-border-color;
+    // Media queries
+    @include mediaQueries(min-small) {
+        display: none;
+    }
     #footer_in{
-        background-color: $footer-bcg-color;
-        height: $footer-h;
-        line-height: $footer-h;
+        background-color: #FFFFFF;
+        height: 50px;
+        line-height: 50px;
         .timestamp{
             display: none;
         }

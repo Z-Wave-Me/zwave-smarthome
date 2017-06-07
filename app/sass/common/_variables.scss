@@ -68,7 +68,7 @@ $loader-margin: 80px auto auto auto;
 // Images
 $fatal-error-img: 32px;
 $navi-img: 32px;
-$report-img: 60px;
+//$report-img: 60px;
 $widget-img: 64px;
 $app-detail-img:128px;
 $element-icon-img: 48px;
@@ -82,7 +82,7 @@ $room-img: 64px;
 $room-img-h: 100px;*/
 $room-img-upload: 70px;
 $room-img-preview: 130px;
-$report-img-s: 32px;
+//$report-img-s: 32px;
 $lang-img: 32px;
 $imglist-img: 40px;
 $imglist-img-preview: 64px;
@@ -160,8 +160,8 @@ $app-btn-tag-icon-size: 150%;
 $app-input-font-size: 95%;
 $app-label-font-size: 105%;
 $app-navi-icon-size: 120%;
-$app-updatetime-font-size: 17px;
-$app-updatetime-icon-size: 110%;
+//$app-updatetime-font-size: 17px;
+//$app-updatetime-icon-size: 110%;
 $app-h1-font-size: 160%;
 $app-h2-font-size: 140%;
 $app-h3-font-size: 120%;
@@ -169,10 +169,10 @@ $app-h4-font-size: 110%;
 $page-navi-font-size: 120%;
 $page-navi-icon-size: 130%;
 //$modal-close-size: 180%;
-$modal-heading-font-size: 110%;
-$dropdown-font-size: 110%;
+//$modal-heading-font-size: 110%;
+//$dropdown-font-size: 110%;
 $infowindow-font-size: 90%;
-$dropdown-icon-size: 120%;
+//$dropdown-icon-size: 120%;
 /*$accordion-heading-font-size: 120%;
 $accordion-icon-size: 130%;*/
 $tab-font-size: 120%;
@@ -203,7 +203,7 @@ $app-brand-danger:          #d9534f !default;
 
 $app-color-primary: #000000;
 $app-color-secondary: #000000;
-$app-timestamp-color: lighten($app-color-primary, 20%);;
+//$app-timestamp-color: lighten($app-color-primary, 20%);;
 $app-error-border-color: $app-brand-danger;
 $app-error-background-color: #FFFFFF;
 $app-error-message-color: $app-brand-danger;
@@ -252,12 +252,12 @@ $header-icon-color: lighten($page-navi-color, 20%);
 $page-navi-heading-color: $app-heading-color;
 
 // Dropdown
-$dropdown-bcg-color: #FFFFFF;
-$dropdown-color: $app-a-color;
-$dropdown-border-color: $app-border-color;
-$dropdown-icon-color: lighten($dropdown-color, 20%);
-$dropdown-heading-color: $app-heading-color;
-$dropdown-hover-bcg-color: #F6F6F6;
+//$dropdown-bcg-color: #FFFFFF;
+//$dropdown-color: $app-a-color;
+//$dropdown-border-color: $app-border-color;
+//$dropdown-icon-color: lighten($dropdown-color, 20%);
+//$dropdown-heading-color: $app-heading-color;
+//$dropdown-hover-bcg-color: #F6F6F6;
 
 // Info window
 $infowindow-bcg-color: #FFFFFF;
@@ -306,8 +306,8 @@ $pagination-active-bcg-color: $pagination-border-color;
 $pagination-active-color: #FFFFFF;
 
 // Footer
-$footer-border-color: $app-border-color;
-$footer-bcg-color: #FFFFFF;
+//$footer-border-color: $app-border-color;
+//$footer-bcg-color: #FFFFFF;
 
 // Button
 $btn-submit-color:  #FFFFFF;
@@ -385,7 +385,7 @@ $app-border-radius: 4px;
 $app-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 $app-mainsubnavi-box-shadow: $app-box-shadow;
 $page-navi-box-shadow: $app-box-shadow;
-$dropdown-box-shadow: $app-box-shadow;
+//$dropdown-box-shadow: $app-box-shadow;
 $infowindow-box-shadow: $app-box-shadow;
 $element-widget-btn-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 

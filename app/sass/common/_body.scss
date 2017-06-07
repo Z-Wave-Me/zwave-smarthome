@@ -171,7 +171,7 @@ a {
 /* Style */
 #main_content {
   margin-top: $header-h + $spacing;
-  margin-bottom: $footer-h + $spacing;
+  margin-bottom: 50px + $spacing;
 }
 
 .container {
@@ -205,10 +205,18 @@ a {
 /* Others
 -------------------------------------------------- */
 .timestamp {
-  color: $app-timestamp-color;
-  font-size: $app-updatetime-font-size;
+  color: lighten($app-color-primary, 20%);
+  font-size: 17px;
+  // Media queries
+  @include mediaQueries(min-small) {
+    font-size: 90%;
+  }
   .fa {
-    font-size: $app-updatetime-icon-size;
+    font-size: 110%;
+    // Media queries
+    @include mediaQueries(min-small) {
+      font-size: 90%;
+    }
   }
 }
 

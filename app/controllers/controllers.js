@@ -92,38 +92,12 @@ myAppController.controller('DragDropController', function($scope, cfg,dataFactor
 });
 
 /**
- * The controller that handles search result - for testing purpose.
- * @class AutoCompleteController
+ * For testing purpose.
+ * @class TestController
  */
-myAppController.controller('AutoCompleteController', function($scope, cfg,dataFactory,dataService) {
-$scope.autocomplete = {
-        source: [],
-        term: '',
-        searchInKeys: 'id,title,description,author',
-        returnKeys: 'id,title,author,installed,rating,icon',
-        strLength: 2,
-        resultLength: 10
-    };
-    $scope.onlineModules = [];
-
-        $scope.load = function () {
-
-            dataFactory.getOnlineModules({token: []}).then(function(response) {
-                //console.log(response.data.data)
-                $scope.modules = response.data.data;
-                $scope.autocomplete.source = response.data.data;
-                $scope.onlineModules = response.data.data;
-
-            }, function(error) {
-                alertify.alertError($scope._t('error_load_data'));
-            });
-        }
-    $scope.load();
-    // Search
-    $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.onlineModules,$scope.autocomplete);
-        return;
-    }
+myAppController.controller('TestController', function($scope, $window) {
+$scope.referrer = $window.document.referrer;
+    console.log('$referrer',$scope.referrer);
 
 });
 

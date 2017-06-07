@@ -14,8 +14,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     when('/', {
         templateUrl: 'app/views/auth/auth.html'
     }).// Autocomplete
-    when('/autocomplete', {
-        templateUrl: 'app/views/autocomplete.html',
+    when('/test', {
+        templateUrl: 'app/views/test.html',
     }).
     // Dragdrop
     when('/dragdrop', {

@@ -1,7 +1,7 @@
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown{
-    font-size: $dropdown-font-size; 
+    font-size: 110%;
     position: absolute;
     top: 100%;
     right: 0;
@@ -11,11 +11,11 @@
     min-width: 300px;
     padding: 0;
     text-align: left;
-    background-color: $dropdown-bcg-color;
-    @include appBoxShadow($dropdown-box-shadow);
-    border: 1px solid $dropdown-border-color;
+    background-color: #FFFFFF;
+    @include appBoxShadow($app-box-shadow);
+    border: 1px solid $app-border-color;
     background-clip: padding-box;
-    color: $dropdown-color;
+    color: $app-a-color;
     // Media queries
     @include mediaQueries(min-small) {
         min-width: 380px;
@@ -46,11 +46,11 @@
     }
 
     .app-dropdown-title{
-        color: $dropdown-heading-color;
+        color: $app-heading-color;
         margin: 0;
         padding: $spacing;
         font-weight: bold;
-        border-bottom: solid 1px $dropdown-border-color;
+        border-bottom: solid 1px $app-border-color;
     }
     .app-dropdown-content{
         padding: $spacing;
@@ -61,13 +61,13 @@
         list-style: none;
         li{
             padding: $spacing;
-            border-bottom: solid 1px $dropdown-border-color;
+            border-bottom: solid 1px $app-border-color;
             a{
                 display: block;
                 position:relative;
                 padding: 0;
                 vertical-align: middle;
-                color: $dropdown-color;
+                color: $app-a-color;
             }
 
             .menu-arrow{
@@ -80,29 +80,27 @@
               margin: 0 $spacing 0 0;
             }
             &:hover{
-                background-color: $dropdown-hover-bcg-color;
+                background-color: #F6F6F6;;
             }
 
         }
         .active{
             a{
-                color: lighten($dropdown-color, 40%);
+                color: lighten($app-a-color, 40%);
                 font-weight: bold;
                 text-decoration: underline;
                 cursor:text;
             }
         }
         .fa{
-            font-size: $dropdown-icon-size;
-            //padding-right: $spacing;
+            font-size: 120%;
         }
         .btn{
             display: inline-block;
             position: static;
             padding: 3px 10px;
             vertical-align: middle;
-            color: $dropdown-color;
-            //vertical-align:baseline;
+            color: $app-a-color;
             border: 0;
             border-radius: 0;
         }
@@ -122,7 +120,6 @@
             display: inline-block;
             padding: $spacing-half;
             border: 0;
-            //text-align: center;
         }
     }
 }
