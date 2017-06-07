@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 31-05-2017 15:06:37 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 07-06-2017 16:07:22 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -387,11 +387,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/auth/password_reset.html',
     "<div ng-controller=PasswordResetController class=mobile-padding><bb-loader></bb-loader><bb-alert alert=passwordReset.alert></bb-alert><form name=form_password id=form_password class=\"form form-page\" ng-submit=changePassword(form_password) novalidate ng-if=\"passwordReset.input.userId !== null\"><fieldset><h3><i class=\"fa fa-chevron-down\"></i> {{_t('password_reset')}}</h3><div class=form-group><label class=isrequired>{{_t('lb_new_password')}}:</label><input name=password id=password type=password class=form-control ng-model=passwordReset.input.password ng-blur=\"passwordBlur = true\" ng-required=true ng-minlength=\"6\"><bb-validator input-name=form_password.password.$error.required trans=_t(&quot;field_required&quot;) has-blur=passwordBlur></bb-validator><bb-validator input-name=form_password.password.$error.minlength trans=_t(&quot;password_valid&quot;) has-blur=passwordBlur></bb-validator></div><div class=form-group><label class=isrequired>{{_t('confirm_password')}}:</label><input name=password_confirm id=password_confirm type=password class=form-control ng-blur=\"passwordConfirmBlur = true\" ng-model=passwordReset.input.passwordConfirm bb-compare-to=\"password\"><bb-validator input-name=form_password.password_confirm.$error.compareto trans=_t(&quot;passwords_must_match&quot;) has-blur=passwordConfirmBlur></bb-validator></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_submit')}}\" ng-disabled=form_password.$invalid><i class=\"fa fa-check\"></i> <span ng-bind=\"_t('lb_submit')\"></span></button></fieldset></form></div>"
-  );
-
-
-  $templateCache.put('app/views/autocomplete.html',
-    "<div ng-controller=AutoCompleteController><div class=\"form-group form-inline text-right\"><div class=input-group><input name=add_tag id=add_tag class=form-control ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\"><i class=\"fa fa-search\"></i></span><div class=\"app-dropdown app-dropdown-left_ autocomplete\" ng-if=autocomplete.results.length><ul><li class=clickable title={{v.title}} ng-click=\"redirectToRoute('apps/online/' + v.id)\" ng-repeat=\"v in autocomplete.results | orderBy:'toString()' track by $index\"><img class=report-img-s alt={{v.title}} ng-src=\"{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span>&nbsp; (<span class=rating-group><i class=\"fa widget-rating\" title={{r}} ng-class=\"r > v.rating ? 'fa-star-o' : 'fa-star israted'\" ng-repeat=\"r in [1,2,3,4,5]\"></i> <span class=widget-rating>| <i class=\"fa fa-download\"></i> {{v.installed}}&times;</span></span>)</li></ul></div></div></div></div>"
   );
 
 
@@ -1002,6 +997,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/simple.html',
     " ddfdfdfd<ul dnd-list=list><li ng-repeat=\"item in list\" dnd-draggable=item dnd-moved=\"list.splice($index, 1)\" dnd-effect-allowed=move dnd-selected=\"models.selected = item\" ng-class=\"{'selected': models.selected === item}\">{{item.label}}</li></ul>"
+  );
+
+
+  $templateCache.put('app/views/test.html',
+    "<div ng-controller=TestController><h1>I'm comming from</h1>Referrer from: {{referrer}}</div>"
   );
 
 

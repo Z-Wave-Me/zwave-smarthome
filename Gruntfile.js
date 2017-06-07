@@ -281,6 +281,20 @@ module.exports = function (grunt) {
                 }
             }
         },
+        jsdox: {
+            generate: {
+                options: {
+                    contentsEnabled: true,
+                    contentsTitle: 'SmartHome UI Documentation',
+                    contentsFile: 'readme.md',
+                    //pathFilter: /^example/,
+                    templateDir: 'docstemplates'
+                },
+                src: ['app/**/*.js'],
+                //src: ['app/controllers/*.js','app/services/*.js','app/directives/*.js','app/modules/*.js','app/jquery/*.js','app/filters/*.js'],
+                dest: 'docs'
+            }
+        },
         'release-it': {
             options: {
                 pkgFiles: ['package.json'],
@@ -317,9 +331,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html-build');
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-modify-json');
+    grunt.loadNpmTasks('grunt-jsdox');
     grunt.loadNpmTasks('grunt-release-it');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild','replace','modify_json']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild','replace','jsdox','modify_json']);
 
 };
