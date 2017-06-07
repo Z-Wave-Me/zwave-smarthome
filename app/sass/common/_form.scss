@@ -4,8 +4,12 @@
   font-size: $app-input-font-size;
   color: $form-input-color;
   border: solid 1px $form-input-border-color;
-  padding: $app-input-padding;
+  padding: 12px 14px;
   height: auto;
+  // Media queries
+  @include mediaQueries(min-small) {
+    padding: 6px 12px;
+  }
 }
 
 .input-group-addon {
@@ -23,42 +27,19 @@ label {
 }
 
 input[type=checkbox] {
-  -ms-transform: scale($checkbox-scale); /* IE */
-  -moz-transform: scale($checkbox-scale); /* FF */
-  -webkit-transform: scale($checkbox-scale); /* Safari and Chrome */
-  -o-transform: scale($checkbox-scale); /* Opera */
-  padding: $spacing;
-  margin: 0 $spacing-half 0;
+  @include  checkboxScale(2,$spacing);
+  // Media queries
+  @include mediaQueries(min-small) {
+    @include checkboxScale(1.3, $spacing);
+  }
+
 }
 
 input[type=radio] {
-  transform: scale($radio-scale, $radio-scale);
-  -moz-transform: scale($radio-scale, $radio-scale);
-  -ms-transform: scale($radio-scale, $radio-scale);
-  -webkit-transform: scale($radio-scale, $radio-scale);
-  -o-transform: scale($radio-scale, $radio-scale);
-  padding: $spacing;
-  margin: 0 $spacing 0;
-}
-
-// IOS inputs
-.os-iphone, .os-ipad, .os-ipod {
-  input[type=checkbox] {
-    -ms-transform: scale($checkbox-ios-scale); /* IE */
-    -moz-transform: scale($checkbox-ios-scale); /* FF */
-    -webkit-transform: scale($checkbox-ios-scale); /* Safari and Chrome */
-    -o-transform: scale($checkbox-ios-scale); /* Opera */
-    padding: $spacing;
-    margin: 0 $spacing 0;
-  }
-  input[type=radio] {
-    transform: scale($radio-ios-scale, $radio-ios-scale);
-    -moz-transform: scale($radio-ios-scale, $radio-ios-scale);
-    -ms-transform: scale($radio-ios-scale, $radio-ios-scale);
-    -webkit-transform: scale($radio-ios-scale, $radio-ios-scale);
-    -o-transform: scale($radio-ios-scale, $radio-ios-scale);
-    padding: $spacing;
-    margin: 0 $spacing 0;
+   @include radioScale(1.8, $spacing);
+  // Media queries
+  @include mediaQueries(min-small) {
+    @include radioScale(1.2, $spacing);
   }
 }
 

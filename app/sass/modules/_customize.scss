@@ -1,26 +1,66 @@
 /* Customize
 -------------------------------------------------- */
+/* Variables
+-------------------------------------------------- */
+//$customize-img: 120px;
+//$customize-detail-img: 300px;
+
+//$customize-widget-col-h: 120px;
+//$customize-icon-preview-h: 300px;
+//$customize-modal-content-h: 600px;
+
+/* Widget
+-------------------------------------------------- */
 .widget-entry-customize{
     .widget-entry-in{
-        min-height: $customize-widget-col-h;
+        min-height: 120px;
         height: auto;
+        // Media queries
+        @include mediaQueries(min-small) {
+            position: static;
+        }
+        // Media queries
+        @include mediaQueries(min-small) {
+            height: 250px;
+            text-align: center;
+        }
         .widget-img{
-            //position: absolute;
             top: $spacing;
             left: 0;
+            // Media queries
+            @include mediaQueries(min-small) {
+                position: static;
+            }
+            .customize-preview-img{
+                max-width: 120px;
+                max-height:120px;
+                border: solid 4px $app-border-color;
+                // Media queries
+                @include mediaQueries(min-small) {
+                    max-width: 300px;
+                    max-height: 150px;
+                }
+            }
 
         }
         .widget-header{
             display: none;
         }
         .widget-content{
-            margin: $spacing-double 0 0 $customize-img + $spacing;
+            margin: $spacing-double 0 0 120px + $spacing;
+            // Media queries
+            @include mediaQueries(min-small) {
+                margin: $spacing 0 0 0;
+            }
         }
         .bottom-aligner{
             display: none;
         }
         .widget-footer{
             margin-top: 10px;
+            @include mediaQueries(min-small) {
+                margin: $spacing 0 0 0;
+            }
             .btn-name{
                 display: none !important;
             }
@@ -51,12 +91,12 @@
     }
 }
 
-/* Customize detail
+/* Detail
 -------------------------------------------------- */
 .customize-detail{
     padding: $spacing;
     margin: $spacing 0;
-    max-height: $customize-modal-content-h;
+    max-height: 600px;
     overflow: auto;
 }
 .customize-detail-title{
@@ -66,14 +106,19 @@
 .customize-detail-img{
     padding: $spacing 0;
     text-align: center;
-     border-top: solid 1px $modal-border-color;
+     border-top: solid 1px $app-border-color;
+}
+.customize-image-detail{
+    max-width: 300px;
+     max-height: 300px;
+    border: solid 4px $app-border-color;
 }
 .customize-detail-perex{
     margin: $spacing 0;
 }
 .customize-icon-list{
-    border-top: solid 1px $modal-border-color;
-    height: $customize-icon-preview-h;
+    border-top: solid 1px $app-border-color;
+    height: 300px;
     overflow: scroll;
     .customize-icon-preview {
         display: inline-block;

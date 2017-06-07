@@ -10,10 +10,6 @@
 -------------------------------------------------- */
 @import "common/_variables";
 @import "common/_mixins";
-
-// Skin variables
-@import "skins/default/_variables";
-//@import "skins/komsa/_variables";
 // Vendors
 @import "vendor/_jquery.fileupload-ui";
 @import "vendor/_jquery.fileupload";
@@ -58,15 +54,11 @@
 @import "modules/_slider";
 @import "modules/_rss";
 
-// Enocean
-//@import "common/_enocean";
-
 // POPP
 @import "common/_app_popp";
 
 // Skin main
-@import "skins/default/_main";
-//@import "skins/komsa/_main";
+//@import "custom/_shui";
 
 // Mobile
 @import "responsive/_responsive";

@@ -1,6 +1,6 @@
 /* Rooms
 -------------------------------------------------- */
-/* Variables for mobile first design
+/* Variables
 -------------------------------------------------- */
 
 // Card color
@@ -8,7 +8,7 @@ $room-card-color: #000000;
 // Card background color
 $room-card-bcg-color: #FFFFFF;
 // Card border color
-$room-card-border-color: #FFFFFF;
+$room-card-border-color: #ccc;
 
 /* Cards
 -------------------------------------------------- */
@@ -26,9 +26,8 @@ $room-card-border-color: #FFFFFF;
   }
   /* Inner element */
   .card-room-in {
-    border: solid 4px $room-card-border-color;
+    border: solid 1px $room-card-border-color;
     background-color: $room-card-bcg-color;
-    @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
     position: relative;
     height: 100px;
     padding: 0;
@@ -177,11 +176,6 @@ $room-card-border-color: #FFFFFF;
 /* Header */
 .elemnts-room-bar{
   background-color: $room-card-bcg-color;
-  //border: solid 4px $room-card-border-color;
-  @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+  border: solid 1px $room-card-border-color;
   margin: 0 0 $spacing-double 0;
-  // Media queries
-  @include mediaQueries(min-small) {
-    @include appGradient();
-  }
 }

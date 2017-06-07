@@ -33,11 +33,11 @@ $app-line-height-base:        1.428571429 !default; // 20/14
 $app-container-w: 100%;
 
 // Input
-$checkbox-scale: 2;
-$checkbox-ios-scale: 1.3;
-$radio-scale: 1.8;
-$radio-ios-scale: 1.2;
-$app-input-padding: 12px 14px;
+//$checkbox-scale: 2;
+//$checkbox-ios-scale: 1.3;
+//$radio-scale: 1.8;
+//$radio-ios-scale: 1.2;
+//$app-input-padding: 12px 14px;
 // Header
 $header-h: 50px;
 $header-icon-settings-h: 40px;
@@ -46,8 +46,8 @@ $header-icon-settings-h: 40px;
 $page-control-input-h: 22px;
 
 // Dropdown
-$dropdown-w: 300px;
-$dropdown-lang-w: 250px;
+//$dropdown-w: 300px;
+//$dropdown-lang-w: 250px;
 
 // Info window
 $infowindow-w: 100%;
@@ -56,9 +56,9 @@ $infowindow-w: 100%;
 $app-overflow-h: 500px;
 
 // Modal
-$modal-margin: ($header-h + $spacing-double) auto $spacing-double auto;
-$modal-w: 99%;
-$modal-full-w: 99%;
+//$modal-margin: ($header-h + $spacing-double) auto $spacing-double auto;
+//$modal-w: 99%;
+//$modal-full-w: 99%;
 
 // Loader
 $loader-w: 260px;
@@ -72,8 +72,7 @@ $report-img: 60px;
 $widget-img: 64px;
 $app-detail-img:128px;
 $element-icon-img: 48px;
-$customize-img: 120px;
-$customize-detail-img: 300px;
+
 $include-detail-img:128px;
 $customize-icon-preview-img:64px;
 $product-img: 64px;
@@ -104,9 +103,7 @@ $element-widget-col-h: 150px;
 $app-widget-col-h: 120px;
 
 //Customize
-$customize-widget-col-h: 120px;
-$customize-icon-preview-h: 300px;
-$customize-modal-content-h: 600px;
+
 
 //Room
 //$room-card-w: 100%;
@@ -122,9 +119,9 @@ $badge-number-w: 32px;
 $device-vendor-w: 33.33333%;
 
 //Switch buton
-$switch-btn-w: 72px;
-$switch-btn-h: 40px;
-$switch-btn-slider: 32px;
+//$switch-btn-w: 72px;
+//$switch-btn-h: 40px;
+//$switch-btn-slider: 32px;
 
 /*-------------------------------------*/
 // Z:INDEX
@@ -154,8 +151,8 @@ $app-body-font-size: 17px;
 $app-error-message-font-size: 120%;
 $app-error-info-font-size: 105%;
 $app-navi-font-size: 120%;
-$app-btn-font-size: 110%;
-$app-btn-icon-size: 150%;
+//$app-btn-font-size: 110%;
+//$app-btn-icon-size: 150%;
 $app-btn-small-font-size: 90%;
 $app-btn-small-icon-size: 95%;
 $app-btn-tag-font-size: 100%;
@@ -171,7 +168,7 @@ $app-h3-font-size: 120%;
 $app-h4-font-size: 110%;
 $page-navi-font-size: 120%;
 $page-navi-icon-size: 130%;
-$modal-close-size: 180%;
+//$modal-close-size: 180%;
 $modal-heading-font-size: 110%;
 $dropdown-font-size: 110%;
 $infowindow-font-size: 90%;
@@ -290,11 +287,11 @@ $tabs-icon-active-color: $app-brand-success;
 $tabs-active-bcg-color: darken($tabs-bcg-color, 5%);
 
 // Modal
-$modal-bcg-color: #FFFFFF;
-$modal-color: $app-body-color;
-$modal-icon-color: lighten($modal-color, 20%);
-$modal-border-color: $app-border-color;
-$modal-heading-color: $app-heading-color;
+//$modal-bcg-color: #FFFFFF;
+//$modal-color: $app-body-color;
+//$modal-icon-color: lighten($modal-color, 20%);
+//$modal-border-color: $app-border-color;
+//$modal-heading-color: $app-heading-color;
 
 // Loader
 $loader-bcg-color: #FFFFFF;
@@ -358,7 +355,7 @@ $element-widget-img-update-border-color: $app-border-color;
 $element-widget-isnew-border-color: lighten($app-brand-success,20%);
 
 // Customize
-$customize-border-color: $app-border-color;
+//$customize-border-color: $app-border-color;
 // Room
 $room-border-color: $app-border-color;
 

@@ -77,6 +77,29 @@
 
 }
 
+// Checkbox scale
+@mixin checkboxScale($scale,$spacing) {
+  -ms-transform: scale($scale); /* IE */
+  -moz-transform: scale($scale); /* FF */
+  -webkit-transform: scale($scale); /* Safari and Chrome */
+  -o-transform: scale($scale); /* Opera */
+  padding: $spacing;
+  margin: 0 $spacing/2 0;
+
+}
+
+// Radio scale
+@mixin radioScale($scale,$spacing) {
+  transform: scale($scale, $scale);
+  -moz-transform: scale($scale, $scale);
+  -ms-transform: scale($scale, $scale);
+  -webkit-transform: scale($scale, $scale);
+  -o-transform: scale($scale, $scale);
+  padding: $spacing;
+  margin: 0 $spacing 0;
+
+}
+
 // Media queries
 @mixin mediaQueries($media) {
   /* MIN WIDTH */
