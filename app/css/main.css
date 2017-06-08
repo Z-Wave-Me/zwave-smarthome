@@ -10792,13 +10792,13 @@ a.link-underline {
     display: none;
   }
 }
-/* line 16, ../sass/common/_footer.scss */
+/* line 15, ../sass/common/_footer.scss */
 #footer #footer_in {
   background-color: #FFFFFF;
   height: 50px;
   line-height: 50px;
 }
-/* line 20, ../sass/common/_footer.scss */
+/* line 19, ../sass/common/_footer.scss */
 #footer #footer_in .timestamp {
   display: none;
 }
@@ -10849,21 +10849,15 @@ img {
     max-height: $room-img-h;
 }
 */
-/* line 37, ../sass/common/_images.scss */
-.app-image-detail {
-  max-width: 128px;
-  max-height: 128px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-}
-
-/* line 42, ../sass/common/_images.scss */
-.element-icon-img {
-  max-width: 48px;
-  max-height: 48px;
-}
-
+/*.app-image-detail{
+    max-width: $app-detail-img;
+    max-height: $app-detail-img;
+    @include appBorderRadius(50%);
+}*/
+/*.element-icon-img{
+    max-width: $element-icon-img;
+    max-height: $element-icon-img;
+}*/
 /* line 46, ../sass/common/_images.scss */
 .customize-preview-img {
   /*max-width: $customize-img;
@@ -10884,31 +10878,25 @@ img {
   max-height: 64px;
 }
 
-/* line 60, ../sass/common/_images.scss */
-.include-image-detail {
-  max-width: 128px;
-  max-height: 128px;
-}
-
-/* line 65, ../sass/common/_images.scss */
+/* line 61, ../sass/common/_images.scss */
 .product-img {
   max-width: 64px;
   max-height: 64px;
 }
 
-/* line 69, ../sass/common/_images.scss */
+/* line 65, ../sass/common/_images.scss */
 .room-image-preview {
   border: solid 6px #cccccc;
   width: 130px;
   height: 130px;
 }
 
-/* line 76, ../sass/common/_images.scss */
+/* line 72, ../sass/common/_images.scss */
 .has-device-false .room-image-preview {
   opacity: 0.5;
 }
 
-/* line 80, ../sass/common/_images.scss */
+/* line 76, ../sass/common/_images.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -10921,25 +10909,25 @@ img {
     max-width: $report-img-s;
     max-height:$report-img-s;
 }*/
-/* line 91, ../sass/common/_images.scss */
+/* line 87, ../sass/common/_images.scss */
 .lang-img {
   max-width: 32px;
   max-height: 32px;
 }
 
-/* line 95, ../sass/common/_images.scss */
+/* line 91, ../sass/common/_images.scss */
 .img-opacity-50 {
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
 
-/* line 101, ../sass/common/_images.scss */
+/* line 97, ../sass/common/_images.scss */
 .imglist-img {
   max-width: 40px;
   max-height: 40px;
 }
 
-/* line 106, ../sass/common/_images.scss */
+/* line 102, ../sass/common/_images.scss */
 .imglist-img-preview {
   max-width: 64px;
   max-height: 64px;
@@ -12746,16 +12734,34 @@ https://css-tricks.com/css3-progress-bars/
 .dd-placeholder.dd-element {
   width: 100%;
   height: 150px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 10, ../sass/common/_dragdrop.scss */
+  .dd-placeholder.dd-element {
+    float: left;
+    width: 50%;
+    height: 134px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  /* line 10, ../sass/common/_dragdrop.scss */
+  .dd-placeholder.dd-element {
+    width: 33.33333%;
+  }
 }
 
-/* line 15, ../sass/common/_dragdrop.scss */
+/* line 26, ../sass/common/_dragdrop.scss */
 .dd-on-start {
   background-color: #dff0d8;
   opacity: 0.7;
   cursor: text;
 }
 
-/* line 20, ../sass/common/_dragdrop.scss */
+/* line 31, ../sass/common/_dragdrop.scss */
 .dd-handle {
   cursor: move;
 }
@@ -12765,8 +12771,16 @@ https://css-tricks.com/css3-progress-bars/
 /* line 4, ../sass/modules/_elements.scss */
 .widget-entry-element .widget-entry-in {
   height: 150px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 6, ../sass/modules/_elements.scss */
+@media only screen and (min-width: 768px) {
+  /* line 4, ../sass/modules/_elements.scss */
+  .widget-entry-element .widget-entry-in {
+    height: 124px;
+  }
+}
+/* line 10, ../sass/modules/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-img {
   width: 64px;
   height: 64px;
@@ -12775,47 +12789,47 @@ https://css-tricks.com/css3-progress-bars/
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
-/* line 11, ../sass/modules/_elements.scss */
+/* line 15, ../sass/modules/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-img .widget-icon-update {
   cursor: pointer;
 }
-/* line 18, ../sass/modules/_elements.scss */
+/* line 22, ../sass/modules/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-title .widget-room {
   display: block;
   font-size: 85%;
   color: #737373;
 }
-/* line 24, ../sass/modules/_elements.scss */
+/* line 28, ../sass/modules/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-level {
   font-weight: bold;
   font-size: 160%;
   color: #0d0d0d;
 }
-/* line 29, ../sass/modules/_elements.scss */
+/* line 33, ../sass/modules/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-scale {
   font-size: 110%;
 }
 
-/* line 37, ../sass/modules/_elements.scss */
+/* line 41, ../sass/modules/_elements.scss */
 .widget-ctrl .fa-caret-down, .tbl-widget-ctrl .fa-caret-down {
   font-size: 140%;
   color: #737373;
 }
-/* line 42, ../sass/modules/_elements.scss */
+/* line 46, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .btn, .tbl-widget-ctrl .btn-group .btn {
   color: #d9d9d9;
 }
-/* line 44, ../sass/modules/_elements.scss */
+/* line 48, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .btn .fa, .tbl-widget-ctrl .btn-group .btn .fa {
   font-size: 110%;
 }
-/* line 48, ../sass/modules/_elements.scss */
+/* line 52, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .widget-btn-symbol, .tbl-widget-ctrl .btn-group .widget-btn-symbol {
   font-weight: bold;
   display: inline-block;
   padding: 0 5px;
 }
-/* line 53, ../sass/modules/_elements.scss */
+/* line 57, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .btn-primary, .tbl-widget-ctrl .btn-group .btn-primary {
   background-color: #FFFFFF !important;
   border-color: #d9d9d9;
@@ -12824,24 +12838,24 @@ https://css-tricks.com/css3-progress-bars/
   -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 58, ../sass/modules/_elements.scss */
+/* line 62, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-primary .fa {
   color: #80AD80 !important;
 }
-/* line 62, ../sass/modules/_elements.scss */
+/* line 66, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .btn-off.btn-primary, .tbl-widget-ctrl .btn-group .btn-off.btn-primary {
   color: #d9534f !important;
 }
-/* line 64, ../sass/modules/_elements.scss */
+/* line 68, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .btn-off.btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-off.btn-primary .fa {
   color: #80AD80 !important;
 }
-/* line 68, ../sass/modules/_elements.scss */
+/* line 72, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .btn-label-on, .tbl-widget-ctrl .btn-group .btn-label-on {
   color: #737373;
   text-transform: lowercase;
 }
-/* line 72, ../sass/modules/_elements.scss */
+/* line 76, ../sass/modules/_elements.scss */
 .widget-ctrl .btn-group .btn-widget-time, .widget-ctrl .btn-group .txt-widget-time, .tbl-widget-ctrl .btn-group .btn-widget-time, .tbl-widget-ctrl .btn-group .txt-widget-time {
   padding: 10px 0 0 0;
   border: 0 none;
@@ -12852,165 +12866,176 @@ https://css-tricks.com/css3-progress-bars/
 
 /* Specifics element styles
 ----------------------------------------------------*/
-/* line 85, ../sass/modules/_elements.scss */
+/* line 89, ../sass/modules/_elements.scss */
 .sensorMultiline .control-left {
   width: 60% !important;
 }
-/* line 88, ../sass/modules/_elements.scss */
+/* line 92, ../sass/modules/_elements.scss */
 .sensorMultiline .control-right {
   width: 40%;
 }
 
-/* line 94, ../sass/modules/_elements.scss */
+/* line 98, ../sass/modules/_elements.scss */
 .switchMultilevel .control-left {
   width: 60% !important;
 }
-/* line 97, ../sass/modules/_elements.scss */
+/* line 101, ../sass/modules/_elements.scss */
 .switchMultilevel .control-right {
   width: 40%;
 }
 
-/* line 102, ../sass/modules/_elements.scss */
+/* line 106, ../sass/modules/_elements.scss */
 .element-camera-control {
   text-align: center;
   margin: 0 0 10px 0;
 }
-/* line 105, ../sass/modules/_elements.scss */
+/* line 109, ../sass/modules/_elements.scss */
 .element-camera-control .fa {
   font-size: 180%;
 }
 
-/* line 110, ../sass/modules/_elements.scss */
+/* line 114, ../sass/modules/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 112, ../sass/modules/_elements.scss */
+/* line 116, ../sass/modules/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 118, ../sass/modules/_elements.scss */
+/* line 122, ../sass/modules/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 125, ../sass/modules/_elements.scss */
+/* line 129, ../sass/modules/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 132, ../sass/modules/_elements.scss */
+/* line 136, ../sass/modules/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 137, ../sass/modules/_elements.scss */
+/* line 141, ../sass/modules/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
-/* line 139, ../sass/modules/_elements.scss */
+/* line 143, ../sass/modules/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 146, ../sass/modules/_elements.scss */
+/* line 150, ../sass/modules/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
 }
 
-/* line 152, ../sass/modules/_elements.scss */
+/* line 156, ../sass/modules/_elements.scss */
 .app-row-icons .report-body {
   width: 30px;
 }
 
 /* Custom icons
 -------------------------------------------------- */
-/* line 159, ../sass/modules/_elements.scss */
+/* line 163, ../sass/modules/_elements.scss */
 .element-icon-list {
   border-bottom: solid 1px #cccccc;
   margin: 10px;
 }
-/* line 162, ../sass/modules/_elements.scss */
+/* line 166, ../sass/modules/_elements.scss */
 .element-icon-list .element-icon-img {
   display: inline-block;
   margin: 10px;
+  max-width: 48px;
+  max-height: 48px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 166, ../sass/modules/_elements.scss */
+  .element-icon-list .element-icon-img {
+    max-width: 32px;
+    max-height: 32px;
+  }
 }
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 170, ../sass/modules/_elements.scss */
+/* line 181, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 175, ../sass/modules/_elements.scss */
+/* line 186, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 180, ../sass/modules/_elements.scss */
+/* line 191, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 184, ../sass/modules/_elements.scss */
+/* line 195, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 190, ../sass/modules/_elements.scss */
+/* line 201, ../sass/modules/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 194, ../sass/modules/_elements.scss */
+/* line 205, ../sass/modules/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 198, ../sass/modules/_elements.scss */
+/* line 209, ../sass/modules/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 202, ../sass/modules/_elements.scss */
+/* line 213, ../sass/modules/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 206, ../sass/modules/_elements.scss */
+/* line 217, ../sass/modules/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 211, ../sass/modules/_elements.scss */
+/* line 222, ../sass/modules/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 215, ../sass/modules/_elements.scss */
+/* line 226, ../sass/modules/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 219, ../sass/modules/_elements.scss */
+/* line 230, ../sass/modules/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 223, ../sass/modules/_elements.scss */
+/* line 234, ../sass/modules/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -13023,13 +13048,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 235, ../sass/modules/_elements.scss */
+/* line 246, ../sass/modules/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 240, ../sass/modules/_elements.scss */
+/* line 251, ../sass/modules/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -13038,49 +13063,49 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 248, ../sass/modules/_elements.scss */
+/* line 259, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 252, ../sass/modules/_elements.scss */
+/* line 263, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 257, ../sass/modules/_elements.scss */
+/* line 268, ../sass/modules/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 264, ../sass/modules/_elements.scss */
+/* line 275, ../sass/modules/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm, .toggleButton .widget-body div.widget-control.control-right.ng-scope > div.btn-group-sm > button.btn.btn-default {
   cursor: default;
 }
 
 /* RGB color wheel
 --------------------------------------------------------*/
-/* line 270, ../sass/modules/_elements.scss */
+/* line 281, ../sass/modules/_elements.scss */
 .wheel-colorpicker {
   /*#wheel_picker_selected_spin{
       background-color: #fff;
   }*/
 }
-/* line 271, ../sass/modules/_elements.scss */
+/* line 282, ../sass/modules/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
   text-align: center;
 }
-/* line 275, ../sass/modules/_elements.scss */
+/* line 286, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker {
   margin: 0 auto;
   text-align: center;
   cursor: pointer;
 }
-/* line 280, ../sass/modules/_elements.scss */
+/* line 291, ../sass/modules/_elements.scss */
 .wheel-colorpicker #wheel_picker_selected, .wheel-colorpicker #wheel_picker_preview {
   /*border: 1px solid #ccc;
   border-radius: 4px;*/
@@ -13128,61 +13153,78 @@ img.widget-promo-image {
 
 /* Apps
 -------------------------------------------------- */
-/* line 7, ../sass/modules/_apps.scss */
+/* line 8, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in {
-  min-height: 120px;
+  min-height: 128px;
   height: auto;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 10, ../sass/modules/_apps.scss */
+@media only screen and (min-width: 768px) {
+  /* line 8, ../sass/modules/_apps.scss */
+  .widget-entry-app .widget-entry-in {
+    min-height: 1px;
+    height: 110px;
+  }
+}
+/* line 16, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-header {
   display: none;
 }
-/* line 13, ../sass/modules/_apps.scss */
+/* line 19, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-content {
   margin: 20px 0 0 74px;
 }
-/* line 16, ../sass/modules/_apps.scss */
+/* line 22, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .bottom-aligner {
   display: none;
 }
-/* line 19, ../sass/modules/_apps.scss */
+/* line 25, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-footer {
   margin-top: 10px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 21, ../sass/modules/_apps.scss */
+@media only screen and (min-width: 768px) {
+  /* line 25, ../sass/modules/_apps.scss */
+  .widget-entry-app .widget-entry-in .widget-footer {
+    margin: 10px 0 0 0;
+  }
+}
+/* line 31, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-footer .btn-name {
   display: none !important;
 }
-/* line 26, ../sass/modules/_apps.scss */
+/* line 36, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-footer .rating-group .widget-rating {
   font-size: 90%;
   padding: 0 2px 0 0;
   color: #8c8c8c;
 }
-/* line 30, ../sass/modules/_apps.scss */
+/* line 40, ../sass/modules/_apps.scss */
 .widget-entry-app .widget-entry-in .widget-footer .rating-group .widget-rating.israted {
   color: #f4c37d;
 }
 
-/* line 43, ../sass/modules/_apps.scss */
+/* line 53, ../sass/modules/_apps.scss */
 #apps_online .widget-warning .widget-img, #apps_instances .widget-warning .widget-img {
   opacity: 0.4;
   filter: alpha(opacity=40);
 }
-/* line 50, ../sass/modules/_apps.scss */
+/* line 60, ../sass/modules/_apps.scss */
 #apps_online .widget-warning .widget-title h3 a, #apps_instances .widget-warning .widget-title h3 a {
   color: #d9d9d9 !important;
 }
-/* line 58, ../sass/modules/_apps.scss */
+/* line 68, ../sass/modules/_apps.scss */
 #apps_online .widget-warning .widget-footer .rating-group .widget-rating, #apps_instances .widget-warning .widget-footer .rating-group .widget-rating {
   color: #a6a6a6;
 }
-/* line 60, ../sass/modules/_apps.scss */
+/* line 70, ../sass/modules/_apps.scss */
 #apps_online .widget-warning .widget-footer .rating-group .widget-rating.israted, #apps_instances .widget-warning .widget-footer .rating-group .widget-rating.israted {
   color: #f8d9ac;
 }
 
-/* line 71, ../sass/modules/_apps.scss */
+/* line 82, ../sass/modules/_apps.scss */
 #apps_instances .widget-warning .widget-entry-in {
   border-color: #eba5a3 !important;
   border-width: 4px;
@@ -13190,11 +13232,11 @@ img.widget-promo-image {
 
 /* Apps local
 -------------------------------------------------- */
-/* line 79, ../sass/modules/_apps.scss */
+/* line 91, ../sass/modules/_apps.scss */
 .app-entry-local {
   margin: 0 0 40px 0;
 }
-/* line 81, ../sass/modules/_apps.scss */
+/* line 93, ../sass/modules/_apps.scss */
 .app-entry-local h2 {
   padding: 0 0 10px 0;
   font-size: 150%;
@@ -13204,29 +13246,28 @@ img.widget-promo-image {
 
 /* Apps online
 -------------------------------------------------- */
-/* line 92, ../sass/modules/_apps.scss */
+/* line 104, ../sass/modules/_apps.scss */
 .app-entry-online {
   margin: 0 0 20px 0;
-  /*&.app-entry-filter {
-    margin-top: $spacing-double;
-  }*/
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 96, ../sass/modules/_apps.scss */
+/* line 107, ../sass/modules/_apps.scss */
 .app-entry-online .app-entry-cat {
   margin: 0 0 10px 0;
 }
-/* line 99, ../sass/modules/_apps.scss */
+/* line 110, ../sass/modules/_apps.scss */
 .app-entry-online .app-entry-cat .app-entry-title {
   width: 70%;
   float: left;
   color: #737373;
   font-weight: normal;
 }
-/* line 105, ../sass/modules/_apps.scss */
+/* line 116, ../sass/modules/_apps.scss */
 .app-entry-online .app-entry-cat .app-entry-title h2 {
   font-size: 150%;
 }
-/* line 110, ../sass/modules/_apps.scss */
+/* line 121, ../sass/modules/_apps.scss */
 .app-entry-online .app-entry-cat .app-entry-btn {
   text-align: right;
   width: 25%;
@@ -13234,19 +13275,63 @@ img.widget-promo-image {
   /*display: table-cell;
   vertical-align: bottom;*/
 }
-/* line 116, ../sass/modules/_apps.scss */
+/* line 127, ../sass/modules/_apps.scss */
 .app-entry-online .app-entry-cat .app-entry-btn .btn {
   margin: 20px 0 0 0;
+}
+@media only screen and (min-width: 768px) {
+  /* line 134, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry {
+    border: 0;
+    width: 20%;
+  }
+  /* line 137, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in {
+    height: 256px;
+  }
+  /* line 139, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .widget-img {
+    position: static;
+    text-align: center;
+  }
+  /* line 142, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
+    max-width: 128px;
+    max-height: 128px;
+    width: 128px;
+    height: 128px;
+  }
+  /* line 150, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .widget-content {
+    margin: 20px 0 0 0;
+  }
+  /* line 153, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .widget-title {
+    text-align: center;
+  }
+  /* line 156, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
+    width: 100%;
+    float: none;
+  }
+  /* line 160, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
+    text-align: center;
+  }
+  /* line 163, ../sass/modules/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
+    margin: 5px 0 0 0;
+  }
 }
 
 /* Apps instances
 -------------------------------------------------- */
-/* line 131, ../sass/modules/_apps.scss */
+/* line 177, ../sass/modules/_apps.scss */
 #apps_instances .accordion-entry {
   background-color: #FFFFFF;
   margin: 0;
 }
-/* line 135, ../sass/modules/_apps.scss */
+/* line 181, ../sass/modules/_apps.scss */
 #apps_instances .accordion-entry .accordion-entry-title {
   font-size: 100%;
   margin: 0;
@@ -13254,38 +13339,66 @@ img.widget-promo-image {
   font-weight: bold;
 }
 
-/* line 144, ../sass/modules/_apps.scss */
+/* line 191, ../sass/modules/_apps.scss */
 .instance-entry-single .app-row-report {
   border-bottom: 0;
   border-top: 0;
 }
 
-/* line 150, ../sass/modules/_apps.scss */
+/* line 198, ../sass/modules/_apps.scss */
 .instance-entry-multiple .app-row-report {
   border-top: 0;
 }
-/* line 154, ../sass/modules/_apps.scss */
+/* line 202, ../sass/modules/_apps.scss */
 .instance-entry-multiple .app-row-report .report-body {
   padding: 0 0 0 32px;
 }
-/* line 158, ../sass/modules/_apps.scss */
+/* line 206, ../sass/modules/_apps.scss */
 .instance-entry-multiple .report-entry {
   border-bottom: 0;
 }
 
 /* App detail
 -------------------------------------------------- */
-/* line 165, ../sass/modules/_apps.scss */
+/* line 213, ../sass/modules/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 213, ../sass/modules/_apps.scss */
+  .app-detail-img {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    width: 148px;
+  }
 }
 
-/* line 169, ../sass/modules/_apps.scss */
+/* line 222, ../sass/modules/_apps.scss */
+.app-image-detail {
+  max-width: 128px;
+  max-height: 128px;
+}
+
+/* line 228, ../sass/modules/_apps.scss */
+.app-detail-body {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 228, ../sass/modules/_apps.scss */
+  .app-detail-body {
+    margin: 0 0 0 148px;
+  }
+}
+/* line 233, ../sass/modules/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
-/* line 173, ../sass/modules/_apps.scss */
+/* line 238, ../sass/modules/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #cccccc;
   margin: 10px 0 0 0;
@@ -13294,20 +13407,20 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 181, ../sass/modules/_apps.scss */
+/* line 246, ../sass/modules/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #8c8c8c;
 }
-/* line 185, ../sass/modules/_apps.scss */
+/* line 250, ../sass/modules/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 191, ../sass/modules/_apps.scss */
+/* line 257, ../sass/modules/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -13315,7 +13428,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 197, ../sass/modules/_apps.scss */
+/* line 263, ../sass/modules/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -13323,12 +13436,12 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 207, ../sass/modules/_apps.scss */
+/* line 274, ../sass/modules/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
 
-/* Customize
+/* Customize - skins and icons
 -------------------------------------------------- */
 /* Variables
 -------------------------------------------------- */
@@ -13726,39 +13839,34 @@ img.widget-promo-image {
   max-height: 80px;
 }
 
-/*.expert-link{
-    padding-right: $spacing-double;
-}*/
-/* line 22, ../sass/modules/_devices.scss */
-.device-manufacturers .vendor-entry {
-  padding-right: 0;
-}
-
-/*.manufacturer-logo{
-    margin: 0 $spacing-half;
-    max-width: 70px;
-    display: inline;
-}*/
-/* line 33, ../sass/modules/_devices.scss */
+/* line 18, ../sass/modules/_devices.scss */
 .device-autodetect {
   margin: 0 0 20px 0;
 }
 
-/* line 37, ../sass/modules/_devices.scss */
+/* line 22, ../sass/modules/_devices.scss */
 .vendor-entry {
   float: left;
   position: relative;
   min-height: 1px;
   width: 33.33333%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 22, ../sass/modules/_devices.scss */
+  .vendor-entry {
+    width: 20%;
+  }
 }
 
-/* line 42, ../sass/modules/_devices.scss */
+/* line 31, ../sass/modules/_devices.scss */
 .col-device-vendor {
   padding-left: 10px !important;
   padding-right: 0 !important;
 }
 
-/* line 46, ../sass/modules/_devices.scss */
+/* line 35, ../sass/modules/_devices.scss */
 .vendor-list {
   display: block;
   margin: 5px;
@@ -13766,113 +13874,113 @@ img.widget-promo-image {
   text-align: center;
   border: solid 1px #cccccc;
 }
-/* line 53, ../sass/modules/_devices.scss */
+/* line 42, ../sass/modules/_devices.scss */
 .vendor-list .vendor-image {
   line-height: 85px;
   margin: 0 !important;
 }
-/* line 56, ../sass/modules/_devices.scss */
+/* line 45, ../sass/modules/_devices.scss */
 .vendor-list .vendor-image img {
   vertical-align: middle;
   max-width: 80px;
   max-height: 80px;
 }
 
-/* line 63, ../sass/modules/_devices.scss */
+/* line 52, ../sass/modules/_devices.scss */
 .device-perex {
   margin-bottom: 10px;
 }
 
-/* line 67, ../sass/modules/_devices.scss */
+/* line 56, ../sass/modules/_devices.scss */
 .include-device-img {
   margin: 0 0 10px 0;
 }
 
-/* line 71, ../sass/modules/_devices.scss */
+/* line 60, ../sass/modules/_devices.scss */
 .col-device {
   padding: 20px;
 }
-/* line 74, ../sass/modules/_devices.scss */
+/* line 63, ../sass/modules/_devices.scss */
 .col-device .device-statement {
   margin: 10px 0;
   padding: 10px 0;
   border-bottom: solid 1px #cccccc;
 }
 
-/* line 80, ../sass/modules/_devices.scss */
+/* line 69, ../sass/modules/_devices.scss */
 .table-inclusion td {
   vertical-align: middle !important;
 }
-/* line 82, ../sass/modules/_devices.scss */
+/* line 71, ../sass/modules/_devices.scss */
 .table-inclusion td .alert {
   margin-bottom: 0;
 }
 
-/* line 87, ../sass/modules/_devices.scss */
+/* line 76, ../sass/modules/_devices.scss */
 .td-camera-action {
   text-align: right;
 }
 
 /* ZWave
 -------------------------------------------------- */
-/* line 95, ../sass/modules/_devices.scss */
+/* line 84, ../sass/modules/_devices.scss */
 .network-zwave-device .network-node-name {
   font-style: italic;
 }
 
-/* line 99, ../sass/modules/_devices.scss */
+/* line 88, ../sass/modules/_devices.scss */
 .network-zwave-title {
   font-weight: bold;
   display: block;
   width: 100%;
 }
-/* line 103, ../sass/modules/_devices.scss */
+/* line 92, ../sass/modules/_devices.scss */
 .network-zwave-title.noelements {
   color: #404040;
   font-weight: normal;
 }
 
-/* line 109, ../sass/modules/_devices.scss */
+/* line 98, ../sass/modules/_devices.scss */
 .zwave-hidden-true a {
   color: #8c8c8c !important;
   cursor: text;
   text-decoration: line-through;
 }
-/* line 113, ../sass/modules/_devices.scss */
+/* line 102, ../sass/modules/_devices.scss */
 .zwave-hidden-true a:hover {
   text-decoration: line-through;
 }
-/* line 116, ../sass/modules/_devices.scss */
+/* line 105, ../sass/modules/_devices.scss */
 .zwave-hidden-true a .zwave-raquo {
   display: none;
 }
-/* line 122, ../sass/modules/_devices.scss */
+/* line 111, ../sass/modules/_devices.scss */
 .zwave-hidden-true input {
   color: #8c8c8c;
 }
 
-/* line 126, ../sass/modules/_devices.scss */
+/* line 115, ../sass/modules/_devices.scss */
 .network-zwave-element {
   padding-left: 10px;
   margin: 10px 0 0 0;
 }
 
-/* line 133, ../sass/modules/_devices.scss */
+/* line 122, ../sass/modules/_devices.scss */
 .network-block {
   margin-bottom: 20px;
 }
 
 /* Inclusion
 -------------------------------------------------- */
-/* line 142, ../sass/modules/_devices.scss */
+/* line 131, ../sass/modules/_devices.scss */
 #zwave_inclusion .report-entry .report-col {
   vertical-align: top;
 }
-/* line 147, ../sass/modules/_devices.scss */
+/* line 136, ../sass/modules/_devices.scss */
 #zwave_inclusion .inclusion-header h3 {
   font-weight: bold;
 }
-/* line 150, ../sass/modules/_devices.scss */
+/* line 139, ../sass/modules/_devices.scss */
 #zwave_inclusion .inclusion-header span.line {
   border-top: 1px solid #cccccc;
   width: 100%;
@@ -13881,48 +13989,93 @@ img.widget-promo-image {
   display: block;
 }
 
+/* line 148, ../sass/modules/_devices.scss */
+.include-image-detail {
+  max-width: 128px;
+  max-height: 128px;
+}
+
+/* line 153, ../sass/modules/_devices.scss */
+.include-device-img, .include-device-body {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 153, ../sass/modules/_devices.scss */
+  .include-device-img, .include-device-body {
+    float: left;
+  }
+}
+
+/* line 161, ../sass/modules/_devices.scss */
+.include-device-img {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 161, ../sass/modules/_devices.scss */
+  .include-device-img {
+    width: 148px;
+  }
+}
+
+/* Management
+-------------------------------------------------- */
+/* line 171, ../sass/modules/_devices.scss */
+.report-battery-info div {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 171, ../sass/modules/_devices.scss */
+  .report-battery-info div {
+    display: inline-block;
+    padding: 0 10px 0 0;
+  }
+}
+
 /* Configuration
 -------------------------------------------------- */
-/* line 162, ../sass/modules/_devices.scss */
+/* line 183, ../sass/modules/_devices.scss */
 .table-cfg-interview th {
   width: 25%;
 }
 
-/* line 165, ../sass/modules/_devices.scss */
+/* line 186, ../sass/modules/_devices.scss */
 .cfg-block {
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 170, ../sass/modules/_devices.scss */
+/* line 191, ../sass/modules/_devices.scss */
 .cfg-block h4 {
   font-size: 16px;
 }
 
-/* line 174, ../sass/modules/_devices.scss */
+/* line 195, ../sass/modules/_devices.scss */
 .cfg-control-content {
   padding: 10px;
   margin: 10px 0;
 }
 
-/* line 178, ../sass/modules/_devices.scss */
+/* line 199, ../sass/modules/_devices.scss */
 .cfg-info {
   margin: 10px 0 0 0;
   padding: 10px 0 0 0;
   border-top: solid 1px #cccccc;
 }
 
-/* line 183, ../sass/modules/_devices.scss */
+/* line 204, ../sass/modules/_devices.scss */
 .commads-is-current {
   text-decoration: underline;
 }
 
-/* line 186, ../sass/modules/_devices.scss */
+/* line 207, ../sass/modules/_devices.scss */
 #wakeup_cont .form-inline {
   float: left;
 }
 
-/* line 189, ../sass/modules/_devices.scss */
+/* line 210, ../sass/modules/_devices.scss */
 .spin-true .fa-spin {
   display: none;
 }
@@ -14163,10 +14316,13 @@ img.widget-promo-image {
            display: table-cell;
        }
    }*/
-  /* line 67, ../sass/responsive/_responsive.scss */
-  .app-row-zwave .report-entry .report-ctrl {
-    vertical-align: top !important;
-  }
+   /* .app-row-zwave{
+    .report-entry {
+        .report-ctrl{
+            vertical-align: top !important;
+        }
+    }
+}*/
 }
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
@@ -14361,29 +14517,30 @@ img.widget-promo-image {
     min-width: $dropdown-w;
   
   }*/
-  /* line 209, ../sass/responsive/_mq_shared.scss */
-  .app-dropdown {
-    /*.dropdown-entry {
+  /*.app-dropdown {
+   // min-width: 380px;
+    !*.dropdown-entry {
       display: table;
       width: 100%
-    }*/
-    /*.dropdown-col {
+    }*!
+    !*.dropdown-col {
       display: table-cell;
       vertical-align: middle;
-    }*/
-    /*.dropdown-ctrl {
+    }*!
+    !*.dropdown-ctrl {
       text-align: right;
-    }*/
-    /*&.dropdown-lang {
+    }*!
+  
+    !*&.dropdown-lang {
       min-width: 250px;
       ul {
         li {
           padding: $spacing-half;
         }
       }
-    }*/
-  }
-
+    }*!
+  
+  }*/
   /* Report
   -------------------------------------------------- */
   /*.report-img {
@@ -14424,200 +14581,171 @@ img.widget-promo-image {
     font-size: 140%;
   }
 
-  /* line 275, ../sass/responsive/_mq_shared.scss */
-  .widget-zwave {
-    width: 50%;
-  }
-
-  /* line 279, ../sass/responsive/_mq_shared.scss */
-  .widget-success {
-    /*    .widget-entry-in{
-            border: solid 4px $widget-success-border-color;
-        }*/
-  }
-
-  /* line 285, ../sass/responsive/_mq_shared.scss */
-  .widget-warning {
-    /*    .widget-entry-in{
-        border: solid 4px $widget-warning-border-color;
-        }*/
-  }
-
-  /* line 291, ../sass/responsive/_mq_shared.scss */
-  .widget-danger {
-    /*    .widget-entry-in{
-         border: solid 4px $widget-danger-border-color;
-        }*/
-  }
-
+  /*.widget-zwave {
+    width: $widget-zwave-col-w;
+  }*/
   /* Elements
   -------------------------------------------------- */
-  /* line 300, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-element .widget-entry-in {
-    height: 124px;
-  }
-
-  /* line 305, ../sass/responsive/_mq_shared.scss */
-  .element-icon-img {
-    max-width: 32px;
-    max-height: 32px;
-  }
-
+  /*.widget-entry-element {
+    .widget-entry-in {
+      height: $element-widget-col-h;
+    }
+  }*/
+  /*.element-icon-img {
+    max-width: $element-icon-img;
+    max-height: $element-icon-img;
+  }*/
   /* Drag and Drop */
-  /* line 312, ../sass/responsive/_mq_shared.scss */
-  .dd-placeholder.dd-element {
-    float: left;
-    /* position: relative;*/
-    width: 50%;
-    height: 144px;
-  }
-
+  /*.dd-placeholder {
+    &.dd-element {
+      float: left;
+      !* position: relative;*!
+      width: $widget-col-w;
+      height: $element-widget-col-h + 20px;
+    }
+  }*/
   /* Rooms
   -------------------------------------------------- */
-  /* line 326, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in {
-    /* margin: $spacing;
-     height: $room-card-h;
-     padding: 0;*/
-  }
-  /* line 333, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .card-header {
-    /* width: 100%;
-     padding: $spacing-half;
-     top: 0;*/
-  }
-  /* line 339, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .room-img {
-    /*position: static;
-    text-align: center;
-    width: $room-img-w;
-    height: $room-img-h;*/
-  }
-  /* line 348, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .card-content {
-    /* position: static;
-     margin: $spacing-double 0 0 0;
-     .card-title {
-       padding: 0;
-       text-align: center;
-     }*/
-  }
-
+  /*.card-room {
+    //@include appFloat(left);
+    //border: 0;
+    //width: $room-card-w;
+    .card-room-in {
+     // @include appGradient();
+      //@include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      //border: solid 4px $room-card-border-color;
+     !* margin: $spacing;
+      height: $room-card-h;
+      padding: 0;*!
+      .card-header {
+       !* width: 100%;
+        padding: $spacing-half;
+        top: 0;*!
+  
+      }
+      .room-img {
+        //border: solid 1px red;
+        !*position: static;
+        text-align: center;
+        width: $room-img-w;
+        height: $room-img-h;*!
+  
+      }
+  
+      .card-content {
+       !* position: static;
+        margin: $spacing-double 0 0 0;
+        .card-title {
+          padding: 0;
+          text-align: center;
+        }*!
+      }
+  
+    }
+  }*/
   /* Apps
   -------------------------------------------------- */
-  /* line 363, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-app .widget-entry-in {
-    min-height: 1px;
-    height: 110px;
-  }
-  /* line 366, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-app .widget-entry-in .widget-footer {
-    margin: 10px 0 0 0;
-  }
-
+  /*.widget-entry-app {
+    .widget-entry-in {
+      min-height: 1px;
+      height: $app-widget-col-h;
+      .widget-footer {
+        margin: $spacing 0 0 0;
+  
+      }
+    }
+  }*/
   /* Online widget
   -------------------------------------------------- */
-  /* line 376, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry {
-    border: 0;
-    width: 20%;
-  }
-  /* line 379, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in {
-    height: 256px;
-  }
-  /* line 381, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-img {
-    position: static;
-    text-align: center;
-  }
-  /* line 384, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
-    max-width: 128px;
-    max-height: 128px;
-    width: 128px;
-    height: 128px;
-  }
-  /* line 392, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-content {
-    margin: 20px 0 0 0;
-  }
-  /* line 395, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-title {
-    text-align: center;
-  }
-  /* line 398, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
-    width: 100%;
-    float: none;
-  }
-  /* line 402, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
-    text-align: center;
-  }
-  /* line 405, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
-    margin: 5px 0 0 0;
-  }
-
+  /*.app-entry-online {
+    .widget-entry {
+      border: 0;
+      width: 20%;
+      .widget-entry-in {
+        height: $app-online-widget-col-h;
+        .widget-img {
+          position: static;
+          text-align: center;
+          .widget-preview-img {
+  
+            max-width: $app-online-widget-col-h/2;
+            max-height: $app-online-widget-col-h/2;
+            width: $app-online-widget-col-h/2;
+            height: $app-online-widget-col-h/2;
+          }
+        }
+        .widget-content {
+          margin: $spacing-double 0 0 0;
+        }
+        .widget-title {
+          text-align: center;
+        }
+        .widget-ctrl {
+          width: 100%;
+          float: none;
+        }
+        .ctrl-left {
+          text-align: center;
+        }
+        .ctrl-right {
+          margin: $spacing-half 0 0 0;
+        }
+      }
+    }
+  }*/
   /* Customize
   -------------------------------------------------- */
-  /* line 415, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-customize .widget-entry-in {
-    /* min-height: 1px;
-     height: $customize-widget-col-h;
-     text-align: center;*/
-    /*.widget-img {
-      position: static;
-
-    }*/
-  }
-
+  /*.widget-entry-customize {
+    .widget-entry-in {
+     !* min-height: 1px;
+      height: $customize-widget-col-h;
+      text-align: center;*!
+      !*.widget-img {
+        position: static;
+  
+      }*!
+      .widget-content {
+        //margin: $spacing 0 0 0;
+  
+      }
+      .widget-footer {
+        //margin: $spacing 0 0 0;
+      }
+    }
+  }*/
   /* App detail
   -------------------------------------------------- */
-  /* line 435, ../sass/responsive/_mq_shared.scss */
-  .app-detail-img {
-    float: left;
-    position: relative;
-    min-height: 1px;
-    width: 148px;
-  }
-
-  /* line 441, ../sass/responsive/_mq_shared.scss */
-  .app-detail-body {
-    margin: 0 0 0 148px;
-  }
-
+  /*.app-detail-img {
+    @include appFloat(left);
+    width: $app-detail-img + $spacing-double;
+  
+  }*/
+  /*.app-detail-body {
+    margin: 0 0 0 $app-detail-img + $spacing-double;
+  }*/
   /* Devices
   -------------------------------------------------- */
-  /* line 447, ../sass/responsive/_mq_shared.scss */
-  .vendor-entry {
-    width: 20%;
-  }
-
-  /* line 451, ../sass/responsive/_mq_shared.scss */
-  .app-detail-body {
-    margin: 0 0 0 148px;
-  }
-
-  /* line 456, ../sass/responsive/_mq_shared.scss */
-  .report-battery-info div {
-    display: inline-block;
-    padding: 0 10px 0 0;
-  }
-
+  /*.vendor-entry {
+    width: $device-vendor-w;
+  }*/
+  /*.app-detail-body {
+    margin: 0 0 0 $app-detail-img + $spacing-double;
+  }*/
+  /*.report-battery-info {
+    div {
+      display: inline-block;
+      padding: 0 $spacing 0 0;
+    }
+  }*/
   /* Inclusion
   -------------------------------------------------- */
-  /* line 464, ../sass/responsive/_mq_shared.scss */
-  .include-device-img, .include-device-body {
+  /*.include-device-img, .include-device-body {
     float: left;
   }
-
-  /* line 468, ../sass/responsive/_mq_shared.scss */
+  
   .include-device-img {
-    width: 148px;
-  }
-
+    width: $include-detail-img + $spacing-double;
+  }*/
   /* Footer
   -------------------------------------------------- */
   /*#footer {
@@ -14838,29 +14966,30 @@ img.widget-promo-image {
     min-width: $dropdown-w;
   
   }*/
-  /* line 209, ../sass/responsive/_mq_shared.scss */
-  .app-dropdown {
-    /*.dropdown-entry {
+  /*.app-dropdown {
+   // min-width: 380px;
+    !*.dropdown-entry {
       display: table;
       width: 100%
-    }*/
-    /*.dropdown-col {
+    }*!
+    !*.dropdown-col {
       display: table-cell;
       vertical-align: middle;
-    }*/
-    /*.dropdown-ctrl {
+    }*!
+    !*.dropdown-ctrl {
       text-align: right;
-    }*/
-    /*&.dropdown-lang {
+    }*!
+  
+    !*&.dropdown-lang {
       min-width: 250px;
       ul {
         li {
           padding: $spacing-half;
         }
       }
-    }*/
-  }
-
+    }*!
+  
+  }*/
   /* Report
   -------------------------------------------------- */
   /*.report-img {
@@ -14901,200 +15030,171 @@ img.widget-promo-image {
     font-size: 140%;
   }
 
-  /* line 275, ../sass/responsive/_mq_shared.scss */
-  .widget-zwave {
-    width: 50%;
-  }
-
-  /* line 279, ../sass/responsive/_mq_shared.scss */
-  .widget-success {
-    /*    .widget-entry-in{
-            border: solid 4px $widget-success-border-color;
-        }*/
-  }
-
-  /* line 285, ../sass/responsive/_mq_shared.scss */
-  .widget-warning {
-    /*    .widget-entry-in{
-        border: solid 4px $widget-warning-border-color;
-        }*/
-  }
-
-  /* line 291, ../sass/responsive/_mq_shared.scss */
-  .widget-danger {
-    /*    .widget-entry-in{
-         border: solid 4px $widget-danger-border-color;
-        }*/
-  }
-
+  /*.widget-zwave {
+    width: $widget-zwave-col-w;
+  }*/
   /* Elements
   -------------------------------------------------- */
-  /* line 300, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-element .widget-entry-in {
-    height: 124px;
-  }
-
-  /* line 305, ../sass/responsive/_mq_shared.scss */
-  .element-icon-img {
-    max-width: 32px;
-    max-height: 32px;
-  }
-
+  /*.widget-entry-element {
+    .widget-entry-in {
+      height: $element-widget-col-h;
+    }
+  }*/
+  /*.element-icon-img {
+    max-width: $element-icon-img;
+    max-height: $element-icon-img;
+  }*/
   /* Drag and Drop */
-  /* line 312, ../sass/responsive/_mq_shared.scss */
-  .dd-placeholder.dd-element {
-    float: left;
-    /* position: relative;*/
-    width: 50%;
-    height: 144px;
-  }
-
+  /*.dd-placeholder {
+    &.dd-element {
+      float: left;
+      !* position: relative;*!
+      width: $widget-col-w;
+      height: $element-widget-col-h + 20px;
+    }
+  }*/
   /* Rooms
   -------------------------------------------------- */
-  /* line 326, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in {
-    /* margin: $spacing;
-     height: $room-card-h;
-     padding: 0;*/
-  }
-  /* line 333, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .card-header {
-    /* width: 100%;
-     padding: $spacing-half;
-     top: 0;*/
-  }
-  /* line 339, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .room-img {
-    /*position: static;
-    text-align: center;
-    width: $room-img-w;
-    height: $room-img-h;*/
-  }
-  /* line 348, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .card-content {
-    /* position: static;
-     margin: $spacing-double 0 0 0;
-     .card-title {
-       padding: 0;
-       text-align: center;
-     }*/
-  }
-
+  /*.card-room {
+    //@include appFloat(left);
+    //border: 0;
+    //width: $room-card-w;
+    .card-room-in {
+     // @include appGradient();
+      //@include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      //border: solid 4px $room-card-border-color;
+     !* margin: $spacing;
+      height: $room-card-h;
+      padding: 0;*!
+      .card-header {
+       !* width: 100%;
+        padding: $spacing-half;
+        top: 0;*!
+  
+      }
+      .room-img {
+        //border: solid 1px red;
+        !*position: static;
+        text-align: center;
+        width: $room-img-w;
+        height: $room-img-h;*!
+  
+      }
+  
+      .card-content {
+       !* position: static;
+        margin: $spacing-double 0 0 0;
+        .card-title {
+          padding: 0;
+          text-align: center;
+        }*!
+      }
+  
+    }
+  }*/
   /* Apps
   -------------------------------------------------- */
-  /* line 363, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-app .widget-entry-in {
-    min-height: 1px;
-    height: 110px;
-  }
-  /* line 366, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-app .widget-entry-in .widget-footer {
-    margin: 10px 0 0 0;
-  }
-
+  /*.widget-entry-app {
+    .widget-entry-in {
+      min-height: 1px;
+      height: $app-widget-col-h;
+      .widget-footer {
+        margin: $spacing 0 0 0;
+  
+      }
+    }
+  }*/
   /* Online widget
   -------------------------------------------------- */
-  /* line 376, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry {
-    border: 0;
-    width: 20%;
-  }
-  /* line 379, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in {
-    height: 256px;
-  }
-  /* line 381, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-img {
-    position: static;
-    text-align: center;
-  }
-  /* line 384, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
-    max-width: 128px;
-    max-height: 128px;
-    width: 128px;
-    height: 128px;
-  }
-  /* line 392, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-content {
-    margin: 20px 0 0 0;
-  }
-  /* line 395, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-title {
-    text-align: center;
-  }
-  /* line 398, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
-    width: 100%;
-    float: none;
-  }
-  /* line 402, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
-    text-align: center;
-  }
-  /* line 405, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
-    margin: 5px 0 0 0;
-  }
-
+  /*.app-entry-online {
+    .widget-entry {
+      border: 0;
+      width: 20%;
+      .widget-entry-in {
+        height: $app-online-widget-col-h;
+        .widget-img {
+          position: static;
+          text-align: center;
+          .widget-preview-img {
+  
+            max-width: $app-online-widget-col-h/2;
+            max-height: $app-online-widget-col-h/2;
+            width: $app-online-widget-col-h/2;
+            height: $app-online-widget-col-h/2;
+          }
+        }
+        .widget-content {
+          margin: $spacing-double 0 0 0;
+        }
+        .widget-title {
+          text-align: center;
+        }
+        .widget-ctrl {
+          width: 100%;
+          float: none;
+        }
+        .ctrl-left {
+          text-align: center;
+        }
+        .ctrl-right {
+          margin: $spacing-half 0 0 0;
+        }
+      }
+    }
+  }*/
   /* Customize
   -------------------------------------------------- */
-  /* line 415, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-customize .widget-entry-in {
-    /* min-height: 1px;
-     height: $customize-widget-col-h;
-     text-align: center;*/
-    /*.widget-img {
-      position: static;
-
-    }*/
-  }
-
+  /*.widget-entry-customize {
+    .widget-entry-in {
+     !* min-height: 1px;
+      height: $customize-widget-col-h;
+      text-align: center;*!
+      !*.widget-img {
+        position: static;
+  
+      }*!
+      .widget-content {
+        //margin: $spacing 0 0 0;
+  
+      }
+      .widget-footer {
+        //margin: $spacing 0 0 0;
+      }
+    }
+  }*/
   /* App detail
   -------------------------------------------------- */
-  /* line 435, ../sass/responsive/_mq_shared.scss */
-  .app-detail-img {
-    float: left;
-    position: relative;
-    min-height: 1px;
-    width: 148px;
-  }
-
-  /* line 441, ../sass/responsive/_mq_shared.scss */
-  .app-detail-body {
-    margin: 0 0 0 148px;
-  }
-
+  /*.app-detail-img {
+    @include appFloat(left);
+    width: $app-detail-img + $spacing-double;
+  
+  }*/
+  /*.app-detail-body {
+    margin: 0 0 0 $app-detail-img + $spacing-double;
+  }*/
   /* Devices
   -------------------------------------------------- */
-  /* line 447, ../sass/responsive/_mq_shared.scss */
-  .vendor-entry {
-    width: 20%;
-  }
-
-  /* line 451, ../sass/responsive/_mq_shared.scss */
-  .app-detail-body {
-    margin: 0 0 0 148px;
-  }
-
-  /* line 456, ../sass/responsive/_mq_shared.scss */
-  .report-battery-info div {
-    display: inline-block;
-    padding: 0 10px 0 0;
-  }
-
+  /*.vendor-entry {
+    width: $device-vendor-w;
+  }*/
+  /*.app-detail-body {
+    margin: 0 0 0 $app-detail-img + $spacing-double;
+  }*/
+  /*.report-battery-info {
+    div {
+      display: inline-block;
+      padding: 0 $spacing 0 0;
+    }
+  }*/
   /* Inclusion
   -------------------------------------------------- */
-  /* line 464, ../sass/responsive/_mq_shared.scss */
-  .include-device-img, .include-device-body {
+  /*.include-device-img, .include-device-body {
     float: left;
   }
-
-  /* line 468, ../sass/responsive/_mq_shared.scss */
+  
   .include-device-img {
-    width: 148px;
-  }
-
+    width: $include-detail-img + $spacing-double;
+  }*/
   /* Footer
   -------------------------------------------------- */
   /*#footer {
@@ -15315,29 +15415,30 @@ img.widget-promo-image {
     min-width: $dropdown-w;
   
   }*/
-  /* line 209, ../sass/responsive/_mq_shared.scss */
-  .app-dropdown {
-    /*.dropdown-entry {
+  /*.app-dropdown {
+   // min-width: 380px;
+    !*.dropdown-entry {
       display: table;
       width: 100%
-    }*/
-    /*.dropdown-col {
+    }*!
+    !*.dropdown-col {
       display: table-cell;
       vertical-align: middle;
-    }*/
-    /*.dropdown-ctrl {
+    }*!
+    !*.dropdown-ctrl {
       text-align: right;
-    }*/
-    /*&.dropdown-lang {
+    }*!
+  
+    !*&.dropdown-lang {
       min-width: 250px;
       ul {
         li {
           padding: $spacing-half;
         }
       }
-    }*/
-  }
-
+    }*!
+  
+  }*/
   /* Report
   -------------------------------------------------- */
   /*.report-img {
@@ -15378,200 +15479,171 @@ img.widget-promo-image {
     font-size: 140%;
   }
 
-  /* line 275, ../sass/responsive/_mq_shared.scss */
-  .widget-zwave {
-    width: 50%;
-  }
-
-  /* line 279, ../sass/responsive/_mq_shared.scss */
-  .widget-success {
-    /*    .widget-entry-in{
-            border: solid 4px $widget-success-border-color;
-        }*/
-  }
-
-  /* line 285, ../sass/responsive/_mq_shared.scss */
-  .widget-warning {
-    /*    .widget-entry-in{
-        border: solid 4px $widget-warning-border-color;
-        }*/
-  }
-
-  /* line 291, ../sass/responsive/_mq_shared.scss */
-  .widget-danger {
-    /*    .widget-entry-in{
-         border: solid 4px $widget-danger-border-color;
-        }*/
-  }
-
+  /*.widget-zwave {
+    width: $widget-zwave-col-w;
+  }*/
   /* Elements
   -------------------------------------------------- */
-  /* line 300, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-element .widget-entry-in {
-    height: 124px;
-  }
-
-  /* line 305, ../sass/responsive/_mq_shared.scss */
-  .element-icon-img {
-    max-width: 32px;
-    max-height: 32px;
-  }
-
+  /*.widget-entry-element {
+    .widget-entry-in {
+      height: $element-widget-col-h;
+    }
+  }*/
+  /*.element-icon-img {
+    max-width: $element-icon-img;
+    max-height: $element-icon-img;
+  }*/
   /* Drag and Drop */
-  /* line 312, ../sass/responsive/_mq_shared.scss */
-  .dd-placeholder.dd-element {
-    float: left;
-    /* position: relative;*/
-    width: 33.33333%;
-    height: 144px;
-  }
-
+  /*.dd-placeholder {
+    &.dd-element {
+      float: left;
+      !* position: relative;*!
+      width: $widget-col-w;
+      height: $element-widget-col-h + 20px;
+    }
+  }*/
   /* Rooms
   -------------------------------------------------- */
-  /* line 326, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in {
-    /* margin: $spacing;
-     height: $room-card-h;
-     padding: 0;*/
-  }
-  /* line 333, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .card-header {
-    /* width: 100%;
-     padding: $spacing-half;
-     top: 0;*/
-  }
-  /* line 339, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .room-img {
-    /*position: static;
-    text-align: center;
-    width: $room-img-w;
-    height: $room-img-h;*/
-  }
-  /* line 348, ../sass/responsive/_mq_shared.scss */
-  .card-room .card-room-in .card-content {
-    /* position: static;
-     margin: $spacing-double 0 0 0;
-     .card-title {
-       padding: 0;
-       text-align: center;
-     }*/
-  }
-
+  /*.card-room {
+    //@include appFloat(left);
+    //border: 0;
+    //width: $room-card-w;
+    .card-room-in {
+     // @include appGradient();
+      //@include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      //border: solid 4px $room-card-border-color;
+     !* margin: $spacing;
+      height: $room-card-h;
+      padding: 0;*!
+      .card-header {
+       !* width: 100%;
+        padding: $spacing-half;
+        top: 0;*!
+  
+      }
+      .room-img {
+        //border: solid 1px red;
+        !*position: static;
+        text-align: center;
+        width: $room-img-w;
+        height: $room-img-h;*!
+  
+      }
+  
+      .card-content {
+       !* position: static;
+        margin: $spacing-double 0 0 0;
+        .card-title {
+          padding: 0;
+          text-align: center;
+        }*!
+      }
+  
+    }
+  }*/
   /* Apps
   -------------------------------------------------- */
-  /* line 363, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-app .widget-entry-in {
-    min-height: 1px;
-    height: 110px;
-  }
-  /* line 366, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-app .widget-entry-in .widget-footer {
-    margin: 10px 0 0 0;
-  }
-
+  /*.widget-entry-app {
+    .widget-entry-in {
+      min-height: 1px;
+      height: $app-widget-col-h;
+      .widget-footer {
+        margin: $spacing 0 0 0;
+  
+      }
+    }
+  }*/
   /* Online widget
   -------------------------------------------------- */
-  /* line 376, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry {
-    border: 0;
-    width: 20%;
-  }
-  /* line 379, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in {
-    height: 256px;
-  }
-  /* line 381, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-img {
-    position: static;
-    text-align: center;
-  }
-  /* line 384, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
-    max-width: 128px;
-    max-height: 128px;
-    width: 128px;
-    height: 128px;
-  }
-  /* line 392, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-content {
-    margin: 20px 0 0 0;
-  }
-  /* line 395, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-title {
-    text-align: center;
-  }
-  /* line 398, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
-    width: 100%;
-    float: none;
-  }
-  /* line 402, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
-    text-align: center;
-  }
-  /* line 405, ../sass/responsive/_mq_shared.scss */
-  .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
-    margin: 5px 0 0 0;
-  }
-
+  /*.app-entry-online {
+    .widget-entry {
+      border: 0;
+      width: 20%;
+      .widget-entry-in {
+        height: $app-online-widget-col-h;
+        .widget-img {
+          position: static;
+          text-align: center;
+          .widget-preview-img {
+  
+            max-width: $app-online-widget-col-h/2;
+            max-height: $app-online-widget-col-h/2;
+            width: $app-online-widget-col-h/2;
+            height: $app-online-widget-col-h/2;
+          }
+        }
+        .widget-content {
+          margin: $spacing-double 0 0 0;
+        }
+        .widget-title {
+          text-align: center;
+        }
+        .widget-ctrl {
+          width: 100%;
+          float: none;
+        }
+        .ctrl-left {
+          text-align: center;
+        }
+        .ctrl-right {
+          margin: $spacing-half 0 0 0;
+        }
+      }
+    }
+  }*/
   /* Customize
   -------------------------------------------------- */
-  /* line 415, ../sass/responsive/_mq_shared.scss */
-  .widget-entry-customize .widget-entry-in {
-    /* min-height: 1px;
-     height: $customize-widget-col-h;
-     text-align: center;*/
-    /*.widget-img {
-      position: static;
-
-    }*/
-  }
-
+  /*.widget-entry-customize {
+    .widget-entry-in {
+     !* min-height: 1px;
+      height: $customize-widget-col-h;
+      text-align: center;*!
+      !*.widget-img {
+        position: static;
+  
+      }*!
+      .widget-content {
+        //margin: $spacing 0 0 0;
+  
+      }
+      .widget-footer {
+        //margin: $spacing 0 0 0;
+      }
+    }
+  }*/
   /* App detail
   -------------------------------------------------- */
-  /* line 435, ../sass/responsive/_mq_shared.scss */
-  .app-detail-img {
-    float: left;
-    position: relative;
-    min-height: 1px;
-    width: 148px;
-  }
-
-  /* line 441, ../sass/responsive/_mq_shared.scss */
-  .app-detail-body {
-    margin: 0 0 0 148px;
-  }
-
+  /*.app-detail-img {
+    @include appFloat(left);
+    width: $app-detail-img + $spacing-double;
+  
+  }*/
+  /*.app-detail-body {
+    margin: 0 0 0 $app-detail-img + $spacing-double;
+  }*/
   /* Devices
   -------------------------------------------------- */
-  /* line 447, ../sass/responsive/_mq_shared.scss */
-  .vendor-entry {
-    width: 20%;
-  }
-
-  /* line 451, ../sass/responsive/_mq_shared.scss */
-  .app-detail-body {
-    margin: 0 0 0 148px;
-  }
-
-  /* line 456, ../sass/responsive/_mq_shared.scss */
-  .report-battery-info div {
-    display: inline-block;
-    padding: 0 10px 0 0;
-  }
-
+  /*.vendor-entry {
+    width: $device-vendor-w;
+  }*/
+  /*.app-detail-body {
+    margin: 0 0 0 $app-detail-img + $spacing-double;
+  }*/
+  /*.report-battery-info {
+    div {
+      display: inline-block;
+      padding: 0 $spacing 0 0;
+    }
+  }*/
   /* Inclusion
   -------------------------------------------------- */
-  /* line 464, ../sass/responsive/_mq_shared.scss */
-  .include-device-img, .include-device-body {
+  /*.include-device-img, .include-device-body {
     float: left;
   }
-
-  /* line 468, ../sass/responsive/_mq_shared.scss */
+  
   .include-device-img {
-    width: 148px;
-  }
-
+    width: $include-detail-img + $spacing-double;
+  }*/
   /* Footer
   -------------------------------------------------- */
   /*#footer {
@@ -15646,15 +15718,20 @@ img.widget-promo-image {
   }
 }
 /* Custom, iPhone Retina */
-@media only screen and (max-width: 360px) {
-  /* line 152, ../sass/responsive/_responsive.scss */
-  .widget-entry-app .widget-entry-in .widget-ctrl.ctrl-right {
-    text-align: left;
-  }
-  /* line 154, ../sass/responsive/_responsive.scss */
-  .widget-entry-app .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
-    float: none;
-  }
-}
+/*@media only screen and (max-width : 360px) {
+    .widget-entry-app{
+        .widget-entry-in{
+            .widget-ctrl{
+                &.ctrl-right{
+                    text-align: left;
+                    .btn-group{
+                        float: none;
+                    }
+                }
+            }
+        }
+    }
+
+}*/
 
 /*# sourceMappingURL=main.css.map */

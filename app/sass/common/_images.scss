@@ -34,15 +34,15 @@ img {
 }
 */
 
-.app-image-detail{
+/*.app-image-detail{
     max-width: $app-detail-img;
     max-height: $app-detail-img;
     @include appBorderRadius(50%);
-}
-.element-icon-img{
+}*/
+/*.element-icon-img{
     max-width: $element-icon-img;
     max-height: $element-icon-img;
-}
+}*/
 .customize-preview-img{
     /*max-width: $customize-img;
     max-height: $customize-img;
@@ -57,11 +57,7 @@ img {
      max-width: $customize-icon-preview-img;
     max-height: $customize-icon-preview-img;
 }
-.include-image-detail{
-    max-width: $include-detail-img;
-    max-height: $include-detail-img;
-    //@include appBorderRadius(50%);
-}
+
 .product-img{
     max-width: $product-img;
     max-height: $product-img;

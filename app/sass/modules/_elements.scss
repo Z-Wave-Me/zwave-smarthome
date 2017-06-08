@@ -2,7 +2,11 @@
 -------------------------------------------------- */
 .widget-entry-element {
   .widget-entry-in {
-    height: $element-widget-col-h;
+    height: 150px;
+    // Media queries
+    @include mediaQueries(min-small) {
+      height: 124px;
+    }
     .widget-img {
       width: $widget-img;
       height: $widget-img;
@@ -162,6 +166,13 @@
   .element-icon-img {
     display: inline-block;
     margin: $spacing;
+    max-width: 48px;
+    max-height: 48px;
+    // Media queries
+    @include mediaQueries(min-small) {
+      max-width: 32px;
+      max-height: 32px;
+    }
   }
 }
 

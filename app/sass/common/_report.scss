@@ -1,12 +1,12 @@
 /* Report
 -------------------------------------------------- */
 .app-row-report{
-    border-top: solid 1px $report-border-color;
-    background-color: $report-bcg-color;
-    border-bottom: solid 1px $report-border-color;    
+    border-top: solid 1px $app-border-color;
+    background-color: #FFFFFF;
+    border-bottom: solid 1px $app-border-color;
 }
 .report-entry {
-    border-bottom: solid 1px $report-border-color;
+    border-bottom: solid 1px $app-border-color;
     padding: $spacing $spacing-half;
     width: 100%;
     // Media queries

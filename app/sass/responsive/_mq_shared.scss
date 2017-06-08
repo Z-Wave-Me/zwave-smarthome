@@ -206,30 +206,30 @@
 
 }*/
 
-.app-dropdown {
+/*.app-dropdown {
  // min-width: 380px;
-  /*.dropdown-entry {
+  !*.dropdown-entry {
     display: table;
     width: 100%
-  }*/
-  /*.dropdown-col {
+  }*!
+  !*.dropdown-col {
     display: table-cell;
     vertical-align: middle;
-  }*/
-  /*.dropdown-ctrl {
+  }*!
+  !*.dropdown-ctrl {
     text-align: right;
-  }*/
+  }*!
 
-  /*&.dropdown-lang {
+  !*&.dropdown-lang {
     min-width: 250px;
     ul {
       li {
         padding: $spacing-half;
       }
     }
-  }*/
+  }*!
 
-}
+}*/
 
 /* Report
 -------------------------------------------------- */
@@ -272,54 +272,36 @@
   }
 }
 
-.widget-zwave {
+/*.widget-zwave {
   width: $widget-zwave-col-w;
-}
-
-.widget-success {
-  /*    .widget-entry-in{
-          border: solid 4px $widget-success-border-color;
-      }*/
-}
-
-.widget-warning {
-  /*    .widget-entry-in{
-      border: solid 4px $widget-warning-border-color;
-      }*/
-}
-
-.widget-danger {
-  /*    .widget-entry-in{
-       border: solid 4px $widget-danger-border-color;
-      }*/
-}
+}*/
 
 /* Elements
 -------------------------------------------------- */
-.widget-entry-element {
+/*.widget-entry-element {
   .widget-entry-in {
     height: $element-widget-col-h;
   }
-}
+}*/
 
-.element-icon-img {
+/*.element-icon-img {
   max-width: $element-icon-img;
   max-height: $element-icon-img;
-}
+}*/
 
 /* Drag and Drop */
-.dd-placeholder {
+/*.dd-placeholder {
   &.dd-element {
     float: left;
-    /* position: relative;*/
+    !* position: relative;*!
     width: $widget-col-w;
     height: $element-widget-col-h + 20px;
   }
-}
+}*/
 
 /* Rooms
 -------------------------------------------------- */
-.card-room {
+/*.card-room {
   //@include appFloat(left);
   //border: 0;
   //width: $room-card-w;
@@ -327,39 +309,39 @@
    // @include appGradient();
     //@include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
     //border: solid 4px $room-card-border-color;
-   /* margin: $spacing;
+   !* margin: $spacing;
     height: $room-card-h;
-    padding: 0;*/
+    padding: 0;*!
     .card-header {
-     /* width: 100%;
+     !* width: 100%;
       padding: $spacing-half;
-      top: 0;*/
+      top: 0;*!
 
     }
     .room-img {
       //border: solid 1px red;
-      /*position: static;
+      !*position: static;
       text-align: center;
       width: $room-img-w;
-      height: $room-img-h;*/
+      height: $room-img-h;*!
 
     }
 
     .card-content {
-     /* position: static;
+     !* position: static;
       margin: $spacing-double 0 0 0;
       .card-title {
         padding: 0;
         text-align: center;
-      }*/
+      }*!
     }
 
   }
-}
+}*/
 
 /* Apps
 -------------------------------------------------- */
-.widget-entry-app {
+/*.widget-entry-app {
   .widget-entry-in {
     min-height: 1px;
     height: $app-widget-col-h;
@@ -368,11 +350,11 @@
 
     }
   }
-}
+}*/
 
 /* Online widget
 -------------------------------------------------- */
-.app-entry-online {
+/*.app-entry-online {
   .widget-entry {
     border: 0;
     width: 20%;
@@ -407,19 +389,19 @@
       }
     }
   }
-}
+}*/
 
 /* Customize
 -------------------------------------------------- */
-.widget-entry-customize {
+/*.widget-entry-customize {
   .widget-entry-in {
-   /* min-height: 1px;
+   !* min-height: 1px;
     height: $customize-widget-col-h;
-    text-align: center;*/
-    /*.widget-img {
+    text-align: center;*!
+    !*.widget-img {
       position: static;
 
-    }*/
+    }*!
     .widget-content {
       //margin: $spacing 0 0 0;
 
@@ -428,46 +410,46 @@
       //margin: $spacing 0 0 0;
     }
   }
-}
+}*/
 
 /* App detail
 -------------------------------------------------- */
-.app-detail-img {
+/*.app-detail-img {
   @include appFloat(left);
   width: $app-detail-img + $spacing-double;
 
-}
+}*/
 
-.app-detail-body {
+/*.app-detail-body {
   margin: 0 0 0 $app-detail-img + $spacing-double;
-}
+}*/
 
 /* Devices
 -------------------------------------------------- */
-.vendor-entry {
+/*.vendor-entry {
   width: $device-vendor-w;
-}
+}*/
 
-.app-detail-body {
+/*.app-detail-body {
   margin: 0 0 0 $app-detail-img + $spacing-double;
-}
+}*/
 
-.report-battery-info {
+/*.report-battery-info {
   div {
     display: inline-block;
     padding: 0 $spacing 0 0;
   }
-}
+}*/
 
 /* Inclusion
 -------------------------------------------------- */
-.include-device-img, .include-device-body {
+/*.include-device-img, .include-device-body {
   float: left;
 }
 
 .include-device-img {
   width: $include-detail-img + $spacing-double;
-}
+}*/
 
 /* Footer
 -------------------------------------------------- */

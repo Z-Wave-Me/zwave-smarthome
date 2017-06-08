@@ -14,21 +14,6 @@
     max-width: 80px;
     max-height: 80px;
 }
-// Deprecated
-/*.expert-link{
-    padding-right: $spacing-double;
-}*/
-.device-manufacturers{
-    .vendor-entry{
-        padding-right: 0;
-    }
-}
-//DEPRECATED
-/*.manufacturer-logo{
-    margin: 0 $spacing-half;
-    max-width: 70px;
-    display: inline;
-}*/
 
 .device-autodetect{
     margin: 0 0 $spacing-double 0;
@@ -36,7 +21,11 @@
 
 .vendor-entry{
     @include appFloat(left);
-    width: $device-vendor-w; 
+    width: 33.33333%;
+    // Media queries
+    @include mediaQueries(min-small) {
+        width: 20%
+    }
 }
 
 .col-device-vendor{
@@ -46,17 +35,17 @@
 .vendor-list {
     display: block; 
     margin: $spacing-half;
-    background-color: $device-bcg-color;
+    background-color: #FFFFFF;;
     text-align: center; 
-    border: solid 1px $device-border-color;
+    border: solid 1px $app-border-color;
 
     .vendor-image{
-        line-height: $vendor-img + 5;
+        line-height: 80px + 5;
         margin: 0 !important;
         img {
             vertical-align: middle;
-            max-width: $vendor-img;
-            max-height: $vendor-img;
+            max-width: 80px;
+            max-height: 80px;
         }
     }
 }
@@ -74,7 +63,7 @@
     .device-statement{
         margin: $spacing 0;
         padding: $spacing 0;
-        border-bottom: solid 1px $device-border-color;
+        border-bottom: solid 1px $app-border-color;
     }
 }
 .table-inclusion td{
@@ -148,12 +137,44 @@
             font-weight: bold;
         }
         span.line {
-            border-top: 1px solid $report-border-color;
+            border-top: 1px solid $app-border-color;
             width: 100%;
             height: 1px;
             margin: 7px 0;
             display: block;
         }
+    }
+}
+.include-image-detail{
+    max-width: 128px;
+    max-height: 128px;
+}
+
+.include-device-img, .include-device-body {
+    // Media queries
+    @include mediaQueries(min-small) {
+        float: left;
+    }
+
+}
+
+.include-device-img {
+    // Media queries
+    @include mediaQueries(min-small) {
+        width: 128px + $spacing-double;
+    }
+
+}
+/* Management
+-------------------------------------------------- */
+.report-battery-info {
+    div {
+        // Media queries
+        @include mediaQueries(min-small) {
+            display: inline-block;
+            padding: 0 $spacing 0 0;
+        }
+
     }
 }
 
@@ -178,7 +199,7 @@
 .cfg-info{ 
     margin: $spacing 0 0 0;
     padding: $spacing 0 0 0;
-    border-top: solid 1px $device-border-color;
+    border-top: solid 1px $app-border-color;
 }
 .commads-is-current{
     text-decoration: underline;
