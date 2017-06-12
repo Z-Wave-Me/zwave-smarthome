@@ -85,7 +85,7 @@
         }
         .widget-title{
             h3{
-                color: lighten($widget-heading-color,40%) !important;
+                color: lighten($app-heading-color,40%) !important;
             }
         }
     }
@@ -125,3 +125,19 @@
         margin: $spacing;
     }
 }
+
+/* Images
+-------------------------------------------------- */
+.customize-icon-preview{
+    max-width: 64px;
+    max-height: 64px;
+}
+.imglist-img{
+    max-width: 40px;
+    max-height: 40px;
+}
+.imglist-img-preview{
+    max-width: 64px;
+    max-height: 64px;
+}
+

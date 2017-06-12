@@ -110,7 +110,7 @@ $room-card-border-color: #ccc;
           text-align: center;
         }
         h3 {
-          font-size: $widget-heading-font-size;
+          font-size: 115%;
           padding: 0;
           margin: 0;
           a {
@@ -178,4 +178,13 @@ $room-card-border-color: #ccc;
   background-color: $room-card-bcg-color;
   border: solid 1px $room-card-border-color;
   margin: 0 0 $spacing-double 0;
+}
+
+/* Images
+-------------------------------------------------- */
+.room-img-upload{
+  display: inline-block;
+  max-width: 70px;
+  max-height: 70px;
+  margin: $spacing-half;
 }

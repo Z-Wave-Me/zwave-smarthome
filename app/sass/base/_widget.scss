@@ -1,14 +1,34 @@
 /* Widget
 -------------------------------------------------- */
+.app-row-widget {
+    // Media queries
+    @include mediaQueries(min-small) {
+        margin: 0 -$spacing;
+    }
+}
 .widget-entry{
-    width: $widget-col-w;
-    color: $widget-color;
+    width: 100%;
+    // Media queries
+    @include mediaQueries(min-small) {
+        @include appFloat(left);
+        border: 0;
+        width: 50%;;
+    }
+    @include mediaQueries(min-large) {
+        width: 33.33333%;;
+    }
     .widget-entry-in{
-        border-bottom: solid 1px $widget-border-color;
-        background-color: $widget-bcg-color;
-        height: $widget-col-h;
+        border-bottom: solid 1px $app-border-color;
+        background-color: #FFFFFF;
+        height: 150px;
         position: relative;
         padding: $spacing;
+        // Media queries
+        @include mediaQueries(min-small) {
+            border-color: $app-border-color;
+            border: solid 1px $app-border-color;
+            margin: $spacing;
+        }
         .widget-img{
             position: absolute;
             top: $spacing-double;
@@ -21,25 +41,30 @@
             text-align: right;
             min-height: $spacing-double;
             .widget-icon{
-                color: $widget-icon-color;
+                color: lighten($app-body-color, 40%);
                 .fa{
                     padding: 0 0 0 $spacing;
-                    font-size: $widget-icon-size;
+                    font-size: 180%;
+                    // Media queries
+                    @include mediaQueries(min-small) {
+                        padding: 0 0 0 $spacing-half;
+                        font-size: 140%;
+                    }
                 }
             }
         }
         .widget-content{
-            margin: -$spacing 0 0 $widget-img + $spacing-double;
+            margin: -$spacing 0 0 64px + $spacing-double;
         }
         .widget-title{
             height:50%;
-            color: $widget-heading-color;
+            color: $app-heading-color;
             h3{
-                font-size: $widget-heading-font-size;
+                font-size: 115%;
                 padding: 0;
                 margin: 0;
                 a{
-                    color: $widget-heading-color;
+                    color: $app-heading-color;
                 }
             }
         }
@@ -79,18 +104,26 @@
         }
     }
 }
+
+.widget-preview-img{
+    max-width: 64px;
+    max-height: 64px;
+    //border: solid 4px $widget-img-border-color;
+    @include appBorderRadius(50%);
+}
+
 .tbl-widget-ctrl{ 
     .widget-history{
-        color: $widget-icon-color;
+        color: lighten($app-body-color, 40%);
         .fa{
             padding: 0 0 0 $spacing;
-            font-size: $widget-icon-size;
+            font-size: 180%;
         }
     }
 }
 .widget-success{
     .widget-entry-in{
-        border-color: $widget-success-border-color !important;
+        border-color: lighten($app-brand-success,20%) !important;
         border-width: 4px;
     }
 }

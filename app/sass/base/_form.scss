@@ -1,9 +1,9 @@
 /* Form 
 -------------------------------------------------- */
 .form-control {
-  font-size: $app-input-font-size;
-  color: $form-input-color;
-  border: solid 1px $form-input-border-color;
+  font-size: 95%;
+  color: lighten($app-body-color, 30%);
+  border: solid 1px #CCCCCC;
   padding: 12px 14px;
   height: auto;
   // Media queries
@@ -13,8 +13,8 @@
 }
 
 .input-group-addon {
-  border: solid 1px $form-input-border-color;
-  background-color: $form-addon-bcg-color;
+  border: solid 1px #CCCCCC;
+  background-color: #EEEEEE;
 }
 
 textarea {
@@ -23,7 +23,7 @@ textarea {
 
 label {
   font-weight: normal;
-  font-size: $app-label-font-size;
+  font-size: 105%;
 }
 
 input[type=checkbox] {
@@ -45,12 +45,12 @@ input[type=radio] {
 
 .form-page {
   margin-bottom: $spacing-double;
-  background-color: $form-bcg-color;
-  border: solid 1px $form-border-color;
+  background-color: #FFFFFF;
+  border: solid 1px $app-border-color;
   h3 {
   }
   .form-group {
-    border-bottom: solid 1px $form-border-color;
+    border-bottom: solid 1px $app-border-color;
     padding-bottom: $spacing;
     &.last {
       border-bottom: 0;
@@ -102,8 +102,8 @@ fieldset, .fieldset {
   text-align: right;
   display: block;
   //margin: 10px 0 0 0;
-  background-color: $form-submit-entry-bcg-color;
-  border-top: solid 1px $form-border-color;
+  background-color: #FFFFFF;
+  border-top: solid 1px $app-border-color;
 }
 
 fieldset.submit-entry {

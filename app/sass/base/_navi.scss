@@ -7,22 +7,22 @@
     text-align: right;
     margin-bottom: $spacing;
      input[type=text]{
-       min-height: $page-control-input-h;
-       line-height: $page-control-input-h;
+       min-height: 22px;
+       line-height: 22px;
     }
 } 
 
 .page-navi{
-    font-size: $page-navi-font-size; 
+    font-size: 120%;
     position: relative;
     width: 100%;
     height: 100%;
-    color: $page-navi-color;
+    color: $app-a-color;
     .page-navi-in{
         position: absolute;
-        background-color: $page-navi-bcg-color;
-        @include appBoxShadow($page-navi-box-shadow);
-        border: 1px solid $page-navi-border-color;
+        background-color: #FFFFFF;
+        @include appBoxShadow($app-box-shadow);
+        border: 1px solid $app-border-color;
         width: 100%;
         top:0;
         left:0;
@@ -46,7 +46,7 @@
                  position:relative;
                 min-height: 1px;
                 //w: min-height: $page-navi-h;
-                color: $page-navi-color;
+                color: $app-a-color;
                 text-align: left;
                 vertical-align: top;
                 display: block;
@@ -72,36 +72,36 @@
         }
         .active{
             a{
-                color: $page-navi-active-color;
+                color: lighten($app-a-color,50%);
                 font-weight: bold;
                 text-decoration: underline;
             }
             .fa{
-           color: $page-navi-active-color;
+           color: lighten($app-a-color,50%);
 
         }
         }
         .fa{
             padding-right: 7px;
-            color: $header-icon-color;
+            color: lighten($app-a-color, 20%);
 
         }
     }
     .fa{
-        font-size: $page-navi-icon-size;  
+        font-size: 130%;
     }
     .page-navi-title{
         text-align: left;
         margin: 0;
         padding: $spacing $spacing-double;
-        color: $page-navi-heading-color;
+        color: $app-heading-color;
         //border-bottom: solid 1px $page-navi-border-color;
     }
     .page-navi-content{
         padding: $spacing;
     }
     .page-navi-tag {
-        border: solid 1px $page-navi-border-color;
+        border: solid 1px $app-border-color;
         display: inline-block;
         margin: $spacing-half;
         padding: $spacing-half;
@@ -111,7 +111,7 @@
         border-radius: $app-border-radius;
     }
     .page-navi-tag.active{
-        background-color: $page-navi-border-color;
+        background-color: $app-border-color;
         cursor:text;
     }
 }
@@ -123,4 +123,11 @@
 }
 .page-navi-in ul:after {
     clear: both;
+}
+/* Navigation and dropdown images
+-------------------------------------------------- */
+.navi-img{
+    max-width: 32px;
+    max-height: 32px;
+    @include appBorderRadius(50%);
 }

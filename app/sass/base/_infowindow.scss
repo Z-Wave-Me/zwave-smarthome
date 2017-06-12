@@ -6,16 +6,16 @@
 }
 
 .infowindow{
-    font-size: $infowindow-font-size;
+    font-size: 90%;
     position: absolute;
     z-index: $zindex-infowindow;
-    min-width: $infowindow-w;
+    min-width: 100%;
     text-align: left;
-    background-color: $infowindow-bcg-color;
-    @include appBoxShadow($infowindow-box-shadow);
-    border: 1px solid $infowindow-border-color;
+    background-color: #FFFFFF;
+    @include appBoxShadow($app-box-shadow);
+    border: 1px solid $app-border-color;
     background-clip: padding-box;
-    color: $infowindow-color;
+    color: $app-body-color;
     .infowindow-in{
         padding: $spacing;
     }
@@ -53,10 +53,10 @@
 }
 // Top
 .infowindow.top{
-    width: $infowindow-w;
+    width: 100%;
     bottom: 100%;
     left: 50%;
-    margin-left: -$infowindow-w/2; /* Use half of the width to center the tooltip */
+    margin-left: -100%/2; /* Use half of the width to center the tooltip */
 }
 // Top arrow
 .infowindow.top::after {
@@ -67,10 +67,10 @@
 
 // Bottom
 .infowindow.bottom{
-    width: $infowindow-w;
+    width: 100%;
     top: 100%;
     left: 50%;
-    margin-left: -$infowindow-w/2; /* Use half of the width to center the tooltip */
+    margin-left: -100%/2; /* Use half of the width to center the tooltip */
 }
 // Bottom arrow
 .infowindow.bottom::after {

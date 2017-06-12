@@ -4,23 +4,23 @@ http://codepen.io/MattIn4D/pen/LiKFC
 #loading{
     position: fixed;
     z-index: $zindex-loader - 1;
-    width: $loader-w;
-    height: $loader-h;
+    width: 260px;
+    height: 50px;
     overflow: show;
-    margin: $loader-margin;
+    margin: 0px auto auto auto;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     text-align: center;
-    color: $loader-color;
+    color: $app-body-color;
     .loading-in{
         position: relative;
         z-index: $zindex-loader;
         margin: auto;
         padding: $spacing;
-        background-color: $loader-bcg-color;
-        border: solid 2px $loader-border-color;
+        background-color: #FFFFFF;
+        border: solid 2px $app-border-color;
         @include appBorderRadius($app-border-radius);
     }
     a{
@@ -57,9 +57,9 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 $widget-loader-background: #FFF;
 $widget-loader-foreground: #184B7C;
-$widget-loader-w: $widget-img + 6;
-$widget-loader-h: $widget-img + 6;
-$widget-loader-before-h: $widget-img + 8;
+$widget-loader-w: 64px + 6;
+$widget-loader-h: 64px + 6;
+$widget-loader-before-h: 64px + 8;
 $widget-loader-before-w: $widget-loader-before-h/2;
 
 .progress-true {

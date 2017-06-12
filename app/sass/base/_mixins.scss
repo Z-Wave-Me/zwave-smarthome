@@ -103,34 +103,40 @@
 // Media queries
 @mixin mediaQueries($media) {
   /* MIN WIDTH */
-  // Extra Small Devices, Phones
+  // Extra Small Devices, Phones 480px
   @if $media == min-esmall {
     @media only screen and (min-width: $break-esmall) {
       @content;
     }
   }
-  //  Small Devices, Tablets
+  //  Small Devices, Tablets 768px
   @if $media == min-small {
     @media only screen and (min-width: $break-small) {
       @content;
     }
   }
-    // Medium Devices, Desktops
+    // Medium Devices, Desktops 992px
   @else if $media == min-medium {
-    @media only screen and (min-width: $break-medium) {
+    @media only screen and (min-width: $break-medium)and (orientation:landscape) {
       @content;
     }
   }
-    // Large Devices, Wide Screen
+    // Large Devices, Wide Screen 1024px
   @else if $media == min-large {
-    @media only screen and (min-width: $break-large) {
+    @media only screen and (min-width: $break-large)and (orientation:landscape) {
       @content;
     }
   }
   /* MAX WIDTH */
-  // Extra Small Devices, Phones
+  // Extra Small Devices, Phones 480px
   @if $media == max-esmall {
     @media only screen and (max-width: $break-esmall - 1) {
+      @content;
+    }
+  }
+  // Medium Devices, Desktops 992px
+  @if $media == max-medium {
+    @media only screen and (max-width: $break-medium - 1) {
       @content;
     }
   }

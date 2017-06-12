@@ -1,16 +1,14 @@
 /* Image list
 -------------------------------------------------- */
-// Settings
-$infowindow-w: 200px;
 // CSS
 .app-row-imglist{
-    border: solid 1px $imglist-border-color;
-    background-color: $imglist-background-color;
+    border: solid 1px $app-border-color;
+    background-color: #FFFFFF;
 }
 .imglist-entry{
     text-align: center;
-    width: $imglist-img + 10px;
-    height: $imglist-img + 20px;
+    width: 40px + 10px;
+    height: 40px + 20px;
     @include appFloat(left);
     margin: 10px;
     &.in-device{

@@ -31,8 +31,8 @@ body {
   font-size: $app-body-font-size;
   line-height: $app-line-height-base;
   color: $app-body-color;
-  background-color: $app-body-bcg-color;
-  background-image: url($app-body-bcg-img);
+  background-color: #FFFFFF;
+  background-image: url('wallpaper.png');
   // Media queries
   @include mediaQueries(min-small) {
     font-size: $app-body-font-size - 3px;
@@ -74,20 +74,20 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: $app-h1-font-size;
+  font-size: 160%;
 }
 
 h2 {
-  font-size: $app-h2-font-size;
+  font-size: 140%;
   margin: $spacing 0 $spacing-half 0;
 }
 
 h3 {
-  font-size: $app-h3-font-size;
+  font-size: 120%;
 }
 
 h4 {
-  font-size: $app-h4-font-size;
+  font-size: 110%;
 }
 
 .item-cnt {
@@ -152,17 +152,17 @@ a {
   padding: $spacing-fatal-error;
   margin: 0 0 $spacing-double 0;
   //background: $app-error-background-color $img-fatal-error no-repeat $spacing ($spacing + $spacing-half);
-  background-color: $app-error-background-color;
-  border: solid 1px $app-error-border-color;
+  background-color: #FFFFFF;
+  border: solid 1px $app-brand-danger;
   .fatal-error-message {
-    color: $app-error-message-color;
+    color: $app-brand-danger;
     font-weight: bold;
-    font-size: $app-error-message-font-size;
+    font-size: 120%;
   }
   .fatal-error-info {
     margin: $spacing 0 0 0;
-    color: $app-error-info-color;
-    font-size: $app-error-info-font-size;
+    color: #000000;
+    font-size: 105%;
   }
 }
 
@@ -199,6 +199,19 @@ a {
     @include appFloat(left);
     width: 50%;
   }
+
+}
+/* Images
+-------------------------------------------------- */
+img {
+  vertical-align: middle;
+}
+.img-circle{
+  border-radius: 50%;
+}
+.img-opacity-50{
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 
 }
 
@@ -244,7 +257,7 @@ a {
 
 .help-text {
   display: block;
-  font-size: $helptext-font-size;
+  font-size: 95%;
   font-style: italic;
   margin: $spacing-half 0;
 }
@@ -259,14 +272,14 @@ a {
 }
 
 .badge-number {
-  background-color: $badge-number-bcg-color;
-  color: $badge-number-color;
+  background-color: lighten($app-body-color, 60%);
+  color: #FFFFFF;
   display: inline-block;
   text-align: center;
-  line-height: $badge-number-w - (($badge-number-w/2) / 2);
-  width: $badge-number-w;
-  height: $badge-number-w;
-  font-size: $badge-number-font-size;
+  line-height: 32px - ((32px/2) / 2);
+  width: 32px;
+  height: 32px;
+  font-size: 120%;
   border-radius: 50%;
 }
 

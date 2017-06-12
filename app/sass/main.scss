@@ -6,59 +6,60 @@
 -------------------------------------------------- */
 @import "vendor/fontawesome/font-awesome";
 
-/* SmartHome UI files
+/* SmartHome UI variables nad functions
 -------------------------------------------------- */
-@import "common/_variables";
-@import "common/_mixins";
-// Vendors
+@import "base/_variables";
+@import "base/_mixins";
+
+/* Vendors
+-------------------------------------------------- */
 @import "vendor/_jquery.fileupload-ui";
 @import "vendor/_jquery.fileupload";
 @import "vendor/_alpaca";
-@import "vendor/_alertify"; 
-/*==================================================
-=            SmartHomeUI                        =
-==================================================*/
-// Common
-@import "common/_body";
-@import "common/_header";
-@import "common/_footer";
-@import "common/_images";
-@import "common/_navi";
-@import "common/_widget"; 
-@import "common/_report"; 
-@import "common/_table"; 
-@import "common/_button"; 
-@import "common/_form";
-@import "common/_imglist";
-@import "common/_bar";
-@import "common/_dropdown";
-@import "common/_infowindow";
-@import "common/_accordion"; 
-@import "common/_loader";
-@import "common/_meter";
-@import "common/_alert";
-@import "common/_modal";
-@import "common/_pagination";
-@import "common/_autocomplete";
-@import "common/_dragdrop";
+@import "vendor/_alertify";
 
-// Modules 
-@import "modules/_elements";
-@import "modules/_events";
-@import "modules/_apps";
-@import "modules/_customize";
-@import "modules/_rooms";
-@import "modules/_devices";
-@import "modules/_auth";
-@import "modules/_commands";
-@import "modules/_slider";
-@import "modules/_rss";
+/* SmartHome UI base
+-------------------------------------------------- */
+@import "base/_body";
+@import "base/_header";
+@import "base/_footer";
+@import "base/_navi";
+@import "base/_widget"; 
+@import "base/_report"; 
+@import "base/_table"; 
+@import "base/_button"; 
+@import "base/_form";
+@import "base/_imglist";
+@import "base/_bar";
+@import "base/_dropdown";
+@import "base/_infowindow";
+@import "base/_accordion"; 
+@import "base/_loader";
+@import "base/_meter";
+@import "base/_alert";
+@import "base/_modal";
+@import "base/_pagination";
+@import "base/_autocomplete";
+@import "base/_dragdrop";
+@import "base/_elements";
+@import "base/_events";
+@import "base/_apps";
+@import "base/_customize";
+@import "base/_rooms";
+@import "base/_devices";
+@import "base/_auth";
+@import "base/_commands";
+@import "base/_slider";
+@import "base/_rss";
 
-// POPP
-@import "common/_app_popp";
+/* SmartHome UI custom
+-------------------------------------------------- */
+@import "custom/_shui";
 
-// Skin main
-//@import "custom/_shui";
+/* SmartHome UI custom POPP
+-------------------------------------------------- */
+@import "custom/_popp";
 
-// Mobile
-@import "responsive/_responsive";
+/* Media queries
+-------------------------------------------------- */
+@import "base/_media_queries";
