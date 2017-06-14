@@ -364,7 +364,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 var minMax;
                 var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
                 var isNew = v.creationTime > yesterday ? true : false;
-                console.log(v.title,isNew)
                 // Create min/max value
                 if (cfg.knob_255.indexOf(v.probeType) > -1) {
                     minMax = {min: 0, max: 255, step: 1};
