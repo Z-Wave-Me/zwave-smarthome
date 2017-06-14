@@ -103,6 +103,12 @@
             }
         }
     }
+    &.widget-success{
+        .widget-entry-in{
+            border-color: lighten($app-brand-success,20%);
+            border-width: 4px;
+        }
+    }
 }
 
 .widget-preview-img{
@@ -121,12 +127,7 @@
         }
     }
 }
-.widget-success{
-    .widget-entry-in{
-        border-color: lighten($app-brand-success,20%) !important;
-        border-width: 4px;
-    }
-}
+
 /* Widget securityControl
 -------------------------------------------------- */
 .securityControl{

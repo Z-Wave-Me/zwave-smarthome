@@ -244,13 +244,19 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param indexTo -  is the index of the $item in $partTo
      */
     $scope.dragDropSort = function (item, partFrom, partTo, indexFrom, indexTo) {
-        //console.log(partFrom)
+        //console.log(item)
+        var element = {
+            id: item.id,
+            indexFrom: indexFrom,
+            indexTo: indexTo
+        }
         var result = [];
         angular.forEach(partFrom, function (v, k) {
             var obj = {id: v.id, position: k};
             result.push(obj);
 
         });
+        console.log(element)
         console.log(result)
 
     }

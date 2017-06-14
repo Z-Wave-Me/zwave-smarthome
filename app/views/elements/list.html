@@ -8,8 +8,8 @@
     <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}"
          sv-element
          ng-class="{'widget-success': v.isNew}"
-         ng-repeat="v in dataHolder.devices.collection track by v.id">
-       <!-- ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id"-->
+        ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
+       <!-- ng-repeat="v in dataHolder.devices.collection track by v.id">-->
 
         <div class="widget-entry-in progress-{{v.progress}}">
             <span class="widget-loader"></span>

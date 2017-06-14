@@ -11122,8 +11122,13 @@ img {
 .widget-entry .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
   float: right;
 }
+/* line 107, ../sass/base/_widget.scss */
+.widget-entry.widget-success .widget-entry-in {
+  border-color: #bed5be;
+  border-width: 4px;
+}
 
-/* line 108, ../sass/base/_widget.scss */
+/* line 114, ../sass/base/_widget.scss */
 .widget-preview-img {
   max-width: 64px;
   max-height: 64px;
@@ -11132,40 +11137,34 @@ img {
   border-radius: 50%;
 }
 
-/* line 116, ../sass/base/_widget.scss */
+/* line 122, ../sass/base/_widget.scss */
 .tbl-widget-ctrl .widget-history {
   color: #737373;
 }
-/* line 118, ../sass/base/_widget.scss */
+/* line 124, ../sass/base/_widget.scss */
 .tbl-widget-ctrl .widget-history .fa {
   padding: 0 0 0 10px;
   font-size: 180%;
 }
 
-/* line 125, ../sass/base/_widget.scss */
-.widget-success .widget-entry-in {
-  border-color: #bed5be !important;
-  border-width: 4px;
-}
-
 /* Widget securityControl
 -------------------------------------------------- */
-/* line 133, ../sass/base/_widget.scss */
+/* line 134, ../sass/base/_widget.scss */
 .securityControl .ctrl-left {
   width: 70% !important;
 }
-/* line 136, ../sass/base/_widget.scss */
+/* line 137, ../sass/base/_widget.scss */
 .securityControl .ctrl-right {
   width: 30% !important;
 }
 
 /* Device sensorDiscrete
 -------------------------------------------------- */
-/* line 144, ../sass/base/_widget.scss */
+/* line 145, ../sass/base/_widget.scss */
 .sensorDiscrete .ctrl-left {
   width: 30% !important;
 }
-/* line 147, ../sass/base/_widget.scss */
+/* line 148, ../sass/base/_widget.scss */
 .sensorDiscrete .ctrl-right {
   width: 70% !important;
 }
@@ -14337,7 +14336,7 @@ body {
 @media only screen and (min-width: 768px) {
   /* line 52, ../sass/custom/_shui.scss */
   .widget-entry .widget-entry-in {
-    border: solid 4px #FFFFFF !important;
+    border: solid 4px #FFFFFF;
     background: #f6f6f6;
     /* Old browsers */
     background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
