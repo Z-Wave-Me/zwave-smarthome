@@ -120,7 +120,9 @@ var config_data = {
             'app_built_info': 'app/info.json',
             'configget_url': 'ZWaveAPI/ExpertConfigGet',
             'configupdate_url': 'ZWaveAPI/ExpertConfigUpdate',
-            'time_zone': 'ZAutomation/api/v1/system/timezone'
+            'time_zone': 'ZAutomation/api/v1/system/timezone',
+            'get_pulse_trains': 'RF433API/GetPulseTrains',
+            'send_pulse_train': 'RF433API/Send'
         },
         // List of remote api URLs
         'api_remote': {

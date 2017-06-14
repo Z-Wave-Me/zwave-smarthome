@@ -679,5 +679,15 @@
     "error_backup": "Backup failed!",
     "success_backup": "Backup successful.",
     "add_mobile_device": "Add mobile device",
-    "lb_make_qrcode": "Make qrcode"
+    "lb_make_qrcode": "Make qrcode",
+    "lb_selecet_device_typ": "Select device typ",
+    "lb_selecet_device_typ_info": "Select device typ to contiune.",
+    "lb_pulse_train": "Pulse train",
+    "lb_button_remote_control": "Remote control button",
+    "lb_count": "Received pulse trains count",
+    "btn_test": "Test",
+    "btn_remove": "Remove",
+    "save_manage_rf433_devices": "Save and manage RF433 device",
+    "lb_timout_auto_off": "Timeout for auto off",
+    "rf433_device": "RF433 Device"
 }

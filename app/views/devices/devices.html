@@ -55,6 +55,24 @@
                         </div>
                     </td>
                 </tr>
+                <tr ng-if="rf433.installed">
+                    <td>
+                        <img class="device-type-logo" ng-src="app/img/logo-rf433.png" alt="Logo" />
+                    </td>
+                    <td class="td-action">
+                        <bb-alert-text alert="rf433.alert"></bb-alert-text>
+                        <div ng-if="rf433.active">
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="#rf433/teachin" title="{{_t('add_new')}}">
+                                    <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                                </a>
+                                <a class="btn btn-default" href="#rf433/manage" title="{{_t('manage')}}">
+                                    <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </div> <!-- /ng-controller --> 
