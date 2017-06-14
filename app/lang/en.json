@@ -689,5 +689,6 @@
     "btn_remove": "Remove",
     "save_manage_rf433_devices": "Save and manage RF433 device",
     "lb_timout_auto_off": "Timeout for auto off",
-    "rf433_device": "RF433 Device"
+    "rf433_device": "RF433 Device",
+    "rf433_not_active": "RF433 app is not activated. Please Install/Activate this App."
 }
