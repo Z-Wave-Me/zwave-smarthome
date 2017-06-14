@@ -26,6 +26,11 @@
       }
     }
     .widget-title {
+      // Media queries
+      @include mediaQueriesMaxMin(1200px,$break-large) {
+        max-width: 200px;
+        @include textOverflow();
+      }
       h3{
         // Media queries
         @include mediaQueries(max-esmall) {

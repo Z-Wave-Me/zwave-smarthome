@@ -100,6 +100,15 @@
 
 }
 
+// Text overflow
+@mixin textOverflow() {
+  white-space:nowrap;           /* force single line */
+  overflow:hidden;              /* don't show excess chars */
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;   /* Opera */
+
+}
+
 // Media queries
 @mixin mediaQueries($media) {
   /* MIN WIDTH */
@@ -139,6 +148,13 @@
     @media only screen and (max-width: $break-medium - 1) {
       @content;
     }
+  }
+}
+
+// Media queries
+@mixin mediaQueriesMaxMin($max,$min) {
+  @media only screen and (max-width: $max) and (min-width: $min) {
+    @content;
   }
 }
 
