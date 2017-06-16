@@ -1090,13 +1090,13 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
  * The controller that renders postfix data.
  * @class ManagementPostfixController
  */
-myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
+/*myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
     $scope.postfix = {
         all: {}
     };
-    /**
+    /!**
      * Load postfix data
-     */
+     *!/
     $scope.loadPostfix = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('postfix', null, true).then(function (response) {
@@ -1113,7 +1113,7 @@ myAppController.controller('ManagementPostfixController', function ($scope, data
     };
     $scope.loadPostfix();
 
-});
+});*/
 /**
  * The controller that renders info data.
  * @class ManagementInfoController
