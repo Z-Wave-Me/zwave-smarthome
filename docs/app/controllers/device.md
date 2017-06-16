@@ -20,9 +20,9 @@
 ## DeviceController
 Device root controller
 
-### DeviceController.loadEnOceanModule() 
+### DeviceController.loadperipheralsModules() 
 
-Load EnOcean module
+Load ext. Peripherals modules (EnOcean, Rf433)
 
 
 

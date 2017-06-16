@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-40',
+        'app_version': '1.7.0-RC-39',
         // Application (DIST) built date
-        'app_built': '07-06-2017 16:07:22',
+        'app_built': '16-06-2017 14:56:18',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -124,7 +124,9 @@ var config_data = {
             'app_built_info': 'app/info.json',
             'configget_url': 'ZWaveAPI/ExpertConfigGet',
             'configupdate_url': 'ZWaveAPI/ExpertConfigUpdate',
-            'time_zone': 'ZAutomation/api/v1/system/timezone'
+            'time_zone': 'ZAutomation/api/v1/system/timezone',
+            'get_pulse_trains': 'RF433API/GetPulseTrains',
+            'send_pulse_train': 'RF433API/Send'
         },
         // List of remote api URLs
         'api_remote': {

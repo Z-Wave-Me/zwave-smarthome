@@ -3,7 +3,7 @@
     <i class="fa fa-info-circle"></i> <span ng-bind="_t('info')"></span>
     <i class="fa accordion-arrow" ng-class="expand.appinfo ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
-<div class="accordion-entry-ctrl" ng-if="expand.appinfo" ng-controller="ManagementInfoController">
+<div class="accordion-entry-ctrl" ng-if="expand.appinfo">
     <div class="form form-inline form-page">
         <div class="fieldset">
             <h3>{{_t('software_info')}}</h3>

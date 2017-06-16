@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 07-06-2017 16:07:22 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 16-06-2017 14:56:18 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -10605,6 +10605,21 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'app/views/enocean/assign.html',
         requireLogin: true,
         roles: cfg.role_access.devices
+    }).
+    when('/rf433/teachin', {
+        templateUrl: 'app/views/rf433/teachin.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean devices
+    when('/rf433/manage', {
+        templateUrl: 'app/views/rf433/manage.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean device manage
+    when('/rf433/manage/:vDevId', {
+        templateUrl: 'app/views/rf433/manage_detail.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
     }).//Rooms
     when('/config-rooms', {
         templateUrl: 'app/views/rooms/config_rooms.html',
@@ -11097,7 +11112,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/devices/devices.html',
-    "<div ng-controller=DeviceController><h2 ng-bind=\"_t('lb_select_device_type')\"></h2><table class=\"table table-report table-products\"><tbody><tr><td><img class=device-type-logo ng-src=app/img/logo-zwave.png alt=\"Logo\"></td><td class=td-action><div class=btn-group><a class=\"btn btn-default\" href=\"\" title=\"{{_t('manage_with_expertui')}}\" ng-click=\"toExpert('/expert',_t('redirect_to_expert'))\" ng-if=\"elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'\"><i class=\"fa fa-external-link\"></i> <span class=btn-name ng-bind=\"_t('manage_with_expertui')\"></span></a> <a class=\"btn btn-default\" href=#zwave/vendors title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></td></tr><tr><td><img class=device-type-logo ng-src=app/img/logo-camera.png alt=\"Logo\"></td><td class=td-action><div class=btn-group><a class=\"btn btn-default\" href=#camera/add title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#camera/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></td></tr><tr ng-if=enocean.installed><td><img class=device-type-logo ng-src=app/img/logo-enocean.png alt=\"Logo\"></td><td class=td-action><bb-alert-text alert=enocean.alert></bb-alert-text><div ng-if=enocean.active><div class=btn-group><a class=\"btn btn-default\" href=#enocean/devices title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#enocean/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></td></tr></tbody></table></div>"
+    "<div ng-controller=DeviceController><h2 ng-bind=\"_t('lb_select_device_type')\"></h2><table class=\"table table-report table-products\"><tbody><tr><td><img class=device-type-logo ng-src=app/img/logo-zwave.png alt=\"Logo\"></td><td class=td-action><div class=btn-group><a class=\"btn btn-default\" href=\"\" title=\"{{_t('manage_with_expertui')}}\" ng-click=\"toExpert('/expert',_t('redirect_to_expert'))\" ng-if=\"elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'\"><i class=\"fa fa-external-link\"></i> <span class=btn-name ng-bind=\"_t('manage_with_expertui')\"></span></a> <a class=\"btn btn-default\" href=#zwave/vendors title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></td></tr><tr><td><img class=device-type-logo ng-src=app/img/logo-camera.png alt=\"Logo\"></td><td class=td-action><div class=btn-group><a class=\"btn btn-default\" href=#camera/add title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#camera/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></td></tr><tr ng-if=enocean.installed><td><img class=device-type-logo ng-src=app/img/logo-enocean.png alt=\"Logo\"></td><td class=td-action><bb-alert-text alert=enocean.alert></bb-alert-text><div ng-if=enocean.active><div class=btn-group><a class=\"btn btn-default\" href=#enocean/devices title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#enocean/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></td></tr><tr ng-if=rf433.installed><td><img class=device-type-logo ng-src=app/img/logo-rf433.png alt=\"Logo\"></td><td class=td-action><bb-alert-text alert=rf433.alert></bb-alert-text><div ng-if=rf433.active><div class=btn-group><a class=\"btn btn-default\" href=#rf433/teachin title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#rf433/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></td></tr></tbody></table></div>"
   );
 
 
@@ -11157,7 +11172,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/list.html',
-    "<div class=\"app-row app-row-widget app-row-element clearfix\" sv-root sv-part=dataHolder.devices.collection sv-on-start=\"dragDropStart($item, $part, $index, $helper)\" sv-on-sort=\"dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)\"><div sv-placeholder class=\"dd-placeholder dd-element\">&nbsp;</div><div id=Widget_{{v.id}} class=\"widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}\" sv-element ng-class=\"{'widget-success': v.isNew}\" ng-repeat=\"v in dataHolder.devices.collection track by v.id\"><div class=\"widget-entry-in progress-{{v.progress}}\"><span class=widget-loader></span><div class=widget-img title=\"{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}\"><img class=\"widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}} dd-handle\" ng-src={{v.iconPath}} alt=img ng-click=\"runCmd(v.id + '/command/' + v.updateCmd)\" ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) > -1\" draggable=false ondragstart=\"return false\" sv-handle> <img class=\"widget-preview-img img-circle dd-handle\" ng-src={{v.iconPath}} alt=img ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) === -1\" draggable=false ondragstart=\"return false\" sv-handle></div><div class=widget-header><a class=\"widget-icon widget-event\" href=\"\" title=\"{{_t('nav_events')}}\" ng-show=v.showNotification ng-click=\"dataHolder.devices.find = v;handleModal('modalEvent', $event)\"><i class=\"fa fa-calendar\"></i></a> <a class=\"widget-icon widget-hidden\" href=\"\" ng-click=setVisibility(v,true) ng-if=!v.visibility><i class=\"fa fa-eye-slash\"></i></a> <a class=\"widget-icon widget-chart\" href=\"\" title=\"{{_t('chart')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalIntchart', $event)\" ng-if=v.metrics.intchartUrl><i class=\"fa fa-line-chart\"></i></a> <a class=\"widget-icon widget-history\" href=\"\" title=\"{{_t('history')}}\" ng-show=v.hasHistory ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\"><i class=\"fa fa-history\"></i></a> <a class=\"widget-icon widget-config\" href=#element/{{v.id}} title=\"{{_t('lb_cfg_view')}}\" ng-if=elementAccess(cfg.role_access.element)><i class=\"fa fa-cog\"></i></a></div><div class=widget-content><div class=widget-title><span class=widget-room><span ng-if=\"v.location !== 0\">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span><h3 title={{v.metrics.title}}>{{v.metrics.title|cutText:true:25}}</h3></div><hr class=\"bottom-aligner\"><div class=widget-footer ng-switch=v.deviceType><div ng-switch-when=switchMultilevel><div ng-include=\"'app/views/elements/widgets/switchMultilevel.html'\"></div></div><div ng-switch-when=switchBinary><div ng-include=\"'app/views/elements/widgets/switchBinary.html'\"></div></div><div ng-switch-when=switchRGBW><div ng-include=\"'app/views/elements/widgets/switchRGBW.html'\"></div></div><div ng-switch-when=doorlock><div ng-include=\"'app/views/elements/widgets/doorlock.html'\"></div></div><div ng-switch-when=doorLockControl><div ng-include=\"'app/views/elements/widgets/doorLockControl.html'\"></div></div><div ng-switch-when=toggleButton><div ng-include=\"'app/views/elements/widgets/toggleButton.html'\"></div></div><div ng-switch-when=sensorMultilevel><div ng-include=\"'app/views/elements/widgets/sensorMultilevel.html'\"></div></div><div ng-switch-when=sensorBinary><div ng-include=\"'app/views/elements/widgets/sensorBinary.html'\"></div></div><div ng-switch-when=sensorDiscrete><div ng-include=\"'app/views/elements/widgets/sensorDiscrete.html'\"></div></div><div ng-switch-when=thermostat><div ng-include=\"'app/views/elements/widgets/thermostat.html'\"></div></div><div ng-switch-when=camera><div ng-include=\"'app/views/elements/widgets/camera.html'\"></div></div><div ng-switch-when=text><div ng-include=\"'app/views/elements/widgets/text.html'\"></div></div><div ng-switch-when=switchControl><div ng-include=\"'app/views/elements/widgets/switchControl.html'\"></div></div><div ng-switch-when=sensorMultiline><div ng-include=\"'app/views/elements/widgets/sensorMultiline.html'\"></div></div><div ng-switch-when=sonos><div ng-include=\"'app/views/elements/widgets/sonos.html'\"></div></div><div ng-switch-default><div ng-include=\"'app/views/elements/widgets/default.html'\"></div></div></div></div></div></div></div><div ng-include=\"'app/views/elements/widgets/intchartModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/historyModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/eventModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchMultilevelModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/thermostatModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/sensorMultilineModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/openWeatherModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/multiButtonModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/textModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/cameraModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/climateControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/doorLockControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchRGBWModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/securityControlModal.html'\"></div>"
+    "<div class=\"app-row app-row-widget app-row-element clearfix\" sv-root sv-part=dataHolder.devices.collection sv-on-start=\"dragDropStart($item, $part, $index, $helper)\" sv-on-sort=\"dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)\"><div sv-placeholder class=\"dd-placeholder dd-element\">&nbsp;</div><div id=Widget_{{v.id}} class=\"widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}\" sv-element ng-class=\"{'widget-success': v.isNew}\" ng-repeat=\"v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id\"><div class=\"widget-entry-in progress-{{v.progress}}\"><span class=widget-loader></span><div class=widget-img title=\"{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}\"><img class=\"widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}} dd-handle\" ng-src={{v.iconPath}} alt=img ng-click=\"runCmd(v.id + '/command/' + v.updateCmd)\" ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) > -1\" draggable=false ondragstart=\"return false\" sv-handle> <img class=\"widget-preview-img img-circle dd-handle\" ng-src={{v.iconPath}} alt=img ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) === -1\" draggable=false ondragstart=\"return false\" sv-handle></div><div class=widget-header><a class=\"widget-icon widget-event\" href=\"\" title=\"{{_t('nav_events')}}\" ng-show=v.showNotification ng-click=\"dataHolder.devices.find = v;handleModal('modalEvent', $event)\"><i class=\"fa fa-calendar\"></i></a> <a class=\"widget-icon widget-hidden\" href=\"\" ng-click=setVisibility(v,true) ng-if=!v.visibility><i class=\"fa fa-eye-slash\"></i></a> <a class=\"widget-icon widget-chart\" href=\"\" title=\"{{_t('chart')}}\" ng-click=\"dataHolder.devices.find = v;handleModal('modalIntchart', $event)\" ng-if=v.metrics.intchartUrl><i class=\"fa fa-line-chart\"></i></a> <a class=\"widget-icon widget-history\" href=\"\" title=\"{{_t('history')}}\" ng-show=v.hasHistory ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\"><i class=\"fa fa-history\"></i></a> <a class=\"widget-icon widget-config\" href=#element/{{v.id}} title=\"{{_t('lb_cfg_view')}}\" ng-if=elementAccess(cfg.role_access.element)><i class=\"fa fa-cog\"></i></a></div><div class=widget-content><div class=widget-title><span class=widget-room><span ng-if=\"v.location !== 0\">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span><h3 title={{v.metrics.title}}>{{v.metrics.title|cutText:true:25}}</h3></div><hr class=\"bottom-aligner\"><div class=widget-footer ng-switch=v.deviceType><div ng-switch-when=switchMultilevel><div ng-include=\"'app/views/elements/widgets/switchMultilevel.html'\"></div></div><div ng-switch-when=switchBinary><div ng-include=\"'app/views/elements/widgets/switchBinary.html'\"></div></div><div ng-switch-when=switchRGBW><div ng-include=\"'app/views/elements/widgets/switchRGBW.html'\"></div></div><div ng-switch-when=doorlock><div ng-include=\"'app/views/elements/widgets/doorlock.html'\"></div></div><div ng-switch-when=doorLockControl><div ng-include=\"'app/views/elements/widgets/doorLockControl.html'\"></div></div><div ng-switch-when=toggleButton><div ng-include=\"'app/views/elements/widgets/toggleButton.html'\"></div></div><div ng-switch-when=sensorMultilevel><div ng-include=\"'app/views/elements/widgets/sensorMultilevel.html'\"></div></div><div ng-switch-when=sensorBinary><div ng-include=\"'app/views/elements/widgets/sensorBinary.html'\"></div></div><div ng-switch-when=sensorDiscrete><div ng-include=\"'app/views/elements/widgets/sensorDiscrete.html'\"></div></div><div ng-switch-when=thermostat><div ng-include=\"'app/views/elements/widgets/thermostat.html'\"></div></div><div ng-switch-when=camera><div ng-include=\"'app/views/elements/widgets/camera.html'\"></div></div><div ng-switch-when=text><div ng-include=\"'app/views/elements/widgets/text.html'\"></div></div><div ng-switch-when=switchControl><div ng-include=\"'app/views/elements/widgets/switchControl.html'\"></div></div><div ng-switch-when=sensorMultiline><div ng-include=\"'app/views/elements/widgets/sensorMultiline.html'\"></div></div><div ng-switch-when=sonos><div ng-include=\"'app/views/elements/widgets/sonos.html'\"></div></div><div ng-switch-default><div ng-include=\"'app/views/elements/widgets/default.html'\"></div></div></div></div></div></div></div><div ng-include=\"'app/views/elements/widgets/intchartModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/historyModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/eventModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchMultilevelModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/thermostatModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/sensorMultilineModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/openWeatherModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/multiButtonModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/textModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/cameraModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/climateControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/doorLockControlModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/switchRGBWModal.html'\"></div><div ng-include=\"'app/views/elements/widgets/securityControlModal.html'\"></div>"
   );
 
 
@@ -11401,33 +11416,8 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/management/__management_cloud_backup.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('cloud')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.cloud ng-controller=ManagementCloudBackupController><bb-loader></bb-loader><bb-alert alert=managementCloud.alert></bb-alert><form name=form_cloud_backup id=form_cloud_backup class=\"form form-page\" ng-submit=\"updateInstance(form_cloud_backup, managementCloud.instance)\" novalidate><fieldset><p>{{_t('backup_info')}}</p><div class=btn-group><button class=\"btn btn-default\" type=button title=\"{{_t('nm_backup_download')}}\" ng-click=downLoadBackup()><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('download_backup_computer')}}</span></button> <button class=\"btn btn-default\" type=button title=\"{{_t('activate_module',{__module__ : 'CloudBackup'})}}\" ng-click=\"activateCloudBackup(managementCloud.instance,(managementCloud.instance.active ? false : true))\" ng-class=\"managementCloud.instance.active ? 'active' : ''\" ng-disabled=\"managementCloud.email === ''? true : false\"><i class=\"fa fa-cloud\" ng-class=\"managementCloud.instance.active ? 'text-success' : 'text-danger'\"></i> <span class=btn-name>{{_t('activate_module',{__module__ : 'CloudBackup'})}}</span></button></div></fieldset><div ng-if=\"managementCloud.instance.active === true\"><fieldset><div class=\"form-group form-inline\"><a class=\"btn btn-default\" href=https://service.z-wave.me/cloudbackup/ target=_blank title=\"{{_t('online_cloudbackup')}}\"><i class=\"fa fa-cloud-download\"></i> <span class=btn-name>{{_t('online_cloudbackup')}}</span></a></div><div class=\"form-group form-inline\"><label>{{managementCloud.module.options.fields.email.label}}:</label><input name=email id=email type=email class=form-control disabled value={{managementCloud.email}} ng-model=\"managementCloud.email\"></div><div class=form-group><h4>{{managementCloud.module.options.fields.email_log.label}}</h4><div ng-repeat=\"v in managementCloud.module.schema.properties.email_log.enum track by $index\"><input type=radio name=email_log value={{v}} id=email_log_{{v}} ng-model=managementCloud.instance.params.email_log ng-checked=\"managementCloud.instance.params.email_log === v\"><label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label></div></div></fieldset><fieldset ng-if=managementCloud.instance.params.user_active><p class=btn-group><button class=\"btn btn-default\" title=\"{{_t('daily')}}\" type=button ng-repeat=\"v in managementCloud.module.schema.properties.scheduler.enum track by $index\" ng-class=\"v === managementCloud.instance.params.scheduler ? 'active' : ''\" ng-click=setSchedulerType(v)>{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button></p><div class=\"form-group form-inline form-block\"><span ng-if=\"managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.hours.label}}</label><select class=form-control ng-model=managementCloud.instance.params.hours ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.hours.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.hours\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.minutes.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.minutes.label}}</label><select class=form-control ng-model=managementCloud.instance.params.minutes ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.minutes.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.minutes\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.weekDays.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.weekDays.label}}</label><select class=form-control ng-model=managementCloud.instance.params.weekDays ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.weekDays.enum track by $index\" ng-selected=\"v.toString() === managementCloud.instance.params.weekDays\">{{managementCloud.module.options.fields.weekDays.optionLabels[$index]}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.days.label}}</label><select class=form-control ng-model=managementCloud.instance.params.days ng-required=true><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.days.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.days\">{{v}}</option></select></span><div ng-if=\"managementCloud.instance.params.scheduler === '0'\"><button class=\"btn btn-default\" title=\"{{_t('upload_backup')}}\" type=button ng-click=manualCloudBackup()><i class=\"fa fa-cloud-upload\"></i> <span class=btn-name>{{_t('upload_backup')}}</span></button></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_cloud_backup.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></div></form></div>"
-  );
-
-
-  $templateCache.put('app/views/management/_management_add_mobile_device.html',
-    ""
-  );
-
-
-  $templateCache.put('app/views/management/_management_backup.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('backup')\"><i class=\"fa fa-download\"></i> <span ng-bind=\"_t('backup')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.backup><div class=\"form form-inline form-page\"><div class=fieldset><p>{{_t('backup_info')}}</p></div><div class=\"fieldset submit-entry\"><a class=\"btn btn-submit\" ng-href=\"{{cfg.server_url + cfg.api.backup}}\" title=\"{{_t('nm_backup_download')}}\"><i class=\"fa fa-download\"></i> <span class=btn-name>{{_t('nm_backup_download')}}</span></a></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/management/_management_cloud_backup.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('cloud')\"><i class=\"fa fa-cloud-download\"></i> <span ng-bind=\"_t('backup_cloud')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.backup ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.cloud ng-controller=ManagementCloudBackupController><bb-loader></bb-loader><bb-alert alert=managementCloud.alert></bb-alert><form name=form_cloud_backup id=form_cloud_backup class=\"form form-page\" ng-if=managementCloud.show ng-submit=\"updateInstance(form_cloud_backup, managementCloud.instance)\" novalidate><fieldset><div class=\"form-group form-inline\"><label>{{managementCloud.module.options.fields.email.label}}:</label><input name=email id=email type=email class=form-control value={{managementCloud.instance.params.email}} ng-model=managementCloud.instance.params.email ng-required=true ng-blur=\"emailBlur = true\"><bb-validator input-name=form_cloud_backup.email.$error.required trans=_t(&quot;field_required&quot;) has-blur=emailBlur></bb-validator><bb-validator input-name=form_cloud_backup.email.$error.email trans=_t(&quot;email_invalid&quot;) has-blur=emailBlur></bb-validator></div><div class=form-group><h4>{{managementCloud.module.options.fields.email_log.label}}</h4><div ng-repeat=\"v in managementCloud.module.schema.properties.email_log.enum track by $index\"><input type=radio name=email_log value={{v}} id=email_log_{{v}} ng-model=managementCloud.instance.params.email_log ng-checked=\"managementCloud.instance.params.email_log === v\"><label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label></div></div></fieldset><fieldset ng-if=managementCloud.instance.params.user_active><div class=btn-group><button class=\"btn btn-default\" title=\"{{_t('daily')}}\" type=button ng-repeat=\"v in managementCloud.module.schema.properties.scheduler.enum track by $index\" ng-class=\"v === managementCloud.instance.params.scheduler ? 'active' : ''\" ng-click=setSchedulerType(v)>{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button></div><div class=\"form-group form-inline form-block\"><span ng-if=\"managementCloud.module.options.fields.hours.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.hours.label}}</label><select class=form-control ng-model=managementCloud.instance.params.hours><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.hours.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.hours\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.minutes.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.minutes.label}}</label><select class=form-control ng-model=managementCloud.instance.params.minutes><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.minutes.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.minutes\">{{v}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.weekDays.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.weekDays.label}}</label><select class=form-control ng-model=managementCloud.instance.params.weekDays><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.weekDays.enum track by $index\" ng-selected=\"v.toString() === managementCloud.instance.params.weekDays\">{{managementCloud.module.options.fields.weekDays.optionLabels[$index]}}</option></select></span> <span ng-if=\"managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1\"><label>{{managementCloud.module.options.fields.days.label}}</label><select class=form-control ng-model=managementCloud.instance.params.days><option value={{v}} ng-repeat=\"v in managementCloud.module.schema.properties.days.enum track by $index\" ng-selected=\"v === managementCloud.instance.params.days\">{{v}}</option></select></span><div ng-if=\"managementCloud.instance.params.scheduler === '0'\"><a class=\"btn btn-default\" ng-href={{managementCloud.module.defaults.api}} title=\"{{_t('upload_backup')}}\"><i class=\"fa fa-cloud-upload\"></i> <span class=btn-name>{{_t('upload_backup')}}</span></a></div></div></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_cloud_backup.$invalid><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div>"
-  );
-
-
-  $templateCache.put('app/views/management/_management_restore.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('restore')\"><i class=\"fa fa-repeat\"></i> <span ng-bind=\"_t('nm_restore_backup_upload')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.restore  ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.restore ng-controller=ManagementRestoreController><bb-loader></bb-loader><div class=\"form form-page\"><div class=fieldset><bb-alert alert=managementRestore.alert></bb-alert><div ng-hide=managementRestore.alert.message><div class=\"alert alert-warning\"><input type=checkbox name=restore_confirm value=1 id=restore_confirm ng-click=\"managementRestore.confirm = !managementRestore.confirm\"> <span ng-bind=\"_t('are_you_sure_restore')\"></span></div><div class=form-group ng-show=managementRestore.confirm><input type=file class=form-control_ file-model=\"myFile\"></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-submit\" title=\"{{_t('nm_restore_pick_up')}}\" ng-click=uploadFile() ng-disabled=\"!managementRestore.confirm || managementRestore.alert.message\"><i class=\"fa fa-upload\"></i> <span class=btn-name>{{_t('nm_restore_pick_up')}}</span></button></div></div></div>"
-  );
-
-
   $templateCache.put('app/views/management/management.html',
-    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_local.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'default' || cfg.app_type === 'popp'\" ng-include=\"'app/views/management/management_timezone.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone_jb.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=\"!isMobile && !isInArray(['wd','jb'],cfg.app_type)\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
+    "<div ng-controller=ManagementController class=mobile-padding><div class=accordion-entry ng-include=\"'app/views/management/management_user.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_remote.html'\"></div><div class=accordion-entry ng-if=handleLicense.show ng-include=\"'app/views/management/management_licence.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_local.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-if=\"cfg.app_type == 'default' || cfg.app_type === 'popp'\" ng-include=\"'app/views/management/management_timezone.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_timezone_jb.html'\" ng-if=\"cfg.app_type === 'jb'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_backup_restore.html'\" ng-if=!isMobile></div><div class=accordion-entry ng-include=\"'app/views/management/management_factory.html'\"></div><div class=accordion-entry ng-if=\"!isMobile && !isInArray(['wd','jb'],cfg.app_type)\" ng-include=\"'app/views/management/management_firmware.html'\"></div><div class=accordion-entry ng-if=\"cfg.app_type === 'jb'\" ng-include=\"'app/views/management/management_firmware_jb.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_appstore.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_report.html'\"></div><div class=accordion-entry ng-include=\"'app/views/management/management_info.html'\"></div></div>"
   );
 
 
@@ -11447,122 +11437,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_firmware.html',
-    "<!-- Admin firmware view -->\r" +
-    "\n" +
-    "<h2 class=\"accordion-entry-title\" ng-click=\"expandElement('firmware')\">\r" +
-    "\n" +
-    "    <i class=\"fa fa-level-up\"></i> <span ng-bind=\"_t('firmware_update')\"></span>\r" +
-    "\n" +
-    "    <i class=\"fa accordion-arrow\" ng-class=\"expand.firmware ? 'fa-chevron-up' : 'fa-chevron-down'\"></i>\r" +
-    "\n" +
-    "</h2>\r" +
-    "\n" +
-    "<div class=\"accordion-entry-ctrl\" ng-if=\"expand.firmware\" ng-controller=\"ManagementFirmwareController\">\r" +
-    "\n" +
-    "    <bb-loader></bb-loader>\r" +
-    "\n" +
-    "    <form name=\"form_update_device_database\" id=\"form_update_device_database\" class=\"form form-page\" ng-submit=\"updateDeviceDatabase()\">\r" +
-    "\n" +
-    "        <fieldset>\r" +
-    "\n" +
-    "            <!-Device database->\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <p class=\"form-control-static\">\r" +
-    "\n" +
-    "                <span ng-bind=\"_t('device_database_info')\"></span>\r" +
-    "\n" +
-    "            </p>\r" +
-    "\n" +
-    "        </fieldset>\r" +
-    "\n" +
-    "        <fieldset class=\"submit-entry\">\r" +
-    "\n" +
-    "            <button type=\"submit\" class=\"btn btn-submit\" title=\"{{_t('btn_update_device_database')}}\">\r" +
-    "\n" +
-    "                <i class=\"fa fa-level-up\"></i> <span class=\"btn-name\">{{_t('btn_update_device_database')}}</span>\r" +
-    "\n" +
-    "            </button>\r" +
-    "\n" +
-    "        </fieldset>\r" +
-    "\n" +
-    "    </form>\r" +
-    "\n" +
-    "    <form name=\"form_firmware\" id=\"form_firmware\" class=\"form form-page\" ng-submit=\"updateFirmware()\" novalidate>\r" +
-    "\n" +
-    "        <fieldset>\r" +
-    "\n" +
-    "            <!-- Currentt version -->\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <p class=\"form-control-static\">\r" +
-    "\n" +
-    "                <span ng-bind=\"_t('current_firmware')\"></span>: <strong ng-bind=\"controllerInfo.softwareRevisionVersion\"></strong>\r" +
-    "\n" +
-    "            </p>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "            <div class=\"form-group\">\r" +
-    "\n" +
-    "                <bb-help-text trans=\"_t('firmware_update_info')\"></bb-help-text>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "        </fieldset>\r" +
-    "\n" +
-    "        <fieldset class=\"submit-entry\">\r" +
-    "\n" +
-    "            <button type=\"button\" class=\"btn btn-submit\" title=\"{{_t('update_to_latest')}}\"\r" +
-    "\n" +
-    "                    ng-click=\"setAccess('?allow_access=1',true);handleModal('firmwareUpdateModal', $event)\">\r" +
-    "\n" +
-    "                <i class=\"fa fa-level-up\"></i> <span class=\"btn-name\">{{_t('update_to_latest')}}</span>\r" +
-    "\n" +
-    "            </button>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "        </fieldset>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    </form>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "    <!-- firmwareUpdateModal -->\r" +
-    "\n" +
-    "    <div id=\"firmwareUpdateModal\" class=\"appmodal appmodal-100\" ng-if=\"modalArr.firmwareUpdateModal && firmwareUpdate.show\">\r" +
-    "\n" +
-    "        <div class=\"appmodal-in\">\r" +
-    "\n" +
-    "            <div class=\"appmodal-header\">\r" +
-    "\n" +
-    "                <span class=\"appmodal-close\" ng-click=\"setAccess('?allow_access=0');handleModal('firmwareUpdateModal', $event)\"><i class=\"fa fa-times\"></i></span>\r" +
-    "\n" +
-    "                <h3>{{_t('firmware_update')}}</h3>\r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "            <div class=\"appmodal-body text-center\">\r" +
-    "\n" +
-    "               <iframe ng-src=\"{{firmwareUpdate.url}}\" height=\"600\" style=\"width: 100%;\" ng-if=\"firmwareUpdate.loaded\"></iframe> \r" +
-    "\n" +
-    "            </div>\r" +
-    "\n" +
-    "        </div>\r" +
-    "\n" +
-    "    </div>\r" +
-    "\n" +
-    "\r" +
-    "\n" +
-    "</div>\r" +
-    "\n"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('firmware')\"><i class=\"fa fa-level-up\"></i> <span ng-bind=\"_t('firmware_update')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.firmware ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.firmware ng-controller=ManagementFirmwareController><bb-loader></bb-loader><form name=form_update_device_database id=form_update_device_database class=\"form form-page\" ng-submit=updateDeviceDatabase()><fieldset><p class=form-control-static><span ng-bind=\"_t('device_database_info')\"></span></p></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('btn_update_device_database')}}\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('btn_update_device_database')}}</span></button></fieldset></form><form name=form_firmware id=form_firmware class=\"form form-page\" ng-submit=updateFirmware() novalidate><fieldset><p class=form-control-static><span ng-bind=\"_t('current_firmware')\"></span>: <strong ng-bind=controllerInfo.softwareRevisionVersion></strong></p><div class=form-group><bb-help-text trans=\"_t('firmware_update_info')\"></bb-help-text></div></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-submit\" title=\"{{_t('update_to_latest')}}\" ng-click=\"setAccess('?allow_access=1',true);handleModal('firmwareUpdateModal', $event)\"><i class=\"fa fa-level-up\"></i> <span class=btn-name>{{_t('update_to_latest')}}</span></button></fieldset></form><div id=firmwareUpdateModal class=\"appmodal appmodal-100\" ng-if=\"modalArr.firmwareUpdateModal && firmwareUpdate.show\"><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"setAccess('?allow_access=0');handleModal('firmwareUpdateModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{_t('firmware_update')}}</h3></div><div class=\"appmodal-body text-center\"><iframe ng-src={{firmwareUpdate.url}} height=600 style=\"width: 100%\" ng-if=firmwareUpdate.loaded></iframe></div></div></div></div>"
   );
 
 
@@ -11572,7 +11447,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/management/management_info.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('appinfo')\"><i class=\"fa fa-info-circle\"></i> <span ng-bind=\"_t('info')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.appinfo ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.appinfo ng-controller=ManagementInfoController><div class=\"form form-inline form-page\"><div class=fieldset><h3>{{_t('software_info')}}</h3><table class=\"table table-report\"><tbody><tr><td>{{_t('firmware_version')}}</td><td class=td20>{{controllerInfo.softwareRevisionVersion}}</td></tr><tr><td>{{_t('ui_version')}}</td><td class=td20>{{cfg.app_version}}</td></tr><tr><td>{{_t('built_date')}}</td><td class=td20>{{builtInfo.built}}</td></tr><tr><td>{{_t('ctrl_info_caps_cap_title')}}</td><td class=td20>{{controllerInfo.capabillities}}</td></tr></tbody></table></div><div class=fieldset><h3>{{_t('translation')}}</h3><div>{{_t('management_trans_info')}}</div></div></div></div>"
+    "<h2 class=accordion-entry-title ng-click=\"expandElement('appinfo')\"><i class=\"fa fa-info-circle\"></i> <span ng-bind=\"_t('info')\"></span> <i class=\"fa accordion-arrow\" ng-class=\"expand.appinfo ? 'fa-chevron-up' : 'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.appinfo><div class=\"form form-inline form-page\"><div class=fieldset><h3>{{_t('software_info')}}</h3><table class=\"table table-report\"><tbody><tr><td>{{_t('firmware_version')}}</td><td class=td20>{{controllerInfo.softwareRevisionVersion}}</td></tr><tr><td>{{_t('ui_version')}}</td><td class=td20>{{cfg.app_version}}</td></tr><tr><td>{{_t('built_date')}}</td><td class=td20>{{builtInfo.built}}</td></tr><tr><td>{{_t('ctrl_info_caps_cap_title')}}</td><td class=td20>{{controllerInfo.capabillities}}</td></tr></tbody></table></div><div class=fieldset><h3>{{_t('translation')}}</h3><div>{{_t('management_trans_info')}}</div></div></div></div>"
   );
 
 
@@ -11628,6 +11503,36 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/pages/about.html',
     "<div ng-controller=AboutController class=mobile-padding><h1>{{_t('nav_about')}}</h1><p>This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture \"Z_Way\", certified as Z-Wave Plus Controller under the Certification number ZC10-14110009.</p><p><em>All rights reserved by Z-Wave Me, c/o Alsenet S.A. Switzerland</em></p></div>"
+  );
+
+
+  $templateCache.put('app/views/rf433/assign.html',
+    "<div ng-controller=RF433AssignController class=mobile-padding><div ng-include=\"'app/views/rf433/navi.html'\"></div><bb-loader></bb-loader><div class=tab-content><div class=\"col-device app-border app-gradient app-shadow\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><strong ng-bind=\"_t('assign_profile')\"></strong><div class=form-group><select name=enoceanProfiles class=form-control ng-model=profile ng-change=loadDevice(profile) ng-disabled=\"inclusion.promisc || inclusion.done\"><option value={{manProfile}} ng-repeat=\"v in enoceanProfiles| orderBy:'_funcDescription'\" ng-init=\"manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}\">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option></select></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('teach_in')\"></strong><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">3</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value=\"{{lastIncludedDevice.name}}\"> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fa fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices| orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id, permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"submit-entry save-continue\" ng-if=inclusion.done><a href=#enocean/manage class=\"btn btn-info\">{{_t('continue')}} <i class=\"fa fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
+  );
+
+
+  $templateCache.put('app/views/rf433/manage.html',
+    "<div ng-controller=RF433ManageController class=mobile-padding><bb-loader></bb-loader><div ng-include=\"'app/views/rf433/navi.html'\"></div><div ng-if=rf433Devices><table class=\"table table-condensed table-report\"><tbody><tr id=rf433_row_{{v.id}} ng-repeat=\"v in rf433Devices track by v.id\"><td class=text-left><a href=\"\" class=network-zwave-title><span ng-bind=v.givenName></span> (#{{v.id}})</a></td><td class=td-action><div class=btn-group><a href=#rf433/manage/{{v.vDevId}} class=\"btn btn-default\" title=\"{{_t('lb_configuration')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteDevice(v.vDevId, '#rf433_row_' + v.id, instance, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></td></tr></tbody></table></div><div class=device-logo ng-include=\"'app/views/rf433/rf433_nav.html'\"></div></div>"
+  );
+
+
+  $templateCache.put('app/views/rf433/manage_detail.html',
+    "<div ng-controller=RF433ManageDetailController class=mobile-padding><bb-loader></bb-loader><div ng-include=\"'app/views/rf433/navi.html'\"></div><div class=tab-content><h2><span ng-bind=\"_t('rf433_device')\"></span>: {{input.name}} (#{{input.id}})</h2><form name=form_rf433_edit id=form_rf433_edit class=\"form form-page\" ng-submit=store(input) novalidate><fieldset><table class=table><thead><tr><th>{{_t('lb_pulse_train')}}</th><th ng-show=\"input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'\">{{_t('lb_on')}}</th><th ng-show=\"input.device_typ == 'switchBinary'\">{{_t('lb_off')}}</th><th ng-show=\"input.device_typ == 'sensorDiscrete'\">{{_t('lb_button_remote_control')}}</th><th ng-show=\"input.device_typ == 'sensorBinary'\">{{_t('lb_timout_auto_off')}}</th><th>{{_t('lb_count')}}</th></tr></thead><tbody><tr ng-repeat=\"row in input.table track by $index\"><td><input name=code id=code class=form-control value={{row.code}} ng-model=row.code disabled></td><td ng-show=\"input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'\"><input type=checkbox name=on ng-model=row.on disabled></td><td ng-show=\"input.device_typ == 'switchBinary'\"><input type=checkbox name=off ng-model=row.off disabled></td><td ng-show=\"input.device_typ == 'sensorDiscrete'\"><select class=form-control ng-model=row.btn disabled><option ng-repeat=\"n in module.schema.definitions.device.properties.pulseTrainTable.items.properties.btn.enum\" ng-selected=\"row.btn == n\" value={{n}}>{{n}}</option></select></td><td ng-show=\"input.device_typ == 'sensorBinary'\"><input name=timeout id=timeout class=form-control value={{row.timeout}} ng-model=row.timeout disabled></td><td><input name=count id=count class=form-control value={{row.count}} ng-model=row.count disabled></td></tr></tbody></table></fieldset></form><form name=form_rf433_config id=form_rf433_config class=\"form form-page\" novalidate ng-if=\"_.size(apiDevices) > 0\"><fieldset><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=\"img\"> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value=\"{{dev[e.id].metrics.title}}\"> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset><div class=\"form-group form-inline\"><h3><i class=\"fa fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option ng-repeat=\"v in rooms\" value={{v.id}} ng-bind=\"(v.id === 0 ? _t(v.title) : v.title)\"></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form><div class=\"fieldset submit-entry\"><a href=#rf433/manage class=\"btn btn-submit\" title=\"{{_t('continue')}}\"><span class=btn-name>{{_t('continue')}}</span> <i class=\"fa fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/rf433/rf433_nav.html'\"></div></div>"
+  );
+
+
+  $templateCache.put('app/views/rf433/navi.html',
+    "<div class=\"tabs-wrap form-inline\"><div class=\"btn-group btn-goup-tabs btn-tabs-2\"><a class=\"btn btn-default\" href=#rf433/manage title=\"{{_t('manage')}}\" ng-class=\"routeMatch('/rf433/manage') ? 'active' : ''\"><i class=\"fa fa-bolt\"></i> <span class=btn-name>{{_t('manage')}}</span></a> <a class=\"btn btn-default\" href=#rf433/teachin title=\"{{_t('teach_in')}}\" ng-class=\"routeMatch('/rf433/teachin') ? 'active' : ''\"><i class=\"fa fa-sitemap\"></i> <span class=btn-name>{{_t('teach_in')}}</span></a></div></div>"
+  );
+
+
+  $templateCache.put('app/views/rf433/rf433_nav.html',
+    " <a href=#devices><img class=apps-image ng-src=app/img/logo-rf433.png alt=\"Logo\"></a>"
+  );
+
+
+  $templateCache.put('app/views/rf433/teachin.html',
+    "<div ng-controller=RF433TeachinController class=mobile-padding><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=\"fieldset clearfix\"><div class=include-device-body><h1>{{_t('lb_include_device')}}</h1></div></div><div class=\"fieldset clearfix\"><div class=\"app-row app-row-report clearfix\"><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">1</span></div><div class=\"report-col report-body\"><div class=inclusion-header><h3>{{_t('lb_selecet_device_typ')}}</h3>{{_t('lb_selecet_device_typ_info')}}<select class=form-control name=device_typ ng-model=input.device_typ ng-disabled=inclusion.process><option ng-repeat=\"typ in device_typs\" value={{typ.value}}>{{typ.label}}</option></select></div></div></div><div class=report-entry ng-show=\"input.device_typ !== ''\"><div class=\"report-col report-media\"><span class=\"badge badge-number\">2</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!inclusion.process><h3>{{_t('lb_inclusion_progress')}}</h3><button class=\"btn btn-success btn-lg\" title=\"{{_t('btn_inclusion_start')}}\" ng-disabled=inclusion.process ng-click=startStopTeachin(true)><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('btn_inclusion_start')}}</span></button></div><div class=inclusion-process ng-if=inclusion.process><div class=\"alert alert-warning\"><i class=\"fa fa-spinner fa-spin\"></i> {{_t('lb_ready_include')}} {{zwaveInclusion.device.find.inc}} <button class=\"btn btn-danger btn-lg\" title=\"{{_t('btn_inclusion_stop')}}\" ng-click=startStopTeachin(false)><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('btn_inclusion_stop')}}</span></button></div></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.inclusionProcess.done></i></div></div><div class=report-entry ng-show=\"inclusion.process || inclusion.done\"><div class=\"report-col report-media\"><span class=\"badge badge-number\">3</span></div><div class=\"report-col report-body\"><table class=table><thead><tr><th>{{_t('lb_pulse_train')}}</th><th ng-show=\"input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'\">{{_t('lb_on')}}</th><th ng-show=\"input.device_typ == 'switchBinary'\">{{_t('lb_off')}}</th><th ng-show=\"input.device_typ == 'sensorDiscrete'\">{{_t('lb_button_remote_control')}}</th><th ng-show=\"input.device_typ == 'sensorBinary'\">{{_t('lb_timout_auto_off')}}</th><th>{{_t('lb_count')}}</th><th>{{_t('lb_action')}}</th></tr></thead><tbody><tr ng-repeat=\"row in input.table track by $index\"><td><input name=code id=code class=form-control value={{row.code}} ng-model=row.code disabled></td><td ng-show=\"input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'\"><input type=checkbox name=on ng-model=row.on></td><td ng-show=\"input.device_typ == 'switchBinary'\"><input type=checkbox name=off ng-model=row.off></td><td ng-show=\"input.device_typ == 'sensorDiscrete'\"><select class=form-control ng-model=row.btn><option ng-repeat=\"n in module.schema.definitions.device.properties.pulseTrainTable.items.properties.btn.enum\" value={{n}}>{{n}}</option></select></td><td ng-show=\"input.device_typ == 'sensorBinary'\"><input name=timeout id=timeout class=form-control value={{row.timeout}} ng-model=\"row.timeout\"></td><td><input name=count id=count class=form-control value={{row.count}} ng-model=row.count disabled></td><td><button type=button class=\"btn btn-default\" ng-click=testCode(row.nano_string)><i class=\"fa fa-paper-plane\"></i> <span class=btn-name>{{_t('btn_test')}}</span></button> <button type=button class=\"btn btn-default\" ng-click=removeRow($index)><i class=\"fa fa-minus\"></i> <span class=btn-name>{{_t('btn_remove')}}</span></button></td></tr></tbody></table></div></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button class=\"btn btn-submit\" title=\"{{_t('save_manage_rf433_devices')}}\" ng-disabled=\"inclusion.process || !inclusion.done\" ng-click=updateInstance(instance)><span class=btn-name>{{_t('save_manage_rf433_devices')}}</span> <i class=\"fa fa-chevron-right\"></i></button></div></div><div class=device-logo ng-include=\"'app/views/rf433/rf433_nav.html'\"></div></div>"
   );
 
 
@@ -16456,13 +16361,19 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param indexTo -  is the index of the $item in $partTo
      */
     $scope.dragDropSort = function (item, partFrom, partTo, indexFrom, indexTo) {
-        //console.log(partFrom)
+        //console.log(item)
+        var element = {
+            id: item.id,
+            indexFrom: indexFrom,
+            indexTo: indexTo
+        }
         var result = [];
         angular.forEach(partFrom, function (v, k) {
             var obj = {id: v.id, position: k};
             result.push(obj);
 
         });
+        console.log(element)
         console.log(result)
 
     }
@@ -20401,25 +20312,41 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
         active: false,
         alert: {message: false}
     };
+
+    $scope.rf433 = {
+        installed: false,
+        active: false,
+        alert: {message: false}
+    };
      /**
-     * Load EnOcean module
+     * Load ext. Peripherals modules (EnOcean, Rf433)
      */
-    $scope.loadEnOceanModule = function() {
+    $scope.loadperipheralsModules = function() {
         dataFactory.getApi('instances',false,true).then(function(response) {
-            var module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
-            if(!module){
-                return;
+            var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
+            if(EnOcean_module){
+                $scope.enocean.installed = true;
+                if (!EnOcean_module.active) {
+                    $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    return;
+                }
+                $scope.enocean.active = true;
             }
-            $scope.enocean.installed = true;
-            if (!module.active) {
-                $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                return;
+
+            var RF433_module = _.findWhere(response.data.data,{moduleId:'RF433'});
+            if(RF433_module){
+                $scope.rf433.installed = true;
+                if (!RF433_module.active) {
+                    $scope.rf433.alert = {message: $scope._t('rf433_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    return;
+                }
+                $scope.rf433.active = true;
             }
-            $scope.enocean.active = true;
+
         });
     };
 
-    $scope.loadEnOceanModule();
+    $scope.loadperipheralsModules();
 });
 /**
  * @overview Handles Z-Wave device inclusion actions.
@@ -23508,7 +23435,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
  */
 
 /**
- * The management root controller
+ * The management base controller
  * @class ManagementController
  */
 myAppController.controller('ManagementController', function ($scope, $interval, $q, $filter, cfg, dataFactory, dataService, myCache) {
@@ -23705,750 +23632,57 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
     }
 
 });
+
+
 /**
- * The controller that renders the list of users.
- * @class ManagementUserController
+ * The controller that renders postfix data.
+ * @class ManagementPostfixController
  */
-myAppController.controller('ManagementUserController', function ($scope, $cookies, dataFactory, dataService, myCache) {
-    $scope.userProfiles = {
-        all: false,
-        orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
+/*myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
+    $scope.postfix = {
+        all: {}
     };
-    /**
-     * Load profiles
-     */
-    $scope.loadProfiles = function () {
+    /!**
+     * Load postfix data
+     *!/
+    $scope.loadPostfix = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('profiles', null, true).then(function (response) {
-            $scope.userProfiles.all = response.data.data;
-            $scope.loading = false;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-        });
-    };
-    $scope.loadProfiles();
-
-    /**
-     * Set order by
-     */
-    $scope.setOrderBy = function (key) {
-        angular.extend($scope.userProfiles, {orderBy: key});
-        $cookies.usersOrderBy = key;
-        $scope.loadProfiles();
-    };
-
-    /**
-     * Delete an user
-     */
-    $scope.deleteProfile = function (input, message, except) {
-        if (input.id == except) {
-            return;
-        }
-        alertify.confirm(message, function () {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('profiles', input.id).then(function (response) {
-                myCache.remove('profiles');
-                dataService.showNotifier({message: $scope._t('delete_successful')});
-                $scope.loading = false;
-                $scope.loadProfiles();
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_delete_data'));
-            });
-        });
-    };
-
-
-});
-/**
- * The controller that handles user detail actions.
- * @class ManagementUserIdController
- */
-myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache) {
-    $scope.id = $filter('toInt')($routeParams.id);
-    $scope.rooms = {};
-    $scope.show = true;
-    $scope.input = {
-        "id": 0,
-        "role": 2,
-        "login": "",
-        "name": "",
-        "lang": "en",
-        "color": "#dddddd",
-        "dashboard": [],
-        "interval": 1000,
-        "rooms": [],
-        "expert_view": true,
-        "hide_all_device_events": false,
-        "hide_system_events": false,
-        "hide_single_device_events": []
-    };
-    $scope.auth = {
-        id: $routeParams.id,
-        login: null,
-        password: null
-    };
-    $scope.lastEmail = "";
-
-    /**
-     * Load all promises
-     */
-    $scope.allSettledUserId = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var promises = [
-            dataFactory.getApi('profiles', ($scope.id !== 0 ? '/' + $scope.id : ''), true),
-            dataFactory.getApi('locations')
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            var profile = response[0];
-            var locations = response[1];
-            $scope.loading = false;
-            // Error message
-            if (profile.state === 'rejected') {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
-                $scope.show = false;
-                return;
-            }
-            // Success - profile
-            if (profile.state === 'fulfilled') {
-                if ($scope.id !== 0) {
-                    $scope.input = profile.value.data.data;
-                    $scope.auth.login = profile.value.data.data.login;
-                    $scope.lastEmail = profile.value.data.data.email;
-                }
-            }
-
-            // Success - locations
-            if (locations.state === 'fulfilled') {
-                $scope.rooms = dataService.getRooms(locations.value.data.data)
-                    .reject(function (v) {
-                        return (v.id === 0);
-
-                    })
-                    .value();
-            }
-        });
-    };
-    $scope.allSettledUserId();
-
-    /**
-     * Watch for the role change
-     */
-    /*$scope.$watch('input.role', function () {
-     //var globalRoomIndex = $scope.input.rooms.indexOf(0);
-     if($scope.input.role === 1){
-     $scope.input.rooms = [0];
-     }else{
-     $scope.input.rooms = $scope.input.rooms.length > 0  ? $scope.input.rooms : [];
-     //$scope.input.rooms = []
-     }
-     });*/
-    /**
-     * Assign room to list
-     */
-    $scope.assignRoom = function (assign) {
-        if($scope.input.role !== 1) {
-            $scope.input.rooms.push(assign);
-        }
-    };
-
-    /*$scope.prepareRooms = function () {
-     return;
-     var globalRoomIndex = $scope.input.rooms.indexOf(0);
-     //var roomIds = _.map(locations.value.data.data, function(location){});
-
-     if ($scope.input.role === 1 && globalRoomIndex === -1) {
-     $scope.input.rooms = [0];
-     } else if ($scope.input.role !== 1 && globalRoomIndex > -1){
-     if ($scope.input.id === 0) {
-     $scope.input.rooms = [];
-     } else {
-     $scope.input.rooms.splice(globalRoomIndex, 1);
-     }
-     }
-     return;
-     };*/
-
-    /**
-     * Remove room from the list
-     */
-    $scope.removeRoom = function (roomId) {
-        var oldList = $scope.input.rooms;
-        $scope.input.rooms = [];
-        angular.forEach(oldList, function (v, k) {
-            if (v != roomId) {
-                $scope.input.rooms.push(v);
-            }
-        });
-        return;
-    };
-
-    /**
-     * Create/Update an item
-     */
-    $scope.store = function (form, input) {
-        if (form.$invalid) {
-            return;
-        }
-        var globalRoomIndex = input.rooms.indexOf(0);
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        if ($scope.id == 0) {
-            input.password = input.password;
-        }
-        if (input.role === 1) {
-            input.rooms = [0];
-        }else if(globalRoomIndex > -1){
-            input.rooms.splice(globalRoomIndex, 1);
-        }
-        //console.log(input);
-        //return;
-        dataFactory.storeApi('profiles', input.id, input).then(function (response) {
-            var id = $filter('hasNode')(response, 'data.data.id');
-            if (id) {
-                myCache.remove('profiles');
-                $scope.reloadData();
-            }
-
-            // Email change --> update e-mail cloudbackup if instance exist
-            if($scope.lastEmail != input.email) {
-                var promises = [
-                    dataFactory.getApi('instances', '/CloudBackup')
-                ];
-
-                $q.allSettled(promises).then(function (response) {
-                    var instance = response[0];
-
-                    if (instance.state === 'rejected') {
-                        return;
-                    }
-
-                    if (instance.state === 'fulfilled') {
-                        var instanceData = instance.value.data.data[0];
-                        instanceData.params.email = input.email;
-                        dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
-                            $scope.lastEmail = input.email
-                        }, function (error) {
-                            alertify.alertError($scope._t('error_update_data'));
-                        });
-                    }
-                });
-            }
-
-            $scope.loading = false;
-            dataService.showNotifier({message: $scope._t('success_updated')});
-            window.location = '#/admin';
-
-            //$window.location.reload();
-
-        }, function (error) {
-            var message = $scope._t('error_update_data');
-            if (error.status == 409) {
-                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
-            }
-            alertify.alertError(message);
-            $scope.loading = false;
-        });
-
-    };
-
-    /**
-     * Change auth data
-     */
-    $scope.changeAuth = function (form, auth) {
-        if (form.$invalid) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('profiles_auth_update', $scope.id, $scope.auth).then(function (response) {
-            $scope.loading = false;
-            var data = response.data.data;
-            if (!data) {
-                alertify.alertError($scope._t('error_update_data'));
-                return;
-            }
-            dataService.showNotifier({message: $scope._t('success_updated')});
-
-        }, function (error) {
-            var message = $scope._t('error_update_data');
-            if (error.status == 409) {
-                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
-            }
-            alertify.alertError(message);
-            $scope.loading = false;
-        });
-
-    };
-
-    /// --- Private functions --- ///
-
-
-});
-/**
- * The controller that renders and handles remote access data.
- * @class ManagementRemoteController
- */
-myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
-    $scope.remoteAccess = false;
-    /**
-     * Load Remote access data
-     */
-    $scope.loadRemoteAccess = function () {
-        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
-
-            $scope.loading = false;
-            var remoteAccess = response.data.data[0];
-            if (Object.keys(remoteAccess).length < 1) {
-                alertify.alertError($scope._t('error_load_data'));
-            }
-            if (!remoteAccess.active) {
-                alertify.alertWarning($scope._t('remote_access_not_active'));
-                return;
-            }
-            if (!remoteAccess.params.userId) {
-                alertify.alertError($scope._t('error_remote_access_init'));
-                return;
-            }
-            remoteAccess.params.pass = null;
-            $scope.remoteAccess = remoteAccess;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('remote_access_not_installed'));
-        });
-    };
-
-    $scope.loadRemoteAccess();
-
-    /**
-     * PUT Remote access
-     */
-    $scope.putRemoteAccess = function (input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('instances', input.id, input).then(function (response) {
-            $scope.loading = false;
-            dataService.showNotifier({message: $scope._t('success_updated')});
-        }, function (error) {
-            alertify.alertError($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
-    };
-});
-/**
- * The controller that renders and handles local access.
- * @class ManagementLocalController
- */
-myAppController.controller('ManagementLocalController', function ($scope, dataFactory, dataService) {
-
-
-    /**
-     * Update instance
-     */
-    $scope.updateInstance = function (input) {
-        //var input = $scope.handleTimezone.instance;
-        if (input.id) {
-            dataFactory.putApi('instances', input.id, input).then(function (response) {
-                alertify.confirm($scope._t('timezone_alert'))
-                    .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
-                    .set('onok', function (closeEvent) {//after clicking OK
-                        $scope.systemReboot();
-                    });
-
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-            });
-        }
-    };
-
-    /**
-     * System rebboot
-     */
-    $scope.systemReboot = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
-        dataFactory.getApi('system_reboot').then(function (response) {
-        }, function (error) {
-            alertify.alertError($scope._t('error_system_reboot'));
-        });
-
-    };
-});
-/**
- * The controller that handles the licence key.
- * @class ManagementLicenceController
- */
-myAppController.controller('ManagementLicenceController', function ($scope, cfg, dataFactory) {
-
-    $scope.proccessLicence = false;
-    $scope.proccessVerify = {
-        'message': false,
-        'status': 'is-hidden'
-    };
-    $scope.proccessUpdate = {
-        'message': false,
-        'status': 'is-hidden'
-    };
-    $scope.inputLicence = {
-        "show": false,
-        "scratch_id": $scope.controllerInfo.scratchId
-    };
-
-    /**
-     * Update capabilities
-     */
-    function updateCapabilities(data) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('upgrading_capabilities')};
-        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
-        dataFactory.zmeCapabilities(data).then(function (response) {
-            $scope.loading = false;
-            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
-            $scope.proccessLicence = false;
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_no_capabilities'));
-            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
-            $scope.proccessLicence = false;
-        });
-    };
-
-    /**
-    * Get license key
-    */
-    $scope.getLicense = function (inputLicence) {
-        // Clear messages
-        $scope.proccessVerify.message = false;
-        $scope.proccessUpdate.message = false;
-        if (!inputLicence.scratch_id) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('verifying_licence_key')};
-        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
-        $scope.proccessLicence = true;
-        var input = {
-            'uuid': $scope.controllerInfo.uuid,
-            'scratch': inputLicence.scratch_id
-        };
-        dataFactory.getLicense(input).then(function (response) {
-            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
-            $scope.loading = false;
-            // Update capabilities
-            updateCapabilities(response);
-        }, function (error) {
-            var message = $scope._t('error_no_licence_key');
-            if (error.status == 404) {
-                var message = $scope._t('error_404_licence_key');
+        dataFactory.getApi('postfix', null, true).then(function (response) {
+            if (_.isEmpty(response.data)) {
+                alertify.alertWarning($scope._t('no_data'));
             }
             $scope.loading = false;
-            alertify.alertError(message);
-            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
-            $scope.proccessLicence = false;
-        });
-    };
-});
-/**
- * The controller that handles firmware update process.
- * @class ManagementFirmwareController
- */
-myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory, dataService) {
-    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
-    $scope.firmwareUpdate = {
-        show: false,
-        loaded: false,
-        url: $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi')
-    };
-    /**
-     * Set access
-     */
-    $scope.setAccess = function (param, loader) {
-        if (loader) {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        }
-        dataFactory.getApi('firmwareupdate', param, true).then(function (response) {
-            if (loader) {
-                $scope.firmwareUpdate.show = true;
-                $timeout(function () {
-                    $scope.loading = false;
-                    $scope.firmwareUpdate.loaded = true;
-                }, 5000);
-            }
-
+            $scope.postfix.all = response.data;
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
 
         });
     };
-    /**
-     * Load latest version
-     */
-    $scope.loadRazLatest = function () {
-        dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function (response) {
-            $scope.controllerInfo.softwareLatestVersion = response;
-        }, function (error) {
-        });
-    };
-    //$scope.loadRazLatest();
+    $scope.loadPostfix();
 
-    /**
-     * update device database
-     */
-    $scope.updateDeviceDatabase = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var success = [];
-        var failed = [];
-        var count = 0;
-        dataFactory.getApi('update_device_database').then(function(response) {
-            $scope.loading = false;
-            if(response.data !== "" && !_.isEmpty(response.data)) {
-                count = response.data.length;
-                _.each(response.data, function(lang) {
-                   if(lang[Object.keys(lang)[0]]) {
-                       success.push(Object.keys(lang)[0]);
-                   } else {
-                       failed.push(Object.keys(lang)[0]);
-                   }
-               });
+});*/
+/**
+ * The controller that renders info data.
+ * @class ManagementInfoController
+ */
+/*myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {
 
-               if(failed.length == 0) {
-                   // update device database successfull
-                   dataService.showNotifier({message: $scope._t('success_updated')});
-               } else {
-                   // check if all failed
-                   if(failed.length !== 0 && failed.length === count && success.length === 0) {
-                       alertify.alertWarning($scope._t('update_device_database_failed'));
-                   } else {
-                       strSuccess = success.join(', ');
-                       strFailed = failed.join(', ');
-                       alertify.alertWarning($scope._t('update_device_database_failed_for', {
-                           __success__: strSuccess,
-                           __failed__: strFailed
-                       }));
-                   }
-               }
-            } else {
-                alertify.alertError($scope._t('error_load_data')); // error update device database
-            }
-        }, function(error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data')); // error update device database
-            alertify.dismissAll();
-        });
-    };
-});
+});*/
+
+
+/*
+myAppController.controller('ManagementAddMobileDevice', function ($scope, $timeout, $q, cfg, $window, $location, dataFactory, dataService) {
+
+    $scope.qrcode = $scope.user.qrcode;
+
+});*/
 
 /**
- * The controller that handles a timezone.
- * @class ManagementTimezoneController
+ * @overview The controller that renders and handles app store data.
+ * @author Martin Vach
  */
-myAppController.controller('ManagementTimezoneController', function ($scope, $timeout, $interval,$location,cfg, dataFactory, dataService) {
-    $scope.managementTimezone = {
-        lastTZ: '',
-        input: {
-            time_zone: ''
-        },
-        countdown: 60
-    };
 
-    /**
-     * Load and set zwave configuration
-     * @returns {undefined}
-     */
-    $scope.loadZwaveConfig = function () {
-        // Set config
-        dataFactory.getApi('configget_url', null, true).then(function (response) {
-            $scope.managementTimezone.lastTZ = response.data.time_zone;
-            $scope.managementTimezone.input.time_zone = response.data.time_zone;
-            angular.extend($scope.cfg.zwavecfg, response.data);
-        }, function (error) {});
-    };
-
-    $scope.loadZwaveConfig();
-    /**
-     * Set timezone
-     */
-    $scope.setTimezone = function (input,$event) {
-
-
-        if(input.time_zone !== $scope.managementTimezone.lastTZ) {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-            /*var data = {
-                "time_zone": input.time_zone
-            };*/
-            console.log(input);
-
-            dataFactory.postApi('time_zone', input, null).then(function (response) {
-                dataFactory.postApi('configupdate_url', input).then(function () {});
-               $scope.loading = false;
-                $scope.handleModal('timezoneModal', $event);
-                var myint = $interval(function(){
-                    $scope.managementTimezone.countdown--;
-                    if($scope.managementTimezone.countdown === 0){
-                        $interval.cancel(myint);
-                        //$location.path('/');
-                        dataService.setRememberMe(null);
-                        dataFactory.getApi('logout').then(function (response) {
-                            dataService.logOut();
-                        });
-                    }
-                }, 1000);
-
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
-
-            });
-        }
-    };
-
-});
-
-/**
- * The controller that handles a timezone for JB.
- * @class ManagementTimezoneJBController
- */
-myAppController.controller('ManagementTimezoneJBController', function ($scope, $timeout, dataFactory, dataService) {
-    $scope.managementTimezone = {
-        labels: {},
-        enums: {}
-    };
-
-    /**
-     * Load module detail
-     */
-    $scope.loadModule = function (id) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('modules', '/ZMEOpenWRT').then(function (response) {
-            $scope.loading = false;
-            $scope.managementTimezone.enums = response.data.data.schema.properties.timezone.enum;
-            $scope.managementTimezone.labels = response.data.data.options.fields.timezone.optionLabels;
-
-            //console.log($scope.handleTimezone)
-            //console.log($scope.managementTimezone)
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-        });
-    };
-    $scope.loadModule();
-
-    /**
-     * Update instance
-     */
-    $scope.updateInstance = function (input) {
-        //var input = $scope.handleTimezone.instance;
-        if (input.id) {
-            dataFactory.putApi('instances', input.id, input).then(function (response) {
-                alertify.confirm($scope._t('timezone_alert'))
-                    .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
-                    .set('onok', function (closeEvent) {//after clicking OK
-                        $scope.systemReboot();
-                    });
-
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-            });
-        }
-    };
-
-    /**
-     * System rebboot
-     */
-    $scope.systemReboot = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
-        dataFactory.getApi('system_reboot').then(function (response) {
-        }, function (error) {
-            alertify.alertError($scope._t('error_system_reboot'));
-        });
-
-    };
-
-});
-/**
- * The controller that handles restore process.
- * @class ManagementRestoreController
- */
-myAppController.controller('ManagementRestoreController', function ($scope, $window, $timeout, dataFactory, dataService) {
-    $scope.myFile = null;
-    $scope.managementRestore = {
-        confirm: false,
-        alert: {message: false, status: 'is-hidden', icon: false},
-        process: false
-    };
-
-    /**
-     * Upload backup file
-     */
-    $scope.uploadFile = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
-        $scope.managementRestore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
-        var cmd = $scope.cfg.api['restore'];
-        var fd = new FormData();
-
-        fd.append('backupFile', $scope.myFile);
-        //fd.append('backupFile', files[0]); 
-        dataFactory.uploadApiFile(cmd, fd).then(function (response) {
-            $scope.loading = false;
-            dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
-            $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
-            $timeout(function () {
-                alertify.dismissAll();
-                $window.location.reload();
-            }, 2000);
-        }, function (error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('restore_backup_failed'));
-            $scope.managementRestore.alert = false;
-        });
-
-    };
-});
-/**
- * The controller that resets the system to factory default.
- * @class ManagementFactoryController
- */
-myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore, dataFactory, dataService) {
-    $scope.factoryDefault = {
-        model: {
-            overwriteBackupCfg: true,
-            resetZway: true,
-            useDefaultConfig: 'ttyAMA0'
-        }
-
-
-    };
-    /**
-     * Reset to factory default
-     */
-    $scope.resetFactoryDefault = function (message) {
-//        var params = '?useDefaultConfig=' + $scope.factoryDefault.model.overwriteBackupCfg
-//                + '&resetZway=' + $scope.factoryDefault.model.resetZway
-//                + '&useDefaultConfig=' + $scope.factoryDefault.model.useDefaultConfig;
-        var params = false;
-        alertify.confirm(message, function () {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('returning_factory_default')};
-            dataFactory.getApi('factory_default', params).then(function (response) {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('factory_default_success')});
-                angular.forEach($cookies, function (v, k) {
-                    $cookieStore.remove(k);
-                    //delete $cookies[k];
-                });
-                //dataService.setRememberMe(null);
-                dataService.logOut();
-                //$window.location.reload();
-            }, function (error) {
-                alertify.alertError($scope._t('factory_default_error'));
-                $scope.loading = false;
-            });
-        });
-    };
-
-});
 /**
  * The controller that renders and handles app store data.
  * @class ManagementAppStoreController
@@ -24512,6 +23746,341 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
 
 
 });
+
+/**
+ * @overview The controller that resets the system to factory default.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that resets the system to factory default.
+ * @class ManagementFactoryController
+ */
+myAppController.controller('ManagementFactoryController', function ($scope, $window, $cookies, $cookieStore, dataFactory, dataService) {
+    $scope.factoryDefault = {
+        model: {
+            overwriteBackupCfg: true,
+            resetZway: true,
+            useDefaultConfig: 'ttyAMA0'
+        }
+
+
+    };
+    /**
+     * Reset to factory default
+     */
+    $scope.resetFactoryDefault = function (message) {
+//        var params = '?useDefaultConfig=' + $scope.factoryDefault.model.overwriteBackupCfg
+//                + '&resetZway=' + $scope.factoryDefault.model.resetZway
+//                + '&useDefaultConfig=' + $scope.factoryDefault.model.useDefaultConfig;
+        var params = false;
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('returning_factory_default')};
+            dataFactory.getApi('factory_default', params).then(function (response) {
+                $scope.loading = false;
+                dataService.showNotifier({message: $scope._t('factory_default_success')});
+                angular.forEach($cookies, function (v, k) {
+                    $cookieStore.remove(k);
+                    //delete $cookies[k];
+                });
+                //dataService.setRememberMe(null);
+                dataService.logOut();
+                //$window.location.reload();
+            }, function (error) {
+                alertify.alertError($scope._t('factory_default_error'));
+                $scope.loading = false;
+            });
+        });
+    };
+
+});
+
+
+/**
+ * @overviewThe controller that handles firmware update process.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that handles firmware update process.
+ * @class ManagementFirmwareController
+ */
+myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory, dataService) {
+    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
+    $scope.firmwareUpdate = {
+        show: false,
+        loaded: false,
+        url: $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi')
+    };
+    /**
+     * Set access
+     */
+    $scope.setAccess = function (param, loader) {
+        if (loader) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        }
+        dataFactory.getApi('firmwareupdate', param, true).then(function (response) {
+            if (loader) {
+                $scope.firmwareUpdate.show = true;
+                $timeout(function () {
+                    $scope.loading = false;
+                    $scope.firmwareUpdate.loaded = true;
+                }, 5000);
+            }
+
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+
+        });
+    };
+    /**
+     * Load latest version
+     */
+    $scope.loadRazLatest = function () {
+        dataFactory.getRemoteData($scope.cfg.raz_latest_version_url).then(function (response) {
+            $scope.controllerInfo.softwareLatestVersion = response;
+        }, function (error) {
+        });
+    };
+    //$scope.loadRazLatest();
+
+    /**
+     * update device database
+     */
+    $scope.updateDeviceDatabase = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var success = [];
+        var failed = [];
+        var count = 0;
+        dataFactory.getApi('update_device_database').then(function(response) {
+            $scope.loading = false;
+            if(response.data !== "" && !_.isEmpty(response.data)) {
+                count = response.data.length;
+                _.each(response.data, function(lang) {
+                    if(lang[Object.keys(lang)[0]]) {
+                        success.push(Object.keys(lang)[0]);
+                    } else {
+                        failed.push(Object.keys(lang)[0]);
+                    }
+                });
+
+                if(failed.length == 0) {
+                    // update device database successfull
+                    dataService.showNotifier({message: $scope._t('success_updated')});
+                } else {
+                    // check if all failed
+                    if(failed.length !== 0 && failed.length === count && success.length === 0) {
+                        alertify.alertWarning($scope._t('update_device_database_failed'));
+                    } else {
+                        strSuccess = success.join(', ');
+                        strFailed = failed.join(', ');
+                        alertify.alertWarning($scope._t('update_device_database_failed_for', {
+                            __success__: strSuccess,
+                            __failed__: strFailed
+                        }));
+                    }
+                }
+            } else {
+                alertify.alertError($scope._t('error_load_data')); // error update device database
+            }
+        }, function(error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data')); // error update device database
+            alertify.dismissAll();
+        });
+    };
+});
+
+
+/**
+ * @overview he controller that handles the licence key.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that handles the licence key.
+ * @class ManagementLicenceController
+ */
+myAppController.controller('ManagementLicenceController', function ($scope, cfg, dataFactory) {
+
+    $scope.proccessLicence = false;
+    $scope.proccessVerify = {
+        'message': false,
+        'status': 'is-hidden'
+    };
+    $scope.proccessUpdate = {
+        'message': false,
+        'status': 'is-hidden'
+    };
+    $scope.inputLicence = {
+        "show": false,
+        "scratch_id": $scope.controllerInfo.scratchId
+    };
+
+    /**
+     * Update capabilities
+     */
+    function updateCapabilities(data) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('upgrading_capabilities')};
+        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
+        dataFactory.zmeCapabilities(data).then(function (response) {
+            $scope.loading = false;
+            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
+            $scope.proccessLicence = false;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_no_capabilities'));
+            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessLicence = false;
+        });
+    };
+
+    /**
+     * Get license key
+     */
+    $scope.getLicense = function (inputLicence) {
+        // Clear messages
+        $scope.proccessVerify.message = false;
+        $scope.proccessUpdate.message = false;
+        if (!inputLicence.scratch_id) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('verifying_licence_key')};
+        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
+        $scope.proccessLicence = true;
+        var input = {
+            'uuid': $scope.controllerInfo.uuid,
+            'scratch': inputLicence.scratch_id
+        };
+        dataFactory.getLicense(input).then(function (response) {
+            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
+            $scope.loading = false;
+            // Update capabilities
+            updateCapabilities(response);
+        }, function (error) {
+            var message = $scope._t('error_no_licence_key');
+            if (error.status == 404) {
+                var message = $scope._t('error_404_licence_key');
+            }
+            $scope.loading = false;
+            alertify.alertError(message);
+            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessLicence = false;
+        });
+    };
+});
+
+
+/**
+ * @overview  The controller that renders and handles local access.
+ * @author Martin Vach
+ */
+/**
+ * The controller that renders and handles local access.
+ * @class ManagementLocalController
+ */
+myAppController.controller('ManagementLocalController', function ($scope, dataFactory, dataService) {
+
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                alertify.confirm($scope._t('timezone_alert'))
+                    .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                    .set('onok', function (closeEvent) {//after clicking OK
+                        $scope.systemReboot();
+                    });
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+    };
+
+    /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+        dataFactory.getApi('system_reboot').then(function (response) {
+        }, function (error) {
+            alertify.alertError($scope._t('error_system_reboot'));
+        });
+
+    };
+});
+
+/**
+ * @overview The controller that renders and handles remote access data.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that renders and handles remote access data.
+ * @class ManagementRemoteController
+ */
+myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
+    $scope.remoteAccess = false;
+    /**
+     * Load Remote access data
+     */
+    $scope.loadRemoteAccess = function () {
+        if (!$scope.elementAccess($scope.cfg.role_access.remote_access)) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('instances', '/RemoteAccess').then(function (response) {
+
+            $scope.loading = false;
+            var remoteAccess = response.data.data[0];
+            if (Object.keys(remoteAccess).length < 1) {
+                alertify.alertError($scope._t('error_load_data'));
+            }
+            if (!remoteAccess.active) {
+                alertify.alertWarning($scope._t('remote_access_not_active'));
+                return;
+            }
+            if (!remoteAccess.params.userId) {
+                alertify.alertError($scope._t('error_remote_access_init'));
+                return;
+            }
+            remoteAccess.params.pass = null;
+            $scope.remoteAccess = remoteAccess;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('remote_access_not_installed'));
+        });
+    };
+
+    $scope.loadRemoteAccess();
+
+    /**
+     * PUT Remote access
+     */
+    $scope.putRemoteAccess = function (input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('instances', input.id, input).then(function (response) {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+        });
+
+    };
+});
+
+
+/**
+ * @overview The controller that handles bug report info.
+ * @author Martin Vach
+ */
+
 /**
  * The controller that handles bug report info.
  * @class ManagementReportController
@@ -24590,41 +24159,59 @@ myAppController.controller('ManagementReportController', function ($scope, $wind
         });
     };
 });
+
+
 /**
- * The controller that renders postfix data.
- * @class ManagementPostfixController
+ * @overview The controller that handles restore process.
+ * @author Martin Vach
  */
-myAppController.controller('ManagementPostfixController', function ($scope, dataFactory, _) {
-    $scope.postfix = {
-        all: {}
+
+
+/**
+ * The controller that handles restore process.
+ * @class ManagementRestoreController
+ */
+myAppController.controller('ManagementRestoreController', function ($scope, $window, $timeout, dataFactory, dataService) {
+    $scope.myFile = null;
+    $scope.managementRestore = {
+        confirm: false,
+        alert: {message: false, status: 'is-hidden', icon: false},
+        process: false
     };
+
     /**
-     * Load postfix data
+     * Upload backup file
      */
-    $scope.loadPostfix = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getApi('postfix', null, true).then(function (response) {
-            if (_.isEmpty(response.data)) {
-                alertify.alertWarning($scope._t('no_data'));
-            }
+    $scope.uploadFile = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('restore_wait')};
+        $scope.managementRestore.alert = {message: $scope._t('restore_wait'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+        var cmd = $scope.cfg.api['restore'];
+        var fd = new FormData();
+
+        fd.append('backupFile', $scope.myFile);
+        //fd.append('backupFile', files[0]);
+        dataFactory.uploadApiFile(cmd, fd).then(function (response) {
             $scope.loading = false;
-            $scope.postfix.all = response.data;
+            dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
+            $scope.managementRestore.alert = {message: $scope._t('restore_done_reload_ui'), status: 'alert-success', icon: 'fa-check'};
+            $timeout(function () {
+                alertify.dismissAll();
+                $window.location.reload();
+            }, 2000);
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
-
+            alertify.alertError($scope._t('restore_backup_failed'));
+            $scope.managementRestore.alert = false;
         });
-    };
-    $scope.loadPostfix();
 
+    };
 });
 /**
- * The controller that renders info data.
- * @class ManagementInfoController
+ * @overview  The controller that handles a backup to the cloud.
+ * @author Martin Vach
  */
-myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {
 
-});
+
 /**
  * The controller that handles a backup to the cloud.
  * @class ManagementCloudBackupController
@@ -24823,11 +24410,399 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
     }
 });
 
-myAppController.controller('ManagementAddMobileDevice', function ($scope, $timeout, $q, cfg, $window, $location, dataFactory, dataService) {
 
-    $scope.qrcode = $scope.user.qrcode;
+/**
+ * @overview The controller that handles a timezone.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that handles a timezone.
+ * @class ManagementTimezoneController
+ */
+myAppController.controller('ManagementTimezoneController', function ($scope, $timeout, $interval,$location,cfg, dataFactory, dataService) {
+    $scope.managementTimezone = {
+        lastTZ: '',
+        input: {
+            time_zone: ''
+        },
+        countdown: 60
+    };
+
+    /**
+     * Load and set zwave configuration
+     * @returns {undefined}
+     */
+    $scope.loadZwaveConfig = function () {
+        // Set config
+        dataFactory.getApi('configget_url', null, true).then(function (response) {
+            $scope.managementTimezone.lastTZ = response.data.time_zone;
+            $scope.managementTimezone.input.time_zone = response.data.time_zone;
+            angular.extend($scope.cfg.zwavecfg, response.data);
+        }, function (error) {});
+    };
+
+    $scope.loadZwaveConfig();
+    /**
+     * Set timezone
+     */
+    $scope.setTimezone = function (input,$event) {
+
+
+        if(input.time_zone !== $scope.managementTimezone.lastTZ) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+            dataFactory.postApi('time_zone', input, null).then(function (response) {
+                dataFactory.postApi('configupdate_url', input).then(function () {});
+                $scope.loading = false;
+                $scope.handleModal('timezoneModal', $event);
+                var myint = $interval(function(){
+                    $scope.managementTimezone.countdown--;
+                    if($scope.managementTimezone.countdown === 0){
+                        $interval.cancel(myint);
+                        //$location.path('/');
+                        dataService.setRememberMe(null);
+                        dataFactory.getApi('logout').then(function (response) {
+                            dataService.logOut();
+                        });
+                    }
+                }, 1000);
+
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+
+            });
+        }
+    };
 
 });
+
+/**
+ * @overview The controller that handles a timezone for JB.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that handles a timezone for JB.
+ * @class ManagementTimezoneJBController
+ */
+myAppController.controller('ManagementTimezoneJBController', function ($scope, $timeout, dataFactory, dataService) {
+    $scope.managementTimezone = {
+        labels: {},
+        enums: {}
+    };
+
+    /**
+     * Load module detail
+     */
+    $scope.loadModule = function (id) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('modules', '/ZMEOpenWRT').then(function (response) {
+            $scope.loading = false;
+            $scope.managementTimezone.enums = response.data.data.schema.properties.timezone.enum;
+            $scope.managementTimezone.labels = response.data.data.options.fields.timezone.optionLabels;
+
+            //console.log($scope.handleTimezone)
+            //console.log($scope.managementTimezone)
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadModule();
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function (input) {
+        //var input = $scope.handleTimezone.instance;
+        if (input.id) {
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                alertify.confirm($scope._t('timezone_alert'))
+                    .setting('labels', {'ok': $scope._t('yes'),'cancel': $scope._t('lb_cancel')})
+                    .set('onok', function (closeEvent) {//after clicking OK
+                        $scope.systemReboot();
+                    });
+
+            }, function (error) {
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }
+    };
+
+    /**
+     * System rebboot
+     */
+    $scope.systemReboot = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
+        dataFactory.getApi('system_reboot').then(function (response) {
+        }, function (error) {
+            alertify.alertError($scope._t('error_system_reboot'));
+        });
+
+    };
+
+});
+
+
+/**
+ * @overview Controllers that handle user list and detail
+ * @author Martin Vach
+ */
+/**
+ * The controller that renders the list of users.
+ * @class ManagementUserController
+ */
+myAppController.controller('ManagementUserController', function ($scope, $cookies, dataFactory, dataService, myCache) {
+    $scope.userProfiles = {
+        all: false,
+        orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
+    };
+    /**
+     * Load profiles
+     */
+    $scope.loadProfiles = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getApi('profiles', null, true).then(function (response) {
+            $scope.userProfiles.all = response.data.data;
+            $scope.loading = false;
+        }, function (error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.loadProfiles();
+
+    /**
+     * Set order by
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.userProfiles, {orderBy: key});
+        $cookies.usersOrderBy = key;
+        $scope.loadProfiles();
+    };
+
+    /**
+     * Delete an user
+     */
+    $scope.deleteProfile = function (input, message, except) {
+        if (input.id == except) {
+            return;
+        }
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('profiles', input.id).then(function (response) {
+                myCache.remove('profiles');
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.loading = false;
+                $scope.loadProfiles();
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_delete_data'));
+            });
+        });
+    };
+
+
+});
+
+/**
+ * The controller that renders and handles user detail.
+ * @class ManagementUserIdController
+ */
+myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache) {
+    $scope.id = $filter('toInt')($routeParams.id);
+    $scope.rooms = {};
+    $scope.show = true;
+    $scope.input = {
+        "id": 0,
+        "role": 2,
+        "login": "",
+        "name": "",
+        "lang": "en",
+        "color": "#dddddd",
+        "dashboard": [],
+        "interval": 1000,
+        "rooms": [],
+        "expert_view": true,
+        "hide_all_device_events": false,
+        "hide_system_events": false,
+        "hide_single_device_events": []
+    };
+    $scope.auth = {
+        id: $routeParams.id,
+        login: null,
+        password: null
+    };
+    $scope.lastEmail = "";
+
+    /**
+     * Load all promises
+     */
+    $scope.allSettledUserId = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('profiles', ($scope.id !== 0 ? '/' + $scope.id : ''), true),
+            dataFactory.getApi('locations')
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var profile = response[0];
+            var locations = response[1];
+            $scope.loading = false;
+            // Error message
+            if (profile.state === 'rejected') {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+                $scope.show = false;
+                return;
+            }
+            // Success - profile
+            if (profile.state === 'fulfilled') {
+                if ($scope.id !== 0) {
+                    $scope.input = profile.value.data.data;
+                    $scope.auth.login = profile.value.data.data.login;
+                    $scope.lastEmail = profile.value.data.data.email;
+                }
+            }
+
+            // Success - locations
+            if (locations.state === 'fulfilled') {
+                $scope.rooms = dataService.getRooms(locations.value.data.data)
+                    .reject(function (v) {
+                        return (v.id === 0);
+
+                    })
+                    .value();
+            }
+        });
+    };
+    $scope.allSettledUserId();
+
+    /**
+     * Assign room to list
+     */
+    $scope.assignRoom = function (assign) {
+        if($scope.input.role !== 1) {
+            $scope.input.rooms.push(assign);
+        }
+    };
+
+    /**
+     * Remove room from the list
+     */
+    $scope.removeRoom = function (roomId) {
+        var oldList = $scope.input.rooms;
+        $scope.input.rooms = [];
+        angular.forEach(oldList, function (v, k) {
+            if (v != roomId) {
+                $scope.input.rooms.push(v);
+            }
+        });
+        return;
+    };
+
+    /**
+     * Create/Update an item
+     */
+    $scope.store = function (form, input) {
+        if (form.$invalid) {
+            return;
+        }
+        var globalRoomIndex = input.rooms.indexOf(0);
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        if ($scope.id == 0) {
+            input.password = input.password;
+        }
+        if (input.role === 1) {
+            input.rooms = [0];
+        }else if(globalRoomIndex > -1){
+            input.rooms.splice(globalRoomIndex, 1);
+        }
+        //console.log(input);
+        //return;
+        dataFactory.storeApi('profiles', input.id, input).then(function (response) {
+            var id = $filter('hasNode')(response, 'data.data.id');
+            if (id) {
+                myCache.remove('profiles');
+                $scope.reloadData();
+            }
+
+            // Email change --> update e-mail cloudbackup if instance exist
+            if($scope.lastEmail != input.email) {
+                var promises = [
+                    dataFactory.getApi('instances', '/CloudBackup')
+                ];
+
+                $q.allSettled(promises).then(function (response) {
+                    var instance = response[0];
+
+                    if (instance.state === 'rejected') {
+                        return;
+                    }
+
+                    if (instance.state === 'fulfilled') {
+                        var instanceData = instance.value.data.data[0];
+                        instanceData.params.email = input.email;
+                        dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
+                            $scope.lastEmail = input.email
+                        }, function (error) {
+                            alertify.alertError($scope._t('error_update_data'));
+                        });
+                    }
+                });
+            }
+
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
+            window.location = '#/admin';
+
+            //$window.location.reload();
+
+        }, function (error) {
+            var message = $scope._t('error_update_data');
+            if (error.status == 409) {
+                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
+            }
+            alertify.alertError(message);
+            $scope.loading = false;
+        });
+
+    };
+
+    /**
+     * Change auth data
+     */
+    $scope.changeAuth = function (form, auth) {
+        if (form.$invalid) {
+            return;
+        }
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('profiles_auth_update', $scope.id, $scope.auth).then(function (response) {
+            $scope.loading = false;
+            var data = response.data.data;
+            if (!data) {
+                alertify.alertError($scope._t('error_update_data'));
+                return;
+            }
+            dataService.showNotifier({message: $scope._t('success_updated')});
+
+        }, function (error) {
+            var message = $scope._t('error_update_data');
+            if (error.status == 409) {
+                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
+            }
+            alertify.alertError(message);
+            $scope.loading = false;
+        });
+
+    };
+
+    /// --- Private functions --- ///
+
+
+});
+
 /**
  * @overview Handles user actions.
  * @author Martin Vach
