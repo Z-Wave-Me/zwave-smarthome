@@ -29,7 +29,8 @@
             <i class="fa fa-search" ng-class="{'text-success':dataHolder.instances.autocomplete.term}"></i>
         </span>
 
-        <div class="app-dropdown autocomplete" ng-if="dataHolder.instances.autocomplete.results.length">
+        <!--<div class="app-dropdown autocomplete" ng-if="dataHolder.instances.autocomplete.results.length">-->
+        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchInstances">
             <ul>
                 <li class="dropdown-entry" title="{{v.title}}"
                     ng-repeat="v in dataHolder.instances.autocomplete.results | orderBy:'toString()' track by $index">

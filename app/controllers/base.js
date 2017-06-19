@@ -418,7 +418,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             $window.open(url, '_blank');
         }).set('labels', {ok: $scope._t('goahead')});
     };
-    $scope.naviExpanded = {};
+
     /**
      * Expand/collapse navigation
      * @param {string} key
@@ -426,6 +426,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @param {boolean} status
      * @returns {undefined}
      */
+    $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
@@ -440,15 +441,42 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         }
         $event.stopPropagation();
     };
-    // Collapse element/menu when clicking outside
+
+    /**
+     * Expand/collapse autocomplete
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
+     */
+    $scope.autocompleteExpanded = {};
+    $scope.expandAutocomplete = function (key, $event, status) {
+        if ($scope.autocompleteExpanded[key]) {
+            $scope.utocompleteExpanded = {};
+            $event.stopPropagation();
+            return;
+        }
+        $scope.utocompleteExpanded = {};
+        if (typeof status === 'boolean') {
+            $scope.utocompleteExpanded[key] = status;
+        } else {
+            $scope.utocompleteExpanded[key] = !$scope.utocompleteExpanded[key];
+        }
+        $event.stopPropagation();
+    };
+    /**
+     * Collapse navi, menu and autocomplete when clicking outside
+     */
     window.onclick = function () {
+        if ($scope.utocompleteExpanded) {
+            angular.copy({}, $scope.utocompleteExpanded);
+            $scope.$apply();
+        }
         if ($scope.naviExpanded) {
             angular.copy({}, $scope.naviExpanded);
             $scope.$apply();
         }
     };
-
-    $scope.modalArr = {};
     /**
      * Open/close a modal window
      * @param {string} key
@@ -456,6 +484,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @param {boolean} status
      * @returns {undefined}
      */
+    $scope.modalArr = {};
     $scope.handleModal = function (key, $event, status) {
         if (typeof status === 'boolean') {
             $scope.modalArr[key] = status;

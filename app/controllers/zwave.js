@@ -115,6 +115,12 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
      */
     $scope.searchMe = function () {
         $scope.autocomplete.results = dataService.autocomplete($scope.zwaveVendors.products.all,$scope.autocomplete);
+        // Expand/Collapse the list
+        if(!_.isEmpty($scope.autocomplete.results)){
+            $scope.expandAutocomplete('searchProducts',event);
+        }else{
+            $scope.expandAutocomplete('searchProducts',event,false);
+        }
         // Reset filter q if is input empty
         if ($scope.zwaveVendors.filter.q && $scope.autocomplete.term.length < 1) {
             $scope.setFilter();
@@ -128,6 +134,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
         // Reset
         $scope.autocomplete.results = [];
         $scope.zwaveVendors.products.noSearch = false;
+        $scope.expandAutocomplete('searchProducts',event,false);
 
         // Is fiter value empty?
         var empty = (_.values(filter) == '');

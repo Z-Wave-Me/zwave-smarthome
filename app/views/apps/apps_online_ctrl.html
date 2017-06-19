@@ -30,7 +30,8 @@
             <i class="fa fa-search" ng-class="{'text-success':dataHolder.onlineModules.autocomplete.term}"></i>
         </span>
 
-        <div class="app-dropdown autocomplete" ng-if="dataHolder.onlineModules.autocomplete.results.length">
+       <!-- <div class="app-dropdown autocomplete" ng-if="dataHolder.onlineModules.autocomplete.results.length">-->
+        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchOnlineApps">
             <ul>
                 <li class="dropdown-entry" title="{{v.title}}"
                     ng-repeat="v in dataHolder.onlineModules.autocomplete.results | orderBy:'toString()' track by $index">

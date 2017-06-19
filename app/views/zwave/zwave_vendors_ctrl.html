@@ -14,7 +14,8 @@
             <i class="fa fa-search" ng-class="{'text-success':autocomplete.term}"></i>
         </span>
         <!-- List -->
-        <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">
+        <!--<div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">-->
+        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchProducts">
             <ul>
                 <li class="dropdown-entry" title="{{v.title}}"
                     ng-repeat="v in autocomplete.results | orderBy:'name' track by $index">
