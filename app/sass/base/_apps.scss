@@ -130,7 +130,7 @@
     }
   }
   // Media queries
-  @include mediaQueries(min-small) {
+  @include mediaQueries(min-medium) {
     .widget-entry {
       border: 0;
       width: 20%;
@@ -152,6 +152,11 @@
         }
         .widget-title {
           text-align: center;
+          // Media queries
+          @include mediaQueriesMaxMin(1200px,$break-large) {
+            max-width:170px;
+            @include textOverflow();
+          }
         }
         .widget-ctrl {
           width: 100%;
