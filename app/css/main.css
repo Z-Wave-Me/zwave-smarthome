@@ -12052,7 +12052,7 @@ fieldset.submit-entry {
   font-size: 90%;
   position: absolute;
   z-index: 1100;
-  min-width: 100%;
+  min-width: 240px;
   text-align: left;
   background-color: #FFFFFF;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -12062,12 +12062,12 @@ fieldset.submit-entry {
   background-clip: padding-box;
   color: #0d0d0d;
 }
-/* line 19, ../sass/base/_infowindow.scss */
+/* line 20, ../sass/base/_infowindow.scss */
 .infowindow .infowindow-in {
   padding: 10px;
 }
 
-/* line 24, ../sass/base/_infowindow.scss */
+/* line 25, ../sass/base/_infowindow.scss */
 .infowindow::after {
   content: " ";
   position: absolute;
@@ -12077,13 +12077,13 @@ fieldset.submit-entry {
   border-color: transparent;
 }
 
-/* line 33, ../sass/base/_infowindow.scss */
+/* line 34, ../sass/base/_infowindow.scss */
 .infowindow.right {
   top: -5px;
   left: 105%;
 }
 
-/* line 38, ../sass/base/_infowindow.scss */
+/* line 39, ../sass/base/_infowindow.scss */
 .infowindow.right::after {
   top: 50%;
   right: 100%;
@@ -12091,13 +12091,13 @@ fieldset.submit-entry {
   border-color: transparent black transparent transparent;
 }
 
-/* line 44, ../sass/base/_infowindow.scss */
+/* line 45, ../sass/base/_infowindow.scss */
 .infowindow.left {
   top: -5px;
   right: 105%;
 }
 
-/* line 49, ../sass/base/_infowindow.scss */
+/* line 50, ../sass/base/_infowindow.scss */
 .infowindow.left::after {
   top: 50%;
   left: 100%;
@@ -12105,16 +12105,16 @@ fieldset.submit-entry {
   border-color: transparent transparent transparent black;
 }
 
-/* line 55, ../sass/base/_infowindow.scss */
+/* line 56, ../sass/base/_infowindow.scss */
 .infowindow.top {
   width: 100%;
   bottom: 100%;
   left: 50%;
-  margin-left: -100%/2;
-  /* Use half of the width to center the tooltip */
+  margin-left: -120px;
+  /* Use half of the width(240/2 = 120),to center the tooltip */
 }
 
-/* line 62, ../sass/base/_infowindow.scss */
+/* line 63, ../sass/base/_infowindow.scss */
 .infowindow.top::after {
   top: 100%;
   /* At the bottom of the tooltip */
@@ -12122,7 +12122,7 @@ fieldset.submit-entry {
   border-color: black transparent transparent transparent;
 }
 
-/* line 69, ../sass/base/_infowindow.scss */
+/* line 70, ../sass/base/_infowindow.scss */
 .infowindow.bottom {
   width: 100%;
   top: 100%;
@@ -12131,7 +12131,7 @@ fieldset.submit-entry {
   /* Use half of the width to center the tooltip */
 }
 
-/* line 76, ../sass/base/_infowindow.scss */
+/* line 77, ../sass/base/_infowindow.scss */
 .infowindow.bottom::after {
   bottom: 100%;
   /* At the top of the window */
@@ -13260,7 +13260,7 @@ img.widget-promo-image {
 .app-entry-online .app-entry-cat .app-entry-btn .btn {
   margin: 20px 0 0 0;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) and (orientation: landscape) {
   /* line 134, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry {
     border: 0;
@@ -13290,16 +13290,31 @@ img.widget-promo-image {
   .app-entry-online .widget-entry .widget-entry-in .widget-title {
     text-align: center;
   }
-  /* line 156, ../sass/base/_apps.scss */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) and (max-width: 1200px) and (min-width: 1024px) {
+  /* line 153, ../sass/base/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .widget-title {
+    max-width: 170px;
+    white-space: nowrap;
+    /* force single line */
+    overflow: hidden;
+    /* don't show excess chars */
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    /* Opera */
+  }
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 161, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
     width: 100%;
     float: none;
   }
-  /* line 160, ../sass/base/_apps.scss */
+  /* line 165, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
     text-align: center;
   }
-  /* line 163, ../sass/base/_apps.scss */
+  /* line 168, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
     margin: 5px 0 0 0;
   }
@@ -13307,12 +13322,12 @@ img.widget-promo-image {
 
 /* Apps instances
 -------------------------------------------------- */
-/* line 177, ../sass/base/_apps.scss */
+/* line 182, ../sass/base/_apps.scss */
 #apps_instances .accordion-entry {
   background-color: #FFFFFF;
   margin: 0;
 }
-/* line 181, ../sass/base/_apps.scss */
+/* line 186, ../sass/base/_apps.scss */
 #apps_instances .accordion-entry .accordion-entry-title {
   font-size: 100%;
   margin: 0;
@@ -13320,35 +13335,35 @@ img.widget-promo-image {
   font-weight: bold;
 }
 
-/* line 191, ../sass/base/_apps.scss */
+/* line 196, ../sass/base/_apps.scss */
 .instance-entry-single .app-row-report {
   border-bottom: 0;
   border-top: 0;
 }
 
-/* line 198, ../sass/base/_apps.scss */
+/* line 203, ../sass/base/_apps.scss */
 .instance-entry-multiple .app-row-report {
   border-top: 0;
 }
-/* line 202, ../sass/base/_apps.scss */
+/* line 207, ../sass/base/_apps.scss */
 .instance-entry-multiple .app-row-report .report-body {
   padding: 0 0 0 32px;
 }
-/* line 206, ../sass/base/_apps.scss */
+/* line 211, ../sass/base/_apps.scss */
 .instance-entry-multiple .report-entry {
   border-bottom: 0;
 }
 
 /* App detail
 -------------------------------------------------- */
-/* line 213, ../sass/base/_apps.scss */
+/* line 218, ../sass/base/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 213, ../sass/base/_apps.scss */
+  /* line 218, ../sass/base/_apps.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -13357,29 +13372,29 @@ img.widget-promo-image {
   }
 }
 
-/* line 222, ../sass/base/_apps.scss */
+/* line 227, ../sass/base/_apps.scss */
 .app-image-detail {
   max-width: 128px;
   max-height: 128px;
 }
 
-/* line 228, ../sass/base/_apps.scss */
+/* line 233, ../sass/base/_apps.scss */
 .app-detail-body {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 228, ../sass/base/_apps.scss */
+  /* line 233, ../sass/base/_apps.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 }
-/* line 233, ../sass/base/_apps.scss */
+/* line 238, ../sass/base/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
-/* line 238, ../sass/base/_apps.scss */
+/* line 243, ../sass/base/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #cccccc;
   margin: 10px 0 0 0;
@@ -13388,20 +13403,20 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 246, ../sass/base/_apps.scss */
+/* line 251, ../sass/base/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #0d0d0d;
 }
-/* line 250, ../sass/base/_apps.scss */
+/* line 255, ../sass/base/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 257, ../sass/base/_apps.scss */
+/* line 262, ../sass/base/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -13409,7 +13424,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 263, ../sass/base/_apps.scss */
+/* line 268, ../sass/base/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -13417,7 +13432,7 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 274, ../sass/base/_apps.scss */
+/* line 279, ../sass/base/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
