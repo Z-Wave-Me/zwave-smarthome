@@ -1,7 +1,12 @@
 
 <!-- Elements list -->
-<div class="app-row app-row-widget app-row-element clearfix">
+<div class="app-row app-row-widget app-row-element clearfix"
+     sv-root sv-part="dataHolder.devices.collection"
+     sv-on-start="dragDropStart($item, $part, $index, $helper)"
+     sv-on-sort="dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)">
+    <div sv-placeholder class="dd-placeholder dd-element">&nbsp;</div>
     <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}"
+         sv-element
          ng-class="{'widget-success': v.isNew}"
         ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
        <!-- ng-repeat="v in dataHolder.devices.collection track by v.id">-->
@@ -10,8 +15,9 @@
             <span class="widget-loader"></span>
              <!-- Widget icon -->
             <div class="widget-img" title="{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}">
-                <img class="widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
-                <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
+                <img class="widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}} dd-handle" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1"
+                     draggable="false" ondragstart="return false;" sv-handle />
+                <img class="widget-preview-img img-circle dd-handle" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" draggable="false" ondragstart="return false;" sv-handle />
             </div>
 
             <!-- Widget header -->
