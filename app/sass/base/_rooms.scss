@@ -59,9 +59,13 @@ $room-card-border-color: #ccc;
         color: lighten($room-card-color, 30%);
         font-size: 180%;
         padding: 0 0 0 $spacing;
+
         @include mediaQueries(min-small) {
           font-size: 140%;
           padding: 0 0 0 $spacing-half;
+        }
+        &:hover{
+          text-decoration: none;
         }
       }
 

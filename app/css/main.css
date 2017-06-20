@@ -12310,79 +12310,6 @@ http://codepen.io/MattIn4D/pen/LiKFC
     transform: rotate(360deg);
   }
 }
-/* Meter
-https://css-tricks.com/css3-progress-bars/
--------------------------------------------------- */
-/* line 4, ../sass/base/_meter.scss */
-.meter {
-  height: 40px;
-  /* Can be anything */
-  position: relative;
-}
-
-/* line 10, ../sass/base/_meter.scss */
-.meter > span {
-  display: block;
-  height: 100%;
-  background-color: #2bc253;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #2bc253), color-stop(1, #54f054));
-  background-image: -moz-linear-gradient(center bottom, #2bc253 37%, #54f054 69%);
-  position: relative;
-  overflow: hidden;
-}
-
-/* line 29, ../sass/base/_meter.scss */
-.meter > span:after, .animate > span > span {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(0.25, rgba(255, 255, 255, 0.2)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.75, rgba(255, 255, 255, 0.2)), color-stop(0.75, transparent), to(transparent));
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-  z-index: 1;
-  -webkit-background-size: 50px 50px;
-  -moz-background-size: 50px 50px;
-  -webkit-animation: move 2s linear infinite;
-  overflow: hidden;
-}
-
-/* line 60, ../sass/base/_meter.scss */
-.animate > span:after {
-  display: none;
-}
-
-@-webkit-keyframes move {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 50px 50px;
-  }
-}
-/* line 73, ../sass/base/_meter.scss */
-.orange > span {
-  background-color: #f1a165;
-  background-image: -moz-linear-gradient(top, #f1a165, #f36d0a);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f1a165), color-stop(1, #f36d0a));
-  background-image: -webkit-linear-gradient(#f1a165, #f36d0a);
-}
-
-/* line 80, ../sass/base/_meter.scss */
-.red > span {
-  background-color: #f0a3a3;
-  background-image: -moz-linear-gradient(top, #f0a3a3, #f42323);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f0a3a3), color-stop(1, #f42323));
-  background-image: -webkit-linear-gradient(#f0a3a3, #f42323);
-}
-
-/* line 87, ../sass/base/_meter.scss */
-.nostripes > span > span, .nostripes > span:after {
-  -webkit-animation: none;
-  background-image: none;
-}
-
 /* Alert
 -------------------------------------------------- */
 /* line 3, ../sass/base/_alert.scss */
@@ -13713,7 +13640,11 @@ img.widget-promo-image {
     padding: 0 0 0 5px;
   }
 }
-/* line 70, ../sass/base/_rooms.scss */
+/* line 67, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-header .card-header-icon:hover {
+  text-decoration: none;
+}
+/* line 74, ../sass/base/_rooms.scss */
 .card-room .card-room-in .bcg-img {
   display: block;
   top: 0;
@@ -13727,14 +13658,14 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 70, ../sass/base/_rooms.scss */
+  /* line 74, ../sass/base/_rooms.scss */
   .card-room .card-room-in .bcg-img {
     position: static;
     text-align: center;
     height: 170px;
   }
 }
-/* line 91, ../sass/base/_rooms.scss */
+/* line 95, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content {
   margin: 0;
   position: absolute;
@@ -13745,13 +13676,13 @@ img.widget-promo-image {
   /* Card Title */
 }
 @media only screen and (min-width: 768px) {
-  /* line 91, ../sass/base/_rooms.scss */
+  /* line 95, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-content {
     position: static;
     margin: 20px 0 0 0;
   }
 }
-/* line 102, ../sass/base/_rooms.scss */
+/* line 106, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title {
   height: 50%;
   opacity: 0.8;
@@ -13761,19 +13692,19 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 102, ../sass/base/_rooms.scss */
+  /* line 106, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-content .card-title {
     padding: 0;
     text-align: center;
   }
 }
-/* line 112, ../sass/base/_rooms.scss */
+/* line 116, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 {
   font-size: 115%;
   padding: 0;
   margin: 0;
 }
-/* line 116, ../sass/base/_rooms.scss */
+/* line 120, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 a {
   color: #000000;
   font-weight: bold;
@@ -13781,11 +13712,11 @@ img.widget-promo-image {
 
 /* Rooms without device
 -------------------------------------------------- */
-/* line 130, ../sass/base/_rooms.scss */
+/* line 134, ../sass/base/_rooms.scss */
 .room-no-device .room-link {
   cursor: text !important;
 }
-/* line 133, ../sass/base/_rooms.scss */
+/* line 137, ../sass/base/_rooms.scss */
 .room-no-device .room-img {
   opacity: 0.7;
   filter: alpha(opacity=70);
@@ -13793,7 +13724,7 @@ img.widget-promo-image {
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-/* line 141, ../sass/base/_rooms.scss */
+/* line 145, ../sass/base/_rooms.scss */
 .room-no-device .card-title h3 a {
   font-weight: normal !important;
   color: #1a1a1a !important;
@@ -13804,7 +13735,7 @@ img.widget-promo-image {
 /* Elements in Rooms
 -------------------------------------------------- */
 /* Background with image */
-/* line 154, ../sass/base/_rooms.scss */
+/* line 158, ../sass/base/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -13814,7 +13745,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 163, ../sass/base/_rooms.scss */
+/* line 167, ../sass/base/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: absolute;
   top: 0;
@@ -13828,7 +13759,7 @@ img.widget-promo-image {
 }
 
 /* Header */
-/* line 177, ../sass/base/_rooms.scss */
+/* line 181, ../sass/base/_rooms.scss */
 .elemnts-room-bar {
   background-color: #FFFFFF;
   border: solid 1px #ccc;
@@ -13837,7 +13768,7 @@ img.widget-promo-image {
 
 /* Images
 -------------------------------------------------- */
-/* line 185, ../sass/base/_rooms.scss */
+/* line 189, ../sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
