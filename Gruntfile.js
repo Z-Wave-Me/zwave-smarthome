@@ -113,7 +113,6 @@ module.exports = function (grunt) {
                     'app/controllers/zwave-inclusion.js',
                     'app/controllers/zwave-manage.js',
                     'app/controllers/zwave-vendor.js',
-                    'app/controllers/camera.js',
                     'app/controllers/enocean.js',
                     'app/controllers/room.js',
                     'app/controllers/management.js',
