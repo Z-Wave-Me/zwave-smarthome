@@ -4,7 +4,28 @@
     <!-- Filter -->
     <!--<pre>{{dataHolder.devices.filter|json}}</pre>-->
     <div class="page-control form-inline">
-        <div class="btn-group btn-goup-block btn-goup-3">
+        <!-- Mode switch -->
+        <div class="form-group">
+            dataHolder.mode: {{dataHolder.mode}}
+            <label>
+                <input type="checkbox" name="elements_mode"
+                       ng-true-value="edit" ng-false-value="default"
+                       ng-change="changeMode(dataHolder.mode)"
+                       ng-model="dataHolder.mode"
+                       ng-checked="dataHolder.mode === 'edit'">
+                Edit mode
+            </label>
+        </div>
+        <div class="btn-group btn-goup-block btn-goup-1" ng-if="dataHolder.mode === 'edit'">
+            <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit"
+                    ng-click="dragDropSave()"
+            ng-disabled="_.isEmpty(dataHolder.dragdrop.data)">
+                <i class="fa fa-check"></i>
+                <span class="btn-name" ng-bind="_t('lb_save')"></span>
+            </button>
+        </div>
+
+        <div class="btn-group btn-goup-block btn-goup-3" ng-if="dataHolder.mode === 'default'">
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)"
                     ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':''">
                 <i class="fa fa-filter"></i>
@@ -26,7 +47,10 @@
         </div>
 
         <!-- Search and autocomplete -->
-        <form id="form_search" class="input-group" ng-submit="setFilter({q: autocomplete.term})" autocomplete="off" novalidate>
+        <form id="form_search" class="input-group"
+              ng-if="dataHolder.mode === 'default'"
+              ng-submit="setFilter({q: autocomplete.term})"
+              autocomplete="off" novalidate>
         <!-- Input -->
             <input id="input_search" type="text" focus="{{dataHolder.devices.filter.q}}"
                    class="form-control"
@@ -55,6 +79,7 @@
                 </ul>
             </div>
         </form>
+
     </div>
     <!-- Page subnavi  categories -->
     <div class="page-navi" ng-if="naviExpanded.elCategories">
@@ -125,6 +150,6 @@
     </div>
     <!-- Device list -->
     <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
-        <div ng-include="'app/views/elements/list.html'"></div>
+        <div ng-include="'app/views/elements/list_drag_drop.html'"></div>
     </div>
 </div> <!-- /ng-controller --> 

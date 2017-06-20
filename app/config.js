@@ -126,7 +126,8 @@ var config_data = {
             'configupdate_url': 'ZWaveAPI/ExpertConfigUpdate',
             'time_zone': 'ZAutomation/api/v1/system/timezone',
             'get_pulse_trains': 'RF433API/GetPulseTrains',
-            'send_pulse_train': 'RF433API/Send'
+            'send_pulse_train': 'RF433API/Send',
+            'reorder': 'ZAutomation/api/v1/devices/reorder'
         },
         // List of remote api URLs
         'api_remote': {

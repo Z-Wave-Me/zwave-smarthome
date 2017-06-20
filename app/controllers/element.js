@@ -9,6 +9,7 @@
  */
 myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService, myCache) {
     $scope.dataHolder = {
+        mode: 'default',
         firstLogin: false,
         cnt: {
             devices: 0,
@@ -33,6 +34,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
             showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
             notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
+        },
+        dragdrop:{
+            action: $scope.getBodyId(),
+            data: []
         }
     };
     $scope.apiDataInterval = null;
@@ -52,30 +57,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.apiDataInterval);
     });
-
-    /**
-     * Load notifications
-     */
-    /*$scope.loadNotifications = function () {
-        // Attempt to recieve cached data
-        var cached = myCache.get('device_notifications');
-        if(cached){
-            $scope.dataHolder.devices.notifications = cached;
-            return;
-        }
-        // Data from api
-        var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
-        dataFactory.getApi('notifications', since, true).then(function (response) {
-            console.log(response.data.data.notifications)
-            $scope.dataHolder.devices.notifications =  _.countBy(response.data.data.notifications, function (v) {
-                return v.source;
-            });
-            myCache.put('device_notifications', $scope.dataHolder.devices.notifications);
-        }, function (error) {
-        });
-    };;
-    $scope.loadNotifications();*/
-
 
     /**
      * Load all promises
@@ -186,6 +167,14 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     }
 
     /**
+     * Change view mode
+     * @param {string} mode
+     */
+    $scope.changeMode = function (mode) {
+        $scope.setFilter(false);
+    }
+
+    /**
      * Set filter
      */
     $scope.setFilter = function (filter) {
@@ -251,21 +240,33 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param indexTo -  is the index of the $item in $partTo
      */
     $scope.dragDropSort = function (item, partFrom, partTo, indexFrom, indexTo) {
-        //console.log(item)
-        var element = {
-            id: item.id,
-            indexFrom: indexFrom,
-            indexTo: indexTo
-        }
-        var result = [];
+        $scope.dataHolder.dragdrop.data = [];
         angular.forEach(partFrom, function (v, k) {
-            var obj = {id: v.id, position: k};
-            result.push(obj);
+            $scope.dataHolder.dragdrop.data.push(v.id);
 
         });
-        console.log(element)
-        console.log(result)
 
+
+    }
+
+    /**
+     * Save drag and drop object
+     */
+    $scope.dragDropSave = function () {
+        console.log($scope.dataHolder.dragdrop)
+        /*if(_.isEmpty($scope.dataHolder.dragdrop.data)){
+            return;
+        }*/
+
+        dataFactory.putApi('reorder',false, $scope.dataHolder.dragdrop).then(function (response) {
+            $scope.dataHolder.dragdrop.data = [];
+            /*$scope.loading = false;
+             $scope.reloadData();*/
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+            $scope.dataHolder.dragdrop.data = [];
+        });
     }
 
     /**
