@@ -70,14 +70,6 @@ name | overview
 - - -
 
 
-app/expertui
----
-name | overview
-:-- | :--
-[app\expertui\services.js](app/expertui/services.md) | _Common functions that are used within device hardware configuration_
-- - -
-
-
 app/factories
 ---
 name | overview
