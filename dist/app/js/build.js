@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 20-06-2017 11:38:33 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 20-06-2017 12:19:55 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -10226,6 +10226,6793 @@ if("undefined"==typeof jQuery)throw new Error("Bootstrap's JavaScript requires j
 }));
 
 /**
+ * @overview Functions used to render the configuration arrays.
+ * @author Unknown
+ */
+
+/**
+ * Device filter for device select menu
+ * @param {object} ZWaveAPIData
+ * @param {string} span
+ * @param {string} dev
+ * @param {string} type
+ * @returns {Boolean}
+ */
+function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
+	// return true means to skip this node
+	switch(type) {
+		case 'srcnode':
+			// allow everything, since events can come from any device via timed_event
+			return false;
+
+			// skip virtual, controller or broadcast as event source
+			//return ( (ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value || dev == 255));
+
+		case 'dstnode':
+			// skip not virtual, not controller and not broadcast as event destination
+			return (!(ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value || dev == 255));
+
+		case 'device':
+			return ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value;
+
+		case 'node':
+			// skip non-FLiRS sleeping in list of associations/wakeup node notifications/... in CC params of type node
+			return (!ZWaveAPIData.devices[dev].data.isListening.value && !ZWaveAPIData.devices[dev].data.sensor250.value && !ZWaveAPIData.devices[dev].data.sensor1000.value);
+
+		default:
+			return false;
+	}
+};
+
+/**
+ * Returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
+ * @param {object} ZWaveAPIData
+ * @param {object} method
+ * @returns {Array}
+ */
+function method_defaultValues(ZWaveAPIData,method) {
+     
+	function method_defaultValue(val) {
+		if ('enumof' in val['type']) {
+			if (val['type']['enumof'][0])
+				return method_defaultValue(val['type']['enumof'][0]); // take first item of enumof
+			else
+				return null;
+		}
+		if ('range' in val['type'])
+			return val['type']['range']['min'];
+		if ('fix' in val['type'])
+			return val['type']['fix']['value'];
+		if ('string' in val['type'])
+			return "";
+		if ('node' in val['type'])
+			for (var dev in ZWaveAPIData.devices) {
+				if (devices_htmlSelect_filter(ZWaveAPIData,null,dev,'node')) {
+					continue;
+				};
+				return parseInt(dev);
+			};
+		alert('method_defaultValue: unknown type of value');
+	};
+
+	var parameters = [];
+//	method.forEach(function(val,parameter_index){
+//		parameters[parameter_index] = method_defaultValue(val);
+//	});
+        angular.forEach(method,function(val,parameter_index){
+		parameters[parameter_index] = method_defaultValue(val);
+	});
+       
+	return parameters;
+};
+
+/**
+ * Represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
+ * @param {array} arr
+ * @returns {String}
+ */
+function repr_array(arr) {
+	var repr='';
+	for (var indx in arr) {
+		if (repr != '')
+			repr += ',';
+		switch (typeof(arr[indx])) {
+			case 'number':
+				repr += arr[indx].toString();
+				break;
+			case 'string':
+				repr += "'" + arr[indx].replace(/'/g, "\'") + "'"; // " // just for joe to hilight syntax properly
+				break;
+			case 'object':
+				repr += '[' + repr_array(arr[indx]) + ']';
+				break;
+			default:
+				if (arr[indx] === null)
+					repr += 'null'; // for null object
+				else
+					error_msg('Unknown type of parameter: ' + typeof(arr[indx]));
+		}
+	};
+
+	return repr;
+};
+
+/**
+ * Array unique
+ * @param {array} arr
+ * @returns {Array}
+ */
+function array_unique(arr) {
+	var newArray = new Array();
+
+	label:for (var i=0; i<arr.length;i++ ) {  
+		for (var j=0; j<newArray.length;j++ )
+			if (newArray[j] == arr[i]) 
+				continue label;
+		newArray[newArray.length] = arr[i];
+	}
+	return newArray;
+};
+/**
+ * @overview Functions used to render the configuration JSON.
+ * @author Unknown
+ */
+var _methods_specs_rendered = null;
+/**
+ * Get method spec
+ * @param {object} ZWaveAPIData
+ * @param {string} devId
+ * @param {string} instId
+ * @param {string} ccId
+ * @param {string} method
+ * @returns {getMethodSpec.methods}
+ */
+function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
+	if (_methods_specs_rendered === null)
+        renderAllMethodSpec(ZWaveAPIData);
+	
+	try {
+		if (!(devId in _methods_specs_rendered))
+			_methods_specs_rendered[devId] = {};
+		if (!(instId in _methods_specs_rendered[devId]))
+			_methods_specs_rendered[devId][instId] = {};
+		if (!(ccId in _methods_specs_rendered[devId][instId]))
+			 _methods_specs_rendered[devId][instId][ccId] = renderMethodSpec(parseInt(ccId, 10), ZWaveAPIData.devices[devId].instances[instId].commandClasses[ccId].data);
+
+		var methods = _methods_specs_rendered[devId][instId][ccId];
+		if (method)
+			return methods[method];
+		else
+			return methods;
+	} catch(err) {
+		return null;
+	}
+}
+/**
+ * Renders all method spec
+ * @param {object} ZWaveAPIData
+ * @returns {undefined}
+ */
+function renderAllMethodSpec(ZWaveAPIData) {
+	_methods_specs_rendered = {};
+	
+	for (var devId in ZWaveAPIData.devices) {
+		_methods_specs_rendered[devId] = {};
+		for (var instId in ZWaveAPIData.devices[devId].instances) {
+			_methods_specs_rendered[devId][instId] = {};
+			for (var ccId in ZWaveAPIData.devices[devId].instances[instId].commandClasses) {
+				_methods_specs_rendered[devId][instId][ccId] = renderMethodSpec(parseInt(ccId, 10), ZWaveAPIData.devices[devId].instances[instId].commandClasses[ccId].data);
+			}
+		}
+	}
+}
+/**
+ * Renders method spec
+ * @param {string} ccId
+ * @param {object} data
+ * @returns {object}
+  */
+function renderMethodSpec(ccId, data) {
+	switch (ccId) {
+
+		// PowerLevel
+		case 0x73:
+			return {
+				"Get": [],
+				"TestNodeGet": [],
+
+
+
+				"TestNodeSet": [
+					{
+						"label": "Node ID",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 232
+							}
+						}
+					},
+
+					{			
+						"label": "PowerLevel",
+						"type": {
+							"enumof": [
+								{
+									"label": "-9dbm ", "type":{
+										"fix": 	{
+											"value": 9
+										}
+									}
+								},
+								{
+									"label": "-8dbm ", "type":{
+										"fix": 	{
+											"value": 8
+										}
+									}
+								},
+								{
+									"label": "-7dbm ", "type":{
+										"fix": 	{
+											"value": 7
+										}
+									}
+								},
+								{
+									"label": "-6dbm ", "type":{
+										"fix": 	{
+											"value": 6
+										}
+									}
+								},
+								{
+									"label": "-5dbm ", "type":{
+										"fix": 	{
+											"value": 5
+										}
+									}
+								},
+								{
+									"label": "-4dbm ", "type":{
+										"fix": 	{
+											"value": 4
+										}
+									}
+								},
+								{
+									"label": "-3dbm ", "type":{
+										"fix": 	{
+											"value": 3
+										}
+									}
+								},
+								{
+									"label": "-2dbm ", "type":{
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "-1dbm ", "type":{
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Normal ", "type":{
+										"fix": 	{
+											"value": 0
+										}
+									}
+								}
+							]
+						}				
+					},
+					{				
+						"label": "Number of pakets",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 1000
+							}
+						}					
+					
+					}
+				],
+
+
+				
+				"Set":[
+					{
+						"label": "PowerLevel",
+						"type": {
+							"enumof": [
+								{
+									"label": "-9dbm ", "type":{
+										"fix": 	{
+											"value": 9
+										}
+									}
+								},
+								{
+									"label": "-8dbm ", "type":{
+										"fix": 	{
+											"value": 8
+										}
+									}
+								},
+								{
+									"label": "-7dbm ", "type":{
+										"fix": 	{
+											"value": 7
+										}
+									}
+								},
+								{
+									"label": "-6dbm ", "type":{
+										"fix": 	{
+											"value": 6
+										}
+									}
+								},
+								{
+									"label": "-5dbm ", "type":{
+										"fix": 	{
+											"value": 5
+										}
+									}
+								},
+								{
+									"label": "-4dbm ", "type":{
+										"fix": 	{
+											"value": 4
+										}
+									}
+								},
+								{
+									"label": "-3dbm ", "type":{
+										"fix": 	{
+											"value": 3
+										}
+									}
+								},
+								{
+									"label": "-2dbm ", "type":{
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "-1dbm ", "type":{
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Normal ", "type":{
+										"fix": 	{
+											"value": 0
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Timeout (s)",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+
+
+	
+		//SwitchColor
+		case 0x33:
+			return {
+				"Get": [
+				       {
+						"label": "Color Capability",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].capabilityString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				],
+				"Set": [
+				       {
+						"label": "Color Capability",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].capabilityString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					},
+					{
+						"label": "Value",
+						"type": {
+							"range": {
+								"min": 	0,
+								"max": 	255
+							}
+						}
+					}
+				],
+				"StartStateChange": [
+					{
+						"label": "Color Capability",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].capabilityString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					},
+					{
+						"label": "Direction",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					},													
+				],
+				"StopStateChange": [
+					{
+						"label": "Color Capability",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].capabilityString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}								
+				]
+			};
+ 
+
+		// Schedule (incomplete)
+		case 0x53:
+			return {
+				"Get": [
+					{
+						"label": "Id",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+		
+		// AssociationGroupInformation
+		case 0x59:
+			return {
+ 
+				"GetName": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"GetInfo": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"GetCommands": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+
+		// ZWavePlusInfo
+		case 0x5e:
+			return {
+				"Get": []
+			};
+		
+		case 0x85:
+			return {
+				"GroupingsGet": [],
+				"Get": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"node": {
+							}
+						}
+					}
+				],
+				"Remove": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+	
+		// Version
+		case 0x86:
+			return {
+				/*
+				Version is not publically exported in Z-Way.C
+
+				"CommandClassVersionGet": [
+					{
+						"label":"CommandClass",
+						"type":	{
+							"range":	{
+								"min":	0x0001,
+								"max":	0xFFFF
+							}
+						}
+					}
+				]
+				*/
+			};
+
+		// UserCode
+		case 0x63:
+			return {
+				"Get": [
+					{
+						"label": "User",
+						"type":	{
+							"range": {
+								"min": 	0,
+								"max": 	99
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "User",
+						"type": {
+							"enumof": [
+								{
+									"label": "All usercodes",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Id",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 	99
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Code (4...10 Digits)",
+						"type": {
+							"string": {
+							}
+						}
+					},
+					{
+						"label": "Mode",
+						"type": {
+							"enumof": [
+								{
+									"label": "Not Set",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Set",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Reserved",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+			
+		// Time Parameters
+		case 0x8B:
+			return {
+				"Get": [],
+				"Set": []
+			};
+			
+		// Thermostat SetPoint
+		case 0x43:
+			return {
+				"Get": [
+				       {
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].modeName.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				],
+				"Set": [
+				       {
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].modeName.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					},
+					{
+						"label": "Value",
+						"type": {
+							"range": {
+								"min": 	0,
+								"max": 	100
+							}
+						}
+					}
+				]
+			};
+
+		// Wakeup	
+		case 0x84:
+			return {
+				"Get": [],
+				"CapabilitiesGet": [],
+				"Set": [
+				       {
+						"label": "Wakeup time, seconds",
+						"type": {
+							"range": {
+								"min": 	(
+									function() {
+										try {
+											if (data.version.value >= 2 && data.min.value !== null)
+												return data.min.value;
+										} catch(err) {}
+										return 0;
+									}
+									)(),
+								"max": 	(
+									function() {
+										try {
+											if (data.version.value >= 2 && data.max.value !== null)
+												return data.max.value;
+										} catch(err) {}
+										return 256 * 256 * 256 - 1;
+									}
+									)()
+							}
+						}
+					},
+					{
+						"label": "to Node",
+						"type": {
+							"node": {}
+						}
+					}
+				],
+				"Sleep": []
+			};
+
+		// Time
+		case 0x8A:
+			return {
+				"TimeGet": [],
+				"DateGet": []
+			};
+
+		// ThermostatMode
+		case 0x40:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].modeName.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				]
+			};
+
+		// ThermostatFanMode
+		case 0x44:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].modeName.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				]
+			};
+
+		// ThermostatFanState
+		case 0x45: 
+			return {
+				"Get": []
+			};
+
+		// ThermostatOperatingState
+		case 0x42:
+			return {
+				"Get": [],
+				"LoggingGet" : [
+					{
+						"label": "States (bitmask)",
+						"type": {
+							"range": {
+								"min": 1,
+								"max": 99
+							}
+						}
+					}
+				]
+			};
+
+		// SwitchMultilevel
+		case 0x26:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Dimmer level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "%",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 99
+										}
+									}
+								},
+								{
+									"label": "Full",
+									"type": {
+										"fix": 	{
+											"value": 99
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StartLevelChange": [
+				       {
+						"label": "Direction",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					},
+				],
+				"StopLevelChange": [],
+				"SetWithDuration": [
+					{
+						"label": "Dimmer level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "%",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 99
+										}
+									}
+								},
+								{
+									"label": "Full",
+									"type": {
+										"fix": 	{
+											"value": 99
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Duration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+									"fix": 	{
+										"value": 0
+										}
+									}
+								},
+									{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+									{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+											"shift": 127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StartLevelChangeWithDurationV2": [
+					{
+						"label": "Direction",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Duration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+								{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+										"shift": 	127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"SetMotorA": [
+					{
+						"label": "Status",
+						"type": {
+							"enumof": [
+								{
+									"label": "Close",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Open",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StartLevelChangeMotorA": [
+					{
+						"label": "Start Move",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StopLevelChangeMotorA": [],
+				"SetMotorB": [
+					{
+						"label": "Blind Position",
+						"type": {
+							"enumof": [
+								{
+									"label": "Close",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "%",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 99
+										}
+									}
+								},
+								{
+									"label": "Open",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								},
+								]
+						}
+					}
+				],
+				"StartLevelChangeMotorB": [
+					{
+						"label": "Start Move",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"StopLevelChange": []
+			};
+
+		// SwtichBinary
+		case 0x25:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// SimpleAV
+		case 0x94:
+			return {
+				"SetEmpty": [
+					{
+						"label": "Key attribute",
+						"type": {
+							"enumof": [
+								{
+									"label": "Key Down",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Key Up",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Key Alive",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								]
+						}
+					},
+					{
+						"label": "Media item",
+						"type": {
+							"enumof": [
+								{
+									"label": "No",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "ID",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 0
+										}
+									}
+								},
+								]
+						}
+					},
+					{
+						"label": "Button",
+						"type": {
+							"enumof": []
+						}
+					},
+				],
+				"SetFull": [
+					{
+						"label": "Mute",
+						"type": {
+							"fix": 	{
+								"value": 0x0001
+							}
+						}
+					},
+					{
+						"label": "Volume down",
+						"type": {
+							"fix": 	{
+								"value": 0x0002
+							}
+						}
+					},
+					{
+						"label": "Volume up",
+						"type": {
+							"fix": 	{
+								"value": 0x0003
+									}
+								}
+							},
+							{
+						"label": "Channel up",
+						"type": {
+							"fix": 	{
+								"value": 0x0004
+							}
+						}
+					},
+					{
+						"label": "Channel down",
+						"type": {
+							"fix": 	{
+								"value": 0x0005
+							}
+						}
+					},
+					{
+						"label": "0",
+						"type": {
+							"fix": 	{
+								"value": 0x0006
+							}
+						}
+					},
+					{
+						"label": "1",
+						"type": {
+							"fix": 	{
+								"value": 0x0007
+							}
+						}
+					},
+					{
+						"label": "2",
+						"type": {
+							"fix": 	{
+								"value": 0x0008
+							}
+						}
+					},
+					{
+						"label": "3",
+						"type": {
+							"fix": 	{
+								"value": 0x0009
+							}
+						}
+					},
+					{
+						"label": "4",
+						"type": {
+							"fix": 	{
+								"value": 0x000A
+							}
+						}
+					},
+					{
+						"label": "5",
+						"type": {
+							"fix": 	{
+								"value": 0x000B
+							}
+						}
+					},
+					{
+						"label": "6",
+						"type": {
+							"fix": 	{
+								"value": 0x000C
+							}
+						}
+					},
+					{
+						"label": "7",
+						"type": {
+							"fix": 	{
+								"value": 0x000D
+							}
+						}
+					},
+					{
+						"label": "8",
+						"type": {
+							"fix": 	{
+								"value": 0x000E
+							}
+						}
+					},
+					{
+						"label": "9",
+						"type": {
+							"fix": 	{
+								"value": 0x000F
+							}
+						}
+					},
+					{
+						"label": "Last channel",
+						"type": {
+							"fix": 	{
+								"value": 0x0010
+							}
+						}
+					},
+					{
+						"label": "Display",
+						"type": {
+							"fix": 	{
+								"value": 0x0011
+							}
+						}
+					},
+					{
+						"label": "Favorite channel",
+						"type": {
+							"fix": 	{
+								"value": 0x0012
+							}
+						}
+					},
+					{
+						"label": "Play",
+						"type": {
+							"fix": 	{
+								"value": 0x0013
+							}
+						}
+					},
+					{
+						"label": "Stop",
+						"type": {
+							"fix": 	{
+								"value": 0x0014
+							}
+						}
+					},
+					{
+						"label": "Pause",
+						"type": {
+							"fix": 	{
+								"value": 0x0015
+							}
+						}
+					},
+					{
+						"label": "Fast forward",
+						"type": {
+							"fix": 	{
+								"value": 0x0016
+							}
+						}
+					},
+					{
+						"label": "Rewind",
+						"type": {
+							"fix": 	{
+								"value": 0x0017
+							}
+						}
+					},
+					{
+						"label": "Instant replay",
+						"type": {
+							"fix": 	{
+								"value": 0x0018
+							}
+						}
+					},
+					{
+						"label": "Record",
+						"type": {
+							"fix": 	{
+								"value": 0x0019
+							}
+						}
+					},
+					{
+						"label": "AC3",
+						"type": {
+							"fix": 	{
+								"value": 0x001A
+							}
+						}
+					},
+					{
+						"label": "PVR menu",
+						"type": {
+							"fix": 	{
+								"value": 0x001B
+							}
+						}
+					},
+					{
+						"label": "Guide",
+						"type": {
+							"fix": 	{
+								"value": 0x001C
+							}
+						}
+					},
+					{
+						"label": "Menu",
+						"type": {
+							"fix": 	{
+								"value": 0x001D
+							}
+						}
+					},
+					{
+						"label": "Menu up",
+						"type": {
+							"fix": 	{
+								"value": 0x001E
+							}
+						}
+					},
+					{
+						"label": "Menu down",
+						"type": {
+							"fix": 	{
+								"value": 0x001F
+							}
+						}
+					},
+					{
+						"label": "Menu left",
+						"type": {
+							"fix": 	{
+								"value": 0x0020
+							}
+						}
+					},
+					{
+						"label": "Menu right",
+						"type": {
+							"fix": 	{
+								"value": 0x0021
+							}
+						}
+					},
+					{
+						"label": "Page up",
+						"type": {
+							"fix": 	{
+								"value": 0x0022
+							}
+						}
+					},
+					{
+						"label": "Page down",
+						"type": {
+							"fix": 	{
+								"value": 0x0023
+							}
+						}
+					},
+					{
+						"label": "Select",
+						"type": {
+							"fix": 	{
+								"value": 0x0024
+							}
+						}
+					},
+					{
+						"label": "Exit",
+						"type": {
+							"fix": 	{
+								"value": 0x0025
+							}
+						}
+					},
+					{
+						"label": "Input",
+						"type": {
+							"fix": 	{
+								"value": 0x0026
+							}
+						}
+					},
+					{
+						"label": "Power",
+						"type": {
+							"fix": 	{
+								"value": 0x0027
+							}
+						}
+					},
+					{
+						"label": "Enter channel",
+						"type": {
+							"fix": 	{
+								"value": 0x0028
+							}
+						}
+					},
+					{
+						"label": "10",
+						"type": {
+							"fix": 	{
+								"value": 0x0029
+							}
+						}
+					},
+					{
+						"label": "11",
+						"type": {
+							"fix": 	{
+								"value": 0x002A
+							}
+						}
+					},
+					{
+						"label": "12",
+						"type": {
+							"fix": 	{
+								"value": 0x002B
+							}
+						}
+					},
+					{
+						"label": "13",
+						"type": {
+							"fix": 	{
+								"value": 0x002C
+							}
+						}
+					},
+					{
+						"label": "14",
+						"type": {
+							"fix": 	{
+								"value": 0x002D
+							}
+						}
+					},
+					{
+						"label": "15",
+						"type": {
+							"fix": 	{
+								"value": 0x002E
+							}
+						}
+					},
+					{
+						"label": "16",
+						"type": {
+							"fix": 	{
+								"value": 0x002F
+							}
+						}
+					},
+					{
+						"label": "+10",
+						"type": {
+							"fix": 	{
+								"value": 0x0030
+							}
+						}
+					},
+					{
+						"label": "+20",
+						"type": {
+							"fix": 	{
+								"value": 0x0031
+							}
+						}
+					},
+					{
+						"label": "+100",
+						"type": {
+							"fix": 	{
+								"value": 0x0032
+							}
+						}
+					},
+					{
+						"label": "-/--",
+						"type": {
+							"fix": 	{
+								"value": 0x0033
+							}
+						}
+					},
+					{
+						"label": "3-CH",
+						"type": {
+							"fix": 	{
+								"value": 0x0034
+							}
+						}
+					},
+					{
+						"label": "3D",
+						"type": {
+							"fix": 	{
+								"value": 0x0035
+							}
+						}
+					},
+					{
+						"label": "6-CH input",
+						"type": {
+							"fix": 	{
+								"value": 0x0036
+							}
+						}
+					},
+					{
+						"label": "A",
+						"type": {
+							"fix": 	{
+								"value": 0x0037
+							}
+						}
+					},
+					{
+						"label": "Add",
+						"type": {
+							"fix": 	{
+								"value": 0x0038
+							}
+						}
+					},
+					{
+						"label": "Alarm",
+						"type": {
+							"fix": 	{
+								"value": 0x0039
+							}
+						}
+					},
+					{
+						"label": "AM",
+						"type": {
+							"fix": 	{
+								"value": 0x003A
+							}
+						}
+					},
+					{
+						"label": "Analog",
+						"type": {
+							"fix": 	{
+								"value": 0x003B
+							}
+						}
+					},
+					{
+						"label": "Angle",
+						"type": {
+							"fix": 	{
+								"value": 0x003C
+							}
+						}
+					},
+					{
+						"label": "Antenna",
+						"type": {
+							"fix": 	{
+								"value": 0x003D
+							}
+						}
+					},
+					{
+						"label": "Antenna east",
+						"type": {
+							"fix": 	{
+								"value": 0x003E
+							}
+						}
+					},
+					{
+						"label": "Antenna west",
+						"type": {
+							"fix": 	{
+								"value": 0x003F
+							}
+						}
+					},
+					{
+						"label": "Aspect",
+						"type": {
+							"fix": 	{
+								"value": 0x0040
+							}
+						}
+					},
+					{
+						"label": "Audio 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0041
+							}
+						}
+					},
+					{
+						"label": "Audio 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0042
+							}
+						}
+					},
+					{
+						"label": "Audio 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0043
+							}
+						}
+					},
+					{
+						"label": "Audio dubbing",
+						"type": {
+							"fix": 	{
+								"value": 0x0044
+							}
+						}
+					},
+					{
+						"label": "Audio level down",
+						"type": {
+							"fix": 	{
+								"value": 0x0045
+							}
+						}
+					},
+					{
+						"label": "Audio level up",
+						"type": {
+							"fix": 	{
+								"value": 0x0046
+							}
+						}
+					},
+					{
+						"label": "Auto/Manual",
+						"type": {
+							"fix": 	{
+								"value": 0x0047
+							}
+						}
+					},
+					{
+						"label": "Aux 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0048
+							}
+						}
+					},
+					{
+						"label": "Aux 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0049
+							}
+						}
+					},
+					{
+						"label": "B",
+						"type": {
+							"fix": 	{
+								"value": 0x004A
+							}
+						}
+					},
+					{
+						"label": "Back",
+						"type": {
+							"fix": 	{
+								"value": 0x004B
+							}
+						}
+					},
+					{
+						"label": "Background",
+						"type": {
+							"fix": 	{
+								"value": 0x004C
+							}
+						}
+					},
+					{
+						"label": "Balance",
+						"type": {
+							"fix": 	{
+								"value": 0x004D
+							}
+						}
+					},
+					{
+						"label": "Balance left",
+						"type": {
+							"fix": 	{
+								"value": 0x004E
+							}
+						}
+					},
+					{
+						"label": "Balance right",
+						"type": {
+							"fix": 	{
+								"value": 0x004F
+							}
+						}
+					},
+					{
+						"label": "Band",
+						"type": {
+							"fix": 	{
+								"value": 0x0050
+							}
+						}
+					},
+					{
+						"label": "Bandwidth",
+						"type": {
+							"fix": 	{
+								"value": 0x0051
+							}
+						}
+					},
+					{
+						"label": "Bass",
+						"type": {
+							"fix": 	{
+								"value": 0x0052
+							}
+						}
+					},
+					{
+						"label": "Bass down",
+						"type": {
+							"fix": 	{
+								"value": 0x0053
+							}
+						}
+					},
+					{
+						"label": "Bass up",
+						"type": {
+							"fix": 	{
+								"value": 0x0054
+							}
+						}
+					},
+					{
+						"label": "Blank",
+						"type": {
+							"fix": 	{
+								"value": 0x0055
+							}
+						}
+					},
+					{
+						"label": "Breeze mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0056
+							}
+						}
+					},
+					{
+						"label": "Bright",
+						"type": {
+							"fix": 	{
+								"value": 0x0057
+							}
+						}
+					},
+					{
+						"label": "Brightness",
+						"type": {
+							"fix": 	{
+								"value": 0x0058
+							}
+						}
+					},
+					{
+						"label": "Brightness down",
+						"type": {
+							"fix": 	{
+								"value": 0x0059
+							}
+						}
+					},
+					{
+						"label": "Brightness up",
+						"type": {
+							"fix": 	{
+								"value": 0x005A
+							}
+						}
+					},
+					{
+						"label": "Buy",
+						"type": {
+							"fix": 	{
+								"value": 0x005B
+							}
+						}
+					},
+					{
+						"label": "C",
+						"type": {
+							"fix": 	{
+								"value": 0x005C
+							}
+						}
+					},
+					{
+						"label": "Camera",
+						"type": {
+							"fix": 	{
+								"value": 0x005D
+							}
+						}
+					},
+					{
+						"label": "Category down",
+						"type": {
+							"fix": 	{
+								"value": 0x005E
+							}
+						}
+					},
+					{
+						"label": "Category up",
+						"type": {
+							"fix": 	{
+								"value": 0x005F
+							}
+						}
+					},
+					{
+						"label": "Center",
+						"type": {
+							"fix": 	{
+								"value": 0x0060
+							}
+						}
+					},
+					{
+						"label": "Center down",
+						"type": {
+							"fix": 	{
+								"value": 0x0061
+							}
+						}
+					},
+					{
+						"label": "Center mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0062
+							}
+						}
+					},
+					{
+						"label": "Center up",
+						"type": {
+							"fix": 	{
+								"value": 0x0063
+							}
+						}
+					},
+					{
+						"label": "Channel/Program",
+						"type": {
+							"fix": 	{
+								"value": 0x0064
+							}
+						}
+					},
+					{
+						"label": "Clear",
+						"type": {
+							"fix": 	{
+								"value": 0x0065
+							}
+						}
+					},
+					{
+						"label": "Close",
+						"type": {
+							"fix": 	{
+								"value": 0x0066
+							}
+						}
+					},
+					{
+						"label": "Closed caption",
+						"type": {
+							"fix": 	{
+								"value": 0x0067
+							}
+						}
+					},
+					{
+						"label": "Cold",
+						"type": {
+							"fix": 	{
+								"value": 0x0068
+							}
+						}
+					},
+					{
+						"label": "Color",
+						"type": {
+							"fix": 	{
+								"value": 0x0069
+							}
+						}
+					},
+					{
+						"label": "Color down",
+						"type": {
+							"fix": 	{
+								"value": 0x006A
+							}
+						}
+					},
+					{
+						"label": "Color up",
+						"type": {
+							"fix": 	{
+								"value": 0x006B
+							}
+						}
+					},
+					{
+						"label": "Component 1",
+						"type": {
+							"fix": 	{
+								"value": 0x006C
+							}
+						}
+					},
+					{
+						"label": "Component 2",
+						"type": {
+							"fix": 	{
+								"value": 0x006D
+							}
+						}
+					},
+					{
+						"label": "Component 3",
+						"type": {
+							"fix": 	{
+								"value": 0x006E
+							}
+						}
+					},
+					{
+						"label": "Concert",
+						"type": {
+							"fix": 	{
+								"value": 0x006F
+							}
+						}
+					},
+					{
+						"label": "Confirm",
+						"type": {
+							"fix": 	{
+								"value": 0x0070
+							}
+						}
+					},
+					{
+						"label": "Continue",
+						"type": {
+							"fix": 	{
+								"value": 0x0071
+							}
+						}
+					},
+					{
+						"label": "Contrast",
+						"type": {
+							"fix": 	{
+								"value": 0x0072
+							}
+						}
+					},
+					{
+						"label": "Contrast down",
+						"type": {
+							"fix": 	{
+								"value": 0x0073
+							}
+						}
+					},
+					{
+						"label": "Contrast up",
+						"type": {
+							"fix": 	{
+								"value": 0x0074
+							}
+						}
+					},
+					{
+						"label": "Counter",
+						"type": {
+							"fix": 	{
+								"value": 0x0075
+							}
+						}
+					},
+					{
+						"label": "Counter reset",
+						"type": {
+							"fix": 	{
+								"value": 0x0076
+							}
+						}
+					},
+					{
+						"label": "D",
+						"type": {
+							"fix": 	{
+								"value": 0x0077
+							}
+						}
+					},
+					{
+						"label": "Day down",
+						"type": {
+							"fix": 	{
+								"value": 0x0078
+							}
+						}
+					},
+					{
+						"label": "Day up",
+						"type": {
+							"fix": 	{
+								"value": 0x0079
+							}
+						}
+					},
+					{
+						"label": "Delay",
+						"type": {
+							"fix": 	{
+								"value": 0x007A
+							}
+						}
+					},
+					{
+						"label": "Delay down",
+						"type": {
+							"fix": 	{
+								"value": 0x007B
+							}
+						}
+					},
+					{
+						"label": "Delay up",
+						"type": {
+							"fix": 	{
+								"value": 0x007C
+							}
+						}
+					},
+					{
+						"label": "Delete",
+						"type": {
+							"fix": 	{
+								"value": 0x007D
+							}
+						}
+					},
+					{
+						"label": "Delimiter",
+						"type": {
+							"fix": 	{
+								"value": 0x007E
+							}
+						}
+					},
+					{
+						"label": "Digest",
+						"type": {
+							"fix": 	{
+								"value": 0x007F
+							}
+						}
+					},
+					{
+						"label": "Digital",
+						"type": {
+							"fix": 	{
+								"value": 0x0080
+							}
+						}
+					},
+					{
+						"label": "Dim",
+						"type": {
+							"fix": 	{
+								"value": 0x0081
+							}
+						}
+					},
+					{
+						"label": "Direct",
+						"type": {
+							"fix": 	{
+								"value": 0x0082
+							}
+						}
+					},
+					{
+						"label": "Disarm",
+						"type": {
+							"fix": 	{
+								"value": 0x0083
+							}
+						}
+					},
+					{
+						"label": "Disc",
+						"type": {
+							"fix": 	{
+								"value": 0x0084
+							}
+						}
+					},
+					{
+						"label": "Disc 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0085
+							}
+						}
+					},
+					{
+						"label": "Disc 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0086
+							}
+						}
+					},
+					{
+						"label": "Disc 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0087
+							}
+						}
+					},
+					{
+						"label": "Disc 4",
+						"type": {
+							"fix": 	{
+								"value": 0x0088
+							}
+						}
+					},
+					{
+						"label": "Disc 5",
+						"type": {
+							"fix": 	{
+								"value": 0x0089
+							}
+						}
+					},
+					{
+						"label": "Disc 6",
+						"type": {
+							"fix": 	{
+								"value": 0x008A
+							}
+						}
+					},
+					{
+						"label": "Disc down",
+						"type": {
+							"fix": 	{
+								"value": 0x008B
+							}
+						}
+					},
+					{
+						"label": "Disc up",
+						"type": {
+							"fix": 	{
+								"value": 0x008C
+							}
+						}
+					},
+					{
+						"label": "Disco",
+						"type": {
+							"fix": 	{
+								"value": 0x008D
+							}
+						}
+					},
+					{
+						"label": "Edit",
+						"type": {
+							"fix": 	{
+								"value": 0x008E
+							}
+						}
+					},
+					{
+						"label": "Effect down",
+						"type": {
+							"fix": 	{
+								"value": 0x008F
+							}
+						}
+					},
+					{
+						"label": "Effect up",
+						"type": {
+							"fix": 	{
+								"value": 0x0090
+							}
+						}
+					},
+					{
+						"label": "Eject",
+						"type": {
+							"fix": 	{
+								"value": 0x0091
+							}
+						}
+					},
+					{
+						"label": "End",
+						"type": {
+							"fix": 	{
+								"value": 0x0092
+							}
+						}
+					},
+					{
+						"label": "EQ",
+						"type": {
+							"fix": 	{
+								"value": 0x0093
+							}
+						}
+					},
+					{
+						"label": "Fader",
+						"type": {
+							"fix": 	{
+								"value": 0x0094
+							}
+						}
+					},
+					{
+						"label": "Fan",
+						"type": {
+							"fix": 	{
+								"value": 0x0095
+							}
+						}
+					},
+					{
+						"label": "Fan high",
+						"type": {
+							"fix": 	{
+								"value": 0x0096
+							}
+						}
+					},
+					{
+						"label": "Fan low",
+						"type": {
+							"fix": 	{
+								"value": 0x0097
+							}
+						}
+					},
+					{
+						"label": "Fan medium",
+						"type": {
+							"fix": 	{
+								"value": 0x0098
+							}
+						}
+					},
+					{
+						"label": "Fan speed",
+						"type": {
+							"fix": 	{
+								"value": 0x0099
+							}
+						}
+					},
+					{
+						"label": "Fastext blue",
+						"type": {
+							"fix": 	{
+								"value": 0x009A
+							}
+						}
+					},
+					{
+						"label": "Fastext green",
+						"type": {
+							"fix": 	{
+								"value": 0x009B
+							}
+						}
+					},
+					{
+						"label": "Fastext purple",
+						"type": {
+							"fix": 	{
+								"value": 0x009C
+							}
+						}
+					},
+					{
+						"label": "Fastext red",
+						"type": {
+							"fix": 	{
+								"value": 0x009D
+							}
+						}
+					},
+					{
+						"label": "Fastext white",
+						"type": {
+							"fix": 	{
+								"value": 0x009E
+							}
+						}
+					},
+					{
+						"label": "Fastext yellow",
+						"type": {
+							"fix": 	{
+								"value": 0x009F
+							}
+						}
+					},
+					{
+						"label": "Favorite channel down",
+						"type": {
+							"fix": 	{
+								"value": 0x00A0
+							}
+						}
+					},
+					{
+						"label": "Favorite channel up",
+						"type": {
+							"fix": 	{
+								"value": 0x00A1
+							}
+						}
+					},
+					{
+						"label": "Finalize",
+						"type": {
+							"fix": 	{
+								"value": 0x00A2
+							}
+						}
+					},
+					{
+						"label": "Fine tune",
+						"type": {
+							"fix": 	{
+								"value": 0x00A3
+							}
+						}
+					},
+					{
+						"label": "Flat",
+						"type": {
+							"fix": 	{
+								"value": 0x00A4
+							}
+						}
+					},
+					{
+						"label": "FM",
+						"type": {
+							"fix": 	{
+								"value": 0x00A5
+							}
+						}
+					},
+					{
+						"label": "Focus down",
+						"type": {
+							"fix": 	{
+								"value": 0x00A6
+							}
+						}
+					},
+					{
+						"label": "Focus up",
+						"type": {
+							"fix": 	{
+								"value": 0x00A7
+							}
+						}
+					},
+					{
+						"label": "Freeze",
+						"type": {
+							"fix": 	{
+								"value": 0x00A8
+							}
+						}
+					},
+					{
+						"label": "Front",
+						"type": {
+							"fix": 	{
+								"value": 0x00A9
+							}
+						}
+					},
+					{
+						"label": "Game",
+						"type": {
+							"fix": 	{
+								"value": 0x00AA
+							}
+						}
+					},
+					{
+						"label": "GoTo",
+						"type": {
+							"fix": 	{
+								"value": 0x00AB
+							}
+						}
+					},
+					{
+						"label": "Hall",
+						"type": {
+							"fix": 	{
+								"value": 0x00AC
+							}
+						}
+					},
+					{
+						"label": "Heat",
+						"type": {
+							"fix": 	{
+								"value": 0x00AD
+							}
+						}
+					},
+					{
+						"label": "Help",
+						"type": {
+							"fix": 	{
+								"value": 0x00AE
+							}
+						}
+					},
+					{
+						"label": "Home",
+						"type": {
+							"fix": 	{
+								"value": 0x00AF
+							}
+						}
+					},
+					{
+						"label": "Index",
+						"type": {
+							"fix": 	{
+								"value": 0x00B0
+							}
+						}
+					},
+					{
+						"label": "Index forward",
+						"type": {
+							"fix": 	{
+								"value": 0x00B1
+							}
+						}
+					},
+					{
+						"label": "Index reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x00B2
+							}
+						}
+					},
+					{
+						"label": "Interactive",
+						"type": {
+							"fix": 	{
+								"value": 0x00B3
+							}
+						}
+					},
+					{
+						"label": "Intro scan",
+						"type": {
+							"fix": 	{
+								"value": 0x00B4
+							}
+						}
+					},
+					{
+						"label": "Jazz",
+						"type": {
+							"fix": 	{
+								"value": 0x00B5
+							}
+						}
+					},
+					{
+						"label": "Karaoke",
+						"type": {
+							"fix": 	{
+								"value": 0x00B6
+							}
+						}
+					},
+					{
+						"label": "Keystone",
+						"type": {
+							"fix": 	{
+								"value": 0x00B7
+							}
+						}
+					},
+					{
+						"label": "Keystone down",
+						"type": {
+							"fix": 	{
+								"value": 0x00B8
+							}
+						}
+					},
+					{
+						"label": "Keystone up",
+						"type": {
+							"fix": 	{
+								"value": 0x00B9
+							}
+						}
+					},
+					{
+						"label": "Language",
+						"type": {
+							"fix": 	{
+								"value": 0x00BA
+							}
+						}
+					},
+					{
+						"label": "Left click",
+						"type": {
+							"fix": 	{
+								"value": 0x00BB
+							}
+						}
+					},
+					{
+						"label": "Level",
+						"type": {
+							"fix": 	{
+								"value": 0x00BC
+							}
+						}
+					},
+					{
+						"label": "Light",
+						"type": {
+							"fix": 	{
+								"value": 0x00BD
+							}
+						}
+					},
+					{
+						"label": "List",
+						"type": {
+							"fix": 	{
+								"value": 0x00BE
+							}
+						}
+					},
+					{
+						"label": "Live TV",
+						"type": {
+							"fix": 	{
+								"value": 0x00BF
+							}
+						}
+					},
+					{
+						"label": "Local/Dx",
+						"type": {
+							"fix": 	{
+								"value": 0x00C0
+							}
+						}
+					},
+					{
+						"label": "Loudness",
+						"type": {
+							"fix": 	{
+								"value": 0x00C1
+							}
+						}
+					},
+					{
+						"label": "Mail",
+						"type": {
+							"fix": 	{
+								"value": 0x00C2
+							}
+						}
+					},
+					{
+						"label": "Mark",
+						"type": {
+							"fix": 	{
+								"value": 0x00C3
+							}
+						}
+					},
+					{
+						"label": "Memory recall",
+						"type": {
+							"fix": 	{
+								"value": 0x00C4
+							}
+						}
+					},
+					{
+						"label": "Monitor",
+						"type": {
+							"fix": 	{
+								"value": 0x00C5
+							}
+						}
+					},
+					{
+						"label": "Movie",
+						"type": {
+							"fix": 	{
+								"value": 0x00C6
+							}
+						}
+					},
+					{
+						"label": "Multi room",
+						"type": {
+							"fix": 	{
+								"value": 0x00C7
+							}
+						}
+					},
+					{
+						"label": "Music",
+						"type": {
+							"fix": 	{
+								"value": 0x00C8
+							}
+						}
+					},
+					{
+						"label": "Music scan",
+						"type": {
+							"fix": 	{
+								"value": 0x00C9
+							}
+						}
+					},
+					{
+						"label": "Natural",
+						"type": {
+							"fix": 	{
+								"value": 0x00CA
+							}
+						}
+					},
+					{
+						"label": "Night",
+						"type": {
+							"fix": 	{
+								"value": 0x00CB
+							}
+						}
+					},
+					{
+						"label": "Noise reduction",
+						"type": {
+							"fix": 	{
+								"value": 0x00CC
+							}
+						}
+					},
+					{
+						"label": "Normalize",
+						"type": {
+							"fix": 	{
+								"value": 0x00CD
+							}
+						}
+					},
+					{
+						"label": "Discrete input CableTV",
+						"type": {
+							"fix": 	{
+								"value": 0x00CE
+							}
+						}
+					},
+					{
+						"label": "Discrete input CD 1",
+						"type": {
+							"fix": 	{
+								"value": 0x00CF
+							}
+						}
+					},
+					{
+						"label": "Discrete input CD 2",
+						"type": {
+							"fix": 	{
+								"value": 0x00D0
+							}
+						}
+					},
+					{
+						"label": "Discrete input CD Recorder",
+						"type": {
+							"fix": 	{
+								"value": 0x00D1
+							}
+						}
+					},
+					{
+						"label": "Discrete input DAT (Digital Audio Tape)",
+						"type": {
+							"fix": 	{
+								"value": 0x00D2
+							}
+						}
+					},
+					{
+						"label": "Discrete input DVD",
+						"type": {
+							"fix": 	{
+								"value": 0x00D3
+							}
+						}
+					},
+					{
+						"label": "Discrete input DVI",
+						"type": {
+							"fix": 	{
+								"value": 0x00D4
+							}
+						}
+					},
+					{
+						"label": "Discrete input HDTV",
+						"type": {
+							"fix": 	{
+								"value": 0x00D5
+							}
+						}
+					},
+					{
+						"label": "Discrete input LaserDisc",
+						"type": {
+							"fix": 	{
+								"value": 0x00D6
+							}
+						}
+					},
+					{
+						"label": "Discrete input MiniDisc",
+						"type": {
+							"fix": 	{
+								"value": 0x00D7
+							}
+						}
+					},
+					{
+						"label": "Discrete input PC",
+						"type": {
+							"fix": 	{
+								"value": 0x00D8
+							}
+						}
+					},
+					{
+						"label": "Discrete input Personal Video Recorder",
+						"type": {
+							"fix": 	{
+								"value": 0x00D9
+							}
+						}
+					},
+					{
+						"label": "Discrete input TV",
+						"type": {
+							"fix": 	{
+								"value": 0x00DA
+							}
+						}
+					},
+					{
+						"label": "Discrete input TV/VCR or TV/DVD",
+						"type": {
+							"fix": 	{
+								"value": 0x00DB
+							}
+						}
+					},
+					{
+						"label": "Discrete input VCR",
+						"type": {
+							"fix": 	{
+								"value": 0x00DC
+							}
+						}
+					},
+					{
+						"label": "One touch playback",
+						"type": {
+							"fix": 	{
+								"value": 0x00DD
+							}
+						}
+					},
+					{
+						"label": "One touch record",
+						"type": {
+							"fix": 	{
+								"value": 0x00DE
+							}
+						}
+					},
+					{
+						"label": "Open",
+						"type": {
+							"fix": 	{
+								"value": 0x00DF
+							}
+						}
+					},
+					{
+						"label": "Optical",
+						"type": {
+							"fix": 	{
+								"value": 0x00E0
+							}
+						}
+					},
+					{
+						"label": "Options",
+						"type": {
+							"fix": 	{
+								"value": 0x00E1
+							}
+						}
+					},
+					{
+						"label": "Orchestra",
+						"type": {
+							"fix": 	{
+								"value": 0x00E2
+							}
+						}
+					},
+					{
+						"label": "PAL/NTSC",
+						"type": {
+							"fix": 	{
+								"value": 0x00E3
+							}
+						}
+					},
+					{
+						"label": "Parental lock",
+						"type": {
+							"fix": 	{
+								"value": 0x00E4
+							}
+						}
+					},
+					{
+						"label": "PBC",
+						"type": {
+							"fix": 	{
+								"value": 0x00E5
+							}
+						}
+					},
+					{
+						"label": "Phono",
+						"type": {
+							"fix": 	{
+								"value": 0x00E6
+							}
+						}
+					},
+					{
+						"label": "Photos",
+						"type": {
+							"fix": 	{
+								"value": 0x00E7
+							}
+						}
+					},
+					{
+						"label": "Picture menu",
+						"type": {
+							"fix": 	{
+								"value": 0x00E8
+							}
+						}
+					},
+					{
+						"label": "Picture mode",
+						"type": {
+							"fix": 	{
+								"value": 0x00E9
+							}
+						}
+					},
+					{
+						"label": "Picture mute",
+						"type": {
+							"fix": 	{
+								"value": 0x00EA
+							}
+						}
+					},
+					{
+						"label": "PIP channel down",
+						"type": {
+							"fix": 	{
+								"value": 0x00EB
+							}
+						}
+					},
+					{
+						"label": "PIP channel up",
+						"type": {
+							"fix": 	{
+								"value": 0x00EC
+							}
+						}
+					},
+					{
+						"label": "PIP freeze",
+						"type": {
+							"fix": 	{
+								"value": 0x00ED
+							}
+						}
+					},
+					{
+						"label": "PIP input",
+						"type": {
+							"fix": 	{
+								"value": 0x00EE
+							}
+						}
+					},
+					{
+						"label": "PIP move",
+						"type": {
+							"fix": 	{
+								"value": 0x00EF
+							}
+						}
+					},
+					{
+						"label": "PIP Off",
+						"type": {
+							"fix": 	{
+								"value": 0x00F0
+							}
+						}
+					},
+					{
+						"label": "PIP On",
+						"type": {
+							"fix": 	{
+								"value": 0x00F1
+							}
+						}
+					},
+					{
+						"label": "PIP size",
+						"type": {
+							"fix": 	{
+								"value": 0x00F2
+							}
+						}
+					},
+					{
+						"label": "PIP split",
+						"type": {
+							"fix": 	{
+								"value": 0x00F3
+							}
+						}
+					},
+					{
+						"label": "PIP swap",
+						"type": {
+							"fix": 	{
+								"value": 0x00F4
+							}
+						}
+					},
+					{
+						"label": "Play mode",
+						"type": {
+							"fix": 	{
+								"value": 0x00F5
+							}
+						}
+					},
+					{
+						"label": "Play reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x00F6
+							}
+						}
+					},
+					{
+						"label": "Power Off",
+						"type": {
+							"fix": 	{
+								"value": 0x00F7
+							}
+						}
+					},
+					{
+						"label": "Power On",
+						"type": {
+							"fix": 	{
+								"value": 0x00F8
+							}
+						}
+					},
+					{
+						"label": "PPV (Pay per view)",
+						"type": {
+							"fix": 	{
+								"value": 0x00F9
+							}
+						}
+					},
+					{
+						"label": "Preset",
+						"type": {
+							"fix": 	{
+								"value": 0x00FA
+							}
+						}
+					},
+					{
+						"label": "Program",
+						"type": {
+							"fix": 	{
+								"value": 0x00FB
+							}
+						}
+					},
+					{
+						"label": "Progressive scan",
+						"type": {
+							"fix": 	{
+								"value": 0x00FC
+							}
+						}
+					},
+					{
+						"label": "ProLogic",
+						"type": {
+							"fix": 	{
+								"value": 0x00FD
+							}
+						}
+					},
+					{
+						"label": "PTY",
+						"type": {
+							"fix": 	{
+								"value": 0x00FE
+							}
+						}
+					},
+					{
+						"label": "Quick skip",
+						"type": {
+							"fix": 	{
+								"value": 0x00FF
+							}
+						}
+					},
+					{
+						"label": "Random",
+						"type": {
+							"fix": 	{
+								"value": 0x0100
+							}
+						}
+					},
+					{
+						"label": "RDS",
+						"type": {
+							"fix": 	{
+								"value": 0x0101
+							}
+						}
+					},
+					{
+						"label": "Rear",
+						"type": {
+							"fix": 	{
+								"value": 0x0102
+							}
+						}
+					},
+					{
+						"label": "Rear volume down",
+						"type": {
+							"fix": 	{
+								"value": 0x0103
+							}
+						}
+					},
+					{
+						"label": "Rear volume up",
+						"type": {
+							"fix": 	{
+								"value": 0x0104
+							}
+						}
+					},
+					{
+						"label": "Record mute",
+						"type": {
+							"fix": 	{
+								"value": 0x0105
+							}
+						}
+					},
+					{
+						"label": "Record pause",
+						"type": {
+							"fix": 	{
+								"value": 0x0106
+							}
+						}
+					},
+					{
+						"label": "Repeat",
+						"type": {
+							"fix": 	{
+								"value": 0x0107
+							}
+						}
+					},
+					{
+						"label": "Repeat A-B",
+						"type": {
+							"fix": 	{
+								"value": 0x0108
+							}
+						}
+					},
+					{
+						"label": "Resume",
+						"type": {
+							"fix": 	{
+								"value": 0x0109
+							}
+						}
+					},
+					{
+						"label": "RGB",
+						"type": {
+							"fix": 	{
+								"value": 0x010A
+							}
+						}
+					},
+					{
+						"label": "Right click",
+						"type": {
+							"fix": 	{
+								"value": 0x010B
+							}
+						}
+					},
+					{
+						"label": "Rock",
+						"type": {
+							"fix": 	{
+								"value": 0x010C
+							}
+						}
+					},
+					{
+						"label": "Rotate left",
+						"type": {
+							"fix": 	{
+								"value": 0x010D
+							}
+						}
+					},
+					{
+						"label": "Rotate right",
+						"type": {
+							"fix": 	{
+								"value": 0x010E
+							}
+						}
+					},
+					{
+						"label": "SAT",
+						"type": {
+							"fix": 	{
+								"value": 0x010F
+							}
+						}
+					},
+					{
+						"label": "Scan",
+						"type": {
+							"fix": 	{
+								"value": 0x0110
+							}
+						}
+					},
+					{
+						"label": "Scart",
+						"type": {
+							"fix": 	{
+								"value": 0x0111
+							}
+						}
+					},
+					{
+						"label": "Scene",
+						"type": {
+							"fix": 	{
+								"value": 0x0112
+							}
+						}
+					},
+					{
+						"label": "Scroll",
+						"type": {
+							"fix": 	{
+								"value": 0x0113
+							}
+						}
+					},
+					{
+						"label": "Services",
+						"type": {
+							"fix": 	{
+								"value": 0x0114
+							}
+						}
+					},
+					{
+						"label": "Setup menu",
+						"type": {
+							"fix": 	{
+								"value": 0x0115
+							}
+						}
+					},
+					{
+						"label": "Sharp",
+						"type": {
+							"fix": 	{
+								"value": 0x0116
+							}
+						}
+					},
+					{
+						"label": "Sharpness",
+						"type": {
+							"fix": 	{
+								"value": 0x0117
+							}
+						}
+					},
+					{
+						"label": "Sharpness down",
+						"type": {
+							"fix": 	{
+								"value": 0x0118
+							}
+						}
+					},
+					{
+						"label": "Sharpness up",
+						"type": {
+							"fix": 	{
+								"value": 0x0119
+							}
+						}
+					},
+					{
+						"label": "Side A/B",
+						"type": {
+							"fix": 	{
+								"value": 0x011A
+							}
+						}
+					},
+					{
+						"label": "Skip forward",
+						"type": {
+							"fix": 	{
+								"value": 0x011B
+							}
+						}
+					},
+					{
+						"label": "Skip reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x011C
+							}
+						}
+					},
+					{
+						"label": "Sleep",
+						"type": {
+							"fix": 	{
+								"value": 0x011D
+							}
+						}
+					},
+					{
+						"label": "Slow",
+						"type": {
+							"fix": 	{
+								"value": 0x011E
+							}
+						}
+					},
+					{
+						"label": "Slow forward",
+						"type": {
+							"fix": 	{
+								"value": 0x011F
+							}
+						}
+					},
+					{
+						"label": "Slow reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x0120
+							}
+						}
+					},
+					{
+						"label": "Sound menu",
+						"type": {
+							"fix": 	{
+								"value": 0x0121
+							}
+						}
+					},
+					{
+						"label": "Sound mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0122
+							}
+						}
+					},
+					{
+						"label": "Speed",
+						"type": {
+							"fix": 	{
+								"value": 0x0123
+							}
+						}
+					},
+					{
+						"label": "Speed down",
+						"type": {
+							"fix": 	{
+								"value": 0x0124
+							}
+						}
+					},
+					{
+						"label": "Speed up",
+						"type": {
+							"fix": 	{
+								"value": 0x0125
+							}
+						}
+					},
+					{
+						"label": "Sports",
+						"type": {
+							"fix": 	{
+								"value": 0x0126
+							}
+						}
+					},
+					{
+						"label": "Stadium",
+						"type": {
+							"fix": 	{
+								"value": 0x0127
+							}
+						}
+					},
+					{
+						"label": "Start",
+						"type": {
+							"fix": 	{
+								"value": 0x0128
+							}
+						}
+					},
+					{
+						"label": "Start ID erase",
+						"type": {
+							"fix": 	{
+								"value": 0x0129
+							}
+						}
+					},
+					{
+						"label": "Start ID renumber",
+						"type": {
+							"fix": 	{
+								"value": 0x012A
+							}
+						}
+					},
+					{
+						"label": "Start ID write",
+						"type": {
+							"fix": 	{
+								"value": 0x012B
+							}
+						}
+					},
+					{
+						"label": "Step",
+						"type": {
+							"fix": 	{
+								"value": 0x012C
+							}
+						}
+					},
+					{
+						"label": "Stereo/Mono",
+						"type": {
+							"fix": 	{
+								"value": 0x012D
+							}
+						}
+					},
+					{
+						"label": "Still forward",
+						"type": {
+							"fix": 	{
+								"value": 0x012E
+							}
+						}
+					},
+					{
+						"label": "Still reverse",
+						"type": {
+							"fix": 	{
+								"value": 0x012F
+							}
+						}
+					},
+					{
+						"label": "Subtitle",
+						"type": {
+							"fix": 	{
+								"value": 0x0130
+							}
+						}
+					},
+					{
+						"label": "Subwoofer down",
+						"type": {
+							"fix": 	{
+								"value": 0x0131
+							}
+						}
+					},
+					{
+						"label": "Subwoofer up",
+						"type": {
+							"fix": 	{
+								"value": 0x0132
+							}
+						}
+					},
+					{
+						"label": "Super bass",
+						"type": {
+							"fix": 	{
+								"value": 0x0133
+							}
+						}
+					},
+					{
+						"label": "Surround",
+						"type": {
+							"fix": 	{
+								"value": 0x0134
+							}
+						}
+					},
+					{
+						"label": "Surround mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0135
+							}
+						}
+					},
+					{
+						"label": "S-Video",
+						"type": {
+							"fix": 	{
+								"value": 0x0136
+							}
+						}
+					},
+					{
+						"label": "Sweep",
+						"type": {
+							"fix": 	{
+								"value": 0x0137
+							}
+						}
+					},
+					{
+						"label": "Synchro record",
+						"type": {
+							"fix": 	{
+								"value": 0x0138
+							}
+						}
+					},
+					{
+						"label": "Tape 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0139
+							}
+						}
+					},
+					{
+						"label": "Tape 1-2",
+						"type": {
+							"fix": 	{
+								"value": 0x013A
+							}
+						}
+					},
+					{
+						"label": "Tape 2",
+						"type": {
+							"fix": 	{
+								"value": 0x013B
+							}
+						}
+					},
+					{
+						"label": "Temperature down",
+						"type": {
+							"fix": 	{
+								"value": 0x013C
+							}
+						}
+					},
+					{
+						"label": "Temperature up",
+						"type": {
+							"fix": 	{
+								"value": 0x013D
+							}
+						}
+					},
+					{
+						"label": "Test tone",
+						"type": {
+							"fix": 	{
+								"value": 0x013E
+							}
+						}
+					},
+					{
+						"label": "Text (Teletext)",
+						"type": {
+							"fix": 	{
+								"value": 0x013F
+							}
+						}
+					},
+					{
+						"label": "Text expand",
+						"type": {
+							"fix": 	{
+								"value": 0x0140
+							}
+						}
+					},
+					{
+						"label": "Text hold",
+						"type": {
+							"fix": 	{
+								"value": 0x0141
+							}
+						}
+					},
+					{
+						"label": "Text index",
+						"type": {
+							"fix": 	{
+								"value": 0x0142
+							}
+						}
+					},
+					{
+						"label": "Text mix",
+						"type": {
+							"fix": 	{
+								"value": 0x0143
+							}
+						}
+					},
+					{
+						"label": "Text off",
+						"type": {
+							"fix": 	{
+								"value": 0x0144
+							}
+						}
+					},
+					{
+						"label": "Text reveal",
+						"type": {
+							"fix": 	{
+								"value": 0x0145
+							}
+						}
+					},
+					{
+						"label": "Text subpage",
+						"type": {
+							"fix": 	{
+								"value": 0x0146
+							}
+						}
+					},
+					{
+						"label": "Text timer page",
+						"type": {
+							"fix": 	{
+								"value": 0x0147
+							}
+						}
+					},
+					{
+						"label": "Text update",
+						"type": {
+							"fix": 	{
+								"value": 0x0148
+							}
+						}
+					},
+					{
+						"label": "Theater",
+						"type": {
+							"fix": 	{
+								"value": 0x0149
+							}
+						}
+					},
+					{
+						"label": "Theme",
+						"type": {
+							"fix": 	{
+								"value": 0x014A
+							}
+						}
+					},
+					{
+						"label": "Thumbs down",
+						"type": {
+							"fix": 	{
+								"value": 0x014B
+							}
+						}
+					},
+					{
+						"label": "Thumbs up",
+						"type": {
+							"fix": 	{
+								"value": 0x014C
+							}
+						}
+					},
+					{
+						"label": "Tilt down",
+						"type": {
+							"fix": 	{
+								"value": 0x014D
+							}
+						}
+					},
+					{
+						"label": "Tilt up",
+						"type": {
+							"fix": 	{
+								"value": 0x014E
+							}
+						}
+					},
+					{
+						"label": "Time",
+						"type": {
+							"fix": 	{
+								"value": 0x014F
+							}
+						}
+					},
+					{
+						"label": "Timer",
+						"type": {
+							"fix": 	{
+								"value": 0x0150
+							}
+						}
+					},
+					{
+						"label": "Timer down",
+						"type": {
+							"fix": 	{
+								"value": 0x0151
+							}
+						}
+					},
+					{
+						"label": "Timer up",
+						"type": {
+							"fix": 	{
+								"value": 0x0152
+							}
+						}
+					},
+					{
+						"label": "Tint",
+						"type": {
+							"fix": 	{
+								"value": 0x0153
+							}
+						}
+					},
+					{
+						"label": "Tint down",
+						"type": {
+							"fix": 	{
+								"value": 0x0154
+							}
+						}
+					},
+					{
+						"label": "Tint up",
+						"type": {
+							"fix": 	{
+								"value": 0x0155
+							}
+						}
+					},
+					{
+						"label": "Title",
+						"type": {
+							"fix": 	{
+								"value": 0x0156
+							}
+						}
+					},
+					{
+						"label": "Track",
+						"type": {
+							"fix": 	{
+								"value": 0x0157
+							}
+						}
+					},
+					{
+						"label": "Tracking",
+						"type": {
+							"fix": 	{
+								"value": 0x0158
+							}
+						}
+					},
+					{
+						"label": "Tracking down",
+						"type": {
+							"fix": 	{
+								"value": 0x0159
+							}
+						}
+					},
+					{
+						"label": "Tracking up",
+						"type": {
+							"fix": 	{
+								"value": 0x015A
+							}
+						}
+					},
+					{
+						"label": "Treble",
+						"type": {
+							"fix": 	{
+								"value": 0x015B
+							}
+						}
+					},
+					{
+						"label": "Treble down",
+						"type": {
+							"fix": 	{
+								"value": 0x015C
+							}
+						}
+					},
+					{
+						"label": "Treble up",
+						"type": {
+							"fix": 	{
+								"value": 0x015D
+							}
+						}
+					},
+					{
+						"label": "Tune down",
+						"type": {
+							"fix": 	{
+								"value": 0x015E
+							}
+						}
+					},
+					{
+						"label": "Tune up",
+						"type": {
+							"fix": 	{
+								"value": 0x015F
+							}
+						}
+					},
+					{
+						"label": "Tuner",
+						"type": {
+							"fix": 	{
+								"value": 0x0160
+							}
+						}
+					},
+					{
+						"label": "VCR Plus+",
+						"type": {
+							"fix": 	{
+								"value": 0x0161
+							}
+						}
+					},
+					{
+						"label": "Video 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0162
+							}
+						}
+					},
+					{
+						"label": "Video 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0163
+							}
+						}
+					},
+					{
+						"label": "Video 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0164
+							}
+						}
+					},
+					{
+						"label": "Video 4",
+						"type": {
+							"fix": 	{
+								"value": 0x0165
+							}
+						}
+					},
+					{
+						"label": "Video 5",
+						"type": {
+							"fix": 	{
+								"value": 0x0166
+							}
+						}
+					},
+					{
+						"label": "View",
+						"type": {
+							"fix": 	{
+								"value": 0x0167
+							}
+						}
+					},
+					{
+						"label": "Voice",
+						"type": {
+							"fix": 	{
+								"value": 0x0168
+							}
+						}
+					},
+					{
+						"label": "Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x0169
+							}
+						}
+					},
+					{
+						"label": "Zoom in",
+						"type": {
+							"fix": 	{
+								"value": 0x016A
+							}
+						}
+					},
+					{
+						"label": "Zoom out",
+						"type": {
+							"fix": 	{
+								"value": 0x016B
+							}
+						}
+					},
+					{
+						"label": "eHome",
+						"type": {
+							"fix": 	{
+								"value": 0x016C
+							}
+						}
+					},
+					{
+						"label": "Details",
+						"type": {
+							"fix": 	{
+								"value": 0x016D
+							}
+						}
+					},
+					{
+						"label": "DVD menu",
+						"type": {
+							"fix": 	{
+								"value": 0x016E
+							}
+						}
+					},
+					{
+						"label": "My TV",
+						"type": {
+							"fix": 	{
+								"value": 0x016F
+							}
+						}
+					},
+					{
+						"label": "Recorded TV",
+						"type": {
+							"fix": 	{
+								"value": 0x0170
+							}
+						}
+					},
+					{
+						"label": "My videos",
+						"type": {
+							"fix": 	{
+								"value": 0x0171
+							}
+						}
+					},
+					{
+						"label": "DVD angle",
+						"type": {
+							"fix": 	{
+								"value": 0x0172
+							}
+						}
+					},
+					{
+						"label": "DVD audio",
+						"type": {
+							"fix": 	{
+								"value": 0x0173
+							}
+						}
+					},
+					{
+						"label": "DVD subtitle",
+						"type": {
+							"fix": 	{
+								"value": 0x0174
+							}
+						}
+					},
+					{
+						"label": "Radio",
+						"type": {
+							"fix": 	{
+								"value": 0x0175
+							}
+						}
+					},
+					{
+						"label": "#",
+						"type": {
+							"fix": 	{
+								"value": 0x0176
+							}
+						}
+					},
+					{
+						"label": "*",
+						"type": {
+							"fix": 	{
+								"value": 0x0177
+							}
+						}
+					},
+					{
+						"label": "OEM 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0178
+							}
+						}
+					},
+					{
+						"label": "OEM 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0179
+							}
+						}
+					},
+					{
+						"label": "Info",
+						"type": {
+							"fix": 	{
+								"value": 0x017A
+							}
+						}
+					},
+					{
+						"label": "CAPS NUM",
+						"type": {
+							"fix": 	{
+								"value": 0x017B
+							}
+						}
+					},
+					{
+						"label": "TV MODE",
+						"type": {
+							"fix": 	{
+								"value": 0x017C
+							}
+						}
+					},
+					{
+						"label": "SOURCE",
+						"type": {
+							"fix": 	{
+								"value": 0x017D
+							}
+						}
+					},
+					{
+						"label": "FILEMODE",
+						"type": {
+							"fix": 	{
+								"value": 0x017E
+							}
+						}
+					},
+					{
+						"label": "Time seek",
+						"type": {
+							"fix": 	{
+								"value": 0x017F
+							}
+						}
+					},
+					{
+						"label": "Mouse enable",
+						"type": {
+							"fix": 	{
+								"value": 0x0180
+							}
+						}
+					},
+					{
+						"label": "Mouse disable",
+						"type": {
+							"fix": 	{
+								"value": 0x0181
+							}
+						}
+					},
+					{
+						"label": "VOD",
+						"type": {
+							"fix": 	{
+								"value": 0x0182
+							}
+						}
+					},
+					{
+						"label": "Thumbs Up",
+						"type": {
+							"fix": 	{
+								"value": 0x0183
+							}
+						}
+					},
+					{
+						"label": "Thumbs Down",
+						"type": {
+							"fix": 	{
+								"value": 0x0184
+							}
+						}
+					},
+					{
+						"label": "Apps",
+						"type": {
+							"fix": 	{
+								"value": 0x0185
+							}
+						}
+					},
+					{
+						"label": "Mouse toggle",
+						"type": {
+							"fix": 	{
+								"value": 0x0186
+							}
+						}
+					},
+					{
+						"label": "TV Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0187
+							}
+						}
+					},
+					{
+						"label": "DVD Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0188
+							}
+						}
+					},
+					{
+						"label": "STB Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x0189
+							}
+						}
+					},
+					{
+						"label": "AUX Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x018A
+							}
+						}
+					},
+					{
+						"label": "BluRay Mode",
+						"type": {
+							"fix": 	{
+								"value": 0x018B
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x018C
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x018D
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x018E
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x018F
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x0190
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x0191
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x0192
+							}
+						}
+					},
+					{
+						"label": "Reserved (Mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x0193
+							}
+						}
+					},
+					{
+						"label": "Standby 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0194
+							}
+						}
+					},
+					{
+						"label": "Standby 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0195
+							}
+						}
+					},
+					{
+						"label": "Standby 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0196
+							}
+						}
+					},
+					{
+						"label": "HDMI 1",
+						"type": {
+							"fix": 	{
+								"value": 0x0197
+							}
+						}
+					},
+					{
+						"label": "HDMI 2",
+						"type": {
+							"fix": 	{
+								"value": 0x0198
+							}
+						}
+					},
+					{
+						"label": "HDMI 3",
+						"type": {
+							"fix": 	{
+								"value": 0x0199
+							}
+						}
+					},
+					{
+						"label": "HDMI 4",
+						"type": {
+							"fix": 	{
+								"value": 0x019A
+							}
+						}
+					},
+					{
+						"label": "HDMI 5",
+						"type": {
+							"fix": 	{
+								"value": 0x019B
+							}
+						}
+					},
+					{
+						"label": "HDMI 6",
+						"type": {
+							"fix": 	{
+								"value": 0x019C
+							}
+						}
+					},
+					{
+						"label": "HDMI 7",
+						"type": {
+							"fix": 	{
+								"value": 0x019D
+							}
+						}
+					},
+					{
+						"label": "HDMI 8",
+						"type": {
+							"fix": 	{
+								"value": 0x019E
+							}
+						}
+					},
+					{
+						"label": "HDMI 9",
+						"type": {
+							"fix": 	{
+								"value": 0x019F
+							}
+						}
+					},
+					{
+						"label": "USB 1",
+						"type": {
+							"fix": 	{
+								"value": 0x01A0
+							}
+						}
+					},
+					{
+						"label": "USB 2",
+						"type": {
+							"fix": 	{
+								"value": 0x01A1
+							}
+						}
+					},
+					{
+						"label": "USB 3",
+						"type": {
+							"fix": 	{
+								"value": 0x01A2
+							}
+						}
+					},
+					{
+						"label": "USB 4",
+						"type": {
+							"fix": 	{
+								"value": 0x01A3
+							}
+						}
+					},
+					{
+						"label": "USB 5",
+						"type": {
+							"fix": 	{
+								"value": 0x01A4
+							}
+						}
+					},
+					{
+						"label": "ZOOM 4:3 Normal",
+						"type": {
+							"fix": 	{
+								"value": 0x01A5
+							}
+						}
+					},
+					{
+						"label": "ZOOM 4:3 Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x01A6
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Normal",
+						"type": {
+							"fix": 	{
+								"value": 0x01A7
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x01A8
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Wide 1",
+						"type": {
+							"fix": 	{
+								"value": 0x01A9
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Wide 2",
+						"type": {
+							"fix": 	{
+								"value": 0x01AA
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Wide 3",
+						"type": {
+							"fix": 	{
+								"value": 0x01AB
+							}
+						}
+					},
+					{
+						"label": "ZOOM Cinema",
+						"type": {
+							"fix": 	{
+								"value": 0x01AC
+							}
+						}
+					},
+					{
+						"label": "ZOOM 16:9 Default",
+						"type": {
+							"fix": 	{
+								"value": 0x01AD
+							}
+						}
+					},
+					{
+						"label": "Reserved (ZOOM mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x01AE
+							}
+						}
+					},
+					{
+						"label": "Reserved (ZOOM mode)",
+						"type": {
+							"fix": 	{
+								"value": 0x01BF
+							}
+						}
+					},
+					{
+						"label": "Auto Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x01B0
+							}
+						}
+					},
+					{
+						"label": "ZOOM Set as Default Zoom",
+						"type": {
+							"fix": 	{
+								"value": 0x01B1
+							}
+						}
+					},
+					{
+						"label": "Mute On",
+						"type": {
+							"fix": 	{
+								"value": 0x01B2
+							}
+						}
+					},
+					{
+						"label": "Mute Off",
+						"type": {
+							"fix": 	{
+								"value": 0x01B3
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode AUDYSSEY AUDIO OFF",
+						"type": {
+							"fix": 	{
+								"value": 0x01B4
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode AUDYSSEY AUDIO LO",
+						"type": {
+							"fix": 	{
+								"value": 0x01B5
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode AUDYSSEY AUDIO MED",
+						"type": {
+							"fix": 	{
+								"value": 0x01B6
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode AUDYSSEY AUDIO HI",
+						"type": {
+							"fix": 	{
+								"value": 0x01B7
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01B8
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01B9
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode SRS SURROUND ON",
+						"type": {
+							"fix": 	{
+								"value": 0x01BA
+							}
+						}
+					},
+					{
+						"label": "AUDIO Mode SRS SURROUND OFF",
+						"type": {
+							"fix": 	{
+								"value": 0x01BB
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01BC
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01BD
+							}
+						}
+					},
+					{
+						"label": "Reserved",
+						"type": {
+							"fix": 	{
+								"value": 0x01BE
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Home",
+						"type": {
+							"fix": 	{
+								"value": 0x01BF
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Retail",
+						"type": {
+							"fix": 	{
+								"value": 0x01C0
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Vivid",
+						"type": {
+							"fix": 	{
+								"value": 0x01C1
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Standard",
+						"type": {
+							"fix": 	{
+								"value": 0x01C2
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Theater",
+						"type": {
+							"fix": 	{
+								"value": 0x01C3
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Sports",
+						"type": {
+							"fix": 	{
+								"value": 0x01C4
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Energy savings",
+						"type": {
+							"fix": 	{
+								"value": 0x01C5
+							}
+						}
+					},
+					{
+						"label": "Picture Mode Custom",
+						"type": {
+							"fix": 	{
+								"value": 0x01C6
+							}
+						}
+					},
+					{
+						"label": "Cool",
+						"type": {
+							"fix": 	{
+								"value": 0x01C7
+							}
+						}
+					},
+					{
+						"label": "Medium",
+						"type": {
+							"fix": 	{
+								"value": 0x01C8
+							}
+						}
+					},
+					{
+						"label": "Warm_D65",
+						"type": {
+							"fix": 	{
+								"value": 0x01C9
+							}
+						}
+					},
+					{
+						"label": "CC ON",
+						"type": {
+							"fix": 	{
+								"value": 0x01CA
+							}
+						}
+					},
+					{
+						"label": "CC OFF",
+						"type": {
+							"fix": 	{
+								"value": 0x01CB
+							}
+						}
+					},
+					{
+						"label": "Video Mute ON",
+						"type": {
+							"fix": 	{
+								"value": 0x01CC
+							}
+						}
+					},
+					{
+						"label": "Video Mute OFF",
+						"type": {
+							"fix": 	{
+								"value": 0x01CD
+							}
+						}
+					},
+					{
+						"label": "Next Event",
+						"type": {
+							"fix": 	{
+								"value": 0x01CE
+							}
+						}
+					},
+					{
+						"label": "Previous Event",
+						"type": {
+							"fix": 	{
+								"value": 0x01CF
+							}
+						}
+					},
+					{
+						"label": "CEC device list",
+						"type": {
+							"fix": 	{
+								"value": 0x01D0
+							}
+						}
+					},
+					{
+						"label": "MTS SAP",
+						"type": {
+							"fix": 	{
+								"value": 0x01D1
+							}
+						}
+					},
+				]
+			};
+
+		// SensorMultilevel
+		case 0x31:
+			return {
+				"Get": [],
+			};
+
+		// SensroBinary
+		case 0x30:
+			return {
+				"Get": [],
+			};
+
+		// PowerLevel
+		case 0x73:
+			return {
+				"Get": [],
+				"TestAllNeighbours": [],
+				"TestToNode": [
+					{
+						"label": "Node ID",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 232
+							}
+						}
+					}
+				],
+				"Set":[
+					{
+						"label": "PowerLevel",
+						"type": {
+							"enumof": [
+								{
+									"label": "-9dbm ", "type":{
+										"fix": 	{
+											"value": 9
+										}
+									}
+								},
+								{
+									"label": "-8dbm ", "type":{
+										"fix": 	{
+											"value": 8
+										}
+									}
+								},
+								{
+									"label": "-7dbm ", "type":{
+										"fix": 	{
+											"value": 7
+										}
+									}
+								},
+								{
+									"label": "-6dbm ", "type":{
+										"fix": 	{
+											"value": 6
+										}
+									}
+								},
+								{
+									"label": "-5dbm ", "type":{
+										"fix": 	{
+											"value": 5
+										}
+									}
+								},
+								{
+									"label": "-4dbm ", "type":{
+										"fix": 	{
+											"value": 4
+										}
+									}
+								},
+								{
+									"label": "-3dbm ", "type":{
+										"fix": 	{
+											"value": 3
+										}
+									}
+								},
+								{
+									"label": "-2dbm ", "type":{
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "-1dbm ", "type":{
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Normal ", "type":{
+										"fix": 	{
+											"value": 0
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Timeout (s)",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+			
+		// Proprietary
+		case 0x88:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Data in format [1,2,3,..,0xa,..]",
+						"type": {
+							"string": {
+							}
+						}
+					}
+				]
+			};
+		
+		// MeterPulse
+		case 0x35:
+			return {
+				"Get": []
+			};
+		
+		// ManufacturerSpecific
+		case 0x72:
+			return {
+				"Get": []
+			};
+		
+		// Manufacturer Proprietary
+		case 0x91:
+			return {
+				"Send": [
+					{
+						"label": "Data in format [1,2,3,..,0xa,..]",
+						"type": {
+							"string": {
+							}
+						}
+					}
+				]
+			};
+
+		// SwitchAll
+		case 0x27:
+			return {
+				"SetOn": [],
+				"SetOff": [],
+				"Get": [],
+				"Set": [
+					{
+						"label": "Mode",
+						"type": {
+							"enumof": [
+								{
+									"label": "Not in switch all group",
+									"type": {
+										"fix": 	{
+											"value": 0x00
+										}
+									}
+								},
+								{
+									"label": "In switch all off group only",
+									"type": {
+										"fix": 	{
+											"value": 0x01
+										}
+									}
+								},
+								{
+									"label": "In switch all on group only",
+									"type": {
+										"fix": 	{
+											"value": 0x02
+										}
+									}
+								},
+								{
+									"label": "In switch all on and off groups",
+									"type": {
+										"fix": 	{
+											"value": 0xff
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// SensorConfiguration
+		case 0x9e:
+			return	{
+				"Get": [],
+				"Set": [
+					{
+						"label": "Trigger",
+							"type": {
+							"enumof": [
+								{
+									"label": "Current",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Default",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "Value",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								]
+						}
+					},
+					{
+						"label": "Value of Sensor",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 0xffff
+							}
+						}
+					}
+				]
+			};
+
+		// ScheduleEntryLock
+		case 0x4e:
+			return {
+				"WeekDayScheduleGet": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				],
+				"YearScheduleGet": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				],
+				"WeekDayScheduleSet": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				],
+				"YearScheduleSet": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "User",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					},
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Disable",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Enable",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+
+				"AllSet": [
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Disable",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Enable",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// SceneActivation
+		case 0x2B:
+			return {
+				"Set": [
+					{
+						"label": "Scene",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Duration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+								{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+										"shift": 	127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+			
+		// SceneActuatorConf
+		case 0x2C:
+			return {
+				"Get": [
+					{
+						"label": "Scene",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Scene",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "%",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 99
+										}
+									}
+								},
+								{
+									"label": "Full",
+									"type": {
+										"fix": 	{
+											"value": 99
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Duration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+								{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+										"shift": 	127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Level used",
+						"type": {
+							"enumof": [
+								{
+									"label": "Current in device",
+									"type": {
+										"fix": 	{
+											"value": 0,
+											},
+										}
+									},
+								{
+									"label": "Defined",
+									"type": {
+										"fix": 	{
+											"value": 1 << 7,
+										}
+									}
+								}
+							]
+						}
+					},
+				]
+			};
+
+		// Protection
+		case 0x75:
+			return {
+				"Get": [],
+				"ExclusiveGet": [],
+				"TimeoutGet": [],
+				"Set": (function () {
+					var ret = [
+						{
+							"label": "Local operations",
+								"type": {
+									"enumof": [
+										{
+											"label": "Unprotected",
+											"type": {
+												"fix": 	{
+													"value": 0
+												}
+											}
+										},
+										{
+											"label": "Protection by sequence",
+											"type": {
+												"fix": 	{
+													"value": 1
+												}
+											}
+										},
+										{
+											"label": "No operation possible",
+											"type": {
+												"fix": 	{
+													"value": 2
+												}
+											}
+										}
+									]
+								}
+							},
+						];
+
+					if (data.version.value >= 2)
+						ret.push({
+								"label": "RF operations",
+								"type": {
+									"enumof": [
+										{
+											"label": "Unprotected",
+											"type": {
+												"fix": 	{
+													"value": 0
+												}
+											}
+										},
+										{
+											"label": "No RF Control",
+											"type": {
+												"fix": 	{
+													"value": 1
+												}
+											}
+										},
+										{
+											"label": "No RF Communication",
+											"type": {
+												"fix": 	{
+													"value": 2
+												}
+											}
+										}
+									]
+								}
+							}
+						);
+						return ret;
+				})(),
+				
+				"TimeoutSet": [
+					 {
+						"label": "Time",
+						"type": {
+							"enumof": [
+								{
+									"label": "No",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Sec",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 60
+										}
+									}
+								},
+								{
+									"label": "Min",
+									"type": {
+										"range": {
+											"min": 	2,
+											"max": 191,
+										"shift": 	63
+										}
+									}
+								},
+								{
+									"label": "Infinite",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								},
+								]
+						}
+					}
+				],
+				"ExclusivitySet": [
+					{
+						"label": "to node",
+						"type": {
+							"node": {}
+						}
+					}
+				]
+			};
+			
+		// SceneControllerConf
+		case 0x2d:
+			return {
+				"Get": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Scene",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "DimmingDuration",
+						"type": {
+							"enumof": [
+								{
+									"label": "immediately",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "in seconds",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127
+										}
+									}
+								},
+								{
+									"label": "in minutes",
+									"type": {
+										"range": {
+											"min": 	1,
+											"max": 127,
+										"shift": 	127
+										}
+									}
+								},
+								{
+									"label": "use device default",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+			
+		// Alarm
+		case 0x71:
+			var ret = {
+				"Get": [
+					{
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].typeString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					}
+				]
+			};
+			
+			if (data.version.value > 1) {
+				ret["Set"] = [
+					{
+						"label": "Type",
+						"type": {
+							"enumof": (
+									function() {
+										try {
+											var arr = [];
+											var key;
+											for (key in data) {
+												var ikey = parseInt(key);
+												if (!isNaN(ikey))
+													arr.push({
+														"label": data[ikey].typeString.value,
+														"type": {
+															"fix": 	{
+																"value": ikey
+															}
+														}
+													});
+											};
+											return arr;
+										} catch(err) {}
+										return [];
+									}
+								)()
+						}
+					},
+					{
+						"label": "Status",
+						"type": {
+							"enumof": [
+								{
+									"label": "Disable",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Enable",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				];
+			}
+			
+			return ret;
+		
+		// AlarmSensor
+		case 0x9c:
+			return {
+				"Get": []
+			};
+		
+		// Battery
+		case 0x80:
+			return {
+				"Get": []
+			};
+
+		// MutiChannelAssociation
+		case 0x8e:
+			return {
+				"GroupingsGet": [],
+				"Get": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"node": {
+							}
+						}
+					},
+					{
+						"label": "instance",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 127
+							}
+						}
+					}
+				],
+				"Remove": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"node": {
+							}
+						}
+					},
+					{
+						"label": "instance",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 127
+							}
+						}
+					}
+				]
+			};
+		
+		// Meter	
+		case 0x32:
+			return {
+				"Get": [],
+				"Reset": []
+			};
+
+		// AlarmSilence
+		case 0x9d:
+			return {
+				"Set": [
+					{
+						"label": "Mode",
+						"type": {
+							"enumof": [
+								{
+									"label": "Disable all",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Disable all Sensor Alarms",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Enable all",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "Enable all Sensor Alarms",
+									"type": {
+										"fix": 	{
+											"value": 3
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Duration in sec",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 256
+							}
+						}
+					},
+					{
+						"label": "Alarm",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 0xffff
+							}
+						}
+					}
+				]
+			};
+
+		// BasicWindowCovering
+		case 0x50:
+			return {
+				"Stop": [],
+				"Start": [
+					{
+						"label": "Direction",
+						"type": {
+							"enumof": [
+								{
+									"label": "Up",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Down",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// Configuration			
+		case 0x70:
+			return {
+				"Get": [
+					{
+						"label": "Parameter",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Parameter",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Value",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 4294967295
+							}
+						}
+					},
+					{
+						"label": "Size",
+						"type": {
+							"enumof": [
+								{
+									"label": "auto detect",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "1 byte",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "2 byte",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								},
+								{
+									"label": "4 byte",
+									"type": {
+										"fix": 	{
+											"value": 4
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"SetDefault": [
+					{
+						"label": "Parameter",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+
+		// Association
+		case 0x85:
+			return {
+				"GroupingsGet": [],
+				"Get": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				],
+				"Set": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"node": {
+							}
+						}
+					}
+				],
+				"Remove": [
+					{
+						"label": "Group",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					},
+					{
+						"label": "Node",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 255
+							}
+						}
+					}
+				]
+			};
+
+		// AssociationCommandConfiguration
+		case 0x9b:
+			return {
+				"Get": []
+			};
+		
+		// NodeNaming
+		case 0x77:
+			return {
+				"Get": [],
+				"GetName": [],
+				"GetLocation": [],
+				"SetName": [
+					{
+						"label": "Name",
+						"type": {
+							"string": {
+							}
+						}
+					}
+				],
+				"SetLocation": [
+					{
+						"label": "Location",
+						"type": {
+							"string": {
+							}
+						}
+					}
+				]
+			};
+			
+		// MeterTableMonitor
+		case 0x3d:
+			return {
+				"StatusDateGet": [
+					{
+						"label": "Index",
+						"type": {
+							"enumof": [
+								{
+									"label": "For all entries",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "",
+									"type": {
+										"range": 	{
+											"min": 1,
+											"max": 255
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"label": "Start (UNIX stamp)",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 100000000
+							}
+						}
+					},
+					{
+						"label": "Stop (UNIX stamp)",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 100000000
+							}
+						}
+					}
+				],
+				"StatusDepthGet": [
+					{
+						"label": "Index",
+						"type": {
+							"enumof": [
+								{
+									"label": "Current only",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "For all entries",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								},
+								{
+									"label": "",
+									"type": {
+										"range": 	{
+											"min": 1,
+											"max": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"CurrentDataGet": [
+					{
+						"label": "Index",
+						"type": {
+							"enumof": [
+								{
+									"label": "For all supported",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "",
+									"type": {
+										"range": 	{
+											"min": 1,
+											"max": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		// Indicator			
+		case 0x87:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Active",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+
+		/*
+		This UI requires special handling of form, so it is handled in a special tab in the UI
+		// FirmwareUpdateMD
+		case 0x7A:
+			return {
+				"Get": [],
+				"RequestUpdate": [
+					{
+						"label": "Path to File",
+						"type": {
+							"string": {
+							}
+						}
+					},
+					{
+						"label": "FirmwareId",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 65535
+							}
+						}
+					}
+				]
+			};
+		*/
+		
+		// DoorLockLogging
+		case 0x4c:
+			return {
+				"Get": [
+					{
+						"label": "Record",
+						"type": {
+							"range": {
+								"min": 0,
+								"max": 99
+							}
+						}
+					}
+				]
+			};
+
+		// DoorLock
+		case 0x62:
+			return {
+			 	"Get": [],
+				"Set": [
+					{
+						"label": "Mode",
+						"type": {
+							"enumof": [
+								{
+									"label": "Door Unsecured",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured with timeout",
+									"type": {
+										"fix": 	{
+											"value": 0x1
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured for inside Door Handles",
+									"type": {
+										"fix": 	{
+											"value": 0x10
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured for inside Door Handles with timeout",
+									"type": {
+										"fix": 	{
+											"value": 0x11
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured for outside Door Handles",
+									"type": {
+										"fix": 	{
+											"value": 0x20
+										}
+									}
+								},
+								{
+									"label": "Door Unsecured for outside Door Handles with timeout",
+									"type": {
+										"fix": 	{
+											"value": 0x21
+										}
+									}
+								},
+								{
+									"label": "Door Secured",
+									"type": {
+										"fix": 	{
+											"value": 0xff
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"ConfigurationGet": [],
+				"ConfigurationSet": [
+					{
+						"label": "Timeout, minutes",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 254
+							}
+						}
+					},
+					{
+						"label": "Timeout, seconds",
+						"type": {
+							"range": {
+								"min": 	1,
+								"max": 59
+							}
+						}
+					}
+				]
+			};
+
+		// Basic
+		case 0x20:
+			return {
+				"Get": [],
+				"Set": [
+					{
+						"label": "Level",
+						"type": {
+							"enumof": [
+								{
+									"label": "Off",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},
+								{
+									"label": "Dimmer level",
+									"type": {
+										"range": {
+											"min": 0,
+											"max": 255
+										}
+									}
+								},
+								{
+									"label": "Max",
+									"type": {
+										"fix": 	{
+											"value": 99
+										}
+									}
+								},
+								{
+									"label": "On",
+									"type": {
+										"fix": 	{
+											"value": 255
+										}
+									}
+								}
+							]
+						}
+					}
+				]
+			};
+			
+		// ClimateControlSchedule	(incomplete Implementation, only overwrite but no schedule handling)
+		case 0x46:
+			return {
+				"OverrideGet": [],
+				"OverrideSet": [
+					{
+						"label": "Type",
+						"type": {
+							"enumof": [
+								{
+									"label": "No override",
+									"type": {
+										"fix": 	{
+											"value": 0
+										}
+									}
+								},							
+								{
+									"label": "Permanently",
+									"type": {
+										"fix": 	{
+											"value": 1
+										}
+									}
+								},
+								{
+									"label": "Temporary",
+									"type": {
+										"fix": 	{
+											"value": 2
+										}
+									}
+								}
+							]
+						}
+					},
+					
+					{
+						"label": "State",
+						"type": {
+							"enumof": [
+								{
+									"label": "Unused",
+									"type": {
+										"fix": 	{
+											"value": 127
+										}
+									}
+								},
+								{
+									"label": "Energy Saving",
+									"type": {
+										"fix": 	{
+											"value": 122
+										}
+									}
+								},							
+								{
+									"label": "Frost Protection",
+									"type": {
+										"fix": 	{
+											"value": 121
+										}
+									}
+								},
+								{
+									"label": "Temperature Offset in 1/10K",
+									"type": {
+										"range": {
+											"min": -128,
+											"max": 120
+										}
+									}
+								},
+							]
+						}
+					},
+					
+					
+					
+					
+										
+				]								
+			};   
+
+		default: return {};
+	}
+}
+
+function X2JS(v){var q="1.1.5";v=v||{};h();r();function h(){if(v.escapeMode===undefined){v.escapeMode=true;}v.attributePrefix=v.attributePrefix||"_";v.arrayAccessForm=v.arrayAccessForm||"none";v.emptyNodeForm=v.emptyNodeForm||"text";if(v.enableToStringFunc===undefined){v.enableToStringFunc=true;}v.arrayAccessFormPaths=v.arrayAccessFormPaths||[];if(v.skipEmptyTextNodesForObj===undefined){v.skipEmptyTextNodesForObj=true;}if(v.stripWhitespaces===undefined){v.stripWhitespaces=true;}v.datetimeAccessFormPaths=v.datetimeAccessFormPaths||[];}var g={ELEMENT_NODE:1,TEXT_NODE:3,CDATA_SECTION_NODE:4,COMMENT_NODE:8,DOCUMENT_NODE:9};function r(){function x(z){var y=String(z);if(y.length===1){y="0"+y;}return y;}if(typeof String.prototype.trim!=="function"){String.prototype.trim=function(){return this.replace(/^\s+|^\n+|(\s|\n)+$/g,"");};}if(typeof Date.prototype.toISOString!=="function"){Date.prototype.toISOString=function(){return this.getUTCFullYear()+"-"+x(this.getUTCMonth()+1)+"-"+x(this.getUTCDate())+"T"+x(this.getUTCHours())+":"+x(this.getUTCMinutes())+":"+x(this.getUTCSeconds())+"."+String((this.getUTCMilliseconds()/1000).toFixed(3)).slice(2,5)+"Z";};}}function t(x){var y=x.localName;if(y==null){y=x.baseName;}if(y==null||y==""){y=x.nodeName;}return y;}function o(x){return x.prefix;}function p(x){if(typeof(x)=="string"){return x.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#x27;").replace(/\//g,"&#x2F;");}else{return x;}}function j(x){return x.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#x27;/g,"'").replace(/&#x2F;/g,"/");}function l(B,y,A){switch(v.arrayAccessForm){case"property":if(!(B[y] instanceof Array)){B[y+"_asArray"]=[B[y]];}else{B[y+"_asArray"]=B[y];}break;}if(!(B[y] instanceof Array)&&v.arrayAccessFormPaths.length>0){var x=0;for(;x<v.arrayAccessFormPaths.length;x++){var z=v.arrayAccessFormPaths[x];if(typeof z==="string"){if(z==A){break;}}else{if(z instanceof RegExp){if(z.test(A)){break;}}else{if(typeof z==="function"){if(z(B,y,A)){break;}}}}}if(x!=v.arrayAccessFormPaths.length){B[y]=[B[y]];}}}function a(C){var A=C.split(/[-T:+Z]/g);var B=new Date(A[0],A[1]-1,A[2]);var z=A[5].split(".");B.setHours(A[3],A[4],z[0]);if(z.length>1){B.setMilliseconds(z[1]);}if(A[6]&&A[7]){var y=A[6]*60+Number(A[7]);var x=/\d\d-\d\d:\d\d$/.test(C)?"-":"+";y=0+(x=="-"?-1*y:y);B.setMinutes(B.getMinutes()-y-B.getTimezoneOffset());}else{if(C.indexOf("Z",C.length-1)!==-1){B=new Date(Date.UTC(B.getFullYear(),B.getMonth(),B.getDate(),B.getHours(),B.getMinutes(),B.getSeconds(),B.getMilliseconds()));}}return B;}function n(A,y,z){if(v.datetimeAccessFormPaths.length>0){var B=z.split(".#")[0];var x=0;for(;x<v.datetimeAccessFormPaths.length;x++){var C=v.datetimeAccessFormPaths[x];if(typeof C==="string"){if(C==B){break;}}else{if(C instanceof RegExp){if(C.test(B)){break;}}else{if(typeof C==="function"){if(C(obj,y,B)){break;}}}}}if(x!=v.datetimeAccessFormPaths.length){return a(A);}else{return A;}}else{return A;}}function w(z,E){if(z.nodeType==g.DOCUMENT_NODE){var F=new Object;var x=z.childNodes;for(var G=0;G<x.length;G++){var y=x.item(G);if(y.nodeType==g.ELEMENT_NODE){var D=t(y);F[D]=w(y,D);}}return F;}else{if(z.nodeType==g.ELEMENT_NODE){var F=new Object;F.__cnt=0;var x=z.childNodes;for(var G=0;G<x.length;G++){var y=x.item(G);var D=t(y);if(y.nodeType!=g.COMMENT_NODE){F.__cnt++;if(F[D]==null){F[D]=w(y,E+"."+D);l(F,D,E+"."+D);}else{if(F[D]!=null){if(!(F[D] instanceof Array)){F[D]=[F[D]];l(F,D,E+"."+D);}}(F[D])[F[D].length]=w(y,E+"."+D);}}}for(var A=0;A<z.attributes.length;A++){var B=z.attributes.item(A);F.__cnt++;F[v.attributePrefix+B.name]=B.value;}var C=o(z);if(C!=null&&C!=""){F.__cnt++;F.__prefix=C;}if(F["#text"]!=null){F.__text=F["#text"];if(F.__text instanceof Array){F.__text=F.__text.join("\n");}if(v.escapeMode){F.__text=j(F.__text);}if(v.stripWhitespaces){F.__text=F.__text.trim();}delete F["#text"];if(v.arrayAccessForm=="property"){delete F["#text_asArray"];}F.__text=n(F.__text,D,E+"."+D);}if(F["#cdata-section"]!=null){F.__cdata=F["#cdata-section"];delete F["#cdata-section"];if(v.arrayAccessForm=="property"){delete F["#cdata-section_asArray"];}}if(F.__cnt==1&&F.__text!=null){F=F.__text;}else{if(F.__cnt==0&&v.emptyNodeForm=="text"){F="";}else{if(F.__cnt>1&&F.__text!=null&&v.skipEmptyTextNodesForObj){if((v.stripWhitespaces&&F.__text=="")||(F.__text.trim()=="")){delete F.__text;}}}}delete F.__cnt;if(v.enableToStringFunc&&(F.__text!=null||F.__cdata!=null)){F.toString=function(){return(this.__text!=null?this.__text:"")+(this.__cdata!=null?this.__cdata:"");};}return F;}else{if(z.nodeType==g.TEXT_NODE||z.nodeType==g.CDATA_SECTION_NODE){return z.nodeValue;}}}}function m(E,B,D,y){var A="<"+((E!=null&&E.__prefix!=null)?(E.__prefix+":"):"")+B;if(D!=null){for(var C=0;C<D.length;C++){var z=D[C];var x=E[z];if(v.escapeMode){x=p(x);}A+=" "+z.substr(v.attributePrefix.length)+"='"+x+"'";}}if(!y){A+=">";}else{A+="/>";}return A;}function i(y,x){return"</"+(y.__prefix!=null?(y.__prefix+":"):"")+x+">";}function s(y,x){return y.indexOf(x,y.length-x.length)!==-1;}function u(y,x){if((v.arrayAccessForm=="property"&&s(x.toString(),("_asArray")))||x.toString().indexOf(v.attributePrefix)==0||x.toString().indexOf("__")==0||(y[x] instanceof Function)){return true;}else{return false;}}function k(z){var y=0;if(z instanceof Object){for(var x in z){if(u(z,x)){continue;}y++;}}return y;}function b(z){var y=[];if(z instanceof Object){for(var x in z){if(x.toString().indexOf("__")==-1&&x.toString().indexOf(v.attributePrefix)==0){y.push(x);}}}return y;}function f(y){var x="";if(y.__cdata!=null){x+="<![CDATA["+y.__cdata+"]]>";}if(y.__text!=null){if(v.escapeMode){x+=p(y.__text);}else{x+=y.__text;}}return x;}function c(y){var x="";if(y instanceof Object){x+=f(y);}else{if(y!=null){if(v.escapeMode){x+=p(y);}else{x+=y;}}}return x;}function e(z,B,A){var x="";if(z.length==0){x+=m(z,B,A,true);}else{for(var y=0;y<z.length;y++){x+=m(z[y],B,b(z[y]),false);x+=d(z[y]);x+=i(z[y],B);}}return x;}function d(D){var x="";var B=k(D);if(B>0){for(var A in D){if(u(D,A)){continue;}var z=D[A];var C=b(z);if(z==null||z==undefined){x+=m(z,A,C,true);}else{if(z instanceof Object){if(z instanceof Array){x+=e(z,A,C);}else{if(z instanceof Date){x+=m(z,A,C,false);x+=z.toISOString();x+=i(z,A);}else{var y=k(z);if(y>0||z.__text!=null||z.__cdata!=null){x+=m(z,A,C,false);x+=d(z);x+=i(z,A);}else{x+=m(z,A,C,true);}}}}else{x+=m(z,A,C,false);x+=c(z);x+=i(z,A);}}}}x+=c(D);return x;}this.parseXmlString=function(z){var B=window.ActiveXObject||"ActiveXObject" in window;if(z===undefined){return null;}var A;if(window.DOMParser){var C=new window.DOMParser();var x=null;if(!B){try{x=C.parseFromString("INVALID","text/xml").childNodes[0].namespaceURI;}catch(y){x=null;}}try{A=C.parseFromString(z,"text/xml");if(x!=null&&A.getElementsByTagNameNS(x,"parsererror").length>0){A=null;}}catch(y){A=null;}}else{if(z.indexOf("<?")==0){z=z.substr(z.indexOf("?>")+2);}A=new ActiveXObject("Microsoft.XMLDOM");A.async="false";A.loadXML(z);}return A;};this.asArray=function(x){if(x instanceof Array){return x;}else{return[x];}};this.toXmlDateTime=function(x){if(x instanceof Date){return x.toISOString();}else{if(typeof(x)==="number"){return new Date(x).toISOString();}else{return null;}}};this.asDateTime=function(x){if(typeof(x)=="string"){return a(x);}else{return x;}};this.xml2json=function(x){return w(x);};this.xml_str2json=function(x){var y=this.parseXmlString(x);if(y!=null){return this.xml2json(y);}else{return null;}};this.json2xml_str=function(x){return d(x);};this.json2xml=function(y){var x=this.json2xml_str(y);return this.parseXmlString(x);};this.getVersion=function(){return q;};}
+/**
  * @overview This is used to handle angular modules, routes and other settings.
  * @author Martin Vach
  */
@@ -13718,6 +20505,848 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 });
 
 /**
+ * @overview Common functions that are used within device hardware configuration
+ * @author Martin Vach
+ */
+
+/**
+ * Angular module initialization
+ * @class expertService
+ */
+myAppService.service('expertService', function($filter) {
+    /// --- Public functions --- ///
+    
+    /**
+     * Get language line by key
+     * @param {string} key
+     * @param {object} languages
+     * @returns {unresolved}
+     */
+    this.getLangLine = function(key, languages) {
+        return getLangLine(key, languages);
+    };
+    /**
+     * Get config navigation devices
+     * @param {object} ZWaveAPIData
+     * @returns {unresolved}
+     */
+    this.configGetNav = function(ZWaveAPIData) {
+        return configGetNav(ZWaveAPIData);
+    };
+
+    /**
+     * Get language from zddx
+     * @param {object} node
+     * @param {string} lang
+     * @returns {unresolved}
+     */
+    this.configGetZddxLang = function(node, lang) {
+        return configGetZddxLang(node, lang);
+    };
+    /**
+     * Get xml config param
+     * @param {object} cfgXml
+     * @param {int} nodeId
+     * @param {string} instance
+     * @param {string} commandClass
+     * @param {string} command
+     * @returns {unresolved}
+     */
+    this.getCfgXmlParam = function(cfgXml, nodeId, instance, commandClass, command) {
+        return getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command);
+    };
+    /**
+     * Get expert commands
+     * @param methods
+     * @param ZWaveAPIData
+     * @returns {*}
+     */
+    this.configGetCommands = function(methods, ZWaveAPIData) {
+        return configGetCommands(methods, ZWaveAPIData);
+    };
+    /**
+     *  Get interview ommands
+     * @param node
+     * @param updateTime
+     * @returns {*}
+     */
+    this.configGetInterviewCommands = function(node, updateTime) {
+        return configGetInterviewCommands(node, updateTime);
+    };
+    /**
+     * Config cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} zddXml
+     * @param {object} cfgXml
+     * @param {string} lang
+     * @param {object} languages
+     * @returns {unresolved}
+     */
+    this.configConfigCont = function(node, nodeId, zddXml, cfgXml, lang, languages) {
+        return configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages);
+    };
+    /**
+     * Switch all cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} ZWaveAPIData
+     * @param {object} cfgXml
+     * @returns {unresolved}
+     */
+    this.configSwitchAllCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
+        return configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
+    };
+    /**
+     * Protection cont
+     * @param {object} node
+     * @param {int} nodeId
+     * @param {object} ZWaveAPIData
+     * @param {object} cfgXml
+     * @returns {unresolved}
+     */
+    this.configProtectionCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
+        return configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
+    };
+   /**
+    * Wakeup cont
+    * @param {object} node
+    * @param {int} nodeId
+    * @param {object} ZWaveAPIData
+    * @param {object} cfgXml
+    * @returns {unresolved}
+    */
+    this.configWakeupCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
+        return configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
+    };
+
+    /**
+     * Build config XML file
+     * @param {object} data
+     * @param {object} cfgXml
+     * @param {int} id
+     * @param {string} commandclass
+     * @returns {unresolved}
+     */
+    this.buildCfgXml = function(data, cfgXml, id, commandclass) {
+        return buildCfgXml(data, cfgXml, id, commandclass);
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Get language line by key
+     */
+    function getLangLine(key, languages) {
+        if (angular.isObject(languages)) {
+            if (angular.isDefined(languages[key])) {
+                return languages[key] !== '' ? languages[key] : key;
+            }
+        }
+        return key;
+    }
+    ;
+
+    /**
+     *  Get expert commands
+     */
+    function configGetCommands(methods, ZWaveAPIData) {
+        var methodsArr = [];
+        angular.forEach(methods, function(params, method) {
+            //str.split(',');
+            var cmd = {};
+            var values = repr_array(method_defaultValues(ZWaveAPIData, methods[method]));
+            cmd['data'] = {
+                'method': method,
+                'params': methods[method],
+                'values': method_defaultValues(ZWaveAPIData, methods[method])
+            };
+            cmd['method'] = method;
+            cmd['params'] = methods[method];
+            cmd['values'] = repr_array(method_defaultValues(ZWaveAPIData, methods[method]));
+            methodsArr.push(cmd);
+        });
+        return methodsArr;
+    }
+
+    /**
+     *  Get interview Commands
+     */
+    function configGetInterviewCommands(node, updateTime) {
+        var interviews = [];
+        for (var iId in node.instances) {
+            var cnt = 0;
+            for (var ccId in node.instances[iId].commandClasses) {
+                var obj = {};
+                obj['iId'] = iId;
+                obj['ccId'] = ccId;
+                obj['ccName'] = node.instances[iId].commandClasses[ccId].name;
+                obj['interviewDone'] = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                obj['cmdData'] = node.instances[iId].commandClasses[ccId].data;
+                obj['cmdDataIn'] = node.instances[iId].data;
+                obj['updateTime'] = updateTime;
+                interviews.push(obj);
+                cnt++;
+            }
+            ;
+        }
+        ;
+        return interviews;
+    }
+
+
+    /**
+     *  Get config navigation devices
+     */
+    function configGetNav(ZWaveAPIData) {
+        var devices = [];
+        var controllerNodeId = ZWaveAPIData.controller.data.nodeId.value;
+        // Loop throught devices
+        angular.forEach(ZWaveAPIData.devices, function(node, nodeId) {
+            if (nodeId == 255 || nodeId == controllerNodeId || node.data.isVirtual.value) {
+                return;
+            }
+            var node = ZWaveAPIData.devices[nodeId];
+            // Set object
+            var obj = {};
+            obj['id'] = nodeId;
+            obj['name'] = $filter('deviceName')(nodeId, node);
+            devices.push(obj);
+        });
+        return devices;
+    }
+
+    /**
+     *  Get language from zddx
+     */
+    function configGetZddxLang(langs, currLang) {
+        var label = null;
+        if (!langs) {
+            return label;
+        }
+        if (angular.isArray(langs)) {
+            for (var i = 0, len = langs.length; i < len; i++) {
+                if (("__text" in langs[i]) && (langs[i]["_xml:lang"] == currLang)) {
+                   label = langs[i].__text;
+                    return label;
+                     
+                    //continue;
+                }else{
+                     if (("__text" in langs[i]) && (langs[i]["_xml:lang"] == 'en')) {
+                    label = langs[i].__text;
+                    return label;
+                     }
+                }
+            }
+            // DEPRECATED
+//            angular.forEach(langs, function(lang, index) {
+//                if (("__text" in lang) && (lang["_xml:lang"] == currLang)) {
+//                    label = lang.__text;
+//                    return false;
+//                }
+//                if (("__text" in lang) && (lang["_xml:lang"] == "en")) {
+//                    label = lang.__text;
+//                }
+//            });
+        } else {
+            if (("__text" in langs)) {
+                label = langs.__text;
+            }
+        }
+         //console.log(label)
+        return label;
+    }
+
+    /**
+     * Get xml config param
+     */
+    function getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command) {
+        var cfg = $filter('hasNode')(cfgXml, 'config.devices.deviceconfiguration');
+        if (!cfg) {
+            return [];
+        }
+        // Get data for given device by id
+        var collection = [];
+        angular.forEach(cfg, function(v, k) {
+            //if (v['_id'] == nodeId && v['_instance'] == instance && v['_commandClass'] == commandClass && v['_command'] == command) {
+            if (v['_id'] == nodeId && v['_instance'] == instance && v['_commandclass'] == commandClass && v['_command'] == command) {
+//                if(!angular.isArray(v['_parameter'])){
+//                    return;
+//                }
+                var array = JSON.parse(v['_parameter']);
+                if (array.length > 2) {
+                    collection[array[0]] = array[1];
+                }
+                else if (array.length == 2) {
+                    collection = array;
+
+                }
+                else {
+                    collection[0] = array[0];
+                    return;
+                }
+            }
+
+        });
+        //console.log(collection)
+        return collection;
+
+    }
+
+    /**
+     * Config cont
+     */
+    function configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages) {
+        if (!0x70 in node.instances[0].commandClasses) {
+            return null;
+        }
+        if (!zddXml) {
+            return null;
+        }
+
+        if (!zddXml.ZWaveDevice.hasOwnProperty("configParams")) {
+            return null;
+        }
+        var config_cont = [];
+        var params = zddXml.ZWaveDevice.configParams['configParam'];
+//        var lang = 'en';
+//        var langs = {
+//            "en": "1",
+//            "de": "0"
+//        };
+//        if (angular.isDefined(langs[lang])) {
+//            lang = lang;
+//        }
+//        var langId = langs[lang];
+        // Loop throught params
+        var parCnt = 0;
+        var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '70', 'Set');
+        angular.forEach(params, function(conf_html, i) {
+            //console.log(zddXml);
+            if (!angular.isObject(conf_html)) {
+                return;
+            }
+
+            have_conf_params = true;
+            var conf = conf_html;
+            var conf_num = conf['_number'];
+            //console.log(cfgFile[conf_num])
+            var conf_size = conf['_size'];
+            var conf_name = configGetZddxLang($filter('hasNode')(conf, 'name.lang'), lang) || getLangLine('configuration_parameter', languages) + ' ' + conf_num;
+            var conf_description = configGetZddxLang($filter('hasNode')(conf, 'description.lang'), lang);
+            var conf_size = conf['_size'];
+            var conf_default_value = null;
+            var conf_type = conf['_type'];
+            var showDefaultValue = null;
+            var config_config_value;
+
+            // get value from the Z-Wave data
+            var config_zwave_value = null;
+
+            if (angular.isDefined(node.instances[0].commandClasses[0x70])) {
+                if (node.instances[0].commandClasses[0x70].data[conf_num] != null && node.instances[0].commandClasses[0x70].data[conf_num].val.value !== "") {
+                    config_zwave_value = node.instances[0].commandClasses[0x70].data[conf_num].val.value;
+                    conf_default = config_zwave_value;
+
+                }
+
+            }
+
+            // get default value
+            var conf_default = null;
+            if (conf['_default'] !== undefined) {
+                conf_default = parseInt(conf['_default'], 16);
+                showDefaultValue = conf_default;
+            }
+
+            // get default value from the config XML
+            if (cfgFile[conf_num] !== undefined) {
+                config_config_value = cfgFile[conf_num];
+            } else {
+                if (config_zwave_value !== null) {
+                    config_config_value = config_zwave_value;
+                } else {
+                    config_config_value = conf_default;
+                }
+            }
+
+            var isUpdated = true;
+            var updateTime = '';
+            if (angular.isDefined(node.instances[0].commandClasses[0x70])
+                    && angular.isDefined(node.instances[0].commandClasses[0x70].data[conf_num])) {
+                var uTime = node.instances[0].commandClasses[0x70].data[conf_num].updateTime;
+                var iTime = node.instances[0].commandClasses[0x70].data[conf_num].invalidateTime;
+                var updateTime = $filter('isTodayFromUnix')(uTime);
+                var isUpdated = (uTime > iTime ? true : false);
+            }
+
+            // Switch
+            var conf_method_descr;
+            //console.log(conf_name + ' --- ' + conf_type)
+            switch (conf_type) {
+                case 'constant':
+                case 'rangemapped':
+                    var param_struct_arr = [];
+                    var conf_param_options = '';
+
+                    angular.forEach(conf['value'], function(value_html, i) {
+                        var value = value_html;
+                        var value_from = parseInt(value['_from'], 16);
+                        var value_to = parseInt(value['_to'], 16);
+                        var value_description = null;
+                        if (angular.isDefined(value.description)) {
+                            value_description = configGetZddxLang($filter('hasNode')(value, 'description.lang'), lang);
+                        }
+                        if (angular.isDefined(value.lang)) {
+                            value_description = configGetZddxLang($filter('hasNode')(value, 'lang'), lang);
+
+                        }
+                        var value_repr = value_from; // representative value for the range
+                        if (conf_default !== null)
+                            if (value_from <= conf_default && conf_default <= value_to) {
+                                conf_default_value = value_description;
+                                value_repr = conf_default;
+                            }
+                        param_struct_arr.push({
+                            label: value_description,
+                            type: {
+                                fix: {
+                                    value: value_repr
+                                }
+                            }
+                        });
+                    });
+                    conf_method_descr = {
+                        nodeId: nodeId,
+                        label: 'Nº ' + conf_num + ' - ' + conf_name,
+                        type: {
+                            enumof: param_struct_arr
+                        },
+                        name: 'input_' + nodeId + '_' + conf_num,
+                        description: conf_description,
+                        updateTime: updateTime,
+                        isUpdated: isUpdated,
+                        defaultValue: conf_default_value,
+                        showDefaultValue: showDefaultValue,
+                        configCconfigValue: config_config_value,
+                        configZwaveValue: config_zwave_value,
+                        confNum: conf_num,
+                        confSize: conf_size
+                    };
+
+                    break;
+                case 'range':
+
+                    var param_struct_arr = [];
+                    var rangeParam = conf['value'];
+                    //console.log(rangeParam, conf_num);
+
+                    if (!rangeParam) {
+                        conf_method_descr = {
+                            nodeId: nodeId,
+                            label: 'Nº ' + conf_num + ' - ' + conf_name,
+                            type: {
+                                noval: null
+                            },
+                            name: 'input_' + nodeId + '_' + conf_num,
+                            description: conf_description,
+                            updateTime: updateTime,
+                            isUpdated: isUpdated,
+                            defaultValue: null,
+                            showDefaultValue: showDefaultValue,
+                            configCconfigValue: config_config_value,
+                            configZwaveValue: config_zwave_value,
+                            confNum: conf_num,
+                            confSize: conf_size
+                        };
+                        break;
+                    }
+                    angular.forEach(rangeParam, function(value_html, ri) {
+                        //console.log(ri);
+                        var value = value_html;
+
+                        if (ri == 'description') {
+                            //console.log(ri);
+                            var value_from = parseInt(rangeParam['_from'], 16);
+                            var value_to = parseInt(rangeParam['_to'], 16);
+
+                        } else {
+                            var value_from = parseInt(value['_from'], 16);
+                            var value_to = parseInt(value['_to'], 16);
+                        }
+                        var value_description = '';
+                        if (angular.isDefined(value.description)) {
+                            value_description = configGetZddxLang($filter('hasNode')(value, 'description.lang'), lang);
+                        }
+                        if (angular.isDefined(value.lang)) {
+                            value_description = configGetZddxLang($filter('hasNode')(value, 'lang'), lang);
+                        }
+                        //var value_description = deviceService.configGetZddxLang($filter('hasNode')(value, 'lang'), $scope.lang);
+
+                        if (conf_default !== null)
+                            conf_default_value = conf_default;
+
+
+                        if (value_from != value_to) {
+                            if (value_description != '') {
+                                var rangeVal = {
+                                    label: value_description,
+                                    type: {
+                                        range: {
+                                            min: value_from,
+                                            max: value_to
+                                        }
+                                    }
+                                };
+                                param_struct_arr.push(rangeVal);
+                            }
+                        }
+                        else // this is a fix value
+                        if (value_description != '') {
+                            param_struct_arr.push({
+                                label: value_description,
+                                type: {
+                                    fix: {
+                                        value: value_from
+                                    }
+                                }
+                            });
+                        }
+                    });
+
+                    if (param_struct_arr.length > 1)
+                        conf_method_descr = {
+                            nodeId: nodeId,
+                            label: 'Nº ' + conf_num + ' - ' + conf_name,
+                            type: {
+                                enumof: param_struct_arr
+                            },
+                            hideRadio: false,
+                            name: 'input_' + nodeId + '_' + conf_num,
+                            description: conf_description,
+                            updateTime: updateTime,
+                            isUpdated: isUpdated,
+                            defaultValue: conf_default_value,
+                            showDefaultValue: showDefaultValue,
+                            configCconfigValue: config_config_value,
+                            configZwaveValue: config_zwave_value,
+                            confNum: conf_num,
+                            confSize: conf_size
+                        };
+                    else if (param_struct_arr.length == 1) {
+
+                        conf_method_descr = {
+                            nodeId: nodeId,
+                            label: 'Nº ' + conf_num + ' - ' + conf_name,
+                            type: {
+                                enumof: param_struct_arr
+                            },
+                            name: 'input_' + nodeId + '_' + conf_num,
+                            hideRadio: true,
+                            description: conf_description,
+                            updateTime: updateTime,
+                            isUpdated: isUpdated,
+                            defaultValue: conf_default_value,
+                            showDefaultValue: showDefaultValue,
+                            configCconfigValue: config_config_value,
+                            configZwaveValue: config_zwave_value,
+                            confNum: conf_num,
+                            confSize: conf_size
+                        };
+                    }
+
+                    break;
+                case 'bitset':
+                    var param_struct_arr = [];
+                    var conf_param_options = '';
+                    var conf_default_value_arr = new Object;
+                    if (conf_default !== null) {
+                        var bit = 0;
+                        do {
+                            if ((1 << bit) & conf_default)
+                                conf_default_value_arr[bit] = 'Bit ' + bit + ' set';
+                        } while ((1 << (bit++)) < conf_default);
+                    }
+                    ;
+                    angular.forEach(conf['value'], function(value_html, i) {
+                        var value = value_html;
+                        var value_from = parseInt(value['_from'], 16);
+                        var value_to = parseInt(value['_to'], 16);
+                        var value_description = 'fdf';
+                        var value_description = '';
+                        if (conf_default !== null) {
+                            if (value_from == value_to) {
+                                if ((1 << value_from) & conf_default)
+                                    conf_default_value_arr[value_from] = value_description;
+                            } else {
+                                conf_default_value_arr[value_from] = (conf_default >> value_from) & ((1 << (value_to - value_from + 1)) - 1)
+                                for (var bit = value_from + 1; bit <= value_to; bit++)
+                                    delete conf_default_value_arr[bit];
+                            }
+                        }
+                        ;
+                        if (value_from == value_to)
+                            param_struct_arr.push({
+                                label: value_description,
+                                name: 'input_' + nodeId + '_' + conf_num,
+                                type: {
+                                    bitcheck: {
+                                        bit: value_from
+                                    }
+                                }
+                            });
+                        else
+                            param_struct_arr.push({
+                                label: value_description,
+                                name: 'input_' + nodeId + '_' + conf_num,
+                                type: {
+                                    bitrange: {
+                                        bit_from: value_from,
+                                        bit_to: value_to
+                                    }
+                                }
+                            });
+                    });
+                    if (conf_default !== null) {
+                        conf_default_value = '';
+                        for (var ii in conf_default_value_arr)
+                            conf_default_value += conf_default_value_arr[ii] + ', ';
+                        if (conf_default_value.length)
+                            conf_default_value = conf_default_value.substr(0, conf_default_value.length - 2);
+                    }
+                    conf_method_descr = {
+                        nodeId: nodeId,
+                        label: 'Nº ' + conf_num + ' - ' + conf_name,
+                        type: {
+                            bitset: param_struct_arr
+                        },
+                        name: 'input_' + nodeId + '_' + conf_num,
+                        description: conf_description,
+                        updateTime: updateTime,
+                        isUpdated: isUpdated,
+                        defaultValue: conf_default_value,
+                        showDefaultValue: showDefaultValue,
+                        configCconfigValue: config_config_value,
+                        configZwaveValue: config_zwave_value,
+                        confNum: conf_num,
+                        confSize: conf_size
+                    };
+                    break;
+                default:
+                    return;
+                    //conf_cont.append('<span>' + $.translate('unhandled_type_parameter') + ': ' + conf_type + '</span>');
+            }
+            ;
+
+            config_cont.push(conf_method_descr);
+            parCnt++;
+        });
+        //console.log(config_cont);
+        return config_cont;
+    }
+
+    /**
+     * Switch all cont
+     */
+    function configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml) {
+        var switchall_cont = false;
+        if (0x27 in node.instances[0].commandClasses) {
+            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '27', 'Set');
+            var uTime = node.instances[0].commandClasses[0x27].data.mode.updateTime;
+            var iTime = node.instances[0].commandClasses[0x27].data.mode.invalidateTime;
+            var updateTime = $filter('isTodayFromUnix')(uTime);
+            var isUpdated = (uTime > iTime ? true : false);
+            var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x27, 'Set');
+            var conf_default_value = 0;
+            var switchall_conf_value;
+            if (cfgFile !== undefined) {
+                switchall_conf_value = cfgFile[0];
+            } else {
+                switchall_conf_value = 1;// by default switch all off group only
+            }
+            switchall_cont = {
+                'params': gui_descr,
+                'values': {0: switchall_conf_value},
+                name: 'switchall_' + nodeId + '_' + 0,
+                updateTime: updateTime,
+                isUpdated: isUpdated,
+                defaultValue: conf_default_value,
+                showDefaultValue: conf_default_value,
+                configCconfigValue: switchall_conf_value,
+                confNum: 0,
+                confSize: 0,
+                cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x27]'
+            };
+
+        }
+        ;
+        return switchall_cont;
+    }
+
+    /**
+     * Protection cont
+     */
+    function configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml) {
+        var protection_cont = false;
+        if (0x75 in node.instances[0].commandClasses) {
+            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '75', 'Set');
+            var uTime = node.instances[0].commandClasses[0x75].data.state.updateTime;
+            var iTime = node.instances[0].commandClasses[0x75].data.state.invalidateTime;
+            var updateTime = $filter('isTodayFromUnix')(uTime);
+            var isUpdated = (uTime > iTime ? true : false);
+            var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x75, 'Set');
+            var conf_default_value = 0;
+            var protection_conf_value;
+            //var protection_conf_rf_value;
+            // get default value from the config XML
+            if (cfgFile !== undefined) {
+                protection_conf_value = cfgFile[0];
+            } else {
+                protection_conf_value = 0;// by default switch all off group only
+            }
+
+            protection_cont = {
+                'params': gui_descr,
+                'values': {0: protection_conf_value},
+                name: 'protection_' + nodeId + '_' + 0,
+                updateTime: updateTime,
+                isUpdated: isUpdated,
+                defaultValue: conf_default_value,
+                showDefaultValue: conf_default_value,
+                configCconfigValue: protection_conf_value,
+                confNum: 0,
+                confSize: 0,
+                cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x75]'
+            };
+        }
+        ;
+        return protection_cont;
+    }
+
+    /**
+     * Wakeup cont
+     */
+    function configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml) {
+        var wakeup_cont = false;
+        if (0x84 in node.instances[0].commandClasses) {
+            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '84', 'Set');
+            var wakeup_zwave_min = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 0 : node.instances[0].commandClasses[0x84].data.min.value;
+            var wakeup_zwave_max = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 0xFFFFFF : node.instances[0].commandClasses[0x84].data.max.value;
+            var wakeup_zwave_value = node.instances[0].commandClasses[0x84].data.interval.value;
+            var wakeup_zwave_default_value = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 86400 : node.instances[0].commandClasses[0x84].data['default'].value; // default is a special keyword in JavaScript
+            var wakeup_zwave_nodeId = node.instances[0].commandClasses[0x84].data.nodeId.value;
+            var uTime = node.instances[0].commandClasses[0x84].data.updateTime;
+            var iTime = node.instances[0].commandClasses[0x84].data.invalidateTime;
+            var updateTime = $filter('isTodayFromUnix')(uTime);
+            var isUpdated = (uTime > iTime ? true : false);
+            if (wakeup_zwave_min !== '' && wakeup_zwave_max !== '') {
+                var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x84, 'Set');
+                gui_descr[0].type.range.min = parseInt(wakeup_zwave_min, 10);
+                gui_descr[0].type.range.max = parseInt(wakeup_zwave_max, 10);
+                var wakeup_conf_value;
+                var wakeup_conf_node_value = 0;
+                if (angular.isArray(cfgFile) && cfgFile.length > 0) {
+                    wakeup_conf_value = cfgFile[0] || 0;
+                    wakeup_conf_node_value = cfgFile[1] || 0;
+                } else {
+                    if (wakeup_zwave_value != "" && wakeup_zwave_value != 0 && wakeup_zwave_nodeId != "") {
+                        // not defined in config: adopt devices values
+                        wakeup_conf_value = parseInt(wakeup_zwave_value, 10);
+                    } else {
+                        // values in device are missing. Use defaults
+                        wakeup_conf_value = parseInt(wakeup_zwave_default_value, 10);
+                    }
+                    ;
+                }
+                ;
+                wakeup_cont = {
+                    'params': gui_descr,
+                    'values': {"0": wakeup_conf_value},
+                    name: 'wakeup_' + nodeId + '_' + 0,
+                    updateTime: updateTime,
+                    isUpdated: isUpdated,
+                    defaultValue: wakeup_zwave_default_value,
+                    showDefaultValue: wakeup_zwave_default_value,
+                    configCconfigValue: wakeup_conf_value,
+                    configCconfigNodeValue: wakeup_conf_node_value,
+                    confNum: 0,
+                    confSize: 0,
+                    cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x84]'
+                };
+            } else {
+                //$('#wakeup_cont .cfg-block-content').append('<span>' + $scope._t('config_ui_wakeup_no_min_max') + '</span>');
+            }
+        }
+        ;
+        return wakeup_cont;
+    }
+
+    /**
+     *Build config XML file
+     */
+    function buildCfgXml(data, cfgXml, id, commandclass) {
+        var hasCfgXml = false;
+        var assocCc = [133, 142];
+        var formData = [];
+        if (commandclass == '84') {
+            var par1 = JSON.parse(data[0]['parameter']);
+            var par2 = JSON.parse(data[1]['parameter']);
+            var wakeData = {
+                'id': id,
+                'instance': data[0]['instance'],
+                'commandclass': commandclass,
+                'command': data[0]['command'],
+                'parameter': '[' + par1 + ',' + par2 + ']'
+            };
+            formData.push(wakeData);
+        } else {
+            formData = data;
+        }
+        var xmlData = formData;
+        if (angular.isObject(cfgXml) && $filter('hasNode')(cfgXml, 'config.devices.deviceconfiguration')) {
+            hasCfgXml = cfgXml.config.devices.deviceconfiguration;
+            angular.forEach(hasCfgXml, function(v, k) {
+                var obj = {};
+                if (v['_id'] == id && v['_commandclass'] == commandclass) {
+                    return;
+                }
+                obj['id'] = v['_id'];
+                obj['instance'] = v['_instance'];
+                obj['commandclass'] = v['_commandclass'];
+                obj['command'] = v['_command'];
+                obj['parameter'] = v['_parameter'];
+                obj['group'] = v['_group'];
+                xmlData.push(obj);
+
+            });
+        }
+        var ret = buildCfgXmlFile(xmlData);
+        return ret;
+
+    }
+
+    /**
+     * Build cfg XML file
+     */
+    function buildCfgXmlFile(xmlData) {
+        var assocCc = [133, 142];
+        var xml = '<config><devices>' + "\n";
+
+        angular.forEach(xmlData, function(v, k) {
+            if (assocCc.indexOf(parseInt(v.commandclass, 10)) > -1) {
+                xml += '<deviceconfiguration id="' + v.id + '" instance="' + v.instance + '" commandclass="' + v.commandclass + '" command="' + v.command + '" group="' + v.group + '" parameter="' + v.parameter + '"/>' + "\n";
+
+            } else {
+                xml += '<deviceconfiguration id="' + v.id + '" instance="' + v.instance + '" commandclass="' + v.commandclass + '" command="' + v.command + '" parameter="' + v.parameter + '"/>' + "\n";
+            }
+
+        });
+        xml += '</devices></config>' + "\n";
+        return xml;
+
+    }
+});
+
+/**
  * @overview Common Angular directives that are used within the views.
  * @author Martin Vach
  */
@@ -14135,6 +21764,476 @@ myApp.directive('bbKeyEvent', function () {
             }
         });
     };
+});
+
+
+/**
+ * @overview Angular directives that are used in device hardware configuration view.
+ * @author Martin Vach
+ */
+
+/**
+ * Renders configuration form inputs
+ * @class expertCommandInput
+ */
+myApp.directive('expertCommandInput', function($filter) {
+    /**
+     * Renders text input
+     * @param {text} label
+     * @param {mixed} value
+     * @param {int} min
+     * @param {int} max
+     * @param {string} name
+     * @returns {String}
+     */
+    function getText(label, value, min, max, name) {
+        var input = '';
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label> ';
+        input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" title=" min: ' + min + ', max: ' + max + '" />';
+        return input;
+    }
+    /**
+     * Renders node select input 
+     * @param {string} label
+     * @param {object} devices
+     * @param {string} currValue
+     * @param {string} name
+     * @returns {String}
+     */
+    function getNode(label, devices, currValue, name) {
+        var input = '';
+        var inName = $filter('stringToSlug')(name ? name : label);
+        
+        input += '<label class="label-node">' + label + '</label> ';
+        input += '<select name="select_' + inName + '" class="form-control">';
+        input += '<option value="1">Z-Way</option>';
+        angular.forEach(devices, function(v, k) {
+            var selected = (v.id == currValue ? ' selected' : '');
+            input += '<option value="' + v.id + '"' + selected + '>' + v.name + '</option>';
+        });
+
+        input += '</select>';
+
+        return input;
+    }
+
+    /**
+     * Renders enumerators
+     * @param {string} label
+     * @param {object} enums
+     * @param {int} defaultValue
+     * @param {string} name
+     * @param {boolean} hideRadio
+     * @param {int} currValue
+     * @returns {undefined|String}
+     */
+    function getEnum(label, enums, defaultValue, name, hideRadio,currValue) {
+        
+        var input = '';
+        if (!enums) {
+            return;
+        }
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label><br />';
+        var cnt = 1;
+        var value = (currValue !== undefined ? currValue : defaultValue);
+        angular.forEach(enums.enumof, function(v, k) {
+            var title = v.label;
+            var type = v.type;
+            var enumVal =  $filter('hasNode')(v, 'type.fix.value');
+            var checked = (cnt == 1 ? ' checked="checked"' : '');
+            var isCurrent = (cnt == 1 ? ' commads-is-current' : '');
+
+            if ('fix' in type) {
+                if (defaultValue) {
+                    if (isNaN(parseInt(defaultValue, 10))) {
+                        isCurrent = (v.label == defaultValue ? ' commads-is-current' : '');
+                    } else {
+                         isCurrent = '';
+                    }
+                }
+                
+                if (!isNaN(parseInt(value, 10))) {
+                    checked = (enumVal == value ? ' checked="checked"' : '');
+                }
+                input += '<input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value="' + type.fix.value + '"' + checked + ' /> <span class="commands-label' + isCurrent + '">' + title + '</span><br />';
+            } else if ('range' in type) {
+                var min = type.range.min;
+                var max = type.range.max;
+                var disabled = ' disabled="true"';
+                var setVal = (value ? value : min);
+                if (defaultValue) {
+                    if (defaultValue >= min && defaultValue <= max) {
+                        disabled = '';
+                        isCurrent = ' commads-is-current';
+                    }
+
+                } else {
+                    isCurrent = '';
+                }
+                if (value) {
+                    if (value >= min && value <= max) {
+                        checked = ' checked="checked"';
+                        disabled = '';
+                    }
+
+                } else {
+                    checked = '';
+                }
+                
+                if (hideRadio) {
+                    disabled = '';
+                }
+
+//                input += '<input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value=""' + checked + ' /> ' + title + ' <input type="text" name="radio_' + inName + '_txt" class="form-control commands-data-txt-chbx" value="' + min + '" title=" min: ' + min + ', max: ' + max + '"'+ disabled + ' /><br />'; 
+                if (!hideRadio) {
+                    input += '<div><input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value=""' + checked + ' /> <span class="commands-label' + isCurrent + '">' + title + '</span> <input type="text" name="radio_txt_' + inName + '" class="form-control commands-data-txt-chbx" value="' + setVal + '" title=" min: ' + min + ', max: ' + max + '"' + disabled + ' /></div>';
+                } else {
+                    input += '<input type="text" name="radio_txt_' + inName + '" class="form-control" value="' + setVal + '" title=" min: ' + min + ', max: ' + max + '" /><br />';
+                }
+
+
+            } else {
+                input = '';
+            }
+            cnt++;
+
+        });
+        return input;
+    }
+
+    /**
+     * Renders dropdown list
+     * @param {string} label
+     * @param {object} enums
+     * @param {string} defaultValue
+     * @param {string} name
+     * @param {string} currValue
+     * @returns {String}
+     */
+    function getDropdown(label, enums, defaultValue, name,currValue) {
+        var input = '';
+        var cValue = (currValue !== undefined ? currValue : defaultValue);
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label><br />';
+        input += '<select name="select_' + inName + '" class="form-control">';
+        var cnt = 1;
+        angular.forEach(enums.enumof, function(v, k) {
+            var title = v.label;
+            var type = v.type;
+            var value;
+            if ('fix' in type) {
+                value = type.fix.value;
+            } else if ('range' in type) {
+                value = type.range.min;
+            }
+
+            if (value) {
+                var selected = (type.fix.value == cValue ? ' selected' : '');
+            }
+            input += '<option value="' + value + '"' + selected + '> ' + title + '</option>';
+            cnt++;
+
+        });
+        input += '</select">';
+        return input;
+    }
+
+    /**
+     * Renders constant select
+     * @param {string} label
+     * @param {string} type
+     * @param {string} defaultValue
+     * @param {string} name
+     * @param {string} currValue
+     * @returns {String}
+     */
+    function getConstant(label, type, defaultValue, name,currValue) {
+        var input = '';
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label><br />';
+        if (type.constant.length > 0) {
+            input += '<select name="select_' + inName + '" class="form-control">';
+            angular.forEach(type.constant, function(v, k) {
+
+                input += '<option value="' + v.type.constant.value + '"> ' + v.label + '</option>';
+            });
+
+
+            input += '</select">';
+        }
+        //console.log(type,defaultValue);
+        input += '<em>Constant type</em>';
+        return input;
+    }
+    /**
+     * Renders string input
+     * @param {string} label
+     * @param {string} value
+     * @param {string} name
+     * @returns {String}
+     */
+    function getString(label, value, name) {
+        var input = '';
+        var inName = $filter('stringToSlug')(name ? name : label);
+        input += '<label>' + label + '</label> ';
+        input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" />';
+        return input;
+    }
+    
+    /**
+     * Renders bitset input
+     * @returns {String}
+     */
+    function getBitset() {
+        
+        var input = '';
+        
+        return input;
+    }
+
+    /**
+     * Renders default label
+     * @param {string} label
+     * @returns {String}
+     */
+    function getDefault(label) {
+
+        var input = '';
+        input += '<label>' + label + '</label><br />';
+        return input;
+    }
+
+    return {
+        restrict: "E",
+        replace: true,
+        template: '<div class="form-group" ng-bind-html="input | toTrusted"></div>',
+        scope: {
+            collection: '=',
+            devices: '=',
+            getNodeDevices: '=',
+            values: '=',
+            isDropdown: '=',
+            defaultValue: '=',
+            showDefaultValue: '=',
+            currValue: '=',
+            currNodeValue: '=',
+            name: '=',
+            divId: '='
+        },
+        link: function(scope, element, attrs) {
+
+            var input = '';
+            if (!scope.collection) {
+                return;
+            }
+            var label = scope.collection.label;
+            var type = scope.collection.type;
+            var name = (scope.collection.name || scope.name);
+            var hideRadio = scope.collection.hideRadio;
+            if (scope.isDropdown) {
+                input = getDropdown(label, type, scope.defaultValue, name,scope.currValue);
+                scope.input = input;
+                return;
+            }
+            //if (label && type) {
+            if (type) {
+                if ('range' in type) {
+                    input = getText(label, scope.values, type.range.min, type.range.max, name);
+                } else if ('node' in type) {
+                    input = getNode(label, scope.getNodeDevices(), scope.currNodeValue, name);
+                } else if ('enumof' in type) {
+                    input = getEnum(label, type, scope.defaultValue, name, hideRadio,scope.currValue);
+                } else if ('bitset' in type) {
+                    input = getBitset(label, type, scope.defaultValue, name, hideRadio,scope.currValue);
+                } else if ('constant' in type) {
+                    input = getConstant(label, type, scope.defaultValue, name,scope.currValue);
+                } else if ('string' in type) {
+                    input = getString(label, scope.values, name,scope.currValue);
+                } else {
+                    input = getDefault(label);
+                }
+                scope.input = input;
+                return;
+            }
+
+        }
+
+    };
+});
+/**
+ * Renders configuration default value
+ * @class configDefaultValue
+ */
+myApp.directive('configDefaultValue', function() {
+    return {
+        restrict: "E",
+        replace: true,
+        template: '<span class="default-value-format"> {{input}}</span>',
+        scope: {
+            collection: '=',
+            defaultValue: '=',
+            showDefaultValue: '='
+        },
+        link: function(scope, element, attrs) {
+            scope.input = scope.showDefaultValue;
+            var input = '';
+            if (!scope.collection) {
+                return;
+            }
+            var label = scope.collection.label;
+            var type = scope.collection.type;
+            var name = scope.collection.name;
+            var hideRadio = scope.collection.hideRadio;
+            
+            if (type) {
+                if ('range' in type) {
+                    //input = getText(label, scope.values, type.range.min, type.range.max, name);
+                } else if ('node' in type) {
+                    //input = getNode(label, scope.getNodeDevices(), 'null', name);
+                } else if ('enumof' in type) {
+                    input = getEnum(type, scope.defaultValue,scope.showDefaultValue);
+                   
+                } else if ('constant' in type) {
+                    //input = getConstant(label, type, scope.defaultValue, name);
+                } else if ('string' in type) {
+                    //input = getString(label, scope.values, name);
+                } else {
+                    input = scope.showDefaultValue;
+                }
+                scope.input = input;
+                
+                return;
+            }
+
+
+        }
+
+    };
+
+    /**
+     * Renders enumerators
+     * @param {object} enums
+     * @param {string} defaultValue
+     * @param {string} showDefaultValue
+     * @returns {string}
+     */
+    function getEnum(enums, defaultValue,showDefaultValue) {
+        //console.log(enums)
+        var input = showDefaultValue;
+        if (!enums) {
+            return;
+        }
+        angular.forEach(enums.enumof, function(v, k) {
+          
+            var title = v.label ? v.label : showDefaultValue;
+            var type = v.type;
+             // debugger; 
+            if ('fix' in type) {
+                if (type.fix.value == showDefaultValue) {
+                    input = title;
+                    return;
+                }
+ 
+            } else if ('range' in type) {
+                var min = type.range.min;
+                var max = type.range.max;
+                var setVal = (defaultValue ? defaultValue : min);
+                if (setVal == showDefaultValue) {
+                    input = showDefaultValue;
+                    return;
+                }
+            }
+
+        });
+        
+        return input;
+    }
+});
+/**
+ * Renders configuration title input
+ * @class configValueTitle
+ */
+myApp.directive('configValueTitle', function() {
+    return {
+        restrict: "A",
+        //replace: true,
+        template: '<span title="{{showValue}}">{{input}}</span>',
+        scope: {
+            collection: '=',
+            showValue: '='
+        },
+        link: function(scope, element, attrs) {
+            scope.input = scope.showValue;
+            var input = '';
+            if (!scope.collection) {
+                return;
+            }
+            var type = scope.collection.type;
+            
+            if (type) {
+                if ('range' in type) {
+                    //input = getText(label, scope.values, type.range.min, type.range.max, name);
+                } else if ('node' in type) {
+                    //input = getNode(label, scope.getNodeDevices(), 'null', name);
+                } else if ('enumof' in type) {
+                    input = getEnum(type, scope.showValue);
+                   
+                } else if ('constant' in type) {
+                    //input = getConstant(label, type, scope.defaultValue, name);
+                } else if ('string' in type) {
+                    //input = getString(label, scope.values, name);
+                } else {
+                    input = scope.showValue;
+                }
+                scope.input = input;
+                
+                return;
+            }
+
+
+        }
+
+    };
+
+    /**
+     * Renders enumerators
+     * @param {object} enums
+     * @param {string} showValue
+     * @returns {string}
+     */
+    function getEnum(enums, showValue) {
+        //console.log(enums)
+        var input = showValue;
+        if (!enums) {
+            return;
+        }
+        angular.forEach(enums.enumof, function(v, k) {
+          
+            var title = v.label ? v.label : showValue;
+            var type = v.type;
+             // debugger; 
+            if ('fix' in type) {
+                if (type.fix.value == showValue) {
+                    input = title;
+                    return;
+                }
+ 
+            } else if ('range' in type) {
+                var min = type.range.min;
+                var max = type.range.max;
+                var setVal = (showValue ? showValue : min);
+                if (setVal == showValue) {
+                    input = showValue;
+                    return;
+                }
+            }
+
+        });
+        
+        return input;
+    }
 });
 
 
@@ -20960,59 +29059,18 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
 
 
 /**
- * @overview Controllers that handle all Camera actions – manage and add camera.
+ * @overview Controllers that manage Z-Wave devices.
  * @author Martin Vach
  */
-
 /**
- * The controller that renders a list of the cameras.
- * @class CameraAddController
+ * The controller that renders and handles data in the Z-Wave/Manage section.
+ * @class ZwaveManageController
  */
-myAppController.controller('CameraAddController', function ($scope, dataFactory, dataService, _) {
-    $scope.ipcameraDevices = [];
-    $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
-    /**
-     * Load ip cameras
-     */
-    $scope.loadData = function () {
-        dataFactory.getApi('modules').then(function (response) {
-            $scope.ipcameraDevices = _.filter(response.data.data, function (item) {
-                var isHidden = false;
-                if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                    if ($scope.user.role !== 1) {
-                        isHidden = true;
-                    } else {
-                        isHidden = ($scope.user.expert_view ? false : true);
-                    }
-
-                }
-                if (item.category !== 'surveillance') {
-                    isHidden = true;
-                }
-
-                if (!isHidden) {
-                    return item;
-                }
-            });
-            if( _.size($scope.ipcameraDevices) < 1){
-                    alertify.alertWarning($scope._t('no_cameras')); 
-                }
-        }, function (error) {});
-    };
-    $scope.loadData();
-});
-
-/**
- * The controller that handles camera manage actions .
- * @class CameraManageController
- */
-myAppController.controller('CameraManageController', function ($scope, $q, dataFactory, dataService, myCache, _) {
-    $scope.instances = [];
-    $scope.modules = {
-        mediaUrl: $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/',
-        collection: [],
-        ids: [],
-        imgs: []
+myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $location, $q, dataFactory, dataService, myCache) {
+    $scope.devices = {
+        zw: {},
+        find: {},
+        show: true
     };
 
     /**
@@ -21021,117 +29079,923 @@ myAppController.controller('CameraManageController', function ($scope, $q, dataF
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('modules'),
-            dataFactory.getApi('instances')
+            dataFactory.loadZwaveApiData(false),
+            dataFactory.getApi('devices')
         ];
 
         $q.allSettled(promises).then(function (response) {
-            var modules = response[0];
-            var instances = response[1];
+            var devices = response[0];
+            var elements = response[1];
             $scope.loading = false;
             // Error message
-            if (instances.state === 'rejected') {
+            if (devices.state === 'rejected') {
                 $scope.loading = false;
+                $scope.devices.show = false;
                 alertify.alertError($scope._t('error_load_data'));
-                $scope.rooms.show = false;
                 return;
             }
-            // Success - modules
-            if (modules.state === 'fulfilled') {
-                setModules(modules.value.data.data);
+            // Success - zwave devices
+            if (devices.state === 'fulfilled') {
+                $scope.devices.zw = setZwaveApiData(devices.value);
             }
-            // Success - instances
-            if (instances.state === 'fulfilled') {
-                setInstances(instances.value.data.data);
-                if( _.size($scope.instances) < 1){
-                    alertify.alertWarning($scope._t('no_cameras')); 
-                }
+            // Success - elements
+            if (elements.state === 'fulfilled') {
+                //setElements(elements.value.data.data.devices);
+                setElements(dataService.getDevicesData(elements.value.data.data.devices, false,true));
             }
         });
     };
     $scope.allSettled();
 
     /**
-     * Ictivate instance
+     * Run zwave CMD
      */
-    $scope.activateInstance = function (input, activeStatus) {
-        input.active = activeStatus;
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        if (input.id) {
-            dataFactory.putApi('instances', input.id, input).then(function (response) {
-                $scope.loading = false;
-                myCache.remove('instances');
-                myCache.remove('instances/' + input.moduleId);
-                myCache.remove('devices');
-                $scope.allSettled();
+    $scope.runZwaveCmd = function (cmd) {
+        dataFactory.runZwaveCmd(cmd).then(function () {
+        }, function () {
+        });
+    };
 
-            }, function (error) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-            });
+
+    /// --- Private functions --- ///
+    /**
+     * Set zwave devices
+     * @param {array} elements
+     * @returns {undefined}
+     */
+    function setZwaveApiData(ZWaveAPIData) {
+        var obj = {};
+        var controllerNodeId,
+                interviewDone,
+                isFailed,
+                hasBattery,
+                lastReceive,
+                lastSend,
+                lastCommunication,
+                isListening,
+                isFLiRS,
+                isAwake,
+                hasWakeup,
+                sleepingSince,
+                lastWakeup,
+                interval,
+                batteryCharge,
+                instance,
+                security;
+        controllerNodeId = ZWaveAPIData.controller.data.nodeId.value;
+        angular.forEach(ZWaveAPIData.devices, function (node, nodeId) {
+            if (nodeId == 255 || nodeId == controllerNodeId || node.data.isVirtual.value) {
+                return;
+            }
+            instance = getInstances(node);
+            interviewDone = instance.interviewDone;
+            security = instance.security;
+            isFailed = node.data.isFailed.value;
+            hasBattery = 0x80 in node.instances[0].commandClasses;
+            lastReceive = parseInt(node.data.lastReceived.updateTime, 10) || 0;
+            lastSend = parseInt(node.data.lastSend.updateTime, 10) || 0;
+            lastCommunication = (lastSend > lastReceive) ? lastSend : lastReceive;
+            isListening = node.data.isListening.value;
+            isFLiRS = !isListening && (node.data.sensor250.value || node.data.sensor1000.value);
+            isAwake = node.data.isAwake.value;
+            hasWakeup = 0x84 in node.instances[0].commandClasses;
+            sleepingSince = 0;
+            lastWakeup = 0;
+            interval = 0;
+            if (!isListening && hasWakeup) {
+                sleepingSince = parseInt(node.instances[0].commandClasses[0x84].data.lastSleep.value, 10);
+                lastWakeup = parseInt(node.instances[0].commandClasses[0x84].data.lastWakeup.value, 10);
+                interval = parseInt(node.instances[0].commandClasses[0x84].data.interval.value, 10);
+            }
+            //0x80 = 128
+            batteryCharge = $filter('hasNode')(node, 'instances.0.commandClasses.128.data.last.value');//parseInt(node.instances[0].commandClasses[0x80].data.last.value);
+            obj[nodeId] = {
+                id: parseInt(nodeId),
+                title: node.data.givenName.value || 'Device ' + '_' + nodeId,
+                hasBattery: hasBattery,
+                batteryCharge: (batteryCharge === null ? null : parseInt(batteryCharge)),
+                interviewDone: interviewDone,
+                security: security,
+                isFailed: isFailed,
+                sleeping: sleepingCont(isListening, hasWakeup, sleepingSince, lastWakeup, interval),
+                awake: awakeCont(isAwake, isListening, isFLiRS),
+                date: $filter('isTodayFromUnix')(lastCommunication),
+                cfg: [],
+                elements: {},
+                messages: []
+            };
+            // Low battery level
+            if (hasBattery && interviewDone) {
+                var batteryCharge = parseInt(node.instances[0].commandClasses[0x80].data.last.value);
+                if (batteryCharge <= 20) {
+                    obj[nodeId]['messages'].push({
+                        type: 'battery',
+                        error: $scope._t('lb_low_battery') + ' (' + batteryCharge + '%)'
+                    });
+                }
+            }
+            // Is failed
+            if (isFailed) {
+                obj[nodeId]['messages'].push({
+                    type: 'failed',
+                    error: $scope._t('lb_is_failed')
+
+                });
+                return;
+            }
+
+            // Interview is not done
+            if (!interviewDone) {
+                obj[nodeId]['messages'].push({
+                    type: 'config',
+                    error: $scope._t('lb_not_configured')
+
+                });
+            }
+        });
+        return obj;
+    }
+    /**
+     * Set elements created by zWave device
+     * @param {array} elements
+     * @returns {undefined}
+     */
+    function setElements(elements) {
+        var findZwaveStr, cmd, nodeId;
+        angular.forEach(elements.value(), function (v, k) {
+            findZwaveStr = v.id.split('_');
+            if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
+                cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
+                nodeId = cmd[0];
+                if ($scope.devices.zw[nodeId]) {
+                    $scope.devices.zw[nodeId]['elements'][v.id] = v;
+                }
+            }
+
+
+        });
+    }
+    /**
+     * Get selected instances status
+     */
+    function getInstances(node) {
+        var instance = {
+            interviewDone: true,
+            security: false
+        };
+        for (var iId in node.instances) {
+            for (var ccId in node.instances[iId].commandClasses) {
+
+                var ccName = node.instances[iId].commandClasses[ccId].name;
+                var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
+                if (ccName === 'Security') {
+                    instance.security = isDone;
+                }
+                if (isDone == false) {
+                    instance.interviewDone = false;
+                }
+            }
         }
+        return instance;
 
+    }
+    ;
+    // Get Awake Cont
+    function awakeCont(isAwake, isListening, isFLiRS) {
+        var awake_cont = false;
+        if (!isListening && !isFLiRS) {
+            awake_cont = isAwake ? 'awake' : 'sleep';
+        }
+        return awake_cont;
+    }
+    // Get Sleeping Cont
+    function sleepingCont(isListening, hasWakeup, sleepingSince, lastWakeup, interval) {
+        var sleeping_cont;
+        if (!isListening && hasWakeup) {
+            var approx = '';
+            if (isNaN(sleepingSince) || sleepingSince < lastWakeup) {
+                sleepingSince = lastWakeup;
+                if (!isNaN(lastWakeup))
+                    approx = '~';
+            }
+            ;
+            if (interval == 0) {
+                interval = NaN; // to indicate that interval and hence next wakeup are unknown
+            }
+            var lastSleep = $filter('isTodayFromUnix')(sleepingSince);
+            var nextWakeup = $filter('isTodayFromUnix')(sleepingSince + interval);
+            sleeping_cont = approx + lastSleep + ' &#8594; ' + approx + nextWakeup;
+        }
+        return sleeping_cont;
+    }
+});
+
+/**
+ * The controller that handles interview process in the Z-Wave/Network section.
+ * @class ZwaveInterviewController
+ */
+myAppController.controller('ZwaveInterviewController', function ($scope, $location, $interval, dataFactory, dataService, _) {
+    $scope.zwaveInterview = {
+        cfg: {
+            checkInterviewTimeout: 3000, // miliseconds
+            checkInterviewRepeat: 3, // times
+            inexTimeout: 30000 // Inclusion/Exclusion timeout - miliseconds
+        },
+        process: false,
+        done: false,
+        nodeId: 0,
+        nodeName: '',
+        hasBattery: false,
+        progress: 0,
+        commandClassesCnt: 0,
+        interviewDoneCnt: 0,
+        interviewRepeatCnt: 0,
+        security: false,
+        securityInterview: false,
+        errorType: '',
+        interviewNotDone: {}
+    };
+    $scope.interval = {
+        api: null
     };
 
     /**
-     * Delete instance
+     * Start configuration
      */
-    $scope.deleteInstance = function (input, message) {
-        alertify.confirm(message, function () {
-            dataFactory.deleteApi('instances', input.id).then(function (response) {
-                $(target).fadeOut(500);
-                myCache.remove('instances');
-                myCache.remove('devices');
-            }, function (error) {
-                alertify.alertError($scope._t('error_delete_data'));
-            });
+    $scope.startConfiguration = function (includedDevice) {
+        resetConfiguration(true, false, includedDevice, false, true);
+        checkInterview($scope.devices.find.id);
+        var refresh = function () {
+            $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+            var interviewRepeatCnt = $scope.zwaveInterview.interviewRepeatCnt + 1;
+            angular.extend($scope.zwaveInterview, {interviewRepeatCnt: interviewRepeatCnt});
+            // Try to comlete configuration
+            if (interviewRepeatCnt > $scope.zwaveInterview.cfg.checkInterviewRepeat && !$scope.zwaveInterview.done) {
+                $interval.cancel($scope.interval.api);
+                var resetInfo = '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('configuration_cancel') + '</div>';
+                var batteryInfo = $scope.zwaveInterview.hasBattery
+                        ? '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('error_interview_battery') + '</div>'
+                        : '';
 
+                // Error switch
+                switch ($scope.zwaveInterview.errorType) {
+                    // Secure interview failed
+                    case 'error_interview_secure_failed':
+                        alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .set('onok', function (closeEvent) {//after clicking OK
+                                    $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+                                    $scope.startConfiguration({
+                                        nodeId: $scope.devices.find.id,
+                                        interviewDoneCnt: 0,
+                                        interviewRepeatCnt: 0,
+                                        errorType: ''});
+                                })
+                                .set('oncancel', function (closeEvent) {//after clicking Cancel
+                                    alertify.dismissAll();
+                                    $location.path('/zwave/inclusion');
+                                });
+                        break;
+                        // Cc Version interview is not complete
+                    case 'error_interview_again':
+                        alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .set('onok', function (closeEvent) {//after clicking OK
+                                    $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+                                    $scope.startConfiguration({
+                                        nodeId: $scope.devices.find.id,
+                                        interviewDoneCnt: 0,
+                                        interviewRepeatCnt: 0,
+                                        errorType: ''});
+                                })
+                                .set('oncancel', function (closeEvent) {//after clicking Cancel
+                                    alertify.dismissAll();
+                                    $location.path('/zwave/inclusion');
+                                });
+                        break;
+                        // Cc Version interview is complete but other interviews are not complete
+                    case 'error_interview_retry':
+                        alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .set('onok', function (closeEvent) {//after clicking OK
+                                    $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
+                                    $scope.startConfiguration({
+                                        nodeId: $scope.devices.find.id,
+                                        interviewDoneCnt: 0,
+                                        interviewRepeatCnt: 0,
+                                        errorType: ''});
+                                })
+                                .set('oncancel', function (closeEvent) {//after clicking Cancel
+                                    alertify.dismissAll();
+                                    $location.path('/zwave/inclusion');
+                                });
+                        break;
+                        // Unexpected error
+                    default:
+                        alertify.alertError($scope._t('error_interview_unexpected')).set('onok', function (closeEvent) {
+                            $scope.reloadData();
+                        });
+                        break;
+
+                }
+
+                return;
+            }
+            checkInterview($scope.devices.find.id);
+        };
+        $scope.interval.api = $interval(refresh, $scope.zwaveInterview.cfg.checkInterviewTimeout);
+    };
+    if (!_.isEmpty($scope.devices.find)) {
+        $scope.startConfiguration();
+    }
+
+
+    /**
+     * Cancel configuration
+     */
+    $scope.cancelConfiguration = function (event) {
+        resetConfiguration(false, false, null, false, true);
+        $scope.devices.find = {};
+        if (event) {
+            $scope.handleModal('zwaveNetworkModal', event);
+        }
+    };
+
+    /**
+     * Force interview
+     */
+    $scope.forceInterview = function (interviews) {
+        angular.forEach(interviews, function (v, k) {
+            $scope.runZwaveCmd(v);
         });
     };
 
     /// --- Private functions --- ///
 
     /**
-     * Set modules
+     * Reset configuration
      */
-    function setModules(data) {
-        _.filter(data, function (item) {
-            var isHidden = false;
-            if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {
-                if ($scope.user.role !== 1) {
-                    isHidden = true;
-                } else {
-                    isHidden = ($scope.user.expert_view ? false : true);
+    function resetConfiguration(process, done, includedDevice, cmd, cancelInterval) {
+        /// Set scope
+        angular.extend($scope.zwaveInterview,
+                {process: process, done: done, forceInterview: false, progress: 0}
+        );
+        // Set included device
+        if (_.isObject(includedDevice)) {
+            angular.extend($scope.zwaveInterview, includedDevice);
+        }
+        // Run CMD
+        if (cmd) {
+            $scope.runZwaveCmd(cmd);
+        }
+        // Cancel interval
+        if (cancelInterval) {
+            $interval.cancel($scope.interval.api);
+        }
+    }
+    ;
+
+    /**
+     * Check interview
+     */
+    function checkInterview(nodeId) {
+        $scope.zwaveInterview.commandClassesCnt = 0;
+        $scope.zwaveInterview.interviewDoneCnt = 0;
+        dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            var node = ZWaveAPIData.devices[nodeId];
+            if (!node) {
+                return;
+            }
+            if (!ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value) {
+                return;
+            }
+
+            // Is battery operated?
+            if (angular.isDefined(ZWaveAPIData.devices[nodeId].instances)) {
+                angular.extend($scope.zwaveInterview, {hasBattery: 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses});
+            }
+            for (var iId in ZWaveAPIData.devices[nodeId].instances) {
+                if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length < 1) {
+                    return;
                 }
+                angular.extend($scope.zwaveInterview, {commandClassesCnt: Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length});
+                for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                    var cmdClass = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId];
+                    var id = node.instances[iId].commandClasses[ccId].name;
+                    var iData = 'devices[' + nodeId + '].instances[' + iId + '].commandClasses[' + ccId + '].Interview()';
+                    //Is Security available?
+                    if (ccId === '152') {
+                        $scope.zwaveInterview.security = true;
+                    }
+                    // Is interview done?
+                    if (cmdClass.data.interviewDone.value) {
+                        // Is security interview done?
+                        if (ccId === '152') {
+                            $scope.zwaveInterview.securityInterview = true;
+                        }
+                        // If an interview is done deleting from interviewNotDone
+                        delete $scope.zwaveInterview.interviewNotDone[id];
+                        // Extending an interview counter
+                        angular.extend($scope.zwaveInterview,
+                                {interviewDoneCnt: $scope.zwaveInterview.interviewDoneCnt + 1}
+                        );
+                    } else { // An interview is not done
+                        // Extending interviewNotDone
+                        $scope.zwaveInterview.interviewNotDone[id] = iData;
+                    }
+                }
+            }
 
-            }
-            if (item.category !== 'surveillance') {
-                isHidden = true;
+            var commandClassesCnt = $scope.zwaveInterview.commandClassesCnt;
+            var intervewDoneCnt = $scope.zwaveInterview.interviewDoneCnt;
+            var progress = ((intervewDoneCnt / commandClassesCnt) * 100).toFixed();
+            console.log('commandClassesCnt: ', commandClassesCnt);
+            console.log('intervewDoneCnt: ', intervewDoneCnt);
+            console.log('Percent %: ', progress);
+            $scope.zwaveInterview.progress = (progress < 101 ? progress : 99);
+
+            // Test if Security available and Security interview failed
+            if ($scope.zwaveInterview.security && !$scope.zwaveInterview.securityInterview) {
+                angular.extend($scope.zwaveInterview, {errorType: 'error_interview_secure_failed'});
+                return;
             }
 
-            if (!isHidden) {
-                $scope.modules.ids.push(item.id);
-                $scope.modules.imgs[item.id] = item.icon;
-                return item;
+            // If no Security or Security ok but Interviews are not complete
+            if (!_.isEmpty($scope.zwaveInterview.interviewNotDone)) {
+                // If command class Version is not complet, „Force Interview Version“
+                if ($scope.zwaveInterview.interviewNotDone['Version']) {
+                    angular.extend($scope.zwaveInterview, {errorType: 'error_interview_again'});
+                    return;
+                    // If Version ok but other CC are missing, force only these command classes
+                } else {
+                    angular.extend($scope.zwaveInterview, {errorType: 'error_interview_retry'});
+                    return;
+                }
             }
+            // If interview is complete
+            if (progress >= 100) {
+                $scope.zwaveInterview.progress = 100;
+                resetConfiguration(false, true, null, false, true);
+                //setSecureInclusion(true);
+                //$scope.startManualConfiguration(nodeId);
+                return;
+                ;
+            }
+        }, function (error) {
+            return;
         });
     }
     ;
 
     /**
-     * Set instances
+     * Set secure inclusion
      */
-    function setInstances(data) {
-        $scope.instances = _.reject(data, function (v) {
-            if ($scope.modules.ids.indexOf(v.moduleId) > -1) {
-                return false;
+    function setSecureInclusion(status) {
+        $scope.runZwaveCmd('controller.data.secureInclusion=' + status);
+    }
+    ;
+});
+/**
+ * The controller that handles Z-Wave exclusion process.
+ * @class ZwaveInterviewController
+ */
+myAppController.controller('ZwaveExcludeController', function ($scope, $location, $routeParams, $interval, dataFactory, dataService, _) {
+    $scope.zWaveDevice = {
+        controllerState: 0,
+        lastExcludedDevice: 0,
+        id: null,
+        name: null,
+        apiDataInterval: null,
+        removeNode: false,
+        removeNodeProcess: false,
+        find: {}
+    };
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function () {
+        $interval.cancel($scope.zWaveDevice.apiDataInterval);
+        $scope.zWaveDevice.removeNode = false;
+        $scope.runZwaveCmd('controller.RemoveNodeFromNetwork(0)');
+    });
+    /**
+     * Load z-wave devices
+     */
+    $scope.loadZwaveApiData = function () {
+        dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            var node = ZWaveAPIData.devices[$routeParams.id];
+            if (!node) {
+                alertify.alertWarning($scope._t('no_data'));
+                return;
             }
-            return true;
+            $scope.zWaveDevice.controllerState = ZWaveAPIData.controller.data.controllerState.value;
+            $scope.zWaveDevice.id = $routeParams.id;
+            $scope.zWaveDevice.name = node.data.givenName.value || 'Device ' + '_' + $routeParams.id;
+            return;
+
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
         });
     };
+    $scope.loadZwaveApiData();
+
+    /**
+     *  Refresh z-wave devices
+     */
+    $scope.refreshZwaveApiData = function () {
+
+        dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            var refresh = function () {
+                dataFactory.refreshZwaveApiData().then(function (response) {
+                    //var data = response.data;
+                    if ('controller.data.controllerState' in response.data) {
+                        $scope.zWaveDevice.controllerState = response.data['controller.data.controllerState'].value;
+                        console.log('controllerState: ', $scope.zWaveDevice.controllerState);
+                    }
+
+                    if ('controller.data.lastExcludedDevice' in response.data) {
+                        $scope.zWaveDevice.lastExcludedDevice = response.data['controller.data.lastExcludedDevice'].value;
+                        console.log('lastExcludedDevice: ', $scope.zWaveDevice.lastExcludedDevice);
+                    }
+                }, function (error) {});
+            };
+            $scope.zWaveDevice.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+        }, function (error) {});
+    };
+    $scope.refreshZwaveApiData();
+
+    /**
+     * Run ExpertUI command
+     */
+    $scope.runZwaveCmd = function (cmd) {
+        dataFactory.runZwaveCmd(cmd).then(function () {
+            //myCache.remove('devices');
+            //myCache.removeAll();
+            //console.log('Reload...')
+            //$route.reload();
+        }, function (error) {
+        });
+
+    };
+    /**
+     * Run ExpertUI command - remove failed node
+     */
+    $scope.removeFailedNode = function (cmd) {
+        dataFactory.runZwaveCmd(cmd).then(function () {
+            $scope.zWaveDevice.removeNodeProcess = true;
+        }, function (error) {
+        });
+
+    };
+});
+/**
+ * The controller that renders and handles configuration data for a single Z-Wave device.
+ * @class ZwaveManageIdController
+ */
+myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams, $q, $filter, $location, dataFactory, dataService, myCache) {
+    $scope.zwaveConfig = {
+        nodeId: $routeParams.nodeId,
+        nohistory: $routeParams.nohistory
+    };
+
+    $scope.zWaveDevice = [];
+    $scope.devices = [];
+    $scope.formInput = {
+        show: true,
+        newRoom: '',
+        elements: {},
+        room: 0,
+        deviceName: false
+    };
+    $scope.rooms = [];
+
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.getApi('devices', null, true),
+            dataFactory.getApi('locations', null, true)
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var devices = response[0];
+            var locations = response[1];
+
+            $scope.loading = false;
+            // Error message
+            if (devices.state === 'rejected') {
+                $scope.loading = false;
+                $scope.formInput.show = false;
+                alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
+                    dataService.goBack();
+                });
+                return;
+            }
+            // Success - devices
+            if (devices.state === 'fulfilled') {
+                var elements = dataService.getDevicesData(devices.value.data.data.devices, false,true);
+                zwaveConfigApiData($scope.zwaveConfig.nodeId, elements.value());
+            }
+            // Success - locations
+            if (locations.state === 'fulfilled') {
+                $scope.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+
+            }
+
+        });
+    };
+    $scope.allSettled();
+
+    /**
+     * Add room
+     */
+    $scope.addRoom = function (room) {
+        if (!room) {
+            return;
+        }
+        var input = {
+            id: 0,
+            title: room
+        };
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.storeApi('locations', input.id, input).then(function (response) {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_updated')});
+            $scope.formInput.newRoom = '';
+            $scope.allSettled();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.loading = false;
+
+        });
+
+    };
+
+    /**
+     * Update all devices
+     */
+    $scope.updateAllDevices = function (input) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+
+        // Update element
+        angular.forEach(input.elements, function (v, k) {
+            if (input.room) {
+                angular.extend(v, {location: parseInt(input.room)})
+            }
+            dataFactory.putApi('devices', v.id, v).then(function (response) {
+            }, function (error) {
+            });
+        });
+        //Update device name
+        var cmd = 'devices[' + $scope.zWaveDevice.id + '].data.givenName.value=\'' + input.deviceName + '\'';
+        dataFactory.runZwaveCmd(cmd).then(function () {
+        }, function (error) {
+        });
+        myCache.removeAll();
+        $scope.loading = false;
+        dataService.showNotifier({message: $scope._t('success_updated')});
+        if (angular.isDefined($routeParams.nohistory)) {
+            $location.path('/zwave/devices');
+        } else {
+            dataService.goBack();
+        }
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Get zwaveApiData
+     */
+    function zwaveConfigApiData(nodeId, devices) {
+        dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            var node = ZWaveAPIData.devices[nodeId];
+            if (!node) {
+                return;
+            }
+
+            $scope.zWaveDevice = {
+                id: nodeId,
+                cfg: []
+            };
+            $scope.formInput.deviceName = node.data.givenName.value || 'Device ' + '_' + nodeId;
+            // Has config file
+            if (angular.isDefined(node.data.ZDDXMLFile) && node.data.ZDDXMLFile.value != '') {
+                if ($scope.zWaveDevice['cfg'].indexOf('config') === -1) {
+                    $scope.zWaveDevice['cfg'].push('config');
+                }
+            }
+            // Has wakeup
+            if (0x84 in node.instances[0].commandClasses) {
+                if ($scope.zWaveDevice['cfg'].indexOf('wakeup') === -1) {
+                    $scope.zWaveDevice['cfg'].push('wakeup');
+                }
+            }
+            // Has SwitchAll
+            if (0x27 in node.instances[0].commandClasses) {
+                if ($scope.zWaveDevice['cfg'].indexOf('switchall') === -1) {
+                    $scope.zWaveDevice['cfg'].push('switchall');
+                }
+            }
+            // Has protection
+            if (0x75 in node.instances[0].commandClasses) {
+                if ($scope.zWaveDevice['cfg'].indexOf('protection') === -1) {
+                    $scope.zWaveDevice['cfg'].push('protection');
+                }
+            }
+            if ($scope.devices.length > 0) {
+                $scope.devices = angular.copy([]);
+            }
+
+            angular.forEach(devices, function (v, k) {
+                var findZwaveStr = v.id.split('_');
+                if ((findZwaveStr[0] !== 'ZWayVDev' && findZwaveStr[1] !== 'zway') || v.deviceType === 'battery') {
+                    return;
+                }
+                var cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
+                var zwaveId = cmd[0];
+                var iId = cmd[1];
+                var ccId = cmd[2];
+                if (zwaveId == nodeId) {
+                    var obj = v;
+                    /*var obj = {};
+                     obj['id'] = v.id;
+                     obj['permanently_hidden'] = v.permanently_hidden;
+                     obj['visibility'] = v.visibility;
+                     obj['level'] = $filter('toInt')(v.metrics.level);
+                     obj['metrics'] = v.metrics;
+                     obj['location'] = v.location;*/
+                    $scope.formInput.elements[v.id] = obj;
+                    $scope.devices.push(obj);
+                }
+
+            });
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    }
+    ;
 
 });
 
+
+/**
+ * @overview  The controller that renders Z-Wave vendors and products.
+ * @author Martin Vach
+ */
+
+/**
+ * The controller that renders Z-Wave vendors and products.
+ * @class ZwaveVendorController
+ */
+myAppController.controller('ZwaveVendorController', function ($scope, $routeParams,$q, cfg, $cookies,$location,dataFactory, dataService, _) {
+    $scope.zwaveVendors = {
+        frequency: false,
+        frequencyName: false,
+
+        all: {},
+        products: {
+            pageTitle: '',
+            cnt: 0,
+            all:{},
+            collection: {},
+            noSearch: false
+        },
+        filter: ($cookies.filterProducts ? angular.fromJson($cookies.filterProducts) : {}),
+    };
+
+    $scope.autocomplete = {
+        source: [],
+        term: '',
+        searchInKeys: 'id,name,brandname,ertification_id',
+        returnKeys: 'id,name,brandname,product_image_base64,frequency',
+        strLength: 2,
+        resultLength: 10
+    };
+
+
+
+    /**
+     * Load all promises
+     */
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.loadZwaveApiData(),
+            dataFactory.getApiLocal('ui_vendors.json'),
+            dataFactory.getApi('zwave_devices','?lang=' + $scope.lang)
+
+
+        ];
+
+        $q.allSettled(promises).then(function (response) {
+            var zwdata = response[0];
+            var vendors = response[1];
+            var products = response[2];
+
+            var productsWhere = {};
+
+            $scope.loading = false;
+            // Error message
+            if (zwdata.state === 'rejected' || vendors.state === 'rejected') {
+                alertify.alertError($scope._t('error_load_data'));
+                return;
+            }
+            // Success - zwdata
+            if (zwdata.state === 'fulfilled') {
+                if(zwdata.value.controller.data.frequency.value){
+                    $scope.zwaveVendors.frequency = zwdata.value.controller.data.frequency.value;
+                    $scope.zwaveVendors.frequencyName = cfg.frequency[zwdata.value.controller.data.frequency.value];
+                    productsWhere.frequency = $scope.zwaveVendors.frequencyName;
+                }
+
+                /*$scope.zwaveVendors.frequency = zwdata.value.controller.data.frequency.value;
+                 $scope.zwaveVendors.frequencyName = cfg.frequency[zwdata.value.controller.data.frequency.value];*/
+            }
+            // Success - vendors
+            if (vendors.state === 'fulfilled') {
+                $scope.zwaveVendors.all = vendors.value.data;
+            }
+            // Success - products
+            if (products.state === 'fulfilled') {
+                $scope.zwaveVendors.products.all = dataService.getZwaveDevices(products.value.data.zwave_devices)
+                    .where(productsWhere)
+                    .value();
+
+                if ('brandid' in  $scope.zwaveVendors.filter) {// Filter by brand id
+                    $scope.zwaveVendors.products.pageTitle = $scope.zwaveVendors.filter.brandid;
+                    $scope.zwaveVendors.products.collection = _.where($scope.zwaveVendors.products.all, $scope.zwaveVendors.filter);
+                }else  if ('q' in  $scope.zwaveVendors.filter) {// Filter by query
+                    $scope.zwaveVendors.products.pageTitle = $scope.zwaveVendors.filter.q;
+                    // Set autcomplete term
+                    $scope.autocomplete.term = $scope.zwaveVendors.filter.q;
+                    // Set IDS
+                    var searchResult = _.indexBy(dataService.autocomplete($scope.zwaveVendors.products.all, $scope.autocomplete), 'id');
+                    $scope.zwaveVendors.products.collection = _.filter($scope.zwaveVendors.products.all, function (v) {
+                        if (searchResult[v.id]) {
+                            return v;
+                        }
+                    });
+                }else{
+                    $scope.zwaveVendors.products.collection = $scope.zwaveVendors.products.all;
+                }
+                $scope.zwaveVendors.products.cnt = _.size($scope.zwaveVendors.products.collection);
+                if ($scope.zwaveVendors.products.cnt < 1) {
+                    $scope.zwaveVendors.products.noSearch =  $scope.zwaveVendors.products.pageTitle;
+                }
+                //console.log($scope.zwaveVendors.products.collection)
+            }
+
+
+        });
+    };
+    $scope.allSettled();
+
+    /**
+     * Renders search result in the list
+     */
+    $scope.searchMe = function () {
+        $scope.autocomplete.results = dataService.autocomplete($scope.zwaveVendors.products.all,$scope.autocomplete);
+        // Expand/Collapse the list
+        if(!_.isEmpty($scope.autocomplete.results)){
+            $scope.expandAutocomplete('searchProducts',event);
+        }else{
+            $scope.expandAutocomplete('searchProducts',event,false);
+        }
+        // Reset filter q if is input empty
+        if ($scope.zwaveVendors.filter.q && $scope.autocomplete.term.length < 1) {
+            $scope.setFilter();
+        }
+    };
+
+    /**
+     * Set filter
+     */
+    $scope.setFilter = function (filter) {
+        // Reset
+        $scope.autocomplete.results = [];
+        $scope.zwaveVendors.products.noSearch = false;
+        $scope.expandAutocomplete('searchProducts',event,false);
+
+        // Is fiter value empty?
+        var empty = (_.values(filter) == '');
+
+        if (!filter || empty) {// Remove filter
+            angular.extend($scope.zwaveVendors, {filter: {}});
+            $cookies.filterProducts= angular.toJson({});
+            $scope.allSettled();
+            //$scope.reloadData();
+        } else {// Set filter
+            angular.extend($scope.zwaveVendors, {filter: filter});
+            $scope.allSettled();
+            //$scope.reloadData();
+            $cookies.filterProducts = angular.toJson(filter);
+            if ($scope.routeMatch('/zwave/vendors')) {
+                $location.path('/zwave/products');
+            }
+        }
+
+
+    };
+});
 /**
  * @overview Controllers that handle EnOcean Services.
  * @author Martin Vach
@@ -24713,8105 +33577,6 @@ myAppController.controller('LogoutController', function ($scope, dataService, da
     };
     $scope.logout();
 });
-/**
- * @overview Functions used to render the configuration arrays.
- * @author Unknown
- */
-
-/**
- * Device filter for device select menu
- * @param {object} ZWaveAPIData
- * @param {string} span
- * @param {string} dev
- * @param {string} type
- * @returns {Boolean}
- */
-function devices_htmlSelect_filter(ZWaveAPIData,span,dev,type) {
-	// return true means to skip this node
-	switch(type) {
-		case 'srcnode':
-			// allow everything, since events can come from any device via timed_event
-			return false;
-
-			// skip virtual, controller or broadcast as event source
-			//return ( (ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value || dev == 255));
-
-		case 'dstnode':
-			// skip not virtual, not controller and not broadcast as event destination
-			return (!(ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value || dev == 255));
-
-		case 'device':
-			return ZWaveAPIData.devices[dev].data.isVirtual.value || dev == ZWaveAPIData.controller.data.nodeId.value;
-
-		case 'node':
-			// skip non-FLiRS sleeping in list of associations/wakeup node notifications/... in CC params of type node
-			return (!ZWaveAPIData.devices[dev].data.isListening.value && !ZWaveAPIData.devices[dev].data.sensor250.value && !ZWaveAPIData.devices[dev].data.sensor1000.value);
-
-		default:
-			return false;
-	}
-};
-
-/**
- * Returns array with default values: first value from the enum, minimum value for range, empty string for string, first nodeId for node, default schedule for the climate_schedule
- * @param {object} ZWaveAPIData
- * @param {object} method
- * @returns {Array}
- */
-function method_defaultValues(ZWaveAPIData,method) {
-     
-	function method_defaultValue(val) {
-		if ('enumof' in val['type']) {
-			if (val['type']['enumof'][0])
-				return method_defaultValue(val['type']['enumof'][0]); // take first item of enumof
-			else
-				return null;
-		}
-		if ('range' in val['type'])
-			return val['type']['range']['min'];
-		if ('fix' in val['type'])
-			return val['type']['fix']['value'];
-		if ('string' in val['type'])
-			return "";
-		if ('node' in val['type'])
-			for (var dev in ZWaveAPIData.devices) {
-				if (devices_htmlSelect_filter(ZWaveAPIData,null,dev,'node')) {
-					continue;
-				};
-				return parseInt(dev);
-			};
-		alert('method_defaultValue: unknown type of value');
-	};
-
-	var parameters = [];
-//	method.forEach(function(val,parameter_index){
-//		parameters[parameter_index] = method_defaultValue(val);
-//	});
-        angular.forEach(method,function(val,parameter_index){
-		parameters[parameter_index] = method_defaultValue(val);
-	});
-       
-	return parameters;
-};
-
-/**
- * Represent array with number, string and array elements in reversible way: use eval('[' + return_value + ']') to rever back to an array
- * @param {array} arr
- * @returns {String}
- */
-function repr_array(arr) {
-	var repr='';
-	for (var indx in arr) {
-		if (repr != '')
-			repr += ',';
-		switch (typeof(arr[indx])) {
-			case 'number':
-				repr += arr[indx].toString();
-				break;
-			case 'string':
-				repr += "'" + arr[indx].replace(/'/g, "\'") + "'"; // " // just for joe to hilight syntax properly
-				break;
-			case 'object':
-				repr += '[' + repr_array(arr[indx]) + ']';
-				break;
-			default:
-				if (arr[indx] === null)
-					repr += 'null'; // for null object
-				else
-					error_msg('Unknown type of parameter: ' + typeof(arr[indx]));
-		}
-	};
-
-	return repr;
-};
-
-/**
- * Array unique
- * @param {array} arr
- * @returns {Array}
- */
-function array_unique(arr) {
-	var newArray = new Array();
-
-	label:for (var i=0; i<arr.length;i++ ) {  
-		for (var j=0; j<newArray.length;j++ )
-			if (newArray[j] == arr[i]) 
-				continue label;
-		newArray[newArray.length] = arr[i];
-	}
-	return newArray;
-};
-/**
- * @overview Functions used to render the configuration JSON.
- * @author Unknown
- */
-var _methods_specs_rendered = null;
-/**
- * Get method spec
- * @param {object} ZWaveAPIData
- * @param {string} devId
- * @param {string} instId
- * @param {string} ccId
- * @param {string} method
- * @returns {getMethodSpec.methods}
- */
-function getMethodSpec(ZWaveAPIData,devId, instId, ccId, method) {
-	if (_methods_specs_rendered === null)
-        renderAllMethodSpec(ZWaveAPIData);
-	
-	try {
-		if (!(devId in _methods_specs_rendered))
-			_methods_specs_rendered[devId] = {};
-		if (!(instId in _methods_specs_rendered[devId]))
-			_methods_specs_rendered[devId][instId] = {};
-		if (!(ccId in _methods_specs_rendered[devId][instId]))
-			 _methods_specs_rendered[devId][instId][ccId] = renderMethodSpec(parseInt(ccId, 10), ZWaveAPIData.devices[devId].instances[instId].commandClasses[ccId].data);
-
-		var methods = _methods_specs_rendered[devId][instId][ccId];
-		if (method)
-			return methods[method];
-		else
-			return methods;
-	} catch(err) {
-		return null;
-	}
-}
-/**
- * Renders all method spec
- * @param {object} ZWaveAPIData
- * @returns {undefined}
- */
-function renderAllMethodSpec(ZWaveAPIData) {
-	_methods_specs_rendered = {};
-	
-	for (var devId in ZWaveAPIData.devices) {
-		_methods_specs_rendered[devId] = {};
-		for (var instId in ZWaveAPIData.devices[devId].instances) {
-			_methods_specs_rendered[devId][instId] = {};
-			for (var ccId in ZWaveAPIData.devices[devId].instances[instId].commandClasses) {
-				_methods_specs_rendered[devId][instId][ccId] = renderMethodSpec(parseInt(ccId, 10), ZWaveAPIData.devices[devId].instances[instId].commandClasses[ccId].data);
-			}
-		}
-	}
-}
-/**
- * Renders method spec
- * @param {string} ccId
- * @param {object} data
- * @returns {object}
-  */
-function renderMethodSpec(ccId, data) {
-	switch (ccId) {
-
-		// PowerLevel
-		case 0x73:
-			return {
-				"Get": [],
-				"TestNodeGet": [],
-
-
-
-				"TestNodeSet": [
-					{
-						"label": "Node ID",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 232
-							}
-						}
-					},
-
-					{			
-						"label": "PowerLevel",
-						"type": {
-							"enumof": [
-								{
-									"label": "-9dbm ", "type":{
-										"fix": 	{
-											"value": 9
-										}
-									}
-								},
-								{
-									"label": "-8dbm ", "type":{
-										"fix": 	{
-											"value": 8
-										}
-									}
-								},
-								{
-									"label": "-7dbm ", "type":{
-										"fix": 	{
-											"value": 7
-										}
-									}
-								},
-								{
-									"label": "-6dbm ", "type":{
-										"fix": 	{
-											"value": 6
-										}
-									}
-								},
-								{
-									"label": "-5dbm ", "type":{
-										"fix": 	{
-											"value": 5
-										}
-									}
-								},
-								{
-									"label": "-4dbm ", "type":{
-										"fix": 	{
-											"value": 4
-										}
-									}
-								},
-								{
-									"label": "-3dbm ", "type":{
-										"fix": 	{
-											"value": 3
-										}
-									}
-								},
-								{
-									"label": "-2dbm ", "type":{
-										"fix": 	{
-											"value": 2
-										}
-									}
-								},
-								{
-									"label": "-1dbm ", "type":{
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "Normal ", "type":{
-										"fix": 	{
-											"value": 0
-										}
-									}
-								}
-							]
-						}				
-					},
-					{				
-						"label": "Number of pakets",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 1000
-							}
-						}					
-					
-					}
-				],
-
-
-				
-				"Set":[
-					{
-						"label": "PowerLevel",
-						"type": {
-							"enumof": [
-								{
-									"label": "-9dbm ", "type":{
-										"fix": 	{
-											"value": 9
-										}
-									}
-								},
-								{
-									"label": "-8dbm ", "type":{
-										"fix": 	{
-											"value": 8
-										}
-									}
-								},
-								{
-									"label": "-7dbm ", "type":{
-										"fix": 	{
-											"value": 7
-										}
-									}
-								},
-								{
-									"label": "-6dbm ", "type":{
-										"fix": 	{
-											"value": 6
-										}
-									}
-								},
-								{
-									"label": "-5dbm ", "type":{
-										"fix": 	{
-											"value": 5
-										}
-									}
-								},
-								{
-									"label": "-4dbm ", "type":{
-										"fix": 	{
-											"value": 4
-										}
-									}
-								},
-								{
-									"label": "-3dbm ", "type":{
-										"fix": 	{
-											"value": 3
-										}
-									}
-								},
-								{
-									"label": "-2dbm ", "type":{
-										"fix": 	{
-											"value": 2
-										}
-									}
-								},
-								{
-									"label": "-1dbm ", "type":{
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "Normal ", "type":{
-										"fix": 	{
-											"value": 0
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Timeout (s)",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					}
-				]
-			};
-
-
-	
-		//SwitchColor
-		case 0x33:
-			return {
-				"Get": [
-				       {
-						"label": "Color Capability",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].capabilityString.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					}
-				],
-				"Set": [
-				       {
-						"label": "Color Capability",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].capabilityString.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					},
-					{
-						"label": "Value",
-						"type": {
-							"range": {
-								"min": 	0,
-								"max": 	255
-							}
-						}
-					}
-				],
-				"StartStateChange": [
-					{
-						"label": "Color Capability",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].capabilityString.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					},
-					{
-						"label": "Direction",
-						"type": {
-							"enumof": [
-								{
-									"label": "Up",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Down",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								}
-							]
-						}
-					},													
-				],
-				"StopStateChange": [
-					{
-						"label": "Color Capability",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].capabilityString.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					}								
-				]
-			};
- 
-
-		// Schedule (incomplete)
-		case 0x53:
-			return {
-				"Get": [
-					{
-						"label": "Id",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				]
-			};
-		
-		// AssociationGroupInformation
-		case 0x59:
-			return {
- 
-				"GetName": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				],
-				"GetInfo": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				],
-				"GetCommands": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				]
-			};
-
-		// ZWavePlusInfo
-		case 0x5e:
-			return {
-				"Get": []
-			};
-		
-		case 0x85:
-			return {
-				"GroupingsGet": [],
-				"Get": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				],
-				"Set": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Node",
-						"type": {
-							"node": {
-							}
-						}
-					}
-				],
-				"Remove": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Node",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				]
-			};
-	
-		// Version
-		case 0x86:
-			return {
-				/*
-				Version is not publically exported in Z-Way.C
-
-				"CommandClassVersionGet": [
-					{
-						"label":"CommandClass",
-						"type":	{
-							"range":	{
-								"min":	0x0001,
-								"max":	0xFFFF
-							}
-						}
-					}
-				]
-				*/
-			};
-
-		// UserCode
-		case 0x63:
-			return {
-				"Get": [
-					{
-						"label": "User",
-						"type":	{
-							"range": {
-								"min": 	0,
-								"max": 	99
-							}
-						}
-					}
-				],
-				"Set": [
-					{
-						"label": "User",
-						"type": {
-							"enumof": [
-								{
-									"label": "All usercodes",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Id",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 	99
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Code (4...10 Digits)",
-						"type": {
-							"string": {
-							}
-						}
-					},
-					{
-						"label": "Mode",
-						"type": {
-							"enumof": [
-								{
-									"label": "Not Set",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Set",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "Reserved",
-									"type": {
-										"fix": 	{
-											"value": 2
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-			
-		// Time Parameters
-		case 0x8B:
-			return {
-				"Get": [],
-				"Set": []
-			};
-			
-		// Thermostat SetPoint
-		case 0x43:
-			return {
-				"Get": [
-				       {
-						"label": "Type",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].modeName.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					}
-				],
-				"Set": [
-				       {
-						"label": "Type",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].modeName.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					},
-					{
-						"label": "Value",
-						"type": {
-							"range": {
-								"min": 	0,
-								"max": 	100
-							}
-						}
-					}
-				]
-			};
-
-		// Wakeup	
-		case 0x84:
-			return {
-				"Get": [],
-				"CapabilitiesGet": [],
-				"Set": [
-				       {
-						"label": "Wakeup time, seconds",
-						"type": {
-							"range": {
-								"min": 	(
-									function() {
-										try {
-											if (data.version.value >= 2 && data.min.value !== null)
-												return data.min.value;
-										} catch(err) {}
-										return 0;
-									}
-									)(),
-								"max": 	(
-									function() {
-										try {
-											if (data.version.value >= 2 && data.max.value !== null)
-												return data.max.value;
-										} catch(err) {}
-										return 256 * 256 * 256 - 1;
-									}
-									)()
-							}
-						}
-					},
-					{
-						"label": "to Node",
-						"type": {
-							"node": {}
-						}
-					}
-				],
-				"Sleep": []
-			};
-
-		// Time
-		case 0x8A:
-			return {
-				"TimeGet": [],
-				"DateGet": []
-			};
-
-		// ThermostatMode
-		case 0x40:
-			return {
-				"Get": [],
-				"Set": [
-					{
-						"label": "Type",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].modeName.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					}
-				]
-			};
-
-		// ThermostatFanMode
-		case 0x44:
-			return {
-				"Get": [],
-				"Set": [
-					{
-						"label": "Level",
-						"type": {
-							"enumof": [
-								{
-									"label": "Off",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "On",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Type",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].modeName.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					}
-				]
-			};
-
-		// ThermostatFanState
-		case 0x45: 
-			return {
-				"Get": []
-			};
-
-		// ThermostatOperatingState
-		case 0x42:
-			return {
-				"Get": [],
-				"LoggingGet" : [
-					{
-						"label": "States (bitmask)",
-						"type": {
-							"range": {
-								"min": 1,
-								"max": 99
-							}
-						}
-					}
-				]
-			};
-
-		// SwitchMultilevel
-		case 0x26:
-			return {
-				"Get": [],
-				"Set": [
-					{
-						"label": "Dimmer level",
-						"type": {
-							"enumof": [
-								{
-									"label": "Off",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "%",
-									"type": {
-										"range": {
-											"min": 0,
-											"max": 99
-										}
-									}
-								},
-								{
-									"label": "Full",
-									"type": {
-										"fix": 	{
-											"value": 99
-										}
-									}
-								},
-								{
-									"label": "On",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"StartLevelChange": [
-				       {
-						"label": "Direction",
-						"type": {
-							"enumof": [
-								{
-									"label": "Up",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Down",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								}
-							]
-						}
-					},
-				],
-				"StopLevelChange": [],
-				"SetWithDuration": [
-					{
-						"label": "Dimmer level",
-						"type": {
-							"enumof": [
-								{
-									"label": "Off",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "%",
-									"type": {
-										"range": {
-											"min": 0,
-											"max": 99
-										}
-									}
-								},
-								{
-									"label": "Full",
-									"type": {
-										"fix": 	{
-											"value": 99
-										}
-									}
-								},
-								{
-									"label": "On",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Duration",
-						"type": {
-							"enumof": [
-								{
-									"label": "immediately",
-									"type": {
-									"fix": 	{
-										"value": 0
-										}
-									}
-								},
-									{
-									"label": "in seconds",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127
-										}
-									}
-								},
-									{
-									"label": "in minutes",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127,
-											"shift": 127
-										}
-									}
-								},
-								{
-									"label": "use device default",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"StartLevelChangeWithDurationV2": [
-					{
-						"label": "Direction",
-						"type": {
-							"enumof": [
-								{
-									"label": "Up",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Down",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Duration",
-						"type": {
-							"enumof": [
-								{
-									"label": "immediately",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "in seconds",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127
-										}
-									}
-								},
-								{
-									"label": "in minutes",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127,
-										"shift": 	127
-										}
-									}
-								},
-								{
-									"label": "use device default",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"SetMotorA": [
-					{
-						"label": "Status",
-						"type": {
-							"enumof": [
-								{
-									"label": "Close",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Open",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"StartLevelChangeMotorA": [
-					{
-						"label": "Start Move",
-						"type": {
-							"enumof": [
-								{
-									"label": "Up",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Down",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"StopLevelChangeMotorA": [],
-				"SetMotorB": [
-					{
-						"label": "Blind Position",
-						"type": {
-							"enumof": [
-								{
-									"label": "Close",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "%",
-									"type": {
-										"range": {
-											"min": 0,
-											"max": 99
-										}
-									}
-								},
-								{
-									"label": "Open",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								},
-								]
-						}
-					}
-				],
-				"StartLevelChangeMotorB": [
-					{
-						"label": "Start Move",
-						"type": {
-							"enumof": [
-								{
-									"label": "Up",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Down",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"StopLevelChange": []
-			};
-
-		// SwtichBinary
-		case 0x25:
-			return {
-				"Get": [],
-				"Set": [
-					{
-						"label": "Level",
-						"type": {
-							"enumof": [
-								{
-									"label": "Off",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "On",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-
-		// SimpleAV
-		case 0x94:
-			return {
-				"SetEmpty": [
-					{
-						"label": "Key attribute",
-						"type": {
-							"enumof": [
-								{
-									"label": "Key Down",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Key Up",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "Key Alive",
-									"type": {
-										"fix": 	{
-											"value": 2
-										}
-									}
-								},
-								]
-						}
-					},
-					{
-						"label": "Media item",
-						"type": {
-							"enumof": [
-								{
-									"label": "No",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "ID",
-									"type": {
-										"range": {
-											"min": 0,
-											"max": 0
-										}
-									}
-								},
-								]
-						}
-					},
-					{
-						"label": "Button",
-						"type": {
-							"enumof": []
-						}
-					},
-				],
-				"SetFull": [
-					{
-						"label": "Mute",
-						"type": {
-							"fix": 	{
-								"value": 0x0001
-							}
-						}
-					},
-					{
-						"label": "Volume down",
-						"type": {
-							"fix": 	{
-								"value": 0x0002
-							}
-						}
-					},
-					{
-						"label": "Volume up",
-						"type": {
-							"fix": 	{
-								"value": 0x0003
-									}
-								}
-							},
-							{
-						"label": "Channel up",
-						"type": {
-							"fix": 	{
-								"value": 0x0004
-							}
-						}
-					},
-					{
-						"label": "Channel down",
-						"type": {
-							"fix": 	{
-								"value": 0x0005
-							}
-						}
-					},
-					{
-						"label": "0",
-						"type": {
-							"fix": 	{
-								"value": 0x0006
-							}
-						}
-					},
-					{
-						"label": "1",
-						"type": {
-							"fix": 	{
-								"value": 0x0007
-							}
-						}
-					},
-					{
-						"label": "2",
-						"type": {
-							"fix": 	{
-								"value": 0x0008
-							}
-						}
-					},
-					{
-						"label": "3",
-						"type": {
-							"fix": 	{
-								"value": 0x0009
-							}
-						}
-					},
-					{
-						"label": "4",
-						"type": {
-							"fix": 	{
-								"value": 0x000A
-							}
-						}
-					},
-					{
-						"label": "5",
-						"type": {
-							"fix": 	{
-								"value": 0x000B
-							}
-						}
-					},
-					{
-						"label": "6",
-						"type": {
-							"fix": 	{
-								"value": 0x000C
-							}
-						}
-					},
-					{
-						"label": "7",
-						"type": {
-							"fix": 	{
-								"value": 0x000D
-							}
-						}
-					},
-					{
-						"label": "8",
-						"type": {
-							"fix": 	{
-								"value": 0x000E
-							}
-						}
-					},
-					{
-						"label": "9",
-						"type": {
-							"fix": 	{
-								"value": 0x000F
-							}
-						}
-					},
-					{
-						"label": "Last channel",
-						"type": {
-							"fix": 	{
-								"value": 0x0010
-							}
-						}
-					},
-					{
-						"label": "Display",
-						"type": {
-							"fix": 	{
-								"value": 0x0011
-							}
-						}
-					},
-					{
-						"label": "Favorite channel",
-						"type": {
-							"fix": 	{
-								"value": 0x0012
-							}
-						}
-					},
-					{
-						"label": "Play",
-						"type": {
-							"fix": 	{
-								"value": 0x0013
-							}
-						}
-					},
-					{
-						"label": "Stop",
-						"type": {
-							"fix": 	{
-								"value": 0x0014
-							}
-						}
-					},
-					{
-						"label": "Pause",
-						"type": {
-							"fix": 	{
-								"value": 0x0015
-							}
-						}
-					},
-					{
-						"label": "Fast forward",
-						"type": {
-							"fix": 	{
-								"value": 0x0016
-							}
-						}
-					},
-					{
-						"label": "Rewind",
-						"type": {
-							"fix": 	{
-								"value": 0x0017
-							}
-						}
-					},
-					{
-						"label": "Instant replay",
-						"type": {
-							"fix": 	{
-								"value": 0x0018
-							}
-						}
-					},
-					{
-						"label": "Record",
-						"type": {
-							"fix": 	{
-								"value": 0x0019
-							}
-						}
-					},
-					{
-						"label": "AC3",
-						"type": {
-							"fix": 	{
-								"value": 0x001A
-							}
-						}
-					},
-					{
-						"label": "PVR menu",
-						"type": {
-							"fix": 	{
-								"value": 0x001B
-							}
-						}
-					},
-					{
-						"label": "Guide",
-						"type": {
-							"fix": 	{
-								"value": 0x001C
-							}
-						}
-					},
-					{
-						"label": "Menu",
-						"type": {
-							"fix": 	{
-								"value": 0x001D
-							}
-						}
-					},
-					{
-						"label": "Menu up",
-						"type": {
-							"fix": 	{
-								"value": 0x001E
-							}
-						}
-					},
-					{
-						"label": "Menu down",
-						"type": {
-							"fix": 	{
-								"value": 0x001F
-							}
-						}
-					},
-					{
-						"label": "Menu left",
-						"type": {
-							"fix": 	{
-								"value": 0x0020
-							}
-						}
-					},
-					{
-						"label": "Menu right",
-						"type": {
-							"fix": 	{
-								"value": 0x0021
-							}
-						}
-					},
-					{
-						"label": "Page up",
-						"type": {
-							"fix": 	{
-								"value": 0x0022
-							}
-						}
-					},
-					{
-						"label": "Page down",
-						"type": {
-							"fix": 	{
-								"value": 0x0023
-							}
-						}
-					},
-					{
-						"label": "Select",
-						"type": {
-							"fix": 	{
-								"value": 0x0024
-							}
-						}
-					},
-					{
-						"label": "Exit",
-						"type": {
-							"fix": 	{
-								"value": 0x0025
-							}
-						}
-					},
-					{
-						"label": "Input",
-						"type": {
-							"fix": 	{
-								"value": 0x0026
-							}
-						}
-					},
-					{
-						"label": "Power",
-						"type": {
-							"fix": 	{
-								"value": 0x0027
-							}
-						}
-					},
-					{
-						"label": "Enter channel",
-						"type": {
-							"fix": 	{
-								"value": 0x0028
-							}
-						}
-					},
-					{
-						"label": "10",
-						"type": {
-							"fix": 	{
-								"value": 0x0029
-							}
-						}
-					},
-					{
-						"label": "11",
-						"type": {
-							"fix": 	{
-								"value": 0x002A
-							}
-						}
-					},
-					{
-						"label": "12",
-						"type": {
-							"fix": 	{
-								"value": 0x002B
-							}
-						}
-					},
-					{
-						"label": "13",
-						"type": {
-							"fix": 	{
-								"value": 0x002C
-							}
-						}
-					},
-					{
-						"label": "14",
-						"type": {
-							"fix": 	{
-								"value": 0x002D
-							}
-						}
-					},
-					{
-						"label": "15",
-						"type": {
-							"fix": 	{
-								"value": 0x002E
-							}
-						}
-					},
-					{
-						"label": "16",
-						"type": {
-							"fix": 	{
-								"value": 0x002F
-							}
-						}
-					},
-					{
-						"label": "+10",
-						"type": {
-							"fix": 	{
-								"value": 0x0030
-							}
-						}
-					},
-					{
-						"label": "+20",
-						"type": {
-							"fix": 	{
-								"value": 0x0031
-							}
-						}
-					},
-					{
-						"label": "+100",
-						"type": {
-							"fix": 	{
-								"value": 0x0032
-							}
-						}
-					},
-					{
-						"label": "-/--",
-						"type": {
-							"fix": 	{
-								"value": 0x0033
-							}
-						}
-					},
-					{
-						"label": "3-CH",
-						"type": {
-							"fix": 	{
-								"value": 0x0034
-							}
-						}
-					},
-					{
-						"label": "3D",
-						"type": {
-							"fix": 	{
-								"value": 0x0035
-							}
-						}
-					},
-					{
-						"label": "6-CH input",
-						"type": {
-							"fix": 	{
-								"value": 0x0036
-							}
-						}
-					},
-					{
-						"label": "A",
-						"type": {
-							"fix": 	{
-								"value": 0x0037
-							}
-						}
-					},
-					{
-						"label": "Add",
-						"type": {
-							"fix": 	{
-								"value": 0x0038
-							}
-						}
-					},
-					{
-						"label": "Alarm",
-						"type": {
-							"fix": 	{
-								"value": 0x0039
-							}
-						}
-					},
-					{
-						"label": "AM",
-						"type": {
-							"fix": 	{
-								"value": 0x003A
-							}
-						}
-					},
-					{
-						"label": "Analog",
-						"type": {
-							"fix": 	{
-								"value": 0x003B
-							}
-						}
-					},
-					{
-						"label": "Angle",
-						"type": {
-							"fix": 	{
-								"value": 0x003C
-							}
-						}
-					},
-					{
-						"label": "Antenna",
-						"type": {
-							"fix": 	{
-								"value": 0x003D
-							}
-						}
-					},
-					{
-						"label": "Antenna east",
-						"type": {
-							"fix": 	{
-								"value": 0x003E
-							}
-						}
-					},
-					{
-						"label": "Antenna west",
-						"type": {
-							"fix": 	{
-								"value": 0x003F
-							}
-						}
-					},
-					{
-						"label": "Aspect",
-						"type": {
-							"fix": 	{
-								"value": 0x0040
-							}
-						}
-					},
-					{
-						"label": "Audio 1",
-						"type": {
-							"fix": 	{
-								"value": 0x0041
-							}
-						}
-					},
-					{
-						"label": "Audio 2",
-						"type": {
-							"fix": 	{
-								"value": 0x0042
-							}
-						}
-					},
-					{
-						"label": "Audio 3",
-						"type": {
-							"fix": 	{
-								"value": 0x0043
-							}
-						}
-					},
-					{
-						"label": "Audio dubbing",
-						"type": {
-							"fix": 	{
-								"value": 0x0044
-							}
-						}
-					},
-					{
-						"label": "Audio level down",
-						"type": {
-							"fix": 	{
-								"value": 0x0045
-							}
-						}
-					},
-					{
-						"label": "Audio level up",
-						"type": {
-							"fix": 	{
-								"value": 0x0046
-							}
-						}
-					},
-					{
-						"label": "Auto/Manual",
-						"type": {
-							"fix": 	{
-								"value": 0x0047
-							}
-						}
-					},
-					{
-						"label": "Aux 1",
-						"type": {
-							"fix": 	{
-								"value": 0x0048
-							}
-						}
-					},
-					{
-						"label": "Aux 2",
-						"type": {
-							"fix": 	{
-								"value": 0x0049
-							}
-						}
-					},
-					{
-						"label": "B",
-						"type": {
-							"fix": 	{
-								"value": 0x004A
-							}
-						}
-					},
-					{
-						"label": "Back",
-						"type": {
-							"fix": 	{
-								"value": 0x004B
-							}
-						}
-					},
-					{
-						"label": "Background",
-						"type": {
-							"fix": 	{
-								"value": 0x004C
-							}
-						}
-					},
-					{
-						"label": "Balance",
-						"type": {
-							"fix": 	{
-								"value": 0x004D
-							}
-						}
-					},
-					{
-						"label": "Balance left",
-						"type": {
-							"fix": 	{
-								"value": 0x004E
-							}
-						}
-					},
-					{
-						"label": "Balance right",
-						"type": {
-							"fix": 	{
-								"value": 0x004F
-							}
-						}
-					},
-					{
-						"label": "Band",
-						"type": {
-							"fix": 	{
-								"value": 0x0050
-							}
-						}
-					},
-					{
-						"label": "Bandwidth",
-						"type": {
-							"fix": 	{
-								"value": 0x0051
-							}
-						}
-					},
-					{
-						"label": "Bass",
-						"type": {
-							"fix": 	{
-								"value": 0x0052
-							}
-						}
-					},
-					{
-						"label": "Bass down",
-						"type": {
-							"fix": 	{
-								"value": 0x0053
-							}
-						}
-					},
-					{
-						"label": "Bass up",
-						"type": {
-							"fix": 	{
-								"value": 0x0054
-							}
-						}
-					},
-					{
-						"label": "Blank",
-						"type": {
-							"fix": 	{
-								"value": 0x0055
-							}
-						}
-					},
-					{
-						"label": "Breeze mode",
-						"type": {
-							"fix": 	{
-								"value": 0x0056
-							}
-						}
-					},
-					{
-						"label": "Bright",
-						"type": {
-							"fix": 	{
-								"value": 0x0057
-							}
-						}
-					},
-					{
-						"label": "Brightness",
-						"type": {
-							"fix": 	{
-								"value": 0x0058
-							}
-						}
-					},
-					{
-						"label": "Brightness down",
-						"type": {
-							"fix": 	{
-								"value": 0x0059
-							}
-						}
-					},
-					{
-						"label": "Brightness up",
-						"type": {
-							"fix": 	{
-								"value": 0x005A
-							}
-						}
-					},
-					{
-						"label": "Buy",
-						"type": {
-							"fix": 	{
-								"value": 0x005B
-							}
-						}
-					},
-					{
-						"label": "C",
-						"type": {
-							"fix": 	{
-								"value": 0x005C
-							}
-						}
-					},
-					{
-						"label": "Camera",
-						"type": {
-							"fix": 	{
-								"value": 0x005D
-							}
-						}
-					},
-					{
-						"label": "Category down",
-						"type": {
-							"fix": 	{
-								"value": 0x005E
-							}
-						}
-					},
-					{
-						"label": "Category up",
-						"type": {
-							"fix": 	{
-								"value": 0x005F
-							}
-						}
-					},
-					{
-						"label": "Center",
-						"type": {
-							"fix": 	{
-								"value": 0x0060
-							}
-						}
-					},
-					{
-						"label": "Center down",
-						"type": {
-							"fix": 	{
-								"value": 0x0061
-							}
-						}
-					},
-					{
-						"label": "Center mode",
-						"type": {
-							"fix": 	{
-								"value": 0x0062
-							}
-						}
-					},
-					{
-						"label": "Center up",
-						"type": {
-							"fix": 	{
-								"value": 0x0063
-							}
-						}
-					},
-					{
-						"label": "Channel/Program",
-						"type": {
-							"fix": 	{
-								"value": 0x0064
-							}
-						}
-					},
-					{
-						"label": "Clear",
-						"type": {
-							"fix": 	{
-								"value": 0x0065
-							}
-						}
-					},
-					{
-						"label": "Close",
-						"type": {
-							"fix": 	{
-								"value": 0x0066
-							}
-						}
-					},
-					{
-						"label": "Closed caption",
-						"type": {
-							"fix": 	{
-								"value": 0x0067
-							}
-						}
-					},
-					{
-						"label": "Cold",
-						"type": {
-							"fix": 	{
-								"value": 0x0068
-							}
-						}
-					},
-					{
-						"label": "Color",
-						"type": {
-							"fix": 	{
-								"value": 0x0069
-							}
-						}
-					},
-					{
-						"label": "Color down",
-						"type": {
-							"fix": 	{
-								"value": 0x006A
-							}
-						}
-					},
-					{
-						"label": "Color up",
-						"type": {
-							"fix": 	{
-								"value": 0x006B
-							}
-						}
-					},
-					{
-						"label": "Component 1",
-						"type": {
-							"fix": 	{
-								"value": 0x006C
-							}
-						}
-					},
-					{
-						"label": "Component 2",
-						"type": {
-							"fix": 	{
-								"value": 0x006D
-							}
-						}
-					},
-					{
-						"label": "Component 3",
-						"type": {
-							"fix": 	{
-								"value": 0x006E
-							}
-						}
-					},
-					{
-						"label": "Concert",
-						"type": {
-							"fix": 	{
-								"value": 0x006F
-							}
-						}
-					},
-					{
-						"label": "Confirm",
-						"type": {
-							"fix": 	{
-								"value": 0x0070
-							}
-						}
-					},
-					{
-						"label": "Continue",
-						"type": {
-							"fix": 	{
-								"value": 0x0071
-							}
-						}
-					},
-					{
-						"label": "Contrast",
-						"type": {
-							"fix": 	{
-								"value": 0x0072
-							}
-						}
-					},
-					{
-						"label": "Contrast down",
-						"type": {
-							"fix": 	{
-								"value": 0x0073
-							}
-						}
-					},
-					{
-						"label": "Contrast up",
-						"type": {
-							"fix": 	{
-								"value": 0x0074
-							}
-						}
-					},
-					{
-						"label": "Counter",
-						"type": {
-							"fix": 	{
-								"value": 0x0075
-							}
-						}
-					},
-					{
-						"label": "Counter reset",
-						"type": {
-							"fix": 	{
-								"value": 0x0076
-							}
-						}
-					},
-					{
-						"label": "D",
-						"type": {
-							"fix": 	{
-								"value": 0x0077
-							}
-						}
-					},
-					{
-						"label": "Day down",
-						"type": {
-							"fix": 	{
-								"value": 0x0078
-							}
-						}
-					},
-					{
-						"label": "Day up",
-						"type": {
-							"fix": 	{
-								"value": 0x0079
-							}
-						}
-					},
-					{
-						"label": "Delay",
-						"type": {
-							"fix": 	{
-								"value": 0x007A
-							}
-						}
-					},
-					{
-						"label": "Delay down",
-						"type": {
-							"fix": 	{
-								"value": 0x007B
-							}
-						}
-					},
-					{
-						"label": "Delay up",
-						"type": {
-							"fix": 	{
-								"value": 0x007C
-							}
-						}
-					},
-					{
-						"label": "Delete",
-						"type": {
-							"fix": 	{
-								"value": 0x007D
-							}
-						}
-					},
-					{
-						"label": "Delimiter",
-						"type": {
-							"fix": 	{
-								"value": 0x007E
-							}
-						}
-					},
-					{
-						"label": "Digest",
-						"type": {
-							"fix": 	{
-								"value": 0x007F
-							}
-						}
-					},
-					{
-						"label": "Digital",
-						"type": {
-							"fix": 	{
-								"value": 0x0080
-							}
-						}
-					},
-					{
-						"label": "Dim",
-						"type": {
-							"fix": 	{
-								"value": 0x0081
-							}
-						}
-					},
-					{
-						"label": "Direct",
-						"type": {
-							"fix": 	{
-								"value": 0x0082
-							}
-						}
-					},
-					{
-						"label": "Disarm",
-						"type": {
-							"fix": 	{
-								"value": 0x0083
-							}
-						}
-					},
-					{
-						"label": "Disc",
-						"type": {
-							"fix": 	{
-								"value": 0x0084
-							}
-						}
-					},
-					{
-						"label": "Disc 1",
-						"type": {
-							"fix": 	{
-								"value": 0x0085
-							}
-						}
-					},
-					{
-						"label": "Disc 2",
-						"type": {
-							"fix": 	{
-								"value": 0x0086
-							}
-						}
-					},
-					{
-						"label": "Disc 3",
-						"type": {
-							"fix": 	{
-								"value": 0x0087
-							}
-						}
-					},
-					{
-						"label": "Disc 4",
-						"type": {
-							"fix": 	{
-								"value": 0x0088
-							}
-						}
-					},
-					{
-						"label": "Disc 5",
-						"type": {
-							"fix": 	{
-								"value": 0x0089
-							}
-						}
-					},
-					{
-						"label": "Disc 6",
-						"type": {
-							"fix": 	{
-								"value": 0x008A
-							}
-						}
-					},
-					{
-						"label": "Disc down",
-						"type": {
-							"fix": 	{
-								"value": 0x008B
-							}
-						}
-					},
-					{
-						"label": "Disc up",
-						"type": {
-							"fix": 	{
-								"value": 0x008C
-							}
-						}
-					},
-					{
-						"label": "Disco",
-						"type": {
-							"fix": 	{
-								"value": 0x008D
-							}
-						}
-					},
-					{
-						"label": "Edit",
-						"type": {
-							"fix": 	{
-								"value": 0x008E
-							}
-						}
-					},
-					{
-						"label": "Effect down",
-						"type": {
-							"fix": 	{
-								"value": 0x008F
-							}
-						}
-					},
-					{
-						"label": "Effect up",
-						"type": {
-							"fix": 	{
-								"value": 0x0090
-							}
-						}
-					},
-					{
-						"label": "Eject",
-						"type": {
-							"fix": 	{
-								"value": 0x0091
-							}
-						}
-					},
-					{
-						"label": "End",
-						"type": {
-							"fix": 	{
-								"value": 0x0092
-							}
-						}
-					},
-					{
-						"label": "EQ",
-						"type": {
-							"fix": 	{
-								"value": 0x0093
-							}
-						}
-					},
-					{
-						"label": "Fader",
-						"type": {
-							"fix": 	{
-								"value": 0x0094
-							}
-						}
-					},
-					{
-						"label": "Fan",
-						"type": {
-							"fix": 	{
-								"value": 0x0095
-							}
-						}
-					},
-					{
-						"label": "Fan high",
-						"type": {
-							"fix": 	{
-								"value": 0x0096
-							}
-						}
-					},
-					{
-						"label": "Fan low",
-						"type": {
-							"fix": 	{
-								"value": 0x0097
-							}
-						}
-					},
-					{
-						"label": "Fan medium",
-						"type": {
-							"fix": 	{
-								"value": 0x0098
-							}
-						}
-					},
-					{
-						"label": "Fan speed",
-						"type": {
-							"fix": 	{
-								"value": 0x0099
-							}
-						}
-					},
-					{
-						"label": "Fastext blue",
-						"type": {
-							"fix": 	{
-								"value": 0x009A
-							}
-						}
-					},
-					{
-						"label": "Fastext green",
-						"type": {
-							"fix": 	{
-								"value": 0x009B
-							}
-						}
-					},
-					{
-						"label": "Fastext purple",
-						"type": {
-							"fix": 	{
-								"value": 0x009C
-							}
-						}
-					},
-					{
-						"label": "Fastext red",
-						"type": {
-							"fix": 	{
-								"value": 0x009D
-							}
-						}
-					},
-					{
-						"label": "Fastext white",
-						"type": {
-							"fix": 	{
-								"value": 0x009E
-							}
-						}
-					},
-					{
-						"label": "Fastext yellow",
-						"type": {
-							"fix": 	{
-								"value": 0x009F
-							}
-						}
-					},
-					{
-						"label": "Favorite channel down",
-						"type": {
-							"fix": 	{
-								"value": 0x00A0
-							}
-						}
-					},
-					{
-						"label": "Favorite channel up",
-						"type": {
-							"fix": 	{
-								"value": 0x00A1
-							}
-						}
-					},
-					{
-						"label": "Finalize",
-						"type": {
-							"fix": 	{
-								"value": 0x00A2
-							}
-						}
-					},
-					{
-						"label": "Fine tune",
-						"type": {
-							"fix": 	{
-								"value": 0x00A3
-							}
-						}
-					},
-					{
-						"label": "Flat",
-						"type": {
-							"fix": 	{
-								"value": 0x00A4
-							}
-						}
-					},
-					{
-						"label": "FM",
-						"type": {
-							"fix": 	{
-								"value": 0x00A5
-							}
-						}
-					},
-					{
-						"label": "Focus down",
-						"type": {
-							"fix": 	{
-								"value": 0x00A6
-							}
-						}
-					},
-					{
-						"label": "Focus up",
-						"type": {
-							"fix": 	{
-								"value": 0x00A7
-							}
-						}
-					},
-					{
-						"label": "Freeze",
-						"type": {
-							"fix": 	{
-								"value": 0x00A8
-							}
-						}
-					},
-					{
-						"label": "Front",
-						"type": {
-							"fix": 	{
-								"value": 0x00A9
-							}
-						}
-					},
-					{
-						"label": "Game",
-						"type": {
-							"fix": 	{
-								"value": 0x00AA
-							}
-						}
-					},
-					{
-						"label": "GoTo",
-						"type": {
-							"fix": 	{
-								"value": 0x00AB
-							}
-						}
-					},
-					{
-						"label": "Hall",
-						"type": {
-							"fix": 	{
-								"value": 0x00AC
-							}
-						}
-					},
-					{
-						"label": "Heat",
-						"type": {
-							"fix": 	{
-								"value": 0x00AD
-							}
-						}
-					},
-					{
-						"label": "Help",
-						"type": {
-							"fix": 	{
-								"value": 0x00AE
-							}
-						}
-					},
-					{
-						"label": "Home",
-						"type": {
-							"fix": 	{
-								"value": 0x00AF
-							}
-						}
-					},
-					{
-						"label": "Index",
-						"type": {
-							"fix": 	{
-								"value": 0x00B0
-							}
-						}
-					},
-					{
-						"label": "Index forward",
-						"type": {
-							"fix": 	{
-								"value": 0x00B1
-							}
-						}
-					},
-					{
-						"label": "Index reverse",
-						"type": {
-							"fix": 	{
-								"value": 0x00B2
-							}
-						}
-					},
-					{
-						"label": "Interactive",
-						"type": {
-							"fix": 	{
-								"value": 0x00B3
-							}
-						}
-					},
-					{
-						"label": "Intro scan",
-						"type": {
-							"fix": 	{
-								"value": 0x00B4
-							}
-						}
-					},
-					{
-						"label": "Jazz",
-						"type": {
-							"fix": 	{
-								"value": 0x00B5
-							}
-						}
-					},
-					{
-						"label": "Karaoke",
-						"type": {
-							"fix": 	{
-								"value": 0x00B6
-							}
-						}
-					},
-					{
-						"label": "Keystone",
-						"type": {
-							"fix": 	{
-								"value": 0x00B7
-							}
-						}
-					},
-					{
-						"label": "Keystone down",
-						"type": {
-							"fix": 	{
-								"value": 0x00B8
-							}
-						}
-					},
-					{
-						"label": "Keystone up",
-						"type": {
-							"fix": 	{
-								"value": 0x00B9
-							}
-						}
-					},
-					{
-						"label": "Language",
-						"type": {
-							"fix": 	{
-								"value": 0x00BA
-							}
-						}
-					},
-					{
-						"label": "Left click",
-						"type": {
-							"fix": 	{
-								"value": 0x00BB
-							}
-						}
-					},
-					{
-						"label": "Level",
-						"type": {
-							"fix": 	{
-								"value": 0x00BC
-							}
-						}
-					},
-					{
-						"label": "Light",
-						"type": {
-							"fix": 	{
-								"value": 0x00BD
-							}
-						}
-					},
-					{
-						"label": "List",
-						"type": {
-							"fix": 	{
-								"value": 0x00BE
-							}
-						}
-					},
-					{
-						"label": "Live TV",
-						"type": {
-							"fix": 	{
-								"value": 0x00BF
-							}
-						}
-					},
-					{
-						"label": "Local/Dx",
-						"type": {
-							"fix": 	{
-								"value": 0x00C0
-							}
-						}
-					},
-					{
-						"label": "Loudness",
-						"type": {
-							"fix": 	{
-								"value": 0x00C1
-							}
-						}
-					},
-					{
-						"label": "Mail",
-						"type": {
-							"fix": 	{
-								"value": 0x00C2
-							}
-						}
-					},
-					{
-						"label": "Mark",
-						"type": {
-							"fix": 	{
-								"value": 0x00C3
-							}
-						}
-					},
-					{
-						"label": "Memory recall",
-						"type": {
-							"fix": 	{
-								"value": 0x00C4
-							}
-						}
-					},
-					{
-						"label": "Monitor",
-						"type": {
-							"fix": 	{
-								"value": 0x00C5
-							}
-						}
-					},
-					{
-						"label": "Movie",
-						"type": {
-							"fix": 	{
-								"value": 0x00C6
-							}
-						}
-					},
-					{
-						"label": "Multi room",
-						"type": {
-							"fix": 	{
-								"value": 0x00C7
-							}
-						}
-					},
-					{
-						"label": "Music",
-						"type": {
-							"fix": 	{
-								"value": 0x00C8
-							}
-						}
-					},
-					{
-						"label": "Music scan",
-						"type": {
-							"fix": 	{
-								"value": 0x00C9
-							}
-						}
-					},
-					{
-						"label": "Natural",
-						"type": {
-							"fix": 	{
-								"value": 0x00CA
-							}
-						}
-					},
-					{
-						"label": "Night",
-						"type": {
-							"fix": 	{
-								"value": 0x00CB
-							}
-						}
-					},
-					{
-						"label": "Noise reduction",
-						"type": {
-							"fix": 	{
-								"value": 0x00CC
-							}
-						}
-					},
-					{
-						"label": "Normalize",
-						"type": {
-							"fix": 	{
-								"value": 0x00CD
-							}
-						}
-					},
-					{
-						"label": "Discrete input CableTV",
-						"type": {
-							"fix": 	{
-								"value": 0x00CE
-							}
-						}
-					},
-					{
-						"label": "Discrete input CD 1",
-						"type": {
-							"fix": 	{
-								"value": 0x00CF
-							}
-						}
-					},
-					{
-						"label": "Discrete input CD 2",
-						"type": {
-							"fix": 	{
-								"value": 0x00D0
-							}
-						}
-					},
-					{
-						"label": "Discrete input CD Recorder",
-						"type": {
-							"fix": 	{
-								"value": 0x00D1
-							}
-						}
-					},
-					{
-						"label": "Discrete input DAT (Digital Audio Tape)",
-						"type": {
-							"fix": 	{
-								"value": 0x00D2
-							}
-						}
-					},
-					{
-						"label": "Discrete input DVD",
-						"type": {
-							"fix": 	{
-								"value": 0x00D3
-							}
-						}
-					},
-					{
-						"label": "Discrete input DVI",
-						"type": {
-							"fix": 	{
-								"value": 0x00D4
-							}
-						}
-					},
-					{
-						"label": "Discrete input HDTV",
-						"type": {
-							"fix": 	{
-								"value": 0x00D5
-							}
-						}
-					},
-					{
-						"label": "Discrete input LaserDisc",
-						"type": {
-							"fix": 	{
-								"value": 0x00D6
-							}
-						}
-					},
-					{
-						"label": "Discrete input MiniDisc",
-						"type": {
-							"fix": 	{
-								"value": 0x00D7
-							}
-						}
-					},
-					{
-						"label": "Discrete input PC",
-						"type": {
-							"fix": 	{
-								"value": 0x00D8
-							}
-						}
-					},
-					{
-						"label": "Discrete input Personal Video Recorder",
-						"type": {
-							"fix": 	{
-								"value": 0x00D9
-							}
-						}
-					},
-					{
-						"label": "Discrete input TV",
-						"type": {
-							"fix": 	{
-								"value": 0x00DA
-							}
-						}
-					},
-					{
-						"label": "Discrete input TV/VCR or TV/DVD",
-						"type": {
-							"fix": 	{
-								"value": 0x00DB
-							}
-						}
-					},
-					{
-						"label": "Discrete input VCR",
-						"type": {
-							"fix": 	{
-								"value": 0x00DC
-							}
-						}
-					},
-					{
-						"label": "One touch playback",
-						"type": {
-							"fix": 	{
-								"value": 0x00DD
-							}
-						}
-					},
-					{
-						"label": "One touch record",
-						"type": {
-							"fix": 	{
-								"value": 0x00DE
-							}
-						}
-					},
-					{
-						"label": "Open",
-						"type": {
-							"fix": 	{
-								"value": 0x00DF
-							}
-						}
-					},
-					{
-						"label": "Optical",
-						"type": {
-							"fix": 	{
-								"value": 0x00E0
-							}
-						}
-					},
-					{
-						"label": "Options",
-						"type": {
-							"fix": 	{
-								"value": 0x00E1
-							}
-						}
-					},
-					{
-						"label": "Orchestra",
-						"type": {
-							"fix": 	{
-								"value": 0x00E2
-							}
-						}
-					},
-					{
-						"label": "PAL/NTSC",
-						"type": {
-							"fix": 	{
-								"value": 0x00E3
-							}
-						}
-					},
-					{
-						"label": "Parental lock",
-						"type": {
-							"fix": 	{
-								"value": 0x00E4
-							}
-						}
-					},
-					{
-						"label": "PBC",
-						"type": {
-							"fix": 	{
-								"value": 0x00E5
-							}
-						}
-					},
-					{
-						"label": "Phono",
-						"type": {
-							"fix": 	{
-								"value": 0x00E6
-							}
-						}
-					},
-					{
-						"label": "Photos",
-						"type": {
-							"fix": 	{
-								"value": 0x00E7
-							}
-						}
-					},
-					{
-						"label": "Picture menu",
-						"type": {
-							"fix": 	{
-								"value": 0x00E8
-							}
-						}
-					},
-					{
-						"label": "Picture mode",
-						"type": {
-							"fix": 	{
-								"value": 0x00E9
-							}
-						}
-					},
-					{
-						"label": "Picture mute",
-						"type": {
-							"fix": 	{
-								"value": 0x00EA
-							}
-						}
-					},
-					{
-						"label": "PIP channel down",
-						"type": {
-							"fix": 	{
-								"value": 0x00EB
-							}
-						}
-					},
-					{
-						"label": "PIP channel up",
-						"type": {
-							"fix": 	{
-								"value": 0x00EC
-							}
-						}
-					},
-					{
-						"label": "PIP freeze",
-						"type": {
-							"fix": 	{
-								"value": 0x00ED
-							}
-						}
-					},
-					{
-						"label": "PIP input",
-						"type": {
-							"fix": 	{
-								"value": 0x00EE
-							}
-						}
-					},
-					{
-						"label": "PIP move",
-						"type": {
-							"fix": 	{
-								"value": 0x00EF
-							}
-						}
-					},
-					{
-						"label": "PIP Off",
-						"type": {
-							"fix": 	{
-								"value": 0x00F0
-							}
-						}
-					},
-					{
-						"label": "PIP On",
-						"type": {
-							"fix": 	{
-								"value": 0x00F1
-							}
-						}
-					},
-					{
-						"label": "PIP size",
-						"type": {
-							"fix": 	{
-								"value": 0x00F2
-							}
-						}
-					},
-					{
-						"label": "PIP split",
-						"type": {
-							"fix": 	{
-								"value": 0x00F3
-							}
-						}
-					},
-					{
-						"label": "PIP swap",
-						"type": {
-							"fix": 	{
-								"value": 0x00F4
-							}
-						}
-					},
-					{
-						"label": "Play mode",
-						"type": {
-							"fix": 	{
-								"value": 0x00F5
-							}
-						}
-					},
-					{
-						"label": "Play reverse",
-						"type": {
-							"fix": 	{
-								"value": 0x00F6
-							}
-						}
-					},
-					{
-						"label": "Power Off",
-						"type": {
-							"fix": 	{
-								"value": 0x00F7
-							}
-						}
-					},
-					{
-						"label": "Power On",
-						"type": {
-							"fix": 	{
-								"value": 0x00F8
-							}
-						}
-					},
-					{
-						"label": "PPV (Pay per view)",
-						"type": {
-							"fix": 	{
-								"value": 0x00F9
-							}
-						}
-					},
-					{
-						"label": "Preset",
-						"type": {
-							"fix": 	{
-								"value": 0x00FA
-							}
-						}
-					},
-					{
-						"label": "Program",
-						"type": {
-							"fix": 	{
-								"value": 0x00FB
-							}
-						}
-					},
-					{
-						"label": "Progressive scan",
-						"type": {
-							"fix": 	{
-								"value": 0x00FC
-							}
-						}
-					},
-					{
-						"label": "ProLogic",
-						"type": {
-							"fix": 	{
-								"value": 0x00FD
-							}
-						}
-					},
-					{
-						"label": "PTY",
-						"type": {
-							"fix": 	{
-								"value": 0x00FE
-							}
-						}
-					},
-					{
-						"label": "Quick skip",
-						"type": {
-							"fix": 	{
-								"value": 0x00FF
-							}
-						}
-					},
-					{
-						"label": "Random",
-						"type": {
-							"fix": 	{
-								"value": 0x0100
-							}
-						}
-					},
-					{
-						"label": "RDS",
-						"type": {
-							"fix": 	{
-								"value": 0x0101
-							}
-						}
-					},
-					{
-						"label": "Rear",
-						"type": {
-							"fix": 	{
-								"value": 0x0102
-							}
-						}
-					},
-					{
-						"label": "Rear volume down",
-						"type": {
-							"fix": 	{
-								"value": 0x0103
-							}
-						}
-					},
-					{
-						"label": "Rear volume up",
-						"type": {
-							"fix": 	{
-								"value": 0x0104
-							}
-						}
-					},
-					{
-						"label": "Record mute",
-						"type": {
-							"fix": 	{
-								"value": 0x0105
-							}
-						}
-					},
-					{
-						"label": "Record pause",
-						"type": {
-							"fix": 	{
-								"value": 0x0106
-							}
-						}
-					},
-					{
-						"label": "Repeat",
-						"type": {
-							"fix": 	{
-								"value": 0x0107
-							}
-						}
-					},
-					{
-						"label": "Repeat A-B",
-						"type": {
-							"fix": 	{
-								"value": 0x0108
-							}
-						}
-					},
-					{
-						"label": "Resume",
-						"type": {
-							"fix": 	{
-								"value": 0x0109
-							}
-						}
-					},
-					{
-						"label": "RGB",
-						"type": {
-							"fix": 	{
-								"value": 0x010A
-							}
-						}
-					},
-					{
-						"label": "Right click",
-						"type": {
-							"fix": 	{
-								"value": 0x010B
-							}
-						}
-					},
-					{
-						"label": "Rock",
-						"type": {
-							"fix": 	{
-								"value": 0x010C
-							}
-						}
-					},
-					{
-						"label": "Rotate left",
-						"type": {
-							"fix": 	{
-								"value": 0x010D
-							}
-						}
-					},
-					{
-						"label": "Rotate right",
-						"type": {
-							"fix": 	{
-								"value": 0x010E
-							}
-						}
-					},
-					{
-						"label": "SAT",
-						"type": {
-							"fix": 	{
-								"value": 0x010F
-							}
-						}
-					},
-					{
-						"label": "Scan",
-						"type": {
-							"fix": 	{
-								"value": 0x0110
-							}
-						}
-					},
-					{
-						"label": "Scart",
-						"type": {
-							"fix": 	{
-								"value": 0x0111
-							}
-						}
-					},
-					{
-						"label": "Scene",
-						"type": {
-							"fix": 	{
-								"value": 0x0112
-							}
-						}
-					},
-					{
-						"label": "Scroll",
-						"type": {
-							"fix": 	{
-								"value": 0x0113
-							}
-						}
-					},
-					{
-						"label": "Services",
-						"type": {
-							"fix": 	{
-								"value": 0x0114
-							}
-						}
-					},
-					{
-						"label": "Setup menu",
-						"type": {
-							"fix": 	{
-								"value": 0x0115
-							}
-						}
-					},
-					{
-						"label": "Sharp",
-						"type": {
-							"fix": 	{
-								"value": 0x0116
-							}
-						}
-					},
-					{
-						"label": "Sharpness",
-						"type": {
-							"fix": 	{
-								"value": 0x0117
-							}
-						}
-					},
-					{
-						"label": "Sharpness down",
-						"type": {
-							"fix": 	{
-								"value": 0x0118
-							}
-						}
-					},
-					{
-						"label": "Sharpness up",
-						"type": {
-							"fix": 	{
-								"value": 0x0119
-							}
-						}
-					},
-					{
-						"label": "Side A/B",
-						"type": {
-							"fix": 	{
-								"value": 0x011A
-							}
-						}
-					},
-					{
-						"label": "Skip forward",
-						"type": {
-							"fix": 	{
-								"value": 0x011B
-							}
-						}
-					},
-					{
-						"label": "Skip reverse",
-						"type": {
-							"fix": 	{
-								"value": 0x011C
-							}
-						}
-					},
-					{
-						"label": "Sleep",
-						"type": {
-							"fix": 	{
-								"value": 0x011D
-							}
-						}
-					},
-					{
-						"label": "Slow",
-						"type": {
-							"fix": 	{
-								"value": 0x011E
-							}
-						}
-					},
-					{
-						"label": "Slow forward",
-						"type": {
-							"fix": 	{
-								"value": 0x011F
-							}
-						}
-					},
-					{
-						"label": "Slow reverse",
-						"type": {
-							"fix": 	{
-								"value": 0x0120
-							}
-						}
-					},
-					{
-						"label": "Sound menu",
-						"type": {
-							"fix": 	{
-								"value": 0x0121
-							}
-						}
-					},
-					{
-						"label": "Sound mode",
-						"type": {
-							"fix": 	{
-								"value": 0x0122
-							}
-						}
-					},
-					{
-						"label": "Speed",
-						"type": {
-							"fix": 	{
-								"value": 0x0123
-							}
-						}
-					},
-					{
-						"label": "Speed down",
-						"type": {
-							"fix": 	{
-								"value": 0x0124
-							}
-						}
-					},
-					{
-						"label": "Speed up",
-						"type": {
-							"fix": 	{
-								"value": 0x0125
-							}
-						}
-					},
-					{
-						"label": "Sports",
-						"type": {
-							"fix": 	{
-								"value": 0x0126
-							}
-						}
-					},
-					{
-						"label": "Stadium",
-						"type": {
-							"fix": 	{
-								"value": 0x0127
-							}
-						}
-					},
-					{
-						"label": "Start",
-						"type": {
-							"fix": 	{
-								"value": 0x0128
-							}
-						}
-					},
-					{
-						"label": "Start ID erase",
-						"type": {
-							"fix": 	{
-								"value": 0x0129
-							}
-						}
-					},
-					{
-						"label": "Start ID renumber",
-						"type": {
-							"fix": 	{
-								"value": 0x012A
-							}
-						}
-					},
-					{
-						"label": "Start ID write",
-						"type": {
-							"fix": 	{
-								"value": 0x012B
-							}
-						}
-					},
-					{
-						"label": "Step",
-						"type": {
-							"fix": 	{
-								"value": 0x012C
-							}
-						}
-					},
-					{
-						"label": "Stereo/Mono",
-						"type": {
-							"fix": 	{
-								"value": 0x012D
-							}
-						}
-					},
-					{
-						"label": "Still forward",
-						"type": {
-							"fix": 	{
-								"value": 0x012E
-							}
-						}
-					},
-					{
-						"label": "Still reverse",
-						"type": {
-							"fix": 	{
-								"value": 0x012F
-							}
-						}
-					},
-					{
-						"label": "Subtitle",
-						"type": {
-							"fix": 	{
-								"value": 0x0130
-							}
-						}
-					},
-					{
-						"label": "Subwoofer down",
-						"type": {
-							"fix": 	{
-								"value": 0x0131
-							}
-						}
-					},
-					{
-						"label": "Subwoofer up",
-						"type": {
-							"fix": 	{
-								"value": 0x0132
-							}
-						}
-					},
-					{
-						"label": "Super bass",
-						"type": {
-							"fix": 	{
-								"value": 0x0133
-							}
-						}
-					},
-					{
-						"label": "Surround",
-						"type": {
-							"fix": 	{
-								"value": 0x0134
-							}
-						}
-					},
-					{
-						"label": "Surround mode",
-						"type": {
-							"fix": 	{
-								"value": 0x0135
-							}
-						}
-					},
-					{
-						"label": "S-Video",
-						"type": {
-							"fix": 	{
-								"value": 0x0136
-							}
-						}
-					},
-					{
-						"label": "Sweep",
-						"type": {
-							"fix": 	{
-								"value": 0x0137
-							}
-						}
-					},
-					{
-						"label": "Synchro record",
-						"type": {
-							"fix": 	{
-								"value": 0x0138
-							}
-						}
-					},
-					{
-						"label": "Tape 1",
-						"type": {
-							"fix": 	{
-								"value": 0x0139
-							}
-						}
-					},
-					{
-						"label": "Tape 1-2",
-						"type": {
-							"fix": 	{
-								"value": 0x013A
-							}
-						}
-					},
-					{
-						"label": "Tape 2",
-						"type": {
-							"fix": 	{
-								"value": 0x013B
-							}
-						}
-					},
-					{
-						"label": "Temperature down",
-						"type": {
-							"fix": 	{
-								"value": 0x013C
-							}
-						}
-					},
-					{
-						"label": "Temperature up",
-						"type": {
-							"fix": 	{
-								"value": 0x013D
-							}
-						}
-					},
-					{
-						"label": "Test tone",
-						"type": {
-							"fix": 	{
-								"value": 0x013E
-							}
-						}
-					},
-					{
-						"label": "Text (Teletext)",
-						"type": {
-							"fix": 	{
-								"value": 0x013F
-							}
-						}
-					},
-					{
-						"label": "Text expand",
-						"type": {
-							"fix": 	{
-								"value": 0x0140
-							}
-						}
-					},
-					{
-						"label": "Text hold",
-						"type": {
-							"fix": 	{
-								"value": 0x0141
-							}
-						}
-					},
-					{
-						"label": "Text index",
-						"type": {
-							"fix": 	{
-								"value": 0x0142
-							}
-						}
-					},
-					{
-						"label": "Text mix",
-						"type": {
-							"fix": 	{
-								"value": 0x0143
-							}
-						}
-					},
-					{
-						"label": "Text off",
-						"type": {
-							"fix": 	{
-								"value": 0x0144
-							}
-						}
-					},
-					{
-						"label": "Text reveal",
-						"type": {
-							"fix": 	{
-								"value": 0x0145
-							}
-						}
-					},
-					{
-						"label": "Text subpage",
-						"type": {
-							"fix": 	{
-								"value": 0x0146
-							}
-						}
-					},
-					{
-						"label": "Text timer page",
-						"type": {
-							"fix": 	{
-								"value": 0x0147
-							}
-						}
-					},
-					{
-						"label": "Text update",
-						"type": {
-							"fix": 	{
-								"value": 0x0148
-							}
-						}
-					},
-					{
-						"label": "Theater",
-						"type": {
-							"fix": 	{
-								"value": 0x0149
-							}
-						}
-					},
-					{
-						"label": "Theme",
-						"type": {
-							"fix": 	{
-								"value": 0x014A
-							}
-						}
-					},
-					{
-						"label": "Thumbs down",
-						"type": {
-							"fix": 	{
-								"value": 0x014B
-							}
-						}
-					},
-					{
-						"label": "Thumbs up",
-						"type": {
-							"fix": 	{
-								"value": 0x014C
-							}
-						}
-					},
-					{
-						"label": "Tilt down",
-						"type": {
-							"fix": 	{
-								"value": 0x014D
-							}
-						}
-					},
-					{
-						"label": "Tilt up",
-						"type": {
-							"fix": 	{
-								"value": 0x014E
-							}
-						}
-					},
-					{
-						"label": "Time",
-						"type": {
-							"fix": 	{
-								"value": 0x014F
-							}
-						}
-					},
-					{
-						"label": "Timer",
-						"type": {
-							"fix": 	{
-								"value": 0x0150
-							}
-						}
-					},
-					{
-						"label": "Timer down",
-						"type": {
-							"fix": 	{
-								"value": 0x0151
-							}
-						}
-					},
-					{
-						"label": "Timer up",
-						"type": {
-							"fix": 	{
-								"value": 0x0152
-							}
-						}
-					},
-					{
-						"label": "Tint",
-						"type": {
-							"fix": 	{
-								"value": 0x0153
-							}
-						}
-					},
-					{
-						"label": "Tint down",
-						"type": {
-							"fix": 	{
-								"value": 0x0154
-							}
-						}
-					},
-					{
-						"label": "Tint up",
-						"type": {
-							"fix": 	{
-								"value": 0x0155
-							}
-						}
-					},
-					{
-						"label": "Title",
-						"type": {
-							"fix": 	{
-								"value": 0x0156
-							}
-						}
-					},
-					{
-						"label": "Track",
-						"type": {
-							"fix": 	{
-								"value": 0x0157
-							}
-						}
-					},
-					{
-						"label": "Tracking",
-						"type": {
-							"fix": 	{
-								"value": 0x0158
-							}
-						}
-					},
-					{
-						"label": "Tracking down",
-						"type": {
-							"fix": 	{
-								"value": 0x0159
-							}
-						}
-					},
-					{
-						"label": "Tracking up",
-						"type": {
-							"fix": 	{
-								"value": 0x015A
-							}
-						}
-					},
-					{
-						"label": "Treble",
-						"type": {
-							"fix": 	{
-								"value": 0x015B
-							}
-						}
-					},
-					{
-						"label": "Treble down",
-						"type": {
-							"fix": 	{
-								"value": 0x015C
-							}
-						}
-					},
-					{
-						"label": "Treble up",
-						"type": {
-							"fix": 	{
-								"value": 0x015D
-							}
-						}
-					},
-					{
-						"label": "Tune down",
-						"type": {
-							"fix": 	{
-								"value": 0x015E
-							}
-						}
-					},
-					{
-						"label": "Tune up",
-						"type": {
-							"fix": 	{
-								"value": 0x015F
-							}
-						}
-					},
-					{
-						"label": "Tuner",
-						"type": {
-							"fix": 	{
-								"value": 0x0160
-							}
-						}
-					},
-					{
-						"label": "VCR Plus+",
-						"type": {
-							"fix": 	{
-								"value": 0x0161
-							}
-						}
-					},
-					{
-						"label": "Video 1",
-						"type": {
-							"fix": 	{
-								"value": 0x0162
-							}
-						}
-					},
-					{
-						"label": "Video 2",
-						"type": {
-							"fix": 	{
-								"value": 0x0163
-							}
-						}
-					},
-					{
-						"label": "Video 3",
-						"type": {
-							"fix": 	{
-								"value": 0x0164
-							}
-						}
-					},
-					{
-						"label": "Video 4",
-						"type": {
-							"fix": 	{
-								"value": 0x0165
-							}
-						}
-					},
-					{
-						"label": "Video 5",
-						"type": {
-							"fix": 	{
-								"value": 0x0166
-							}
-						}
-					},
-					{
-						"label": "View",
-						"type": {
-							"fix": 	{
-								"value": 0x0167
-							}
-						}
-					},
-					{
-						"label": "Voice",
-						"type": {
-							"fix": 	{
-								"value": 0x0168
-							}
-						}
-					},
-					{
-						"label": "Zoom",
-						"type": {
-							"fix": 	{
-								"value": 0x0169
-							}
-						}
-					},
-					{
-						"label": "Zoom in",
-						"type": {
-							"fix": 	{
-								"value": 0x016A
-							}
-						}
-					},
-					{
-						"label": "Zoom out",
-						"type": {
-							"fix": 	{
-								"value": 0x016B
-							}
-						}
-					},
-					{
-						"label": "eHome",
-						"type": {
-							"fix": 	{
-								"value": 0x016C
-							}
-						}
-					},
-					{
-						"label": "Details",
-						"type": {
-							"fix": 	{
-								"value": 0x016D
-							}
-						}
-					},
-					{
-						"label": "DVD menu",
-						"type": {
-							"fix": 	{
-								"value": 0x016E
-							}
-						}
-					},
-					{
-						"label": "My TV",
-						"type": {
-							"fix": 	{
-								"value": 0x016F
-							}
-						}
-					},
-					{
-						"label": "Recorded TV",
-						"type": {
-							"fix": 	{
-								"value": 0x0170
-							}
-						}
-					},
-					{
-						"label": "My videos",
-						"type": {
-							"fix": 	{
-								"value": 0x0171
-							}
-						}
-					},
-					{
-						"label": "DVD angle",
-						"type": {
-							"fix": 	{
-								"value": 0x0172
-							}
-						}
-					},
-					{
-						"label": "DVD audio",
-						"type": {
-							"fix": 	{
-								"value": 0x0173
-							}
-						}
-					},
-					{
-						"label": "DVD subtitle",
-						"type": {
-							"fix": 	{
-								"value": 0x0174
-							}
-						}
-					},
-					{
-						"label": "Radio",
-						"type": {
-							"fix": 	{
-								"value": 0x0175
-							}
-						}
-					},
-					{
-						"label": "#",
-						"type": {
-							"fix": 	{
-								"value": 0x0176
-							}
-						}
-					},
-					{
-						"label": "*",
-						"type": {
-							"fix": 	{
-								"value": 0x0177
-							}
-						}
-					},
-					{
-						"label": "OEM 1",
-						"type": {
-							"fix": 	{
-								"value": 0x0178
-							}
-						}
-					},
-					{
-						"label": "OEM 2",
-						"type": {
-							"fix": 	{
-								"value": 0x0179
-							}
-						}
-					},
-					{
-						"label": "Info",
-						"type": {
-							"fix": 	{
-								"value": 0x017A
-							}
-						}
-					},
-					{
-						"label": "CAPS NUM",
-						"type": {
-							"fix": 	{
-								"value": 0x017B
-							}
-						}
-					},
-					{
-						"label": "TV MODE",
-						"type": {
-							"fix": 	{
-								"value": 0x017C
-							}
-						}
-					},
-					{
-						"label": "SOURCE",
-						"type": {
-							"fix": 	{
-								"value": 0x017D
-							}
-						}
-					},
-					{
-						"label": "FILEMODE",
-						"type": {
-							"fix": 	{
-								"value": 0x017E
-							}
-						}
-					},
-					{
-						"label": "Time seek",
-						"type": {
-							"fix": 	{
-								"value": 0x017F
-							}
-						}
-					},
-					{
-						"label": "Mouse enable",
-						"type": {
-							"fix": 	{
-								"value": 0x0180
-							}
-						}
-					},
-					{
-						"label": "Mouse disable",
-						"type": {
-							"fix": 	{
-								"value": 0x0181
-							}
-						}
-					},
-					{
-						"label": "VOD",
-						"type": {
-							"fix": 	{
-								"value": 0x0182
-							}
-						}
-					},
-					{
-						"label": "Thumbs Up",
-						"type": {
-							"fix": 	{
-								"value": 0x0183
-							}
-						}
-					},
-					{
-						"label": "Thumbs Down",
-						"type": {
-							"fix": 	{
-								"value": 0x0184
-							}
-						}
-					},
-					{
-						"label": "Apps",
-						"type": {
-							"fix": 	{
-								"value": 0x0185
-							}
-						}
-					},
-					{
-						"label": "Mouse toggle",
-						"type": {
-							"fix": 	{
-								"value": 0x0186
-							}
-						}
-					},
-					{
-						"label": "TV Mode",
-						"type": {
-							"fix": 	{
-								"value": 0x0187
-							}
-						}
-					},
-					{
-						"label": "DVD Mode",
-						"type": {
-							"fix": 	{
-								"value": 0x0188
-							}
-						}
-					},
-					{
-						"label": "STB Mode",
-						"type": {
-							"fix": 	{
-								"value": 0x0189
-							}
-						}
-					},
-					{
-						"label": "AUX Mode",
-						"type": {
-							"fix": 	{
-								"value": 0x018A
-							}
-						}
-					},
-					{
-						"label": "BluRay Mode",
-						"type": {
-							"fix": 	{
-								"value": 0x018B
-							}
-						}
-					},
-					{
-						"label": "Reserved (Mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x018C
-							}
-						}
-					},
-					{
-						"label": "Reserved (Mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x018D
-							}
-						}
-					},
-					{
-						"label": "Reserved (Mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x018E
-							}
-						}
-					},
-					{
-						"label": "Reserved (Mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x018F
-							}
-						}
-					},
-					{
-						"label": "Reserved (Mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x0190
-							}
-						}
-					},
-					{
-						"label": "Reserved (Mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x0191
-							}
-						}
-					},
-					{
-						"label": "Reserved (Mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x0192
-							}
-						}
-					},
-					{
-						"label": "Reserved (Mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x0193
-							}
-						}
-					},
-					{
-						"label": "Standby 1",
-						"type": {
-							"fix": 	{
-								"value": 0x0194
-							}
-						}
-					},
-					{
-						"label": "Standby 2",
-						"type": {
-							"fix": 	{
-								"value": 0x0195
-							}
-						}
-					},
-					{
-						"label": "Standby 3",
-						"type": {
-							"fix": 	{
-								"value": 0x0196
-							}
-						}
-					},
-					{
-						"label": "HDMI 1",
-						"type": {
-							"fix": 	{
-								"value": 0x0197
-							}
-						}
-					},
-					{
-						"label": "HDMI 2",
-						"type": {
-							"fix": 	{
-								"value": 0x0198
-							}
-						}
-					},
-					{
-						"label": "HDMI 3",
-						"type": {
-							"fix": 	{
-								"value": 0x0199
-							}
-						}
-					},
-					{
-						"label": "HDMI 4",
-						"type": {
-							"fix": 	{
-								"value": 0x019A
-							}
-						}
-					},
-					{
-						"label": "HDMI 5",
-						"type": {
-							"fix": 	{
-								"value": 0x019B
-							}
-						}
-					},
-					{
-						"label": "HDMI 6",
-						"type": {
-							"fix": 	{
-								"value": 0x019C
-							}
-						}
-					},
-					{
-						"label": "HDMI 7",
-						"type": {
-							"fix": 	{
-								"value": 0x019D
-							}
-						}
-					},
-					{
-						"label": "HDMI 8",
-						"type": {
-							"fix": 	{
-								"value": 0x019E
-							}
-						}
-					},
-					{
-						"label": "HDMI 9",
-						"type": {
-							"fix": 	{
-								"value": 0x019F
-							}
-						}
-					},
-					{
-						"label": "USB 1",
-						"type": {
-							"fix": 	{
-								"value": 0x01A0
-							}
-						}
-					},
-					{
-						"label": "USB 2",
-						"type": {
-							"fix": 	{
-								"value": 0x01A1
-							}
-						}
-					},
-					{
-						"label": "USB 3",
-						"type": {
-							"fix": 	{
-								"value": 0x01A2
-							}
-						}
-					},
-					{
-						"label": "USB 4",
-						"type": {
-							"fix": 	{
-								"value": 0x01A3
-							}
-						}
-					},
-					{
-						"label": "USB 5",
-						"type": {
-							"fix": 	{
-								"value": 0x01A4
-							}
-						}
-					},
-					{
-						"label": "ZOOM 4:3 Normal",
-						"type": {
-							"fix": 	{
-								"value": 0x01A5
-							}
-						}
-					},
-					{
-						"label": "ZOOM 4:3 Zoom",
-						"type": {
-							"fix": 	{
-								"value": 0x01A6
-							}
-						}
-					},
-					{
-						"label": "ZOOM 16:9 Normal",
-						"type": {
-							"fix": 	{
-								"value": 0x01A7
-							}
-						}
-					},
-					{
-						"label": "ZOOM 16:9 Zoom",
-						"type": {
-							"fix": 	{
-								"value": 0x01A8
-							}
-						}
-					},
-					{
-						"label": "ZOOM 16:9 Wide 1",
-						"type": {
-							"fix": 	{
-								"value": 0x01A9
-							}
-						}
-					},
-					{
-						"label": "ZOOM 16:9 Wide 2",
-						"type": {
-							"fix": 	{
-								"value": 0x01AA
-							}
-						}
-					},
-					{
-						"label": "ZOOM 16:9 Wide 3",
-						"type": {
-							"fix": 	{
-								"value": 0x01AB
-							}
-						}
-					},
-					{
-						"label": "ZOOM Cinema",
-						"type": {
-							"fix": 	{
-								"value": 0x01AC
-							}
-						}
-					},
-					{
-						"label": "ZOOM 16:9 Default",
-						"type": {
-							"fix": 	{
-								"value": 0x01AD
-							}
-						}
-					},
-					{
-						"label": "Reserved (ZOOM mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x01AE
-							}
-						}
-					},
-					{
-						"label": "Reserved (ZOOM mode)",
-						"type": {
-							"fix": 	{
-								"value": 0x01BF
-							}
-						}
-					},
-					{
-						"label": "Auto Zoom",
-						"type": {
-							"fix": 	{
-								"value": 0x01B0
-							}
-						}
-					},
-					{
-						"label": "ZOOM Set as Default Zoom",
-						"type": {
-							"fix": 	{
-								"value": 0x01B1
-							}
-						}
-					},
-					{
-						"label": "Mute On",
-						"type": {
-							"fix": 	{
-								"value": 0x01B2
-							}
-						}
-					},
-					{
-						"label": "Mute Off",
-						"type": {
-							"fix": 	{
-								"value": 0x01B3
-							}
-						}
-					},
-					{
-						"label": "AUDIO Mode AUDYSSEY AUDIO OFF",
-						"type": {
-							"fix": 	{
-								"value": 0x01B4
-							}
-						}
-					},
-					{
-						"label": "AUDIO Mode AUDYSSEY AUDIO LO",
-						"type": {
-							"fix": 	{
-								"value": 0x01B5
-							}
-						}
-					},
-					{
-						"label": "AUDIO Mode AUDYSSEY AUDIO MED",
-						"type": {
-							"fix": 	{
-								"value": 0x01B6
-							}
-						}
-					},
-					{
-						"label": "AUDIO Mode AUDYSSEY AUDIO HI",
-						"type": {
-							"fix": 	{
-								"value": 0x01B7
-							}
-						}
-					},
-					{
-						"label": "Reserved",
-						"type": {
-							"fix": 	{
-								"value": 0x01B8
-							}
-						}
-					},
-					{
-						"label": "Reserved",
-						"type": {
-							"fix": 	{
-								"value": 0x01B9
-							}
-						}
-					},
-					{
-						"label": "AUDIO Mode SRS SURROUND ON",
-						"type": {
-							"fix": 	{
-								"value": 0x01BA
-							}
-						}
-					},
-					{
-						"label": "AUDIO Mode SRS SURROUND OFF",
-						"type": {
-							"fix": 	{
-								"value": 0x01BB
-							}
-						}
-					},
-					{
-						"label": "Reserved",
-						"type": {
-							"fix": 	{
-								"value": 0x01BC
-							}
-						}
-					},
-					{
-						"label": "Reserved",
-						"type": {
-							"fix": 	{
-								"value": 0x01BD
-							}
-						}
-					},
-					{
-						"label": "Reserved",
-						"type": {
-							"fix": 	{
-								"value": 0x01BE
-							}
-						}
-					},
-					{
-						"label": "Picture Mode Home",
-						"type": {
-							"fix": 	{
-								"value": 0x01BF
-							}
-						}
-					},
-					{
-						"label": "Picture Mode Retail",
-						"type": {
-							"fix": 	{
-								"value": 0x01C0
-							}
-						}
-					},
-					{
-						"label": "Picture Mode Vivid",
-						"type": {
-							"fix": 	{
-								"value": 0x01C1
-							}
-						}
-					},
-					{
-						"label": "Picture Mode Standard",
-						"type": {
-							"fix": 	{
-								"value": 0x01C2
-							}
-						}
-					},
-					{
-						"label": "Picture Mode Theater",
-						"type": {
-							"fix": 	{
-								"value": 0x01C3
-							}
-						}
-					},
-					{
-						"label": "Picture Mode Sports",
-						"type": {
-							"fix": 	{
-								"value": 0x01C4
-							}
-						}
-					},
-					{
-						"label": "Picture Mode Energy savings",
-						"type": {
-							"fix": 	{
-								"value": 0x01C5
-							}
-						}
-					},
-					{
-						"label": "Picture Mode Custom",
-						"type": {
-							"fix": 	{
-								"value": 0x01C6
-							}
-						}
-					},
-					{
-						"label": "Cool",
-						"type": {
-							"fix": 	{
-								"value": 0x01C7
-							}
-						}
-					},
-					{
-						"label": "Medium",
-						"type": {
-							"fix": 	{
-								"value": 0x01C8
-							}
-						}
-					},
-					{
-						"label": "Warm_D65",
-						"type": {
-							"fix": 	{
-								"value": 0x01C9
-							}
-						}
-					},
-					{
-						"label": "CC ON",
-						"type": {
-							"fix": 	{
-								"value": 0x01CA
-							}
-						}
-					},
-					{
-						"label": "CC OFF",
-						"type": {
-							"fix": 	{
-								"value": 0x01CB
-							}
-						}
-					},
-					{
-						"label": "Video Mute ON",
-						"type": {
-							"fix": 	{
-								"value": 0x01CC
-							}
-						}
-					},
-					{
-						"label": "Video Mute OFF",
-						"type": {
-							"fix": 	{
-								"value": 0x01CD
-							}
-						}
-					},
-					{
-						"label": "Next Event",
-						"type": {
-							"fix": 	{
-								"value": 0x01CE
-							}
-						}
-					},
-					{
-						"label": "Previous Event",
-						"type": {
-							"fix": 	{
-								"value": 0x01CF
-							}
-						}
-					},
-					{
-						"label": "CEC device list",
-						"type": {
-							"fix": 	{
-								"value": 0x01D0
-							}
-						}
-					},
-					{
-						"label": "MTS SAP",
-						"type": {
-							"fix": 	{
-								"value": 0x01D1
-							}
-						}
-					},
-				]
-			};
-
-		// SensorMultilevel
-		case 0x31:
-			return {
-				"Get": [],
-			};
-
-		// SensroBinary
-		case 0x30:
-			return {
-				"Get": [],
-			};
-
-		// PowerLevel
-		case 0x73:
-			return {
-				"Get": [],
-				"TestAllNeighbours": [],
-				"TestToNode": [
-					{
-						"label": "Node ID",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 232
-							}
-						}
-					}
-				],
-				"Set":[
-					{
-						"label": "PowerLevel",
-						"type": {
-							"enumof": [
-								{
-									"label": "-9dbm ", "type":{
-										"fix": 	{
-											"value": 9
-										}
-									}
-								},
-								{
-									"label": "-8dbm ", "type":{
-										"fix": 	{
-											"value": 8
-										}
-									}
-								},
-								{
-									"label": "-7dbm ", "type":{
-										"fix": 	{
-											"value": 7
-										}
-									}
-								},
-								{
-									"label": "-6dbm ", "type":{
-										"fix": 	{
-											"value": 6
-										}
-									}
-								},
-								{
-									"label": "-5dbm ", "type":{
-										"fix": 	{
-											"value": 5
-										}
-									}
-								},
-								{
-									"label": "-4dbm ", "type":{
-										"fix": 	{
-											"value": 4
-										}
-									}
-								},
-								{
-									"label": "-3dbm ", "type":{
-										"fix": 	{
-											"value": 3
-										}
-									}
-								},
-								{
-									"label": "-2dbm ", "type":{
-										"fix": 	{
-											"value": 2
-										}
-									}
-								},
-								{
-									"label": "-1dbm ", "type":{
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "Normal ", "type":{
-										"fix": 	{
-											"value": 0
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Timeout (s)",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					}
-				]
-			};
-			
-		// Proprietary
-		case 0x88:
-			return {
-				"Get": [],
-				"Set": [
-					{
-						"label": "Data in format [1,2,3,..,0xa,..]",
-						"type": {
-							"string": {
-							}
-						}
-					}
-				]
-			};
-		
-		// MeterPulse
-		case 0x35:
-			return {
-				"Get": []
-			};
-		
-		// ManufacturerSpecific
-		case 0x72:
-			return {
-				"Get": []
-			};
-		
-		// Manufacturer Proprietary
-		case 0x91:
-			return {
-				"Send": [
-					{
-						"label": "Data in format [1,2,3,..,0xa,..]",
-						"type": {
-							"string": {
-							}
-						}
-					}
-				]
-			};
-
-		// SwitchAll
-		case 0x27:
-			return {
-				"SetOn": [],
-				"SetOff": [],
-				"Get": [],
-				"Set": [
-					{
-						"label": "Mode",
-						"type": {
-							"enumof": [
-								{
-									"label": "Not in switch all group",
-									"type": {
-										"fix": 	{
-											"value": 0x00
-										}
-									}
-								},
-								{
-									"label": "In switch all off group only",
-									"type": {
-										"fix": 	{
-											"value": 0x01
-										}
-									}
-								},
-								{
-									"label": "In switch all on group only",
-									"type": {
-										"fix": 	{
-											"value": 0x02
-										}
-									}
-								},
-								{
-									"label": "In switch all on and off groups",
-									"type": {
-										"fix": 	{
-											"value": 0xff
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-
-		// SensorConfiguration
-		case 0x9e:
-			return	{
-				"Get": [],
-				"Set": [
-					{
-						"label": "Trigger",
-							"type": {
-							"enumof": [
-								{
-									"label": "Current",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "Default",
-									"type": {
-										"fix": 	{
-											"value": 2
-										}
-									}
-								},
-								{
-									"label": "Value",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								]
-						}
-					},
-					{
-						"label": "Value of Sensor",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 0xffff
-							}
-						}
-					}
-				]
-			};
-
-		// ScheduleEntryLock
-		case 0x4e:
-			return {
-				"WeekDayScheduleGet": [
-					{
-						"label": "User",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 99
-							}
-						}
-					}
-				],
-				"YearScheduleGet": [
-					{
-						"label": "User",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 99
-							}
-						}
-					}
-				],
-				"WeekDayScheduleSet": [
-					{
-						"label": "User",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 99
-							}
-						}
-					}
-				],
-				"YearScheduleSet": [
-					{
-						"label": "User",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 99
-							}
-						}
-					}
-				],
-				"Set": [
-					{
-						"label": "User",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 99
-							}
-						}
-					},
-					{
-						"label": "Level",
-						"type": {
-							"enumof": [
-								{
-									"label": "Disable",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Enable",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-
-				"AllSet": [
-					{
-						"label": "Level",
-						"type": {
-							"enumof": [
-								{
-									"label": "Disable",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Enable",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-
-		// SceneActivation
-		case 0x2B:
-			return {
-				"Set": [
-					{
-						"label": "Scene",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Duration",
-						"type": {
-							"enumof": [
-								{
-									"label": "immediately",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "in seconds",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127
-										}
-									}
-								},
-								{
-									"label": "in minutes",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127,
-										"shift": 	127
-										}
-									}
-								},
-								{
-									"label": "use device default",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-			
-		// SceneActuatorConf
-		case 0x2C:
-			return {
-				"Get": [
-					{
-						"label": "Scene",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					}
-				],
-				"Set": [
-					{
-						"label": "Scene",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Level",
-						"type": {
-							"enumof": [
-								{
-									"label": "Off",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "%",
-									"type": {
-										"range": {
-											"min": 0,
-											"max": 99
-										}
-									}
-								},
-								{
-									"label": "Full",
-									"type": {
-										"fix": 	{
-											"value": 99
-										}
-									}
-								},
-								{
-									"label": "On",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Duration",
-						"type": {
-							"enumof": [
-								{
-									"label": "immediately",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "in seconds",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127
-										}
-									}
-								},
-								{
-									"label": "in minutes",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127,
-										"shift": 	127
-										}
-									}
-								},
-								{
-									"label": "use device default",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Level used",
-						"type": {
-							"enumof": [
-								{
-									"label": "Current in device",
-									"type": {
-										"fix": 	{
-											"value": 0,
-											},
-										}
-									},
-								{
-									"label": "Defined",
-									"type": {
-										"fix": 	{
-											"value": 1 << 7,
-										}
-									}
-								}
-							]
-						}
-					},
-				]
-			};
-
-		// Protection
-		case 0x75:
-			return {
-				"Get": [],
-				"ExclusiveGet": [],
-				"TimeoutGet": [],
-				"Set": (function () {
-					var ret = [
-						{
-							"label": "Local operations",
-								"type": {
-									"enumof": [
-										{
-											"label": "Unprotected",
-											"type": {
-												"fix": 	{
-													"value": 0
-												}
-											}
-										},
-										{
-											"label": "Protection by sequence",
-											"type": {
-												"fix": 	{
-													"value": 1
-												}
-											}
-										},
-										{
-											"label": "No operation possible",
-											"type": {
-												"fix": 	{
-													"value": 2
-												}
-											}
-										}
-									]
-								}
-							},
-						];
-
-					if (data.version.value >= 2)
-						ret.push({
-								"label": "RF operations",
-								"type": {
-									"enumof": [
-										{
-											"label": "Unprotected",
-											"type": {
-												"fix": 	{
-													"value": 0
-												}
-											}
-										},
-										{
-											"label": "No RF Control",
-											"type": {
-												"fix": 	{
-													"value": 1
-												}
-											}
-										},
-										{
-											"label": "No RF Communication",
-											"type": {
-												"fix": 	{
-													"value": 2
-												}
-											}
-										}
-									]
-								}
-							}
-						);
-						return ret;
-				})(),
-				
-				"TimeoutSet": [
-					 {
-						"label": "Time",
-						"type": {
-							"enumof": [
-								{
-									"label": "No",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Sec",
-									"type": {
-										"range": {
-											"min": 0,
-											"max": 60
-										}
-									}
-								},
-								{
-									"label": "Min",
-									"type": {
-										"range": {
-											"min": 	2,
-											"max": 191,
-										"shift": 	63
-										}
-									}
-								},
-								{
-									"label": "Infinite",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								},
-								]
-						}
-					}
-				],
-				"ExclusivitySet": [
-					{
-						"label": "to node",
-						"type": {
-							"node": {}
-						}
-					}
-				]
-			};
-			
-		// SceneControllerConf
-		case 0x2d:
-			return {
-				"Get": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					}
-				],
-				"Set": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Scene",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "DimmingDuration",
-						"type": {
-							"enumof": [
-								{
-									"label": "immediately",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "in seconds",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127
-										}
-									}
-								},
-								{
-									"label": "in minutes",
-									"type": {
-										"range": {
-											"min": 	1,
-											"max": 127,
-										"shift": 	127
-										}
-									}
-								},
-								{
-									"label": "use device default",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-			
-		// Alarm
-		case 0x71:
-			var ret = {
-				"Get": [
-					{
-						"label": "Type",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].typeString.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					}
-				]
-			};
-			
-			if (data.version.value > 1) {
-				ret["Set"] = [
-					{
-						"label": "Type",
-						"type": {
-							"enumof": (
-									function() {
-										try {
-											var arr = [];
-											var key;
-											for (key in data) {
-												var ikey = parseInt(key);
-												if (!isNaN(ikey))
-													arr.push({
-														"label": data[ikey].typeString.value,
-														"type": {
-															"fix": 	{
-																"value": ikey
-															}
-														}
-													});
-											};
-											return arr;
-										} catch(err) {}
-										return [];
-									}
-								)()
-						}
-					},
-					{
-						"label": "Status",
-						"type": {
-							"enumof": [
-								{
-									"label": "Disable",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Enable",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				];
-			}
-			
-			return ret;
-		
-		// AlarmSensor
-		case 0x9c:
-			return {
-				"Get": []
-			};
-		
-		// Battery
-		case 0x80:
-			return {
-				"Get": []
-			};
-
-		// MutiChannelAssociation
-		case 0x8e:
-			return {
-				"GroupingsGet": [],
-				"Get": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				],
-				"Set": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Node",
-						"type": {
-							"node": {
-							}
-						}
-					},
-					{
-						"label": "instance",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 127
-							}
-						}
-					}
-				],
-				"Remove": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Node",
-						"type": {
-							"node": {
-							}
-						}
-					},
-					{
-						"label": "instance",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 127
-							}
-						}
-					}
-				]
-			};
-		
-		// Meter	
-		case 0x32:
-			return {
-				"Get": [],
-				"Reset": []
-			};
-
-		// AlarmSilence
-		case 0x9d:
-			return {
-				"Set": [
-					{
-						"label": "Mode",
-						"type": {
-							"enumof": [
-								{
-									"label": "Disable all",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Disable all Sensor Alarms",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "Enable all",
-									"type": {
-										"fix": 	{
-											"value": 2
-										}
-									}
-								},
-								{
-									"label": "Enable all Sensor Alarms",
-									"type": {
-										"fix": 	{
-											"value": 3
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Duration in sec",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 256
-							}
-						}
-					},
-					{
-						"label": "Alarm",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 0xffff
-							}
-						}
-					}
-				]
-			};
-
-		// BasicWindowCovering
-		case 0x50:
-			return {
-				"Stop": [],
-				"Start": [
-					{
-						"label": "Direction",
-						"type": {
-							"enumof": [
-								{
-									"label": "Up",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Down",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-
-		// Configuration			
-		case 0x70:
-			return {
-				"Get": [
-					{
-						"label": "Parameter",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					}
-				],
-				"Set": [
-					{
-						"label": "Parameter",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Value",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 4294967295
-							}
-						}
-					},
-					{
-						"label": "Size",
-						"type": {
-							"enumof": [
-								{
-									"label": "auto detect",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "1 byte",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "2 byte",
-									"type": {
-										"fix": 	{
-											"value": 2
-										}
-									}
-								},
-								{
-									"label": "4 byte",
-									"type": {
-										"fix": 	{
-											"value": 4
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"SetDefault": [
-					{
-						"label": "Parameter",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 255
-							}
-						}
-					}
-				]
-			};
-
-		// Association
-		case 0x85:
-			return {
-				"GroupingsGet": [],
-				"Get": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				],
-				"Set": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Node",
-						"type": {
-							"node": {
-							}
-						}
-					}
-				],
-				"Remove": [
-					{
-						"label": "Group",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					},
-					{
-						"label": "Node",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 255
-							}
-						}
-					}
-				]
-			};
-
-		// AssociationCommandConfiguration
-		case 0x9b:
-			return {
-				"Get": []
-			};
-		
-		// NodeNaming
-		case 0x77:
-			return {
-				"Get": [],
-				"GetName": [],
-				"GetLocation": [],
-				"SetName": [
-					{
-						"label": "Name",
-						"type": {
-							"string": {
-							}
-						}
-					}
-				],
-				"SetLocation": [
-					{
-						"label": "Location",
-						"type": {
-							"string": {
-							}
-						}
-					}
-				]
-			};
-			
-		// MeterTableMonitor
-		case 0x3d:
-			return {
-				"StatusDateGet": [
-					{
-						"label": "Index",
-						"type": {
-							"enumof": [
-								{
-									"label": "For all entries",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "",
-									"type": {
-										"range": 	{
-											"min": 1,
-											"max": 255
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"label": "Start (UNIX stamp)",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 100000000
-							}
-						}
-					},
-					{
-						"label": "Stop (UNIX stamp)",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 100000000
-							}
-						}
-					}
-				],
-				"StatusDepthGet": [
-					{
-						"label": "Index",
-						"type": {
-							"enumof": [
-								{
-									"label": "Current only",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "For all entries",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								},
-								{
-									"label": "",
-									"type": {
-										"range": 	{
-											"min": 1,
-											"max": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"CurrentDataGet": [
-					{
-						"label": "Index",
-						"type": {
-							"enumof": [
-								{
-									"label": "For all supported",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "",
-									"type": {
-										"range": 	{
-											"min": 1,
-											"max": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-
-		// Indicator			
-		case 0x87:
-			return {
-				"Get": [],
-				"Set": [
-					{
-						"label": "Active",
-						"type": {
-							"enumof": [
-								{
-									"label": "Off",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "On",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-
-		/*
-		This UI requires special handling of form, so it is handled in a special tab in the UI
-		// FirmwareUpdateMD
-		case 0x7A:
-			return {
-				"Get": [],
-				"RequestUpdate": [
-					{
-						"label": "Path to File",
-						"type": {
-							"string": {
-							}
-						}
-					},
-					{
-						"label": "FirmwareId",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 65535
-							}
-						}
-					}
-				]
-			};
-		*/
-		
-		// DoorLockLogging
-		case 0x4c:
-			return {
-				"Get": [
-					{
-						"label": "Record",
-						"type": {
-							"range": {
-								"min": 0,
-								"max": 99
-							}
-						}
-					}
-				]
-			};
-
-		// DoorLock
-		case 0x62:
-			return {
-			 	"Get": [],
-				"Set": [
-					{
-						"label": "Mode",
-						"type": {
-							"enumof": [
-								{
-									"label": "Door Unsecured",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Door Unsecured with timeout",
-									"type": {
-										"fix": 	{
-											"value": 0x1
-										}
-									}
-								},
-								{
-									"label": "Door Unsecured for inside Door Handles",
-									"type": {
-										"fix": 	{
-											"value": 0x10
-										}
-									}
-								},
-								{
-									"label": "Door Unsecured for inside Door Handles with timeout",
-									"type": {
-										"fix": 	{
-											"value": 0x11
-										}
-									}
-								},
-								{
-									"label": "Door Unsecured for outside Door Handles",
-									"type": {
-										"fix": 	{
-											"value": 0x20
-										}
-									}
-								},
-								{
-									"label": "Door Unsecured for outside Door Handles with timeout",
-									"type": {
-										"fix": 	{
-											"value": 0x21
-										}
-									}
-								},
-								{
-									"label": "Door Secured",
-									"type": {
-										"fix": 	{
-											"value": 0xff
-										}
-									}
-								}
-							]
-						}
-					}
-				],
-				"ConfigurationGet": [],
-				"ConfigurationSet": [
-					{
-						"label": "Timeout, minutes",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 254
-							}
-						}
-					},
-					{
-						"label": "Timeout, seconds",
-						"type": {
-							"range": {
-								"min": 	1,
-								"max": 59
-							}
-						}
-					}
-				]
-			};
-
-		// Basic
-		case 0x20:
-			return {
-				"Get": [],
-				"Set": [
-					{
-						"label": "Level",
-						"type": {
-							"enumof": [
-								{
-									"label": "Off",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},
-								{
-									"label": "Dimmer level",
-									"type": {
-										"range": {
-											"min": 0,
-											"max": 255
-										}
-									}
-								},
-								{
-									"label": "Max",
-									"type": {
-										"fix": 	{
-											"value": 99
-										}
-									}
-								},
-								{
-									"label": "On",
-									"type": {
-										"fix": 	{
-											"value": 255
-										}
-									}
-								}
-							]
-						}
-					}
-				]
-			};
-			
-		// ClimateControlSchedule	(incomplete Implementation, only overwrite but no schedule handling)
-		case 0x46:
-			return {
-				"OverrideGet": [],
-				"OverrideSet": [
-					{
-						"label": "Type",
-						"type": {
-							"enumof": [
-								{
-									"label": "No override",
-									"type": {
-										"fix": 	{
-											"value": 0
-										}
-									}
-								},							
-								{
-									"label": "Permanently",
-									"type": {
-										"fix": 	{
-											"value": 1
-										}
-									}
-								},
-								{
-									"label": "Temporary",
-									"type": {
-										"fix": 	{
-											"value": 2
-										}
-									}
-								}
-							]
-						}
-					},
-					
-					{
-						"label": "State",
-						"type": {
-							"enumof": [
-								{
-									"label": "Unused",
-									"type": {
-										"fix": 	{
-											"value": 127
-										}
-									}
-								},
-								{
-									"label": "Energy Saving",
-									"type": {
-										"fix": 	{
-											"value": 122
-										}
-									}
-								},							
-								{
-									"label": "Frost Protection",
-									"type": {
-										"fix": 	{
-											"value": 121
-										}
-									}
-								},
-								{
-									"label": "Temperature Offset in 1/10K",
-									"type": {
-										"range": {
-											"min": -128,
-											"max": 120
-										}
-									}
-								},
-							]
-						}
-					},
-					
-					
-					
-					
-										
-				]								
-			};   
-
-		default: return {};
-	}
-}
-
-function X2JS(v){var q="1.1.5";v=v||{};h();r();function h(){if(v.escapeMode===undefined){v.escapeMode=true;}v.attributePrefix=v.attributePrefix||"_";v.arrayAccessForm=v.arrayAccessForm||"none";v.emptyNodeForm=v.emptyNodeForm||"text";if(v.enableToStringFunc===undefined){v.enableToStringFunc=true;}v.arrayAccessFormPaths=v.arrayAccessFormPaths||[];if(v.skipEmptyTextNodesForObj===undefined){v.skipEmptyTextNodesForObj=true;}if(v.stripWhitespaces===undefined){v.stripWhitespaces=true;}v.datetimeAccessFormPaths=v.datetimeAccessFormPaths||[];}var g={ELEMENT_NODE:1,TEXT_NODE:3,CDATA_SECTION_NODE:4,COMMENT_NODE:8,DOCUMENT_NODE:9};function r(){function x(z){var y=String(z);if(y.length===1){y="0"+y;}return y;}if(typeof String.prototype.trim!=="function"){String.prototype.trim=function(){return this.replace(/^\s+|^\n+|(\s|\n)+$/g,"");};}if(typeof Date.prototype.toISOString!=="function"){Date.prototype.toISOString=function(){return this.getUTCFullYear()+"-"+x(this.getUTCMonth()+1)+"-"+x(this.getUTCDate())+"T"+x(this.getUTCHours())+":"+x(this.getUTCMinutes())+":"+x(this.getUTCSeconds())+"."+String((this.getUTCMilliseconds()/1000).toFixed(3)).slice(2,5)+"Z";};}}function t(x){var y=x.localName;if(y==null){y=x.baseName;}if(y==null||y==""){y=x.nodeName;}return y;}function o(x){return x.prefix;}function p(x){if(typeof(x)=="string"){return x.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#x27;").replace(/\//g,"&#x2F;");}else{return x;}}function j(x){return x.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,'"').replace(/&#x27;/g,"'").replace(/&#x2F;/g,"/");}function l(B,y,A){switch(v.arrayAccessForm){case"property":if(!(B[y] instanceof Array)){B[y+"_asArray"]=[B[y]];}else{B[y+"_asArray"]=B[y];}break;}if(!(B[y] instanceof Array)&&v.arrayAccessFormPaths.length>0){var x=0;for(;x<v.arrayAccessFormPaths.length;x++){var z=v.arrayAccessFormPaths[x];if(typeof z==="string"){if(z==A){break;}}else{if(z instanceof RegExp){if(z.test(A)){break;}}else{if(typeof z==="function"){if(z(B,y,A)){break;}}}}}if(x!=v.arrayAccessFormPaths.length){B[y]=[B[y]];}}}function a(C){var A=C.split(/[-T:+Z]/g);var B=new Date(A[0],A[1]-1,A[2]);var z=A[5].split(".");B.setHours(A[3],A[4],z[0]);if(z.length>1){B.setMilliseconds(z[1]);}if(A[6]&&A[7]){var y=A[6]*60+Number(A[7]);var x=/\d\d-\d\d:\d\d$/.test(C)?"-":"+";y=0+(x=="-"?-1*y:y);B.setMinutes(B.getMinutes()-y-B.getTimezoneOffset());}else{if(C.indexOf("Z",C.length-1)!==-1){B=new Date(Date.UTC(B.getFullYear(),B.getMonth(),B.getDate(),B.getHours(),B.getMinutes(),B.getSeconds(),B.getMilliseconds()));}}return B;}function n(A,y,z){if(v.datetimeAccessFormPaths.length>0){var B=z.split(".#")[0];var x=0;for(;x<v.datetimeAccessFormPaths.length;x++){var C=v.datetimeAccessFormPaths[x];if(typeof C==="string"){if(C==B){break;}}else{if(C instanceof RegExp){if(C.test(B)){break;}}else{if(typeof C==="function"){if(C(obj,y,B)){break;}}}}}if(x!=v.datetimeAccessFormPaths.length){return a(A);}else{return A;}}else{return A;}}function w(z,E){if(z.nodeType==g.DOCUMENT_NODE){var F=new Object;var x=z.childNodes;for(var G=0;G<x.length;G++){var y=x.item(G);if(y.nodeType==g.ELEMENT_NODE){var D=t(y);F[D]=w(y,D);}}return F;}else{if(z.nodeType==g.ELEMENT_NODE){var F=new Object;F.__cnt=0;var x=z.childNodes;for(var G=0;G<x.length;G++){var y=x.item(G);var D=t(y);if(y.nodeType!=g.COMMENT_NODE){F.__cnt++;if(F[D]==null){F[D]=w(y,E+"."+D);l(F,D,E+"."+D);}else{if(F[D]!=null){if(!(F[D] instanceof Array)){F[D]=[F[D]];l(F,D,E+"."+D);}}(F[D])[F[D].length]=w(y,E+"."+D);}}}for(var A=0;A<z.attributes.length;A++){var B=z.attributes.item(A);F.__cnt++;F[v.attributePrefix+B.name]=B.value;}var C=o(z);if(C!=null&&C!=""){F.__cnt++;F.__prefix=C;}if(F["#text"]!=null){F.__text=F["#text"];if(F.__text instanceof Array){F.__text=F.__text.join("\n");}if(v.escapeMode){F.__text=j(F.__text);}if(v.stripWhitespaces){F.__text=F.__text.trim();}delete F["#text"];if(v.arrayAccessForm=="property"){delete F["#text_asArray"];}F.__text=n(F.__text,D,E+"."+D);}if(F["#cdata-section"]!=null){F.__cdata=F["#cdata-section"];delete F["#cdata-section"];if(v.arrayAccessForm=="property"){delete F["#cdata-section_asArray"];}}if(F.__cnt==1&&F.__text!=null){F=F.__text;}else{if(F.__cnt==0&&v.emptyNodeForm=="text"){F="";}else{if(F.__cnt>1&&F.__text!=null&&v.skipEmptyTextNodesForObj){if((v.stripWhitespaces&&F.__text=="")||(F.__text.trim()=="")){delete F.__text;}}}}delete F.__cnt;if(v.enableToStringFunc&&(F.__text!=null||F.__cdata!=null)){F.toString=function(){return(this.__text!=null?this.__text:"")+(this.__cdata!=null?this.__cdata:"");};}return F;}else{if(z.nodeType==g.TEXT_NODE||z.nodeType==g.CDATA_SECTION_NODE){return z.nodeValue;}}}}function m(E,B,D,y){var A="<"+((E!=null&&E.__prefix!=null)?(E.__prefix+":"):"")+B;if(D!=null){for(var C=0;C<D.length;C++){var z=D[C];var x=E[z];if(v.escapeMode){x=p(x);}A+=" "+z.substr(v.attributePrefix.length)+"='"+x+"'";}}if(!y){A+=">";}else{A+="/>";}return A;}function i(y,x){return"</"+(y.__prefix!=null?(y.__prefix+":"):"")+x+">";}function s(y,x){return y.indexOf(x,y.length-x.length)!==-1;}function u(y,x){if((v.arrayAccessForm=="property"&&s(x.toString(),("_asArray")))||x.toString().indexOf(v.attributePrefix)==0||x.toString().indexOf("__")==0||(y[x] instanceof Function)){return true;}else{return false;}}function k(z){var y=0;if(z instanceof Object){for(var x in z){if(u(z,x)){continue;}y++;}}return y;}function b(z){var y=[];if(z instanceof Object){for(var x in z){if(x.toString().indexOf("__")==-1&&x.toString().indexOf(v.attributePrefix)==0){y.push(x);}}}return y;}function f(y){var x="";if(y.__cdata!=null){x+="<![CDATA["+y.__cdata+"]]>";}if(y.__text!=null){if(v.escapeMode){x+=p(y.__text);}else{x+=y.__text;}}return x;}function c(y){var x="";if(y instanceof Object){x+=f(y);}else{if(y!=null){if(v.escapeMode){x+=p(y);}else{x+=y;}}}return x;}function e(z,B,A){var x="";if(z.length==0){x+=m(z,B,A,true);}else{for(var y=0;y<z.length;y++){x+=m(z[y],B,b(z[y]),false);x+=d(z[y]);x+=i(z[y],B);}}return x;}function d(D){var x="";var B=k(D);if(B>0){for(var A in D){if(u(D,A)){continue;}var z=D[A];var C=b(z);if(z==null||z==undefined){x+=m(z,A,C,true);}else{if(z instanceof Object){if(z instanceof Array){x+=e(z,A,C);}else{if(z instanceof Date){x+=m(z,A,C,false);x+=z.toISOString();x+=i(z,A);}else{var y=k(z);if(y>0||z.__text!=null||z.__cdata!=null){x+=m(z,A,C,false);x+=d(z);x+=i(z,A);}else{x+=m(z,A,C,true);}}}}else{x+=m(z,A,C,false);x+=c(z);x+=i(z,A);}}}}x+=c(D);return x;}this.parseXmlString=function(z){var B=window.ActiveXObject||"ActiveXObject" in window;if(z===undefined){return null;}var A;if(window.DOMParser){var C=new window.DOMParser();var x=null;if(!B){try{x=C.parseFromString("INVALID","text/xml").childNodes[0].namespaceURI;}catch(y){x=null;}}try{A=C.parseFromString(z,"text/xml");if(x!=null&&A.getElementsByTagNameNS(x,"parsererror").length>0){A=null;}}catch(y){A=null;}}else{if(z.indexOf("<?")==0){z=z.substr(z.indexOf("?>")+2);}A=new ActiveXObject("Microsoft.XMLDOM");A.async="false";A.loadXML(z);}return A;};this.asArray=function(x){if(x instanceof Array){return x;}else{return[x];}};this.toXmlDateTime=function(x){if(x instanceof Date){return x.toISOString();}else{if(typeof(x)==="number"){return new Date(x).toISOString();}else{return null;}}};this.asDateTime=function(x){if(typeof(x)=="string"){return a(x);}else{return x;}};this.xml2json=function(x){return w(x);};this.xml_str2json=function(x){var y=this.parseXmlString(x);if(y!=null){return this.xml2json(y);}else{return null;}};this.json2xml_str=function(x){return d(x);};this.json2xml=function(y){var x=this.json2xml_str(y);return this.parseXmlString(x);};this.getVersion=function(){return q;};}
-/**
- * @overview Angular directives that are used in device hardware configuration view.
- * @author Martin Vach
- */
-
-/**
- * Renders configuration form inputs
- * @class expertCommandInput
- */
-myApp.directive('expertCommandInput', function($filter) {
-    /**
-     * Renders text input
-     * @param {text} label
-     * @param {mixed} value
-     * @param {int} min
-     * @param {int} max
-     * @param {string} name
-     * @returns {String}
-     */
-    function getText(label, value, min, max, name) {
-        var input = '';
-        var inName = $filter('stringToSlug')(name ? name : label);
-        input += '<label>' + label + '</label> ';
-        input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" title=" min: ' + min + ', max: ' + max + '" />';
-        return input;
-    }
-    /**
-     * Renders node select input 
-     * @param {string} label
-     * @param {object} devices
-     * @param {string} currValue
-     * @param {string} name
-     * @returns {String}
-     */
-    function getNode(label, devices, currValue, name) {
-        var input = '';
-        var inName = $filter('stringToSlug')(name ? name : label);
-        
-        input += '<label class="label-node">' + label + '</label> ';
-        input += '<select name="select_' + inName + '" class="form-control">';
-        input += '<option value="1">Z-Way</option>';
-        angular.forEach(devices, function(v, k) {
-            var selected = (v.id == currValue ? ' selected' : '');
-            input += '<option value="' + v.id + '"' + selected + '>' + v.name + '</option>';
-        });
-
-        input += '</select>';
-
-        return input;
-    }
-
-    /**
-     * Renders enumerators
-     * @param {string} label
-     * @param {object} enums
-     * @param {int} defaultValue
-     * @param {string} name
-     * @param {boolean} hideRadio
-     * @param {int} currValue
-     * @returns {undefined|String}
-     */
-    function getEnum(label, enums, defaultValue, name, hideRadio,currValue) {
-        
-        var input = '';
-        if (!enums) {
-            return;
-        }
-        var inName = $filter('stringToSlug')(name ? name : label);
-        input += '<label>' + label + '</label><br />';
-        var cnt = 1;
-        var value = (currValue !== undefined ? currValue : defaultValue);
-        angular.forEach(enums.enumof, function(v, k) {
-            var title = v.label;
-            var type = v.type;
-            var enumVal =  $filter('hasNode')(v, 'type.fix.value');
-            var checked = (cnt == 1 ? ' checked="checked"' : '');
-            var isCurrent = (cnt == 1 ? ' commads-is-current' : '');
-
-            if ('fix' in type) {
-                if (defaultValue) {
-                    if (isNaN(parseInt(defaultValue, 10))) {
-                        isCurrent = (v.label == defaultValue ? ' commads-is-current' : '');
-                    } else {
-                         isCurrent = '';
-                    }
-                }
-                
-                if (!isNaN(parseInt(value, 10))) {
-                    checked = (enumVal == value ? ' checked="checked"' : '');
-                }
-                input += '<input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value="' + type.fix.value + '"' + checked + ' /> <span class="commands-label' + isCurrent + '">' + title + '</span><br />';
-            } else if ('range' in type) {
-                var min = type.range.min;
-                var max = type.range.max;
-                var disabled = ' disabled="true"';
-                var setVal = (value ? value : min);
-                if (defaultValue) {
-                    if (defaultValue >= min && defaultValue <= max) {
-                        disabled = '';
-                        isCurrent = ' commads-is-current';
-                    }
-
-                } else {
-                    isCurrent = '';
-                }
-                if (value) {
-                    if (value >= min && value <= max) {
-                        checked = ' checked="checked"';
-                        disabled = '';
-                    }
-
-                } else {
-                    checked = '';
-                }
-                
-                if (hideRadio) {
-                    disabled = '';
-                }
-
-//                input += '<input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value=""' + checked + ' /> ' + title + ' <input type="text" name="radio_' + inName + '_txt" class="form-control commands-data-txt-chbx" value="' + min + '" title=" min: ' + min + ', max: ' + max + '"'+ disabled + ' /><br />'; 
-                if (!hideRadio) {
-                    input += '<div><input name="radio_' + inName + '" class="commands-data-chbx" type="radio" value=""' + checked + ' /> <span class="commands-label' + isCurrent + '">' + title + '</span> <input type="text" name="radio_txt_' + inName + '" class="form-control commands-data-txt-chbx" value="' + setVal + '" title=" min: ' + min + ', max: ' + max + '"' + disabled + ' /></div>';
-                } else {
-                    input += '<input type="text" name="radio_txt_' + inName + '" class="form-control" value="' + setVal + '" title=" min: ' + min + ', max: ' + max + '" /><br />';
-                }
-
-
-            } else {
-                input = '';
-            }
-            cnt++;
-
-        });
-        return input;
-    }
-
-    /**
-     * Renders dropdown list
-     * @param {string} label
-     * @param {object} enums
-     * @param {string} defaultValue
-     * @param {string} name
-     * @param {string} currValue
-     * @returns {String}
-     */
-    function getDropdown(label, enums, defaultValue, name,currValue) {
-        var input = '';
-        var cValue = (currValue !== undefined ? currValue : defaultValue);
-        var inName = $filter('stringToSlug')(name ? name : label);
-        input += '<label>' + label + '</label><br />';
-        input += '<select name="select_' + inName + '" class="form-control">';
-        var cnt = 1;
-        angular.forEach(enums.enumof, function(v, k) {
-            var title = v.label;
-            var type = v.type;
-            var value;
-            if ('fix' in type) {
-                value = type.fix.value;
-            } else if ('range' in type) {
-                value = type.range.min;
-            }
-
-            if (value) {
-                var selected = (type.fix.value == cValue ? ' selected' : '');
-            }
-            input += '<option value="' + value + '"' + selected + '> ' + title + '</option>';
-            cnt++;
-
-        });
-        input += '</select">';
-        return input;
-    }
-
-    /**
-     * Renders constant select
-     * @param {string} label
-     * @param {string} type
-     * @param {string} defaultValue
-     * @param {string} name
-     * @param {string} currValue
-     * @returns {String}
-     */
-    function getConstant(label, type, defaultValue, name,currValue) {
-        var input = '';
-        var inName = $filter('stringToSlug')(name ? name : label);
-        input += '<label>' + label + '</label><br />';
-        if (type.constant.length > 0) {
-            input += '<select name="select_' + inName + '" class="form-control">';
-            angular.forEach(type.constant, function(v, k) {
-
-                input += '<option value="' + v.type.constant.value + '"> ' + v.label + '</option>';
-            });
-
-
-            input += '</select">';
-        }
-        //console.log(type,defaultValue);
-        input += '<em>Constant type</em>';
-        return input;
-    }
-    /**
-     * Renders string input
-     * @param {string} label
-     * @param {string} value
-     * @param {string} name
-     * @returns {String}
-     */
-    function getString(label, value, name) {
-        var input = '';
-        var inName = $filter('stringToSlug')(name ? name : label);
-        input += '<label>' + label + '</label> ';
-        input += '<input class="form-control" name="' + inName + '" type="text" class="form-control" value="' + value + '" />';
-        return input;
-    }
-    
-    /**
-     * Renders bitset input
-     * @returns {String}
-     */
-    function getBitset() {
-        
-        var input = '';
-        
-        return input;
-    }
-
-    /**
-     * Renders default label
-     * @param {string} label
-     * @returns {String}
-     */
-    function getDefault(label) {
-
-        var input = '';
-        input += '<label>' + label + '</label><br />';
-        return input;
-    }
-
-    return {
-        restrict: "E",
-        replace: true,
-        template: '<div class="form-group" ng-bind-html="input | toTrusted"></div>',
-        scope: {
-            collection: '=',
-            devices: '=',
-            getNodeDevices: '=',
-            values: '=',
-            isDropdown: '=',
-            defaultValue: '=',
-            showDefaultValue: '=',
-            currValue: '=',
-            currNodeValue: '=',
-            name: '=',
-            divId: '='
-        },
-        link: function(scope, element, attrs) {
-
-            var input = '';
-            if (!scope.collection) {
-                return;
-            }
-            var label = scope.collection.label;
-            var type = scope.collection.type;
-            var name = (scope.collection.name || scope.name);
-            var hideRadio = scope.collection.hideRadio;
-            if (scope.isDropdown) {
-                input = getDropdown(label, type, scope.defaultValue, name,scope.currValue);
-                scope.input = input;
-                return;
-            }
-            //if (label && type) {
-            if (type) {
-                if ('range' in type) {
-                    input = getText(label, scope.values, type.range.min, type.range.max, name);
-                } else if ('node' in type) {
-                    input = getNode(label, scope.getNodeDevices(), scope.currNodeValue, name);
-                } else if ('enumof' in type) {
-                    input = getEnum(label, type, scope.defaultValue, name, hideRadio,scope.currValue);
-                } else if ('bitset' in type) {
-                    input = getBitset(label, type, scope.defaultValue, name, hideRadio,scope.currValue);
-                } else if ('constant' in type) {
-                    input = getConstant(label, type, scope.defaultValue, name,scope.currValue);
-                } else if ('string' in type) {
-                    input = getString(label, scope.values, name,scope.currValue);
-                } else {
-                    input = getDefault(label);
-                }
-                scope.input = input;
-                return;
-            }
-
-        }
-
-    };
-});
-/**
- * Renders configuration default value
- * @class configDefaultValue
- */
-myApp.directive('configDefaultValue', function() {
-    return {
-        restrict: "E",
-        replace: true,
-        template: '<span class="default-value-format"> {{input}}</span>',
-        scope: {
-            collection: '=',
-            defaultValue: '=',
-            showDefaultValue: '='
-        },
-        link: function(scope, element, attrs) {
-            scope.input = scope.showDefaultValue;
-            var input = '';
-            if (!scope.collection) {
-                return;
-            }
-            var label = scope.collection.label;
-            var type = scope.collection.type;
-            var name = scope.collection.name;
-            var hideRadio = scope.collection.hideRadio;
-            
-            if (type) {
-                if ('range' in type) {
-                    //input = getText(label, scope.values, type.range.min, type.range.max, name);
-                } else if ('node' in type) {
-                    //input = getNode(label, scope.getNodeDevices(), 'null', name);
-                } else if ('enumof' in type) {
-                    input = getEnum(type, scope.defaultValue,scope.showDefaultValue);
-                   
-                } else if ('constant' in type) {
-                    //input = getConstant(label, type, scope.defaultValue, name);
-                } else if ('string' in type) {
-                    //input = getString(label, scope.values, name);
-                } else {
-                    input = scope.showDefaultValue;
-                }
-                scope.input = input;
-                
-                return;
-            }
-
-
-        }
-
-    };
-
-    /**
-     * Renders enumerators
-     * @param {object} enums
-     * @param {string} defaultValue
-     * @param {string} showDefaultValue
-     * @returns {string}
-     */
-    function getEnum(enums, defaultValue,showDefaultValue) {
-        //console.log(enums)
-        var input = showDefaultValue;
-        if (!enums) {
-            return;
-        }
-        angular.forEach(enums.enumof, function(v, k) {
-          
-            var title = v.label ? v.label : showDefaultValue;
-            var type = v.type;
-             // debugger; 
-            if ('fix' in type) {
-                if (type.fix.value == showDefaultValue) {
-                    input = title;
-                    return;
-                }
- 
-            } else if ('range' in type) {
-                var min = type.range.min;
-                var max = type.range.max;
-                var setVal = (defaultValue ? defaultValue : min);
-                if (setVal == showDefaultValue) {
-                    input = showDefaultValue;
-                    return;
-                }
-            }
-
-        });
-        
-        return input;
-    }
-});
-/**
- * Renders configuration title input
- * @class configValueTitle
- */
-myApp.directive('configValueTitle', function() {
-    return {
-        restrict: "A",
-        //replace: true,
-        template: '<span title="{{showValue}}">{{input}}</span>',
-        scope: {
-            collection: '=',
-            showValue: '='
-        },
-        link: function(scope, element, attrs) {
-            scope.input = scope.showValue;
-            var input = '';
-            if (!scope.collection) {
-                return;
-            }
-            var type = scope.collection.type;
-            
-            if (type) {
-                if ('range' in type) {
-                    //input = getText(label, scope.values, type.range.min, type.range.max, name);
-                } else if ('node' in type) {
-                    //input = getNode(label, scope.getNodeDevices(), 'null', name);
-                } else if ('enumof' in type) {
-                    input = getEnum(type, scope.showValue);
-                   
-                } else if ('constant' in type) {
-                    //input = getConstant(label, type, scope.defaultValue, name);
-                } else if ('string' in type) {
-                    //input = getString(label, scope.values, name);
-                } else {
-                    input = scope.showValue;
-                }
-                scope.input = input;
-                
-                return;
-            }
-
-
-        }
-
-    };
-
-    /**
-     * Renders enumerators
-     * @param {object} enums
-     * @param {string} showValue
-     * @returns {string}
-     */
-    function getEnum(enums, showValue) {
-        //console.log(enums)
-        var input = showValue;
-        if (!enums) {
-            return;
-        }
-        angular.forEach(enums.enumof, function(v, k) {
-          
-            var title = v.label ? v.label : showValue;
-            var type = v.type;
-             // debugger; 
-            if ('fix' in type) {
-                if (type.fix.value == showValue) {
-                    input = title;
-                    return;
-                }
- 
-            } else if ('range' in type) {
-                var min = type.range.min;
-                var max = type.range.max;
-                var setVal = (showValue ? showValue : min);
-                if (setVal == showValue) {
-                    input = showValue;
-                    return;
-                }
-            }
-
-        });
-        
-        return input;
-    }
-});
-
-
-/**
- * @overview Common functions that are used within device hardware configuration
- * @author Martin Vach
- */
-
-/**
- * Angular module initialization
- * @class expertService
- */
-myAppService.service('expertService', function($filter) {
-    /// --- Public functions --- ///
-    
-    /**
-     * Get language line by key
-     * @param {string} key
-     * @param {object} languages
-     * @returns {unresolved}
-     */
-    this.getLangLine = function(key, languages) {
-        return getLangLine(key, languages);
-    };
-    /**
-     * Get config navigation devices
-     * @param {object} ZWaveAPIData
-     * @returns {unresolved}
-     */
-    this.configGetNav = function(ZWaveAPIData) {
-        return configGetNav(ZWaveAPIData);
-    };
-
-    /**
-     * Get language from zddx
-     * @param {object} node
-     * @param {string} lang
-     * @returns {unresolved}
-     */
-    this.configGetZddxLang = function(node, lang) {
-        return configGetZddxLang(node, lang);
-    };
-    /**
-     * Get xml config param
-     * @param {object} cfgXml
-     * @param {int} nodeId
-     * @param {string} instance
-     * @param {string} commandClass
-     * @param {string} command
-     * @returns {unresolved}
-     */
-    this.getCfgXmlParam = function(cfgXml, nodeId, instance, commandClass, command) {
-        return getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command);
-    };
-    /**
-     * Get expert commands
-     * @param methods
-     * @param ZWaveAPIData
-     * @returns {*}
-     */
-    this.configGetCommands = function(methods, ZWaveAPIData) {
-        return configGetCommands(methods, ZWaveAPIData);
-    };
-    /**
-     *  Get interview ommands
-     * @param node
-     * @param updateTime
-     * @returns {*}
-     */
-    this.configGetInterviewCommands = function(node, updateTime) {
-        return configGetInterviewCommands(node, updateTime);
-    };
-    /**
-     * Config cont
-     * @param {object} node
-     * @param {int} nodeId
-     * @param {object} zddXml
-     * @param {object} cfgXml
-     * @param {string} lang
-     * @param {object} languages
-     * @returns {unresolved}
-     */
-    this.configConfigCont = function(node, nodeId, zddXml, cfgXml, lang, languages) {
-        return configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages);
-    };
-    /**
-     * Switch all cont
-     * @param {object} node
-     * @param {int} nodeId
-     * @param {object} ZWaveAPIData
-     * @param {object} cfgXml
-     * @returns {unresolved}
-     */
-    this.configSwitchAllCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
-        return configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
-    };
-    /**
-     * Protection cont
-     * @param {object} node
-     * @param {int} nodeId
-     * @param {object} ZWaveAPIData
-     * @param {object} cfgXml
-     * @returns {unresolved}
-     */
-    this.configProtectionCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
-        return configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
-    };
-   /**
-    * Wakeup cont
-    * @param {object} node
-    * @param {int} nodeId
-    * @param {object} ZWaveAPIData
-    * @param {object} cfgXml
-    * @returns {unresolved}
-    */
-    this.configWakeupCont = function(node, nodeId, ZWaveAPIData, cfgXml) {
-        return configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml);
-    };
-
-    /**
-     * Build config XML file
-     * @param {object} data
-     * @param {object} cfgXml
-     * @param {int} id
-     * @param {string} commandclass
-     * @returns {unresolved}
-     */
-    this.buildCfgXml = function(data, cfgXml, id, commandclass) {
-        return buildCfgXml(data, cfgXml, id, commandclass);
-    };
-
-    /// --- Private functions --- ///
-    /**
-     * Get language line by key
-     */
-    function getLangLine(key, languages) {
-        if (angular.isObject(languages)) {
-            if (angular.isDefined(languages[key])) {
-                return languages[key] !== '' ? languages[key] : key;
-            }
-        }
-        return key;
-    }
-    ;
-
-    /**
-     *  Get expert commands
-     */
-    function configGetCommands(methods, ZWaveAPIData) {
-        var methodsArr = [];
-        angular.forEach(methods, function(params, method) {
-            //str.split(',');
-            var cmd = {};
-            var values = repr_array(method_defaultValues(ZWaveAPIData, methods[method]));
-            cmd['data'] = {
-                'method': method,
-                'params': methods[method],
-                'values': method_defaultValues(ZWaveAPIData, methods[method])
-            };
-            cmd['method'] = method;
-            cmd['params'] = methods[method];
-            cmd['values'] = repr_array(method_defaultValues(ZWaveAPIData, methods[method]));
-            methodsArr.push(cmd);
-        });
-        return methodsArr;
-    }
-
-    /**
-     *  Get interview Commands
-     */
-    function configGetInterviewCommands(node, updateTime) {
-        var interviews = [];
-        for (var iId in node.instances) {
-            var cnt = 0;
-            for (var ccId in node.instances[iId].commandClasses) {
-                var obj = {};
-                obj['iId'] = iId;
-                obj['ccId'] = ccId;
-                obj['ccName'] = node.instances[iId].commandClasses[ccId].name;
-                obj['interviewDone'] = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
-                obj['cmdData'] = node.instances[iId].commandClasses[ccId].data;
-                obj['cmdDataIn'] = node.instances[iId].data;
-                obj['updateTime'] = updateTime;
-                interviews.push(obj);
-                cnt++;
-            }
-            ;
-        }
-        ;
-        return interviews;
-    }
-
-
-    /**
-     *  Get config navigation devices
-     */
-    function configGetNav(ZWaveAPIData) {
-        var devices = [];
-        var controllerNodeId = ZWaveAPIData.controller.data.nodeId.value;
-        // Loop throught devices
-        angular.forEach(ZWaveAPIData.devices, function(node, nodeId) {
-            if (nodeId == 255 || nodeId == controllerNodeId || node.data.isVirtual.value) {
-                return;
-            }
-            var node = ZWaveAPIData.devices[nodeId];
-            // Set object
-            var obj = {};
-            obj['id'] = nodeId;
-            obj['name'] = $filter('deviceName')(nodeId, node);
-            devices.push(obj);
-        });
-        return devices;
-    }
-
-    /**
-     *  Get language from zddx
-     */
-    function configGetZddxLang(langs, currLang) {
-        var label = null;
-        if (!langs) {
-            return label;
-        }
-        if (angular.isArray(langs)) {
-            for (var i = 0, len = langs.length; i < len; i++) {
-                if (("__text" in langs[i]) && (langs[i]["_xml:lang"] == currLang)) {
-                   label = langs[i].__text;
-                    return label;
-                     
-                    //continue;
-                }else{
-                     if (("__text" in langs[i]) && (langs[i]["_xml:lang"] == 'en')) {
-                    label = langs[i].__text;
-                    return label;
-                     }
-                }
-            }
-            // DEPRECATED
-//            angular.forEach(langs, function(lang, index) {
-//                if (("__text" in lang) && (lang["_xml:lang"] == currLang)) {
-//                    label = lang.__text;
-//                    return false;
-//                }
-//                if (("__text" in lang) && (lang["_xml:lang"] == "en")) {
-//                    label = lang.__text;
-//                }
-//            });
-        } else {
-            if (("__text" in langs)) {
-                label = langs.__text;
-            }
-        }
-         //console.log(label)
-        return label;
-    }
-
-    /**
-     * Get xml config param
-     */
-    function getCfgXmlParam(cfgXml, nodeId, instance, commandClass, command) {
-        var cfg = $filter('hasNode')(cfgXml, 'config.devices.deviceconfiguration');
-        if (!cfg) {
-            return [];
-        }
-        // Get data for given device by id
-        var collection = [];
-        angular.forEach(cfg, function(v, k) {
-            //if (v['_id'] == nodeId && v['_instance'] == instance && v['_commandClass'] == commandClass && v['_command'] == command) {
-            if (v['_id'] == nodeId && v['_instance'] == instance && v['_commandclass'] == commandClass && v['_command'] == command) {
-//                if(!angular.isArray(v['_parameter'])){
-//                    return;
-//                }
-                var array = JSON.parse(v['_parameter']);
-                if (array.length > 2) {
-                    collection[array[0]] = array[1];
-                }
-                else if (array.length == 2) {
-                    collection = array;
-
-                }
-                else {
-                    collection[0] = array[0];
-                    return;
-                }
-            }
-
-        });
-        //console.log(collection)
-        return collection;
-
-    }
-
-    /**
-     * Config cont
-     */
-    function configConfigCont(node, nodeId, zddXml, cfgXml, lang, languages) {
-        if (!0x70 in node.instances[0].commandClasses) {
-            return null;
-        }
-        if (!zddXml) {
-            return null;
-        }
-
-        if (!zddXml.ZWaveDevice.hasOwnProperty("configParams")) {
-            return null;
-        }
-        var config_cont = [];
-        var params = zddXml.ZWaveDevice.configParams['configParam'];
-//        var lang = 'en';
-//        var langs = {
-//            "en": "1",
-//            "de": "0"
-//        };
-//        if (angular.isDefined(langs[lang])) {
-//            lang = lang;
-//        }
-//        var langId = langs[lang];
-        // Loop throught params
-        var parCnt = 0;
-        var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '70', 'Set');
-        angular.forEach(params, function(conf_html, i) {
-            //console.log(zddXml);
-            if (!angular.isObject(conf_html)) {
-                return;
-            }
-
-            have_conf_params = true;
-            var conf = conf_html;
-            var conf_num = conf['_number'];
-            //console.log(cfgFile[conf_num])
-            var conf_size = conf['_size'];
-            var conf_name = configGetZddxLang($filter('hasNode')(conf, 'name.lang'), lang) || getLangLine('configuration_parameter', languages) + ' ' + conf_num;
-            var conf_description = configGetZddxLang($filter('hasNode')(conf, 'description.lang'), lang);
-            var conf_size = conf['_size'];
-            var conf_default_value = null;
-            var conf_type = conf['_type'];
-            var showDefaultValue = null;
-            var config_config_value;
-
-            // get value from the Z-Wave data
-            var config_zwave_value = null;
-
-            if (angular.isDefined(node.instances[0].commandClasses[0x70])) {
-                if (node.instances[0].commandClasses[0x70].data[conf_num] != null && node.instances[0].commandClasses[0x70].data[conf_num].val.value !== "") {
-                    config_zwave_value = node.instances[0].commandClasses[0x70].data[conf_num].val.value;
-                    conf_default = config_zwave_value;
-
-                }
-
-            }
-
-            // get default value
-            var conf_default = null;
-            if (conf['_default'] !== undefined) {
-                conf_default = parseInt(conf['_default'], 16);
-                showDefaultValue = conf_default;
-            }
-
-            // get default value from the config XML
-            if (cfgFile[conf_num] !== undefined) {
-                config_config_value = cfgFile[conf_num];
-            } else {
-                if (config_zwave_value !== null) {
-                    config_config_value = config_zwave_value;
-                } else {
-                    config_config_value = conf_default;
-                }
-            }
-
-            var isUpdated = true;
-            var updateTime = '';
-            if (angular.isDefined(node.instances[0].commandClasses[0x70])
-                    && angular.isDefined(node.instances[0].commandClasses[0x70].data[conf_num])) {
-                var uTime = node.instances[0].commandClasses[0x70].data[conf_num].updateTime;
-                var iTime = node.instances[0].commandClasses[0x70].data[conf_num].invalidateTime;
-                var updateTime = $filter('isTodayFromUnix')(uTime);
-                var isUpdated = (uTime > iTime ? true : false);
-            }
-
-            // Switch
-            var conf_method_descr;
-            //console.log(conf_name + ' --- ' + conf_type)
-            switch (conf_type) {
-                case 'constant':
-                case 'rangemapped':
-                    var param_struct_arr = [];
-                    var conf_param_options = '';
-
-                    angular.forEach(conf['value'], function(value_html, i) {
-                        var value = value_html;
-                        var value_from = parseInt(value['_from'], 16);
-                        var value_to = parseInt(value['_to'], 16);
-                        var value_description = null;
-                        if (angular.isDefined(value.description)) {
-                            value_description = configGetZddxLang($filter('hasNode')(value, 'description.lang'), lang);
-                        }
-                        if (angular.isDefined(value.lang)) {
-                            value_description = configGetZddxLang($filter('hasNode')(value, 'lang'), lang);
-
-                        }
-                        var value_repr = value_from; // representative value for the range
-                        if (conf_default !== null)
-                            if (value_from <= conf_default && conf_default <= value_to) {
-                                conf_default_value = value_description;
-                                value_repr = conf_default;
-                            }
-                        param_struct_arr.push({
-                            label: value_description,
-                            type: {
-                                fix: {
-                                    value: value_repr
-                                }
-                            }
-                        });
-                    });
-                    conf_method_descr = {
-                        nodeId: nodeId,
-                        label: 'Nº ' + conf_num + ' - ' + conf_name,
-                        type: {
-                            enumof: param_struct_arr
-                        },
-                        name: 'input_' + nodeId + '_' + conf_num,
-                        description: conf_description,
-                        updateTime: updateTime,
-                        isUpdated: isUpdated,
-                        defaultValue: conf_default_value,
-                        showDefaultValue: showDefaultValue,
-                        configCconfigValue: config_config_value,
-                        configZwaveValue: config_zwave_value,
-                        confNum: conf_num,
-                        confSize: conf_size
-                    };
-
-                    break;
-                case 'range':
-
-                    var param_struct_arr = [];
-                    var rangeParam = conf['value'];
-                    //console.log(rangeParam, conf_num);
-
-                    if (!rangeParam) {
-                        conf_method_descr = {
-                            nodeId: nodeId,
-                            label: 'Nº ' + conf_num + ' - ' + conf_name,
-                            type: {
-                                noval: null
-                            },
-                            name: 'input_' + nodeId + '_' + conf_num,
-                            description: conf_description,
-                            updateTime: updateTime,
-                            isUpdated: isUpdated,
-                            defaultValue: null,
-                            showDefaultValue: showDefaultValue,
-                            configCconfigValue: config_config_value,
-                            configZwaveValue: config_zwave_value,
-                            confNum: conf_num,
-                            confSize: conf_size
-                        };
-                        break;
-                    }
-                    angular.forEach(rangeParam, function(value_html, ri) {
-                        //console.log(ri);
-                        var value = value_html;
-
-                        if (ri == 'description') {
-                            //console.log(ri);
-                            var value_from = parseInt(rangeParam['_from'], 16);
-                            var value_to = parseInt(rangeParam['_to'], 16);
-
-                        } else {
-                            var value_from = parseInt(value['_from'], 16);
-                            var value_to = parseInt(value['_to'], 16);
-                        }
-                        var value_description = '';
-                        if (angular.isDefined(value.description)) {
-                            value_description = configGetZddxLang($filter('hasNode')(value, 'description.lang'), lang);
-                        }
-                        if (angular.isDefined(value.lang)) {
-                            value_description = configGetZddxLang($filter('hasNode')(value, 'lang'), lang);
-                        }
-                        //var value_description = deviceService.configGetZddxLang($filter('hasNode')(value, 'lang'), $scope.lang);
-
-                        if (conf_default !== null)
-                            conf_default_value = conf_default;
-
-
-                        if (value_from != value_to) {
-                            if (value_description != '') {
-                                var rangeVal = {
-                                    label: value_description,
-                                    type: {
-                                        range: {
-                                            min: value_from,
-                                            max: value_to
-                                        }
-                                    }
-                                };
-                                param_struct_arr.push(rangeVal);
-                            }
-                        }
-                        else // this is a fix value
-                        if (value_description != '') {
-                            param_struct_arr.push({
-                                label: value_description,
-                                type: {
-                                    fix: {
-                                        value: value_from
-                                    }
-                                }
-                            });
-                        }
-                    });
-
-                    if (param_struct_arr.length > 1)
-                        conf_method_descr = {
-                            nodeId: nodeId,
-                            label: 'Nº ' + conf_num + ' - ' + conf_name,
-                            type: {
-                                enumof: param_struct_arr
-                            },
-                            hideRadio: false,
-                            name: 'input_' + nodeId + '_' + conf_num,
-                            description: conf_description,
-                            updateTime: updateTime,
-                            isUpdated: isUpdated,
-                            defaultValue: conf_default_value,
-                            showDefaultValue: showDefaultValue,
-                            configCconfigValue: config_config_value,
-                            configZwaveValue: config_zwave_value,
-                            confNum: conf_num,
-                            confSize: conf_size
-                        };
-                    else if (param_struct_arr.length == 1) {
-
-                        conf_method_descr = {
-                            nodeId: nodeId,
-                            label: 'Nº ' + conf_num + ' - ' + conf_name,
-                            type: {
-                                enumof: param_struct_arr
-                            },
-                            name: 'input_' + nodeId + '_' + conf_num,
-                            hideRadio: true,
-                            description: conf_description,
-                            updateTime: updateTime,
-                            isUpdated: isUpdated,
-                            defaultValue: conf_default_value,
-                            showDefaultValue: showDefaultValue,
-                            configCconfigValue: config_config_value,
-                            configZwaveValue: config_zwave_value,
-                            confNum: conf_num,
-                            confSize: conf_size
-                        };
-                    }
-
-                    break;
-                case 'bitset':
-                    var param_struct_arr = [];
-                    var conf_param_options = '';
-                    var conf_default_value_arr = new Object;
-                    if (conf_default !== null) {
-                        var bit = 0;
-                        do {
-                            if ((1 << bit) & conf_default)
-                                conf_default_value_arr[bit] = 'Bit ' + bit + ' set';
-                        } while ((1 << (bit++)) < conf_default);
-                    }
-                    ;
-                    angular.forEach(conf['value'], function(value_html, i) {
-                        var value = value_html;
-                        var value_from = parseInt(value['_from'], 16);
-                        var value_to = parseInt(value['_to'], 16);
-                        var value_description = 'fdf';
-                        var value_description = '';
-                        if (conf_default !== null) {
-                            if (value_from == value_to) {
-                                if ((1 << value_from) & conf_default)
-                                    conf_default_value_arr[value_from] = value_description;
-                            } else {
-                                conf_default_value_arr[value_from] = (conf_default >> value_from) & ((1 << (value_to - value_from + 1)) - 1)
-                                for (var bit = value_from + 1; bit <= value_to; bit++)
-                                    delete conf_default_value_arr[bit];
-                            }
-                        }
-                        ;
-                        if (value_from == value_to)
-                            param_struct_arr.push({
-                                label: value_description,
-                                name: 'input_' + nodeId + '_' + conf_num,
-                                type: {
-                                    bitcheck: {
-                                        bit: value_from
-                                    }
-                                }
-                            });
-                        else
-                            param_struct_arr.push({
-                                label: value_description,
-                                name: 'input_' + nodeId + '_' + conf_num,
-                                type: {
-                                    bitrange: {
-                                        bit_from: value_from,
-                                        bit_to: value_to
-                                    }
-                                }
-                            });
-                    });
-                    if (conf_default !== null) {
-                        conf_default_value = '';
-                        for (var ii in conf_default_value_arr)
-                            conf_default_value += conf_default_value_arr[ii] + ', ';
-                        if (conf_default_value.length)
-                            conf_default_value = conf_default_value.substr(0, conf_default_value.length - 2);
-                    }
-                    conf_method_descr = {
-                        nodeId: nodeId,
-                        label: 'Nº ' + conf_num + ' - ' + conf_name,
-                        type: {
-                            bitset: param_struct_arr
-                        },
-                        name: 'input_' + nodeId + '_' + conf_num,
-                        description: conf_description,
-                        updateTime: updateTime,
-                        isUpdated: isUpdated,
-                        defaultValue: conf_default_value,
-                        showDefaultValue: showDefaultValue,
-                        configCconfigValue: config_config_value,
-                        configZwaveValue: config_zwave_value,
-                        confNum: conf_num,
-                        confSize: conf_size
-                    };
-                    break;
-                default:
-                    return;
-                    //conf_cont.append('<span>' + $.translate('unhandled_type_parameter') + ': ' + conf_type + '</span>');
-            }
-            ;
-
-            config_cont.push(conf_method_descr);
-            parCnt++;
-        });
-        //console.log(config_cont);
-        return config_cont;
-    }
-
-    /**
-     * Switch all cont
-     */
-    function configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml) {
-        var switchall_cont = false;
-        if (0x27 in node.instances[0].commandClasses) {
-            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '27', 'Set');
-            var uTime = node.instances[0].commandClasses[0x27].data.mode.updateTime;
-            var iTime = node.instances[0].commandClasses[0x27].data.mode.invalidateTime;
-            var updateTime = $filter('isTodayFromUnix')(uTime);
-            var isUpdated = (uTime > iTime ? true : false);
-            var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x27, 'Set');
-            var conf_default_value = 0;
-            var switchall_conf_value;
-            if (cfgFile !== undefined) {
-                switchall_conf_value = cfgFile[0];
-            } else {
-                switchall_conf_value = 1;// by default switch all off group only
-            }
-            switchall_cont = {
-                'params': gui_descr,
-                'values': {0: switchall_conf_value},
-                name: 'switchall_' + nodeId + '_' + 0,
-                updateTime: updateTime,
-                isUpdated: isUpdated,
-                defaultValue: conf_default_value,
-                showDefaultValue: conf_default_value,
-                configCconfigValue: switchall_conf_value,
-                confNum: 0,
-                confSize: 0,
-                cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x27]'
-            };
-
-        }
-        ;
-        return switchall_cont;
-    }
-
-    /**
-     * Protection cont
-     */
-    function configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml) {
-        var protection_cont = false;
-        if (0x75 in node.instances[0].commandClasses) {
-            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '75', 'Set');
-            var uTime = node.instances[0].commandClasses[0x75].data.state.updateTime;
-            var iTime = node.instances[0].commandClasses[0x75].data.state.invalidateTime;
-            var updateTime = $filter('isTodayFromUnix')(uTime);
-            var isUpdated = (uTime > iTime ? true : false);
-            var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x75, 'Set');
-            var conf_default_value = 0;
-            var protection_conf_value;
-            //var protection_conf_rf_value;
-            // get default value from the config XML
-            if (cfgFile !== undefined) {
-                protection_conf_value = cfgFile[0];
-            } else {
-                protection_conf_value = 0;// by default switch all off group only
-            }
-
-            protection_cont = {
-                'params': gui_descr,
-                'values': {0: protection_conf_value},
-                name: 'protection_' + nodeId + '_' + 0,
-                updateTime: updateTime,
-                isUpdated: isUpdated,
-                defaultValue: conf_default_value,
-                showDefaultValue: conf_default_value,
-                configCconfigValue: protection_conf_value,
-                confNum: 0,
-                confSize: 0,
-                cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x75]'
-            };
-        }
-        ;
-        return protection_cont;
-    }
-
-    /**
-     * Wakeup cont
-     */
-    function configWakeupCont(node, nodeId, ZWaveAPIData, cfgXml) {
-        var wakeup_cont = false;
-        if (0x84 in node.instances[0].commandClasses) {
-            var cfgFile = getCfgXmlParam(cfgXml, nodeId, '0', '84', 'Set');
-            var wakeup_zwave_min = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 0 : node.instances[0].commandClasses[0x84].data.min.value;
-            var wakeup_zwave_max = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 0xFFFFFF : node.instances[0].commandClasses[0x84].data.max.value;
-            var wakeup_zwave_value = node.instances[0].commandClasses[0x84].data.interval.value;
-            var wakeup_zwave_default_value = (node.instances[0].commandClasses[0x84].data.version.value == 1) ? 86400 : node.instances[0].commandClasses[0x84].data['default'].value; // default is a special keyword in JavaScript
-            var wakeup_zwave_nodeId = node.instances[0].commandClasses[0x84].data.nodeId.value;
-            var uTime = node.instances[0].commandClasses[0x84].data.updateTime;
-            var iTime = node.instances[0].commandClasses[0x84].data.invalidateTime;
-            var updateTime = $filter('isTodayFromUnix')(uTime);
-            var isUpdated = (uTime > iTime ? true : false);
-            if (wakeup_zwave_min !== '' && wakeup_zwave_max !== '') {
-                var gui_descr = getMethodSpec(ZWaveAPIData, nodeId, 0, 0x84, 'Set');
-                gui_descr[0].type.range.min = parseInt(wakeup_zwave_min, 10);
-                gui_descr[0].type.range.max = parseInt(wakeup_zwave_max, 10);
-                var wakeup_conf_value;
-                var wakeup_conf_node_value = 0;
-                if (angular.isArray(cfgFile) && cfgFile.length > 0) {
-                    wakeup_conf_value = cfgFile[0] || 0;
-                    wakeup_conf_node_value = cfgFile[1] || 0;
-                } else {
-                    if (wakeup_zwave_value != "" && wakeup_zwave_value != 0 && wakeup_zwave_nodeId != "") {
-                        // not defined in config: adopt devices values
-                        wakeup_conf_value = parseInt(wakeup_zwave_value, 10);
-                    } else {
-                        // values in device are missing. Use defaults
-                        wakeup_conf_value = parseInt(wakeup_zwave_default_value, 10);
-                    }
-                    ;
-                }
-                ;
-                wakeup_cont = {
-                    'params': gui_descr,
-                    'values': {"0": wakeup_conf_value},
-                    name: 'wakeup_' + nodeId + '_' + 0,
-                    updateTime: updateTime,
-                    isUpdated: isUpdated,
-                    defaultValue: wakeup_zwave_default_value,
-                    showDefaultValue: wakeup_zwave_default_value,
-                    configCconfigValue: wakeup_conf_value,
-                    configCconfigNodeValue: wakeup_conf_node_value,
-                    confNum: 0,
-                    confSize: 0,
-                    cmd: 'devices[' + nodeId + '].instances[0].commandClasses[0x84]'
-                };
-            } else {
-                //$('#wakeup_cont .cfg-block-content').append('<span>' + $scope._t('config_ui_wakeup_no_min_max') + '</span>');
-            }
-        }
-        ;
-        return wakeup_cont;
-    }
-
-    /**
-     *Build config XML file
-     */
-    function buildCfgXml(data, cfgXml, id, commandclass) {
-        var hasCfgXml = false;
-        var assocCc = [133, 142];
-        var formData = [];
-        if (commandclass == '84') {
-            var par1 = JSON.parse(data[0]['parameter']);
-            var par2 = JSON.parse(data[1]['parameter']);
-            var wakeData = {
-                'id': id,
-                'instance': data[0]['instance'],
-                'commandclass': commandclass,
-                'command': data[0]['command'],
-                'parameter': '[' + par1 + ',' + par2 + ']'
-            };
-            formData.push(wakeData);
-        } else {
-            formData = data;
-        }
-        var xmlData = formData;
-        if (angular.isObject(cfgXml) && $filter('hasNode')(cfgXml, 'config.devices.deviceconfiguration')) {
-            hasCfgXml = cfgXml.config.devices.deviceconfiguration;
-            angular.forEach(hasCfgXml, function(v, k) {
-                var obj = {};
-                if (v['_id'] == id && v['_commandclass'] == commandclass) {
-                    return;
-                }
-                obj['id'] = v['_id'];
-                obj['instance'] = v['_instance'];
-                obj['commandclass'] = v['_commandclass'];
-                obj['command'] = v['_command'];
-                obj['parameter'] = v['_parameter'];
-                obj['group'] = v['_group'];
-                xmlData.push(obj);
-
-            });
-        }
-        var ret = buildCfgXmlFile(xmlData);
-        return ret;
-
-    }
-
-    /**
-     * Build cfg XML file
-     */
-    function buildCfgXmlFile(xmlData) {
-        var assocCc = [133, 142];
-        var xml = '<config><devices>' + "\n";
-
-        angular.forEach(xmlData, function(v, k) {
-            if (assocCc.indexOf(parseInt(v.commandclass, 10)) > -1) {
-                xml += '<deviceconfiguration id="' + v.id + '" instance="' + v.instance + '" commandclass="' + v.commandclass + '" command="' + v.command + '" group="' + v.group + '" parameter="' + v.parameter + '"/>' + "\n";
-
-            } else {
-                xml += '<deviceconfiguration id="' + v.id + '" instance="' + v.instance + '" commandclass="' + v.commandclass + '" command="' + v.command + '" parameter="' + v.parameter + '"/>' + "\n";
-            }
-
-        });
-        xml += '</devices></config>' + "\n";
-        return xml;
-
-    }
-});
-
 /**
  * @overview Handles actions in the device hardware configuration.
  * @author Martin Vach

@@ -83,6 +83,10 @@ module.exports = function (grunt) {
                     // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
+                    // ExpertUI configuration js
+                    'vendor/zwave/pyzw.js',
+                    'vendor/zwave/pyzw_zwave_ui.js',
+                    'vendor/xml/xml2json.min.js',
                     // APP
                     'app/app.js',
                     'app/routes.js',
@@ -92,7 +96,9 @@ module.exports = function (grunt) {
                     'app/config/settings.js',
                     'app/factories/factories.js',
                     'app/services/services.js',
+                    'app/services/services-expert.js',
                     'app/directives/directives.js',
+                    'app/directives/directives-expert.js',
                     'app/directives/dir-pagination.js',
                     'app/directives/tc-angular-chartjs.js',
                     'app/filters/filters.js',
@@ -131,14 +137,12 @@ module.exports = function (grunt) {
                     'app/controllers/mysettings.js',
                     'app/controllers/rss.js',
                     'app/controllers/auth.js',
-                    // ExpertUI configuration js
-                    'app/expertui/pyzw.js',
-                    'app/expertui/pyzw_zwave_ui.js',
-                    'vendor/xml/xml2json.min.js',
-                    'app/expertui/directives.js',
-                    'app/expertui/services.js',
-                    'app/expertui/configuration.js',
-                    'app/expertui/commands.js'
+                    'app/controllers/zwave-configuration.js',
+                    'app/controllers/zwave-commands.js'
+
+
+
+
                 ],
                 dest: 'dist/app/js/build.js'
             }

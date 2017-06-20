@@ -44,6 +44,10 @@
         <script src="vendor/bootstrap/plugins/bootstrap-datetimepicker.js"></script>
 
         <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
+        <!-- ExpertUI configuration js -->
+        <script src="vendor/zwave/pyzw.js"></script>
+        <script src="vendor/zwave/pyzw_zwave_ui.js"></script>
+        <script src="vendor/xml/xml2json.min.js"></script>
         <!-- App js -->
         <script src="app/app.js"></script>
         <script src="app/routes.js"></script>
@@ -52,7 +56,9 @@
         <script src="app/modules/httpLatency.js"></script>
         <script src="app/factories/factories.js"></script>
         <script src="app/services/services.js"></script>
+        <script src="app/services/services-expert.js"></script>
         <script src="app/directives/directives.js"></script>
+        <script src="app/directives/directives-expert.js"></script>
         <script src="app/directives/dir-pagination.js"></script>
         <script src="app/directives/tc-angular-chartjs.js"></script>
         <script src="vendor/alertify/ngAlertify.js"></script> 
@@ -93,15 +99,10 @@
         <script src="app/controllers/management-user.js"></script>
         <script src="app/controllers/mysettings.js"></script>
         <script src="app/controllers/rss.js"></script>
-        <script src="app/controllers/auth.js"></script> 
-        <!-- ExpertUI configuration js -->
-        <script src="app/expertui/pyzw.js"></script>
-        <script src="app/expertui/pyzw_zwave_ui.js"></script>
-        <script src="vendor/xml/xml2json.min.js"></script>
-        <script src="app/expertui/directives.js"></script>
-        <script src="app/expertui/services.js"></script>
-        <script src="app/expertui/configuration.js"></script>
-        <script src="app/expertui/commands.js"></script>
+        <script src="app/controllers/auth.js"></script>
+        <script src="app/controllers/zwave-configuration.js"></script>
+        <script src="app/controllers/zwave-commands.js"></script>
+
         <!-- /build -->
     </head>
     <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}}">

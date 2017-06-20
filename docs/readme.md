@@ -51,6 +51,8 @@ name | overview
 [app\controllers\room.js](app/controllers/room.md) | _Controllers that handle room actions._
 [app\controllers\rss.js](app/controllers/rss.md) | _Controllers that handle all Camera actions – manage and add camera._
 [app\controllers\skin.js](app/controllers/skin.md) | _Controllers that handle all Skins actions._
+[app\controllers\zwave-commands.js](app/controllers/zwave-commands.md) | _Handles expert commands  in the device hardware configuration._
+[app\controllers\zwave-configuration.js](app/controllers/zwave-configuration.md) | _Handles actions in the device hardware configuration._
 [app\controllers\zwave-inclusion.js](app/controllers/zwave-inclusion.md) | _Handles Z-Wave device inclusion actions._
 [app\controllers\zwave-manage.js](app/controllers/zwave-manage.md) | _Controllers that manage Z-Wave devices._
 [app\controllers\zwave-vendor.js](app/controllers/zwave-vendor.md) | _The controller that renders Z-Wave vendors and products._
@@ -62,6 +64,7 @@ app/directives
 name | overview
 :-- | :--
 [app\directives\dir-pagination.js](app/directives/dir-pagination.md) | _AngularJS module for paginating (almost) anything._
+[app\directives\directives-expert.js](app/directives/directives-expert.md) | _Angular directives that are used in device hardware configuration view._
 [app\directives\directives.js](app/directives/directives.md) | _Common Angular directives that are used within the views._
 [app\directives\tc-angular-chartjs.js](app/directives/tc-angular-chartjs.md) | _Angular directive that is used to handle charts._
 - - -
@@ -71,11 +74,6 @@ app/expertui
 ---
 name | overview
 :-- | :--
-[app\expertui\commands.js](app/expertui/commands.md) | _Handles expert commands  in the device hardware configuration._
-[app\expertui\configuration.js](app/expertui/configuration.md) | _Handles actions in the device hardware configuration._
-[app\expertui\directives.js](app/expertui/directives.md) | _Angular directives that are used in device hardware configuration view._
-[app\expertui\pyzw.js](app/expertui/pyzw.md) | _Functions used to render the configuration arrays._
-[app\expertui\pyzw_zwave_ui.js](app/expertui/pyzw_zwave_ui.md) | _Functions used to render the configuration JSON._
 [app\expertui\services.js](app/expertui/services.md) | _Common functions that are used within device hardware configuration_
 - - -
 
@@ -117,6 +115,7 @@ app/services
 ---
 name | overview
 :-- | :--
+[app\services\services-expert.js](app/services/services-expert.md) | _Common functions that are used within device hardware configuration_
 [app\services\services.js](app/services/services.md) | _Stores methods that are used within controllers._
 - - -
 
