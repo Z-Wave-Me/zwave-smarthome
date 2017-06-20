@@ -106,7 +106,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 var unread = _.size(data.rss.channel.item);
                 var read = response.data.rss.read;
                 _.filter(data.rss.channel.item, function (v, k) {
-                    $scope.rss.all.push(v);
+                    //$scope.rss.all.push(v);
                     // If item ID is in the array READ
                     // subtracts 1 from unread
                     if (read.indexOf(v.id) !== -1) {
