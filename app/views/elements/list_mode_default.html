@@ -1,9 +1,10 @@
 
 <!-- Elements list -->
+<pre>{{dataHolder.devices.filter|json}}</pre>
 <div class="app-row app-row-widget app-row-element clearfix">
-    <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}"
+  <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element {{v.deviceType}} {{v.metrics.multilineType}}"
          ng-class="{'widget-success': v.isNew}"
-        ng-repeat="v in dataHolder.devices.collection| filter:q | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
+        ng-repeat="v in dataHolder.devices.collection| orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
        <!-- ng-repeat="v in dataHolder.devices.collection track by v.id">-->
 
         <div class="widget-entry-in progress-{{v.progress}}">
@@ -44,6 +45,7 @@
             </div>
             <!-- Widget content -->
             <div class="widget-content">
+                order.elements {{v.order.elements}}
                 <!-- Widget title -->
                 <div class="widget-title">
                     <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span>

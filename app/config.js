@@ -357,7 +357,8 @@ var config_data = {
                 'creationTimeDESC': '-creationTime',
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'metrics.title',
-                'titleDESC': '-metrics.title'
+                'titleDESC': '-metrics.title',
+                'order_elements': 'order.elements'
             },
             appslocal: {
                 'titleASC': 'defaults.title',

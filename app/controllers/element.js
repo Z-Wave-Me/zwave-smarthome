@@ -7,7 +7,7 @@
  * The element root controller
  * @class ElementBaseController
  */
-myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, cfg,dataFactory, dataService, myCache) {
     $scope.dataHolder = {
         mode: 'default',
         firstLogin: false,
@@ -171,7 +171,14 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param {string} mode
      */
     $scope.changeMode = function (mode) {
-        $scope.setFilter(false);
+        var filter = $scope.dataHolder.dragdrop.action === 'elements' ? false : $scope.dataHolder.devices.filter;
+        $scope.setFilter(filter);
+        if($scope.dataHolder.dragdrop.action === 'elements'){
+            $scope.setFilter(false);
+        }else{
+            //$scope.allSettled();
+        }
+
     }
 
     /**
@@ -254,17 +261,14 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.dragDropSave = function () {
         console.log($scope.dataHolder.dragdrop)
-        /*if(_.isEmpty($scope.dataHolder.dragdrop.data)){
-            return;
-        }*/
 
         dataFactory.putApi('reorder',false, $scope.dataHolder.dragdrop).then(function (response) {
             $scope.dataHolder.dragdrop.data = [];
-            /*$scope.loading = false;
-             $scope.reloadData();*/
+            $scope.mode = 'default';
+            $scope.setOrderBy('order_elements');
+            $scope.reloadData();
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
-            $scope.loading = false;
             $scope.dataHolder.dragdrop.data = [];
         });
     }
@@ -428,7 +432,17 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                 }
 
             }
+        }else{
+            if($scope.dataHolder.mode === 'edit'){
+                var nodePath = 'order.' + $scope.dataHolder.dragdrop.action;
+                console.log(nodePath)
+                $scope.dataHolder.devices.collection = _.sortBy($scope.dataHolder.devices.collection, function(v) {
+                    return $filter('hasNode')(v,nodePath) || 0;
+                });
+            }
+
         }
+        console.log('Loading devices')
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
     ;
@@ -1498,123 +1512,5 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         // Set selected icon to false
         $scope.icons.selected = false;
     };
-    /**
-     * todo: deprecated
-     * Check and validate an uploaded file
-     * @param {object} files
-     * @returns {undefined}
-     */
-    /*$scope.checkUploadedFile = function (files) {
-     // Extends files object with a new property
-     files[0].newName = dataService.uploadFileNewName(files[0].name);
-     // Check allowed file formats
-     //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
-     if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
-     alertify.alertError(
-     $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
-     $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
-     );
-     return;
 
-     }
-     // Check allowed file size
-     if (files[0].size > cfg.upload.icon.size) {
-     alertify.alertError(
-     $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
-     $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
-     );
-     return;
-
-     }
-     // Check if uploaded filename already exists
-     if (_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-     // Displays a confirm dialog and on OK atempt to upload file
-     alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
-     uploadFile(files);
-     });
-     } else {
-     uploadFile(files);
-     }
-
-     };*/
-    /// --- Private functions --- ///
-
-    /**
-     * todo: deprecated
-     * Upload a file
-     * @param {object} files
-     * @returns {undefined}
-     */
-    /*function uploadFile(files) {
-     $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-     // Clear all alerts and file name selected
-     alertify.dismissAll();
-     // Set local variables
-     var fd = new FormData();
-     var input = {file: files[0].name, device: []};
-     // Set selected file name
-     $scope.icons.uploadedFileName = files[0].name;
-     // Set form data
-     fd.append('files_files', files[0]);
-
-     // Atempt to upload a file
-     dataFactory.getApiLocal('icons.json').then(function (response) {
-     $timeout(function () {
-     if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-     $scope.icons.uploaded.push({file: files[0].name});
-     }
-     $scope.icons.all.custom[$scope.icons.selected] = files[0].name;
-     $scope.loading = false;
-     dataService.showNotifier({message: $scope._t('success_upload')});
-     }, 1000);
-
-     }, function (error) {
-     alertify.alertError($scope._t('error_upload'));
-     $scope.loading = false;
-     });
-     }
-     ;*/
-
-    /**
-     * todo: deprecated
-     */
-    /*function updateUploaded(input) {
-     var output = [];
-     angular.forEach(input.custom_icons, function (v, k) {
-
-     var index = _.findIndex($scope.icons.uploaded, {file: v});
-     if (index === -1) {
-     return;
-     }
-     if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
-     $scope.icons.uploaded[index].device.push(input.id);
-     }
-     if (!_.findWhere(output, {file: v})) {
-     output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
-     }
-     });
-     console.log(output);
-     }
-     ;*/
-
-    /**
-     * todo: deprecated
-     */
-    /*function removeDeviceFromUploaded(input) {
-     var output = [];
-     angular.forEach(input.isset_icons, function (v, k) {
-     var index = _.findIndex($scope.icons.uploaded, {file: v});
-     if (index === -1) {
-     return;
-     }
-     if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
-     $scope.icons.uploaded[index].device.push(input.id);
-     }
-     if (!_.findWhere(output, {file: v})) {
-     output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
-     }
-     });
-     console.log(output);
-     }
-     ;*/
 });

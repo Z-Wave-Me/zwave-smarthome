@@ -104,7 +104,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             dataFactory.xmlToJson(cfg.api_remote.rss_feed + '?boxtype=' + $scope.getCustomCfgArr('boxtype')).then(function (data) {
                 // Count all items and set as unread
                 var unread = _.size(data.rss.channel.item);
-                var read = response.data.rss.read;
+                var read =  response.data.rss ?  response.data.rss.read : [];
                 _.filter(data.rss.channel.item, function (v, k) {
                     //$scope.rss.all.push(v);
                     // If item ID is in the array READ

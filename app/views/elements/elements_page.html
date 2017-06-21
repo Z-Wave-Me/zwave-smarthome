@@ -1,30 +1,11 @@
 <!-- Elements 1 view -->
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
-    <!-- Filter -->
     <!--<pre>{{dataHolder.devices.filter|json}}</pre>-->
     <div class="page-control form-inline">
-        <!-- Mode switch -->
-        <div class="form-group">
-            dataHolder.mode: {{dataHolder.mode}}
-            <label>
-                <input type="checkbox" name="elements_mode"
-                       ng-true-value="edit" ng-false-value="default"
-                       ng-change="changeMode(dataHolder.mode)"
-                       ng-model="dataHolder.mode"
-                       ng-checked="dataHolder.mode === 'edit'">
-                Edit mode
-            </label>
-        </div>
-        <div class="btn-group btn-goup-block btn-goup-1" ng-if="dataHolder.mode === 'edit'">
-            <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit"
-                    ng-click="dragDropSave()"
-            ng-disabled="_.isEmpty(dataHolder.dragdrop.data)">
-                <i class="fa fa-check"></i>
-                <span class="btn-name" ng-bind="_t('lb_save')"></span>
-            </button>
-        </div>
-
+        <!-- Elements mode ctrl -->
+        <span ng-include="'app/views/elements/elements_ctrl_mode.html'"></span>
+        <!-- Categories, Filter, tags, -->
         <div class="btn-group btn-goup-block btn-goup-3" ng-if="dataHolder.mode === 'default'">
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)"
                     ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':''">
@@ -150,6 +131,9 @@
     </div>
     <!-- Device list -->
     <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
-        <div ng-include="'app/views/elements/list_drag_drop.html'"></div>
+        <!-- Default mode -->
+        <div ng-include="'app/views/elements/list_mode_default.html'" ng-if="dataHolder.mode === 'default'"></div>
+        <!-- Edit mode -->
+        <div ng-include="'app/views/elements/list_mode_edit.html'" ng-if="dataHolder.mode === 'edit'"></div>
     </div>
 </div> <!-- /ng-controller --> 
