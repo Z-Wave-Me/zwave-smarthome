@@ -35,6 +35,7 @@
     </div>
 
     <!-- NEW -->
+    <!--<pre>{{rooms.all | json }}</pre>-->
     <div class="clearfix" ng-if="rooms.show">
         <div class="card-room"
              id="card_{{v.id}}"
@@ -73,6 +74,17 @@
                                 <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span>
                             </a>
                         </h3>
+                    </div>
+                    <div class="card-sensors">
+                        <div class="sensor" ng-repeat="sensor in v.sensors">
+                            <div class="sensor-img">
+                                <img class="sensor-preview-img img-circle" ng-src="{{sensor.iconPath}}" alt="img" title="{{sensor.metrics.title}}">
+                            </div>
+                            <div class="sensor-ctrl">
+                                <span class="sensor-level">{{sensor.metrics.level}}</span>
+                                <span class="sensor-scale">{{sensor.metrics.scaleTitle}}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
