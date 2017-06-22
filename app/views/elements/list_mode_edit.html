@@ -1,5 +1,8 @@
 
 <!-- Elements list -->
+<!--<pre>{{dataHolder.devices.filter|json}}</pre>
+<pre>{{dataHolder.devices.orderBy|json}}</pre>-->
+<!--<pre>{{dataHolder.dragdrop|json}}</pre>-->
 <div class="app-row app-row-widget app-row-element clearfix"
      sv-root sv-part="dataHolder.devices.collection"
      sv-on-start="dragDropStart($item, $part, $index, $helper)"
@@ -51,7 +54,7 @@
             </div>
             <!-- Widget content -->
             <div class="widget-content">
-                order.elements {{v.order.elements}}
+               <!-- order.{{getBodyId()}}: {{v.order[getBodyId()]}}-->
                 <!-- Widget title -->
                 <div class="widget-title">
                     <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span>

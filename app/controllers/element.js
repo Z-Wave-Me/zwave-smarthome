@@ -64,7 +64,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.allSettled = function (noCache) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         // Notifications since
-        var since = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
+        //var since = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
         var promises = [
             dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, noCache)
@@ -167,16 +167,18 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     }
 
     /**
-     * Change view mode
+     * Change view mode - default/edit
      * @param {string} mode
      */
     $scope.changeMode = function (mode) {
-        var filter = $scope.dataHolder.dragdrop.action === 'elements' ? false : $scope.dataHolder.devices.filter;
-        $scope.setFilter(filter);
+        $scope.dataHolder.mode = mode;
+        if(mode === 'default'){
+            $scope.dataHolder.dragdrop.data = [];
+        }
         if($scope.dataHolder.dragdrop.action === 'elements'){
             $scope.setFilter(false);
         }else{
-            //$scope.allSettled();
+            $scope.allSettled();
         }
 
     }
@@ -260,8 +262,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Save drag and drop object
      */
     $scope.dragDropSave = function () {
-        console.log($scope.dataHolder.dragdrop)
-
+        /*console.log($scope.dataHolder.dragdrop)*/
         dataFactory.putApi('reorder',false, $scope.dataHolder.dragdrop).then(function (response) {
             $scope.dataHolder.dragdrop.data = [];
             $scope.mode = 'default';
@@ -435,14 +436,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         }else{
             if($scope.dataHolder.mode === 'edit'){
                 var nodePath = 'order.' + $scope.dataHolder.dragdrop.action;
-                console.log(nodePath)
                 $scope.dataHolder.devices.collection = _.sortBy($scope.dataHolder.devices.collection, function(v) {
                     return $filter('hasNode')(v,nodePath) || 0;
                 });
             }
 
         }
-        console.log('Loading devices')
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
     ;
@@ -1136,6 +1135,7 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
  */
 myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
+    $scope.dataHolder.devices.orderBy = 'order_dashboard';
     $scope.elementDashboard = {
         firstLogin: ($routeParams.firstlogin || false),
         firstFile: ($scope.lang === 'de' ? 'first_login_de.html' : 'first_login_en.html')
@@ -1152,6 +1152,7 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
     $scope.room = {};
 
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
+    $scope.dataHolder.devices.orderBy = 'order_rooms';
 
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};

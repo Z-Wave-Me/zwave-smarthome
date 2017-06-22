@@ -352,13 +352,16 @@ var config_data = {
         ],
         // Order by
         orderby: {
+            blacklist:  ['order_dashboard','order_rooms'],//Do not display in the orderby list in the view
             elements: {
                 'updateTimeDESC': '-updateTime',
                 'creationTimeDESC': '-creationTime',
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'metrics.title',
                 'titleDESC': '-metrics.title',
-                'order_elements': 'order.elements'
+                'order_elements': 'order.elements',
+                'order_dashboard': 'order.dashboard',
+                'order_rooms': 'order.rooms',
             },
             appslocal: {
                 'titleASC': 'defaults.title',
