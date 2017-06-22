@@ -1,0 +1,66 @@
+<!-- Elements room header -->
+<div class="elemnts-room-bar">
+    <!-- Bar row -->
+    <div class="bar-row">
+        <!-- Bar col -->
+        <div class="bar-col bar-media">
+            <img ng-src="{{room.img_src}}"/>
+        </div>
+        <!-- Bar col -->
+        <div class="bar-col bar-body">
+            <div class="bar-inner">
+                <div class="room-selctor">
+                    <div class="btn-group">
+                    <span class="bar-title clickable"
+                          ng-click="expandNavi('roomDropDown', $event)">{{room.title}}  <i class="fa fa-caret-down"></i>
+                    </span>
+                        <!-- <button type="button" class="btn btn-default"
+                                 ng-click="expandNavi('roomDropDown', $event)">
+                                 {{room.title}}  <i class="fa fa-caret-down"></i>
+                         </button>-->
+                        <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.roomDropDown">
+                            <ul>
+                                <li class="clickable" ng-repeat="v in dataHolder.devices.rooms"
+                                    ng-if="dataHolder.cnt.rooms[v.id]"
+                                    ng-hide="v.id == room.id">
+                                    <a ng-href="#/rooms/{{v.id}}">
+                                        <img class="navi-img" ng-src="{{v.img_src}}" alt="img"/>
+                                        {{v.title|cutText:true:20}} <span class="item-cnt">({{dataHolder.cnt.rooms[v.id]}})</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar-sensors">
+                    <div class="sensor" ng-repeat="v in roomSensors">
+                        <div class="sensor-img">
+                            <img class="sensor-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" title="{{v.metrics.title}}">
+                        </div>
+                        <div class="sensor-ctrl">
+                            <span class="sensor-level">{{v.metrics.level}}</span>
+                            <span class="sensor-scale">{{v.metrics.scaleTitle}}</span>
+                        </div>
+                        <!--<div class="sensor-title">
+                            <h3 title="{{v.metrics.title}}">{{v.metrics.title | cutText:true:20}}</h3>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- Bar col -->
+        <div class="bar-col bar-ctrl">
+            <!-- Elements mode change -->
+            <span ng-include="'app/views/elements/elements_ctrl_mode.html'"></span>
+            <!-- Settings -->
+            <a class="btn btn-default _bar-icon" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
+               ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
+                <i class="fa fa-cog"></i>
+            </a>
+        </div>
+    </div>
+
+</div>
+<!--<pre>{{dataHolder.cnt.rooms|json}}</pre>-->
