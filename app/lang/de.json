@@ -680,5 +680,6 @@
     "success_backup": "Backup erfolgreich.",
     "add_mobile_device": "Mobiles Gerät hinzufügen",
     "lb_make_qrcode": "Qrcode erstellen",
-    "lb_clone": "Klonen"
+    "lb_clone": "Klonen",
+    "room_main_sensors": "Sie können max. 3 Sensoren zur Raumkopfzeile hinzufügen (__cnt__/3)."
 }

@@ -694,5 +694,6 @@
     "success_backup": "Varmuuskopiointi onnistui.",
   "add_mobile_device": "Add mobile device",
   "lb_make_qrcode": "Make qrcode",
-  "lb_clone": "Clone"
+  "lb_clone": "Clone",
+  "room_main_sensors": "You can max. 3 sensors add to the room header (__cnt__/3)."
 }

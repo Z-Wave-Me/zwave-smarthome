@@ -707,5 +707,6 @@
     "save_manage_rf433_devices": "Save and manage RF433 device",
     "lb_timout_auto_off": "Timeout for auto off",
     "rf433_device": "RF433 Device",
-    "rf433_not_active": "RF433 app is not activated. Please Install/Activate this App."
+    "rf433_not_active": "RF433 app is not activated. Please Install/Activate this App.",
+    "room_main_sensors": "You can max. 3 sensors add to the room header (__cnt__/3)."
 }
