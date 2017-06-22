@@ -1180,6 +1180,9 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
     $scope.allSettled();
 
     $scope.loadRoomSensors = function(devices) {
+        if(!$scope.room.main_sensors) {
+            return;
+        }
         $scope.roomSensors = _.filter(devices, function(device) {
             if($scope.room.main_sensors.indexOf(device.id) > -1) {
                 return device;
