@@ -102,6 +102,18 @@ Remove device from the room
 
 **Returns**: `undefined`
 
+### RoomConfigIdController.assignSensor($event, device) 
+
+Assign device (sensorBianry, senosrMultilevel) to the room main sensors
+
+**Parameters**
+
+**$event**: `object`
+
+**device**: `object`
+
+**Returns**: `undefined`
+
 ### RoomConfigIdController.store(form, input) 
 
 Create new or update an existing location
