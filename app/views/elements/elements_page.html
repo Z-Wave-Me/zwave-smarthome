@@ -132,6 +132,7 @@
     </div>
     <!-- Device list -->
     <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
+        <!--<div ng-include="'app/views/elements/list_mode_edit.html'"></div>-->
         <!-- Default mode -->
         <div ng-include="'app/views/elements/list_mode_default.html'" ng-if="dataHolder.mode === 'default'"></div>
         <!-- Edit mode -->
