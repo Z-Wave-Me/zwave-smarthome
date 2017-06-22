@@ -29,13 +29,13 @@ $room-card-border-color: #ccc;
     border: solid 1px $room-card-border-color;
     background-color: $room-card-bcg-color;
     position: relative;
-    height: 100px;
+    height: 132px;
     padding: 0;
     margin: 0 0 $spacing-double 0;
     // Media queries
     @include mediaQueries(min-small) {
       margin: $spacing;
-      height: 236px;
+      height: 268px;
       padding: 0;
     }
     /* Card header */
@@ -76,7 +76,7 @@ $room-card-border-color: #ccc;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100px - 8px;// - border width * 2
+      height: 132px - 8px;// - border width * 2
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -97,22 +97,19 @@ $room-card-border-color: #ccc;
       position: absolute;
       top: 30px;
       left: 0;
+      opacity: 0.8;
+      padding: $spacing;
+      background-color: $room-card-bcg-color;
+
       // Media queries
       @include mediaQueries(min-small) {
         position: static;
         margin: $spacing-double 0 0 0;
+        padding: 0;
+        text-align: center;
       }
       /* Card Title */
       .card-title {
-        height: 50%;
-        opacity: 0.8;
-        padding: $spacing;
-        background-color: $room-card-bcg-color;
-        // Media queries
-        @include mediaQueries(min-small) {
-          padding: 0;
-          text-align: center;
-        }
         h3 {
           font-size: 115%;
           padding: 0;
@@ -123,6 +120,49 @@ $room-card-border-color: #ccc;
           }
         }
       }
+      /* Card Sensors */
+      .card-sensors {
+        text-align: left;
+        margin: 5px 0 0 0;
+
+        // Media queries
+        @include mediaQueries(min-small) {
+          text-align: center;
+          margin: 15px 0 0 0;
+        }
+
+        /* Sensor */
+        .sensor {
+          display: inline-block;
+          margin: 0 5px 0 0;
+
+          .sensor-img {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            .sensor-preview-img {
+              max-width: 20px;
+              max-height: 20px;
+            }
+          }
+
+          .sensor-ctrl {
+            float: left;
+            margin: 0 0 0 2px ;
+            .sensor-level {
+              font-weight: bold;
+              font-size: 120%;
+            }
+
+            .sensor-scale {
+              font-size: 70%;
+            }
+          }
+        }
+
+      }
+
     }
 
   }
