@@ -15,7 +15,8 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
             devices: {}
         },
         showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
-        orderBy: ($cookies.roomsOrderBy ? $cookies.roomsOrderBy : 'titleASC')
+        orderBy: ($cookies.roomsOrderBy ? $cookies.roomsOrderBy : 'titleASC'),
+        sensors: {}
     };
 
     $scope.devices = {
@@ -125,7 +126,8 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         'title': '',
         'user_img': '',
         'default_img': '',
-        'img_type': 'default'
+        'img_type': 'default',
+        'main_sensors': []
     };
     $scope.devices = {};
     $scope.devicesAssigned = [];
@@ -150,7 +152,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations', '/' + id, true).then(function (response) {
             $scope.loading = false;
-            $scope.input = response.data.data;
+            angular.extend($scope.input, response.data.data);
             loadDevices(id);
         }, function (error) {
             $scope.input = false;
@@ -236,12 +238,30 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
             if (v != device.id) {
                 $scope.devicesAssigned.push(v);
             } else {
+                $scope.input.main_sensors.splice($scope.input.main_sensors.indexOf(device.id) , 1);
                 device.location = 0;
                 $scope.devicesToRemove.push(v);
             }
         });
         return;
     };
+
+    /**
+     * Assign device (sensorBianry, senosrMultilevel) to the room main sensors
+     * @param {object} $event
+     * @param {object} device
+     * @returns {undefined}
+     */
+    $scope.assignSensor = function ($event, device) {
+        device.location = null;
+        if($event.target.checked) {
+            $scope.input.main_sensors.push(device.id);
+        } else {
+            $scope.input.main_sensors.splice($scope.input.main_sensors.indexOf(device.id) , 1);
+        }
+        return;
+    };
+
 
     /**
      * Create new or update an existing location

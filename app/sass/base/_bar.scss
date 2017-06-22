@@ -25,6 +25,63 @@ $bar-img-w: 64px;
     }
   }
   .bar-body {
+
+    .bar-inner {
+      display: table;
+      text-align: left;
+      width: 100%;
+
+      .room-selctor {
+        width: 200px;
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      .bar-sensors {
+        display: table-cell;
+        position: relative;
+        vertical-align: middle;
+
+        .sensor {
+          display: inline-block;
+          padding: 0 10px;
+          width: 33.333%;
+
+          .sensor-img {
+            float: left;
+            width: 32px;
+            height: 32px;
+            background-color: #fff;
+            .sensor-preview-img {
+              max-width: 32px;
+              max-height: 32px;
+            }
+          }
+
+          .sensor-title {
+            clear: both;
+            padding: 5px 0 0;
+            h3 {
+              font-size: 12px;
+              margin: 0 0 0 0;
+            }
+          }
+
+          .sensor-ctrl {
+            float: left;
+            margin: 0 0 0 10px ;
+            .sensor-level {
+              font-weight: bold;
+              font-size: 160%;
+            }
+
+            .sensor-scale {
+              font-size: 110%;
+            }
+          }
+        }
+      }
+    }
   }
   .bar-ctrl {
     min-width: 110px;
