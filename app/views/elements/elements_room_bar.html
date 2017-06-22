@@ -47,12 +47,13 @@
                     </div>
                 </div>
             </div>
-            <!-- Elements mode ctrl -->
-            <span ng-include="'app/views/elements/elements_ctrl_mode.html'"></span>
+
 
         </div>
         <!-- Bar col -->
         <div class="bar-col bar-ctrl">
+            <!-- Elements mode change -->
+            <span ng-include="'app/views/elements/elements_ctrl_mode.html'"></span>
             <!-- Settings -->
             <a class="btn btn-default _bar-icon" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
                ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
