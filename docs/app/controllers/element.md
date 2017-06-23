@@ -40,6 +40,15 @@ Refresh data
 Renders search result in the list
 
 
+### ElementBaseController.changeMode(mode) 
+
+Change view mode - default/edit
+
+**Parameters**
+
+**mode**: `string`
+
+
 ### ElementBaseController.setFilter() 
 
 Set filter
@@ -85,6 +94,11 @@ Function to run when elements order has changed after sorting
 **indexFrom**: 
 
 **indexTo**: 
+
+
+### ElementBaseController.dragDropSave() 
+
+Save drag and drop object
 
 
 ### ElementBaseController.runCmd() 
