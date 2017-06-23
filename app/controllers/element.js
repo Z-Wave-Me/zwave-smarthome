@@ -7,8 +7,9 @@
  * The element root controller
  * @class ElementBaseController
  */
-myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, cfg,dataFactory, dataService, myCache) {
     $scope.dataHolder = {
+        mode: 'default',
         firstLogin: false,
         cnt: {
             devices: 0,
@@ -33,6 +34,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
             showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
             notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
+        },
+        dragdrop:{
+            action: $scope.getBodyId(),
+            data: []
         }
     };
     $scope.apiDataInterval = null;
@@ -54,36 +59,12 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     });
 
     /**
-     * Load notifications
-     */
-    /*$scope.loadNotifications = function () {
-        // Attempt to recieve cached data
-        var cached = myCache.get('device_notifications');
-        if(cached){
-            $scope.dataHolder.devices.notifications = cached;
-            return;
-        }
-        // Data from api
-        var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
-        dataFactory.getApi('notifications', since, true).then(function (response) {
-            console.log(response.data.data.notifications)
-            $scope.dataHolder.devices.notifications =  _.countBy(response.data.data.notifications, function (v) {
-                return v.source;
-            });
-            myCache.put('device_notifications', $scope.dataHolder.devices.notifications);
-        }, function (error) {
-        });
-    };;
-    $scope.loadNotifications();*/
-
-
-    /**
      * Load all promises
      */
     $scope.allSettled = function (noCache) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         // Notifications since
-        var since = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
+        //var since = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
         var promises = [
             dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, noCache)
@@ -186,6 +167,23 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     }
 
     /**
+     * Change view mode - default/edit
+     * @param {string} mode
+     */
+    $scope.changeMode = function (mode) {
+        $scope.dataHolder.mode = mode;
+        if(mode === 'default'){
+            $scope.dataHolder.dragdrop.data = [];
+        }
+        if($scope.dataHolder.dragdrop.action === 'elements'){
+            $scope.setFilter(false);
+        }else{
+            $scope.allSettled();
+        }
+
+    }
+
+    /**
      * Set filter
      */
     $scope.setFilter = function (filter) {
@@ -251,21 +249,29 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * @param indexTo -  is the index of the $item in $partTo
      */
     $scope.dragDropSort = function (item, partFrom, partTo, indexFrom, indexTo) {
-        //console.log(item)
-        var element = {
-            id: item.id,
-            indexFrom: indexFrom,
-            indexTo: indexTo
-        }
-        var result = [];
+        $scope.dataHolder.dragdrop.data = [];
         angular.forEach(partFrom, function (v, k) {
-            var obj = {id: v.id, position: k};
-            result.push(obj);
+            $scope.dataHolder.dragdrop.data.push(v.id);
 
         });
-        console.log(element)
-        console.log(result)
 
+
+    }
+
+    /**
+     * Save drag and drop object
+     */
+    $scope.dragDropSave = function () {
+        /*console.log($scope.dataHolder.dragdrop)*/
+        dataFactory.putApi('reorder',false, $scope.dataHolder.dragdrop).then(function (response) {
+            $scope.dataHolder.dragdrop.data = [];
+            $scope.mode = 'default';
+            $scope.setOrderBy('order_elements');
+            $scope.reloadData();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            $scope.dataHolder.dragdrop.data = [];
+        });
     }
 
     /**
@@ -427,6 +433,14 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                 }
 
             }
+        }else{
+            if($scope.dataHolder.mode === 'edit'){
+                var nodePath = 'order.' + $scope.dataHolder.dragdrop.action;
+                $scope.dataHolder.devices.collection = _.sortBy($scope.dataHolder.devices.collection, function(v) {
+                    return $filter('hasNode')(v,nodePath) || 0;
+                });
+            }
+
         }
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
@@ -1121,6 +1135,7 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
  */
 myAppController.controller('ElementDashboardController', function ($scope, $routeParams) {
     $scope.dataHolder.devices.filter = {onDashboard: true};
+    $scope.dataHolder.devices.orderBy = 'order_dashboard';
     $scope.elementDashboard = {
         firstLogin: ($routeParams.firstlogin || false),
         firstFile: ($scope.lang === 'de' ? 'first_login_de.html' : 'first_login_en.html')
@@ -1138,6 +1153,7 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
     $scope.roomSensors = [];
 
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
+    $scope.dataHolder.devices.orderBy = 'order_rooms';
 
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -1164,6 +1180,9 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
     $scope.allSettled();
 
     $scope.loadRoomSensors = function(devices) {
+        if(!$scope.room.main_sensors) {
+            return;
+        }
         $scope.roomSensors = _.filter(devices, function(device) {
             if($scope.room.main_sensors.indexOf(device.id) > -1) {
                 return device;
@@ -1513,123 +1532,5 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         // Set selected icon to false
         $scope.icons.selected = false;
     };
-    /**
-     * todo: deprecated
-     * Check and validate an uploaded file
-     * @param {object} files
-     * @returns {undefined}
-     */
-    /*$scope.checkUploadedFile = function (files) {
-     // Extends files object with a new property
-     files[0].newName = dataService.uploadFileNewName(files[0].name);
-     // Check allowed file formats
-     //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
-     if (cfg.upload.icon.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
-     alertify.alertError(
-     $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
-     $scope._t('upload_allowed_formats', {'__extensions__': $scope.icons.info.extensions})
-     );
-     return;
 
-     }
-     // Check allowed file size
-     if (files[0].size > cfg.upload.icon.size) {
-     alertify.alertError(
-     $scope._t('upload_allowed_size', {'__size__': $scope.icons.info.maxSize}) + ' ' +
-     $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
-     );
-     return;
-
-     }
-     // Check if uploaded filename already exists
-     if (_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-     // Displays a confirm dialog and on OK atempt to upload file
-     alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
-     uploadFile(files);
-     });
-     } else {
-     uploadFile(files);
-     }
-
-     };*/
-    /// --- Private functions --- ///
-
-    /**
-     * todo: deprecated
-     * Upload a file
-     * @param {object} files
-     * @returns {undefined}
-     */
-    /*function uploadFile(files) {
-     $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
-     // Clear all alerts and file name selected
-     alertify.dismissAll();
-     // Set local variables
-     var fd = new FormData();
-     var input = {file: files[0].name, device: []};
-     // Set selected file name
-     $scope.icons.uploadedFileName = files[0].name;
-     // Set form data
-     fd.append('files_files', files[0]);
-
-     // Atempt to upload a file
-     dataFactory.getApiLocal('icons.json').then(function (response) {
-     $timeout(function () {
-     if (!_.findWhere($scope.icons.uploaded, {file: files[0].name})) {
-     $scope.icons.uploaded.push({file: files[0].name});
-     }
-     $scope.icons.all.custom[$scope.icons.selected] = files[0].name;
-     $scope.loading = false;
-     dataService.showNotifier({message: $scope._t('success_upload')});
-     }, 1000);
-
-     }, function (error) {
-     alertify.alertError($scope._t('error_upload'));
-     $scope.loading = false;
-     });
-     }
-     ;*/
-
-    /**
-     * todo: deprecated
-     */
-    /*function updateUploaded(input) {
-     var output = [];
-     angular.forEach(input.custom_icons, function (v, k) {
-
-     var index = _.findIndex($scope.icons.uploaded, {file: v});
-     if (index === -1) {
-     return;
-     }
-     if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
-     $scope.icons.uploaded[index].device.push(input.id);
-     }
-     if (!_.findWhere(output, {file: v})) {
-     output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
-     }
-     });
-     console.log(output);
-     }
-     ;*/
-
-    /**
-     * todo: deprecated
-     */
-    /*function removeDeviceFromUploaded(input) {
-     var output = [];
-     angular.forEach(input.isset_icons, function (v, k) {
-     var index = _.findIndex($scope.icons.uploaded, {file: v});
-     if (index === -1) {
-     return;
-     }
-     if ($scope.icons.uploaded[index].device.indexOf(input.id) === -1) {
-     $scope.icons.uploaded[index].device.push(input.id);
-     }
-     if (!_.findWhere(output, {file: v})) {
-     output.push({file: $scope.icons.uploaded[index].file, device: $scope.icons.uploaded[index].device});
-     }
-     });
-     console.log(output);
-     }
-     ;*/
 });

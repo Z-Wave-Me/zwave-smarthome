@@ -408,6 +408,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 if (v.metrics.scaleTitle) {
                     angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
                 }
+                //v.orderBy = v.order.elemts
                 return v;
             });
     };

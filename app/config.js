@@ -126,7 +126,8 @@ var config_data = {
             'configupdate_url': 'ZWaveAPI/ExpertConfigUpdate',
             'time_zone': 'ZAutomation/api/v1/system/timezone',
             'get_pulse_trains': 'RF433API/GetPulseTrains',
-            'send_pulse_train': 'RF433API/Send'
+            'send_pulse_train': 'RF433API/Send',
+            'reorder': 'ZAutomation/api/v1/devices/reorder'
         },
         // List of remote api URLs
         'api_remote': {
@@ -351,12 +352,16 @@ var config_data = {
         ],
         // Order by
         orderby: {
+            blacklist:  ['order_dashboard','order_rooms'],//Do not display in the orderby list in the view
             elements: {
                 'updateTimeDESC': '-updateTime',
                 'creationTimeDESC': '-creationTime',
                 'creationTimeASC': 'creationTime',
                 'titleASC': 'metrics.title',
-                'titleDESC': '-metrics.title'
+                'titleDESC': '-metrics.title',
+                'order_elements': 'order.elements',
+                'order_dashboard': 'order.dashboard',
+                'order_rooms': 'order.rooms',
             },
             appslocal: {
                 'titleASC': 'defaults.title',

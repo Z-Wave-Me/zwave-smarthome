@@ -5,6 +5,14 @@
          <div ng-if="elementDashboard.firstLogin" ng-include="'app/views/elements/' + elementDashboard.firstFile"></div>
          <div ng-if="!elementDashboard.firstLogin && dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
         <div ng-if="!elementDashboard.firstLogin && dataHolder.devices.noDashboard" ng-include="'app/views/elements/no_dashboard.html'"></div>
-        <div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/list.html'"></div>
+        <!-- Elements mode ctrl -->
+        <div class="page-control form-inline" ng-if="dataHolder.devices.show">
+            <!-- Elements mode ctrl -->
+            <span ng-include="'app/views/elements/elements_ctrl_mode.html'"></span>
+        </div>
+        <!-- Default mode -->
+        <div ng-include="'app/views/elements/list_mode_default.html'" ng-if="dataHolder.mode === 'default'"></div>
+        <!-- Edit mode -->
+        <div ng-include="'app/views/elements/list_mode_edit.html'" ng-if="dataHolder.mode === 'edit'"></div>
     </div> <!-- /ng-controller --> 
 </div> <!-- /ng-controller --> 

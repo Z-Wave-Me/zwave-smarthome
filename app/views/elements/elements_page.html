@@ -1,10 +1,12 @@
 <!-- Elements 1 view -->
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
-    <!-- Filter -->
     <!--<pre>{{dataHolder.devices.filter|json}}</pre>-->
     <div class="page-control form-inline">
-        <div class="btn-group btn-goup-block btn-goup-3">
+        <!-- Elements mode ctrl -->
+        <span ng-include="'app/views/elements/elements_ctrl_mode.html'"></span>
+        <!-- Categories, Filter, tags, -->
+        <div class="btn-group btn-goup-block btn-goup-3" ng-if="dataHolder.mode === 'default'">
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)"
                     ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':''">
                 <i class="fa fa-filter"></i>
@@ -26,7 +28,10 @@
         </div>
 
         <!-- Search and autocomplete -->
-        <form id="form_search" class="input-group" ng-submit="setFilter({q: autocomplete.term})" autocomplete="off" novalidate>
+        <form id="form_search" class="input-group"
+              ng-if="dataHolder.mode === 'default'"
+              ng-submit="setFilter({q: autocomplete.term})"
+              autocomplete="off" novalidate>
         <!-- Input -->
             <input id="input_search" type="text" focus="{{dataHolder.devices.filter.q}}"
                    class="form-control"
@@ -55,6 +60,7 @@
                 </ul>
             </div>
         </form>
+
     </div>
     <!-- Page subnavi  categories -->
     <div class="page-navi" ng-if="naviExpanded.elCategories">
@@ -109,6 +115,7 @@
                 <p class="page-navi-title"> {{_t('sortby')}}</p>
                 <a class="btn btn-default btn-tag" href=""
                    ng-repeat="(k,v) in cfg.orderby.elements"
+                   ng-hide="cfg.orderby.blacklist.indexOf(k) > -1"
                    ng-click="setOrderBy(k)"
                    ng-class="dataHolder.devices.orderBy == k ? 'active': ''">
                     {{_t(k) | cutText:true:30}}
@@ -125,6 +132,10 @@
     </div>
     <!-- Device list -->
     <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">
-        <div ng-include="'app/views/elements/list.html'"></div>
+        <!--<div ng-include="'app/views/elements/list_mode_edit.html'"></div>-->
+        <!-- Default mode -->
+        <div ng-include="'app/views/elements/list_mode_default.html'" ng-if="dataHolder.mode === 'default'"></div>
+        <!-- Edit mode -->
+        <div ng-include="'app/views/elements/list_mode_edit.html'" ng-if="dataHolder.mode === 'edit'"></div>
     </div>
 </div> <!-- /ng-controller --> 

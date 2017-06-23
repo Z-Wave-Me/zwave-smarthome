@@ -169,6 +169,77 @@
   }
 }
 
+/* Elements drag & drop cards
+----------------------------------------------------*/
+.dragdrop-element{
+  .dd-placeholder{
+    width: 100%;//$widget-col-w;
+    text-align: center;
+    //background: whitesmoke;
+    border: 3px dashed $app-brand-success;
+    box-sizing: border-box;
+    display: table;
+    background-color: white;
+    &.dd-element{
+      width: 100%;
+      height:  100px;
+      // Media queries
+      @include mediaQueries(min-esmall) {
+        float: left;
+        width: 100px;
+        height: 130px;
+        //height: 130px + $spacing;
+      }
+
+    }
+  }
+}
+.card-element-dragdrop {
+  @include appGradient();
+  cursor: move;
+  text-align: center;
+  border: solid 1px $app-border-color;
+  width: 100%;
+  height: 100px;
+  @include mediaQueries(min-esmall) {
+    @include appFloat(left);
+    //width: 33.33333%;
+    width: 100px;
+    height: 130px;
+  }
+  @include mediaQueries(min-small) {
+    @include appFloat(left);
+    //width: 25%;
+    //width: 33.33333%;
+  }
+  @include mediaQueries(min-medium) {
+    //width: 33.33333%;
+    //width: 20;
+  }
+  @include mediaQueries(min-large) {
+    //width: 25%;
+    //width: 16%;
+  }
+  /* Inner element */
+  .card-element-dragdrop-in {
+
+    padding: $spacing;
+    h3{
+      margin: $spacing 0 0 0;
+      font-size: 95%;
+    }
+
+  }
+
+}
+
+.element-dragdrop-img{
+  max-width: 48px;
+  max-height: 48px;
+  //border: solid 4px $widget-img-border-color;
+  @include appBorderRadius(50%);
+}
+
 /* Element detail
 ----------------------------------------------------*/
 .btn-tag {

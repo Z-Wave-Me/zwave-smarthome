@@ -1,31 +1,6 @@
 <!-- Elements rooms view -->
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
-    <!-- Search and autocomplete
-    <div class="page-control form-inline">
-
-        <div class="input-group">
-            <input name="add_tag" id="add_tag" type="text"
-                   class="form-control"
-                   placeholder="{{_t('lb_search')}}"
-                   ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
-            <span class="input-group-addon clickable">
-                       <i class="fa fa-search"></i>
-                   </span>
-            <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">
-                <ul>
-                    <li class="clickable" title="{{v.title}}"
-                        ng-click="redirectToRoute('element/' + v.id)"
-                        ng-repeat="v in autocomplete.results | orderBy:'title' track by $index">
-                        <img class="report-img-s" ng-src="{{v.iconPath}}"alt="{{v.title}}"/>
-
-                        <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>-->
-    <!-- Elements-->
     <div ng-controller="ElementRoomController">
         <!-- Background image -->
         <div class="full-bg-wrapper"
@@ -41,7 +16,9 @@
         </h1>-->
         <!-- Alert -->
         <div ng-if="!dataHolder.devices.show" ng-include="'app/views/elements/no_elements_room.html'"></div>
-        <!-- The list -->
-        <div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/list.html'"></div>
+        <!-- Default mode -->
+        <div ng-include="'app/views/elements/list_mode_default.html'" ng-if="dataHolder.mode === 'default'"></div>
+        <!-- Edit mode -->
+        <div ng-include="'app/views/elements/list_mode_edit.html'" ng-if="dataHolder.mode === 'edit'"></div>
     </div> <!-- /ng-controller -->
 </div> <!-- /ng-controller -->

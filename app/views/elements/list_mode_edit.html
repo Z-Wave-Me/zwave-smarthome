@@ -1,0 +1,17 @@
+
+<!-- Elements drag and drop list -->
+<div class="clearfix dragdrop-element" title="{{v.metrics.title}}"
+     sv-root sv-part="dataHolder.devices.collection"
+     sv-on-start="dragDropStart($item, $part, $index, $helper)"
+     sv-on-sort="dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)">
+    <div sv-placeholder class="dd-placeholder dd-element">&nbsp;</div>
+    <div class="card-element-dragdrop"
+         sv-element
+         ng-repeat="v in dataHolder.devices.collection track by v.id">
+        <div class="card-element-dragdrop-in">
+            <img class="element-dragdrop-img dd-handle" ng-src="{{v.iconPath}}" alt="img" draggable="false" ondragstart="return false;" a-sv-handle />
+            <h3>{{v.metrics.title|cutText:true:20}}</h3>
+        </div>
+    </div>
+</div><!-- /.row -->
+ 
