@@ -95,7 +95,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      */
     $scope.loadRssInfo = function () {
         var cached = myCache.get('rssinfo');
-        //console.log('CACHED rssinfo: ',cached)
         if(cached){
            angular.extend($scope.rss,cached);
             return;
@@ -103,14 +102,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         dataFactory.getApi('configget_url', null, true).then(function (response) {
             dataFactory.xmlToJson(cfg.api_remote.rss_feed + '?boxtype=' + $scope.getCustomCfgArr('boxtype')).then(function (data) {
                 // Count all items and set as unread
-                var unread = _.size(data.rss.channel.item);
+                var unread = 0;
                 var read =  response.data.rss ?  response.data.rss.read : [];
-                _.filter(data.rss.channel.item, function (v, k) {
-                    //$scope.rss.all.push(v);
-                    // If item ID is in the array READ
-                    // subtracts 1 from unread
-                    if (read.indexOf(v.id) !== -1) {
-                        unread--;
+                var channel = _.isArray(data.rss.channel.item) ? data.rss.channel.item : [data.rss.channel.item];
+
+                _.filter(channel, function (v, k) {
+                   //$scope.rss.all.push(v);
+                    // If item ID is  not in the array READ
+                    // add 1 to unread
+                    if (read.indexOf(v.id) === -1) {
+                        unread++;
                     }
                 });
                 myCache.put('rssinfo', {read: read,unread: unread});
