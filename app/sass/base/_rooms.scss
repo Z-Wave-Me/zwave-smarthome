@@ -205,7 +205,7 @@ $room-card-border-color: #ccc;
   z-index: -100;
 
   .full-bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
