@@ -14233,6 +14233,14 @@ img.widget-promo-image {
   max-height: 64px;
 }
 
+/* Camera
+-------------------------------------------------- */
+/* line 224, ../sass/base/_devices.scss */
+.app-row-cameraadd .report-media {
+  text-align: center;
+  width: 84px;
+}
+
 /* Login
 -------------------------------------------------- */
 /* line 4, ../sass/base/_auth.scss */
