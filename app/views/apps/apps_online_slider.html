@@ -1,11 +1,11 @@
 
 <div class="app-online-slider" ng-controller="AppOnlineFeaturedController">
     <!--<pre>{{slider.cfg|json}}</pre>-->
-   <!-- <pre>{{dataHolder.onlineModules.featured|json}}</pre>-->
-<div class="container_ app-slider">
-    <div class="slide slide-animation"
+    <!--<pre>{{dataHolder.onlineModules.cnt|json}}</pre>-->
+<div class="app-slider" ng-hide="dataHolder.onlineModules.cnt.featuredStatus.download == 0 && dataHolder.onlineModules.cnt.featuredStatus.upgrade == 0">
+    <div class="slide slide-animation {{v.status}}"
          ng-click="redirectToRoute('apps/online/' + v.id)"
-         ng-repeat="v in dataHolder.onlineModules.featured|appSliderSlice:slider.cfg track by $index" ng-hide_="currentIndex != $index">
+         ng-repeat="v in dataHolder.onlineModules.featured|appSliderSlice:slider.cfg track by $index">
         <!--<img alt="{{v.title}}" title="{{v.toolTipDescription}}" ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}" />-->
         <img alt="{{v.title}}" title="{{v.toolTipDescription}}" ng-src="{{sliderImages[v.modulename]}}" />
         <div class="slider-label">
@@ -17,9 +17,21 @@
                 <span class="widget-rating"> | <i class="fa fa-download"></i> {{v.installed}}&times;</span>
 
                 <!-- Download -->
-                <button href="" class="btn btn-default" title="{{_t('lb_download')}}"
-                        ng-click="installModule(v, 'online_install')">
+                <button class="btn btn-default" title="{{_t('lb_download')}}"
+                        ng-click="installModule(v, 'online_install')"
+                        ng-show="!dataHolder.modules.ids[v.modulename]">
                     <i class="fa fa-download text-success"></i>
+                </button>
+                <!-- Installed -->
+                <button class="btn btn-disabled" disabled title="{{_t('installed')}}"
+                        ng-show="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
+                    <i class="fa fa-check"></i>
+                </button>
+                <!-- Updgrade -->
+                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}"
+                        ng-click="updateModule(v, _t('app_update_confirm'))"
+                        ng-show="dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' ">
+                    <i class="fa fa-level-up"></i>
                 </button>
             </div>
 

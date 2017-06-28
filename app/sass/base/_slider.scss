@@ -53,6 +53,12 @@
                 }
             }
         }
+        &.installed{
+            img{
+                //display: none;
+                @include appOpacity(0.1);
+            }
+        }
     }
 }
 
