@@ -7,7 +7,7 @@
  * The controller that handles RSS feeds.
  * @class CameraAddController
  */
-myAppController.controller('RssController', function ($scope, cfg, dataFactory, dataService, _) {
+myAppController.controller('RssController', function ($scope, cfg, dataFactory, dataService, _,myCache) {
 
     /**
      * Load rss feeds
@@ -71,19 +71,14 @@ myAppController.controller('RssController', function ($scope, cfg, dataFactory, 
         }
         var input = {
             rss: {
-                unread:  0,
-                read: []
-            }
-
-        };
-        var input = {
-            rss: {
                 unread:  $scope.rss.unread,
                 read: $scope.rss.read
             }
 
         };
-        dataFactory.postApi('configupdate_url', input).then(function () {});
+        dataFactory.postApi('configupdate_url', input).then(function () {
+            myCache.remove('rssinfo');
+        });
 
 
     };
