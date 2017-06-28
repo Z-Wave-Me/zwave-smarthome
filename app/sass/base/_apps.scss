@@ -1,9 +1,5 @@
 /* Apps
 -------------------------------------------------- */
-.app-entry-title {
-
-}
-
 .widget-entry-app {
   .widget-entry-in {
     min-height: 128px;
@@ -188,6 +184,12 @@
       margin: 0;
       padding: 10px 0;
       font-weight: bold;
+      .report-img-s{
+       margin: 0 0 0 $spacing-half;
+      }
+      .accordion-title-text{
+        padding: 0 0 0 13px;
+      }
     }
   }
 }
