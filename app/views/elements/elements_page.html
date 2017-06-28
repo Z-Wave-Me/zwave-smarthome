@@ -4,7 +4,8 @@
     <!--<pre>{{dataHolder.devices.filter|json}}</pre>-->
     <div class="page-control form-inline">
         <!-- Elements mode ctrl -->
-        <span ng-include="'app/views/elements/elements_ctrl_mode.html'"></span>
+        <span ng-include="'app/views/elements/elements_ctrl_mode.html'"
+              ng-if="_.size(dataHolder.devices.collection) > 1"></span>
         <!-- Categories, Filter, tags, -->
         <div class="btn-group btn-goup-block btn-goup-3" ng-if="dataHolder.mode === 'default'">
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)"
