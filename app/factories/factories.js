@@ -87,7 +87,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     function pingServer(url) {
          return $http({
             method: "get",
-            timeout: 5000,
+            timeout: cfg.pending_timeout_limit,
             cancel:  $q.defer(),
             url: url
         }).then(function (response) {

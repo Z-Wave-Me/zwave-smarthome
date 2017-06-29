@@ -147,7 +147,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
 
         }, function (error) {
-            console.log(error)
+            console.log('Error connection', error)
             if (error.status === 0) {
                 var fatalArray = {
                     type: 'network',

@@ -22,8 +22,8 @@ var config_data = {
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // Displays a connection error after reaching the limit (milisecons)
-        'pending_timeout_limit': 10000,
+        // Displays a RAZ connection error after reaching the limit (milisecons)
+        'pending_timeout_limit': 20000,
         // Displays an remote server connection warning after reaching the limit (milisecons)
         'pending_remote_limit': 20000,
         /// Set to > 0 (milisecons) to simulate latency for http Calls
