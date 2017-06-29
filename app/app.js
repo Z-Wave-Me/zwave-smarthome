@@ -127,9 +127,14 @@ myApp.config(function ($provide, $httpProvider) {
                         break;*/
                     case 0:
                         //console.log(rejection)
-                        console.log('Request took longer than ' + (cfg.pending_remote_limit/1000) + ' seconds.');
+                        // Check if request has no timeout or location url is on the black list and pending is from a remote server
+                        // then does not display an error message
+                        if(!rejection.config.timeout || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.isRemote)){
+                           break;
+                        }
+                        //console.log(rejection);
                         angular.extend(cfg.route.fatalError, {
-                            message: 'Request took longer than ' + (cfg.pending_remote_limit/1000) + ' seconds.',
+                            message: 'The request failed because server does not responding',
                             hide: false
                         });
                         break;
