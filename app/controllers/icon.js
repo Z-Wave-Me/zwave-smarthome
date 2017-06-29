@@ -301,6 +301,43 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     $scope.iconsLocalSource = {};
 
     /**
+     * Load on-line icons
+     * @returns {undefined}
+     */
+    $scope.loadOnlineIcons = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getRemoteData(cfg.online_icon_url).then(function (response) {
+            $scope.iconsOnline.connect = {
+                status: true,
+                icon: 'fa-globe'
+            };
+            if (_.size(response.data.data) < 1) {
+                alertify.alertError($scope._t('no_data'));
+                return;
+            }
+            setOnlineIcons(response.data.data);
+        }, function (error) {
+            if(error.status === 0){
+                $scope.iconsOnline.connect = {
+                    status: false,
+                    icon: 'fa-exclamation-triangle text-danger'
+                };
+                $scope.iconsOnline.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+
+            }else{
+                $scope.iconsOnline.connect = {
+                    status: false,
+                    icon: 'fa-exclamation-triangle text-danger'
+                };
+                alertify.alertError($scope._t('error_load_data'));
+            }
+        }).finally(function(){
+            $scope.loading = false;
+        });
+    };
+    //$scope.loadOnlineIcons();
+
+    /**
      * Load all promises
      * @returns {undefined}
      */
@@ -326,38 +363,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     };
     $scope.allSettled();
 
-   /**
-    * Load on-line icons
-    * @returns {undefined}
-    */
-    $scope.loadOnlineIcons = function () {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getRemoteData(cfg.online_icon_url).then(function (response) {
-            $scope.iconsOnline.connect = {
-                status: true,
-                icon: 'fa-globe'
-            };
-            if (_.size(response.data.data) < 1) {
-                alertify.alertError($scope._t('no_data'));
-                return;
-            }
-            setOnlineIcons(response.data.data);
-        }, function (error) {
-            if(error.status === 0){
-                $scope.iconsOnline.connect = {
-                    status: false,
-                    icon: 'fa-exclamation-triangle text-danger'
-                };
-                $scope.iconsOnline.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
 
-            }else{
-                alertify.alertError($scope._t('error_load_data'));
-            }
-        }).finally(function(){
-            $scope.loading = false;
-        });
-    };
-    $scope.loadOnlineIcons();
 
     /**
      * Open a modal window and load icon previews
@@ -439,6 +445,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
                 "source": getSource(icon)
             };
         });
+        $scope.loadOnlineIcons();
     }
 
     /**
