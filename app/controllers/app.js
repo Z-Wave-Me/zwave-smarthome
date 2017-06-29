@@ -228,9 +228,14 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 moduleUrl: $scope.cfg.online_module_download_url + module.file
             };
             dataFactory.installOnlineModule(data, 'online_update').then(function (response) {
-                $scope.loading = false;
+                $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('reloading_page')};
+
                 dataService.showNotifier({message: $scope._t(response.data.data.key)});
-                $route.reload();
+                //$route.reload();
+                $timeout(function () {
+                    $scope.loading = false;
+                    $scope.reloadData();
+                }, 2000);
 
             }, function (error) {
                 $scope.loading = false;
