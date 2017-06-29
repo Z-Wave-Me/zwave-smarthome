@@ -17,7 +17,7 @@ app/controllers
 name | overview
 :-- | :--
 [app\controllers\aaa__template.js](app/controllers/aaa__template.md) | _Controller that handles ..._
-[app\controllers\aaa_management-postfix.js](app/controllers/aaa_management-postfix.md) | _Controller that handles ..._
+[app\controllers\aaa_element.js](app/controllers/aaa_element.md) | _Controllers that handle the list of elements, as well as an element detail._
 [app\controllers\app-alpaca.js](app/controllers/app-alpaca.md) | _Controllers that handle the Alpaca._
 [app\controllers\app-instance.js](app/controllers/app-instance.md) | _Controllers that handle the Instances._
 [app\controllers\app-local.js](app/controllers/app-local.md) | _Controllers that handle the Local apps._
@@ -28,7 +28,9 @@ name | overview
 [app\controllers\camera.js](app/controllers/camera.md) | _Controllers that handle all Camera actions – manage and add camera._
 [app\controllers\controllers.js](app/controllers/controllers.md) | _The uncategorized controllers._
 [app\controllers\device.js](app/controllers/device.md) | _This controller handles devices submenus – Z-Wave, Camera and EnOcean._
-[app\controllers\element.js](app/controllers/element.md) | _Controllers that handle the list of elements, as well as an element detail._
+[app\controllers\element-id.js](app/controllers/element-id.md) | _Controllers that handle element detail actions, as well as custom icon actions._
+[app\controllers\element-widget.js](app/controllers/element-widget.md) | _Controllers that handle specifics widget actions._
+[app\controllers\element.js](app/controllers/element.md) | _Controllers that handle the list of elements, dashboar and elements in the room._
 [app\controllers\enocean.js](app/controllers/enocean.md) | _Controllers that handle EnOcean Services._
 [app\controllers\event.js](app/controllers/event.md) | _Handles all events._
 [app\controllers\icon.js](app/controllers/icon.md) | _Controllers that handle all custom icon actions – displays and uploads._
