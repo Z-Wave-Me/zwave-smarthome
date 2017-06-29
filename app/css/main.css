@@ -10972,8 +10972,8 @@ img {
 -------------------------------------------------- */
 /* line 129, ../sass/base/_navi.scss */
 .navi-img {
-  max-width: 32px;
-  max-height: 32px;
+  width: 32px;
+  height: 32px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
