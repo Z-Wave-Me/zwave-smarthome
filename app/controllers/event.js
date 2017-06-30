@@ -254,6 +254,21 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.collection = [];
         $scope.iconSource = '';
         $scope.eventLevels = dataService.getEventLevel(data, [{'key': null, 'val': 'all'}]);
+
+        function prepareNotification(v) {
+            v.icon = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
+            if (v.message['l'] !== null && v.message['l'] !== undefined) {
+                v.messageView = '<span><span>'+v.message.dev+' '+ $scope._t("lb_is") + ' ' +
+                            '<strong>' + v.message.l +'</strong></span>';
+            } else {
+                v.messageView = '<span>'+typeof v.message == 'string'? v.message : JSON.stringify(v.message)+'</span>';
+            }
+
+            v.lvl = $filter('hasNode')(v.message,'l')? $filter('hasNode')(v.message,'l') : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
+
+            return v;
+        };
+
         //var filter = null;
         if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
             if ($routeParams.param === 'source' && $routeParams.val !== '') {
@@ -266,12 +281,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             angular.forEach(data, function (v, k) {
                 if ($scope.filter && angular.isDefined(v[$scope.filter.param])) {
                     if (v[$scope.filter.param] == $scope.filter.val) {
-                        if (!v.message.customIcon){
-                            v.icon = $filter('getEventIcon')(v.type,v.message);
-                        } else {
-                            v.icon = cfg.img.custom_icons+v.message.customIcon
-                        }
-                        $scope.collection.push(v);
+                        _v = prepareNotification(v);
+                        $scope.collection.push(_v);
                     }
                 }
             });
@@ -279,23 +290,15 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             $scope.filter = $routeParams;
             angular.forEach(data, function (v, k) {
                 if (v.source == $scope.filter.source && v.type == $scope.filter.type) {
-                    if (!v.message.customIcon){
-                        v.icon = $filter('getEventIcon')(v.type,v.message);
-                    } else {
-                        v.icon = cfg.img.custom_icons+v.message.customIcon
-                    }
-                    $scope.collection.push(v);
+                    _v = prepareNotification(v);
+                    $scope.collection.push(_v);
                 }
             });
         } else {
             $scope.filter = {};
             angular.forEach(data, function (v, k) {
-                if (!v.message.customIcon){
-                    v.icon = $filter('getEventIcon')(v.type,v.message);
-                } else {
-                    v.icon = cfg.img.custom_icons+v.message.customIcon
-                }
-                $scope.collection.push(v);
+                _v = prepareNotification(v);
+                $scope.collection.push(_v);
             });
         }
 
