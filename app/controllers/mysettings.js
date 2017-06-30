@@ -206,3 +206,12 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     ;
 
 });
+
+/**
+ * The controller that renders QR code.
+ * @class ManagementAddMobileDevice
+ */
+
+myAppController.controller('ManagementAddMobileDevice', function ($scope) {
+    $scope.qrcode = $scope.user.qrcode;
+});
