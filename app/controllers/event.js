@@ -252,6 +252,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     function setEvents(data) {
         $scope.collection = [];
+        $scope.iconSource = '';
         $scope.eventLevels = dataService.getEventLevel(data, [{'key': null, 'val': 'all'}]);
         //var filter = null;
         if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
@@ -265,6 +266,11 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             angular.forEach(data, function (v, k) {
                 if ($scope.filter && angular.isDefined(v[$scope.filter.param])) {
                     if (v[$scope.filter.param] == $scope.filter.val) {
+                        if (!v.message.customIcon){
+                            v.icon = $filter('getEventIcon')(v.type,v.message);
+                        } else {
+                            v.icon = cfg.img.custom_icons+v.message.customIcon
+                        }
                         $scope.collection.push(v);
                     }
                 }
@@ -273,16 +279,28 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             $scope.filter = $routeParams;
             angular.forEach(data, function (v, k) {
                 if (v.source == $scope.filter.source && v.type == $scope.filter.type) {
+                    if (!v.message.customIcon){
+                        v.icon = $filter('getEventIcon')(v.type,v.message);
+                    } else {
+                        v.icon = cfg.img.custom_icons+v.message.customIcon
+                    }
                     $scope.collection.push(v);
                 }
             });
         } else {
             $scope.filter = {};
-            $scope.collection = data;
+            angular.forEach(data, function (v, k) {
+                if (!v.message.customIcon){
+                    v.icon = $filter('getEventIcon')(v.type,v.message);
+                } else {
+                    v.icon = cfg.img.custom_icons+v.message.customIcon
+                }
+                $scope.collection.push(v);
+            });
         }
 
-         // Count events in the device
-         $scope.devices.cnt.deviceEvents =_.countBy(data,function (v) {
+        // Count events in the device
+        $scope.devices.cnt.deviceEvents =_.countBy(data,function (v) {
             return v.source;
         });
         // Run refresh only when filter is empty
