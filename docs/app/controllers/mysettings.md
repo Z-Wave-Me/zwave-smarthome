@@ -51,5 +51,9 @@ Load devices
 
 
 
+## ManagementAddMobileDevice
+The controller that renders QR code.
+
+
 
 * * *

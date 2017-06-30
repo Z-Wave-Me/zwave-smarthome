@@ -16,8 +16,6 @@ app/controllers
 ---
 name | overview
 :-- | :--
-[app\controllers\aaa__template.js](app/controllers/aaa__template.md) | _Controller that handles ..._
-[app\controllers\aaa_element.js](app/controllers/aaa_element.md) | _Controllers that handle the list of elements, as well as an element detail._
 [app\controllers\app-alpaca.js](app/controllers/app-alpaca.md) | _Controllers that handle the Alpaca._
 [app\controllers\app-instance.js](app/controllers/app-instance.md) | _Controllers that handle the Instances._
 [app\controllers\app-local.js](app/controllers/app-local.md) | _Controllers that handle the Local apps._

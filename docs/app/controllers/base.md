@@ -45,6 +45,18 @@ Check if route match the pattern.
 
 **Returns**: `Boolean`
 
+### BaseController.elementAccess(roles, mobile) 
+
+Allow to access page elements by role.
+
+**Parameters**
+
+**roles**: `array`
+
+**mobile**: `boolean`
+
+**Returns**: `Boolean`
+
 ### BaseController.loadRssInfo() 
 
 Load a rss info
@@ -68,18 +80,6 @@ Set user session and reload page after connection error
 Set poll interval
 
 **Returns**: `undefined`
-
-### BaseController.elementAccess(roles, mobile) 
-
-Allow to access page elements by role.
-
-**Parameters**
-
-**roles**: `array`
-
-**mobile**: `boolean`
-
-**Returns**: `Boolean`
 
 ### BaseController.isInArray(array, value) 
 

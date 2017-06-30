@@ -114,15 +114,15 @@ Build an object with icons that are used in devices
 ## OnlineIconController
 The controller that renders and download icons from the app store.
 
-### OnlineIconController.allSettled() 
-
-Load all promises
-
-**Returns**: `undefined`
-
 ### OnlineIconController.loadOnlineIcons() 
 
 Load on-line icons
+
+**Returns**: `undefined`
+
+### OnlineIconController.allSettled() 
+
+Load all promises
 
 **Returns**: `undefined`
 

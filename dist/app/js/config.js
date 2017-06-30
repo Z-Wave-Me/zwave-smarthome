@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-43',
+        'app_version': '1.7.0-RC-45',
         // Application (DIST) built date
-        'app_built': '29-06-2017 10:44:19',
+        'app_built': '30-06-2017 14:19:00',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -22,10 +22,12 @@ var config_data = {
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // Displays a connection error after reaching the limit (milisecons)
-        'pending_timeout_limit': 10000,
+        // Displays a RAZ connection error after reaching the limit (milisecons)
+        'pending_timeout_limit': 20000,
         // Displays an remote server connection warning after reaching the limit (milisecons)
         'pending_remote_limit': 20000,
+        // Avoid to display Pending error message on the following routes if trying to connet to the remote server
+        'pending_black_list': ['/apps/local', '/apps/instance','/customize/skinslocal','/customize/iconslocal'],
         /// Set to > 0 (milisecons) to simulate latency for http Calls
         'latency_timeout': 0,
         // User
