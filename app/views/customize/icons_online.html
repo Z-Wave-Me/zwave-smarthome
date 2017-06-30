@@ -5,6 +5,7 @@
     <div ng-include="'app/views/customize/navi.html'"></div>
     <!-- Alert -->
     <bb-alert alert="iconsOnline.alert"></bb-alert>
+   <!-- <pre>{{iconsOnline.all|json}}</pre>-->
     <!-- list -->
     <div class="app-row app-row-widget app-row-customize clearfix">
         <div class="widget-entry widget-entry-customize"
@@ -36,7 +37,7 @@
                                 <i class="fa fa-check"></i> <span class="btn-name_">{{_t('installed')}}</span>
                             </button>
                                 <!-- Download -->
-                                <button class="btn btn-default" title="{{_t('lb_download')}}" ng-if_="v.status === 'download'" ng-click="downloadIconSet(v)">
+                                <button class="btn btn-default" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadIconSet(v)">
                                     <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                                 </button>
 
@@ -79,7 +80,7 @@
                 </button>
                 <!-- Download --> 
                 <button href="" class="btn btn-submit" title="{{_t('lb_download')}}"
-                        ng-if_="iconsOnline.status === 'download' || v.status === 'installed'"
+                        ng-if="iconsOnline.status === 'download' || v.status === 'installed'"
                         ng-click="handleModal('iconOnlineModal', $event);downloadIconSet(iconsOnline.find)">
                     <i class="fa fa-download"></i> <span class="btn-name">{{_t('lb_download')}}</span>
                 </button>

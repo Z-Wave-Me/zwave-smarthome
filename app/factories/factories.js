@@ -87,7 +87,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     function pingServer(url) {
          return $http({
             method: "get",
-            timeout: 5000,
+            timeout: cfg.pending_timeout_limit,
             cancel:  $q.defer(),
             url: url
         }).then(function (response) {
@@ -496,6 +496,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         return $http({
             method: 'get',
             timeout: cfg.pending_remote_limit,
+            isRemote:true,
             url: url
                     /*headers: {
                      'Accept-Language': lang
@@ -887,6 +888,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             method: "POST",
             url: cfg.post_report_url,
             data: $.param(data),
+            timeout: cfg.pending_remote_limit,
+            isRemote:true,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
                         //'ZWAYSession': ZWAYSession 
@@ -910,6 +913,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             url: url,
             data: $.param(data),
             timeout: cfg.pending_remote_limit,
+            isRemote:true,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
                         //'ZWAYSession': ZWAYSession 
@@ -942,6 +946,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             method: 'post',
             url: cfg.online_module_url,
             data: $.param(data),
+            isRemote:true,
             timeout:cfg.pending_remote_limit,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

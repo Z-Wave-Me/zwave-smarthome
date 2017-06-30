@@ -59,7 +59,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 collection: 0,
                 appsCat: 0,
                 appsCatFeatured: 0,
-                featured: 0
+                featured: 0,
+                featuredStatus: 0
             },
             noSearch: false,
             ratingRange: _.range(1, 6),
@@ -227,9 +228,14 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 moduleUrl: $scope.cfg.online_module_download_url + module.file
             };
             dataFactory.installOnlineModule(data, 'online_update').then(function (response) {
-                $scope.loading = false;
+                $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('reloading_page')};
+
                 dataService.showNotifier({message: $scope._t(response.data.data.key)});
-                $route.reload();
+                //$route.reload();
+                $timeout(function () {
+                    $scope.loading = false;
+                    $scope.reloadData();
+                }, 2000);
 
             }, function (error) {
                 $scope.loading = false;
@@ -365,6 +371,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         // Reset featured cnt
         $scope.dataHolder.onlineModules.cnt.featured = 0;
         $scope.slider.cfg.max = 0;
+        var featuredApps = [];
         var onlineModules = _.chain(data)
             .flatten()
             .filter(function (item) {
@@ -388,11 +395,14 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 }
                 if ($scope.dataHolder.modules.ids[item.modulename]) {
                     item['status'] = 'installed';
+                    item['statusSort'] = 3;
                     if ($scope.dataHolder.modules.ids[item.modulename].version !== item.version) {
                         if (!$scope.dataHolder.modules.ids[item.modulename].version && !item.version) {
                             item['status'] = 'error';
+
                         } else if (!$scope.dataHolder.modules.ids[item.modulename].version && item.version) {
                             item['status'] = 'upgrade';
+                            item['statusSort'] = 1;
                         } else {
                             var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.toString().split('.'),
                                 onlineVersion = item.version.toString().split('.');
@@ -400,6 +410,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                             for (var i = 0; i < localVersion.length; i++) {
                                 if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
                                     item['status'] = 'upgrade';
+                                    item['statusSort'] = 1;
                                     break;
                                 }
                             }
@@ -407,6 +418,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                     }
                     isHidden = $scope.dataHolder.onlineModules.hideInstalled;
                 } else {
+                    item['statusSort'] = 2;
                     item['status'] = 'download';
                 }
 
@@ -423,7 +435,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 }
 
                 if (item.featured) {
-                    $scope.dataHolder.onlineModules.featured.push(item)
+                    //$scope.dataHolder.onlineModules.featured.push(item)
+                    featuredApps.push(item)
                 }
 
                 item.installedSort = $filter('zeroFill')(item.installed);
@@ -456,6 +469,14 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         // Count all apps
         $scope.dataHolder.onlineModules.all = onlineModules.value();
         $scope.dataHolder.onlineModules.cnt.apps = onlineModules.size().value();
+        // Sort featured
+        $scope.dataHolder.onlineModules.featured =  _.sortBy(featuredApps, function(v) {
+            return v.statusSort;
+        });
+        // Count featured by astatus
+        $scope.dataHolder.onlineModules.cnt.featuredStatus = _.countBy(featuredApps,function (v) {
+            return v.status;
+        });
 
         // Collection
         if ('q' in $scope.dataHolder.onlineModules.filter) {// Filter by query

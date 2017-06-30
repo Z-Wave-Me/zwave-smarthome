@@ -16,7 +16,7 @@
             <!-- image -->
             <img class="report-img-s" ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
             <!-- Title -->
-            {{dataHolder.modules.ids[g.moduleId].title}} <span class="item-cnt">({{dataHolder.instances.cnt.modules[g.moduleId]}})</span>
+            <span class="accordion-title-text">{{dataHolder.modules.ids[g.moduleId].title}} <span class="item-cnt">({{dataHolder.instances.cnt.modules[g.moduleId]}})</span>
             <!-- Arrow -->
             <i class="fa accordion-arrow" ng-class="expand[g.moduleId] ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
@@ -76,8 +76,11 @@
                  ng-repeat="(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR"
                  ng-class="v.active ? 'true': 'false'"
                  ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
-                <div class="report-col report-body">
+                <div class="report-col report-media">
                     <img class="report-img-s" ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                </div>
+                <div class="report-col report-body">
+
                     <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
                 </div>
                 <div class="report-col report-ctrl report-ctrl-3">

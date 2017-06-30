@@ -2,7 +2,7 @@
     "newtrans": "---",
     "---": "newtrans",
     "drag_drop":"Drag & Drop",
-    "order_elements":"Position",
+    "order_elements":"Custom",
     "select_icon":"Select icon",
     "reload":"Reload",
     "no_search_results":"Sorry, your search __term__ did not return any results.",

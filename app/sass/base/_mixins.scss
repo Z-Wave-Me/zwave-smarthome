@@ -29,6 +29,12 @@
   filter: grayscale($percent);
 }
 
+// Opacity
+@mixin appOpacity($o: 0.5) {
+  opacity: $o;
+  filter: alpha(opacity=$o*100); /* For IE8 and earlier */
+}
+
 // Gradient
 @mixin appGradient() {
   background: #f6f6f6; /* Old browsers */

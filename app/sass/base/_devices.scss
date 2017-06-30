@@ -217,3 +217,12 @@
     max-width: 64px;
     max-height: 64px;
 }
+
+/* Camera
+-------------------------------------------------- */
+.app-row-cameraadd{
+    .report-media{
+        text-align: center;
+        width: 64px + $spacing-double;// Img width + spacing
+    }
+}

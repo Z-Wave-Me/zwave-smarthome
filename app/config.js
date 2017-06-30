@@ -22,10 +22,12 @@ var config_data = {
         //'server_url': 'http://192.168.10.119:8083/',
         // Interval in miliseconds to refresh data
         'interval': 3000,
-        // Displays a connection error after reaching the limit (milisecons)
-        'pending_timeout_limit': 10000,
+        // Displays a RAZ connection error after reaching the limit (milisecons)
+        'pending_timeout_limit': 20000,
         // Displays an remote server connection warning after reaching the limit (milisecons)
         'pending_remote_limit': 20000,
+        // Avoid to display Pending error message on the following routes if trying to connet to the remote server
+        'pending_black_list': ['/apps/local', '/apps/instance','/customize/skinslocal','/customize/iconslocal'],
         /// Set to > 0 (milisecons) to simulate latency for http Calls
         'latency_timeout': 0,
         // User
