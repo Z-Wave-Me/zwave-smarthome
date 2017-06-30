@@ -238,11 +238,3 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
 /*myAppController.controller('ManagementInfoController', function ($scope, dataFactory, dataService) {
 
 });*/
-
-
-/*
-myAppController.controller('ManagementAddMobileDevice', function ($scope, $timeout, $q, cfg, $window, $location, dataFactory, dataService) {
-
-    $scope.qrcode = $scope.user.qrcode;
-
-});*/
