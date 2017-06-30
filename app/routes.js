@@ -253,7 +253,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     }).//Rss
     when('/rss', {
         templateUrl: 'app/views/rss/rss.html',
-        requireLogin: true
+        requireLogin: true,
+        roles: cfg.role_access.admin
     }).//Login
     when('/login', {
         redirectTo: '/'

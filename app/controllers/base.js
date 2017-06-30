@@ -90,6 +90,28 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
 
     /**
+     * Allow to access page elements by role.
+     *
+     * @param {array} roles
+     * @param {boolean} mobile
+     * @returns {Boolean}
+     */
+    $scope.elementAccess = function (roles, mobile) {
+        if (!$scope.user) {
+            return false;
+        }
+        // Hide on mobile devices
+        if (mobile) {
+            return false;
+        }
+        // Hide for restricted roles
+        if (angular.isArray(roles) && roles.indexOf($scope.user.role) === -1) {
+            return false;
+        }
+        return true;
+    };
+
+    /**
      * Load a rss info
      * @returns {undefined}
      */
@@ -122,7 +144,9 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         });
 
     };
-    $scope.loadRssInfo();
+    if ($scope.elementAccess($scope.cfg.role_access.admin)) {
+        $scope.loadRssInfo();
+    }
 
     /**
      * Set timestamp and ping server if request fails
@@ -241,27 +265,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
     $scope.setPollInterval();
 
-    /**
-     * Allow to access page elements by role.
-     *
-     * @param {array} roles
-     * @param {boolean} mobile
-     * @returns {Boolean}
-     */
-    $scope.elementAccess = function (roles, mobile) {
-        if (!$scope.user) {
-            return false;
-        }
-        // Hide on mobile devices
-        if (mobile) {
-            return false;
-        }
-        // Hide for restricted roles
-        if (angular.isArray(roles) && roles.indexOf($scope.user.role) === -1) {
-            return false;
-        }
-        return true;
-    };
     /**
      * Check if value is in array
      *
