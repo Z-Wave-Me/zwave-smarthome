@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.0-RC-45',
+        'app_version': '1.7.0-RC-46',
         // Application (DIST) built date
-        'app_built': '30-06-2017 14:19:00',
+        'app_built': '03-07-2017 08:23:03',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
