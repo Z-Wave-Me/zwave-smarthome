@@ -35,6 +35,37 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             lastIncluded: 0,
             done: false
         },
+        s2:{
+            input: {
+                keysGranted: {
+                    S0: 'false',
+                    S2Unauthenticated: 'false',
+                    S2Authenticated: 'false',
+                    S2Access: 'false'
+                },
+                keysRequested: {
+                    S0: 'false',
+                    S2Unauthenticated: 'false',
+                    S2Authenticated: 'false',
+                    S2Access: 'false'
+                },
+                dskPin: 0,
+                publicKey: null
+            },
+            grantKeys: {
+                interval: false,
+                show: false,
+                done: false,
+                countDown: 20,
+                anyChecked: false
+            },
+            verifyDSK: {
+                interval: false,
+                show: false,
+                done: false,
+                countDown: 20
+            }
+        },
         automatedConfiguration: {
             process: false,
             includedDevice: {
@@ -316,6 +347,54 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.runZwaveCmd(cmd);
         $scope.refreshZwaveApiData(1);
+    };
+
+    /**
+     * Get block of DSK
+     * @param {array} publicKey
+     * @param {num} block
+     * @returns {string}
+     */
+    $scope.dskBlock = function(publicKey, block) {
+        console.log(publicKey)
+        if(!publicKey){
+            return '';
+        }
+        return (publicKey[(block - 1) * 2] * 256 + publicKey[(block - 1) * 2 + 1]);
+    };
+
+    /**
+     * Handle inclusionS2GrantKeys
+     */
+    $scope.handleInclusionS2GrantKeys = function () {
+        var nodeId = $scope.controlDh.inclusion.lastIncludedDeviceId.toString(10),
+            cmd =
+                'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S0=true; '+
+                'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Unauthenticated=true; '+
+                'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Authenticated=false; '+
+                'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Access=false; '+
+                'devices[' + nodeId + '].SecurityS2.data.grantedKeys=true';
+        $scope.runZwaveCmd(cmd)
+    };
+
+    /**
+     * Handle inclusionS2VerifyDSK
+     */
+    $scope.handleInclusionVerifyDSK = function (confirmed) {
+        /*$scope.controlDh.inclusion.verifyDSK.show = false;
+        $scope.controlDh.inclusion.verifyDSK.done = true;
+        $interval.cancel($scope.controlDh.inclusion.verifyDSK.interval);*/
+        var dskPin = parseInt($scope.controlDh.inclusion.input.dskPin, 10),
+            nodeId = $scope.controlDh.inclusion.lastIncludedDeviceId.toString(10),
+            publicKey = [];
+
+        if (confirmed) {
+            publicKey = $scope.controlDh.inclusion.input.publicKey;
+            publicKey[0] = (dskPin >> 8) & 0xff;
+            publicKey[1] = dskPin & 0xff;
+        }
+        var cmd = 'devices[' + nodeId + '].SecurityS2.data.publicKeyVerified=[' + publicKey.join(',') + '];';
+        $scope.runZwaveCmd(cmd)
     };
 
     /// --- Private functions --- ///

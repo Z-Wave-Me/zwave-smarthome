@@ -14164,15 +14164,36 @@ img.widget-promo-image {
   }
 }
 
-/* Management
+/* Inclusion S2
 -------------------------------------------------- */
 /* line 171, ../sass/base/_devices.scss */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* line 176, ../sass/base/_devices.scss */
+input[type="number"].input_number {
+  display: inline-block;
+  -moz-appearance: textfield;
+  width: 5em;
+}
+
+/* line 182, ../sass/base/_devices.scss */
+.diabled_label {
+  color: darkgrey;
+}
+
+/* Management
+-------------------------------------------------- */
+/* line 189, ../sass/base/_devices.scss */
 .report-battery-info div {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 171, ../sass/base/_devices.scss */
+  /* line 189, ../sass/base/_devices.scss */
   .report-battery-info div {
     display: inline-block;
     padding: 0 10px 0 0;
@@ -14181,53 +14202,53 @@ img.widget-promo-image {
 
 /* Configuration
 -------------------------------------------------- */
-/* line 183, ../sass/base/_devices.scss */
+/* line 201, ../sass/base/_devices.scss */
 .table-cfg-interview th {
   width: 25%;
 }
 
-/* line 186, ../sass/base/_devices.scss */
+/* line 204, ../sass/base/_devices.scss */
 .cfg-block {
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 191, ../sass/base/_devices.scss */
+/* line 209, ../sass/base/_devices.scss */
 .cfg-block h4 {
   font-size: 16px;
 }
 
-/* line 195, ../sass/base/_devices.scss */
+/* line 213, ../sass/base/_devices.scss */
 .cfg-control-content {
   padding: 10px;
   margin: 10px 0;
 }
 
-/* line 199, ../sass/base/_devices.scss */
+/* line 217, ../sass/base/_devices.scss */
 .cfg-info {
   margin: 10px 0 0 0;
   padding: 10px 0 0 0;
   border-top: solid 1px #cccccc;
 }
 
-/* line 204, ../sass/base/_devices.scss */
+/* line 222, ../sass/base/_devices.scss */
 .commads-is-current {
   text-decoration: underline;
 }
 
-/* line 207, ../sass/base/_devices.scss */
+/* line 225, ../sass/base/_devices.scss */
 #wakeup_cont .form-inline {
   float: left;
 }
 
-/* line 210, ../sass/base/_devices.scss */
+/* line 228, ../sass/base/_devices.scss */
 .spin-true .fa-spin {
   display: none;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 216, ../sass/base/_devices.scss */
+/* line 234, ../sass/base/_devices.scss */
 .product-img {
   max-width: 64px;
   max-height: 64px;
@@ -14235,7 +14256,7 @@ img.widget-promo-image {
 
 /* Camera
 -------------------------------------------------- */
-/* line 224, ../sass/base/_devices.scss */
+/* line 242, ../sass/base/_devices.scss */
 .app-row-cameraadd .report-media {
   text-align: center;
   width: 84px;
