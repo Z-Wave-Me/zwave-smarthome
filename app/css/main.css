@@ -11736,6 +11736,11 @@ fieldset, .fieldset {
 }
 
 /* line 101, ../sass/base/_form.scss */
+.input-valid-false {
+  border: solid 1px red;
+}
+
+/* line 105, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -11743,35 +11748,35 @@ fieldset, .fieldset {
   border-top: solid 1px #cccccc;
 }
 
-/* line 109, ../sass/base/_form.scss */
+/* line 113, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 113, ../sass/base/_form.scss */
+/* line 117, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 117, ../sass/base/_form.scss */
+/* line 121, ../sass/base/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 123, ../sass/base/_form.scss */
+/* line 127, ../sass/base/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 126, ../sass/base/_form.scss */
+/* line 130, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
 /* Config form
 -------------------------------------------------- */
-/* line 133, ../sass/base/_form.scss */
+/* line 137, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }

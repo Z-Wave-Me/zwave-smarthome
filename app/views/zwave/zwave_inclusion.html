@@ -179,7 +179,7 @@
     </div>
 
     <!-- inclusionVerifyDSKModal -->
-    <div id="inclusionVerifyDSKModal" class="appmodal" ng-if_="">
+    <div id="inclusionVerifyDSKModal" class="appmodal" ng-if="zwaveInclusion.s2.input.publicKey.length">
         <div class="appmodal-in">
             <form name="dskForm">
                 <div class="appmodal-header">
@@ -188,6 +188,7 @@
                     <h3>{{_t('verify_device_pin')}}</h3>
                 </div>
                 <div class="appmodal-body form-group form-inline">
+                    <pre>{{zwaveInclusion.s2.input|json}}</pre>
                     <!-- name -->
                     <label>{{_t('pin')}}</label>
                     <input name="dsk_pin" id="dsk_pin" type="number" size="5" class="form-control input_number input-valid-{{dskForm.dsk_pin.$valid}}" min="0" max="65533" ng-show="zwaveInclusion.s2.input.publicKeyAuthenticationRequired"
@@ -211,7 +212,8 @@
                 </div>
                 <div class="appmodal-footer">
                     <!-- Confirm -->
-                    <button type="button" class="btn btn-submit" ng-click="handleInclusionVerifyDSK(true)">
+                    <button type="button" class="btn btn-submit"
+                            ng-click="handleInclusionVerifyDSK(zwaveInclusion.controller.lastIncludedDeviceId)">
                         <i class="fa fa-check"></i> <span class="btn-name">{{_t('confirm')}}</span>
                     </button>
                 </div>

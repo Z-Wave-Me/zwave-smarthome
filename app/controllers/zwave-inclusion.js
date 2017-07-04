@@ -23,7 +23,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         controller: {
             controllerState: 0,
             lastExcludedDevice: null,
-            secureInclusion: false
+            secureInclusion: false,
+            lastIncludedDeviceId: 0
         },
         zwaveApiData: {},
         exclusionProcess: {
@@ -37,20 +38,21 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         },
         s2:{
             input: {
-                keysGranted: {
+                /*keysGranted: {
                     S0: 'false',
                     S2Unauthenticated: 'false',
                     S2Authenticated: 'false',
                     S2Access: 'false'
-                },
-                keysRequested: {
+                },*/
+               /* keysRequested: {
                     S0: 'false',
                     S2Unauthenticated: 'false',
                     S2Authenticated: 'false',
                     S2Access: 'false'
-                },
+                },*/
                 dskPin: 0,
-                publicKey: null
+                publicKey: null,
+                publicKeyAuthenticationRequired: false
             },
             grantKeys: {
                 interval: false,
@@ -356,48 +358,144 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * @returns {string}
      */
     $scope.dskBlock = function(publicKey, block) {
-        console.log(publicKey)
         if(!publicKey){
             return '';
         }
         return (publicKey[(block - 1) * 2] * 256 + publicKey[(block - 1) * 2 + 1]);
     };
 
-    /**
-     * Handle inclusionS2GrantKeys
-     */
-    $scope.handleInclusionS2GrantKeys = function () {
-        var nodeId = $scope.controlDh.inclusion.lastIncludedDeviceId.toString(10),
-            cmd =
-                'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S0=true; '+
-                'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Unauthenticated=true; '+
-                'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Authenticated=false; '+
-                'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Access=false; '+
-                'devices[' + nodeId + '].SecurityS2.data.grantedKeys=true';
-        $scope.runZwaveCmd(cmd)
-    };
 
     /**
      * Handle inclusionS2VerifyDSK
+     * @param {int} nodeId
      */
-    $scope.handleInclusionVerifyDSK = function (confirmed) {
-        /*$scope.controlDh.inclusion.verifyDSK.show = false;
-        $scope.controlDh.inclusion.verifyDSK.done = true;
-        $interval.cancel($scope.controlDh.inclusion.verifyDSK.interval);*/
-        var dskPin = parseInt($scope.controlDh.inclusion.input.dskPin, 10),
-            nodeId = $scope.controlDh.inclusion.lastIncludedDeviceId.toString(10),
+    $scope.handleInclusionVerifyDSK = function (nodeId) {
+        var confirmed = true;
+        var dskPin = parseInt($scope.zwaveInclusion.s2.input.dskPin, 10),
+            nodeId = nodeId,
             publicKey = [];
 
         if (confirmed) {
-            publicKey = $scope.controlDh.inclusion.input.publicKey;
+            publicKey = $scope.zwaveInclusion.s2.input.publicKey;
             publicKey[0] = (dskPin >> 8) & 0xff;
             publicKey[1] = dskPin & 0xff;
         }
         var cmd = 'devices[' + nodeId + '].SecurityS2.data.publicKeyVerified=[' + publicKey.join(',') + '];';
+        console.log(cmd)
+        return;
         $scope.runZwaveCmd(cmd)
     };
 
+    /**
+     * S2 test
+     */
+    $scope.getS2cc = function (nodeId) {
+        //var refresh = function () {
+            dataFactory.loadZwaveApiData(true).then(function (response) {
+                var securityS2 = $filter('hasNode')(response, 'devices.' + nodeId + '.instances.0.commandClasses.159');
+                if(securityS2){
+                    checkS2cc(nodeId,securityS2);
+                }
+
+
+            }, function (error) {
+            });
+        //};
+       //$interval(refresh, $scope.cfg.interval);
+    };
+    $scope.getS2cc(11)
+
     /// --- Private functions --- ///
+
+    /**
+     * Check S2 command class
+     * @param {int} nodeId
+     */
+    function checkS2cc(nodeId,securityS2) {
+        console.log(securityS2)
+        // wait for SecurityS2.data.requestedKeys = True
+        if(!securityS2.data.requestedKeys.value){
+            return;
+        }
+        // Always grant same keys as request:
+        var keysRequested = {
+            S0: $filter('hasNode')(securityS2, 'data.requestedKeys.S0.value') ||false,
+                S2Unauthenticated: $filter('hasNode')(securityS2, 'data.requestedKeys.S2Unauthenticated.value')||false,
+                S2Authenticated: $filter('hasNode')(securityS2, 'data.requestedKeys.S2Authenticated.value')||false,
+                S2Access: $filter('hasNode')(securityS2, 'data.requestedKeys.S2Access.value')||false
+        };
+        handleInclusionS2GrantKeys(keysRequested,nodeId);
+        //return;
+
+
+        // wait for SecurityS2.data.publicKey to be set (not null nor [])
+        if(!securityS2.data.publicKey.value.length){
+            return;
+        }
+        if(securityS2.data.publicKeyAuthenticationRequired.value){//if SecurityS2.data.publicKeyAuthenticationRequired - open dialog
+
+            $scope.zwaveInclusion.s2.input.publicKey = securityS2.data.publicKey.value;
+            $scope.zwaveInclusion.s2.input.publicKeyAuthenticationRequired = securityS2.data.publicKeyAuthenticationRequired.value;
+            return;
+
+        }else{// aprove it
+
+            var cmd = 'devices[' + nodeId + '].SecurityS2.data.publicKeyVerified=[' + securityS2.data.publicKey.value.join(',') + '];';
+            console.log(cmd)
+            return;
+            $scope.runZwaveCmd(cmd)
+        }
+       /* var S2Access = $filter('hasNode')(securityS2, 'data.requestedKeys.S2Access.value');
+        var S2Authenticated = $filter('hasNode')(securityS2, 'data.requestedKeys.S2Authenticated.value');
+        if(S2Access || S2Authenticated ){
+            console.log('Open new dialog')
+            console.log('S2Access: ',S2Access)
+            console.log('S2Authenticated: ',S2Authenticated)
+            if (securityS2.data.publicKey.value.length) {
+                $scope.zwaveInclusion.s2.input.publicKey = securityS2.data.publicKey.value;
+                $scope.zwaveInclusion.s2.input.publicKeyAuthenticationRequired = securityS2.data.publicKeyAuthenticationRequired.value;
+
+            }
+            //console.log(securityS2.data.publicKey.value)
+            return;
+        }
+
+        // if only S0 or S2 Unauthenticated are requested grant the keys calling
+        var S0 = $filter('hasNode')(securityS2, 'data.requestedKeys.S0.value');
+        var S2Unauthenticated = $filter('hasNode')(securityS2, 'data.requestedKeys.S2Unauthenticated.value');
+        if(S0 || S2Unauthenticated){
+            console.log('Run API ')
+            console.log('S2Access: ',S2Access)
+            console.log('S2Authenticated: ',S2Authenticated)
+            $scope.handleInclusionS2GrantKeys(securityS2.data.requestedKeys,nodeId);
+            return;
+        }*/
+
+
+    }
+    /**
+     * Handle inclusionS2GrantKeys
+     */
+    function handleInclusionS2GrantKeys(keysRequested,nodeId) {
+        var cmd = '';
+        console.log(keysRequested)
+        // Is any checkbox checked?
+        angular.forEach(keysRequested,function(v,k){
+            cmd += 'devices[' + nodeId + '].SecurityS2.data.grantedKeys.'+k+'='+v+'; ';
+
+        });
+        console.log(cmd)
+        return;
+        $scope.runZwaveCmd(cmd);
+        // todo: deprecated
+        /*var cmd =
+            'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S0=true; '+
+            'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Unauthenticated=true; '+
+            'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Authenticated=false; '+
+            'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Access=false; '+
+            'devices[' + nodeId + '].SecurityS2.data.grantedKeys=true';
+        $scope.runZwaveCmd(cmd)*/
+    };
 
     /**
      * Set device by ID
@@ -449,6 +547,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             var deviceIncId = data['controller.data.lastIncludedDevice'].value;
             console.log('lastIncludedDevice: ', deviceIncId);
             if (deviceIncId != null) {
+                $scope.zwaveInclusion.controller.lastIncludedDeviceId = deviceIncId;
                 var givenName = 'Device_' + deviceIncId;
                 var cmd = false;
                 if (data.devices[deviceIncId].data.givenName.value === '' || data.devices[deviceIncId].data.givenName.value === null) {
