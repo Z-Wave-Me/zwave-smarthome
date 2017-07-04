@@ -263,14 +263,18 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.dragDropSave = function () {
         /*console.log($scope.dataHolder.dragdrop)*/
+        $interval.cancel($scope.apiDataInterval);
+
         dataFactory.putApi('reorder',false, $scope.dataHolder.dragdrop).then(function (response) {
             $scope.dataHolder.dragdrop.data = [];
             $scope.mode = 'default';
             $scope.setOrderBy('order_elements');
             $scope.reloadData();
+            $scope.refreshDevices();
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.dataHolder.dragdrop.data = [];
+            $scope.refreshDevices();
         });
     }
 
