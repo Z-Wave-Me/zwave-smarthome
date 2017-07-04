@@ -1,5 +1,8 @@
 {
     "newtrans": "---",
+    "verify_device_pin": "Verify device PIN",
+    "pin": "PIN",
+    "confirm": "Confirm",
     "---": "newtrans",
     "drag_drop":"Drag & Drop",
     "order_elements":"Custom",
