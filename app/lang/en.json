@@ -1,8 +1,11 @@
 {
     "newtrans": "---",
-    "verify_device_pin": "Verify device PIN",
+    "verify_device_pin": "Verify PIN code on the device",
     "pin": "PIN",
     "confirm": "Confirm",
+    "security": "Security",
+    "running_security": "Running security scan",
+    "s2_failed": "Authentication Failed. Device is included non-secure. You may want to repeat the process.",
     "---": "newtrans",
     "drag_drop":"Drag & Drop",
     "order_elements":"Custom",
