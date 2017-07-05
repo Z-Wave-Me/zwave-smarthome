@@ -407,7 +407,7 @@ var config_data = {
             IN: 'India',
             CN: 'China',
             MY: 'Malaysia',
-            ANZ_BR: 'Australia / New Zealan',
+            ANZ_BR: 'Australia / New Zealand',
             HK: 'Hong Kong',
             KR: 'South Korea',
             JP: 'Japan',
@@ -458,6 +458,25 @@ var config_data = {
                     'DeviceHistory',
                     'PeriodicalSwitchControl',
                     'ScheduledScene'
+                ],
+                advanced_apps: [
+                    'CodeDevice',
+                    'CustomUserCode',
+                    'CustomUserCodeLoader',
+                    'CustomUserCodeZWay',
+                    'GlobalCache',
+                    'InfoWidget',
+                    'Notification',
+                    'NotificationSMSru',
+                    'RGB',
+                    'SecurityMode',
+                    'SwitchControlGenerator',
+                    'PhilioHW',
+                    'SensorsPolling',
+                    'SensorsPollingLogging',
+                    'SensorsValueLogging',
+                    'SwitchPolling',
+                    'ZMEOpenWRT'
                 ]
             },
             'popp': {

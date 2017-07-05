@@ -254,6 +254,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
     function setModules(data, instances) {
         // Reset featured cnt
         $scope.dataHolder.modules.cnt.featured = 0;
+        $scope.dataHolder.modules.cnt.advanced = 0;
         var modules = _.chain(data)
             .flatten()
             .filter(function (item) {
@@ -311,6 +312,13 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                     } else {
                         angular.extend(item, {featured: false});
                     }
+                    if ($scope.getCustomCfgArr('advanced_apps').indexOf(item.moduleName) > -1) {
+                        angular.extend(item, {advanced: true});
+                        // Count advanced apps
+                        $scope.dataHolder.modules.cnt.advanced += 1;
+                    } else {
+                        angular.extend(item, {advanced: false});
+                    }
 
                     //Tooltip description
                     angular.extend(item, {toolTipDescription: $filter('stripTags')(item.defaults.description)});
@@ -331,6 +339,13 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         // Count featured apps in categories
         $scope.dataHolder.modules.cnt.appsCatFeatured = modules.countBy(function (v) {
             if (v.featured) {
+                return v.category;
+            }
+        }).value();
+
+        // Count advanced apps in categories
+        $scope.dataHolder.modules.cnt.appsCatAdvanced = modules.countBy(function (v) {
+            if (v.advanced) {
                 return v.category;
             }
         }).value();
