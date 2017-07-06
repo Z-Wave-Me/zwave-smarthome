@@ -375,10 +375,33 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * S2 test
      */
     $scope.verifyS2cc = function (nodeId) {
-            dataFactory.loadZwaveApiData(true).then(function (response) {
-                var securityS2 = $filter('hasNode')(response, 'devices.' + nodeId + '.instances.0.commandClasses.159');
+            dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+                var securityS2 = $filter('hasNode')(ZWaveAPIData, 'devices.' + nodeId + '.instances.0.commandClasses.159');
                 if(securityS2){
                     $scope.zwaveInclusion.s2.process = true;
+                    // Check for not finished iterviews - needed if we cancel S2 Error dialog
+                    for (var iId in ZWaveAPIData.devices[nodeId].instances) {
+                        if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length < 1) {
+                            return;
+                        }
+                        angular.extend($scope.zwaveInclusion.automatedConfiguration.includedDevice, {commandClassesCnt: Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length});
+                        for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
+                            var cmdClass = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId];
+                            var id = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.name;
+                            var iData = 'devices[' + nodeId + '].instances[' + iId + '].commandClasses[' + ccId + '].Interview()';
+
+                            // Is interview done?
+                            if (cmdClass.data.interviewDone.value) {
+                                // Extending an interview counter
+                                angular.extend($scope.zwaveInclusion.automatedConfiguration.includedDevice,
+                                    {interviewDoneCnt: $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt + 1}
+                                );
+                            } else { // An interview is not done
+                                // Extending interviewNotDone
+                                $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone[id] = iData;
+                            }
+                        }
+                    }
                     checkS2cc(nodeId,securityS2);
                 }else{
                     console.log('SecurityS2 NOT Found');
