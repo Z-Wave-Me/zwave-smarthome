@@ -92,7 +92,7 @@ ng-hide="dataHolder.modules.filter.q">
 
         <div class="widget-entry widget-entry-app"
              id="local_module_{{v.id}}"
-             ng-hide="v.featured && !dataHolder.modules.filter.q"
+             ng-hide="(v.featured && !dataHolder.modules.filter.q) || (v.advanced && !dataHolder.modules.filter.q)"
              ng-repeat="v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id"
              ng-class="{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}">
             <div class="widget-entry-in">
@@ -160,3 +160,81 @@ ng-hide="dataHolder.modules.filter.q">
         </div><!-- /.widget-entry -->
     </div><!-- /.app-row -->
 </div><!-- /.app-entry-local -->
+
+<!-- Advanced Apps -->
+<div class="app-entry-local" ng-if="dataHolder.modules.cnt.appsCatAdvanced[dataHolder.modules.filter.category] > 0"
+     ng-hide="dataHolder.modules.filter.q">
+    <h2 class="app-entry-title" ng-click="expandElement('advanced_apps')">{{_t('advanced_apps')}} <i class="fa accordion-arrow" ng-class="expand.advanced_apps  ? 'fa-chevron-up':'fa-chevron-down'"></i></h2>
+    <div class="app-row app-row-widget clearfix" ng-if="expand.advanced_apps">
+
+        <div class="widget-entry widget-entry-app"
+             id="local_module_{{v.id}}"
+             ng-repeat="v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id"
+             ng-if="v.advanced"
+             ng-class="{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}">
+            <div class="widget-entry-in">
+                <!-- Widget img -->
+                <div class="widget-img">
+                    <a href="#apps/local/{{v.id}}" title="{{v.toolTipDescription}}">
+                        <img class="widget-preview-img"
+                             ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon"
+                             alt="{{v.defaults.title}}"/>
+                        <img class="widget-preview-img" ng-src="storage/img/placeholder-img.png" ng-if="!v.icon"
+                             alt="{{v.defaults.title}}"/>
+                    </a>
+                </div>
+                <!-- Widget header -->
+                <div class="widget-header"></div>
+                <div class="widget-content">
+                    <!-- Widget title -->
+                    <div class="widget-title">
+                        <h3>
+                            <a href="#apps/local/{{v.id}}" title="{{v.defaults.title}}"
+                               ng-bind="v.defaults.title|cutText:true:25"></a> <span
+                                class="btn-name">&raquo;</span>
+                        </h3>
+                    </div>
+                    <hr class="bottom-aligner"/>
+                    <!-- Widget footer -->
+                    <div class="widget-footer">
+                        <div class="widget-ctrl ctrl-left">
+                            <!-- Has instance -->
+                            <span ng-if="v.hasInstance"><i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
+                        </div>
+                        <div class="widget-ctrl ctrl-right clearfix">
+
+                            <div class="btn-group">
+                                <!-- Add -->
+                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default"
+                                   title="{{_t('lb_add_app')}}">
+                                    <i class="fa fa-plus text-success"></i> <span class="btn-name"
+                                                                                  ng-bind="_t('lb_add_app')"></span>
+                                </a>
+                                <!-- Remove -->
+                                <button class="btn btn-default" title="{{_t('lb_remove')}}"
+                                        ng-click="deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)"
+                                        ng-if="v.custom && !v.hasReset">
+                                    <i class="fa fa-remove text-danger"></i> <span class="btn-name"
+                                                                                   ng-bind="_t('lb_remove')"></span>
+                                </button>
+                                <!-- Reset -->
+                                <button class="btn btn-default" title="{{_t('reset')}}"
+                                        ng-click="resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)"
+                                        ng-if="v.custom && v.hasReset">
+                                    <i class="fa fa-remove fa-refresh text-warning"></i> <span class="btn-name"
+                                                                                               ng-bind="_t('reset')"></span>
+                                </button>
+                                <!-- Updgrade -->
+                                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}"
+                                        ng-click="updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))"
+                                        ng-if="dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'">
+                                    <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.widget-entry-in -->
+        </div><!-- /.widget-entry -->
+    </div>
+</div>
