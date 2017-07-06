@@ -299,8 +299,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         if (reset) {
             $scope.startStopExclusion(true);
         } else {
-            //$scope.startManualConfiguration($scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId);
-            $scope.verifyS2cc($scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId);
+            $scope.startManualConfiguration($scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId);
+            //$scope.verifyS2cc($scope.zwaveInclusion.automatedConfiguration.includedDevice.nodeId);
         }
     };
 
@@ -381,7 +381,9 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                     $scope.zwaveInclusion.s2.process = true;
                     checkS2cc(nodeId,securityS2);
                 }else{
+                    console.log('SecurityS2 NOT Found');
                     $scope.zwaveInclusion.s2.done = true;
+                    $scope.startConfiguration({nodeId: nodeId});
                 }
 
 
@@ -405,6 +407,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         if(!securityS2.data.requestedKeys.value){
             $scope.zwaveInclusion.s2.process = false;
             $scope.zwaveInclusion.s2.done = true;
+            $scope.startConfiguration({nodeId: nodeId});
             return;
         }
         // Always grant same keys as request:
@@ -475,7 +478,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                         $scope.zwaveInclusion.s2.process = false;
                         $scope.zwaveInclusion.s2.done = true;
                         $interval.cancel($scope.interval.s2);
-                        $scope.startManualConfiguration(nodeId);
+                        //$scope.startManualConfiguration(nodeId);
+                        $scope.startConfiguration({nodeId: nodeId});
                     }
                     $scope.zwaveInclusion.s2.interviewDone = interviewDone;
 
@@ -497,12 +501,21 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                                 $scope.startStopExclusion(true);
                             })
                             .set('oncancel', function (closeEvent) {//after clicking Cancel
-                                $scope.startManualConfiguration(nodeId);
+                                //$scope.startManualConfiguration(nodeId);
+                                console.log('interviewNotDone',$scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone)
+                                $scope.forceInterview($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone);
+                                $scope.startConfiguration({
+                                    nodeId: nodeId,
+                                    interviewDoneCnt: 0,
+                                    interviewRepeatCnt: 0,
+                                    errorType: ''
+                                });
                             });
 
                     }else{
 
-                        $scope.startManualConfiguration(nodeId);
+                        //$scope.startManualConfiguration(nodeId);
+                        $scope.startConfiguration({nodeId: nodeId});
                     }
                 }
             };
@@ -569,7 +582,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 resetInclusion(false, true, false, true);
                 //dataService.showNotifier({message: $scope._t('lb_new_device_found')});
                 resetConfiguration(true, false, {nodeId: deviceIncId}, cmd, true);
-                $scope.startConfiguration({nodeId: deviceIncId});
+                $scope.verifyS2cc(deviceIncId);
+                //$scope.startConfiguration({nodeId: deviceIncId});
 
             }
         }
@@ -723,8 +737,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 $scope.zwaveInclusion.automatedConfiguration.progress = 100;
                 resetConfiguration(false, true, null, false, true);
                 setSecureInclusion(true);
-                //$scope.startManualConfiguration(nodeId);
-                $scope.verifyS2cc(nodeId);
+                $scope.startManualConfiguration(nodeId);
+                //$scope.verifyS2cc(nodeId);
                 return;
                 ;
             }
