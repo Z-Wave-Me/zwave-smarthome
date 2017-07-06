@@ -11747,8 +11747,8 @@ img.widget-promo-image {
 }
 
 .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
-  max-width: 120px;
-  max-height: 120px;
+  width: 120px;
+  height: 60px;
   border: solid 4px #cccccc;
   /* MIN WIDTH */
   /* MAX WIDTH */
@@ -11756,8 +11756,8 @@ img.widget-promo-image {
 
 @media only screen and (min-width: 768px) {
   .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
-    max-width: 300px;
-    max-height: 150px;
+    width: 300px;
+    height: 150px;
   }
 }
 
@@ -11836,8 +11836,8 @@ img.widget-promo-image {
 }
 
 .customize-image-detail {
-  max-width: 300px;
-  max-height: 300px;
+  width: 400px;
+  height: 200px;
   border: solid 4px #cccccc;
 }
 

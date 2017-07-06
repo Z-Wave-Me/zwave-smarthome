@@ -169,7 +169,7 @@ myAppController.controller('ElementEventController', function ($scope, $filter,$
             return;
         }
         // Get device icons
-        var deviceIcons = dataService.getSingleElementIcons(device[0]);
+        var deviceIcons = dataService.getSingleElementIcons(device[0],true);
         // Set default or custom icons
         var icons = dataService.setIcon(deviceIcons['default'], deviceIcons['custom']);
         $scope.widgetEvent.find = device[0];
