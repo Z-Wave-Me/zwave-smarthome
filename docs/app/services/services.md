@@ -232,13 +232,15 @@ Get devices -  filtered data from devices dataholder
 
 **Returns**: `unresolved`
 
-### dataService.getSingleElementIcons(element) 
+### dataService.getSingleElementIcons(element, eventIcon) 
 
 Get an object with element icons
 
 **Parameters**
 
 **element**: `object`
+
+**eventIcon**: `bool`
 
 **Returns**: `object`
 

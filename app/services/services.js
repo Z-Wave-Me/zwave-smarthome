@@ -416,9 +416,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     /**
      * Get an object with element icons
      * @param {object} element
+     * @param {bool} eventIcon - if true return an array with icon path (used in element events icons)
+     * Empty array is used in the element detail if custom icons are not allowed
      * @returns {object}
      */
-    this.getSingleElementIcons = function (element) {
+    this.getSingleElementIcons = function (element,eventIcon) {
         var icons = {
             default: {
                 default: 'placeholder.png'
@@ -433,10 +435,19 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         // Set default icons by metrics.icon
         if (iconKey && iconKey !== '') {
             if ((/^https?:\/\//.test(iconKey))) { // If icon is the url (weather) then custom icons are not allowed
-                icons = {};
+                if(eventIcon){
+                    icons.default.default = iconKey;
+                }else{
+                    icons = {};
+                }
             } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
                 if (iconKey.indexOf('/') > -1) {// If an icon is the sytem icon then custom icons are not allowed
-                    icons = {};
+
+                    if(eventIcon){
+                        icons.default.default = iconKey;
+                    }else{
+                        icons = {};
+                    }
                 } else {
                     icons.default.default = iconKey;
                 }
