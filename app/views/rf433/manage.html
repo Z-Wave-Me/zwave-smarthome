@@ -1,32 +1,31 @@
 <div ng-controller="RF433ManageController" class="mobile-padding">
     <bb-loader></bb-loader> 
-    <!-- Enocean navigation -->
+    <!-- RF433 navigation -->
     <div ng-include="'app/views/rf433/navi.html'"></div>
     <div  ng-if="rf433Devices">
-             <!--<p ng-bind="_t('manage_enocean_devices')"></p>-->
-            <table class="table table-condensed table-report">
-                <tbody>
-                    <tr id="rf433_row_{{v.id}}" ng-repeat="v in rf433Devices track by v.id">
-                        <td class="text-left">
-                            <a href="" class="network-zwave-title">
-                                <span ng-bind="v.givenName"></span> (#{{v.id}})
-                            </a>
-                        </td>
-                        <td class="td-action">
-                             <div class="btn-group">
-                            <a href="#rf433/manage/{{v.vDevId}}" class="btn btn-default" title="{{_t('lb_configuration')}}">
-                                <i class="fa fa-cog"></i>
-                            </a>
-                            <button title="{{_t('lb_remove')}}"
-                                    class="btn btn-default"
-                                    ng-click="deleteDevice(v.vDevId, '#rf433_row_' + v.id, instance, _t('lb_delete_confirm'))">
-                                <i class="fa fa-remove text-danger"></i>
-                            </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table class="table table-condensed table-report">
+            <tbody>
+                <tr id="rf433_row_{{v.id}}" ng-repeat="v in rf433Devices track by v.id">
+                    <td class="text-left">
+                        <a href="#rf433/manage/{{v.vDevId}}" class="network-zwave-title">
+                            <span ng-bind="v.givenName"></span> (#{{v.id}})
+                        </a>
+                    </td>
+                    <td class="td-action">
+                         <div class="btn-group">
+                        <a href="#rf433/manage/{{v.vDevId}}" class="btn btn-default" title="{{_t('lb_configuration')}}">
+                            <i class="fa fa-cog"></i>
+                        </a>
+                        <button title="{{_t('lb_remove')}}"
+                                class="btn btn-default"
+                                ng-click="deleteDevice(v.vDevId, '#rf433_row_' + v.id, instance, _t('lb_delete_confirm'))">
+                            <i class="fa fa-remove text-danger"></i>
+                        </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="device-logo" ng-include="'app/views/rf433/rf433_nav.html'"></div>
 </div> <!-- /ng-controller --> 

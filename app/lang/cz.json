@@ -642,5 +642,16 @@
     "add_mobile_device": "Add mobile device",
     "lb_make_qrcode": "Make qrcode",
     "lb_clone": "Clone",
-    "room_main_sensors": "You can max. 3 sensors add to the room header (__cnt__/3)."
+    "room_main_sensors": "You can max. 3 sensors add to the room header (__cnt__/3).",
+    "lb_selecet_device_typ": "Select device typ",
+    "lb_selecet_device_typ_info": "Select device typ to continue.",
+    "lb_pulse_train": "Pulse train",
+    "lb_button_remote_control": "Remote control button",
+    "lb_count": "Received pulse trains count",
+    "btn_test": "Test",
+    "btn_remove": "Remove",
+    "save_manage_rf433_devices": "Save and manage RF433 device",
+    "lb_timout_auto_off": "Timeout for auto off",
+    "rf433_device": "RF433 Device",
+    "rf433_not_active": "RF433 app is not activated. Please Install/Activate this App."
 }

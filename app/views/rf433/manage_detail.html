@@ -6,13 +6,12 @@
     <h2><span ng-bind="_t('rf433_device')"></span>: {{input.name}} (#{{input.id}})</h2>
      <form name="form_rf433_edit" id="form_rf433_edit" class="form form-page" ng-submit="store(input)" novalidate>
          <fieldset>
-
              <table class="table">
                  <thead>
                  <tr>
                      <th>{{_t('lb_pulse_train')}}</th>
                      <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_on')}}</th>
-                     <th ng-show="input.device_typ == 'switchBinary'">{{_t('lb_off')}}</th>
+                     <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_off')}}</th>
                      <th ng-show="input.device_typ == 'sensorDiscrete'">{{_t('lb_button_remote_control')}}</th>
                      <th ng-show="input.device_typ == 'sensorBinary'">{{_t('lb_timout_auto_off')}}</th>
                      <th>{{_t('lb_count')}}</th>
@@ -24,8 +23,12 @@
                      <td>
                          <input name="code" id="code" type="text" class="form-control" value="{{row.code}}" ng-model="row.code" disabled/>
                      </td>
-                     <td ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'"><input type="checkbox" name="on" ng-model="row.on" disabled></td>
-                     <td ng-show="input.device_typ == 'switchBinary'"><input type="checkbox" name="off" ng-model="row.off" disabled></td>
+                     <td ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">
+                         <input type="radio" name="on-off-{{$index}}" ng-value="true" ng-model="row.on" ng-click="toggleOnOff($index)">
+                     </td>
+                     <td ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">
+                         <input type="radio" name="on-off-{{$index}}" ng-value="true" ng-model="row.off" ng-click="toggleOnOff($index)">
+                     </td>
                      <td ng-show="input.device_typ == 'sensorDiscrete'">
                          <select class="form-control" ng-model="row.btn" disabled>
                              <option ng-repeat="n in module.schema.definitions.device.properties.pulseTrainTable.items.properties.btn.enum" ng-selected="row.btn == n" value="{{n}}">{{n}}</option>

@@ -1,9 +1,10 @@
 <div ng-controller="RF433TeachinController" class="mobile-padding">
+    <div ng-include="'app/views/rf433/navi.html'"></div>
     <bb-loader></bb-loader>
     <div class="form form-inline form-page">
         <div class="fieldset clearfix">
             <div class="include-device-body">
-                <h1>{{_t('lb_include_device')}}</h1>
+                <h1>{{_t('lb_teach_in_device')}}</h1>
             </div>
         </div>
         <div class="fieldset clearfix">
@@ -32,20 +33,20 @@
                     <div class="report-col report-body">
                         <div class="inclusion-header" ng-if="!inclusion.process">
                             <!-- Header -->
-                            <h3>{{_t('lb_inclusion_progress')}}</h3>
-                            <button class="btn btn-success btn-lg" title="{{_t('btn_inclusion_start')}}"
+                            <h3>{{_t('lb_teach_in_process')}}</h3>
+                            <button class="btn btn-success btn-lg" title="{{_t('btn_teach_in_start')}}"
                                     ng-disabled="inclusion.process"
                                     ng-click="startStopTeachin(true)">
-                                <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_inclusion_start')}}</span>
+                                <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_teach_in_start')}}</span>
                             </button>
                         </div>
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="inclusion.process">
                             <div class="alert alert-warning">
-                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} {{zwaveInclusion.device.find.inc}}
-                                <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
+                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_teach_in')}} {{zwaveInclusion.device.find.inc}}
+                                <button class="btn btn-danger btn-lg" title="{{_t('btn_teach_in_stop')}}"
                                         ng-click="startStopTeachin(false)">
-                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
+                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_teach_in_stop')}}</span>
                                 </button>
                             </div>
                         </div>
@@ -65,10 +66,10 @@
                                 <tr>
                                     <th>{{_t('lb_pulse_train')}}</th>
                                     <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_on')}}</th>
-                                    <th ng-show="input.device_typ == 'switchBinary'">{{_t('lb_off')}}</th>
+                                    <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_off')}}</th>
                                     <th ng-show="input.device_typ == 'sensorDiscrete'">{{_t('lb_button_remote_control')}}</th>
                                     <th ng-show="input.device_typ == 'sensorBinary'">{{_t('lb_timout_auto_off')}}</th>
-                                    <th>{{_t('lb_count')}}</th>
+                                    <th style="width: 20%;">{{_t('lb_count')}}</th>
                                     <th>{{_t('lb_action')}}</th>
                                 </tr>
                             </thead>
@@ -78,10 +79,10 @@
                                         <input name="code" id="code" type="text" class="form-control" value="{{row.code}}" ng-model="row.code" disabled/>
                                     </td>
                                     <td ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">
-                                        <input type="checkbox" name="on" ng-model="row.on">
+                                        <input type="radio" name="on-off-{{$index}}" ng-value="true" ng-model="row.on" ng-click="toggleOnOff($index)">
                                     </td>
-                                    <td ng-show="input.device_typ == 'switchBinary'">
-                                        <input type="checkbox" name="off" ng-model="row.off">
+                                    <td ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">
+                                        <input type="radio" name="on-off-{{$index}}" ng-value="true" ng-model="row.off" ng-click="toggleOnOff($index)">
                                     </td>
                                     <td ng-show="input.device_typ == 'sensorDiscrete'">
                                         <select class="form-control" ng-model="row.btn">
