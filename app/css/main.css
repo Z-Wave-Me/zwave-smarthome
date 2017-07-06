@@ -13564,8 +13564,8 @@ img.widget-promo-image {
 }
 /* line 34, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
-  max-width: 120px;
-  max-height: 120px;
+  width: 120px;
+  height: 60px;
   border: solid 4px #cccccc;
   /* MIN WIDTH */
   /* MAX WIDTH */
@@ -13573,8 +13573,8 @@ img.widget-promo-image {
 @media only screen and (min-width: 768px) {
   /* line 34, ../sass/base/_customize.scss */
   .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
-    max-width: 300px;
-    max-height: 150px;
+    width: 300px;
+    height: 150px;
   }
 }
 /* line 46, ../sass/base/_customize.scss */
@@ -13658,8 +13658,8 @@ img.widget-promo-image {
 
 /* line 111, ../sass/base/_customize.scss */
 .customize-image-detail {
-  max-width: 300px;
-  max-height: 300px;
+  width: 400px;
+  height: 200px;
   border: solid 4px #cccccc;
 }
 
