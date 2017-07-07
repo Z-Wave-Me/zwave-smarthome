@@ -878,7 +878,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         if (defaultIcon) {
             // If a custom icon exists set it otherwise set a default icon
             angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
-                obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : cfg.img.icons + v);
+                var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons)
+                obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
             });
             return obj;
         } else {
