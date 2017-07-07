@@ -161,44 +161,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         });
     }
     ;
-
-
-    /**
-     * Redirect - with trust my network
-     */
-//    $scope.redirectAfterLogin = function (trust, user, password, rememberme) {
-//        // Trusted
-//        if (trust) {
-//            $scope.processUser(user, rememberme);
-//            if ($scope.auth.fromexpert) {
-//                window.location.href = $scope.cfg.expert_url;
-//                return;
-//            }
-//            window.location = '#/dashboard';
-//            $window.location.reload();
-//        } else {
-//            dataService.unsetUser(user);
-//            // find.popp.eu
-//            if ($scope.cfg.app_type === 'popp') {
-//               window.location = 'https://find.popp.eu/?login=' + user.login + '&password=' + password;
-//            }
-//            //find.z-wave.me
-//            else {
-//                var findInput = {
-//                    act: 'login',
-//                    login: $scope.auth.remoteId + '/' + user.login,
-//                    pass: password
-//                };
-//                dataFactory.postToRemote($scope.cfg.find_zwaveme_zbox, findInput).then(function (response) {
-//                    window.location = $scope.cfg.find_zwaveme_zbox + '?login=' + user.login + '&password=' + password;
-//                }, function (error) {
-//                    alertify.alertError($scope._t('error_load_data'));
-//
-//                });
-//
-//            }
-//        }
-//    };
 });
 
 /**
@@ -250,33 +212,6 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
             alertify.alertError(message);
         });
     };
-
-//    /**
-//     * Login proccess
-//     */
-//    $scope.login = function (input) {
-//        input.password = input.password;
-//        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-//        $scope.alert = {message: false};
-//        dataFactory.logInApi(input).then(function (response) {
-//            dataFactory.getApi('trust_my_network').then(function (responseTrust) {
-//                var rememberme = (input.rememberme ? input : null);
-//                $scope.redirectAfterLogin(responseTrust.data.data.trustMyNetwork, response.data.data, input.password, rememberme);
-//            }, function (error) {
-//                $scope.loading = false;
-//                alertify.alertError($scope._t('error_load_data'));
-//
-//            });
-//
-//        }, function (error) {
-//            $scope.loading = false;
-//            var message = $scope._t('error_load_data');
-//            if (error.status == 401) {
-//                message = $scope._t('error_load_user');
-//            }
-//             alertify.alertError(message);
-//        });
-//    };
 
     // Login from url, remember me or session
 
@@ -379,14 +314,6 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
                 } else {
                     $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
                 }
-
-                // Update trust my network
-                /*dataFactory.putApiWithHeaders('trust_my_network', null, {trustMyNetwork: input.trust_my_network}, headers).then(function (response) {
-                 $scope.redirectAfterLogin(input.trust_my_network, $scope.auth.defaultProfile, input.password);
-                 }, function (error) {
-                 alertify.alertError($scope._t('error_update_data'));
-                 return;
-                 });*/
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
                 return;
@@ -429,14 +356,7 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
                             hide: true
                         };
          angular.extend(cfg.route.fatalError, fatalArray);
-        dataFactory.getApi('system_reboot','?firstaccess=true').then(function (response) {
-//            $timeout(function () {
-//                $scope.loading = false;
-//                window.location = '#/?logout';
-//                $window.location.reload();
-//                
-//            }, 10000);
-        }, function (error) {
+        dataFactory.getApi('system_reboot','?firstaccess=true').then(function (response) {}, function (error) {
             alertify.alertError($scope._t('error_system_reboot'));
         });
 
