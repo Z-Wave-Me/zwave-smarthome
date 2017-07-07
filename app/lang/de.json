@@ -682,5 +682,16 @@
     "add_mobile_device": "Mobiles Gerät hinzufügen",
     "lb_make_qrcode": "Qrcode erstellen",
     "lb_clone": "Klonen",
-    "room_main_sensors": "Sie können max. 3 Sensoren zur Raumkopfzeile hinzufügen (__cnt__/3)."
+    "room_main_sensors": "Sie können max. 3 Sensoren zur Raumkopfzeile hinzufügen (__cnt__/3).",
+    "lb_selecet_device_typ": "Gerätetyp auswählen",
+    "lb_selecet_device_typ_info": "Gerätetyp auswählen um fortzufahren.",
+    "lb_pulse_train": "Pulse train",
+    "lb_button_remote_control": "Fernbedienungstaste",
+    "lb_count": "Anzahl empfangener Pulse Trains",
+    "btn_test": "Test",
+    "btn_remove": "Entfernen",
+    "save_manage_rf433_devices": "Speichern und weiter zu RF433 Gerät verwalten",
+    "lb_timout_auto_off": "Timeout für auto off",
+    "rf433_device": "RF433 Geräte",
+    "rf433_not_active": "Die RF433 App ist nicht aktiviert. Bitte aktivieren Sie diese unter 'Anwendungen > Aktiv'."
 }

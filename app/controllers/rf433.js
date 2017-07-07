@@ -110,6 +110,18 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
 
     };
 
+    $scope.toggleOnOff = function(index) {
+
+        if($scope.input.table[index].on == true) {
+            $scope.input.table[index].off = true;
+            $scope.input.table[index].on = false;
+        } else {
+            $scope.input.table[index].off = false;
+            $scope.input.table[index].on = true;
+        }
+        console.log($scope.input.table[index]);
+    };
+
 
     $scope.allSettled = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
@@ -124,11 +136,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
             $scope.loading = false;
             var instance = response[0];
             var module = response[1];
-            /*var locations = response[2];
-
-            if (locations.state === 'fulfilled') {
-                $scope.rooms = locations.value.data.data;
-            }*/
 
             if (instance.state === 'fulfilled') {
                 $scope.instance = instance.value.data.data[0];
@@ -163,41 +170,34 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
 
         var new_id = input.params.device_list.length + 1;
 
-        var device_name  = "RF433 Device " + new_id;
-
         var device_data = {
-            "deviceName": device_name,
+            "deviceName": "RF433 Device " + new_id,
             "deviceTyp": $scope.input.device_typ,
             "pulseTrainTable": $scope.input.table
         }
-        console.log(device_data);
         input.params.device_list.push(device_data);
 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         if (input.id) {
             dataFactory.putApi('instances', input.id, input).then(function (response) {
-                console.log(response);
                 dataService.showNotifier({message: $scope._t('success_updated')});
 
-
                 $timeout(function() {
-                    dataFactory.getApi('devices', false, true).then(function (response) {
-                        var devices = response.data.data.devices;
-                        //console.log(devices);
-                        var i = _.find(devices, function (device) {
-                            //console.log(device.metrics.title + "  " + device_name);
-                            return device.metrics.title == device_name;
+                    dataFactory.getApi('instances', '/RF433', true).then(function (response) {
+                        var devices = response.data.data[0].params.device_list;
+                        var i = _.find(devices, function (dev) {
+                            return dev.deviceName == device_data.deviceName;
                         });
 
                         if (typeof i !== 'undefined') {
-                            console.log(i);
-                            var vDevId = i.id
-
+                            var vDevId = i.vdevId
                             $location.path('/rf433/manage/' + vDevId);
                         }
                         $scope.loading = false;
                     }, function (error) {
-
+                        $scope.loading = false;
+                        alertify.alertError($scope._t('error_load_data'));
+                        alertify.dismissAll();
                     });
                 }, 10000);
             }, function (error) {
@@ -275,6 +275,7 @@ myAppController.controller('RF433ManageController', function($scope, $location, 
      */
     function setDevices(devices, instance) {
         console.log(instance);
+        console.log(devices);
         angular.forEach(devices, function(v, k) {
             if(v.creatorId !== instance.id) {
                 return;
@@ -396,6 +397,18 @@ myAppController.controller('RF433ManageDetailController', function($scope, $rout
         $scope.loading = false;
         return;
 
+    };
+
+    $scope.toggleOnOff = function(index) {
+
+        if($scope.input.table[index].on == true) {
+            $scope.input.table[index].off = true;
+            $scope.input.table[index].on = false;
+        } else {
+            $scope.input.table[index].off = false;
+            $scope.input.table[index].on = true;
+        }
+        console.log($scope.input.table[index]);
     };
 
 
