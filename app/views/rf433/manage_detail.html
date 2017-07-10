@@ -4,7 +4,7 @@
     <div ng-include="'app/views/rf433/navi.html'"></div>
      <div class="tab-content">
     <h2><span ng-bind="_t('rf433_device')"></span>: {{input.name}} (#{{input.id}})</h2>
-     <form name="form_rf433_edit" id="form_rf433_edit" class="form form-page" ng-submit="store(input)" novalidate>
+     <form name="form_rf433_edit" id="form_rf433_edit" class="form form-page" ng-submit="updateInstance(instance)" novalidate>
          <fieldset>
              <table class="table">
                  <thead>
@@ -13,7 +13,10 @@
                      <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_on')}}</th>
                      <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_off')}}</th>
                      <th ng-show="input.device_typ == 'sensorDiscrete'">{{_t('lb_button_remote_control')}}</th>
-                     <th ng-show="input.device_typ == 'sensorBinary'">{{_t('lb_timout_auto_off')}}</th>
+                     <th ng-show="input.device_typ == 'sensorBinary'">
+                         {{_t('lb_timout_auto_off')}}&nbsp;
+                         <input type="checkbox" ng-click="toggleAll()" ng-model="checkAll">
+                     </th>
                      <th>{{_t('lb_count')}}</th>
                      <!--<th>{{_t('lb_action')}}</th>-->
                  </tr>
@@ -30,12 +33,17 @@
                          <input type="radio" name="on-off-{{$index}}" ng-value="true" ng-model="row.off" ng-click="toggleOnOff($index)">
                      </td>
                      <td ng-show="input.device_typ == 'sensorDiscrete'">
-                         <select class="form-control" ng-model="row.btn" disabled>
+                         <select class="form-control" ng-model="row.btn">
                              <option ng-repeat="n in module.schema.definitions.device.properties.pulseTrainTable.items.properties.btn.enum" ng-selected="row.btn == n" value="{{n}}">{{n}}</option>
                          </select>
                      </td>
                      <td ng-show="input.device_typ == 'sensorBinary'">
-                         <input name="timeout" id="timeout" type="text" class="form-control" value="{{row.timeout}}" ng-model="row.timeout" disabled />
+                         <div class="input-group">
+                            <input name="timeout" id="timeout" type="text" class="form-control" ng-value="{{row.timeout}}" ng-model="row.timeout" ng-disabled="!row.timeout_on" />
+                             <span class="input-group-addon">
+                                <input type="checkbox" id="timeout_on" name="timeout_on" ng-init="row.checked = !row.timeout_on" ng-change="row.timeout_on = !row.checked" ng-model="row.checked">
+                            </span>
+                         </div>
                      </td>
                      <td>
                          <input name="count" id="count" type="text" class="form-control" value="{{row.count}}" ng-model="row.count" disabled />
@@ -54,9 +62,9 @@
                  </tbody>
              </table>
          </fieldset>
-         <!--<fieldset class="submit-entry">
+         <fieldset class="submit-entry">
              <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
-         </fieldset>-->
+         </fieldset>
      </form>
     <form name="form_rf433_config" id="form_rf433_config" class="form form-page" novalidate ng-if="_.size(apiDevices) > 0">
         <fieldset>
