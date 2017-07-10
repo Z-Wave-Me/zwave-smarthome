@@ -30,6 +30,11 @@ Set access
 Load latest version
 
 
+### ManagementFirmwareController.updateVendorDatabase() 
+
+update device database
+
+
 ### ManagementFirmwareController.updateDeviceDatabase() 
 
 update device database
