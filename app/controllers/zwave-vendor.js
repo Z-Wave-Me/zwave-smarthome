@@ -77,7 +77,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
             }
             // Success - products
             if (products.state === 'fulfilled') {
-                $scope.zwaveVendors.products.all = dataService.getZwaveDevices(products.value.data.zwave_devices)
+                $scope.zwaveVendors.products.all = dataService.getZwaveDevices(products.value.data.data.zwave_devices)
                     .where(productsWhere)
                     .value();
 

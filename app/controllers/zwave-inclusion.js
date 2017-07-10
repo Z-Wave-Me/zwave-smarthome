@@ -93,7 +93,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
 
             // Success - device by id
             if (deviceId.state === 'fulfilled') {
-                var device = dataService.getZwaveDevices([deviceId.value.data]).value();
+                var device = dataService.getZwaveDevices([deviceId.value.data.data]).value();
                 setDeviceId(device[0]);
 
             }
