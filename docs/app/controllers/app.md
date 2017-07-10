@@ -20,7 +20,6 @@
 ## AppBaseController
 Apps root controller
 
-**isHidden**:  , todo: Deprecated
 ### AppBaseController.loadTokens() 
 
 Load tokens

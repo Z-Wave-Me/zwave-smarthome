@@ -340,7 +340,7 @@ var config_data = {
         ],
         // Redirect to the url after logout
         'logout_redirect': {
-            'find.z-wave.me': 'https://find.zwave.me/zboxweb'
+            'find.z-wave.me': 'https://find.z-wave.me/zboxweb'
         },
         // List of the forbidden licence app types
         'license_forbidden': [
