@@ -1,6 +1,12 @@
 {
     "newtrans": "---",
     "advanced_apps": "Apps for Advanced",
+    "verify_device_pin": "Verify PIN code on the device",
+    "pin": "PIN",
+    "confirm": "Confirm",
+    "security": "Security",
+    "running_security": "Running security scan",
+    "s2_failed": "Authentication Failed. Device is included non-secure. You may want to repeat the process.",
     "---": "newtrans",
     "drag_drop":"Drag & Drop",
     "order_elements":"Custom",
@@ -699,7 +705,7 @@
     "lb_make_qrcode": "Make qrcode",
     "lb_clone": "Clone",
     "lb_selecet_device_typ": "Select device typ",
-    "lb_selecet_device_typ_info": "Select device typ to contiune.",
+    "lb_selecet_device_typ_info": "Select device typ to continue.",
     "lb_pulse_train": "Pulse train",
     "lb_button_remote_control": "Remote control button",
     "lb_count": "Received pulse trains count",
@@ -709,5 +715,10 @@
     "lb_timout_auto_off": "Timeout for auto off",
     "rf433_device": "RF433 Device",
     "rf433_not_active": "RF433 app is not activated. Please Install/Activate this App.",
+    "lb_teach_in_device": "Teach-In device",
+    "lb_teach_in_process": "Teach-In process",
+    "btn_teach_in_start": "Start Teach-In",
+    "btn_teach_in_stop": "Stop Teach-In",
+    "lb_ready_teach_in": "Ready to Teach-In",
     "room_main_sensors": "You can max. 3 sensors add to the room header (__cnt__/3)."
 }
