@@ -376,36 +376,40 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     $scope.verifyS2cc = function (nodeId) {
             dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
-                var securityS2 = $filter('hasNode')(ZWaveAPIData, 'devices.' + nodeId + '.instances.0.commandClasses.159');
-                if(securityS2){
-                    $scope.zwaveInclusion.s2.process = true;
-                    // Check for not finished iterviews - needed if we cancel S2 Error dialog
-                    /*for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-                        if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length < 1) {
-                            return;
-                        }
-                        angular.extend($scope.zwaveInclusion.automatedConfiguration.includedDevice, {commandClassesCnt: Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length});
-                        for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
-                            var cmdClass = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId];
-                            var id = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses.name;
-                            var iData = 'devices[' + nodeId + '].instances[' + iId + '].commandClasses[' + ccId + '].Interview()';
+                var device = $filter('hasNode')(ZWaveAPIData, 'devices.' + nodeId + '.data.nodeInfoFrame.value');
+                //var securityS2 = $filter('hasNode')(ZWaveAPIData, 'devices.' + nodeId + '.instances.0.commandClasses.159');
+                if(device && device.indexOf(159)){
+                    var maxcnt = 10;
+                    var cnt = 0;
+                    var refresh = function () {
+                        cnt++;
+                        dataFactory.loadZwaveApiData(true).then(function (response) {
 
-                            // Is interview done?
-                            if (cmdClass.data.interviewDone.value) {
-                                // Extending an interview counter
-                                angular.extend($scope.zwaveInclusion.automatedConfiguration.includedDevice,
-                                    {interviewDoneCnt: $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt + 1}
-                                );
-                            } else { // An interview is not done
-                                // Extending interviewNotDone
-                                $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone[id] = iData;
+                            var securityS2 = $filter('hasNode')(response, 'devices.' + nodeId + '.instances.0.commandClasses.159');
+                            console.log('CNT S2 CC: ' + cnt)
+                            console.log('S2 CC : ' +securityS2)
+                            if(securityS2){
+                                $interval.cancel($scope.interval.s2);
+                                checkS2cc(nodeId,securityS2);
                             }
-                        }
-                    }*/
-                    checkS2cc(nodeId,securityS2);
+                            if (cnt == maxcnt) {
+                                $interval.cancel($scope.interval.s2);
+                                if(securityS2){
+                                    checkS2cc(nodeId,securityS2);
+                                }else{
+                                    console.log('SecurityS2 NOT Found');
+                                    $scope.startConfiguration({nodeId: nodeId});
+                                }
+
+                            }
+
+                        }, function (error) {});
+                    };
+                    $scope.interval.s2 = $interval(refresh, 1000);
+
                 }else{
-                    console.log('SecurityS2 NOT Found');
-                    $scope.zwaveInclusion.s2.done = true;
+                    console.log('159 NOT in nodeInfoFrame.value');
+                    //$scope.zwaveInclusion.s2.done = true;
                     $scope.startConfiguration({nodeId: nodeId});
                 }
 
@@ -424,28 +428,42 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * @param {int} nodeId
      */
     function checkS2cc(nodeId,securityS2) {
-        console.log('securityS2: ',securityS2)
+
         // wait for SecurityS2.data.requestedKeys = True
-        console.log('securityS2.data.requestedKeys.value: ',securityS2.data.requestedKeys.value);
-        if(!securityS2.data.requestedKeys.value){
-            $scope.zwaveInclusion.s2.process = false;
-            $scope.zwaveInclusion.s2.done = true;
-            $scope.startConfiguration({nodeId: nodeId});
-            return;
-        }
-        // Always grant same keys as request:
-        var keysRequested = {
-            S0: $filter('hasNode')(securityS2, 'data.requestedKeys.S0.value') ||false,
-                S2Unauthenticated: $filter('hasNode')(securityS2, 'data.requestedKeys.S2Unauthenticated.value')||false,
-                S2Authenticated: $filter('hasNode')(securityS2, 'data.requestedKeys.S2Authenticated.value')||false,
-                S2Access: $filter('hasNode')(securityS2, 'data.requestedKeys.S2Access.value')||false
-        };
-        handleInclusionS2GrantKeys(keysRequested,nodeId);
-        // wait for SecurityS2.data.publicKey
+        console.log('wait for SecurityS2.data.requestedKeys = True')
         $timeout(function() {
-            console.log('wait for SecurityS2.data.publicKey 5s')
-            handleInclusionS2PublicKey(nodeId);
-        }, 5000);
+            dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+                var securityS2 = $filter('hasNode')(ZWaveAPIData, 'devices.' + nodeId + '.instances.0.commandClasses.159');
+                console.log('securityS2: ',securityS2);
+                console.log('securityS2.data.requestedKeys.value: ',securityS2.data.requestedKeys.value);
+                if(!securityS2.data.requestedKeys.value){
+                    /*$scope.zwaveInclusion.s2.process = false;
+                    $scope.zwaveInclusion.s2.done = true;*/
+                    $scope.startConfiguration({nodeId: nodeId});
+                    return;
+                }else{
+                    // Always grant same keys as request:
+                    var keysRequested = {
+                        S0: $filter('hasNode')(securityS2, 'data.requestedKeys.S0.value') ||false,
+                        S2Unauthenticated: true,//$filter('hasNode')(securityS2, 'data.requestedKeys.S2Unauthenticated.value')||false,
+                        S2Authenticated: $filter('hasNode')(securityS2, 'data.requestedKeys.S2Authenticated.value')||false,
+                        S2Access: $filter('hasNode')(securityS2, 'data.requestedKeys.S2Access.value')||false
+                    };
+                    handleInclusionS2GrantKeys(keysRequested,nodeId);
+                    // wait for SecurityS2.data.publicKey
+                    $timeout(function() {
+                        console.log('wait for SecurityS2.data.publicKey 5s')
+                        handleInclusionS2PublicKey(nodeId);
+                    }, 5000);
+
+                }
+
+            }, function (error) {});
+
+
+        }, 2000);
+
+
 
 
 
