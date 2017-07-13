@@ -25,7 +25,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
     $scope.inclusionInterval = null;
 
     $scope.device_typs = [];
-    $scope.checkAll = false;
     $scope.module = [];
     $scope.instance = {};
 
@@ -73,7 +72,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
     $scope.loadPulseTrain = function() {
 
         dataFactory.getApi('get_pulse_trains', false, true).then(function(response) {
-            console.log(response.data);
             var data = response.data
 
             var row = {
@@ -120,7 +118,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
             $scope.input.table[index].off = false;
             $scope.input.table[index].on = true;
         }
-        console.log($scope.input.table[index]);
     };
 
 
@@ -130,7 +127,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
         var promises = [
             dataFactory.getApi('instances', '/RF433', true),
             dataFactory.getApi('modules', '/RF433')
-            //dataFactory.getApi('locations')
         ];
 
         $q.allSettled(promises).then(function (response) {
@@ -164,23 +160,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
         });
     };
 
-    /**
-     * Check all
-     * @param {boolean} status
-     * @returns {undefined}
-     */
-    $scope.toggleAll = function (status) {
-        if (typeof status === 'boolean') {
-            $scope.checkAll = status;
-        } else {
-            $scope.checkAll = !$scope.checkAll;
-        }
-        for(var k in $scope.input.table) {
-            $scope.input.table[k].timeout_on = !$scope.checkAll;
-            $scope.input.table[k].checked = $scope.checkAll;
-
-        }
-    };
 
     /**
      * Update instance
@@ -188,13 +167,11 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
     $scope.updateInstance = function (input) {
 
         var new_id = input.params.device_list.length + 1;
-
         var device_data = {
             "deviceName": "RF433 Device " + new_id,
             "deviceTyp": $scope.input.device_typ,
             "pulseTrainTable": $scope.input.table
         };
-        device_data.pulseTrainTable.forEach(function(v){ delete v.checked });
         input.params.device_list.push(device_data);
 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -208,7 +185,7 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
                         var i = _.find(devices, function (dev) {
                             return dev.deviceName == device_data.deviceName;
                         });
-
+                        console.log(i);
                         if (typeof i !== 'undefined') {
                             var vDevId = i.vdevId
                             $location.path('/rf433/manage/' + vDevId);
@@ -320,7 +297,6 @@ myAppController.controller('RF433ManageDetailController', function($scope, $rout
     $scope.rooms = [];
     $scope.dev = [];
     $scope.modelRoom;
-    $scope.checkAll = false;
     $scope.instance = {};
     $scope.input = {
         id: "",
@@ -429,7 +405,6 @@ myAppController.controller('RF433ManageDetailController', function($scope, $rout
             $scope.input.table[index].off = false;
             $scope.input.table[index].on = true;
         }
-        console.log($scope.input.table[index]);
     };
 
 
@@ -441,9 +416,7 @@ myAppController.controller('RF433ManageDetailController', function($scope, $rout
     $scope.updateInstance = function(input) {
 
         var index = input.params.device_list.map(function(dev){return dev.vdevId}).indexOf($scope.input.id);
-        $scope.input.table.forEach(function(v){
-            delete v.checked;
-        });
+
         if(index > -1) {
             input.params.device_list[index].pulseTrainTable = $scope.input.table;
         }
@@ -465,23 +438,6 @@ myAppController.controller('RF433ManageDetailController', function($scope, $rout
                 $scope.loading = false;
             });
 
-    };
-
-    /**
-     * Check all
-     * @param {boolean} status
-     * @returns {undefined}
-     */
-    $scope.toggleAll = function (status) {
-        if (typeof status === 'boolean') {
-            $scope.checkAll = status;
-        } else {
-            $scope.checkAll = !$scope.checkAll;
-        }
-        for(var k in $scope.input.table) {
-            $scope.input.table[k].timeout_on = !$scope.checkAll;
-            $scope.input.table[k].checked = $scope.checkAll;
-        }
     };
 
         /// --- Private functions --- ///

@@ -68,11 +68,8 @@
                                     <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_on')}}</th>
                                     <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_off')}}</th>
                                     <th ng-show="input.device_typ == 'sensorDiscrete'">{{_t('lb_button_remote_control')}}</th>
-                                    <th ng-show="input.device_typ == 'sensorBinary'">
-                                        {{_t('lb_timout_auto_off')}}&nbsp;
-                                        <input type="checkbox" ng-click="toggleAll()" ng-model="checkAll">
-                                    </th>
-                                    <th style="width: 20%;">{{_t('lb_count')}}</th>
+                                    <th ng-show="input.device_typ == 'sensorBinary'">{{_t('lb_timout_auto_off')}}</th>
+                                    <th>{{_t('lb_count')}}</th>
                                     <th>{{_t('lb_action')}}</th>
                                 </tr>
                             </thead>
@@ -96,7 +93,7 @@
                                         <div class="input-group">
                                             <input name="timeout" id="timeout" type="text" class="form-control" value="{{row.timeout}}" ng-model="row.timeout" ng-disabled="!row.timeout_on" />
                                             <span class="input-group-addon">
-                                                <input type="checkbox" id="timeout_on" name="timeout_on" ng-init="row.checked = !row.timeout_on" ng-change="row.timeout_on = !row.checked" ng-model="row.checked">
+                                                <input type="checkbox" id="timeout_on" name="timeout_on" ng-model="row.timeout_on">
                                             </span>
                                         </div>
                                     </td>
