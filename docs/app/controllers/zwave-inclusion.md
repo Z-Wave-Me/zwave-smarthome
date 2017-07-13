@@ -109,11 +109,6 @@ Check S2 command class
 **nodeId**: `int`
 
 
-### ZwaveInclusionController.handleInclusionS2GrantKeys() 
-
-Handle inclusionS2GrantKeys
-
-
 ### ZwaveInclusionController.handleInclusionS2PublicKey() 
 
 Handle nclusionS2PublicKey
