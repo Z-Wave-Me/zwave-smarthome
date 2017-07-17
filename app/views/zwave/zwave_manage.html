@@ -11,8 +11,15 @@
                     <a href="" class="network-zwave-title"
                        ng-click="expandNavi('accZwaveManage_' + v.id, $event)" ng-if="_.size(v.elements) > 0">
                         <i class="fa" ng-class="naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
-                        <span class="label label-success" ng-if="v.security"><i class="fa fa-shield"></i> {{_t('secure')}}</span>
+
                     </a>
+                      <span class="label label-success" ng-if="v.securityType === 'security-1'">
+                          <i class="fa fa-shield"></i> {{_t('secure')}}
+                      </span>
+                      <span class="label label-success" ng-if="v.securityType === 'security-2'">
+                          <i class="fa fa-shield"></i> <i class="fa fa-shield"></i> S2 {{_t('secure')}}
+                      </span>
+
                    <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZwaveManage_' + v.id]">
                         <ul>
                             <li class="zwave-hidden-{{e.permanently_hidden}}"

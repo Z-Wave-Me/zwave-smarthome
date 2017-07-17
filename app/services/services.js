@@ -326,6 +326,23 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
+     * Check if device has a given command class
+     * @param {object} node
+     * @param {int} ccId
+     * @returns {boolean|object}
+     */
+    this.hasCommandClass = function(node,ccId) {
+        var hasCc = false;
+        angular.forEach(node.instances, function(instance, instanceId) {
+            if(instance.commandClasses[ccId]){
+                hasCc = instance.commandClasses[ccId];
+                return;
+            }
+        });
+        return hasCc;
+    };
+
+    /**
      * Assign an icon to the element
      * @param {object} element
      * @returns {string}
