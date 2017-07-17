@@ -88,7 +88,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             var securityType = 'security-0'
             var hasSecurityCc = dataService.hasCommandClass(node,152);
             //console.log(nodeId + ' hasSecurityCc: ', hasSecurityCc)
-            if($filter('hasNode')(hasSecurityCc,'data.interviewDone.value')){
+            if(hasSecurityCc){
                 //security = $filter('hasNode')(hasSecurityCc,'data.interviewDone.value');
                 securityType = 'security-1';
                 securityInterview = $filter('hasNode')(hasSecurityCc,'data.interviewDone.value');
