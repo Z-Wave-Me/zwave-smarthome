@@ -25,7 +25,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
     $scope.inclusionInterval = null;
 
     $scope.device_typs = [];
-
     $scope.module = [];
     $scope.instance = {};
 
@@ -73,7 +72,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
     $scope.loadPulseTrain = function() {
 
         dataFactory.getApi('get_pulse_trains', false, true).then(function(response) {
-            console.log(response.data);
             var data = response.data
 
             var row = {
@@ -83,6 +81,7 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
                 'off': false,
                 'btn': null,
                 'timeout': 30,
+                'timeout_on': true,
                 'count': 0
             };
 
@@ -119,7 +118,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
             $scope.input.table[index].off = false;
             $scope.input.table[index].on = true;
         }
-        console.log($scope.input.table[index]);
     };
 
 
@@ -129,7 +127,6 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
         var promises = [
             dataFactory.getApi('instances', '/RF433', true),
             dataFactory.getApi('modules', '/RF433')
-            //dataFactory.getApi('locations')
         ];
 
         $q.allSettled(promises).then(function (response) {
@@ -163,18 +160,18 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
         });
     };
 
+
     /**
      * Update instance
      */
     $scope.updateInstance = function (input) {
 
         var new_id = input.params.device_list.length + 1;
-
         var device_data = {
             "deviceName": "RF433 Device " + new_id,
             "deviceTyp": $scope.input.device_typ,
             "pulseTrainTable": $scope.input.table
-        }
+        };
         input.params.device_list.push(device_data);
 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
@@ -188,7 +185,7 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
                         var i = _.find(devices, function (dev) {
                             return dev.deviceName == device_data.deviceName;
                         });
-
+                        console.log(i);
                         if (typeof i !== 'undefined') {
                             var vDevId = i.vdevId
                             $location.path('/rf433/manage/' + vDevId);
@@ -294,7 +291,7 @@ myAppController.controller('RF433ManageController', function($scope, $location, 
  * The controller that handles actions on the RF433 device.
  * @class RF433ManageDetailController
  */
-myAppController.controller('RF433ManageDetailController', function($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache) {
+myAppController.controller('RF433ManageDetailController', function($scope, $routeParams, $filter, $q, $window, $timeout, dataFactory, dataService, myCache) {
     $scope.vDevId = $routeParams.vDevId;
     $scope.apiDevices = [];
     $scope.rooms = [];
@@ -408,28 +405,42 @@ myAppController.controller('RF433ManageDetailController', function($scope, $rout
             $scope.input.table[index].off = false;
             $scope.input.table[index].on = true;
         }
-        console.log($scope.input.table[index]);
     };
 
 
     /**
-     * Store device data
+     * update instacne
+     * @param {object} instance
+     * @returns {undefined}
      */
-    // $scope.store = function(input) {
-    //     if (input.name == '') {
-    //         return;
-    //     }
-    //     //$scope.input.name = input.name;
-    //     $scope.runCmd('devices["' + $scope.nodeId + '"].data.givenName=\'' + input.name + '\'');
-    //     if (input.profileId) {
-    //         var device = angular.fromJson(input.profileId);
-    //         $scope.runCmd('devices["' + $scope.nodeId + '"].data.funcId=' + device.funcId);
-    //         $scope.runCmd('devices["' + $scope.nodeId + '"].data.typeId=' + device.typeId);
-    //         $scope.input.profileId = device.rorg + '_' + device.funcId + '_' + device.typeId;
-    //     }
-    // };
+    $scope.updateInstance = function(input) {
 
-    /// --- Private functions --- ///
+        var index = input.params.device_list.map(function(dev){return dev.vdevId}).indexOf($scope.input.id);
+
+        if(index > -1) {
+            input.params.device_list[index].pulseTrainTable = $scope.input.table;
+        }
+
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            console.log(input);
+            console.log($scope.input);
+
+            dataFactory.putApi('instances', input.id, input).then(function (response) {
+                $timeout(function() {
+                    $scope.loading = false;
+                    dataService.showNotifier({message: $scope._t('success_updated')});
+                    $window.location.reload();
+                }, 10000);
+            }, function (error) {
+
+                alertify.alertError($scope._t('error_update_data'));
+                alertify.dismissAll();
+                $scope.loading = false;
+            });
+
+    };
+
+        /// --- Private functions --- ///
     /**
      * Set devices
      */

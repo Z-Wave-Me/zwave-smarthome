@@ -62,7 +62,7 @@
       .rating-group {
         //margin: $spacing 0 0 0;
         .widget-rating {
-          color: lighten($app-body-color, 10%);
+          //color: lighten($app-body-color, 10%);
           &.israted {
             color: lighten(#f0ad4e, 20%);
           }

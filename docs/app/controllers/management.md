@@ -56,13 +56,5 @@ Show or hide licencese block
 **Returns**: `undefined`
 
 
-## ManagementPostfixController
-The controller that renders postfix data.
-
-
-## ManagementInfoController
-The controller that renders info data.
-
-
 
 * * *

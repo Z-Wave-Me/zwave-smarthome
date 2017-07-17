@@ -269,12 +269,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                     singleton: item.singleton,
                     title: item.title
                 };
-                /**
-                 * todo: Deprecated
-                 */
-                    //$scope.dataHolder.modules.ids[item.id] = {version: item.version};
-                    //$scope.dataHolder.modules.singleton[item.id] = {singelton: item.singleton};
-                    //$scope.dataHolder.modules.imgs[item.id] = item.icon;
+
                 var isHidden = false;
                 var items = [];
                 if ($scope.getHiddenApps().indexOf(item.moduleName) > -1) {

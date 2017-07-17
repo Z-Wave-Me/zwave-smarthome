@@ -9,7 +9,7 @@
         <div class="vendor-entry clickable"
              ng-click="setFilter({brandid: v.Name})"
              ng-repeat="v in zwaveVendors.all| orderBy:'Name' track by $index"
-             ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1">
+             ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1">
             <a class="vendor-list" title="{{v.Name}}">
                 <p class="vendor-image" ng-if="v.Image_Base64">
                     <img ng-src="data:image/png;base64,{{v.Image_Base64}}" alt="{{v.Name|cutText:true:20}}" />

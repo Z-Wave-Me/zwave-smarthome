@@ -50,16 +50,34 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     /**
      * update device database
      */
+    $scope.updateVendorDatabase = function() {
+        dataFactory.getApi('update_zwave_vendors').then(function(response) {
+            $scope.loading = false;
+            res = response.data;
+            if(res && res.code === 200) {
+                dataService.showNotifier({message: $scope._t('vendors_success_updated')});
+            } else {
+                alertify.alertError($scope._t('vendors_error_load_data')); // error update vendor database
+            }
+        }, function(error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('vendors_error_load_data')); // error update vendor database
+        });
+    };
+
+    /**
+     * update device database
+     */
     $scope.updateDeviceDatabase = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var success = [];
         var failed = [];
         var count = 0;
         dataFactory.getApi('update_device_database').then(function(response) {
             $scope.loading = false;
-            if(response.data !== "" && !_.isEmpty(response.data)) {
-                count = response.data.length;
-                _.each(response.data, function(lang) {
+            res = response.data.data;
+            if(res !== "" && !_.isEmpty(res)) {
+                count = res.length;
+                _.each(res, function(lang) {
                     if(lang[Object.keys(lang)[0]]) {
                         success.push(Object.keys(lang)[0]);
                     } else {
@@ -69,7 +87,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
 
                 if(failed.length == 0) {
                     // update device database successfull
-                    dataService.showNotifier({message: $scope._t('success_updated')});
+                    dataService.showNotifier({message: $scope._t('devices_success_updated')});
                 } else {
                     // check if all failed
                     if(failed.length !== 0 && failed.length === count && success.length === 0) {
@@ -84,13 +102,21 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
                     }
                 }
             } else {
-                alertify.alertError($scope._t('error_load_data')); // error update device database
+                alertify.alertError($scope._t('update_device_database_failed')); // error update device database
             }
         }, function(error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data')); // error update device database
-            alertify.dismissAll();
+            alertify.alertError($scope._t('update_device_database_failed')); // error update device database
         });
+    };
+
+    $scope.updateDatabases = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+
+        $scope.updateVendorDatabase();
+        $scope.updateDeviceDatabase();
+
+        alertify.dismissAll();
     };
 });
 
