@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI S2',
         // Application version
-        'app_version': '1.8.0-RC-5',
+        'app_version': '1.8.0-RC-7',
         // Application (DIST) built date
-        'app_built': '17-07-2017 11:53:08',
+        'app_built': '17-07-2017 14:15:48',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -120,9 +120,10 @@ var config_data = {
             'customicon': 'ZAutomation/api/v1/devices',
             'icons_upload': 'ZAutomation/api/v1/icons/upload',
             'cloudbackup': 'CloudBackupAPI/Backup',
-            'zwave_devices': 'ZWaveAPI/ZWaveDeviceInfoGet',
-            'zwave_vendors': 'http://manuals-backend.z-wave.info/export/ui_vendors.json',
-            'update_device_database': 'ZWaveAPI/ZWaveDeviceInfoUpdate',
+            'zwave_devices': 'ZAutomation/api/v1/system/zwave/deviceInfoGet',
+            'zwave_vendors': 'ZAutomation/api/v1/system/zwave/vendorsInfoGet',
+            'update_zwave_vendors': 'ZAutomation/api/v1/system/zwave/vendorsInfoUpdate',
+            'update_device_database': 'ZAutomation/api/v1/system/zwave/deviceInfoUpdate',
             'app_built_info': 'app/info.json',
             'configget_url': 'ZWaveAPI/ExpertConfigGet',
             'configupdate_url': 'ZWaveAPI/ExpertConfigUpdate',
@@ -339,7 +340,7 @@ var config_data = {
         ],
         // Redirect to the url after logout
         'logout_redirect': {
-            'find.z-wave.me': 'https://find.zwave.me/zboxweb'
+            'find.z-wave.me': 'https://find.z-wave.me/zboxweb'
         },
         // List of the forbidden licence app types
         'license_forbidden': [
