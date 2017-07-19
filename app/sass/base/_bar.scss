@@ -84,6 +84,13 @@ $bar-img-w: 64px;
         .sensor-level {
           font-weight: bold;
           font-size: 130%;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        .sensor-scale {
+          display: inline-block;
+          vertical-align: middle;
         }
       }
 
