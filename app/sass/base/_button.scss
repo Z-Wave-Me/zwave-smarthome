@@ -93,6 +93,7 @@
   text-align: left;
   font-size: 100%;
   margin: 0 0 $spacing 0;
+
   // Media queries
   @include mediaQueries(min-small) {
     display: inline-block;
@@ -110,6 +111,27 @@
       position: static;
       margin: 0 0 0 $spacing;
       font-size: 120%;
+    }
+  }
+  &.btn-group{
+    @include mediaQueries(max-medium) {
+      display: table !important;
+      width:100%;
+      .btn{
+        position: static;
+        float: none;
+        display: table-cell;
+        //width: 50%;
+        .fa{
+          position: static;
+        }
+      }
+    }
+
+  }
+  .btn-addon{
+    .fa {
+      margin: 0;
     }
   }
 }
