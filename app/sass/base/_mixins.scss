@@ -149,6 +149,12 @@
       @content;
     }
   }
+  //  Small Devices, Tablets 768pxx
+  @if $media == max-small {
+    @media only screen and (max-width: $break-small - 1) {
+      @content;
+    }
+  }
   // Medium Devices, Desktops 992px
   @if $media == max-medium {
     @media only screen and (max-width: $break-medium - 1) {

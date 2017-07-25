@@ -9,6 +9,12 @@ body {
   background-color: #F6F6F6;
 
 }
+.device-available-block{
+  &.assigned{
+    background-color: #e7e7e7;
+    border: 0;
+  }
+}
 /* Main navigation
 -------------------------------------------------- */
 #main_navigation_wrap{
