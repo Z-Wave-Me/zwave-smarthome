@@ -84,6 +84,21 @@ The controller that handles SwitchRGBW element.
 Show RGB modal window
 
 
+### ElementSwitchRGBWController.sliderOnHandleDown() 
+
+Calls function when slider handle is grabbed
+
+
+### ElementSwitchRGBWController.sliderOnHandleUpRGB() 
+
+Calls function when slider handle is released
+
+
+### ElementSwitchRGBWController.sliderOnHandleUp() 
+
+Calls function when slider handle is released
+
+
 ### ElementSwitchRGBWController.loadDeviceId() 
 
 Load single device

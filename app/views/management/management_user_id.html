@@ -72,7 +72,7 @@
             <fieldset ng-if="input.role !== 1">
                 <h3>{{_t('lb_allow_rooms')}}</h3>
                 <div>
-                     <div class="device-available-block">
+                     <div class="device-available-block assigned">
                         <a href="" class="btn btn-default btn-tag"
                            ng-repeat="d in rooms" 
                            ng-if="input.rooms.indexOf(d.id) > -1"

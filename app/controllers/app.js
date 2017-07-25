@@ -135,8 +135,6 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
     $scope.loadOnlineModules = function (tokens) {
         dataFactory.getOnlineModules({token: _.values(tokens)}).then(function (response) {
             $scope.dataHolder.onlineModules.alert = false;
-            /*$scope.dataHolder.onlineModules.connect.status = true;
-             $scope.dataHolder.onlineModules.connect.icon = 'fa-globe';*/
             $scope.dataHolder.onlineModules.connect = {
                 status: true,
                 icon: 'fa-globe'
@@ -170,7 +168,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         var promises = [
             dataFactory.getApi('modules_categories'),
             dataFactory.getApi('modules'),
-            dataFactory.getApi('instances')
+            dataFactory.getApi('instances',null,true)
         ];
 
         $q.allSettled(promises).then(function (response) {

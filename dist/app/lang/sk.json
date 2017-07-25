@@ -367,7 +367,7 @@
     "add_device": "Pridať zariadenie?",
     "redirect_to_expert": "Budete presmerovaný do ExpertUI",
     "configuring_device": "Konfigurácia zariadenia, prosím čakajte...",
-    "welcome_1": "Vítajte vo Vašom Smart Dome www.smarterhome.sk",
+    "welcome_1": "Vítajte vo Vašom Smart Dome",
     "welcome_2": "Môžte sa prihlásiť s prihlasovacím menom: \"admin\" a heslom: \"admin\"",
     "welcome_3": "Prosím nezabudnite zmeniť vaše heslo v menu \"Mojich nastaveniach\".",
     "lb_zwave_autodetect": "Autodetekcia nového Z-Wave Zariadenia",

@@ -63,6 +63,7 @@ app/directives
 ---
 name | overview
 :-- | :--
+[app\directives\angular-slider.js](app/directives/angular-slider.md) | 
 [app\directives\dir-pagination.js](app/directives/dir-pagination.md) | _AngularJS module for paginating (almost) anything._
 [app\directives\directives-expert.js](app/directives/directives-expert.md) | _Angular directives that are used in device hardware configuration view._
 [app\directives\directives.js](app/directives/directives.md) | _Common Angular directives that are used within the views._

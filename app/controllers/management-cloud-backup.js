@@ -94,6 +94,11 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
      */
     $scope.downLoadBackup = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+
+        var old = cfg.pending_remote_limit;
+        var timeout  = 600000; // max 10 min
+        cfg.pending_remote_limit = timeout;
+
         dataFactory.getRemoteData(cfg.server_url + cfg.api.backup).then(function(response) {
             $scope.loading = false;
             var headers = response.headers(),
@@ -107,10 +112,12 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
             a.target = '_blank';
             a.download = matches[2];
             document.body.appendChild(a);
+            cfg.pending_remote_limit = old;
             a.click();
         }, function(error) {
             alertify.alertError($scope._t('error_backup'));
             $scope.loading = false;
+            cfg.pending_remote_limit = old;
         });
     };
 
