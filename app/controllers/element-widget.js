@@ -305,13 +305,30 @@ myAppController.controller('ElementThermostatController', function ($scope) {
  * The controller that handles SwitchRGBW element.
  * @class ElementSwitchRGBWController
  */
-myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory) {
+myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory, $interval) {
     $scope.widgetSwitchRGBW = {
         find: {},
+        all: [],
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false,
         previewColor: 'rgb(255, 255, 255)',
-        selectedColor: 'rgb(255, 255, 255)'
+        selectedColor: 'rgb(255, 255, 255)',
+        colorHex: '',
+        minMax: {
+            max: 99,
+            min: 0,
+            step: 1
+        },
+        color: {
+            r: 'text-danger',
+            g: 'text-success',
+            b: 'text-info'
+        },
+        sliderInterval: null
+    };
+
+    $scope.knobopt = {
+        width: 160
     };
 
     /**
@@ -328,7 +345,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         // drawing active image
         var image = new Image();
         image.onload = function () {
-            ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
+            ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height); // draw the image on the canvas
         };
         image.src = 'app/img/colorwheel.png';
 
@@ -347,10 +364,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
                 var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
                 var pixel = imageData.data;
 
-                // update preview color
-                var pixelColor = "rgb(" + pixel[0] + ", " + pixel[1] + ", " + pixel[2] + ")";
-                pixelColor = (pixelColor == 'rgb(0, 0, 0)' ? $scope.widgetSwitchRGBW.selectedColor : pixelColor);
-                $scope.widgetSwitchRGBW.previewColor = pixelColor;
+                updatePreviewColor(pixel[0], pixel[1], pixel[2]);
 
                 // update controls
                 $('#rVal').val('R: ' + pixel[0]);
@@ -391,6 +405,42 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         });
     };
 
+    $scope.colorHexChange = function() {
+        var colorHex = $scope.widgetSwitchRGBW.colorHex;
+        var rgb = hexToRgb(colorHex);
+        $scope.widgetSwitchRGBW.find.metrics.color = rgb;
+    };
+
+    /**
+     * Calls function when slider handle is grabbed
+     */
+    $scope.sliderOnHandleDown = function(input) {
+        sliderInterval = $interval(function() {
+            updatePreviewColor(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
+        }, 500);
+    };
+
+
+    /**
+     * Calls function when slider handle is released
+     */
+    $scope.sliderOnHandleUpRGB = function(input) {
+        $scope.setRGBColor(input);
+        $interval.cancel($scope.widgetSwitchRGBW.sliderInterval);
+    };
+
+    /**
+     * Calls function when slider handle is released
+     */
+    $scope.sliderOnHandleUp = function(input) {
+        var count;
+        var val = parseFloat(input.metrics.level);
+
+        var cmd = input.id + '/command/exact?level=' + val;
+        input.metrics.level = count;
+
+        $scope.runCmd(cmd);
+    };
 
     /**
      * Load single device
@@ -405,11 +455,74 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
             };
             return;
         }
-        $scope.widgetSwitchRGBW.find = device[0];
-        $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
+        angular.extend($scope.widgetSwitchRGBW.find, device[0]);
+
+        var str = $scope.widgetSwitchRGBW.find.id;
+        var index = str.indexOf('-');
+        var res = str.substr(0, index);
+
+        var devs = _.filter($scope.dataHolder.devices.collection, function(dev) {
+           if(dev.id.indexOf(res) > -1) {
+               return dev;
+           }
+        });
+
+        $scope.widgetSwitchRGBW.all = devs;
+        var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
+            return dev.deviceType == 'switchRGBW';
+        });
+
+        var color = find.metrics.color;
+        $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+        $scope.loadRgbWheel(find);
         return;
     };
     $scope.loadDeviceId();
+
+    $scope.setRGBColor = function (input) {
+        var cmd = input.id + '/command/exact?red=' + input.metrics.color.r + '&green=' + input.metrics.color.g + '&blue=' + input.metrics.color.b + '',
+            rgbColors = 'rgb(' + input.metrics.color.r + ',' + input.metrics.color.g + ',' + input.metrics.color.b + ')',
+            rgbColorsObj = input.metrics.color;
+
+        $scope.widgetSwitchRGBW.process = true;
+        dataFactory.runApiCmd(cmd).then(function (response) {
+            var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
+            //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
+            angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
+            angular.extend($scope.widgetSwitchRGBW.find.metrics.color, rgbColorsObj);
+            $scope.widgetSwitchRGBW.process = false;
+            $scope.widgetSwitchRGBW.selectedColor = rgbColors;
+        }, function (error) {
+            $scope.widgetSwitchRGBW.process = false;
+            $scope.widgetSwitchRGBW.alert = {
+                message: $scope._t('error_update_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
+        });
+    }
+
+    /// --- Private functions --- ///
+
+    function updatePreviewColor(r,g,b) {
+        // update preview color
+        var pixelColor = "rgb(" + r + ", " + g + ", " + b + ")";
+        pixelColor = (pixelColor == 'rgb(0, 0, 0)' ? $scope.widgetSwitchRGBW.selectedColor : pixelColor);
+        $scope.widgetSwitchRGBW.previewColor = pixelColor;
+    }
+
+    function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+
+    function rgbToHex(r, g, b) {
+        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    }
 
 });
 
