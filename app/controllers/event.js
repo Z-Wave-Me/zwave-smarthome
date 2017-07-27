@@ -247,6 +247,24 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             }
         }
     }
+
+    /**
+     * prepare notification data
+     */
+    function prepareNotification(v) {
+        v.icon = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
+        if (v.message['l'] !== null && v.message['l'] !== undefined) {
+            v.messageView = '<span><span>'+v.message.dev+' '+ $scope._t("lb_is") + ' ' +
+                '<strong>' + v.message.l +'</strong></span>';
+        } else {
+            v.messageView = '<span>'+typeof v.message == 'string'? v.message : JSON.stringify(v.message)+'</span>';
+        }
+
+        v.lvl = $filter('hasNode')(v.message,'l')? $filter('hasNode')(v.message,'l') : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
+
+        return v;
+    };
+
     /**
      * Set events data
      */
@@ -254,20 +272,6 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.collection = [];
         $scope.iconSource = '';
         $scope.eventLevels = dataService.getEventLevel(data, [{'key': null, 'val': 'all'}]);
-
-        function prepareNotification(v) {
-            v.icon = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
-            if (v.message['l'] !== null && v.message['l'] !== undefined) {
-                v.messageView = '<span><span>'+v.message.dev+' '+ $scope._t("lb_is") + ' ' +
-                            '<strong>' + v.message.l +'</strong></span>';
-            } else {
-                v.messageView = '<span>'+typeof v.message == 'string'? v.message : JSON.stringify(v.message)+'</span>';
-            }
-
-            v.lvl = $filter('hasNode')(v.message,'l')? $filter('hasNode')(v.message,'l') : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
-
-            return v;
-        };
 
         //var filter = null;
         if (angular.isDefined($routeParams.param) && angular.isDefined($routeParams.val)) {
@@ -315,20 +319,22 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             alertify.alertWarning($scope._t('no_events'));
             return;
         }
-    }
-    ;
+    };
+
     /**
      * Set data
      */
     function setEvent(obj) {
         var findIndex = _.findIndex($scope.collection, {timestamp: obj.timestamp});
+        _obj = prepareNotification(obj);
         if(findIndex > -1){
-            angular.extend($scope.collection[findIndex],obj);
+            angular.extend($scope.collection[findIndex],_obj);
 
         }else{
-            $scope.collection.push(obj);
+            $scope.collection.push(_obj);
         }
     }
+
     /**
      * Update profile
      */
