@@ -312,23 +312,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false,
         previewColor: 'rgb(255, 255, 255)',
-        selectedColor: 'rgb(255, 255, 255)',
-        colorHex: '',
-        minMax: {
-            max: 99,
-            min: 0,
-            step: 1
-        },
-        color: {
-            r: 'text-danger',
-            g: 'text-success',
-            b: 'text-info'
-        },
-        sliderInterval: null
-    };
-
-    $scope.knobopt = {
-        width: 160
+        selectedColor: 'rgb(255, 255, 255)'
     };
 
     /**
@@ -457,7 +441,8 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         }
         angular.extend($scope.widgetSwitchRGBW.find, device[0]);
 
-        var str = $scope.widgetSwitchRGBW.find.id;
+        // TODO finish refactoring
+        /*var str = $scope.widgetSwitchRGBW.find.id;
         var index = str.indexOf('-');
         var res = str.substr(0, index);
 
@@ -474,7 +459,8 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 
         var color = find.metrics.color;
         $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-        $scope.loadRgbWheel(find);
+        $scope.loadRgbWheel(find);*/
+        $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
         return;
     };
     $scope.loadDeviceId();

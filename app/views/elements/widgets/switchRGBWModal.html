@@ -7,8 +7,25 @@
         </div>
         <div class="appmodal-body text-center">
             <bb-alert alert="widgetSwitchRGBW.alert"></bb-alert>
-            <!--<pre>{{widgetSwitchRGBW.all | json }}</pre>-->
-            <div class="row">
+            <div class="row wheel-colorpicker">
+                <div class="col-rgb col-sm-6">
+                    <canvas id="wheel_picker" var="4" width="300" height="300" ng-mousemove="setColor($element)"></canvas>
+                    <input type="hidden" id="rgbVal" />
+                </div>
+                <div class="col-rgb col-sm-6">
+                    <div id="wheel_picker_selected" style="background-color: {{widgetSwitchRGBW.selectedColor}};">
+                        <div id="wheel_picker_selected_spin" ng-if="widgetSwitchRGBW.process">
+                            <i class="fa fa-spinner fa-spin"></i> {{_t('updating')}}
+                        </div>
+                    </div>
+                    <div id="wheel_picker_preview" style="background-color: {{widgetSwitchRGBW.previewColor}};">
+                        &nbsp;
+                    </div>
+                    <p>{{widgetSwitchRGBW.previewColor}}</p>
+                </div>
+            </div>
+
+            <!--<div class="row">
                 <div class="col-sm-6">
                     <div class="row wheel-colorpicker">
                         <div class="col-rgb col-sm-6">
@@ -130,7 +147,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
+
+
+

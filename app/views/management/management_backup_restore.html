@@ -3,6 +3,62 @@
     <i class="fa fa-download"></i> <span ng-bind="_t('backup_restore')"></span>
     <i class="fa accordion-arrow" ng-class="expand.backup_restore ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
+<!-- Local Backup-->
+<div class="accordion-entry-ctrl" ng-if="expand.backup_restore" ng-controller="ManagementCloudBackupController">
+
+    <bb-loader></bb-loader>
+    <div class="form form-page">
+        <fieldset>
+            <h3>{{_t('local_backup')}}</h3>
+            <p ng-bind-html="_t('backup_info', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></p>
+        </fieldset>
+        <div class="fieldset submit-entry">
+            <button class="btn btn-submit" type="button" title="{{_t('nm_backup_download')}}"
+                    ng-click="downLoadBackup()">
+                <i class="fa fa-download"></i>
+                <span class="btn-name">{{_t('download_backup_computer')}}</span>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Restore -->
+<div class="accordion-entry-ctrl" ng-if="expand.backup_restore" ng-controller="ManagementRestoreController">
+    <bb-loader></bb-loader>
+    <div class="form form-page">
+        <div class="fieldset">
+            <h3>{{_t('restore')}}</h3>
+            <p ng-bind-html="_t('restore_info') | toTrusted">
+                {{_t('restore_info')}}
+                <!-- CloudBackup frontend -->
+            <div class="form-group form-inline">
+                <a class="btn btn-default" href="https://service.z-wave.me/cloudbackup/" target="_blank" title="{{_t('online_cloudbackup')}}">
+                    <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('online_cloudbackup')}}</span>
+                </a>
+            </div>
+            </p>
+            <bb-alert alert="managementRestore.alert"></bb-alert>
+            <div ng-hide="managementRestore.alert.message">
+                <div class="alert alert-warning">
+                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="managementRestore.confirm = !managementRestore.confirm" /> <span ng-bind-html="_t('are_you_sure_restore', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></span>
+                </div>
+                <div class="form-group" ng-show="managementRestore.confirm">
+                    <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/> -->
+                    <input type="file" class="form-control_" file-model="myFile" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-submit"  title="{{_t('nm_restore_pick_up')}}"
+                    ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message">
+                <i class="fa fa-upload"></i> <span class="btn-name">{{_t('nm_restore_pick_up')}}</span>
+            </button>
+
+        </div>
+    </div>
+</div>
+<!-- Cloud Backup-->
 <div class="accordion-entry-ctrl" ng-if="expand.backup_restore" ng-controller="ManagementCloudBackupController">
 
     <bb-loader></bb-loader>
@@ -108,51 +164,4 @@
             </fieldset>
         </div>
     </form>
-    <div class="form form-page">
-        <fieldset>
-            <h3>{{_t('local_backup')}}</h3>
-            <p ng-bind-html="_t('backup_info', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></p>
-            <button class="btn btn-default" type="button" title="{{_t('nm_backup_download')}}"
-                    ng-click="downLoadBackup()">
-                <i class="fa fa-download"></i>
-                <span class="btn-name">{{_t('download_backup_computer')}}</span>
-            </button>
-        </fieldset>
-    </div>
-</div>
-<div class="accordion-entry-ctrl" ng-if="expand.backup_restore" ng-controller="ManagementRestoreController">
-    <bb-loader></bb-loader>
-    <div class="form form-page">
-        <div class="fieldset">
-            <h3>{{_t('restore')}}</h3>
-            <p ng-bind-html="_t('restore_info') | toTrusted">
-                {{_t('restore_info')}}
-                <!-- CloudBackup frontend -->
-                <div class="form-group form-inline">
-                    <a class="btn btn-default" href="https://service.z-wave.me/cloudbackup/" target="_blank" title="{{_t('online_cloudbackup')}}">
-                        <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('online_cloudbackup')}}</span>
-                    </a>
-                </div>
-            </p>
-            <bb-alert alert="managementRestore.alert"></bb-alert>
-            <div ng-hide="managementRestore.alert.message">
-                <div class="alert alert-warning">
-                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="managementRestore.confirm = !managementRestore.confirm" /> <span ng-bind-html="_t('are_you_sure_restore', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></span>
-                </div>
-                <div class="form-group" ng-show="managementRestore.confirm">
-                    <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/> -->
-                    <input type="file" class="form-control_" file-model="myFile" />
-                </div>
-            </div>
-
-        </div>
-
-        <div class="fieldset submit-entry">
-            <button type="button" class="btn btn-submit"  title="{{_t('nm_restore_pick_up')}}"
-                    ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message">
-                <i class="fa fa-upload"></i> <span class="btn-name">{{_t('nm_restore_pick_up')}}</span>
-            </button>
-
-        </div>
-    </div>
 </div>
