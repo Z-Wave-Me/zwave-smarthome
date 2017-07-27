@@ -252,7 +252,10 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
             if (v != device.id) {
                 $scope.devicesAssigned.push(v);
             } else {
-                $scope.input.main_sensors.splice($scope.input.main_sensors.indexOf(device.id) , 1);
+                var i = $scope.input.main_sensors.indexOf(device.id);
+                if(i > -1) {
+                    $scope.input.main_sensors.splice(i, 1);
+                }
                 device.location = 0;
                 $scope.devicesToRemove.push(v);
             }
@@ -271,7 +274,9 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         if($event.target.checked) {
             $scope.input.main_sensors.push(device.id);
         } else {
-            $scope.input.main_sensors.splice($scope.input.main_sensors.indexOf(device.id) , 1);
+            var i = $scope.input.main_sensors.indexOf(device.id);
+            console.log(i);
+            $scope.input.main_sensors.splice(i , 1);
         }
         return;
     };
