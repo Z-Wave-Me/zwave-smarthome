@@ -50,6 +50,11 @@ Hide an event by the source
 Set devices
 
 
+### EventController.prepareNotification() 
+
+prepare notification data
+
+
 ### EventController.setEvents() 
 
 Set events data
