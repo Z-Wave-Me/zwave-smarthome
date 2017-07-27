@@ -66,6 +66,8 @@
             </fieldset>
             
              <fieldset>
+                 <pre>{{input.main_sensors | json}}</pre>
+                 <!--<pre>{{devices | json}}</pre>-->
                 <h3><span ng-bind="_t('lb_devices_in_room')"></span></h3>
                  <bb-help-text trans="_t('room_main_sensors',{'__cnt__': input.main_sensors.length})"></bb-help-text>
                  <div class="device-available-block assigned">
