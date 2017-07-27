@@ -11,7 +11,7 @@
                 <canvas tc-chartjs-line chart-data="widgetHistory.chartData" chart-options="widgetHistory.chartOptions" width="340" height="200"></canvas>
             </div>
         </div>
-        <div class="appmodal-footer">
+        <div class="appmodal-footer" ng-if="elementAccess(cfg.role_access.admin)">
             <button type="button" class="btn btn-default" ng-click="deleteHistory(widgetHistory.find,_t('history_delete_confirm'),$event)">
                 <i class="fa fa-times text-danger"></i>
                      <span class="btn-name">{{_t('delete_history')}}</span>
