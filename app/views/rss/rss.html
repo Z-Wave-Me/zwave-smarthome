@@ -15,7 +15,7 @@
                 <span class="text-supp event-date">{{v.pubDate}}</span>
                     <h2 class="rss-title">{{v.title}}</h2>
                 <div class="rss-description">
-                    {{v.description | cutText:true:128}}
+                    {{v.description | stripTags| cutText:true:256}}
                 </div>
             </div>
             <!-- Control -->
@@ -38,11 +38,11 @@
                     <span class="text-supp event-date">{{v.pubDate}}</span>
                     <h2>{{rss.find.title}}</h2>
                 </div>
-                <p class="rss-description">
-                    {{rss.find.description}}
+                <p class="rss-description" ng-if="rss.find.description">
+                    <span ng-bind-html="rss.find.description | toTrusted"></span>
                 </p>
-                <div class="rss-body">
-                    {{rss.find.content}}
+                <div class="rss-body" ng-if="rss.find.content">
+                    <span ng-bind-html="rss.find.content | toTrusted"></span>
                 </div>
             </div>
             <div class="appmodal-footer">
