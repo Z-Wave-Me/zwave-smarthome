@@ -8,7 +8,7 @@
  * @class AppInstanceController
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
-    $scope.dataHolder.instances.filter = ($cookies.filterAppsInstances ? angular.fromJson($cookies.filterAppsInstances) : {});
+    //$scope.dataHolder.instances.filter = ($cookies.filterAppsInstances ? angular.fromJson($cookies.filterAppsInstances) : {});
 
     /**
      * Expand instances
@@ -27,9 +27,9 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
         $scope.dataHolder.instances.autocomplete.results = dataService.autocomplete($scope.dataHolder.instances.all, $scope.dataHolder.instances.autocomplete);
         // Expand/Collapse the list
         if(!_.isEmpty($scope.dataHolder.instances.autocomplete.results)){
-            $scope.expandAutocomplete('searchInstances',event);
+            $scope.expandAutocomplete('searchInstances');
         }else{
-            $scope.expandAutocomplete('searchInstances',event,false);
+            $scope.expandAutocomplete();
         }
         // Reset filter q if is input empty
         if ($scope.dataHolder.instances.filter.q && $scope.dataHolder.instances.autocomplete.term.length < 1) {
@@ -43,7 +43,7 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
     $scope.setFilter = function (filter) {
         $scope.dataHolder.instances.autocomplete.results = [];
         $scope.dataHolder.instances.noSearch = false;
-        $scope.expandAutocomplete('searchInstances',event,false);
+        $scope.expandAutocomplete();
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
 

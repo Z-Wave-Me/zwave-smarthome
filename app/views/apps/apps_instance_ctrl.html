@@ -30,7 +30,7 @@
         </span>
 
         <!--<div class="app-dropdown autocomplete" ng-if="dataHolder.instances.autocomplete.results.length">-->
-        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchInstances">
+        <div class="app-dropdown autocomplete" ng-if="autocompleteExpanded.searchInstances">
             <ul>
                 <li class="dropdown-entry" title="{{v.title}}"
                     ng-repeat="v in dataHolder.instances.autocomplete.results | orderBy:'toString()' track by $index">
