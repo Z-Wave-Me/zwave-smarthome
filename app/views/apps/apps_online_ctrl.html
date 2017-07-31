@@ -31,7 +31,7 @@
         </span>
 
        <!-- <div class="app-dropdown autocomplete" ng-if="dataHolder.onlineModules.autocomplete.results.length">-->
-        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchOnlineApps">
+        <div class="app-dropdown autocomplete" ng-if="autocompleteExpanded.searchOnlineApps">
             <ul>
                 <li class="dropdown-entry" title="{{v.title}}"
                     ng-repeat="v in dataHolder.onlineModules.autocomplete.results | orderBy:'toString()' track by $index">
