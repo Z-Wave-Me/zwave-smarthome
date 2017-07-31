@@ -18,9 +18,9 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
         $scope.dataHolder.modules.autocomplete.results = dataService.autocomplete($scope.dataHolder.modules.all, $scope.dataHolder.modules.autocomplete);
         // Expand/Collapse the list
         if(!_.isEmpty($scope.dataHolder.modules.autocomplete.results)){
-            $scope.expandAutocomplete('searchLocalApps',event);
+            $scope.expandAutocomplete('searchLocalApps');
         }else{
-            $scope.expandAutocomplete('searchLocalApps',event,false);
+            $scope.expandAutocomplete();
         }
 
         // Reset filter q if is input empty
@@ -43,7 +43,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
         // Reset data
         $scope.dataHolder.modules.autocomplete.results = [];
         $scope.dataHolder.modules.noSearch = false;
-        $scope.expandAutocomplete('searchLocalApps',event,false);
+        $scope.expandAutocomplete();
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
         if (!filter || empty) {// Remove filter
