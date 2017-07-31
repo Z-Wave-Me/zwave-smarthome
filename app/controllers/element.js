@@ -156,9 +156,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete);
         // Expand/Collapse the list
         if(!_.isEmpty($scope.autocomplete.results)){
-            $scope.expandAutocomplete('searchElements',event);
+            $scope.expandAutocomplete('searchElements');
         }else{
-            $scope.expandAutocomplete('searchElements',event,false);
+            $scope.expandAutocomplete();
         }
         // Reset filter q if is input empty
         if ($scope.dataHolder.devices.filter.q && $scope.autocomplete.term.length < 1) {
@@ -190,7 +190,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         // Reset data
         $scope.autocomplete.results = [];
         $scope.dataHolder.devices.noSearch = false;
-        $scope.expandAutocomplete('searchElements',event,false);
+        $scope.expandAutocomplete();
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
 

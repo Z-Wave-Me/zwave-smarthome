@@ -449,28 +449,32 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     /**
      * Expand/collapse autocomplete
      * @param {string} key
-     * @param {object} $event
-     * @param {boolean} status
      * @returns {undefined}
      */
     $scope.autocompleteExpanded = {};
-    $scope.expandAutocomplete = function (key, $event_, status_) {
-       /* if ($scope.autocompleteExpanded[key]) {
-            console.log($scope.autocompleteExpanded)
-            $scope.utocompleteExpanded = {};
-            //$event.stopPropagation();
-            return;
-        }*/
+    $scope.expandAutocomplete = function (key) {
         $scope.autocompleteExpanded = {};
         if (key) {
             $scope.autocompleteExpanded[key] = true;
         }
-        //console.log($scope.autocompleteExpanded)
-        /* else {
-            $scope.utocompleteExpanded[key] = !$scope.utocompleteExpanded[key];
-        }*/
-       // $event.stopPropagation();
     };
+    /**
+     * todo: deprecated
+     */
+    /*$scope.expandAutocomplete = function (key, $event, status) {
+        if ($scope.autocompleteExpanded[key]) {
+            $scope.utocompleteExpanded = {};
+            $event.stopPropagation();
+            return;
+        }
+        $scope.utocompleteExpanded = {};
+        if (typeof status === 'boolean') {
+            $scope.utocompleteExpanded[key] = status;
+        } else {
+            $scope.utocompleteExpanded[key] = !$scope.utocompleteExpanded[key];
+        }
+        $event.stopPropagation();
+    };*/
     /**
      * Collapse navi, menu and autocomplete when clicking outside
      */
