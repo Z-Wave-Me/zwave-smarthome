@@ -454,26 +454,29 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @returns {undefined}
      */
     $scope.autocompleteExpanded = {};
-    $scope.expandAutocomplete = function (key, $event, status) {
-        if ($scope.autocompleteExpanded[key]) {
+    $scope.expandAutocomplete = function (key, $event_, status_) {
+       /* if ($scope.autocompleteExpanded[key]) {
+            console.log($scope.autocompleteExpanded)
             $scope.utocompleteExpanded = {};
-            $event.stopPropagation();
+            //$event.stopPropagation();
             return;
+        }*/
+        $scope.autocompleteExpanded = {};
+        if (key) {
+            $scope.autocompleteExpanded[key] = true;
         }
-        $scope.utocompleteExpanded = {};
-        if (typeof status === 'boolean') {
-            $scope.utocompleteExpanded[key] = status;
-        } else {
+        //console.log($scope.autocompleteExpanded)
+        /* else {
             $scope.utocompleteExpanded[key] = !$scope.utocompleteExpanded[key];
-        }
-        $event.stopPropagation();
+        }*/
+       // $event.stopPropagation();
     };
     /**
      * Collapse navi, menu and autocomplete when clicking outside
      */
     window.onclick = function () {
-        if ($scope.utocompleteExpanded) {
-            angular.copy({}, $scope.utocompleteExpanded);
+        if ($scope.autocompleteExpanded) {
+            angular.copy({}, $scope.autocompleteExpanded);
             $scope.$apply();
         }
         if ($scope.naviExpanded) {
