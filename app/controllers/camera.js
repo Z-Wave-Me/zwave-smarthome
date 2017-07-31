@@ -115,12 +115,12 @@ myAppController.controller('CameraManageController', function ($scope, $q, dataF
     /**
      * Delete instance
      */
-    $scope.deleteInstance = function (target, input, message) {
+    $scope.deleteInstance = function (input, message) {
         alertify.confirm(message, function () {
             dataFactory.deleteApi('instances', input.id).then(function (response) {
-                $(target).fadeOut(500);
                 myCache.remove('instances');
                 myCache.remove('devices');
+                $scope.allSettled();
             }, function (error) {
                 alertify.alertError($scope._t('error_delete_data'));
             });

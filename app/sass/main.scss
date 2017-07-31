@@ -1,3 +1,93 @@
+/* Global variables
+-------------------------------------------------- */
+
+/*-------------------------------------*/
+// MEDIA QUERIES
+// Extra Small Devices, Phones
+$break-esmall: 480px;
+//  Small Devices, Tablets
+$break-small: 768px;
+// Medium Devices, Desktops
+$break-medium: 992px;
+// Large Devices, Wide Screen
+$break-large: 1024px;
+
+/*-------------------------------------*/
+// SPACING
+$grid-gutter: 15px;
+$spacing: 10px;
+$spacing-double: $spacing * 2;
+$spacing-third: $spacing * 3;
+$spacing-half: $spacing / 2;
+$spacing-fatal-error: 20px 20px 20px 52px;
+
+/*-------------------------------------*/
+// DIMENSIONS: WIDTHS, HEIGHTS
+// Line height
+$app-line-height-base:        1.428571429 !default; // 20/14
+// Header
+$header-h: 50px;
+
+/*-------------------------------------*/
+// Z:INDEX
+$zindex-alertify: 2500;
+$zindex-loader: 2400;
+$zindex-header: 2100;
+$zindex-page-navi: 2101;
+$zindex-dropdown: 1100;
+$zindex-infowindow: 1100;
+$zindex-modal: 2300;
+$zindex-footer: 2100;
+$zindex-m-footer: 2130;
+
+/*-------------------------------------*/
+// FONTS
+
+// Font family
+$app-font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$app-font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+$app-font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+
+// Font size
+$app-body-font-size: 17px;
+
+/*-------------------------------------*/
+// COLORS
+
+// Base
+$app-brand-primary:         #6494BC !default;
+$app-brand-success:         #80AD80 !default;
+$app-brand-info:            #5bc0de !default;
+$app-brand-warning:         #f0ad4e !default;
+$app-brand-danger:          #d9534f !default;
+
+$app-color-primary: #000000;
+$app-color-secondary: #000000;
+$app-border-color: lighten($app-color-primary, 80%);
+$app-body-color:  lighten($app-color-primary, 5%);
+$app-body-disabled-color:  lighten($app-body-color, 50%);
+$app-a-color:  lighten($app-color-primary, 20%);
+$app-a-hover-color:  lighten($app-color-primary, 10%);
+$app-heading-color: lighten($app-body-color, 40%);
+$app-bcg-success: #dff0d8;
+$app-bcg-info: #d9edf7;
+$app-bcg-warning: #fcf8e3;
+$app-bcg-danger: #f2dede;
+
+$app-overlay-bcg-color: rgba(37, 37, 37, 0.5);
+
+/*-------------------------------------*/
+// EFFECTS
+// Radius
+$app-border-radius: 4px;
+
+// Shadow
+$app-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+$element-widget-btn-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+
+// Loader fade out
+$loader-fadeout:  7s;
+
 /* Bootstrap files
 -------------------------------------------------- */
 @import "vendor/bootstrap/bootstrap";
@@ -6,63 +96,60 @@
 -------------------------------------------------- */
 @import "vendor/fontawesome/font-awesome";
 
-/* SmartHome UI files
+/* SmartHome UI variables nad functions
 -------------------------------------------------- */
-@import "common/_variables";
-@import "common/_mixins";
+//@import "base/_variables";
+@import "base/_mixins";
 
-// Skin variables
-@import "skins/default/_variables";
-//@import "skins/komsa/_variables";
-// Vendors
+/* Vendors
+-------------------------------------------------- */
 @import "vendor/_jquery.fileupload-ui";
 @import "vendor/_jquery.fileupload";
 @import "vendor/_alpaca";
-@import "vendor/_alertify"; 
-/*==================================================
-=            SmartHomeUI                        =
-==================================================*/
-// Common
-@import "common/_gird"; 
-@import "common/_body";
-@import "common/_header";
-@import "common/_footer";
-@import "common/_images";
-@import "common/_navi";
-@import "common/_widget"; 
-@import "common/_report"; 
-@import "common/_table"; 
-@import "common/_button"; 
-@import "common/_form";
-@import "common/_imglist";
-//@import "common/_tab"; 
-@import "common/_dropdown";
-@import "common/_infowindow";
-@import "common/_accordion"; 
-@import "common/_loader"; 
-@import "common/_alert";
-@import "common/_modal";
-@import "common/_pagination"; 
+@import "vendor/_alertify";
+@import "vendor/_angular.slider";
 
-// Modules 
-@import "modules/_elements";
-@import "modules/_events";
-@import "modules/_apps";
-@import "modules/_customize";
-@import "modules/_rooms";
-@import "modules/_devices";
-@import "modules/_auth";
-@import "modules/_commands";
+/* SmartHome UI base
+-------------------------------------------------- */
+@import "base/_body";
+@import "base/_header";
+@import "base/_footer";
+@import "base/_navi";
+@import "base/_widget"; 
+@import "base/_report"; 
+@import "base/_table"; 
+@import "base/_button"; 
+@import "base/_form";
+@import "base/_imglist";
+@import "base/_bar";
+@import "base/_dropdown";
+@import "base/_infowindow";
+@import "base/_accordion"; 
+@import "base/_loader";
+@import "base/_alert";
+@import "base/_modal";
+@import "base/_pagination";
+@import "base/_autocomplete";
+@import "base/_dragdrop";
+@import "base/_elements";
+@import "base/_events";
+@import "base/_apps";
+@import "base/_customize";
+@import "base/_rooms";
+@import "base/_devices";
+@import "base/_auth";
+@import "base/_commands";
+@import "base/_slider";
+@import "base/_rss";
 
-// Enocean
-//@import "common/_enocean";
+/* SmartHome UI custom
+-------------------------------------------------- */
+@import "custom/_shui";
 
-// POPP
-@import "common/_app_popp";
+/* SmartHome UI custom POPP
+-------------------------------------------------- */
+@import "custom/_popp";
 
-// Skin main
-@import "skins/default/_main";
-//@import "skins/komsa/_main";
-
-// Mobile
-@import "responsive/_responsive"; 
+/* Media queries
+-------------------------------------------------- */
+@import "base/_media_queries";

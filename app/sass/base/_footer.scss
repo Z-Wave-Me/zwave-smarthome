@@ -1,0 +1,26 @@
+/* Footer
+-------------------------------------------------- */
+#footer{
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    text-align: center;
+    z-index: $zindex-footer;
+     border-top: solid 1px $app-border-color;
+    // Media queries
+    @include mediaQueries(min-small) {
+        display: none;
+    }
+    #footer_in{
+        background-color: #FFFFFF;
+        height: 50px;
+        line-height: 50px;
+        .timestamp{
+            display: none;
+        }
+    }
+    a{}
+    a:hover{}
+
+}

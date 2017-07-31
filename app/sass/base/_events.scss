@@ -1,0 +1,28 @@
+/* Events
+-------------------------------------------------- */
+.event-level-warning{
+    background-color: $app-bcg-warning;
+}
+.event-level-device-info{}
+.event-level-error{
+  background-color: $app-bcg-danger;
+}
+.event-level-critical{
+  background-color: $app-bcg-danger;
+}
+
+.group-event-dropdown{
+   width: 100%;
+       .btn{
+       float: right;
+   }
+   .app-dropdown{
+       width: 100%;
+   }
+}
+
+.event-room {
+  display: block;
+  font-size: 90%;
+  color: #737373;
+}

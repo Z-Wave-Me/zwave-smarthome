@@ -142,11 +142,6 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
                 if (zenoId == $scope.lastIncludedDevice.id) {
                     var obj = v;
                     obj['title'] = v.metrics.title;
-                    /*obj['id'] = v.id;
-                    
-                    obj['permanently_hidden'] = v.permanently_hidden;
-                    obj['visibility'] = v.visibility;
-                    obj['metrics'] = v.metrics;*/
                     $scope.apiDevices.push(obj);
                 }
 

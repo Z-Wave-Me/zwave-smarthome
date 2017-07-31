@@ -17,6 +17,11 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
             show: true
         },
         online: {
+            connect: {
+                status: false,
+                icon: 'fa-globe fa-spin'
+            },
+            alert: {message: false, status: 'is-hidden', icon: false},
             all: {},
             find: {},
             ids: {},
@@ -34,14 +39,12 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('skins', null, true),
-            dataFactory.getRemoteData($scope.cfg.online_skin_url)
+            dataFactory.getApi('skins', null, true)
         ];
 
         $q.allSettled(promises).then(function (response) {
             // console.log(response)
             var localSkins = response[0];
-            var onlineSkins = response[1];
             $scope.loading = false;
             // Error message
             if (localSkins.state === 'rejected' && $scope.routeMatch('/customize/skinslocal')) {
@@ -49,25 +52,43 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
                 $scope.skins.local.show = false;
                 return;
             }
-            if (onlineSkins.state === 'rejected' && $scope.routeMatch('/customize/skinsonline')) {
-                alertify.alertError($scope._t('failed_to_load_skins'));
-                $scope.skins.online.show = false;
-                return;
-            }
             // Success - local skins
             if (localSkins.state === 'fulfilled') {
                 $scope.skins.local.all = dataService.getLocalSkins(localSkins.value.data.data).indexBy('name').value();
-            }
-
-            // Success - online skins
-            if (onlineSkins.state === 'fulfilled') {
-                setOnlineSkins(onlineSkins.value.data.data);
+                $scope.loadOnlineSkins();
             }
 
         });
 
     };
     $scope.allSettled();
+
+    /**
+     * Load online skins
+     */
+    $scope.loadOnlineSkins = function () {
+        dataFactory.getRemoteData(cfg.online_skin_url).then(function (response) {
+            $scope.skins.online.alert = false;
+            $scope.skins.online.connect = {
+                status: true,
+                icon: 'fa-globe'
+            };
+            setOnlineSkins(response.data.data)
+        }, function (error) {
+            if(error.status === 0){
+                $scope.skins.online.connect = {
+                    status: false,
+                    icon: 'fa-exclamation-triangle text-danger'
+                };
+                $scope.skins.online.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+
+            }else{
+                alertify.alertError($scope._t('error_load_data'));
+            }
+        }).finally(function(){
+            $scope.loading = false;
+        });
+    };
 
     /**
      * Update skin

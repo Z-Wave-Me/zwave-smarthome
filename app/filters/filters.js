@@ -3,6 +3,19 @@
  * @author Martin Vach
  */
 
+
+myApp.filter('appSliderSlice', function() {
+    return function(arr, cfg) {
+        var start = cfg.start;
+        var end = cfg.start + cfg.show;
+        if(start < 0 ||  start > cfg.max){
+            start = 0;
+            end = cfg.show;
+        }
+        return arr.slice(start, end);
+    };
+});
+
 /**
  * Allow to display html tags in the scope
  * @function toTrusted

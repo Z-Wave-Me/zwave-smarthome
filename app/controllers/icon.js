@@ -30,6 +30,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             extensions: cfg.upload.icon_packed.extension.toString()
         }
     };
+    $scope.checkAll = false;
     /**
      * Load all promises
      * @returns {undefined}
@@ -116,6 +117,22 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
     };
 
     /**
+     * Check all icons
+     * @param {boolean} status
+     * @returns {undefined}
+     */
+    $scope.toggleAll = function (status) {
+        if (typeof status === 'boolean') {
+            $scope.checkAll = status;
+        } else {
+            $scope.checkAll = !$scope.checkAll;
+        }
+        for(var k in $scope.icons.all) {
+            $scope.icons.all[k].checked = $scope.checkAll;
+        }
+    };
+
+    /**
      * Delete an icon from the storage
      * @param {object} icon
      * @param {string} message
@@ -138,6 +155,45 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        });
+
+    };
+
+    /**
+     * Delete all checked icons from the storage
+     * @param {string} message
+     * @returns {undefined}
+     */
+    $scope.deleteChecked = function (message) {
+        var cnt = 0;
+        var errors = 0;
+        alertify.dismissAll();
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            angular.forEach($scope.icons.all,function(v,k){
+                if(!v.checked){
+                    return;
+                }
+                cnt++;
+                dataFactory.deleteApi('icons', v.file).then(function (response) {
+
+                }, function (error) {
+                    errors++;
+                });
+                //console.log(v.file)
+            });
+            $scope.loading = false;
+            if(errors > 0){
+                alertify.alertError($scope._t('cannot_delete_all_icons'));
+
+            }else if(cnt == 0){
+                alertify.alertError($scope._t('nothing_deleted'));
+            }else{
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.allSettled();
+                $scope.toggleAll(false);
+            }
+
         });
 
     };
@@ -182,6 +238,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
         var data = _.chain(icons)
                 .flatten()
                 .filter(function (v) {
+                    v.checked = false;
                     v.source_title = (!v.source_title ? 'Custom': v.source_title);
                     $scope.icons.source.title[v.source] = v.source_title;
                     return v;
@@ -232,11 +289,53 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
  */
 myAppController.controller('OnlineIconController', function ($scope, $filter, $timeout, $q, $location, cfg, dataFactory, dataService, _) {
     $scope.iconsOnline = {
+        connect: {
+            status: false,
+            icon: 'fa-globe fa-spin'
+        },
+        alert: {message: false, status: 'is-hidden', icon: false},
         all: {},
         find: {},
         preview: {}
     };
     $scope.iconsLocalSource = {};
+
+    /**
+     * Load on-line icons
+     * @returns {undefined}
+     */
+    $scope.loadOnlineIcons = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.getRemoteData(cfg.online_icon_url).then(function (response) {
+            $scope.iconsOnline.connect = {
+                status: true,
+                icon: 'fa-globe'
+            };
+            if (_.size(response.data.data) < 1) {
+                alertify.alertError($scope._t('no_data'));
+                return;
+            }
+            setOnlineIcons(response.data.data);
+        }, function (error) {
+            if(error.status === 0){
+                $scope.iconsOnline.connect = {
+                    status: false,
+                    icon: 'fa-exclamation-triangle text-danger'
+                };
+                $scope.iconsOnline.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+
+            }else{
+                $scope.iconsOnline.connect = {
+                    status: false,
+                    icon: 'fa-exclamation-triangle text-danger'
+                };
+                alertify.alertError($scope._t('error_load_data'));
+            }
+        }).finally(function(){
+            $scope.loading = false;
+        });
+    };
+    //$scope.loadOnlineIcons();
 
     /**
      * Load all promises
@@ -251,7 +350,6 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
 
         $q.allSettled(promises).then(function (response) {
             var icons = response[0];
-            console.log(icons);
             // Error message
             if (icons.state === 'rejected') {
                 alertify.alertError($scope._t('error_load_data'));
@@ -265,25 +363,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     };
     $scope.allSettled();
 
-   /**
-    * Load on-line icons
-    * @returns {undefined}
-    */
-    $scope.loadOnlineIcons = function () {
-         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        dataFactory.getRemoteData(cfg.online_icon_url).then(function (response) {
-            $scope.loading = false;
-            if (_.size(response.data.data) < 1) {
-                alertify.alertError($scope._t('no_data'));
-                return;
-            }
-            setOnlineIcons(response.data.data);
-        }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
-            $scope.loading = false;
-        });
-    };
-    $scope.loadOnlineIcons();
+
 
     /**
      * Open a modal window and load icon previews
@@ -319,7 +399,11 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
             $location.path('/customize/iconslocal');
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_file_download'));
+            var message = $scope._t('error_file_download');
+            if(error.status == 409){
+                message = $scope._t('icon_from_url_already_exists',{__title__:icon.title});
+            }
+            alertify.alertError(message);
         });
     };
 
@@ -361,6 +445,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
                 "source": getSource(icon)
             };
         });
+        $scope.loadOnlineIcons();
     }
 
     /**

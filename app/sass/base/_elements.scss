@@ -1,0 +1,404 @@
+/* Elements
+-------------------------------------------------- */
+.widget-entry-element {
+  .widget-entry-in {
+    height: 150px;
+    // Media queries
+    @include mediaQueries(min-small) {
+      height: 124px;
+    }
+    .widget-img {
+      width: 64px;
+      height: 64px;
+      background-color: #fff;
+      @include appBorderRadius(50%);
+      .widget-icon-update {
+        //z-index: 10;
+        cursor: pointer;
+        //border-color: $element-widget-img-update-border-color;
+      }
+    }
+
+    .widget-content{
+      // Media queries
+      @include mediaQueries(max-esmall) {
+        margin-left:0;
+      }
+    }
+    .widget-title {
+      // Media queries
+      @include mediaQueriesMaxMin(1200px,$break-large) {
+        max-width: 200px;
+        @include textOverflow();
+      }
+      h3{
+        // Media queries
+        @include mediaQueries(max-esmall) {
+          font-size: 95%;
+          padding: 0 0 0 64px + $spacing;
+        }
+
+      }
+      .widget-room {
+        display: block;
+        font-size: 85%;
+        color: lighten($app-body-color, 40%);
+        // Media queries
+        @include mediaQueries(max-esmall) {
+          padding: 0 0 0 64px + $spacing;
+        }
+      }
+    }
+    .widget-level {
+      font-weight: bold;
+      font-size: 160%;
+      color: $app-body-color;
+    }
+    .widget-scale {
+      font-size: 110%;
+    }
+
+  }
+}
+
+.widget-ctrl, .tbl-widget-ctrl {
+  .fa-caret-down {
+    font-size: 140%;
+    color: lighten($app-body-color, 40%);
+  }
+  .btn-group {
+    .btn {
+      color: lighten($app-body-color, 80%);
+      .fa {
+        font-size: 110%;
+      }
+    }
+    .widget-btn-symbol {
+      font-weight: bold;
+      display: inline-block;
+      padding: 0 5px;
+    }
+    .btn-primary {
+      background-color: #FFFFFF !important;
+      border-color: lighten($app-body-color, 80%);
+      color: $app-brand-success !important;
+      @include appBoxShadow($element-widget-btn-box-shadow);
+      .fa {
+        color: $app-brand-success !important;
+      }
+    }
+    .btn-off.btn-primary {
+      color: $app-brand-danger !important;
+      .fa {
+        color: $app-brand-success !important;
+      }
+    }
+    .btn-label-on {
+      color: lighten($app-body-color, 40%);
+      text-transform: lowercase;
+    }
+    .btn-widget-time, .txt-widget-time {
+      padding: $spacing 0 0 0;
+      border: 0 none;
+      color: lighten($app-body-color, 40%);
+      font-size: 85%;
+      background-color: transparent;
+    }
+  }
+}
+
+/* Specifics element styles
+----------------------------------------------------*/
+.sensorMultiline {
+  .control-left {
+    width: 60% !important;
+  }
+  .control-right {
+    width: 40%;
+  }
+}
+
+.switchMultilevel {
+  .control-left {
+    width: 60% !important;
+  }
+  .control-right {
+    width: 40%;
+  }
+}
+
+.element-camera-control {
+  text-align: center;
+  margin: 0 0 $spacing 0;
+  .fa {
+    font-size: 180%;
+  }
+}
+
+.camera-img {
+  text-align: center;
+  img {
+    width: 100%;
+    display: inline-block;
+  }
+}
+
+.color-picker-show {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.drop-down-tags {
+  div {
+    padding: 5px;
+  }
+
+  //min-width: 260px;
+}
+
+.drop-down-tags a {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.bcg-success.false {
+  color: #a8a8a8;
+  .report-img {
+    opacity: 0.4;
+  }
+}
+
+/* Elements drag & drop cards
+----------------------------------------------------*/
+.dragdrop-element{
+  .dd-placeholder{
+    width: 100%;//$widget-col-w;
+    text-align: center;
+    //background: whitesmoke;
+    border: 3px dashed $app-brand-success;
+    box-sizing: border-box;
+    display: table;
+    background-color: white;
+    &.dd-element{
+      width: 100%;
+      height:  100px;
+      // Media queries
+      @include mediaQueries(min-esmall) {
+        float: left;
+        width: 100px;
+        height: 130px;
+        //height: 130px + $spacing;
+      }
+
+    }
+  }
+}
+.card-element-dragdrop {
+  @include appGradient();
+  cursor: move;
+  text-align: center;
+  border: solid 1px $app-border-color;
+  width: 100%;
+  height: 100px;
+  @include mediaQueries(min-esmall) {
+    @include appFloat(left);
+    //width: 33.33333%;
+    width: 100px;
+    height: 130px;
+  }
+  @include mediaQueries(min-small) {
+    @include appFloat(left);
+    //width: 25%;
+    //width: 33.33333%;
+  }
+  @include mediaQueries(min-medium) {
+    //width: 33.33333%;
+    //width: 20;
+  }
+  @include mediaQueries(min-large) {
+    //width: 25%;
+    //width: 16%;
+  }
+  /* Inner element */
+  .card-element-dragdrop-in {
+
+    padding: $spacing;
+    h3{
+      margin: $spacing 0 0 0;
+      font-size: 95%;
+    }
+
+  }
+
+}
+
+.element-dragdrop-img{
+  max-width: 48px;
+  max-height: 48px;
+  //border: solid 4px $widget-img-border-color;
+  @include appBorderRadius(50%);
+}
+
+/* Element detail
+----------------------------------------------------*/
+.btn-tag {
+  float: none !important;
+  border-radius: 4px !important;
+}
+
+.app-row-icons {
+  .report-body {
+    width: 30px;
+  }
+}
+
+/* Custom icons
+-------------------------------------------------- */
+.element-icon-list {
+  border-bottom: solid 1px $app-border-color;
+  margin: $spacing;
+  .element-icon-img {
+    display: inline-block;
+    margin: $spacing;
+    max-width: 48px;
+    max-height: 48px;
+    // Media queries
+    @include mediaQueries(min-small) {
+      max-width: 32px;
+      max-height: 32px;
+    }
+  }
+}
+
+/* OpenWeather widget
+----------------------------------------------------*/
+.widget-body .hidden-sensor-multiline table td {
+  text-align: left;
+  padding: 5px 0;
+}
+
+.widget-body .hidden-sensor-multiline table td:first-child {
+  padding-left: 20px;
+  vertical-align: top;
+}
+
+.widget-body .hidden-sensor-multiline h4 {
+  display: inline;
+}
+
+.widget-body .hidden-sensor-multiline .text-center {
+  margin: 10px 0;
+}
+
+/* Text widget
+-----------------------------------------------------*/
+.widget-body.text-widget h3 {
+  font-weight: bold;
+}
+
+.widget-body.text-widget-no-img {
+  padding-left: 15px;
+}
+
+.widget-control.text {
+  width: 95%;
+}
+
+.text-widget-modal.modal-dialog {
+  text-align: center;
+}
+
+img.widget-promo-image {
+  max-height: 200px;
+  margin-bottom: 10px;
+}
+
+.widget-promo-text {
+  text-align: left;
+}
+
+.widget-control.text a {
+  font-weight: normal;
+}
+
+.widget-control.text a:hover {
+  text-decoration: none;
+}
+
+.widget-control.text a:after {
+  content: "\f1ea";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  /*--adjust as necessary--*/
+  padding-left: 4px;
+  position: absolute;
+}
+
+/* MultilevelSensor widget
+-----------------------------------------------------*/
+.widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
+  padding: 10px 0;
+  height: auto;
+}
+
+.hidden-sensor-multiline .widget-image {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+}
+
+.widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
+  padding-left: 5px;
+}
+
+.widget-body .hidden-sensor-multiline.multiline-sensor table td {
+  width: inherit;
+  padding: 5px 5px 5px 10px;
+}
+
+.widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* ToggleButton widget
+--------------------------------------------------------*/
+
+.toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
+  cursor: default;
+}
+
+/* RGB color wheel
+--------------------------------------------------------*/
+.wheel-colorpicker {
+  .col-rgb {
+    margin: 0 auto;
+    text-align: center;
+  }
+  #wheel_picker {
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+  }
+  #wheel_picker_selected, #wheel_picker_preview {
+    /*border: 1px solid #ccc;
+    border-radius: 4px;*/
+    margin: 0;
+    height: 80px;
+    line-height: 80px;
+
+  }
+  /*#wheel_picker_selected_spin{
+      background-color: #fff;
+  }*/
+}
+
+
+
+
+
+
+

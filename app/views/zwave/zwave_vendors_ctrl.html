@@ -1,0 +1,67 @@
+<!-- Zwave control view -->
+<!--<pre>{{zwaveVendors.filter|json}}</pre>-->
+<div class="page-control form-inline">
+    <!-- Search and autocomplete -->
+    <form id="form_search" class="input-group" ng-submit="setFilter({q: autocomplete.term})" autocomplete="off"
+          novalidate>
+        <!-- Input -->
+        <input id="input_search" type="text" focus="{{zwaveVendors.filter.q}}"
+               class="form-control"
+               placeholder="{{_t('lb_search')}}"
+               ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+        <!-- Search button -->
+        <span class="input-group-addon clickable" ng-click="setFilter({q: autocomplete.term})">
+            <i class="fa fa-search" ng-class="{'text-success':autocomplete.term}"></i>
+        </span>
+        <!-- List -->
+        <!--<div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">-->
+        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchProducts">
+            <ul>
+                <li class="dropdown-entry" title="{{v.title}}"
+                    ng-repeat="v in autocomplete.results | orderBy:'name' track by $index">
+                    <!-- Title -->
+                    <span class="dropdown-col" ng-click="setFilter({q: autocomplete.term})">
+                           <img class="report-img-s" ng-src="data:image/png;base64,{{v.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                            <span class="aoutocomplete-title">{{v.name|cutText:true:30}}</span>&nbsp;
+                         <em class="item-cnt">({{v.brandname}})</em>
+                        </span>
+                    <!-- Ctrl -->
+                    <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
+                            <a ng-href="#zwave/inclusion/{{v.id}}"><i class="fa fa-plug text-primary"></i></a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </form>
+
+    <!-- Search and autocomplete -->
+    <!--<div class="input-group">
+        &lt;!&ndash; Search &ndash;&gt;
+        <input name="add_tag" id="add_tag" type="text"
+               class="form-control"
+               placeholder="{{_t('lb_search')}}"
+               ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+        <span class="input-group-addon clickable">
+                       <i class="fa fa-search"></i>
+                   </span>
+        &lt;!&ndash; Autocomplete &ndash;&gt;
+        <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">
+            <ul>
+                <li class="dropdown-entry clickable" title="{{v.name}}"
+                    ng-click="redirectToRoute('zwave/inclusion/' + v.id)"
+                    ng-repeat="v in autocomplete.results | orderBy:'name' track by $index">
+                    <span class="dropdown-col">
+                        <img class="report-img-s" ng-src="data:image/png;base64,{{v.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                         <span class="aoutocomplete-title">{{v.name|cutText:true:30}}&nbsp;
+                            <em class="item-cnt">({{v.brandname}})</em>&nbsp;
+                             &lt;!&ndash; <span class="label label-info">{{v.frequency}}</span>&ndash;&gt;
+                        </span>
+                    </span>
+                    <span class="dropdown-col dropdown-ctrl">
+                            <i class="fa fa-plug text-primary"></i>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>-->
+</div>

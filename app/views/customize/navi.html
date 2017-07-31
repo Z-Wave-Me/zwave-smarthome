@@ -1,5 +1,5 @@
 <div class="tabs-wrap form-inline">
-    <div class="btn-group btn-goup-tabs btn-tabs-4">
+    <div class="btn-group btn-group-justified btn-goup-tabs">
         <a class="btn btn-default" title="{{_t('local_skins')}}" href="#customize/skinslocal" 
            ng-class="routeMatch('/customize/skinslocal') ? 'active' : ''">
             <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('local_skins')}}</span>
@@ -7,7 +7,7 @@
         <a class="btn btn-default" title="{{_t('online_skins')}}" href="#customize/skinsonline" 
            ng-class="routeMatch('/customize/skinsonline') ? 'active' : ''"
            ng-if="elementAccess(cfg.role_access.admin)">
-            <i class="fa fa-globe"></i> <span class="btn-name">{{_t('online_skins')}}</span>
+            <i class="fa {{skins.online.connect.icon}}"></i> <span class="btn-name">{{_t('online_skins')}}</span>
         </a>
         <a class="btn btn-default" title="{{_t('local_icons')}}" href="#customize/iconslocal"
            ng-class="routeMatch('/customize/iconslocal') ? 'active' : ''"
@@ -17,7 +17,7 @@
          <a class="btn btn-default" title="{{_t('online_icons')}}" href="#customize/iconsonline" 
             ng-class="routeMatch('/customize/iconsonline') ? 'active' : ''"
             ng-if="elementAccess(cfg.role_access.admin)">
-            <i class="fa fa-archive"></i> <span class="btn-name">{{_t('online_icons')}}</span>
+            <i class="fa {{iconsOnline.connect.icon|| 'fa-archive'}}"></i> <span class="btn-name">{{_t('online_icons')}}</span>
         </a>
     </div>
 </div>

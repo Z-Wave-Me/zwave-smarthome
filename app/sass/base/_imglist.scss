@@ -1,0 +1,20 @@
+/* Image list
+-------------------------------------------------- */
+// CSS
+.app-row-imglist{
+    border: solid 1px $app-border-color;
+    background-color: #FFFFFF;
+}
+.imglist-entry{
+    text-align: center;
+    width: 40px + 10px;
+    height: 40px + 20px;
+    @include appFloat(left);
+    margin: 10px;
+    &.in-device{
+        background-color: $app-bcg-danger;
+    }
+    .imglist-img{
+        margin: 0 0 $spacing-half 0;
+    }
+}

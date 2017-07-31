@@ -2,73 +2,13 @@
 <div ng-controller="AppBaseController">
      <bb-loader></bb-loader>
     <div ng-controller="AppInstanceController" id="apps_instances">
-         <!-- Apps navigation -->
+         <!-- Instance navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
-        <div class="page-control form-inline">
-            <div class="btn-group btn-goup-block btn-goup-1">
-                <button class="btn btn-default" ng-click="expandNavi('appsInstancesOrderBy', $event)">
-                    <i class="fa fa-sort-alpha-asc"></i> 
-                    <span class="btn-name">{{_t(dataHolder.instances.orderBy) | cutText:true:15}}</span>
-                </button>
-            </div>
-            <div class="input-group">
-                <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span> 
-            </div>
-        </div>
-           <!-- Page subnavi  sort by -->
-        <div class="page-navi" ng-if="naviExpanded.appsInstancesOrderBy">
-          <div class="page-navi-in">
-              <div class="page-navi-content">
-                   <p class="page-navi-title"> {{_t('sortby')}}</p>
-                  <a class="btn btn-default btn-tag" href=""
-                          ng-repeat="(k,v) in cfg.orderby.instances"
-                         ng-click="setOrderBy(k)"
-                         ng-class="dataHolder.instances.orderBy == k ? 'active': ''">
-                       {{_t(k) | cutText:true:30}}
-                   </a>
-              </div>
-          </div>
-      </div>
-        <div class="app-row app-row-report app-row-event clearfix">
-             <div class="report-entry bcg-active"
-                id="instance_{{$index}}" 
-                ng-repeat="v in dataHolder.instances.all|orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by v.id" 
-                ng-class="v.active ? 'true': 'false'"
-                ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
-                 <div class="report-col report-media">
-                     <img class="report-img" ng-src="{{moduleMediaUrl + v.moduleId + '/' + dataHolder.modules.imgs[v.moduleId]}}" ng-if="dataHolder.modules.imgs[v.moduleId]" alt="img" />
-                    <img class="report-img" ng-src="storage/img/placeholder-img.png" ng-if="!dataHolder.modules.imgs[v.moduleId]" alt="img" />
-                 </div>
-                 <div class="report-col report-body">
-                     <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
-                 </div>
-                 <div class="report-col report-ctrl report-ctrl-3">
-                      <div class="btn-group">
-                        <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
-                           <i class="fa fa-cog"></i>
-                       </a>
-                       <button title="{{_t('lb_deactivate')}}" 
-                               class="btn btn-default" href="" 
-                               ng-if="v.active"
-                                ng-class="v.active ? 'active' : ''"
-                               ng-click="activateInstance(v, false)">
-                           <i class="fa fa-fire text-success"></i>
-                       </button>
-                       <button title="{{_t('lb_activate')}}" 
-                               class="btn btn-default" 
-                                ng-if="!v.active" 
-                               ng-click="activateInstance(v, true)">
-                           <i class="fa fa-power-off text-danger"></i>
-                       </button>
-                       <button title="{{_t('lb_remove')}}" 
-                               class="btn btn-default"
-                               ng-click="deleteInstance('#instance_' + $index, {'id': v.id}, _t('lb_delete_confirm'))">
-                           <i class="fa fa-remove text-danger"></i>
-                       </button>
-                    </div>
-                 </div>
-              </div>
-        </div>
-    </div> <!-- /ng-controller --> 
+        <!-- Instance control  -->
+        <div ng-include="'app/views/apps/apps_instance_ctrl.html'"></div>
+        <!-- Instance widget  -->
+        <div ng-include="'app/views/apps/apps_instance_widget.html'"></div>
+
+
+    </div> <!-- /ng-controller -->
 </div> <!-- /ng-controller --> 

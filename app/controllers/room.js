@@ -15,7 +15,7 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
             devices: {}
         },
         showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
-        orderBy: ($cookies.roomsOrderBy ? $cookies.roomsOrderBy : 'titleASC')
+        orderBy: ($cookies.roomsOrderBy ? $cookies.roomsOrderBy : 'titleASC'),
     };
 
     $scope.devices = {
@@ -54,6 +54,21 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
                 $scope.rooms.cnt.devices = _.countBy($scope.devices.all, function (v) {
                     return v.location;
                 });
+
+                $scope.rooms.all.forEach(function(room, index) {
+                    var devices = _.filter($scope.devices.all, function(device) {
+                        if(room.hasOwnProperty('main_sensors')) {
+                            if (room.main_sensors.indexOf(device.id)  > -1) {
+                                return device;
+                            };
+                        }
+                    });
+
+                    if(devices !== 'undefined') {
+                        angular.extend($scope.rooms.all[index], {'sensors': devices});
+                    }
+                });
+
             }
         });
     };
@@ -67,7 +82,8 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
     $scope.setOrderBy = function (key) {
         angular.extend($scope.rooms, {orderBy: key});
         $cookies.roomsOrderBy = key;
-        $scope.allSettled();
+        $scope.reloadData();
+        //$scope.allSettled();
     };
 
     /**
@@ -124,7 +140,8 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         'title': '',
         'user_img': '',
         'default_img': '',
-        'img_type': 'default'
+        'img_type': 'default',
+        'main_sensors': []
     };
     $scope.devices = {};
     $scope.devicesAssigned = [];
@@ -149,7 +166,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations', '/' + id, true).then(function (response) {
             $scope.loading = false;
-            $scope.input = response.data.data;
+            angular.extend($scope.input, response.data.data);
             loadDevices(id);
         }, function (error) {
             $scope.input = false;
@@ -235,12 +252,35 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
             if (v != device.id) {
                 $scope.devicesAssigned.push(v);
             } else {
+                var i = $scope.input.main_sensors.indexOf(device.id);
+                if(i > -1) {
+                    $scope.input.main_sensors.splice(i, 1);
+                }
                 device.location = 0;
                 $scope.devicesToRemove.push(v);
             }
         });
         return;
     };
+
+    /**
+     * Assign device (sensorBianry, senosrMultilevel) to the room main sensors
+     * @param {object} $event
+     * @param {object} device
+     * @returns {undefined}
+     */
+    $scope.assignSensor = function ($event, device) {
+        device.location = null;
+        if($event.target.checked) {
+            $scope.input.main_sensors.push(device.id);
+        } else {
+            var i = $scope.input.main_sensors.indexOf(device.id);
+            console.log(i);
+            $scope.input.main_sensors.splice(i , 1);
+        }
+        return;
+    };
+
 
     /**
      * Create new or update an existing location

@@ -1,0 +1,269 @@
+/* Button
+-------------------------------------------------- */
+.btn-goup-block {
+  display: table;
+  width: 100%;
+  margin: 0 0 $spacing 0;
+  // Media queries
+  @include mediaQueries(min-small) {
+    width: auto !important;
+    display: inline-block;
+    margin: 0;
+  }
+  .btn {
+    // Media queries
+    @include mediaQueries(min-small) {
+      width: auto !important;
+    }
+    &.active .fa {
+      color: $app-brand-success;
+    }
+  }
+
+}
+
+.btn-goup-1 {
+  .btn {
+    width: 100%;
+  }
+}
+
+.btn-goup-2 {
+  .btn {
+    width: 50%;
+  }
+}
+
+.btn-goup-3 {
+  .btn {
+    width: 33.33333%;
+  }
+}
+
+.btn-default {
+  color: $app-body-color;
+  background-color: #FFFFFF;
+  border-color: #CCCCCC;
+}
+
+.btn-default.active {
+  background-color: #FFFFFF;
+}
+
+.btn, .btn-device-admin {
+  font-size: 110%;
+  .fa {
+    font-size: 150%;
+    // Media queries
+    @include mediaQueries(min-small) {
+      font-size: 120%;
+    }
+  }
+}
+
+.btn-submit {
+  color: #FFFFFF;
+  border: solid 1px $app-brand-success;
+  background-color: darken($app-brand-success, 20%);
+  &:hover, &:focus {
+    background-color: $app-brand-success;
+  }
+}
+
+.btn-installed {
+  border: 0 none;
+  background-color: none !important;
+}
+
+.btn-disabled {
+  border: 0 none;
+  background-color: transparent !important;
+}
+
+.btn-small {
+  font-size: 90%;
+  .fa {
+    font-size: 95%;
+  }
+}
+
+.btn-tag {
+  display: block;
+  position: relative;
+  text-align: left;
+  font-size: 100%;
+  margin: 0 0 $spacing 0;
+
+  // Media queries
+  @include mediaQueries(min-small) {
+    display: inline-block;
+    position: static;
+    font-size: 100%;
+    margin: 0 $spacing $spacing 0;
+  }
+  .fa {
+    position: absolute;
+    top: $spacing-half;
+    right: $spacing;
+    font-size: 150%;
+    // Media queries
+    @include mediaQueries(min-small) {
+      position: static;
+      margin: 0 0 0 $spacing;
+      font-size: 120%;
+    }
+  }
+  &.btn-group{
+    @include mediaQueries(max-medium) {
+      display: table !important;
+      width:100%;
+      .btn{
+        position: static;
+        float: none;
+        display: table-cell;
+        //width: 50%;
+        .fa{
+          position: static;
+        }
+      }
+    }
+
+  }
+  .btn-addon{
+    .fa {
+      margin: 0;
+    }
+  }
+}
+
+/* Button tabs
+-------------------------------------------------- */
+.btn-goup-tabs {
+ /* display: table;
+  width: 100%;*/
+  margin: 0 0 $spacing 0;
+  .btn {
+    padding: $spacing;
+    font-size: 120%;
+    background-color: #FFFFFF;
+    &.active {
+      background-color:  darken(#FFFFFF, 5%);
+    }
+    .fa {
+      font-size: 130%;
+      color: lighten($app-body-color, 20%);
+      &.text-danger{
+        color: $app-brand-danger;
+      }
+    }
+  }
+  .active {
+    .fa {
+      color: $app-brand-success;
+      &.text-danger{
+        color: $app-brand-danger;
+      }
+
+    }
+  }
+}
+
+.btn-tabs-2 {
+  .btn {
+    width: 50%;
+  }
+}
+
+.btn-tabs-3 {
+  .btn {
+    width: 33.33333%;
+  }
+}
+
+.btn-tabs-4 {
+  .btn {
+    width: 25%;
+  }
+}
+
+/* Switch button
+---------- http://www.w3schools.com/howto/howto_css_switch.asp
+-------------------------------------------------- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 72px;
+  height: 40px;
+  // Media queries
+  @include mediaQueries(min-small) {
+    width: 60px;
+    height: 34px;
+  }
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  display: none;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border: solid 1px #CCCCCC;
+  //box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.125);
+  //@include appGradientDanger();
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 32px;
+  width: 32px;
+  /* height: 26px;
+   width: 26px;*/
+  left: 4px;
+  bottom: 3px;
+  background-color: $app-brand-danger;
+  -webkit-transition: .4s;
+  transition: .4s;
+  @include mediaQueries(min-small) {
+    height: 26px;
+    width: 26px;
+  }
+}
+
+input:checked + .slider {
+  //background-color: green;
+}
+
+input:checked + .slider:before {
+  background-color: $app-brand-success;
+
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px $app-brand-success;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 4px;
+}
+
+.slider.round:before {
+  border-radius: 4px;
+}

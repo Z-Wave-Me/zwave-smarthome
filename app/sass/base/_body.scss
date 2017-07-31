@@ -1,0 +1,295 @@
+/* Body
+-------------------------------------------------- */
+
+// Reset the box-sizing
+//
+// Heads up! This reset may cause conflicts with some third-party widgets.
+// For recommendations on resolving such conflicts, see
+// http://getbootstrap.com/getting-started/#third-box-sizing
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Body reset
+-------------------------------------------------- */
+html {
+  font-size: $app-body-font-size;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-family: $app-font-family-sans-serif;
+  font-size: $app-body-font-size;
+  line-height: $app-line-height-base;
+  color: $app-body-color;
+  background-color: #FFFFFF;
+  background-image: url('wallpaper.png');
+  // Media queries
+  @include mediaQueries(min-small) {
+    font-size: $app-body-font-size - 3px;
+  }
+
+}
+
+// Reset fonts for relevant elements
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
+ -------------------------------------------------- */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/* Skin reset
+-------------------------------------------------- */
+.skinreset {
+  display: none;
+
+}
+
+/* Typo
+-------------------------------------------------- */
+h1, h2, h3, h4 {
+  margin-top: 0;
+  color: $app-heading-color;
+}
+
+h1 {
+  font-size: 160%;
+}
+
+h2 {
+  font-size: 140%;
+  margin: $spacing 0 $spacing-half 0;
+}
+
+h3 {
+  font-size: 120%;
+}
+
+h4 {
+  font-size: 110%;
+}
+
+.item-cnt {
+  font-size: 80%;
+}
+
+/* Colors
+-------------------------------------------------- */
+.color-orange {
+  color: orange;
+}
+
+.color-green {
+  color: green;
+}
+
+.color-red {
+  color: red;
+}
+
+/* Links
+-------------------------------------------------- */
+a {
+  color: $app-a-color;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    color: $app-a-hover-color;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    // Default
+    outline: thin dotted;
+    // WebKit
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+
+  &.link-dotted {
+    color: $app-a-color;
+    border-bottom: 1px dotted $app-a-color;
+
+    &:hover, &:focus {
+      border-bottom: 1px solid $app-a-hover-color;
+      text-decoration: none;
+    }
+  }
+
+  &.link-underline {
+    color: $app-a-color;
+    text-decoration: underline;
+
+    //&:hover, &:focus { }
+  }
+}
+
+/* Fatal error
+-------------------------------------------------- */
+.app-fatal-error {
+  @include appBorderRadius($app-border-radius);
+  padding: $spacing-fatal-error;
+  margin: 0 0 $spacing-double 0;
+  //background: $app-error-background-color $img-fatal-error no-repeat $spacing ($spacing + $spacing-half);
+  background-color: #FFFFFF;
+  border: solid 1px $app-brand-danger;
+  .fatal-error-message {
+    color: $app-brand-danger;
+    font-weight: bold;
+    font-size: 120%;
+  }
+  .fatal-error-info {
+    margin: $spacing 0 0 0;
+    color: #000000;
+    font-size: 105%;
+  }
+}
+
+/* Gird
+-------------------------------------------------- */
+/* Style */
+#main_content {
+  margin-top: $header-h + $spacing;
+  margin-bottom: 50px + $spacing;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.row {
+  padding-right: 0;
+  margin-right: 0;
+
+}
+
+.mobile-padding {
+  padding: 0 $grid-gutter;
+  .page-header {
+    padding: 0;
+  }
+}
+
+.block-50 {
+  width: 100%;
+  // Media queries
+  @include mediaQueries(min-small) {
+    @include appFloat(left);
+    width: 50%;
+  }
+
+}
+/* Images
+-------------------------------------------------- */
+img {
+  vertical-align: middle;
+}
+.img-circle{
+  border-radius: 50%;
+}
+.img-opacity-50{
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+
+}
+
+/* Others
+-------------------------------------------------- */
+.timestamp {
+  color: lighten($app-color-primary, 20%);
+  font-size: 17px;
+  // Media queries
+  @include mediaQueries(min-small) {
+    font-size: 90%;
+  }
+  .fa {
+    font-size: 110%;
+    // Media queries
+    @include mediaQueries(min-small) {
+      font-size: 90%;
+    }
+  }
+}
+
+.bcg-success {
+  background-color: $app-bcg-success;
+}
+
+.bcg-active.false, .bcg-danger {
+  background-color: $app-bcg-danger;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.text-supp {
+  font-style: italic;
+  color: lighten($app-body-color, 30%);
+}
+
+.badge {
+  padding: $spacing-half;
+  margin-right: $spacing-half;
+}
+
+.help-text {
+  display: block;
+  font-size: 95%;
+  font-style: italic;
+  margin: $spacing-half 0;
+}
+
+.help-text.inline {
+  display: inline;
+
+}
+
+.display-block {
+  display: block;
+}
+
+.badge-number {
+  background-color: lighten($app-body-color, 60%);
+  color: #FFFFFF;
+  display: inline-block;
+  text-align: center;
+  line-height: 32px - ((32px/2) / 2);
+  width: 32px;
+  height: 32px;
+  font-size: 120%;
+  border-radius: 50%;
+}
+
+.icon-hidden {
+  visibility: hidden;
+}
+.device-available-block{
+  &.assigned{
+    padding: $spacing $spacing 0 $spacing;
+    border: solid 1px $app-border-color;
+    margin: 0 0 $spacing 0;
+  }
+}

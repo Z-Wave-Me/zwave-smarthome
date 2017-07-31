@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache) {
+myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache, _) {
 
     // Global scopes
     $scope.$location = $location;
@@ -26,6 +26,31 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     $scope.hostName = $location.host();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
+    $scope.rss = {
+        unread: 0,
+        read: [],
+        all: [],
+        find: {},
+        alert: {message: false, status: 'is-hidden', icon: false}
+    };
+
+    /**
+     * Extend an user
+     * @returns {undefined}
+     */
+    $scope.extendUser = function () {
+        dataFactory.getApi('profiles', '/' + $scope.user.id).then(function (response) {
+            angular.extend($scope.user, response.data.data);
+            angular.extend(cfg.user, response.data.data);
+        }, function (error) {
+        });
+
+    };
+    if ($scope.user) {
+        $scope.extendUser();
+    }
+
+    //dataService.getUser();
     /**
      * Set app skin
      * @returns {undefined}
@@ -65,15 +90,63 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
 
     /**
-     * todo: deprecated
-     * Reset a fatal error.
-     * @param {object} obj
+     * Allow to access page elements by role.
+     *
+     * @param {array} roles
+     * @param {boolean} mobile
+     * @returns {Boolean}
+     */
+    $scope.elementAccess = function (roles, mobile) {
+        if (!$scope.user) {
+            return false;
+        }
+        // Hide on mobile devices
+        if (mobile) {
+            return false;
+        }
+        // Hide for restricted roles
+        if (angular.isArray(roles) && roles.indexOf($scope.user.role) === -1) {
+            return false;
+        }
+        return true;
+    };
+
+    /**
+     * Load a rss info
      * @returns {undefined}
      */
-    /*$scope.resetFatalError = function (obj) {
-        angular.extend(cfg.route.fatalError, obj || {message: false, info: false, hide: false});
+    $scope.loadRssInfo = function () {
+        var cached = myCache.get('rssinfo');
+        if(cached){
+           angular.extend($scope.rss,cached);
+            return;
+        }
+        dataFactory.getApi('configget_url', null, true).then(function (response) {
+            dataFactory.xmlToJson(cfg.api_remote.rss_feed + '?boxtype=' + $scope.getCustomCfgArr('boxtype')).then(function (data) {
+                // Count all items and set as unread
+                var unread = 0;
+                var read =  response.data.rss ?  response.data.rss.read : [];
+                var channel = _.isArray(data.rss.channel.item) ? data.rss.channel.item : [data.rss.channel.item];
 
-    };*/
+                _.filter(channel, function (v, k) {
+                   //$scope.rss.all.push(v);
+                    // If item ID is  not in the array READ
+                    // add 1 to unread
+                    if (read.indexOf(v.id) === -1) {
+                        unread++;
+                    }
+                });
+                myCache.put('rssinfo', {read: read,unread: unread});
+                angular.extend($scope.rss,{read: read,unread: unread});
+
+            });
+            // }
+        });
+
+    };
+    if ($scope.elementAccess($scope.cfg.role_access.admin)) {
+        $scope.loadRssInfo();
+    }
 
     /**
      * Set timestamp and ping server if request fails
@@ -83,7 +156,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         if (!$scope.user) {
             return;
         }
-        dataFactory.pingServer( cfg.server_url + cfg.api['time']).then(function (response) {
+        dataFactory.pingServer(cfg.server_url + cfg.api['time']).then(function (response) {
             $interval.cancel($scope.timeZoneInterval);
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
                 {timestamp: response.data.data.localTimeUT});
@@ -91,15 +164,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
                 cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
                 if (cfg.route.fatalError.type === 'network') {
-                   $scope.reloadAfterError();
+                    $scope.reloadAfterError();
                 }
 
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
 
         }, function (error) {
-            console.log(error)
-            if(error.status === 0){
+            console.log('Error connection', error)
+            if (error.status === 0) {
                 var fatalArray = {
                     type: 'network',
                     message: $scope._t('connection_refused'),
@@ -148,99 +221,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 dataService.setZWAYSession(user.sid);
                 dataService.setUser(user);
                 if (dataService.getUser()) {
-                    $timeout(function(){ $window.location.reload();}, 5000);
+                    $timeout(function () {
+                        $window.location.reload();
+                    }, 5000);
 
                 }
             }
 
         }, function (error) {
         });
-
-    };
-
-    /**
-     * todo: Deprecated
-     * Handle HTTP pending
-     * @returns {undefined}
-     */
-    $scope.handlePending = function () {
-       /* angular.forEach($http.pendingRequests, function(request) {
-            if (request.cancel && request.timeout) {
-               console.log(request)
-                //request.cancel.resolve();
-            }
-        });
-        return;*/
-        /*var countUp = function () {
-            var pending = _.findWhere($http.pendingRequests, {url: '/ZAutomation/api/v1/system/time/get'});
-            if (pending) {
-                console.log('HAS PENDING');
-                var fatalArray = {
-                    type: 'network',
-                    message: $scope._t('connection_refused'),
-                    info: $scope._t('connection_refused_info'),
-                    permanent: true,
-                    hide: true
-                };
-                if ($scope.routeMatch('/boxupdate')) {
-                    fatalArray.message = $scope._t('jamesbox_connection_refused');
-                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
-                        __reload_begintag__: '<div>',
-                        __reload_endtag__: '</div>',
-                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
-                        __attention_endtag__: '<div>'
-                    });
-                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                }
-                angular.extend(cfg.route.fatalError, fatalArray);
-            }
-            //handleError(pending);
-        }
-        $timeout(countUp, cfg.pending_timeout_limit);*/
-
-        /**
-         * todo: deprecated
-         * Handle error message
-         * @param {object} pending
-         */
-        /*function handleError(pending) {
-            if (pending) {
-                console.log('HAS PENDING');
-                var fatalArray = {
-                    type: 'network',
-                    message: $scope._t('connection_refused'),
-                    info: $scope._t('connection_refused_info'),
-                    permanent: true,
-                    hide: true
-                };
-                if ($scope.routeMatch('/boxupdate')) {
-                    fatalArray.message = $scope._t('jamesbox_connection_refused');
-                    fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
-                        __reload_begintag__: '<div>',
-                        __reload_endtag__: '</div>',
-                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
-                        __attention_endtag__: '<div>'
-                    });
-                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
-                }
-                angular.extend(cfg.route.fatalError, fatalArray);
-            } else {
-                console.log('!!!!NO PENDING');
-                if (cfg.route.fatalError.type === 'network') {
-                 dataFactory.sessionApi().then(function (sessionRes) {
-                 var user = sessionRes.data.data;
-                 if (sessionRes.data.data) {
-                 dataService.setZWAYSession(user.sid);
-                 dataService.setUser(user);
-                 if (dataService.getUser()) {
-                 $window.location.reload();
-                 }
-                 }
-
-                 }, function (error) {});
-                 }
-            }
-        }*/
 
     };
 
@@ -260,7 +249,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
          * Set timestamp and ping server if request fails
          */
         $scope.setTimeStamp();
-        //$scope.handlePending();
     });
 
     /**
@@ -277,27 +265,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     };
     $scope.setPollInterval();
 
-    /**
-     * Allow to access page elements by role.
-     *
-     * @param {array} roles
-     * @param {boolean} mobile
-     * @returns {Boolean}
-     */
-    $scope.elementAccess = function (roles, mobile) {
-        if (!$scope.user) {
-            return false;
-        }
-        // Hide on mobile devices
-        if (mobile) {
-            return false;
-        }
-        // Hide for restricted roles
-        if (angular.isArray(roles) && roles.indexOf($scope.user.role) === -1) {
-            return false;
-        }
-        return true;
-    };
     /**
      * Check if value is in array
      *
@@ -455,7 +422,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             $window.open(url, '_blank');
         }).set('labels', {ok: $scope._t('goahead')});
     };
-    $scope.naviExpanded = {};
+
     /**
      * Expand/collapse navigation
      * @param {string} key
@@ -463,6 +430,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @param {boolean} status
      * @returns {undefined}
      */
+    $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
@@ -477,15 +445,42 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         }
         $event.stopPropagation();
     };
-    // Collapse element/menu when clicking outside
+
+    /**
+     * Expand/collapse autocomplete
+     * @param {string} key
+     * @param {object} $event
+     * @param {boolean} status
+     * @returns {undefined}
+     */
+    $scope.autocompleteExpanded = {};
+    $scope.expandAutocomplete = function (key, $event, status) {
+        if ($scope.autocompleteExpanded[key]) {
+            $scope.utocompleteExpanded = {};
+            $event.stopPropagation();
+            return;
+        }
+        $scope.utocompleteExpanded = {};
+        if (typeof status === 'boolean') {
+            $scope.utocompleteExpanded[key] = status;
+        } else {
+            $scope.utocompleteExpanded[key] = !$scope.utocompleteExpanded[key];
+        }
+        $event.stopPropagation();
+    };
+    /**
+     * Collapse navi, menu and autocomplete when clicking outside
+     */
     window.onclick = function () {
+        if ($scope.utocompleteExpanded) {
+            angular.copy({}, $scope.utocompleteExpanded);
+            $scope.$apply();
+        }
         if ($scope.naviExpanded) {
             angular.copy({}, $scope.naviExpanded);
             $scope.$apply();
         }
     };
-
-    $scope.modalArr = {};
     /**
      * Open/close a modal window
      * @param {string} key
@@ -493,6 +488,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * @param {boolean} status
      * @returns {undefined}
      */
+    $scope.modalArr = {};
     $scope.handleModal = function (key, $event, status) {
         if (typeof status === 'boolean') {
             $scope.modalArr[key] = status;

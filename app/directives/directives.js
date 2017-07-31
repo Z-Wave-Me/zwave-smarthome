@@ -4,6 +4,33 @@
  */
 
 /**
+ * Test directive
+ * @class bbGoBack
+ */
+myApp.directive('bbTest',function (_) {
+    return {
+        restrict: 'E',
+        scope: {
+            val: '='
+        },
+        template: '<pre ng-if="show">{{show|json}}</pre>',
+        link: function(scope, element, attrs) {
+            scope.show = false;
+            scope.$watchCollection('val', function(newValue, oldValue) {
+                if (!_.isEqual(newValue, oldValue) ){
+                    scope.show = newValue;
+                    console.log('OLD',oldValue);
+                    console.log('NEW',newValue);
+                    console.log('I see a data change!',scope.val);
+                }
+
+
+            });
+        }
+    };
+});
+
+/**
  * Window history back
  * @class bbGoBack
  */
@@ -164,6 +191,47 @@ myApp.directive('bbValidator', function ($window) {
         template: '<div class="valid-error text-danger" ng-if="inputName && !inputName.$pristine && hasBlur">*{{trans}}</div>'
     };
 });
+/**
+ * Auto focus for input box
+ * @class focus
+ */
+myApp.directive('focus',function($timeout) {
+        return {
+            scope : {
+                trigger : '@focus'
+            },
+            link : function(scope, element) {
+                scope.$watch('trigger', function(value) {
+                    if (value) {
+                        $timeout(function() {
+                            element[0].focus();
+                        });
+                    }
+                });
+            }
+        };
+    });
+/**
+* Watch for an error loading an image and to replace the src
+* @class errSrc
+*/
+myApp.directive('errSrc', function() {
+    return {
+        link: function(scope, element, attrs) {
+            element.bind('error', function() {
+                if (attrs.src != attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+            // Displays the error image when ngSrc is blank
+            attrs.$observe('ngSrc', function(value) {
+                if (!value && attrs.errSrc) {
+                    attrs.$set('src', attrs.errSrc);
+                }
+            });
+        }
+    }
+});
 
 /**
  * Compare two values
@@ -247,8 +315,9 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
                 knobInit.release = function (newValue) {
                     //console.log(knobInit)
                     $timeout(function () {
-                        var old = $scope.knobData;
-                        //console.log('myKnob directive - Bafore request new/old: ',newValue, old)
+                        var old = parseFloat($scope.knobData);
+
+                        //console.log('myKnob directive - Bafore request new/old: ', typeof newValue, typeof old);
                         if (old != newValue) {
                              //console.log('myKnob directive - Sending request new/old: ',newValue, old)
                             $scope.knobData = newValue;
@@ -258,7 +327,11 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function ($timeout, dataFa
                     });
                 };
 
-                $scope.$watch('knobData', function (newValue, oldValue) {
+                $scope.$watch('knobData', function (newValue,oldValue) {
+                    newValue =  parseFloat(newValue);
+                    oldValue =  parseFloat(oldValue);
+                    //console.log("newvalue",typeof newValue);
+                    //console.log("oldValue",typeof oldValue);
                     if (newValue != oldValue) {
                          $($element).val(newValue).change();
                     }

@@ -1,0 +1,111 @@
+/* Slider:  http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/
+-------------------------------------------------- */
+.app-slider {
+    width: 1170px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: #EEEEEE;;
+    //border: 20px solid #FFF;
+    margin: $spacing 0;
+    .slide {
+    position: relative;
+        display: inline-block;
+        text-align: center;
+        //border: solid 4px #ffffff;
+        width: 390px;
+        height: 200px;
+        //position: absolute;
+        top: 0;
+        left: 0;
+        img{
+            width: 390px;
+            height: 200px;
+        }
+        .slider-label{
+            background-color: rgba(0, 0, 0, 0.2);
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            padding: $spacing;
+            h3{
+                font-weight: bold;
+                font-size: 130%;
+                color: #FFFFFF;
+                text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+            }
+            .slider-footer{
+                color: #ffffff;
+                //text-align: right;
+                .widget-rating{
+                    text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+                    font-size: 120%;
+                    padding: 0 4px 0 0;
+                    color: #ffffff;
+                    &.israted{
+                        color: #ffffff;
+                    }
+                }
+                button{
+                    margin: 0 0 0 $spacing-double;
+                }
+            }
+        }
+        &.installed{
+            img{
+                //display: none;
+                @include appOpacity(0.1);
+            }
+        }
+    }
+}
+
+
+
+
+.slider-btn{
+    height: 100%;
+    font-size: 200%;
+    color: #fff!important;
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 8px 16px;
+    vertical-align: middle;
+    /*overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;*/
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    //background-color: #000!important;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 50%;
+    //left: 0%;
+    transform: translate(0%,-50%);
+   // -ms-transform: translate(-0%,-50%);
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+
+.slider-btn-prev {
+   // position: absolute;
+    //top: 50%;
+    left: 0%;
+    //transform: translate(0%,-50%);
+    -ms-transform: translate(-0%,-50%);
+}
+
+.slider-btn-next {
+    //position: absolute;
+    //top: 50%;
+    right: 0%;
+    //transform: translate(0%,-50%);
+    -ms-transform: translate(0%,-50%);
+}

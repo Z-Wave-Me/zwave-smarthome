@@ -1,9 +1,24 @@
-<!-- Elements dashboard view -->
+<!-- Elements rooms view -->
 <div ng-controller="ElementBaseController">
     <bb-loader></bb-loader>
     <div ng-controller="ElementRoomController">
-      <h1>{{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}</h1>
-      <div ng-if="!dataHolder.devices.show" ng-include="'app/views/elements/no_elements_room.html'"></div>
-     <div ng-if="dataHolder.devices.show" ng-include="'app/views/elements/list.html'"></div>
-</div> <!-- /ng-controller --> 
-</div> <!-- /ng-controller --> 
+        <!-- Background image -->
+        <div class="full-bg-wrapper"
+             ng-show="room.show_background && room.id != 0">
+            <div class="full-bg" ng-style="{'background':'url(' + room.img_src + ')', 'background-position': 'center center', 'background-size': 'cover'}"></div>
+        </div>
+        <!-- Header -->
+        <div ng-if="elementAccess(cfg.role_access.admin) && dataHolder.devices.show" ng-include="'app/views/elements/elements_room_bar.html'"></div>
+        <!-- Title -->
+        <!--<h1>
+            <small><a class="btn btn-default btn-sm" href="#rooms"><i class="fa fa-chevron-left"></i></a></small>
+            {{_t('lb_devices_room')}} {{dataHolder.devices.rooms[dataHolder.devices.filter.location].title}}
+        </h1>-->
+        <!-- Alert -->
+        <div ng-if="!dataHolder.devices.show" ng-include="'app/views/elements/no_elements_room.html'"></div>
+        <!-- Default mode -->
+        <div ng-include="'app/views/elements/list_mode_default.html'" ng-if="dataHolder.mode === 'default'"></div>
+        <!-- Edit mode -->
+        <div ng-include="'app/views/elements/list_mode_edit.html'" ng-if="dataHolder.mode === 'edit'"></div>
+    </div> <!-- /ng-controller -->
+</div> <!-- /ng-controller -->

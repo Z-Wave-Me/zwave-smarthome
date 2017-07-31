@@ -1,0 +1,14 @@
+<!-- modalIntchart -->
+<div id="modalIntchart" class="appmodal" ng-controller="ElementChartController" ng-if="modalArr.modalIntchart">
+	<div class="appmodal-in" style="min-height:128px">
+		<div class="appmodal-header">
+			<span class="appmodal-close" ng-click="handleModal('modalIntchart', $event)"><i class="fa fa-times"></i></span>
+			<h3>{{widgetChart.find.metrics.title}}</h3>
+		</div>
+		<div class="appmodal-body text-center">
+			<bb-alert alert="widgetChart.alert"></bb-alert>
+			<div ng-if="widgetChart.hasURL" ng-include="widgetChart.url">
+			</div>
+		</div>
+	</div>
+</div>

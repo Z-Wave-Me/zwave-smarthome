@@ -1,0 +1,88 @@
+/* Default SmartHome skin
+-------------------------------------------------- */
+/* Variables
+-------------------------------------------------- */
+
+/* Body
+-------------------------------------------------- */
+body {
+  background-color: #F6F6F6;
+
+}
+.device-available-block{
+  &.assigned{
+    background-color: #e7e7e7;
+    border: 0;
+  }
+}
+/* Main navigation
+-------------------------------------------------- */
+#main_navigation_wrap{
+  border-bottom: solid 4px #DDD;
+  background-color: #E9E9E9;
+  #main_navigation{
+    .active{
+      background-color: #DDD;
+      color: #ffffff;
+    }
+  }
+}
+
+/* Form
+-------------------------------------------------- */
+.form-page{
+  border: solid 4px #e7e7e7;
+  .form-group{
+    border-color: #e7e7e7;
+  }
+}
+.submit-entry{
+  background-color: #e7e7e7;
+  border-top: solid 1px  #e7e7e7;
+}
+
+/* Button
+-------------------------------------------------- */
+.btn-goup-tabs {
+  .btn {
+    background-color: #eeeeee;
+    &.active {
+      background-color: #dcdcdc;
+    }
+  }
+}
+
+/* Widget
+-------------------------------------------------- */
+.widget-entry{
+  .widget-entry-in{
+    border-color: #d3d3d3;
+    // Media queries
+    @include mediaQueries(min-small) {
+      border: solid 4px #FFFFFF;
+     // border-width: 4px !important;
+      @include appGradient();
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
+    }
+  }
+}
+
+/* Rooms
+-------------------------------------------------- */
+.card-room {
+  .card-room-in {
+    border: solid 4px #ffffff;
+    @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+  }
+}
+
+/* Elements in Room
+-------------------------------------------------- */
+.elemnts-room-bar{
+  // Media queries
+  @include mediaQueries(min-small) {
+    border: 0;
+    @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+    @include appGradient();
+  }
+}

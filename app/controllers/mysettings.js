@@ -15,21 +15,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.trustMyNetwork = true;
     $scope.lastEmail = "";
 
-
-//     /**
-//     * Trust my network
-//     */
-//    $scope.loadTrustMyNetwork = function() {
-//        dataFactory.getApi('trust_my_network').then(function (response) {
-//            $scope.trustMyNetwork = response.data.data.trustMyNetwork;
-//                console.log($scope.trustMyNetwork)
-//            }, function (error) {
-//                $scope.loading = false;
-//                alertify.alertError($scope._t('error_load_data'));
-//
-//            });
-//    };
-
     /**
      * Load all promises
      */
@@ -103,28 +88,30 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             }
 
             // Email change --> update e-mail cloudbackup if instance exist
-            if($scope.lastEmail != input.email) {
-                var promises = [
-                    dataFactory.getApi('instances', '/CloudBackup')
-                ];
+            if($scope.user.role == 1) {
+                if($scope.lastEmail != input.email) {
+                    var promises = [
+                        dataFactory.getApi('instances', '/CloudBackup')
+                    ];
 
-                $q.allSettled(promises).then(function (response) {
-                    var instance = response[0];
+                    $q.allSettled(promises).then(function (response) {
+                        var instance = response[0];
 
-                    if (instance.state === 'rejected') {
-                        return;
-                    }
+                        if (instance.state === 'rejected') {
+                            return;
+                        }
 
-                    if (instance.state === 'fulfilled') {
-                        var instanceData = instance.value.data.data[0];
-                        instanceData.params.email = input.email;
-                        dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
-                            $scope.lastEmail = input.email
-                        }, function (error) {
-                            alertify.alertError($scope._t('error_update_data'));
-                        });
-                    }
-                });
+                        if (instance.state === 'fulfilled') {
+                            var instanceData = instance.value.data.data[0];
+                            instanceData.params.email = input.email;
+                            dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
+                                $scope.lastEmail = input.email
+                            }, function (error) {
+                                alertify.alertError($scope._t('error_update_data'));
+                            });
+                        }
+                    });
+                }
             }
 
             $scope.loading = false;
@@ -147,21 +134,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             $scope.loading = false;
         });
     };
-
-//     /**
-//     * Set Trust my network
-//     */
-//    $scope.setTrustMyNetwork = function(trustMyNetwork) {
-//       $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-//                dataFactory.putApi('trust_my_network', null, {trustMyNetwork: trustMyNetwork}).then(function (response) {
-//                    $scope.loading = false;
-//                   dataService.showNotifier({message: $scope._t('success_updated')});
-//                }, function (error) {
-//                    $scope.loading = false;
-//                    alertify.alertError($scope._t('error_update_data'));
-//                    return;
-//                });
-//    };
 
 
     /**
@@ -205,4 +177,13 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     }
     ;
 
+});
+
+/**
+ * The controller that renders QR code.
+ * @class ManagementAddMobileDevice
+ */
+
+myAppController.controller('ManagementAddMobileDevice', function ($scope) {
+    $scope.qrcode = $scope.user.qrcode;
 });

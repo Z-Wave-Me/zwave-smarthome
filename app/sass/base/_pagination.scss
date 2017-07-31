@@ -1,0 +1,26 @@
+/* Pagination
+-------------------------------------------------- */
+.pagination > li > a, .pagination > li > span {
+    color: $app-a-color;
+    background-color: #FFFFFF;
+    border: 1px solid $app-border-color;
+}
+
+.pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
+    color: $app-a-color;
+    background-color: #FFFFFF;
+    border-color: $app-border-color;
+}
+
+.pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+    color: lighten($app-a-color, 30%);
+    background-color: #FFFFFF;
+    border-color: $app-border-color;
+    cursor: not-allowed;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover {
+    color: #FFFFFF;
+    background-color: $app-border-color;
+    border-color: $app-border-color;
+}

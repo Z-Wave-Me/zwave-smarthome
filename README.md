@@ -9,6 +9,35 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.7.0
+#### New features
+- Dashboard: Drag and Drop.
+- Elements: Drag and Drop, autocomplete and Device events. Header with room selector, sensors, drag and drop and edit room
+- Elements in room: Header with room selector, sensors, drag and drop and edit room.
+- Local Apps: autocomplete.
+- Events:  Room name over the event message, new button Reload.
+- RSS news.
+- Online Apps: Autocomplete, featured slider, category view, filter view.
+- Active Apps: Group view with MULTIPLE and SINGLE module instance. Expand/Collapse all, clone instance, autocomplete.
+- Configuring the room: Posibility to display selected image as background. Posibility to mark devices as main sensors.
+- Management: Time zone settings.
+- Finnish translation for UI #214.
+- Add QRCode for simple Add mobile device login under "My Settings" (prepared for new iOS/Android Apps).
+
+#### Fixes
+- Too many icons overflow cookie size #225.
+- Fix check of ZMEOpenWRT instance in management view.
+- RU translate, some fixes in EN translate.
+- Added a subvendor check for UZB caps to fix hidden license input.
+- Disable un/-secure button during auto configuration after inclusion.
+- Role USER, LOCAL, ANONYMOUS isn't able to open vDev configuration #215.
+- Thermostat modal increase/decrease temperature 0.5 steps.
+
+#### Changes
+- Local Apps: Hidden singleton item with instance.
+- Config rooms removed from menu.
+- Rooms are displayed as widgets with update and delete icons (for admin only).
+
 ## v1.6.0
 #### New features
 - Cloud Backup: Gives possibility to upload and store your backups on the remote server.

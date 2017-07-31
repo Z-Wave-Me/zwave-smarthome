@@ -1,14 +1,19 @@
 <!-- Include -->
 <div ng-controller="ZwaveInclusionController" id="zwave_inclusion">
     <bb-loader></bb-loader>
+    <!--<pre>{{zwaveInclusion.device.find|json}}</pre>-->
     <div class="form form-inline form-page">
         <div class="fieldset clearfix">
-            <div class="include-device-img">
-                <img class="include-image-detail" ng-src="{{zwaveInclusion.device.find.product_image}}" alt="img" ng-if="zwaveInclusion.device.find.product_image" /> 
+            <!-- Device image -->
+            <div class="include-device-img" ng-if="!_.isEmpty(zwaveInclusion.device.find)">
+               <img class="include-image-detail" ng-src="data:image/png;base64,{{zwaveInclusion.device.find.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />
             </div>
+            <!-- Inclusion title -->
             <div class="include-device-body">
-                <h1 ng-if="zwaveInclusion.device.find">{{zwaveInclusion.device.find.brandname + ' ' + zwaveInclusion.device.find.name}}</h1> 
-                <h1 ng-if="_.isEmpty(zwaveInclusion.device.find)">{{_t('lb_include_device')}}</h1> 
+                <h1>{{_t('lb_include_device')}}</h1>
+                <h2 ng-if="zwaveInclusion.device.find">
+                    <em>{{zwaveInclusion.device.find.brandname + ' ' + zwaveInclusion.device.find.name}}</em>
+                </h2>
             </div>
         </div>
         <div class="fieldset clearfix">
@@ -33,11 +38,13 @@
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="zwaveInclusion.exclusionProcess.process">
                             <div class="alert alert-warning">
-                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} {{zwaveInclusion.device.find.exc}}
-                                <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}" ng-click="startStopExclusion( false)"> 
-                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_exclusion_stop')}}</span>
-                                </button>
+                                <h4><i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} </h4>
+                                <p>{{zwaveInclusion.device.find.exc}}</p>
+
                             </div>
+                            <button class="btn btn-danger btn-lg" title="{{_t('btn_exclusion_stop')}}" ng-click="startStopExclusion( false)">
+                                <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_exclusion_stop')}}</span>
+                            </button>
                         </div>
 
                     </div>
@@ -59,23 +66,31 @@
                                     ng-click="startStopInclusion(true)">
                                 <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_inclusion_start')}}</span>
                             </button>
-                            <button type="button" class="btn btn-primary btn-lg" id="btn_force_unsecure_lock"
-                                    ng-class="!zwaveInclusion.controller.secureInclusion ? 'active' : ''"
+                            <button type="button" class="btn btn-default btn-lg" id="btn_force_unsecure_lock"
+                                    ng-class="zwaveInclusion.controller.secureInclusion ? 'active' : ''"
                                     ng-click="setSecureInclusion('controller.data.secureInclusion=' + (zwaveInclusion.controller.secureInclusion ? 'false' : 'true'))"
-                                    ng-disabled="zwaveInclusion.exclusionProcess.process">
-                                <i ng-if="!zwaveInclusion.controller.secureInclusion" class="fa fa-unlock"></i>
-                                <i ng-if="zwaveInclusion.controller.secureInclusion" class="fa fa-lock"></i>
+                                    ng-disabled="zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.process">
+                                <span ng-if="!zwaveInclusion.controller.secureInclusion" title="{{_t('btn_unsecure')}}">
+                                    <i class="fa fa-unlock text-danger"></i> <span class="btn-name">{{_t('btn_unsecure')}}</span>
+                                </span>
+                                <span ng-if="zwaveInclusion.controller.secureInclusion" title="{{_t('btn_secure')}}">
+                                    <i class="fa fa-lock text-success"></i> <span class="btn-name">{{_t('btn_secure')}}</span>
+                                </span>
+
+
                             </button>
                         </div>
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="zwaveInclusion.inclusionProcess.process">
                             <div class="alert alert-warning">
-                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} {{zwaveInclusion.device.find.inc}} 
-                                <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
-                                        ng-click="startStopInclusion(false)">
-                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
-                                </button>
+                                <h4><i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} </h4>
+                                <p>{{zwaveInclusion.device.find.inc}} </p>
+
                             </div>
+                            <button class="btn btn-danger btn-lg" title="{{_t('btn_inclusion_stop')}}"
+                                    ng-click="startStopInclusion(false)">
+                                <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_inclusion_stop')}}</span>
+                            </button>
                         </div>
                     </div>
                     <div class="report-col report-ctrl">

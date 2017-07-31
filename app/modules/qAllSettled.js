@@ -15,6 +15,10 @@ angular.module('qAllSettled', []).config(function($provide) {
      $q.allSettled = function(promises) {
         var wrappedPromises = angular.isArray(promises) ? promises.slice(0) : {};
         angular.forEach(promises, function(promise, index){
+           if(!promise){
+               wrappedPromises[index] =   { state: 'rejected', reason: 'N/A'};
+               return;
+           }
           wrappedPromises[index] = promise.then(function(value){
             return { state: 'fulfilled', value: value };
           }, function(reason){

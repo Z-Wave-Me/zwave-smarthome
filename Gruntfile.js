@@ -1,4 +1,15 @@
 module.exports = function (grunt) {
+    var pkg = grunt.file.readJSON('package.json');
+    var app_type = pkg.app_type;
+    var app_cfg = pkg.type_cfg[pkg.app_type];
+    var app_version = pkg.v;
+    var git_message = pkg.v;
+    var app_rc = (pkg.rc ? pkg.rc + 1 : 0);
+
+    if(app_rc){
+        app_version += '-RC-'+app_rc;
+        git_message += '-RC-'+pkg.rc;
+    }
 
     // Project configuration.
     grunt.initConfig({
@@ -19,7 +30,7 @@ module.exports = function (grunt) {
                         collapseBooleanAttributes: true,
                         collapseWhitespace: true,
                         removeAttributeQuotes: true,
-                        removeComments: true, // Only if you don't use comment directives! 
+                        removeComments: true, // Only if you don't use comment directives!
                         removeEmptyAttributes: true,
                         removeRedundantAttributes: true,
                         removeScriptTypeAttributes: true,
@@ -32,10 +43,10 @@ module.exports = function (grunt) {
         },
         // Concat
         concat: {
-            indexhtml: {
+            /*indexhtml: {
                 src: ['index.tpl.html'],
                 dest: 'dist/index.html'
-            },
+            },*/
             css: {
                 src: [
                     //'app/css/bootstrap.css',
@@ -66,10 +77,16 @@ module.exports = function (grunt) {
                     'vendor/upload/angular-file-upload.min.js',
                     'vendor/angular/angular-1.2.28/angular-route.min.js',
                     'vendor/angular/angular-1.2.28/angular-cookies.min.js',
-                    'vendor/dragdrop/angular-drag-and-drop-lists.js',
+                    'vendor/angular/angular-1.2.28/angular-touch.js',
+                    'vendor/angular/angular-1.2.28/angular-animate.js',
+                    'vendor/dragdrop/angular-sortable-view.min.js',
                     // Bootstrap
                     'vendor/bootstrap/bootstrap.min.js',
                     'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
+                    // ExpertUI configuration js
+                    'vendor/zwave/pyzw.js',
+                    'vendor/zwave/pyzw_zwave_ui.js',
+                    'vendor/xml/xml2json.min.js',
                     // APP
                     'app/app.js',
                     'app/routes.js',
@@ -79,7 +96,9 @@ module.exports = function (grunt) {
                     'app/config/settings.js',
                     'app/factories/factories.js',
                     'app/services/services.js',
+                    'app/services/services-expert.js',
                     'app/directives/directives.js',
+                    'app/directives/directives-expert.js',
                     'app/directives/dir-pagination.js',
                     'app/directives/tc-angular-chartjs.js',
                     'app/filters/filters.js',
@@ -88,27 +107,46 @@ module.exports = function (grunt) {
                     'app/controllers/controllers.js',
                     'app/controllers/jamesbox.js',
                     'app/controllers/element.js',
+                    'app/controllers/element-widget.js',
+                    'app/controllers/element-id.js',
                     'app/controllers/event.js',
                     'app/controllers/app.js',
+                    'app/controllers/app-local.js',
+                    'app/controllers/app-online.js',
+                    'app/controllers/app-instance.js',
+                    'app/controllers/app-alpaca.js',
                     'app/controllers/skin.js',
                     'app/controllers/icon.js',
                     'app/controllers/device.js',
                     'app/controllers/zwave-inclusion.js',
-                    'app/controllers/zwave.js',
+                    'app/controllers/zwave-manage.js',
+                    'app/controllers/zwave-vendor.js',
                     'app/controllers/camera.js',
                     'app/controllers/enocean.js',
+                    'app/controllers/rf433.js',
                     'app/controllers/room.js',
                     'app/controllers/management.js',
+                    'app/controllers/management-appstore.js',
+                    'app/controllers/management-factory.js',
+                    'app/controllers/management-firmware.js',
+                    'app/controllers/management-licence.js',
+                    'app/controllers/management-local.js',
+                    'app/controllers/management-remote.js',
+                    'app/controllers/management-report.js',
+                    'app/controllers/management-restore.js',
+                    'app/controllers/management-cloud-backup.js',
+                    'app/controllers/management-timezone.js',
+                    'app/controllers/management-timezone-jb.js',
+                    'app/controllers/management-user.js',
                     'app/controllers/mysettings.js',
+                    'app/controllers/rss.js',
                     'app/controllers/auth.js',
-                    // ExpertUI configuration js
-                    'app/expertui/pyzw.js',
-                    'app/expertui/pyzw_zwave_ui.js',
-                    'vendor/xml/xml2json.js',
-                    'app/expertui/directives.js',
-                    'app/expertui/services.js',
-                    'app/expertui/configuration.js',
-                    'app/expertui/commands.js'
+                    'app/controllers/zwave-configuration.js',
+                    'app/controllers/zwave-commands.js'
+
+
+
+
                 ],
                 dest: 'dist/app/js/build.js'
             }
@@ -117,7 +155,8 @@ module.exports = function (grunt) {
             target: {
                 dest: "app/info.json",
                 options: {
-                    name: 'SmartHome UI',
+                    name: app_cfg.name,
+                    version: app_version,
                     built: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
                     timestamp: '<%= Math.floor(Date.now() / 1000) %>'
                 }
@@ -211,6 +250,79 @@ module.exports = function (grunt) {
                     src: [ 'dist/index.html']
                 }
             }
+        },
+        htmlbuild: {
+            dist: {
+                src: 'index.html',
+                dest: 'dist/',
+                options: {
+                    sections: {
+                        dist_head: 'app/views/dist_head.txt'
+                    }
+                }
+
+            }
+        },
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'app_name',
+                            replacement: app_cfg.name
+                        },
+                        {
+                            match: 'app_version',
+                            replacement: app_version
+                        },
+                        {
+                            match: 'app_built',
+                            replacement: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>'
+                        }
+                    ]
+                },
+                files: [
+                    {expand: true, flatten: true, src: ['app/config.js'], dest: app_cfg.dir + '/app/js/'}
+                ]
+            }
+        },
+        modify_json: {
+            file: {
+                expand: true,
+                //cwd: 'test/',
+                src: ['package.json'],
+                options: {
+                    add: true,
+                    fields: {
+                        "rc": app_rc,
+                        "built": '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>'
+                    },
+                    indent: 2
+                }
+            }
+        },
+        jsdox: {
+            generate: {
+                options: {
+                    contentsEnabled: true,
+                    contentsTitle: 'SmartHome UI Documentation',
+                    contentsFile: 'readme.md',
+                    //pathFilter: /^example/,
+                    templateDir: 'docstemplates'
+                },
+                src: ['app/**/*.js'],
+                //src: ['app/controllers/*.js','app/services/*.js','app/directives/*.js','app/modules/*.js','app/jquery/*.js','app/filters/*.js'],
+                dest: 'docs'
+            }
+        },
+        'release-it': {
+            options: {
+                pkgFiles: ['package.json'],
+                commitMessage: 'Release ' + app_cfg.name + ' ' + git_message,
+                tagName: '%s',
+                tagAnnotation: 'Release ' + app_cfg.name + ' ' + git_message,
+                buildCommand: false
+            }
         }
 
     });
@@ -236,8 +348,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-banner');
     grunt.loadNpmTasks('grunt-json-generator');
+    grunt.loadNpmTasks('grunt-html-build');
+    grunt.loadNpmTasks('grunt-replace');
+    grunt.loadNpmTasks('grunt-modify-json');
+    grunt.loadNpmTasks('grunt-jsdox');
+    grunt.loadNpmTasks('grunt-release-it');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild','replace','jsdox','modify_json']);
 
 };

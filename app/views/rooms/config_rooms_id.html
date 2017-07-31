@@ -1,7 +1,6 @@
 <!-- Config rooms edit -->
 <div ng-controller="RoomConfigIdController" class="mobile-padding">
     <bb-loader></bb-loader>
-
     <div ng-show="input">
         <h2><span ng-bind="_t('lb_room')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.title"></span></h2>
         <form name="form_room" id="form_room" class="form form-page" ng-submit="store(form_room,input)" novalidate>
@@ -35,6 +34,14 @@
                              ng-if="input.user_img" />
                          </div>
                 </div>
+                <div class="form-group">
+                <label>
+                    <input type="checkbox" name="instances_expanded"
+                           ng-model="input.show_background"
+                           ng-checked="input.show_background" />
+                    {{_t('selected_image_background')}}
+                </label>
+                    <div>
             </fieldset>
             <fieldset class="mobile-hide">
                  <!-- <h3><span ng-bind="_t('lb_upload_image')"></span></h3>-->  
@@ -60,11 +67,30 @@
             
              <fieldset>
                 <h3><span ng-bind="_t('lb_devices_in_room')"></span></h3>
-                 <div class="device-available-block">
-                        <a href="" class="btn btn-default btn-tag" title="{{_t('lb_remove')}}"
+                 <bb-help-text trans="_t('room_main_sensors',{'__cnt__': input.main_sensors.length})"></bb-help-text>
+                 <div class="device-available-block assigned">
+                        <div class="btn-group btn-tag"
+                             ng-repeat="d in devices"
+                             ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0">
+                            <a href="" class="btn btn-default " title="{{_t('lb_remove')}}"
+                               ng-click="removeDevice(d)">
+                                {{d.metrics.title|cutText:true:20}}
+                                <i class="fa fa-times text-danger"></i>
+                            </a>
+                            <label class="btn btn-default"
+                                   ng-if="['sensorBinary', 'sensorMultilevel'].indexOf(d.deviceType) !== -1"
+                                   ng-class="(input.main_sensors.length === 3 && input.main_sensors.indexOf(d.id) === -1) ? 'disabled' : ''">
+                                <input type="checkbox"
+                                       value="{{d.id}}"
+                                       ng-click="assignSensor($event, d)"
+                                       ng-checked="input.main_sensors.indexOf(d.id) > -1">
+                            </label>
+                        </div>
+                        <!--<a href="" class="btn btn-default btn-tag" title="{{_t('lb_remove')}}"
                             ng-repeat="d in devices"
                            ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0"
-                           ng-click="removeDevice(d)">{{d.metrics.title|cutText:true:20}} <i class="fa fa-times text-danger"></i></a>
+                           ng-click="removeDevice(d)">{{d.metrics.title|cutText:true:20}}
+                            <i class="fa fa-times text-danger"></i></a>-->
                     </div>
                 </fieldset>
             <fieldset>

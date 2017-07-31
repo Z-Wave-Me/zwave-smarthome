@@ -1,0 +1,151 @@
+/* Widget
+-------------------------------------------------- */
+.app-row-widget {
+    // Media queries
+    @include mediaQueries(min-small) {
+        margin: 0 -$spacing;
+    }
+}
+.widget-entry{
+    width: 100%;
+    // Media queries
+    @include mediaQueries(min-small) {
+        @include appFloat(left);
+        border: 0;
+        width: 50%;;
+    }
+    @include mediaQueries(min-large) {
+        width: 33.33333%;;
+    }
+    .widget-entry-in{
+        border-bottom: solid 1px $app-border-color;
+        background-color: #FFFFFF;
+        height: 150px;
+        position: relative;
+        padding: $spacing;
+        // Media queries
+        @include mediaQueries(min-small) {
+            border-color: $app-border-color;
+            border: solid 1px $app-border-color;
+            margin: $spacing;
+        }
+        .widget-img{
+            position: absolute;
+            top: $spacing-double;
+            left: $spacing;
+
+        }
+
+        .widget-header {
+            position: relative;
+            text-align: right;
+            min-height: $spacing-double;
+            .widget-icon{
+                color: lighten($app-body-color, 40%);
+                .fa{
+                    padding: 0 0 0 $spacing;
+                    font-size: 180%;
+                    // Media queries
+                    @include mediaQueries(min-small) {
+                        padding: 0 0 0 $spacing-half;
+                        font-size: 140%;
+                    }
+                }
+            }
+        }
+        .widget-content{
+            margin: -$spacing 0 0 64px + $spacing-double;
+        }
+        .widget-title{
+            height:50%;
+            color: $app-heading-color;
+            h3{
+                font-size: 115%;
+                padding: 0;
+                margin: 0;
+                a{
+                    color: $app-heading-color;
+                }
+            }
+        }
+        .widget-footer{
+            height:50%;
+
+        }
+        .bottom-aligner {
+            border:0;
+            display: inline-block;
+            height: 100%;
+            vertical-align: bottom;
+            width:1px;
+        }
+        .widget-ctrl-click{
+            cursor: pointer;
+        }
+
+        .widget-ctrl{
+            //width: 50%;
+            float: left;
+        }
+        .widget-ctrl.ctrl-left{
+            .btn-group,.switch-wrap{
+                float: left; 
+            }
+            .switch-wrap{
+                padding: 0 $spacing-half 0 0;
+            }
+        }
+        .widget-ctrl.ctrl-right{
+            float: right;
+            text-align: right;
+            .btn-group{
+                float: right;
+            }
+        }
+    }
+    &.widget-success{
+        .widget-entry-in{
+            border-color: lighten($app-brand-success,20%);
+            border-width: 4px;
+        }
+    }
+}
+
+.widget-preview-img{
+    max-width: 64px;
+    max-height: 64px;
+    //border: solid 4px $widget-img-border-color;
+    @include appBorderRadius(50%);
+}
+
+.tbl-widget-ctrl{ 
+    .widget-history{
+        color: lighten($app-body-color, 40%);
+        .fa{
+            padding: 0 0 0 $spacing;
+            font-size: 180%;
+        }
+    }
+}
+
+/* Widget securityControl
+-------------------------------------------------- */
+.securityControl{
+    .ctrl-left{
+        //width: 70% !important;
+    }
+    .ctrl-right{
+        //width: 30% !important;
+    }
+}
+
+/* Device sensorDiscrete
+-------------------------------------------------- */
+.sensorDiscrete{
+    .ctrl-left{
+        width: 30% !important;
+    }
+    .ctrl-right{
+        width: 70% !important;
+    }
+}

@@ -1,0 +1,33 @@
+/* Drag and drop
+-------------------------------------------------- */
+.dd-placeholder{
+    width: 100%;//$widget-col-w;
+    text-align: center;
+    background: whitesmoke;
+    border: 3px dashed gray;
+    box-sizing: border-box;
+    display: table;
+    &.dd-element{
+        width: 100%;
+        height:  150px;
+        // Media queries
+        @include mediaQueries(min-small) {
+            float: left;
+            width: 50%;
+            height: 124px + $spacing;
+        }
+        // Media queries
+        @include mediaQueries(min-large) {
+            width: 33.33333%;
+        }
+
+    }
+}
+.dd-on-start{
+    background-color: $app-bcg-success;
+    opacity: 0.7;
+    cursor: text;
+}
+.dd-handle{
+    cursor: move;
+}

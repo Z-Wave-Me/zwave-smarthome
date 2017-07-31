@@ -1,6 +1,7 @@
 <!-- AppOnlineDetailController -->
 <div ng-controller="AppOnlineDetailController">
      <bb-loader></bb-loader>
+    <bb-alert alert="local.alert"></bb-alert>
      <div ng-if="!_.isEmpty(module)">
     <!-- ///////////////////////////// App info ///////////////////////////// -->
     <div class="accordion-entry" ng-include="'app/views/apps/apps_online_id_info.html'"></div>

@@ -13,6 +13,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.// Login
     when('/', {
         templateUrl: 'app/views/auth/auth.html'
+    }).// Autocomplete
+    when('/test', {
+        templateUrl: 'app/views/test.html',
+    }).
+    // Dragdrop
+    when('/dragdrop', {
+        templateUrl: 'app/views/dragdrop.html',
     }).// Home
     when('/home', {
         redirectTo: '/dashboard'
@@ -67,9 +74,14 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'app/views/apps/apps_local_id.html',
         requireLogin: true,
         roles: cfg.role_access.apps_local
-    }).//Apps online
+    }).//Apps online home
     when('/apps/online', {
         templateUrl: 'app/views/apps/apps_online.html',
+        requireLogin: true,
+        roles: cfg.role_access.apps
+    }). //Apps online filter
+    when('/apps/online/filter', {
+        templateUrl: 'app/views/apps/apps_online_filter.html',
         requireLogin: true,
         roles: cfg.role_access.apps
     }).//Apps - online detail
@@ -83,7 +95,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         requireLogin: true,
         roles: cfg.role_access.apps_online
     }).//Module
-    when('/module/:action/:id/:fromapp?', {
+    when('/module/:action/:id/:fromapp?/:instanceId?', {
         templateUrl: 'app/views/apps/app_module_alpaca.html',
         requireLogin: true,
         roles: cfg.role_access.module
@@ -124,8 +136,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         requireLogin: true,
         roles: cfg.role_access.devices
     }).//Zwave select devices by vendor id
-    when('/zwave/vendors/:id', {
-        templateUrl: 'app/views/zwave/zwave_vendors_id.html',
+    when('/zwave/products', {
+        templateUrl: 'app/views/zwave/zwave_products.html',
         requireLogin: true,
         roles: cfg.role_access.devices
     }).//Include Zwave device
@@ -206,6 +218,21 @@ myApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: 'app/views/enocean/assign.html',
         requireLogin: true,
         roles: cfg.role_access.devices
+    }).
+    when('/rf433/teachin', {
+        templateUrl: 'app/views/rf433/teachin.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean devices
+    when('/rf433/manage', {
+        templateUrl: 'app/views/rf433/manage.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
+    }).//Enocean device manage
+    when('/rf433/manage/:vDevId', {
+        templateUrl: 'app/views/rf433/manage_detail.html',
+        requireLogin: true,
+        roles: cfg.role_access.devices
     }).//Rooms
     when('/config-rooms', {
         templateUrl: 'app/views/rooms/config_rooms.html',
@@ -223,6 +250,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     when('/report', {
         templateUrl: 'app/views/report/report.html',
         requireLogin: true
+    }).//Rss
+    when('/rss', {
+        templateUrl: 'app/views/rss/rss.html',
+        requireLogin: true,
+        roles: cfg.role_access.admin
     }).//Login
     when('/login', {
         redirectTo: '/'
@@ -250,7 +282,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
     }).//Error 403
     when('/error403', {
         templateUrl: 'app/views/error_403.html'
-    }).otherwise({
+    }).//Not found
+    otherwise({
         template: ' ',
         controller: 'Error404Controller'
     });

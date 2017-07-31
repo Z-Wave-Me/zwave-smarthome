@@ -1,0 +1,80 @@
+<!-- Instances control view -->
+<div class="page-control form-inline">
+    <!--<div class="btn-group btn-goup-block btn-goup-1">
+        <button class="btn btn-default" ng-click="expandNavi('appsInstancesOrderBy', $event)">
+            <i class="fa fa-sort-alpha-asc"></i>
+            <span class="btn-name">{{_t(dataHolder.instances.orderBy) | cutText:true:15}}</span>
+        </button>
+    </div>-->
+    <!-- Collapsed-->
+    <div class="form-group">
+        <label>
+            <input type="checkbox" name="instances_expanded"
+                   ng-change="expandInstances(dataHolder.instances.expanded)"
+                   ng-model="dataHolder.instances.expanded"
+                   ng-checked="dataHolder.instances.expanded"/>
+            {{_t('expand_all')}}
+        </label>
+    </div>
+    <!-- Search and autocomplete -->
+    <form id="form_search" class="input-group" ng-submit="setFilter({q: dataHolder.instances.autocomplete.term})"
+          autocomplete="off" novalidate>
+        <!-- Input -->
+        <input id="input_search" type="text" focus="{{dataHolder.instances.filter.q}}"
+               class="form-control"
+               placeholder="{{_t('lb_search')}}"
+               ng-model="dataHolder.instances.autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+        <!-- Search button -->
+        <span class="input-group-addon clickable" ng-click="setFilter({q: dataHolder.instances.autocomplete.term})">
+            <i class="fa fa-search" ng-class="{'text-success':dataHolder.instances.autocomplete.term}"></i>
+        </span>
+
+        <!--<div class="app-dropdown autocomplete" ng-if="dataHolder.instances.autocomplete.results.length">-->
+        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchInstances">
+            <ul>
+                <li class="dropdown-entry" title="{{v.title}}"
+                    ng-repeat="v in dataHolder.instances.autocomplete.results | orderBy:'toString()' track by $index">
+                    <!-- Title -->
+                    <span class="dropdown-col"
+                          ng-click="setFilter({q: dataHolder.instances.autocomplete.term})">
+                            <img class="report-img-s" ng-src="{{dataHolder.modules.ids[v.moduleId].icon}}"
+                                 err-src="{{cfg.img.placeholder}}" alt="img"/>
+                        <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>
+
+                    </span>
+
+                    <!-- Ctrl -->
+                    <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
+                        <div class="btn-group">
+                            <button type="button" title="{{_t('lb_deactivate')}}"
+                                    class="btn btn-default btn-sm" href=""
+                                    ng-if="v.active"
+                                    ng-click="activateInstance(v, false)">
+                                <i class="fa fa-fire text-success"></i>
+                            </button>
+                            <button type="button" title="{{_t('lb_activate')}}"
+                                    class="btn btn-default btn-sm"
+                                    ng-if="!v.active"
+                                    ng-click="activateInstance(v, true)">
+                                <i class="fa fa-power-off text-danger"></i>
+                            </button>
+                           <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
+                              class="btn btn-default"
+                              title="{{_t('lb_clone')}}"
+                              ng-hide="dataHolder.modules.ids[v.moduleId].singleton">
+                                <i class="fa fa-clone"></i>
+                            </a>
+                            <button type="button" title="{{_t('lb_remove')}}"
+                                    class="btn btn-default btn-sm"
+                                    ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
+                                <i class="fa fa-remove text-danger"></i>
+                            </button>
+                             <a class="btn btn-default btn-sm" ng-href="#module/put/{{v.id}}"><i class="fa fa-chevron-circle-right"></i></a>
+                    </div>
+                    </span>
+
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,14 @@
+/* RSS
+-------------------------------------------------- */
+.read-true{
+   .event-date,.rss-title,.rss-description{
+       color: lighten($app-heading-color, 40%);
+   }
+}
+.read-false{
+    .rss-title{
+        font-weight: bold;
+    }
+    //border: solid 4px $app-border-color;
+   // background-color: $app-border-color;
+}

@@ -1,0 +1,133 @@
+/* Page navigation
+-------------------------------------------------- */
+.page-control{
+    .form-group{
+        margin: 0 $spacing-double 0 0;
+    }
+    text-align: right;
+    margin-bottom: $spacing;
+     input[type=text]{
+       min-height: 22px;
+       line-height: 22px;
+    }
+} 
+
+.page-navi{
+    font-size: 120%;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: $app-a-color;
+    .page-navi-in{
+        position: absolute;
+        background-color: #FFFFFF;
+        @include appBoxShadow($app-box-shadow);
+        border: 1px solid $app-border-color;
+        width: 100%;
+        top:0;
+        left:0;
+        z-index: $zindex-page-navi;
+    }
+    ul{
+        list-style: none;
+        text-align: left;
+        padding: $spacing;
+        margin: 0;
+        li{
+            padding: $spacing;
+            border-bottom: solid 1px $app-border-color;
+            // Media queries
+            @include mediaQueries(min-small) {
+                display: block;
+                float: left;
+                width: 33.33333%;
+            }
+            a{
+                 position:relative;
+                min-height: 1px;
+                //w: min-height: $page-navi-h;
+                color: $app-a-color;
+                text-align: left;
+                vertical-align: top;
+                display: block;
+                margin: auto;
+                @include mediaQueries(min-small) {
+                    min-height: 30px;
+                    margin: auto $spacing;
+                }
+            }
+            .navi-img{
+                display: inline-block;
+                margin: 0 $spacing 0 0;
+            }
+
+            .page-navi-icon{
+                position: absolute;
+                right: 1%;
+                display: inline-block !important;
+                @include mediaQueries(min-small) {
+                    display: none !important;
+                }
+            }
+        }
+        .active{
+            a{
+                color: lighten($app-a-color,50%);
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            .fa{
+           color: lighten($app-a-color,50%);
+
+        }
+        }
+        .fa{
+            padding-right: 7px;
+            color: lighten($app-a-color, 20%);
+
+        }
+    }
+    .fa{
+        font-size: 130%;
+    }
+    .page-navi-title{
+        text-align: left;
+        margin: 0;
+        padding: $spacing $spacing-double;
+        color: $app-heading-color;
+        //border-bottom: solid 1px $page-navi-border-color;
+    }
+    .page-navi-content{
+        padding: $spacing;
+    }
+    .page-navi-tag {
+        border: solid 1px $app-border-color;
+        display: inline-block;
+        margin: $spacing-half;
+        padding: $spacing-half;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: $app-border-radius;
+    }
+    .page-navi-tag.active{
+        background-color: $app-border-color;
+        cursor:text;
+    }
+}
+
+.page-navi-in ul:before, .page-navi-in ul:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.page-navi-in ul:after {
+    clear: both;
+}
+/* Navigation and dropdown images
+-------------------------------------------------- */
+.navi-img{
+    width: 32px;
+    height: 32px;
+    @include appBorderRadius(50%);
+}

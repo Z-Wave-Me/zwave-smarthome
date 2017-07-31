@@ -14,22 +14,143 @@
                 </div>
                 <div class="col-rgb col-sm-6">
                     <div id="wheel_picker_selected" style="background-color: {{widgetSwitchRGBW.selectedColor}};">
-                         <div id="wheel_picker_selected_spin" ng-if="widgetSwitchRGBW.process">
-                        <i class="fa fa-spinner fa-spin"></i> {{_t('updating')}}
+                        <div id="wheel_picker_selected_spin" ng-if="widgetSwitchRGBW.process">
+                            <i class="fa fa-spinner fa-spin"></i> {{_t('updating')}}
                         </div>
                     </div>
                     <div id="wheel_picker_preview" style="background-color: {{widgetSwitchRGBW.previewColor}};">
                         &nbsp;
                     </div>
                     <p>{{widgetSwitchRGBW.previewColor}}</p>
-                    <!--<p><input class="form-control" type="text" id="rVal" disabled /></p>
-                    <p><input class="form-control" type="text" id="gVal" disabled /></p>
-                    <p><input class="form-control" type="text" id="bVal" disabled /></p>-->
                 </div>
             </div>
+
+            <!--<div class="row">
+                <div class="col-sm-6">
+                    <div class="row wheel-colorpicker">
+                        <div class="col-rgb col-sm-6">
+                            <canvas id="wheel_picker" var="4" width="150" height="150" ng-mousemove="setColor($element)"></canvas>
+                            <input type="hidden" id="rgbVal" />
+                        </div>
+                        <div class="col-rgb col-sm-6">
+                            <div id="wheel_picker_selected" style="background-color: {{widgetSwitchRGBW.selectedColor}};">
+                                <div id="wheel_picker_selected_spin" ng-if="widgetSwitchRGBW.process">
+                                    <i class="fa fa-spinner fa-spin"></i> {{_t('updating')}}
+                                </div>
+                            </div>
+                            <div id="wheel_picker_preview" style="background-color: {{widgetSwitchRGBW.previewColor}};">
+                                &nbsp;
+                            </div>
+                            <p>{{widgetSwitchRGBW.previewColor}}</p>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">#</span>
+                        <input type="text" ng-blur="setRGBColor(); colorHexChange()" class="form-control" ng-model="widgetSwitchRGBW.colorHex">
+                    </div>
+                    <div ng-repeat="dev in widgetSwitchRGBW.all" ng-if="dev.deviceType == 'switchRGBW'">
+                        <div class="row" ng-repeat="(k, v) in dev.metrics.color">
+                            <div class="col-sm-1">
+                                <span><i class="fa fa-circle fa-lg {{widgetSwitchRGBW.color[k]}}"></i></span>
+                            </div>
+                            <div class="col-sm-9">
+                                <div id="range_slider_{{$index}}"
+                                     class="app-range-slider"
+                                     range-slider
+                                     min='0'
+                                     max='255'
+                                     model-max="dev.metrics.color[k]"
+                                     pin-handle="min"
+                                     decimal-places="0"
+                                     step="0"
+                                     on-handle-down="sliderOnHandleDown(dev)"
+                                     on-handle-up="sliderOnHandleUpRGB(dev)">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" ng-blur="setRGBColor(dev)" ng-model="dev.metrics.color[k]">
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-repeat="dev in widgetSwitchRGBW.all"
+                         ng-if="dev.deviceType == 'switchMultilevel' && ['switchColor_cold_white', 'switchColor_soft_white'].indexOf(dev.probeType) > -1"
+                         class="row">
+                        <div class="col-sm-1">
+                            <span ng-if="dev.probeType == 'switchColor_cold_white'"><i class="fa fa-sun-o fa-lg text-warning"></i></span>
+                            <span ng-if="dev.probeType == 'switchColor_soft_white'"><i class="fa fa-circle-o fa-lg text-warning"></i></span>
+                        </div>
+                        <div class="col-sm-9">
+                            <div id="range_slider_{{$index}}"
+                                 class="app-range-slider"
+                                 range-slider
+                                 min='0'
+                                 max='99'
+                                 model-max="dev.metrics.level"
+                                 pin-handle="min"
+                                 decimal-places="0"
+                                 step="0"
+                                 on-handle-down="sliderOnHandleDown(dev)"
+                                 on-handle-up="sliderOnHandleUp(dev)">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" ng-model="dev.metrics.level">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="app-row app-row-knob clearfix" ng-repeat="dev in widgetSwitchRGBW.all" ng-if="dev.deviceType == 'switchMultilevel' && dev.probeType == 'multilevel'">
+                        <div class="knob-col knob-ctrl">
+                            <input
+                                    type="text"
+                                    value="{{dev.metrics.level}}"
+                                    class="dial widget-level-knob"
+                                    data-width="160"
+                                    data-height="160"
+                                    knob-step="dev.minMax.step"
+                                    knob-min="dev.minMax.min"
+                                    knob-max="dev.minMax.max"
+                                    knob-id="dev.id"
+                                    knob-data="dev.metrics.level"
+                                    knob-options="knobopt"
+                                    ng-model="dev.metrics.level" myknob />
+                        </div>
+                        <div class="knob-col knob-btn">
+                            <p>
+                                <button class="btn btn-primary"
+                                        ng-click="setExactCmd(dev, '+')"
+                                ><i class="fa fa-angle-up"></i>
+                                </button>&nbsp;
+                                <button class="btn btn-info"
+                                        ng-click="setExactCmd(dev, dev.minMax.max)"
+                                ><i class="fa fa-angle-double-up"></i>
+                                </button>
+                            </p>
+                            <p>
+                                <button class="btn btn-primary"
+                                        ng-click="setExactCmd(dev, '-')"
+                                ><i class="fa fa-angle-down"></i>
+                                </button>&nbsp;
+                                <button class="btn btn-info"
+                                        ng-click="setExactCmd(dev, dev.minMax.min)"
+                                >
+                                    <i class="fa fa-angle-double-down"></i>
+                                </button>
+                            </p>
+                            <p>
+                                <button class="btn btn-info"
+                                        ng-click="setExactCmd(dev, dev.minMax.max)"
+                                        ng-bind="_t('lb_full')">
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
         </div>
-        <!--<div class="appmodal-footer">
-            <button type="button" class="btn btn-default" ng-click="handleModal('switchRGBWModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
-        </div>-->
     </div>
 </div>
+
+
+

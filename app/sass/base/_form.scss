@@ -1,0 +1,138 @@
+/* Form 
+-------------------------------------------------- */
+.form-control {
+  font-size: 95%;
+  color: lighten($app-body-color, 30%);
+  border: solid 1px #CCCCCC;
+  padding: 12px 14px;
+  height: auto;
+  // Media queries
+  @include mediaQueries(min-small) {
+    padding: 6px 12px;
+  }
+}
+
+.input-group-addon {
+  border: solid 1px #CCCCCC;
+  background-color: #EEEEEE;
+}
+
+textarea {
+  min-height: 150px;
+}
+
+label {
+  font-weight: normal;
+  font-size: 105%;
+}
+
+input[type=checkbox] {
+  @include  checkboxScale(2,$spacing);
+  // Media queries
+  @include mediaQueries(min-small) {
+    @include checkboxScale(1.3, $spacing);
+  }
+
+}
+
+input[type=radio] {
+   @include radioScale(1.8, $spacing);
+  // Media queries
+  @include mediaQueries(min-small) {
+    @include radioScale(1.2, $spacing);
+  }
+}
+
+.form-page {
+  margin-bottom: $spacing-double;
+  background-color: #FFFFFF;
+  border: solid 1px $app-border-color;
+  h3 {
+  }
+  .form-group {
+    border-bottom: solid 1px $app-border-color;
+    padding-bottom: $spacing;
+    &.last {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+  label {
+    font-weight: normal;
+  }
+}
+
+.inputfile {
+  // display: inline-block !important;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  cursor: pointer;
+}
+
+fieldset, .fieldset {
+  padding: $spacing;
+}
+
+.isrequired {
+  font-weight: bold !important;
+
+}
+
+.isrequired::before {
+  content: "*";
+}
+
+.form-control-sm {
+  width: 30% !important;
+}
+
+.form-control-md {
+  width: 50% !important;
+}
+
+.submit-entry {
+  text-align: right;
+  display: block;
+  //margin: 10px 0 0 0;
+  background-color: #FFFFFF;
+  border-top: solid 1px $app-border-color;
+}
+
+fieldset.submit-entry {
+  margin: 0 !important;
+}
+
+.form-control-hidden {
+  display: none !important;
+}
+
+.form-control-img {
+  cursor: pointer;
+  border: solid 4px transparent;
+
+}
+
+.control-active {
+  border: solid 4px black !important;
+}
+.form-block{
+    margin: $spacing 0 0 0;
+}
+
+/* Config form
+-------------------------------------------------- */
+#form_wakeup {
+  select, .label-node {
+    visibility: hidden;
+    //display: none;
+  }
+}
+

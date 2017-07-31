@@ -1,0 +1,41 @@
+<!-- Mode switch -->
+<!--dataHolder.mode: {{dataHolder.mode}}-->
+<div class="btn-group _btn-goup-block _btn-goup-2">
+    <!-- Change mode -->
+    <button type="button" title="{{_t('lb_save')}}" class="btn btn-default"
+            ng-class="{'active': dataHolder.mode === 'edit'}"
+            ng-click="changeMode(dataHolder.mode === 'default' ? 'edit' : 'default')">
+        <i class="fa fa-arrows"></i>
+        <span class="btn-name">{{_t('drag_drop')}}</span>
+    </button>
+    <!-- Change mode -->
+    <button type="button" title="{{_t('lb_save')}}" class="btn"
+            ng-if="dataHolder.mode === 'edit'"
+            ng-class="{'btn-submit': !_.isEmpty(dataHolder.dragdrop.data)}"
+            ng-click="dragDropSave()"
+            ng-disabled="_.isEmpty(dataHolder.dragdrop.data)">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+    </button>
+</div>
+<!--<div class="form-group">
+    &lt;!&ndash;dataHolder.mode: {{dataHolder.mode}}&ndash;&gt;
+    <label>
+        <input type="checkbox" name="elements_mode"
+               ng-true-value="edit" ng-false-value="default"
+               ng-change="changeMode(dataHolder.mode)"
+               ng-model="dataHolder.mode"
+               ng-checked="dataHolder.mode === 'edit'">
+        {{_t('drag_drop')}}
+    </label>
+</div>-->
+<!-- Mode save button -->
+<!--<div class="btn-group btn-goup-block btn-goup-1" ng-if="dataHolder.mode === 'edit'">
+    <button type="button" title="{{_t('lb_save')}}" class="btn"
+            ng-class="{'btn-submit': !_.isEmpty(dataHolder.dragdrop.data)}"
+            ng-click="dragDropSave()"
+            ng-disabled="_.isEmpty(dataHolder.dragdrop.data)">
+        <i class="fa fa-check"></i>
+        <span class="btn-name" ng-bind="_t('lb_save')"></span>
+    </button>
+</div>-->

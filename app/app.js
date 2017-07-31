@@ -11,14 +11,15 @@
 var myApp = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
+    'ngAnimate',
     'myAppConfig',
     'myAppController',
     'myAppFactory',
     'myAppService',
-    'dndLists',
     'qAllSettled',
     'myAppTemplates',
-    'httpLatency'
+    'httpLatency',
+    'angular-sortable-view'
 
 ]);
 
@@ -28,10 +29,10 @@ var appCookies = angular.injector(['ngCookies']).get('$cookies');
 var appUser = false;
 var appHttp = angular.injector(["ng"]).get("$http");
 // Attempt to get user cookie
-if (appCookies.user) {
+/*if (appCookies.user) {
     appUser = angular.fromJson(appCookies.user);
     angular.extend(config_data.cfg.route, {user: appUser});
-}
+}*/
 // Attempt to get lang cookie
 if (appCookies.lang) {
     angular.extend(config_data.cfg.route, {lang: appCookies.lang});
@@ -105,6 +106,7 @@ myApp.config(function ($provide, $httpProvider) {
             },
             // On response success
             response: function (response) {
+
                 // Return the response or promise.
                 return response || $q.when(response);
             },
@@ -123,6 +125,19 @@ myApp.config(function ($provide, $httpProvider) {
                         };
                         angular.extend(cfg.route.fatalError, fatalArray);
                         break;*/
+                    case 0:
+                        //console.log(rejection)
+                        // Check if request has no timeout or location url is on the black list and pending is from a remote server
+                        // then does not display an error message
+                        if(!rejection.config.timeout || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.isRemote)){
+                           break;
+                        }
+                        //console.log(rejection);
+                        angular.extend(cfg.route.fatalError, {
+                            message: 'The request failed because server does not responding',
+                            hide: false
+                        });
+                        break;
                     case 401:
                         if (path[1] !== '') {
                             dataService.setRememberMe(null);

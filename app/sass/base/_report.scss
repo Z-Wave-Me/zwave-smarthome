@@ -1,0 +1,68 @@
+/* Report
+-------------------------------------------------- */
+.app-row-report{
+    border-top: solid 1px $app-border-color;
+    background-color: #FFFFFF;
+    border-bottom: solid 1px $app-border-color;
+}
+.report-entry {
+    border-bottom: solid 1px $app-border-color;
+    padding: $spacing $spacing-half;
+    width: 100%;
+    // Media queries
+    @include mediaQueries(min-esmall) {
+        display: table;
+    }
+    .report-col{
+        display: table-cell;
+         vertical-align: middle;
+    }
+    .report-media{
+        width: 40px + $spacing;
+    }
+    .report-body{}
+
+    .report-ctrl{
+        min-width: 110px;
+        display: block;
+        text-align: right;
+        // Media queries
+        @include mediaQueries(min-esmall) {
+            display: table-cell;
+        }
+    }
+
+    .report-ctrl-3{
+        min-width: 160px;
+    }
+    .report-col-w30{
+        width: 30%;
+    }
+}
+/* Images */
+.report-img{
+    max-width: 60px;
+    max-height: 60px;
+    @include mediaQueries(min-small) {
+        max-width: 40px;
+        max-height: 40px;
+    }
+}
+
+.report-img-s{
+    max-width: 32px;
+    max-height: 32px;
+}
+
+/* Zwave row */
+.app-row-zwave {
+    .report-entry {
+        .report-ctrl {
+            // Media queries
+            @include mediaQueries(min-esmall) {
+                vertical-align: top !important;
+            }
+
+        }
+    }
+}

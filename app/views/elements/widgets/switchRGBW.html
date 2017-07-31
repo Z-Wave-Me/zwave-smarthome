@@ -5,13 +5,24 @@
             ng-class="v.metrics.level =='off' ? 'btn-primary': 'btn-default'"
             data-ng-click="runCmd(v.id + '/command/off', v.id)"
             title="{{_t('lb_off')}}">
-            <span class="widget-btn-symbol">0</span> 
+            <span class="widget-btn-symbol">0</span>
+        </button>
+        <button class="btn btn-on" id="btn_on_{{ v.id}}"
+                ng-class="v.metrics.level =='on' ? 'btn-primary': 'btn-default'"
+                data-ng-click="runCmd(v.id + '/command/on', v.id)"
+                title="{{_t('lb_on')}}">
+            <span class="widget-btn-symbol">I</span>
+        </button>
+        <!--<button class="btn btn-on" id="btn_on_{{ v.id}}"
+                ng-class="v.metrics.level =='on' ? 'btn-primary': 'btn-default'"
+                data-ng-click="runCmd(v.id + '/command/on', v.id)"
+                title="{{_t('lb_on')}}"><span class="widget-btn-symbol">I</span>
         </button>
         <button class="btn btn-on" id="btn_on_{{ v.id}}"
             ng-class="v.metrics.level =='on' ? 'btn-primary': 'btn-default'"
             data-ng-click="runCmd(v.id + '/command/on', v.id)"
-            title="{{_t('lb_on')}}"><span class="widget-btn-symbol">I</span>
-        </button>
+            title="{{_t('lb_on')}}"><span class="widget-btn-symbol">RGB</span>
+        </button>-->
     </div>
 </div>
 <div class="widget-ctrl ctrl-right widget-ctrl-click" ng-click="dataHolder.devices.find = v;handleModal('switchRGBWModal', $event)">

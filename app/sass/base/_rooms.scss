@@ -1,0 +1,234 @@
+/* Rooms
+-------------------------------------------------- */
+/* Variables
+-------------------------------------------------- */
+
+// Card color
+$room-card-color: #000000;
+// Card background color
+$room-card-bcg-color: #FFFFFF;
+// Card border color
+$room-card-border-color: #ccc;
+
+/* Cards
+-------------------------------------------------- */
+.card-room {
+  width: 100%;
+  @include mediaQueries(min-small) {
+    @include appFloat(left);
+    width: 50%;
+  }
+  @include mediaQueries(min-medium) {
+    width: 33.33333%;
+  }
+  @include mediaQueries(min-large) {
+    width: 25%;
+  }
+  /* Inner element */
+  .card-room-in {
+    border: solid 1px $room-card-border-color;
+    background-color: $room-card-bcg-color;
+    position: relative;
+    height: 132px;
+    padding: 0;
+    margin: 0 0 $spacing-double 0;
+    // Media queries
+    @include mediaQueries(min-small) {
+      margin: $spacing;
+      height: 268px;
+      padding: 0;
+    }
+    /* Card header */
+    .card-header{
+      text-align: right;
+      min-height: $spacing-double;
+      opacity: 0.8;
+      background: $room-card-bcg-color;
+      position: absolute;
+      top: 24px;
+      right: 0;
+      padding: $spacing-half $spacing 0 0;
+      // Media queries
+      @include mediaQueries(min-small) {
+        width: 100%;
+        padding: $spacing-half;
+        top: 0;
+      }
+      /* Header icons */
+      .card-header-icon {
+        color: lighten($room-card-color, 30%);
+        font-size: 180%;
+        padding: 0 0 0 $spacing;
+
+        @include mediaQueries(min-small) {
+          font-size: 140%;
+          padding: 0 0 0 $spacing-half;
+        }
+        &:hover{
+          text-decoration: none;
+        }
+      }
+
+    }
+    /* Background image */
+    .bcg-img {
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 132px - 8px;// - border width * 2
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      // Media queries
+      @include mediaQueries(min-small) {
+        position: static;
+        text-align: center;
+        height: 170px;
+      }
+
+
+
+    }
+    /* Card content */
+    .card-content {
+      margin: 0;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      opacity: 0.8;
+      padding: $spacing;
+      background-color: $room-card-bcg-color;
+
+      // Media queries
+      @include mediaQueries(min-small) {
+        position: static;
+        margin: $spacing-double 0 0 0;
+        padding: 0;
+        text-align: center;
+      }
+      /* Card Title */
+      .card-title {
+        h3 {
+          font-size: 115%;
+          padding: 0;
+          margin: 0;
+          a {
+            color: $room-card-color;
+            font-weight: bold;
+          }
+        }
+      }
+      /* Card Sensors */
+      .card-sensors {
+        text-align: left;
+        margin: 5px 0 0 0;
+
+        // Media queries
+        @include mediaQueries(min-small) {
+          text-align: center;
+          margin: 15px 0 0 0;
+        }
+
+        /* Sensor */
+        .sensor {
+          display: inline-block;
+          margin: 0 5px 0 0;
+
+          .sensor-img {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            .sensor-preview-img {
+              max-width: 20px;
+              max-height: 20px;
+            }
+          }
+
+          .sensor-ctrl {
+            float: left;
+            margin: 0 0 0 2px ;
+            .sensor-level {
+              font-weight: bold;
+              font-size: 120%;
+            }
+
+            .sensor-scale {
+              font-size: 70%;
+            }
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+}
+/* Rooms without device
+-------------------------------------------------- */
+.room-no-device {
+  .room-link {
+    cursor: text !important;
+  }
+  .room-img {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    @include appGrayscale();
+
+  }
+  .card-title {
+    h3 {
+      a {
+        font-weight: normal !important;
+        color: lighten($room-card-color, 10%) !important;
+        text-decoration: none;
+        cursor: text !important;
+      }
+    }
+  }
+}
+
+/* Elements in Rooms
+-------------------------------------------------- */
+/* Background with image */
+.full-bg-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  min-height: 100%;
+  min-width: 100%;
+  z-index: -100;
+
+  .full-bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(15px);
+    transform: scale(1.1);
+  }
+}
+
+/* Header */
+.elemnts-room-bar{
+  background-color: $room-card-bcg-color;
+  border: solid 1px $room-card-border-color;
+  margin: 0 0 $spacing-double 0;
+}
+
+/* Images
+-------------------------------------------------- */
+.room-img-upload{
+  display: inline-block;
+  max-width: 70px;
+  max-height: 70px;
+  margin: $spacing-half;
+}
