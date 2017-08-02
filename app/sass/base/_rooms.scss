@@ -1,14 +1,5 @@
 /* Rooms
 -------------------------------------------------- */
-/* Variables
--------------------------------------------------- */
-
-// Card color
-$room-card-color: #000000;
-// Card background color
-$room-card-bcg-color: #FFFFFF;
-// Card border color
-$room-card-border-color: #ccc;
 
 /* Cards
 -------------------------------------------------- */
@@ -26,8 +17,8 @@ $room-card-border-color: #ccc;
   }
   /* Inner element */
   .card-room-in {
-    border: solid 1px $room-card-border-color;
-    background-color: $room-card-bcg-color;
+    border: solid 1px $app-border-color;
+    background-color: $card-bcg-color;
     position: relative;
     height: 132px;
     padding: 0;
@@ -43,7 +34,7 @@ $room-card-border-color: #ccc;
       text-align: right;
       min-height: $spacing-double;
       opacity: 0.8;
-      background: $room-card-bcg-color;
+      background: $card-bcg-color;
       position: absolute;
       top: 24px;
       right: 0;
@@ -56,7 +47,7 @@ $room-card-border-color: #ccc;
       }
       /* Header icons */
       .card-header-icon {
-        color: lighten($room-card-color, 30%);
+        color: lighten($app-body-color, 30%);
         font-size: 180%;
         padding: 0 0 0 $spacing;
 
@@ -99,7 +90,7 @@ $room-card-border-color: #ccc;
       left: 0;
       opacity: 0.8;
       padding: $spacing;
-      background-color: $room-card-bcg-color;
+      background-color: $card-bcg-color;
 
       // Media queries
       @include mediaQueries(min-small) {
@@ -115,7 +106,7 @@ $room-card-border-color: #ccc;
           padding: 0;
           margin: 0;
           a {
-            color: $room-card-color;
+            color: $app-body-color;
             font-weight: bold;
           }
         }
@@ -184,7 +175,7 @@ $room-card-border-color: #ccc;
     h3 {
       a {
         font-weight: normal !important;
-        color: lighten($room-card-color, 10%) !important;
+        color: lighten($app-body-color, 10%) !important;
         text-decoration: none;
         cursor: text !important;
       }
@@ -219,8 +210,8 @@ $room-card-border-color: #ccc;
 
 /* Header */
 .elemnts-room-bar{
-  background-color: $room-card-bcg-color;
-  border: solid 1px $room-card-border-color;
+  background-color: $card-bcg-color;
+  border: solid 1px $app-border-color;
   margin: 0 0 $spacing-double 0;
 }
 
