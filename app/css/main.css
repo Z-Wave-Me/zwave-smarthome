@@ -10293,13 +10293,17 @@ div.timepicker-picker > table.table-condensed tr td {
 	THE SOFTWARE.
 
  */
-/*------------------------------------*    COMPASS IMPORTS
+/*------------------------------------*\
+    COMPASS IMPORTS
 \*------------------------------------*/
-/*------------------------------------*    SETTINGS
+/*------------------------------------*\
+    SETTINGS
 \*------------------------------------*/
-/*------------------------------------*    THE CSS
+/*------------------------------------*\
+    THE CSS
 \*------------------------------------*/
 /* line 69, scss/angular.rangeSlider.scss */
+/* line 47, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider {
   position: relative;
   margin: 0 20px 0 0;
@@ -10321,25 +10325,34 @@ div.timepicker-picker > table.table-condensed tr td {
   transition: border linear 0.2s, box-shadow linear 0.2s;
   -webkit-tap-highlight-color: transparent;
   min-width: 100px;
-  /*------------------------------------*      RUNNER
+  /*------------------------------------*\
+      RUNNER
   \*------------------------------------*/
-  /*------------------------------------*      JOIN (connects the two handles)
+  /*------------------------------------*\
+      JOIN (connects the two handles)
   \*------------------------------------*/
-  /*------------------------------------*      HANDLE
+  /*------------------------------------*\
+      HANDLE
   \*------------------------------------*/
-  /*------------------------------------*      HANDLE SPECIFICS
+  /*------------------------------------*\
+      HANDLE SPECIFICS
   \*------------------------------------*/
-  /*------------------------------------*      VALUE LABELS
+  /*------------------------------------*\
+      VALUE LABELS
   \*------------------------------------*/
-  /*------------------------------------*      VERTICAL SLIDER
+  /*------------------------------------*\
+      VERTICAL SLIDER
   \*------------------------------------*/
-  /*------------------------------------*      FOCUS STATE
+  /*------------------------------------*\
+      FOCUS STATE
   \*------------------------------------*/
-  /*------------------------------------*      DISABLED STATE
+  /*------------------------------------*\
+      DISABLED STATE
   \*------------------------------------*/
 }
 
 /* line 72, scss/angular.rangeSlider.scss */
+/* line 94, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider, .ngrs-range-slider * {
   display: block;
   cursor: default;
@@ -10352,6 +10365,7 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 97, scss/angular.rangeSlider.scss */
+/* line 105, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-runner {
   position: relative;
   margin: 0 9px;
@@ -10359,6 +10373,7 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 107, scss/angular.rangeSlider.scss */
+/* line 111, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-join {
   position: absolute;
   z-index: 1;
@@ -10381,6 +10396,7 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 125, scss/angular.rangeSlider.scss */
+/* line 132, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-handle {
   position: absolute;
   z-index: 2;
@@ -10394,11 +10410,13 @@ div.timepicker-picker > table.table-condensed tr td {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  /*------------------------------------*      HANDLE ICON
+  /*------------------------------------*\
+      HANDLE ICON
   \*------------------------------------*/
 }
 
 /* line 139, scss/angular.rangeSlider.scss */
+/* line 150, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-handle i {
   display: block;
   width: 100%;
@@ -10408,11 +10426,13 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 149, scss/angular.rangeSlider.scss */
+/* line 158, ../sass/vendor/_angular.slider.scss */
 .ngrs-no-touch .ngrs-range-slider .ngrs-handle:hover i, .ngrs-range-slider .ngrs-handle.ngrs-down i {
   background-position: 50% 50%;
 }
 
 /* line 154, scss/angular.rangeSlider.scss */
+/* line 162, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-handle.ngrs-down {
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
@@ -10420,16 +10440,19 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 165, scss/angular.rangeSlider.scss */
+/* line 168, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-handle-min i {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFNJREFUeNpiYMAEXEDsA+OwoEnKALETEHOgK2AEYhMgNkQ3DqSAB6pLAot1DExIJmAFzED8C4hvQdnIppyFKYCBp0D8CohloVafxWUqN7I3AQIMAKw6B24pOi8lAAAAAElFTkSuQmCC");
 }
 
 /* line 172, scss/angular.rangeSlider.scss */
+/* line 172, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-handle-max i {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFdJREFUeNpiYEAAHyDmYkADzEhsByBWA+K3QPwJmwJjIGYBYlUgZgLi59gUwIAkEEsD8VMmBtyAkQFqJDZwAYjPAPE/dAU/gHg/ED/GpgvkTW50QYAAAwADfwrM5sqplgAAAABJRU5ErkJggg==");
 }
 
 /* line 182, scss/angular.rangeSlider.scss */
+/* line 176, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-value {
   position: absolute;
   top: 0;
@@ -10440,6 +10463,7 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 190, scss/angular.rangeSlider.scss */
+/* line 185, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider .ngrs-value.ngrs-value-max {
   /*  left: -50px;*/
   right: -30px;
@@ -10447,31 +10471,41 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 198, scss/angular.rangeSlider.scss */
+/* line 191, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-handle-min-down .ngrs-value-min, .ngrs-range-slider.ngrs-handle-max-down .ngrs-value-max {
   color: #333;
 }
 
 /* line 206, scss/angular.rangeSlider.scss */
+/* line 195, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical {
   width: 28px;
   margin: 10px auto;
-  /*------------------------------------*      RUNNER
+  /*------------------------------------*\
+      RUNNER
   \*------------------------------------*/
-  /*------------------------------------*      JOIN
+  /*------------------------------------*\
+      JOIN
   \*------------------------------------*/
-  /*------------------------------------*      HANDLE
+  /*------------------------------------*\
+      HANDLE
   \*------------------------------------*/
-  /*------------------------------------*      HANDLE SPECIFICS
+  /*------------------------------------*\
+      HANDLE SPECIFICS
   \*------------------------------------*/
-  /*------------------------------------*      VALUE LABELS
+  /*------------------------------------*\
+      VALUE LABELS
   \*------------------------------------*/
-  /*------------------------------------*      VERTICAL LEFT SLIDER
+  /*------------------------------------*\
+      VERTICAL LEFT SLIDER
   \*------------------------------------*/
-  /*------------------------------------*      VERTICAL RIGHT SLIDER
+  /*------------------------------------*\
+      VERTICAL RIGHT SLIDER
   \*------------------------------------*/
 }
 
 /* line 214, scss/angular.rangeSlider.scss */
+/* line 221, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical .ngrs-runner {
   margin: 9px 0;
   height: 300px;
@@ -10479,6 +10513,7 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 224, scss/angular.rangeSlider.scss */
+/* line 227, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical .ngrs-join {
   width: 8px;
   height: auto;
@@ -10490,6 +10525,7 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 238, scss/angular.rangeSlider.scss */
+/* line 237, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical .ngrs-handle {
   width: 100%;
   height: 18px;
@@ -10497,16 +10533,19 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 249, scss/angular.rangeSlider.scss */
+/* line 243, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical .ngrs-handle-min i {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFFJREFUeNpiYEAFPFAMB0xIbEYgdoJiRpggM5ICUyBWhZoA0vgMWYEsENsg6ZQE4ldA/AmkkguIHZGNhQKQGBfIBHcgFmTABCxALMJAMQAIMAAcNgVQJ7t7JQAAAABJRU5ErkJggg==");
 }
 
 /* line 256, scss/angular.rangeSlider.scss */
+/* line 247, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical .ngrs-handle-max i {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFZJREFUeNpiYKAUMAKxDxBL4ZB/xgQk9gHxDyySILF9zEDiNxC/A2JVNAW7gfgtM5TzCYhZgFgCyr8IxNdADGZk+4BYGoi/APEBIP6PzVE8UAwHAAEGAArIDvzRFIA6AAAAAElFTkSuQmCC");
 }
 
 /* line 266, scss/angular.rangeSlider.scss */
+/* line 251, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical .ngrs-value {
   top: 0;
   left: 100%;
@@ -10514,6 +10553,7 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 271, scss/angular.rangeSlider.scss */
+/* line 257, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical .ngrs-value.ngrs-value-max {
   top: auto;
   bottom: 0;
@@ -10522,18 +10562,22 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 283, scss/angular.rangeSlider.scss */
+/* line 264, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical.ngrs-left {
   margin: 10px 0;
 }
 
 /* line 291, scss/angular.rangeSlider.scss */
+/* line 268, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical.ngrs-right {
   margin: 10px 0 10px auto;
-  /*------------------------------------*      VALUE LABELS
+  /*------------------------------------*\
+      VALUE LABELS
   \*------------------------------------*/
 }
 
 /* line 298, scss/angular.rangeSlider.scss */
+/* line 275, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical.ngrs-right .ngrs-value {
   left: auto;
   right: 100%;
@@ -10542,11 +10586,13 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 304, scss/angular.rangeSlider.scss */
+/* line 282, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical.ngrs-right .ngrs-value.ngrs-value-max {
   text-align: right;
 }
 
 /* line 316, scss/angular.rangeSlider.scss */
+/* line 286, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-focus {
   border-color: rgba(82, 168, 236, 0.8);
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
@@ -10555,6 +10601,7 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 327, scss/angular.rangeSlider.scss */
+/* line 293, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-disabled, .ngrs-range-slider.ngrs-disabled.ngrs-focus {
   border-color: #ddd;
   -webkit-box-shadow: none;
@@ -10563,30 +10610,36 @@ div.timepicker-picker > table.table-condensed tr td {
 }
 
 /* line 333, scss/angular.rangeSlider.scss */
+/* line 300, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-disabled .ngrs-handle {
   background: #fff;
   border-color: #ddd;
 }
 
 /* line 337, scss/angular.rangeSlider.scss */
+/* line 305, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-disabled .ngrs-handle i {
   background: none !important;
   cursor: default;
 }
 
 /* line 343, scss/angular.rangeSlider.scss */
+/* line 310, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-disabled .ngrs-join {
   background: #ddd;
 }
 
 /* line 347, scss/angular.rangeSlider.scss */
+/* line 314, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-disabled .ngrs-value {
   color: #ddd;
 }
 
-/*------------------------------------*    TOUCH STATE
+/*------------------------------------*\
+    TOUCH STATE
 \*------------------------------------*/
 /* line 359, scss/angular.rangeSlider.scss */
+/* line 322, ../sass/vendor/_angular.slider.scss */
 body.ngrs-touching {
   -ms-touch-action: none;
 }
@@ -14075,11 +14128,9 @@ img.widget-promo-image {
 
 /* Rooms
 -------------------------------------------------- */
-/* Variables
--------------------------------------------------- */
 /* Cards
 -------------------------------------------------- */
-/* line 15, ../sass/base/_rooms.scss */
+/* line 6, ../sass/base/_rooms.scss */
 .card-room {
   width: 100%;
   /* MIN WIDTH */
@@ -14091,7 +14142,7 @@ img.widget-promo-image {
   /* Inner element */
 }
 @media only screen and (min-width: 768px) {
-  /* line 15, ../sass/base/_rooms.scss */
+  /* line 6, ../sass/base/_rooms.scss */
   .card-room {
     float: left;
     position: relative;
@@ -14100,20 +14151,20 @@ img.widget-promo-image {
   }
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 15, ../sass/base/_rooms.scss */
+  /* line 6, ../sass/base/_rooms.scss */
   .card-room {
     width: 33.33333%;
   }
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 15, ../sass/base/_rooms.scss */
+  /* line 6, ../sass/base/_rooms.scss */
   .card-room {
     width: 25%;
   }
 }
-/* line 28, ../sass/base/_rooms.scss */
+/* line 19, ../sass/base/_rooms.scss */
 .card-room .card-room-in {
-  border: solid 1px #ccc;
+  border: solid 1px #cccccc;
   background-color: #FFFFFF;
   position: relative;
   height: 132px;
@@ -14126,14 +14177,14 @@ img.widget-promo-image {
   /* Card content */
 }
 @media only screen and (min-width: 768px) {
-  /* line 28, ../sass/base/_rooms.scss */
+  /* line 19, ../sass/base/_rooms.scss */
   .card-room .card-room-in {
     margin: 10px;
     height: 268px;
     padding: 0;
   }
 }
-/* line 42, ../sass/base/_rooms.scss */
+/* line 33, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header {
   text-align: right;
   min-height: 20px;
@@ -14148,33 +14199,33 @@ img.widget-promo-image {
   /* Header icons */
 }
 @media only screen and (min-width: 768px) {
-  /* line 42, ../sass/base/_rooms.scss */
+  /* line 33, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-header {
     width: 100%;
     padding: 5px;
     top: 0;
   }
 }
-/* line 58, ../sass/base/_rooms.scss */
+/* line 49, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header .card-header-icon {
-  color: #4d4d4d;
+  color: #595959;
   font-size: 180%;
   padding: 0 0 0 10px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 58, ../sass/base/_rooms.scss */
+  /* line 49, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-header .card-header-icon {
     font-size: 140%;
     padding: 0 0 0 5px;
   }
 }
-/* line 67, ../sass/base/_rooms.scss */
+/* line 58, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header .card-header-icon:hover {
   text-decoration: none;
 }
-/* line 74, ../sass/base/_rooms.scss */
+/* line 65, ../sass/base/_rooms.scss */
 .card-room .card-room-in .bcg-img {
   display: block;
   top: 0;
@@ -14188,14 +14239,14 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 74, ../sass/base/_rooms.scss */
+  /* line 65, ../sass/base/_rooms.scss */
   .card-room .card-room-in .bcg-img {
     position: static;
     text-align: center;
     height: 170px;
   }
 }
-/* line 95, ../sass/base/_rooms.scss */
+/* line 86, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content {
   margin: 0;
   position: absolute;
@@ -14210,7 +14261,7 @@ img.widget-promo-image {
   /* Card Sensors */
 }
 @media only screen and (min-width: 768px) {
-  /* line 95, ../sass/base/_rooms.scss */
+  /* line 86, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-content {
     position: static;
     margin: 20px 0 0 0;
@@ -14218,18 +14269,18 @@ img.widget-promo-image {
     text-align: center;
   }
 }
-/* line 113, ../sass/base/_rooms.scss */
+/* line 104, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 {
   font-size: 115%;
   padding: 0;
   margin: 0;
 }
-/* line 117, ../sass/base/_rooms.scss */
+/* line 108, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 a {
-  color: #000000;
+  color: #0d0d0d;
   font-weight: bold;
 }
-/* line 124, ../sass/base/_rooms.scss */
+/* line 115, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors {
   text-align: left;
   margin: 5px 0 0 0;
@@ -14238,51 +14289,51 @@ img.widget-promo-image {
   /* Sensor */
 }
 @media only screen and (min-width: 768px) {
-  /* line 124, ../sass/base/_rooms.scss */
+  /* line 115, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-content .card-sensors {
     text-align: center;
     margin: 15px 0 0 0;
   }
 }
-/* line 135, ../sass/base/_rooms.scss */
+/* line 126, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor {
   display: inline-block;
   margin: 0 5px 0 0;
 }
-/* line 139, ../sass/base/_rooms.scss */
+/* line 130, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-img {
   float: left;
   width: 20px;
   height: 20px;
   background-color: #fff;
 }
-/* line 144, ../sass/base/_rooms.scss */
+/* line 135, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-img .sensor-preview-img {
   max-width: 20px;
   max-height: 20px;
 }
-/* line 150, ../sass/base/_rooms.scss */
+/* line 141, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl {
   float: left;
   margin: 0 0 0 2px;
 }
-/* line 153, ../sass/base/_rooms.scss */
+/* line 144, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl .sensor-level {
   font-weight: bold;
   font-size: 120%;
 }
-/* line 158, ../sass/base/_rooms.scss */
+/* line 149, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl .sensor-scale {
   font-size: 70%;
 }
 
 /* Rooms without device
 -------------------------------------------------- */
-/* line 174, ../sass/base/_rooms.scss */
+/* line 165, ../sass/base/_rooms.scss */
 .room-no-device .room-link {
   cursor: text !important;
 }
-/* line 177, ../sass/base/_rooms.scss */
+/* line 168, ../sass/base/_rooms.scss */
 .room-no-device .room-img {
   opacity: 0.7;
   filter: alpha(opacity=70);
@@ -14290,10 +14341,10 @@ img.widget-promo-image {
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-/* line 185, ../sass/base/_rooms.scss */
+/* line 176, ../sass/base/_rooms.scss */
 .room-no-device .card-title h3 a {
   font-weight: normal !important;
-  color: #1a1a1a !important;
+  color: #262626 !important;
   text-decoration: none;
   cursor: text !important;
 }
@@ -14301,7 +14352,7 @@ img.widget-promo-image {
 /* Elements in Rooms
 -------------------------------------------------- */
 /* Background with image */
-/* line 198, ../sass/base/_rooms.scss */
+/* line 189, ../sass/base/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -14311,7 +14362,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 207, ../sass/base/_rooms.scss */
+/* line 198, ../sass/base/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: fixed;
   top: 0;
@@ -14325,16 +14376,16 @@ img.widget-promo-image {
 }
 
 /* Header */
-/* line 221, ../sass/base/_rooms.scss */
+/* line 212, ../sass/base/_rooms.scss */
 .elemnts-room-bar {
   background-color: #FFFFFF;
-  border: solid 1px #ccc;
+  border: solid 1px #cccccc;
   margin: 0 0 20px 0;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 229, ../sass/base/_rooms.scss */
+/* line 220, ../sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
