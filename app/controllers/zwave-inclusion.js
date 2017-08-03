@@ -99,7 +99,10 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             }
             // Success - ZWaveAPIData
             if (ZWaveAPIData.state === 'fulfilled') {
-                setZWaveAPIData(ZWaveAPIData.value);
+                if(ZWaveAPIData.value){
+                    setZWaveAPIData(ZWaveAPIData.value);
+                }
+
             }
 
             $scope.loading = false;
@@ -118,7 +121,9 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             var refresh = function () {
                 cnt++;
                 dataFactory.refreshZwaveApiData().then(function (response) {
-                    updateController(response.data);
+                    if(response){
+                        updateController(response.data);
+                    }
                 }, function (error) {
                     return;
                 });
@@ -131,7 +136,10 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         } else {
             var refresh = function () {
                 dataFactory.refreshZwaveApiData().then(function (response) {
-                    updateController(response.data);
+                    if(response){
+                        updateController(response.data);
+                    }
+
                 }, function (error) {
                     return;
                 });
@@ -456,6 +464,9 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $scope.zwaveInclusion.automatedConfiguration.includedDevice.commandClassesCnt = 0;
         $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt = 0;
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            if(!ZWaveAPIData){
+                return;
+            }
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
                 return;

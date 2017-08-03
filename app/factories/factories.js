@@ -521,13 +521,19 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function refreshApi(api, params) {
-        //console.log('?since=' + updatedTime)
-        if (api === 'notifications' && updatedTime.toString().length === 10) {
+        var deferred = $q.defer();
+        if(_.findWhere($http.pendingRequests,{failWait: api})){
+            deferred.resolve();
+            return deferred.promise;
+        }
+        // Time in notifications is in miliseconds
+         if (api === 'notifications' && updatedTime.toString().length === 10) {
             updatedTime = updatedTime * 1000;
         }
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),
+            failWait:api,
             headers: {
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession
@@ -627,21 +633,22 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     /**
      * Get data holder from ZWaveAPI api
      * @param {boolean} noCache
-     * @param {boolean} fatalError
      * @returns {unresolved}
      */
-    function loadZwaveApiData(noCache, fatalError) {
-        // Cached data
+    function loadZwaveApiData(noCache) {
+        var deferred = $q.defer();
         var cacheName = 'cache_zwaveapidata';
         var cached = myCache.get(cacheName);
+
+        // Cached data
         if (!noCache && cached) {
-            var deferred = $q.defer();
             deferred.resolve(cached);
             return deferred.promise;
         }
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.zwave_api_url + 'Data/0',
+            failWait: cacheName,
             headers: {'ZWAYSession': ZWAYSession}
         }).then(function (response) {
             if (typeof response.data === 'object') {
@@ -671,8 +678,15 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function refreshZwaveApiData() {
+        var deferred = $q.defer();
+        var cacheName = 'refresh_zwaveapidata';
+        if(_.findWhere($http.pendingRequests,{failWait: cacheName})){
+            deferred.resolve();
+            return deferred.promise;
+        }
         return $http({
             method: 'get',
+            failWait: cacheName,
             url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime
         }).then(function (response) {
             if (typeof response.data === 'object') {

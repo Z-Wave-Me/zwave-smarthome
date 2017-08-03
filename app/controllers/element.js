@@ -118,6 +118,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.refreshDevices = function () {
         var refresh = function () {
             dataFactory.refreshApi('devices').then(function (response) {
+                if(!response){
+                    return;
+                }
                 if (response.data.data.devices.length > 0) {
                     angular.forEach(response.data.data.devices, function (v, k) {
                         if (v.metrics.level) {

@@ -71,6 +71,9 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
             $scope.loading = false;
             // Success - api data
             if (zwave.state === 'fulfilled') {
+                if(!zwave.value){
+                    return;
+                }
                 $scope.ZwaveApiData = zwave.value;
                 setControllerInfo(zwave.value);
             }

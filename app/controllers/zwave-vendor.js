@@ -62,7 +62,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
             }
             // Success - zwdata
             if (zwdata.state === 'fulfilled') {
-                if(zwdata.value.controller.data.frequency.value){
+                if(zwdata.value && zwdata.value.controller.data.frequency.value){
                     $scope.zwaveVendors.frequency = zwdata.value.controller.data.frequency.value;
                     $scope.zwaveVendors.frequencyName = cfg.frequency[zwdata.value.controller.data.frequency.value];
                     productsWhere.frequency = $scope.zwaveVendors.frequencyName;

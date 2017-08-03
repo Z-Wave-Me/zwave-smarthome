@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache, _) {
+myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q,cfg, cfgicons, dataFactory, dataService, myCache, _) {
 
     // Global scopes
     $scope.$location = $location;
@@ -237,6 +237,13 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * Route on change start
      */
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        /**
+         * Cancels pending requests
+         */
+        angular.forEach($http.pendingRequests, function(request) {
+            request.cancel  = $q.defer();
+            request.timeout = request.cancel.promise;
+        });
         /**
          * Reset fatal error object
          */

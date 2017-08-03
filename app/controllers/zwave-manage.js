@@ -36,6 +36,9 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             }
             // Success - zwave devices
             if (devices.state === 'fulfilled') {
+                if(!devices.value){
+                    return;
+                }
                 $scope.devices.zw = setZwaveApiData(devices.value);
             }
             // Success - elements
@@ -402,6 +405,9 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
         $scope.zwaveInterview.commandClassesCnt = 0;
         $scope.zwaveInterview.interviewDoneCnt = 0;
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            if(!ZWaveAPIData){
+                return;
+            }
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
                 return;
@@ -521,6 +527,9 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
      */
     $scope.loadZwaveApiData = function () {
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            if(!ZWaveAPIData){
+                return;
+            }
             var node = ZWaveAPIData.devices[$routeParams.id];
             if (!node) {
                 alertify.alertWarning($scope._t('no_data'));
@@ -543,8 +552,14 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
     $scope.refreshZwaveApiData = function () {
 
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            if(!ZWaveAPIData){
+                return;
+            }
             var refresh = function () {
                 dataFactory.refreshZwaveApiData().then(function (response) {
+                    if(!response){
+                        return;
+                    }
                     //var data = response.data;
                     if ('controller.data.controllerState' in response.data) {
                         $scope.zWaveDevice.controllerState = response.data['controller.data.controllerState'].value;
@@ -707,6 +722,9 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
      */
     function zwaveConfigApiData(nodeId, devices) {
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
+            if(!ZWaveAPIData){
+                return;
+            }
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
                 return;

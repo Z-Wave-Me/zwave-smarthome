@@ -117,6 +117,9 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     function getZwaveApiData(location) {
         //var location = '#/dashboard';
         dataFactory.loadZwaveApiData().then(function (response) {
+            if(!response){
+                return;
+            }
             var input = {
                 uuid: response.controller.data.uuid.value
             };

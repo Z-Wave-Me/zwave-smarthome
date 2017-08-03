@@ -17,6 +17,9 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
     // Load data
     $scope.load = function (nodeId) {
         dataFactory.loadZwaveApiData().then(function(ZWaveAPIData) {
+            if(!ZWaveAPIData){
+                return;
+            }
             var node = ZWaveAPIData.devices[nodeId];
             if (!node) {
                 return;
