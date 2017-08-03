@@ -483,9 +483,10 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
     $scope.dataHolder.devices.orderBy = 'order_rooms';
 
     $scope.allSettled = function () {
+        //console.log($scope.input.main_sensors);
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('locations', '/' + $routeParams.id),
+            dataFactory.getApi('locations'),
             dataFactory.getApi('devices',null, false)
         ];
 
@@ -495,10 +496,17 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
             $scope.loading = false;
             // Success - location
             if (location.state === 'fulfilled') {
-                $scope.room = dataService.getRooms([location.value.data.data]).value()[0];
+                var room = _.find(location.value.data.data, function(room) {
+                    return room.id == $routeParams.id;
+                });
+                if (typeof room != 'undefined') {
+                    $scope.room = dataService.getRooms([room]).value()[0];
+                } else {
+                    alertify.alertError($scope._t('error_load_data'));
+                }
             }
 
-            if(devices.state === 'fulfilled') {
+            if (devices.state === 'fulfilled') {
                 var devices = dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden);
                 $scope.loadRoomSensors(devices.value());
             }
