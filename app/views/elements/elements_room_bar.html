@@ -9,18 +9,14 @@
         <!-- Bar col -->
         <div class="bar-col bar-body">
             <div class="btn-group">
-                <span class="bar-title clickable"
+                <span class="bar-title clickable" ng-if="_.size(dataHolder.cnt.rooms) > 0"
                       ng-click="expandNavi('roomDropDown', $event)">{{room.title}}  <i class="fa fa-caret-down"></i>
                 </span>
-               <!-- <button type="button" class="btn btn-default"
-                        ng-click="expandNavi('roomDropDown', $event)">
-                        {{room.title}}  <i class="fa fa-caret-down"></i>
-                </button>-->
+                <span class="bar-title" ng-if="_.size(dataHolder.cnt.rooms) < 1">{{room.title}}</span>
                 <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.roomDropDown">
                     <ul>
                         <li class="clickable" ng-repeat="v in dataHolder.devices.rooms"
-                            ng-if="dataHolder.cnt.rooms[v.id]"
-                        ng-hide="v.id == room.id">
+                            ng-if="dataHolder.cnt.rooms[v.id]">
                             <a ng-href="#/rooms/{{v.id}}">
                                 <img class="navi-img" ng-src="{{v.img_src}}" alt="img"/>
                                 {{v.title|cutText:true:20}} <span class="item-cnt">({{dataHolder.cnt.rooms[v.id]}})</span>

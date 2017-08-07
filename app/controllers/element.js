@@ -7,7 +7,7 @@
  * The element root controller
  * @class ElementBaseController
  */
-myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, cfg,dataFactory, dataService, myCache) {
+myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, $routeParams, cfg,dataFactory, dataService, myCache) {
     $scope.dataHolder = {
         mode: 'default',
         firstLogin: false,
@@ -400,6 +400,11 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             return v.location;
         });
 
+
+        // If page ID is  rooms removing current room from the list
+        if($scope.getBodyId() === 'rooms' && $routeParams.id){
+            delete $scope.dataHolder.cnt.rooms[$routeParams.id];
+        }
         //All devices
         $scope.dataHolder.devices.all = devices.value();
         if (_.isEmpty($scope.dataHolder.devices.all)) {
