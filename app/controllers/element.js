@@ -143,8 +143,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                     $scope.allSettled(true);
                 }
 
-            }, function (error) {
-                $interval.cancel($scope.apiDataInterval);
             });
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);

@@ -187,7 +187,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
                     //$scope.collection.push(v);
                     setEvent(v);
                 });
-            }, function (error) {});
+            });
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };

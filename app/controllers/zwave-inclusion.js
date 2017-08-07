@@ -124,8 +124,6 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                     if(response){
                         updateController(response.data);
                     }
-                }, function (error) {
-                    return;
                 });
 
                 if (cnt == maxcnt) {
@@ -140,8 +138,6 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                         updateController(response.data);
                     }
 
-                }, function (error) {
-                    return;
                 });
             };
         }
@@ -300,9 +296,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * Run zwave command
      */
     $scope.runZwaveCmd = function (cmd) {
-        dataFactory.runZwaveCmd(cmd).then(function () {
-        }, function () {
-        });
+        dataFactory.runZwaveCmd(cmd).then(function () {});
     };
 
     /**

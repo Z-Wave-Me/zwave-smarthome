@@ -521,10 +521,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function refreshApi(api, params) {
-        var deferred = $q.defer();
         if(_.findWhere($http.pendingRequests,{failWait: api})){
-            deferred.resolve();
-            return deferred.promise;
+            return $q.reject('Pending');
         }
         // Time in notifications is in miliseconds
          if (api === 'notifications' && updatedTime.toString().length === 10) {
@@ -648,7 +646,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.zwave_api_url + 'Data/0',
-            failWait: cacheName,
             headers: {'ZWAYSession': ZWAYSession}
         }).then(function (response) {
             if (typeof response.data === 'object') {
@@ -678,11 +675,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function refreshZwaveApiData() {
-        var deferred = $q.defer();
         var cacheName = 'refresh_zwaveapidata';
         if(_.findWhere($http.pendingRequests,{failWait: cacheName})){
-            deferred.resolve();
-            return deferred.promise;
+            return $q.reject('Pending');
         }
         return $http({
             method: 'get',
@@ -758,9 +753,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function runZwaveCmd(cmd) {
+        if(_.findWhere($http.pendingRequests,{failWait: cmd})){
+            return $q.reject('Pending');
+        }
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.zwave_api_url + "Run/" + cmd
+            url: cfg.server_url + cfg.zwave_api_url + "Run/" + cmd,
+            failWait: cmd
         }).then(function (response) {
             return response;
         }, function (response) {// something went wrong

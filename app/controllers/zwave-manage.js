@@ -43,7 +43,6 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             }
             // Success - elements
             if (elements.state === 'fulfilled') {
-                //setElements(elements.value.data.data.devices);
                 setElements(dataService.getDevicesData(elements.value.data.data.devices, false,true));
             }
         });
@@ -54,9 +53,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
      * Run zwave CMD
      */
     $scope.runZwaveCmd = function (cmd) {
-        dataFactory.runZwaveCmd(cmd).then(function () {
-        }, function () {
-        });
+        dataFactory.runZwaveCmd(cmd).then(function () {});
     };
 
 
@@ -570,7 +567,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
                         $scope.zWaveDevice.lastExcludedDevice = response.data['controller.data.lastExcludedDevice'].value;
                         console.log('lastExcludedDevice: ', $scope.zWaveDevice.lastExcludedDevice);
                     }
-                }, function (error) {});
+                });
             };
             $scope.zWaveDevice.apiDataInterval = $interval(refresh, $scope.cfg.interval);
         }, function (error) {});
@@ -582,11 +579,6 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
      */
     $scope.runZwaveCmd = function (cmd) {
         dataFactory.runZwaveCmd(cmd).then(function () {
-            //myCache.remove('devices');
-            //myCache.removeAll();
-            //console.log('Reload...')
-            //$route.reload();
-        }, function (error) {
         });
 
     };
@@ -596,7 +588,6 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
     $scope.removeFailedNode = function (cmd) {
         dataFactory.runZwaveCmd(cmd).then(function () {
             $scope.zWaveDevice.removeNodeProcess = true;
-        }, function (error) {
         });
 
     };
@@ -703,9 +694,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         });
         //Update device name
         var cmd = 'devices[' + $scope.zWaveDevice.id + '].data.givenName.value=\'' + input.deviceName + '\'';
-        dataFactory.runZwaveCmd(cmd).then(function () {
-        }, function (error) {
-        });
+        dataFactory.runZwaveCmd(cmd).then(function () {});
         myCache.removeAll();
         $scope.loading = false;
         dataService.showNotifier({message: $scope._t('success_updated')});
