@@ -106,8 +106,9 @@
           padding: 0;
           margin: 0;
           a {
-            color: $app-body-color;
-            font-weight: bold;
+            color: lighten($app-body-color, 10%);
+            text-decoration: none;
+            cursor: text;
           }
         }
       }
@@ -159,6 +160,21 @@
   }
 
 }
+/* Rooms with device
+-------------------------------------------------- */
+.room-has-device {
+
+  .card-title {
+    h3 {
+      a {
+        font-weight: bold;
+        color: $app-body-color;
+         cursor: hand !important;
+      }
+    }
+  }
+}
+
 /* Rooms without device
 -------------------------------------------------- */
 .room-no-device {
@@ -170,16 +186,6 @@
     filter: alpha(opacity=70);
     @include appGrayscale();
 
-  }
-  .card-title {
-    h3 {
-      a {
-        font-weight: normal !important;
-        color: lighten($app-body-color, 10%) !important;
-        text-decoration: none;
-        cursor: text !important;
-      }
-    }
   }
 }
 
