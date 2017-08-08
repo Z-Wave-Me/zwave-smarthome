@@ -79,9 +79,9 @@ Force interview
 Reset configuration
 
 
-### ZwaveInterviewController.checkInterview() 
+### ZwaveInterviewController.handleInterview() 
 
-Check interview
+Handle interview
 
 
 ### ZwaveInterviewController.setSecureInclusion() 

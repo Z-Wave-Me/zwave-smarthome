@@ -284,15 +284,13 @@ Get a file with language keys values from the app/lang directory
 
 **Returns**: `unresolved`
 
-### dataFactory.loadZwaveApiData(noCache, fatalError) 
+### dataFactory.loadZwaveApiData(noCache) 
 
 Get data holder from ZWaveAPI api
 
 **Parameters**
 
 **noCache**: `boolean`
-
-**fatalError**: `boolean`
 
 **Returns**: `unresolved`
 

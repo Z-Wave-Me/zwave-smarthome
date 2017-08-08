@@ -9,6 +9,17 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.7.1
+#### New features
+- ???.
+
+#### Fixes
+- Elements, Apps and devices: Fixed bug in Firefox.
+- Don't poll InspectQueue and ZWaveAPI/Data/xxx if current request is still pending #262.
+
+#### Changes
+- Added major/minor version to the licence scratch request.
+
 ## v1.7.0
 #### New features
 - Dashboard: Drag and Drop.

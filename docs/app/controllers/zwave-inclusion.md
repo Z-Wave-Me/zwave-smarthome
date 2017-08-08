@@ -109,7 +109,7 @@ Reset inclusion
 Reset automated configuration
 
 
-### ZwaveInclusionController.checkInterview() 
+### ZwaveInclusionController.handleInterview() 
 
 Check interview
 
