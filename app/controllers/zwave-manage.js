@@ -264,7 +264,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
      */
     $scope.startConfiguration = function (includedDevice) {
         resetConfiguration(true, false, includedDevice, false, true);
-        checkInterview($scope.devices.find.id);
+        handleInterview($scope.devices.find.id);
         var refresh = function () {
             $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
             var interviewRepeatCnt = $scope.zwaveInterview.interviewRepeatCnt + 1;
@@ -341,14 +341,13 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
 
                 return;
             }
-            checkInterview($scope.devices.find.id);
+            handleInterview($scope.devices.find.id);
         };
         $scope.interval.api = $interval(refresh, $scope.zwaveInterview.cfg.checkInterviewTimeout);
     };
     if (!_.isEmpty($scope.devices.find)) {
         $scope.startConfiguration();
     }
-
 
     /**
      * Cancel configuration
@@ -396,9 +395,103 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
     ;
 
     /**
+     * Handle interview
+     */
+    function handleInterview(nodeId) {
+        $scope.zwaveInterview.commandClassesCnt = 0;
+        $scope.zwaveInterview.interviewDoneCnt = 0;
+        dataFactory.runZwaveCmd('devices['+ nodeId + ']').then(function (response) {
+            var node = response.data;
+            if(!_.isObject(node)){
+                return;
+            }
+
+            if (!node.data.nodeInfoFrame.value) {
+                return;
+            }
+
+            // Is battery operated?
+            if (angular.isDefined(node.instances)) {
+                angular.extend($scope.zwaveInterview, {hasBattery: 0x80 in node.instances[0].commandClasses});
+            }
+            for (var iId in node.instances) {
+                if (Object.keys(node.instances[iId].commandClasses).length < 1) {
+                    return;
+                }
+                angular.extend($scope.zwaveInterview, {commandClassesCnt: Object.keys(node.instances[iId].commandClasses).length});
+                for (var ccId in node.instances[iId].commandClasses) {
+                    var cmdClass = node.instances[iId].commandClasses[ccId];
+                    var id = node.instances[iId].commandClasses[ccId].name;
+                    var iData = 'devices[' + nodeId + '].instances[' + iId + '].commandClasses[' + ccId + '].Interview()';
+                    //Is Security available?
+                    if (ccId === '152') {
+                        $scope.zwaveInterview.security = true;
+                    }
+                    // Is interview done?
+                    if (cmdClass.data.interviewDone.value) {
+                        // Is security interview done?
+                        if (ccId === '152') {
+                            $scope.zwaveInterview.securityInterview = true;
+                        }
+                        // If an interview is done deleting from interviewNotDone
+                        delete $scope.zwaveInterview.interviewNotDone[id];
+                        // Extending an interview counter
+                        angular.extend($scope.zwaveInterview,
+                            {interviewDoneCnt: $scope.zwaveInterview.interviewDoneCnt + 1}
+                        );
+                    } else { // An interview is not done
+                        // Extending interviewNotDone
+                        $scope.zwaveInterview.interviewNotDone[id] = iData;
+                    }
+                }
+            }
+
+            var commandClassesCnt = $scope.zwaveInterview.commandClassesCnt;
+            var intervewDoneCnt = $scope.zwaveInterview.interviewDoneCnt;
+            var progress = ((intervewDoneCnt / commandClassesCnt) * 100).toFixed();
+            console.log('commandClassesCnt: ', commandClassesCnt);
+            console.log('intervewDoneCnt: ', intervewDoneCnt);
+            console.log('Percent %: ', progress);
+            $scope.zwaveInterview.progress = (progress < 101 ? progress : 99);
+
+            // Test if Security available and Security interview failed
+            if ($scope.zwaveInterview.security && !$scope.zwaveInterview.securityInterview) {
+                angular.extend($scope.zwaveInterview, {errorType: 'error_interview_secure_failed'});
+                return;
+            }
+
+            // If no Security or Security ok but Interviews are not complete
+            if (!_.isEmpty($scope.zwaveInterview.interviewNotDone)) {
+                // If command class Version is not complet, „Force Interview Version“
+                if ($scope.zwaveInterview.interviewNotDone['Version']) {
+                    angular.extend($scope.zwaveInterview, {errorType: 'error_interview_again'});
+                    return;
+                    // If Version ok but other CC are missing, force only these command classes
+                } else {
+                    angular.extend($scope.zwaveInterview, {errorType: 'error_interview_retry'});
+                    return;
+                }
+            }
+            // If interview is complete
+            if (progress >= 100) {
+                $scope.zwaveInterview.progress = 100;
+                resetConfiguration(false, true, null, false, true);
+                //setSecureInclusion(true);
+                //$scope.startManualConfiguration(nodeId);
+                return;
+                ;
+            }
+        }, function (error) {
+            return;
+        });
+    }
+    ;
+
+    /**
+     * todo: deprecated
      * Check interview
      */
-    function checkInterview(nodeId) {
+    /*function checkInterview(nodeId) {
         $scope.zwaveInterview.commandClassesCnt = 0;
         $scope.zwaveInterview.interviewDoneCnt = 0;
         dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
@@ -488,7 +581,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
             return;
         });
     }
-    ;
+    ;*/
 
     /**
      * Set secure inclusion
