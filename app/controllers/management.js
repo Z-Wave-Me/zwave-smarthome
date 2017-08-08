@@ -29,7 +29,9 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         capabillities: null,
         scratchId: null,
         capsLimited: false,
-        manufacturerId: null
+        manufacturerId: null,
+        appVersionMajor:null,
+        appVersionMinor:null
     };
     $scope.remoteAccess = false;
     $scope.handleLicense = {
@@ -105,6 +107,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
      * Set controller info
      */
     function setControllerInfo(ZWaveAPIData) {
+        var appVersion = ZWaveAPIData.controller.data.APIVersion.value.split('.');
         var caps = function (arr) {
             var cap = '';
             if (angular.isArray(arr)) {
@@ -125,6 +128,8 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.capsSubvendor = ((ZWaveAPIData.controller.data.caps.value[0] << 8) + ZWaveAPIData.controller.data.caps.value[1]);
         $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
         $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
+        $scope.controllerInfo.appVersionMajor = parseInt(appVersion[0], 10);
+        $scope.controllerInfo.appVersionMinor = parseInt(appVersion[1], 10);
         setLicenceScratchId($scope.controllerInfo);
         //console.log(ZWaveAPIData.controller.data.caps.value);
         //console.log('Limited: ', $scope.controllerInfo.capsLimited);

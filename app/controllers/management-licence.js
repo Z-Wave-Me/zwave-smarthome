@@ -55,8 +55,10 @@ myAppController.controller('ManagementLicenceController', function ($scope, cfg,
         $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
         $scope.proccessLicence = true;
         var input = {
-            'uuid': $scope.controllerInfo.uuid,
-            'scratch': inputLicence.scratch_id
+            uuid: $scope.controllerInfo.uuid,
+            scratch: inputLicence.scratch_id,
+            appVersionMajor: $scope.controllerInfo.appVersionMajor,
+            appVersionMinor: $scope.controllerInfo.appVersionMinor
         };
         dataFactory.getLicense(input).then(function (response) {
             $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
