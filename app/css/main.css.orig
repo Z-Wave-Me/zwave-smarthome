@@ -14855,8 +14855,151 @@ img.widget-promo-image {
 
 /* SmartHome UI custom
 -------------------------------------------------- */
+/* Default SmartHome skin
+-------------------------------------------------- */
+/* Variables
+-------------------------------------------------- */
+/* Body
+-------------------------------------------------- */
+/* line 8, ../sass/custom/_shui.scss */
+body {
+  background-color: #F6F6F6;
+}
+
+/* line 13, ../sass/custom/_shui.scss */
+.device-available-block.assigned {
+  background-color: #e7e7e7;
+  border: 0;
+}
+
+/* Main navigation
+-------------------------------------------------- */
+/* line 20, ../sass/custom/_shui.scss */
+#main_navigation_wrap {
+  border-bottom: solid 4px #DDD;
+  background-color: #E9E9E9;
+}
+/* line 24, ../sass/custom/_shui.scss */
+#main_navigation_wrap #main_navigation .active {
+  background-color: #DDD;
+  color: #ffffff;
+}
+
+/* Form
+-------------------------------------------------- */
+/* line 33, ../sass/custom/_shui.scss */
+.form-page {
+  border: solid 4px #e7e7e7;
+}
+/* line 35, ../sass/custom/_shui.scss */
+.form-page .form-group {
+  border-color: #e7e7e7;
+}
+
+/* line 39, ../sass/custom/_shui.scss */
+.submit-entry {
+  background-color: #e7e7e7;
+  border-top: solid 1px  #e7e7e7;
+}
+
+/* Button
+-------------------------------------------------- */
+/* line 47, ../sass/custom/_shui.scss */
+.btn-goup-tabs .btn {
+  background-color: #eeeeee;
+}
+/* line 49, ../sass/custom/_shui.scss */
+.btn-goup-tabs .btn.active {
+  background-color: #dcdcdc;
+}
+
+/* Widget
+-------------------------------------------------- */
+/* line 58, ../sass/custom/_shui.scss */
+.widget-entry .widget-entry-in {
+  border-color: #d3d3d3;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 58, ../sass/custom/_shui.scss */
+  .widget-entry .widget-entry-in {
+    border: solid 4px #FFFFFF;
+    background: #f6f6f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
+    /* IE6-9 */
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  }
+}
+
+/* Rooms
+-------------------------------------------------- */
+/* line 73, ../sass/custom/_shui.scss */
+.card-room .card-room-in {
+  border: solid 4px #ffffff;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+}
+
+/* Elements in Room
+-------------------------------------------------- */
+/* line 81, ../sass/custom/_shui.scss */
+.elemnts-room-bar {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 81, ../sass/custom/_shui.scss */
+  .elemnts-room-bar {
+    border: 0;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    background: #f6f6f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
+    /* IE6-9 */
+  }
+}
+
 /* SmartHome UI custom POPP
 -------------------------------------------------- */
+/* POPP css
+-------------------------------------------------- */
+/* line 5, ../sass/custom/_popp.scss */
+.app-type-popp .header-logo img {
+  max-height: 40px;
+  max-width: 70px;
+}
+
 /* Media queries
 -------------------------------------------------- */
 /* Media queries

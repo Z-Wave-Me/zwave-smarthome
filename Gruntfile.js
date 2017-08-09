@@ -160,6 +160,16 @@ module.exports = function (grunt) {
                     built: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
                     timestamp: '<%= Math.floor(Date.now() / 1000) %>'
                 }
+            },
+            skin: {
+                dest: pkg.skin_path + pkg.skin+'/info.json',
+                options: {
+                    name: app_cfg.name,
+                    version: app_version,
+                    skin: pkg.skin,
+                    built: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
+
+                }
             }
         },
         // Copy
@@ -346,6 +356,17 @@ module.exports = function (grunt) {
                 tagAnnotation: 'Release ' + app_cfg.name + ' ' + git_message,
                 buildCommand: false
             }
+        },
+        compress: {
+            foo: {
+                options: {
+                    archive: '_project/skins/blank.zip',
+                    mode: 'zip'
+                },
+                files: [
+                    { src: '_project/skins/blank/**' }
+                ]
+            }
         }
 
     });
@@ -376,6 +397,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-modify-json');
     grunt.loadNpmTasks('grunt-jsdox');
     grunt.loadNpmTasks('grunt-release-it');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
     // Default task(s).
     grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild','replace','jsdox','modify_json']);
