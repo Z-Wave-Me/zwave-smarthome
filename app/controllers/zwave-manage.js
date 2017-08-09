@@ -420,6 +420,11 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                 }
                 angular.extend($scope.zwaveInterview, {commandClassesCnt: Object.keys(node.instances[iId].commandClasses).length});
                 for (var ccId in node.instances[iId].commandClasses) {
+                    // Skip if CC is not supported
+                    if(!node.instances[iId].commandClasses[ccId].data.supported.value){
+                        continue;
+                    }
+
                     var cmdClass = node.instances[iId].commandClasses[ccId];
                     var id = node.instances[iId].commandClasses[ccId].name;
                     var iData = 'devices[' + nodeId + '].instances[' + iId + '].commandClasses[' + ccId + '].Interview()';

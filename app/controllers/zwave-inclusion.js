@@ -483,6 +483,11 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 }
                 angular.extend($scope.zwaveInclusion.automatedConfiguration.includedDevice, {commandClassesCnt: Object.keys(node.instances[iId].commandClasses).length});
                 for (var ccId in node.instances[iId].commandClasses) {
+                    // Skip if CC is not supported
+                    if(!node.instances[iId].commandClasses[ccId].data.supported.value){
+                        console.log('Not supported', ccId)
+                        continue;
+                    }
                     var cmdClass = node.instances[iId].commandClasses[ccId];
                     var id = node.instances[iId].commandClasses[ccId].name;
                     var iData = 'devices[' + nodeId + '].instances[' + iId + '].commandClasses[' + ccId + '].Interview()';
