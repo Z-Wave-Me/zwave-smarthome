@@ -298,7 +298,7 @@ module.exports = function (grunt) {
                         {
                             match: /..\/fonts\//g,
                             replacement: function () {
-                                return '..\/..\/..\/fonts\/';
+                                return '..\/..\/..\/app\/fonts\/';
                             }
                         }
                     ]
