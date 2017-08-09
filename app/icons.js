@@ -34,6 +34,19 @@ var icon_data = {
                         off: 'switch-off.png'
                     }
                 },
+                siren: {
+                    level: {
+                        on: 'siren-on.png',
+                        off: 'siren-off.png'
+                    }
+                },
+                fan: {
+                    level: {
+                        on: 'fan-on.png',
+                        half: 'fan-half.png',
+                        off: 'fan-off.png'
+                    }
+                },
                 motion: {
                     level: {
                         on: 'motion-on.png',
