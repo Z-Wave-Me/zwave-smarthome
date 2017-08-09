@@ -256,9 +256,9 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                         break;
                     // Unexpected error
                     default:
-                        alertify.alertError($scope._t('error_interview_unexpected')).set('onok', function (closeEvent) {
+                       /* alertify.alertError($scope._t('error_interview_unexpected')).set('onok', function (closeEvent) {
                             $scope.reloadData();
-                        });
+                        });*/
                         break;
                 }
                 return;

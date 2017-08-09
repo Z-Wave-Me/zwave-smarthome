@@ -211,7 +211,14 @@ module.exports = function (grunt) {
                     //{expand:true,src: ['vendor/angular/angular-1.2.16/angular.min.js.map'], dest: 'dist/app/js/',flatten: true},
                     //{expand:true,src: ['vendor/angular/angular-1.2.16/angular-route.min.js.map'], dest: 'dist/app/js/',flatten: true}
                 ]
-            }
+            },
+            skin: {
+                files: [
+                    {src: ['app/css/main.css'], dest: pkg.skin_path + pkg.skin + '/main.css'},
+                    {src: ['app/css/main.css'], dest: pkg.skin_path + pkg.skin + '/main.css.orig'},
+                    {expand: true,src: ['storage/img/icons/*'], dest: pkg.skin_path + pkg.skin + '/img/icons/', flatten: true}
+                ]
+            },
         },
         //CSSS min
         cssmin: {
@@ -283,6 +290,22 @@ module.exports = function (grunt) {
                 },
                 files: [
                     {expand: true, flatten: true, src: ['app/config.js'], dest: app_cfg.dir + '/app/js/'}
+                ]
+            },
+            skin: {
+                options: {
+                    patterns: [
+                        {
+                            match: /..\/fonts\//g,
+                            replacement: function () {
+                                return '..\/..\/..\/fonts\/';
+                            }
+                        }
+                    ]
+                },
+                files: [
+                    {expand: true, flatten: true, src: [pkg.skin_path + pkg.skin + '/main.css'], dest: pkg.skin_path + pkg.skin + '/'},
+                    {expand: true, flatten: true, src: [pkg.skin_path + pkg.skin + '/main.css.orig'], dest: pkg.skin_path + pkg.skin + '/'}
                 ]
             }
         },
