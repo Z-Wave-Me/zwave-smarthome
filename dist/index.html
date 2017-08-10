@@ -37,8 +37,8 @@
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i> <span class="main-nav-text">{{_t('nav_events')}}</span></a>
                         <!-- rss -->
-                        <span class="divider-vertical" ng-show_="rss.unread > 0"></span>
-                        <a href="#rss" title="{{_t('news')}}" ng-show_="rss.unread > 0">
+                        <span class="divider-vertical" ng-show="rss.unread > 0"></span>
+                        <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
                             <i class="fa fa-comment"></i>
                             <span class="main-nav-text">{{_t('news')}} </span><small>{{rss.unread}}</small>
 
@@ -53,7 +53,7 @@
                     </div>
                 </div><!-- /#navigation --> 
             </div><!-- /#main_navigation_wrap --> 
-            <div id="sub_navigation" ng-if="naviExpanded.mainNav">
+            <div id="sub_navigation" ng-show="naviExpanded.mainNav">
                 <div id="sub_navigation_in">
                     <div class="container">
                         <ul>
