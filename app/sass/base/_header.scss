@@ -34,11 +34,15 @@
 #main_navigation{
     position: relative;
     line-height: $header-h;
+    .main-nav-text{
+        display: none;
+    }
     a{
         display: inline-block;
         padding: 0 15px;
         color: $app-a-color;
         line-height: $header-h;
+
     }
     a:hover{
         background-color: darken($app-border-color, 5%);

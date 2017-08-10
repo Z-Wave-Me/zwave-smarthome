@@ -13,7 +13,6 @@ var myAppController = angular.module('myAppController', []);
  * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q,cfg, cfgicons, dataFactory, dataService, myCache, _) {
-    console.log($location)
     // Global scopes
     $scope.$location = $location;
     angular.extend(cfg.route, {os: dataService.getOs()});

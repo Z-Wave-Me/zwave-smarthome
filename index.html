@@ -120,21 +120,22 @@
                         </a>
                         <!-- dashboard -->
                         <span class="divider-vertical"></span>
-                        <a class="nav-home" href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i></a>
+                        <a class="nav-home" href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i> <span class="main-nav-text">{{_t('nav_home')}}</span></a>
                         <!-- rooms -->
                         <span class="divider-vertical"></span>
-                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i></a>
+                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i> <span class="main-nav-text">{{_t('nav_rooms')}}</span></a>
                         <!-- elements -->
                         <span class="divider-vertical"></span>
-                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i></a>
+                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i> <span class="main-nav-text">{{_t('nav_rooms')}}</span></a>
                         <!-- events -->
                         <span class="divider-vertical"></span>
-                        <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
+                        <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i> <span class="main-nav-text">{{_t('nav_events')}}</span></a>
                         <!-- rss -->
                         <span class="divider-vertical" ng-show="rss.unread > 0"></span>
                         <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
                             <i class="fa fa-comment"></i>
-                            <span class="item-cnt">({{rss.unread}})</span>
+                            <span class="main-nav-text">{{_t('news')}} </span><small>{{rss.unread}}</small>
+
                         </a>
                         <!-- time -->
                         <span class="divider-vertical"></span> 
@@ -146,7 +147,7 @@
                     </div>
                 </div><!-- /#navigation --> 
             </div><!-- /#main_navigation_wrap --> 
-            <div id="sub_navigation" ng-if="naviExpanded.mainNav">
+            <div id="sub_navigation" ng-show="naviExpanded.mainNav">
                 <div id="sub_navigation_in">
                     <div class="container">
                         <ul>
