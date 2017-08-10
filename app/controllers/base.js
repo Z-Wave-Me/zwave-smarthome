@@ -13,11 +13,12 @@ var myAppController = angular.module('myAppController', []);
  * @class BaseController
  */
 myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q,cfg, cfgicons, dataFactory, dataService, myCache, _) {
-
+    console.log($location)
     // Global scopes
     $scope.$location = $location;
     angular.extend(cfg.route, {os: dataService.getOs()});
     $scope.cfg = cfg;
+    $scope.css = 'app/css/main.css';
     $scope.timeZoneInterval = null;
     $scope.languages = {};
     $scope.loading = false;
@@ -61,6 +62,8 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
             cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
             $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+            $scope.css = cfg.skin.path + $cookies.skin + '/main.css';
+
 
         } else {
             dataFactory.getApi('skins_active').then(function (response) {
@@ -69,8 +72,8 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                     cfg.img.icons = cfg.skin.path + response.data.data.name + '/img/icons/';
                     cfg.img.logo = cfg.skin.path + response.data.data.name + '/img/logo/';
                     $("link[id='main_css']").attr('href', cfg.skin.path + response.data.data.name + '/main.css');
+                    $scope.css = cfg.skin.path + response.data.data.name + '/main.css';
                 }
-            }, function (error) {
             });
         }
     };

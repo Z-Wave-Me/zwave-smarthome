@@ -11,7 +11,7 @@ Marcel Kermer
 
 ## v1.7.1
 #### New features
-- ???.
+- RSS news: Added buttons READ MORE and READ.
 
 #### Fixes
 - Elements, Apps and devices: Fixed bug in Firefox.

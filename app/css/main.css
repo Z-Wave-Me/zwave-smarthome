@@ -14848,9 +14848,15 @@ img.widget-promo-image {
   color: #d9d9d9;
 }
 
-/* line 9, ../sass/base/_rss.scss */
+/* line 10, ../sass/base/_rss.scss */
 .read-false .rss-title {
   font-weight: bold;
+}
+
+/* line 19, ../sass/base/_rss.scss */
+.report-entry.rss-entry .report-col {
+  padding: 10px;
+  vertical-align: top;
 }
 
 /* SmartHome UI custom
