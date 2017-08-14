@@ -696,3 +696,15 @@ div.timepicker-picker > table.table-condensed {
 div.timepicker-picker > table.table-condensed tr td {
     text-align: center;
 }
+
+/**************************************** **/
+/**  Popp KeyPad                          **/
+/**************************************** **/
+.poppKeypad-table {
+    img {
+        display:block;
+        margin: auto;
+        max-width: 64px;
+        max-height: 64px;
+    }
+}
