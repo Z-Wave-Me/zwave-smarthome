@@ -257,7 +257,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     function prepareNotification(v) {
         v.icon = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
         if (v.message['l'] !== null && v.message['l'] !== undefined) {
-            v.messageView = '<span><span>'+v.message.dev+' '+ $scope._t("lb_is") + ' ' +
+            v.messageView = '<span><span>'+v.message.dev+' : ' +
                 '<strong>' + v.message.l +'</strong></span>';
         } else {
             v.messageView = '<span>'+typeof v.message == 'string'? v.message : JSON.stringify(v.message)+'</span>';
