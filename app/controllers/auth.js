@@ -80,7 +80,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
      * Login with selected data from server response
      */
     $scope.processUser = function (user, rememberme) {
-        if ($scope.loginLang) {
+        if ($scope.loginLang && $scope.auth.firstaccess) {
             user.lang = $scope.loginLang;
         }
         dataService.setZWAYSession(user.sid);
@@ -241,17 +241,18 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
         id: 1,//$scope.auth.defaultProfile.id,
         password: '',
         passwordConfirm: '',
-        email: '',
-        trust_my_network: false
+        email: ''
     };
     $scope.handleTimezone = {
         instance: {},
-        show: false
+        show: false,
+        changed: false
     };
     $scope.managementTimezone = {
         labels: {},
         enums: {}
     };
+    $scope.reboot = false;
 
     /**
      * Load all promises
@@ -312,7 +313,8 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
             profile['lang'] = $scope.loginLang;
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                if (cfg.app_type === 'jb' && $scope.handleTimezone.show) {
+                //$scope.user
+                if (cfg.app_type === 'jb' && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
                     $scope.updateInstance(instance);
                 } else {
                     $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
@@ -348,7 +350,7 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
     };
 
     /**
-     * System rebboot
+     * System reboot
      */
     $scope.systemReboot = function () {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
