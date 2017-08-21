@@ -14692,9 +14692,21 @@ img.widget-promo-image {
   margin-bottom: 10px;
 }
 
+/* line 18, ../sass/base/_auth.scss */
+.group-login-lang {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 479px) {
+  /* line 18, ../sass/base/_auth.scss */
+  .group-login-lang {
+    display: block;
+  }
+}
+
 /* Images
 -------------------------------------------------- */
-/* line 19, ../sass/base/_auth.scss */
+/* line 26, ../sass/base/_auth.scss */
 .lang-img {
   max-width: 32px;
   max-height: 32px;
