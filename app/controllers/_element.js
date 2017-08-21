@@ -31,7 +31,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             tags: [],
             filter: ($cookies.filterElements ? angular.fromJson($cookies.filterElements) : {}),
             rooms: {},
-            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'order_elements'),
+            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
             showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
             notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
         },
@@ -50,11 +50,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         strLength: 2,
         resultLength: 10
     };
-    /**
-     * Room data
-     */
-    $scope.room = {};
-    $scope.roomSensors = [];
 
     /**
      * Cancel interval on page destroy
@@ -62,7 +57,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.apiDataInterval);
     });
-
 
     /**
      * Load all promises
@@ -91,17 +85,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.dataHolder.devices.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
-                // When rooms section loads single room data
-                if ($scope.getBodyId() === 'rooms') {
-                    var room = _.find(locations.value.data.data, function(room) {
-                        return room.id == $routeParams.id;
-                    });
-                    if (typeof room != 'undefined') {
-                        $scope.room = dataService.getRooms([room]).value()[0];
-
-                    }
-                }
-
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -407,12 +390,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                 });
             }
         });
-
-        // Load room sensors when rooms section
-        if ($scope.getBodyId() === 'rooms') {
-            loadRoomSensors(devices.value());
-        }
-
         // Set categories
         $scope.dataHolder.devices.deviceType = devices.countBy(function (v) {
             return v.deviceType;
@@ -478,20 +455,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
     ;
-    /**
-     * Load room sensors
-     * @param {object} devices
-     */
-    function loadRoomSensors(devices) {
-        if(!$scope.room.main_sensors) {
-            return;
-        }
-        $scope.roomSensors = _.filter(devices, function(device) {
-            if($scope.room.main_sensors.indexOf(device.id) > -1) {
-                return device;
-            }
-        });
-    };
 
 });
 
@@ -516,13 +479,13 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * @class ElementRoomController
  */
 myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg, dataFactory, dataService, myCache) {
-   // $scope.room = {};
-    //$scope.roomSensors = [];
+    $scope.room = {};
+    $scope.roomSensors = [];
 
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
 
-    /*$scope.allSettled = function () {
+    $scope.allSettled = function () {
         //console.log($scope.input.main_sensors);
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
@@ -551,10 +514,10 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
                 $scope.loadRoomSensors(devices.value());
             }
         });
-    };*/
-    //$scope.allSettled();
+    };
+    $scope.allSettled();
 
-   /* $scope.loadRoomSensors = function(devices) {
+    $scope.loadRoomSensors = function(devices) {
         if(!$scope.room.main_sensors) {
             return;
         }
@@ -563,6 +526,6 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
                 return device;
             }
         });
-    };*/
+    };
 
 });
