@@ -70,27 +70,27 @@ Login proccess
 
 
 
-## AuthPasswordController
+## AuthFirstAccessController
 The controller that handles first access and password update.
 
-### AuthPasswordController.allSettled() 
+### AuthFirstAccessController.allSettled() 
 
 Load all promises
 
 
-### AuthPasswordController.changePassword() 
+### AuthFirstAccessController.updateFirstAccess() 
 
-Change password
+Update profile with data from the first access form
 
 
-### AuthPasswordController.updateInstance() 
+### AuthFirstAccessController.updateInstance() 
 
 Update instance
 
 
-### AuthPasswordController.systemReboot() 
+### AuthFirstAccessController.systemReboot() 
 
-System rebboot
+System reboot
 
 
 
