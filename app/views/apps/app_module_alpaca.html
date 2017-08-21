@@ -25,7 +25,7 @@
                           >{{moduleId.find.maturity}}</span>
                 </p>
                 <p class="app-detail-list" ng-if="moduleId.find.dependencies.length > 0">
-                    <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in moduleId.find.dependencies">{{i}}, </span>
+                    <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in moduleId.find.dependencies">{{i}}{{$last ? '' : ', '}}</span>
                 </p>
                 <!-- Module dependencies - activate -->
                 <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.activate)">
