@@ -445,6 +445,8 @@ myAppController.controller('PasswordResetController', function ($scope, $routePa
     };
     $scope.checkToken();
 
+
+
     /**
      * Change password
      */

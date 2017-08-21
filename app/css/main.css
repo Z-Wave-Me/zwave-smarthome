@@ -9207,6 +9207,17 @@ div.timepicker-picker > table.table-condensed tr td {
   text-align: center;
 }
 
+/**************************************** **/
+/**  Popp KeyPad                          **/
+/**************************************** **/
+/* line 704, ../sass/vendor/_alpaca.scss */
+.poppKeypad-table img {
+  display: block;
+  margin: auto;
+  max-width: 64px;
+  max-height: 64px;
+}
+
 /**
  * alertifyjs 1.4.1 http://alertifyjs.com
  * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.

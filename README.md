@@ -14,10 +14,13 @@ Marcel Kermer
 - RSS news: Added buttons READ MORE and READ.
 
 #### Fixes
+- User login language overwrites profile language.
 - Elements, Apps and devices: Fixed bug in Firefox.
 - Don't poll InspectQueue and ZWaveAPI/Data/xxx if current request is still pending #262.
 
 #### Changes
+- First access: Language select moved to the form.
+- Login: Removed language select.
 - Added major/minor version to the licence scratch request.
 
 ## v1.7.0
