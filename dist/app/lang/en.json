@@ -1,8 +1,10 @@
 {
     "newtrans": "---",
+    "---": "newtrans",
+    "password_language_info":"Please choose your language.",
+    "select_language":"Select language",
     "read":"Read",
     "read_more":"Read more",
-    "---": "newtrans",
     "advanced_apps": "Apps for Advanced",
     "drag_drop":"Drag & Drop",
     "order_elements":"Custom",

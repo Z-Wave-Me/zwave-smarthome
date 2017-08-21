@@ -33,7 +33,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     }
 
 
-    $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
+    $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : cfg.lang;
     /**
      * Load all promises
      */
@@ -80,9 +80,16 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
      * Login with selected data from server response
      */
     $scope.processUser = function (user, rememberme) {
-        if ($scope.loginLang) {
+
+        if(user.lang){// If user language exits use from profile
+            $cookies.lang = user.lang;
+        }else{// Uses from selected login language
             user.lang = $scope.loginLang;
         }
+        /*if ($scope.loginLang) {
+            user.lang
+             = $scope.loginLang;
+        }*/
         dataService.setZWAYSession(user.sid);
         dataService.setUser(user);
         //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
@@ -234,24 +241,25 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 
 /**
  * The controller that handles first access and password update.
- * @class AuthPasswordController
+ * @class AuthFirstAccessController
  */
-myAppController.controller('AuthPasswordController', function ($scope, $q, $window, cfg, dataFactory, dataService) {
+myAppController.controller('AuthFirstAccessController', function ($scope, $q, $window, cfg, dataFactory, dataService) {
     $scope.input = {
         id: 1,//$scope.auth.defaultProfile.id,
         password: '',
         passwordConfirm: '',
-        email: '',
-        trust_my_network: false
+        email: ''
     };
     $scope.handleTimezone = {
         instance: {},
-        show: false
+        show: false,
+        changed: false
     };
     $scope.managementTimezone = {
         labels: {},
         enums: {}
     };
+    $scope.reboot = false;
 
     /**
      * Load all promises
@@ -284,22 +292,24 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
     }
 
     /**
-     * Change password
+     * Update profile with data from the first access form
      */
-    $scope.changePassword = function (form, input, instance) {
-        if (form.$invalid) {
+    $scope.updateFirstAccess = function (form, input, instance) {
+        /*if (form.$invalid) {
             return;
-        }
+        }*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var inputAuth = {
             id: input.id,
-            password: input.password
+            password: input.password,
+            lang:  $scope.loginLang
 
         };
         var headers = {
             'Accept-Language': $scope.auth.defaultProfile.lang,
             'ZWAYSession': $scope.auth.defaultProfile.sid
         };
+
         // Update auth
         dataFactory.putApiWithHeaders('profiles_auth_update', inputAuth.id, input, headers).then(function (response) {
             $scope.loading = false;
@@ -312,7 +322,8 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
             profile['lang'] = $scope.loginLang;
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                if (cfg.app_type === 'jb' && $scope.handleTimezone.show) {
+                //$scope.user
+                if (cfg.app_type === 'jb' && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
                     $scope.updateInstance(instance);
                 } else {
                     $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
@@ -348,7 +359,7 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
     };
 
     /**
-     * System rebboot
+     * System reboot
      */
     $scope.systemReboot = function () {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};

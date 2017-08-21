@@ -32,7 +32,7 @@ Update instance
 
 ### ManagementTimezoneJBController.systemReboot() 
 
-System rebboot
+System reboot
 
 
 
