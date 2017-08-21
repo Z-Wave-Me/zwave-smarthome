@@ -128,10 +128,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 // Count all items and set as unread
                 var unread = 0;
                 var read =  response.data.rss ?  response.data.rss.read : [];
-                var channel = _.isArray(data.rss.channel.item) ? data.rss.channel.item : [data.rss.channel.item];
+                var channel = _.isArray(data.rss.channel.item) && data.rss.channel.item? data.rss.channel.item : (data.rss.channel.item? [data.rss.channel.item] : []);
 
                 _.filter(channel, function (v, k) {
-                   //$scope.rss.all.push(v);
+                    //$scope.rss.all.push(v);
                     // If item ID is  not in the array READ
                     // add 1 to unread
                     if (read.indexOf(v.id) === -1) {
@@ -140,7 +140,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 });
                 myCache.put('rssinfo', {read: read,unread: unread});
                 angular.extend($scope.rss,{read: read,unread: unread});
-
             });
             // }
         });

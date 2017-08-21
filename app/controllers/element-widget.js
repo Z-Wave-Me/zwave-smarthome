@@ -181,7 +181,8 @@ myAppController.controller('ElementEventController', function ($scope, $filter,$
                 .filter(function(v){
                     var hasL;
                     // Default event icon
-                    v.iconPath = $filter('getEventIcon')(v.type,v.message);
+                    //v.iconPath = $filter('getEventIcon')(v.type,v.message);
+                    v.iconPath = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
                     // Has an event level?
                     hasL = $filter('hasNode')(v, 'message.l');
 
@@ -190,11 +191,13 @@ myAppController.controller('ElementEventController', function ($scope, $filter,$
                         v.iconPath = icons[hasL];
                         return v;
                     }
+                    /*
                     // Has device a default icon?
                     if(icons['default']){
                         v.iconPath = icons['default'];
                         return v;
                     }
+                    */
                     return v;
 
                 })

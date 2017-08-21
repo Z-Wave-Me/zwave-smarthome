@@ -60,7 +60,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
 
             // Success - first access
             if (firstAccess.state === 'fulfilled') {
-                //$scope.auth.firstaccess = true;
                 $scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
                 $scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
             }
@@ -249,17 +248,18 @@ myAppController.controller('AuthFirstAccessController', function ($scope, $q, $w
         id: 1,//$scope.auth.defaultProfile.id,
         password: '',
         passwordConfirm: '',
-        email: '',
-        trust_my_network: false
+        email: ''
     };
     $scope.handleTimezone = {
         instance: {},
-        show: false
+        show: false,
+        changed: false
     };
     $scope.managementTimezone = {
         labels: {},
         enums: {}
     };
+    $scope.reboot = false;
 
     /**
      * Load all promises
@@ -322,7 +322,8 @@ myAppController.controller('AuthFirstAccessController', function ($scope, $q, $w
             profile['lang'] = $scope.loginLang;
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                if (cfg.app_type === 'jb' && $scope.handleTimezone.show) {
+                //$scope.user
+                if (cfg.app_type === 'jb' && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
                     $scope.updateInstance(instance);
                 } else {
                     $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
@@ -358,7 +359,7 @@ myAppController.controller('AuthFirstAccessController', function ($scope, $q, $w
     };
 
     /**
-     * System rebboot
+     * System reboot
      */
     $scope.systemReboot = function () {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};
