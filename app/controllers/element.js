@@ -31,7 +31,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             tags: [],
             filter: ($cookies.filterElements ? angular.fromJson($cookies.filterElements) : {}),
             rooms: {},
-            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
+            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'order_elements'),
             showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
             notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
         },
