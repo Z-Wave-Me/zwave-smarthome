@@ -19,18 +19,18 @@
                                 <span class="text-primary_">{{n.sensorLevel}}  {{n.scaleTitle}}</span>
                             </td>
                             <td class="text-right">
-                                =>
+                                <i class="fa fa-arrow-right"></i>
                             </td>
                             <td class="text-right">
-                               <span class="text-success">{{n.targetTemp}}  {{n.scaleTitle}}</span>
+                               <span class="text-success">{{n.targetTemp}}  °C</span>
                             </td>
                             <td class="text-right">
 
                                 <select class="form-control" 
                                         name="changeMode_{{n.room}}" 
                                         id="changeMode_{{n.room}}"
-                                        ng-model="widgetClimateControl.model[n.room]" 
-                                         ng-change="changeClimateControlMode({cmd: widgetClimateControl.find.id + '/command/' + widgetClimateControl.model[n.room] + '?room=' + n.room, room: n.room})">
+                                        ng-model="n.state"
+                                        ng-change="changeClimateControlMode({cmd: widgetClimateControl.find.id + '/command/' + n.state + '?room=' + n.room, room: n.room})">
                                     <option value="{{m}}" ng-repeat="m in cfg.climate_state" ng-disabled="m == 'schedule' && !n.hasSchedule" ng-selected="n.state == m">{{_t(m)}}</option>
                                 </select>
                             </td>

@@ -685,7 +685,6 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
         find: {},
         rooms: {},
         alert: {message: false, status: 'is-hidden', icon: false},
-        model: [],
         devicesId: _.indexBy($scope.dataHolder.devices.all, 'id')
     };
 
