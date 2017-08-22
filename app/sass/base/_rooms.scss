@@ -29,6 +29,9 @@
       height: 268px;
       padding: 0;
     }
+    @include mediaQueries(min-large) {
+      height: 288px;
+    }
     /* Card header */
     .card-header{
       text-align: right;

@@ -54,7 +54,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Room data
      */
     $scope.room = {};
-    $scope.roomSensors = [];
 
     /**
      * Cancel interval on page destroy
@@ -384,12 +383,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-        //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
-        //if (run) {
-        $scope.runCmd(cmd);
-        // }
-
-        //return cmd;
+         $scope.runCmd(cmd);
     };
 
     /// --- Private functions --- ///
@@ -407,11 +401,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                 });
             }
         });
-
-        // Load room sensors when rooms section
-        if ($scope.getBodyId() === 'rooms') {
-            loadRoomSensors(devices.value());
-        }
 
         // Set categories
         $scope.dataHolder.devices.deviceType = devices.countBy(function (v) {
@@ -478,20 +467,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
     ;
-    /**
-     * Load room sensors
-     * @param {object} devices
-     */
-    function loadRoomSensors(devices) {
-        if(!$scope.room.main_sensors) {
-            return;
-        }
-        $scope.roomSensors = _.filter(devices, function(device) {
-            if($scope.room.main_sensors.indexOf(device.id) > -1) {
-                return device;
-            }
-        });
-    };
 
 });
 
@@ -515,54 +490,8 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg, dataFactory, dataService, myCache) {
-   // $scope.room = {};
-    //$scope.roomSensors = [];
-
-    $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams) {
+   $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
-
-    /*$scope.allSettled = function () {
-        //console.log($scope.input.main_sensors);
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var promises = [
-            dataFactory.getApi('locations'),
-            dataFactory.getApi('devices',null, false)
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            var location = response[0];
-            var devices = response[1];
-            $scope.loading = false;
-            // Success - location
-            if (location.state === 'fulfilled') {
-                var room = _.find(location.value.data.data, function(room) {
-                    return room.id == $routeParams.id;
-                });
-                if (typeof room != 'undefined') {
-                    $scope.room = dataService.getRooms([room]).value()[0];
-                } else {
-                    alertify.alertError($scope._t('error_load_data'));
-                }
-            }
-
-            if (devices.state === 'fulfilled') {
-                var devices = dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden);
-                $scope.loadRoomSensors(devices.value());
-            }
-        });
-    };*/
-    //$scope.allSettled();
-
-   /* $scope.loadRoomSensors = function(devices) {
-        if(!$scope.room.main_sensors) {
-            return;
-        }
-        $scope.roomSensors = _.filter(devices, function(device) {
-            if($scope.room.main_sensors.indexOf(device.id) > -1) {
-                return device;
-            }
-        });
-    };*/
 
 });

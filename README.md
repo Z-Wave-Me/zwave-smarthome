@@ -12,6 +12,7 @@ Marcel Kermer
 ## v1.7.1
 #### New features
 - RSS news: Added buttons READ MORE and READ.
+- Rooms: In the header are sensors values updated.
 
 #### Fixes
 - User login language overwrites profile language.

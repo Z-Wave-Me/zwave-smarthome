@@ -29,11 +29,13 @@
 
         </div>
         <!-- Bar col - control -->
-        <!--<pre>{{roomSensors|json}}</pre>-->
+        <!--<pre>{{room.main_sensors|json}}</pre>-->
         <div class="bar-col bar-ctrl">
-            <!-- S sensors -->
-            <div class="btn-group sensor">
-                <a class="btn btn-default" ng-repeat="v in roomSensors" title="{{v.metrics.title}}">
+            <!-- sensors -->
+            <div class="btn-group sensor" ng-if="_.size(room.main_sensors)">
+                <a class="btn btn-default"
+                   ng-show="room.main_sensors.indexOf(v.id) > -1"
+                   ng-repeat="v in dataHolder.devices.collection" title="{{v.metrics.title}}">
                     <img class="sensor-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img">
                     <span class="sensor-level">{{v.metrics.level}}</span>
                     <span class="sensor-scale">{{v.metrics.scaleTitle}}</span>
