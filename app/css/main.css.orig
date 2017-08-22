@@ -14187,6 +14187,8 @@ img.widget-promo-image {
   margin: 0 0 20px 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   /* Card header */
   /* Background image */
   /* Card content */
@@ -14199,7 +14201,13 @@ img.widget-promo-image {
     padding: 0;
   }
 }
-/* line 33, ../sass/base/_rooms.scss */
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 19, ../sass/base/_rooms.scss */
+  .card-room .card-room-in {
+    height: 288px;
+  }
+}
+/* line 36, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header {
   text-align: right;
   min-height: 20px;
@@ -14214,14 +14222,14 @@ img.widget-promo-image {
   /* Header icons */
 }
 @media only screen and (min-width: 768px) {
-  /* line 33, ../sass/base/_rooms.scss */
+  /* line 36, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-header {
     width: 100%;
     padding: 5px;
     top: 0;
   }
 }
-/* line 49, ../sass/base/_rooms.scss */
+/* line 52, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header .card-header-icon {
   color: #595959;
   font-size: 180%;
@@ -14230,17 +14238,17 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 49, ../sass/base/_rooms.scss */
+  /* line 52, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-header .card-header-icon {
     font-size: 140%;
     padding: 0 0 0 5px;
   }
 }
-/* line 58, ../sass/base/_rooms.scss */
+/* line 61, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header .card-header-icon:hover {
   text-decoration: none;
 }
-/* line 65, ../sass/base/_rooms.scss */
+/* line 68, ../sass/base/_rooms.scss */
 .card-room .card-room-in .bcg-img {
   display: block;
   top: 0;
@@ -14254,14 +14262,14 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 65, ../sass/base/_rooms.scss */
+  /* line 68, ../sass/base/_rooms.scss */
   .card-room .card-room-in .bcg-img {
     position: static;
     text-align: center;
     height: 170px;
   }
 }
-/* line 86, ../sass/base/_rooms.scss */
+/* line 89, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content {
   margin: 0;
   position: absolute;
@@ -14276,7 +14284,7 @@ img.widget-promo-image {
   /* Card Sensors */
 }
 @media only screen and (min-width: 768px) {
-  /* line 86, ../sass/base/_rooms.scss */
+  /* line 89, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-content {
     position: static;
     margin: 20px 0 0 0;
@@ -14284,19 +14292,19 @@ img.widget-promo-image {
     text-align: center;
   }
 }
-/* line 104, ../sass/base/_rooms.scss */
+/* line 107, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 {
   font-size: 115%;
   padding: 0;
   margin: 0;
 }
-/* line 108, ../sass/base/_rooms.scss */
+/* line 111, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 a {
   color: #262626;
   text-decoration: none;
   cursor: text;
 }
-/* line 116, ../sass/base/_rooms.scss */
+/* line 119, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors {
   text-align: left;
   margin: 5px 0 0 0;
@@ -14305,47 +14313,47 @@ img.widget-promo-image {
   /* Sensor */
 }
 @media only screen and (min-width: 768px) {
-  /* line 116, ../sass/base/_rooms.scss */
+  /* line 119, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-content .card-sensors {
     text-align: center;
     margin: 15px 0 0 0;
   }
 }
-/* line 127, ../sass/base/_rooms.scss */
+/* line 130, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor {
   display: inline-block;
   margin: 0 5px 0 0;
 }
-/* line 131, ../sass/base/_rooms.scss */
+/* line 134, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-img {
   float: left;
   width: 20px;
   height: 20px;
   background-color: #fff;
 }
-/* line 136, ../sass/base/_rooms.scss */
+/* line 139, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-img .sensor-preview-img {
   max-width: 20px;
   max-height: 20px;
 }
-/* line 142, ../sass/base/_rooms.scss */
+/* line 145, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl {
   float: left;
   margin: 0 0 0 2px;
 }
-/* line 145, ../sass/base/_rooms.scss */
+/* line 148, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl .sensor-level {
   font-weight: bold;
   font-size: 120%;
 }
-/* line 150, ../sass/base/_rooms.scss */
+/* line 153, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl .sensor-scale {
   font-size: 70%;
 }
 
 /* Rooms with device
 -------------------------------------------------- */
-/* line 169, ../sass/base/_rooms.scss */
+/* line 172, ../sass/base/_rooms.scss */
 .room-has-device .card-title h3 a {
   font-weight: bold;
   color: #0d0d0d;
@@ -14354,11 +14362,11 @@ img.widget-promo-image {
 
 /* Rooms without device
 -------------------------------------------------- */
-/* line 181, ../sass/base/_rooms.scss */
+/* line 184, ../sass/base/_rooms.scss */
 .room-no-device .room-link {
   cursor: text !important;
 }
-/* line 184, ../sass/base/_rooms.scss */
+/* line 187, ../sass/base/_rooms.scss */
 .room-no-device .room-img {
   opacity: 0.7;
   filter: alpha(opacity=70);
@@ -14370,7 +14378,7 @@ img.widget-promo-image {
 /* Elements in Rooms
 -------------------------------------------------- */
 /* Background with image */
-/* line 195, ../sass/base/_rooms.scss */
+/* line 198, ../sass/base/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -14380,7 +14388,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 204, ../sass/base/_rooms.scss */
+/* line 207, ../sass/base/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: fixed;
   top: 0;
@@ -14394,7 +14402,7 @@ img.widget-promo-image {
 }
 
 /* Header */
-/* line 218, ../sass/base/_rooms.scss */
+/* line 221, ../sass/base/_rooms.scss */
 .elemnts-room-bar {
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
@@ -14403,7 +14411,7 @@ img.widget-promo-image {
 
 /* Images
 -------------------------------------------------- */
-/* line 226, ../sass/base/_rooms.scss */
+/* line 229, ../sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
