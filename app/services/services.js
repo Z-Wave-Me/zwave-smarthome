@@ -799,7 +799,15 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // CO alarm
-            case 'CO_alarm':
+            case 'co':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // CO2 alarm
+            case 'coo':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // flood
+            case 'flood':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // tamper

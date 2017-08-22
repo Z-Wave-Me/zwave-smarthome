@@ -77,14 +77,18 @@ var icon_data = {
                         on: 'smoke-on.png',
                         off: 'smoke-off.png'
                     }
-
                 },
                 alarm: {
                     level: {
                         on: 'alarm-on.png',
                         off: 'alarm-off.png'
                     }
-
+                },
+                flood: {
+                    level: {
+                        on: 'flood-on.png',
+                        off: 'flood-off.png'
+                    }
                 },
                 battery: {
                     default: 'battery.png'
@@ -104,19 +108,26 @@ var icon_data = {
                 new: {
                     default: 'new.png'
                 },
-                CO_alarm: {
+                rain: {
+                    default: 'rain.png'
+                },
+                co: {
                     level: {
                         on: 'co-alarm-on.png',
                         off: 'co-alarm-off.png'
                     }
-
+                },
+                coo: {
+                    level: {
+                        on: 'coo-alarm-on.png',
+                        off: 'coo-alarm-off.png'
+                    }
                 },
                 tamper: {
                     level: {
                         on: 'tamper-on.png',
                         off: 'tamper-off.png'
                     }
-
                 },
                 security: {
                     level: {
@@ -140,7 +151,6 @@ var icon_data = {
                         swipe_bottom_left_to_top_right: 'swipe-bottom-left-to-top-right.png',// swiped / berührt
                         swipe_bottom_right_to_top_left: 'swipe-bottom-right-to-top-left.png'// swiped / berührt
                     }
-
                 }
             },
             deviceType: {
