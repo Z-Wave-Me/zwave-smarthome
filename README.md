@@ -20,6 +20,7 @@ Marcel Kermer
 - Don't poll InspectQueue and ZWaveAPI/Data/xxx if current request is still pending #262.
 
 #### Changes
+- Element with device type sensorMultiline has not an event icon.
 - First access: Language select moved to the form.
 - Login: Removed language select.
 - Added major/minor version to the licence scratch request.
