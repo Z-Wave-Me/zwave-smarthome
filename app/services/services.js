@@ -799,15 +799,15 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // CO alarm
-            case 'co':
+            case 'alarm_co':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // CO2 alarm
-            case 'coo':
+            case 'alarm_coo':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // flood
-            case 'flood':
+            case 'alarm_flood':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // tamper
@@ -825,7 +825,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 } else icon = iconArray.pending;
                 break;
             // smoke
-            case 'smoke':
+            case 'alarm_smoke':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // blinds
