@@ -6,10 +6,10 @@
         <form name="form_element" id="form_element" class="form form-page" autocomplete="off"
               ng-submit="store(elementId.input)" novalidate>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
-                <p class="form-control-static">
+                <!--<p class="form-control-static">
                     <span ng-bind="_t('element_id')"></span>: <strong ng-bind="elementId.input.id"></strong>
-                </p>
-                <div class="form-group_">
+                </p>-->
+                <div class="form-group_ form-inline">
                     <label>{{_t('lb_element_name')}}:</label>
                     <input name="title" id="title" type="text"
                            class="form-control" value="{{elementId.input.metrics.title}}"
@@ -18,12 +18,12 @@
                 </div>
             </fieldset>
             <fieldset>
-                <h3><span ng-bind="_t('lb_configuration')"></span></h3>
+                <!--<h3><span ng-bind="_t('lb_configuration')"></span></h3>-->
                 <!-- App type -->
                 <div ng-if="elementAccess(cfg.role_access.admin)">
                     <!-- instance -->
                     <div class="form-group" ng-if="elementId.appType.instance">
-                        <span ng-bind="_t('lb_gen_by_module')"></span>
+                        {{_t('lb_gen_by_module')}}:
                         <a class="btn btn-default" ng-href="#module/put/{{elementId.appType.instance.id}}">
                             <strong>{{elementId.appType.instance.title}}</strong>
                             <!--{{elementId.appType.instance.module}} -->
@@ -31,13 +31,13 @@
                     </div>
                     <!-- zwave -->
                     <div class="form-group" ng-if="elementId.appType.zwave">
-                        {{_t('lb_gen_by')}} <a href="#zwave/devices/{{elementId.appType.zwave}}"
+                        {{_t('lb_gen_by')}}: <a href="#zwave/devices/{{elementId.appType.zwave}}"
                                                class="btn btn-default">{{_t('lb_zwave_device')}}
                         #{{elementId.appType.zwave}}</a>
                     </div>
                     <!-- enocean -->
                     <div class="form-group" ng-if="elementId.appType.enocean">
-                        {{_t('lb_gen_by')}} <a href="#enocean/manage/{{elementId.appType.enocean}}"
+                        {{_t('lb_gen_by')}}: <a href="#enocean/manage/{{elementId.appType.enocean}}"
                                                class="btn btn-default">{{_t('enocean_device')}}
                         #{{elementId.appType.enocean}}</a>
                     </div>
@@ -75,14 +75,15 @@
                 </div>
                 <!-- Rooms -->
                 <div class="form-group form-inline" ng-if="elementAccess(cfg.role_access.admin)">
-                    <h3>{{_t('lb_assign_room')}}</h3>
-                    <div class="btn-group">
+                    <!--<h3>{{_t('lb_assign_room')}}</h3>-->
+                    <label>{{_t('lb_assign_room')}}:</label>
+                    <div class="btn-group btn-goup-block btn-goup-1">
                         <button type="button" class="btn btn-default"
                                 ng-click="expandNavi('elidDropDown', $event)">
                             {{elementId.locations[elementId.input.location].title|cutText:true:20}} <i
                                 class="fa fa-caret-down"></i>
                         </button>
-                        <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.elidDropDown">
+                        <div class="app-dropdown app-dropdown-left dropdown-100" ng-if="naviExpanded.elidDropDown">
                             <ul>
                                 <li class="clickable"
                                     ng-class="elementId.input.location == v.id ? 'active':''"
@@ -111,8 +112,9 @@
                 </div>-->
             </fieldset>
             <fieldset ng-if="elementAccess(cfg.role_access.admin)">
-                <h3><span ng-bind="_t('lb_tags')"></span></h3>
+                <!--<h3><span ng-bind="_t('lb_tags')"></span></h3>-->
                 <div class="form-group form-inline">
+                    <label>{{_t('lb_tags')}}:</label>
                     <div class="input-group">
                         <input name="add_tag" id="add_tag" type="text"
                                class="form-control"

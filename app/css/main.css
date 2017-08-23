@@ -11749,67 +11749,72 @@ img {
 }
 
 /* line 43, ../sass/base/_button.scss */
+.btn-goup-4 .btn {
+  width: 25%;
+}
+
+/* line 48, ../sass/base/_button.scss */
 .btn-default {
   color: #0d0d0d;
   background-color: #FFFFFF;
   border-color: #CCCCCC;
 }
 
-/* line 49, ../sass/base/_button.scss */
+/* line 54, ../sass/base/_button.scss */
 .btn-default.active {
   background-color: #FFFFFF;
 }
 
-/* line 53, ../sass/base/_button.scss */
+/* line 58, ../sass/base/_button.scss */
 .btn, .btn-device-admin {
   font-size: 110%;
 }
-/* line 55, ../sass/base/_button.scss */
+/* line 60, ../sass/base/_button.scss */
 .btn .fa, .btn-device-admin .fa {
   font-size: 150%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 55, ../sass/base/_button.scss */
+  /* line 60, ../sass/base/_button.scss */
   .btn .fa, .btn-device-admin .fa {
     font-size: 120%;
   }
 }
 
-/* line 64, ../sass/base/_button.scss */
+/* line 69, ../sass/base/_button.scss */
 .btn-submit {
   color: #FFFFFF;
   border: solid 1px #80AD80;
   background-color: #4e794e;
 }
-/* line 68, ../sass/base/_button.scss */
+/* line 73, ../sass/base/_button.scss */
 .btn-submit:hover, .btn-submit:focus {
   background-color: #80AD80;
 }
 
-/* line 73, ../sass/base/_button.scss */
+/* line 78, ../sass/base/_button.scss */
 .btn-installed {
   border: 0 none;
   background-color: none !important;
 }
 
-/* line 78, ../sass/base/_button.scss */
+/* line 83, ../sass/base/_button.scss */
 .btn-disabled {
   border: 0 none;
   background-color: transparent !important;
 }
 
-/* line 83, ../sass/base/_button.scss */
+/* line 88, ../sass/base/_button.scss */
 .btn-small {
   font-size: 90%;
 }
-/* line 85, ../sass/base/_button.scss */
+/* line 90, ../sass/base/_button.scss */
 .btn-small .fa {
   font-size: 95%;
 }
 
-/* line 90, ../sass/base/_button.scss */
+/* line 95, ../sass/base/_button.scss */
 .btn-tag {
   display: block;
   position: relative;
@@ -11820,7 +11825,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 90, ../sass/base/_button.scss */
+  /* line 95, ../sass/base/_button.scss */
   .btn-tag {
     display: inline-block;
     position: static;
@@ -11828,7 +11833,7 @@ img {
     margin: 0 10px 10px 0;
   }
 }
-/* line 104, ../sass/base/_button.scss */
+/* line 109, ../sass/base/_button.scss */
 .btn-tag .fa {
   position: absolute;
   top: 5px;
@@ -11838,87 +11843,87 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 104, ../sass/base/_button.scss */
+  /* line 109, ../sass/base/_button.scss */
   .btn-tag .fa {
     position: static;
     margin: 0 0 0 10px;
     font-size: 120%;
   }
 }
-/* line 116, ../sass/base/_button.scss */
+/* line 121, ../sass/base/_button.scss */
 .btn-tag.btn-group {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 116, ../sass/base/_button.scss */
+  /* line 121, ../sass/base/_button.scss */
   .btn-tag.btn-group {
     display: table !important;
     width: 100%;
   }
-  /* line 120, ../sass/base/_button.scss */
+  /* line 125, ../sass/base/_button.scss */
   .btn-tag.btn-group .btn {
     position: static;
     float: none;
     display: table-cell;
   }
-  /* line 125, ../sass/base/_button.scss */
+  /* line 130, ../sass/base/_button.scss */
   .btn-tag.btn-group .btn .fa {
     position: static;
   }
 }
-/* line 133, ../sass/base/_button.scss */
+/* line 138, ../sass/base/_button.scss */
 .btn-tag .btn-addon .fa {
   margin: 0;
 }
 
 /* Button tabs
 -------------------------------------------------- */
-/* line 141, ../sass/base/_button.scss */
+/* line 146, ../sass/base/_button.scss */
 .btn-goup-tabs {
   /* display: table;
    width: 100%;*/
   margin: 0 0 10px 0;
 }
-/* line 145, ../sass/base/_button.scss */
+/* line 150, ../sass/base/_button.scss */
 .btn-goup-tabs .btn {
   padding: 10px;
   font-size: 120%;
   background-color: #FFFFFF;
 }
-/* line 149, ../sass/base/_button.scss */
+/* line 154, ../sass/base/_button.scss */
 .btn-goup-tabs .btn.active {
   background-color: #f2f2f2;
 }
-/* line 152, ../sass/base/_button.scss */
+/* line 157, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa {
   font-size: 130%;
   color: #404040;
 }
-/* line 155, ../sass/base/_button.scss */
+/* line 160, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa.text-danger {
   color: #d9534f;
 }
-/* line 161, ../sass/base/_button.scss */
+/* line 166, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa {
   color: #80AD80;
 }
-/* line 163, ../sass/base/_button.scss */
+/* line 168, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa.text-danger {
   color: #d9534f;
 }
 
-/* line 172, ../sass/base/_button.scss */
+/* line 177, ../sass/base/_button.scss */
 .btn-tabs-2 .btn {
   width: 50%;
 }
 
-/* line 178, ../sass/base/_button.scss */
+/* line 183, ../sass/base/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
 
-/* line 184, ../sass/base/_button.scss */
+/* line 189, ../sass/base/_button.scss */
 .btn-tabs-4 .btn {
   width: 25%;
 }
@@ -11926,7 +11931,7 @@ img {
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
-/* line 192, ../sass/base/_button.scss */
+/* line 197, ../sass/base/_button.scss */
 .switch {
   position: relative;
   display: inline-block;
@@ -11936,7 +11941,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 192, ../sass/base/_button.scss */
+  /* line 197, ../sass/base/_button.scss */
   .switch {
     width: 60px;
     height: 34px;
@@ -11944,13 +11949,13 @@ img {
 }
 
 /* Hide default HTML checkbox */
-/* line 205, ../sass/base/_button.scss */
+/* line 210, ../sass/base/_button.scss */
 .switch input {
   display: none;
 }
 
 /* The slider */
-/* line 210, ../sass/base/_button.scss */
+/* line 215, ../sass/base/_button.scss */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -11964,7 +11969,7 @@ img {
   transition: .4s;
 }
 
-/* line 225, ../sass/base/_button.scss */
+/* line 230, ../sass/base/_button.scss */
 .slider:before {
   position: absolute;
   content: "";
@@ -11981,24 +11986,24 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 225, ../sass/base/_button.scss */
+  /* line 230, ../sass/base/_button.scss */
   .slider:before {
     height: 26px;
     width: 26px;
   }
 }
 
-/* line 247, ../sass/base/_button.scss */
+/* line 252, ../sass/base/_button.scss */
 input:checked + .slider:before {
   background-color: #80AD80;
 }
 
-/* line 252, ../sass/base/_button.scss */
+/* line 257, ../sass/base/_button.scss */
 input:focus + .slider {
   box-shadow: 0 0 1px #80AD80;
 }
 
-/* line 256, ../sass/base/_button.scss */
+/* line 261, ../sass/base/_button.scss */
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -12006,12 +12011,12 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-/* line 263, ../sass/base/_button.scss */
+/* line 268, ../sass/base/_button.scss */
 .slider.round {
   border-radius: 4px;
 }
 
-/* line 267, ../sass/base/_button.scss */
+/* line 272, ../sass/base/_button.scss */
 .slider.round:before {
   border-radius: 4px;
 }
@@ -12249,7 +12254,7 @@ fieldset.submit-entry {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 768px) {
   /* line 8, ../sass/base/_bar.scss */
   .bar-row {
     display: table;
@@ -12282,82 +12287,22 @@ fieldset.submit-entry {
     display: block;
   }
 }
-/* line 37, ../sass/base/_bar.scss */
+/* line 38, ../sass/base/_bar.scss */
 .bar-row .bar-icon {
   font-size: 180%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 37, ../sass/base/_bar.scss */
+  /* line 38, ../sass/base/_bar.scss */
   .bar-row .bar-icon {
     font-size: 140%;
   }
 }
-/* line 43, ../sass/base/_bar.scss */
+/* line 44, ../sass/base/_bar.scss */
 .bar-row .bar-title {
   font-size: 120%;
   font-weight: bold;
-}
-
-/* Bar sensor
--------------------------------------------------- */
-/* line 52, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl {
-  /*@include mediaQueriesMaxMin($break-medium,$break-esmall + 1) {
-    display: block;
-  }*/
-}
-/* line 53, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .btn-group {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-/* line 57, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (max-width: 991px) {
-  /* line 57, ../sass/base/_bar.scss */
-  .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
-    margin: 0;
-    float: none;
-    display: inline;
-  }
-}
-/* line 68, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
-  cursor: text;
-  border: 0 none;
-  background: transparent;
-  margin: 0 10px;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (max-width: 991px) {
-  /* line 68, ../sass/base/_bar.scss */
-  .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
-    margin: 0;
-  }
-}
-/* line 78, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
-  display: inline-block;
-  max-width: 32px;
-  max-height: 32px;
-}
-/* line 84, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
-  font-weight: bold;
-  font-size: 130%;
-  display: inline-block;
-  vertical-align: middle;
-}
-/* line 91, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-scale {
-  display: inline-block;
-  vertical-align: middle;
 }
 
 /* Dropdown
@@ -14346,14 +14291,10 @@ img.widget-promo-image {
   font-weight: bold;
   font-size: 120%;
 }
-/* line 153, ../sass/base/_rooms.scss */
-.card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl .sensor-scale {
-  font-size: 70%;
-}
 
 /* Rooms with device
 -------------------------------------------------- */
-/* line 172, ../sass/base/_rooms.scss */
+/* line 168, ../sass/base/_rooms.scss */
 .room-has-device .card-title h3 a {
   font-weight: bold;
   color: #0d0d0d;
@@ -14362,11 +14303,11 @@ img.widget-promo-image {
 
 /* Rooms without device
 -------------------------------------------------- */
-/* line 184, ../sass/base/_rooms.scss */
+/* line 180, ../sass/base/_rooms.scss */
 .room-no-device .room-link {
   cursor: text !important;
 }
-/* line 187, ../sass/base/_rooms.scss */
+/* line 183, ../sass/base/_rooms.scss */
 .room-no-device .room-img {
   opacity: 0.7;
   filter: alpha(opacity=70);
@@ -14378,7 +14319,7 @@ img.widget-promo-image {
 /* Elements in Rooms
 -------------------------------------------------- */
 /* Background with image */
-/* line 198, ../sass/base/_rooms.scss */
+/* line 194, ../sass/base/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -14388,7 +14329,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 207, ../sass/base/_rooms.scss */
+/* line 203, ../sass/base/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: fixed;
   top: 0;
@@ -14401,17 +14342,91 @@ img.widget-promo-image {
   transform: scale(1.1);
 }
 
-/* Header */
-/* line 221, ../sass/base/_rooms.scss */
+/* Bar
+-------------------------------------------------- */
+/* line 218, ../sass/base/_rooms.scss */
 .elemnts-room-bar {
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
   margin: 0 0 20px 0;
 }
+/* line 225, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 991px) {
+  /* line 225, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
+    margin: 0;
+    float: none;
+    display: inline;
+  }
+}
+/* line 233, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+/* line 234, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
+  cursor: text;
+  border: 0 none;
+  background: transparent;
+  margin: 0 10px;
+  padding: 0 5px 0 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 991px) {
+  /* line 234, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
+    margin: 0;
+  }
+}
+/* line 246, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
+  display: inline-block;
+  max-width: 24px;
+  max-height: 24px;
+}
+/* line 252, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
+  font-weight: bold;
+  font-size: 90%;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 257, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level small {
+  font-weight: normal;
+  font-size: 80%;
+}
+@media only screen and (max-width: 767px) {
+  /* line 233, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .sensor {
+    text-align: left;
+    margin: 10px 0;
+    display: block;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* line 271, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
+    max-width: 32px;
+    max-height: 32px;
+  }
+  /* line 275, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
+    font-size: 120%;
+  }
+}
 
 /* Images
 -------------------------------------------------- */
-/* line 229, ../sass/base/_rooms.scss */
+/* line 287, ../sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;

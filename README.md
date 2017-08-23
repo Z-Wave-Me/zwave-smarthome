@@ -15,6 +15,7 @@ Marcel Kermer
 - Rooms: In the header are sensors values updated.
 
 #### Fixes
+- Sensors added to the room header dont show fullname by mouse over #245.
 - User login language overwrites profile language.
 - Elements, Apps and devices: Fixed bug in Firefox.
 - Don't poll InspectQueue and ZWaveAPI/Data/xxx if current request is still pending #262.
