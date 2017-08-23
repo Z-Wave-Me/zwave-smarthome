@@ -327,11 +327,18 @@ var config_data = {
             'sensorBinary',
             'sensorMultiline'
         ],
-        // List of the element deviceType with history icon
+        // Whitelist of the deviceTypes with history icon
+        // These elements will be displayed with the HISTORY icon
+        // Other elements will be displayed with the EVENT icon
         'element_history': [
             'switchMultilevel',
             'sensorMultilevel',
             'thermostat'
+        ],
+        // Blacklist of the deviceTypes without icon
+        // These elements will be displayed without the HISTORY or EVENT icon
+        'element_history_blacklist': [
+            'sensorMultiline'
         ],
         // List of the find hosts
         'find_hosts': [

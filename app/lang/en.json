@@ -1,6 +1,7 @@
 {
     "newtrans": "---",
     "---": "newtrans",
+    "sensorDiscrete":"Scene Controller",
     "password_language_info":"Please choose your language.",
     "select_language":"Select language",
     "read":"Read",
