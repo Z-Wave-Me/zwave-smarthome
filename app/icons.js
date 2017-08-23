@@ -72,7 +72,7 @@ var icon_data = {
                 camera: {
                     default: 'camera.png'
                 },
-                smoke: {
+                alarm_smoke: {
                     level: {
                         on: 'smoke-on.png',
                         off: 'smoke-off.png'
@@ -84,7 +84,7 @@ var icon_data = {
                         off: 'alarm-off.png'
                     }
                 },
-                flood: {
+                alarm_flood: {
                     level: {
                         on: 'flood-on.png',
                         off: 'flood-off.png'
@@ -112,12 +112,18 @@ var icon_data = {
                     default: 'rain.png'
                 },
                 co: {
+                    default: 'co.png'
+                },
+                coo: {
+                    default: 'coo.png'
+                },
+                alarm_co: {
                     level: {
                         on: 'co-alarm-on.png',
                         off: 'co-alarm-off.png'
                     }
                 },
-                coo: {
+                alarm_coo: {
                     level: {
                         on: 'coo-alarm-on.png',
                         off: 'coo-alarm-off.png'
