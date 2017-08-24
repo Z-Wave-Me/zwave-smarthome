@@ -8,7 +8,7 @@
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, $location, $timeout, cfg, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
@@ -115,7 +115,15 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.store = function (input) {
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('devices', input.id, setOutput(input)).then(function (response) {
+            var data = {
+                id: input.id,
+                location: parseInt(input.location, 10),
+                tags: input.tags,
+                metrics: input.metrics,
+                visibility: input.visibility,
+                permanently_hidden: input.permanently_hidden
+            };
+            dataFactory.putApi('devices', input.id, data).then(function (response) {
                 $scope.user.dashboard = dataService.setArrayValue($scope.user.dashboard, input.id, input.onDashboard);
                 $scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, input.id, input.hide_events);
                 $scope.updateProfile($scope.user, input.id);
@@ -149,6 +157,31 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         return;
     };
 
+    /**
+     * Delete an element from the view
+     */
+    $scope.deleteElement = function (input,message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            var data = {
+                id: input.id,
+                permanently_hidden: true
+            };
+            dataFactory.putApi('devices', input.id, data).then(function (response) {
+                $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('reloading_page')};
+                $timeout(function () {
+                    $scope.loading = false;
+                    myCache.removeAll();
+                    $location.path('/elements');
+                }, 2000);
+            }, function (error) {
+                alertify.alertError($scope._t('error_delete_data'));
+                $scope.loading = false;
+            });
+        });
+
+    };
+
     /// --- Private functions --- ///
     /**
      * Set device
@@ -175,9 +208,10 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     ;
 
     /**
+     * todo: deprecated
      * Set output
      */
-    function setOutput(input) {
+    /*function setOutput(input) {
         return {
             'id': input.id,
             'location': parseInt(input.location, 10),
@@ -187,7 +221,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             'permanently_hidden': input.permanently_hidden
         };
     }
-    ;
+    ;*/
 
     /**
      * Set tag list

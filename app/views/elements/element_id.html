@@ -52,11 +52,15 @@
                     </div>
 
                 </div>
-                <!-- Deactivate element -->
+                <!-- Delete element -->
                 <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
-                    <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value=""
+                   <!-- <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value=""
                            ng-model="elementId.input.permanently_hidden"
-                           ng-checked="elementId.input.permanently_hidden"/> <label>{{_t('lb_deactivate')}}</label>
+                           ng-checked="elementId.input.permanently_hidden"/> <label>{{_t('lb_deactivate')}}</label>-->
+                    <button type="button" title="{{_t('delete_element')}}" class="btn btn-danger"
+                            ng-click="deleteElement(elementId.input, _t('element_delete_confirm'))">
+                        <i class="fa fa-times"></i> {{ _t('delete_element')}}
+                    </button>
                     <bb-help-text trans="_t('deactivate_element_info')"></bb-help-text>
                 </div>
 
