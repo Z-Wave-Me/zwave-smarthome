@@ -13,7 +13,7 @@
                       ng-click="expandNavi('roomDropDown', $event)">{{room.title}}  <i class="fa fa-caret-down"></i>
                 </span>
                 <span class="bar-title" ng-if="_.size(dataHolder.cnt.rooms) < 1">{{room.title}}</span>
-                <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.roomDropDown">
+                <div class="app-dropdown app-dropdown-left dropdown-100" ng-if="naviExpanded.roomDropDown">
                     <ul>
                         <li class="clickable" ng-repeat="v in dataHolder.devices.rooms"
                             ng-if="dataHolder.cnt.rooms[v.id]">
@@ -37,15 +37,15 @@
                    ng-show="room.main_sensors.indexOf(v.id) > -1"
                    ng-repeat="v in dataHolder.devices.collection" title="{{v.metrics.title}}">
                     <img class="sensor-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img">
-                    <span class="sensor-level">{{v.metrics.level}}</span>
-                    <span class="sensor-scale">{{v.metrics.scaleTitle}}</span>
+                    <span class="sensor-level">{{v.metrics.level}}  <small>{{v.metrics.scaleTitle}}</small></span>
+
                 </a>
             </div>
             <!-- Elements mode ctrl -->
             <span ng-include="'app/views/elements/elements_ctrl_mode.html'" ng-if="_.size(dataHolder.devices.collection) > 1 && elementAccess(cfg.role_access.admin)"></span>
             <!-- Settings -->
             <a class="btn btn-default _bar-icon" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
-               ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
+               ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0 && dataHolder.mode === 'default'">
                 <i class="fa fa-cog"></i>
             </a>
         </div>

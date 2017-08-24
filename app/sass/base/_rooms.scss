@@ -149,10 +149,6 @@
               font-weight: bold;
               font-size: 120%;
             }
-
-            .sensor-scale {
-              font-size: 70%;
-            }
           }
         }
 
@@ -217,11 +213,73 @@
   }
 }
 
-/* Header */
+/* Bar
+-------------------------------------------------- */
 .elemnts-room-bar{
   background-color: $card-bcg-color;
   border: solid 1px $app-border-color;
   margin: 0 0 $spacing-double 0;
+  .bar-row{
+    .bar-ctrl {
+      .btn-group{
+        .btn{
+          @include mediaQueries(max-medium) {
+            margin: 0;
+            float: none;
+            display: inline;
+          }
+        }
+      }
+      .sensor{
+        .btn{
+          cursor: text;
+          border: 0 none;
+          background: transparent;
+          margin: 0 $spacing;
+          padding: 0 $spacing-half 0 0;
+
+          @include mediaQueries(max-medium) {
+            margin: 0;
+          }
+        }
+
+        .sensor-preview-img {
+          display: inline-block;
+          max-width: 24px;
+          max-height: 24px;
+        }
+
+        .sensor-level {
+          font-weight: bold;
+          font-size: 90%;
+          display: inline-block;
+          vertical-align: middle;
+          small{
+            font-weight: normal;
+            font-size: 80%;
+          }
+        }
+        // Media queries
+        @include mediaQueries(max-small) {
+          text-align: left;
+          margin: $spacing 0;
+          display: block;
+        }
+
+        // Media queries
+        @include mediaQueries(min-small) {
+          .sensor-preview-img {
+             max-width: 32px;
+            max-height: 32px;
+          }
+          .sensor-level {
+            font-size: 120%;
+          }
+        }
+      }
+    }
+
+  }
 }
 
 /* Images

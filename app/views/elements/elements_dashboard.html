@@ -8,7 +8,7 @@
         <!-- Elements mode ctrl -->
        <div class="page-control form-inline" ng-if="elementAccess(cfg.role_access.admin) && _.size(dataHolder.devices.collection) > 1">
             <!-- Elements mode ctrl -->
-            <span ng-include="'app/views/elements/elements_ctrl_mode.html'"></span>
+            <div class="btn-group btn-goup-block btn-goup-2" ng-include="'app/views/elements/elements_ctrl_mode.html'"></div>
         </div>
         <!-- Default mode -->
         <div ng-include="'app/views/elements/list_mode_default.html'"

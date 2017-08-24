@@ -1,23 +1,30 @@
 <!-- Mode switch -->
 <!--dataHolder.mode: {{dataHolder.mode}}-->
-<div class="btn-group _btn-goup-block _btn-goup-2">
-    <!-- Change mode -->
-    <button type="button" title="{{_t('lb_save')}}" class="btn btn-default"
-            ng-class="{'active': dataHolder.mode === 'edit'}"
-            ng-click="changeMode(dataHolder.mode === 'default' ? 'edit' : 'default')">
+<!--<div class="btn-group btn-goup-block btn-goup-2">-->
+<!-- switch to mode edit - drag and drop -->
+<button type="button" title="{{_t('drag_drop')}}" class="btn btn-default"
+        ng-show="dataHolder.mode === 'default'"
+        ng-click="changeMode('edit')">
         <i class="fa fa-arrows"></i>
-        <span class="btn-name">{{_t('drag_drop')}}</span>
-    </button>
-    <!-- Change mode -->
-    <button type="button" title="{{_t('lb_save')}}" class="btn"
-            ng-if="dataHolder.mode === 'edit'"
-            ng-class="{'btn-submit': !_.isEmpty(dataHolder.dragdrop.data)}"
-            ng-click="dragDropSave()"
-            ng-disabled="_.isEmpty(dataHolder.dragdrop.data)">
-        <i class="fa fa-check"></i>
-        <span class="btn-name">{{_t('lb_save')}}</span>
-    </button>
-</div>
+            <span class="btn-name">{{_t('drag_drop')}}</span>
+</button>
+<!-- cancel drag and drop - switch back to mode default -  -->
+<button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default"
+        ng-show="dataHolder.mode === 'edit'"
+        ng-click="changeMode('default')">
+            <i class="fa fa-reply"></i>
+            <span class="btn-name">{{_t('lb_cancel')}} {{_t('drag_drop')}}</span>
+</button>
+<!-- save draged positions -->
+<button type="button" title="{{_t('lb_save')}}" class="btn"
+        ng-if="dataHolder.mode === 'edit'"
+        ng-class="{'btn-submit': !_.isEmpty(dataHolder.dragdrop.data)}"
+        ng-click="dragDropSave()"
+        ng-disabled="_.isEmpty(dataHolder.dragdrop.data)">
+    <i class="fa fa-check"></i>
+    <span class="btn-name">{{_t('lb_save')}}</span>
+</button>
+<!--</div>-->
 <!--<div class="form-group">
     &lt;!&ndash;dataHolder.mode: {{dataHolder.mode}}&ndash;&gt;
     <label>
