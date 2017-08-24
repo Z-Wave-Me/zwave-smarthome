@@ -90,6 +90,12 @@ var icon_data = {
                         off: 'flood-off.png'
                     }
                 },
+                alarm_burglar: {
+                    level: {
+                        on: 'burglar-alarm-on.png',
+                        off: 'burglar-alarm-off.png'
+                    }
+                },
                 battery: {
                     default: 'battery.png'
                 },
@@ -116,6 +122,9 @@ var icon_data = {
                 },
                 coo: {
                     default: 'coo.png'
+                },
+                scene: {
+                    default: 'scene.png'
                 },
                 alarm_co: {
                     level: {

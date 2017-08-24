@@ -821,6 +821,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             case 'alarm_flood':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
+            // burglar
+            case 'alarm_burglar':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
             // tamper
             case 'tamper':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
