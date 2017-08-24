@@ -15,6 +15,10 @@
             <i class="fa fa-sort-alpha-asc"></i>
             <span class="btn-name">{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span>
         </button>
+        <!--<button class="btn btn-default" ng-click="">
+            <i class="fa fa fa-level-up"></i>
+            <span class="btn-name">{{_t('all_updates')}}</span>
+        </button>-->
     </div>
     <!-- Search and autocomplete -->
     <form id="form_search" class="input-group" ng-submit="setFilter({q: dataHolder.modules.autocomplete.term})"
