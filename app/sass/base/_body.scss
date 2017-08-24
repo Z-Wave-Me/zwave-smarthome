@@ -288,7 +288,7 @@ img {
 }
 .device-available-block{
   &.assigned{
-    padding: $spacing $spacing 0 $spacing;
+    padding: $spacing $spacing $spacing-half $spacing;
     border: solid 1px $app-border-color;
     margin: 0 0 $spacing 0;
   }

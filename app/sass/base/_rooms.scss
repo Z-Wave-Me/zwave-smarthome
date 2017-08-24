@@ -23,6 +23,12 @@
     height: 132px;
     padding: 0;
     margin: 0 0 $spacing-double 0;
+    &.room-has-sensor{
+      // Media queries
+      @include mediaQueries(max-small) {
+        height: 172px;
+      }
+    }
     // Media queries
     @include mediaQueries(min-small) {
       margin: $spacing;
@@ -35,13 +41,14 @@
     /* Card header */
     .card-header{
       text-align: right;
-      min-height: $spacing-double;
+      min-height: 40px;
       opacity: 0.8;
       background: $card-bcg-color;
       position: absolute;
-      top: 24px;
+      top: 0;//24px;
       right: 0;
-      padding: $spacing-half $spacing 0 0;
+      padding: 0 $spacing-half 0 0;
+      width: 100%;
       // Media queries
       @include mediaQueries(min-small) {
         width: 100%;
@@ -51,8 +58,8 @@
       /* Header icons */
       .card-header-icon {
         color: lighten($app-body-color, 30%);
-        font-size: 180%;
-        padding: 0 0 0 $spacing;
+        font-size: 160%;
+        padding: 0 0 0 $spacing-half;
 
         @include mediaQueries(min-small) {
           font-size: 140%;
@@ -89,11 +96,11 @@
     .card-content {
       margin: 0;
       position: absolute;
-      top: 30px;
+      top: 0;//30px;
       left: 0;
-      opacity: 0.8;
+      //opacity: 0.8;
       padding: $spacing;
-      background-color: $card-bcg-color;
+      //background-color: $card-bcg-color;
 
       // Media queries
       @include mediaQueries(min-small) {
@@ -105,7 +112,7 @@
       /* Card Title */
       .card-title {
         h3 {
-          font-size: 115%;
+          font-size: 110%;
           padding: 0;
           margin: 0;
           a {
@@ -115,43 +122,45 @@
           }
         }
       }
-      /* Card Sensors */
-      .card-sensors {
-        text-align: left;
-        margin: 5px 0 0 0;
 
-        // Media queries
-        @include mediaQueries(min-small) {
-          text-align: center;
-          margin: 15px 0 0 0;
-        }
 
-        /* Sensor */
-        .sensor {
-          display: inline-block;
-          margin: 0 5px 0 0;
+    }
 
-          .sensor-img {
-            float: left;
-            width: 20px;
-            height: 20px;
-            background-color: #fff;
-            .sensor-preview-img {
-              max-width: 20px;
-              max-height: 20px;
-            }
-          }
+    /* Card Sensors */
+    .card-sensors {
+      text-align: center;
+      margin: 5px 0 0 0;
 
-          .sensor-ctrl {
-            float: left;
-            margin: 0 0 0 2px ;
-            .sensor-level {
-              font-weight: bold;
-              font-size: 120%;
-            }
+      // Media queries
+      @include mediaQueries(min-small) {
+        text-align: center;
+        margin: 15px 0 0 0;
+      }
+
+      /* Sensor */
+      .sensor {
+        display: inline-block;
+        margin: 0 5px 0 0;
+
+        .sensor-img {
+          float: left;
+          width: 20px;
+          height: 20px;
+          background-color: #fff;
+          .sensor-preview-img {
+            max-width: 20px;
+            max-height: 20px;
           }
         }
 
+        .sensor-ctrl {
+          float: left;
+          margin: 0 0 0 2px ;
+          .sensor-level {
+            font-weight: bold;
+            font-size: 120%;
+          }
+        }
       }
 
     }

@@ -119,16 +119,16 @@
     }
   }
   &.btn-group{
-    @include mediaQueries(max-medium) {
+    @include mediaQueries(max-small) {
       display: table !important;
       width:100%;
       .btn{
-        position: static;
+        //position: static;
         float: none;
         display: table-cell;
         //width: 50%;
         .fa{
-          position: static;
+          //position: static;
         }
       }
     }
@@ -138,6 +138,20 @@
     .fa {
       margin: 0;
     }
+  }
+  .btn{
+    text-align: left;
+    font-size: 100%;
+    margin: 0;
+  }
+  label{
+
+      text-align: center  !important;
+    @include mediaQueries(max-small) {
+      width: 20px;
+    }
+
+
   }
 }
 

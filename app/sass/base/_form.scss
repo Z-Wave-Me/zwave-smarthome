@@ -78,7 +78,7 @@ input[type=radio] {
 }
 
 fieldset, .fieldset {
-  padding: $spacing;
+  padding: $spacing $spacing 0 $spacing;
 }
 
 .isrequired {
