@@ -50,14 +50,14 @@ Update an item
 Update profile
 
 
+### ElementIdController.deleteElement() 
+
+Delete an element from the view
+
+
 ### ElementIdController.setDevice() 
 
 Set device
-
-
-### ElementIdController.setOutput() 
-
-Set output
 
 
 ### ElementIdController.setTagList() 

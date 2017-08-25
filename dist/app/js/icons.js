@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 22-08-2017 15:17:07 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 25-08-2017 15:25:18 */
 /**
  * @overview The object with default icons.
  * @author Martin Vach
@@ -73,7 +73,7 @@ var icon_data = {
                 camera: {
                     default: 'camera.png'
                 },
-                smoke: {
+                alarm_smoke: {
                     level: {
                         on: 'smoke-on.png',
                         off: 'smoke-off.png'
@@ -85,10 +85,16 @@ var icon_data = {
                         off: 'alarm-off.png'
                     }
                 },
-                flood: {
+                alarm_flood: {
                     level: {
                         on: 'flood-on.png',
                         off: 'flood-off.png'
+                    }
+                },
+                alarm_burglar: {
+                    level: {
+                        on: 'burglar-alarm-on.png',
+                        off: 'burglar-alarm-off.png'
                     }
                 },
                 battery: {
@@ -113,12 +119,21 @@ var icon_data = {
                     default: 'rain.png'
                 },
                 co: {
+                    default: 'co.png'
+                },
+                coo: {
+                    default: 'coo.png'
+                },
+                scene: {
+                    default: 'scene.png'
+                },
+                alarm_co: {
                     level: {
                         on: 'co-alarm-on.png',
                         off: 'co-alarm-off.png'
                     }
                 },
-                coo: {
+                alarm_coo: {
                     level: {
                         on: 'coo-alarm-on.png',
                         off: 'coo-alarm-off.png'
