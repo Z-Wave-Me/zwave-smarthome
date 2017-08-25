@@ -78,13 +78,14 @@
                 </div>
                 <!-- Card sensors -->
                 <div class="card-sensors">
-                    <div class="sensor" ng-repeat="sensor in v.sensors">
+                    <div class="sensor" title="{{sensor.metrics.title + ': ' + sensor.metrics.level + ' ' + sensor.metrics.scaleTitle}}"
+                         ng-repeat="sensor in v.sensors">
                         <div class="sensor-img">
-                            <img class="sensor-preview-img img-circle" ng-src="{{sensor.iconPath}}" alt="img" title="{{sensor.metrics.title}}">
+                            <img class="sensor-preview-img img-circle" ng-src="{{sensor.iconPath}}" alt="img">
                         </div>
                         <div class="sensor-ctrl">
                             <span class="sensor-level">{{sensor.metrics.level}}</span>
-                            <span class="sensor-scale">{{sensor.metrics.scaleTitle}}</span>
+                            <span class="sensor-scale">{{sensor.metrics.scaleTitle|cutText:true:7}}</span>
                             &nbsp;
                         </div>
                     </div>

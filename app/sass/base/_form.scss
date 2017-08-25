@@ -1,5 +1,15 @@
 /* Form 
 -------------------------------------------------- */
+// Media queries
+@include mediaQueries(min-small) {
+  .form-check-inline {
+    display: inline-block;
+  }
+  .form-inline .input-group {
+    display: inline-table;
+    vertical-align: middle;
+  }
+}
 .form-control {
   font-size: 95%;
   color: lighten($app-body-color, 30%);
@@ -11,6 +21,7 @@
     padding: 6px 12px;
   }
 }
+
 
 .input-group-addon {
   border: solid 1px #CCCCCC;
@@ -54,7 +65,7 @@ input[type=radio] {
     padding-bottom: $spacing;
     &.last {
       border-bottom: 0;
-      padding-bottom: 0;
+      //padding-bottom: 0;
       margin-bottom: 0;
     }
   }
@@ -78,7 +89,7 @@ input[type=radio] {
 }
 
 fieldset, .fieldset {
-  padding: $spacing $spacing 0 $spacing;
+  padding: $spacing;
 }
 
 .isrequired {

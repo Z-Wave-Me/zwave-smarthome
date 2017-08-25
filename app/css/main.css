@@ -11381,8 +11381,8 @@ img {
 -------------------------------------------------- */
 /* line 129, ../sass/base/_navi.scss */
 .navi-img {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -11575,84 +11575,84 @@ img {
   border-top: solid 1px #cccccc;
   background-color: #FFFFFF;
   border-bottom: solid 1px #cccccc;
+  display: table;
+  width: 100%;
 }
 
-/* line 8, ../sass/base/_report.scss */
+/* line 11, ../sass/base/_report.scss */
 .report-entry {
   border-bottom: solid 1px #cccccc;
   padding: 10px 5px;
-  width: 100%;
+  display: table-row;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 480px) {
-  /* line 8, ../sass/base/_report.scss */
-  .report-entry {
-    display: table;
-  }
-}
-/* line 16, ../sass/base/_report.scss */
+/* line 19, ../sass/base/_report.scss */
 .report-entry .report-col {
+  padding: 5px;
   display: table-cell;
   vertical-align: middle;
-}
-/* line 20, ../sass/base/_report.scss */
-.report-entry .report-media {
-  width: 50px;
+  border-bottom: solid 1px #cccccc;
 }
 /* line 25, ../sass/base/_report.scss */
-.report-entry .report-ctrl {
-  min-width: 110px;
-  display: block;
-  text-align: right;
+.report-entry .report-media {
+  width: 37px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 768px) {
   /* line 25, ../sass/base/_report.scss */
-  .report-entry .report-ctrl {
-    display: table-cell;
+  .report-entry .report-media {
+    width: 50px;
   }
 }
-/* line 35, ../sass/base/_report.scss */
+/* line 34, ../sass/base/_report.scss */
+.report-entry .report-ctrl {
+  min-width: 110px;
+  text-align: right;
+  /* @include mediaQueries(min-esmall) {
+       display: table-cell;
+   }*/
+}
+/* line 44, ../sass/base/_report.scss */
 .report-entry .report-ctrl-3 {
   min-width: 160px;
 }
-/* line 38, ../sass/base/_report.scss */
+/* line 47, ../sass/base/_report.scss */
 .report-entry .report-col-w30 {
   width: 30%;
 }
 
 /* Images */
-/* line 43, ../sass/base/_report.scss */
+/* line 52, ../sass/base/_report.scss */
 .report-img {
-  max-width: 60px;
-  max-height: 60px;
+  max-width: 32px;
+  max-height: 32px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 43, ../sass/base/_report.scss */
+  /* line 52, ../sass/base/_report.scss */
   .report-img {
     max-width: 40px;
     max-height: 40px;
   }
 }
 
-/* line 52, ../sass/base/_report.scss */
+/* line 61, ../sass/base/_report.scss */
 .report-img-s {
   max-width: 32px;
   max-height: 32px;
 }
 
 /* Zwave row */
-/* line 60, ../sass/base/_report.scss */
+/* line 69, ../sass/base/_report.scss */
 .app-row-zwave .report-entry .report-ctrl {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 60, ../sass/base/_report.scss */
+  /* line 69, ../sass/base/_report.scss */
   .app-row-zwave .report-entry .report-ctrl {
     vertical-align: top !important;
   }
@@ -12036,7 +12036,21 @@ input:checked + .slider:before {
 
 /* Form 
 -------------------------------------------------- */
-/* line 3, ../sass/base/_form.scss */
+/* MIN WIDTH */
+@media only screen and (min-width: 768px) {
+  /* line 5, ../sass/base/_form.scss */
+  .form-check-inline {
+    display: inline-block;
+  }
+
+  /* line 8, ../sass/base/_form.scss */
+  .form-inline .input-group {
+    display: inline-table;
+    vertical-align: middle;
+  }
+}
+/* MAX WIDTH */
+/* line 13, ../sass/base/_form.scss */
 .form-control {
   font-size: 95%;
   color: #595959;
@@ -12047,30 +12061,30 @@ input:checked + .slider:before {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 3, ../sass/base/_form.scss */
+  /* line 13, ../sass/base/_form.scss */
   .form-control {
     padding: 6px 12px;
   }
 }
 
-/* line 15, ../sass/base/_form.scss */
+/* line 26, ../sass/base/_form.scss */
 .input-group-addon {
   border: solid 1px #CCCCCC;
   background-color: #EEEEEE;
 }
 
-/* line 20, ../sass/base/_form.scss */
+/* line 31, ../sass/base/_form.scss */
 textarea {
   min-height: 150px;
 }
 
-/* line 24, ../sass/base/_form.scss */
+/* line 35, ../sass/base/_form.scss */
 label {
   font-weight: normal;
   font-size: 105%;
 }
 
-/* line 29, ../sass/base/_form.scss */
+/* line 40, ../sass/base/_form.scss */
 input[type=checkbox] {
   -ms-transform: scale(2);
   /* IE */
@@ -12086,7 +12100,7 @@ input[type=checkbox] {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 29, ../sass/base/_form.scss */
+  /* line 40, ../sass/base/_form.scss */
   input[type=checkbox] {
     -ms-transform: scale(1.3);
     /* IE */
@@ -12101,7 +12115,7 @@ input[type=checkbox] {
   }
 }
 
-/* line 38, ../sass/base/_form.scss */
+/* line 49, ../sass/base/_form.scss */
 input[type=radio] {
   transform: scale(1.8, 1.8);
   -moz-transform: scale(1.8, 1.8);
@@ -12114,7 +12128,7 @@ input[type=radio] {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 38, ../sass/base/_form.scss */
+  /* line 49, ../sass/base/_form.scss */
   input[type=radio] {
     transform: scale(1.2, 1.2);
     -moz-transform: scale(1.2, 1.2);
@@ -12126,29 +12140,28 @@ input[type=radio] {
   }
 }
 
-/* line 46, ../sass/base/_form.scss */
+/* line 57, ../sass/base/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
-/* line 52, ../sass/base/_form.scss */
+/* line 63, ../sass/base/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 55, ../sass/base/_form.scss */
+/* line 66, ../sass/base/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
-  padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 61, ../sass/base/_form.scss */
+/* line 72, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 66, ../sass/base/_form.scss */
+/* line 77, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -12158,37 +12171,37 @@ input[type=radio] {
   z-index: -1;
 }
 
-/* line 76, ../sass/base/_form.scss */
+/* line 87, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 80, ../sass/base/_form.scss */
+/* line 91, ../sass/base/_form.scss */
 fieldset, .fieldset {
-  padding: 10px 10px 0 10px;
+  padding: 10px;
 }
 
-/* line 84, ../sass/base/_form.scss */
+/* line 95, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 89, ../sass/base/_form.scss */
+/* line 100, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 93, ../sass/base/_form.scss */
+/* line 104, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 97, ../sass/base/_form.scss */
+/* line 108, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 101, ../sass/base/_form.scss */
+/* line 112, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -12196,35 +12209,35 @@ fieldset, .fieldset {
   border-top: solid 1px #cccccc;
 }
 
-/* line 109, ../sass/base/_form.scss */
+/* line 120, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 113, ../sass/base/_form.scss */
+/* line 124, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 117, ../sass/base/_form.scss */
+/* line 128, ../sass/base/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 123, ../sass/base/_form.scss */
+/* line 134, ../sass/base/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 126, ../sass/base/_form.scss */
+/* line 137, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
 /* Config form
 -------------------------------------------------- */
-/* line 133, ../sass/base/_form.scss */
+/* line 144, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -13591,20 +13604,28 @@ img.widget-promo-image {
   background-color: #f2dede;
 }
 
-/* line 14, ../sass/base/_events.scss */
+/* MIN WIDTH */
+/* MAX WIDTH */
+@media only screen and (max-width: 767px) {
+  /* line 16, ../sass/base/_events.scss */
+  .app-row-event .report-ctrl .btn {
+    padding: 0 5px;
+  }
+}
+/* line 24, ../sass/base/_events.scss */
 .group-event-dropdown {
   width: 100%;
 }
-/* line 16, ../sass/base/_events.scss */
+/* line 26, ../sass/base/_events.scss */
 .group-event-dropdown .btn {
   float: right;
 }
-/* line 19, ../sass/base/_events.scss */
+/* line 29, ../sass/base/_events.scss */
 .group-event-dropdown .app-dropdown {
   width: 100%;
 }
 
-/* line 24, ../sass/base/_events.scss */
+/* line 34, ../sass/base/_events.scss */
 .event-room {
   display: block;
   font-size: 90%;
@@ -14142,7 +14163,6 @@ img.widget-promo-image {
   position: relative;
   height: 132px;
   padding: 0;
-  margin: 0 0 20px 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
@@ -14166,7 +14186,7 @@ img.widget-promo-image {
 @media only screen and (min-width: 768px) {
   /* line 19, ../sass/base/_rooms.scss */
   .card-room .card-room-in {
-    margin: 10px;
+    margin: 5px;
     height: 268px;
     padding: 0;
   }
@@ -14181,7 +14201,7 @@ img.widget-promo-image {
 .card-room .card-room-in .card-header {
   text-align: right;
   min-height: 40px;
-  opacity: 0.8;
+  opacity: 0.9;
   background: #FFFFFF;
   position: absolute;
   top: 0;
@@ -14308,16 +14328,28 @@ img.widget-promo-image {
 .card-room .card-room-in .card-sensors .sensor .sensor-ctrl {
   float: left;
   margin: 0 0 0 2px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
 /* line 159, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-level {
   font-weight: bold;
-  font-size: 120%;
+  /*font-size: 100%;*/
+}
+/* line 163, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-scale {
+  font-size: 90%;
+}
+@media only screen and (min-width: 768px) {
+  /* line 168, ../sass/base/_rooms.scss */
+  .card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-level {
+    font-size: 110%;
+  }
 }
 
 /* Rooms with device
 -------------------------------------------------- */
-/* line 177, ../sass/base/_rooms.scss */
+/* line 186, ../sass/base/_rooms.scss */
 .room-has-device .card-title h3 a {
   font-weight: bold;
   color: #0d0d0d;
@@ -14326,11 +14358,11 @@ img.widget-promo-image {
 
 /* Rooms without device
 -------------------------------------------------- */
-/* line 189, ../sass/base/_rooms.scss */
+/* line 198, ../sass/base/_rooms.scss */
 .room-no-device .room-link {
   cursor: text !important;
 }
-/* line 192, ../sass/base/_rooms.scss */
+/* line 201, ../sass/base/_rooms.scss */
 .room-no-device .room-img {
   opacity: 0.7;
   filter: alpha(opacity=70);
@@ -14342,7 +14374,7 @@ img.widget-promo-image {
 /* Elements in Rooms
 -------------------------------------------------- */
 /* Background with image */
-/* line 203, ../sass/base/_rooms.scss */
+/* line 212, ../sass/base/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -14352,7 +14384,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 212, ../sass/base/_rooms.scss */
+/* line 221, ../sass/base/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: fixed;
   top: 0;
@@ -14367,33 +14399,33 @@ img.widget-promo-image {
 
 /* Bar
 -------------------------------------------------- */
-/* line 227, ../sass/base/_rooms.scss */
+/* line 236, ../sass/base/_rooms.scss */
 .elemnts-room-bar {
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
   margin: 0 0 20px 0;
 }
-/* line 234, ../sass/base/_rooms.scss */
+/* line 243, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 234, ../sass/base/_rooms.scss */
+  /* line 243, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
     margin: 0;
     float: none;
     display: inline;
   }
 }
-/* line 242, ../sass/base/_rooms.scss */
+/* line 251, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor {
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 243, ../sass/base/_rooms.scss */
+/* line 252, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
   cursor: text;
   border: 0 none;
@@ -14404,31 +14436,31 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 243, ../sass/base/_rooms.scss */
+  /* line 252, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
     margin: 0;
   }
 }
-/* line 255, ../sass/base/_rooms.scss */
+/* line 264, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
   display: inline-block;
   max-width: 24px;
   max-height: 24px;
 }
-/* line 261, ../sass/base/_rooms.scss */
+/* line 270, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
   font-weight: bold;
   font-size: 90%;
   display: inline-block;
   vertical-align: middle;
 }
-/* line 266, ../sass/base/_rooms.scss */
+/* line 275, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level small {
   font-weight: normal;
   font-size: 80%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 242, ../sass/base/_rooms.scss */
+  /* line 251, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor {
     text-align: left;
     margin: 10px 0;
@@ -14436,12 +14468,12 @@ img.widget-promo-image {
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 280, ../sass/base/_rooms.scss */
+  /* line 289, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
     max-width: 32px;
     max-height: 32px;
   }
-  /* line 284, ../sass/base/_rooms.scss */
+  /* line 293, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
     font-size: 120%;
   }
@@ -14449,7 +14481,7 @@ img.widget-promo-image {
 
 /* Images
 -------------------------------------------------- */
-/* line 296, ../sass/base/_rooms.scss */
+/* line 305, ../sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -15028,23 +15060,26 @@ body {
 
 /* Rooms
 -------------------------------------------------- */
-/* line 73, ../sass/custom/_shui.scss */
-.card-room .card-room-in {
-  border: solid 4px #ffffff;
-  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+/* MIN WIDTH */
+@media only screen and (min-width: 768px) {
+  /* line 75, ../sass/custom/_shui.scss */
+  .card-room .card-room-in {
+    border: solid 4px #ffffff;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  }
 }
-
+/* MAX WIDTH */
 /* Elements in Room
 -------------------------------------------------- */
-/* line 81, ../sass/custom/_shui.scss */
+/* line 84, ../sass/custom/_shui.scss */
 .elemnts-room-bar {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 81, ../sass/custom/_shui.scss */
+  /* line 84, ../sass/custom/_shui.scss */
   .elemnts-room-bar {
     border: 0;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);

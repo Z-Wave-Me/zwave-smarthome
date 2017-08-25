@@ -22,7 +22,7 @@
     position: relative;
     height: 132px;
     padding: 0;
-    margin: 0 0 $spacing-double 0;
+    //margin: 0 0 $spacing-double 0;
     &.room-has-sensor{
       // Media queries
       @include mediaQueries(max-small) {
@@ -31,7 +31,7 @@
     }
     // Media queries
     @include mediaQueries(min-small) {
-      margin: $spacing;
+      margin: $spacing-half;
       height: 268px;
       padding: 0;
     }
@@ -42,7 +42,7 @@
     .card-header{
       text-align: right;
       min-height: 40px;
-      opacity: 0.8;
+      opacity: 0.9;
       background: $card-bcg-color;
       position: absolute;
       top: 0;//24px;
@@ -158,7 +158,16 @@
           margin: 0 0 0 2px ;
           .sensor-level {
             font-weight: bold;
-            font-size: 120%;
+            /*font-size: 100%;*/
+          }
+          .sensor-scale {
+            font-size: 90%;
+          }
+          // Media queries
+          @include mediaQueries(min-small) {
+            .sensor-level {
+              font-size: 110%;
+            }
           }
         }
       }

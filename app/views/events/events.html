@@ -6,17 +6,17 @@
            <!-- Filter -->
             <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)" ng-class="devices.find.title || currLevel ? 'active':'' ">
                 <i class="fa fa-filter"></i>
-                <span ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
-                 <span ng-if="devices.find.title">{{devices.find.title | cutText:true:15}}</span>
-                 <span ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
+                <span class="btn-name" ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
+                 <span class="btn-name" ng-if="devices.find.title">{{devices.find.title | cutText:true:15}}</span>
+                 <span class="btn-name" ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
             </button>
          
         <!-- Days -->
             <button class="btn btn-default" ng-click="expandNavi('evDays', $event)" ng-switch="timeFilter.day">
                 <i class="fa fa-calendar-check-o"></i> 
-                 <span ng-switch-when="2">{{_t('lb_yesterday')}}</span>
-                 <span ng-switch-when="7">7 {{_t('lb_days')}}</span>
-                <span ng-switch-default>{{_t('lb_today')}}</span>
+                 <span class="btn-name" ng-switch-when="2">{{_t('lb_yesterday')}}</span>
+                 <span class="btn-name" ng-switch-when="7">7 {{_t('lb_days')}}</span>
+                <span class="btn-name" ng-switch-default>{{_t('lb_today')}}</span>
             </button>
            <!-- Refresh -->
            <button class="btn btn-default" title="{{_t('reload')}}" ng-click="reloadData()">

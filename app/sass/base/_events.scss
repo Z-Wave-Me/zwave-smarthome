@@ -10,6 +10,16 @@
 .event-level-critical{
   background-color: $app-bcg-danger;
 }
+@include mediaQueries(max-small) {
+  .app-row-event{
+    .report-ctrl {
+      .btn{
+        padding: 0 $spacing-half;
+      }
+    }
+  }
+}
+
 
 .group-event-dropdown{
    width: 100%;
