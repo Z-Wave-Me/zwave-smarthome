@@ -69,10 +69,13 @@ body {
 
 /* Rooms
 -------------------------------------------------- */
-.card-room {
-  .card-room-in {
-    border: solid 4px #ffffff;
-    @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+// Media queries
+@include mediaQueries(min-small) {
+  .card-room {
+    .card-room-in {
+      border: solid 4px #ffffff;
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+    }
   }
 }
 

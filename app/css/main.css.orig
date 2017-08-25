@@ -10994,7 +10994,7 @@ img {
 
 /* line 290, ../sass/base/_body.scss */
 .device-available-block.assigned {
-  padding: 10px 10px 0 10px;
+  padding: 10px 10px 5px 10px;
   border: solid 1px #cccccc;
   margin: 0 0 10px 0;
 }
@@ -11381,8 +11381,8 @@ img {
 -------------------------------------------------- */
 /* line 129, ../sass/base/_navi.scss */
 .navi-img {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -11575,84 +11575,84 @@ img {
   border-top: solid 1px #cccccc;
   background-color: #FFFFFF;
   border-bottom: solid 1px #cccccc;
+  display: table;
+  width: 100%;
 }
 
-/* line 8, ../sass/base/_report.scss */
+/* line 11, ../sass/base/_report.scss */
 .report-entry {
   border-bottom: solid 1px #cccccc;
   padding: 10px 5px;
-  width: 100%;
+  display: table-row;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 480px) {
-  /* line 8, ../sass/base/_report.scss */
-  .report-entry {
-    display: table;
-  }
-}
-/* line 16, ../sass/base/_report.scss */
+/* line 19, ../sass/base/_report.scss */
 .report-entry .report-col {
+  padding: 5px;
   display: table-cell;
   vertical-align: middle;
-}
-/* line 20, ../sass/base/_report.scss */
-.report-entry .report-media {
-  width: 50px;
+  border-bottom: solid 1px #cccccc;
 }
 /* line 25, ../sass/base/_report.scss */
-.report-entry .report-ctrl {
-  min-width: 110px;
-  display: block;
-  text-align: right;
+.report-entry .report-media {
+  width: 37px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 768px) {
   /* line 25, ../sass/base/_report.scss */
-  .report-entry .report-ctrl {
-    display: table-cell;
+  .report-entry .report-media {
+    width: 50px;
   }
 }
-/* line 35, ../sass/base/_report.scss */
+/* line 34, ../sass/base/_report.scss */
+.report-entry .report-ctrl {
+  min-width: 110px;
+  text-align: right;
+  /* @include mediaQueries(min-esmall) {
+       display: table-cell;
+   }*/
+}
+/* line 44, ../sass/base/_report.scss */
 .report-entry .report-ctrl-3 {
   min-width: 160px;
 }
-/* line 38, ../sass/base/_report.scss */
+/* line 47, ../sass/base/_report.scss */
 .report-entry .report-col-w30 {
   width: 30%;
 }
 
 /* Images */
-/* line 43, ../sass/base/_report.scss */
+/* line 52, ../sass/base/_report.scss */
 .report-img {
-  max-width: 60px;
-  max-height: 60px;
+  max-width: 32px;
+  max-height: 32px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 43, ../sass/base/_report.scss */
+  /* line 52, ../sass/base/_report.scss */
   .report-img {
     max-width: 40px;
     max-height: 40px;
   }
 }
 
-/* line 52, ../sass/base/_report.scss */
+/* line 61, ../sass/base/_report.scss */
 .report-img-s {
   max-width: 32px;
   max-height: 32px;
 }
 
 /* Zwave row */
-/* line 60, ../sass/base/_report.scss */
+/* line 69, ../sass/base/_report.scss */
 .app-row-zwave .report-entry .report-ctrl {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 60, ../sass/base/_report.scss */
+  /* line 69, ../sass/base/_report.scss */
   .app-row-zwave .report-entry .report-ctrl {
     vertical-align: top !important;
   }
@@ -11749,67 +11749,72 @@ img {
 }
 
 /* line 43, ../sass/base/_button.scss */
+.btn-goup-4 .btn {
+  width: 25%;
+}
+
+/* line 48, ../sass/base/_button.scss */
 .btn-default {
   color: #0d0d0d;
   background-color: #FFFFFF;
   border-color: #CCCCCC;
 }
 
-/* line 49, ../sass/base/_button.scss */
+/* line 54, ../sass/base/_button.scss */
 .btn-default.active {
   background-color: #FFFFFF;
 }
 
-/* line 53, ../sass/base/_button.scss */
+/* line 58, ../sass/base/_button.scss */
 .btn, .btn-device-admin {
   font-size: 110%;
 }
-/* line 55, ../sass/base/_button.scss */
+/* line 60, ../sass/base/_button.scss */
 .btn .fa, .btn-device-admin .fa {
   font-size: 150%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 55, ../sass/base/_button.scss */
+  /* line 60, ../sass/base/_button.scss */
   .btn .fa, .btn-device-admin .fa {
     font-size: 120%;
   }
 }
 
-/* line 64, ../sass/base/_button.scss */
+/* line 69, ../sass/base/_button.scss */
 .btn-submit {
   color: #FFFFFF;
   border: solid 1px #80AD80;
   background-color: #4e794e;
 }
-/* line 68, ../sass/base/_button.scss */
+/* line 73, ../sass/base/_button.scss */
 .btn-submit:hover, .btn-submit:focus {
   background-color: #80AD80;
 }
 
-/* line 73, ../sass/base/_button.scss */
+/* line 78, ../sass/base/_button.scss */
 .btn-installed {
   border: 0 none;
   background-color: none !important;
 }
 
-/* line 78, ../sass/base/_button.scss */
+/* line 83, ../sass/base/_button.scss */
 .btn-disabled {
   border: 0 none;
   background-color: transparent !important;
 }
 
-/* line 83, ../sass/base/_button.scss */
+/* line 88, ../sass/base/_button.scss */
 .btn-small {
   font-size: 90%;
 }
-/* line 85, ../sass/base/_button.scss */
+/* line 90, ../sass/base/_button.scss */
 .btn-small .fa {
   font-size: 95%;
 }
 
-/* line 90, ../sass/base/_button.scss */
+/* line 95, ../sass/base/_button.scss */
 .btn-tag {
   display: block;
   position: relative;
@@ -11820,7 +11825,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 90, ../sass/base/_button.scss */
+  /* line 95, ../sass/base/_button.scss */
   .btn-tag {
     display: inline-block;
     position: static;
@@ -11828,7 +11833,7 @@ img {
     margin: 0 10px 10px 0;
   }
 }
-/* line 104, ../sass/base/_button.scss */
+/* line 109, ../sass/base/_button.scss */
 .btn-tag .fa {
   position: absolute;
   top: 5px;
@@ -11838,87 +11843,100 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 104, ../sass/base/_button.scss */
+  /* line 109, ../sass/base/_button.scss */
   .btn-tag .fa {
     position: static;
     margin: 0 0 0 10px;
     font-size: 120%;
   }
 }
-/* line 116, ../sass/base/_button.scss */
+/* line 121, ../sass/base/_button.scss */
 .btn-tag.btn-group {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (max-width: 991px) {
-  /* line 116, ../sass/base/_button.scss */
+@media only screen and (max-width: 767px) {
+  /* line 121, ../sass/base/_button.scss */
   .btn-tag.btn-group {
     display: table !important;
     width: 100%;
   }
-  /* line 120, ../sass/base/_button.scss */
+  /* line 125, ../sass/base/_button.scss */
   .btn-tag.btn-group .btn {
-    position: static;
     float: none;
     display: table-cell;
   }
-  /* line 125, ../sass/base/_button.scss */
-  .btn-tag.btn-group .btn .fa {
-    position: static;
-  }
 }
-/* line 133, ../sass/base/_button.scss */
+/* line 138, ../sass/base/_button.scss */
 .btn-tag .btn-addon .fa {
   margin: 0;
+}
+/* line 142, ../sass/base/_button.scss */
+.btn-tag .btn {
+  text-align: left;
+  font-size: 100%;
+  margin: 0;
+}
+/* line 147, ../sass/base/_button.scss */
+.btn-tag label {
+  text-align: center  !important;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 767px) {
+  /* line 147, ../sass/base/_button.scss */
+  .btn-tag label {
+    width: 20px;
+  }
 }
 
 /* Button tabs
 -------------------------------------------------- */
-/* line 141, ../sass/base/_button.scss */
+/* line 160, ../sass/base/_button.scss */
 .btn-goup-tabs {
   /* display: table;
    width: 100%;*/
   margin: 0 0 10px 0;
 }
-/* line 145, ../sass/base/_button.scss */
+/* line 164, ../sass/base/_button.scss */
 .btn-goup-tabs .btn {
   padding: 10px;
   font-size: 120%;
   background-color: #FFFFFF;
 }
-/* line 149, ../sass/base/_button.scss */
+/* line 168, ../sass/base/_button.scss */
 .btn-goup-tabs .btn.active {
   background-color: #f2f2f2;
 }
-/* line 152, ../sass/base/_button.scss */
+/* line 171, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa {
   font-size: 130%;
   color: #404040;
 }
-/* line 155, ../sass/base/_button.scss */
+/* line 174, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa.text-danger {
   color: #d9534f;
 }
-/* line 161, ../sass/base/_button.scss */
+/* line 180, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa {
   color: #80AD80;
 }
-/* line 163, ../sass/base/_button.scss */
+/* line 182, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa.text-danger {
   color: #d9534f;
 }
 
-/* line 172, ../sass/base/_button.scss */
+/* line 191, ../sass/base/_button.scss */
 .btn-tabs-2 .btn {
   width: 50%;
 }
 
-/* line 178, ../sass/base/_button.scss */
+/* line 197, ../sass/base/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
 
-/* line 184, ../sass/base/_button.scss */
+/* line 203, ../sass/base/_button.scss */
 .btn-tabs-4 .btn {
   width: 25%;
 }
@@ -11926,7 +11944,7 @@ img {
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
-/* line 192, ../sass/base/_button.scss */
+/* line 211, ../sass/base/_button.scss */
 .switch {
   position: relative;
   display: inline-block;
@@ -11936,7 +11954,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 192, ../sass/base/_button.scss */
+  /* line 211, ../sass/base/_button.scss */
   .switch {
     width: 60px;
     height: 34px;
@@ -11944,13 +11962,13 @@ img {
 }
 
 /* Hide default HTML checkbox */
-/* line 205, ../sass/base/_button.scss */
+/* line 224, ../sass/base/_button.scss */
 .switch input {
   display: none;
 }
 
 /* The slider */
-/* line 210, ../sass/base/_button.scss */
+/* line 229, ../sass/base/_button.scss */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -11964,7 +11982,7 @@ img {
   transition: .4s;
 }
 
-/* line 225, ../sass/base/_button.scss */
+/* line 244, ../sass/base/_button.scss */
 .slider:before {
   position: absolute;
   content: "";
@@ -11981,24 +11999,24 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 225, ../sass/base/_button.scss */
+  /* line 244, ../sass/base/_button.scss */
   .slider:before {
     height: 26px;
     width: 26px;
   }
 }
 
-/* line 247, ../sass/base/_button.scss */
+/* line 266, ../sass/base/_button.scss */
 input:checked + .slider:before {
   background-color: #80AD80;
 }
 
-/* line 252, ../sass/base/_button.scss */
+/* line 271, ../sass/base/_button.scss */
 input:focus + .slider {
   box-shadow: 0 0 1px #80AD80;
 }
 
-/* line 256, ../sass/base/_button.scss */
+/* line 275, ../sass/base/_button.scss */
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -12006,19 +12024,33 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-/* line 263, ../sass/base/_button.scss */
+/* line 282, ../sass/base/_button.scss */
 .slider.round {
   border-radius: 4px;
 }
 
-/* line 267, ../sass/base/_button.scss */
+/* line 286, ../sass/base/_button.scss */
 .slider.round:before {
   border-radius: 4px;
 }
 
 /* Form 
 -------------------------------------------------- */
-/* line 3, ../sass/base/_form.scss */
+/* MIN WIDTH */
+@media only screen and (min-width: 768px) {
+  /* line 5, ../sass/base/_form.scss */
+  .form-check-inline {
+    display: inline-block;
+  }
+
+  /* line 8, ../sass/base/_form.scss */
+  .form-inline .input-group {
+    display: inline-table;
+    vertical-align: middle;
+  }
+}
+/* MAX WIDTH */
+/* line 13, ../sass/base/_form.scss */
 .form-control {
   font-size: 95%;
   color: #595959;
@@ -12029,30 +12061,30 @@ input:checked + .slider:before {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 3, ../sass/base/_form.scss */
+  /* line 13, ../sass/base/_form.scss */
   .form-control {
     padding: 6px 12px;
   }
 }
 
-/* line 15, ../sass/base/_form.scss */
+/* line 26, ../sass/base/_form.scss */
 .input-group-addon {
   border: solid 1px #CCCCCC;
   background-color: #EEEEEE;
 }
 
-/* line 20, ../sass/base/_form.scss */
+/* line 31, ../sass/base/_form.scss */
 textarea {
   min-height: 150px;
 }
 
-/* line 24, ../sass/base/_form.scss */
+/* line 35, ../sass/base/_form.scss */
 label {
   font-weight: normal;
   font-size: 105%;
 }
 
-/* line 29, ../sass/base/_form.scss */
+/* line 40, ../sass/base/_form.scss */
 input[type=checkbox] {
   -ms-transform: scale(2);
   /* IE */
@@ -12068,7 +12100,7 @@ input[type=checkbox] {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 29, ../sass/base/_form.scss */
+  /* line 40, ../sass/base/_form.scss */
   input[type=checkbox] {
     -ms-transform: scale(1.3);
     /* IE */
@@ -12083,7 +12115,7 @@ input[type=checkbox] {
   }
 }
 
-/* line 38, ../sass/base/_form.scss */
+/* line 49, ../sass/base/_form.scss */
 input[type=radio] {
   transform: scale(1.8, 1.8);
   -moz-transform: scale(1.8, 1.8);
@@ -12096,7 +12128,7 @@ input[type=radio] {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 38, ../sass/base/_form.scss */
+  /* line 49, ../sass/base/_form.scss */
   input[type=radio] {
     transform: scale(1.2, 1.2);
     -moz-transform: scale(1.2, 1.2);
@@ -12108,29 +12140,28 @@ input[type=radio] {
   }
 }
 
-/* line 46, ../sass/base/_form.scss */
+/* line 57, ../sass/base/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
-/* line 52, ../sass/base/_form.scss */
+/* line 63, ../sass/base/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 55, ../sass/base/_form.scss */
+/* line 66, ../sass/base/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
-  padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 61, ../sass/base/_form.scss */
+/* line 72, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 66, ../sass/base/_form.scss */
+/* line 77, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -12140,37 +12171,37 @@ input[type=radio] {
   z-index: -1;
 }
 
-/* line 76, ../sass/base/_form.scss */
+/* line 87, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 80, ../sass/base/_form.scss */
+/* line 91, ../sass/base/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 84, ../sass/base/_form.scss */
+/* line 95, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 89, ../sass/base/_form.scss */
+/* line 100, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 93, ../sass/base/_form.scss */
+/* line 104, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 97, ../sass/base/_form.scss */
+/* line 108, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 101, ../sass/base/_form.scss */
+/* line 112, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -12178,35 +12209,35 @@ fieldset, .fieldset {
   border-top: solid 1px #cccccc;
 }
 
-/* line 109, ../sass/base/_form.scss */
+/* line 120, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 113, ../sass/base/_form.scss */
+/* line 124, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 117, ../sass/base/_form.scss */
+/* line 128, ../sass/base/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 123, ../sass/base/_form.scss */
+/* line 134, ../sass/base/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 126, ../sass/base/_form.scss */
+/* line 137, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
 /* Config form
 -------------------------------------------------- */
-/* line 133, ../sass/base/_form.scss */
+/* line 144, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -12249,7 +12280,7 @@ fieldset.submit-entry {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 768px) {
   /* line 8, ../sass/base/_bar.scss */
   .bar-row {
     display: table;
@@ -12282,82 +12313,22 @@ fieldset.submit-entry {
     display: block;
   }
 }
-/* line 37, ../sass/base/_bar.scss */
+/* line 38, ../sass/base/_bar.scss */
 .bar-row .bar-icon {
   font-size: 180%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 37, ../sass/base/_bar.scss */
+  /* line 38, ../sass/base/_bar.scss */
   .bar-row .bar-icon {
     font-size: 140%;
   }
 }
-/* line 43, ../sass/base/_bar.scss */
+/* line 44, ../sass/base/_bar.scss */
 .bar-row .bar-title {
   font-size: 120%;
   font-weight: bold;
-}
-
-/* Bar sensor
--------------------------------------------------- */
-/* line 52, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl {
-  /*@include mediaQueriesMaxMin($break-medium,$break-esmall + 1) {
-    display: block;
-  }*/
-}
-/* line 53, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .btn-group {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-/* line 57, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (max-width: 991px) {
-  /* line 57, ../sass/base/_bar.scss */
-  .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
-    margin: 0;
-    float: none;
-    display: inline;
-  }
-}
-/* line 68, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
-  cursor: text;
-  border: 0 none;
-  background: transparent;
-  margin: 0 10px;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (max-width: 991px) {
-  /* line 68, ../sass/base/_bar.scss */
-  .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
-    margin: 0;
-  }
-}
-/* line 78, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
-  display: inline-block;
-  max-width: 32px;
-  max-height: 32px;
-}
-/* line 84, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
-  font-weight: bold;
-  font-size: 130%;
-  display: inline-block;
-  vertical-align: middle;
-}
-/* line 91, ../sass/base/_bar.scss */
-.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-scale {
-  display: inline-block;
-  vertical-align: middle;
 }
 
 /* Dropdown
@@ -13633,20 +13604,28 @@ img.widget-promo-image {
   background-color: #f2dede;
 }
 
-/* line 14, ../sass/base/_events.scss */
+/* MIN WIDTH */
+/* MAX WIDTH */
+@media only screen and (max-width: 767px) {
+  /* line 16, ../sass/base/_events.scss */
+  .app-row-event .report-ctrl .btn {
+    padding: 0 5px;
+  }
+}
+/* line 24, ../sass/base/_events.scss */
 .group-event-dropdown {
   width: 100%;
 }
-/* line 16, ../sass/base/_events.scss */
+/* line 26, ../sass/base/_events.scss */
 .group-event-dropdown .btn {
   float: right;
 }
-/* line 19, ../sass/base/_events.scss */
+/* line 29, ../sass/base/_events.scss */
 .group-event-dropdown .app-dropdown {
   width: 100%;
 }
 
-/* line 24, ../sass/base/_events.scss */
+/* line 34, ../sass/base/_events.scss */
 .event-room {
   display: block;
   font-size: 90%;
@@ -14184,63 +14163,83 @@ img.widget-promo-image {
   position: relative;
   height: 132px;
   padding: 0;
-  margin: 0 0 20px 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* Card header */
   /* Background image */
   /* Card content */
+  /* Card Sensors */
+}
+/* line 26, ../sass/base/_rooms.scss */
+.card-room .card-room-in.room-has-sensor {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 767px) {
+  /* line 26, ../sass/base/_rooms.scss */
+  .card-room .card-room-in.room-has-sensor {
+    height: 172px;
+  }
 }
 @media only screen and (min-width: 768px) {
   /* line 19, ../sass/base/_rooms.scss */
   .card-room .card-room-in {
-    margin: 10px;
+    margin: 5px;
     height: 268px;
     padding: 0;
   }
 }
-/* line 33, ../sass/base/_rooms.scss */
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 19, ../sass/base/_rooms.scss */
+  .card-room .card-room-in {
+    height: 288px;
+  }
+}
+/* line 42, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header {
   text-align: right;
-  min-height: 20px;
-  opacity: 0.8;
+  min-height: 40px;
+  opacity: 0.9;
   background: #FFFFFF;
   position: absolute;
-  top: 24px;
+  top: 0;
   right: 0;
-  padding: 5px 10px 0 0;
+  padding: 0 5px 0 0;
+  width: 100%;
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* Header icons */
 }
 @media only screen and (min-width: 768px) {
-  /* line 33, ../sass/base/_rooms.scss */
+  /* line 42, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-header {
     width: 100%;
     padding: 5px;
     top: 0;
   }
 }
-/* line 49, ../sass/base/_rooms.scss */
+/* line 59, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header .card-header-icon {
   color: #595959;
-  font-size: 180%;
-  padding: 0 0 0 10px;
+  font-size: 160%;
+  padding: 0 0 0 5px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 49, ../sass/base/_rooms.scss */
+  /* line 59, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-header .card-header-icon {
     font-size: 140%;
     padding: 0 0 0 5px;
   }
 }
-/* line 58, ../sass/base/_rooms.scss */
+/* line 68, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header .card-header-icon:hover {
   text-decoration: none;
 }
-/* line 65, ../sass/base/_rooms.scss */
+/* line 75, ../sass/base/_rooms.scss */
 .card-room .card-room-in .bcg-img {
   display: block;
   top: 0;
@@ -14254,29 +14253,26 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 65, ../sass/base/_rooms.scss */
+  /* line 75, ../sass/base/_rooms.scss */
   .card-room .card-room-in .bcg-img {
     position: static;
     text-align: center;
     height: 170px;
   }
 }
-/* line 86, ../sass/base/_rooms.scss */
+/* line 96, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content {
   margin: 0;
   position: absolute;
-  top: 30px;
+  top: 0;
   left: 0;
-  opacity: 0.8;
   padding: 10px;
-  background-color: #FFFFFF;
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* Card Title */
-  /* Card Sensors */
 }
 @media only screen and (min-width: 768px) {
-  /* line 86, ../sass/base/_rooms.scss */
+  /* line 96, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-content {
     position: static;
     margin: 20px 0 0 0;
@@ -14284,68 +14280,76 @@ img.widget-promo-image {
     text-align: center;
   }
 }
-/* line 104, ../sass/base/_rooms.scss */
+/* line 114, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 {
-  font-size: 115%;
+  font-size: 110%;
   padding: 0;
   margin: 0;
 }
-/* line 108, ../sass/base/_rooms.scss */
+/* line 118, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-content .card-title h3 a {
   color: #262626;
   text-decoration: none;
   cursor: text;
 }
-/* line 116, ../sass/base/_rooms.scss */
-.card-room .card-room-in .card-content .card-sensors {
-  text-align: left;
+/* line 130, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-sensors {
+  text-align: center;
   margin: 5px 0 0 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* Sensor */
 }
 @media only screen and (min-width: 768px) {
-  /* line 116, ../sass/base/_rooms.scss */
-  .card-room .card-room-in .card-content .card-sensors {
+  /* line 130, ../sass/base/_rooms.scss */
+  .card-room .card-room-in .card-sensors {
     text-align: center;
     margin: 15px 0 0 0;
   }
 }
-/* line 127, ../sass/base/_rooms.scss */
-.card-room .card-room-in .card-content .card-sensors .sensor {
+/* line 141, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-sensors .sensor {
   display: inline-block;
   margin: 0 5px 0 0;
 }
-/* line 131, ../sass/base/_rooms.scss */
-.card-room .card-room-in .card-content .card-sensors .sensor .sensor-img {
+/* line 145, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-sensors .sensor .sensor-img {
   float: left;
   width: 20px;
   height: 20px;
   background-color: #fff;
 }
-/* line 136, ../sass/base/_rooms.scss */
-.card-room .card-room-in .card-content .card-sensors .sensor .sensor-img .sensor-preview-img {
+/* line 150, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-sensors .sensor .sensor-img .sensor-preview-img {
   max-width: 20px;
   max-height: 20px;
 }
-/* line 142, ../sass/base/_rooms.scss */
-.card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl {
+/* line 156, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-sensors .sensor .sensor-ctrl {
   float: left;
   margin: 0 0 0 2px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 145, ../sass/base/_rooms.scss */
-.card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl .sensor-level {
+/* line 159, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-level {
   font-weight: bold;
-  font-size: 120%;
+  /*font-size: 100%;*/
 }
-/* line 150, ../sass/base/_rooms.scss */
-.card-room .card-room-in .card-content .card-sensors .sensor .sensor-ctrl .sensor-scale {
-  font-size: 70%;
+/* line 163, ../sass/base/_rooms.scss */
+.card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-scale {
+  font-size: 90%;
+}
+@media only screen and (min-width: 768px) {
+  /* line 168, ../sass/base/_rooms.scss */
+  .card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-level {
+    font-size: 110%;
+  }
 }
 
 /* Rooms with device
 -------------------------------------------------- */
-/* line 169, ../sass/base/_rooms.scss */
+/* line 186, ../sass/base/_rooms.scss */
 .room-has-device .card-title h3 a {
   font-weight: bold;
   color: #0d0d0d;
@@ -14354,11 +14358,11 @@ img.widget-promo-image {
 
 /* Rooms without device
 -------------------------------------------------- */
-/* line 181, ../sass/base/_rooms.scss */
+/* line 198, ../sass/base/_rooms.scss */
 .room-no-device .room-link {
   cursor: text !important;
 }
-/* line 184, ../sass/base/_rooms.scss */
+/* line 201, ../sass/base/_rooms.scss */
 .room-no-device .room-img {
   opacity: 0.7;
   filter: alpha(opacity=70);
@@ -14370,7 +14374,7 @@ img.widget-promo-image {
 /* Elements in Rooms
 -------------------------------------------------- */
 /* Background with image */
-/* line 195, ../sass/base/_rooms.scss */
+/* line 212, ../sass/base/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -14380,7 +14384,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 204, ../sass/base/_rooms.scss */
+/* line 221, ../sass/base/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: fixed;
   top: 0;
@@ -14393,17 +14397,91 @@ img.widget-promo-image {
   transform: scale(1.1);
 }
 
-/* Header */
-/* line 218, ../sass/base/_rooms.scss */
+/* Bar
+-------------------------------------------------- */
+/* line 236, ../sass/base/_rooms.scss */
 .elemnts-room-bar {
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
   margin: 0 0 20px 0;
 }
+/* line 243, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 991px) {
+  /* line 243, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
+    margin: 0;
+    float: none;
+    display: inline;
+  }
+}
+/* line 251, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+/* line 252, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
+  cursor: text;
+  border: 0 none;
+  background: transparent;
+  margin: 0 10px;
+  padding: 0 5px 0 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 991px) {
+  /* line 252, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
+    margin: 0;
+  }
+}
+/* line 264, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
+  display: inline-block;
+  max-width: 24px;
+  max-height: 24px;
+}
+/* line 270, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
+  font-weight: bold;
+  font-size: 90%;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 275, ../sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level small {
+  font-weight: normal;
+  font-size: 80%;
+}
+@media only screen and (max-width: 767px) {
+  /* line 251, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .sensor {
+    text-align: left;
+    margin: 10px 0;
+    display: block;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* line 289, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
+    max-width: 32px;
+    max-height: 32px;
+  }
+  /* line 293, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
+    font-size: 120%;
+  }
+}
 
 /* Images
 -------------------------------------------------- */
-/* line 226, ../sass/base/_rooms.scss */
+/* line 305, ../sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -14982,23 +15060,26 @@ body {
 
 /* Rooms
 -------------------------------------------------- */
-/* line 73, ../sass/custom/_shui.scss */
-.card-room .card-room-in {
-  border: solid 4px #ffffff;
-  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+/* MIN WIDTH */
+@media only screen and (min-width: 768px) {
+  /* line 75, ../sass/custom/_shui.scss */
+  .card-room .card-room-in {
+    border: solid 4px #ffffff;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  }
 }
-
+/* MAX WIDTH */
 /* Elements in Room
 -------------------------------------------------- */
-/* line 81, ../sass/custom/_shui.scss */
+/* line 84, ../sass/custom/_shui.scss */
 .elemnts-room-bar {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 81, ../sass/custom/_shui.scss */
+  /* line 84, ../sass/custom/_shui.scss */
   .elemnts-room-bar {
     border: 0;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);

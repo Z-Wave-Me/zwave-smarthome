@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 21-08-2017 14:14:51 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 25-08-2017 15:25:18 */
 /**
  * @overview The object with default icons.
  * @author Martin Vach
@@ -73,19 +73,29 @@ var icon_data = {
                 camera: {
                     default: 'camera.png'
                 },
-                smoke: {
+                alarm_smoke: {
                     level: {
                         on: 'smoke-on.png',
                         off: 'smoke-off.png'
                     }
-
                 },
                 alarm: {
                     level: {
                         on: 'alarm-on.png',
                         off: 'alarm-off.png'
                     }
-
+                },
+                alarm_flood: {
+                    level: {
+                        on: 'flood-on.png',
+                        off: 'flood-off.png'
+                    }
+                },
+                alarm_burglar: {
+                    level: {
+                        on: 'burglar-alarm-on.png',
+                        off: 'burglar-alarm-off.png'
+                    }
                 },
                 battery: {
                     default: 'battery.png'
@@ -105,19 +115,35 @@ var icon_data = {
                 new: {
                     default: 'new.png'
                 },
-                CO_alarm: {
+                rain: {
+                    default: 'rain.png'
+                },
+                co: {
+                    default: 'co.png'
+                },
+                coo: {
+                    default: 'coo.png'
+                },
+                scene: {
+                    default: 'scene.png'
+                },
+                alarm_co: {
                     level: {
                         on: 'co-alarm-on.png',
                         off: 'co-alarm-off.png'
                     }
-
+                },
+                alarm_coo: {
+                    level: {
+                        on: 'coo-alarm-on.png',
+                        off: 'coo-alarm-off.png'
+                    }
                 },
                 tamper: {
                     level: {
                         on: 'tamper-on.png',
                         off: 'tamper-off.png'
                     }
-
                 },
                 security: {
                     level: {
@@ -141,7 +167,6 @@ var icon_data = {
                         swipe_bottom_left_to_top_right: 'swipe-bottom-left-to-top-right.png',// swiped / berührt
                         swipe_bottom_right_to_top_left: 'swipe-bottom-right-to-top-left.png'// swiped / berührt
                     }
-
                 }
             },
             deviceType: {

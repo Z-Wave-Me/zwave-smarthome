@@ -31,7 +31,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             tags: [],
             filter: ($cookies.filterElements ? angular.fromJson($cookies.filterElements) : {}),
             rooms: {},
-            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
+            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'order_elements'),
             showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
             notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
         },
@@ -50,6 +50,10 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         strLength: 2,
         resultLength: 10
     };
+    /**
+     * Room data
+     */
+    $scope.room = {};
 
     /**
      * Cancel interval on page destroy
@@ -57,6 +61,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.$on('$destroy', function () {
         $interval.cancel($scope.apiDataInterval);
     });
+
 
     /**
      * Load all promises
@@ -85,6 +90,17 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.dataHolder.devices.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+                // When rooms section loads single room data
+                if ($scope.getBodyId() === 'rooms') {
+                    var room = _.find(locations.value.data.data, function(room) {
+                        return room.id == $routeParams.id;
+                    });
+                    if (typeof room != 'undefined') {
+                        $scope.room = dataService.getRooms([room]).value()[0];
+
+                    }
+                }
+
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -367,12 +383,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-        //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
-        //if (run) {
-        $scope.runCmd(cmd);
-        // }
-
-        //return cmd;
+         $scope.runCmd(cmd);
     };
 
     /// --- Private functions --- ///
@@ -390,6 +401,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                 });
             }
         });
+
         // Set categories
         $scope.dataHolder.devices.deviceType = devices.countBy(function (v) {
             return v.deviceType;
@@ -478,54 +490,8 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg, dataFactory, dataService, myCache) {
-    $scope.room = {};
-    $scope.roomSensors = [];
-
-    $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams) {
+   $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
-
-    $scope.allSettled = function () {
-        //console.log($scope.input.main_sensors);
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var promises = [
-            dataFactory.getApi('locations'),
-            dataFactory.getApi('devices',null, false)
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            var location = response[0];
-            var devices = response[1];
-            $scope.loading = false;
-            // Success - location
-            if (location.state === 'fulfilled') {
-                var room = _.find(location.value.data.data, function(room) {
-                    return room.id == $routeParams.id;
-                });
-                if (typeof room != 'undefined') {
-                    $scope.room = dataService.getRooms([room]).value()[0];
-                } else {
-                    alertify.alertError($scope._t('error_load_data'));
-                }
-            }
-
-            if (devices.state === 'fulfilled') {
-                var devices = dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden);
-                $scope.loadRoomSensors(devices.value());
-            }
-        });
-    };
-    $scope.allSettled();
-
-    $scope.loadRoomSensors = function(devices) {
-        if(!$scope.room.main_sensors) {
-            return;
-        }
-        $scope.roomSensors = _.filter(devices, function(device) {
-            if($scope.room.main_sensors.indexOf(device.id) > -1) {
-                return device;
-            }
-        });
-    };
 
 });

@@ -4,10 +4,18 @@
     <!--<pre>{{dataHolder.devices.filter|json}}</pre>-->
     <div class="page-control form-inline">
         <!-- Elements mode ctrl -->
-        <span ng-include="'app/views/elements/elements_ctrl_mode.html'"
-              ng-if="elementAccess(cfg.role_access.admin) && _.size(dataHolder.devices.collection) > 1"></span>
+        <div class="btn-group btn-goup-block btn-goup-2" ng-include="'app/views/elements/elements_ctrl_mode.html'"
+              ng-show="dataHolder.mode === 'edit' && elementAccess(cfg.role_access.admin) && _.size(dataHolder.devices.collection) > 1">
+
+        </div>
         <!-- Categories, Filter, tags, -->
-        <div class="btn-group btn-goup-block btn-goup-3" ng-if="dataHolder.mode === 'default'">
+        <div class="btn-group btn-goup-block btn-goup-4" ng-if="dataHolder.mode === 'default'">
+            <button type="button" title="{{_t('drag_drop')}}" class="btn btn-default"
+                    ng-class="{'active': dataHolder.mode === 'edit'}"
+                    ng-click="changeMode(dataHolder.mode === 'default' ? 'edit' : 'default')">
+                <i class="fa fa-arrows"></i>
+                <span class="btn-name">{{_t('drag_drop')}}</span>
+            </button>
             <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)"
                     ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':''">
                 <i class="fa fa-filter"></i>

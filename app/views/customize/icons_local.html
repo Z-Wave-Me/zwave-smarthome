@@ -43,22 +43,42 @@
             <!-- Control -->
             <div class="page-control form-inline">
                 <!-- Select Icon -->
-                <input type="checkbox" class="img-list-chbx"
-                       ng-model="checkAll" ng-click="toggleAll()" />&nbsp;{{_t('select_icon')}}&nbsp;
+                <!--<input type="checkbox" class="img-list-chbx"
+                       ng-model="checkAll" ng-click="toggleAll()" />&nbsp;{{_t('select_icon')}}&nbsp;-->
                 <!-- Delete checked -->
-                <div class="btn-group" ng-if="checkAll">
+                <!--<div class="btn-group" ng-if="checkAll">
                     <button class="btn btn-default"
                             ng-click="deleteChecked(_t('remove_icon_confirm'))">
                         <i class="fa fa-remove text-danger"></i> {{_t('delete_checked')}}
                     </button>
-                </div>
-                <!-- Filter -->
-                <div class="btn-group btn-goup-block btn-goup-1">
-                    <button class="btn btn-default" ng-click="expandNavi('iconsLocalFilter', $event)"
+                </div>-->
+
+                <div class="btn-group btn-goup-block btn-goup-2" ng-class="{'btn-goup-3': checkAll}">
+                    <!-- Filter -->
+                    <button class="btn btn-default" title="{{_t('lb_filter_by')}}"
+                            ng-click="expandNavi('iconsLocalFilter', $event)"
                             ng-class="icons.filter.source ? 'active' : ''">
                         <i class="fa fa-filter"></i>
-                        <span ng-if="!icons.filter.source">{{_t('lb_show_all')}}</span>
-                        <span ng-if="icons.filter.source">{{icons.source.title[icons.filter.source]| cutText:true:30}}</span>
+                        <span class="btn-name"
+                              ng-if="!icons.filter.source">
+                            {{_t('lb_show_all')}}
+                        </span>
+                        <span class="btn-name"
+                              ng-if="icons.filter.source">
+                            {{icons.source.title[icons.filter.source]| cutText:true:30}}
+                        </span>
+                    </button>
+                    <!-- Select Icon -->
+                    <button class="btn btn-default" title="{{_t('select_icon')}}"
+                            ng-class="{'active text-success': checkAll}"
+                            ng-click="toggleAll()">
+                        <i class="fa fa-check"></i> <span class="btn-name">{{_t('select_icon')}}</span>
+                    </button>
+                    <!-- Remove icons -->
+                    <button class="btn btn-default" title="{{_t('delete_checked')}}"
+                            ng-show="checkAll"
+                            ng-click="deleteChecked(_t('remove_icon_confirm'))">
+                        <i class="fa fa-remove text-danger"></i> <span class="btn-name">{{_t('delete_checked')}}</span>
                     </button>
                 </div>
             </div>

@@ -12,13 +12,17 @@ Marcel Kermer
 ## v1.7.1
 #### New features
 - RSS news: Added buttons READ MORE and READ.
+- Rooms: In the header are sensors values updated.
 
 #### Fixes
+- Sensors added to the room header dont show fullname by mouse over #245.
 - User login language overwrites profile language.
 - Elements, Apps and devices: Fixed bug in Firefox.
 - Don't poll InspectQueue and ZWaveAPI/Data/xxx if current request is still pending #262.
 
 #### Changes
+- Element detail: Deactivete checkbox replaced with Delete element button.
+- Element with device type sensorMultiline has not an event icon.
 - First access: Language select moved to the form.
 - Login: Removed language select.
 - Added major/minor version to the licence scratch request.

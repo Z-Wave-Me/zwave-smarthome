@@ -364,6 +364,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 var minMax;
                 var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
                 var isNew = v.creationTime > yesterday ? true : false;
+                var hasHistory = false;
+                var showNotification = false;
                 // Create min/max value
                 if (cfg.knob_255.indexOf(v.probeType) > -1) {
                     minMax = {min: 0, max: 255, step: 1};
@@ -386,13 +388,22 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 if (typeof(v.metrics.step) !== 'undefined') {
                     minMax.step = v.metrics.step;
                 }
+                // Element on the blacklist will be displayed without the HISTORY or EVENT icon
+                // when device type is in the blacklist
+                if(cfg.element_history_blacklist.indexOf(v.deviceType) === -1){// Not in the blacklist
+                    // Element will be displayed with the HISTORY icon if deviceType is in the whitelist
+                    hasHistory = (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1);
+                    // Otherwise will be displayed with the EVENT icon
+                    showNotification = (!hasHistory);
+                }
                 angular.extend(v,
                     {onDashboard: (user.dashboard && user.dashboard.indexOf(v.id) !== -1 ? true : false)},
                     {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
                     {minMax: minMax},
-                    //{hasHistory: (v.hasHistory === true ? true : false)},
-                    {hasHistory: (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1)},
-                    {showNotification: (cfg.element_history.indexOf(v.deviceType) === -1)},
+                    //{hasHistory: (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1)},
+                    //{showNotification: (cfg.element_history.indexOf(v.deviceType) === -1)},
+                    {hasHistory: hasHistory},
+                    {showNotification: showNotification},
                     {progress: false},
                     {isNew: isNew},
                     {iconPath: assignElementIcon(v)},
@@ -799,7 +810,19 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // CO alarm
-            case 'CO_alarm':
+            case 'alarm_co':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // CO2 alarm
+            case 'alarm_coo':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // flood
+            case 'alarm_flood':
+                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+                break;
+            // burglar
+            case 'alarm_burglar':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // tamper
@@ -817,7 +840,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 } else icon = iconArray.pending;
                 break;
             // smoke
-            case 'smoke':
+            case 'alarm_smoke':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
             // blinds

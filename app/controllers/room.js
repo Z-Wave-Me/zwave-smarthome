@@ -29,7 +29,7 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('locations', null, true),
+            dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, true)
         ];
 
@@ -299,8 +299,9 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
             if (id) {
                 saveRoomIdIntoDevice(response.data, $scope.devicesAssigned);
                 removeRoomIdFromDevice($scope.devicesToRemove);
-                myCache.remove('locations');
-                myCache.remove('devices');
+                myCache.removeAll();
+                /*myCache.remove('locations');
+                myCache.remove('devices');*/
                 dataService.showNotifier({message: $scope._t('success_updated')});
                 $location.path('/rooms');
             }

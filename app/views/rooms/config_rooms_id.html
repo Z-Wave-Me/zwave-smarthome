@@ -1,20 +1,18 @@
 <!-- Config rooms edit -->
-<div ng-controller="RoomConfigIdController" class="mobile-padding">
+<div ng-controller="RoomConfigIdController">
     <bb-loader></bb-loader>
     <div ng-show="input">
         <h2><span ng-bind="_t('lb_room')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.title"></span></h2>
         <form name="form_room" id="form_room" class="form form-page" ng-submit="store(form_room,input)" novalidate>
             <fieldset>
-                <h3><span ng-bind="_t('lb_name')"></span></h3>
-                <div>
-                    <!-- name -->
-                    <div class="form-group">
+                 <!-- name -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_name')}}:</label>
                         <input name="title" id="title" type="text" 
                                class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" 
                                ng-model="input.title" ng-blur="titleBlur = true" ng-required="true" />
                         <bb-validator input-name='form_room.title.$error.required' trans='_t("field_required")' has-blur='titleBlur'></bb-validator> 
                     </div>
-                </div>
             </fieldset>
 
             <fieldset class="mobile-hide">
@@ -44,13 +42,8 @@
                     <div>
             </fieldset>
             <fieldset class="mobile-hide">
-                 <!-- <h3><span ng-bind="_t('lb_upload_image')"></span></h3>-->  
                 <div>
                   <div class="form-group">
-                      
-                         <!--<input type="file" class="form-control_" file-model="myFile" /><br />-->  
-                          <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>-->  
-                         <!--<button type="button" class="btn btn-primary" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-upload"></i> <span ng-bind="_t('lb_upload_image')"></span></button>-->
                          <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
                                 ng-click="icons.find = v" 
                                 onchange="angular.element(this).scope().uploadFile(this.files)" />
@@ -86,11 +79,6 @@
                                        ng-checked="input.main_sensors.indexOf(d.id) > -1">
                             </label>
                         </div>
-                        <!--<a href="" class="btn btn-default btn-tag" title="{{_t('lb_remove')}}"
-                            ng-repeat="d in devices"
-                           ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0"
-                           ng-click="removeDevice(d)">{{d.metrics.title|cutText:true:20}}
-                            <i class="fa fa-times text-danger"></i></a>-->
                     </div>
                 </fieldset>
             <fieldset>

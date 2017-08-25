@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.1-RC-8',
+        'app_version': '1.7.1-RC-10',
         // Application (DIST) built date
-        'app_built': '21-08-2017 14:14:51',
+        'app_built': '25-08-2017 15:25:18',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -327,11 +327,18 @@ var config_data = {
             'sensorBinary',
             'sensorMultiline'
         ],
-        // List of the element deviceType with history icon
+        // Whitelist of the deviceTypes with history icon
+        // These elements will be displayed with the HISTORY icon
+        // Other elements will be displayed with the EVENT icon
         'element_history': [
             'switchMultilevel',
             'sensorMultilevel',
             'thermostat'
+        ],
+        // Blacklist of the deviceTypes without icon
+        // These elements will be displayed without the HISTORY or EVENT icon
+        'element_history_blacklist': [
+            'sensorMultiline'
         ],
         // List of the find hosts
         'find_hosts': [

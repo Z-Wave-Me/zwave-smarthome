@@ -16,6 +16,7 @@ app/controllers
 ---
 name | overview
 :-- | :--
+[app\controllers\00_element.js](app/controllers/00_element.md) | _Controllers that handle the list of elements, dashboar and elements in the room._
 [app\controllers\app-alpaca.js](app/controllers/app-alpaca.md) | _Controllers that handle the Alpaca._
 [app\controllers\app-instance.js](app/controllers/app-instance.md) | _Controllers that handle the Instances._
 [app\controllers\app-local.js](app/controllers/app-local.md) | _Controllers that handle the Local apps._

@@ -20,6 +20,7 @@
 ## ElementBaseController
 The element root controller
 
+**room**:  , Room data
 ### ElementBaseController.allSettled() 
 
 Load all promises
