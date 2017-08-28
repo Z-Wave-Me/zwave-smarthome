@@ -13,6 +13,7 @@ Marcel Kermer
 #### New features
 - RSS news: Added buttons READ MORE and READ.
 - Rooms: In the header are sensors values updated.
+- Improvements of the mobile view.
 
 #### Fixes
 - Sensors added to the room header dont show fullname by mouse over #245.
