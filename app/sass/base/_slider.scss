@@ -1,26 +1,44 @@
 /* Slider:  http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/
 -------------------------------------------------- */
+/* Variables */
+$slider-w: 330px;
+$slider-h: 169px;
+
+$slider-small-w: $break-small - 30;
+$slider-small-h: 189px;
+
+$slider-medium-w: $break-medium - 30;
+$slider-medium-h: 164px;
+
+$slider-large-w: $break-large - 30;
+$slider-large-h: 170px;
+
+$slider-max-w: $site-max-w - 30;
+$slider-max-h: 200px;
+
+/* CSS */
 .app-slider {
-    width: 1170px;
-    height: 200px;
+    width: $slider-w;
+    height: $slider-h;
     overflow: hidden;
     position: relative;
     background: #EEEEEE;;
     //border: 20px solid #FFF;
-    margin: $spacing 0;
+    margin: $spacing auto;
+
     .slide {
     position: relative;
         display: inline-block;
         text-align: center;
         //border: solid 4px #ffffff;
-        width: 390px;
-        height: 200px;
+       /* width: $slider-w;
+        height: $slider-h;*/
         //position: absolute;
         top: 0;
         left: 0;
         img{
-            width: 390px;
-            height: 200px;
+            width: $slider-w;
+            height: $slider-h;
         }
         .slider-label{
             background-color: rgba(0, 0, 0, 0.2);
@@ -61,7 +79,72 @@
         }
     }
 }
+// Media queries
+@include mediaQueries(min-small) {
+    .app-slider {
+        width: $slider-small-w;
+        height: $slider-small-h;
+        .slide {
+           /* width: $slider-small-w/2;
+            height: $slider-small-h;*/
+            img{
+                width: $slider-small-w/2;
+                height: $slider-small-h;
+            }
 
+        }
+
+    }
+}
+
+// Media queries
+@include mediaQueries($break-medium) {
+    .app-slider {
+        width: $slider-medium-w;
+        height: $slider-medium-h;
+        .slide {
+            /* width: $slider-small-w/2;
+             height: $slider-small-h;*/
+            img{
+                width: $slider-medium-w/3;
+                height: $slider-medium-h;
+            }
+
+        }
+
+    }
+}
+
+// Media queries
+@include mediaQueries(min-large) {
+    .app-slider {
+        width: $slider-large-w;
+        height: $slider-large-h;
+        .slide {
+            img{
+                width: $slider-large-w/3;
+                height: $slider-large-h;
+            }
+
+        }
+
+    }
+}
+// Media queries
+@include mediaQueriesMin($site-max-w) {
+    .app-slider {
+        width: $slider-max-w;
+        height: $slider-max-h;
+        .slide {
+            img{
+                width: $slider-max-w/3;
+                height: $slider-max-h;
+            }
+
+        }
+
+    }
+}
 
 
 

@@ -27,7 +27,7 @@
     }
     .widget-title {
       // Media queries
-      @include mediaQueriesMaxMin(1200px,$break-large) {
+      @include mediaQueriesMaxMin($site-max-w,$break-large) {
         max-width: 200px;
         @include textOverflow();
       }
