@@ -90,30 +90,6 @@ Set secure inclusion
 
 
 
-## ZwaveInterviewController
-The controller that handles Z-Wave exclusion process.
-
-### ZwaveInterviewController.loadZwaveApiData() 
-
-Load z-wave devices
-
-
-### ZwaveInterviewController.refreshZwaveApiData() 
-
-Refresh z-wave devices
-
-
-### ZwaveInterviewController.runZwaveCmd() 
-
-Run ExpertUI command
-
-
-### ZwaveInterviewController.removeFailedNode() 
-
-Run ExpertUI command - remove failed node
-
-
-
 ## ZwaveManageIdController
 The controller that renders and handles configuration data for a single Z-Wave device.
 

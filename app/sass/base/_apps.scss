@@ -149,7 +149,7 @@
         .widget-title {
           text-align: center;
           // Media queries
-          @include mediaQueriesMaxMin(1200px,$break-large) {
+          @include mediaQueriesMaxMin($site-max-w,$break-large) {
             max-width:170px;
             @include textOverflow();
           }

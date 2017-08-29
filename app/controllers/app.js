@@ -16,6 +16,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
 
     $scope.dataHolder = {
         modules: {
+            hasUpgrade: {},
             cnt: {
                 apps: 0,
                 collection: 0,
@@ -60,7 +61,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 appsCat: 0,
                 appsCatFeatured: 0,
                 featured: 0,
-                featuredStatus: 0
+                featuredStatus: 0,
+                upgraded: 0
             },
             noSearch: false,
             ratingRange: _.range(1, 6),
@@ -361,6 +363,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 }
             });
 
+        } else if('status' in $scope.dataHolder.modules.filter){
+            $scope.dataHolder.modules.collection = modules.value();
         } else {
             $scope.dataHolder.modules.collection = modules.where($scope.dataHolder.modules.filter).value();
         }
@@ -379,6 +383,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         // Reset featured cnt
         $scope.dataHolder.onlineModules.cnt.featured = 0;
         $scope.slider.cfg.max = 0;
+        $scope.dataHolder.onlineModules.cnt.upgraded = 0;
         var featuredApps = [];
         var onlineModules = _.chain(data)
             .flatten()
@@ -419,6 +424,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                                 if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
                                     item['status'] = 'upgrade';
                                     item['statusSort'] = 1;
+                                    $scope.dataHolder.onlineModules.cnt.upgraded++;
                                     break;
                                 }
                             }

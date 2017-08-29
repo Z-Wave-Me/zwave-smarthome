@@ -7,7 +7,9 @@
         <!-- Apps control -->
         <div ng-include="'app/views/apps/apps_local_ctrl.html'"></div>
         <!-- Apps widget -->
-        <div ng-include="'app/views/apps/apps_local_widget.html'"></div>
+        <div ng-include="'app/views/apps/apps_local_widget.html'" ng-if="!dataHolder.modules.filter['status']"></div>
+        <!-- Apps widget updated -->
+        <div ng-include="'app/views/apps/apps_local_widget_updated.html'" ng-if="dataHolder.modules.filter['status']"></div>
 
     </div> <!-- /ng-controller -->
 </div> <!-- /ng-controller --> 

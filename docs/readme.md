@@ -16,7 +16,6 @@ app/controllers
 ---
 name | overview
 :-- | :--
-[app\controllers\00_element.js](app/controllers/00_element.md) | _Controllers that handle the list of elements, dashboar and elements in the room._
 [app\controllers\app-alpaca.js](app/controllers/app-alpaca.md) | _Controllers that handle the Alpaca._
 [app\controllers\app-instance.js](app/controllers/app-instance.md) | _Controllers that handle the Instances._
 [app\controllers\app-local.js](app/controllers/app-local.md) | _Controllers that handle the Local apps._
@@ -54,6 +53,7 @@ name | overview
 [app\controllers\skin.js](app/controllers/skin.md) | _Controllers that handle all Skins actions._
 [app\controllers\zwave-commands.js](app/controllers/zwave-commands.md) | _Handles expert commands  in the device hardware configuration._
 [app\controllers\zwave-configuration.js](app/controllers/zwave-configuration.md) | _Handles actions in the device hardware configuration._
+[app\controllers\zwave-exclude.js](app/controllers/zwave-exclude.md) | _Handles Reset/Remove proccess of elemnts._
 [app\controllers\zwave-inclusion.js](app/controllers/zwave-inclusion.md) | _Handles Z-Wave device inclusion actions._
 [app\controllers\zwave-manage.js](app/controllers/zwave-manage.md) | _Controllers that manage Z-Wave devices._
 [app\controllers\zwave-vendor.js](app/controllers/zwave-vendor.md) | _The controller that renders Z-Wave vendors and products._

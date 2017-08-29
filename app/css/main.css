@@ -14840,31 +14840,33 @@ img.widget-promo-image {
 
 /* Slider:  http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/
 -------------------------------------------------- */
-/* line 3, ../sass/base/_slider.scss */
+/* Variables */
+/* CSS */
+/* line 20, ../sass/base/_slider.scss */
 .app-slider {
-  width: 1170px;
-  height: 200px;
+  width: 330px;
+  height: 169px;
   overflow: hidden;
   position: relative;
   background: #EEEEEE;
-  margin: 10px 0;
+  margin: 10px auto;
 }
-/* line 11, ../sass/base/_slider.scss */
+/* line 29, ../sass/base/_slider.scss */
 .app-slider .slide {
   position: relative;
   display: inline-block;
   text-align: center;
-  width: 390px;
-  height: 200px;
+  /* width: $slider-w;
+   height: $slider-h;*/
   top: 0;
   left: 0;
 }
-/* line 21, ../sass/base/_slider.scss */
+/* line 39, ../sass/base/_slider.scss */
 .app-slider .slide img {
-  width: 390px;
-  height: 200px;
+  width: 330px;
+  height: 169px;
 }
-/* line 25, ../sass/base/_slider.scss */
+/* line 43, ../sass/base/_slider.scss */
 .app-slider .slide .slider-label {
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -14874,40 +14876,87 @@ img.widget-promo-image {
   bottom: 0;
   padding: 10px;
 }
-/* line 33, ../sass/base/_slider.scss */
+/* line 51, ../sass/base/_slider.scss */
 .app-slider .slide .slider-label h3 {
   font-weight: bold;
   font-size: 130%;
   color: #FFFFFF;
   text-shadow: 1px 1px 2px #969696;
 }
-/* line 39, ../sass/base/_slider.scss */
+/* line 57, ../sass/base/_slider.scss */
 .app-slider .slide .slider-label .slider-footer {
   color: #ffffff;
 }
-/* line 42, ../sass/base/_slider.scss */
+/* line 60, ../sass/base/_slider.scss */
 .app-slider .slide .slider-label .slider-footer .widget-rating {
   text-shadow: 1px 1px 2px #969696;
   font-size: 120%;
   padding: 0 4px 0 0;
   color: #ffffff;
 }
-/* line 47, ../sass/base/_slider.scss */
+/* line 65, ../sass/base/_slider.scss */
 .app-slider .slide .slider-label .slider-footer .widget-rating.israted {
   color: #ffffff;
 }
-/* line 51, ../sass/base/_slider.scss */
+/* line 69, ../sass/base/_slider.scss */
 .app-slider .slide .slider-label .slider-footer button {
   margin: 0 0 0 20px;
 }
-/* line 57, ../sass/base/_slider.scss */
+/* line 75, ../sass/base/_slider.scss */
 .app-slider .slide.installed img {
   opacity: 0.1;
   filter: alpha(opacity=10);
   /* For IE8 and earlier */
 }
 
-/* line 68, ../sass/base/_slider.scss */
+/* MIN WIDTH */
+@media only screen and (min-width: 768px) {
+  /* line 84, ../sass/base/_slider.scss */
+  .app-slider {
+    width: 738px;
+    height: 189px;
+  }
+  /* line 87, ../sass/base/_slider.scss */
+  .app-slider .slide {
+    /* width: $slider-small-w/2;
+     height: $slider-small-h;*/
+  }
+  /* line 90, ../sass/base/_slider.scss */
+  .app-slider .slide img {
+    width: 369px;
+    height: 189px;
+  }
+}
+/* MAX WIDTH */
+/* MIN WIDTH */
+/* MAX WIDTH */
+/* MIN WIDTH */
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 120, ../sass/base/_slider.scss */
+  .app-slider {
+    width: 994px;
+    height: 170px;
+  }
+  /* line 124, ../sass/base/_slider.scss */
+  .app-slider .slide img {
+    width: 331.33333px;
+    height: 170px;
+  }
+}
+/* MAX WIDTH */
+@media only screen and (min-width: 1200px) {
+  /* line 135, ../sass/base/_slider.scss */
+  .app-slider {
+    width: 1170px;
+    height: 200px;
+  }
+  /* line 139, ../sass/base/_slider.scss */
+  .app-slider .slide img {
+    width: 390px;
+    height: 200px;
+  }
+}
+/* line 151, ../sass/base/_slider.scss */
 .slider-btn {
   height: 100%;
   font-size: 200%;
@@ -14929,18 +14978,18 @@ img.widget-promo-image {
   top: 50%;
   transform: translate(0%, -50%);
 }
-/* line 91, ../sass/base/_slider.scss */
+/* line 174, ../sass/base/_slider.scss */
 .slider-btn:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* line 97, ../sass/base/_slider.scss */
+/* line 180, ../sass/base/_slider.scss */
 .slider-btn-prev {
   left: 0%;
   -ms-transform: translate(0%, -50%);
 }
 
-/* line 105, ../sass/base/_slider.scss */
+/* line 188, ../sass/base/_slider.scss */
 .slider-btn-next {
   right: 0%;
   -ms-transform: translate(0%, -50%);
