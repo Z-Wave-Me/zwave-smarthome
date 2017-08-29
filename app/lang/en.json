@@ -1,11 +1,12 @@
 {
     "newtrans": "---",
+    "updated_apps":"Updated Apps",
+    "---": "newtrans",
     "removing":"Removing...",
     "reset_remove":"Reset and Remove",
     "following_elements_remove":"The following elements will be removed",
     "reset_remove_info":"Reset and remove starts exclusion process.",
     "remove_device_info":"Please use this process only in case your device is really damaged, broken or not available anymore.",
-    "---": "newtrans",
     "element_delete_confirm": "Are you sure you want to delete this element? Deleted element cannot be used for any scene or app as long it is deactivated.",
     "delete_element":"Delete element",
     "delete":"Delete",

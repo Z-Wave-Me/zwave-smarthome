@@ -11,6 +11,7 @@ Marcel Kermer
 
 ## v1.7.1
 #### New features
+- Local Apps: Possibility to filter by Updated apps.
 - RSS news: Added buttons READ MORE and READ.
 - Rooms: In the header are sensors values updated.
 - Improvements of the mobile view.
@@ -22,6 +23,7 @@ Marcel Kermer
 - Don't poll InspectQueue and ZWaveAPI/Data/xxx if current request is still pending #262.
 
 #### Changes
+- Device management: Remove device is completely refactored.
 - Element detail: Deactivete checkbox replaced with Delete element button.
 - Element with device type sensorMultiline has not an event icon.
 - First access: Language select moved to the form.

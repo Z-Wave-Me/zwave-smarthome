@@ -1,16 +1,28 @@
 <!-- Local apps control view -->
-<!--<pre>{{dataHolder.modules.filter|json}}</pre>-->
+<!--<pre>{{dataHolder.modules.filter|json}}</pre>
+<pre>{{dataHolder.onlineModules.cnt.upgraded|json}}</pre>-->
 <div class="page-control form-inline">
-    <!--Categories and order by -->
-    <div class="btn-group btn-goup-block btn-goup-2">
+
+    <div class="btn-group btn-goup-block btn-goup-3">
+        <!-- Updated -->
+        <button class="btn btn-default"
+                ng-class="dataHolder.modules.filter['status'] ? 'active':'' "
+                ng-click="setFilter(dataHolder.modules.filter['status'] ? {} : {status: 'upgrade'})"
+        ng-disabled="!dataHolder.onlineModules.cnt.upgraded">
+            <i class="fa fa-level-up"></i>
+            <span class="btn-name">{{_t('updated_apps')}}</span>
+            <span class="btn-name item-cnt"> ({{dataHolder.onlineModules.cnt.upgraded}})</span>
+        </button>
+        <!--Categories -->
         <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)"
-                ng-class="!_.isEmpty(dataHolder.modules.filter) ? 'active':'' ">
+                ng-class="dataHolder.modules.filter['status'] || dataHolder.modules.filter['q'] ? '':'active' ">
             <i class="fa fa-filter"></i>
             <span class="btn-name" ng-if="dataHolder.modules.filter.category">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span>
             <span class="btn-name" ng-if="dataHolder.modules.filter.featured">{{_t('featured_apps')}}</span>
-            <span class="btn-name" ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</span>
+            <span class="btn-name" ng-if="_.isEmpty(dataHolder.modules.filter) || dataHolder.modules.filter['status']">{{_t('all_apps')}}</span>
             <span class="btn-name item-cnt"> ({{dataHolder.modules.cnt.collection}})</span>
         </button>
+        <!-- order by -->
         <button class="btn btn-default" ng-click="expandNavi('appsLocalOrderBy', $event)">
             <i class="fa fa-sort-alpha-asc"></i>
             <span class="btn-name">{{_t(dataHolder.modules.orderBy) | cutText:true:15}}</span>

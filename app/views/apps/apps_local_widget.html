@@ -164,7 +164,7 @@ ng-hide="dataHolder.modules.filter.q">
 <!-- Advanced Apps -->
 <div class="app-entry-local" ng-if="dataHolder.modules.cnt.appsCatAdvanced[dataHolder.modules.filter.category] > 0"
      ng-hide="dataHolder.modules.filter.q">
-    <h2 class="app-entry-title" ng-click="expandElement('advanced_apps')">{{_t('advanced_apps')}} <i class="fa accordion-arrow" ng-class="expand.advanced_apps  ? 'fa-chevron-up':'fa-chevron-down'"></i></h2>
+    <h2 class="app-entry-title clickable" ng-click="expandElement('advanced_apps')">{{_t('advanced_apps')}} <i class="fa accordion-arrow" ng-class="expand.advanced_apps  ? 'fa-chevron-up':'fa-chevron-down'"></i></h2>
     <div class="app-row app-row-widget clearfix" ng-if="expand.advanced_apps">
 
         <div class="widget-entry widget-entry-app"
