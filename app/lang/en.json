@@ -1,6 +1,8 @@
 {
     "newtrans": "---",
+    "removing":"Removing...",
     "reset_remove":"Reset and Remove",
+    "following_elements_remove":"The following elements will be removed",
     "reset_remove_info":"Reset and remove starts exclusion process.",
     "remove_device_info":"Please use this process only in case your device is really damaged, broken or not available anymore.",
     "---": "newtrans",

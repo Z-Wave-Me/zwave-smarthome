@@ -1,6 +1,5 @@
 <!-- Include -->
 <div ng-controller="ZwaveExcludeController">
-
     <div ng-if="zWaveDevice.id">
         <div class="device-perex clearfix">
             <h2>{{zWaveDevice.name}}</h2>
@@ -21,9 +20,7 @@
                 <!-- Bar col -->
                 <div class="col-sm-6">
                     <button class="btn btn-default btn-lg"
-                            ng-disabled_="[5, 6, 7, 20].indexOf(controllerState) > -1"
-                            ng-show_="[1, 2, 3, 4].indexOf(controllerState) == -1"
-                            ng-click="removeDevice()">
+                            ng-click="handleModal('removeModal', $event)">
                         <i class="fa fa-chain-broken  text-danger"></i> {{_t('lb_remove')}}
                     </button>
                     <bb-help-text trans="_t('remove_device_info')"></bb-help-text>
@@ -35,75 +32,6 @@
                 </button>
             </div>
         </div>
-
-
-        <div class="form-page">
-            <div class="fieldset">
-                <!--<div class="form-group form-inline">
-                    &lt;!&ndash; RemoveNodeFromNetwork proccess &ndash;&gt;
-                    <div ng-if="zWaveDevice.lastExcludedDevice != zWaveDevice.id">
-                        <div class="exclude-device" ng-hide="[5].indexOf(zWaveDevice.controllerState) > -1">
-                            <p><strong>{{_t('start_removal')}} </strong></p>
-                            <button class="btn btn-default btn-lg"
-                                    ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(1)')"
-                            ><i class="fa fa-play-circle text-success"></i> {{_t('btn_exclusion_start')}}
-                            </button>
-                        </div>
-                        <div class="exclude-device" ng-show="zWaveDevice.controllerState == 5">
-                            <div class="alert alert-warning"><i class="fa fa-spinner fa-spin"></i> <strong>{{_t('confirm_exclusion')}}</strong>
-                            </div>
-                            <button
-                                    class="btn btn-default btn-lg"
-                                    ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)')">
-                                <i class="fa fa-ban text-danger"></i> {{_t('btn_exclusion_stop')}}
-                            </button>
-                        </div>
-                    </div>
-                    &lt;!&ndash; RemoveNodeFromNetwork result &ndash;&gt;
-                    <div class="exclude-device" ng-if="zWaveDevice.lastExcludedDevice == zWaveDevice.id">
-                        <div class="alert alert-success">
-                            <i class="fa fa-check"></i> <strong>{{_t('lb_device_excluded')}}</strong>
-                        </div>
-                    </div>
-                </div>-->
-                <div class="form-group form-inline">
-                    <!-- RemoveFailedNode proccess -->
-                    <div ng-if="!zWaveDevice.removeNodeProcess">
-                        <div class="exclude-device">
-                            <button class="btn btn-default btn-lg"
-                                    ng-disabled_="[5, 6, 7, 20].indexOf(controllerState) > -1"
-                                    ng-show_="[1, 2, 3, 4].indexOf(controllerState) == -1"
-                                    ng-click="zWaveDevice.removeNode = !zWaveDevice.removeNode"><i
-                                    class="fa fa-chain-broken  text-danger"></i> {{_t('broken_device')}}
-                            </button>
-                        </div>
-                        <div class="exclude-device" ng-if="zWaveDevice.removeNode">
-                            <div class="alert alert-warning"><i class="fa fa-info-circle"></i>
-                                {{_t('broken_device_war')}}
-                            </div>
-
-                            <button class="btn btn-danger btn-lg"
-                                    ng-click="removeFailedNode('devices[' + zWaveDevice.id + '].RemoveFailedNode()')"
-                            ><i class="fa fa-exclamation-triangle "></i> {{_t('remove_permanently')}}
-                            </button>
-
-                        </div>
-                    </div>
-                    <div class="exclude-device" ng-if="zWaveDevice.removeNodeProcess">
-                        <div class="alert alert-warning">
-                            <i class="fa fa-spinner fa-spin"></i> <strong>{{_t('broken_device_info')}}</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fieldset submit-entry">
-                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-                    <i class="fa fa-reply"></i> <span class="btn-name" ng-bind="_t('lb_cancel')"></span>
-                </button>
-            </div>
-
-        </div>
     </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 
@@ -111,10 +39,14 @@
     <div id="resetRemoveModal" class="appmodal" ng-if="zWaveExclude.resetRemove.process">
         <div class="appmodal-in">
             <div class="appmodal-header">
-                <span class="appmodal-close" ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)');zWaveExclude.resetRemove.process = false"><i class="fa fa-times"></i></span>
-                <h3>{{_t('reset_remove')}}</h3>
+                 <h3>{{_t('reset_remove')}} {{zWaveDevice.name}}</h3>
+
             </div>
             <div class="appmodal-body">
+                <div ng-show="_.size(zWaveDevice.devices)">
+                    <h3>{{_t('following_elements_remove')}}:</h3>
+                    <span ng-repeat="v in zWaveDevice.devices">{{v.name}}{{$last ? '' : ', '}} </span>
+                </div>
                 <div class="exclude-device" ng-show="zWaveDevice.controllerState == 5">
                     <bb-alert alert="zWaveExclude.resetRemove.alert"></bb-alert>
                 </div>
@@ -127,22 +59,43 @@
             </div>
         </div>
     </div>
+
     <!-- removeModal -->
-    <div id="removeModal" class="appmodal" ng-if="zWaveExclude.remove.process">
+    <div id="removeModal" class="appmodal" ng-if="modalArr.removeModal">
         <div class="appmodal-in">
             <div class="appmodal-header">
-                <span class="appmodal-close" ng-click="zWaveExclude.remove.process = false"><i class="fa fa-times"></i></span>
-                <h3>{{_t('lb_remove')}}</h3>
+                <h3>{{_t('lb_remove')}} {{zWaveDevice.name}}</h3>
             </div>
             <div class="appmodal-body">
-                <div class="exclude-device" ng-show="zWaveDevice.controllerState == 5">
-                    <bb-alert alert="zWaveExclude.resetRemove.alert"></bb-alert>
+                <!-- Info -->
+                <div ng-show="_.size(zWaveDevice.devices) && !zWaveExclude.remove.process">
+                <h3>{{_t('following_elements_remove')}}:</h3>
+                <span ng-repeat="v in zWaveDevice.devices">{{v.name}}{{$last ? '' : ', '}} </span>
+                </div>
+                <!-- progress -->
+                <div ng-if="zWaveExclude.remove.process">
+                {{_t('removing')}}
+                <div class="progress">
+                    <div class="progress-bar"
+                         style="min-height:40px;min-width: 2em; width: {{zWaveExclude.remove.progress}}%;"
+                         ng-class="zWaveExclude.remove.progress < 100 ? 'progress-bar-danger progress-bar-striped active' : 'progress-bar-success'">
+                        {{zWaveExclude.remove.progress}}%
+                    </div>
+                </div>
                 </div>
             </div>
             <div class="appmodal-footer">
+                <!-- Cancel -->
                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}"
-                        ng-click="zWaveExclude.remove.process = false">
+                        ng-disabled="zWaveExclude.remove.process"
+                        ng-click="handleModal('removeModal', $event)">
                     <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                </button>
+                <!-- Remove -->
+                <button class="btn btn-danger"
+                        ng-disabled="zWaveExclude.remove.process"
+                        ng-click="removeDevice()">
+                    <i class="fa fa-exclamation-triangle "></i> {{_t('remove_permanently')}}
                 </button>
             </div>
         </div>
