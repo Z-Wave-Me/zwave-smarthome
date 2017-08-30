@@ -8,13 +8,36 @@
  * The controller that handles restore process.
  * @class ManagementRestoreController
  */
-myAppController.controller('ManagementRestoreController', function ($scope, $window, $timeout, dataFactory, dataService) {
+myAppController.controller('ManagementRestoreController', function ($scope, $window, $timeout,  $route,$filter,dataFactory, dataService) {
     $scope.myFile = null;
     $scope.managementRestore = {
+        fileName: false,
+        overwriteNetwork: false,
+        file: {},
         confirm: false,
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false
     };
+
+    /**
+     * Check if file is select and with valid extension
+     */
+    $scope.checkSelectedFile = function (files,info) {
+       if(!files[0]){
+           return;
+       }
+        // Check allowed file formats
+        if (info.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+            alertify.alertError(
+                $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
+                $scope._t('upload_allowed_formats', {'__extensions__': info.extension.toString()})
+            );
+            return;
+
+        }
+        // Set filename
+       $scope.managementRestore.fileName = files[0].name;
+    }
 
     /**
      * Upload backup file
@@ -26,7 +49,8 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
         var fd = new FormData();
 
         fd.append('backupFile', $scope.myFile);
-        //fd.append('backupFile', files[0]);
+        fd.append('overwriteNetwork', $scope.managementRestore.overwriteNetwork);
+
         dataFactory.uploadApiFile(cmd, fd).then(function (response) {
             $scope.loading = false;
             dataService.showNotifier({message: $scope._t('restore_done_reload_ui')});
@@ -36,6 +60,7 @@ myAppController.controller('ManagementRestoreController', function ($scope, $win
                 $window.location.reload();
             }, 2000);
         }, function (error) {
+            $route.reload();
             $scope.loading = false;
             alertify.alertError($scope._t('restore_backup_failed'));
             $scope.managementRestore.alert = false;

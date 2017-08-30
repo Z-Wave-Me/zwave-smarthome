@@ -63,6 +63,9 @@ input[type=radio] {
   .form-group {
     border-bottom: solid 1px $app-border-color;
     padding-bottom: $spacing;
+    &.first {
+      padding-top: $spacing;
+    }
     &.last {
       border-bottom: 0;
       //padding-bottom: 0;
