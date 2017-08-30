@@ -12152,16 +12152,20 @@ input[type=radio] {
   padding-bottom: 10px;
 }
 /* line 66, ../sass/base/_form.scss */
+.form-page .form-group.first {
+  padding-top: 10px;
+}
+/* line 69, ../sass/base/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
   margin-bottom: 0;
 }
-/* line 72, ../sass/base/_form.scss */
+/* line 75, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 77, ../sass/base/_form.scss */
+/* line 80, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -12171,37 +12175,37 @@ input[type=radio] {
   z-index: -1;
 }
 
-/* line 87, ../sass/base/_form.scss */
+/* line 90, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 91, ../sass/base/_form.scss */
+/* line 94, ../sass/base/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 95, ../sass/base/_form.scss */
+/* line 98, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 100, ../sass/base/_form.scss */
+/* line 103, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 104, ../sass/base/_form.scss */
+/* line 107, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 108, ../sass/base/_form.scss */
+/* line 111, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 112, ../sass/base/_form.scss */
+/* line 115, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -12209,35 +12213,35 @@ fieldset, .fieldset {
   border-top: solid 1px #cccccc;
 }
 
-/* line 120, ../sass/base/_form.scss */
+/* line 123, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 124, ../sass/base/_form.scss */
+/* line 127, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 128, ../sass/base/_form.scss */
+/* line 131, ../sass/base/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 134, ../sass/base/_form.scss */
+/* line 137, ../sass/base/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 137, ../sass/base/_form.scss */
+/* line 140, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
 /* Config form
 -------------------------------------------------- */
-/* line 144, ../sass/base/_form.scss */
+/* line 147, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }

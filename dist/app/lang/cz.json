@@ -1,4 +1,6 @@
 {
+    "restore_zway_network":"Restore Z-Way Network",
+    "available_updates":"Available updates",
     "removing":"Removing...",
     "reset_remove":"Reset and Remove",
     "following_elements_remove":"The following elements will be removed",
