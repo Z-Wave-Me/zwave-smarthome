@@ -179,7 +179,10 @@ var config_data = {
                 type: ['application/x-zip-compressed', 'application/x-gzip'],
                 extension: ['zip', 'gz'],
                 dimension: '64 x 64'//px
-            }
+            },
+            'restore_from_backup': {
+                extension: ['zab']
+            },
         },
         // Api url
         'expert_url': '/expert',
