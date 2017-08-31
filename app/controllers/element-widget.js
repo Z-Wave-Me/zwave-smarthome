@@ -315,7 +315,23 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         alert: {message: false, status: 'is-hidden', icon: false},
         process: false,
         previewColor: 'rgb(255, 255, 255)',
-        selectedColor: 'rgb(255, 255, 255)'
+        selectedColor: 'rgb(255, 255, 255)',
+        colorHex: '',
+        minMax: {
+            max: 99,
+            min: 0,
+            step: 1
+        },
+        color: {
+            r: 'text-danger',
+            g: 'text-success',
+            b: 'text-info'
+        },
+        sliderInterval: null
+    };
+
+    $scope.knobopt = {
+        width: 160
     };
 
     /**
@@ -378,6 +394,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
                     //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
                     angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
                     angular.extend(input.metrics.color, rgbColorsObj);
+                    $scope.widgetSwitchRGBW.colorHex = rgbToHex(rgbColorsObj.r, rgbColorsObj.g, rgbColorsObj.b);
                     $scope.widgetSwitchRGBW.process = false;
                     $scope.widgetSwitchRGBW.selectedColor = rgbColors;
                 }, function (error) {
@@ -392,10 +409,13 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         });
     };
 
-    $scope.colorHexChange = function() {
+    $scope.colorHexChange = function(input) {
         var colorHex = $scope.widgetSwitchRGBW.colorHex;
-        var rgb = hexToRgb(colorHex);
-        $scope.widgetSwitchRGBW.find.metrics.color = rgb;
+        if (typeof colorHex !== 'undefined' && colorHex.lenght > 0) {
+            var rgb = hexToRgb(colorHex);
+            $scope.widgetSwitchRGBW.find.metrics.color = rgb;
+            updatePreviewColor(rgb.r,rgb.g,rgb.b);
+        }
     };
 
     /**
@@ -403,18 +423,20 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
      */
     $scope.sliderOnHandleDown = function(input) {
         sliderInterval = $interval(function() {
-            updatePreviewColor(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
+            if (typeof input.metrics.color !== 'undefined') {
+                updatePreviewColor(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
+            }
         }, 500);
     };
 
 
     /**
-     * Calls function when slider handle is released
+     * Calls function when slider handle for RGB is released
      */
     $scope.sliderOnHandleUpRGB = function(input) {
         $scope.setRGBColor(input);
-        $interval.cancel($scope.widgetSwitchRGBW.sliderInterval);
-    };
+        $interval.cancel(sliderInterval);
+    }; 
 
     /**
      * Calls function when slider handle is released
@@ -433,7 +455,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
      * Load single device
      */
     $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
+        var device = _.where($scope.dataHolder.devices.all, {id: $scope.dataHolder.devices.find.id});
         if (_.isEmpty(device)) {
             $scope.widgetSwitchRGBW.alert = {
                 message: $scope._t('error_load_data'),
@@ -444,27 +466,46 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         }
         angular.extend($scope.widgetSwitchRGBW.find, device[0]);
 
-        // TODO finish refactoring
-        /*var str = $scope.widgetSwitchRGBW.find.id;
-        var index = str.indexOf('-');
-        var res = str.substr(0, index);
+        var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
 
-        var devs = _.filter($scope.dataHolder.devices.collection, function(dev) {
-           if(dev.id.indexOf(res) > -1) {
-               return dev;
-           }
+        var zwayId = automationId.substr(automationId.lastIndexOf('_')+1);
+
+        dataFactory.runExpertCmd('devices['+zwayId+']').then(function (response) {
+            if (response.data.instances[0].commandClasses[114].data.vendorId.value == 134 && response.data.instances[0].commandClasses[114].data.productId.value == 96) {
+                var color = $scope.widgetSwitchRGBW.find.metrics.color;
+                $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+                $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
+            }
+            else {
+                dataFactory.getApi('devices', '', true).then(function (response) {
+                    var devices = response.data.data;
+
+                    var devs = _.filter(devices.devices, function(dev) {
+                        if(dev.id.indexOf(automationId) > -1) {
+                            return dev;
+                        }
+                    });
+
+                    $scope.widgetSwitchRGBW.all = devs;
+                    var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
+                        return dev.deviceType == 'switchRGBW';
+                    });
+
+                    var color = find.metrics.color;
+                    $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+                    $scope.loadRgbWheel(find);
+                    return;                            
+                }, function (error) {
+                        console.log(error);
+                });
+            }
+        }, function (error) {
+            $scope.widgetSwitchRGBW.alert = {
+                message: $scope._t('error_load_data'),
+                status: 'alert-danger',
+                icon: 'fa-exclamation-triangle'
+            };
         });
-
-        $scope.widgetSwitchRGBW.all = devs;
-        var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
-            return dev.deviceType == 'switchRGBW';
-        });
-
-        var color = find.metrics.color;
-        $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-        $scope.loadRgbWheel(find);*/
-        $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
-        return;
     };
     $scope.loadDeviceId();
 
@@ -474,11 +515,12 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
             rgbColorsObj = input.metrics.color;
 
         $scope.widgetSwitchRGBW.process = true;
-        dataFactory.runApiCmd(cmd).then(function (response) {
+        dataFactory.getApi(cmd).then(function (response) {
             var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
             //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
             angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
             angular.extend($scope.widgetSwitchRGBW.find.metrics.color, rgbColorsObj);
+            $scope.widgetSwitchRGBW.colorHex = rgbToHex(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
             $scope.widgetSwitchRGBW.process = false;
             $scope.widgetSwitchRGBW.selectedColor = rgbColors;
         }, function (error) {
@@ -510,7 +552,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     }
 
     function rgbToHex(r, g, b) {
-        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+         return "#" + ((1 << 24) + (parseInt(r, 10) << 16) + (parseInt(g, 10) << 8) + parseInt(b, 10)).toString(16).slice(1);
     }
 
 });

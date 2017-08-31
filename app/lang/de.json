@@ -708,5 +708,10 @@
     "save_manage_rf433_devices": "Speichern und weiter zu RF433 Gerät verwalten",
     "lb_timout_auto_off": "Timeout für auto off",
     "rf433_device": "RF433 Geräte",
-    "rf433_not_active": "Die RF433 App ist nicht aktiviert. Bitte aktivieren Sie diese unter 'Anwendungen > Aktiv'."
+    "rf433_not_active": "Die RF433 App ist nicht aktiviert. Bitte aktivieren Sie diese unter 'Anwendungen > Aktiv'.",
+    "rgb_dimmer": "Dimmer",
+    "rgb_color": "RGB-Einstellungen",
+    "rgb_softcold": "Warm|Kalt-weiß",
+    "rgb_soft": "Warm-weiß",
+    "rgb_cold": "Kalt-weiß"
 }
