@@ -33,9 +33,11 @@
             <p class="form-control-static">
                 <span ng-bind="_t('device_database_info')"></span>
             </p>
+            <p ng-repeat="(k,v) in databaseUpdate" ng-show="(v)"><strong>{{_t(k)}} <i class="fa fa-lg {{v}}"></i></strong></p>
         </fieldset>
         <fieldset class="submit-entry">
-            <button type="submit" class="btn btn-submit" title="{{_t('btn_update_device_database')}}">
+            <button type="submit" class="btn btn-submit" title="{{_t('btn_update_device_database')}}"
+                    ng-disabled="databaseProcess">
                 <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('btn_update_device_database')}}</span>
             </button>
         </fieldset>
