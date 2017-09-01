@@ -20,14 +20,14 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
             collection: {},
             noSearch: false
         },
-        filter: {}//($cookies.filterProducts ? angular.fromJson($cookies.filterProducts) : {}),
+        filter: ($cookies.filterProducts ? angular.fromJson($cookies.filterProducts) : {})
     };
 
     $scope.autocomplete = {
         source: [],
         term: '',
         searchInKeys: 'id,name,brandname,ertification_id',
-        returnKeys: 'id,name,brandname,product_image_base64,frequency',
+        returnKeys: 'id,name,brandname,product_image,frequency',
         strLength: 2,
         resultLength: 10
     };
@@ -41,7 +41,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.loadZwaveApiData(),
-            dataFactory.getApiLocal('ui_vendors.json'),
+            dataFactory.getApi('zwave_vendors'),
             dataFactory.getApi('zwave_devices','?lang=' + $scope.lang)
 
 
@@ -73,7 +73,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $routePara
             }
             // Success - vendors
             if (vendors.state === 'fulfilled') {
-                $scope.zwaveVendors.all = vendors.value.data;
+                $scope.zwaveVendors.all = vendors.value.data.data.zwave_vendors;
             }
             // Success - products
             if (products.state === 'fulfilled') {

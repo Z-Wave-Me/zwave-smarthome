@@ -544,7 +544,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         return _.chain(data)
             .flatten()
             .map(function (v) {
-                return {
+               return {
                     id: v.Product_Code,
                     name: v.Name,
                     //productcode: v.Product_Code,
@@ -555,7 +555,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     brandname: v.BrandName,
                     brandid: v.BrandName,
                     //brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
-                    //product_image: (v.Certification_ID ? cfg.img.zwavedevices + v.Certification_ID + '.png' : false),
+                    product_image: v.Product_Image.split('/').pop(),
                     product_image_base64: v.Product_Image_Base64,
                     prep: v.Preperation_Description,
                     secure: (v.Secure === '1'),
