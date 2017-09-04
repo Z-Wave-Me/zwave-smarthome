@@ -93,6 +93,9 @@ input[type=radio] {
 
 fieldset, .fieldset {
   padding: $spacing;
+  h1,h2,h3{
+      margin: 0;
+  }
 }
 
 .isrequired {
