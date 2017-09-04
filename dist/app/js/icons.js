@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 04-09-2017 08:31:35 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 04-09-2017 15:57:42 */
 /**
  * @overview The object with default icons.
  * @author Martin Vach
@@ -33,6 +33,19 @@ var icon_data = {
                     level: {
                         on: 'switch-on.png',
                         off: 'switch-off.png'
+                    }
+                },
+                siren: {
+                    level: {
+                        on: 'siren-on.png',
+                        off: 'siren-off.png'
+                    }
+                },
+                fan: {
+                    level: {
+                        on: 'fan-on.png',
+                        half: 'fan-half.png',
+                        off: 'fan-off.png'
                     }
                 },
                 motion: {
@@ -166,6 +179,15 @@ var icon_data = {
                         swipe_top_right_to_bottom_left: 'swipe-top-right-to-bottom-left.png',// swiped / berührt
                         swipe_bottom_left_to_top_right: 'swipe-bottom-left-to-top-right.png',// swiped / berührt
                         swipe_bottom_right_to_top_left: 'swipe-bottom-right-to-top-left.png'// swiped / berührt
+                    }
+                },
+                climatecontrol: {
+                    level: {
+                        comfort: 'climatecontrol_comfort.png',
+                        schedule: 'climatecontrol_schedule.png',
+                        energySave: 'climatecontrol_energysave.png',
+                        frostProtection: 'climatecontrol_frostprotection.png',
+                        default: "climatecontrol_default.png" 
                     }
                 }
             },
