@@ -8,7 +8,7 @@
  * @class SkinBaseController
  *
  */
-myAppController.controller('SkinBaseController', function ($scope, $q, $timeout, cfg, dataFactory, dataService, _) {
+myAppController.controller('SkinBaseController', function ($scope, $q, $timeout, $window, cfg, dataFactory, dataService, _) {
     $scope.skins = {
         local: {
             all: {},
@@ -96,16 +96,29 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
      * @returns {undefined}
      */
     $scope.updateSkin = function (skin) {
+        if(!skin){
+            return;
+        }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('downloading')};
         dataFactory.putApi('skins_update', skin.name, skin).then(function (response) {
+            dataService.showNotifier({message: $scope._t('skin_update_successful')});
             $timeout(function () {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('skin_update_successful')});
+                // Reload the whole page when an updated skin is active
+                 if($scope.skins.local.active === skin.name){
+                      $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
+                       //dataService.showNotifier({message: $scope._t('reloading_page')});
+                        alertify.dismissAll();
+                        $window.location.reload();
+                 }else{// Otherwise reload  nly controller data
+                     $scope.reloadData();
+                 }
+               
             }, 2000);
         }, function (error) {
-            $scope.loading = false;
             var langkey = (error.data.error ? error.data.error : 'error_file_download');
             alertify.alertError($scope._t(langkey));
+        }).finally(function(){
+             $scope.loading = false;
         });
     };
 
