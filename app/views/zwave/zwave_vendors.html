@@ -8,14 +8,15 @@
     <div class="clearfix">
         <div class="vendor-entry clickable"
              ng-click="setFilter({brandid: v.Name})"
-             ng-repeat="v in zwaveVendors.all| orderBy:'Name' track by $index"
+             ng-repeat="(k,v) in zwaveVendors.all| orderBy:'Name' track by $index"
+             ng-hide="!v.Name"
              ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1">
             <a class="vendor-list" title="{{v.Name}}">
-                <p class="vendor-image" ng-if="v.Image_Base64">
-                    <img ng-src="data:image/png;base64,{{v.Image_Base64}}" alt="{{v.Name|cutText:true:20}}" />
+                <p class="vendor-image" ng-show="v.Image">
+                     <img class="endor-image" alt="altimg | {{v.Name|cutText:true:20}}" ng-src="{{cfg.img.zwavevendors + v.Image}}" />
 
                 </p>
-                <p class="vendor-image" title="{{v.Name|cutText:true:20}}" ng-if="v.Image_Base64 === ''">
+                <p class="vendor-image" title="{{v.Name|cutText:true:20}}" ng-hide="v.Image">
                     <span>{{v.Name|cutText:true:20}}</span>
                 </p>
             </a>

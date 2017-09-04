@@ -91,7 +91,7 @@ Calls function when slider handle is grabbed
 
 ### ElementSwitchRGBWController.sliderOnHandleUpRGB() 
 
-Calls function when slider handle is released
+Calls function when slider handle for RGB is released
 
 
 ### ElementSwitchRGBWController.sliderOnHandleUp() 

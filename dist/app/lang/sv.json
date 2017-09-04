@@ -1,4 +1,11 @@
 {
+    "updating_vendors": "Updating vendors",
+    "updating_devices": "Updating devices",
+    "rgb_dimmer": "Dimmer",
+    "rgb_color": "RGB-Settings",
+    "rgb_softcold": "Soft|Cold-white",
+    "rgb_soft": "Soft-white",
+    "rgb_cold": "Cold-white",    
     "restore_zway_network":"Restore Z-Way Network",
     "available_updates":"Available updates",
     "removing":"Removing...",
@@ -673,5 +680,10 @@
     "save_manage_rf433_devices": "Save and manage RF433 device",
     "lb_timout_auto_off": "Timeout for auto off",
     "rf433_device": "RF433 Device",
-    "rf433_not_active": "RF433 app is not activated. Please Install/Activate this App."
+    "rf433_not_active": "RF433 app is not activated. Please Install/Activate this App.",
+    "rgb_dimmer": "Dimmer",
+    "rgb_color": "RGB-Settings",
+    "rgb_softcold": "Soft|Cold-white",
+    "rgb_soft": "Soft-white",
+    "rgb_cold": "Cold-white"    
 }

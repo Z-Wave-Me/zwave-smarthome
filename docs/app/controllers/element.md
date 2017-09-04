@@ -107,6 +107,16 @@ Save drag and drop object
 Run command
 
 
+### ElementBaseController.getRgbState() 
+
+get RGB state
+
+
+### ElementBaseController.runRgbCmd() 
+
+set RGB state
+
+
 ### ElementBaseController.resetDevices() 
 
 Reset devicse data holder

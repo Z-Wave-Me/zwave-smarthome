@@ -1,12 +1,11 @@
 <!-- Include -->
 <div ng-controller="ZwaveInclusionController" id="zwave_inclusion">
     <bb-loader></bb-loader>
-    <!--<pre>{{zwaveInclusion.device.find|json}}</pre>-->
     <div class="form form-inline form-page">
         <div class="fieldset clearfix">
             <!-- Device image -->
             <div class="include-device-img" ng-if="!_.isEmpty(zwaveInclusion.device.find)">
-               <img class="include-image-detail" ng-src="data:image/png;base64,{{zwaveInclusion.device.find.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+               <img class="include-image-detail" ng-src="{{cfg.img.zwavedevices + zwaveInclusion.device.find.product_image}}" err-src="{{cfg.img.placeholder}}" alt="img" />
             </div>
             <!-- Inclusion title -->
             <div class="include-device-body">
