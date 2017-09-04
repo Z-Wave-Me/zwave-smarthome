@@ -280,6 +280,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                     }
 
                 }
+               
                 // Hides video item
                 if (item.category === 'surveillance') {
                     $scope.dataHolder.modules.cameraIds.push(item.id);
@@ -321,8 +322,12 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                     if (item.featured) {
                         $scope.dataHolder.modules.featured.push(item);
                     }
-
+                   
                     return items;
+                }else{
+                     console.log('Is hidden: ', item.id)
+                     console.log($scope.dataHolder.onlineModules.ids[item.id])
+                     
                 }
             });
 
