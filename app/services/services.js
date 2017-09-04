@@ -868,6 +868,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             case 'gesture':
                 icon = (iconArray[element.metrics.state] || iconArray['press']);
                 break;
+            // climate control
+            case 'climatecontrol':
+                icon = (iconArray[element.metrics.state] || iconArray['default']);
+                break;                
             // default
             default:
                 icon = iconArray.default;

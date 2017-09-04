@@ -179,6 +179,15 @@ var icon_data = {
                         swipe_bottom_left_to_top_right: 'swipe-bottom-left-to-top-right.png',// swiped / berührt
                         swipe_bottom_right_to_top_left: 'swipe-bottom-right-to-top-left.png'// swiped / berührt
                     }
+                },
+                climatecontrol: {
+                    level: {
+                        comfort: 'climatecontrol_comfort.png',
+                        schedule: 'climatecontrol_schedule.png',
+                        energySave: 'climatecontrol_energysave.png',
+                        frostProtection: 'climatecontrol_frostprotection.png',
+                        default: "climatecontrol_default.png" 
+                    }
                 }
             },
             deviceType: {
