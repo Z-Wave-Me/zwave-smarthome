@@ -1,3 +1,7 @@
+/* Variables
+-------------------------------------------------- */
+$inclusion-img-w: 96px;
+
 /* Devices
 -------------------------------------------------- */
 .device-logo{
@@ -146,24 +150,19 @@
     }
 }
 .include-image-detail{
-    max-width: 128px;
-    max-height: 128px;
+    max-width: $inclusion-img-w;
+    max-height: $inclusion-img-w;
 }
-
-.include-device-img, .include-device-body {
-    // Media queries
-    @include mediaQueries(min-small) {
-        float: left;
+.bar-row {
+    &.inclusion{
+        .bar-media {
+            width: $inclusion-img-w + $spacing;
+            img {
+                max-width: $inclusion-img-w;
+                max-height:$inclusion-img-w;
+            }
+        }
     }
-
-}
-
-.include-device-img {
-    // Media queries
-    @include mediaQueries(min-small) {
-        width: 128px + $spacing-double;
-    }
-
 }
 /* Management
 -------------------------------------------------- */
