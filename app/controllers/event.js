@@ -314,9 +314,9 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             return v.source;
         });
         // Run refresh only when filter is empty
-        if(_.isEmpty($scope.filter)){
-            $scope.refreshData();
-        }
+        //if(_.isEmpty($scope.filter)){
+        $scope.refreshData();
+        //}
         // No data in the collection
         if (_.size($scope.collection) < 1) {
             alertify.alertWarning($scope._t('no_events'));
@@ -328,13 +328,15 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      * Set data
      */
     function setEvent(obj) {
-        var findIndex = _.findIndex($scope.collection, {timestamp: obj.timestamp});
-        _obj = prepareNotification(obj);
-        if(findIndex > -1){
-            angular.extend($scope.collection[findIndex],_obj);
+        if (_.isEmpty($scope.filter) || (obj[$scope.filter.param] === $scope.filter.val)) {
+            var findIndex = _.findIndex($scope.collection, {timestamp: obj.timestamp});
+            _obj = prepareNotification(obj);
+            if(findIndex > -1){
+                angular.extend($scope.collection[findIndex],_obj);
 
-        }else{
-            $scope.collection.push(_obj);
+            }else{
+                $scope.collection.push(_obj);
+            }
         }
     }
 
