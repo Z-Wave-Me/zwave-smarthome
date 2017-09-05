@@ -30,12 +30,6 @@
                         <p class="app-detail-list" ng-show="_.size(hasInstance)">
                             <i class="fa fa-fire"></i> ({{_.size(hasInstance)}})
                         </p>
-                      
-                        <p class="app-detail-list">
-                            <span class="label label-warning" title="{{_t('singleton_info')}}">{{_t('singleton')}}</span>
-                        </p>
-                         <!-- is singelton -->
-                            
                          <p class="app-detail-list" ng-show="module.dependencies.length > 0">
                             <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
                         </p>
