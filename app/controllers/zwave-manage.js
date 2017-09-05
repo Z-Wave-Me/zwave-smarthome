@@ -162,11 +162,22 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
      */
     function setElements(elements) {
         var findZwaveStr, cmd, nodeId;
-        angular.forEach(elements.value(), function (v, k) {
+        var showElement = {};
+        angular.forEach(elements.value(), function (v) {
             findZwaveStr = v.id.split('_');
             if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
                 cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
                 nodeId = cmd[0];
+                // Create an object with showed elements
+                if(showElement[nodeId]){
+                    // Check if an element is not removed
+                    if(!v.removed){
+                        showElement[nodeId]++;
+                    }
+                }else{
+                    showElement[nodeId] = (v.removed ? 0 : 1);
+                }
+                
                 if ($scope.devices.zw[nodeId]) {
                     $scope.devices.zw[nodeId]['elements'][v.id] = v;
                 }
@@ -174,6 +185,19 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
 
 
         });
+        // Loop through devices with showed elements
+         angular.forEach(showElement, function (v, k){
+              console.log(k,v)
+             // Sum of the showed elements in device is 0 (all ellements are marked as removed)
+            if(v === 0){
+                console.log('Device removed: ',k)
+                // Remove device from the list
+                $scope.devices.zw = _.omit($scope.devices.zw, k);
+            }
+           
+         });
+        
+       
     }
     /**
      * Get selected instances status

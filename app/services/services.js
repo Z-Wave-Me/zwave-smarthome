@@ -351,12 +351,15 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 return v.id;
             })
             .reject(function (v) {
+                if(v.deviceType === 'battery'){
+                    return v.deviceType === 'battery';
+                }
                 if (showAll) {
-                    return (v.deviceType === 'battery');
+                  return;
                 } else if (showHidden) {
-                    return (v.deviceType === 'battery') || (v.permanently_hidden === true);
+                    return (v.permanently_hidden === true) || v.removed === true;
                 } else {
-                    return (v.deviceType === 'battery') || (v.permanently_hidden === true) || (v.visibility === false);
+                    return (v.permanently_hidden === true) || v.removed === true || (v.visibility === false);
                 }
 
             })
