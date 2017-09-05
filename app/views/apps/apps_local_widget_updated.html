@@ -37,15 +37,17 @@
                         <div class="widget-ctrl ctrl-left">
                             <!-- Has instance -->
                             <span ng-if="v.hasInstance"><i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
+                            <!-- is singelton -->
+                            <span class="small" title="{{_t('singleton_info')}}" ng-show="v.singleton">{{_t('singleton')}}</span>
                         </div>
                         <div class="widget-ctrl ctrl-right clearfix">
 
                             <div class="btn-group">
                                 <!-- Add -->
-                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default"
-                                   title="{{_t('lb_add_app')}}">
-                                    <i class="fa fa-plus text-success"></i> <span class="btn-name"
-                                                                                  ng-bind="_t('lb_add_app')"></span>
+                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}"
+                                   ng-disabled="v.preventInstall">
+                                    <i class="fa fa-plus text-success"></i> 
+                                    <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
                                 </a>
                                 <!-- Remove -->
                                 <button class="btn btn-default" title="{{_t('lb_remove')}}"

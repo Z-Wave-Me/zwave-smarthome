@@ -1,5 +1,8 @@
 {
     "newtrans": "---",
+     "---": "newtrans",
+    "singleton_info": "Singleton app can have only one installation",
+    "singleton": "Singleton",
     "updating_vendors": "Updating vendors",
     "updating_devices": "Updating devices",
     "rgb_dimmer": "Dimmer",
@@ -7,7 +10,6 @@
     "rgb_softcold": "Soft|Cold-white",
     "rgb_soft": "Soft-white",
     "rgb_cold": "Cold-white",    
-    "---": "newtrans",
     "restore_zway_network":"Restore Z-Way Network",
     "available_updates":"Available updates",
     "removing":"Removing...",
