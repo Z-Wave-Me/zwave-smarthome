@@ -1,6 +1,7 @@
 {
     "newtrans": "---", 
     "---": "newtrans",
+     "clear_sensors":"Clear sensors",
     "start":"Start",
     "stop":"Stop",
     "add_new_device": "Add new device",

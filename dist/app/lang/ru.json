@@ -1,5 +1,6 @@
 {
-     "start":"Start",
+    "clear_sensors":"Clear sensors",
+    "start":"Start",
     "stop":"Stop",
     "add_new_device": "Add new device",
     "singleton_info": "Singleton app can have only one installation",

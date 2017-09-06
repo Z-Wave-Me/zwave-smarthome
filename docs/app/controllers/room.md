@@ -114,6 +114,16 @@ Assign device (sensorBianry, senosrMultilevel) to the room main sensors
 
 **Returns**: `undefined`
 
+### RoomConfigIdController.clearSensors(input) 
+
+Clear all sensors (remove them from the array) and save to lacation
+
+**Parameters**
+
+**input**: `object`
+
+**Returns**: `undefined`
+
 ### RoomConfigIdController.store(form, input) 
 
 Create new or update an existing location
