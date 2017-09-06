@@ -10971,7 +10971,7 @@ img {
 }
 
 /* line 269, ../sass/base/_body.scss */
-.help-text.inline {
+.inline .help-text {
   display: inline;
 }
 
