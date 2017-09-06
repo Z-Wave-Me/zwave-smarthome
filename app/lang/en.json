@@ -1,9 +1,10 @@
 {
     "newtrans": "---", 
+    "---": "newtrans",
     "start":"Start",
     "stop":"Stop",
     "add_new_device": "Add new device",
-    "---": "newtrans",
+    "singleton_info": "Singleton app can have only one installation",
     "updating_vendors": "Updating vendors",
     "updating_devices": "Updating devices",
     "rgb_dimmer": "Dimmer",
