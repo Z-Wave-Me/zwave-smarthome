@@ -110,6 +110,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     $scope.module = [];
     $scope.categoryName = '';
     $scope.isOnline = null;
+    $scope.hasInstance = [];
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
      * Load categories
@@ -134,8 +135,9 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     $scope.loadModule = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id).then(function (response) {
-            loadOnlineModules(id);
             $scope.module = response.data.data;
+             loadOnlineModules(id);
+            loadInstances(id);
             $scope.loadCategories(response.data.data.category);
             $scope.loading = false;
         }, function (error) {
@@ -149,6 +151,17 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function (response) {
             $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
+        }, function (error) {
+        });
+    }
+    function loadInstances(moduleId) {
+        dataFactory.getApi('instances',null,true).then(function (response) {
+            _.filter(response.data.data,function(v){
+                if(v.moduleId == moduleId){
+                    $scope.hasInstance.push(v);
+                }
+            });
+            console.log($scope.hasInstance)
         }, function (error) {
         });
     }

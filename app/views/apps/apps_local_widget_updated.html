@@ -42,10 +42,10 @@
 
                             <div class="btn-group">
                                 <!-- Add -->
-                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default"
-                                   title="{{_t('lb_add_app')}}">
-                                    <i class="fa fa-plus text-success"></i> <span class="btn-name"
-                                                                                  ng-bind="_t('lb_add_app')"></span>
+                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}{{v.singleton ? ' - ' + _t('singleton_info') : ''}}"
+                                   ng-disabled="v.preventInstall">
+                                    <i class="fa fa-plus text-success"></i> 
+                                    <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
                                 </a>
                                 <!-- Remove -->
                                 <button class="btn btn-default" title="{{_t('lb_remove')}}"

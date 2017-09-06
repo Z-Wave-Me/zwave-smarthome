@@ -1,4 +1,6 @@
 {
+  "singleton_info": "Singleton app can have only one installation",
+    "singleton": "Singleton",
   "updating_vendors": "Updating vendors",
     "updating_devices": "Updating devices",
     "rgb_dimmer": "Dimmer",

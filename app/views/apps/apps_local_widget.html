@@ -49,8 +49,8 @@ ng-hide="dataHolder.modules.filter.q">
 
                             <div class="btn-group">
                                 <!-- Add -->
-                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default"
-                                   title="{{_t('lb_add_app')}}">
+                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}{{v.singleton ? ' - ' + _t('singleton_info') : ''}}"
+                                    ng-disabled="v.preventInstall">
                                     <i class="fa fa-plus text-success"></i> <span class="btn-name"
                                                                                   ng-bind="_t('lb_add_app')"></span>
                                 </a>
@@ -119,15 +119,15 @@ ng-hide="dataHolder.modules.filter.q">
                     <!-- Widget footer -->
                     <div class="widget-footer">
                         <div class="widget-ctrl ctrl-left">
-                            <!-- Has instance -->
-                            <span ng-if="v.hasInstance"><i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
+                            <!-- has instance -->
+                            <span ng-show="v.hasInstance"><i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
                         </div>
                         <div class="widget-ctrl ctrl-right clearfix">
 
                             <div class="btn-group">
                                 <!-- Add -->
-                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default"
-                                   title="{{_t('lb_add_app')}}">
+                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default"  title="{{_t('lb_add_app')}}{{v.singleton ? ' - ' + _t('singleton_info') : ''}}" 
+                                    ng-disabled="v.preventInstall">
                                     <i class="fa fa-plus text-success"></i> <span class="btn-name"
                                                                                   ng-bind="_t('lb_add_app')"></span>
                                 </a>
@@ -205,8 +205,7 @@ ng-hide="dataHolder.modules.filter.q">
 
                             <div class="btn-group">
                                 <!-- Add -->
-                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default"
-                                   title="{{_t('lb_add_app')}}">
+                                <a ng-href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}{{v.singleton ? ' - ' + _t('singleton_info') : ''}}"  ng-disabled="v.preventInstall">
                                     <i class="fa fa-plus text-success"></i> <span class="btn-name"
                                                                                   ng-bind="_t('lb_add_app')"></span>
                                 </a>

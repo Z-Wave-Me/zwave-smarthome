@@ -262,6 +262,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 item.description = item.defaults.description;
                 // Has already instance ?
                 item.hasInstance = $scope.dataHolder.instances.cnt.modules[item.id] || 0;
+                // Prevent instalation for singelton item with instance
+                item.preventInstall = (item.singleton && item.hasInstance ? true : false);
                 // IDSs settings
                 $scope.dataHolder.modules.ids[item.id] = {
                     version: item.version,
@@ -286,9 +288,9 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                     isHidden = true;
                 }
                 // Hides singelton item with instance
-                if (item.singleton && item.hasInstance) {
-                    isHidden = true;
-                }
+//                if (item.singleton && item.hasInstance) {
+//                    isHidden = true;
+//                }
 
                 if (!isHidden) {
                     var findLocationStr = item.location.split('/');

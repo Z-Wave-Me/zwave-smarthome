@@ -27,6 +27,12 @@
       .btn-name {
         display: none !important;
       }
+      .btn-default[disabled]{
+          border-color: lighten($app-body-disabled-color, 30%);
+          .fa{
+              color: lighten($app-body-disabled-color, 20%);
+          }
+      }
       .rating-group {
         //margin: $spacing 0 0 0;
         .widget-rating {
