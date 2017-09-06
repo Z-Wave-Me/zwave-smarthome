@@ -171,7 +171,8 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
         angular.forEach($scope.zWaveDevice.devices,function(v){
             var data = {
                 id: v.id,
-                permanently_hidden: true
+                //permanently_hidden: true,
+                removed: true
             };
             // Extending a counter
             done++;
