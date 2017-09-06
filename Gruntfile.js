@@ -101,6 +101,7 @@ module.exports = function (grunt) {
                     'app/directives/directives-expert.js',
                     'app/directives/dir-pagination.js',
                     'app/directives/tc-angular-chartjs.js',
+                    'app/directives/angular-slider.js',
                     'app/filters/filters.js',
                     'app/jquery/postrender.js',
                     'app/controllers/base.js',
