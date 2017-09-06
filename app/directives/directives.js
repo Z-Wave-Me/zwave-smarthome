@@ -168,10 +168,9 @@ myApp.directive('bbHelpText', function () {
         replace: true,
         scope: {
             trans: '=',
-            display: '=',
             icon: '='
         },
-        template: '<span class="help-text" ng-class="display"><i class="fa text-info" ng-class="icon ? icon : \' fa-info-circle\'"></i> {{trans}}</span>'
+        template: '<span class="help-text"><i class="fa text-info" ng-class="icon ? icon : \' fa-info-circle\'"></i> {{trans}}</span>'
     };
 });
 

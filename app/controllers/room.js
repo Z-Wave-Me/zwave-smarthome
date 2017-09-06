@@ -280,6 +280,26 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         }
         return;
     };
+    
+    /**
+     * Clear all sensors (remove them from the array) and save to lacation
+     * @param {object} input
+     * @returns {undefined}
+     */
+    $scope.clearSensors = function (v) {
+        var input = {
+            id: $scope.id,
+            title: v.title,
+            main_sensors:[]
+            
+        };
+        dataFactory.storeApi('locations',$scope.id, input).then(function (response) {
+            $scope.reloadData();
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+
+        });
+    };
 
 
     /**
