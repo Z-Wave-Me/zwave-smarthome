@@ -139,10 +139,15 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                 }
                 if (response.data.data.devices.length > 0) {
                     angular.forEach(response.data.data.devices, function (v, k) {
+                         var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
+                         // Element is marked as failed and we don't update it
+                         if($filter('hasNode')($scope.dataHolder.devices.all[index],'isFailed')){
+                             return;
+                         }
+                         
                         if (v.metrics.level) {
                             v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
                         }
-                        var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
                         if (!$scope.dataHolder.devices.all[index]) {
                             return;
                         }

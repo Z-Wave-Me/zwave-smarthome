@@ -57,8 +57,22 @@
     .widget-scale {
       font-size: 110%;
     }
+   
 
   }
+   &.isfailed-true{
+       
+        
+        .widget-entry-in {
+            border-color: $app-bcg-danger;
+            .widget-preview-img{
+                opacity: 0.4;
+            }
+        }
+        .widget-header,.widget-footer{
+            visibility: hidden;
+        }
+    }
 }
 
 .widget-ctrl, .tbl-widget-ctrl {
