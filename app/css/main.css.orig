@@ -13199,27 +13199,36 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .widget-entry-element .widget-entry-in .widget-scale {
   font-size: 110%;
 }
+/* line 64, ../sass/base/_elements.scss */
+.widget-entry-element.isfailed-true .widget-entry-in {
+  opacity: 0.8;
+  border-color: #f2dede;
+}
+/* line 67, ../sass/base/_elements.scss */
+.widget-entry-element.isfailed-true .widget-entry-in .widget-preview-img {
+  opacity: 0.6;
+}
 
-/* line 65, ../sass/base/_elements.scss */
+/* line 75, ../sass/base/_elements.scss */
 .widget-ctrl .fa-caret-down, .tbl-widget-ctrl .fa-caret-down {
   font-size: 140%;
   color: #737373;
 }
-/* line 70, ../sass/base/_elements.scss */
+/* line 80, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn, .tbl-widget-ctrl .btn-group .btn {
   color: #d9d9d9;
 }
-/* line 72, ../sass/base/_elements.scss */
+/* line 82, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn .fa, .tbl-widget-ctrl .btn-group .btn .fa {
   font-size: 110%;
 }
-/* line 76, ../sass/base/_elements.scss */
+/* line 86, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .widget-btn-symbol, .tbl-widget-ctrl .btn-group .widget-btn-symbol {
   font-weight: bold;
   display: inline-block;
   padding: 0 5px;
 }
-/* line 81, ../sass/base/_elements.scss */
+/* line 91, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-primary, .tbl-widget-ctrl .btn-group .btn-primary {
   background-color: #FFFFFF !important;
   border-color: #d9d9d9;
@@ -13228,24 +13237,24 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-/* line 86, ../sass/base/_elements.scss */
+/* line 96, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-primary .fa {
   color: #80AD80 !important;
 }
-/* line 90, ../sass/base/_elements.scss */
+/* line 100, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-off.btn-primary, .tbl-widget-ctrl .btn-group .btn-off.btn-primary {
   color: #d9534f !important;
 }
-/* line 92, ../sass/base/_elements.scss */
+/* line 102, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-off.btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-off.btn-primary .fa {
   color: #80AD80 !important;
 }
-/* line 96, ../sass/base/_elements.scss */
+/* line 106, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-label-on, .tbl-widget-ctrl .btn-group .btn-label-on {
   color: #737373;
   text-transform: lowercase;
 }
-/* line 100, ../sass/base/_elements.scss */
+/* line 110, ../sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-widget-time, .widget-ctrl .btn-group .txt-widget-time, .tbl-widget-ctrl .btn-group .btn-widget-time, .tbl-widget-ctrl .btn-group .txt-widget-time {
   padding: 10px 0 0 0;
   border: 0 none;
@@ -13256,74 +13265,74 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Specifics element styles
 ----------------------------------------------------*/
-/* line 113, ../sass/base/_elements.scss */
+/* line 123, ../sass/base/_elements.scss */
 .sensorMultiline .control-left {
   width: 60% !important;
 }
-/* line 116, ../sass/base/_elements.scss */
+/* line 126, ../sass/base/_elements.scss */
 .sensorMultiline .control-right {
   width: 40%;
 }
 
-/* line 122, ../sass/base/_elements.scss */
+/* line 132, ../sass/base/_elements.scss */
 .switchMultilevel .control-left {
   width: 60% !important;
 }
-/* line 125, ../sass/base/_elements.scss */
+/* line 135, ../sass/base/_elements.scss */
 .switchMultilevel .control-right {
   width: 40%;
 }
 
-/* line 130, ../sass/base/_elements.scss */
+/* line 140, ../sass/base/_elements.scss */
 .element-camera-control {
   text-align: center;
   margin: 0 0 10px 0;
 }
-/* line 133, ../sass/base/_elements.scss */
+/* line 143, ../sass/base/_elements.scss */
 .element-camera-control .fa {
   font-size: 180%;
 }
 
-/* line 138, ../sass/base/_elements.scss */
+/* line 148, ../sass/base/_elements.scss */
 .camera-img {
   text-align: center;
 }
-/* line 140, ../sass/base/_elements.scss */
+/* line 150, ../sass/base/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 146, ../sass/base/_elements.scss */
+/* line 156, ../sass/base/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 153, ../sass/base/_elements.scss */
+/* line 163, ../sass/base/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 160, ../sass/base/_elements.scss */
+/* line 170, ../sass/base/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 165, ../sass/base/_elements.scss */
+/* line 175, ../sass/base/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
-/* line 167, ../sass/base/_elements.scss */
+/* line 177, ../sass/base/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
 /* Elements drag & drop cards
 ----------------------------------------------------*/
-/* line 175, ../sass/base/_elements.scss */
+/* line 185, ../sass/base/_elements.scss */
 .dragdrop-element .dd-placeholder {
   width: 100%;
   text-align: center;
@@ -13332,7 +13341,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   display: table;
   background-color: white;
 }
-/* line 183, ../sass/base/_elements.scss */
+/* line 193, ../sass/base/_elements.scss */
 .dragdrop-element .dd-placeholder.dd-element {
   width: 100%;
   height: 100px;
@@ -13340,7 +13349,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 183, ../sass/base/_elements.scss */
+  /* line 193, ../sass/base/_elements.scss */
   .dragdrop-element .dd-placeholder.dd-element {
     float: left;
     width: 100px;
@@ -13348,7 +13357,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   }
 }
 
-/* line 197, ../sass/base/_elements.scss */
+/* line 207, ../sass/base/_elements.scss */
 .card-element-dragdrop {
   background: #f6f6f6;
   /* Old browsers */
@@ -13382,7 +13391,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   /* Inner element */
 }
 @media only screen and (min-width: 480px) {
-  /* line 197, ../sass/base/_elements.scss */
+  /* line 207, ../sass/base/_elements.scss */
   .card-element-dragdrop {
     float: left;
     position: relative;
@@ -13392,24 +13401,24 @@ http://codepen.io/MattIn4D/pen/LiKFC
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 197, ../sass/base/_elements.scss */
+  /* line 207, ../sass/base/_elements.scss */
   .card-element-dragdrop {
     float: left;
     position: relative;
     min-height: 1px;
   }
 }
-/* line 224, ../sass/base/_elements.scss */
+/* line 234, ../sass/base/_elements.scss */
 .card-element-dragdrop .card-element-dragdrop-in {
   padding: 10px;
 }
-/* line 227, ../sass/base/_elements.scss */
+/* line 237, ../sass/base/_elements.scss */
 .card-element-dragdrop .card-element-dragdrop-in h3 {
   margin: 10px 0 0 0;
   font-size: 95%;
 }
 
-/* line 236, ../sass/base/_elements.scss */
+/* line 246, ../sass/base/_elements.scss */
 .element-dragdrop-img {
   max-width: 48px;
   max-height: 48px;
@@ -13420,25 +13429,25 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 245, ../sass/base/_elements.scss */
+/* line 255, ../sass/base/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
 }
 
-/* line 251, ../sass/base/_elements.scss */
+/* line 261, ../sass/base/_elements.scss */
 .app-row-icons .report-body {
   width: 30px;
 }
 
 /* Custom icons
 -------------------------------------------------- */
-/* line 258, ../sass/base/_elements.scss */
+/* line 268, ../sass/base/_elements.scss */
 .element-icon-list {
   border-bottom: solid 1px #cccccc;
   margin: 10px;
 }
-/* line 261, ../sass/base/_elements.scss */
+/* line 271, ../sass/base/_elements.scss */
 .element-icon-list .element-icon-img {
   display: inline-block;
   margin: 10px;
@@ -13448,7 +13457,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 261, ../sass/base/_elements.scss */
+  /* line 271, ../sass/base/_elements.scss */
   .element-icon-list .element-icon-img {
     max-width: 32px;
     max-height: 32px;
@@ -13457,72 +13466,72 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 276, ../sass/base/_elements.scss */
+/* line 286, ../sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 281, ../sass/base/_elements.scss */
+/* line 291, ../sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 286, ../sass/base/_elements.scss */
+/* line 296, ../sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 290, ../sass/base/_elements.scss */
+/* line 300, ../sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 296, ../sass/base/_elements.scss */
+/* line 306, ../sass/base/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 300, ../sass/base/_elements.scss */
+/* line 310, ../sass/base/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 304, ../sass/base/_elements.scss */
+/* line 314, ../sass/base/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 308, ../sass/base/_elements.scss */
+/* line 318, ../sass/base/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 312, ../sass/base/_elements.scss */
+/* line 322, ../sass/base/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 317, ../sass/base/_elements.scss */
+/* line 327, ../sass/base/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 321, ../sass/base/_elements.scss */
+/* line 331, ../sass/base/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 325, ../sass/base/_elements.scss */
+/* line 335, ../sass/base/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 329, ../sass/base/_elements.scss */
+/* line 339, ../sass/base/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -13535,13 +13544,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 341, ../sass/base/_elements.scss */
+/* line 351, ../sass/base/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 346, ../sass/base/_elements.scss */
+/* line 356, ../sass/base/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -13550,55 +13559,62 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 354, ../sass/base/_elements.scss */
+/* line 364, ../sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 358, ../sass/base/_elements.scss */
+/* line 368, ../sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 363, ../sass/base/_elements.scss */
+/* line 373, ../sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 370, ../sass/base/_elements.scss */
+/* line 380, ../sass/base/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm, .toggleButton .widget-body div.widget-control.control-right.ng-scope > div.btn-group-sm > button.btn.btn-default {
   cursor: default;
 }
 
 /* RGB color wheel
 --------------------------------------------------------*/
-/* line 376, ../sass/base/_elements.scss */
-.wheel-colorpicker {
-  /*#wheel_picker_selected_spin{
-      background-color: #fff;
-  }*/
-}
-/* line 377, ../sass/base/_elements.scss */
+/* line 387, ../sass/base/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
   text-align: center;
 }
-/* line 381, ../sass/base/_elements.scss */
+/* line 391, ../sass/base/_elements.scss */
 .wheel-colorpicker #wheel_picker {
   margin: 0 auto;
   text-align: center;
   cursor: pointer;
 }
-/* line 386, ../sass/base/_elements.scss */
-.wheel-colorpicker #wheel_picker_selected, .wheel-colorpicker #wheel_picker_preview {
-  /*border: 1px solid #ccc;
-  border-radius: 4px;*/
+/* line 397, ../sass/base/_elements.scss */
+.wheel-colorpicker .wheel-picker-circle-half {
   margin: 0;
   height: 80px;
   line-height: 80px;
+}
+/* line 403, ../sass/base/_elements.scss */
+.wheel-colorpicker .wheel-picker-circle-half {
+  width: 150px;
+  height: 75px;
+}
+/* line 408, ../sass/base/_elements.scss */
+.wheel-colorpicker .wheel-picker-circle-top {
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+}
+/* line 413, ../sass/base/_elements.scss */
+.wheel-colorpicker .wheel-picker-circle-bottom {
+  border-bottom-left-radius: 150px;
+  border-bottom-right-radius: 150px;
 }
 
 /* Events

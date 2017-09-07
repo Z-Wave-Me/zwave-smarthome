@@ -1,6 +1,8 @@
 {
       "clear_sensors":"Clear sensors",
      "start":"Start",
+    "zwave_device_failed":"Z-Wave device is failed",
+    "start":"Start",
     "stop":"Stop",
     "add_new_device": "Add new device",
     "singleton_info": "Singleton app can have only one installation",
@@ -150,7 +152,7 @@
     "reboot_now": "Neustart",
     "jamesbox_update_manuel_restart": "Die Neustartfunktion wird nicht unterstützt. Bitte trennen Sie die Stromversorgung des POPP Hub für 5 Sekunden oder betätigen sie den Hardware Reset Button (siehe Anleitung), um das POPP Hub neu zu starten.",
     "error_license_request": "Der Lizenz-Key konnte vom Server nicht geladen werden.",
-    "ie_edge_not_supported": "Es tut uns leid, aber die Smart Home UI unterstützt keine Ansicht im Internet Explorer und Edge. Bitte nutzen Sie stattdessen die Browser Firefox, Chrome, Safari oder Opera.",
+    "ie_edge_not_supported": "Es tut uns leid, aber die Smart Home UI unterstützt keine Ansicht im Internet Explorer. Bitte nutzen Sie stattdessen die Browser Firefox, Chrome, Safari oder Opera.",
     "upload_format_unsupported": "Das Format (__extension__)  wird nicht unterstützt.",
     "upload_allowed_formats": "Die hochzuladende Datei muss eines der folgenden Formate haben: __extensions__",
     "upload_allowed_size": "Die hochzuladende Datei muss kleiner sein als __size__.",
