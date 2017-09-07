@@ -61,16 +61,12 @@
 
   }
    &.isfailed-true{
-       
-        
-        .widget-entry-in {
+       .widget-entry-in {
+             opacity: 0.8;
             border-color: $app-bcg-danger;
             .widget-preview-img{
-                opacity: 0.4;
+                opacity: 0.6;
             }
-        }
-        .widget-header,.widget-footer{
-            visibility: hidden;
         }
     }
 }

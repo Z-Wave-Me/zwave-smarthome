@@ -751,7 +751,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     function assignElementIcon(element) {
         // Element is marked as failed
         if(element.isFailed){
-             return cfg.img.icons + 'cancel.png';
+             return cfg.img.icons + 'caution.png';
         }
         var icon = cfg.img.icons + 'placeholder.png';
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
