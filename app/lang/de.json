@@ -1,6 +1,8 @@
 {
       "clear_sensors":"Clear sensors",
      "start":"Start",
+    "zwave_device_failed":"Z-Wave device is failed",
+    "start":"Start",
     "stop":"Stop",
     "add_new_device": "Add new device",
     "singleton_info": "Singleton app can have only one installation",

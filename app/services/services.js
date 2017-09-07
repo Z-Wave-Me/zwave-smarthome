@@ -364,6 +364,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
 
             })
             .filter(function (v) {
+                //Simulates failed elements
+                /*var failed = ['MailNotifier_52','ZWayVDev_zway_31-0-48-1','ZWayVDev_zway_30-0-49-1','ZWayVDev_zway_31-0-48-1'];
+                v.isFailed = (failed.indexOf(v.id) > -1);*/
                 var minMax;
                 var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
                 var isNew = v.creationTime > yesterday ? true : false;
@@ -746,6 +749,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Assign an icon to the element
      */
     function assignElementIcon(element) {
+        // Element is marked as failed
+        if(element.isFailed){
+             return cfg.img.icons + 'caution.png';
+        }
         var icon = cfg.img.icons + 'placeholder.png';
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
         // Assign icon by metrics.icon

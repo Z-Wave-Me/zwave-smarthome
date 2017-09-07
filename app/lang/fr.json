@@ -1,5 +1,6 @@
 {
      "clear_sensors":"Clear sensors",
+    "zwave_device_failed":"Z-Wave device is failed",
     "start":"Start",
     "stop":"Stop",
     "add_new_device": "Add new device",

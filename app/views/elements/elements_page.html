@@ -58,7 +58,7 @@
                         ng-repeat="v in autocomplete.results | orderBy:'title' track by $index">
                         <!-- Title -->
                         <span class="dropdown-col" ng-click="setFilter({q: autocomplete.term})">
-                            <img class="report-img-s" ng-src="{{v.iconPath}}" alt="{{v.title}}"/>
+                            <img class="report-img-s" ng-src="{{v.iconPath}}" alt="{{v.title}}" err-src="{{cfg.img.placeholder}}" />
                             <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>
                         </span>
                         <!-- Ctrl -->
