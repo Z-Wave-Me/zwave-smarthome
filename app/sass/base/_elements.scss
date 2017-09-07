@@ -383,22 +383,25 @@ img.widget-promo-image {
     text-align: center;
     cursor: pointer;
   }
-  #wheel_picker_selected, #wheel_picker_preview {
-    /*border: 1px solid #ccc;
-    border-radius: 4px;*/
+
+  .wheel-picker-circle-half {
     margin: 0;
     height: 80px;
     line-height: 80px;
-
   }
-  /*#wheel_picker_selected_spin{
-      background-color: #fff;
-  }*/
+
+  .wheel-picker-circle-half {
+    width: 150px;
+    height: 75px;
+  }
+
+  .wheel-picker-circle-top {
+    border-top-left-radius: 150px;
+    border-top-right-radius: 150px;
+  }
+
+  .wheel-picker-circle-bottom {
+    border-bottom-left-radius: 150px;
+    border-bottom-right-radius: 150px;
+  }
 }
-
-
-
-
-
-
-
