@@ -126,12 +126,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         if (isIE) {
             return true;
         }
+         return false;
         // Edge 20+
-        var isEdge = !isIE && !!window.StyleMedia;
+        /*var isEdge = !isIE && !!window.StyleMedia;
         if (isEdge) {
             return true;
-        }
-        return false;
+        }*/
+       
     };
 
 

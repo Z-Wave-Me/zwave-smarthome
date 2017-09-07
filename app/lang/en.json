@@ -161,7 +161,7 @@
     "reboot_now": "Restart NOW",
     "jamesbox_update_manuel_restart": "Restart is not supported. Please replug the power supply for 5 seconds or press the hardware reset button (see user manual) to force a POPP Hub restart.",
     "error_license_request": "Unable to load a license key from the remote server.",
-    "ie_edge_not_supported": "Sorry, but SmartHome does not support Internet explorer and Edge.",
+    "ie_edge_not_supported": "Sorry, but SmartHome does not support Internet Explorer.",
     "ie_edge_not_supported_info": "Please use Firefox, Chrome, Safari or Opera",
     "upload_format_unsupported": "The (__extension__)  format is not supported.",
     "upload_allowed_formats": "The uploaded file must be in one of the following formats: __extensions__",
