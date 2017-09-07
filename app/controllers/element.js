@@ -147,6 +147,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                             v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
                         }
                         angular.extend($scope.dataHolder.devices.all[index],
+                                {isFailed: v.isFailed},
                                 {metrics: v.metrics},
                                 {progress: false},
                                 {iconPath: dataService.assignElementIcon(v)},
