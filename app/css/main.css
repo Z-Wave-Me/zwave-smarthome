@@ -13584,13 +13584,6 @@ img.widget-promo-image {
 
 /* RGB color wheel
 --------------------------------------------------------*/
-/* line 377, ../sass/base/_elements.scss */
-/* line 386, ../sass/base/_elements.scss */
-.wheel-colorpicker {
-  /*#wheel_picker_selected_spin{
-      background-color: #fff;
-  }*/
-}
 /* line 387, ../sass/base/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
@@ -13602,23 +13595,23 @@ img.widget-promo-image {
   text-align: center;
   cursor: pointer;
 }
-/* line 387, ../sass/base/_elements.scss */
+/* line 397, ../sass/base/_elements.scss */
 .wheel-colorpicker .wheel-picker-circle-half {
   margin: 0;
   height: 80px;
   line-height: 80px;
 }
-/* line 393, ../sass/base/_elements.scss */
+/* line 403, ../sass/base/_elements.scss */
 .wheel-colorpicker .wheel-picker-circle-half {
   width: 150px;
   height: 75px;
 }
-/* line 398, ../sass/base/_elements.scss */
+/* line 408, ../sass/base/_elements.scss */
 .wheel-colorpicker .wheel-picker-circle-top {
   border-top-left-radius: 150px;
   border-top-right-radius: 150px;
 }
-/* line 403, ../sass/base/_elements.scss */
+/* line 413, ../sass/base/_elements.scss */
 .wheel-colorpicker .wheel-picker-circle-bottom {
   border-bottom-left-radius: 150px;
   border-bottom-right-radius: 150px;
