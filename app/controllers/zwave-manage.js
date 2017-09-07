@@ -187,8 +187,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         });
         // Loop through devices with showed elements
          angular.forEach(showElement, function (v, k){
-              console.log(k,v)
-             // Sum of the showed elements in device is 0 (all ellements are marked as removed)
+              // Sum of the showed elements in device is 0 (all ellements are marked as removed)
             if(v === 0){
                 console.log('Device removed: ',k)
                 // Remove device from the list
