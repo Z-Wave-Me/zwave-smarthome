@@ -40,14 +40,17 @@
             <bb-alert alert="managementRestore.alert"></bb-alert>
             <div ng-hide="managementRestore.alert.message">
                 <div class="alert alert-warning">
-                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm"
-                           ng-click="managementRestore.confirm = !managementRestore.confirm"/> <span
-                        ng-bind-html="_t('are_you_sure_restore', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></span>
+                    <label><input type="checkbox" name="restore_confirm" value="1" id="restore_confirm"
+                           ng-click="managementRestore.confirm = !managementRestore.confirm"/> {{_t('are_you_sure_restore')}}</label>
+                    <div class="form-group">
+                        <bb-help-text trans="_t('are_you_sure_restore_info')"></bb-help-text>
+                    </div>
                 </div>
                 <div ng-show="managementRestore.confirm">
 
                     <div class="alert alert-warning">
                         <label><input type="checkbox" name="overwriteNetwork" id="overwriteNetwork" value="true" ng-model="managementRestore.overwriteNetwork"> {{_t('restore_zway_network')}}</label>
+                        <div class="alert alert-warning"  ng-if="managementRestore.overwriteNetwork"><i class="fa fa-exclamation-triangle"></i> {{_t('restore_backup_chip')}}</div>
                     </div>
                     <div class="form-group last">
                     <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/> -->
