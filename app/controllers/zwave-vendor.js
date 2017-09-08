@@ -14,9 +14,10 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
         frequency: false,
         frequencyName: false,
         all: {},
+        cnt:{},
         products: {
             pageTitle: '',
-            cnt: {},
+            cnt: 0,
             all: {},
             collection: {},
             noSearch: false
@@ -95,7 +96,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
                         .value();
                 
                  // Vendors products
-                $scope.zwaveVendors.products.cnt = _.countBy($scope.zwaveVendors.products.all,function (v) {
+                $scope.zwaveVendors.cnt = _.countBy($scope.zwaveVendors.products.all,function (v) {
                     return v.brandname;
                 });
 

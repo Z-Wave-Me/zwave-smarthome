@@ -12,7 +12,7 @@
         <div class="vendor-entry clickable"
              ng-click="setFilter({brandid: v.Name})"
              ng-repeat="(k,v) in zwaveVendors.all| orderBy:'Name' track by $index"
-             ng-hide="!v.Name || !zwaveVendors.products.cnt[v.Name]"
+             ng-hide="!v.Name || !zwaveVendors.cnt[v.Name]"
              ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1">
             <a class="vendor-list" title="{{v.Name}}">
                 <p class="vendor-image" ng-show="v.Image">
