@@ -1,5 +1,6 @@
 {
-      "clear_sensors":"Clear sensors",
+    "updating_device_db":"Updating vendor and device database. Please wait...", 
+    "clear_sensors":"Clear sensors",
      "start":"Start",
     "zwave_device_failed":"Z-Wave device is failed",
     "start":"Start",
