@@ -1,10 +1,7 @@
 {
-    "no":"NO",
-    "doyou_want_update_db":"You will need to update the database to view vendors and devices. Do you want to update the database?",
-    "updating_device_db":"Updating vendor and device database. Please wait...", 
-    "clear_sensors":"Clear sensors",
-     "start":"Start",
-    "zwave_device_failed":"Z-Wave device is failed",
+    "no":"Nein",
+    "doyou_want_update_db":"Sie müssen die Datenbank aktualisieren, um Hersteller und Geräte anzuzeigen. Möchten Sie die Datenbank aktualisieren?",
+    "updating_device_db":"Aktualisierung der Hersteller- und Gerätedatenbank. Bitte warten...", 
     "clear_sensors":"Sensoren zurücksetzen",
     "zwave_device_failed":"Das Z-Wave Gerät ist fehlerhaft",
     "start":"Start",
