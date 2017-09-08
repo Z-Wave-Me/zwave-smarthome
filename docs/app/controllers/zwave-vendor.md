@@ -35,6 +35,21 @@ Renders search result in the list
 Set filter
 
 
+### ZwaveVendorController.updateVendorDatabase() 
+
+update device database
+
+
+### ZwaveVendorController.updateDeviceDatabase() 
+
+update device database
+
+
+### ZwaveVendorController.disableDatabaseUpdate() 
+
+disable database update
+
+
 
 
 * * *

@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 07-09-2017 15:08:50 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 08-09-2017 14:48:48 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -99,11 +99,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/apps/navi.html',
     "<div class=\"tabs-wrap form-inline\"><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" title=\"{{_t('lb_local_modules')}}\" href=#apps/local ng-class=\"routeMatch('/apps/local') ? 'active' : ''\"><i class=\"fa fa-cloud-download\"></i> <span class=btn-name>{{_t('lb_local_modules')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('lb_online_modules')}}\" href=#apps/online ng-class=\"routeMatch('/apps/online') ||  routeMatch('/apps/online/filter') ? 'active' : ''\"><i class=\"fa {{dataHolder.onlineModules.connect.icon}}\"></i> <span class=btn-name>{{_t('lb_online_modules')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('lb_active')}}\" href=#apps/instance ng-class=\"routeMatch('/apps/instance') ? 'active' : ''\"><i class=\"fa fa-fire\"></i> <span class=btn-name>{{_t('lb_active')}}</span></a></div></div>"
-  );
-
-
-  $templateCache.put('app/views/auth/_auth_header.html',
-    "<div class=login-lang ng-if=!auth.fromexpert><div class=btn-group ng-if_=!auth.firstaccess><button type=button class=\"btn btn-default\" title=\"{{_t('lb_language')}}\" ng-click=\"expandNavi('loginLang', $event)\"><img class=lang-img ng-src=app/img/flags/{{loginLang}}.png alt=\"{{loginLang}}\"> <i class=\"fa fa-caret-down\"></i></button><div class=\"app-dropdown dropdown-lang\" ng-if=naviExpanded.loginLang><ul><li class=clickable ng-repeat=\"v in cfg.lang_list\" ng-click=setLoginLang(v)><img class=lang-img ng-src=app/img/flags/{{v}}.png alt=\"{{v}}\"></li></ul></div></div></div><div class=welcome-screen><h1>{{_t('welcome_1')}} {{auth.remoteId}}</h1></div>"
   );
 
 
@@ -683,7 +678,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_vendors.html',
-    "<div ng-controller=ZwaveVendorController><bb-loader></bb-loader><div class=\"text-center device-autodetect\" ng-include=\"'app/views/zwave/zwave_vendors_autodetect.html'\"></div><div ng-include=\"'app/views/zwave/zwave_vendors_ctrl.html'\"></div><div class=clearfix><div class=\"vendor-entry clickable\" ng-click=\"setFilter({brandid: v.Name})\" ng-repeat=\"(k,v) in zwaveVendors.all| orderBy:'Name' track by $index\" ng-hide=!v.Name ng-if=\"v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1\"><a class=vendor-list title={{v.Name}}><p class=vendor-image ng-show=v.Image><img class=endor-image alt=\"altimg | {{v.Name|cutText:true:20}}\" ng-src=\"{{cfg.img.zwavevendors + v.Image}}\"></p><p class=vendor-image title={{v.Name|cutText:true:20}} ng-hide=v.Image><span>{{v.Name|cutText:true:20}}</span></p></a></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveVendorController><bb-loader></bb-loader><div class=\"text-center device-autodetect\" ng-include=\"'app/views/zwave/zwave_vendors_autodetect.html'\"></div><bb-alert alert=zwaveVendors.alert></bb-alert><div class=clearfix ng-if=\"zwaveVendors.view === 'default'\"><div ng-include=\"'app/views/zwave/zwave_vendors_ctrl.html'\"></div><div class=\"vendor-entry clickable\" ng-click=\"setFilter({brandid: v.Name})\" ng-repeat=\"(k,v) in zwaveVendors.all| orderBy:'Name' track by $index\" ng-hide=\"!v.Name || !zwaveVendors.cnt[v.Name]\" ng-if=\"v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1\"><a class=vendor-list title={{v.Name}}><p class=vendor-image ng-show=v.Image><img class=endor-image alt=\"altimg | {{v.Name|cutText:true:20}}\" ng-src=\"{{cfg.img.zwavevendors + v.Image}}\"></p><p class=vendor-image title={{v.Name|cutText:true:20}} ng-hide=v.Image><span>{{v.Name|cutText:true:20}}</span></p></a></div></div><div class=\"alert alert-warning\" ng-if=\"zwaveVendors.view === 'update'\"><i class=\"fa fa-database\"></i> {{_t('doyou_want_update_db')}} <button class=\"btn btn-success\" ng-click=updateVendorDatabase()>{{_t('yes')}}</button> <button class=\"btn btn-default\" ng-click=disableDatabaseUpdate()>{{_t('no')}}</button></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
