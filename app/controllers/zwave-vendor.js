@@ -7,18 +7,17 @@
  * The controller that renders Z-Wave vendors and products.
  * @class ZwaveVendorController
  */
-myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $cookies,$location,$window,$timeout,dataFactory, dataService, _) {
+myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $cookies, $location, $window, $timeout, dataFactory, dataService, _) {
     $scope.zwaveVendors = {
-        view: false,// default||update
+        view: false, // default||update
         alert: false,
         frequency: false,
         frequencyName: false,
-
         all: {},
         products: {
             pageTitle: '',
-            cnt: 0,
-            all:{},
+            cnt: {},
+            all: {},
             collection: {},
             noSearch: false
         },
@@ -44,7 +43,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
         var promises = [
             dataFactory.loadZwaveApiData(),
             dataFactory.getApi('zwave_vendors'),
-            dataFactory.getApi('zwave_devices','?lang=' + $scope.lang)
+            dataFactory.getApi('zwave_devices', '?lang=' + $scope.lang)
 
 
         ];
@@ -65,16 +64,16 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
             // Error message
             if (vendors.state === 'rejected' || products.state === 'rejected') {
                 var reason = vendors.reason || vendors.reason;
-                if(reason.status === 404){
-                     $scope.zwaveVendors.view ='update';
-                }else{
+                if (reason.status === 404) {
+                    $scope.zwaveVendors.view = 'update';
+                } else {
                     alertify.alertError($scope._t('error_load_data'));
                 }
                 return;
             }
             // Success - zwdata
             if (zwdata.state === 'fulfilled') {
-                if(zwdata.value && zwdata.value.controller.data.frequency.value){
+                if (zwdata.value && zwdata.value.controller.data.frequency.value) {
                     $scope.zwaveVendors.frequency = zwdata.value.controller.data.frequency.value;
                     $scope.zwaveVendors.frequencyName = cfg.frequency[zwdata.value.controller.data.frequency.value];
                     productsWhere.frequency = $scope.zwaveVendors.frequencyName;
@@ -85,19 +84,25 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
             }
             // Success - vendors
             if (vendors.state === 'fulfilled') {
-                 $scope.zwaveVendors.view ='default';
+                $scope.zwaveVendors.view = 'default';
                 $scope.zwaveVendors.all = vendors.value.data.data.zwave_vendors;
             }
             // Success - products
             if (products.state === 'fulfilled') {
+               
                 $scope.zwaveVendors.products.all = dataService.getZwaveDevices(products.value.data.data.zwave_devices)
-                    .where(productsWhere)
-                    .value();
+                        .where(productsWhere)
+                        .value();
+                
+                 // Vendors products
+                $scope.zwaveVendors.products.cnt = _.countBy($scope.zwaveVendors.products.all,function (v) {
+                    return v.brandname;
+                });
 
                 if ('brandid' in  $scope.zwaveVendors.filter) {// Filter by brand id
                     $scope.zwaveVendors.products.pageTitle = $scope.zwaveVendors.filter.brandid;
                     $scope.zwaveVendors.products.collection = _.where($scope.zwaveVendors.products.all, $scope.zwaveVendors.filter);
-                }else  if ('q' in  $scope.zwaveVendors.filter) {// Filter by query
+                } else if ('q' in  $scope.zwaveVendors.filter) {// Filter by query
                     $scope.zwaveVendors.products.pageTitle = $scope.zwaveVendors.filter.q;
                     // Set autcomplete term
                     $scope.autocomplete.term = $scope.zwaveVendors.filter.q;
@@ -108,12 +113,12 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
                             return v;
                         }
                     });
-                }else{
+                } else {
                     $scope.zwaveVendors.products.collection = $scope.zwaveVendors.products.all;
                 }
                 $scope.zwaveVendors.products.cnt = _.size($scope.zwaveVendors.products.collection);
                 if ($scope.zwaveVendors.products.cnt < 1) {
-                    $scope.zwaveVendors.products.noSearch =  $scope.zwaveVendors.products.pageTitle;
+                    $scope.zwaveVendors.products.noSearch = $scope.zwaveVendors.products.pageTitle;
                 }
                 //console.log($scope.zwaveVendors.products.collection)
             }
@@ -127,11 +132,11 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
      * Renders search result in the list
      */
     $scope.searchMe = function () {
-        $scope.autocomplete.results = dataService.autocomplete($scope.zwaveVendors.products.all,$scope.autocomplete);
+        $scope.autocomplete.results = dataService.autocomplete($scope.zwaveVendors.products.all, $scope.autocomplete);
         // Expand/Collapse the list
-        if(!_.isEmpty($scope.autocomplete.results)){
+        if (!_.isEmpty($scope.autocomplete.results)) {
             $scope.expandAutocomplete('searchProducts');
-        }else{
+        } else {
             $scope.expandAutocomplete();
         }
         // Reset filter q if is input empty
@@ -154,7 +159,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
 
         if (!filter || empty) {// Remove filter
             angular.extend($scope.zwaveVendors, {filter: {}});
-            $cookies.filterProducts= angular.toJson({});
+            $cookies.filterProducts = angular.toJson({});
             $scope.allSettled();
             //$scope.reloadData();
         } else {// Set filter
@@ -175,15 +180,15 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
      */
     $scope.updateVendorDatabase = function () {
         $scope.zwaveVendors.view = false;
-         $scope.zwaveVendors.alert = {message: $scope._t('updating_device_db'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+        $scope.zwaveVendors.alert = {message: $scope._t('updating_device_db'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
         dataFactory.getApi('update_zwave_vendors').then(function (response) {
             $scope.updateDeviceDatabase();
         }, function (error) {
             $scope.zwaveVendors.alert = {message: $scope._t('vendors_error_load_data'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
         });
     };
-    
-     /**
+
+    /**
      * update device database
      */
     $scope.updateDeviceDatabase = function () {
@@ -191,14 +196,14 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
             $scope.zwaveVendors.alert = {message: $scope._t('reloading_page'), status: 'alert-success', icon: 'fa-spinner fa-spin'};
             $timeout(function () {
                 $window.location.reload();
-               
+
             }, 2000);
         }, function (response) {
             $scope.zwaveVendors.alert = {message: $scope._t('update_device_database_failed'), status: 'alert-danger', icon: 'fa-exclamation-triangle'};
         });
     };
-    
-     /**
+
+    /**
      * disable database update
      */
     $scope.disableDatabaseUpdate = function () {
