@@ -326,7 +326,7 @@ myAppController.controller('AuthFirstAccessController', function ($scope, $q, $w
                 if (cfg.app_type === 'jb' && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
                     $scope.updateInstance(instance);
                 } else {
-                    $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
+                    $scope.redirectAfterLogin(true, response.data.data, input.password, false, '#/dashboard/firstlogin');
                 }
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
