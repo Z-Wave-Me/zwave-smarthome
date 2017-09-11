@@ -54,21 +54,6 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
                 $scope.rooms.cnt.devices = _.countBy($scope.devices.all, function (v) {
                     return v.location;
                 });
-
-                $scope.rooms.all.forEach(function(room, index) {
-                    var devices = _.filter($scope.devices.all, function(device) {
-                        if(room.hasOwnProperty('main_sensors')) {
-                            if (room.main_sensors.indexOf(device.id)  > -1) {
-                                return device;
-                            };
-                        }
-                    });
-
-                    if(devices !== 'undefined') {
-                        angular.extend($scope.rooms.all[index], {'sensors': devices});
-                    }
-                });
-
             }
         });
     };
