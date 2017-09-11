@@ -442,11 +442,10 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
      * Calls function when slider handle is released
      */
     $scope.sliderOnHandleUp = function(input) {
-        var count;
         var val = parseFloat(input.metrics.level);
 
         var cmd = input.id + '/command/exact?level=' + val;
-        input.metrics.level = count;
+        input.metrics.level = val;
 
         $scope.runCmd(cmd);
     };
@@ -515,7 +514,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
             rgbColorsObj = input.metrics.color;
 
         $scope.widgetSwitchRGBW.process = true;
-        dataFactory.getApi(cmd).then(function (response) {
+        dataFactory.runApiCmd(cmd).then(function (response) {
             var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
             //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
             angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
