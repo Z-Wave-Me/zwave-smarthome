@@ -363,6 +363,11 @@ var config_data = {
             'switchColor_green',
             'switchColor_blue'
         ],
+        // RGB Blacklist
+        // vendor ID -> product ID
+        'rgb_blacklist' : {
+            134: [99]
+        },        
         // Order by
         orderby: {
             blacklist:  ['order_dashboard','order_rooms'],//Do not display in the orderby list in the view

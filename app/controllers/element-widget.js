@@ -308,7 +308,7 @@ myAppController.controller('ElementThermostatController', function ($scope) {
  * The controller that handles SwitchRGBW element.
  * @class ElementSwitchRGBWController
  */
-myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory, $interval) {
+myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory, $interval, cfg) {
     $scope.widgetSwitchRGBW = {
         find: {},
         all: [],
@@ -470,7 +470,8 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         var zwayId = automationId.substr(automationId.lastIndexOf('_')+1);
 
         dataFactory.runExpertCmd('devices['+zwayId+']').then(function (response) {
-            if (response.data.instances[0].commandClasses[114].data.vendorId.value == 134 && response.data.instances[0].commandClasses[114].data.productId.value == 96) {
+            if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
+                $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
                 var color = $scope.widgetSwitchRGBW.find.metrics.color;
                 $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
                 $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
