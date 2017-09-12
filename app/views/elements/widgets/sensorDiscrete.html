@@ -12,5 +12,6 @@
     <span class="widget-scale" ng-if="v.metrics.cnt === ''">{{v.metrics.level}}</span>
     <span class="widget-scale" ng-if="v.metrics.type === 'B'">{{_t('button')}} #{{v.metrics.currentScene}}</span>
     <span class="widget-scale" ng-if="v.metrics.type === 'G'">{{_t('gesture')}} #{{v.metrics.currentScene}}</span>
+    <span class="widget-scale" ng-if="v.metrics.type === 'C'">{{v.metrics.currentScene}}</span>
     <span class="widget-scale">{{_t(v.metrics.state)}}</span>
 </div>

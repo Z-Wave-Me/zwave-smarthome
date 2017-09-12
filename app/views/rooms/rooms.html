@@ -38,6 +38,7 @@
     <!--<pre>{{rooms.all | json }}</pre>-->
     <div class="clearfix" ng-if="rooms.show">
         <div class="card-room"
+             ng-controller="ElementBaseController"
              id="card_{{v.id}}"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
@@ -78,14 +79,15 @@
                 </div>
                 <!-- Card sensors -->
                 <div class="card-sensors">
-                    <div class="sensor" title="{{sensor.metrics.title + ': ' + sensor.metrics.level + ' ' + sensor.metrics.scaleTitle}}"
-                         ng-repeat="sensor in v.sensors">
+                    <div class="sensor" title="{{device.metrics.title + ': ' + device.metrics.level + ' ' + device.metrics.scaleTitle}}"
+                         ng-show="v.main_sensors.indexOf(device.id) > -1"
+                         ng-repeat="device in dataHolder.devices.all">
                         <div class="sensor-img">
-                            <img class="sensor-preview-img img-circle" ng-src="{{sensor.iconPath}}" alt="img">
+                            <img class="sensor-preview-img img-circle" ng-src="{{device.iconPath}}" alt="img">
                         </div>
                         <div class="sensor-ctrl">
-                            <span class="sensor-level">{{sensor.metrics.level}}</span>
-                            <span class="sensor-scale">{{sensor.metrics.scaleTitle|cutText:true:7}}</span>
+                            <span class="sensor-level">{{device.metrics.level}}</span>
+                            <span class="sensor-scale">{{device.metrics.scaleTitle|cutText:true:7}}</span>
                             &nbsp;
                         </div>
                     </div>
@@ -93,4 +95,4 @@
             </div>
         </div>
     </div>
-</div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller -->
