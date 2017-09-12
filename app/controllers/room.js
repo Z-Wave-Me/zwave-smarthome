@@ -260,7 +260,6 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
             $scope.input.main_sensors.push(device.id);
         } else {
             var i = $scope.input.main_sensors.indexOf(device.id);
-            console.log(i);
             $scope.input.main_sensors.splice(i , 1);
         }
         return;
