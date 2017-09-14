@@ -358,9 +358,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 if (showAll) {
                   return;
                 } else if (showHidden) {
-                    return (v.permanently_hidden === true) || v.removed === true;
+                    return (v.permanently_hidden === true) || v.metrics.removed === true;
                 } else {
-                    return (v.permanently_hidden === true) || v.removed === true || (v.visibility === false);
+                    return (v.permanently_hidden === true) || v.metrics.removed === true || (v.visibility === false);
                 }
 
             })
@@ -751,7 +751,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      */
     function assignElementIcon(element) {
         // Element is marked as failed
-        if(element.isFailed){
+        if(element.metrics.isFailed){
              return cfg.img.icons + 'caution.png';
         }
         var icon = cfg.img.icons + 'placeholder.png';
