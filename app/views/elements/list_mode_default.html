@@ -4,7 +4,7 @@
 <pre>{{dataHolder.devices.orderBy|json}}</pre>-->
 <!--<pre>{{dataHolder.dragdrop|json}}</pre>-->
 <div class="app-row app-row-widget app-row-element clearfix">
-  <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element isfailed-{{v.isFailed}} {{v.deviceType}} {{v.metrics.multilineType}}"
+  <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element isfailed-{{v.metrics.isFailed}} {{v.deviceType}} {{v.metrics.multilineType}}"
          ng-class="{'widget-success': v.isNew}"
         ng-repeat="v in dataHolder.devices.collection| orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id">
        <!-- ng-repeat="v in dataHolder.devices.collection track by v.id">-->
