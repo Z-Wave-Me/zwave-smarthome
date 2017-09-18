@@ -36,9 +36,8 @@
 
     <!-- NEW -->
     <!--<pre>{{rooms.all | json }}</pre>-->
-    <div class="clearfix" ng-if="rooms.show">
+    <div class="clearfix" ng-if="rooms.show" ng-controller="ElementBaseController">
         <div class="card-room"
-             ng-controller="ElementBaseController"
              id="card_{{v.id}}"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
