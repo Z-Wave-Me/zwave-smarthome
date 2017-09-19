@@ -12465,7 +12465,15 @@ img.widget-promo-image {
 
 .card-room .card-room-in .card-sensors {
   text-align: center;
-  margin: 5px 0 0 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #ffffff;
+  opacity: 0.9;
+  display: table;
+  min-height: 40px;
+  padding-left: 10px;
+  margin-bottom: 5px;
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* Sensor */
@@ -12475,12 +12483,23 @@ img.widget-promo-image {
   .card-room .card-room-in .card-sensors {
     text-align: center;
     margin: 15px 0 0 0;
+    position: relative;
+    width: 100%;
   }
 }
 
 .card-room .card-room-in .card-sensors .sensor {
-  display: inline-block;
+  display: table-cell;
+  vertical-align: middle;
   margin: 0 5px 0 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  .card-room .card-room-in .card-sensors .sensor {
+    display: inline-block;
+  }
 }
 
 .card-room .card-room-in .card-sensors .sensor .sensor-img {
