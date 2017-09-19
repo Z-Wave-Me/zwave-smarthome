@@ -171,11 +171,11 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 // Create an object with showed elements
                 if(showElement[nodeId]){
                     // Check if an element is not removed
-                    if(!v.removed){
+                    if(!v.metrics.removed){
                         showElement[nodeId]++;
                     }
                 }else{
-                    showElement[nodeId] = (v.removed ? 0 : 1);
+                    showElement[nodeId] = (v.metrics.removed ? 0 : 1);
                 }
                 
                 if ($scope.devices.zw[nodeId]) {

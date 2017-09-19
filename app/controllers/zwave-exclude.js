@@ -172,7 +172,9 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
             var data = {
                 id: v.id,
                 //permanently_hidden: true,
-                removed: true
+                metrics: {
+                    removed: true
+                }
             };
             // Extending a counter
             done++;

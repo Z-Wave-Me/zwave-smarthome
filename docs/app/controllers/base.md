@@ -210,6 +210,11 @@ Toggle row spinner
 
 **Returns**: `undefined`
 
+### BaseController.setAlertifyDefaults() 
+
+Set alertify defaults
+
+
 
 
 * * *
