@@ -7,7 +7,7 @@
   bottom: 0;
   left: 0;
   z-index: $zindex-modal;
-  overflow: show;
+  overflow: auto;
   color: $app-body-color;
   // Animation
   &.ng-animate {

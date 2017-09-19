@@ -464,48 +464,52 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
             return;
         }
         angular.extend($scope.widgetSwitchRGBW.find, device[0]);
-
-        var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
-
-        var zwayId = automationId.substr(automationId.lastIndexOf('_')+1);
-
-        dataFactory.runExpertCmd('devices['+zwayId+']').then(function (response) {
-            if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
-                $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
-                var color = $scope.widgetSwitchRGBW.find.metrics.color;
-                $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-                $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
-            }
-            else {
-                dataFactory.getApi('devices', '', true).then(function (response) {
-                    var devices = response.data.data;
-
-                    var devs = _.filter(devices.devices, function(dev) {
-                        if(dev.id.indexOf(automationId) > -1) {
-                            return dev;
-                        }
-                    });
-
-                    $scope.widgetSwitchRGBW.all = devs;
-                    var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
-                        return dev.deviceType == 'switchRGBW';
-                    });
-
-                    var color = find.metrics.color;
+        var str = "ZWayVDev_zway";
+        if($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2,3,4])) { //TODO next release change
+            var color = $scope.widgetSwitchRGBW.find.metrics.color;
+            $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+            $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
+        } else {
+            var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
+            var zwayId = automationId.substr(automationId.lastIndexOf('_')+1);
+            dataFactory.runExpertCmd('devices['+zwayId+']').then(function (response) {
+                if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
+                    $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
+                    var color = $scope.widgetSwitchRGBW.find.metrics.color;
                     $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-                    $scope.loadRgbWheel(find);
-                    return;                            
-                }, function (error) {
-                        console.log(error);
-                });
-            }
-        }, function (error) {
-            $scope.widgetSwitchRGBW.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
+                    $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
+                }
+                else {
+                    dataFactory.getApi('devices', '', true).then(function (response) {
+                        var devices = response.data.data;
+
+                        var devs = _.filter(devices.devices, function(dev) {
+                            if(dev.id.indexOf(automationId) > -1) {
+                                return dev;
+                            }
+                        });
+
+                        $scope.widgetSwitchRGBW.all = devs;
+                        var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
+                            return dev.deviceType == 'switchRGBW';
+                        });
+
+                        var color = find.metrics.color;
+                        $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+                        $scope.loadRgbWheel(find);
+                        return;                            
+                    }, function (error) {
+                            console.log(error);
+                    });
+                }
+            }, function (error) {
+                $scope.widgetSwitchRGBW.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
+            });
+        }
     };
     $scope.loadDeviceId();
 

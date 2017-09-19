@@ -102,8 +102,8 @@
 									 ng-if="dev.deviceType == 'switchMultilevel' && ['switchColor_soft_white','switchColor_cold_white'].indexOf(dev.probeType) > -1"
 									 class="row form-block">
 									<div class="col-sm-1">
-										<span ng-if="dev.probeType == 'switchColor_cold_white'">{{_t('rgb_soft')}}</span>
-										<span ng-if="dev.probeType == 'switchColor_soft_white'">{{_t('rgb_cold')}}</span>
+										<span ng-if="dev.probeType == 'switchColor_soft_white'">{{_t('rgb_soft')}}</span>
+										<span ng-if="dev.probeType == 'switchColor_cold_white'">{{_t('rgb_cold')}}</span>
 									</div>
 									<div class="col-sm-11">
 										<div id="range_slider_{{$index}}"
