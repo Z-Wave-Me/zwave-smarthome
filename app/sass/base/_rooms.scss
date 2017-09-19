@@ -129,18 +129,34 @@
     /* Card Sensors */
     .card-sensors {
       text-align: center;
-      margin: 5px 0 0 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: #ffffff;
+      opacity: 0.9;
+      display: table;
+      min-height: 40px;
+      padding-left: 10px;
+      margin-bottom: 5px;
 
       // Media queries
       @include mediaQueries(min-small) {
         text-align: center;
         margin: 15px 0 0 0;
+        position: relative;
+        width: 100%;
       }
 
       /* Sensor */
       .sensor {
-        display: inline-block;
+        display: table-cell;
+        vertical-align: middle;
         margin: 0 5px 0 0;
+
+        // Media queries
+        @include mediaQueries(min-small) {
+          display: inline-block;          
+        }
 
         .sensor-img {
           float: left;
