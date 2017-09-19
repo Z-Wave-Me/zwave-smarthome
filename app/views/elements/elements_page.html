@@ -11,6 +11,7 @@
         <!-- Categories, Filter, tags, -->
         <div class="btn-group btn-goup-block btn-goup-4" ng-if="dataHolder.mode === 'default'">
             <button type="button" title="{{_t('drag_drop')}}" class="btn btn-default"
+                    ng-show="elementAccess(cfg.role_access.admin)"
                     ng-class="{'active': dataHolder.mode === 'edit'}"
                     ng-click="changeMode(dataHolder.mode === 'default' ? 'edit' : 'default')">
                 <i class="fa fa-arrows"></i>
