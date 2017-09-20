@@ -26,6 +26,7 @@ Marcel Kermer
 - Device management: Remove device is completely refactored.
 - Element detail: Deactivete checkbox replaced with Delete element button.
 - Element with device type sensorMultiline has not an event icon.
+- Elements: improved RGBW widgets
 - First access: Language select moved to the form.
 - Login: Removed language select.
 - Added major/minor version to the licence scratch request.
