@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.1-RC-23',
+        'app_version': '1.7.1-RC-24',
         // Application (DIST) built date
-        'app_built': '15-09-2017 16:33:10',
+        'app_built': '20-09-2017 09:31:49',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -256,7 +256,7 @@ var config_data = {
         // Default language
         'lang': 'en', // !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv','fi'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es'],
         // List of supported languages in the zwave products
         'zwaveproducts_langs': ['en', 'de'],
         // Role access
