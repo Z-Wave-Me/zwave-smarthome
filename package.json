@@ -62,5 +62,7 @@
     "url": "https://github.com/Z-Wave-Me/zwave-smarthome/issues"
   },
   "homepage": "https://github.com/Z-Wave-Me/zwave-smarthome",
-  "dependencies": {}
+  "dependencies": {
+    "angular-calendar": "^0.21.2"
+  }
 }

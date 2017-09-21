@@ -830,3 +830,65 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
     };
     $scope.loadDeviceId();
 });
+
+/**
+ * The controller that handles Calendar element.
+ * @class ElementClimateControlController
+ */
+myAppController.controller('ElementCalendarController', function ($scope, $filter, dataFactory, uiCalendarConfig) {
+    $scope.widgetCalendar = {
+        find: {},
+        rooms: {},
+        alert: {message: false, status: 'is-hidden', icon: false},
+        devicesId: _.indexBy($scope.dataHolder.devices.all, 'id'),
+        eventSources: []
+    };
+
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    $scope.events = [
+      {title: 'All Day Event',start: new Date(y, m, 1)},
+      {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
+      {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
+      {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
+      {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'},
+      {'googleCalendarId': 'michael92.hensche@gmail.com'}
+    ];
+
+    $scope.uiConfig = {
+        calendar:{
+            editable: true,
+            header:{
+                left: 'title',
+                center: '',
+                right: 'today prev,next'
+            }
+        },
+    };
+
+    
+
+    
+
+    $scope.eventsF = function (start, end, timezone, callback) {
+      var s = new Date(start).getTime() / 1000;
+      var e = new Date(end).getTime() / 1000;
+      var m = new Date(start).getMonth();
+      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+      callback(events);
+    };
+
+    $scope.load = function() {
+            $scope.widgetCalendar.eventSources.push($scope.events);       
+    };
+    $scope.load();
+
+
+    
+    
+    
+});

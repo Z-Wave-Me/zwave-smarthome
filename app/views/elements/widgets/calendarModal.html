@@ -1,0 +1,13 @@
+<!-- calenderModal -->
+<div id="calendarModal" class="appmodal" ng-controller="ElementCalendarController" ng-if="modalArr.calendarModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('calendarModal', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{widgetCalendar.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body">
+        	<pre>{{widgetCalendar.eventSources | json}}</pre>
+            <div ui-calendar="uiConfig.calendar" ng-model="widgetCalendar.eventSources"></div>
+        </div>
+    </div>
+</div>

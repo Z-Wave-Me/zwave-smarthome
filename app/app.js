@@ -19,8 +19,8 @@ var myApp = angular.module('myApp', [
     'qAllSettled',
     'myAppTemplates',
     'httpLatency',
-    'angular-sortable-view'
-
+    'angular-sortable-view',
+    'ui.calendar'
 ]);
 
 // App configuration
