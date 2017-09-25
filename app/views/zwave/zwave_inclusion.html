@@ -42,7 +42,7 @@
                         <div class="inclusion-process" ng-if="zwaveInclusion.exclusionProcess.process">
                             <div class="alert alert-warning">
                                 <h4><i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} </h4>
-                                <p>{{zwaveInclusion.device.find.exc}}</p>
+                                <p ng-bind-html="zwaveInclusion.device.find.exc|toTrusted"></p>
 
                             </div>
                             <button class="btn btn-danger btn-lg" title="{{_t('stop')}}" ng-click="startStopExclusion(false)">
@@ -87,7 +87,7 @@
                         <div class="inclusion-process" ng-if="zwaveInclusion.inclusionProcess.process">
                             <div class="alert alert-warning">
                                 <h4><i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} </h4>
-                                <p>{{zwaveInclusion.device.find.inc}} </p>
+                                <p ng-bind-html="zwaveInclusion.device.find.inc|toTrusted"></p>
 
                             </div>
                             <button class="btn btn-danger btn-lg" title="{{_t('stop')}}"

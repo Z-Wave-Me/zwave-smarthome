@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.7.1-RC-22',
+        'app_version': '1.7.1-RC-25',
         // Application (DIST) built date
-        'app_built': '25-09-2017 10:20:14',
+        'app_built': '25-09-2017 10:32:15',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -256,7 +256,7 @@ var config_data = {
         // Default language
         'lang': 'en', // !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv','fi'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es'],
         // List of supported languages in the zwave products
         'zwaveproducts_langs': ['en', 'de'],
         // Role access
@@ -363,6 +363,11 @@ var config_data = {
             'switchColor_green',
             'switchColor_blue'
         ],
+        // RGB Blacklist
+        // vendor ID -> product ID
+        'rgb_blacklist' : {
+            134: [99]
+        },        
         // Order by
         orderby: {
             blacklist:  ['order_dashboard','order_rooms'],//Do not display in the orderby list in the view

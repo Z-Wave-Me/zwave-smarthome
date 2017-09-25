@@ -428,6 +428,8 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                                     item['statusSort'] = 1;
                                     $scope.dataHolder.onlineModules.cnt.upgraded++;
                                     break;
+                                } else if ((parseInt(localVersion[i], 10) > parseInt(onlineVersion[i], 10))) {
+                                    break;
                                 }
                             }
                         }

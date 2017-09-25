@@ -308,7 +308,7 @@ myAppController.controller('ElementThermostatController', function ($scope) {
  * The controller that handles SwitchRGBW element.
  * @class ElementSwitchRGBWController
  */
-myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory, $interval) {
+myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory, $interval, cfg) {
     $scope.widgetSwitchRGBW = {
         find: {},
         all: [],
@@ -442,11 +442,10 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
      * Calls function when slider handle is released
      */
     $scope.sliderOnHandleUp = function(input) {
-        var count;
         var val = parseFloat(input.metrics.level);
 
         var cmd = input.id + '/command/exact?level=' + val;
-        input.metrics.level = count;
+        input.metrics.level = val;
 
         $scope.runCmd(cmd);
     };
@@ -465,47 +464,52 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
             return;
         }
         angular.extend($scope.widgetSwitchRGBW.find, device[0]);
-
-        var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
-
-        var zwayId = automationId.substr(automationId.lastIndexOf('_')+1);
-
-        dataFactory.runExpertCmd('devices['+zwayId+']').then(function (response) {
-            if (response.data.instances[0].commandClasses[114].data.vendorId.value == 134 && response.data.instances[0].commandClasses[114].data.productId.value == 96) {
-                var color = $scope.widgetSwitchRGBW.find.metrics.color;
-                $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-                $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
-            }
-            else {
-                dataFactory.getApi('devices', '', true).then(function (response) {
-                    var devices = response.data.data;
-
-                    var devs = _.filter(devices.devices, function(dev) {
-                        if(dev.id.indexOf(automationId) > -1) {
-                            return dev;
-                        }
-                    });
-
-                    $scope.widgetSwitchRGBW.all = devs;
-                    var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
-                        return dev.deviceType == 'switchRGBW';
-                    });
-
-                    var color = find.metrics.color;
+        var str = "ZWayVDev_zway";
+        if($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2,3,4])) { //TODO next release change
+            var color = $scope.widgetSwitchRGBW.find.metrics.color;
+            $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+            $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
+        } else {
+            var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
+            var zwayId = automationId.substr(automationId.lastIndexOf('_')+1);
+            dataFactory.runExpertCmd('devices['+zwayId+']').then(function (response) {
+                if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
+                    $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
+                    var color = $scope.widgetSwitchRGBW.find.metrics.color;
                     $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-                    $scope.loadRgbWheel(find);
-                    return;                            
-                }, function (error) {
-                        console.log(error);
-                });
-            }
-        }, function (error) {
-            $scope.widgetSwitchRGBW.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
+                    $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
+                }
+                else {
+                    dataFactory.getApi('devices', '', true).then(function (response) {
+                        var devices = response.data.data;
+
+                        var devs = _.filter(devices.devices, function(dev) {
+                            if(dev.id.indexOf(automationId) > -1) {
+                                return dev;
+                            }
+                        });
+
+                        $scope.widgetSwitchRGBW.all = devs;
+                        var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
+                            return dev.deviceType == 'switchRGBW';
+                        });
+
+                        var color = find.metrics.color;
+                        $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+                        $scope.loadRgbWheel(find);
+                        return;                            
+                    }, function (error) {
+                            console.log(error);
+                    });
+                }
+            }, function (error) {
+                $scope.widgetSwitchRGBW.alert = {
+                    message: $scope._t('error_load_data'),
+                    status: 'alert-danger',
+                    icon: 'fa-exclamation-triangle'
+                };
+            });
+        }
     };
     $scope.loadDeviceId();
 
@@ -515,7 +519,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
             rgbColorsObj = input.metrics.color;
 
         $scope.widgetSwitchRGBW.process = true;
-        dataFactory.getApi(cmd).then(function (response) {
+        dataFactory.runApiCmd(cmd).then(function (response) {
             var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
             //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
             angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);

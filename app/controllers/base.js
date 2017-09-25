@@ -314,6 +314,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function (response) {
             angular.extend($scope.languages, response.data);
+            $scope.setAlertifyDefaults();
         }, function (error) {
         });
     };
@@ -537,10 +538,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         $scope.rowSpinner[key] = !$scope.rowSpinner[key];
     };
 
-    // Alertify defaults
-    alertify.defaults.glossary.title = cfg.app_name;
-    alertify.defaults.glossary.ok = 'OK';
-    alertify.defaults.glossary.cancel = 'CANCEL';
+    /**
+     * Set alertify defaults
+     */
+    $scope.setAlertifyDefaults = function () {
+        // Alertify defaults
+        alertify.defaults.glossary.title = cfg.app_name;
+        alertify.defaults.glossary.ok = 'OK';
+        alertify.defaults.glossary.cancel = $scope._t('lb_cancel');
+    };
+    $scope.setAlertifyDefaults();
 
     // Extend existing alert (ERROR) dialog
     if (!alertify.alertError) {
@@ -570,6 +577,4 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             };
         }, true, 'alert');
     }
-
-
 });
