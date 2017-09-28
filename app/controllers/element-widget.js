@@ -848,7 +848,7 @@ myAppController.controller('ElementCalendarController', function ($scope, $filte
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-
+    /*
     $scope.events = [
       {title: 'All Day Event',start: new Date(y, m, 1)},
       {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
@@ -856,7 +856,592 @@ myAppController.controller('ElementCalendarController', function ($scope, $filte
       {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
       {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
       {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'},
-      {'googleCalendarId': 'michael92.hensche@gmail.com'}
+    ];*/
+    
+    $scope.events = [
+        {
+        "title": "Lisa Niekamp",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-10-21",
+        "end": "2017-10-22"
+    },
+    {
+        "title": "Marcel Weißbrod",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-09-15",
+        "end": "2017-09-16"
+    },
+    {
+        "title": "Geburtstag Max",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-09-14",
+        "end": "2017-09-15"
+    },
+    {
+        "title": "Freitagsrave",
+        "editable": false,
+        "start": "2017-09-15T16:00:00.000Z",
+        "allDay": false,
+        "end": "2017-09-16T00:00:00.000Z"
+    },
+    {
+        "title": "Friseur",
+        "editable": false,
+        "start": "2017-10-06T16:00:00.000Z",
+        "allDay": false,
+        "end": "2017-10-06T17:00:00.000Z"
+    },
+    {
+        "title": "Marcel Weißbrod",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-09-15",
+        "end": "2017-09-16"
+    },
+    {
+        "title": "Urlaub",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-08-28",
+        "end": "2017-09-08"
+    },
+    {
+        "title": "Marco Hensche",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-08-25",
+        "end": "2017-08-26"
+    },
+    {
+        "title": "Jennifer Kautnzner ",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-12-21",
+        "end": "2017-12-22"
+    },
+    {
+        "title": "Jonas Geburtstag",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-08-19",
+        "end": "2017-08-20"
+    },
+    {
+        "title": "Anett Hensche Geburtstag",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-12-10",
+        "end": "2017-12-11"
+    },
+    {
+        "title": "Let It Roll",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-08-03",
+        "end": "2017-08-07"
+    },
+    {
+        "title": "Ulli Geburtstag",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-11-30",
+        "end": "2017-12-01"
+    },
+    {
+        "title": "Oliver Meier",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-07-29",
+        "end": "2017-07-30"
+    },
+    {
+        "title": "homeward",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-07-28",
+        "end": "2017-07-31"
+    },
+    {
+        "title": "Drop Zone",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-07-21",
+        "end": "2017-07-24"
+    },
+    {
+        "title": "Brunch",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-07-16",
+        "end": "2017-07-17"
+    },
+    {
+        "title": "Frank Hausotter",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-10-28",
+        "end": "2017-10-29"
+    },
+    {
+        "title": "Klausur  Betriebliche Prozesse B",
+        "editable": false,
+        "start": "2017-06-23T10:20:00.000Z",
+        "allDay": false,
+        "end": "2017-06-23T12:20:00.000Z"
+    },
+    {
+        "title": "Elektro Überprüfung II",
+        "editable": false,
+        "start": "2017-06-16T05:00:00.000Z",
+        "allDay": false,
+        "end": "2017-06-16T08:00:00.000Z"
+    },
+    {
+        "title": "Rene Fickert",
+        "editable": false,
+        "start": "2017-06-09T10:00:00.000Z",
+        "allDay": false,
+        "end": "2017-06-09T10:30:00.000Z"
+    },
+    {
+        "title": "Elektro Überprüfung",
+        "editable": false,
+        "start": "2017-06-09T05:00:00.000Z",
+        "allDay": false,
+        "end": "2017-06-09T07:00:00.000Z"
+    },
+    {
+        "title": "Blackout @ Ndorphin",
+        "editable": false,
+        "start": "2017-06-03T19:00:00.000Z",
+        "allDay": false,
+        "end": "2017-06-04T02:00:00.000Z"
+    },
+    {
+        "title": "Überschall @ Kassablanca",
+        "editable": false,
+        "start": "2017-06-17T18:00:00.000Z",
+        "allDay": false,
+        "end": "2017-06-18T01:00:00.000Z"
+    },
+    {
+        "title": "Praktikum Burgeins",
+        "editable": false,
+        "start": "2016-05-18T06:00:00.000Z",
+        "allDay": false,
+        "end": "2016-05-18T11:00:00.000Z"
+    },
+    {
+        "title": "Massage ",
+        "editable": false,
+        "start": "2017-05-19T07:00:00.000Z",
+        "allDay": false,
+        "end": "2017-05-19T08:00:00.000Z"
+    },
+    {
+        "title": "Praktikum Burgeins",
+        "editable": false,
+        "start": "2016-05-17T06:00:00.000Z",
+        "allDay": false,
+        "end": "2016-05-17T12:00:00.000Z"
+    },
+    {
+        "title": "Maximilian Barbershop ",
+        "editable": false,
+        "start": "2017-06-28T13:30:00.000Z",
+        "allDay": false,
+        "end": "2017-06-28T14:30:00.000Z"
+    },
+    {
+        "title": "Zahnartz | Chipkarte\\, Bonusheft\\, Aokheft\\,",
+        "editable": false,
+        "start": "2017-05-22T06:00:00.000Z",
+        "allDay": false,
+        "end": "2017-05-22T07:00:00.000Z"
+    },
+    {
+        "title": "Auto abholen",
+        "editable": false,
+        "start": "2017-05-04T12:00:00.000Z",
+        "allDay": false,
+        "end": "2017-05-04T13:00:00.000Z"
+    },
+    {
+        "title": "Wanderung Z-Wave",
+        "editable": false,
+        "start": "2017-05-02T11:00:00.000Z",
+        "allDay": false,
+        "end": "2017-05-02T14:15:00.000Z"
+    },
+    {
+        "title": "Maximilian Barbershop ",
+        "editable": false,
+        "start": "2017-05-12T07:00:00.000Z",
+        "allDay": false,
+        "end": "2017-05-12T08:00:00.000Z"
+    },
+    {
+        "title": "Auto abgeben Räder + Tüv",
+        "editable": false,
+        "start": "2017-05-04T05:00:00.000Z",
+        "allDay": false,
+        "end": "2017-05-04T06:00:00.000Z"
+    },
+    {
+        "title": "Cdjs holen Shawne",
+        "editable": false,
+        "start": "2017-04-03T15:30:00.000Z",
+        "allDay": false,
+        "end": "2017-04-03T16:00:00.000Z"
+    },
+    {
+        "title": "erste Rate Sommerurlaub",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-03-13",
+        "end": "2017-03-14"
+    },
+    {
+        "title": "Cortina",
+        "editable": false,
+        "start": "2017-01-27T16:00:00.000Z",
+        "allDay": false,
+        "end": "2017-01-27T17:30:00.000Z"
+    },
+    {
+        "title": "Moe's Bar",
+        "editable": false,
+        "start": "2017-01-27T20:00:00.000Z",
+        "allDay": false,
+        "end": "2017-01-27T23:00:00.000Z"
+    },
+    {
+        "title": "",
+        "editable": false,
+        "start": "2017-01-27T18:00:00.000Z",
+        "allDay": false,
+        "end": "2017-01-27T20:00:00.000Z"
+    },
+    {
+        "title": "Osteopathie",
+        "editable": false,
+        "start": "2017-01-27T08:00:00.000Z",
+        "allDay": false,
+        "end": "2017-01-27T09:00:00.000Z"
+    },
+    {
+        "title": "Rene Fickert",
+        "editable": false,
+        "start": "2017-01-10T15:00:00.000Z",
+        "allDay": false,
+        "end": "2017-01-10T16:00:00.000Z"
+    },
+    {
+        "title": "Leistungsbeschreibung Club",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-01-09",
+        "end": "2017-01-10"
+    },
+    {
+        "title": "Kieferorthopäde Taubert",
+        "editable": false,
+        "start": "2017-02-01T06:45:00.000Z",
+        "allDay": false,
+        "end": "2017-02-01T07:45:00.000Z"
+    },
+    {
+        "title": "Geburtstag Marcel Weißbrot",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-09-15",
+        "end": "2016-09-16"
+    },
+    {
+        "title": "bezahlen Semestergebühr",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-09-26",
+        "end": "2016-09-27"
+    },
+    {
+        "title": "Jennifer Kautnzner ",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-12-21",
+        "end": "2016-12-22"
+    },
+    {
+        "title": "Jennifer Kautnzner ",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-12-21",
+        "end": "2016-12-22"
+    },
+    {
+        "title": "Bezahlung media project",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-08-26",
+        "end": "2016-08-27"
+    },
+    {
+        "title": "Jahresbericht Club",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-12-20",
+        "end": "2016-12-21"
+    },
+    {
+        "title": "Rene ",
+        "editable": false,
+        "start": "2016-12-16T12:00:00.000Z",
+        "allDay": false,
+        "end": "2016-12-16T13:00:00.000Z"
+    },
+    {
+        "title": "Club Feier Rica Händel",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-04-14",
+        "end": "2017-04-15"
+    },
+    {
+        "title": "Friseur",
+        "editable": false,
+        "start": "2017-01-12T14:00:00.000Z",
+        "allDay": false,
+        "end": "2017-01-12T15:00:00.000Z"
+    },
+    {
+        "title": "Anett Hensche Geburtstag",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-12-10",
+        "end": "2016-12-11"
+    },
+    {
+        "title": "Auto abholen",
+        "editable": false,
+        "start": "2016-11-18T12:30:00.000Z",
+        "allDay": false,
+        "end": "2016-11-18T13:30:00.000Z"
+    },
+    {
+        "title": "Osteopathie",
+        "editable": false,
+        "start": "2016-12-02T11:00:00.000Z",
+        "allDay": false,
+        "end": "2016-12-02T12:00:00.000Z"
+    },
+    {
+        "title": "Friseur",
+        "editable": false,
+        "start": "2016-12-04T08:00:00.000Z",
+        "allDay": false,
+        "end": "2016-12-04T09:00:00.000Z"
+    },
+    {
+        "title": "Club Stadt  Moritzhof Raum 404",
+        "editable": false,
+        "start": "2016-12-01T15:00:00.000Z",
+        "allDay": false,
+        "end": "2016-12-01T16:00:00.000Z"
+    },
+    {
+        "title": "Ulli Geburtstag",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-11-30",
+        "end": "2016-12-01"
+    },
+    {
+        "title": "Thomas Hähnchen anrufen",
+        "editable": false,
+        "start": "2016-11-14T14:45:00.000Z",
+        "allDay": false,
+        "end": "2016-11-14T15:45:00.000Z"
+    },
+    {
+        "title": "USB Stick ",
+        "editable": false,
+        "start": "2016-11-05T05:00:00.000Z",
+        "allDay": false,
+        "end": "2016-11-05T06:00:00.000Z"
+    },
+    {
+        "title": "Club Matthias",
+        "editable": false,
+        "start": "2016-11-08T17:00:00.000Z",
+        "allDay": false,
+        "end": "2016-11-08T18:00:00.000Z"
+    },
+    {
+        "title": "Club Feier Robby",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-11-26",
+        "end": "2016-11-27"
+    },
+    {
+        "title": "Club Feier Matthias Harzdorf",
+        "editable": false,
+        "allDay": true,
+        "start": "2017-02-18",
+        "end": "2017-02-19"
+    },
+    {
+        "title": "Club Feier Jörn Händel",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-12-23",
+        "end": "2016-12-24"
+    },
+    {
+        "title": "Zahnreinigung",
+        "editable": false,
+        "start": "2016-11-03T14:00:00.000Z",
+        "allDay": false,
+        "end": "2016-11-03T15:30:00.000Z"
+    },
+    {
+        "title": "Autohaus Kässner",
+        "editable": false,
+        "start": "2016-11-17T15:00:00.000Z",
+        "allDay": false,
+        "end": "2016-11-17T16:00:00.000Z"
+    },
+    {
+        "title": "Frank Hausotter",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-10-28",
+        "end": "2016-10-29"
+    },
+    {
+        "title": "Oliver Meier",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-07-29",
+        "end": "2016-07-30"
+    },
+    {
+        "title": "Marco Hensche",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-08-25",
+        "end": "2016-08-26"
+    },
+    {
+        "title": "Lisa Niekamp",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-10-21",
+        "end": "2016-10-22"
+    },
+    {
+        "title": "Jonas Geburtstag",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-08-19",
+        "end": "2016-08-20"
+    },
+    {
+        "title": "Geburtstag Schwalbe Langer",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-09-24",
+        "end": "2016-09-25"
+    },
+    {
+        "title": "Geburtstag Max",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-09-14",
+        "end": "2016-09-15"
+    },
+    {
+        "title": "Geburtstag Maria Fritzsche",
+        "editable": false,
+        "allDay": true,
+        "start": "2016-09-28",
+        "end": "2016-09-29"
+    },
+    {
+        "title": "Rommy Laptop",
+        "editable": false,
+        "start": "2016-06-26T11:00:00.000Z",
+        "allDay": false,
+        "end": "2016-06-26T14:00:00.000Z"
+    },
+    {
+        "title": "Maximilian Barbershop ",
+        "editable": false,
+        "start": "2016-07-13T12:00:00.000Z",
+        "allDay": false,
+        "end": "2016-07-13T13:00:00.000Z"
+    },
+    {
+        "title": "Injoy Sportsachen absagen",
+        "editable": false,
+        "start": "2016-08-16T13:00:00.000Z",
+        "allDay": false,
+        "end": "2016-08-16T14:00:00.000Z"
+    },
+    {
+        "title": "Grill\\, Licht",
+        "editable": false,
+        "start": "2016-08-26T04:00:00.000Z",
+        "allDay": false,
+        "end": "2016-08-26T05:00:00.000Z"
+    },
+    {
+        "title": "Elektro Überprüfung",
+        "editable": false,
+        "start": "2016-08-19T06:00:00.000Z",
+        "allDay": false,
+        "end": "2016-08-19T07:00:00.000Z"
+    },
+    {
+        "title": "Andreas Friedrich",
+        "editable": false,
+        "start": "2016-07-20T13:00:00.000Z",
+        "allDay": false,
+        "end": "2016-07-20T14:00:00.000Z"
+    },
+    {
+        "title": "Überweisung 2. Rate Urlaub Dänemark",
+        "editable": false,
+        "start": "2016-06-23T04:30:00.000Z",
+        "allDay": false,
+        "end": "2016-06-23T05:00:00.000Z"
+    },
+    {
+        "title": "Rückmeldung Seminar media project",
+        "editable": false,
+        "start": "2016-07-29T09:00:00.000Z",
+        "allDay": false,
+        "end": "2016-07-29T09:30:00.000Z"
+    },
+    {
+        "title": "Rene & Simone",
+        "editable": false,
+        "start": "2016-09-16T05:00:00.000Z",
+        "allDay": false,
+        "end": "2016-09-16T08:00:00.000Z"
+    },
+    {
+        "title": "Physiotherapie",
+        "editable": false,
+        "start": "2016-07-12T13:30:00.000Z",
+        "allDay": false,
+        "end": "2016-07-12T14:30:00.000Z"
+    }
+
+
     ];
 
     $scope.uiConfig = {
