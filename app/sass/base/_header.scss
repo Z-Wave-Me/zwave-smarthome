@@ -22,6 +22,13 @@
     .fa{
         font-size: 120%;
     }
+    // Media queries
+    .timestamp{
+        @include mediaQueries(max-small) {
+        display: none;
+    }
+    }
+    
 }
 
 /* Main navigation
@@ -107,10 +114,13 @@
         }
         // Media queries
         @include mediaQueries(min-large) {
-            margin: 0 0 0 66%
+            margin: 0 0 0 66%;
         }
         li{
-            padding: $spacing 0;
+           
+             @include mediaQueries(min-small) {
+             padding: $spacing 0;
+        }
             border-bottom: solid 1px $app-border-color;
             a{
                 display: block;

@@ -32,7 +32,7 @@
 // Opacity
 @mixin appOpacity($o: 0.5) {
   opacity: $o;
-  filter: alpha(opacity=$o*100); /* For IE8 and earlier */
+  filter: alpha(opacity=$o*100);
 }
 
 // Gradient
