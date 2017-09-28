@@ -9714,11 +9714,25 @@ img {
 }
 
 .widget-entry {
-  width: 100%;
+  width: 33.33333%;
+  position: relative;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding: 1%;
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry {
+    width: 100%;
+    padding: 0;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -9738,13 +9752,20 @@ img {
 }
 
 .widget-entry .widget-entry-in {
-  border-bottom: solid 1px #cccccc;
   background-color: #FFFFFF;
   height: 150px;
   position: relative;
   padding: 10px;
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry .widget-entry-in {
+    border-bottom: solid 1px #cccccc;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -9756,41 +9777,70 @@ img {
 }
 
 .widget-entry .widget-entry-in .widget-img {
-  position: absolute;
-  top: 20px;
-  left: 10px;
-}
-
-.widget-entry .widget-entry-in .widget-header {
   position: relative;
-  text-align: right;
-  min-height: 20px;
-}
-
-.widget-entry .widget-entry-in .widget-header .widget-icon {
-  color: #737373;
-}
-
-.widget-entry .widget-entry-in .widget-header .widget-icon .fa {
-  padding: 0 0 0 10px;
-  font-size: 180%;
+  margin: 0px auto 5px;
+  top: 0;
+  left: 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 480px) {
+  .widget-entry .widget-entry-in .widget-img {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    margin: 0;
+  }
+}
+
+.widget-entry .widget-entry-in .widget-header {
+  display: none;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry .widget-entry-in .widget-header {
+    display: block;
+    position: relative;
+    text-align: right;
+    min-height: 20px;
+  }
+  .widget-entry .widget-entry-in .widget-header .widget-icon {
+    color: #737373;
+  }
+  .widget-entry .widget-entry-in .widget-header .widget-icon .fa {
+    padding: 0 0 0 10px;
+    font-size: 180%;
+    /* MIN WIDTH */
+    /* MAX WIDTH */
+  }
+}
+
+@media only screen and (min-width: 480px) and (min-width: 768px) {
   .widget-entry .widget-entry-in .widget-header .widget-icon .fa {
     padding: 0 0 0 5px;
     font-size: 140%;
   }
 }
 
-.widget-entry .widget-entry-in .widget-header .widget-icon:hover {
-  text-decoration: none;
+@media only screen and (min-width: 480px) {
+  .widget-entry .widget-entry-in .widget-header .widget-icon:hover {
+    text-decoration: none;
+  }
 }
 
 .widget-entry .widget-entry-in .widget-content {
-  margin: -10px 0 0 84px;
+  margin: 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry .widget-entry-in .widget-content {
+    margin: -10px 0 0 84px;
+  }
 }
 
 .widget-entry .widget-entry-in .widget-title {
@@ -9810,6 +9860,15 @@ img {
 
 .widget-entry .widget-entry-in .widget-footer {
   height: 50%;
+  display: none;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry .widget-entry-in .widget-footer {
+    display: block;
+  }
 }
 
 .widget-entry .widget-entry-in .bottom-aligner {
@@ -9851,11 +9910,20 @@ img {
 }
 
 .widget-preview-img {
-  max-width: 64px;
-  max-height: 64px;
+  max-width: 72px;
+  max-height: 72px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-preview-img {
+    max-width: 64px;
+    max-height: 64px;
+  }
 }
 
 .tbl-widget-ctrl .widget-history {
@@ -9865,18 +9933,6 @@ img {
 .tbl-widget-ctrl .widget-history .fa {
   padding: 0 0 0 10px;
   font-size: 180%;
-}
-
-/* Widget securityControl
--------------------------------------------------- */
-/* Device sensorDiscrete
--------------------------------------------------- */
-.sensorDiscrete .ctrl-left {
-  width: 30% !important;
-}
-
-.sensorDiscrete .ctrl-right {
-  width: 70% !important;
 }
 
 /* Report
@@ -10945,16 +11001,26 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .progress-true .widget-loader {
-  top: 17px;
-  left: 7px;
+  margin: 0 auto;
   position: absolute;
   color: #184B7C;
-  width: 70px;
-  height: 70px;
+  width: 78px;
+  height: 78px;
   box-shadow: inset 0 0 0 1em;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .progress-true .widget-loader {
+    top: 17px;
+    left: 7px;
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .progress-true .widget-loader:before, .progress-true .widget-loader:after {
@@ -10963,29 +11029,54 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .progress-true .widget-loader:before {
-  height: 72px;
-  width: 36px;
+  height: 80px;
+  width: 40px;
   background: #FFF;
-  border-radius: 72px 0 0 72px;
+  border-radius: 80px 0 0 80px;
   top: -1px;
   left: -1px;
-  -webkit-transform-origin: 36px 36px;
-  transform-origin: 36px 36px;
+  -webkit-transform-origin: 40px 40px;
+  transform-origin: 40px 40px;
   -webkit-animation: loadWidget 2s infinite ease 1.5s;
   animation: loadWidget 2s infinite ease 1.5s;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .progress-true .widget-loader:before {
+    width: 70px;
+    height: 70px;
+    border-radius: 72px 0 0 72px;
+    -webkit-transform-origin: 36px 36px;
+    transform-origin: 36px 36px;
+  }
 }
 
 .progress-true .widget-loader:after {
-  height: 72px;
-  width: 36px;
+  height: 80px;
+  width: 40px;
   background: #FFF;
-  border-radius: 0 72px 72px 0;
+  border-radius: 0 80px 80px 0;
   top: -1px;
-  left: 35px;
-  -webkit-transform-origin: 0 36px;
-  transform-origin: 0 36px;
+  left: 39px;
+  -webkit-transform-origin: 0 40px;
+  transform-origin: 0 40px;
   -webkit-animation: loadWidget 2s infinite ease;
   animation: loadWidget 2s infinite ease;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .progress-true .widget-loader:after {
+    width: 72px;
+    height: 36px;
+    border-radius: 0 72px 72px 0;
+    left: 35px;
+    -webkit-transform-origin: 0 36px;
+    transform-origin: 0 36px;
+  }
 }
 
 @-webkit-keyframes loadWidget {
@@ -11008,6 +11099,49 @@ http://codepen.io/MattIn4D/pen/LiKFC
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.longpress-true .widget-entry-in::before, .longpress-true .widget-entry-in::after {
+  box-sizing: inherit;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 2px solid transparent;
+}
+
+.longpress-true .widget-entry-in::before {
+  top: 0;
+  left: 0;
+}
+
+.longpress-true .widget-entry-in::after {
+  bottom: 0;
+  right: 0;
+}
+
+.longpress-true .widget-entry-in {
+  transition: color 1.5s;
+  opacity: 0.5;
+  transition: opacity 1.5s ease-out;
+}
+
+.longpress-true .widget-entry-in::before,
+.longpress-true .widget-entry-in::after {
+  width: 100%;
+  height: 100%;
+}
+
+.longpress-true .widget-entry-in::before {
+  border-top-color: #184B7C;
+  border-right-color: #184B7C;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+}
+
+.longpress-true .widget-entry-in::after {
+  border-bottom-color: #184B7C;
+  border-left-color: #184B7C;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -11312,9 +11446,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
 /* Elements
 -------------------------------------------------- */
 .widget-entry-element .widget-entry-in {
-  height: 150px;
+  height: 160px;
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry-element .widget-entry-in {
+    height: 150px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -11324,16 +11466,58 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .widget-entry-element .widget-entry-in .widget-img {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   background-color: #fff;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
 
 .widget-entry-element .widget-entry-in .widget-img .widget-icon-update {
   cursor: pointer;
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry-element .widget-entry-in .widget-img {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+.widget-entry-element .widget-entry-in .widget-img .widget-img-overlay {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: inherit;
+  height: inherit;
+  display: table;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry-element .widget-entry-in .widget-img .widget-img-overlay {
+    display: none;
+  }
+}
+
+.widget-entry-element .widget-entry-in .widget-img .widget-img-overlay .widget-level {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 120%;
+  text-align: center;
+}
+
+.widget-entry-element .widget-entry-in .widget-img .widget-img-overlay .widget-scale {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 80%;
+  text-align: left;
 }
 
 .widget-entry-element .widget-entry-in .widget-content {
@@ -11344,6 +11528,18 @@ http://codepen.io/MattIn4D/pen/LiKFC
 @media only screen and (max-width: 479px) {
   .widget-entry-element .widget-entry-in .widget-content {
     margin-left: 0;
+  }
+}
+
+.widget-entry-element .widget-entry-in .widget-title {
+  text-align: center;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry-element .widget-entry-in .widget-title {
+    text-align: left;
   }
 }
 
@@ -11361,29 +11557,21 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .widget-entry-element .widget-entry-in .widget-title h3 {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-@media only screen and (max-width: 479px) {
-  .widget-entry-element .widget-entry-in .widget-title h3 {
-    font-size: 95%;
-    padding: 0 0 0 74px;
-  }
+  font-size: 75%;
+  /*@include mediaQueries(min-esmall) {
+          font-size: 95%;
+          padding: 0 0 0 64px + $spacing;
+        }*/
 }
 
 .widget-entry-element .widget-entry-in .widget-title .widget-room {
   display: block;
-  font-size: 85%;
+  font-size: 75%;
   color: #737373;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-@media only screen and (max-width: 479px) {
-  .widget-entry-element .widget-entry-in .widget-title .widget-room {
-    padding: 0 0 0 74px;
-  }
+  /*@include mediaQueries(min-esmall) {
+          font-size: 85%;
+          padding: 0 0 0 64px + $spacing;
+        }*/
 }
 
 .widget-entry-element .widget-entry-in .widget-level {
@@ -11517,9 +11705,29 @@ http://codepen.io/MattIn4D/pen/LiKFC
   opacity: 0.4;
 }
 
-/* Elements drag & drop cards
-----------------------------------------------------*/
-.dragdrop-element .dd-placeholder {
+.sensorDiscrete .ctrl-left {
+  width: 30% !important;
+}
+
+.sensorDiscrete .ctrl-right {
+  width: 70% !important;
+}
+
+.sonos {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 479px) {
+  .sonos {
+    width: 100%;
+  }
+  .sonos .widget-entry-in .widget-footer {
+    display: block;
+  }
+}
+
+.sensor .dragdrop-element .dd-placeholder {
   width: 100%;
   text-align: center;
   border: 3px dashed #80AD80;
@@ -11528,7 +11736,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: white;
 }
 
-.dragdrop-element .dd-placeholder.dd-element {
+.sensor .dragdrop-element .dd-placeholder.dd-element {
   width: 100%;
   height: 100px;
   /* MIN WIDTH */
@@ -11536,7 +11744,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 480px) {
-  .dragdrop-element .dd-placeholder.dd-element {
+  .sensor .dragdrop-element .dd-placeholder.dd-element {
     float: left;
     width: 100px;
     height: 130px;
@@ -13136,6 +13344,8 @@ img.widget-promo-image {
 }
 
 /* SmartHome UI custom
+/* blank - without @import "custom/_skinname"
+/* shui, bayernshui, blueshui, darkshui
 -------------------------------------------------- */
 /* Default SmartHome skin
 -------------------------------------------------- */
