@@ -147,6 +147,8 @@ $loader-fadeout:  7s;
 @import "base/_rss";
 
 /* SmartHome UI custom
+/* blank - without @import "custom/_skinname"
+/* shui, bayernshui, blueshui, darkshui
 -------------------------------------------------- */
 @import "custom/_shui";
 //@import "custom/_left_menu";
