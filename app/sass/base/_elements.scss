@@ -8,10 +8,15 @@
             height: 124px;
         }
         .widget-img {
-            width: 64px;
-            height: 64px;
+            width: 48px;
+            height: 48px;
             background-color: #fff;
             @include appBorderRadius(50%);
+             // Media queries
+            @include mediaQueries(min-esmall) {
+                width: 64px;
+                height: 64px;
+            }
             .widget-icon-update {
                 //z-index: 10;
                 cursor: pointer;

@@ -32,20 +32,31 @@ body {
 /* Typo
 -------------------------------------------------- */
 h1, h2, h3, h4 {
-  color: $app-heading-color;
+    color: $app-heading-color;
 }
 .app-entry-online .app-entry-cat .app-entry-title,
 .app-entry-local h2{
     color: $app-body-color;
 }
+.text-success,.text-primary,.text-info {
+    color: $app-color-dark;
+}
+
+.badge {
+    color: $app-color-light;
+    background-color: $app-color-dark;
+}
+.label-success, .label-primary,.label-info{
+    background-color: $app-color-dark;
+}
 /* Links
 -------------------------------------------------- */
 a {
-  color: $app-a-color;
+    color: $app-a-color;
 
-  &:hover, &:focus {
-    color: $app-a-hover-color;
-  }
+    &:hover, &:focus {
+        color: $app-a-hover-color;
+    }
 }
 /* Header
 -------------------------------------------------- */
@@ -190,7 +201,7 @@ a {
         li{
             border-bottom: solid 1px $app-color-dark-lighter;
             a{
-                padding: 0 $spacing;
+                //padding: 0 $spacing;
                 color: $app-color-light;
                 &:hover{
                     color: $app-color-additional;
@@ -220,39 +231,70 @@ a {
 
     }
 }
+
+/* Content
+-------------------------------------------------- */
+#view_content{
+    padding: $spacing;
+    margin-left: -$spacing;
+    margin-right: -$spacing;
+    background: rgba(255,255,255,0.5);
+    // Media queries
+    @include mediaQueries(min-esmall) {
+        margin-left: -$spacing-double;
+        margin-right: -$spacing-double;
+        padding: $spacing-double;
+    }
+}
 /* Widget
 -------------------------------------------------- */
 .widget-entry{
     .widget-entry-in{
         margin: $spacing-half;
-       .widget-title{
+        .widget-title{
             color: $app-heading-color;
             h3{
-               a{
+                a{
                     color: $app-heading-color;
                 }
             }
         }
     }
 }
-/* Apps
+/* Cards
 -------------------------------------------------- */
+.card-room{ 
+    .card-room-in{ 
+        border: 0;
 
-.app-entry-online,.app-entry-local {
-     padding: $spacing-half $spacing-double;
-     background: rgba(255,255,255,0.5);
+        @include mediaQueries(max-esmall) {
+            margin: 0 0 $spacing 0;
+        }
+        .card-header {
+            @include appBorderRadiusVal(20px, 20px, 0px, 0px);
+        }
+        .bcg-img {
+            @include appBorderRadius(20px);
+        }
+        .card-sensors {
+            @include mediaQueries(max-esmall) {
+                 @include appBorderRadiusVal(0px, 0px,20px, 20px);
+        }
+        }
+    }
 }
+
 
 /* Report
 -------------------------------------------------- */
 .instance-entry-single{
     .app-row-report{
-        margin: 0 0 $spacing 0; 
-        border: 0;
+        //margin: 0 0 $spacing 0; 
+        //border: 0;
         .report-entry {
 
             .report-col{
-                border: 0;
+                //border: 0;
                 padding: $spacing;
             }
 
@@ -267,23 +309,69 @@ a {
 .accordion-entry{
     padding: $spacing;
     background-color: #FFFFFF;
+    margin: 0;
 }
 #apps_instances{
     .accordion-entry{
         padding: 0;
-        margin: 0 0 $spacing 0;
+        // margin: 0 0 $spacing 0;
     }
+}
+
+/* Table
+-------------------------------------------------- */
+.table{
+    background-color: #fff;
+
 }
 
 /* Form 
 -------------------------------------------------- */
 .submit-entry {
-    background: transparent;
+    //background: transparent;
+    background: rgba(255,255,255,0.4);
+}
+/* Buttons
+-------------------------------------------------- */
+.btn-submit,.btn-success,.btn-primary,.btn-info {
+    color: $app-color-light;
+    border: solid 1px $app-color-dark-lighter;
+    background-color: $app-color-dark;
+    &:hover{
+        color: #fff;
+        background-color: $app-color-dark-lighter;
+    }
+}
+.btn-goup-tabs{
+    .btn-default{
+        color: $app-color-light;
+        border: solid 1px $app-color-dark-lighter;
+        background-color: $app-color-dark;
+        &:hover{
+            color: #fff;
+            background-color: $app-color-dark-lighter;
+        }
+
+    }
+    .btn{
+        .fa{
+            color: $app-color-light; 
+        }
+        &.active{
+            cursor:text;
+            background-color: lighten($app-color-dark-lighter,10%); 
+            color: $app-color-additional;
+            .fa{
+                color: $app-color-additional; 
+            }
+        }
+    }
 }
 /* Devices
 -------------------------------------------------- */
 .cfg-control-content{
-   background-color: #fff;
+    background-color: #fff;
+
 }
 /* Opacity
 -------------------------------------------------- */
@@ -302,26 +390,20 @@ a {
 .form-page,
 .app-row-imglist,
 .card-element-dragdrop,
+.commands-data-control,
 .cfg-control-content{
     @include appOpacity(0.92);
 }
 
 /* Round corners
 -------------------------------------------------- */
+#view_content,
 .widget-entry-in,
 .card-room-in,
 .vendor-list,
-.form-page,
-.accordion-entry,
-.instance-entry-single .app-row-report,
-.elemnts-room-bar,
-.form-page,
 .app-row-imglist,
 .card-element-dragdrop,
-.dragdrop-element .dd-placeholder,
-.cfg-control-content,
-.app-entry-online,
-.app-entry-local{
+.dragdrop-element .dd-placeholder{
     @include appBorderRadius(20px);
     /*@include mediaQueries(min-medium) {
          @include appBorderRadius(20px);

@@ -9,6 +9,13 @@
   border-radius: $radius;
 }
 
+// Border radius with values
+@mixin appBorderRadiusVal($top-left,$top-right,$bottom-right,$bottom-left) {
+  -webkit-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  -moz-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  border-radius: $top-left $top-right $bottom-right $bottom-left;
+}
+
 // Shadow
 @mixin appBoxShadow($param) {
   -webkit-box-shadow: $param;
