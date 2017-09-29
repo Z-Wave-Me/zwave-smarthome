@@ -34,10 +34,25 @@ body {
 h1, h2, h3, h4 {
     color: $app-heading-color;
 }
-.app-entry-online .app-entry-cat .app-entry-title,
-.app-entry-local h2{
+.app-entry-online .app-entry-cat .app-entry-title{
+    font-size: 120%;
     color: $app-body-color;
+    font-weight: bold;
 }
+.app-entry-online .app-entry-cat .app-entry-title_,
+.app-entry-local h2, .app-entry-online .app-entry-cat .app-entry-title h2{
+    font-size: 130%;
+    font-weight: bold;
+    color: $app-body-color;
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+}
+/*.app-entry-online .app-entry-cat .app-entry-title h2{
+    font-size: 140%;
+    font-weight: bold;
+    color: $app-body-color;
+}*/
+
+
 .text-success,.text-primary,.text-info {
     color: $app-color-dark;
 }
