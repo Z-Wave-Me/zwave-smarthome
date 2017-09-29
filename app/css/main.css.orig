@@ -15179,7 +15179,7 @@ img.widget-promo-image {
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
-/* shui, bayernshui, blueshui, darkshui
+/* shui, bayernshui, blueshui, darkshui, homekit
 -------------------------------------------------- */
 /* Home Kit skin
 -------------------------------------------------- */
@@ -15207,56 +15207,71 @@ h1, h2, h3, h4 {
 }
 
 /* line 37, ../sass/custom/_homekit.scss */
-.app-entry-online .app-entry-cat .app-entry-title,
-.app-entry-local h2 {
+.app-entry-online .app-entry-cat .app-entry-title {
+  font-size: 120%;
   color: #000;
+  font-weight: bold;
 }
 
-/* line 41, ../sass/custom/_homekit.scss */
+/* line 42, ../sass/custom/_homekit.scss */
+.app-entry-online .app-entry-cat .app-entry-title_,
+.app-entry-local h2, .app-entry-online .app-entry-cat .app-entry-title h2 {
+  font-size: 130%;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 4px 4px 2px #969696;
+}
+
+/*.app-entry-online .app-entry-cat .app-entry-title h2{
+    font-size: 140%;
+    font-weight: bold;
+    color: $app-body-color;
+}*/
+/* line 56, ../sass/custom/_homekit.scss */
 .text-success, .text-primary, .text-info {
   color: #2D3038;
 }
 
-/* line 45, ../sass/custom/_homekit.scss */
+/* line 60, ../sass/custom/_homekit.scss */
 .badge {
   color: #aeb8c3;
   background-color: #2D3038;
 }
 
-/* line 49, ../sass/custom/_homekit.scss */
+/* line 64, ../sass/custom/_homekit.scss */
 .label-success, .label-primary, .label-info {
   background-color: #2D3038;
 }
 
 /* Links
 -------------------------------------------------- */
-/* line 54, ../sass/custom/_homekit.scss */
+/* line 69, ../sass/custom/_homekit.scss */
 a {
   color: #000;
 }
-/* line 57, ../sass/custom/_homekit.scss */
+/* line 72, ../sass/custom/_homekit.scss */
 a:hover, a:focus {
   color: #2D3038;
 }
 
 /* Header
 -------------------------------------------------- */
-/* line 63, ../sass/custom/_homekit.scss */
+/* line 78, ../sass/custom/_homekit.scss */
 #header {
   color: #000;
 }
-/* line 65, ../sass/custom/_homekit.scss */
+/* line 80, ../sass/custom/_homekit.scss */
 #header .divider-vertical {
   display: none;
 }
 @media only screen and (max-width: 992px) and (min-width: 768px) {
-  /* line 68, ../sass/custom/_homekit.scss */
+  /* line 83, ../sass/custom/_homekit.scss */
   #header .fa {
     font-size: 140%;
   }
 }
 
-/* line 76, ../sass/custom/_homekit.scss */
+/* line 91, ../sass/custom/_homekit.scss */
 #header_logo {
   -webkit-filter: brightness(0) invert(1);
   filter: brightness(0) invert(1);
@@ -15264,45 +15279,45 @@ a:hover, a:focus {
 
 /* Main navigation
 -------------------------------------------------- */
-/* line 83, ../sass/custom/_homekit.scss */
+/* line 98, ../sass/custom/_homekit.scss */
 #main_navigation_wrap {
   background-color: #2D3038;
   border-bottom: solid 1px #3B3E47;
 }
 
-/* line 88, ../sass/custom/_homekit.scss */
+/* line 103, ../sass/custom/_homekit.scss */
 #main_navigation {
   text-align: center;
 }
-/* line 91, ../sass/custom/_homekit.scss */
+/* line 106, ../sass/custom/_homekit.scss */
 #main_navigation .main-nav-text {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 91, ../sass/custom/_homekit.scss */
+  /* line 106, ../sass/custom/_homekit.scss */
   #main_navigation .main-nav-text {
     display: inline;
   }
 }
-/* line 98, ../sass/custom/_homekit.scss */
+/* line 113, ../sass/custom/_homekit.scss */
 #main_navigation a {
   color: #aeb8c3;
   padding: 0;
 }
-/* line 102, ../sass/custom/_homekit.scss */
+/* line 117, ../sass/custom/_homekit.scss */
 #main_navigation a:hover {
   background: transparent;
   color: #FDC027;
 }
-/* line 106, ../sass/custom/_homekit.scss */
+/* line 121, ../sass/custom/_homekit.scss */
 #main_navigation .active {
   background-color: #2D3038;
   background: transparent;
   color: #FDC027;
 }
 
-/* line 116, ../sass/custom/_homekit.scss */
+/* line 131, ../sass/custom/_homekit.scss */
 #navigation_left {
   display: inline-block;
   position: static;
@@ -15311,33 +15326,33 @@ a:hover, a:focus {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 119, ../sass/custom/_homekit.scss */
+/* line 134, ../sass/custom/_homekit.scss */
 #navigation_left a {
   padding: 0 7px;
 }
 @media only screen and (min-width: 480px) {
-  /* line 124, ../sass/custom/_homekit.scss */
+  /* line 139, ../sass/custom/_homekit.scss */
   #navigation_left a {
     padding: 0 20px;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 116, ../sass/custom/_homekit.scss */
+  /* line 131, ../sass/custom/_homekit.scss */
   #navigation_left {
     width: 85.714%;
   }
-  /* line 130, ../sass/custom/_homekit.scss */
+  /* line 145, ../sass/custom/_homekit.scss */
   #navigation_left a {
     padding: 0;
     width: 14.28571428571429%;
   }
 }
-/* line 135, ../sass/custom/_homekit.scss */
+/* line 150, ../sass/custom/_homekit.scss */
 #navigation_left .nav-logo {
   text-align: left;
 }
 
-/* line 141, ../sass/custom/_homekit.scss */
+/* line 156, ../sass/custom/_homekit.scss */
 .rss-0 #navigation_left a {
   padding: 0 14px;
   /* MIN WIDTH */
@@ -15348,25 +15363,25 @@ a:hover, a:focus {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 141, ../sass/custom/_homekit.scss */
+  /* line 156, ../sass/custom/_homekit.scss */
   .rss-0 #navigation_left a {
     padding: 0 30px;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 141, ../sass/custom/_homekit.scss */
+  /* line 156, ../sass/custom/_homekit.scss */
   .rss-0 #navigation_left a {
     width: 16.666%;
   }
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 141, ../sass/custom/_homekit.scss */
+  /* line 156, ../sass/custom/_homekit.scss */
   .rss-0 #navigation_left a {
     padding: 0;
   }
 }
 
-/* line 159, ../sass/custom/_homekit.scss */
+/* line 174, ../sass/custom/_homekit.scss */
 #navigation_right {
   float: left;
   display: inline-block;
@@ -15375,22 +15390,22 @@ a:hover, a:focus {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 162, ../sass/custom/_homekit.scss */
+/* line 177, ../sass/custom/_homekit.scss */
 #navigation_right a {
   padding: 0 0 0 10px;
 }
 @media only screen and (min-width: 768px) {
-  /* line 159, ../sass/custom/_homekit.scss */
+  /* line 174, ../sass/custom/_homekit.scss */
   #navigation_right {
     width: 13%;
   }
-  /* line 170, ../sass/custom/_homekit.scss */
+  /* line 185, ../sass/custom/_homekit.scss */
   #navigation_right a {
     padding: 0;
   }
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 159, ../sass/custom/_homekit.scss */
+  /* line 174, ../sass/custom/_homekit.scss */
   #navigation_right {
     text-align: right;
     float: none;
@@ -15399,7 +15414,7 @@ a:hover, a:focus {
 
 /* Subnavigation
 -------------------------------------------------- */
-/* line 185, ../sass/custom/_homekit.scss */
+/* line 200, ../sass/custom/_homekit.scss */
 #sub_navigation_in ul {
   background-color: #2D3038;
   border: 1px solid #2D3038;
@@ -15412,56 +15427,56 @@ a:hover, a:focus {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 185, ../sass/custom/_homekit.scss */
+  /* line 200, ../sass/custom/_homekit.scss */
   #sub_navigation_in ul {
     margin: 0 50% 0 0;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 185, ../sass/custom/_homekit.scss */
+  /* line 200, ../sass/custom/_homekit.scss */
   #sub_navigation_in ul {
     margin: 0 25% 0 0;
   }
 }
-/* line 201, ../sass/custom/_homekit.scss */
+/* line 216, ../sass/custom/_homekit.scss */
 #sub_navigation_in ul li {
   border-bottom: solid 1px #3B3E47;
 }
-/* line 203, ../sass/custom/_homekit.scss */
+/* line 218, ../sass/custom/_homekit.scss */
 #sub_navigation_in ul li a {
   color: #aeb8c3;
 }
-/* line 206, ../sass/custom/_homekit.scss */
+/* line 221, ../sass/custom/_homekit.scss */
 #sub_navigation_in ul li a:hover {
   color: #FDC027;
 }
-/* line 212, ../sass/custom/_homekit.scss */
+/* line 227, ../sass/custom/_homekit.scss */
 #sub_navigation_in ul li.active a {
   color: #FDC027;
 }
-/* line 215, ../sass/custom/_homekit.scss */
+/* line 230, ../sass/custom/_homekit.scss */
 #sub_navigation_in ul li.active .fa {
   color: #FDC027;
 }
-/* line 219, ../sass/custom/_homekit.scss */
+/* line 234, ../sass/custom/_homekit.scss */
 #sub_navigation_in ul li .subnavi-arrow {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 479px) {
-  /* line 219, ../sass/custom/_homekit.scss */
+  /* line 234, ../sass/custom/_homekit.scss */
   #sub_navigation_in ul li .subnavi-arrow {
     display: none;
   }
 }
-/* line 228, ../sass/custom/_homekit.scss */
+/* line 243, ../sass/custom/_homekit.scss */
 #sub_navigation_in ul .fa {
   color: #aeb8c3;
 }
 
 /* Content
 -------------------------------------------------- */
-/* line 237, ../sass/custom/_homekit.scss */
+/* line 252, ../sass/custom/_homekit.scss */
 #view_content {
   padding: 10px;
   margin-left: -10px;
@@ -15471,7 +15486,7 @@ a:hover, a:focus {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 237, ../sass/custom/_homekit.scss */
+  /* line 252, ../sass/custom/_homekit.scss */
   #view_content {
     margin-left: -20px;
     margin-right: -20px;
@@ -15481,52 +15496,52 @@ a:hover, a:focus {
 
 /* Widget
 -------------------------------------------------- */
-/* line 252, ../sass/custom/_homekit.scss */
+/* line 267, ../sass/custom/_homekit.scss */
 .widget-entry .widget-entry-in {
   margin: 5px;
 }
-/* line 254, ../sass/custom/_homekit.scss */
+/* line 269, ../sass/custom/_homekit.scss */
 .widget-entry .widget-entry-in .widget-title {
   color: #000;
 }
-/* line 257, ../sass/custom/_homekit.scss */
+/* line 272, ../sass/custom/_homekit.scss */
 .widget-entry .widget-entry-in .widget-title h3 a {
   color: #000;
 }
 
 /* Cards
 -------------------------------------------------- */
-/* line 267, ../sass/custom/_homekit.scss */
+/* line 282, ../sass/custom/_homekit.scss */
 .card-room .card-room-in {
   border: 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 479px) {
-  /* line 267, ../sass/custom/_homekit.scss */
+  /* line 282, ../sass/custom/_homekit.scss */
   .card-room .card-room-in {
     margin: 0 0 10px 0;
   }
 }
-/* line 273, ../sass/custom/_homekit.scss */
+/* line 288, ../sass/custom/_homekit.scss */
 .card-room .card-room-in .card-header {
   -webkit-border-radius: 20px 20px 0px 0px;
   -moz-border-radius: 20px 20px 0px 0px;
   border-radius: 20px 20px 0px 0px;
 }
-/* line 276, ../sass/custom/_homekit.scss */
+/* line 291, ../sass/custom/_homekit.scss */
 .card-room .card-room-in .bcg-img {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
-/* line 279, ../sass/custom/_homekit.scss */
+/* line 294, ../sass/custom/_homekit.scss */
 .card-room .card-room-in .card-sensors {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 479px) {
-  /* line 279, ../sass/custom/_homekit.scss */
+  /* line 294, ../sass/custom/_homekit.scss */
   .card-room .card-room-in .card-sensors {
     -webkit-border-radius: 0px 0px 20px 20px;
     -moz-border-radius: 0px 0px 20px 20px;
@@ -15536,89 +15551,89 @@ a:hover, a:focus {
 
 /* Report
 -------------------------------------------------- */
-/* line 296, ../sass/custom/_homekit.scss */
+/* line 311, ../sass/custom/_homekit.scss */
 .instance-entry-single .app-row-report .report-entry .report-col {
   padding: 10px;
 }
 
 /* Accordion
 -------------------------------------------------- */
-/* line 309, ../sass/custom/_homekit.scss */
+/* line 324, ../sass/custom/_homekit.scss */
 .accordion-entry {
   padding: 10px;
   background-color: #FFFFFF;
   margin: 0;
 }
 
-/* line 315, ../sass/custom/_homekit.scss */
+/* line 330, ../sass/custom/_homekit.scss */
 #apps_instances .accordion-entry {
   padding: 0;
 }
 
 /* Table
 -------------------------------------------------- */
-/* line 323, ../sass/custom/_homekit.scss */
+/* line 338, ../sass/custom/_homekit.scss */
 .table {
   background-color: #fff;
 }
 
 /* Form 
 -------------------------------------------------- */
-/* line 330, ../sass/custom/_homekit.scss */
+/* line 345, ../sass/custom/_homekit.scss */
 .submit-entry {
   background: rgba(255, 255, 255, 0.4);
 }
 
 /* Buttons
 -------------------------------------------------- */
-/* line 336, ../sass/custom/_homekit.scss */
+/* line 351, ../sass/custom/_homekit.scss */
 .btn-submit, .btn-success, .btn-primary, .btn-info {
   color: #aeb8c3;
   border: solid 1px #3B3E47;
   background-color: #2D3038;
 }
-/* line 340, ../sass/custom/_homekit.scss */
+/* line 355, ../sass/custom/_homekit.scss */
 .btn-submit:hover, .btn-success:hover, .btn-primary:hover, .btn-info:hover {
   color: #fff;
   background-color: #3B3E47;
 }
 
-/* line 346, ../sass/custom/_homekit.scss */
+/* line 361, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn-default {
   color: #aeb8c3;
   border: solid 1px #3B3E47;
   background-color: #2D3038;
 }
-/* line 350, ../sass/custom/_homekit.scss */
+/* line 365, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn-default:hover {
   color: #fff;
   background-color: #3B3E47;
 }
-/* line 357, ../sass/custom/_homekit.scss */
+/* line 372, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn .fa {
   color: #aeb8c3;
 }
-/* line 360, ../sass/custom/_homekit.scss */
+/* line 375, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn.active {
   cursor: text;
   background-color: #525663;
   color: #FDC027;
 }
-/* line 364, ../sass/custom/_homekit.scss */
+/* line 379, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn.active .fa {
   color: #FDC027;
 }
 
 /* Devices
 -------------------------------------------------- */
-/* line 372, ../sass/custom/_homekit.scss */
+/* line 387, ../sass/custom/_homekit.scss */
 .cfg-control-content {
   background-color: #fff;
 }
 
 /* Opacity
 -------------------------------------------------- */
-/* line 378, ../sass/custom/_homekit.scss */
+/* line 393, ../sass/custom/_homekit.scss */
 #main_navigation_wrap,
 #footer,
 #sub_navigation_in ul,
@@ -15642,7 +15657,7 @@ a:hover, a:focus {
 
 /* Round corners
 -------------------------------------------------- */
-/* line 400, ../sass/custom/_homekit.scss */
+/* line 415, ../sass/custom/_homekit.scss */
 #view_content,
 .widget-entry-in,
 .card-room-in,
