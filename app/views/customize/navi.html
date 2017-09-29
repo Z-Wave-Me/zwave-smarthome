@@ -7,7 +7,7 @@
         <a class="btn btn-default" title="{{_t('online_skins')}}" href="#customize/skinsonline" 
            ng-class="routeMatch('/customize/skinsonline') ? 'active' : ''"
            ng-if="elementAccess(cfg.role_access.admin)">
-            <i class="fa {{skins.online.connect.icon}}"></i> <span class="btn-name">{{_t('online_skins')}}</span>
+            <i class="fa {{skins.online.connect.icon|| 'fa-globe'}}"></i> <span class="btn-name">{{_t('online_skins')}}</span>
         </a>
         <a class="btn btn-default" title="{{_t('local_icons')}}" href="#customize/iconslocal"
            ng-class="routeMatch('/customize/iconslocal') ? 'active' : ''"
