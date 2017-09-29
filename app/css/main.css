@@ -15179,483 +15179,144 @@ img.widget-promo-image {
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
-/* shui, bayernshui, blueshui, darkshui
+/* shui, bayernshui, blueshui, darkshui, homekit
 -------------------------------------------------- */
-/* Home Kit skin
+/* Default SmartHome skin
 -------------------------------------------------- */
 /* Variables
 -------------------------------------------------- */
-/* Body reset
+/* Body
 -------------------------------------------------- */
-/* line 21, ../sass/custom/_homekit.scss */
+/* line 8, ../sass/custom/_shui.scss */
 body {
-  background: #ab8b87 url("homekit.jpg") 50% 0 no-repeat;
-  background-attachment: fixed;
-  color: #000;
+  background-color: #F6F6F6;
 }
 
-/* line 28, ../sass/custom/_homekit.scss */
-.timestamp {
-  color: #aeb8c3;
-}
-
-/* Typo
--------------------------------------------------- */
-/* line 34, ../sass/custom/_homekit.scss */
-h1, h2, h3, h4 {
-  color: #000;
-}
-
-/* line 37, ../sass/custom/_homekit.scss */
-.app-entry-online .app-entry-cat .app-entry-title,
-.app-entry-local h2 {
-  color: #000;
-}
-
-/* line 41, ../sass/custom/_homekit.scss */
-.text-success, .text-primary, .text-info {
-  color: #2D3038;
-}
-
-/* line 45, ../sass/custom/_homekit.scss */
-.badge {
-  color: #aeb8c3;
-  background-color: #2D3038;
-}
-
-/* line 49, ../sass/custom/_homekit.scss */
-.label-success, .label-primary, .label-info {
-  background-color: #2D3038;
-}
-
-/* Links
--------------------------------------------------- */
-/* line 54, ../sass/custom/_homekit.scss */
-a {
-  color: #000;
-}
-/* line 57, ../sass/custom/_homekit.scss */
-a:hover, a:focus {
-  color: #2D3038;
-}
-
-/* Header
--------------------------------------------------- */
-/* line 63, ../sass/custom/_homekit.scss */
-#header {
-  color: #000;
-}
-/* line 65, ../sass/custom/_homekit.scss */
-#header .divider-vertical {
-  display: none;
-}
-@media only screen and (max-width: 992px) and (min-width: 768px) {
-  /* line 68, ../sass/custom/_homekit.scss */
-  #header .fa {
-    font-size: 140%;
-  }
-}
-
-/* line 76, ../sass/custom/_homekit.scss */
-#header_logo {
-  -webkit-filter: brightness(0) invert(1);
-  filter: brightness(0) invert(1);
+/* line 13, ../sass/custom/_shui.scss */
+.device-available-block.assigned {
+  background-color: #e7e7e7;
+  border: 0;
 }
 
 /* Main navigation
 -------------------------------------------------- */
-/* line 83, ../sass/custom/_homekit.scss */
+/* line 20, ../sass/custom/_shui.scss */
 #main_navigation_wrap {
-  background-color: #2D3038;
-  border-bottom: solid 1px #3B3E47;
+  border-bottom: solid 4px #DDD;
+  background-color: #E9E9E9;
+}
+/* line 24, ../sass/custom/_shui.scss */
+#main_navigation_wrap #main_navigation .active {
+  background-color: #DDD;
+  color: #ffffff;
 }
 
-/* line 88, ../sass/custom/_homekit.scss */
-#main_navigation {
-  text-align: center;
-}
-/* line 91, ../sass/custom/_homekit.scss */
-#main_navigation .main-nav-text {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 91, ../sass/custom/_homekit.scss */
-  #main_navigation .main-nav-text {
-    display: inline;
-  }
-}
-/* line 98, ../sass/custom/_homekit.scss */
-#main_navigation a {
-  color: #aeb8c3;
-  padding: 0;
-}
-/* line 102, ../sass/custom/_homekit.scss */
-#main_navigation a:hover {
-  background: transparent;
-  color: #FDC027;
-}
-/* line 106, ../sass/custom/_homekit.scss */
-#main_navigation .active {
-  background-color: #2D3038;
-  background: transparent;
-  color: #FDC027;
-}
-
-/* line 116, ../sass/custom/_homekit.scss */
-#navigation_left {
-  display: inline-block;
-  position: static;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-/* line 119, ../sass/custom/_homekit.scss */
-#navigation_left a {
-  padding: 0 7px;
-}
-@media only screen and (min-width: 480px) {
-  /* line 124, ../sass/custom/_homekit.scss */
-  #navigation_left a {
-    padding: 0 20px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  /* line 116, ../sass/custom/_homekit.scss */
-  #navigation_left {
-    width: 85.714%;
-  }
-  /* line 130, ../sass/custom/_homekit.scss */
-  #navigation_left a {
-    padding: 0;
-    width: 14.28571428571429%;
-  }
-}
-/* line 135, ../sass/custom/_homekit.scss */
-#navigation_left .nav-logo {
-  text-align: left;
-}
-
-/* line 141, ../sass/custom/_homekit.scss */
-.rss-0 #navigation_left a {
-  padding: 0 14px;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 480px) {
-  /* line 141, ../sass/custom/_homekit.scss */
-  .rss-0 #navigation_left a {
-    padding: 0 30px;
-  }
-}
-@media only screen and (min-width: 768px) {
-  /* line 141, ../sass/custom/_homekit.scss */
-  .rss-0 #navigation_left a {
-    width: 16.666%;
-  }
-}
-@media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 141, ../sass/custom/_homekit.scss */
-  .rss-0 #navigation_left a {
-    padding: 0;
-  }
-}
-
-/* line 159, ../sass/custom/_homekit.scss */
-#navigation_right {
-  float: left;
-  display: inline-block;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-/* line 162, ../sass/custom/_homekit.scss */
-#navigation_right a {
-  padding: 0 0 0 10px;
-}
-@media only screen and (min-width: 768px) {
-  /* line 159, ../sass/custom/_homekit.scss */
-  #navigation_right {
-    width: 13%;
-  }
-  /* line 170, ../sass/custom/_homekit.scss */
-  #navigation_right a {
-    padding: 0;
-  }
-}
-@media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 159, ../sass/custom/_homekit.scss */
-  #navigation_right {
-    text-align: right;
-    float: none;
-  }
-}
-
-/* Subnavigation
+/* Form
 -------------------------------------------------- */
-/* line 185, ../sass/custom/_homekit.scss */
-#sub_navigation_in ul {
-  background-color: #2D3038;
-  border: 1px solid #2D3038;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /*@include mediaQueries(max-esmall) {
-      margin: 0 25% 0 0;
-  }*/
-  /* MIN WIDTH */
-  /* MAX WIDTH */
+/* line 33, ../sass/custom/_shui.scss */
+.form-page {
+  border: solid 4px #e7e7e7;
 }
-@media only screen and (max-width: 991px) {
-  /* line 185, ../sass/custom/_homekit.scss */
-  #sub_navigation_in ul {
-    margin: 0 50% 0 0;
-  }
-}
-@media only screen and (max-width: 767px) {
-  /* line 185, ../sass/custom/_homekit.scss */
-  #sub_navigation_in ul {
-    margin: 0 25% 0 0;
-  }
-}
-/* line 201, ../sass/custom/_homekit.scss */
-#sub_navigation_in ul li {
-  border-bottom: solid 1px #3B3E47;
-}
-/* line 203, ../sass/custom/_homekit.scss */
-#sub_navigation_in ul li a {
-  color: #aeb8c3;
-}
-/* line 206, ../sass/custom/_homekit.scss */
-#sub_navigation_in ul li a:hover {
-  color: #FDC027;
-}
-/* line 212, ../sass/custom/_homekit.scss */
-#sub_navigation_in ul li.active a {
-  color: #FDC027;
-}
-/* line 215, ../sass/custom/_homekit.scss */
-#sub_navigation_in ul li.active .fa {
-  color: #FDC027;
-}
-/* line 219, ../sass/custom/_homekit.scss */
-#sub_navigation_in ul li .subnavi-arrow {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (max-width: 479px) {
-  /* line 219, ../sass/custom/_homekit.scss */
-  #sub_navigation_in ul li .subnavi-arrow {
-    display: none;
-  }
-}
-/* line 228, ../sass/custom/_homekit.scss */
-#sub_navigation_in ul .fa {
-  color: #aeb8c3;
+/* line 35, ../sass/custom/_shui.scss */
+.form-page .form-group {
+  border-color: #e7e7e7;
 }
 
-/* Content
--------------------------------------------------- */
-/* line 237, ../sass/custom/_homekit.scss */
-#view_content {
-  padding: 10px;
-  margin-left: -10px;
-  margin-right: -10px;
-  background: rgba(255, 255, 255, 0.5);
-  /* MIN WIDTH */
-  /* MAX WIDTH */
+/* line 39, ../sass/custom/_shui.scss */
+.submit-entry {
+  background-color: #e7e7e7;
+  border-top: solid 1px  #e7e7e7;
 }
-@media only screen and (min-width: 480px) {
-  /* line 237, ../sass/custom/_homekit.scss */
-  #view_content {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding: 20px;
-  }
+
+/* Button
+-------------------------------------------------- */
+/* line 47, ../sass/custom/_shui.scss */
+.btn-goup-tabs .btn {
+  background-color: #eeeeee;
+}
+/* line 49, ../sass/custom/_shui.scss */
+.btn-goup-tabs .btn.active {
+  background-color: #dcdcdc;
 }
 
 /* Widget
 -------------------------------------------------- */
-/* line 252, ../sass/custom/_homekit.scss */
+/* line 58, ../sass/custom/_shui.scss */
 .widget-entry .widget-entry-in {
-  margin: 5px;
-}
-/* line 254, ../sass/custom/_homekit.scss */
-.widget-entry .widget-entry-in .widget-title {
-  color: #000;
-}
-/* line 257, ../sass/custom/_homekit.scss */
-.widget-entry .widget-entry-in .widget-title h3 a {
-  color: #000;
-}
-
-/* Cards
--------------------------------------------------- */
-/* line 267, ../sass/custom/_homekit.scss */
-.card-room .card-room-in {
-  border: 0;
+  border-color: #d3d3d3;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (max-width: 479px) {
-  /* line 267, ../sass/custom/_homekit.scss */
+@media only screen and (min-width: 768px) {
+  /* line 58, ../sass/custom/_shui.scss */
+  .widget-entry .widget-entry-in {
+    border: solid 4px #FFFFFF;
+    background: #f6f6f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
+    /* IE6-9 */
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  }
+}
+
+/* Rooms
+-------------------------------------------------- */
+/* MIN WIDTH */
+@media only screen and (min-width: 768px) {
+  /* line 75, ../sass/custom/_shui.scss */
   .card-room .card-room-in {
-    margin: 0 0 10px 0;
+    border: solid 4px #ffffff;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 273, ../sass/custom/_homekit.scss */
-.card-room .card-room-in .card-header {
-  -webkit-border-radius: 20px 20px 0px 0px;
-  -moz-border-radius: 20px 20px 0px 0px;
-  border-radius: 20px 20px 0px 0px;
-}
-/* line 276, ../sass/custom/_homekit.scss */
-.card-room .card-room-in .bcg-img {
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-}
-/* line 279, ../sass/custom/_homekit.scss */
-.card-room .card-room-in .card-sensors {
+/* MAX WIDTH */
+/* Elements in Room
+-------------------------------------------------- */
+/* line 84, ../sass/custom/_shui.scss */
+.elemnts-room-bar {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (max-width: 479px) {
-  /* line 279, ../sass/custom/_homekit.scss */
-  .card-room .card-room-in .card-sensors {
-    -webkit-border-radius: 0px 0px 20px 20px;
-    -moz-border-radius: 0px 0px 20px 20px;
-    border-radius: 0px 0px 20px 20px;
+@media only screen and (min-width: 768px) {
+  /* line 84, ../sass/custom/_shui.scss */
+  .elemnts-room-bar {
+    border: 0;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    background: #f6f6f6;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
+    /* IE6-9 */
   }
-}
-
-/* Report
--------------------------------------------------- */
-/* line 296, ../sass/custom/_homekit.scss */
-.instance-entry-single .app-row-report .report-entry .report-col {
-  padding: 10px;
-}
-
-/* Accordion
--------------------------------------------------- */
-/* line 309, ../sass/custom/_homekit.scss */
-.accordion-entry {
-  padding: 10px;
-  background-color: #FFFFFF;
-  margin: 0;
-}
-
-/* line 315, ../sass/custom/_homekit.scss */
-#apps_instances .accordion-entry {
-  padding: 0;
-}
-
-/* Table
--------------------------------------------------- */
-/* line 323, ../sass/custom/_homekit.scss */
-.table {
-  background-color: #fff;
-}
-
-/* Form 
--------------------------------------------------- */
-/* line 330, ../sass/custom/_homekit.scss */
-.submit-entry {
-  background: rgba(255, 255, 255, 0.4);
-}
-
-/* Buttons
--------------------------------------------------- */
-/* line 336, ../sass/custom/_homekit.scss */
-.btn-submit, .btn-success, .btn-primary, .btn-info {
-  color: #aeb8c3;
-  border: solid 1px #3B3E47;
-  background-color: #2D3038;
-}
-/* line 340, ../sass/custom/_homekit.scss */
-.btn-submit:hover, .btn-success:hover, .btn-primary:hover, .btn-info:hover {
-  color: #fff;
-  background-color: #3B3E47;
-}
-
-/* line 346, ../sass/custom/_homekit.scss */
-.btn-goup-tabs .btn-default {
-  color: #aeb8c3;
-  border: solid 1px #3B3E47;
-  background-color: #2D3038;
-}
-/* line 350, ../sass/custom/_homekit.scss */
-.btn-goup-tabs .btn-default:hover {
-  color: #fff;
-  background-color: #3B3E47;
-}
-/* line 357, ../sass/custom/_homekit.scss */
-.btn-goup-tabs .btn .fa {
-  color: #aeb8c3;
-}
-/* line 360, ../sass/custom/_homekit.scss */
-.btn-goup-tabs .btn.active {
-  cursor: text;
-  background-color: #525663;
-  color: #FDC027;
-}
-/* line 364, ../sass/custom/_homekit.scss */
-.btn-goup-tabs .btn.active .fa {
-  color: #FDC027;
-}
-
-/* Devices
--------------------------------------------------- */
-/* line 372, ../sass/custom/_homekit.scss */
-.cfg-control-content {
-  background-color: #fff;
-}
-
-/* Opacity
--------------------------------------------------- */
-/* line 378, ../sass/custom/_homekit.scss */
-#main_navigation_wrap,
-#footer,
-#sub_navigation_in ul,
-.widget-entry-in,
-.card-room-in,
-.vendor-list,
-.app-row-report,
-.table,
-.btn,
-.form-control,
-.accordion-entry,
-.elemnts-room-bar,
-.form-page,
-.app-row-imglist,
-.card-element-dragdrop,
-.commands-data-control,
-.cfg-control-content {
-  opacity: 0.92;
-  filter: alpha(opacity=92);
-}
-
-/* Round corners
--------------------------------------------------- */
-/* line 400, ../sass/custom/_homekit.scss */
-#view_content,
-.widget-entry-in,
-.card-room-in,
-.vendor-list,
-.app-row-imglist,
-.card-element-dragdrop,
-.dragdrop-element .dd-placeholder {
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  /*@include mediaQueries(min-medium) {
-       @include appBorderRadius(20px);
-  }*/
 }
 
 /* SmartHome UI custom POPP
