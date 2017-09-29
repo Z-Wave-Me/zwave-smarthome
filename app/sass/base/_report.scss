@@ -32,17 +32,17 @@
     .report-body{}
 
     .report-ctrl{
-        min-width: 110px;
-        //display: block;
         text-align: right;
-        // Media queries
-       /* @include mediaQueries(min-esmall) {
-            display: table-cell;
-        }*/
+         @include mediaQueries(min-small) {
+               min-width: 110px;
+        }
     }
 
     .report-ctrl-3{
-        min-width: 160px;
+        @include mediaQueries(min-small) {
+              min-width: 160px;
+        }
+      
     }
     .report-col-w30{
         width: 30%;

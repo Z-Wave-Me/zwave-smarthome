@@ -1,0 +1,411 @@
+/* Home Kit skin
+-------------------------------------------------- */
+
+/* Variables
+-------------------------------------------------- */
+$app-body-color: #000;
+$app-heading-color: #000;
+$app-a-color: #000;
+$app-a-hover-color: #2D3038;
+
+$app-color-dark:#2D3038;
+$app-color-dark-lighter:#3B3E47;
+$app-color-light: #aeb8c3;
+//$app-color-additional: #0CD06C;
+$app-color-additional: #FDC027;
+$app-color-active: #FDC027;
+
+/* Body reset
+-------------------------------------------------- */
+
+body {
+    //background-color: #ab8b87;
+    background: #ab8b87 url('homekit.jpg')50% 0  no-repeat;
+    background-attachment:fixed;
+    color: $app-body-color;
+
+}
+.timestamp {
+    color: $app-color-light;
+}
+
+/* Typo
+-------------------------------------------------- */
+h1, h2, h3, h4 {
+    color: $app-heading-color;
+}
+.app-entry-online .app-entry-cat .app-entry-title,
+.app-entry-local h2{
+    color: $app-body-color;
+}
+.text-success,.text-primary,.text-info {
+    color: $app-color-dark;
+}
+
+.badge {
+    color: $app-color-light;
+    background-color: $app-color-dark;
+}
+.label-success, .label-primary,.label-info{
+    background-color: $app-color-dark;
+}
+/* Links
+-------------------------------------------------- */
+a {
+    color: $app-a-color;
+
+    &:hover, &:focus {
+        color: $app-a-hover-color;
+    }
+}
+/* Header
+-------------------------------------------------- */
+#header{
+    color: $app-body-color;
+    .divider-vertical {
+        display: none;
+    }
+    .fa{
+        @include mediaQueriesMaxMin($break-medium,$break-small) {
+            font-size: 140%;
+        }
+    }
+
+}
+
+#header_logo{
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+}
+
+/* Main navigation
+-------------------------------------------------- */
+#main_navigation_wrap{
+    background-color: $app-color-dark;
+    border-bottom: solid 1px $app-color-dark-lighter;
+}
+
+#main_navigation{
+    text-align: center;
+
+    .main-nav-text {
+        // Media queries
+        @include mediaQueries(min-medium) {
+            display: inline;
+        }
+
+    }
+    a{
+        color: $app-color-light;
+        padding: 0;
+    }
+    a:hover{
+        background:transparent;
+        color: $app-color-additional;
+    }
+    .active{
+        background-color:$app-color-dark;
+        background: transparent;
+        color: $app-color-additional;
+        &:hover{
+            //background-color:$app-color-dark-lightest;
+        }
+    }
+}
+
+#navigation_left{
+    display: inline-block;
+    position: static;
+    a{
+        padding: 0 7px;
+    }
+    // Media queries
+    @include mediaQueries(min-esmall) {
+        a{
+            padding: 0 $spacing-double;
+        }
+    }
+    @include mediaQueries(min-small) {
+        width: 85.714%;
+        a{
+            padding: 0;
+            width: 14.28571428571429%;
+        }
+    }
+    .nav-logo{
+        text-align: left;
+    }
+}
+.rss-0{
+    #navigation_left{
+        a{
+            padding: 0 14px;
+            @include mediaQueries(min-esmall) {
+                padding: 0 30px;
+            }
+
+            @include mediaQueries(min-small) {
+                width: 16.666%;
+            }
+            @include mediaQueries(min-medium) {
+                padding: 0;
+            }
+        }
+
+
+    }
+}
+
+#navigation_right{
+    float: left;
+    display: inline-block;
+    a{
+        padding: 0 0 0 $spacing;
+    }
+
+
+    @include mediaQueries(min-small) {
+        width: 13%;
+
+        a{
+            padding: 0;
+        }
+    }
+    @include mediaQueries(min-medium) {
+        text-align: right;
+        float: none;
+    }
+
+}
+
+/* Subnavigation
+-------------------------------------------------- */
+#sub_navigation_in{
+
+    ul{
+        background-color: $app-color-dark;
+        border: 1px solid $app-color-dark;
+        //@include appOpacity(0.9);
+        // Media queries
+        @include mediaQueries(max-medium) {
+            margin: 0 50% 0 0;
+        }
+        /*@include mediaQueries(max-esmall) {
+            margin: 0 25% 0 0;
+        }*/
+        @include mediaQueries(max-small) {
+            margin: 0 25% 0 0;
+        }
+
+
+        li{
+            border-bottom: solid 1px $app-color-dark-lighter;
+            a{
+                //padding: 0 $spacing;
+                color: $app-color-light;
+                &:hover{
+                    color: $app-color-additional;
+                }
+
+            }
+            &.active{
+                a{
+                    color: $app-color-additional;
+                }
+                .fa{
+                    color: $app-color-additional;
+                }
+            }
+            .subnavi-arrow{
+                // Media queries
+                @include mediaQueries(max-esmall) {
+                    display: none;
+                }
+
+            }
+
+        }
+        .fa{
+            color: $app-color-light;
+        }
+
+    }
+}
+
+/* Content
+-------------------------------------------------- */
+#view_content{
+    padding: $spacing;
+    margin-left: -$spacing;
+    margin-right: -$spacing;
+    background: rgba(255,255,255,0.5);
+    // Media queries
+    @include mediaQueries(min-esmall) {
+        margin-left: -$spacing-double;
+        margin-right: -$spacing-double;
+        padding: $spacing-double;
+    }
+}
+/* Widget
+-------------------------------------------------- */
+.widget-entry{
+    .widget-entry-in{
+        margin: $spacing-half;
+        .widget-title{
+            color: $app-heading-color;
+            h3{
+                a{
+                    color: $app-heading-color;
+                }
+            }
+        }
+    }
+}
+/* Cards
+-------------------------------------------------- */
+.card-room{ 
+    .card-room-in{ 
+        border: 0;
+
+        @include mediaQueries(max-esmall) {
+            margin: 0 0 $spacing 0;
+        }
+        .card-header {
+            @include appBorderRadiusVal(20px, 20px, 0px, 0px);
+        }
+        .bcg-img {
+            @include appBorderRadius(20px);
+        }
+        .card-sensors {
+            @include mediaQueries(max-esmall) {
+                 @include appBorderRadiusVal(0px, 0px,20px, 20px);
+        }
+        }
+    }
+}
+
+
+/* Report
+-------------------------------------------------- */
+.instance-entry-single{
+    .app-row-report{
+        //margin: 0 0 $spacing 0; 
+        //border: 0;
+        .report-entry {
+
+            .report-col{
+                //border: 0;
+                padding: $spacing;
+            }
+
+        }
+
+    }
+} 
+
+
+/* Accordion
+-------------------------------------------------- */
+.accordion-entry{
+    padding: $spacing;
+    background-color: #FFFFFF;
+    margin: 0;
+}
+#apps_instances{
+    .accordion-entry{
+        padding: 0;
+        // margin: 0 0 $spacing 0;
+    }
+}
+
+/* Table
+-------------------------------------------------- */
+.table{
+    background-color: #fff;
+
+}
+
+/* Form 
+-------------------------------------------------- */
+.submit-entry {
+    //background: transparent;
+    background: rgba(255,255,255,0.4);
+}
+/* Buttons
+-------------------------------------------------- */
+.btn-submit,.btn-success,.btn-primary,.btn-info {
+    color: $app-color-light;
+    border: solid 1px $app-color-dark-lighter;
+    background-color: $app-color-dark;
+    &:hover{
+        color: #fff;
+        background-color: $app-color-dark-lighter;
+    }
+}
+.btn-goup-tabs{
+    .btn-default{
+        color: $app-color-light;
+        border: solid 1px $app-color-dark-lighter;
+        background-color: $app-color-dark;
+        &:hover{
+            color: #fff;
+            background-color: $app-color-dark-lighter;
+        }
+
+    }
+    .btn{
+        .fa{
+            color: $app-color-light; 
+        }
+        &.active{
+            cursor:text;
+            background-color: lighten($app-color-dark-lighter,10%); 
+            color: $app-color-additional;
+            .fa{
+                color: $app-color-additional; 
+            }
+        }
+    }
+}
+/* Devices
+-------------------------------------------------- */
+.cfg-control-content{
+    background-color: #fff;
+
+}
+/* Opacity
+-------------------------------------------------- */
+#main_navigation_wrap,
+#footer,
+#sub_navigation_in ul,
+.widget-entry-in,
+.card-room-in,
+.vendor-list,
+.app-row-report,
+.table,
+.btn,
+.form-control,
+.accordion-entry,
+.elemnts-room-bar,
+.form-page,
+.app-row-imglist,
+.card-element-dragdrop,
+.commands-data-control,
+.cfg-control-content{
+    @include appOpacity(0.92);
+}
+
+/* Round corners
+-------------------------------------------------- */
+#view_content,
+.widget-entry-in,
+.card-room-in,
+.vendor-list,
+.app-row-imglist,
+.card-element-dragdrop,
+.dragdrop-element .dd-placeholder{
+    @include appBorderRadius(20px);
+    /*@include mediaQueries(min-medium) {
+         @include appBorderRadius(20px);
+    }*/
+}

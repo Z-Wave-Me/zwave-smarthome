@@ -44,7 +44,7 @@
                 color: lighten($app-body-color, 40%);
                 .fa{
                     padding: 0 0 0 $spacing;
-                    font-size: 180%;
+                    font-size: 140%;
                     // Media queries
                     @include mediaQueries(min-small) {
                         padding: 0 0 0 $spacing-half;
@@ -52,7 +52,7 @@
                     }
                 }
                 &:hover{
-                  text-decoration: none;
+                    text-decoration: none;
                 }
             }
         }
@@ -63,7 +63,7 @@
             height:50%;
             color: $app-heading-color;
             h3{
-                font-size: 115%;
+                font-size: 105%;
                 padding: 0;
                 margin: 0;
                 a{
@@ -115,10 +115,15 @@
 }
 
 .widget-preview-img{
-    max-width: 64px;
-    max-height: 64px;
+    max-width: 48px;
+    max-height: 48px;
     //border: solid 4px $widget-img-border-color;
     @include appBorderRadius(50%);
+    // Media queries
+    @include mediaQueries(min-esmall) {
+        max-width: 64px;
+        max-height: 64px;
+    }
 }
 
 .tbl-widget-ctrl{ 

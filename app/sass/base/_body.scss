@@ -35,7 +35,7 @@ body {
   background-image: url('wallpaper.png');
   // Media queries
   @include mediaQueries(min-small) {
-    font-size: $app-body-font-size - 3px;
+    font-size: $app-body-font-size - 2px;
   }
 
 }
@@ -74,16 +74,16 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 160%;
+  font-size: 130%;
 }
 
 h2 {
-  font-size: 140%;
+  font-size: 120%;
   margin: $spacing 0 $spacing-half 0;
 }
 
 h3 {
-  font-size: 120%;
+  font-size: 115%;
 }
 
 h4 {

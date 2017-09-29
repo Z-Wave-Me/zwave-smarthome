@@ -58,10 +58,15 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 $widget-loader-background: #FFF;
 $widget-loader-foreground: #184B7C;
-$widget-loader-w: 64px + 6;
-$widget-loader-h: 64px + 6;
-$widget-loader-before-h: 64px + 8;
+$widget-loader-w: 48px + 6;
+$widget-loader-h: 48px + 6;
+$widget-loader-before-h: 48px + 8;
 $widget-loader-before-w: $widget-loader-before-h/2;
+// Large devices
+$widget-loader-w-l: 64px + 6;
+$widget-loader-h-l: 64px + 6;
+$widget-loader-before-h-l: 64px + 8;
+$widget-loader-before-w-l: $widget-loader-before-h-l/2;
 
 .progress-true {
     .widget-preview-img{
@@ -70,7 +75,7 @@ $widget-loader-before-w: $widget-loader-before-h/2;
 
     .widget-loader,
     .widget-loader:before,
-    .widget-loader:after {
+        .widget-loader:after {
         border-radius:50%;
     }
 
@@ -85,9 +90,14 @@ $widget-loader-before-w: $widget-loader-before-h/2;
         -webkit-transform: translateZ(0);
         -ms-transform: translateZ(0);
         transform: translateZ(0);
+        // Media queries
+        @include mediaQueries(min-esmall) {
+            width:$widget-loader-w-l;
+            height:$widget-loader-h-l;
+        }
 
         &:before,
-        &:after {
+            &:after {
             position:absolute;
             content:'';
         }
@@ -103,6 +113,14 @@ $widget-loader-before-w: $widget-loader-before-h/2;
             transform-origin:$widget-loader-before-w $widget-loader-before-w;
             -webkit-animation:loadWidget 2s infinite ease 1.5s;
             animation:loadWidget 2s infinite ease 1.5s;
+            // Media queries
+            @include mediaQueries(min-esmall) {
+                height:$widget-loader-before-h-l;
+                width: $widget-loader-before-w-l;
+                border-radius:$widget-loader-before-h-l 0 0 $widget-loader-before-h-l;
+                -webkit-transform-origin:$widget-loader-before-w-l $widget-loader-before-w-l;
+                transform-origin:$widget-loader-before-w-l $widget-loader-before-w-l;
+            }
         }
 
         &:after {
@@ -116,6 +134,15 @@ $widget-loader-before-w: $widget-loader-before-h/2;
             transform-origin:0 $widget-loader-before-w;
             -webkit-animation:loadWidget 2s infinite ease;
             animation:loadWidget 2s infinite ease;
+            // Media queries
+            @include mediaQueries(min-esmall) {
+                height:$widget-loader-before-h-l;
+                width: $widget-loader-before-w-l;
+                border-radius: 0 $widget-loader-before-h-l $widget-loader-before-h-l 0;
+                left:$widget-loader-before-w-l - 1;
+                -webkit-transform-origin:0 $widget-loader-before-w-l;
+                transform-origin:0 $widget-loader-before-w-l;
+            }
         }
 
     }

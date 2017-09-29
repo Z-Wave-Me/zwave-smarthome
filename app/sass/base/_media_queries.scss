@@ -41,7 +41,6 @@
 
 @include mediaQueries(max-medium) {
     .nav-logo,
-    #header .timestamp,
     #main_navigation .divider-vertical,
     .btn-name{
         display: none !important;
