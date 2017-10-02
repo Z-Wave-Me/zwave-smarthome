@@ -6,7 +6,7 @@
   "description": "This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices.",
   "main": "index.html",
   "app_type": "default",
-  "built": "29-09-2017 12:26:01",
+  "built": "02-10-2017 09:55:14",
   "type_cfg": {
     "default": {
       "dir": "dist",
@@ -14,7 +14,7 @@
     }
   },
   "skin_path": "_project/skins/",
-  "skin": "shui",
+  "skin": "homekit",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^1.0.3",

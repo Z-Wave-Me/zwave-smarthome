@@ -276,8 +276,11 @@ a {
         }
     }
 }
-/* Cards
+/* Room
 -------------------------------------------------- */
+.elemnts-room-bar {
+    background: rgba(255,255,255,0.92);
+}
 .card-room{ 
     .card-room-in{ 
         border: 0;
@@ -401,7 +404,6 @@ a {
 .btn,
 .form-control,
 .accordion-entry,
-.elemnts-room-bar,
 .form-page,
 .app-row-imglist,
 .card-element-dragdrop,
@@ -416,6 +418,7 @@ a {
 .widget-entry-in,
 .card-room-in,
 .vendor-list,
+.elemnts-room-bar,
 .app-row-imglist,
 .card-element-dragdrop,
 .dragdrop-element .dd-placeholder{

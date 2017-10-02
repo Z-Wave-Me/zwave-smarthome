@@ -15509,39 +15509,44 @@ a:hover, a:focus {
   color: #000;
 }
 
-/* Cards
+/* Room
 -------------------------------------------------- */
-/* line 282, ../sass/custom/_homekit.scss */
+/* line 281, ../sass/custom/_homekit.scss */
+.elemnts-room-bar {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* line 285, ../sass/custom/_homekit.scss */
 .card-room .card-room-in {
   border: 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 479px) {
-  /* line 282, ../sass/custom/_homekit.scss */
+  /* line 285, ../sass/custom/_homekit.scss */
   .card-room .card-room-in {
     margin: 0 0 10px 0;
   }
 }
-/* line 288, ../sass/custom/_homekit.scss */
+/* line 291, ../sass/custom/_homekit.scss */
 .card-room .card-room-in .card-header {
   -webkit-border-radius: 20px 20px 0px 0px;
   -moz-border-radius: 20px 20px 0px 0px;
   border-radius: 20px 20px 0px 0px;
 }
-/* line 291, ../sass/custom/_homekit.scss */
+/* line 294, ../sass/custom/_homekit.scss */
 .card-room .card-room-in .bcg-img {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
-/* line 294, ../sass/custom/_homekit.scss */
+/* line 297, ../sass/custom/_homekit.scss */
 .card-room .card-room-in .card-sensors {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 479px) {
-  /* line 294, ../sass/custom/_homekit.scss */
+  /* line 297, ../sass/custom/_homekit.scss */
   .card-room .card-room-in .card-sensors {
     -webkit-border-radius: 0px 0px 20px 20px;
     -moz-border-radius: 0px 0px 20px 20px;
@@ -15551,89 +15556,89 @@ a:hover, a:focus {
 
 /* Report
 -------------------------------------------------- */
-/* line 311, ../sass/custom/_homekit.scss */
+/* line 314, ../sass/custom/_homekit.scss */
 .instance-entry-single .app-row-report .report-entry .report-col {
   padding: 10px;
 }
 
 /* Accordion
 -------------------------------------------------- */
-/* line 324, ../sass/custom/_homekit.scss */
+/* line 327, ../sass/custom/_homekit.scss */
 .accordion-entry {
   padding: 10px;
   background-color: #FFFFFF;
   margin: 0;
 }
 
-/* line 330, ../sass/custom/_homekit.scss */
+/* line 333, ../sass/custom/_homekit.scss */
 #apps_instances .accordion-entry {
   padding: 0;
 }
 
 /* Table
 -------------------------------------------------- */
-/* line 338, ../sass/custom/_homekit.scss */
+/* line 341, ../sass/custom/_homekit.scss */
 .table {
   background-color: #fff;
 }
 
 /* Form 
 -------------------------------------------------- */
-/* line 345, ../sass/custom/_homekit.scss */
+/* line 348, ../sass/custom/_homekit.scss */
 .submit-entry {
   background: rgba(255, 255, 255, 0.4);
 }
 
 /* Buttons
 -------------------------------------------------- */
-/* line 351, ../sass/custom/_homekit.scss */
+/* line 354, ../sass/custom/_homekit.scss */
 .btn-submit, .btn-success, .btn-primary, .btn-info {
   color: #aeb8c3;
   border: solid 1px #3B3E47;
   background-color: #2D3038;
 }
-/* line 355, ../sass/custom/_homekit.scss */
+/* line 358, ../sass/custom/_homekit.scss */
 .btn-submit:hover, .btn-success:hover, .btn-primary:hover, .btn-info:hover {
   color: #fff;
   background-color: #3B3E47;
 }
 
-/* line 361, ../sass/custom/_homekit.scss */
+/* line 364, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn-default {
   color: #aeb8c3;
   border: solid 1px #3B3E47;
   background-color: #2D3038;
 }
-/* line 365, ../sass/custom/_homekit.scss */
+/* line 368, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn-default:hover {
   color: #fff;
   background-color: #3B3E47;
 }
-/* line 372, ../sass/custom/_homekit.scss */
+/* line 375, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn .fa {
   color: #aeb8c3;
 }
-/* line 375, ../sass/custom/_homekit.scss */
+/* line 378, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn.active {
   cursor: text;
   background-color: #525663;
   color: #FDC027;
 }
-/* line 379, ../sass/custom/_homekit.scss */
+/* line 382, ../sass/custom/_homekit.scss */
 .btn-goup-tabs .btn.active .fa {
   color: #FDC027;
 }
 
 /* Devices
 -------------------------------------------------- */
-/* line 387, ../sass/custom/_homekit.scss */
+/* line 390, ../sass/custom/_homekit.scss */
 .cfg-control-content {
   background-color: #fff;
 }
 
 /* Opacity
 -------------------------------------------------- */
-/* line 393, ../sass/custom/_homekit.scss */
+/* line 396, ../sass/custom/_homekit.scss */
 #main_navigation_wrap,
 #footer,
 #sub_navigation_in ul,
@@ -15645,7 +15650,6 @@ a:hover, a:focus {
 .btn,
 .form-control,
 .accordion-entry,
-.elemnts-room-bar,
 .form-page,
 .app-row-imglist,
 .card-element-dragdrop,
@@ -15657,11 +15661,12 @@ a:hover, a:focus {
 
 /* Round corners
 -------------------------------------------------- */
-/* line 415, ../sass/custom/_homekit.scss */
+/* line 417, ../sass/custom/_homekit.scss */
 #view_content,
 .widget-entry-in,
 .card-room-in,
 .vendor-list,
+.elemnts-room-bar,
 .app-row-imglist,
 .card-element-dragdrop,
 .dragdrop-element .dd-placeholder {
