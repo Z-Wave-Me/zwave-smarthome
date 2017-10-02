@@ -128,6 +128,10 @@
 
     /* Card Sensors */
     .card-sensors {
+         // Media queries
+      @include mediaQueries(max-small) {
+        display: none;
+      }
       text-align: center;
       position: absolute;
       bottom: 0;
