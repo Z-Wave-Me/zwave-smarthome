@@ -29,8 +29,8 @@
 
       .widget-img-overlay {
         background-color: rgba(255,255,255, 0.8);
-        width: inherit;
-        height: inherit;
+        width: 72px;
+        height: 72px;
         display: table;
         @include appBorderRadius(50%);
         position: absolute;
@@ -72,22 +72,22 @@
       }
       h3{
         font-size: 75%;
-        // Media queries
-        /*@include mediaQueries(min-esmall) {
+        overflow:hidden;              /* don't show excess chars */
+        text-overflow: ellipsis;
+        @include mediaQueries(min-esmall) {
           font-size: 95%;
-          padding: 0 0 0 64px + $spacing;
-        }*/
+        }
 
       }
       .widget-room {
         display: block;
-        font-size: 75%;
+        @include textOverflow();
+        font-size: 75%;;
         color: lighten($app-body-color, 40%);
         // Media queries
-        /*@include mediaQueries(min-esmall) {
+        @include mediaQueries(min-esmall) {
           font-size: 85%;
-          padding: 0 0 0 64px + $spacing;
-        }*/
+        }
       }
     }
     .widget-level {
@@ -238,11 +238,62 @@
     }
 }
 
-.sonos {
+.sonos, .switchRGBW, .sensorMultiline {
   @include mediaQueries(max-esmall) {
     //width: 66.66666%;
     width: 100%;
+
+    .progress-true {
+      .widget-img {
+          &:before {
+          content:'';
+          width: 72px;
+          height: 72px;
+          background-color: #fff;
+          opacity: 1;
+          left: 0;
+          right: 0;
+          margin: 0 auto;
+          position: absolute;
+          @include appBorderRadius(50%);
+        }
+      }
+    }
+
     .widget-entry-in {
+      .widget-img {
+        width: 33.333%;
+        background: none;
+        position: absolute;
+        top: $spacing;
+        left: -3px;
+        margin: 0px;
+        border: none;
+        text-align: center;
+      }
+
+      .widget-title {
+        height: 72px;
+        padding: 18px 0 0 0;
+
+        .widget-room {
+          margin-left: 33.333%;
+          font-size: 85%;
+          text-align: left;
+        }
+
+        h3 {
+          margin-left: 33.333%;
+          font-size: 85%;
+          text-align: left;
+        }
+      }
+
+      .widget-loader {
+        right: 66.666%;
+        left: -6px;
+      }
+
       .widget-footer {
         display: block; 
       }   
@@ -250,7 +301,6 @@
   }          
 }
 
-.sensor
 
 /* Elements drag & drop cards
 ----------------------------------------------------*/

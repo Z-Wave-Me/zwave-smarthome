@@ -11001,6 +11001,9 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .progress-true .widget-loader {
+  top: 7px;
+  right: 0px;
+  left: 0px;
   margin: 0 auto;
   position: absolute;
   color: #184B7C;
@@ -11018,6 +11021,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   .progress-true .widget-loader {
     top: 17px;
     left: 7px;
+    right: auto;
     width: 70px;
     height: 70px;
   }
@@ -11045,8 +11049,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 @media only screen and (min-width: 480px) {
   .progress-true .widget-loader:before {
-    width: 70px;
-    height: 70px;
+    width: 36px;
+    height: 72px;
     border-radius: 72px 0 0 72px;
     -webkit-transform-origin: 36px 36px;
     transform-origin: 36px 36px;
@@ -11070,8 +11074,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 @media only screen and (min-width: 480px) {
   .progress-true .widget-loader:after {
-    width: 72px;
-    height: 36px;
+    height: 72px;
+    width: 36px;
     border-radius: 0 72px 72px 0;
     left: 35px;
     -webkit-transform-origin: 0 36px;
@@ -11101,7 +11105,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   }
 }
 
-.longpress-true .widget-entry-in::before, .longpress-true .widget-entry-in::after {
+.widget-entry-in:before, .widget-entry-in:after {
   box-sizing: inherit;
   content: '';
   position: absolute;
@@ -11110,38 +11114,40 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border: 2px solid transparent;
 }
 
-.longpress-true .widget-entry-in::before {
+.widget-entry-in:before {
   top: 0;
   left: 0;
 }
 
-.longpress-true .widget-entry-in::after {
+.widget-entry-in:after {
   bottom: 0;
   right: 0;
 }
 
-.longpress-true .widget-entry-in {
-  transition: color 1.5s;
+.longpress-true {
   opacity: 0.5;
   transition: opacity 1.5s ease-out;
 }
 
-.longpress-true .widget-entry-in::before,
-.longpress-true .widget-entry-in::after {
+.longpress-true .widget-entry-in:before,
+.longpress-true .widget-entry-in:after {
   width: 100%;
   height: 100%;
 }
 
-.longpress-true .widget-entry-in::before {
+.longpress-true .widget-entry-in:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
-.longpress-true .widget-entry-in::after {
+.longpress-true .widget-entry-in:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -11489,8 +11495,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 .widget-entry-element .widget-entry-in .widget-img .widget-img-overlay {
   background-color: rgba(255, 255, 255, 0.8);
-  width: inherit;
-  height: inherit;
+  width: 72px;
+  height: 72px;
   display: table;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -11558,20 +11564,38 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 .widget-entry-element .widget-entry-in .widget-title h3 {
   font-size: 75%;
-  /*@include mediaQueries(min-esmall) {
-          font-size: 95%;
-          padding: 0 0 0 64px + $spacing;
-        }*/
+  overflow: hidden;
+  /* don't show excess chars */
+  text-overflow: ellipsis;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry-element .widget-entry-in .widget-title h3 {
+    font-size: 95%;
+  }
 }
 
 .widget-entry-element .widget-entry-in .widget-title .widget-room {
   display: block;
+  white-space: nowrap;
+  /* force single line */
+  overflow: hidden;
+  /* don't show excess chars */
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  /* Opera */
   font-size: 75%;
   color: #737373;
-  /*@include mediaQueries(min-esmall) {
-          font-size: 85%;
-          padding: 0 0 0 64px + $spacing;
-        }*/
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .widget-entry-element .widget-entry-in .widget-title .widget-room {
+    font-size: 85%;
+  }
 }
 
 .widget-entry-element .widget-entry-in .widget-level {
@@ -11713,21 +11737,65 @@ http://codepen.io/MattIn4D/pen/LiKFC
   width: 70% !important;
 }
 
-.sonos {
+.sonos, .switchRGBW, .sensorMultiline {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 479px) {
-  .sonos {
+  .sonos, .switchRGBW, .sensorMultiline {
     width: 100%;
   }
-  .sonos .widget-entry-in .widget-footer {
+  .sonos .progress-true .widget-img:before, .switchRGBW .progress-true .widget-img:before, .sensorMultiline .progress-true .widget-img:before {
+    content: '';
+    width: 72px;
+    height: 72px;
+    background-color: #fff;
+    opacity: 1;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    position: absolute;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+  }
+  .sonos .widget-entry-in .widget-img, .switchRGBW .widget-entry-in .widget-img, .sensorMultiline .widget-entry-in .widget-img {
+    width: 33.333%;
+    background: none;
+    position: absolute;
+    top: 10px;
+    left: -3px;
+    margin: 0px;
+    border: none;
+    text-align: center;
+  }
+  .sonos .widget-entry-in .widget-title, .switchRGBW .widget-entry-in .widget-title, .sensorMultiline .widget-entry-in .widget-title {
+    height: 72px;
+    padding: 18px 0 0 0;
+  }
+  .sonos .widget-entry-in .widget-title .widget-room, .switchRGBW .widget-entry-in .widget-title .widget-room, .sensorMultiline .widget-entry-in .widget-title .widget-room {
+    margin-left: 33.333%;
+    font-size: 85%;
+    text-align: left;
+  }
+  .sonos .widget-entry-in .widget-title h3, .switchRGBW .widget-entry-in .widget-title h3, .sensorMultiline .widget-entry-in .widget-title h3 {
+    margin-left: 33.333%;
+    font-size: 85%;
+    text-align: left;
+  }
+  .sonos .widget-entry-in .widget-loader, .switchRGBW .widget-entry-in .widget-loader, .sensorMultiline .widget-entry-in .widget-loader {
+    right: 66.666%;
+    left: -6px;
+  }
+  .sonos .widget-entry-in .widget-footer, .switchRGBW .widget-entry-in .widget-footer, .sensorMultiline .widget-entry-in .widget-footer {
     display: block;
   }
 }
 
-.sensor .dragdrop-element .dd-placeholder {
+/* Elements drag & drop cards
+----------------------------------------------------*/
+.dragdrop-element .dd-placeholder {
   width: 100%;
   text-align: center;
   border: 3px dashed #80AD80;
@@ -11736,7 +11804,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: white;
 }
 
-.sensor .dragdrop-element .dd-placeholder.dd-element {
+.dragdrop-element .dd-placeholder.dd-element {
   width: 100%;
   height: 100px;
   /* MIN WIDTH */
@@ -11744,7 +11812,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 480px) {
-  .sensor .dragdrop-element .dd-placeholder.dd-element {
+  .dragdrop-element .dd-placeholder.dd-element {
     float: left;
     width: 100px;
     height: 130px;

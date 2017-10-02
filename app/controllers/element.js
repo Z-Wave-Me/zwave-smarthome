@@ -7,7 +7,7 @@
  * The element root controller
  * @class ElementBaseController
  */
-myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, $routeParams, cfg,dataFactory, dataService, myCache) {
+myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, $routeParams, $timeout, $location, cfg, dataFactory, dataService, myCache) {
     $scope.dataHolder = {
         mode: 'default',
         firstLogin: false,
@@ -150,6 +150,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                                 {isFailed: v.metrics.isFailed},
                                 {metrics: v.metrics},
                                 {progress: false},
+                                {longpress: false},
                                 {iconPath: dataService.assignElementIcon(v)},
                                 {updateTime: v.updateTime}
                         );
@@ -458,6 +459,21 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         v.metrics.level = count;
          $scope.runCmd(cmd);
     };
+    
+    $scope.itemOnLongPress = function(id) {
+        var dev = _.findWhere($scope.dataHolder.devices.collection, {id: id});
+        dev.longpress = true;
+        $scope.longPressTimeout = $timeout(function() {
+            dev.longpress = false;
+            $location.path("element/"+id);
+        }, 1000);
+    }
+
+    $scope.itemOnTouchEnd = function(id) {
+        var dev = _.findWhere($scope.dataHolder.devices.collection, {id: id});
+        dev.longpress = false;
+        $timeout.cancel($scope.longPressTimeout);
+    }
 
     /// --- Private functions --- ///
     /**
