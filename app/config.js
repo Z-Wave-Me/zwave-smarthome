@@ -343,6 +343,11 @@ var config_data = {
         'element_history_blacklist': [
             'sensorMultiline'
         ],
+        // Whitelist of the deviceTypes with numeric or float level for icon
+        // overlay with level and scale (for mobile view)
+        'element_level_is_number': [
+            'sensorMultilevel', 'thermostat', 'battery', 'switchMultilevel'
+        ],
         // List of the find hosts
         'find_hosts': [
             'find.z-wave.me',
