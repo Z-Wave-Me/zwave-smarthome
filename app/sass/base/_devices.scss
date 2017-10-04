@@ -172,6 +172,24 @@ $inclusion-img-w: 96px;
         }
     }
 }
+
+/* Inclusion S2
+-------------------------------------------------- */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"].input_number {
+    display: inline-block;
+    -moz-appearance: textfield;
+    width: 5em;
+}
+
+.diabled_label {
+    color: darkgrey;
+}
+
 /* Management
 -------------------------------------------------- */
 .report-battery-info {

@@ -210,6 +210,18 @@ Build a new file name without invalid chars
 
 **Returns**: `string`
 
+### dataService.hasCommandClass(node, ccId) 
+
+Check if device has a given command class
+
+**Parameters**
+
+**node**: `object`
+
+**ccId**: `int`
+
+**Returns**: `boolean | object`
+
 ### dataService.assignElementIcon(element) 
 
 Assign an icon to the element

@@ -10,7 +10,7 @@
   "type_cfg": {
     "default": {
       "dir": "dist",
-      "name": "SmartHome UI"
+      "name": "SmartHome UI S2"
     }
   },
   "skin_path": "_project/skins/",

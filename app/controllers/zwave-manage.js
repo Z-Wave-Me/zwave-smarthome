@@ -78,18 +78,32 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 hasWakeup,
                 sleepingSince,
                 lastWakeup,
-                interval,
-                batteryCharge,
-                instance,
-                security;
+                interval;
         controllerNodeId = ZWaveAPIData.controller.data.nodeId.value;
         angular.forEach(ZWaveAPIData.devices, function (node, nodeId) {
             if (nodeId == 255 || nodeId == controllerNodeId || node.data.isVirtual.value) {
                 return;
             }
-            instance = getInstances(node);
-            interviewDone = instance.interviewDone;
-            security = instance.security;
+            var securityInterview = false;
+            var securityType = 'security-0'
+            var hasSecurityCc = dataService.hasCommandClass(node,152);
+            //console.log(nodeId + ' hasSecurityCc: ', hasSecurityCc)
+            if(hasSecurityCc){
+                //security = $filter('hasNode')(hasSecurityCc,'data.interviewDone.value');
+                securityType = 'security-1';
+                securityInterview = $filter('hasNode')(hasSecurityCc,'data.interviewDone.value');
+            }
+            // Security S2
+            var hasSecurityS2Cc = dataService.hasCommandClass(node,159);
+            if(hasSecurityS2Cc){
+               // security = true;
+                securityType = 'security-2';
+                securityInterview = $filter('hasNode')(hasSecurityS2Cc,'data.interviewDone.value');
+            }
+            //console.log(nodeId + ' securityType: ', securityType)
+            //instance = getInstances(node);
+            //interviewDone = instance.interviewDone;
+            //security = instance.security;
             isFailed = node.data.isFailed.value;
             hasBattery = 0x80 in node.instances[0].commandClasses;
             lastReceive = parseInt(node.data.lastReceived.updateTime, 10) || 0;
@@ -114,8 +128,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 title: node.data.givenName.value || 'Device ' + '_' + nodeId,
                 hasBattery: hasBattery,
                 batteryCharge: (batteryCharge === null ? null : parseInt(batteryCharge)),
-                interviewDone: interviewDone,
-                security: security,
+                securityType:  securityType,
+                securityInterview:  securityInterview,
+                //interviewDone: interviewDone,
+                //security: security,
                 isFailed: isFailed,
                 sleeping: sleepingCont(isListening, hasWakeup, sleepingSince, lastWakeup, interval),
                 awake: awakeCont(isAwake, isListening, isFLiRS),
@@ -199,9 +215,10 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
        
     }
     /**
+     * todo: deprecated
      * Get selected instances status
      */
-    function getInstances(node) {
+    /*function getInstances(node) {
         var instance = {
             interviewDone: true,
             security: false
@@ -222,7 +239,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         return instance;
 
     }
-    ;
+    ;*/
     // Get Awake Cont
     function awakeCont(isAwake, isListening, isFLiRS) {
         var awake_cont = false;
