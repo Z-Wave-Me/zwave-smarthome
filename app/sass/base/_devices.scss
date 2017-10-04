@@ -44,12 +44,20 @@ $inclusion-img-w: 96px;
     border: solid 1px $app-border-color;
 
     .vendor-image{
+        font-size: 80%;
         line-height: 80px + 5;
         margin: 0 !important;
         img {
+            padding: $spacing;
             vertical-align: middle;
             max-width: 80px;
             max-height: 80px;
+        }
+        span{
+            display: block;
+            padding: $spacing;
+            line-height: 1.3em;  
+            height: 85px;
         }
     }
 }
@@ -213,15 +221,26 @@ $inclusion-img-w: 96px;
 /* Images
 -------------------------------------------------- */
 .product-img{
-    max-width: 64px;
-    max-height: 64px;
+    max-width: 48px;
+    max-height: 48px;
+    // Media queries
+    @include mediaQueries(min-small) {
+        max-width: 64px;
+        max-height: 64px;
+    }
+
 }
 
 /* Camera
 -------------------------------------------------- */
 .app-row-cameraadd{
     .report-media{
-        text-align: center;
-        width: 64px + $spacing-double;// Img width + spacing
+        width: 48px + $spacing-double;// Img width + spacing
+        //text-align: center;
+        // Media queries
+        @include mediaQueries(min-small) {
+            width: 64px + $spacing-double;// Img width + spacing
+        }
+
     }
 }

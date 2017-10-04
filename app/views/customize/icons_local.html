@@ -107,7 +107,7 @@
                      ng-repeat="v in icons.all| orderBy : '-timestamp' track by $index">
                     <div class="imglist-entry-in infowindow-wrap">
                         <!-- Image-->
-                        <img class="imglist-img clickable" alt="{{v.file}}" title="{{v.file}}"
+                        <img class="imglist-img clickable" alt="img" title="{{v.file}}"
                              ng-click="expandNavi('iconInfowindow_' + $index, $event)"
                              ng-src="{{cfg.img.custom_icons + v.file}}" />
                         <!-- Checkbox -->
@@ -116,7 +116,7 @@
                         <!-- Info window-->
                         <div class="infowindow top" ng-if="naviExpanded['iconInfowindow' + '_' + $index]">
                             <div class="infowindow-in text-center">
-                                    <img class="imglist-img-preview" alt="{{v.file}}" title="{{v.file}}" ng-src="{{cfg.img.custom_icons + v.file}}" />
+                                    <img class="imglist-img-preview" alt="img" title="{{v.file}}" ng-src="{{cfg.img.custom_icons + v.file}}" />
                                 <p>{{_t('lb_category')}}: {{v.source_title}}</p>
                                 <div ng-if="icons.used.device[v.file]">
                                     <strong>{{_t('used_in')}}</strong>

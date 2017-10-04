@@ -19,6 +19,10 @@
     .report-col {
       padding: $spacing;
       vertical-align: top;
+       @include mediaQueries(max-small) {
+        border: 0;
+        display: block;
+    }
     }
   }
 }

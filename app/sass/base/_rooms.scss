@@ -58,7 +58,7 @@
       /* Header icons */
       .card-header-icon {
         color: lighten($app-body-color, 30%);
-        font-size: 160%;
+        font-size: 140%;
         padding: 0 0 0 $spacing-half;
 
         @include mediaQueries(min-small) {
@@ -128,6 +128,10 @@
 
     /* Card Sensors */
     .card-sensors {
+         // Media queries
+      @include mediaQueries(max-small) {
+        display: none;
+      }
       text-align: center;
       position: absolute;
       bottom: 0;

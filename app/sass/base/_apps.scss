@@ -3,6 +3,12 @@
 .widget-entry-app {
   width: 100%;
   padding: 0;
+  @include mediaQueries(min-small) {
+        width: 50%;
+    }  
+   @include mediaQueries(min-large) {
+        width: 33.33333%;;
+    }  
   
   .widget-entry-in {
     min-height: 128px;
@@ -27,7 +33,11 @@
       display: none;
     }
     .widget-content {
+         margin: $spacing-double 0 0 50px + $spacing;
+        @include mediaQueries(min-esmall) {
       margin: $spacing-double 0 0 64px + $spacing;
+    }
+     
     }
     .bottom-aligner {
       display: none;
@@ -109,7 +119,7 @@
   margin: 0 0 40px 0;
   h2 {
     padding: 0 0 10px 0;
-    font-size: 150%;
+    font-size: 120%;
     color: $accordion-heading-color;
     font-weight: normal;
   }
@@ -131,7 +141,7 @@
       color: $accordion-heading-color;
       font-weight: normal;
       h2 {
-        font-size: 150%;
+        font-size: 120%;
       }
 
     }
@@ -248,9 +258,12 @@
 }
 
 .app-image-detail {
-  max-width: 128px;
+    max-width: 64px;
+  max-height: 64px;
+     @include mediaQueries(min-small) {
+    max-width: 128px;
   max-height: 128px;
-  //@include appBorderRadius(50%);
+  }
 }
 
 .app-detail-body {

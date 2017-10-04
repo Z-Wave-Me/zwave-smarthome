@@ -52,7 +52,7 @@ $app-font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 $app-font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 
 // Font size
-$app-body-font-size: 17px;
+$app-body-font-size: 16px;
 
 /*-------------------------------------*/
 // COLORS
@@ -148,10 +148,9 @@ $loader-fadeout:  7s;
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
-/* shui, bayernshui, blueshui, darkshui
+/* shui, bayernshui, blueshui, darkshui, homekit
 -------------------------------------------------- */
-@import "custom/_shui";
-//@import "custom/_left_menu";
+@import "custom/_shui"; 
 
 /* SmartHome UI custom POPP
 -------------------------------------------------- */

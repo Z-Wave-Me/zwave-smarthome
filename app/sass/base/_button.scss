@@ -58,11 +58,7 @@
 .btn, .btn-device-admin {
   font-size: 110%;
   .fa {
-    font-size: 150%;
-    // Media queries
-    @include mediaQueries(min-small) {
-      font-size: 120%;
-    }
+    font-size: 120%;
   }
 }
 
