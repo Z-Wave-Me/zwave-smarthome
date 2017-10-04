@@ -30,8 +30,11 @@
         height: 150px;
         position: relative;
         padding: $spacing;
-         border-bottom: solid 1px $app-border-color;
         // Media queries  
+        @include mediaQueries(min-esmall) {
+            border-color: $app-border-color;
+            border-bottom: solid 1px $app-border-color;
+        } 
         @include mediaQueries(min-small) {
             border-color: $app-border-color;
             border: solid 1px $app-border-color;
