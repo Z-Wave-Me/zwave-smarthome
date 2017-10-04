@@ -29,7 +29,7 @@
 
       .widget-img-overlay {
         background-color: rgba(255,255,255, 0.8);
-        width: 64px;
+        width: 72px;
         height: 72px;
         display: table;
         @include appBorderRadius(50%);
@@ -43,6 +43,7 @@
           vertical-align: middle;
           font-size: 120%;
           text-align: center;
+          font-weight: bold;
         }
 
         .widget-scale {
@@ -325,7 +326,11 @@
 
       .widget-footer {
         display: block; 
-      }   
+      }
+
+      .bottom-aligner {
+        display: inline-block;
+      }
     }
   }          
 }
