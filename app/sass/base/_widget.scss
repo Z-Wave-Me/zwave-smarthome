@@ -105,12 +105,16 @@
             }
         }
         .bottom-aligner {
+            display: none;
             border:0;
-            display: inline-block;
             height: 100%;
             vertical-align: bottom;
-            width:1px;
+            width:1px;    
+            @include mediaQueries(min-esmall) {
+                display: inline-block;
+            }
         }
+
         .widget-ctrl-click{
             cursor: pointer;
         }
