@@ -12106,6 +12106,11 @@ img.widget-promo-image {
 
 /* Apps
 -------------------------------------------------- */
+.widget-entry-app {
+  width: 100%;
+  padding: 0;
+}
+
 .widget-entry-app .widget-entry-in {
   min-height: 128px;
   height: auto;
@@ -12118,6 +12123,18 @@ img.widget-promo-image {
     min-height: 1px;
     height: 110px;
   }
+}
+
+.widget-entry-app .widget-entry-in .widget-img {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  margin: 0;
+}
+
+.widget-entry-app .widget-entry-in .widget-img .widget-preview-img {
+  max-width: 64px;
+  max-height: 64px;
 }
 
 .widget-entry-app .widget-entry-in .widget-header {
@@ -12134,6 +12151,7 @@ img.widget-promo-image {
 
 .widget-entry-app .widget-entry-in .widget-footer {
   margin-top: 10px;
+  display: block;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
