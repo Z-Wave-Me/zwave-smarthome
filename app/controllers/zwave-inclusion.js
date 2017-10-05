@@ -418,7 +418,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             }, function (error) {
             });
     };
-    $scope.verifyS2cc(3)
+    //$scope.verifyS2cc(3)
 
 
 
