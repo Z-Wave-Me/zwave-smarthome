@@ -125,6 +125,12 @@
 // Media queries
 @mixin mediaQueries($media) {
   /* MIN WIDTH */
+  // Ultra Small devices, old Phones 320px
+  @if $media == min-usmall {
+    @media only screen and (min-width: $break-usmall) {
+      @content;
+    }
+  }
   // Extra Small Devices, Phones 480px
   @if $media == min-esmall {
     @media only screen and (min-width: $break-esmall) {
