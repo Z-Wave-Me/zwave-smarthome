@@ -268,7 +268,7 @@
     }
 }
 
-.sonos, .switchRGBW, .sensorMultiline {
+.audioPlayer, .switchRGBW, .sensorMultiline {
   @include mediaQueries(max-esmall) {
     //width: 66.66666%;
     width: 100%;
