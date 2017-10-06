@@ -63,28 +63,32 @@
                     </div>
 
                 </div>
-            </fieldset>
+            </fieldset>      
 
-            <fieldset ng-if="input.role === 1">
-                <h3>{{_t('lb_allow_access_to_all_rooms')}}</h3>
-            </fieldset>
-
-            <fieldset ng-if="input.role !== 1">
+            <fieldset>
                 <h3>{{_t('lb_allow_rooms')}}</h3>
-                <div>
-                     <div class="device-available-block assigned">
-                        <a href="" class="btn btn-default btn-tag"
-                           ng-repeat="d in rooms" 
-                           ng-if="input.rooms.indexOf(d.id) > -1"
-                           ng-click="removeRoom(d.id)">{{d.title|cutText:true:20}} <i class="fa fa-times text-danger"></i></a>
-                    </div>
-                 <h3>{{_t('lb_available_rooms')}}</h3>
-                <div class="device-available-block">
-                    <a href="" class="btn btn-default btn-tag" 
-                        ng-repeat="d in rooms" 
-                        ng-if="input.rooms.indexOf(d.id) === -1"
-                        ng-click="assignRoom(d.id)">{{d.title|cutText:true:20}} <i class="fa fa-plus text-success"></i></a>
+                <div ng-if="input.role === 1">
+                    <p>{{_t('lb_allow_access_to_all_rooms')}}</p>
                 </div>
+                <div ng-if="input.role !== 1">
+                    <div ng-if="!rooms.length">
+                        <p>{{_t('no_rooms')}}</p>
+                    </div>
+                    <div ng-if="rooms.length">
+                         <div class="device-available-block assigned">
+                            <a href="" class="btn btn-default btn-tag"
+                               ng-repeat="d in rooms" 
+                               ng-if="input.rooms.indexOf(d.id) > -1"
+                               ng-click="removeRoom(d.id)">{{d.title|cutText:true:20}} <i class="fa fa-times text-danger"></i></a>
+                        </div>
+                        <h3>{{_t('lb_available_rooms')}}</h3>
+                        <div class="device-available-block">
+                            <a href="" class="btn btn-default btn-tag" 
+                                ng-repeat="d in rooms" 
+                                ng-if="input.rooms.indexOf(d.id) === -1"
+                                ng-click="assignRoom(d.id)">{{d.title|cutText:true:20}} <i class="fa fa-plus text-success"></i></a>
+                        </div>
+                    </div>
                 </div>
              </fieldset>
 
