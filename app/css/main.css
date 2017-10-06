@@ -14223,8 +14223,6 @@ img.widget-promo-image {
 /* line 131, ../sass/base/_apps.scss */
 .app-entry-online {
   margin: 0 0 20px 0;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
 }
 /* line 134, ../sass/base/_apps.scss */
 .app-entry-online .app-entry-cat {
@@ -14253,39 +14251,105 @@ img.widget-promo-image {
 .app-entry-online .app-entry-cat .app-entry-btn .btn {
   margin: 20px 0 0 0;
 }
-@media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 161, ../sass/base/_apps.scss */
+/* line 159, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 159, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry {
     border: 0;
-    width: 20%;
+    width: 50%;
   }
-  /* line 164, ../sass/base/_apps.scss */
+}
+@media only screen and (min-width: 768px) {
+  /* line 159, ../sass/base/_apps.scss */
+  .app-entry-online .widget-entry {
+    border: 0;
+    width: 25%;
+  }
+}
+/* line 168, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry .widget-entry-in {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 168, ../sass/base/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in {
+    height: 220px;
+    margin: 10px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* line 168, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in {
     height: 256px;
   }
-  /* line 166, ../sass/base/_apps.scss */
+}
+/* line 177, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry .widget-entry-in .widget-img {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 177, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-img {
     position: static;
     text-align: center;
   }
-  /* line 169, ../sass/base/_apps.scss */
+}
+/* line 182, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 182, ../sass/base/_apps.scss */
+  .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
+    max-width: 80px;
+    max-height: 80px;
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* line 182, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-img .widget-preview-img {
     max-width: 128px;
     max-height: 128px;
-    width: 128px;
-    height: 128px;
   }
-  /* line 177, ../sass/base/_apps.scss */
+}
+/* line 197, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry .widget-entry-in .widget-content {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 197, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-content {
     margin: 20px 0 0 0;
   }
-  /* line 180, ../sass/base/_apps.scss */
+}
+/* line 203, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry .widget-entry-in .widget-title {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 203, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-title {
     text-align: center;
   }
 }
-@media only screen and (min-width: 992px) and (orientation: landscape) and (max-width: 1200px) and (min-width: 1024px) {
-  /* line 180, ../sass/base/_apps.scss */
+@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+  /* line 203, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-title {
     max-width: 170px;
     white-space: nowrap;
@@ -14297,17 +14361,36 @@ img.widget-promo-image {
     /* Opera */
   }
 }
-@media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 188, ../sass/base/_apps.scss */
+/* line 213, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 213, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-ctrl {
     width: 100%;
     float: none;
   }
-  /* line 192, ../sass/base/_apps.scss */
+}
+/* line 220, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry .widget-entry-in .ctrl-left {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 220, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-left {
     text-align: center;
   }
-  /* line 195, ../sass/base/_apps.scss */
+}
+/* line 226, ../sass/base/_apps.scss */
+.app-entry-online .widget-entry .widget-entry-in .ctrl-right {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 226, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .ctrl-right {
     margin: 5px 0 0 0;
   }
@@ -14315,56 +14398,56 @@ img.widget-promo-image {
 
 /* Apps instances
 -------------------------------------------------- */
-/* line 209, ../sass/base/_apps.scss */
+/* line 241, ../sass/base/_apps.scss */
 #apps_instances .accordion-entry {
   background-color: #FFFFFF;
   margin: 0;
 }
-/* line 213, ../sass/base/_apps.scss */
+/* line 245, ../sass/base/_apps.scss */
 #apps_instances .accordion-entry .accordion-entry-title {
   font-size: 100%;
   margin: 0;
   padding: 10px 0;
   font-weight: bold;
 }
-/* line 218, ../sass/base/_apps.scss */
+/* line 250, ../sass/base/_apps.scss */
 #apps_instances .accordion-entry .accordion-entry-title .report-img-s {
   margin: 0 0 0 5px;
 }
-/* line 221, ../sass/base/_apps.scss */
+/* line 253, ../sass/base/_apps.scss */
 #apps_instances .accordion-entry .accordion-entry-title .accordion-title-text {
   padding: 0 0 0 13px;
 }
 
-/* line 229, ../sass/base/_apps.scss */
+/* line 261, ../sass/base/_apps.scss */
 .instance-entry-single .app-row-report {
   border-bottom: 0;
   border-top: 0;
 }
 
-/* line 236, ../sass/base/_apps.scss */
+/* line 268, ../sass/base/_apps.scss */
 .instance-entry-multiple .app-row-report {
   border-top: 0;
 }
-/* line 240, ../sass/base/_apps.scss */
+/* line 272, ../sass/base/_apps.scss */
 .instance-entry-multiple .app-row-report .report-body {
   padding: 0 0 0 32px;
 }
-/* line 244, ../sass/base/_apps.scss */
+/* line 276, ../sass/base/_apps.scss */
 .instance-entry-multiple .report-entry {
   border-bottom: 0;
 }
 
 /* App detail
 -------------------------------------------------- */
-/* line 251, ../sass/base/_apps.scss */
+/* line 283, ../sass/base/_apps.scss */
 .app-detail-img {
   margin: 0 0 10px 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 251, ../sass/base/_apps.scss */
+  /* line 283, ../sass/base/_apps.scss */
   .app-detail-img {
     float: left;
     position: relative;
@@ -14373,7 +14456,7 @@ img.widget-promo-image {
   }
 }
 
-/* line 260, ../sass/base/_apps.scss */
+/* line 292, ../sass/base/_apps.scss */
 .app-image-detail {
   max-width: 64px;
   max-height: 64px;
@@ -14381,30 +14464,30 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 260, ../sass/base/_apps.scss */
+  /* line 292, ../sass/base/_apps.scss */
   .app-image-detail {
     max-width: 128px;
     max-height: 128px;
   }
 }
 
-/* line 269, ../sass/base/_apps.scss */
+/* line 301, ../sass/base/_apps.scss */
 .app-detail-body {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 269, ../sass/base/_apps.scss */
+  /* line 301, ../sass/base/_apps.scss */
   .app-detail-body {
     margin: 0 0 0 148px;
   }
 }
-/* line 274, ../sass/base/_apps.scss */
+/* line 306, ../sass/base/_apps.scss */
 .app-detail-body h2 {
   margin: 20px 0 10px 0;
 }
 
-/* line 279, ../sass/base/_apps.scss */
+/* line 311, ../sass/base/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #cccccc;
   margin: 10px 0 0 0;
@@ -14413,20 +14496,20 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 287, ../sass/base/_apps.scss */
+/* line 319, ../sass/base/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #0d0d0d;
 }
-/* line 291, ../sass/base/_apps.scss */
+/* line 323, ../sass/base/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 298, ../sass/base/_apps.scss */
+/* line 330, ../sass/base/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -14434,7 +14517,7 @@ img.widget-promo-image {
   color: #0d0d0d;
   font-size: 100%;
 }
-/* line 304, ../sass/base/_apps.scss */
+/* line 336, ../sass/base/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -14442,7 +14525,7 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 315, ../sass/base/_apps.scss */
+/* line 347, ../sass/base/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
@@ -15605,7 +15688,7 @@ body {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 480px) {
   /* line 58, ../sass/custom/_shui.scss */
   .widget-entry .widget-entry-in {
     border: solid 4px #FFFFFF;
