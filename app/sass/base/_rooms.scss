@@ -22,6 +22,7 @@
     position: relative;
     height: 132px;
     padding: 0;
+    margin-bottom: $spacing-half;
     //margin: 0 0 $spacing-double 0;
     &.room-has-sensor{
       // Media queries
@@ -128,10 +129,6 @@
 
     /* Card Sensors */
     .card-sensors {
-         // Media queries
-      @include mediaQueries(max-small) {
-        display: none;
-      }
       text-align: center;
       position: absolute;
       bottom: 0;

@@ -58,7 +58,7 @@ body {
   .widget-entry-in{
     border-color: #d3d3d3;
     // Media queries
-    @include mediaQueries(min-small) {
+    @include mediaQueries(min-esmall) {
       border: solid 4px #FFFFFF;
      // border-width: 4px !important;
       @include appGradient();

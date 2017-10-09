@@ -1,140 +1,140 @@
 /* Elements
 -------------------------------------------------- */
 .widget-entry-element {
-  .widget-entry-in {
-    height: 160px;
-    // Media queries
-    @include mediaQueries(min-esmall) {
-      height: 150px;
-    }
-    @include mediaQueries(min-small) {
-      height: 124px;
-    }
-    .widget-img {
-      width: 72px;
-      height: 72px;     
-      background-color: #fff;
-      @include appBorderRadius(50%);
-      .widget-icon-update {
-
-        //z-index: 10;
-        cursor: pointer;
-        //border-color: $element-widget-img-update-border-color;
-      }
-      // Media queries
-      @include mediaQueries(min-esmall) {
-        width: 64px;
-        height: 64px;  
-      }
-
-      .widget-img-overlay {
-        background-color: rgba(255,255,255, 0.8);
-        width: 72px;
-        height: 72px;
-        display: table;
-        @include appBorderRadius(50%);
-        position: absolute;
+    .widget-entry-in {
+        height: 160px;
         // Media queries
         @include mediaQueries(min-esmall) {
-          display: none;
+            height: 150px;
         }
-        .widget-level {
-          display: table-cell;
-          vertical-align: middle;
-          font-size: 120%;
-          text-align: center;
-          font-weight: bold;
+        @include mediaQueries(min-small) {
+            height: 124px;
+        }
+        .widget-img {
+            width: 72px;
+            height: 72px;     
+            background-color: #fff;
+            @include appBorderRadius(50%);
+            .widget-icon-update {
+
+                //z-index: 10;
+                cursor: pointer;
+                //border-color: $element-widget-img-update-border-color;
+            }
+            // Media queries
+            @include mediaQueries(min-esmall) {
+                width: 64px;
+                height: 64px;  
+            }
+
+            .widget-img-overlay {
+                background-color: rgba(255,255,255, 0.8);
+                width: 72px;
+                height: 72px;
+                display: table;
+                @include appBorderRadius(50%);
+                position: absolute;
+                // Media queries
+                @include mediaQueries(min-esmall) {
+                    display: none;
+                }
+                .widget-level {
+                    display: table-cell;
+                    vertical-align: middle;
+                    font-size: 120%;
+                    text-align: center;
+                    font-weight: bold;
+                }
+
+                .widget-scale {
+                    display: table-cell;
+                    vertical-align: middle;
+                    font-size: 80%;
+                    text-align: left;
+                }
+            }
         }
 
-        .widget-scale {
-          display: table-cell;
-          vertical-align: middle;
-          font-size: 80%;
-          text-align: left;
-        }
-      }
-    }
-
-    .widget-content{
-      // Media queries
-      @include mediaQueries(max-esmall) {
-        margin-left:0;
-      }
-    }
-    .widget-title {
-      text-align: center;
-      // Media queries
-      @include mediaQueries(min-esmall) {
-          text-align: left;
-      }
-      @include mediaQueriesMaxMin($site-max-w,$break-large) {
-        max-width: 200px;
-        @include textOverflow();
-      }
-      h3{
-        font-size: 75%;
-        overflow:hidden;              /* don't show excess chars */
-        text-overflow: ellipsis;
-        @include mediaQueries(min-esmall) {
-          font-size: 95%;
-        }
-
-      }
-      .widget-room {
-        display: block;
-        @include textOverflow();
-        font-size: 75%;;
-        color: lighten($app-body-color, 40%);
-        // Media queries
-        @include mediaQueries(min-esmall) {
-          font-size: 85%;
+        .widget-content{
+            // Media queries
+            @include mediaQueries(max-esmall) {
+                margin-left:0;
+            }
         }
         .widget-title {
+            text-align: center;
             // Media queries
+            @include mediaQueries(min-esmall) {
+                text-align: left;
+            }
             @include mediaQueriesMaxMin($site-max-w,$break-large) {
                 max-width: 200px;
                 @include textOverflow();
             }
-
-            // Media queries
-            @include mediaQueries(max-esmall) {
-                h3{
+            h3{
+                font-size: 75%;
+                overflow:hidden;              /* don't show excess chars */
+                text-overflow: ellipsis;
+                @include mediaQueries(min-esmall) {
                     font-size: 95%;
-                    padding: 0 0 0 64px + $spacing;
                 }
 
             }
             .widget-room {
                 display: block;
-                font-size: 85%;
+                @include textOverflow();
+                font-size: 75%;;
                 color: lighten($app-body-color, 40%);
                 // Media queries
-                @include mediaQueries(max-esmall) {
-                    padding: 0 0 0 64px + $spacing;
+                @include mediaQueries(min-esmall) {
+                    font-size: 85%;
+                }
+                .widget-title {
+                    // Media queries
+                    @include mediaQueriesMaxMin($site-max-w,$break-large) {
+                        max-width: 200px;
+                        @include textOverflow();
+                    }
+
+                    // Media queries
+                    @include mediaQueries(max-esmall) {
+                        h3{
+                            font-size: 95%;
+                            padding: 0 0 0 64px + $spacing;
+                        }
+
+                    }
+                    .widget-room {
+                        display: block;
+                        font-size: 85%;
+                        color: lighten($app-body-color, 40%);
+                        // Media queries
+                        @include mediaQueries(max-esmall) {
+                            padding: 0 0 0 64px + $spacing;
+                        }
+                    }
+                }
+                .widget-level {
+                    font-weight: bold;
+                    font-size: 130%;
+                    color: $app-body-color;
+                }
+                .widget-scale {
+                    font-size: 110%;
+                }
+
+            }
+        }
+        &.isfailed-true{
+            .widget-entry-in {
+                opacity: 0.8;
+                border-color: $app-bcg-danger;
+                .widget-preview-img{
+                    opacity: 0.6;
                 }
             }
         }
-        .widget-level {
-            font-weight: bold;
-            font-size: 130%;
-            color: $app-body-color;
-        }
-        .widget-scale {
-            font-size: 110%;
-        }
-
-         }
     }
-    &.isfailed-true{
-        .widget-entry-in {
-            opacity: 0.8;
-            border-color: $app-bcg-danger;
-            .widget-preview-img{
-                opacity: 0.6;
-            }
-        }
-    }
-}
 }
 
 .widget-ctrl, .tbl-widget-ctrl {
@@ -174,9 +174,9 @@
             text-transform: lowercase;
         }
         .btn-widget-time, .txt-widget-time {
-             display: none;
+            display: none;
             @include mediaQueries(min-small) {
-               
+
                 padding: $spacing 0 0 0;
                 border: 0 none;
                 color: lighten($app-body-color, 40%);
@@ -269,70 +269,70 @@
 }
 
 .sonos, .switchRGBW, .sensorMultiline {
-  @include mediaQueries(max-esmall) {
-    //width: 66.66666%;
-    width: 100%;
+    @include mediaQueries(max-esmall) {
+        //width: 66.66666%;
+        width: 100%;
 
-    .progress-true {
-      .widget-img {
-          &:before {
-          content:'';
-          width: 72px;
-          height: 72px;
-          background-color: #fff;
-          opacity: 1;
-          left: 0;
-          right: 0;
-          margin: 0 auto;
-          position: absolute;
-          @include appBorderRadius(50%);
-        }
-      }
-    }
-
-    .widget-entry-in {
-      .widget-img {
-        width: 33.333%;
-        background: none;
-        position: absolute;
-        top: $spacing;
-        left: -3px;
-        margin: 0px;
-        border: none;
-        text-align: center;
-      }
-
-      .widget-title {
-        height: 72px;
-        padding: 18px 0 0 0;
-
-        .widget-room {
-          margin-left: 33.333%;
-          font-size: 85%;
-          text-align: left;
+        .progress-true {
+            .widget-img {
+                &:before {
+                    content:'';
+                    width: 72px;
+                    height: 72px;
+                    background-color: #fff;
+                    opacity: 1;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    position: absolute;
+                    @include appBorderRadius(50%);
+                }
+            }
         }
 
-        h3 {
-          margin-left: 33.333%;
-          font-size: 85%;
-          text-align: left;
+        .widget-entry-in {
+            .widget-img {
+                width: 33.333%;
+                background: none;
+                position: absolute;
+                top: $spacing;
+                left: -3px;
+                margin: 0px;
+                border: none;
+                text-align: center;
+            }
+
+            .widget-title {
+                height: 72px;
+                padding: 18px 0 0 0;
+
+                .widget-room {
+                    margin-left: 33.333%;
+                    font-size: 85%;
+                    text-align: left;
+                }
+
+                h3 {
+                    margin-left: 33.333%;
+                    font-size: 85%;
+                    text-align: left;
+                }
+            }
+
+            .widget-loader {
+                right: 66.666%;
+                left: -6px;
+            }
+
+            .widget-footer {
+                display: block; 
+            }
+
+            .bottom-aligner {
+                display: inline-block;
+            }
         }
-      }
-
-      .widget-loader {
-        right: 66.666%;
-        left: -6px;
-      }
-
-      .widget-footer {
-        display: block; 
-      }
-
-      .bottom-aligner {
-        display: inline-block;
-      }
-    }
-  }          
+    }          
 }
 
 
@@ -366,31 +366,41 @@
     cursor: move;
     text-align: center;
     border: solid 1px $app-border-color;
-    width: 100%;
-    height: 100px;
+    width: 50%;
+    height: 130px;
+    @include appFloat(left);
+    @include mediaQueries(min-usmall) {
+        @include appFloat(left);
+        width: 33.33333%;
+      
+    }
     @include mediaQueries(min-esmall) {
         @include appFloat(left);
-        //width: 33.33333%;
-        width: 100px;
-        height: 130px;
+        width: 25%;
+      
+    }
+    @include mediaQueriesMin(600px){
+         width: 20%;
     }
     @include mediaQueries(min-small) {
-        @include appFloat(left);
-        //width: 25%;
-        //width: 33.33333%;
+       width:14.28571%;
     }
     @include mediaQueries(min-medium) {
-        //width: 33.33333%;
-        //width: 20;
+       width: 12.5%;
     }
     @include mediaQueries(min-large) {
-        //width: 25%;
-        //width: 16%;
+        width: 10%;
     }
     /* Inner element */
     .card-element-dragdrop-in {
-
         padding: $spacing;
+        word-break: break-word;
+        .element-dragdrop-img{
+            max-width: 48px;
+            max-height: 48px;
+            //border: solid 4px $widget-img-border-color;
+            @include appBorderRadius(50%);
+        }
         h3{
             margin: $spacing 0 0 0;
             font-size: 95%;
@@ -398,13 +408,6 @@
 
     }
 
-}
-
-.element-dragdrop-img{
-    max-width: 48px;
-    max-height: 48px;
-    //border: solid 4px $widget-img-border-color;
-    @include appBorderRadius(50%);
 }
 
 /* Element detail
