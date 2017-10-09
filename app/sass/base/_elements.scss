@@ -415,6 +415,11 @@
 .btn-tag {
     float: none !important;
     border-radius: 4px !important;
+    label {
+        input[type="checkbox"] {
+            display: inline-block;
+        }    
+    }
 }
 
 .app-row-icons {

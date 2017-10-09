@@ -2,7 +2,7 @@
 <div ng-controller="ElementIdController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div ng-if="elementId.show">
-        <h2><span ng-bind="_t('lb_cfg_view')"></span>: <span ng-bind="elementId.input.metrics.title"></span></h2>
+        <h2><span ng-bind="_t('lb_cfg_view') + ':'"></span> <span ng-bind="elementId.input.metrics.title"></span></h2>
         <form name="form_element" id="form_element" class="form form-page" autocomplete="off"
               ng-submit="store(elementId.input)" novalidate>
             <fieldset ng-show="elementId.input.isFailed && elementId.appType.zwave">
@@ -51,11 +51,11 @@
                     </div>
                     <!-- Hide element -->
                     <div class="form-group">
-                        <input type="checkbox" name="dashboard" id="dashboard"
+                        <input type="checkbox" name="hide_element" id="hide_element"
                                ng-init="visibility.checked = !elementId.input.visibility"
                                ng-model="visibility.checked"
                                ng-change="elementId.input.visibility = !visibility.checked"
-                               ng-checked="!elementId.input.visibility"/> <label>{{_t('hide_element')}}</label>
+                               ng-checked="!elementId.input.visibility"/> <label for="hide_element">{{_t('hide_element')}}</label>
                         <bb-help-text trans="_t('hide_element_info')"></bb-help-text>
                     </div>
 
@@ -76,13 +76,14 @@
                 <div class="form-group">
                     <div>
                         <input type="checkbox" name="dashboard" value="{{elementId.input.onDashboard}}" id="dashboard"
-                               ng-model="elementId.input.onDashboard" ng-checked="elementId.input.onDashboard"/> <label>{{_t('lb_add_dashboard')}}</label>
+                               ng-model="elementId.input.onDashboard" ng-checked="elementId.input.onDashboard"/> 
+                               <label for="dashboard">{{_t('lb_add_dashboard')}}</label>
                     </div>
                     <div>
                         <input type="checkbox" name="hide_events" value="{{elementId.input.id}}" id="hide_events"
                                ng-model="elementId.input.hide_events"
                                ng-checked="user.hide_single_device_events.indexOf(elementId.input.id) === -1 ? false : true"/>
-                        <label>{{_t('lb_hide_events_device')}}</label>
+                        <label for="hide_events">{{_t('lb_hide_events_device')}}</label>
                     </div>
                 </div>
                 <!-- Rooms -->
