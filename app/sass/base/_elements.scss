@@ -394,6 +394,7 @@
     /* Inner element */
     .card-element-dragdrop-in {
         padding: $spacing;
+        word-break: break-word;
         .element-dragdrop-img{
             max-width: 48px;
             max-height: 48px;

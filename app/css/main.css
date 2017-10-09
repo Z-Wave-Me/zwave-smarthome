@@ -13822,6 +13822,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 /* line 395, ../sass/base/_elements.scss */
 .card-element-dragdrop .card-element-dragdrop-in {
+  word-break: break-word;
   padding: 10px;
 }
 /* line 397, ../sass/base/_elements.scss */
