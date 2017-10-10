@@ -1,4 +1,7 @@
 {
+    "--": "------------------------------------------",
+    "smartstart": "SmartStart",
+     "------------------------------------------": "--",
     "activate_module": "Activate __module__",
     "activeASC": "Inactive",
     "activeDESC": "Active",
