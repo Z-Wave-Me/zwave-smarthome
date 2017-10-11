@@ -22,26 +22,26 @@
     }
     .dropdown-entry {
         // Media queries
-        @include mediaQueries(min-small) {
+        //@include mediaQueries(min-small) {
             display: table;
             width: 100%
-        }
+        //}
 
     }
     .dropdown-col {
         // Media queries
-        @include mediaQueries(min-small) {
+        //@include mediaQueries(min-small) {
             display: table-cell;
             vertical-align: middle;
-        }
+        //}
 
     }
 
     .dropdown-ctrl {
         // Media queries
-        @include mediaQueries(min-small) {
+        //@include mediaQueries(min-small) {
             text-align: right;
-        }
+        //}
 
     }
 
