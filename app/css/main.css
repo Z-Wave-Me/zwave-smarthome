@@ -12703,43 +12703,19 @@ fieldset.submit-entry {
 
 /* line 23, E:/GitHub/zwave-smarthome/app/sass/base/_dropdown.scss */
 .app-dropdown .dropdown-entry {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 23, E:/GitHub/zwave-smarthome/app/sass/base/_dropdown.scss */
-  .app-dropdown .dropdown-entry {
-    display: table;
-    width: 100%;
-  }
+  display: table;
+  width: 100%;
 }
 
 /* line 31, E:/GitHub/zwave-smarthome/app/sass/base/_dropdown.scss */
 .app-dropdown .dropdown-col {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 31, E:/GitHub/zwave-smarthome/app/sass/base/_dropdown.scss */
-  .app-dropdown .dropdown-col {
-    display: table-cell;
-    vertical-align: middle;
-  }
+  display: table-cell;
+  vertical-align: middle;
 }
 
 /* line 40, E:/GitHub/zwave-smarthome/app/sass/base/_dropdown.scss */
 .app-dropdown .dropdown-ctrl {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 40, E:/GitHub/zwave-smarthome/app/sass/base/_dropdown.scss */
-  .app-dropdown .dropdown-ctrl {
-    text-align: right;
-  }
+  text-align: right;
 }
 
 /* line 48, E:/GitHub/zwave-smarthome/app/sass/base/_dropdown.scss */
@@ -13236,17 +13212,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 /* line 225, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert
