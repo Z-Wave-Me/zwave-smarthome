@@ -341,7 +341,8 @@ var config_data = {
         // Blacklist of the deviceTypes without icon
         // These elements will be displayed without the HISTORY or EVENT icon
         'element_history_blacklist': [
-            'sensorMultiline'
+            'sensorMultiline',
+            'audioPlayer'
         ],
         // Whitelist of the deviceTypes with numeric or float level for icon
         // overlay with level and scale (for mobile view)
