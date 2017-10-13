@@ -15448,6 +15448,110 @@ img.widget-promo-image {
   color: #a94442;
 }
 
+/* SmartStart
+-------------------------------------------------- */
+/* line 4, ../sass/base/_smartstart.scss */
+.smart-start .container {
+  padding: 0;
+  border: solid 10px #fff;
+  background-color: #fff;
+  max-width: 500px;
+}
+/* line 9, ../sass/base/_smartstart.scss */
+.smart-start .container .btn-goup-tabs {
+  margin: 0;
+}
+/* line 12, ../sass/base/_smartstart.scss */
+.smart-start .container .btn-goup-tabs .btn {
+  border: 0;
+}
+/* line 14, ../sass/base/_smartstart.scss */
+.smart-start .container .btn-goup-tabs .btn.active {
+  background-color: #6ED0F6;
+}
+/* line 19, ../sass/base/_smartstart.scss */
+.smart-start .container .entry {
+  background-color: #6ED0F6;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  height: auto;
+  max-width: 500px;
+}
+/* line 29, ../sass/base/_smartstart.scss */
+.smart-start .container .entry .content {
+  font-weight: bold;
+  text-shadow: 2px 2px 2px #969696;
+  font-size: 140%;
+  margin: 20px;
+}
+/* line 36, ../sass/base/_smartstart.scss */
+.smart-start .container .entry .image .fa {
+  font-size: 128px;
+  color: #00BDBD;
+}
+/* line 39, ../sass/base/_smartstart.scss */
+.smart-start .container .entry .image .fa.fa-exclamation {
+  color: #ED0048;
+}
+/* line 44, ../sass/base/_smartstart.scss */
+.smart-start .container .entry .image img {
+  max-width: 128px;
+  max-height: 128px;
+}
+/* line 52, ../sass/base/_smartstart.scss */
+.smart-start .container .entry.start img {
+  margin-bottom: -50px;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+/* line 63, ../sass/base/_smartstart.scss */
+.entry {
+  /*    position: relative;
+      top: 0;
+      left: 0;*/
+}
+
+/* line 69, ../sass/base/_smartstart.scss */
+.preloader-scan {
+  /*  position: fixed;
+    left: 0;
+    right: 0;*/
+  max-width: 128px;
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+  height: 128px;
+  background: url("../img/smartstart/qrcode-blue.png") no-repeat 50% 50%;
+  background-size: 128px 128px;
+}
+/* line 83, ../sass/base/_smartstart.scss */
+.preloader-scan .laser {
+  margin-left: -50px;
+  margin-right: -50px;
+  width: 228px;
+  background-color: tomato;
+  height: 2px;
+  z-index: 2;
+  box-shadow: 0 0 4px red;
+  animation: scanning 2s infinite;
+}
+/* line 97, ../sass/base/_smartstart.scss */
+.preloader-scan .diode {
+  animation: beam .01s infinite;
+}
+
+@keyframes beam {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes scanning {
+  50% {
+    transform: translateY(75px);
+  }
+}
 /* Login
 -------------------------------------------------- */
 /* line 4, ../sass/base/_auth.scss */

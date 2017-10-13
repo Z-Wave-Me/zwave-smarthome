@@ -1,0 +1,80 @@
+<!-- SmartStart -->
+<div ng-controller="SmartStartController">
+    <div class="form form-inline form-page">
+        <!-- Title  -->
+        <div class="fieldset">
+            <h1>{{_t('smartstart')}}</h1>
+        </div>
+        <div class="fieldset">
+            <div class="app-row-report row-smartstart clearfix"  ng-show="smartStart.show">
+                <!-- QR inclusion -->
+
+                <div class="report-entry">
+                    <div class="report-col body">
+                        <p><strong>Scan QR code</strong></p>
+                        <div class="qrcode-wrap" ng-click="startQrCodeInclusion()">
+                            <div id="qrcode_smartstart"></div>
+                        </div>
+                    </div>
+                    <div class="report-col body">
+                        <h2>Obtain DSK from Device</h2>
+                        <div>
+                            This component can have a lot of variance, depending on the architecture of the gateway product and
+                            the end devices. All products will have QR codes with the DSK available, while some products may offer
+                            alternative means of obtaining the key. For simplicity, this document is focused on generic products with QR
+                            codes.
+                        </div>
+                        <p><strong>There are two main ways to obtain the DSK of a device:</strong></p>
+                        <p>
+                            <strong>Recommended:</strong> Utilize a smartphone camera to scan and decode the QR code, particularly if the
+                            gateway already has a smartphone app that can be used as an administrative interface, showing the
+                            included end device on the gateway provisioning list
+                        </p>
+
+                    </div>
+                </div>
+                <!-- Input inclusion  -->
+                <div class="report-entry">
+                    <div class="report-col body" ng-submit="startDskInclusion()">
+                        <form name="form_dsk">
+                            <div class="form-group">
+                                <input name="dsk" id="dsk" class="form-control" type="text" placeholder="Enter DSK here"
+                                       ng-minlength="5"
+                                       onKeyPress="if(this.value.length==5) return false;" 
+                                       ng-model="smartStart.input.dsk" />
+                                <button class="btn btn-success btn-block" ng-disabled="!smartStart.input.dsk || form_dsk.$invalid || smartStart.progress > 0">Install</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="report-col body">
+                        <p>
+                            <strong>Alternative:</strong> The user can enter the DSK in an input field using a keyboard or keypad.
+                            Best practices recommend implementation of both if possible, to give end users an alternative if a
+                            QR code will not scan, e.g. because it was damaged.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="fieldset" ng-if="smartStart.progress">
+            <div class="progress">
+                <div class="progress-bar" 
+                     style="min-height:40px;min-width: 2em; width: {{smartStart.progress}}%;"
+                     ng-class="smartStart.progress < 100 ? 'progress-bar-info progress-bar-striped active' : 'progress-bar-success'">
+                    {{smartStart.progress}}% <span ng-hide="smartStart.progress > 99">Installed</span> <span ng-show="smartStart.progress > 99">Done</span>
+                </div>
+            </div>
+        </div>
+        <!-- Cancel  -->
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+            </button>
+        </div>
+
+    </div>
+</div> <!-- /ng-controller --> 
+

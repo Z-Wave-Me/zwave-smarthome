@@ -1,0 +1,19 @@
+<div class="smart-start" ng-controller="SmartStartDskController">
+    <div class="container">
+        <!-- Navigation -->
+        <div ng-include="'app/views/zwave/smartstart/navi.html'"></div>
+       <div class="entry enter-dsk">
+             <p>Please enter your DSK. You wi'll find it...</p>
+             <form name="form_dsk">
+                            <div class="form-group">
+                                <input name="dsk" id="dsk" class="form-control" type="text" placeholder="Enter DSK here"
+                                       ng-minlength="5"
+                                       onKeyPress="if(this.value.length==5) return false;" 
+                                       ng-model="smartStart.input.dsk" />
+                                <button class="btn btn-success btn-block" ng-disabled="!smartStart.input.dsk || form_dsk.$invalid || smartStart.progress > 0">Install</button>
+                            </div>
+                        </form>
+
+        </div>
+    </div>
+</div> <!-- /ng-controller --> 

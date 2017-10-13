@@ -4,11 +4,14 @@
  */
 
 /**
- * The controller that handlesZ-Wave SmartStart process.
- * @class waveISmartStartController
+ * The base SmartStart controller.
+ * @class SmartStartController
  */
-myAppController.controller('ZwaveISmartStartController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+myAppController.controller('SmartStartController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
     $scope.smartStart = {
+        input: {
+            dsk: ''
+        },
         show: false,
         process: false,
         progress: 0
@@ -54,27 +57,63 @@ myAppController.controller('ZwaveISmartStartController', function ($scope, $q, $
     };
 
     /**
-     * Run inclusion
+     * Start QR code inclusion
      */
-    $scope.runInclusion = function () {
-        $scope.smartStart.process = !$scope.smartStart.process;
+    $scope.startQrCodeInclusion = function () {
+         if ($scope.smartStart.process) {
+            return;
+        }
+       processInclusion();
+    };
+
+    /**
+     * Start inclusion from input
+     */
+    $scope.startDskInclusion = function () {
         if ($scope.smartStart.process) {
             return;
         }
+        processInclusion();
+
+    };
+
+    /// --- Private functions --- ///
+    /**
+     * Set local modules
+     */
+    function processInclusion() {
+        var counter = 0;
         var progress_object = $interval(function () {
-            if ($scope.smartStart.progress === 11) {
+            if (counter === 10) {
                 $interval.cancel(progress_object);
                 return;
             }
-            console.log($scope.smartStart.progress++)
-             
-           
-        }, 500, 0);
-        
-        console.log('runInclusion')
-    };
+            counter++;
+            $scope.smartStart.progress = (counter * 10);
+            console.log('Percent: ' + $scope.smartStart.progress)
+
+
+        }, 1000, 0);
+    }
 
 
 
+});
+
+/**
+ * The controller that include device by scanning QR code.
+ * @class SmartStartQrController
+ */
+myAppController.controller('SmartStartQrController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+    
+
+});
+
+/**
+ * The controller that include device with DSK.
+ * @class SmartStartDskController
+ */
+myAppController.controller('SmartStartDskController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+    
 });
 
