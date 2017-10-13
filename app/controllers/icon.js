@@ -291,7 +291,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
     $scope.iconsOnline = {
         connect: {
             status: false,
-            icon: 'fa-globe fa-spin'
+            icon: 'fa-archive fa-bounce'
         },
         alert: {message: false, status: 'is-hidden', icon: false},
         all: {},
@@ -309,7 +309,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
         dataFactory.getRemoteData(cfg.online_icon_url).then(function (response) {
             $scope.iconsOnline.connect = {
                 status: true,
-                icon: 'fa-globe'
+                icon: 'fa-archive'
             };
             if (_.size(response.data.data) < 1) {
                 alertify.alertError($scope._t('no_data'));
