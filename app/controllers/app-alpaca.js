@@ -23,7 +23,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     };
     $scope.moduleId = {
         submit: true,
-        fromapp: $routeParams.fromapp,
+        fromapp: ($routeParams.fromapp && $routeParams.fromapp !== 'false') ? $routeParams.fromapp : false,
         find: {},
         categoryName: null,
         singletonActive: false,
