@@ -105,7 +105,39 @@ myAppController.controller('SmartStartController', function ($scope, $q, $routeP
  * @class SmartStartQrController
  */
 myAppController.controller('SmartStartQrController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+    $scope.qrcode = {
+        input: {
+            qrcode: ''
+        },
+        state: 'start'
+    };
     
+    /**
+     * Reset state to start
+     */
+    $scope.resetState = function () {
+        $scope.qrcode.state = 'start';
+        $scope.reloadData();
+    };
+     /**
+     * Scan QR code
+     */
+    $scope.scan = function (error) {
+        $scope.qrcode.state = 'scanning';
+        $timeout(function(){
+            $scope.qrcode.state = (error ? 'error' : 'success-scan');
+        }, 4000);
+    };
+    
+     /**
+     * Discover the device
+     */
+    $scope.discover = function () {
+        $scope.qrcode.state = 'discovering';
+        $timeout(function(){
+            $scope.qrcode.state = 'success-discover';
+        }, 2000);
+    };
 
 });
 
@@ -114,6 +146,40 @@ myAppController.controller('SmartStartQrController', function ($scope, $q, $rout
  * @class SmartStartDskController
  */
 myAppController.controller('SmartStartDskController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+     $scope.dsk = {
+        input: {
+            dsk: ''
+        },
+        state: 'start'
+    };
+     /**
+     * Reset state to start
+     */
+    $scope.resetState = function () {
+        $scope.dsk.state = 'start';
+        $scope.reloadData();
+    };
+     /**
+     * Authenticate by DSK
+     */
+    $scope.authenticate = function () {
+        console.log($scope.dsk.input.dsk)
+        $scope.dsk.state = 'authenticating';
+        $timeout(function(){
+            $scope.dsk.state = ($scope.dsk.input.dsk ? 'success-authenticate' : 'error');
+        }, 2000);
+    };
+    
+     /**
+     * Discover the device
+     */
+    $scope.discover = function () {
+        $scope.dsk.state = 'discovering';
+        $timeout(function(){
+            //$scope.dsk.state = 'success-discover';
+            $scope.dsk.state = ($scope.dsk.input.dsk == 1 ? 'error' : 'success-discover');
+        }, 2000);
+    };
     
 });
 

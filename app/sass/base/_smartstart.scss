@@ -1,24 +1,43 @@
 /* SmartStart
 -------------------------------------------------- */
+$ss-brand-color: #6ED0F6;
+$ss-light-color: lighten($ss-brand-color,20%);
+$ss-dark-color: darken($ss-brand-color,50%);
+$ss-border-color:#FFFFFF;
+$ss-color:#FFFFFF;
+$ss-success-color:#00BDBD;;
+$ss-danger-color:#ED0048;
+$ss-img-w: 96px;
+/* 
+-------------------------------------------------- */
 .smart-start {
     .container{
         padding: 0;
-        border: solid 10px #fff;
-        background-color: #fff;
+        border: solid 10px $ss-border-color;
+        background-color: $ss-border-color;
         max-width: 500px;
         .btn-goup-tabs{
             margin: 0;
            
             .btn{
                  border: 0;
+                 border-radius: 0;
+                  background-color: $ss-light-color;
+                  color:$ss-dark-color;
+                  .fa{
+                      color: $ss-dark-color; 
+                  }
                 &.active {
-                    background-color: #6ED0F6;
+                    background-color: $ss-brand-color;
+                    .fa{
+                        color: $ss-dark-color; 
+                    }
                 }
             }
         }
         .entry{
-            background-color: #6ED0F6;
-            color: #fff;
+            background-color: $ss-brand-color;
+            color: $ss-color;
 
             padding: $spacing-double;
             //border: solid 1px red;
@@ -34,26 +53,30 @@
             }
             .image{
                 .fa{
-                    font-size: 128px;
-                    color: #00BDBD;
+                    font-size: $ss-img-w;
+                    color: $ss-success-color;
                     &.fa-exclamation{
-                        color: #ED0048;
+                        color: $ss-danger-color;
                     }
                 }
 
                 img{
-                    max-width: 128px;
-                    max-height: 128px;
+                    max-width: $ss-img-w;
+                    max-height: $ss-img-w;
 
                 }
             }
+            .btn{
+                font-size: 120%;
+                border: solid 1px #fff;
+            }
 
             &.start{
-                img{
+               /* img{
                     margin-bottom: -50px;
                     max-width: 200px;
                     max-height: 200px; 
-                }
+                }*/
             }
         }
 

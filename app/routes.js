@@ -146,7 +146,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).//SmartStart with QR code
-                when('/zwave/smartstart', {
+                when('/zwave/smartstartqr', {
                     templateUrl: 'app/views/zwave/smartstart/smartstart_qr.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include

@@ -1,5 +1,6 @@
 {
     "--": "------------------------------------------",
+    "scan_qrcode": "Scan QR code",
     "smartstart": "SmartStart",
      "------------------------------------------": "--",
     "activate_module": "Activate __module__",

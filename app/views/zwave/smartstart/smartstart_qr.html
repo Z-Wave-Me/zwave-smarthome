@@ -1,18 +1,21 @@
 <div class="smart-start" ng-controller="SmartStartQrController">
-    <div class="container">
+    <div class="container" ng-switch="qrcode.state">
         <!-- Navigation -->
         <div ng-include="'app/views/zwave/smartstart/navi.html'"></div>
         <!-- Start -->
-        <div class="entry scan-qrcode start">
-            <p class="content">
-                Use your smartphone to scan the QR code. You'll find this code somewhere on the box...
-            </p>
+        <div class="entry scan-qrcode start" ng-switch-default>
             <div class="image">
                 <img src="app/img/smartstart/qr-code-iphone-icon.png" />
             </div>
+            <p class="content">
+                Use your smartphone to scan the QR code. You'll find this code somewhere on the box...
+               
+            </p>
+              <button class="btn btn-info btn-block" ng-click="scan()">Scan QR code</button>
+              <button class="btn btn-info btn-block" ng-click="scan('error')">Simulate error</button>
         </div>
         <!-- Scanning -->
-        <div class="entry scan-qrcode scanning">
+        <div class="entry scan-qrcode scanning" ng-switch-when="scanning">
             <div class="preloader-scan">
                 <div class="diode">
                     <div class="laser"></div>
@@ -22,45 +25,47 @@
                 Scanning QR code. Please wait...
             </p>
         </div>
-        <!-- Fail -->
-        <div class="entry scan-qrcode fail">
+        <!-- Error -->
+        <div class="entry scan-qrcode error" ng-switch-when="error">
             <div class="image">
                 <i class="fa fa-exclamation"></i>
             </div>
             <p class="content">
                 Something went wrong. What happened and What to do...
             </p>
+            <button class="btn btn-info" ng-click="resetState()">Try to scan again</button>
+            <a class="btn btn-default" href="#zwave/smartstartdsk" >Enter DSK manually</a>
         </div>
         <!-- Success scan -->
-        <div class="entry scan-qrcode success-scan">
-            <div class="image">
+        <div class="entry scan-qrcode success-scan" ng-switch-when="success-scan">
+             <div class="image clickable" ng-click="discover()">
 
                 <i class="fa fa-power-off"></i>
             </div>
             <p class="content">
-                Device is ready for inclusion. Turn on the device
+                Device is ready for inclusion. Install and power up the device
             </p>
 
         </div>
-        <!-- Installing -->
-        <div class="entry scan-qrcode installing">
+        <!-- discovering -->
+        <div class="entry scan-qrcode discovering" ng-switch-when="discovering">
             <div class="image">
                 <i class="fa fa-spinner fa-spin"></i>
             </div>
             <p class="content">
-                Installing... please wait
+                Discovering device... please wait
             </p>
 
         </div>
-        <!-- Success install -->
-        <div class="entry scan-qrcode success-install">
+        <!-- duccess-discover -->
+        <div class="entry scan-qrcode success-install" ng-switch-when="success-discover">
             <div class="image">
                 <i class="fa fa-check"></i>
             </div>
             <p class="content">
                 Device has been included in the network and is ready for use
             </p>
-
+             <button class="btn btn-info" ng-click="resetState()">OK</button>
         </div>
     </div>
 </div> <!-- /ng-controller --> 
