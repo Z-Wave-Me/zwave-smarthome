@@ -4,7 +4,7 @@
     <div ng-show="formInput.show">
         <h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1>
         <!-- Zwave config form -->
-        <form name="form_network_config" id="form_profile" class="form form-page" ng-submit="updateAllDevices(formInput)" novalidate>
+        <form name="form_network_config" id="form_network_config" class="form form-page" ng-submit="updateAllDevices(formInput)" novalidate>
             <fieldset>
                 <label ng-bind="_t('rename_device')"></label>
                 <input name="device_name" id="device_name" type="text" class="form-control" value="{{formInput.deviceName}}" ng-model="formInput.deviceName" />
@@ -45,37 +45,39 @@
                 </fieldset>
                 <fieldset>
                     <div class="form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}" ng-repeat="e in devices| orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
-
-                        <h3>
-                            <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
-                            <span ng-bind="formInput.elements[e.id].metrics.title"></span>
-                        </h3>
-                        <div class="form-group form-inline">
-                            <input type="text" name="title_{{$index}}" id="title_{{$index}}" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" />
-                            <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
-                            <span class="mobile-block">
-                                <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
-                                <label for="permanently_hidden_{{$index}}">{{_t('lb_deactivate')}}</label>
-                            </span>
-                            <!-- <a class="btn" href="" 
-                                 ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
-                                 ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
-                                 ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-primary'"> </a> --> 
+                        <ng-form name="subForm">
+                            <h3>
+                                <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                                <span ng-bind="formInput.elements[e.id].metrics.title"></span>
+                            </h3>
+                            <div class="form-group form-inline">
+                                <input type="text" name="title" id="title" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" ng-blur="titleBlur = true" ng-required="true"/>
+                                <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
+                                <span class="mobile-block">
+                                    <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
+                                    <label for="permanently_hidden_{{$index}}">{{_t('lb_deactivate')}}</label>
+                                </span>
+                                <bb-validator input-name="subForm.title.$error.required" trans='_t("field_required")' has-blur='titleBlur'></bb-validator>
+                                <!-- <a class="btn" href="" 
+                                     ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
+                                     ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
+                                     ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-primary'"> </a> --> 
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group form-inline">
-                        <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" title="{{_t('hardware_konfiguration')}}" ng-if="zWaveDevice.cfg.length > 0">
-                            <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
-                        </a>
-                    </div>
+                        <div class="form-group form-inline">
+                            <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" title="{{_t('hardware_konfiguration')}}" ng-if="zWaveDevice.cfg.length > 0">
+                                <i class="fa fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
+                            </a>
+                        </div>
+                    </ng-form>
                 </fieldset>
             </div>
             <fieldset class="submit-entry">
                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" ng-if="!nohistory" bb-go-back>
                     <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
                 </button>
-                <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
+                <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_network_config.$invalid">
                     <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
                 </button>
 
