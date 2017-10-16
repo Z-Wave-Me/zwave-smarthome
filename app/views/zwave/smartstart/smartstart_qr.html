@@ -11,8 +11,8 @@
                 Use your smartphone to scan the QR code. You'll find this code somewhere on the box...
                
             </p>
-              <button class="btn btn-info btn-block" ng-click="scan()">Scan QR code</button>
-              <button class="btn btn-info btn-block" ng-click="scan('error')">Simulate error</button>
+              <button class="btn btn-success" ng-click="scan()">Scan QR code</button>
+              <button class="btn btn-default" ng-click="scan('error')">Simulate error</button>
         </div>
         <!-- Scanning -->
         <div class="entry scan-qrcode scanning" ng-switch-when="scanning">
@@ -33,7 +33,7 @@
             <p class="content">
                 Something went wrong. What happened and What to do...
             </p>
-            <button class="btn btn-info" ng-click="resetState()">Try to scan again</button>
+            <button class="btn btn-success" ng-click="resetState()">Try to scan again</button>
             <a class="btn btn-default" href="#zwave/smartstartdsk" >Enter DSK manually</a>
         </div>
         <!-- Success scan -->
@@ -65,7 +65,7 @@
             <p class="content">
                 Device has been included in the network and is ready for use
             </p>
-             <button class="btn btn-info" ng-click="resetState()">OK</button>
+             <button class="btn btn-success" ng-click="resetState()">OK</button>
         </div>
     </div>
 </div> <!-- /ng-controller --> 

@@ -15452,72 +15452,70 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* 
 -------------------------------------------------- */
-/* line 14, ../sass/base/_smartstart.scss */
+/* line 10, ../sass/base/_smartstart.scss */
 .smart-start .container {
   padding: 0;
   border: solid 10px #FFFFFF;
   background-color: #FFFFFF;
   max-width: 500px;
 }
-/* line 19, ../sass/base/_smartstart.scss */
+/* line 15, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs {
   margin: 0;
 }
-/* line 22, ../sass/base/_smartstart.scss */
+/* line 18, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs .btn {
   border: 0;
   border-radius: 0;
-  background-color: #ceeffc;
-  color: #06465f;
+  background-color: #FFFFFF;
+  color: #686868;
 }
-/* line 27, ../sass/base/_smartstart.scss */
+/* line 23, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs .btn .fa {
-  color: #06465f;
+  color: #686868;
 }
-/* line 30, ../sass/base/_smartstart.scss */
+/* line 26, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs .btn.active {
-  background-color: #6ED0F6;
+  background-color: #E7E7E7;
 }
-/* line 32, ../sass/base/_smartstart.scss */
+/* line 28, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs .btn.active .fa {
-  color: #06465f;
+  color: #686868;
 }
-/* line 38, ../sass/base/_smartstart.scss */
+/* line 34, ../sass/base/_smartstart.scss */
 .smart-start .container .entry {
-  background-color: #6ED0F6;
-  color: #FFFFFF;
+  background-color: #E7E7E7;
+  color: #686868;
   padding: 20px;
   text-align: center;
   height: auto;
   max-width: 500px;
 }
-/* line 48, ../sass/base/_smartstart.scss */
+/* line 44, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .content {
   font-weight: bold;
-  text-shadow: 2px 2px 2px #969696;
   font-size: 140%;
   margin: 20px;
 }
-/* line 55, ../sass/base/_smartstart.scss */
+/* line 51, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .image .fa {
   font-size: 96px;
-  color: #00BDBD;
+  color: #80AD80;
 }
-/* line 58, ../sass/base/_smartstart.scss */
+/* line 54, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .image .fa.fa-exclamation {
-  color: #ED0048;
+  color: #d9534f;
 }
-/* line 63, ../sass/base/_smartstart.scss */
+/* line 59, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .image img {
   max-width: 96px;
   max-height: 96px;
 }
-/* line 69, ../sass/base/_smartstart.scss */
+/* line 65, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .btn {
   font-size: 120%;
-  border: solid 1px #fff;
 }
-/* line 74, ../sass/base/_smartstart.scss */
+/* line 70, ../sass/base/_smartstart.scss */
 .smart-start .container .entry.start {
   /* img{
        margin-bottom: -50px;
@@ -15526,14 +15524,14 @@ img.widget-promo-image {
    }*/
 }
 
-/* line 86, ../sass/base/_smartstart.scss */
+/* line 82, ../sass/base/_smartstart.scss */
 .entry {
   /*    position: relative;
       top: 0;
       left: 0;*/
 }
 
-/* line 92, ../sass/base/_smartstart.scss */
+/* line 88, ../sass/base/_smartstart.scss */
 .preloader-scan {
   /*  position: fixed;
     left: 0;
@@ -15543,10 +15541,10 @@ img.widget-promo-image {
   margin: 0 auto;
   text-align: center;
   height: 128px;
-  background: url("../img/smartstart/qrcode-blue.png") no-repeat 50% 50%;
+  background: url("../img/smartstart/qrcode.png") no-repeat 50% 50%;
   background-size: 128px 128px;
 }
-/* line 106, ../sass/base/_smartstart.scss */
+/* line 102, ../sass/base/_smartstart.scss */
 .preloader-scan .laser {
   margin-left: -50px;
   margin-right: -50px;
@@ -15557,7 +15555,7 @@ img.widget-promo-image {
   box-shadow: 0 0 4px red;
   animation: scanning 2s infinite;
 }
-/* line 120, ../sass/base/_smartstart.scss */
+/* line 116, ../sass/base/_smartstart.scss */
 .preloader-scan .diode {
   animation: beam .01s infinite;
 }

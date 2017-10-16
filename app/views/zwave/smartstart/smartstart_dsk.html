@@ -17,8 +17,8 @@
                            ng-model="dsk.input.dsk" />
                 </p>
                 <p class="form-group_">
-                    <button class="btn btn-info btn-block">Authenticate</button>
-                    <!--<button class="btn btn-info" ng-disabled="!smartStart.input.dsk || form_dsk.$invalid || smartStart.progress > 0">Install</button>--> 
+                    <button class="btn btn-success btn-block_">Authenticate</button>
+                    <!--<button class="btn btn-success" ng-disabled="!smartStart.input.dsk || form_dsk.$invalid || smartStart.progress > 0">Install</button>--> 
                 </p>
             </form>
 
@@ -40,7 +40,7 @@
             <p class="content">
                 Something went wrong. What happened and What to do...
             </p>
-            <button class="btn btn-info" ng-click="resetState()">OK</button>
+            <button class="btn btn-success" ng-click="resetState()">OK</button>
         </div>
         <!-- success-authenticate -->
         <div class="entry enter-dsk success-authenticate" ng-switch-when="success-authenticate">
@@ -69,7 +69,7 @@
             <p class="content">
                 Device has been included in the network and is ready for use
             </p>
-             <button class="btn btn-info" ng-click="resetState()">OK</button>
+             <button class="btn btn-success" ng-click="resetState()">OK</button>
         </div>
     </div>
 </div> <!-- /ng-controller --> 

@@ -1,12 +1,8 @@
 /* SmartStart
 -------------------------------------------------- */
-$ss-brand-color: #6ED0F6;
-$ss-light-color: lighten($ss-brand-color,20%);
+$ss-brand-color: #E7E7E7;
 $ss-dark-color: darken($ss-brand-color,50%);
 $ss-border-color:#FFFFFF;
-$ss-color:#FFFFFF;
-$ss-success-color:#00BDBD;;
-$ss-danger-color:#ED0048;
 $ss-img-w: 96px;
 /* 
 -------------------------------------------------- */
@@ -18,15 +14,15 @@ $ss-img-w: 96px;
         max-width: 500px;
         .btn-goup-tabs{
             margin: 0;
-           
+
             .btn{
-                 border: 0;
-                 border-radius: 0;
-                  background-color: $ss-light-color;
-                  color:$ss-dark-color;
-                  .fa{
-                      color: $ss-dark-color; 
-                  }
+                border: 0;
+                border-radius: 0;
+                background-color: $ss-border-color;
+                color:$ss-dark-color;
+                .fa{
+                    color: $ss-dark-color; 
+                }
                 &.active {
                     background-color: $ss-brand-color;
                     .fa{
@@ -37,7 +33,7 @@ $ss-img-w: 96px;
         }
         .entry{
             background-color: $ss-brand-color;
-            color: $ss-color;
+            color: $ss-dark-color;
 
             padding: $spacing-double;
             //border: solid 1px red;
@@ -47,16 +43,16 @@ $ss-img-w: 96px;
             //height: 300px;
             .content{
                 font-weight: bold;
-                text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+                //text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
                 font-size: 140%;
                 margin: $spacing-double;
             }
             .image{
                 .fa{
                     font-size: $ss-img-w;
-                    color: $ss-success-color;
+                    color: $app-brand-success;
                     &.fa-exclamation{
-                        color: $ss-danger-color;
+                        color: $app-brand-danger;
                     }
                 }
 
@@ -68,15 +64,15 @@ $ss-img-w: 96px;
             }
             .btn{
                 font-size: 120%;
-                border: solid 1px #fff;
+                //border: solid 1px #fff;
             }
 
             &.start{
-               /* img{
-                    margin-bottom: -50px;
-                    max-width: 200px;
-                    max-height: 200px; 
-                }*/
+                /* img{
+                     margin-bottom: -50px;
+                     max-width: 200px;
+                     max-height: 200px; 
+                 }*/
             }
         }
 
@@ -100,7 +96,7 @@ $ss-img-w: 96px;
     text-align: center;
     height: 128px;
     //border: solid 1px red;
-    background: url('../img/smartstart/qrcode-blue.png') no-repeat 50% 50%;
+    background: url('../img/smartstart/qrcode.png') no-repeat 50% 50%;
     background-size: 128px 128px;
 
     .laser {
