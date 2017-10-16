@@ -268,7 +268,7 @@
     }
 }
 
-.audioPlayer, .switchRGBW, .sensorMultiline {
+.audioPlayer, .switchRGBW, .sensorMultiline, .multilevel, .motor {
     @include mediaQueries(max-esmall) {
         //width: 66.66666%;
         width: 100%;
@@ -300,6 +300,12 @@
                 margin: 0px;
                 border: none;
                 text-align: center;
+
+                .widget-img-overlay {
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                }
             }
 
             .widget-title {
