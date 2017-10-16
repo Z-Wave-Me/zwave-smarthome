@@ -14,7 +14,7 @@ var config_data = {
         // Application version
         'app_version': '1.7.1',
         // Application (DIST) built date
-        'app_built': '02-10-2017 15:21:52',
+        'app_built': '16-10-2017 14:39:14',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -341,7 +341,13 @@ var config_data = {
         // Blacklist of the deviceTypes without icon
         // These elements will be displayed without the HISTORY or EVENT icon
         'element_history_blacklist': [
-            'sensorMultiline'
+            'sensorMultiline',
+            'audioPlayer'
+        ],
+        // Whitelist of the deviceTypes with numeric or float level for icon
+        // overlay with level and scale (for mobile view)
+        'element_level_is_number': [
+            'sensorMultilevel', 'thermostat', 'battery', 'switchMultilevel'
         ],
         // List of the find hosts
         'find_hosts': [
