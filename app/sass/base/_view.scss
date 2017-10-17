@@ -1,0 +1,8 @@
+/* View wrapper
+-------------------------------------------------- */
+#view_wrapper{
+   position: relative;
+    top: 0;
+    right: 0;
+    margin: $header-h+$spacing $spacing $spacing $sidebar-w+$spacing;
+}

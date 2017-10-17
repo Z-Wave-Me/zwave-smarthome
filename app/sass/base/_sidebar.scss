@@ -1,0 +1,98 @@
+/* Sidebar
+-------------------------------------------------- */
+#sidebar{
+    font-size: 120%;
+    //bottom: 50px;
+    bottom: 0;
+    height: 100%;
+    //padding-bottom: 50px;
+    margin-top: 0px;
+    position: fixed;
+    width: $sidebar-w;
+    z-index: $zindex-sidebar;
+    background-color: $wd-gray-color;
+    #sidebar_in{
+        margin: $header-h+$spacing-double 0 0 0;
+        overflow: hidden;
+        width: auto;
+        height: 100%;
+        .sidebar-entry{
+            margin: 0 0 $spacing-double 0;
+        }
+        .delimiter{
+            border-top: 1px solid $app-border-color;
+        }
+        h3{
+            font-size: 90%;
+            padding:  0 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid $app-border-color;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            li{
+                a{
+                    display: block;
+                    padding:  $spacing;
+                    vertical-align: middle;
+                    position: reletive;
+                    .fa-chevron-right{
+
+                        display: none;
+                    }
+                }
+                &.active{
+                    background-color: #fff;
+                    font-weight: bold;
+                    .fa{
+                        color: $wd-brand-color;
+                    }
+                    .fa-chevron-right{
+                        display: inline-block;
+                        font-size: 80%;
+                        color: $app-border-color;
+                        position: absolute;
+                        right: 1%;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+.sidebar-off{
+    #sidebar{
+        #sidebar_in{
+            .sidebar-entry{
+                 margin: 0;
+            }
+            .delimiter{
+                display: none;
+            }
+            h3{
+                display: none;
+            }
+            ul {
+                li{
+                    a{
+                        .sidebar-text,  .fa-chevron-right{
+                            display: none;
+                        }
+                    }
+                    &.active{
+                        .fa{
+                        }
+                        .fa-chevron-right{
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+}

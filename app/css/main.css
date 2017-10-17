@@ -8,6 +8,10 @@
 /*-------------------------------------*/
 /*-------------------------------------*/
 /*-------------------------------------*/
+/* WD variables
+-------------------------------------------------- */
+/* WD variables
+-------------------------------------------------- */
 /* Bootstrap files
 -------------------------------------------------- */
 /*$brand-primary:         #428bca !default;
@@ -10861,7 +10865,6 @@ a.link-underline {
 /* line 182, ../sass/base/_body.scss */
 .container {
   width: 100%;
-  max-width: 1200px;
 }
 
 /* line 187, ../sass/base/_body.scss */
@@ -11015,208 +11018,162 @@ img {
 -------------------------------------------------- */
 /* line 3, ../sass/base/_header.scss */
 #header {
+  background-color: #fff;
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 2100;
-  color: #0d0d0d;
+  border-bottom: solid 1px #f8f8f8;
+  height: 50px;
+  line-height: 50px;
   font-size: 120%;
-}
-/* line 12, ../sass/base/_header.scss */
-#header .container {
-  padding: 0;
 }
 /* line 15, ../sass/base/_header.scss */
-#header .divider-vertical {
-  height: 50px;
-  border-left: 1px solid #b3b3b3;
-  border-right: 1px solid #f2f2f2;
-}
-/* line 22, ../sass/base/_header.scss */
-#header .fa {
-  font-size: 120%;
-}
-/* line 26, ../sass/base/_header.scss */
-#header .timestamp {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (max-width: 767px) {
-  /* line 26, ../sass/base/_header.scss */
-  #header .timestamp {
-    display: none;
-  }
-}
-
-/* Main navigation
--------------------------------------------------- */
-/* line 36, ../sass/base/_header.scss */
-#main_navigation_wrap {
-  background-color: #FFFFFF;
-  border-bottom: solid 1px #cccccc;
-  height: 50px;
-}
-
-/* line 41, ../sass/base/_header.scss */
-#main_navigation {
+#header .left {
   position: relative;
-  line-height: 50px;
+  background-color: #f8f8f8;
+  padding: 0 10px;
+  width: 260px;
+  float: left;
 }
-/* line 44, ../sass/base/_header.scss */
-#main_navigation .main-nav-text {
-  display: none;
-}
-/* line 47, ../sass/base/_header.scss */
-#main_navigation a {
+/* line 21, ../sass/base/_header.scss */
+#header .left #header_hamburger {
   display: inline-block;
-  padding: 0 15px;
-  color: #333333;
-  line-height: 50px;
+  text-align: center;
+  width: 50px;
+  font-size: 140%;
 }
-/* line 54, ../sass/base/_header.scss */
-#main_navigation a:hover {
-  background-color: #bfbfbf;
-  text-decoration: none;
-}
-/* line 58, ../sass/base/_header.scss */
-#main_navigation .active {
-  background-color: #cccccc;
-  color: #e6e6e6;
-}
-
-/* line 63, ../sass/base/_header.scss */
-#header_logo {
+/* line 28, ../sass/base/_header.scss */
+#header .left #header_logo {
   max-height: 40px;
   max-width: 100px;
-}
-
-/* line 67, ../sass/base/_header.scss */
-#navigation_left {
   position: absolute;
+  top: 2px;
+  right: 10px;
+  display: inline-block;
 }
-
-/* line 71, ../sass/base/_header.scss */
-#navigation_right {
+/* line 38, ../sass/base/_header.scss */
+#header .right {
+  padding: 0 10px;
+  display: inline-block;
   float: right;
 }
-
-/* line 74, ../sass/base/_header.scss */
-#navi_settings {
-  border-radius: 4px;
-  height: 40px;
-  line-height: 40px !important;
-  padding: 7px;
-  margin-right: 15px;
-}
-
-/* line 82, ../sass/base/_header.scss */
-.navi-time-link {
-  cursor: pointer;
-}
-
-/* line 85, ../sass/base/_header.scss */
-.navi-time {
-  padding-left: 10px;
-}
-
-/* line 89, ../sass/base/_header.scss */
-.mobile-icon {
-  padding-left: 7px;
-  color: #333333;
-}
-/* line 92, ../sass/base/_header.scss */
-.mobile-icon .fa {
-  font-size: 16px;
-}
-
-/* Subnavigation
--------------------------------------------------- */
-/* line 99, ../sass/base/_header.scss */
-#sub_navigation {
-  position: relative;
-}
-
-/* line 103, ../sass/base/_header.scss */
-#sub_navigation_in ul {
+/* line 43, ../sass/base/_header.scss */
+#header .header-navi {
+  list-style-type: none;
+  margin: 0;
   padding: 0;
-  list-style: none;
-  margin: 0 10px;
-  background-color: #FFFFFF;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  border: 1px solid #cccccc;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
 }
-@media only screen and (min-width: 768px) {
-  /* line 103, ../sass/base/_header.scss */
-  #sub_navigation_in ul {
-    margin: 0 0 0 50%;
-  }
+/* line 47, ../sass/base/_header.scss */
+#header .header-navi li {
+  display: inline;
+  padding: 0 0 0 30px;
 }
-@media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 103, ../sass/base/_header.scss */
-  #sub_navigation_in ul {
-    margin: 0 0 0 66%;
-  }
+/* line 50, ../sass/base/_header.scss */
+#header .header-navi li .badge {
+  background-color: #08A0DE;
 }
-/* line 119, ../sass/base/_header.scss */
-#sub_navigation_in ul li {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  border-bottom: solid 1px #cccccc;
+/* line 53, ../sass/base/_header.scss */
+#header .header-navi li a {
+  text-decoration: none;
 }
-@media only screen and (min-width: 768px) {
-  /* line 119, ../sass/base/_header.scss */
-  #sub_navigation_in ul li {
-    padding: 10px 0;
-  }
-}
-/* line 125, ../sass/base/_header.scss */
-#sub_navigation_in ul li a {
-  display: block;
+
+/* View wrapper
+-------------------------------------------------- */
+/* line 3, ../sass/base/_view.scss */
+#view_wrapper {
   position: relative;
+  top: 0;
+  right: 0;
+  margin: 60px 10px 10px 270px;
+}
+
+/* Sidebar
+-------------------------------------------------- */
+/* line 3, ../sass/base/_sidebar.scss */
+#sidebar {
+  font-size: 120%;
+  bottom: 0;
+  height: 100%;
+  margin-top: 0px;
+  position: fixed;
+  width: 260px;
+  z-index: 2000;
+  background-color: #f8f8f8;
+}
+/* line 14, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in {
+  margin: 70px 0 0 0;
+  overflow: hidden;
+  width: auto;
+  height: 100%;
+}
+/* line 19, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in .sidebar-entry {
+  margin: 0 0 20px 0;
+}
+/* line 22, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in .delimiter {
+  border-top: 1px solid #cccccc;
+}
+/* line 25, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in h3 {
+  font-size: 90%;
+  padding: 0 15px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #cccccc;
+}
+/* line 31, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 36, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in ul li a {
+  display: block;
   padding: 10px;
   vertical-align: middle;
-  color: #333333;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
+  position: reletive;
 }
-@media only screen and (min-width: 768px) {
-  /* line 125, ../sass/base/_header.scss */
-  #sub_navigation_in ul li a {
-    padding: 0 10px;
-  }
+/* line 41, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in ul li a .fa-chevron-right {
+  display: none;
 }
-/* line 135, ../sass/base/_header.scss */
-#sub_navigation_in ul li a span {
+/* line 46, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in ul li.active {
+  background-color: #fff;
+  font-weight: bold;
+}
+/* line 49, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in ul li.active .fa {
+  color: #08A0DE;
+}
+/* line 52, ../sass/base/_sidebar.scss */
+#sidebar #sidebar_in ul li.active .fa-chevron-right {
   display: inline-block;
-  position: absolute;
-  left: 50px;
-}
-/* line 142, ../sass/base/_header.scss */
-#sub_navigation_in ul li .subnavi-arrow {
+  font-size: 80%;
+  color: #cccccc;
   position: absolute;
   right: 1%;
-  display: inline-block;
 }
-/* line 150, ../sass/base/_header.scss */
-#sub_navigation_in ul .active a {
-  color: #b3b3b3;
-  font-weight: bold;
-  text-decoration: underline;
+
+/* line 69, ../sass/base/_sidebar.scss */
+.sidebar-off #sidebar #sidebar_in .sidebar-entry {
+  margin: 0;
 }
-/* line 155, ../sass/base/_header.scss */
-#sub_navigation_in ul .active .fa {
-  color: #b3b3b3;
+/* line 72, ../sass/base/_sidebar.scss */
+.sidebar-off #sidebar #sidebar_in .delimiter {
+  display: none;
 }
-/* line 159, ../sass/base/_header.scss */
-#sub_navigation_in ul .fa {
-  color: #666666;
+/* line 75, ../sass/base/_sidebar.scss */
+.sidebar-off #sidebar #sidebar_in h3 {
+  display: none;
+}
+/* line 81, ../sass/base/_sidebar.scss */
+.sidebar-off #sidebar #sidebar_in ul li a .sidebar-text, .sidebar-off #sidebar #sidebar_in ul li a .fa-chevron-right {
+  display: none;
 }
 
 /* Footer
@@ -15695,144 +15652,6 @@ input[type="checkbox"]:checked + label:before {
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit
 -------------------------------------------------- */
-/* Default SmartHome skin
--------------------------------------------------- */
-/* Variables
--------------------------------------------------- */
-/* Body
--------------------------------------------------- */
-/* line 8, ../sass/custom/_shui.scss */
-body {
-  background-color: #F6F6F6;
-}
-
-/* line 13, ../sass/custom/_shui.scss */
-.device-available-block.assigned {
-  background-color: #e7e7e7;
-  border: 0;
-}
-
-/* Main navigation
--------------------------------------------------- */
-/* line 20, ../sass/custom/_shui.scss */
-#main_navigation_wrap {
-  border-bottom: solid 4px #DDD;
-  background-color: #E9E9E9;
-}
-/* line 24, ../sass/custom/_shui.scss */
-#main_navigation_wrap #main_navigation .active {
-  background-color: #DDD;
-  color: #ffffff;
-}
-
-/* Form
--------------------------------------------------- */
-/* line 33, ../sass/custom/_shui.scss */
-.form-page {
-  border: solid 4px #e7e7e7;
-}
-/* line 35, ../sass/custom/_shui.scss */
-.form-page .form-group {
-  border-color: #e7e7e7;
-}
-
-/* line 39, ../sass/custom/_shui.scss */
-.submit-entry {
-  background-color: #e7e7e7;
-  border-top: solid 1px  #e7e7e7;
-}
-
-/* Button
--------------------------------------------------- */
-/* line 47, ../sass/custom/_shui.scss */
-.btn-goup-tabs .btn {
-  background-color: #eeeeee;
-}
-/* line 49, ../sass/custom/_shui.scss */
-.btn-goup-tabs .btn.active {
-  background-color: #dcdcdc;
-}
-
-/* Widget
--------------------------------------------------- */
-/* line 58, ../sass/custom/_shui.scss */
-.widget-entry .widget-entry-in {
-  border-color: #d3d3d3;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 480px) {
-  /* line 58, ../sass/custom/_shui.scss */
-  .widget-entry .widget-entry-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-
-/* Rooms
--------------------------------------------------- */
-/* MIN WIDTH */
-@media only screen and (min-width: 768px) {
-  /* line 75, ../sass/custom/_shui.scss */
-  .card-room .card-room-in {
-    border: solid 4px #ffffff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-/* MAX WIDTH */
-/* Elements in Room
--------------------------------------------------- */
-/* line 84, ../sass/custom/_shui.scss */
-.elemnts-room-bar {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 84, ../sass/custom/_shui.scss */
-  .elemnts-room-bar {
-    border: 0;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-  }
-}
-
 /* SmartHome UI custom POPP
 -------------------------------------------------- */
 /* POPP css
