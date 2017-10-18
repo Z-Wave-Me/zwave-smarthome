@@ -111,13 +111,17 @@
     </head>
     <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}} rss-{{rss.unread}}">
         <!-- Wrapper -->
-        <div id="wrapper" ng-class="naviExpanded.sidebar ? 'sidebar-on' : 'sidebar-off'">
+         <!--<div id="wrapper" ng-class="naviExpanded.sidebarOff ? 'sidebar-off' : 'sidebar-on'">-->
+            <div id="wrapper" ng-class="{'sidebar-off': naviExpanded.sidebarOff }">
             <!-- Header -->
             <div id="header">
                 <div class="header_in">
                     <div class="left">
-                        <!-- hamburger -->
-                         <span id="header_hamburger" class="clickable" ng-click="expandNavi('sidebar', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''">
+                        <!-- hamburger for large devices -->
+                         <span class="clickable header-hamburger header-l-hamburger" ng-click="expandNavi('sidebarOff', $event)">
+                             <i class="fa fa-bars"></i>
+                         </span>
+                        <span class="clickable header-hamburger header-s-hamburger" ng-click="expandNavi('mSidebarOn', $event)">
                              <i class="fa fa-bars"></i>
                          </span>
                        <!-- logo -->
@@ -140,19 +144,21 @@
                                 </a>
                             </li>
                             <!-- User -->
-                            <li>
+                            <li class="navbar-text">
                                 <i class="fa fa-user"></i> {{user.name}}
                             </li>
                             <!-- Logout -->
                             <li>
-                                <a href="#logout"><i class="fa fa-sign-out"></i> <span>{{_t('nav_logout')}}</span></a>
+                                <a href="#logout">
+                                    <i class="fa fa-sign-out"></i> <span class="navbar-text">{{_t('nav_logout')}}</span>
+                                </a>
                             </li>
                         </ul>
                      </div>
                 </div>
             </div>
             <!-- Sidebar -->
-            <div id="sidebar">
+            <div id="sidebar" ng-class="{'m-sidebar-on': naviExpanded.mSidebarOn }">
                 <div id="sidebar_in">
                     <div class="sidebar-entry">
                          <h3>Control</h3>

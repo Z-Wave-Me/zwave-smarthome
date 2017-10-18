@@ -1,0 +1,117 @@
+/* Header
+-------------------------------------------------- */
+#header{
+    background-color: $wd-header-bcg-color;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: $zindex-header;
+    border-bottom: solid 1px $wd-gray-color;
+    height: $header-h;
+    line-height: $header-h;
+    font-size: 120%;
+
+    .left{
+        position: relative;
+        background: $wd-gray-color;
+        //padding: 0 $spacing;
+        width: $sidebar-off-w;
+        float: left;
+        @include mediaQueries(min-medium) {
+            width: $sidebar-w;
+        }
+        .header-hamburger{
+            display: inline-block;
+            text-align: center;
+            width: $sidebar-off-w;
+            font-size: $sidebar-icon-font-size;
+            background-color: $wd-gray-color;
+
+        }
+        .header-l-hamburger{
+            @include mediaQueries(max-medium) {
+                display: none;
+            }
+
+        }
+        .header-s-hamburger{
+            @include mediaQueries(min-medium) {
+                 display: none;
+            }
+
+        }
+        #header_logo{
+            display: none;
+
+            @include mediaQueries(min-medium) {
+                max-height: 40px;
+                max-width: 100px;
+                position: absolute;
+                top: 2px;
+                right: $spacing;
+                display: inline-block;
+            }
+        }
+
+    }
+    .right{
+        padding: 0 $spacing;
+        display: inline-block;
+        float: right;
+    }
+    .header-navi{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li{
+            display: inline;
+            padding:  0 0 0 $spacing-third;
+
+            a{
+                position: relative;
+                text-decoration: none;
+            }
+            .badge{
+                padding: 4px 7px;
+                font-size: 9px;
+                border-top-right-radius: 100px;
+                border-top-left-radius: 100px;
+                border-bottom-right-radius: 100px;
+                border-bottom-left-radius: 100px;
+                position: absolute;
+                top: -6px;
+                left: 12px;
+                background-color: $wd-brand-color;
+            }
+        }
+
+        .navbar-text{
+            @include mediaQueries(max-small) {
+                display: none;
+            }
+        }  
+    }
+}
+
+.sidebar-off{
+    #header{
+        .left{
+            background: transparent;
+            .header-hamburger{
+                display: inline-block;
+                text-align: center;
+                width: $sidebar-off-w;
+                font-size: $sidebar-icon-font-size;
+                background-color: $wd-gray-color;
+                //color: lighten()
+
+            }
+            #header_logo{
+                left: $spacing-third;
+                right: 0;
+            }
+        }
+    }
+}

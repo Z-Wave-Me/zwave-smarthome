@@ -1,0 +1,36 @@
+/* Apps
+-------------------------------------------------- */
+.widget-entry-app {
+    @include mediaQueriesMin($site-max-w) {
+        width: 25%;
+    }
+
+}
+
+.sidebar-off{
+    .widget-entry-app {
+        @include mediaQueriesMin($site-max-w) {
+            width: 20%;
+        }
+
+    }
+}
+
+/* Apps online
+-------------------------------------------------- */
+.app-entry-online {
+
+    .widget-entry {
+        @include mediaQueriesMin($site-max-w) {
+            width: 20%;
+        }
+    }
+
+}
+
+.sidebar-off{
+    .app-entry-online {
+
+    }
+}
+

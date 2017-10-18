@@ -1,0 +1,24 @@
+/* Devices
+-------------------------------------------------- */
+
+
+.vendor-entry{
+    @include mediaQueriesMin($site-max-w) {
+        width: 16.6666%;
+    }
+    @include mediaQueriesMin($break-elarge) {
+        width: 14.2857%;
+    }
+}
+
+.sidebar-off{
+    .vendor-entry{
+        @include mediaQueriesMin($site-max-w) {
+            width: 14.2857%;
+        }
+        @include mediaQueriesMin($break-elarge) {
+        width: 12.5%;
+    }
+    }
+}
+

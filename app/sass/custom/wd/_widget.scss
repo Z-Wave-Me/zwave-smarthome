@@ -1,0 +1,15 @@
+/* Widget
+-------------------------------------------------- */
+.widget-entry{
+    @include mediaQueriesMin($site-max-w) {
+        width: 25%;;
+    }
+}
+
+.sidebar-off{
+    .widget-entry{
+        @include mediaQueriesMin($site-max-w) {
+            width: 20%;;
+        }
+    }
+}

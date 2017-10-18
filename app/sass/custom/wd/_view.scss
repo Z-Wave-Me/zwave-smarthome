@@ -1,0 +1,29 @@
+/* View mixin
+-------------------------------------------------- */
+@mixin wdViewOn() {
+    
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: $header-h+$spacing $spacing $spacing $sidebar-w+$spacing;
+   
+}
+@mixin wdViewOff() {
+     margin-left: $sidebar-off-w+$spacing;
+}
+/* View on
+-------------------------------------------------- */
+#view_wrapper{
+    @include mediaQueries(min-medium) {
+                @include wdViewOn();
+            }
+}
+/* View off
+-------------------------------------------------- */
+ .sidebar-off{
+        #view_wrapper{
+           @include mediaQueries(min-medium) {
+                @include wdViewOff();
+            }
+        }
+    }

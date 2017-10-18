@@ -1,0 +1,20 @@
+/* Rooms
+-------------------------------------------------- */
+
+/* Cards
+-------------------------------------------------- */
+.card-room {
+    @include mediaQueriesMin($site-max-w) {
+        width: 16.6666%;
+    }
+
+}
+
+.sidebar-off{
+    .card-room {
+        @include mediaQueriesMin($site-max-w) {
+            width: 14.2857%;
+        }
+
+    }
+}

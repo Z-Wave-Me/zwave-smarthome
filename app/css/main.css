@@ -8,10 +8,6 @@
 /*-------------------------------------*/
 /*-------------------------------------*/
 /*-------------------------------------*/
-/* WD variables
--------------------------------------------------- */
-/* WD variables
--------------------------------------------------- */
 /* Bootstrap files
 -------------------------------------------------- */
 /*$brand-primary:         #428bca !default;
@@ -10865,6 +10861,7 @@ a.link-underline {
 /* line 182, ../sass/base/_body.scss */
 .container {
   width: 100%;
+  max-width: 1280px;
 }
 
 /* line 187, ../sass/base/_body.scss */
@@ -11012,168 +11009,6 @@ img {
   padding: 10px 10px 5px 10px;
   border: solid 1px #cccccc;
   margin: 0 0 10px 0;
-}
-
-/* Header
--------------------------------------------------- */
-/* line 3, ../sass/base/_header.scss */
-#header {
-  background-color: #fff;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 2100;
-  border-bottom: solid 1px #f8f8f8;
-  height: 50px;
-  line-height: 50px;
-  font-size: 120%;
-}
-/* line 15, ../sass/base/_header.scss */
-#header .left {
-  position: relative;
-  background-color: #f8f8f8;
-  padding: 0 10px;
-  width: 260px;
-  float: left;
-}
-/* line 21, ../sass/base/_header.scss */
-#header .left #header_hamburger {
-  display: inline-block;
-  text-align: center;
-  width: 50px;
-  font-size: 140%;
-}
-/* line 28, ../sass/base/_header.scss */
-#header .left #header_logo {
-  max-height: 40px;
-  max-width: 100px;
-  position: absolute;
-  top: 2px;
-  right: 10px;
-  display: inline-block;
-}
-/* line 38, ../sass/base/_header.scss */
-#header .right {
-  padding: 0 10px;
-  display: inline-block;
-  float: right;
-}
-/* line 43, ../sass/base/_header.scss */
-#header .header-navi {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-/* line 47, ../sass/base/_header.scss */
-#header .header-navi li {
-  display: inline;
-  padding: 0 0 0 30px;
-}
-/* line 50, ../sass/base/_header.scss */
-#header .header-navi li .badge {
-  background-color: #08A0DE;
-}
-/* line 53, ../sass/base/_header.scss */
-#header .header-navi li a {
-  text-decoration: none;
-}
-
-/* View wrapper
--------------------------------------------------- */
-/* line 3, ../sass/base/_view.scss */
-#view_wrapper {
-  position: relative;
-  top: 0;
-  right: 0;
-  margin: 60px 10px 10px 270px;
-}
-
-/* Sidebar
--------------------------------------------------- */
-/* line 3, ../sass/base/_sidebar.scss */
-#sidebar {
-  font-size: 120%;
-  bottom: 0;
-  height: 100%;
-  margin-top: 0px;
-  position: fixed;
-  width: 260px;
-  z-index: 2000;
-  background-color: #f8f8f8;
-}
-/* line 14, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in {
-  margin: 70px 0 0 0;
-  overflow: hidden;
-  width: auto;
-  height: 100%;
-}
-/* line 19, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in .sidebar-entry {
-  margin: 0 0 20px 0;
-}
-/* line 22, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in .delimiter {
-  border-top: 1px solid #cccccc;
-}
-/* line 25, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in h3 {
-  font-size: 90%;
-  padding: 0 15px;
-  text-transform: uppercase;
-  border-bottom: 1px solid #cccccc;
-}
-/* line 31, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-/* line 36, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in ul li a {
-  display: block;
-  padding: 10px;
-  vertical-align: middle;
-  position: reletive;
-}
-/* line 41, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in ul li a .fa-chevron-right {
-  display: none;
-}
-/* line 46, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in ul li.active {
-  background-color: #fff;
-  font-weight: bold;
-}
-/* line 49, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in ul li.active .fa {
-  color: #08A0DE;
-}
-/* line 52, ../sass/base/_sidebar.scss */
-#sidebar #sidebar_in ul li.active .fa-chevron-right {
-  display: inline-block;
-  font-size: 80%;
-  color: #cccccc;
-  position: absolute;
-  right: 1%;
-}
-
-/* line 69, ../sass/base/_sidebar.scss */
-.sidebar-off #sidebar #sidebar_in .sidebar-entry {
-  margin: 0;
-}
-/* line 72, ../sass/base/_sidebar.scss */
-.sidebar-off #sidebar #sidebar_in .delimiter {
-  display: none;
-}
-/* line 75, ../sass/base/_sidebar.scss */
-.sidebar-off #sidebar #sidebar_in h3 {
-  display: none;
-}
-/* line 81, ../sass/base/_sidebar.scss */
-.sidebar-off #sidebar #sidebar_in ul li a .sidebar-text, .sidebar-off #sidebar #sidebar_in ul li a .fa-chevron-right {
-  display: none;
 }
 
 /* Footer
@@ -11623,6 +11458,22 @@ img {
 .tbl-widget-ctrl .widget-history .fa {
   padding: 0 0 0 10px;
   font-size: 180%;
+}
+
+/* Widget
+-------------------------------------------------- */
+@media only screen and (min-width: 1280px) {
+  /* line 3, ../sass/custom/wd/_widget.scss */
+  .widget-entry {
+    width: 25%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  /* line 10, ../sass/custom/wd/_widget.scss */
+  .sidebar-off .widget-entry {
+    width: 20%;
+  }
 }
 
 /* Report
@@ -13340,7 +13191,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
     text-align: left;
   }
 }
-@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+@media only screen and (max-width: 1280px) and (min-width: 1024px) {
   /* line 64, ../sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title {
     max-width: 200px;
@@ -13394,7 +13245,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+@media only screen and (max-width: 1280px) and (min-width: 1024px) {
   /* line 92, ../sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title .widget-room .widget-title {
     max-width: 200px;
@@ -14294,7 +14145,7 @@ img.widget-promo-image {
     text-align: center;
   }
 }
-@media only screen and (max-width: 1200px) and (min-width: 1024px) {
+@media only screen and (max-width: 1280px) and (min-width: 1024px) {
   /* line 203, ../sass/base/_apps.scss */
   .app-entry-online .widget-entry .widget-entry-in .widget-title {
     max-width: 170px;
@@ -15486,15 +15337,15 @@ img.widget-promo-image {
   }
 }
 /* MAX WIDTH */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1280px) {
   /* line 135, ../sass/base/_slider.scss */
   .app-slider {
-    width: 1170px;
+    width: 1250px;
     height: 200px;
   }
   /* line 139, ../sass/base/_slider.scss */
   .app-slider .slide img {
-    width: 390px;
+    width: 416.66667px;
     height: 200px;
   }
 }
@@ -15654,12 +15505,589 @@ input[type="checkbox"]:checked + label:before {
 -------------------------------------------------- */
 /* SmartHome UI custom POPP
 -------------------------------------------------- */
-/* POPP css
+/* WD
 -------------------------------------------------- */
-/* line 5, ../sass/custom/_popp.scss */
-.app-type-popp .header-logo img {
+/* WD variables
+-------------------------------------------------- */
+/* WD variables
+-------------------------------------------------- */
+/* Body
+-------------------------------------------------- */
+/* Gird
+-------------------------------------------------- */
+/* Style */
+/* line 7, ../sass/custom/wd/_body.scss */
+#main_content {
+  padding: 0 5px;
+}
+
+/* line 11, ../sass/custom/wd/_body.scss */
+.container {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Header
+-------------------------------------------------- */
+/* line 3, ../sass/custom/wd/_header.scss */
+#header {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2100;
+  border-bottom: solid 1px #f8f8f8;
+  height: 50px;
+  line-height: 50px;
+  font-size: 120%;
+}
+/* line 15, ../sass/custom/wd/_header.scss */
+#header .left {
+  position: relative;
+  background: #f8f8f8;
+  width: 50px;
+  float: left;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 15, ../sass/custom/wd/_header.scss */
+  #header .left {
+    width: 260px;
+  }
+}
+/* line 24, ../sass/custom/wd/_header.scss */
+#header .left .header-hamburger {
+  display: inline-block;
+  text-align: center;
+  width: 50px;
+  font-size: 120%;
+  background-color: #f8f8f8;
+}
+/* line 32, ../sass/custom/wd/_header.scss */
+#header .left .header-l-hamburger {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 991px) {
+  /* line 32, ../sass/custom/wd/_header.scss */
+  #header .left .header-l-hamburger {
+    display: none;
+  }
+}
+/* line 38, ../sass/custom/wd/_header.scss */
+#header .left .header-s-hamburger {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 38, ../sass/custom/wd/_header.scss */
+  #header .left .header-s-hamburger {
+    display: none;
+  }
+}
+/* line 44, ../sass/custom/wd/_header.scss */
+#header .left #header_logo {
+  display: none;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 44, ../sass/custom/wd/_header.scss */
+  #header .left #header_logo {
+    max-height: 40px;
+    max-width: 100px;
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    display: inline-block;
+  }
+}
+/* line 58, ../sass/custom/wd/_header.scss */
+#header .right {
+  padding: 0 10px;
+  display: inline-block;
+  float: right;
+}
+/* line 63, ../sass/custom/wd/_header.scss */
+#header .header-navi {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 68, ../sass/custom/wd/_header.scss */
+#header .header-navi li {
+  display: inline;
+  padding: 0 0 0 30px;
+}
+/* line 72, ../sass/custom/wd/_header.scss */
+#header .header-navi li a {
+  position: relative;
+  text-decoration: none;
+}
+/* line 76, ../sass/custom/wd/_header.scss */
+#header .header-navi li .badge {
+  padding: 4px 7px;
+  font-size: 9px;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  position: absolute;
+  top: -6px;
+  left: 12px;
+  background-color: #08A0DE;
+}
+/* line 90, ../sass/custom/wd/_header.scss */
+#header .header-navi .navbar-text {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 767px) {
+  /* line 90, ../sass/custom/wd/_header.scss */
+  #header .header-navi .navbar-text {
+    display: none;
+  }
+}
+
+/* line 100, ../sass/custom/wd/_header.scss */
+.sidebar-off #header .left {
+  background: transparent;
+}
+/* line 102, ../sass/custom/wd/_header.scss */
+.sidebar-off #header .left .header-hamburger {
+  display: inline-block;
+  text-align: center;
+  width: 50px;
+  font-size: 120%;
+  background-color: #f8f8f8;
+}
+/* line 111, ../sass/custom/wd/_header.scss */
+.sidebar-off #header .left #header_logo {
+  left: 30px;
+  right: 0;
+}
+
+/* View mixin
+-------------------------------------------------- */
+/* View on
+-------------------------------------------------- */
+/* line 16, ../sass/custom/wd/_view.scss */
+#view_wrapper {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 16, ../sass/custom/wd/_view.scss */
+  #view_wrapper {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: 60px 10px 10px 270px;
+  }
+}
+
+/* View off
+-------------------------------------------------- */
+/* line 24, ../sass/custom/wd/_view.scss */
+.sidebar-off #view_wrapper {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 24, ../sass/custom/wd/_view.scss */
+  .sidebar-off #view_wrapper {
+    margin-left: 60px;
+  }
+}
+
+/* Mixins
+-------------------------------------------------- */
+/* Sidebar on
+-------------------------------------------------- */
+/* line 117, ../sass/custom/wd/_sidebar.scss */
+#sidebar {
+  display: block;
+  font-size: 120%;
+  bottom: 0;
+  height: 100%;
+  margin-top: 0px;
+  position: fixed;
+  width: 260px;
+  z-index: 2000;
+  background-color: #f8f8f8;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+/* line 16, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in {
+  margin: 70px 0 0 0;
+  overflow: hidden;
+  width: auto;
+  height: 100%;
+}
+/* line 21, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in .sidebar-entry {
+  margin: 0 0 20px 0;
+}
+/* line 24, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in .delimiter {
+  border-top: 1px solid #cccccc;
+}
+/* line 27, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in h3 {
+  font-size: 90%;
+  padding: 0 15px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #cccccc;
+}
+/* line 33, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 38, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li a {
+  display: block;
+  padding: 10px;
+  vertical-align: middle;
+  position: relative;
+}
+/* line 43, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li a .fa {
+  font-size: 120%;
+}
+/* line 46, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li a .sidebar-text {
+  padding: 0 0 0 10px;
+}
+/* line 49, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li a .fa-chevron-right {
+  display: none;
+}
+/* line 52, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li a:hover {
+  text-decoration: none;
+  background-color: #dfdfdf;
+}
+/* line 57, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li.active {
+  background-color: #fff;
+  font-weight: bold;
+}
+/* line 60, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li.active .fa {
+  color: #08A0DE;
+}
+/* line 63, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li.active .fa-chevron-right {
+  display: inline-block;
+  font-size: 80%;
+  color: #cccccc;
+  position: absolute;
+  right: 1%;
+}
+/* line 70, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li.active a {
+  cursor: text;
+}
+/* line 72, ../sass/custom/wd/_sidebar.scss */
+#sidebar #sidebar_in ul li.active a:hover {
+  background-color: #fff;
+}
+@media only screen and (max-width: 991px) {
+  /* line 117, ../sass/custom/wd/_sidebar.scss */
+  #sidebar {
+    display: none;
+  }
+  /* line 121, ../sass/custom/wd/_sidebar.scss */
+  #sidebar.m-sidebar-on {
+    width: 210px;
+    display: block;
+    opacity: 0.95;
+    filter: alpha(opacity=95);
+  }
+  /* line 126, ../sass/custom/wd/_sidebar.scss */
+  #sidebar.m-sidebar-on #sidebar_in {
+    margin-top: 50px;
+  }
+  /* line 128, ../sass/custom/wd/_sidebar.scss */
+  #sidebar.m-sidebar-on #sidebar_in .sidebar-entry {
+    margin: 0;
+  }
+  /* line 131, ../sass/custom/wd/_sidebar.scss */
+  #sidebar.m-sidebar-on #sidebar_in .delimiter {
+    display: none;
+  }
+  /* line 134, ../sass/custom/wd/_sidebar.scss */
+  #sidebar.m-sidebar-on #sidebar_in h3 {
+    display: none;
+  }
+}
+
+/* Sidebar off
+-------------------------------------------------- */
+/* line 146, ../sass/custom/wd/_sidebar.scss */
+.sidebar-off #sidebar {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 146, ../sass/custom/wd/_sidebar.scss */
+  .sidebar-off #sidebar {
+    width: 50px;
+  }
+  /* line 85, ../sass/custom/wd/_sidebar.scss */
+  .sidebar-off #sidebar #sidebar_in {
+    margin-top: 50px;
+  }
+  /* line 87, ../sass/custom/wd/_sidebar.scss */
+  .sidebar-off #sidebar #sidebar_in .sidebar-entry {
+    margin: 0;
+  }
+  /* line 90, ../sass/custom/wd/_sidebar.scss */
+  .sidebar-off #sidebar #sidebar_in .delimiter {
+    display: none;
+  }
+  /* line 93, ../sass/custom/wd/_sidebar.scss */
+  .sidebar-off #sidebar #sidebar_in h3 {
+    display: none;
+  }
+  /* line 97, ../sass/custom/wd/_sidebar.scss */
+  .sidebar-off #sidebar #sidebar_in ul li {
+    text-align: center;
+  }
+  /* line 100, ../sass/custom/wd/_sidebar.scss */
+  .sidebar-off #sidebar #sidebar_in ul li a .sidebar-text, .sidebar-off #sidebar #sidebar_in ul li a .fa-chevron-right {
+    display: none;
+  }
+}
+
+/* Rooms
+-------------------------------------------------- */
+/* Cards
+-------------------------------------------------- */
+@media only screen and (min-width: 1280px) {
+  /* line 6, ../sass/custom/wd/_rooms.scss */
+  .card-room {
+    width: 16.6666%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  /* line 14, ../sass/custom/wd/_rooms.scss */
+  .sidebar-off .card-room {
+    width: 14.2857%;
+  }
+}
+
+/* Apps
+-------------------------------------------------- */
+@media only screen and (min-width: 1280px) {
+  /* line 3, ../sass/custom/wd/_apps.scss */
+  .widget-entry-app {
+    width: 25%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  /* line 11, ../sass/custom/wd/_apps.scss */
+  .sidebar-off .widget-entry-app {
+    width: 20%;
+  }
+}
+
+/* Apps online
+-------------------------------------------------- */
+@media only screen and (min-width: 1280px) {
+  /* line 23, ../sass/custom/wd/_apps.scss */
+  .app-entry-online .widget-entry {
+    width: 20%;
+  }
+}
+
+/* Devices
+-------------------------------------------------- */
+@media only screen and (min-width: 1280px) {
+  /* line 5, ../sass/custom/wd/_devices.scss */
+  .vendor-entry {
+    width: 16.6666%;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  /* line 5, ../sass/custom/wd/_devices.scss */
+  .vendor-entry {
+    width: 14.2857%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  /* line 15, ../sass/custom/wd/_devices.scss */
+  .sidebar-off .vendor-entry {
+    width: 14.2857%;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  /* line 15, ../sass/custom/wd/_devices.scss */
+  .sidebar-off .vendor-entry {
+    width: 12.5%;
+  }
+}
+
+/* Customize - skins and icons
+-------------------------------------------------- */
+/* Variables
+-------------------------------------------------- */
+/* Widget
+-------------------------------------------------- */
+/* line 15, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in {
+  min-height: 120px;
+  height: auto;
+  position: static;
+  text-align: center;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 15, ../sass/custom/wd/_customize.scss */
+  .widget-entry-customize .widget-entry-in {
+    height: 250px;
+  }
+}
+/* line 25, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-img {
+  position: static;
+}
+/* line 27, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
+  width: 100%;
+  border: solid 4px #cccccc;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 27, ../sass/custom/wd/_customize.scss */
+  .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
+    max-width: 300px;
+    max-height: 150px;
+  }
+}
+/* line 38, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-header {
+  display: none;
+}
+/* line 41, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-content {
+  margin: 10px 0 0 0;
+}
+/* line 44, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .bottom-aligner {
+  display: none;
+}
+/* line 47, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-footer {
+  margin: 10px 0 0 0;
+}
+/* line 49, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-footer .btn-name {
+  display: none !important;
+}
+/* line 54, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-ctrl {
+  float: none;
+  width: 100%;
+}
+/* line 57, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-left {
+  display: none;
+}
+/* line 60, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-right {
+  float: none;
+  text-align: center;
+}
+/* line 63, ../sass/custom/wd/_customize.scss */
+.widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
+  float: none;
+}
+
+/* line 73, ../sass/custom/wd/_customize.scss */
+.app-row-customize .widget-warning .widget-img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+/* line 79, ../sass/custom/wd/_customize.scss */
+.app-row-customize .widget-warning .widget-title h3 {
+  color: #d9d9d9 !important;
+}
+
+/* Detail
+-------------------------------------------------- */
+/* line 88, ../sass/custom/wd/_customize.scss */
+.customize-detail {
+  padding: 10px;
+  margin: 10px 0;
+  max-height: 600px;
+  overflow: auto;
+}
+
+/* line 94, ../sass/custom/wd/_customize.scss */
+.customize-detail-title {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+/* line 98, ../sass/custom/wd/_customize.scss */
+.customize-detail-img {
+  padding: 10px 0;
+  text-align: center;
+  border-top: solid 1px #cccccc;
+}
+
+/* line 103, ../sass/custom/wd/_customize.scss */
+.customize-image-detail {
+  width: 100%;
+  border: solid 4px #cccccc;
+}
+
+/* line 109, ../sass/custom/wd/_customize.scss */
+.customize-detail-perex {
+  margin: 10px 0;
+}
+
+/* line 112, ../sass/custom/wd/_customize.scss */
+.customize-icon-list {
+  border-top: solid 1px #cccccc;
+  height: 300px;
+  overflow: scroll;
+}
+/* line 116, ../sass/custom/wd/_customize.scss */
+.customize-icon-list .customize-icon-preview {
+  display: inline-block;
+  margin: 10px;
+}
+
+/* Images
+-------------------------------------------------- */
+/* line 124, ../sass/custom/wd/_customize.scss */
+.customize-icon-preview {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+/* line 128, ../sass/custom/wd/_customize.scss */
+.imglist-img {
+  max-width: 40px;
   max-height: 40px;
-  max-width: 70px;
+}
+
+/* line 132, ../sass/custom/wd/_customize.scss */
+.imglist-img-preview {
+  max-width: 64px;
+  max-height: 64px;
 }
 
 /* Media queries

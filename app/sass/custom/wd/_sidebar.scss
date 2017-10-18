@@ -1,0 +1,151 @@
+
+/* Mixins
+-------------------------------------------------- */
+@mixin wdSidebarOn() {
+    display: block;
+    font-size: 120%;
+    //bottom: 50px;
+    bottom: 0;
+    height: 100%;
+    //padding-bottom: 50px;
+    margin-top: 0px;
+    position: fixed;
+    width: $sidebar-w;
+    z-index: $zindex-sidebar;
+    background-color: $wd-gray-color;
+    #sidebar_in{
+        margin: $header-h+$spacing-double 0 0 0;
+        overflow: hidden;
+        width: auto;
+        height: 100%;
+        .sidebar-entry{
+            margin: 0 0 $spacing-double 0;
+        }
+        .delimiter{
+            border-top: 1px solid $app-border-color;
+        }
+        h3{
+            font-size: 90%;
+            padding:  0 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid $app-border-color;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            li{
+                a{
+                    display: block;
+                    padding:  $spacing;
+                    vertical-align: middle;
+                    position: relative;
+                    .fa{
+                        font-size: $sidebar-icon-font-size;
+                    }
+                    .sidebar-text{
+                        padding: 0 0 0 $spacing;
+                    }
+                    .fa-chevron-right{
+                        display: none;
+                    }
+                    &:hover{
+                        text-decoration: none;
+                        background-color: darken($wd-gray-color,10%);
+                    }
+                }
+                &.active{
+                    background-color: #fff;
+                    font-weight: bold;
+                    .fa{
+                        color: $wd-brand-color;
+                    }
+                    .fa-chevron-right{
+                        display: inline-block;
+                        font-size: 80%;
+                        color: $app-border-color;
+                        position: absolute;
+                        right: 1%;
+                    }
+                    a{
+                        cursor: text;
+                        &:hover{
+                            background-color:#fff;
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+}
+@mixin wdSidebarOff() {
+    width: $sidebar-off-w;
+    #sidebar_in{
+        margin-top: $header-h;
+        .sidebar-entry{
+            margin: 0;
+        }
+        .delimiter{
+            display: none;
+        }
+        h3{
+            display: none;
+        }
+        ul {
+            li{
+                text-align: center;
+                a{
+                    .sidebar-text,  .fa-chevron-right{
+                        display: none;
+                    }
+                }
+                &.active{
+                    .fa{
+                    }
+                    .fa-chevron-right{
+                    }
+                }
+            }
+        }
+
+    }
+}
+/* Sidebar on
+-------------------------------------------------- */
+#sidebar{
+    @include wdSidebarOn();
+    @include mediaQueries(max-medium) {
+        display: none;
+        &.m-sidebar-on{
+            width: $sidebar-w - 50px;
+            display: block;
+
+            @include appOpacity(0.95);
+            #sidebar_in{
+                margin-top: $header-h;
+                .sidebar-entry{
+                    margin: 0;
+                }
+                .delimiter{
+                    display: none;
+                }
+                h3{
+                    display: none;
+                }
+            }
+        }
+
+    }
+
+}
+/* Sidebar off
+-------------------------------------------------- */
+.sidebar-off{
+    #sidebar{
+        @include mediaQueries(min-medium) {
+            @include wdSidebarOff();
+        }
+    }
+}
