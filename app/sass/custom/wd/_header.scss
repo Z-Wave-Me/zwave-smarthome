@@ -35,9 +35,9 @@
             }
 
         }
-        .header-s-hamburger{
+        .header-m-hamburger{
             @include mediaQueries(min-medium) {
-                 display: none;
+                display: none;
             }
 
         }
@@ -99,15 +99,18 @@
     #header{
         .left{
             background: transparent;
-            .header-hamburger{
-                display: inline-block;
-                text-align: center;
-                width: $sidebar-off-w;
-                font-size: $sidebar-icon-font-size;
-                background-color: $wd-gray-color;
-                //color: lighten()
+            @include mediaQueries(min-medium) {
+                .header-hamburger{
+                    display: inline-block;
+                    text-align: center;
+                    width: $sidebar-off-w;
+                    font-size: $sidebar-icon-font-size;
+                    background-color: $wd-gray-color;
+                    //color: lighten()
 
+                }
             }
+
             #header_logo{
                 left: $spacing-third;
                 right: 0;

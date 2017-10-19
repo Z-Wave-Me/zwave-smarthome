@@ -14333,7 +14333,18 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* Widget
 -------------------------------------------------- */
-/* line 15, ../sass/base/_customize.scss */
+/* line 14, ../sass/base/_customize.scss */
+.widget-entry-customize {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 479px) {
+  /* line 14, ../sass/base/_customize.scss */
+  .widget-entry-customize {
+    width: 100%;
+  }
+}
+/* line 19, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in {
   min-height: 120px;
   height: auto;
@@ -14343,16 +14354,16 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 15, ../sass/base/_customize.scss */
+  /* line 19, ../sass/base/_customize.scss */
   .widget-entry-customize .widget-entry-in {
     height: 250px;
   }
 }
-/* line 25, ../sass/base/_customize.scss */
+/* line 29, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-img {
   position: static;
 }
-/* line 27, ../sass/base/_customize.scss */
+/* line 31, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
   width: 100%;
   border: solid 4px #cccccc;
@@ -14360,64 +14371,64 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 27, ../sass/base/_customize.scss */
+  /* line 31, ../sass/base/_customize.scss */
   .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
     max-width: 300px;
     max-height: 150px;
   }
 }
-/* line 38, ../sass/base/_customize.scss */
+/* line 42, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-header {
   display: none;
 }
-/* line 41, ../sass/base/_customize.scss */
+/* line 45, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-content {
   margin: 10px 0 0 0;
 }
-/* line 44, ../sass/base/_customize.scss */
+/* line 48, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .bottom-aligner {
   display: none;
 }
-/* line 47, ../sass/base/_customize.scss */
+/* line 51, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-footer {
   margin: 10px 0 0 0;
 }
-/* line 49, ../sass/base/_customize.scss */
+/* line 53, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-footer .btn-name {
   display: none !important;
 }
-/* line 54, ../sass/base/_customize.scss */
+/* line 58, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-ctrl {
   float: none;
   width: 100%;
 }
-/* line 57, ../sass/base/_customize.scss */
+/* line 61, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-left {
   display: none;
 }
-/* line 60, ../sass/base/_customize.scss */
+/* line 64, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-right {
   float: none;
   text-align: center;
 }
-/* line 63, ../sass/base/_customize.scss */
+/* line 67, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
   float: none;
 }
 
-/* line 73, ../sass/base/_customize.scss */
+/* line 77, ../sass/base/_customize.scss */
 .app-row-customize .widget-warning .widget-img {
   opacity: 0.4;
   filter: alpha(opacity=40);
 }
-/* line 79, ../sass/base/_customize.scss */
+/* line 83, ../sass/base/_customize.scss */
 .app-row-customize .widget-warning .widget-title h3 {
   color: #d9d9d9 !important;
 }
 
 /* Detail
 -------------------------------------------------- */
-/* line 88, ../sass/base/_customize.scss */
+/* line 92, ../sass/base/_customize.scss */
 .customize-detail {
   padding: 10px;
   margin: 10px 0;
@@ -14425,37 +14436,37 @@ img.widget-promo-image {
   overflow: auto;
 }
 
-/* line 94, ../sass/base/_customize.scss */
+/* line 98, ../sass/base/_customize.scss */
 .customize-detail-title {
   font-weight: bold;
   font-size: 110%;
 }
 
-/* line 98, ../sass/base/_customize.scss */
+/* line 102, ../sass/base/_customize.scss */
 .customize-detail-img {
   padding: 10px 0;
   text-align: center;
   border-top: solid 1px #cccccc;
 }
 
-/* line 103, ../sass/base/_customize.scss */
+/* line 107, ../sass/base/_customize.scss */
 .customize-image-detail {
   width: 100%;
   border: solid 4px #cccccc;
 }
 
-/* line 109, ../sass/base/_customize.scss */
+/* line 113, ../sass/base/_customize.scss */
 .customize-detail-perex {
   margin: 10px 0;
 }
 
-/* line 112, ../sass/base/_customize.scss */
+/* line 116, ../sass/base/_customize.scss */
 .customize-icon-list {
   border-top: solid 1px #cccccc;
   height: 300px;
   overflow: scroll;
 }
-/* line 116, ../sass/base/_customize.scss */
+/* line 120, ../sass/base/_customize.scss */
 .customize-icon-list .customize-icon-preview {
   display: inline-block;
   margin: 10px;
@@ -14463,19 +14474,19 @@ img.widget-promo-image {
 
 /* Images
 -------------------------------------------------- */
-/* line 124, ../sass/base/_customize.scss */
+/* line 128, ../sass/base/_customize.scss */
 .customize-icon-preview {
   max-width: 64px;
   max-height: 64px;
 }
 
-/* line 128, ../sass/base/_customize.scss */
+/* line 132, ../sass/base/_customize.scss */
 .imglist-img {
   max-width: 40px;
   max-height: 40px;
 }
 
-/* line 132, ../sass/base/_customize.scss */
+/* line 136, ../sass/base/_customize.scss */
 .imglist-img-preview {
   max-width: 64px;
   max-height: 64px;
@@ -15577,13 +15588,13 @@ input[type="checkbox"]:checked + label:before {
   }
 }
 /* line 38, ../sass/custom/wd/_header.scss */
-#header .left .header-s-hamburger {
+#header .left .header-m-hamburger {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
   /* line 38, ../sass/custom/wd/_header.scss */
-  #header .left .header-s-hamburger {
+  #header .left .header-m-hamburger {
     display: none;
   }
 }
@@ -15654,49 +15665,52 @@ input[type="checkbox"]:checked + label:before {
 /* line 100, ../sass/custom/wd/_header.scss */
 .sidebar-off #header .left {
   background: transparent;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 102, ../sass/custom/wd/_header.scss */
-.sidebar-off #header .left .header-hamburger {
-  display: inline-block;
-  text-align: center;
-  width: 50px;
-  font-size: 120%;
-  background-color: #f8f8f8;
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 103, ../sass/custom/wd/_header.scss */
+  .sidebar-off #header .left .header-hamburger {
+    display: inline-block;
+    text-align: center;
+    width: 50px;
+    font-size: 120%;
+    background-color: #f8f8f8;
+  }
 }
-/* line 111, ../sass/custom/wd/_header.scss */
+/* line 114, ../sass/custom/wd/_header.scss */
 .sidebar-off #header .left #header_logo {
   left: 30px;
   right: 0;
 }
 
-/* View mixin
--------------------------------------------------- */
 /* View on
 -------------------------------------------------- */
-/* line 16, ../sass/custom/wd/_view.scss */
+/* line 3, ../sass/custom/wd/_view.scss */
 #view_wrapper {
+  margin: 60px 10px 10px 10px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 16, ../sass/custom/wd/_view.scss */
+  /* line 3, ../sass/custom/wd/_view.scss */
   #view_wrapper {
     position: relative;
     top: 0;
     right: 0;
-    margin: 60px 10px 10px 270px;
+    margin-left: 270px;
   }
 }
 
 /* View off
 -------------------------------------------------- */
-/* line 24, ../sass/custom/wd/_view.scss */
+/* line 16, ../sass/custom/wd/_view.scss */
 .sidebar-off #view_wrapper {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 24, ../sass/custom/wd/_view.scss */
+  /* line 16, ../sass/custom/wd/_view.scss */
   .sidebar-off #view_wrapper {
     margin-left: 60px;
   }
@@ -15863,6 +15877,57 @@ input[type="checkbox"]:checked + label:before {
   .sidebar-off #sidebar #sidebar_in ul li a .sidebar-text, .sidebar-off #sidebar #sidebar_in ul li a .fa-chevron-right {
     display: none;
   }
+}
+
+/* Authentication pages - login, forgot password etc
+-------------------------------------------------- */
+/* line 3, ../sass/custom/wd/_auth.scss */
+#page_login #view_wrapper, #page_password #view_wrapper, #page_passwordforgot #view_wrapper, #page_passwordreset #view_wrapper {
+  max-width: 400px;
+  margin: 70px auto 0 auto;
+}
+
+/* line 10, ../sass/custom/wd/_auth.scss */
+#page_login .welcome-screen {
+  text-align: center;
+}
+/* line 12, ../sass/custom/wd/_auth.scss */
+#page_login .welcome-screen img {
+  margin: 0 0 20px 0;
+}
+/* line 16, ../sass/custom/wd/_auth.scss */
+#page_login .form-page {
+  border: 0;
+}
+/* line 18, ../sass/custom/wd/_auth.scss */
+#page_login .form-page .form-group {
+  border: 0;
+}
+/* line 21, ../sass/custom/wd/_auth.scss */
+#page_login .form-page .form-control {
+  webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+}
+/* line 30, ../sass/custom/wd/_auth.scss */
+#page_login .form-page .password-forgot {
+  display: block;
+  text-align: right;
+}
+/* line 34, ../sass/custom/wd/_auth.scss */
+#page_login .form-page .submit-entry {
+  border: 0;
+}
+/* line 36, ../sass/custom/wd/_auth.scss */
+#page_login .form-page .submit-entry .btn-submit {
+  background-color: #08A0DE;
+  width: 100%;
 }
 
 /* Rooms

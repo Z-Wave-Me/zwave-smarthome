@@ -1,29 +1,21 @@
-/* View mixin
--------------------------------------------------- */
-@mixin wdViewOn() {
-    
-        position: relative;
-        top: 0;
-        right: 0;
-        margin: $header-h+$spacing $spacing $spacing $sidebar-w+$spacing;
-   
-}
-@mixin wdViewOff() {
-     margin-left: $sidebar-off-w+$spacing;
-}
 /* View on
 -------------------------------------------------- */
 #view_wrapper{
+     margin: $header-h+$spacing $spacing $spacing $spacing;
     @include mediaQueries(min-medium) {
-                @include wdViewOn();
-            }
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-left: $sidebar-w+$spacing;
+    }
+
 }
 /* View off
 -------------------------------------------------- */
- .sidebar-off{
-        #view_wrapper{
-           @include mediaQueries(min-medium) {
-                @include wdViewOff();
-            }
+.sidebar-off{
+    #view_wrapper{
+        @include mediaQueries(min-medium) {
+            margin-left: $sidebar-off-w+$spacing;
         }
     }
+}

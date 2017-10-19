@@ -12,6 +12,10 @@
 /* Widget
 -------------------------------------------------- */
 .widget-entry-customize{
+    
+      @include mediaQueries(max-esmall) {
+         width: 100%;
+    }
     .widget-entry-in{
         min-height: 120px;
         height: auto;

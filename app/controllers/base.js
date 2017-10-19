@@ -523,6 +523,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     $scope.expandElement = function (key) {
         $scope.expand[key] = !($scope.expand[key]);
     };
+    
+    /**
+     * Expand/collapse sidebar
+     * @returns {undefined}
+     */
+     $scope.sidebarState = ($cookies.sidebarState ? $filter('toBool')($cookies.sidebarState) : false);
+    $scope.expandSidebar = function () {
+       $scope.sidebarState = !$scope.sidebarState;
+       $cookies.sidebarState = $scope.sidebarState;
+    };
 
     $scope.rowSpinner = [];
     /**

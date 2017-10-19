@@ -1,0 +1,43 @@
+/* Authentication pages - login, forgot password etc
+-------------------------------------------------- */
+#page_login #view_wrapper, #page_password #view_wrapper, #page_passwordforgot #view_wrapper, #page_passwordreset #view_wrapper {
+    max-width: 400px;
+    margin: 70px auto 0 auto;
+    
+}
+
+#page_login{
+    .welcome-screen{
+        text-align: center;
+        img{
+            margin: 0 0 $spacing-double 0;
+        }
+    }
+    .form-page{
+        border: 0;
+        .form-group{
+            border: 0;
+        }
+         .form-control{
+             webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+             @include appBorderRadius(0);
+             border-top: 0;
+             border-right: 0;
+             border-left: 0;
+        }
+        .password-forgot{
+            display: block;
+            text-align: right;
+        }
+        .submit-entry{
+            border: 0;
+            .btn-submit{
+                background-color: $wd-brand-color;
+                width: 100%;
+            }
+        }
+    }
+}
+
