@@ -115,6 +115,10 @@ fieldset, .fieldset {
   width: 50% !important;
 }
 
+.input-valid-false{
+  border: solid 1px red;
+}
+
 .submit-entry {
   text-align: right;
   display: block;
