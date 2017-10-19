@@ -172,24 +172,6 @@ $inclusion-img-w: 96px;
         }
     }
 }
-
-/* Inclusion S2
--------------------------------------------------- */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-input[type="number"].input_number {
-    display: inline-block;
-    -moz-appearance: textfield;
-    width: 5em;
-}
-
-.diabled_label {
-    color: darkgrey;
-}
-
 /* Management
 -------------------------------------------------- */
 .report-battery-info {
@@ -260,5 +242,75 @@ input[type="number"].input_number {
             width: 64px + $spacing-double;// Img width + spacing
         }
 
+    }
+}
+/* SmartStart
+-------------------------------------------------- */
+.row-smartstart{
+    .report-entry{
+        // Media queries
+        @include mediaQueries(max-esmall) {
+            display: block;
+        }
+        .report-col {
+            padding: $spacing;
+            vertical-align: top;
+            border-bottom:0;
+            // Media queries
+            @include mediaQueries(max-esmall) {
+                display: block;
+            }
+        }
+    }
+}
+
+/* QR code
+-------------------------------------------------- */
+.qrcode-wrap{
+    //margin: 0 auto;
+    #qrcode_network{
+        // margin: $spacing-double auto 0 auto;
+        //width: 200px;
+        //text-align: center;
+        img {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            display: block;
+            width: 200px;
+        }
+        @include mediaQueries(min-small) {
+            margin: 0;
+        }
+    }
+}
+
+/* Security 2 icons
+-------------------------------------------------- */
+.security-2{
+    &.fa-stack{
+        margin: 0 $spacing-double 0 0;
+        width: 1em;
+        //top: -5px;
+        left: -3px;
+        display: inline;
+        height: 1em;
+        line-height: 1em;
+    }
+    .fa-stack-1x,.fa-stack-1x{
+        text-align: left;
+    }
+    .icon-bottom{
+        color: darkgray;
+    }
+    .icon-top{
+        color: green;
+        left:4px; top:4px;
+    }
+    &.false{
+        .icon-top{
+            color: #a94442;
+        }
     }
 }
