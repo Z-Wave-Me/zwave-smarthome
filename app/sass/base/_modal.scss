@@ -10,7 +10,7 @@
   overflow: auto;
   color: $app-body-color;
   // Animation
-  &.ng-animate {
+/*  &.ng-animate {
     transition: all ease 0.4s;
     position: absolute;
   }
@@ -26,7 +26,7 @@
   .accordion-entry-ctrl.ng-leave.ng-leave-active {
     top: 200px;
     opacity: 0;
-  }
+  }*/
   .appmodal-in {
     width: 99%;
     position: relative;

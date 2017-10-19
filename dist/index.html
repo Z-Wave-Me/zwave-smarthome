@@ -15,100 +15,163 @@
 
     </head>
     <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}} rss-{{rss.unread}}">
-        <a class="skinreset" href="#skinreset">Reset skin to default</a>
-        <div id="header" ng-if="user">
-            <div id="main_navigation_wrap">
-                <div id="main_navigation" class="container">
-                    <div id="navigation_left">
-                        <!-- logo -->
-                        <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
-                            <img ng-src="{{getAppLogo()}}" id="header_logo" alt="App logo" />
+        <!-- Wrapper -->
+         <!--<div id="wrapper" ng-class="naviExpanded.sidebarOff ? 'sidebar-off' : 'sidebar-on'">-->
+            <div id="wrapper" ng-class="sidebarState ? 'sidebar-on' : 'sidebar-off'">
+            <!-- Header -->
+            <div id="header"  ng-if="user">
+                <div class="header_in">
+                    <div class="left">
+                        <!-- hamburger for large devices -->
+                         <span class="clickable header-hamburger header-l-hamburger" ng-click="expandSidebar()">
+                             <i class="fa fa-bars"></i>
+                         </span>
+                        <span class="clickable header-hamburger header-m-hamburger" ng-click="expandNavi('mSidebarOn', $event)">
+                             <i class="fa fa-bars"></i>
+                         </span>
+                       <!-- logo -->
+                        <a id="header_logo" href="#home" title="{{_t('nav_home')}}">
+                            <img ng-src="storage/img/logo/wd.png" id="header_logo" alt="Img" />
                         </a>
-                        <!-- dashboard -->
-                        <span class="divider-vertical"></span>
-                        <a class="nav-home" href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i> <span class="main-nav-text">{{_t('nav_home')}}</span></a>
-                        <!-- rooms -->
-                        <span class="divider-vertical"></span>
-                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i> <span class="main-nav-text">{{_t('nav_rooms')}}</span></a>
-                        <!-- elements -->
-                        <span class="divider-vertical"></span>
-                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i> <span class="main-nav-text">{{_t('nav_elements')}}</span></a>
-                        <!-- events -->
-                        <span class="divider-vertical"></span>
-                        <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i> <span class="main-nav-text">{{_t('nav_events')}}</span></a>
-                        <!-- rss -->
-                        <span class="divider-vertical" ng-show="rss.unread > 0"></span>
-                        <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
-                            <i class="fa fa-comment"></i>
-                            <span class="main-nav-text">{{_t('news')}} </span><small>{{rss.unread}}</small>
-
-                        </a>
-                        <!-- time -->
-                        <span class="divider-vertical"></span> 
-                        &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string"><i class="fa fa-clock-o"></i> {{cfg.route.time.string}}</span>
+                       
+                       
                     </div>
-                    <div id="navigation_right">
-                        <span class="divider-vertical"></span> 
-                        <a id="navi_settings" href="" title="{{_t('lb_configuration')}}" ng-click="expandNavi('mainNav', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''"><i class="fa fa-bars"></i></a>
-                    </div>
-                </div><!-- /#navigation --> 
-            </div><!-- /#main_navigation_wrap --> 
-            <div id="sub_navigation" ng-show="naviExpanded.mainNav">
-                <div id="sub_navigation_in">
-                    <div class="container">
-                        <ul>
-                            <!-- Apps -->
-                            <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                                <a href="#apps/local"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    <div class="right">
+                        <ul class="header-navi">
+                            <!-- Time stamp -->
+                            <li class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
+                                <i class="fa fa-clock-o"></i> {{cfg.route.time.string}}
                             </li>
-                            <!-- Devices -->
-                            <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
-                                <a href="#devices"><i class="fa fa-cogs fa-fw"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            <!-- News -->
+                            <li ng-show="rss.unread > 0">
+                                <a href="#rss" title="{{_t('news')}}">
+                                    <i class="fa fa-bell"></i><span class="badge">{{rss.unread}}</span>
+                                </a>
                             </li>
-                             <!-- Customize -->
-                            <li class="subnavi-report" ng-class="isActive('customize')"
-                                ng-if="elementAccess(cfg.role_access.customize)">
-                                <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece fa-fw"></i> <span>{{_t('customize')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                            <!-- My access -->
-                            <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
-                                <a href="#myaccess"><i class="fa fa-user fa-fw"></i>  <span>{{_t('nav_myaccess')}}</span><i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                            <!-- Management -->
-                            <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
-                                <a href="#admin"><i class="fa fa-wrench fa-fw"></i> <span>{{_t('management')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                            <!-- Rss -->
-                            <li class="subnavi-admin" ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
-                                <a href="#rss"><i class="fa fa-comment fa-fw"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            <!-- User -->
+                            <li class="navbar-text">
+                                <i class="fa fa-user"></i> {{user.name}}
                             </li>
                             <!-- Logout -->
-                            <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">
-                                <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            <li>
+                                <a href="#logout">
+                                    <i class="fa fa-sign-out"></i> <span class="navbar-text">{{_t('nav_logout')}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                     </div>
+                </div>
+            </div>
+            <!-- Sidebar -->
+            <div id="sidebar" ng-class="{'m-sidebar-on': naviExpanded.mSidebarOn }"  ng-if="user">
+                <div id="sidebar_in">
+                    <div class="sidebar-entry">
+                         <h3>Control</h3>
+                        <ul>
+                            <!-- Dashboard -->
+                            <li ng-class="isActive('dashboard')">
+                                <a href="#home" title="{{_t('nav_home')}}">
+                                    <i class="fa fa-home fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('nav_home')}}</span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <!-- Rooms -->
+                            <li ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)">
+                                <a href="#rooms" title="{{_t('nav_rooms')}}">
+                                    <i class="fa fa-building-o fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('nav_rooms')}}</span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <!-- Elements -->
+                            <li ng-class="isActive('elements')">
+                                <a href="#elements" title="{{_t('nav_elements')}}">
+                                    <i class="fa fa-clone fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('nav_elements')}}</span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <!-- Events -->
+                            <li ng-class="isActive('events')">
+                                <a href="#events" title="{{_t('nav_events')}}">
+                                    <i class="fa fa-calendar fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('nav_events')}}</span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
-                </div><!-- /#subnavigation_in --> 
-            </div><!-- /#subnavigation --> 
-        </div><!-- /#header --> 
-        <!-- Ang Content Container -->
-        <div id="main_content" class="container">
-            <div ng-if="cfg.route.fatalError.message" ng-cloak>
-                <div class="app-fatal-error">
-                    <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
-                    <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
+                    <!--<hr class="delimiter" />-->
+                    <div class="sidebar-entry">
+                        <h3>Manage</h3>
+                        <ul>
+                            <!-- Apps -->
+                            <li ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
+                                <a href="#apps/local" title="{{_t('nav_apps')}}">
+                                    <i class="fa fa-cubes fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('nav_apps')}}</span>
+                                     <i class="fa fa-chevron-right"></i>
+                                </a>
+                                   
+                            </li>
+                            <!-- Devices -->
+                            <li ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
+                                <a href="#devices" title="{{_t('nav_devices')}}">
+                                    <i class="fa fa-cogs fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('nav_devices')}} </span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <!-- Customize -->
+                            <li ng-class="isActive('customize')"
+                                ng-if="elementAccess(cfg.role_access.customize)">
+                                <a href="#customize/skinslocal" title="{{_t('customize')}}">
+                                    <i class="fa fa-puzzle-piece fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('customize')}}</span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <!-- My settings -->
+                            <li ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
+                                <a href="#myaccess"><i class="fa fa-user fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('nav_myaccess')}}</span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <!-- Management -->
+                            <li ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
+                                <a href="#admin" title="{{_t('management')}}">
+                                    <i class="fa fa-wrench fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('management')}}</span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            <!-- Rss -->
+                            <li ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
+                                <a href="#rss"  title="{{_t('news')}}">
+                                    <i class="fa fa-comment fa-fw"></i> 
+                                    <span class="sidebar-text">{{_t('news')}}</span>
+                                    <i class="fa fa-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
-            <div id="view_content" ng-hide="cfg.route.fatalError.hide" ng-view></div>
-        </div>
-        <div class="clearfix"></div>
+            <!-- View wrapper -->
+            <div id="view_wrapper">
+                <!-- Ang Content Container -->
+                <div id="view" ng-view></div>
+            </div>
 
-        <div id="footer">
-            <div id="footer_in">
+            <!-- Footer
+            <div id="footer_">
                 <div class="container">
-                    <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string"><i class="fa fa-clock-o"></i> {{cfg.route.time.string}}</span>
+                    Footer
                 </div>
-            </div>         
+            </div>-->
         </div>
     </body>
 </html>

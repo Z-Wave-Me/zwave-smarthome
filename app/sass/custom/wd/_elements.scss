@@ -1,0 +1,11 @@
+/* Elements
+-------------------------------------------------- */
+.widget-entry-element {
+    .widget-entry-in {
+        // Media queries
+        @include mediaQueries(max-esmall) {
+           border: solid 1px $app-border-color;
+        }
+        
+    }
+}

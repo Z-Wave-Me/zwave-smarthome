@@ -15,9 +15,12 @@
     background-color: $wd-gray-color;
     #sidebar_in{
         margin: $header-h+$spacing-double 0 0 0;
+        padding-bottom: 50px;
         overflow: hidden;
         width: auto;
         height: 100%;
+         overflow: auto;
+       // max-height: 98%;
         .sidebar-entry{
             margin: 0 0 $spacing-double 0;
         }

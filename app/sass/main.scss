@@ -171,10 +171,10 @@ $loader-fadeout:  7s;
 @import "custom/wd/_view";
 @import "custom/wd/_sidebar";
 @import "custom/wd/_auth";
+@import "custom/wd/_elements";
 @import "custom/wd/_rooms";
 @import "custom/wd/_apps";
 @import "custom/wd/_devices";
-@import "custom/wd/_customize";
 /* Media queries
 -------------------------------------------------- */
 @import "base/_media_queries";

@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 16-10-2017 14:39:14 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 19-10-2017 14:59:36 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -113,7 +113,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/auth/auth_login.html',
-    "<div ng-controller=AuthLoginController><bb-loader></bb-loader><div class=welcome-screen><h1>{{_t('welcome_1')}} {{auth.remoteId}}</h1></div><form name=form_login id=form_login class=\"form form-page\" ng-submit=login(input) novalidate><fieldset><h3><span ng-bind=\"_t('nav_login')\"></span></h3><div class=form-group><input name=login id=login class=form-control placeholder=\"{{_t('lb_login')}}\" value={{input.login}} ng-model=\"input.login\"></div><div class=form-group><input name=password id=password type=password class=form-control placeholder=\"{{_t('lb_password')}}\" ng-model=\"input.password\"></div><div class=form-group><input type=checkbox name=rememberme value=true id=rememberme ng-model=input.rememberme ng-checked=\"input.remember\"><label for=rememberme ng-bind=\"_t('remember_me')\"></label></div><a href=#passwordforgot><i class=\"fa fa-question-circle text-primary\"></i> {{_t('password_forgot')}}</a></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\"><i class=\"fa fa-sign-in\"></i> {{_t('lb_enter')}}</button></fieldset></form></div>"
+    "<div ng-controller=AuthLoginController><bb-loader></bb-loader><div class=welcome-screen><p>Made for</p><img ng-src=storage/img/logo/wd.png id=header_logo alt=\"Img\"><h1>{{_t('welcome_1')}} {{auth.remoteId}}</h1></div><form name=form_login id=form_login class=\"form form-page\" ng-submit=login(input) novalidate><fieldset><div class=form-group><input name=login id=login class=form-control placeholder=\"{{_t('lb_login')}}\" value={{input.login}} ng-model=\"input.login\"></div><div class=form-group><input name=password id=password type=password class=form-control placeholder=\"{{_t('lb_password')}}\" ng-model=\"input.password\"></div><div class=form-group><input type=checkbox name=rememberme value=true id=rememberme ng-model=input.rememberme ng-checked=\"input.remember\"><label for=rememberme ng-bind=\"_t('remember_me')\"></label></div><a href=#passwordforgot class=password-forgot><i class=\"fa fa-question-circle text-primary\"></i> {{_t('password_forgot')}}</a></fieldset><fieldset class=submit-entry><button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_enter')}}\"><i class=\"fa fa-sign-in\"></i> {{_t('lb_enter')}}</button></fieldset></form></div>"
   );
 
 

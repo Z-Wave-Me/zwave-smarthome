@@ -12787,26 +12787,23 @@ http://codepen.io/MattIn4D/pen/LiKFC
   z-index: 2300;
   overflow: auto;
   color: #0d0d0d;
-}
-/* line 13, ../sass/base/_modal.scss */
-.appmodal.ng-animate {
-  transition: all ease 0.4s;
-  position: absolute;
-}
-/* line 17, ../sass/base/_modal.scss */
-.appmodal.ng-enter {
-  top: -200px;
-  opacity: 0;
-}
-/* line 21, ../sass/base/_modal.scss */
-.appmodal.ng-leave, .appmodal.ng-enter.ng-enter-active {
-  top: 0;
-  opacity: 1;
-}
-/* line 26, ../sass/base/_modal.scss */
-.appmodal .accordion-entry-ctrl.ng-leave.ng-leave-active {
-  top: 200px;
-  opacity: 0;
+  /*  &.ng-animate {
+      transition: all ease 0.4s;
+      position: absolute;
+    }
+    &.ng-enter {
+      top: -200px;
+      opacity: 0;
+    }
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+      top: 0;
+      opacity: 1;
+    }
+    .accordion-entry-ctrl.ng-leave.ng-leave-active {
+      top: 200px;
+      opacity: 0;
+    }*/
 }
 /* line 30, ../sass/base/_modal.scss */
 .appmodal .appmodal-in {
@@ -15720,7 +15717,7 @@ input[type="checkbox"]:checked + label:before {
 -------------------------------------------------- */
 /* Sidebar on
 -------------------------------------------------- */
-/* line 117, ../sass/custom/wd/_sidebar.scss */
+/* line 120, ../sass/custom/wd/_sidebar.scss */
 #sidebar {
   display: block;
   font-size: 120%;
@@ -15737,65 +15734,67 @@ input[type="checkbox"]:checked + label:before {
 /* line 16, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in {
   margin: 70px 0 0 0;
+  padding-bottom: 50px;
   overflow: hidden;
   width: auto;
   height: 100%;
+  overflow: auto;
 }
-/* line 21, ../sass/custom/wd/_sidebar.scss */
+/* line 24, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in .sidebar-entry {
   margin: 0 0 20px 0;
 }
-/* line 24, ../sass/custom/wd/_sidebar.scss */
+/* line 27, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in .delimiter {
   border-top: 1px solid #cccccc;
 }
-/* line 27, ../sass/custom/wd/_sidebar.scss */
+/* line 30, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in h3 {
   font-size: 90%;
   padding: 0 15px;
   text-transform: uppercase;
   border-bottom: 1px solid #cccccc;
 }
-/* line 33, ../sass/custom/wd/_sidebar.scss */
+/* line 36, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-/* line 38, ../sass/custom/wd/_sidebar.scss */
+/* line 41, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li a {
   display: block;
   padding: 10px;
   vertical-align: middle;
   position: relative;
 }
-/* line 43, ../sass/custom/wd/_sidebar.scss */
+/* line 46, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li a .fa {
   font-size: 120%;
 }
-/* line 46, ../sass/custom/wd/_sidebar.scss */
+/* line 49, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li a .sidebar-text {
   padding: 0 0 0 10px;
 }
-/* line 49, ../sass/custom/wd/_sidebar.scss */
+/* line 52, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li a .fa-chevron-right {
   display: none;
 }
-/* line 52, ../sass/custom/wd/_sidebar.scss */
+/* line 55, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li a:hover {
   text-decoration: none;
   background-color: #dfdfdf;
 }
-/* line 57, ../sass/custom/wd/_sidebar.scss */
+/* line 60, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li.active {
   background-color: #fff;
   font-weight: bold;
 }
-/* line 60, ../sass/custom/wd/_sidebar.scss */
+/* line 63, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li.active .fa {
   color: #08A0DE;
 }
-/* line 63, ../sass/custom/wd/_sidebar.scss */
+/* line 66, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li.active .fa-chevron-right {
   display: inline-block;
   font-size: 80%;
@@ -15803,39 +15802,39 @@ input[type="checkbox"]:checked + label:before {
   position: absolute;
   right: 1%;
 }
-/* line 70, ../sass/custom/wd/_sidebar.scss */
+/* line 73, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li.active a {
   cursor: text;
 }
-/* line 72, ../sass/custom/wd/_sidebar.scss */
+/* line 75, ../sass/custom/wd/_sidebar.scss */
 #sidebar #sidebar_in ul li.active a:hover {
   background-color: #fff;
 }
 @media only screen and (max-width: 991px) {
-  /* line 117, ../sass/custom/wd/_sidebar.scss */
+  /* line 120, ../sass/custom/wd/_sidebar.scss */
   #sidebar {
     display: none;
   }
-  /* line 121, ../sass/custom/wd/_sidebar.scss */
+  /* line 124, ../sass/custom/wd/_sidebar.scss */
   #sidebar.m-sidebar-on {
     width: 210px;
     display: block;
     opacity: 0.95;
     filter: alpha(opacity=95);
   }
-  /* line 126, ../sass/custom/wd/_sidebar.scss */
+  /* line 129, ../sass/custom/wd/_sidebar.scss */
   #sidebar.m-sidebar-on #sidebar_in {
     margin-top: 50px;
   }
-  /* line 128, ../sass/custom/wd/_sidebar.scss */
+  /* line 131, ../sass/custom/wd/_sidebar.scss */
   #sidebar.m-sidebar-on #sidebar_in .sidebar-entry {
     margin: 0;
   }
-  /* line 131, ../sass/custom/wd/_sidebar.scss */
+  /* line 134, ../sass/custom/wd/_sidebar.scss */
   #sidebar.m-sidebar-on #sidebar_in .delimiter {
     display: none;
   }
-  /* line 134, ../sass/custom/wd/_sidebar.scss */
+  /* line 137, ../sass/custom/wd/_sidebar.scss */
   #sidebar.m-sidebar-on #sidebar_in h3 {
     display: none;
   }
@@ -15843,37 +15842,37 @@ input[type="checkbox"]:checked + label:before {
 
 /* Sidebar off
 -------------------------------------------------- */
-/* line 146, ../sass/custom/wd/_sidebar.scss */
+/* line 149, ../sass/custom/wd/_sidebar.scss */
 .sidebar-off #sidebar {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 146, ../sass/custom/wd/_sidebar.scss */
+  /* line 149, ../sass/custom/wd/_sidebar.scss */
   .sidebar-off #sidebar {
     width: 50px;
   }
-  /* line 85, ../sass/custom/wd/_sidebar.scss */
+  /* line 88, ../sass/custom/wd/_sidebar.scss */
   .sidebar-off #sidebar #sidebar_in {
     margin-top: 50px;
   }
-  /* line 87, ../sass/custom/wd/_sidebar.scss */
+  /* line 90, ../sass/custom/wd/_sidebar.scss */
   .sidebar-off #sidebar #sidebar_in .sidebar-entry {
     margin: 0;
   }
-  /* line 90, ../sass/custom/wd/_sidebar.scss */
+  /* line 93, ../sass/custom/wd/_sidebar.scss */
   .sidebar-off #sidebar #sidebar_in .delimiter {
     display: none;
   }
-  /* line 93, ../sass/custom/wd/_sidebar.scss */
+  /* line 96, ../sass/custom/wd/_sidebar.scss */
   .sidebar-off #sidebar #sidebar_in h3 {
     display: none;
   }
-  /* line 97, ../sass/custom/wd/_sidebar.scss */
+  /* line 100, ../sass/custom/wd/_sidebar.scss */
   .sidebar-off #sidebar #sidebar_in ul li {
     text-align: center;
   }
-  /* line 100, ../sass/custom/wd/_sidebar.scss */
+  /* line 103, ../sass/custom/wd/_sidebar.scss */
   .sidebar-off #sidebar #sidebar_in ul li a .sidebar-text, .sidebar-off #sidebar #sidebar_in ul li a .fa-chevron-right {
     display: none;
   }
@@ -15928,6 +15927,20 @@ input[type="checkbox"]:checked + label:before {
 #page_login .form-page .submit-entry .btn-submit {
   background-color: #08A0DE;
   width: 100%;
+}
+
+/* Elements
+-------------------------------------------------- */
+/* line 4, ../sass/custom/wd/_elements.scss */
+.widget-entry-element .widget-entry-in {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 479px) {
+  /* line 4, ../sass/custom/wd/_elements.scss */
+  .widget-entry-element .widget-entry-in {
+    border: solid 1px #cccccc;
+  }
 }
 
 /* Rooms
@@ -15999,160 +16012,6 @@ input[type="checkbox"]:checked + label:before {
   .sidebar-off .vendor-entry {
     width: 12.5%;
   }
-}
-
-/* Customize - skins and icons
--------------------------------------------------- */
-/* Variables
--------------------------------------------------- */
-/* Widget
--------------------------------------------------- */
-/* line 15, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in {
-  min-height: 120px;
-  height: auto;
-  position: static;
-  text-align: center;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 15, ../sass/custom/wd/_customize.scss */
-  .widget-entry-customize .widget-entry-in {
-    height: 250px;
-  }
-}
-/* line 25, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-img {
-  position: static;
-}
-/* line 27, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
-  width: 100%;
-  border: solid 4px #cccccc;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 27, ../sass/custom/wd/_customize.scss */
-  .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
-    max-width: 300px;
-    max-height: 150px;
-  }
-}
-/* line 38, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-header {
-  display: none;
-}
-/* line 41, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-content {
-  margin: 10px 0 0 0;
-}
-/* line 44, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .bottom-aligner {
-  display: none;
-}
-/* line 47, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-footer {
-  margin: 10px 0 0 0;
-}
-/* line 49, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-footer .btn-name {
-  display: none !important;
-}
-/* line 54, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-ctrl {
-  float: none;
-  width: 100%;
-}
-/* line 57, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-left {
-  display: none;
-}
-/* line 60, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-right {
-  float: none;
-  text-align: center;
-}
-/* line 63, ../sass/custom/wd/_customize.scss */
-.widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
-  float: none;
-}
-
-/* line 73, ../sass/custom/wd/_customize.scss */
-.app-row-customize .widget-warning .widget-img {
-  opacity: 0.4;
-  filter: alpha(opacity=40);
-}
-/* line 79, ../sass/custom/wd/_customize.scss */
-.app-row-customize .widget-warning .widget-title h3 {
-  color: #d9d9d9 !important;
-}
-
-/* Detail
--------------------------------------------------- */
-/* line 88, ../sass/custom/wd/_customize.scss */
-.customize-detail {
-  padding: 10px;
-  margin: 10px 0;
-  max-height: 600px;
-  overflow: auto;
-}
-
-/* line 94, ../sass/custom/wd/_customize.scss */
-.customize-detail-title {
-  font-weight: bold;
-  font-size: 110%;
-}
-
-/* line 98, ../sass/custom/wd/_customize.scss */
-.customize-detail-img {
-  padding: 10px 0;
-  text-align: center;
-  border-top: solid 1px #cccccc;
-}
-
-/* line 103, ../sass/custom/wd/_customize.scss */
-.customize-image-detail {
-  width: 100%;
-  border: solid 4px #cccccc;
-}
-
-/* line 109, ../sass/custom/wd/_customize.scss */
-.customize-detail-perex {
-  margin: 10px 0;
-}
-
-/* line 112, ../sass/custom/wd/_customize.scss */
-.customize-icon-list {
-  border-top: solid 1px #cccccc;
-  height: 300px;
-  overflow: scroll;
-}
-/* line 116, ../sass/custom/wd/_customize.scss */
-.customize-icon-list .customize-icon-preview {
-  display: inline-block;
-  margin: 10px;
-}
-
-/* Images
--------------------------------------------------- */
-/* line 124, ../sass/custom/wd/_customize.scss */
-.customize-icon-preview {
-  max-width: 64px;
-  max-height: 64px;
-}
-
-/* line 128, ../sass/custom/wd/_customize.scss */
-.imglist-img {
-  max-width: 40px;
-  max-height: 40px;
-}
-
-/* line 132, ../sass/custom/wd/_customize.scss */
-.imglist-img-preview {
-  max-width: 64px;
-  max-height: 64px;
 }
 
 /* Media queries

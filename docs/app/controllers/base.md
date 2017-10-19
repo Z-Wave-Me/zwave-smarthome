@@ -23,6 +23,7 @@ The app base controller.
 **naviExpanded**:  , Expand/collapse navigation
 **autocompleteExpanded**:  , Expand/collapse autocomplete
 **modalArr**:  , Open/close a modal window
+**sidebarState**:  , Expand/collapse sidebar
 ### BaseController.extendUser() 
 
 Extend an user
