@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 19-10-2017 12:16:11 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 20-10-2017 15:00:36 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -7481,6 +7481,7 @@ invalidEmail:"メールアドレスが正しくありません。例えば info@
 !function(a){"use strict";function b(a,b){a.className+=" "+b}function c(a,b){for(var c=b.split(" "),d=0;d<c.length;d+=1)a.className=a.className.replace(" "+c[d],"")}function d(){return"rtl"===a.getComputedStyle(document.body).direction}function e(){return document.documentElement&&document.documentElement.scrollTop||document.body.scrollTop}function f(){return document.documentElement&&document.documentElement.scrollLeft||document.body.scrollLeft}function g(a){for(;a.lastChild;)a.removeChild(a.lastChild)}function h(a,b){return function(){if(arguments.length>0){for(var c=[],d=0;d<arguments.length;d+=1)c.push(arguments[d]);return c.push(a),b.apply(a,c)}return b.apply(a,[null,a])}}function i(a,b){return{index:a,button:b,cancel:!1}}function j(){function a(a,b){for(var c in b)b.hasOwnProperty(c)&&(a[c]=b[c]);return a}function b(a){var b=d[a].dialog;return b&&"function"==typeof b.__init&&b.__init(b),b}function c(b,c,e,f){var g={dialog:null,factory:c};return void 0!==f&&(g.factory=function(){return a(new d[f].factory,new c)}),e||(g.dialog=a(new g.factory,q)),d[b]=g}var d={};return{defaults:l,dialog:function(d,e,f,g){if("function"!=typeof e)return b(d);if(this.hasOwnProperty(d))throw new Error("alertify.dialog: name already exists");var h=c(d,e,f,g);f?this[d]=function(){if(0===arguments.length)return h.dialog;var b=a(new h.factory,q);return b&&"function"==typeof b.__init&&b.__init(b),b.main.apply(b,arguments),b.show.apply(b)}:this[d]=function(){if(h.dialog&&"function"==typeof h.dialog.__init&&h.dialog.__init(h.dialog),0===arguments.length)return h.dialog;var a=h.dialog;return a.main.apply(h.dialog,arguments),a.show.apply(h.dialog)}},closeAll:function(a){for(var b=m.slice(0),c=0;c<b.length;c+=1){var d=b[c];(void 0===a||a!==d)&&d.close()}},setting:function(a,c,d){if("notifier"===a)return r.setting(c,d);var e=b(a);return e?e.setting(c,d):void 0},set:function(a,b,c){return this.setting(a,b,c)},get:function(a,b){return this.setting(a,b)},notify:function(a,b,c,d){return r.create(b,d).push(a,c)},message:function(a,b,c){return r.create(null,c).push(a,b)},success:function(a,b,c){return r.create("success",c).push(a,b)},error:function(a,b,c){return r.create("error",c).push(a,b)},warning:function(a,b,c){return r.create("warning",c).push(a,b)},dismissAll:function(){r.dismissAll()}}}var k={ENTER:13,ESC:27,F1:112,F12:123,LEFT:37,RIGHT:39},l={modal:!0,basic:!1,frameless:!1,movable:!0,resizable:!0,closable:!0,closableByDimmer:!0,maximizable:!0,startMaximized:!1,pinnable:!0,pinned:!0,padding:!0,overflow:!0,maintainFocus:!0,transition:"pulse",autoReset:!0,notifier:{delay:5,position:"bottom-right"},glossary:{title:"AlertifyJS",ok:"OK",cancel:"Cancel",acccpt:"Accept",deny:"Deny",confirm:"Confirm",decline:"Decline",close:"Close",maximize:"Maximize",restore:"Restore"},theme:{input:"ajs-input",ok:"ajs-ok",cancel:"ajs-cancel"}},m=[],n=function(){return document.addEventListener?function(a,b,c,d){a.addEventListener(b,c,d===!0)}:document.attachEvent?function(a,b,c){a.attachEvent("on"+b,c)}:void 0}(),o=function(){return document.removeEventListener?function(a,b,c,d){a.removeEventListener(b,c,d===!0)}:document.detachEvent?function(a,b,c){a.detachEvent("on"+b,c)}:void 0}(),p=function(){var a,b,c=!1,d={animation:"animationend",OAnimation:"oAnimationEnd oanimationend",msAnimation:"MSAnimationEnd",MozAnimation:"animationend",WebkitAnimation:"webkitAnimationEnd"};for(a in d)if(void 0!==document.documentElement.style[a]){b=d[a],c=!0;break}return{type:b,supported:c}}(),q=function(){function j(a){if(!a.__internal){delete a.__init,null===ua&&document.body.setAttribute("tabindex","0");var c;"function"==typeof a.setup?(c=a.setup(),c.options=c.options||{},c.focus=c.focus||{}):c={buttons:[],focus:{element:null,select:!1},options:{}},"object"!=typeof a.hooks&&(a.hooks={});var d=[];if(Array.isArray(c.buttons))for(var e=0;e<c.buttons.length;e+=1){var f=c.buttons[e],g={};for(var i in f)f.hasOwnProperty(i)&&(g[i]=f[i]);d.push(g)}var j=a.__internal={isOpen:!1,activeElement:document.body,timerIn:void 0,timerOut:void 0,buttons:d,focus:c.focus,options:{title:void 0,modal:void 0,basic:void 0,frameless:void 0,pinned:void 0,movable:void 0,resizable:void 0,autoReset:void 0,closable:void 0,closableByDimmer:void 0,maximizable:void 0,startMaximized:void 0,pinnable:void 0,transition:void 0,padding:void 0,overflow:void 0,onshow:void 0,onclose:void 0,onfocus:void 0},resetHandler:void 0,beginMoveHandler:void 0,beginResizeHandler:void 0,bringToFrontHandler:void 0,modalClickHandler:void 0,buttonsClickHandler:void 0,commandsClickHandler:void 0,transitionInHandler:void 0,transitionOutHandler:void 0},k={};k.root=document.createElement("div"),k.root.className=xa.base+" "+xa.hidden+" ",k.root.innerHTML=wa.dimmer+wa.modal,k.dimmer=k.root.firstChild,k.modal=k.root.lastChild,k.modal.innerHTML=wa.dialog,k.dialog=k.modal.firstChild,k.dialog.innerHTML=wa.reset+wa.commands+wa.header+wa.body+wa.footer+wa.resizeHandle+wa.reset,k.reset=[],k.reset.push(k.dialog.firstChild),k.reset.push(k.dialog.lastChild),k.commands={},k.commands.container=k.reset[0].nextSibling,k.commands.pin=k.commands.container.firstChild,k.commands.maximize=k.commands.pin.nextSibling,k.commands.close=k.commands.maximize.nextSibling,k.header=k.commands.container.nextSibling,k.body=k.header.nextSibling,k.body.innerHTML=wa.content,k.content=k.body.firstChild,k.footer=k.body.nextSibling,k.footer.innerHTML=wa.buttons.auxiliary+wa.buttons.primary,k.resizeHandle=k.footer.nextSibling,k.buttons={},k.buttons.auxiliary=k.footer.firstChild,k.buttons.primary=k.buttons.auxiliary.nextSibling,k.buttons.primary.innerHTML=wa.button,k.buttonTemplate=k.buttons.primary.firstChild,k.buttons.primary.removeChild(k.buttonTemplate);for(var l=0;l<a.__internal.buttons.length;l+=1){var m=a.__internal.buttons[l];ta.indexOf(m.key)<0&&ta.push(m.key),m.element=k.buttonTemplate.cloneNode(),m.element.innerHTML=m.text,"string"==typeof m.className&&""!==m.className&&b(m.element,m.className);for(var n in m.attrs)"className"!==n&&m.attrs.hasOwnProperty(n)&&m.element.setAttribute(n,m.attrs[n]);"auxiliary"===m.scope?k.buttons.auxiliary.appendChild(m.element):k.buttons.primary.appendChild(m.element)}a.elements=k,j.resetHandler=h(a,T),j.beginMoveHandler=h(a,X),j.beginResizeHandler=h(a,ba),j.bringToFrontHandler=h(a,x),j.modalClickHandler=h(a,N),j.buttonsClickHandler=h(a,P),j.commandsClickHandler=h(a,B),j.transitionInHandler=h(a,U),j.transitionOutHandler=h(a,V),a.set("title",void 0===c.options.title?s.defaults.glossary.title:c.options.title),a.set("modal",void 0===c.options.modal?s.defaults.modal:c.options.modal),a.set("basic",void 0===c.options.basic?s.defaults.basic:c.options.basic),a.set("frameless",void 0===c.options.frameless?s.defaults.frameless:c.options.frameless),a.set("movable",void 0===c.options.movable?s.defaults.movable:c.options.movable),a.set("resizable",void 0===c.options.resizable?s.defaults.resizable:c.options.resizable),a.set("autoReset",void 0===c.options.autoReset?s.defaults.autoReset:c.options.autoReset),a.set("closable",void 0===c.options.closable?s.defaults.closable:c.options.closable),a.set("closableByDimmer",void 0===c.options.closableByDimmer?s.defaults.closableByDimmer:c.options.closableByDimmer),a.set("maximizable",void 0===c.options.maximizable?s.defaults.maximizable:c.options.maximizable),a.set("startMaximized",void 0===c.options.startMaximized?s.defaults.startMaximized:c.options.startMaximized),a.set("pinnable",void 0===c.options.pinnable?s.defaults.pinnable:c.options.pinnable),a.set("pinned",void 0===c.options.pinned?s.defaults.pinned:c.options.pinned),a.set("transition",void 0===c.options.transition?s.defaults.transition:c.options.transition),a.set("padding",void 0===c.options.padding?s.defaults.padding:c.options.padding),a.set("overflow",void 0===c.options.overflow?s.defaults.overflow:c.options.overflow),"function"==typeof a.build&&a.build()}document.body.appendChild(a.elements.root)}function l(){ra=a.scrollX,sa=a.scrollY}function q(){a.scrollTo(ra,sa)}function r(){for(var a=0,d=0;d<m.length;d+=1){var e=m[d];(e.isModal()||e.isMaximized())&&(a+=1)}0===a?c(document.body,xa.noOverflow):a>0&&document.body.className.indexOf(xa.noOverflow)<0&&b(document.body,xa.noOverflow)}function t(a,d,e){"string"==typeof e&&c(a.elements.root,xa.prefix+e),b(a.elements.root,xa.prefix+d),ua=a.elements.root.offsetWidth}function u(a){a.get("modal")?(c(a.elements.root,xa.modeless),a.isOpen()&&(ka(a),J(a),r())):(b(a.elements.root,xa.modeless),a.isOpen()&&(ja(a),J(a),r()))}function v(a){a.get("basic")?b(a.elements.root,xa.basic):c(a.elements.root,xa.basic)}function w(a){a.get("frameless")?b(a.elements.root,xa.frameless):c(a.elements.root,xa.frameless)}function x(a,b){for(var c=m.indexOf(b),d=c+1;d<m.length;d+=1)if(m[d].isModal())return;return document.body.lastChild!==b.elements.root&&(document.body.appendChild(b.elements.root),m.splice(m.indexOf(b),1),m.push(b),S(b)),!1}function y(a,d,e,f){switch(d){case"title":a.setHeader(f);break;case"modal":u(a);break;case"basic":v(a);break;case"frameless":w(a);break;case"pinned":K(a);break;case"closable":M(a);break;case"maximizable":L(a);break;case"pinnable":G(a);break;case"movable":_(a);break;case"resizable":fa(a);break;case"transition":t(a,f,e);break;case"padding":f?c(a.elements.root,xa.noPadding):a.elements.root.className.indexOf(xa.noPadding)<0&&b(a.elements.root,xa.noPadding);break;case"overflow":f?c(a.elements.root,xa.noOverflow):a.elements.root.className.indexOf(xa.noOverflow)<0&&b(a.elements.root,xa.noOverflow);break;case"transition":t(a,f,e)}"function"==typeof a.hooks.onupdate&&a.hooks.onupdate.call(a,d,e,f)}function z(a,b,c,d,e){var f={op:void 0,items:[]};if("undefined"==typeof e&&"string"==typeof d)f.op="get",b.hasOwnProperty(d)?(f.found=!0,f.value=b[d]):(f.found=!1,f.value=void 0);else{var g;if(f.op="set","object"==typeof d){var h=d;for(var i in h)b.hasOwnProperty(i)?(b[i]!==h[i]&&(g=b[i],b[i]=h[i],c.call(a,i,g,h[i])),f.items.push({key:i,value:h[i],found:!0})):f.items.push({key:i,value:h[i],found:!1})}else{if("string"!=typeof d)throw new Error("args must be a string or object");b.hasOwnProperty(d)?(b[d]!==e&&(g=b[d],b[d]=e,c.call(a,d,g,e)),f.items.push({key:d,value:e,found:!0})):f.items.push({key:d,value:e,found:!1})}}return f}function A(a){var b;O(a,function(a){return b=a.invokeOnClose===!0}),!b&&a.isOpen()&&a.close()}function B(a,b){var c=a.srcElement||a.target;switch(c){case b.elements.commands.pin:b.isPinned()?D(b):C(b);break;case b.elements.commands.maximize:b.isMaximized()?F(b):E(b);break;case b.elements.commands.close:A(b)}return!1}function C(a){a.set("pinned",!0)}function D(a){a.set("pinned",!1)}function E(a){b(a.elements.root,xa.maximized),a.isOpen()&&r()}function F(a){c(a.elements.root,xa.maximized),a.isOpen()&&r()}function G(a){a.get("pinnable")?b(a.elements.root,xa.pinnable):c(a.elements.root,xa.pinnable)}function H(a){var b=f();a.elements.modal.style.marginTop=e()+"px",a.elements.modal.style.marginLeft=b+"px",a.elements.modal.style.marginRight=-b+"px"}function I(a){var b=parseInt(a.elements.modal.style.marginTop,10),c=parseInt(a.elements.modal.style.marginLeft,10);if(a.elements.modal.style.marginTop="",a.elements.modal.style.marginLeft="",a.elements.modal.style.marginRight="",a.isOpen()){var d=0,g=0;""!==a.elements.dialog.style.top&&(d=parseInt(a.elements.dialog.style.top,10)),a.elements.dialog.style.top=d+(b-e())+"px",""!==a.elements.dialog.style.left&&(g=parseInt(a.elements.dialog.style.left,10)),a.elements.dialog.style.left=g+(c-f())+"px"}}function J(a){a.get("modal")||a.get("pinned")?I(a):H(a)}function K(a){a.get("pinned")?(c(a.elements.root,xa.unpinned),a.isOpen()&&I(a)):(b(a.elements.root,xa.unpinned),a.isOpen()&&!a.isModal()&&H(a))}function L(a){a.get("maximizable")?b(a.elements.root,xa.maximizable):c(a.elements.root,xa.maximizable)}function M(a){a.get("closable")?(b(a.elements.root,xa.closable),pa(a)):(c(a.elements.root,xa.closable),qa(a))}function N(a,b){var c=a.srcElement||a.target;return ya||c!==b.elements.modal||b.get("closableByDimmer")!==!0||A(b),ya=!1,!1}function O(a,b){for(var c=0;c<a.__internal.buttons.length;c+=1){var d=a.__internal.buttons[c];if(!d.element.disabled&&b(d)){var e=i(c,d);"function"==typeof a.callback&&a.callback.apply(a,[e]),e.cancel===!1&&a.close();break}}}function P(a,b){var c=a.srcElement||a.target;O(b,function(a){return a.element===c&&(za=!0)})}function Q(a){if(za)return void(za=!1);var b=m[m.length-1],c=a.keyCode;return 0===b.__internal.buttons.length&&c===k.ESC&&b.get("closable")===!0?(A(b),!1):ta.indexOf(c)>-1?(O(b,function(a){return a.key===c}),!1):void 0}function R(a){var b=m[m.length-1],c=a.keyCode;if(c===k.LEFT||c===k.RIGHT){for(var d=b.__internal.buttons,e=0;e<d.length;e+=1)if(document.activeElement===d[e].element)switch(c){case k.LEFT:return void d[(e||d.length)-1].element.focus();case k.RIGHT:return void d[(e+1)%d.length].element.focus()}}else if(c<k.F12+1&&c>k.F1-1&&ta.indexOf(c)>-1)return a.preventDefault(),a.stopPropagation(),O(b,function(a){return a.key===c}),!1}function S(a,b){if(b)b.focus();else{var c=a.__internal.focus,d=c.element;switch(typeof c.element){case"number":a.__internal.buttons.length>c.element&&(d=a.get("basic")===!0?a.elements.reset[0]:a.__internal.buttons[c.element].element);break;case"string":d=a.elements.body.querySelector(c.element);break;case"function":d=c.element.call(a)}"undefined"!=typeof d&&null!==d||0!==a.__internal.buttons.length||(d=a.elements.reset[0]),d&&d.focus&&(d.focus(),c.select&&d.select&&d.select())}}function T(a,b){if(!b)for(var c=m.length-1;c>-1;c-=1)if(m[c].isModal()){b=m[c];break}if(b&&b.isModal()){var d,e=a.srcElement||a.target,f=e===b.elements.reset[1]||0===b.__internal.buttons.length&&e===document.body;f&&(b.get("maximizable")?d=b.elements.commands.maximize:b.get("closable")&&(d=b.elements.commands.close)),void 0===d&&("number"==typeof b.__internal.focus.element?e===b.elements.reset[0]?d=b.elements.buttons.auxiliary.firstChild||b.elements.buttons.primary.firstChild:f&&(d=b.elements.reset[0]):e===b.elements.reset[0]&&(d=b.elements.buttons.primary.lastChild||b.elements.buttons.auxiliary.lastChild)),S(b,d)}}function U(a,b){clearTimeout(b.__internal.timerIn),S(b),q(),za=!1,"function"==typeof b.get("onfocus")&&b.get("onfocus").call(b),o(b.elements.dialog,p.type,b.__internal.transitionInHandler),c(b.elements.root,xa.animationIn)}function V(a,b){clearTimeout(b.__internal.timerOut),o(b.elements.dialog,p.type,b.__internal.transitionOutHandler),$(b),ea(b),b.isMaximized()&&!b.get("startMaximized")&&F(b),s.defaults.maintainFocus&&b.__internal.activeElement&&(b.__internal.activeElement.focus(),b.__internal.activeElement=null)}function W(a,b){b.style.left=a[Da]-Ba+"px",b.style.top=a[Ea]-Ca+"px"}function X(a,c){if(null===Fa&&!c.isMaximized()&&c.get("movable")){var d;if("touchstart"===a.type?(a.preventDefault(),d=a.targetTouches[0],Da="clientX",Ea="clientY"):0===a.button&&(d=a),d){Aa=c,Ba=d[Da],Ca=d[Ea];var e=c.elements.dialog;return b(e,xa.capture),e.style.left&&(Ba-=parseInt(e.style.left,10)),e.style.top&&(Ca-=parseInt(e.style.top,10)),W(d,e),b(document.body,xa.noSelection),!1}}}function Y(a){if(Aa){var b;"touchmove"===a.type?(a.preventDefault(),b=a.targetTouches[0]):0===a.button&&(b=a),b&&W(b,Aa.elements.dialog)}}function Z(){if(Aa){var a=Aa.elements.dialog;Aa=null,c(document.body,xa.noSelection),c(a,xa.capture)}}function $(a){Aa=null;var b=a.elements.dialog;b.style.left=b.style.top=""}function _(a){a.get("movable")?(b(a.elements.root,xa.movable),a.isOpen()&&la(a)):($(a),c(a.elements.root,xa.movable),a.isOpen()&&ma(a))}function aa(a,b,c){var e=b,f=0,g=0;do f+=e.offsetLeft,g+=e.offsetTop;while(e=e.offsetParent);var h,i;c===!0?(h=a.pageX,i=a.pageY):(h=a.clientX,i=a.clientY);var j=d();if(j&&(h=document.body.offsetWidth-h,isNaN(Ga)||(f=document.body.offsetWidth-f-b.offsetWidth)),b.style.height=i-g+Ja+"px",b.style.width=h-f+Ja+"px",!isNaN(Ga)){var k=.5*Math.abs(b.offsetWidth-Ha);j&&(k*=-1),b.offsetWidth>Ha?b.style.left=Ga+k+"px":b.offsetWidth>=Ia&&(b.style.left=Ga-k+"px")}}function ba(a,c){if(!c.isMaximized()){var d;if("touchstart"===a.type?(a.preventDefault(),d=a.targetTouches[0]):0===a.button&&(d=a),d){Fa=c,Ja=c.elements.resizeHandle.offsetHeight/2;var e=c.elements.dialog;return b(e,xa.capture),Ga=parseInt(e.style.left,10),e.style.height=e.offsetHeight+"px",e.style.minHeight=c.elements.header.offsetHeight+c.elements.footer.offsetHeight+"px",e.style.width=(Ha=e.offsetWidth)+"px","none"!==e.style.maxWidth&&(e.style.minWidth=(Ia=e.offsetWidth)+"px"),e.style.maxWidth="none",b(document.body,xa.noSelection),!1}}}function ca(a){if(Fa){var b;"touchmove"===a.type?(a.preventDefault(),b=a.targetTouches[0]):0===a.button&&(b=a),b&&aa(b,Fa.elements.dialog,!Fa.get("modal")&&!Fa.get("pinned"))}}function da(){if(Fa){var a=Fa.elements.dialog;Fa=null,c(document.body,xa.noSelection),c(a,xa.capture),ya=!0}}function ea(a){Fa=null;var b=a.elements.dialog;"none"===b.style.maxWidth&&(b.style.maxWidth=b.style.minWidth=b.style.width=b.style.height=b.style.minHeight=b.style.left="",Ga=Number.Nan,Ha=Ia=Ja=0)}function fa(a){a.get("resizable")?(b(a.elements.root,xa.resizable),a.isOpen()&&na(a)):(ea(a),c(a.elements.root,xa.resizable),a.isOpen()&&oa(a))}function ga(){for(var a=0;a<m.length;a+=1){var b=m[a];b.get("autoReset")&&($(b),ea(b))}}function ha(b){1===m.length&&(n(a,"resize",ga),n(document.body,"keyup",Q),n(document.body,"keydown",R),n(document.body,"focus",T),n(document.documentElement,"mousemove",Y),n(document.documentElement,"touchmove",Y),n(document.documentElement,"mouseup",Z),n(document.documentElement,"touchend",Z),n(document.documentElement,"mousemove",ca),n(document.documentElement,"touchmove",ca),n(document.documentElement,"mouseup",da),n(document.documentElement,"touchend",da)),n(b.elements.commands.container,"click",b.__internal.commandsClickHandler),n(b.elements.footer,"click",b.__internal.buttonsClickHandler),n(b.elements.reset[0],"focus",b.__internal.resetHandler),n(b.elements.reset[1],"focus",b.__internal.resetHandler),za=!0,n(b.elements.dialog,p.type,b.__internal.transitionInHandler),b.get("modal")||ja(b),b.get("resizable")&&na(b),b.get("movable")&&la(b)}function ia(b){1===m.length&&(o(a,"resize",ga),o(document.body,"keyup",Q),o(document.body,"keydown",R),o(document.body,"focus",T),o(document.documentElement,"mousemove",Y),o(document.documentElement,"mouseup",Z),o(document.documentElement,"mousemove",ca),o(document.documentElement,"mouseup",da)),o(b.elements.commands.container,"click",b.__internal.commandsClickHandler),o(b.elements.footer,"click",b.__internal.buttonsClickHandler),o(b.elements.reset[0],"focus",b.__internal.resetHandler),o(b.elements.reset[1],"focus",b.__internal.resetHandler),n(b.elements.dialog,p.type,b.__internal.transitionOutHandler),b.get("modal")||ka(b),b.get("movable")&&ma(b),b.get("resizable")&&oa(b)}function ja(a){n(a.elements.dialog,"focus",a.__internal.bringToFrontHandler,!0)}function ka(a){o(a.elements.dialog,"focus",a.__internal.bringToFrontHandler,!0)}function la(a){n(a.elements.header,"mousedown",a.__internal.beginMoveHandler),n(a.elements.header,"touchstart",a.__internal.beginMoveHandler)}function ma(a){o(a.elements.header,"mousedown",a.__internal.beginMoveHandler),o(a.elements.header,"touchstart",a.__internal.beginMoveHandler)}function na(a){n(a.elements.resizeHandle,"mousedown",a.__internal.beginResizeHandler),n(a.elements.resizeHandle,"touchstart",a.__internal.beginResizeHandler)}function oa(a){o(a.elements.resizeHandle,"mousedown",a.__internal.beginResizeHandler),o(a.elements.resizeHandle,"touchstart",a.__internal.beginResizeHandler)}function pa(a){n(a.elements.modal,"click",a.__internal.modalClickHandler)}function qa(a){o(a.elements.modal,"click",a.__internal.modalClickHandler)}var ra,sa,ta=[],ua=null,va=a.navigator.userAgent.indexOf("Safari")>-1&&a.navigator.userAgent.indexOf("Chrome")<0,wa={dimmer:'<div class="ajs-dimmer"></div>',modal:'<div class="ajs-modal" tabindex="0"></div>',dialog:'<div class="ajs-dialog" tabindex="0"></div>',reset:'<button class="ajs-reset"></button>',commands:'<div class="ajs-commands"><button class="ajs-pin"></button><button class="ajs-maximize"></button><button class="ajs-close"></button></div>',header:'<div class="ajs-header"></div>',body:'<div class="ajs-body"></div>',content:'<div class="ajs-content"></div>',footer:'<div class="ajs-footer"></div>',buttons:{primary:'<div class="ajs-primary ajs-buttons"></div>',auxiliary:'<div class="ajs-auxiliary ajs-buttons"></div>'},button:'<button class="ajs-button"></button>',resizeHandle:'<div class="ajs-handle"></div>'},xa={base:"alertify",prefix:"ajs-",hidden:"ajs-hidden",noSelection:"ajs-no-selection",noOverflow:"ajs-no-overflow",noPadding:"ajs-no-padding",modeless:"ajs-modeless",movable:"ajs-movable",resizable:"ajs-resizable",capture:"ajs-capture",fixed:"ajs-fixed",closable:"ajs-closable",maximizable:"ajs-maximizable",maximize:"ajs-maximize",restore:"ajs-restore",pinnable:"ajs-pinnable",unpinned:"ajs-unpinned",pin:"ajs-pin",maximized:"ajs-maximized",animationIn:"ajs-in",animationOut:"ajs-out",shake:"ajs-shake",basic:"ajs-basic",frameless:"ajs-frameless"},ya=!1,za=!1,Aa=null,Ba=0,Ca=0,Da="pageX",Ea="pageY",Fa=null,Ga=Number.Nan,Ha=0,Ia=0,Ja=0;return{__init:j,isOpen:function(){return this.__internal.isOpen},isModal:function(){return this.elements.root.className.indexOf(xa.modeless)<0},isMaximized:function(){return this.elements.root.className.indexOf(xa.maximized)>-1},isPinned:function(){return this.elements.root.className.indexOf(xa.unpinned)<0},maximize:function(){return this.isMaximized()||E(this),this},restore:function(){return this.isMaximized()&&F(this),this},pin:function(){return this.isPinned()||C(this),this},unpin:function(){return this.isPinned()&&D(this),this},moveTo:function(a,b){if(!isNaN(a)&&!isNaN(b)){var c=this.elements.dialog,e=c,f=0,g=0;c.style.left&&(f-=parseInt(c.style.left,10)),c.style.top&&(g-=parseInt(c.style.top,10));do f+=e.offsetLeft,g+=e.offsetTop;while(e=e.offsetParent);var h=a-f,i=b-g;d()&&(h*=-1),c.style.left=h+"px",c.style.top=i+"px"}return this},resizeTo:function(a,b){var c=parseFloat(a),d=parseFloat(b),e=/(\d*\.\d+|\d+)%/;if(!isNaN(c)&&!isNaN(d)&&this.get("resizable")===!0){(""+a).match(e)&&(c=c/100*document.documentElement.clientWidth),(""+b).match(e)&&(d=d/100*document.documentElement.clientHeight);var f=this.elements.dialog;"none"!==f.style.maxWidth&&(f.style.minWidth=(Ia=f.offsetWidth)+"px"),f.style.maxWidth="none",f.style.minHeight=this.elements.header.offsetHeight+this.elements.footer.offsetHeight+"px",f.style.width=c+"px",f.style.height=d+"px"}return this},setting:function(a,b){var c=this,d=z(this,this.__internal.options,function(a,b,d){y(c,a,b,d)},a,b);if("get"===d.op)return d.found?d.value:"undefined"!=typeof this.settings?z(this,this.settings,this.settingUpdated||function(){},a,b).value:void 0;if("set"===d.op){if(d.items.length>0)for(var e=this.settingUpdated||function(){},f=0;f<d.items.length;f+=1){var g=d.items[f];g.found||"undefined"==typeof this.settings||z(this,this.settings,e,g.key,g.value)}return this}},set:function(a,b){return this.setting(a,b),this},get:function(a){return this.setting(a)},setHeader:function(b){return"string"==typeof b?(g(this.elements.header),this.elements.header.innerHTML=b):b instanceof a.HTMLElement&&this.elements.header.firstChild!==b&&(g(this.elements.header),this.elements.header.appendChild(b)),this},setContent:function(b){return"string"==typeof b?(g(this.elements.content),this.elements.content.innerHTML=b):b instanceof a.HTMLElement&&this.elements.content.firstChild!==b&&(g(this.elements.content),this.elements.content.appendChild(b)),this},showModal:function(a){return this.show(!0,a)},show:function(a,d){if(j(this),this.__internal.isOpen){$(this),ea(this),b(this.elements.dialog,xa.shake);var e=this;setTimeout(function(){c(e.elements.dialog,xa.shake)},200)}else{if(this.__internal.isOpen=!0,m.push(this),s.defaults.maintainFocus&&(this.__internal.activeElement=document.activeElement),"function"==typeof this.prepare&&this.prepare(),ha(this),void 0!==a&&this.set("modal",a),l(),r(),"string"==typeof d&&""!==d&&(this.__internal.className=d,b(this.elements.root,d)),this.get("startMaximized")?this.maximize():this.isMaximized()&&F(this),J(this),c(this.elements.root,xa.animationOut),b(this.elements.root,xa.animationIn),clearTimeout(this.__internal.timerIn),this.__internal.timerIn=setTimeout(this.__internal.transitionInHandler,p.supported?1e3:100),va){var f=this.elements.root;f.style.display="none",setTimeout(function(){f.style.display="block"},0)}ua=this.elements.root.offsetWidth,c(this.elements.root,xa.hidden),"function"==typeof this.hooks.onshow&&this.hooks.onshow.call(this),"function"==typeof this.get("onshow")&&this.get("onshow").call(this)}return this},close:function(){return this.__internal.isOpen&&(ia(this),c(this.elements.root,xa.animationIn),b(this.elements.root,xa.animationOut),clearTimeout(this.__internal.timerOut),this.__internal.timerOut=setTimeout(this.__internal.transitionOutHandler,p.supported?1e3:100),b(this.elements.root,xa.hidden),ua=this.elements.modal.offsetWidth,"undefined"!=typeof this.__internal.className&&""!==this.__internal.className&&c(this.elements.root,this.__internal.className),"function"==typeof this.hooks.onclose&&this.hooks.onclose.call(this),"function"==typeof this.get("onclose")&&this.get("onclose").call(this),m.splice(m.indexOf(this),1),this.__internal.isOpen=!1,r()),this},closeOthers:function(){return s.closeAll(this),this}}}(),r=function(){function d(a){a.__internal||(a.__internal={position:s.defaults.notifier.position,delay:s.defaults.notifier.delay},l=document.createElement("DIV"),i(a)),l.parentNode!==document.body&&document.body.appendChild(l)}function e(a){a.__internal.pushed=!0,m.push(a)}function f(a){m.splice(m.indexOf(a),1),a.__internal.pushed=!1}function i(a){switch(l.className=q.base,a.__internal.position){case"top-right":b(l,q.top+" "+q.right);break;case"top-left":b(l,q.top+" "+q.left);break;case"bottom-left":b(l,q.bottom+" "+q.left);break;default:case"bottom-right":b(l,q.bottom+" "+q.right)}}function j(d,i){function j(a,b){b.dismiss(!0)}function m(a,b){o(b.element,p.type,m),l.removeChild(b.element)}function s(a){return a.__internal||(a.__internal={pushed:!1,delay:void 0,timer:void 0,clickHandler:void 0,transitionEndHandler:void 0,transitionTimeout:void 0},a.__internal.clickHandler=h(a,j),a.__internal.transitionEndHandler=h(a,m)),a}function t(a){clearTimeout(a.__internal.timer),clearTimeout(a.__internal.transitionTimeout)}return s({element:d,push:function(a,c){if(!this.__internal.pushed){e(this),t(this);var d,f;switch(arguments.length){case 0:f=this.__internal.delay;break;case 1:"number"==typeof a?f=a:(d=a,f=this.__internal.delay);break;case 2:d=a,f=c}return"undefined"!=typeof d&&this.setContent(d),r.__internal.position.indexOf("top")<0?l.appendChild(this.element):l.insertBefore(this.element,l.firstChild),k=this.element.offsetWidth,b(this.element,q.visible),n(this.element,"click",this.__internal.clickHandler),this.delay(f)}return this},ondismiss:function(){},callback:i,dismiss:function(a){return this.__internal.pushed&&(t(this),("function"!=typeof this.ondismiss||this.ondismiss.call(this)!==!1)&&(o(this.element,"click",this.__internal.clickHandler),"undefined"!=typeof this.element&&this.element.parentNode===l&&(this.__internal.transitionTimeout=setTimeout(this.__internal.transitionEndHandler,p.supported?1e3:100),c(this.element,q.visible),"function"==typeof this.callback&&this.callback.call(this,a)),f(this))),this},delay:function(a){if(t(this),this.__internal.delay="undefined"==typeof a||isNaN(+a)?r.__internal.delay:+a,this.__internal.delay>0){var b=this;this.__internal.timer=setTimeout(function(){b.dismiss()},1e3*this.__internal.delay)}return this},setContent:function(b){return"string"==typeof b?(g(this.element),this.element.innerHTML=b):b instanceof a.HTMLElement&&this.element.firstChild!==b&&(g(this.element),this.element.appendChild(b)),this},dismissOthers:function(){return r.dismissAll(this),this}})}var k,l,m=[],q={base:"alertify-notifier",message:"ajs-message",top:"ajs-top",right:"ajs-right",bottom:"ajs-bottom",left:"ajs-left",visible:"ajs-visible",hidden:"ajs-hidden"};return{setting:function(a,b){if(d(this),"undefined"==typeof b)return this.__internal[a];switch(a){case"position":this.__internal.position=b,i(this);break;case"delay":this.__internal.delay=b}return this},set:function(a,b){return this.setting(a,b),this},get:function(a){return this.setting(a)},create:function(a,b){d(this);var c=document.createElement("div");return c.className=q.message+("string"==typeof a&&""!==a?" ajs-"+a:""),j(c,b)},dismissAll:function(a){for(var b=m.slice(0),c=0;c<b.length;c+=1){var d=b[c];(void 0===a||a!==d)&&d.dismiss()}}}}(),s=new j;s.dialog("alert",function(){return{main:function(a,b,c){var d,e,f;switch(arguments.length){case 1:e=a;break;case 2:"function"==typeof b?(e=a,f=b):(d=a,e=b);break;case 3:d=a,e=b,f=c}return this.set("title",d),this.set("message",e),this.set("onok",f),this},setup:function(){return{buttons:[{text:s.defaults.glossary.ok,key:k.ESC,invokeOnClose:!0,className:s.defaults.theme.ok}],focus:{element:0,select:!1},options:{maximizable:!1,resizable:!1}}},build:function(){},prepare:function(){},setMessage:function(a){this.setContent(a)},settings:{message:void 0,onok:void 0,label:void 0},settingUpdated:function(a,b,c){switch(a){case"message":this.setMessage(c);break;case"label":this.__internal.buttons[0].element&&(this.__internal.buttons[0].element.innerHTML=c)}},callback:function(a){if("function"==typeof this.get("onok")){var b=this.get("onok").call(this,a);"undefined"!=typeof b&&(a.cancel=!b)}}}}),s.dialog("confirm",function(){function a(a){null!==c.timer&&(clearInterval(c.timer),c.timer=null,a.__internal.buttons[c.index].element.innerHTML=c.text)}function b(b,d,e){a(b),c.duration=e,c.index=d,c.text=b.__internal.buttons[d].element.innerHTML,c.timer=setInterval(h(b,c.task),1e3),c.task(null,b)}var c={timer:null,index:null,text:null,duration:null,task:function(b,d){if(d.isOpen()){if(d.__internal.buttons[c.index].element.innerHTML=c.text+" (&#8207;"+c.duration+"&#8207;) ",c.duration-=1,-1===c.duration){a(d);var e=d.__internal.buttons[c.index],f=i(c.index,e);"function"==typeof d.callback&&d.callback.apply(d,[f]),f.close!==!1&&d.close()}}else a(d)}};return{main:function(a,b,c,d){var e,f,g,h;switch(arguments.length){case 1:f=a;break;case 2:f=a,g=b;break;case 3:f=a,g=b,h=c;break;case 4:e=a,f=b,g=c,h=d}return this.set("title",e),this.set("message",f),this.set("onok",g),this.set("oncancel",h),this},setup:function(){return{buttons:[{text:s.defaults.glossary.ok,key:k.ENTER,className:s.defaults.theme.ok},{text:s.defaults.glossary.cancel,key:k.ESC,invokeOnClose:!0,className:s.defaults.theme.cancel}],focus:{element:0,select:!1},options:{maximizable:!1,resizable:!1}}},build:function(){},prepare:function(){},setMessage:function(a){this.setContent(a)},settings:{message:null,labels:null,onok:null,oncancel:null,defaultFocus:null,reverseButtons:null},settingUpdated:function(a,b,c){switch(a){case"message":this.setMessage(c);break;case"labels":"ok"in c&&this.__internal.buttons[0].element&&(this.__internal.buttons[0].text=c.ok,this.__internal.buttons[0].element.innerHTML=c.ok),"cancel"in c&&this.__internal.buttons[1].element&&(this.__internal.buttons[1].text=c.cancel,this.__internal.buttons[1].element.innerHTML=c.cancel);break;case"reverseButtons":this.elements.buttons.primary.appendChild(c===!0?this.__internal.buttons[0].element:this.__internal.buttons[1].element);break;case"defaultFocus":this.__internal.focus.element="ok"===c?0:1}},callback:function(b){a(this);var c;switch(b.index){case 0:"function"==typeof this.get("onok")&&(c=this.get("onok").call(this,b),"undefined"!=typeof c&&(b.cancel=!c));break;case 1:"function"==typeof this.get("oncancel")&&(c=this.get("oncancel").call(this,b),"undefined"!=typeof c&&(b.cancel=!c))}},autoOk:function(a){return b(this,0,a),this},autoCancel:function(a){return b(this,1,a),this}}}),s.dialog("prompt",function(){var b=document.createElement("INPUT"),c=document.createElement("P");
 
 return{main:function(a,b,c,d,e){var f,g,h,i,j;switch(arguments.length){case 1:g=a;break;case 2:g=a,h=b;break;case 3:g=a,h=b,i=c;break;case 4:g=a,h=b,i=c,j=d;break;case 5:f=a,g=b,h=c,i=d,j=e}return this.set("title",f),this.set("message",g),this.set("value",h),this.set("onok",i),this.set("oncancel",j),this},setup:function(){return{buttons:[{text:s.defaults.glossary.ok,key:k.ENTER,className:s.defaults.theme.ok},{text:s.defaults.glossary.cancel,key:k.ESC,invokeOnClose:!0,className:s.defaults.theme.cancel}],focus:{element:b,select:!0},options:{maximizable:!1,resizable:!1}}},build:function(){b.className=s.defaults.theme.input,b.setAttribute("type","text"),b.value=this.get("value"),this.elements.content.appendChild(c),this.elements.content.appendChild(b)},prepare:function(){},setMessage:function(b){"string"==typeof b?(g(c),c.innerHTML=b):b instanceof a.HTMLElement&&c.firstChild!==b&&(g(c),c.appendChild(b))},settings:{message:void 0,labels:void 0,onok:void 0,oncancel:void 0,value:"",type:"text",reverseButtons:void 0},settingUpdated:function(a,c,d){switch(a){case"message":this.setMessage(d);break;case"value":b.value=d;break;case"type":switch(d){case"text":case"color":case"date":case"datetime-local":case"email":case"month":case"number":case"password":case"search":case"tel":case"time":case"week":b.type=d;break;default:b.type="text"}break;case"labels":d.ok&&this.__internal.buttons[0].element&&(this.__internal.buttons[0].element.innerHTML=d.ok),d.cancel&&this.__internal.buttons[1].element&&(this.__internal.buttons[1].element.innerHTML=d.cancel);break;case"reverseButtons":this.elements.buttons.primary.appendChild(d===!0?this.__internal.buttons[0].element:this.__internal.buttons[1].element)}},callback:function(a){var c;switch(a.index){case 0:this.settings.value=b.value,"function"==typeof this.get("onok")&&(c=this.get("onok").call(this,a,this.settings.value),"undefined"!=typeof c&&(a.cancel=!c));break;case 1:"function"==typeof this.get("oncancel")&&(c=this.get("oncancel").call(this,a),"undefined"!=typeof c&&(a.cancel=!c))}}}}),"object"==typeof module&&"object"==typeof module.exports?module.exports=s:"function"==typeof define&&define.amd?define([],function(){return s}):a.alertify||(a.alertify=s)}("undefined"!=typeof window?window:this);
+var QRCode;!function(){function a(a){this.mode=c.MODE_8BIT_BYTE,this.data=a,this.parsedData=[];for(var b=[],d=0,e=this.data.length;e>d;d++){var f=this.data.charCodeAt(d);f>65536?(b[0]=240|(1835008&f)>>>18,b[1]=128|(258048&f)>>>12,b[2]=128|(4032&f)>>>6,b[3]=128|63&f):f>2048?(b[0]=224|(61440&f)>>>12,b[1]=128|(4032&f)>>>6,b[2]=128|63&f):f>128?(b[0]=192|(1984&f)>>>6,b[1]=128|63&f):b[0]=f,this.parsedData=this.parsedData.concat(b)}this.parsedData.length!=this.data.length&&(this.parsedData.unshift(191),this.parsedData.unshift(187),this.parsedData.unshift(239))}function b(a,b){this.typeNumber=a,this.errorCorrectLevel=b,this.modules=null,this.moduleCount=0,this.dataCache=null,this.dataList=[]}function i(a,b){if(void 0==a.length)throw new Error(a.length+"/"+b);for(var c=0;c<a.length&&0==a[c];)c++;this.num=new Array(a.length-c+b);for(var d=0;d<a.length-c;d++)this.num[d]=a[d+c]}function j(a,b){this.totalCount=a,this.dataCount=b}function k(){this.buffer=[],this.length=0}function m(){return"undefined"!=typeof CanvasRenderingContext2D}function n(){var a=!1,b=navigator.userAgent;return/android/i.test(b)&&(a=!0,aMat=b.toString().match(/android ([0-9]\.[0-9])/i),aMat&&aMat[1]&&(a=parseFloat(aMat[1]))),a}function r(a,b){for(var c=1,e=s(a),f=0,g=l.length;g>=f;f++){var h=0;switch(b){case d.L:h=l[f][0];break;case d.M:h=l[f][1];break;case d.Q:h=l[f][2];break;case d.H:h=l[f][3]}if(h>=e)break;c++}if(c>l.length)throw new Error("Too long data");return c}function s(a){var b=encodeURI(a).toString().replace(/\%[0-9a-fA-F]{2}/g,"a");return b.length+(b.length!=a?3:0)}a.prototype={getLength:function(){return this.parsedData.length},write:function(a){for(var b=0,c=this.parsedData.length;c>b;b++)a.put(this.parsedData[b],8)}},b.prototype={addData:function(b){var c=new a(b);this.dataList.push(c),this.dataCache=null},isDark:function(a,b){if(0>a||this.moduleCount<=a||0>b||this.moduleCount<=b)throw new Error(a+","+b);return this.modules[a][b]},getModuleCount:function(){return this.moduleCount},make:function(){this.makeImpl(!1,this.getBestMaskPattern())},makeImpl:function(a,c){this.moduleCount=4*this.typeNumber+17,this.modules=new Array(this.moduleCount);for(var d=0;d<this.moduleCount;d++){this.modules[d]=new Array(this.moduleCount);for(var e=0;e<this.moduleCount;e++)this.modules[d][e]=null}this.setupPositionProbePattern(0,0),this.setupPositionProbePattern(this.moduleCount-7,0),this.setupPositionProbePattern(0,this.moduleCount-7),this.setupPositionAdjustPattern(),this.setupTimingPattern(),this.setupTypeInfo(a,c),this.typeNumber>=7&&this.setupTypeNumber(a),null==this.dataCache&&(this.dataCache=b.createData(this.typeNumber,this.errorCorrectLevel,this.dataList)),this.mapData(this.dataCache,c)},setupPositionProbePattern:function(a,b){for(var c=-1;7>=c;c++)if(!(-1>=a+c||this.moduleCount<=a+c))for(var d=-1;7>=d;d++)-1>=b+d||this.moduleCount<=b+d||(this.modules[a+c][b+d]=c>=0&&6>=c&&(0==d||6==d)||d>=0&&6>=d&&(0==c||6==c)||c>=2&&4>=c&&d>=2&&4>=d?!0:!1)},getBestMaskPattern:function(){for(var a=0,b=0,c=0;8>c;c++){this.makeImpl(!0,c);var d=f.getLostPoint(this);(0==c||a>d)&&(a=d,b=c)}return b},createMovieClip:function(a,b,c){var d=a.createEmptyMovieClip(b,c),e=1;this.make();for(var f=0;f<this.modules.length;f++)for(var g=f*e,h=0;h<this.modules[f].length;h++){var i=h*e,j=this.modules[f][h];j&&(d.beginFill(0,100),d.moveTo(i,g),d.lineTo(i+e,g),d.lineTo(i+e,g+e),d.lineTo(i,g+e),d.endFill())}return d},setupTimingPattern:function(){for(var a=8;a<this.moduleCount-8;a++)null==this.modules[a][6]&&(this.modules[a][6]=0==a%2);for(var b=8;b<this.moduleCount-8;b++)null==this.modules[6][b]&&(this.modules[6][b]=0==b%2)},setupPositionAdjustPattern:function(){for(var a=f.getPatternPosition(this.typeNumber),b=0;b<a.length;b++)for(var c=0;c<a.length;c++){var d=a[b],e=a[c];if(null==this.modules[d][e])for(var g=-2;2>=g;g++)for(var h=-2;2>=h;h++)this.modules[d+g][e+h]=-2==g||2==g||-2==h||2==h||0==g&&0==h?!0:!1}},setupTypeNumber:function(a){for(var b=f.getBCHTypeNumber(this.typeNumber),c=0;18>c;c++){var d=!a&&1==(1&b>>c);this.modules[Math.floor(c/3)][c%3+this.moduleCount-8-3]=d}for(var c=0;18>c;c++){var d=!a&&1==(1&b>>c);this.modules[c%3+this.moduleCount-8-3][Math.floor(c/3)]=d}},setupTypeInfo:function(a,b){for(var c=this.errorCorrectLevel<<3|b,d=f.getBCHTypeInfo(c),e=0;15>e;e++){var g=!a&&1==(1&d>>e);6>e?this.modules[e][8]=g:8>e?this.modules[e+1][8]=g:this.modules[this.moduleCount-15+e][8]=g}for(var e=0;15>e;e++){var g=!a&&1==(1&d>>e);8>e?this.modules[8][this.moduleCount-e-1]=g:9>e?this.modules[8][15-e-1+1]=g:this.modules[8][15-e-1]=g}this.modules[this.moduleCount-8][8]=!a},mapData:function(a,b){for(var c=-1,d=this.moduleCount-1,e=7,g=0,h=this.moduleCount-1;h>0;h-=2)for(6==h&&h--;;){for(var i=0;2>i;i++)if(null==this.modules[d][h-i]){var j=!1;g<a.length&&(j=1==(1&a[g]>>>e));var k=f.getMask(b,d,h-i);k&&(j=!j),this.modules[d][h-i]=j,e--,-1==e&&(g++,e=7)}if(d+=c,0>d||this.moduleCount<=d){d-=c,c=-c;break}}}},b.PAD0=236,b.PAD1=17,b.createData=function(a,c,d){for(var e=j.getRSBlocks(a,c),g=new k,h=0;h<d.length;h++){var i=d[h];g.put(i.mode,4),g.put(i.getLength(),f.getLengthInBits(i.mode,a)),i.write(g)}for(var l=0,h=0;h<e.length;h++)l+=e[h].dataCount;if(g.getLengthInBits()>8*l)throw new Error("code length overflow. ("+g.getLengthInBits()+">"+8*l+")");for(g.getLengthInBits()+4<=8*l&&g.put(0,4);0!=g.getLengthInBits()%8;)g.putBit(!1);for(;;){if(g.getLengthInBits()>=8*l)break;if(g.put(b.PAD0,8),g.getLengthInBits()>=8*l)break;g.put(b.PAD1,8)}return b.createBytes(g,e)},b.createBytes=function(a,b){for(var c=0,d=0,e=0,g=new Array(b.length),h=new Array(b.length),j=0;j<b.length;j++){var k=b[j].dataCount,l=b[j].totalCount-k;d=Math.max(d,k),e=Math.max(e,l),g[j]=new Array(k);for(var m=0;m<g[j].length;m++)g[j][m]=255&a.buffer[m+c];c+=k;var n=f.getErrorCorrectPolynomial(l),o=new i(g[j],n.getLength()-1),p=o.mod(n);h[j]=new Array(n.getLength()-1);for(var m=0;m<h[j].length;m++){var q=m+p.getLength()-h[j].length;h[j][m]=q>=0?p.get(q):0}}for(var r=0,m=0;m<b.length;m++)r+=b[m].totalCount;for(var s=new Array(r),t=0,m=0;d>m;m++)for(var j=0;j<b.length;j++)m<g[j].length&&(s[t++]=g[j][m]);for(var m=0;e>m;m++)for(var j=0;j<b.length;j++)m<h[j].length&&(s[t++]=h[j][m]);return s};for(var c={MODE_NUMBER:1,MODE_ALPHA_NUM:2,MODE_8BIT_BYTE:4,MODE_KANJI:8},d={L:1,M:0,Q:3,H:2},e={PATTERN000:0,PATTERN001:1,PATTERN010:2,PATTERN011:3,PATTERN100:4,PATTERN101:5,PATTERN110:6,PATTERN111:7},f={PATTERN_POSITION_TABLE:[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],G15:1335,G18:7973,G15_MASK:21522,getBCHTypeInfo:function(a){for(var b=a<<10;f.getBCHDigit(b)-f.getBCHDigit(f.G15)>=0;)b^=f.G15<<f.getBCHDigit(b)-f.getBCHDigit(f.G15);return(a<<10|b)^f.G15_MASK},getBCHTypeNumber:function(a){for(var b=a<<12;f.getBCHDigit(b)-f.getBCHDigit(f.G18)>=0;)b^=f.G18<<f.getBCHDigit(b)-f.getBCHDigit(f.G18);return a<<12|b},getBCHDigit:function(a){for(var b=0;0!=a;)b++,a>>>=1;return b},getPatternPosition:function(a){return f.PATTERN_POSITION_TABLE[a-1]},getMask:function(a,b,c){switch(a){case e.PATTERN000:return 0==(b+c)%2;case e.PATTERN001:return 0==b%2;case e.PATTERN010:return 0==c%3;case e.PATTERN011:return 0==(b+c)%3;case e.PATTERN100:return 0==(Math.floor(b/2)+Math.floor(c/3))%2;case e.PATTERN101:return 0==b*c%2+b*c%3;case e.PATTERN110:return 0==(b*c%2+b*c%3)%2;case e.PATTERN111:return 0==(b*c%3+(b+c)%2)%2;default:throw new Error("bad maskPattern:"+a)}},getErrorCorrectPolynomial:function(a){for(var b=new i([1],0),c=0;a>c;c++)b=b.multiply(new i([1,g.gexp(c)],0));return b},getLengthInBits:function(a,b){if(b>=1&&10>b)switch(a){case c.MODE_NUMBER:return 10;case c.MODE_ALPHA_NUM:return 9;case c.MODE_8BIT_BYTE:return 8;case c.MODE_KANJI:return 8;default:throw new Error("mode:"+a)}else if(27>b)switch(a){case c.MODE_NUMBER:return 12;case c.MODE_ALPHA_NUM:return 11;case c.MODE_8BIT_BYTE:return 16;case c.MODE_KANJI:return 10;default:throw new Error("mode:"+a)}else{if(!(41>b))throw new Error("type:"+b);switch(a){case c.MODE_NUMBER:return 14;case c.MODE_ALPHA_NUM:return 13;case c.MODE_8BIT_BYTE:return 16;case c.MODE_KANJI:return 12;default:throw new Error("mode:"+a)}}},getLostPoint:function(a){for(var b=a.getModuleCount(),c=0,d=0;b>d;d++)for(var e=0;b>e;e++){for(var f=0,g=a.isDark(d,e),h=-1;1>=h;h++)if(!(0>d+h||d+h>=b))for(var i=-1;1>=i;i++)0>e+i||e+i>=b||(0!=h||0!=i)&&g==a.isDark(d+h,e+i)&&f++;f>5&&(c+=3+f-5)}for(var d=0;b-1>d;d++)for(var e=0;b-1>e;e++){var j=0;a.isDark(d,e)&&j++,a.isDark(d+1,e)&&j++,a.isDark(d,e+1)&&j++,a.isDark(d+1,e+1)&&j++,(0==j||4==j)&&(c+=3)}for(var d=0;b>d;d++)for(var e=0;b-6>e;e++)a.isDark(d,e)&&!a.isDark(d,e+1)&&a.isDark(d,e+2)&&a.isDark(d,e+3)&&a.isDark(d,e+4)&&!a.isDark(d,e+5)&&a.isDark(d,e+6)&&(c+=40);for(var e=0;b>e;e++)for(var d=0;b-6>d;d++)a.isDark(d,e)&&!a.isDark(d+1,e)&&a.isDark(d+2,e)&&a.isDark(d+3,e)&&a.isDark(d+4,e)&&!a.isDark(d+5,e)&&a.isDark(d+6,e)&&(c+=40);for(var k=0,e=0;b>e;e++)for(var d=0;b>d;d++)a.isDark(d,e)&&k++;var l=Math.abs(100*k/b/b-50)/5;return c+=10*l}},g={glog:function(a){if(1>a)throw new Error("glog("+a+")");return g.LOG_TABLE[a]},gexp:function(a){for(;0>a;)a+=255;for(;a>=256;)a-=255;return g.EXP_TABLE[a]},EXP_TABLE:new Array(256),LOG_TABLE:new Array(256)},h=0;8>h;h++)g.EXP_TABLE[h]=1<<h;for(var h=8;256>h;h++)g.EXP_TABLE[h]=g.EXP_TABLE[h-4]^g.EXP_TABLE[h-5]^g.EXP_TABLE[h-6]^g.EXP_TABLE[h-8];for(var h=0;255>h;h++)g.LOG_TABLE[g.EXP_TABLE[h]]=h;i.prototype={get:function(a){return this.num[a]},getLength:function(){return this.num.length},multiply:function(a){for(var b=new Array(this.getLength()+a.getLength()-1),c=0;c<this.getLength();c++)for(var d=0;d<a.getLength();d++)b[c+d]^=g.gexp(g.glog(this.get(c))+g.glog(a.get(d)));return new i(b,0)},mod:function(a){if(this.getLength()-a.getLength()<0)return this;for(var b=g.glog(this.get(0))-g.glog(a.get(0)),c=new Array(this.getLength()),d=0;d<this.getLength();d++)c[d]=this.get(d);for(var d=0;d<a.getLength();d++)c[d]^=g.gexp(g.glog(a.get(d))+b);return new i(c,0).mod(a)}},j.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],j.getRSBlocks=function(a,b){var c=j.getRsBlockTable(a,b);if(void 0==c)throw new Error("bad rs block @ typeNumber:"+a+"/errorCorrectLevel:"+b);for(var d=c.length/3,e=[],f=0;d>f;f++)for(var g=c[3*f+0],h=c[3*f+1],i=c[3*f+2],k=0;g>k;k++)e.push(new j(h,i));return e},j.getRsBlockTable=function(a,b){switch(b){case d.L:return j.RS_BLOCK_TABLE[4*(a-1)+0];case d.M:return j.RS_BLOCK_TABLE[4*(a-1)+1];case d.Q:return j.RS_BLOCK_TABLE[4*(a-1)+2];case d.H:return j.RS_BLOCK_TABLE[4*(a-1)+3];default:return void 0}},k.prototype={get:function(a){var b=Math.floor(a/8);return 1==(1&this.buffer[b]>>>7-a%8)},put:function(a,b){for(var c=0;b>c;c++)this.putBit(1==(1&a>>>b-c-1))},getLengthInBits:function(){return this.length},putBit:function(a){var b=Math.floor(this.length/8);this.buffer.length<=b&&this.buffer.push(0),a&&(this.buffer[b]|=128>>>this.length%8),this.length++}};var l=[[17,14,11,7],[32,26,20,14],[53,42,32,24],[78,62,46,34],[106,84,60,44],[134,106,74,58],[154,122,86,64],[192,152,108,84],[230,180,130,98],[271,213,151,119],[321,251,177,137],[367,287,203,155],[425,331,241,177],[458,362,258,194],[520,412,292,220],[586,450,322,250],[644,504,364,280],[718,560,394,310],[792,624,442,338],[858,666,482,382],[929,711,509,403],[1003,779,565,439],[1091,857,611,461],[1171,911,661,511],[1273,997,715,535],[1367,1059,751,593],[1465,1125,805,625],[1528,1190,868,658],[1628,1264,908,698],[1732,1370,982,742],[1840,1452,1030,790],[1952,1538,1112,842],[2068,1628,1168,898],[2188,1722,1228,958],[2303,1809,1283,983],[2431,1911,1351,1051],[2563,1989,1423,1093],[2699,2099,1499,1139],[2809,2213,1579,1219],[2953,2331,1663,1273]],o=function(){var a=function(a,b){this._el=a,this._htOption=b};return a.prototype.draw=function(a){function g(a,b){var c=document.createElementNS("http://www.w3.org/2000/svg",a);for(var d in b)b.hasOwnProperty(d)&&c.setAttribute(d,b[d]);return c}var b=this._htOption,c=this._el,d=a.getModuleCount();Math.floor(b.width/d),Math.floor(b.height/d),this.clear();var h=g("svg",{viewBox:"0 0 "+String(d)+" "+String(d),width:"100%",height:"100%",fill:b.colorLight});h.setAttributeNS("http://www.w3.org/2000/xmlns/","xmlns:xlink","http://www.w3.org/1999/xlink"),c.appendChild(h),h.appendChild(g("rect",{fill:b.colorDark,width:"1",height:"1",id:"template"}));for(var i=0;d>i;i++)for(var j=0;d>j;j++)if(a.isDark(i,j)){var k=g("use",{x:String(i),y:String(j)});k.setAttributeNS("http://www.w3.org/1999/xlink","href","#template"),h.appendChild(k)}},a.prototype.clear=function(){for(;this._el.hasChildNodes();)this._el.removeChild(this._el.lastChild)},a}(),p="svg"===document.documentElement.tagName.toLowerCase(),q=p?o:m()?function(){function a(){this._elImage.src=this._elCanvas.toDataURL("image/png"),this._elImage.style.display="block",this._elCanvas.style.display="none"}function d(a,b){var c=this;if(c._fFail=b,c._fSuccess=a,null===c._bSupportDataURI){var d=document.createElement("img"),e=function(){c._bSupportDataURI=!1,c._fFail&&_fFail.call(c)},f=function(){c._bSupportDataURI=!0,c._fSuccess&&c._fSuccess.call(c)};return d.onabort=e,d.onerror=e,d.onload=f,d.src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",void 0}c._bSupportDataURI===!0&&c._fSuccess?c._fSuccess.call(c):c._bSupportDataURI===!1&&c._fFail&&c._fFail.call(c)}if(this._android&&this._android<=2.1){var b=1/window.devicePixelRatio,c=CanvasRenderingContext2D.prototype.drawImage;CanvasRenderingContext2D.prototype.drawImage=function(a,d,e,f,g,h,i,j){if("nodeName"in a&&/img/i.test(a.nodeName))for(var l=arguments.length-1;l>=1;l--)arguments[l]=arguments[l]*b;else"undefined"==typeof j&&(arguments[1]*=b,arguments[2]*=b,arguments[3]*=b,arguments[4]*=b);c.apply(this,arguments)}}var e=function(a,b){this._bIsPainted=!1,this._android=n(),this._htOption=b,this._elCanvas=document.createElement("canvas"),this._elCanvas.width=b.width,this._elCanvas.height=b.height,a.appendChild(this._elCanvas),this._el=a,this._oContext=this._elCanvas.getContext("2d"),this._bIsPainted=!1,this._elImage=document.createElement("img"),this._elImage.style.display="none",this._el.appendChild(this._elImage),this._bSupportDataURI=null};return e.prototype.draw=function(a){var b=this._elImage,c=this._oContext,d=this._htOption,e=a.getModuleCount(),f=d.width/e,g=d.height/e,h=Math.round(f),i=Math.round(g);b.style.display="none",this.clear();for(var j=0;e>j;j++)for(var k=0;e>k;k++){var l=a.isDark(j,k),m=k*f,n=j*g;c.strokeStyle=l?d.colorDark:d.colorLight,c.lineWidth=1,c.fillStyle=l?d.colorDark:d.colorLight,c.fillRect(m,n,f,g),c.strokeRect(Math.floor(m)+.5,Math.floor(n)+.5,h,i),c.strokeRect(Math.ceil(m)-.5,Math.ceil(n)-.5,h,i)}this._bIsPainted=!0},e.prototype.makeImage=function(){this._bIsPainted&&d.call(this,a)},e.prototype.isPainted=function(){return this._bIsPainted},e.prototype.clear=function(){this._oContext.clearRect(0,0,this._elCanvas.width,this._elCanvas.height),this._bIsPainted=!1},e.prototype.round=function(a){return a?Math.floor(1e3*a)/1e3:a},e}():function(){var a=function(a,b){this._el=a,this._htOption=b};return a.prototype.draw=function(a){for(var b=this._htOption,c=this._el,d=a.getModuleCount(),e=Math.floor(b.width/d),f=Math.floor(b.height/d),g=['<table style="border:0;border-collapse:collapse;">'],h=0;d>h;h++){g.push("<tr>");for(var i=0;d>i;i++)g.push('<td style="border:0;border-collapse:collapse;padding:0;margin:0;width:'+e+"px;height:"+f+"px;background-color:"+(a.isDark(h,i)?b.colorDark:b.colorLight)+';"></td>');g.push("</tr>")}g.push("</table>"),c.innerHTML=g.join("");var j=c.childNodes[0],k=(b.width-j.offsetWidth)/2,l=(b.height-j.offsetHeight)/2;k>0&&l>0&&(j.style.margin=l+"px "+k+"px")},a.prototype.clear=function(){this._el.innerHTML=""},a}();QRCode=function(a,b){if(this._htOption={width:256,height:256,typeNumber:4,colorDark:"#000000",colorLight:"#ffffff",correctLevel:d.H},"string"==typeof b&&(b={text:b}),b)for(var c in b)this._htOption[c]=b[c];"string"==typeof a&&(a=document.getElementById(a)),this._android=n(),this._el=a,this._oQRCode=null,this._oDrawing=new q(this._el,this._htOption),this._htOption.text&&this.makeCode(this._htOption.text)},QRCode.prototype.makeCode=function(a){this._oQRCode=new b(r(a,this._htOption.correctLevel),this._htOption.correctLevel),this._oQRCode.addData(a),this._oQRCode.make(),this._el.title=a,this._oDrawing.draw(this._oQRCode),this.makeImage()},QRCode.prototype.makeImage=function(){"function"==typeof this._oDrawing.makeImage&&(!this._android||this._android>=3)&&this._oDrawing.makeImage()},QRCode.prototype.clear=function(){this._oDrawing.clear()},QRCode.CorrectLevel=d}();
 /*
  AngularJS v1.2.28
  (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -17188,285 +17189,295 @@ myApp.config(function ($provide, $httpProvider) {
  * @function $routeProvider
  */
 myApp.config(['$routeProvider', function ($routeProvider) {
-    var cfg = config_data.cfg;
-    $routeProvider.// Login
-    when('/', {
-        templateUrl: 'app/views/auth/auth.html'
-    }).// Autocomplete
-    when('/test', {
-        templateUrl: 'app/views/test.html',
-    }).
-    // Dragdrop
-    when('/dragdrop', {
-        templateUrl: 'app/views/dragdrop.html',
-    }).// Home
-    when('/home', {
-        redirectTo: '/dashboard'
-    }).// Elements Dashboard
-    when('/dashboard/:firstlogin?', {
-        templateUrl: 'app/views/elements/elements_dashboard.html',
-        requireLogin: true
-    }).// Elements list
-    when('/elements', {
-        templateUrl: 'app/views/elements/elements_page.html',
-        requireLogin: true
-    }).// Element id
-    when('/element/:id', {
-        templateUrl: 'app/views/elements/element_id.html',
-        requireLogin: true,
-        roles: cfg.role_access.element
-    }).// Rooms
-    when('/rooms', {
-        templateUrl: 'app/views/rooms/rooms.html',
-        requireLogin: true,
-        roles: cfg.role_access.rooms
-    }).// Elements rooms
-    when('/rooms/:id', {
-        templateUrl: 'app/views/elements/elements_room.html',
-        requireLogin: true
-    }).// Events
-    when('/events/:param?/:val?', {
-        templateUrl: 'app/views/events/events.html',
-        requireLogin: true
-    }).//Admin
-    when('/admin', {
-        templateUrl: 'app/views/management/management.html',
-        requireLogin: true,
-        roles: cfg.role_access.admin
-    }).//Admin detail
-    when('/admin/user/:id', {
-        templateUrl: 'app/views/management/management_user_id.html',
-        requireLogin: true,
-        roles: cfg.role_access.admin_user
-    }).//My Access
-    when('/myaccess', {
-        templateUrl: 'app/views/mysettings/mysettings.html',
-        requireLogin: true,
-        roles: cfg.role_access.myaccess
-    }).//Apps local
-    when('/apps/local', {
-        templateUrl: 'app/views/apps/apps_local.html',
-        requireLogin: true,
-        roles: cfg.role_access.apps
-    }).//Apps - local detail
-    when('/apps/local/:id', {
-        templateUrl: 'app/views/apps/apps_local_id.html',
-        requireLogin: true,
-        roles: cfg.role_access.apps_local
-    }).//Apps online home
-    when('/apps/online', {
-        templateUrl: 'app/views/apps/apps_online.html',
-        requireLogin: true,
-        roles: cfg.role_access.apps
-    }). //Apps online filter
-    when('/apps/online/filter', {
-        templateUrl: 'app/views/apps/apps_online_filter.html',
-        requireLogin: true,
-        roles: cfg.role_access.apps
-    }).//Apps - online detail
-    when('/apps/online/:id', {
-        templateUrl: 'app/views/apps/apps_online_id.html',
-        requireLogin: true,
-        roles: cfg.role_access.apps_online
-    }).//Apps -instance
-    when('/apps/instance', {
-        templateUrl: 'app/views/apps/apps_instance.html',
-        requireLogin: true,
-        roles: cfg.role_access.apps_online
-    }).//Module
-    when('/module/:action/:id/:fromapp?/:instanceId?', {
-        templateUrl: 'app/views/apps/app_module_alpaca.html',
-        requireLogin: true,
-        roles: cfg.role_access.module
-    }).//Local skins
-    when('/customize/skinslocal', {
-        templateUrl: 'app/views/customize/skins_local.html',
-        requireLogin: true,
-        roles: cfg.role_access.customize
-    }).//Online skins
-    when('/customize/skinsonline', {
-        templateUrl: 'app/views/customize/skins_online.html',
-        requireLogin: true,
-        roles: cfg.role_access.customize
-    }).//Online skins
-    when('/skinreset', {
-        template: ' ',
-        controller: 'SkinToDefaultController',
-        requireLogin: true,
-        roles: cfg.role_access.customize
-    }).//Custom icons
-    when('/customize/iconslocal', {
-        templateUrl: 'app/views/customize/icons_local.html',
-        requireLogin: true,
-        roles: cfg.role_access.customize
-    }).//Online icons
-    when('/customize/iconsonline', {
-        templateUrl: 'app/views/customize/icons_online.html',
-        requireLogin: true,
-        roles: cfg.role_access.customize
-    }).//Devices_
-    when('/devices', {
-        templateUrl: 'app/views/devices/devices.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Zwave select vendors
-    when('/zwave/vendors', {
-        templateUrl: 'app/views/zwave/zwave_vendors.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Zwave select devices by vendor id
-    when('/zwave/products', {
-        templateUrl: 'app/views/zwave/zwave_products.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Include Zwave device
-    when('/zwave/inclusion/:id?', {
-        templateUrl: 'app/views/zwave/zwave_inclusion.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices_include
-    }).//Include Zwave device
-    when('/zwave/interview/:id', {
-        templateUrl: 'app/views/zwave/zwave_interview.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices_include
-    }).// DEPRECATED
-    //Include Zwave device
-    when('/zwave/include/:device?', {
-        templateUrl: 'app/views/zwave/zwave_include.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices_include
-    }).//Include Zwave device
-    when('/zwave/exclude/:id', {
-        templateUrl: 'app/views/zwave/zwave_exclude.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices_include
-    }).//Zwave devices
-    when('/zwave/devices', {
-        templateUrl: 'app/views/zwave/zwave_manage.html',
-        requireLogin: true
-    }).//Zwave devices config
-    when('/zwave/devices/:nodeId/:nohistory?', {
-        templateUrl: 'app/views/zwave/zwave_manage_id.html',
-        requireLogin: true,
-        roles: cfg.role_access.network_config_id
-    }).//Zwave battery
-    when('/zwave/batteries', {
-        templateUrl: 'app/views/zwave/zwave_batteries.html',
-        requireLogin: true
-    }).//Zwave Network
-    when('/zwave/network', {
-        templateUrl: 'app/views/zwave/zwave_network.html',
-        requireLogin: true
-    }).//Camera add
-    when('/camera/add', {
-        templateUrl: 'app/views/camera/camera_add.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Camera manage
-    when('/camera/manage', {
-        templateUrl: 'app/views/camera/camera_manage.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Enocean Devices
-    when('/enocean/devices/:brandname?', {
-        templateUrl: 'app/views/enocean/devices.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Enocean Teach-In
-    when('/enocean/teachin/:device', {
-        templateUrl: 'app/views/enocean/teachin.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Enocean devices
-    when('/enocean/manage', {
-        templateUrl: 'app/views/enocean/manage.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Enocean device manage
-    when('/enocean/manage/:deviceId', {
-        templateUrl: 'app/views/enocean/manage_detail.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Enocean controller
-    when('/enocean/controller', {
-        templateUrl: 'app/views/enocean/controller.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Enocean assign profile
-    when('/enocean/assign', {
-        templateUrl: 'app/views/enocean/assign.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).
-    when('/rf433/teachin', {
-        templateUrl: 'app/views/rf433/teachin.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Enocean devices
-    when('/rf433/manage', {
-        templateUrl: 'app/views/rf433/manage.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Enocean device manage
-    when('/rf433/manage/:vDevId', {
-        templateUrl: 'app/views/rf433/manage_detail.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices
-    }).//Rooms
-    when('/config-rooms', {
-        templateUrl: 'app/views/rooms/config_rooms.html',
-        requireLogin: true,
-        roles: cfg.role_access.config_rooms
-    }).when('/config-rooms/:id', {
-        templateUrl: 'app/views/rooms/config_rooms_id.html',
-        requireLogin: true,
-        roles: cfg.role_access.config_rooms_id
-    }).//Device configuration
-    when('/deviceconfig/:nodeId', {
-        templateUrl: 'app/views/expertui/configuration.html',
-        requireLogin: true
-    }).//Report
-    when('/report', {
-        templateUrl: 'app/views/report/report.html',
-        requireLogin: true
-    }).//Rss
-    when('/rss', {
-        templateUrl: 'app/views/rss/rss.html',
-        requireLogin: true,
-        roles: cfg.role_access.admin
-    }).//Login
-    when('/login', {
-        redirectTo: '/'
-    }).//Password
-    when('/password', {
-        templateUrl: 'app/views/auth/password.html',
-        requireLogin: true
-    }).//Password
-    when('/passwordchange', {
-        templateUrl: 'app/views/auth/password_change.html'
-    }).//Password forgot
-    when('/passwordforgot', {
-        templateUrl: 'app/views/auth/password_forgot.html'
-    }).//Password reset
-    when('/passwordforgot/reset/:token?', {
-        templateUrl: 'app/views/auth/password_reset.html'
-    }).//Jamesbox update
-    when('/boxupdate', {
-        templateUrl: 'app/views/jamesbox/update.html'
-    }).//Login
-    when('/logout', {
-        template: ' ',
-        controller: 'LogoutController',
-        requireLogin: true
-    }).//Error 403
-    when('/error403', {
-        templateUrl: 'app/views/error_403.html'
-    }).//Not found
-    otherwise({
-        template: ' ',
-        controller: 'Error404Controller'
-    });
-}]);
+        var cfg = config_data.cfg;
+        $routeProvider.// Login
+                when('/', {
+                    templateUrl: 'app/views/auth/auth.html'
+                }).// Autocomplete
+                when('/test', {
+                    templateUrl: 'app/views/test.html',
+                }).
+                // Dragdrop
+                when('/dragdrop', {
+                    templateUrl: 'app/views/dragdrop.html',
+                }).// Home
+                when('/home', {
+                    redirectTo: '/dashboard'
+                }).// Elements Dashboard
+                when('/dashboard/:firstlogin?', {
+                    templateUrl: 'app/views/elements/elements_dashboard.html',
+                    requireLogin: true
+                }).// Elements list
+                when('/elements', {
+                    templateUrl: 'app/views/elements/elements_page.html',
+                    requireLogin: true
+                }).// Element id
+                when('/element/:id', {
+                    templateUrl: 'app/views/elements/element_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.element
+                }).// Rooms
+                when('/rooms', {
+                    templateUrl: 'app/views/rooms/rooms.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.rooms
+                }).// Elements rooms
+                when('/rooms/:id', {
+                    templateUrl: 'app/views/elements/elements_room.html',
+                    requireLogin: true
+                }).// Events
+                when('/events/:param?/:val?', {
+                    templateUrl: 'app/views/events/events.html',
+                    requireLogin: true
+                }).//Admin
+                when('/admin', {
+                    templateUrl: 'app/views/management/management.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
+                }).//Admin detail
+                when('/admin/user/:id', {
+                    templateUrl: 'app/views/management/management_user_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin_user
+                }).//My Access
+                when('/myaccess', {
+                    templateUrl: 'app/views/mysettings/mysettings.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.myaccess
+                }).//Apps local
+                when('/apps/local', {
+                    templateUrl: 'app/views/apps/apps_local.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).//Apps - local detail
+                when('/apps/local/:id', {
+                    templateUrl: 'app/views/apps/apps_local_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.apps_local
+                }).//Apps online home
+                when('/apps/online', {
+                    templateUrl: 'app/views/apps/apps_online.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).//Apps online filter
+                when('/apps/online/filter', {
+                    templateUrl: 'app/views/apps/apps_online_filter.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).//Apps - online detail
+                when('/apps/online/:id', {
+                    templateUrl: 'app/views/apps/apps_online_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.apps_online
+                }).//Apps -instance
+                when('/apps/instance', {
+                    templateUrl: 'app/views/apps/apps_instance.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.apps_online
+                }).//Module
+                when('/module/:action/:id/:fromapp?/:instanceId?', {
+                    templateUrl: 'app/views/apps/app_module_alpaca.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.module
+                }).//Local skins
+                when('/customize/skinslocal', {
+                    templateUrl: 'app/views/customize/skins_local.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.customize
+                }).//Online skins
+                when('/customize/skinsonline', {
+                    templateUrl: 'app/views/customize/skins_online.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.customize
+                }).//Online skins
+                when('/skinreset', {
+                    template: ' ',
+                    controller: 'SkinToDefaultController',
+                    requireLogin: true,
+                    roles: cfg.role_access.customize
+                }).//Custom icons
+                when('/customize/iconslocal', {
+                    templateUrl: 'app/views/customize/icons_local.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.customize
+                }).//Online icons
+                when('/customize/iconsonline', {
+                    templateUrl: 'app/views/customize/icons_online.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.customize
+                }).//Devices_
+                when('/devices', {
+                    templateUrl: 'app/views/devices/devices.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Zwave select vendors
+                when('/zwave/vendors', {
+                    templateUrl: 'app/views/zwave/zwave_vendors.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Zwave select devices by vendor id
+                when('/zwave/products', {
+                    templateUrl: 'app/views/zwave/zwave_products.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Include Zwave device
+                when('/zwave/inclusion/:id?', {
+                    templateUrl: 'app/views/zwave/zwave_inclusion.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).//SmartStart with QR code
+                when('/zwave/smartstartqr', {
+                    templateUrl: 'app/views/zwave/smartstart/smartstart_qr.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).
+                //SmartStart with dsk
+                when('/zwave/smartstartdsk', {
+                    templateUrl: 'app/views/zwave/smartstart/smartstart_dsk.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }). //SmartStart with dsk
+                when('/zwave/smartstartlist', {
+                    templateUrl: 'app/views/zwave/smartstart/smartstart_list.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).//Check interview
+                when('/zwave/interview/:id', {
+                    templateUrl: 'app/views/zwave/zwave_interview.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).//Exclude Zwave device
+                when('/zwave/exclude/:id', {
+                    templateUrl: 'app/views/zwave/zwave_exclude.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).//Zwave devices
+                when('/zwave/devices', {
+                    templateUrl: 'app/views/zwave/zwave_manage.html',
+                    requireLogin: true
+                }).//Zwave devices config
+                when('/zwave/devices/:nodeId/:nohistory?', {
+                    templateUrl: 'app/views/zwave/zwave_manage_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.network_config_id
+                }).//Zwave battery
+                when('/zwave/batteries', {
+                    templateUrl: 'app/views/zwave/zwave_batteries.html',
+                    requireLogin: true
+                }).//Zwave Network
+                when('/zwave/network', {
+                    templateUrl: 'app/views/zwave/zwave_network.html',
+                    requireLogin: true
+                }).//Camera add
+                when('/camera/add', {
+                    templateUrl: 'app/views/camera/camera_add.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Camera manage
+                when('/camera/manage', {
+                    templateUrl: 'app/views/camera/camera_manage.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Enocean Devices
+                when('/enocean/devices/:brandname?', {
+                    templateUrl: 'app/views/enocean/devices.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Enocean Teach-In
+                when('/enocean/teachin/:device', {
+                    templateUrl: 'app/views/enocean/teachin.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Enocean devices
+                when('/enocean/manage', {
+                    templateUrl: 'app/views/enocean/manage.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Enocean device manage
+                when('/enocean/manage/:deviceId', {
+                    templateUrl: 'app/views/enocean/manage_detail.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Enocean controller
+                when('/enocean/controller', {
+                    templateUrl: 'app/views/enocean/controller.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Enocean assign profile
+                when('/enocean/assign', {
+                    templateUrl: 'app/views/enocean/assign.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).
+                when('/rf433/teachin', {
+                    templateUrl: 'app/views/rf433/teachin.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Enocean devices
+                when('/rf433/manage', {
+                    templateUrl: 'app/views/rf433/manage.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Enocean device manage
+                when('/rf433/manage/:vDevId', {
+                    templateUrl: 'app/views/rf433/manage_detail.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//Rooms
+                when('/config-rooms', {
+                    templateUrl: 'app/views/rooms/config_rooms.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.config_rooms
+                }).when('/config-rooms/:id', {
+            templateUrl: 'app/views/rooms/config_rooms_id.html',
+            requireLogin: true,
+            roles: cfg.role_access.config_rooms_id
+        }).//Device configuration
+                when('/deviceconfig/:nodeId', {
+                    templateUrl: 'app/views/expertui/configuration.html',
+                    requireLogin: true
+                }).//Report
+                when('/report', {
+                    templateUrl: 'app/views/report/report.html',
+                    requireLogin: true
+                }).//Rss
+                when('/rss', {
+                    templateUrl: 'app/views/rss/rss.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
+                }).//Login
+                when('/login', {
+                    redirectTo: '/'
+                }).//Password
+                when('/password', {
+                    templateUrl: 'app/views/auth/password.html',
+                    requireLogin: true
+                }).//Password
+                when('/passwordchange', {
+                    templateUrl: 'app/views/auth/password_change.html'
+                }).//Password forgot
+                when('/passwordforgot', {
+                    templateUrl: 'app/views/auth/password_forgot.html'
+                }).//Password reset
+                when('/passwordforgot/reset/:token?', {
+                    templateUrl: 'app/views/auth/password_reset.html'
+                }).//Jamesbox update
+                when('/boxupdate', {
+                    templateUrl: 'app/views/jamesbox/update.html'
+                }).//Login
+                when('/logout', {
+                    template: ' ',
+                    controller: 'LogoutController',
+                    requireLogin: true
+                }).//Error 403
+                when('/error403', {
+                    templateUrl: 'app/views/error_403.html'
+                }).//Not found
+                otherwise({
+                    template: ' ',
+                    controller: 'Error404Controller'
+                });
+    }]);
 
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
@@ -17642,7 +17653,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/devices/devices.html',
-    "<div ng-controller=DeviceController><h2 ng-bind=\"_t('lb_select_device_type')\"></h2><table class=\"table table-report table-products\"><tbody><tr><td><img class=device-type-logo ng-src=app/img/logo-zwave.png alt=\"Logo\"></td><td class=td-action><div class=btn-group><a class=\"btn btn-default\" href=\"\" title=\"{{_t('manage_with_expertui')}}\" ng-click=\"toExpert('/expert',_t('redirect_to_expert'))\" ng-if=\"elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'\"><i class=\"fa fa-external-link\"></i> <span class=btn-name ng-bind=\"_t('manage_with_expertui')\"></span></a> <a class=\"btn btn-default\" href=#zwave/vendors title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></td></tr><tr><td><img class=device-type-logo ng-src=app/img/logo-camera.png alt=\"Logo\"></td><td class=td-action><div class=btn-group><a class=\"btn btn-default\" href=#camera/add title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#camera/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></td></tr><tr ng-if=enocean.installed><td><img class=device-type-logo ng-src=app/img/logo-enocean.png alt=\"Logo\"></td><td class=td-action><bb-alert-text alert=enocean.alert></bb-alert-text><div ng-if=enocean.active><div class=btn-group><a class=\"btn btn-default\" href=#enocean/devices title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#enocean/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></td></tr><tr ng-if=rf433.installed><td><img class=device-type-logo ng-src=app/img/logo-rf433.png alt=\"Logo\"></td><td class=td-action><bb-alert-text alert=rf433.alert></bb-alert-text><div ng-if=rf433.active><div class=btn-group><a class=\"btn btn-default\" href=#rf433/teachin title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#rf433/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></td></tr></tbody></table></div>"
+    "<div ng-controller=DeviceController><h2 ng-bind=\"_t('lb_select_device_type')\"></h2><table class=\"table table-report table-products\"><tbody><tr><td><img class=device-type-logo ng-src=app/img/logo-zwave.png alt=\"Logo\"></td><td class=td-action><div class=btn-group><a class=\"btn btn-default\" href=\"\" title=\"{{_t('manage_with_expertui')}}\" ng-click=\"toExpert('/expert',_t('redirect_to_expert'))\" ng-if=\"elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'\"><i class=\"fa fa-external-link\"></i> <span class=btn-name ng-bind=\"_t('manage_with_expertui')\"></span></a> <a class=\"btn btn-default\" href=#zwave/vendors title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#zwave/smartstartdsk title=\"{{_t('scan_qrcode')}}\"><i class=\"fa fa-qrcode text-success\"></i> <span class=btn-name ng-bind=\"_t('scan_qrcode')\"></span></a> <a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></td></tr><tr><td><img class=device-type-logo ng-src=app/img/logo-camera.png alt=\"Logo\"></td><td class=td-action><div class=btn-group><a class=\"btn btn-default\" href=#camera/add title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#camera/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></td></tr><tr ng-if=enocean.installed><td><img class=device-type-logo ng-src=app/img/logo-enocean.png alt=\"Logo\"></td><td class=td-action><bb-alert-text alert=enocean.alert></bb-alert-text><div ng-if=enocean.active><div class=btn-group><a class=\"btn btn-default\" href=#enocean/devices title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#enocean/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></td></tr><tr ng-if=rf433.installed><td><img class=device-type-logo ng-src=app/img/logo-rf433.png alt=\"Logo\"></td><td class=td-action><bb-alert-text alert=rf433.alert></bb-alert-text><div ng-if=rf433.active><div class=btn-group><a class=\"btn btn-default\" href=#rf433/teachin title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></a> <a class=\"btn btn-default\" href=#rf433/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></td></tr></tbody></table></div>"
   );
 
 
@@ -18096,8 +18107,39 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/zwave/_zwave_vendors_id.html',
+    "<div ng-controller=ZwaveVendorIdController><bb-loader></bb-loader><div class=\"text-center device-autodetect\" ng-include=\"'app/views/zwave/zwave_vendors_autodetect.html'\"></div><h3><button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-arrow-left\"></i></button> <strong>{{zwaveProducts.vendor.brandname}}</strong> | {{_t('products')}} <span class=\"badge text-primary\">{{zwaveProducts.cnt}}</span> | {{_t('frequency')}} <span class=badge>{{zwaveProducts.frequency}}</span> <em ng-class=\"zwaveProducts.cnt == 0 ? 'text-danger': '' \"></em></h3><table class=\"table table-report\"><tbody><tr ng-repeat=\"v in zwaveProducts.all | orderBy:'name' track by $index\"><td><a href=#zwave/inclusion/{{v.id}}><img class=product-img ng-src={{v.product_image}} alt=img ng-if=\"v.product_image\"> <img class=product-img ng-src=storage/img/placeholder-img.png alt=img ng-if=\"!v.product_image\"></a></td><td><a href=#zwave/inclusion/{{v.id}}>{{v.productcode}}</a></td><td><a href=#zwave/inclusion/{{v.id}}>{{v.name}}</a></td><td><span class=\"label label-info\">{{v.frequencyid}}</span></td><td class=td-action><a href=#zwave/inclusion/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_include_device')}}\"><i class=\"fa fa-plug text-primary\"></i></a></td></tr></tbody></table><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div>"
+  );
+
+
   $templateCache.put('app/views/zwave/navi.html',
     "<div class=\"tabs-wrap form-inline\" ng-if=devices.show><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('lb_zwave_devices')}}\" ng-class=\"routeMatch('/zwave/devices') ? 'active' : ''\"><i class=\"fa fa-wifi\"></i> <span class=btn-name>{{_t('lb_zwave_devices')}}</span></a> <a class=\"btn btn-default\" href=#zwave/batteries title=\"{{_t('lb_battery_status')}}\" ng-class=\"routeMatch('/zwave/batteries') ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-bolt\"></i> <span class=btn-name>{{_t('lb_battery_status')}}</span></a> <a class=\"btn btn-default\" href=#zwave/network title=\"{{_t('lb_network_status')}}\" ng-class=\"routeMatch('/zwave/network') ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-sitemap\"></i> <span class=btn-name>{{_t('lb_network_status')}}</span></a></div></div>"
+  );
+
+
+  $templateCache.put('app/views/zwave/smartstart/navi.html',
+    "<div class=\"tabs-wrap form-inline\"><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" title=\"{{_t('New Device Key')}}\" href=#zwave/smartstartdsk ng-class=\"routeMatch('/zwave/smartstartdsk') ? 'active' : ''\"><i class=\"fa fa-key\"></i> <span class=btn-name>{{_t('New Device Key')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('Scan QR code')}}\" href=#zwave/smartstartqr ng-class=\"routeMatch('/zwave/smartstartqr') ? 'active' : ''\"><i class=\"fa fa-qrcode\"></i> <span class=btn-name>{{_t('Scan QR code')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('Device Key List')}}\" href=#zwave/smartstartlist ng-class=\"routeMatch('/zwave/smartstartlist') ? 'active' : ''\"><i class=\"fa fa-list\"></i> <span class=btn-name>{{_t('Device Key List')}}</span></a></div></div>"
+  );
+
+
+  $templateCache.put('app/views/zwave/smartstart/smartstart_dsk.html',
+    "<div class=smart-start ng-controller=SmartStartDskController><div class=container ng-switch=dsk.state><div ng-include=\"'app/views/zwave/smartstart/navi.html'\"></div><div class=\"entry enter-dsk start\" ng-switch-default><p class=content>Please enter the Key on new Device (DSK - device specific keys), which you find below QR code</p><form name=form_dsk class=form-inline_ ng-submit=authenticate()><p class=form-group_><input name=dsk id=dsk class=form-control placeholder=\"Enter key here\" ng-minlength_=5 onkeypress=\"if (this.value.length == 5)\r" +
+    "\n" +
+    "                                               return false\" ng-model=\"dsk.input.dsk\"></p><p class=form-group_><button class=\"btn btn-success btn-block_\">Register</button></p></form></div><div class=\"entry enter-dsk authenticating\" ng-switch-when=authenticating><div class=image><i class=\"fa fa-spinner fa-spin\"></i></div><p class=content>Authenticating device... please wait</p></div><div class=\"entry scan-qrcode error\" ng-switch-when=error><div class=image><i class=\"fa fa-exclamation\"></i></div><p class=content>Something went wrong. What happened and What to do...</p><button class=\"btn btn-success\" ng-click=resetState()>OK</button></div><div class=\"entry enter-dsk success-authenticate\" ng-switch-when=success-authenticate><div class=\"image clickable\" ng-click=discover()><i class=\"fa fa-power-off\"></i></div><p class=content>Device is ready for inclusion. Install and power up the device</p></div><div class=\"entry scan-qrcode discovering\" ng-switch-when=discovering><div class=image><i class=\"fa fa-spinner fa-spin\"></i></div><p class=content>Discovering device... please wait</p></div><div class=\"entry enter-dsk success-discover\" ng-switch-when=success-discover><div class=image><i class=\"fa fa-check\"></i></div><p class=content>Device has been included in the network and is ready for use</p><button class=\"btn btn-success\" ng-click=resetState()>OK</button></div></div></div>"
+  );
+
+
+  $templateCache.put('app/views/zwave/smartstart/smartstart_list.html',
+    "<div class=smart-start ng-controller=SmartStartListController><div class=container><div ng-include=\"'app/views/zwave/smartstart/navi.html'\"></div><div class=\"entry list\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.<ul class=scrollh><li class=list-group-item ng-repeat=\"v in list.all track by $index\"><span class=badge>{{$index + 1}}</span> {{v}}</li></ul><pre>\r" +
+    "\n" +
+    "         \r" +
+    "\n" +
+    "          </pre></div></div></div>"
+  );
+
+
+  $templateCache.put('app/views/zwave/smartstart/smartstart_qr.html',
+    "<div class=smart-start ng-controller=SmartStartQrController><div class=container ng-switch=qrcode.state><div ng-include=\"'app/views/zwave/smartstart/navi.html'\"></div><div class=\"entry scan-qrcode start\" ng-switch-default><div class=image><img src=\"app/img/smartstart/qr-code-iphone-icon.png\"></div><p class=content>Use your smartphone to scan the QR code. You'll find this code somewhere on the box...</p><button class=\"btn btn-success\" ng-click=scan()>Scan QR code</button> <button class=\"btn btn-default\" ng-click=\"scan('error')\">Simulate error</button></div><div class=\"entry scan-qrcode scanning\" ng-switch-when=scanning><div class=preloader-scan><div class=diode><div class=laser></div></div></div><p class=content>Scanning QR code. Please wait...</p></div><div class=\"entry scan-qrcode error\" ng-switch-when=error><div class=image><i class=\"fa fa-exclamation\"></i></div><p class=content>Something went wrong. What happened and What to do...</p><button class=\"btn btn-success\" ng-click=resetState()>Try to scan again</button> <a class=\"btn btn-default\" href=#zwave/smartstartdsk>Enter DSK manually</a></div><div class=\"entry scan-qrcode success-scan\" ng-switch-when=success-scan><div class=\"image clickable\" ng-click=discover()><i class=\"fa fa-power-off\"></i></div><p class=content>Device is ready for inclusion. Install and power up the device</p></div><div class=\"entry scan-qrcode discovering\" ng-switch-when=discovering><div class=image><i class=\"fa fa-spinner fa-spin\"></i></div><p class=content>Discovering device... please wait</p></div><div class=\"entry scan-qrcode success-install\" ng-switch-when=success-discover><div class=image><i class=\"fa fa-check\"></i></div><p class=content>Device has been included in the network and is ready for use</p><button class=\"btn btn-success\" ng-click=resetState()>OK</button></div></div></div>"
   );
 
 
@@ -18158,11 +18200,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/zwave/zwave_vendors_ctrl.html',
     "<div class=\"page-control form-inline\"><form id=form_search class=input-group ng-submit=\"setFilter({q: autocomplete.term})\" autocomplete=off novalidate><input id=input_search focus={{zwaveVendors.filter.q}} class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" ng-click=\"setFilter({q: autocomplete.term})\"><i class=\"fa fa-search\" ng-class=\"{'text-success':autocomplete.term}\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocompleteExpanded.searchProducts><ul><li class=dropdown-entry title={{v.title}} ng-repeat=\"v in autocomplete.results | orderBy:'name' track by $index\"><span class=dropdown-col ng-click=\"setFilter({q: autocomplete.term})\"><img class=report-img-s ng-src=\"{{cfg.img.zwavedevices + v.product_image}}\" err-src={{cfg.img.placeholder}} alt=\"img\"> <span class=aoutocomplete-title>{{v.name|cutText:true:30}}</span>&nbsp; <em class=item-cnt>({{v.brandname}})</em></span> <span class=\"dropdown-col dropdown-ctrl\" title=\"{{_t('lb_cfg_view')}}\"><a ng-href=#zwave/inclusion/{{v.id}}><i class=\"fa fa-plug text-primary\"></i></a></span></li></ul></div></form></div>"
-  );
-
-
-  $templateCache.put('app/views/zwave/zwave_vendors_id.html',
-    "<div ng-controller=ZwaveVendorIdController><bb-loader></bb-loader><div class=\"text-center device-autodetect\" ng-include=\"'app/views/zwave/zwave_vendors_autodetect.html'\"></div><h3><button class=\"btn btn-default\" bb-go-back><i class=\"fa fa-arrow-left\"></i></button> <strong>{{zwaveProducts.vendor.brandname}}</strong> | {{_t('products')}} <span class=\"badge text-primary\">{{zwaveProducts.cnt}}</span> | {{_t('frequency')}} <span class=badge>{{zwaveProducts.frequency}}</span> <em ng-class=\"zwaveProducts.cnt == 0 ? 'text-danger': '' \"></em></h3><table class=\"table table-report\"><tbody><tr ng-repeat=\"v in zwaveProducts.all | orderBy:'name' track by $index\"><td><a href=#zwave/inclusion/{{v.id}}><img class=product-img ng-src={{v.product_image}} alt=img ng-if=\"v.product_image\"> <img class=product-img ng-src=storage/img/placeholder-img.png alt=img ng-if=\"!v.product_image\"></a></td><td><a href=#zwave/inclusion/{{v.id}}>{{v.productcode}}</a></td><td><a href=#zwave/inclusion/{{v.id}}>{{v.name}}</a></td><td><span class=\"label label-info\">{{v.frequencyid}}</span></td><td class=td-action><a href=#zwave/inclusion/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_include_device')}}\"><i class=\"fa fa-plug text-primary\"></i></a></td></tr></tbody></table><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div>"
   );
 
 }]);
@@ -29964,6 +30001,116 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     }
     ;
 
+});
+
+
+/**
+ * @overview Handles Z-Wave SmartStart process.
+ * @author Martin Vach
+ */
+
+
+/**
+ * The controller that include device with DSK.
+ * @class SmartStartDskController
+ */
+myAppController.controller('SmartStartDskController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+     $scope.dsk = {
+        input: {
+            dsk: ''
+        },
+        state: 'start'
+    };
+     /**
+     * Reset state to start
+     */
+    $scope.resetState = function () {
+        $scope.dsk.state = 'start';
+        $scope.reloadData();
+    };
+     /**
+     * Authenticate by DSK
+     */
+    $scope.authenticate = function () {
+        console.log($scope.dsk.input.dsk)
+        $scope.dsk.state = 'authenticating';
+        $timeout(function(){
+            $scope.dsk.state = ($scope.dsk.input.dsk ? 'success-authenticate' : 'error');
+        }, 2000);
+    };
+    
+     /**
+     * Discover the device
+     */
+    $scope.discover = function () {
+        $scope.dsk.state = 'discovering';
+        $timeout(function(){
+            //$scope.dsk.state = 'success-discover';
+            $scope.dsk.state = ($scope.dsk.input.dsk == 1 ? 'error' : 'success-discover');
+        }, 2000);
+    };
+    
+});
+
+/**
+ * The controller that include device by scanning QR code.
+ * @class SmartStartQrController
+ */
+myAppController.controller('SmartStartQrController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+    $scope.qrcode = {
+        input: {
+            qrcode: ''
+        },
+        state: 'start'
+    };
+    
+    /**
+     * Reset state to start
+     */
+    $scope.resetState = function () {
+        $scope.qrcode.state = 'start';
+        $scope.reloadData();
+    };
+     /**
+     * Scan QR code
+     */
+    $scope.scan = function (error) {
+        $scope.qrcode.state = 'scanning';
+        $timeout(function(){
+            $scope.qrcode.state = (error ? 'error' : 'success-scan');
+        }, 4000);
+    };
+    
+     /**
+     * Discover the device
+     */
+    $scope.discover = function () {
+        $scope.qrcode.state = 'discovering';
+        $timeout(function(){
+            $scope.qrcode.state = 'success-discover';
+        }, 2000);
+    };
+
+});
+
+/**
+ * The controller that displays DSK list.
+ * @class SmartStartListController
+ */
+myAppController.controller('SmartStartListController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+    $scope.list = {
+        all:[
+            "90013462300751525354554142434445313233343521222324250010163870076802206552101000000170028806420021222324254142434445111213141531323334351",
+            "90013462300751525354554142434445313233343521222324250010163870076802206552101000000170028806420021222324254142434445111213141531323334352",
+            "90013462300751525354554142434445313233343521222324250010163870076802206552101000000170028806420021222324254142434445111213141531323334353",
+            "90013462300751525354554142434445313233343521222324250010163870076802206552101000000170028806420021222324254142434445111213141531323334354",
+            "90013462300751525354554142434445313233343521222324250010163870076802206552101000000170028806420021222324254142434445111213141531323334355",
+            "90013462300751525354554142434445313233343521222324250010163870076802206552101000000170028806420021222324254142434445111213141531323334356",
+            "90013462300751525354554142434445313233343521222324250010163870076802206552101000000170028806420021222324254142434445111213141531323334357"
+        ]
+    };
+    
+    
 });
 
 

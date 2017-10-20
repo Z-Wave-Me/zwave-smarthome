@@ -56,6 +56,7 @@ name | overview
 [app\controllers\zwave-exclude.js](app/controllers/zwave-exclude.md) | _Handles Reset/Remove proccess of elemnts._
 [app\controllers\zwave-inclusion.js](app/controllers/zwave-inclusion.md) | _Handles Z-Wave device inclusion actions._
 [app\controllers\zwave-manage.js](app/controllers/zwave-manage.md) | _Controllers that manage Z-Wave devices._
+[app\controllers\zwave-smartstart.js](app/controllers/zwave-smartstart.md) | _Handles Z-Wave SmartStart process._
 [app\controllers\zwave-vendor.js](app/controllers/zwave-vendor.md) | _The controller that renders Z-Wave vendors and products._
 - - -
 
