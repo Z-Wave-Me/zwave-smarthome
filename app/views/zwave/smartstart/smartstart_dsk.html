@@ -5,19 +5,18 @@
         <!-- Start -->
         <div class="entry enter-dsk start"  ng-switch-default>
             <p class="content">
-                Please enter your DSK. You wi'll find it...
+                Please enter the Key on new Device (DSK - device specific keys), which you find below QR code
             </p>
-            <em>DSK - device specific keys</em>
             <form name="form_dsk" class="form-inline_" ng-submit="authenticate()">
                 <p class="form-group_">
-                    <input name="dsk" id="dsk" class="form-control" type="text" placeholder="Enter DSK here"
+                    <input name="dsk" id="dsk" class="form-control" type="text" placeholder="Enter key here"
                            ng-minlength_="5"
                            onKeyPress="if (this.value.length == 5)
                                                return false;" 
                            ng-model="dsk.input.dsk" />
                 </p>
                 <p class="form-group_">
-                    <button class="btn btn-success btn-block_">Authenticate</button>
+                    <button class="btn btn-success btn-block_">Register</button>
                     <!--<button class="btn btn-success" ng-disabled="!smartStart.input.dsk || form_dsk.$invalid || smartStart.progress > 0">Install</button>--> 
                 </p>
             </form>

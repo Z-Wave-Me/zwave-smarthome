@@ -1,12 +1,16 @@
 <div class="tabs-wrap form-inline">
     <div class="btn-group btn-group-justified btn-goup-tabs">
-        <a class="btn btn-default" title="{{_t('Enter DSK')}}" href="#zwave/smartstartdsk" 
+        <a class="btn btn-default" title="{{_t('New Device Key')}}" href="#zwave/smartstartdsk" 
            ng-class="routeMatch('/zwave/smartstartdsk') ? 'active' : ''">
-            <i class="fa fa-key"></i> <span class="btn-name">{{_t('Enter DSK')}}</span>
+            <i class="fa fa-key"></i> <span class="btn-name">{{_t('New Device Key')}}</span>
         </a>
         <a class="btn btn-default" title="{{_t('Scan QR code')}}" href="#zwave/smartstartqr" 
            ng-class="routeMatch('/zwave/smartstartqr') ? 'active' : ''">
             <i class="fa fa-qrcode"></i> <span class="btn-name">{{_t('Scan QR code')}}</span>
+        </a>
+        <a class="btn btn-default" title="{{_t('Device Key List')}}" href="#zwave/smartstartlist" 
+           ng-class="routeMatch('/zwave/smartstartlist') ? 'active' : ''">
+            <i class="fa fa-list"></i> <span class="btn-name">{{_t('Device Key List')}}</span>
         </a>
     </div>
 </div>

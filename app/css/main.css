@@ -11011,6 +11011,12 @@ img {
   margin: 0 0 10px 0;
 }
 
+/* line 302, ../sass/base/_body.scss */
+.scrollh {
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
 /* Header
 -------------------------------------------------- */
 /* line 3, ../sass/base/_header.scss */
@@ -15441,70 +15447,70 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* 
 -------------------------------------------------- */
-/* line 10, ../sass/base/_smartstart.scss */
+/* line 11, ../sass/base/_smartstart.scss */
 .smart-start .container {
   padding: 0;
   border: solid 10px #FFFFFF;
   background-color: #FFFFFF;
-  max-width: 500px;
+  max-width: 800px;
 }
-/* line 15, ../sass/base/_smartstart.scss */
+/* line 16, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs {
   margin: 0;
 }
-/* line 18, ../sass/base/_smartstart.scss */
+/* line 19, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs .btn {
   border: 0;
   border-radius: 0;
   background-color: #FFFFFF;
   color: #686868;
 }
-/* line 23, ../sass/base/_smartstart.scss */
+/* line 24, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs .btn .fa {
   color: #686868;
 }
-/* line 26, ../sass/base/_smartstart.scss */
+/* line 27, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs .btn.active {
   background-color: #E7E7E7;
 }
-/* line 28, ../sass/base/_smartstart.scss */
+/* line 29, ../sass/base/_smartstart.scss */
 .smart-start .container .btn-goup-tabs .btn.active .fa {
   color: #686868;
 }
-/* line 34, ../sass/base/_smartstart.scss */
+/* line 35, ../sass/base/_smartstart.scss */
 .smart-start .container .entry {
   background-color: #E7E7E7;
   color: #686868;
   padding: 20px;
   text-align: center;
   height: auto;
-  max-width: 500px;
+  max-width: 800px;
 }
-/* line 44, ../sass/base/_smartstart.scss */
+/* line 45, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .content {
   font-weight: bold;
   font-size: 140%;
   margin: 20px;
 }
-/* line 51, ../sass/base/_smartstart.scss */
+/* line 52, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .image .fa {
   font-size: 96px;
   color: #80AD80;
 }
-/* line 54, ../sass/base/_smartstart.scss */
+/* line 55, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .image .fa.fa-exclamation {
   color: #d9534f;
 }
-/* line 59, ../sass/base/_smartstart.scss */
+/* line 60, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .image img {
   max-width: 96px;
   max-height: 96px;
 }
-/* line 65, ../sass/base/_smartstart.scss */
+/* line 66, ../sass/base/_smartstart.scss */
 .smart-start .container .entry .btn {
   font-size: 120%;
 }
-/* line 70, ../sass/base/_smartstart.scss */
+/* line 71, ../sass/base/_smartstart.scss */
 .smart-start .container .entry.start {
   /* img{
        margin-bottom: -50px;
@@ -15512,15 +15518,23 @@ img.widget-promo-image {
        max-height: 200px; 
    }*/
 }
-
-/* line 82, ../sass/base/_smartstart.scss */
-.entry {
-  /*    position: relative;
-      top: 0;
-      left: 0;*/
+/* line 78, ../sass/base/_smartstart.scss */
+.smart-start .container .entry.list {
+  text-align: left;
+}
+/* line 80, ../sass/base/_smartstart.scss */
+.smart-start .container .entry.list ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 84, ../sass/base/_smartstart.scss */
+.smart-start .container .entry.list ul li {
+  padding: 10px;
+  width: auto;
 }
 
-/* line 88, ../sass/base/_smartstart.scss */
+/* line 98, ../sass/base/_smartstart.scss */
 .preloader-scan {
   /*  position: fixed;
     left: 0;
@@ -15533,7 +15547,7 @@ img.widget-promo-image {
   background: url("../img/smartstart/qrcode.png") no-repeat 50% 50%;
   background-size: 128px 128px;
 }
-/* line 102, ../sass/base/_smartstart.scss */
+/* line 112, ../sass/base/_smartstart.scss */
 .preloader-scan .laser {
   margin-left: -50px;
   margin-right: -50px;
@@ -15544,7 +15558,7 @@ img.widget-promo-image {
   box-shadow: 0 0 4px red;
   animation: scanning 2s infinite;
 }
-/* line 116, ../sass/base/_smartstart.scss */
+/* line 126, ../sass/base/_smartstart.scss */
 .preloader-scan .diode {
   animation: beam .01s infinite;
 }

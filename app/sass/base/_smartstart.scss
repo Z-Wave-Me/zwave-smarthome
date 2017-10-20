@@ -4,6 +4,7 @@ $ss-brand-color: #E7E7E7;
 $ss-dark-color: darken($ss-brand-color,50%);
 $ss-border-color:#FFFFFF;
 $ss-img-w: 96px;
+$ss-w: 800px;
 /* 
 -------------------------------------------------- */
 .smart-start {
@@ -11,7 +12,7 @@ $ss-img-w: 96px;
         padding: 0;
         border: solid 10px $ss-border-color;
         background-color: $ss-border-color;
-        max-width: 500px;
+        max-width: $ss-w;
         .btn-goup-tabs{
             margin: 0;
 
@@ -39,7 +40,7 @@ $ss-img-w: 96px;
             //border: solid 1px red;
             text-align: center;
             height: auto;
-            max-width: 500px;
+            max-width: $ss-w;
             //height: 300px;
             .content{
                 font-weight: bold;
@@ -74,16 +75,25 @@ $ss-img-w: 96px;
                      max-height: 200px; 
                  }*/
             }
+            &.list{
+                text-align: left;
+                ul{
+                    list-style-type: none;
+            margin: 0;
+            padding: 0;
+                    li{
+                        padding:  $spacing;
+                        width: auto;
+                    }
+
+                }
+            }
         }
 
     }
 
 }
-.entry{
-    /*    position: relative;
-        top: 0;
-        left: 0;*/
-}
+
 
 .preloader-scan {
     /*  position: fixed;

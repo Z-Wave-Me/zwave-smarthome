@@ -156,6 +156,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/zwave/smartstart/smartstart_dsk.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
+                }). //SmartStart with dsk
+                when('/zwave/smartstartlist', {
+                    templateUrl: 'app/views/zwave/smartstart/smartstart_list.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
                 }).//Check interview
                 when('/zwave/interview/:id', {
                     templateUrl: 'app/views/zwave/zwave_interview.html',
