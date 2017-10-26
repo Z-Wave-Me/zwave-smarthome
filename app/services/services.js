@@ -882,8 +882,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = iconArray.half;
                 }
                 break;
-
-            // multilevel
+            // multilevel / fan
+            case 'fan':
             case 'multilevel':
                 if (element.metrics.level === 0) {
                     icon = iconArray.off;
