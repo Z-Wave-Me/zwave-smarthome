@@ -100,10 +100,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
+     * todo: Deprecated
      * Get OS (operating system)
      * @returns {String}
      */
-    this.getOs = function () {
+    /*this.getOs = function () {
         if (navigator && navigator.userAgent && navigator.userAgent != null) {
             var agents = ['android', 'iemobile', 'iphone', 'ipad', 'ipod', 'opera mini', 'blackberry'];
             var ua = navigator.userAgent.toLowerCase();
@@ -115,7 +116,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return 'any';
         }
         return 'any';
-    };
+    };*/
 
     /**
      * Get OS (operating system)

@@ -82,6 +82,13 @@
                             <li class="subnavi-admin" ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
                                 <a href="#rss"><i class="fa fa-comment fa-fw"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
+                             <!-- My Hubs -->
+                            <li class="subnavi-myhubs" ng-if="cfg.route.os == 'android'">
+                                <a ng-href="{{cfg.android_html_dir}}">
+                                    
+                                    <i class="fa fa-android fa-fw"></i><span>{{_t('my_hubs')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i>
+                                </a>
+                            </li>
                             <!-- Logout -->
                             <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">
                                 <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>

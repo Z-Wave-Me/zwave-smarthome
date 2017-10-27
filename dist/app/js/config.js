@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.8.0',
+        'app_version': '1.8.0-RC-3',
         // Application (DIST) built date
-        'app_built': '20-10-2017 15:00:36',
+        'app_built': '27-10-2017 12:06:27',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -253,6 +253,8 @@ var config_data = {
         'license_load_url': 'ZWaveAPI/ZMELicense',
         // Language directory
         'lang_dir': 'app/lang/',
+        // Android html dir
+        'android_html_dir': '/htdocs/android/index.htm',
         // Default language
         'lang': 'en', // !!!!Do not change it
         // List of supported languages

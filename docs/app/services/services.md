@@ -86,12 +86,6 @@ Log error in the console
 
 **Returns**: `undefined`
 
-### dataService.getOs() 
-
-Get OS (operating system)
-
-**Returns**: `String`
-
 ### dataService.isIeEdge() 
 
 Get OS (operating system)
