@@ -70,14 +70,40 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
         $scope.reloadData();
         //$scope.allSettled();
     };
+    
+     /**
+     * Set order by
+     * @param {string} key
+     * @returns {undefined}
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.rooms, {orderBy: key});
+        $cookies.roomsOrderBy = key;
+        $scope.reloadData();
+        //$scope.allSettled();
+    };
+     /**
+     * 
+     */
+    $scope.onLongPress = function (id) {
+       console.log('onLongPress');
+       $scope.redirectToRoute('config-rooms/' + id);
+    };
+    
+     $scope.onTouchEnd = function () {
+       console.log('onTouchEnd');
+    };
+
+
 
     /**
+     * todo: Deprecated - moved to detail
      * Delete a room
      * @param {int} roomId
      * @param {string} message
      * @returns {undefined}
      */
-    $scope.deleteRoom = function (roomId, message) {
+    /*$scope.deleteRoom = function (roomId, message) {
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             dataFactory.deleteApi('locations', roomId).then(function (response) {
@@ -94,7 +120,7 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
                 alertify.alertError($scope._t('error_delete_data'));
             });
         });
-    };
+    };*/
 
     /// --- Private functions --- ///
 
@@ -318,6 +344,31 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         });
 
     };
+    
+     /**
+     * Delete a room
+     * @param {int} roomId
+     * @param {string} message
+     * @returns {undefined}
+     */
+    $scope.deleteRoom = function (roomId, message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('locations', roomId).then(function (response) {
+                $scope.loading = false;
+                removeRoomIdFromDevice(_.where($scope.devices.all, {location: roomId}));
+                //myCache.remove('locations');
+                //myCache.remove('devices');
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.reloadData();
+                //$scope.allSettled();
+
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_delete_data'));
+            });
+        });
+    };
 
     /// --- Private functions --- ///
     /**
@@ -375,5 +426,6 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
 
     }
     ;
+    
 
 });

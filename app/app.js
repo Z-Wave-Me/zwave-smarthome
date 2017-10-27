@@ -20,6 +20,7 @@ var myApp = angular.module('myApp', [
     'myAppTemplates',
     'httpLatency',
     'ng.deviceDetector',
+    'pr.longpress',
     'angular-sortable-view'
 
 ]);

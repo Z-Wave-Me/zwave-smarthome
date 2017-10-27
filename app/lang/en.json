@@ -1,5 +1,7 @@
 {
     "newtrans": "---",
+      "delete_room": "Delete room",
+       "delete_room_confirm": "Are you sure you want to delete this room?",
      "---": "newtrans",
     "my_hubs": "My Hubs",
     "scan_qrcode": "Scan QR code",

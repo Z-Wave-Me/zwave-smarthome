@@ -51,7 +51,7 @@
             height: 32px;
             line-height: 32px;
             display: inline-block;
-            //background: $card-bcg-color;
+            color: lighten($app-body-color, 40%);
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             margin: $spacing  0 0 $spacing;
@@ -141,6 +141,7 @@
 /* Rooms with device
 -------------------------------------------------- */
 .room-has-device {
+    cursor: pointer;
 
     .card-title {
         a {

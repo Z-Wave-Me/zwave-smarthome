@@ -107,12 +107,20 @@
                 </div>
             </fieldset>
             <fieldset class="submit-entry">
-                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                <!-- Cancel -->
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
                      <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
                  </button>
+                 <!-- Save -->
                  <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_room.$invalid">
                      <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
                  </button>
+                  <!-- Remove -->
+                <button type="button" title="{{_t('delete_room')}}" class="btn btn-delete"
+                            ng-click="deleteRoom(input.id, _t('delete_room_confirm'))">
+                        <i class="fa fa-times"></i> {{ _t('delete_room')}}
+                    </button>
+                 
             </fieldset>
         </form>
 
