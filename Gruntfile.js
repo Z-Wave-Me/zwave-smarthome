@@ -94,6 +94,7 @@ module.exports = function (grunt) {
                     'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',
                     'app/modules/httpLatency.js',
+                    'app/modules/ngDeviceDetector.min.js',
                     'app/config/settings.js',
                     'app/factories/factories.js',
                     'app/services/services.js',

@@ -253,6 +253,8 @@ var config_data = {
         'license_load_url': 'ZWaveAPI/ZMELicense',
         // Language directory
         'lang_dir': 'app/lang/',
+        // Android html dir
+        'android_html_dir': '/htdocs/android/index.htm',
         // Default language
         'lang': 'en', // !!!!Do not change it
         // List of supported languages

@@ -19,6 +19,7 @@ var myApp = angular.module('myApp', [
     'qAllSettled',
     'myAppTemplates',
     'httpLatency',
+    'ng.deviceDetector',
     'angular-sortable-view'
 
 ]);
