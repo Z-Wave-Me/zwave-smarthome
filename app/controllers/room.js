@@ -7,7 +7,7 @@
  * The room root controller
  * @class RoomController
  */
-myAppController.controller('RoomController', function ($scope, $q, $cookies, $filter, dataFactory, dataService, _) {
+myAppController.controller('RoomController', function ($scope, $q, $cookies, $filter, $timeout,dataFactory, dataService, _) {
     $scope.rooms = {
         show: true,
         all: {},
@@ -86,12 +86,12 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
      * 
      */
     $scope.onLongPress = function (id) {
-       console.log('onLongPress');
-       $scope.redirectToRoute('config-rooms/' + id);
-    };
-    
-     $scope.onTouchEnd = function () {
-       console.log('onTouchEnd');
+        var room = _.findWhere($scope.rooms.all, {id: id});
+        room.longpress = true;
+        $timeout(function() {
+            room.longpress = false;
+           $scope.redirectToRoute('config-rooms/' + id);
+        }, 1000);
     };
 
 

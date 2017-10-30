@@ -11,22 +11,18 @@
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
         </div>
     </div>
-    
-    <button on-long-press="onLongPress()" on-touch-end="onTouchEnd()" prevent-click="true">On long press</button>
 
-    <!-- NEW -->
+    <!-- The list -->
     <!--<pre>{{rooms.all | json }}</pre>-->
     <div class="clearfix" ng-if="rooms.show" ng-controller="ElementBaseController">
-        <div class="card-room"
+        <div class="card-room longpress-{{v.longpress}}"
              id="card_{{v.id}}"
              ng-click="redirectToRoute('rooms' + (rooms.cnt.devices[v.id] ? '/' + v.id : ''))"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device' : 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
              ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
             <div class="card-room-in" style="background-image: url('{{v.img_src}}');" 
-                 on-long-press="onLongPress(v.id)" 
-                 long-press-duration_="2000"
-                 on-touch-end="onTouchEnd(v.id)"
+                 on-long-press="onLongPress(v.id)"
                  prevent-click="true">
                 <!-- Card header -->
                 <div class="card-header">
@@ -50,7 +46,7 @@
                         <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
                            ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
                             {{v.title|cutText:true:25}}
-                            <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span>
+                            <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span> {{v.longpress}}
                         </a>
                     </h3>
                     <!-- Card sensors -->

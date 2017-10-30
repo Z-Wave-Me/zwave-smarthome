@@ -4,6 +4,7 @@
 /* Cards
 -------------------------------------------------- */
 .card-room {
+     position: relative;
     @include appFloat(left);
     width: 50%;
 

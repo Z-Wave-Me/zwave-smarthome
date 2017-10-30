@@ -534,6 +534,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 v.title = (v.id === 0 ? getLangLine(v.title) : v.title);
                 v.title_char = v.title.substring(0,1).toUpperCase();
                 v.img_src = 'storage/img/placeholder-img.png';
+                 v.longpress = false;
                 if (v.id === 0) {
                     v.img_src = 'storage/img/rooms/unassigned.png';
                 } else if (v.img_type === 'default' && v.default_img) {
