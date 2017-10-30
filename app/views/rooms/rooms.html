@@ -15,7 +15,7 @@
     <!-- The list -->
     <!--<pre>{{rooms.all | json }}</pre>-->
     <div class="clearfix" ng-if="rooms.show" ng-controller="ElementBaseController">
-        <div class="card-room longpress-{{v.longpress}}"
+        <div class="card-room longpress-{{longPressSent}}"
              id="card_{{v.id}}"
              ng-click="redirectToRoute('rooms' + (rooms.cnt.devices[v.id] ? '/' + v.id : ''))"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device' : 'room-no-device'"
@@ -31,10 +31,9 @@
                        ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
                         <i class="fa fa-cog"></i>
                     </a>
-                    <a class="card-icon sm" href="#config-rooms/{{v.id}}" title="{{_t('lb_update')}}"
-                       ng-show="elementAccess(cfg.role_access.config_rooms)">
+                    <span class="card-icon sm" ng-show="elementAccess(cfg.role_access.config_rooms)">
                         {{v.title_char}}
-                    </a>
+                    </span>
                 </div>
                 <!-- Card icons -->
 
@@ -46,7 +45,7 @@
                         <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
                            ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
                             {{v.title|cutText:true:25}}
-                            <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span> {{v.longpress}}
+                            <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span>
                         </a>
                     </h3>
                     <!-- Card sensors -->

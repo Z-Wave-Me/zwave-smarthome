@@ -180,8 +180,8 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
 
 }
 
-/*@-webkit-keyframes loadWidget {@include loadWidgetFrames;}
-@keyframes loadWidget {@include loadWidgetFrames;}*/
+@-webkit-keyframes loadWidget {@include loadWidgetFrames;}
+@keyframes loadWidget {@include loadWidgetFrames;}
 
 
 

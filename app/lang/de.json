@@ -1,4 +1,6 @@
 {
+    "delete_room": "Delete room",
+    "delete_confirm_label": "Are you sure you want to delete __label__?",
     "my_hubs": "My Hubs",
     "scan_qrcode": "Scan QR code",
     "smartstart": "SmartStart",

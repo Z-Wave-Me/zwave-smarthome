@@ -117,8 +117,8 @@
                  </button>
                   <!-- Remove -->
                 <button type="button" title="{{_t('delete_room')}}" class="btn btn-delete"
-                            ng-click="deleteRoom(input.id, _t('delete_room_confirm'))">
-                        <i class="fa fa-times"></i> {{ _t('delete_room')}}
+                            ng-click="deleteRoom(input.id, _t('delete_confirm_label',{__label__:input.title}))">
+                        <i class="fa fa-times"></i> <span class="btn-name">{{ _t('delete_room')}}</span>
                     </button>
                  
             </fieldset>
