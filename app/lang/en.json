@@ -1,5 +1,8 @@
 {
     "newtrans": "---",
+    "page_from":" Page __currentPage__ from __pagesSum__",
+    "next":"Next",
+    "previous":"Previous",
      "---": "newtrans",
     "my_hubs": "My Hubs",
     "scan_qrcode": "Scan QR code",

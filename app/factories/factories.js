@@ -438,6 +438,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         // NOT Cached data
         return $http({
             timeout: cfg.pending_remote_limit,
+            suppressFtalError:true,
             method: 'get',
             url: url
         }).then(function (response) {

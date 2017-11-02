@@ -13224,6 +13224,33 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #cccccc;
 }
 
+/* line 27, ../sass/base/_pagination.scss */
+.paginate-sm {
+  padding: 10px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 27, ../sass/base/_pagination.scss */
+  .paginate-sm {
+    display: none;
+  }
+}
+
+/* line 34, ../sass/base/_pagination.scss */
+.paginate-lg {
+  padding: 10px;
+  display: none;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 34, ../sass/base/_pagination.scss */
+  .paginate-lg {
+    display: block;
+  }
+}
+
 /* Aoutocomplete
 -------------------------------------------------- */
 /* Variables */

@@ -24,3 +24,18 @@
     background-color: $app-border-color;
     border-color: $app-border-color;
 }
+.paginate-sm{
+    padding: $spacing;
+    @include mediaQueries(min-small) {
+        display:none;
+      }
+    }
+
+.paginate-lg{
+    padding: $spacing;
+    display: none;
+     // Media queries
+  @include mediaQueries(min-small) {
+    display: block;
+  }
+}
