@@ -54,3 +54,23 @@
     }
 }
 
+// Hide on the small devices
+
+     @include mediaQueries(max-small) {
+         .s-hide{
+            display: none;
+        }
+}
+// Hide on the medium devices
+.m-hide{
+     @include mediaQueries(min-medium) {
+            display: none;
+        }
+}
+// Hide on the large devices
+.l-hide{
+     @include mediaQueries(min-small) {
+            display: none;
+        }
+}
+

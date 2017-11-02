@@ -50,6 +50,14 @@
   background-color: #FFFFFF;
   border-color: #CCCCCC;
 }
+.btn-delete {
+  color: $app-body-color;
+  background: transparent;
+  border: 0;
+  .fa{
+      color: $app-brand-danger;
+  }
+}
 
 .btn-default.active {
   background-color: #FFFFFF;

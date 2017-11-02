@@ -7,7 +7,7 @@
  * The room root controller
  * @class RoomController
  */
-myAppController.controller('RoomController', function ($scope, $q, $cookies, $filter, dataFactory, dataService, _) {
+myAppController.controller('RoomController', function ($scope, $q, $cookies, $filter, $timeout, dataFactory, dataService, _) {
     $scope.rooms = {
         show: true,
         all: {},
@@ -72,29 +72,52 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
     };
 
     /**
+     * Set order by
+     * @param {string} key
+     * @returns {undefined}
+     */
+    $scope.setOrderBy = function (key) {
+        angular.extend($scope.rooms, {orderBy: key});
+        $cookies.roomsOrderBy = key;
+        $scope.reloadData();
+        //$scope.allSettled();
+    };
+    /**
+     * 
+     */
+    $scope.onLongPress = function (id) {
+        $timeout(function () {
+            $scope.redirectToRoute('config-rooms/' + id);
+        }, 1000);
+    };
+
+
+
+    /**
+     * todo: Deprecated - moved to detail
      * Delete a room
      * @param {int} roomId
      * @param {string} message
      * @returns {undefined}
      */
-    $scope.deleteRoom = function (roomId, message) {
-        alertify.confirm(message, function () {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('locations', roomId).then(function (response) {
-                $scope.loading = false;
-                removeRoomIdFromDevice(_.where($scope.devices.all, {location: roomId}));
-                //myCache.remove('locations');
-                //myCache.remove('devices');
-                dataService.showNotifier({message: $scope._t('delete_successful')});
-                $scope.reloadData();
-                //$scope.allSettled();
-
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_delete_data'));
-            });
-        });
-    };
+    /*$scope.deleteRoom = function (roomId, message) {
+     alertify.confirm(message, function () {
+     $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+     dataFactory.deleteApi('locations', roomId).then(function (response) {
+     $scope.loading = false;
+     removeRoomIdFromDevice(_.where($scope.devices.all, {location: roomId}));
+     //myCache.remove('locations');
+     //myCache.remove('devices');
+     dataService.showNotifier({message: $scope._t('delete_successful')});
+     $scope.reloadData();
+     //$scope.allSettled();
+     
+     }, function (error) {
+     $scope.loading = false;
+     alertify.alertError($scope._t('error_delete_data'));
+     });
+     });
+     };*/
 
     /// --- Private functions --- ///
 
@@ -142,11 +165,11 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         }
     };
 
-   /**
-    * Load a data holder with rooms
-    * @param {int} id
-    * @returns {undefined}
-    */
+    /**
+     * Load a data holder with rooms
+     * @param {int} id
+     * @returns {undefined}
+     */
     $scope.loadData = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('locations', '/' + id, true).then(function (response) {
@@ -213,11 +236,11 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         });
     };
 
-   /**
-    * Assign device to a room
-    * @param {object} device
-    * @returns {undefined}
-    */
+    /**
+     * Assign device to a room
+     * @param {object} device
+     * @returns {undefined}
+     */
     $scope.assignDevice = function (device) {
         device.location = null;
         $scope.devicesAssigned.push(device.id);
@@ -238,7 +261,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
                 $scope.devicesAssigned.push(v);
             } else {
                 var i = $scope.input.main_sensors.indexOf(device.id);
-                if(i > -1) {
+                if (i > -1) {
                     $scope.input.main_sensors.splice(i, 1);
                 }
                 device.location = 0;
@@ -256,15 +279,15 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
      */
     $scope.assignSensor = function ($event, device) {
         device.location = null;
-        if($event.target.checked) {
+        if ($event.target.checked) {
             $scope.input.main_sensors.push(device.id);
         } else {
             var i = $scope.input.main_sensors.indexOf(device.id);
-            $scope.input.main_sensors.splice(i , 1);
+            $scope.input.main_sensors.splice(i, 1);
         }
         return;
     };
-    
+
     /**
      * Clear all sensors (remove them from the array) and save to lacation
      * @param {object} input
@@ -274,10 +297,10 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         var input = {
             id: $scope.id,
             title: v.title,
-            main_sensors:[]
-            
+            main_sensors: []
+
         };
-        dataFactory.storeApi('locations',$scope.id, input).then(function (response) {
+        dataFactory.storeApi('locations', $scope.id, input).then(function (response) {
             $scope.reloadData();
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
@@ -305,7 +328,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
                 removeRoomIdFromDevice($scope.devicesToRemove);
                 myCache.removeAll();
                 /*myCache.remove('locations');
-                myCache.remove('devices');*/
+                 myCache.remove('devices');*/
                 dataService.showNotifier({message: $scope._t('success_updated')});
                 $location.path('/rooms');
             }
@@ -317,6 +340,35 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
 
         });
 
+    };
+
+    /**
+     * Delete a room
+     * @param {int} roomId
+     * @param {string} message
+     * @returns {undefined}
+     */
+    $scope.deleteRoom = function (roomId, message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('locations', roomId).then(function (response) {
+                $scope.loading = false;
+                var deviceIds = [];
+                _.filter($scope.devices, function (v) {
+                    if (v.location == roomId) {
+                        return deviceIds.push(v.id);
+                    }
+                });
+                removeRoomIdFromDevice(deviceIds);
+
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $location.path('/rooms');
+
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_delete_data'));
+            });
+        });
     };
 
     /// --- Private functions --- ///
@@ -375,5 +427,6 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
 
     }
     ;
+
 
 });

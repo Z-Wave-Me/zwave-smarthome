@@ -70,7 +70,7 @@ body {
 /* Rooms
 -------------------------------------------------- */
 // Media queries
-@include mediaQueries(min-small) {
+@include mediaQueries(min-usmall) {
   .card-room {
     .card-room-in {
       border: solid 4px #ffffff;

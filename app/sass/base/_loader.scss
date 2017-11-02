@@ -185,7 +185,7 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
 
 
 
-.widget-entry-in:before, .widget-entry-in:after {
+.widget-entry-in:before, .widget-entry-in:after,.card-room-in:before, .card-room-in:after{
     box-sizing: inherit;
     content: '';
     position: absolute;
@@ -194,12 +194,12 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
     border: 2px solid transparent;    
 }
 
-.widget-entry-in:before {
+.widget-entry-in:before,.card-room-in:before {
     top: 0;
     left: 0;      
 }
 
-.widget-entry-in:after {
+.widget-entry-in:after,.card-room-in:after {
     bottom: 0;
     right: 0;      
 }
@@ -207,14 +207,16 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
 .longpress-true {
     opacity: 0.5;
     transition: opacity 1.5s ease-out;
-    
+    //display: none !important;
     .widget-entry-in:before,
-    .widget-entry-in:after {
+    .widget-entry-in:after, 
+    .card-room-in:before, 
+    .card-room-in:after {
         width: 100%;
-        height: 100%;
+        height: 100%; 
     }
 
-    .widget-entry-in:before {
+    .widget-entry-in:before, .card-room-in:before {
         border-top-color: $widget-loader-foreground; 
         border-right-color: $widget-loader-foreground;
         transition:
@@ -222,7 +224,7 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
           height 0.25s ease-out 0.25s; 
       }
 
-    .widget-entry-in:after {
+    .widget-entry-in:after, .card-room-in:after {
         border-bottom-color: $widget-loader-foreground; 
         border-left-color: $widget-loader-foreground; 
         transition:
