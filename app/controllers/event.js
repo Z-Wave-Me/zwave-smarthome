@@ -377,7 +377,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         var max = Math.ceil(items/itemsPerPage);
         var newCurrentPage = 1;
         
-        if(direction === 'left'){
+        if(direction === 'right'){
             $scope.currentPage--;
             newCurrentPage = ($scope.currentPage > min ? $scope.currentPage :  min);
          }else{
