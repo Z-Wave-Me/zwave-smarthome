@@ -130,7 +130,14 @@ var config_data = {
             'time_zone': 'ZAutomation/api/v1/system/timezone',
             'get_pulse_trains': 'RF433API/GetPulseTrains',
             'send_pulse_train': 'RF433API/Send',
-            'reorder': 'ZAutomation/api/v1/devices/reorder'
+            'reorder': 'ZAutomation/api/v1/devices/reorder',
+            'get_dsk':'ZWaveAPI/GetDSKCollection', // Get DSK collection
+            'add_dsk':'ZWaveAPI/AddDSKEntry?dsk=', // Add DSK
+            'remove_dsk':'ZWaveAPI/RemoveDSKEntry?dsk=', // Remove DSK
+            'get_dsk_provisioning_list':'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
+            'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry?dsk=', // Add DSK to ProvisioningList (Response with added DSK) GET 
+            'remove_dsk_collection':'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
+            'enable_smart_start':'JS/Run/zway.SmartStartEnable()', // enable SmartStart
         },
         // List of remote api URLs
         'api_remote': {

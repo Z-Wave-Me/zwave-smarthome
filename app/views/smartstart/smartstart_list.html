@@ -1,0 +1,59 @@
+<div class="smart-start" ng-controller="SmartStartListController">
+ <div class="container">
+    <!-- Navigation -->
+    <div ng-include="'app/views/smartstart/navi.html'"></div>
+    <div id="table_mobile">
+        <table class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <!-- id 
+                    <th>#</th>-->
+                    <!-- dsk -->
+                    <th>DSK</th>
+                    <!-- action
+                    <th>&nbsp;</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="v in list.all track by $index" id="dsk_{{$index}}">
+                    <!-- id 
+                    <td data-title="#">
+                        <span ng-show="[0, 3, 5, 9].indexOf($index) > -1">{{$index + 1}}</span> 
+                        <span ng-show="[0, 3, 5, 9].indexOf($index) === -1">-</span>
+                    </td>-->
+                    <!-- DSK -->
+                    <td data-title="DSK">
+                        <!-- key -->
+                        <div ng-click_="expandElement($index)">{{v}}</div>
+                        <!-- info -->
+                        <div class="dsk-info" ng-show="expand[$index]">
+                            <dl class="inline-flex">
+                                 <!-- vendor -->
+                                <dt>Vendor</dt>
+                                <dd>Vendor Name {{$index + 1}}</dd>
+                                 <!-- version -->
+                                <dt>Version</dt>
+                                <dd>6.71.01</dd>
+                                 <!-- others -->
+                                <dt>Info</dt>
+                                <dd>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.</dd>
+                            </dl>
+                        </div>
+                    </td>
+                    <!-- action
+                    <td class="td-action" data-title="">
+                        <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="expandElement($index)">
+                            <i class="fa fa-info-circle text-info"></i>
+                        </button>
+                         
+                        <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v)">
+                            <i class="fa fa-trash text-danger"></i>
+                        </button>
+                    </td>-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+ </div>
+</div> <!-- /ng-controller --> 
+

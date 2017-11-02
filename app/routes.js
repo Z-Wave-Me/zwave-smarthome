@@ -130,6 +130,22 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/devices/devices.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
+                }).//SmartStart with QR code
+                when('/smartstartqr', {
+                    templateUrl: 'app/views/smartstart/smartstart_qr.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
+                }).
+                //SmartStart with dsk
+                when('/smartstartdsk', {
+                    templateUrl: 'app/views/smartstart/smartstart_dsk.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
+                }).//SmartStart with dsk
+                when('/smartstartlist', {
+                    templateUrl: 'app/views/smartstart/smartstart_list.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
                 }).//Zwave select vendors
                 when('/zwave/vendors', {
                     templateUrl: 'app/views/zwave/zwave_vendors.html',
@@ -143,22 +159,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).//Include Zwave device
                 when('/zwave/inclusion/:id?', {
                     templateUrl: 'app/views/zwave/zwave_inclusion.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices_include
-                }).//SmartStart with QR code
-                when('/zwave/smartstartqr', {
-                    templateUrl: 'app/views/zwave/smartstart/smartstart_qr.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices_include
-                }).
-                //SmartStart with dsk
-                when('/zwave/smartstartdsk', {
-                    templateUrl: 'app/views/zwave/smartstart/smartstart_dsk.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.devices_include
-                }). //SmartStart with dsk
-                when('/zwave/smartstartlist', {
-                    templateUrl: 'app/views/zwave/smartstart/smartstart_list.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).//Check interview
