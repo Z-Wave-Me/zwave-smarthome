@@ -389,4 +389,11 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         //console.log('ng-swipe: ' + direction)
         //console.log('currentPage: ' +  $scope.currentPage)
     };
+
+    /**
+     * Go to page
+     */
+    $scope.goToPage = function (page) {
+        $scope.currentPage = page;
+    };
 });

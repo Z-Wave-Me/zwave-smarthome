@@ -96,12 +96,20 @@
         </p>
         <div class="btn-group">
             <!-- Previous -->
-            <button class="btn btn-default" ng-click="swipeMe('left')" ng-disabled="currentPage == 1">
+            <button class="btn btn-default" 
+            on-long-press="goToPage(1)"
+            prevent-click="true"
+            ng-click="swipeMe('right')" 
+            ng-disabled="currentPage == 1">
                 <i class="fa fa-chevron-left"></i>
 
             </button>
             <!-- Next -->
-            <button class="btn btn-default" ng-click="swipeMe('right')" ng-disabled_="currentPage == pagesSum">
+            <button class="btn btn-default" 
+            on-long-press="goToPage(pagesSum)"
+            prevent-click="true"
+            ng-click="swipeMe('left')" 
+            ng-disabled ="currentPage >= pagesSum">
                 <i class="fa fa-chevron-right"></i>
             </button>
         </div>
