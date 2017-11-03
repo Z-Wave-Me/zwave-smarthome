@@ -6,14 +6,10 @@
         <!-- Start -->
         <div class="entry add-dsk">
             <p class="content">
-                Please enter the Key on new Device (DSK - device specific keys), which you find below QR code
+               {{_t('smartstart_enter_key')}}
             </p>
             <form name="form_dsk" class="form-inline_" ng-submit="addDskProvisioningList()">
-                 <!--<div class="form-group">
-                    <input name="dsk" id="dsk" class="form-control" type="text" placeholder="Enter key here"
-                           ng-model="dsk.input.dsk" />
-                </div>-->
-                <div class="form-group dsk-input-group" bb-dsk-navigate>
+              <div class="form-group dsk-input-group" bb-dsk-navigate>
               <span><input id="dsk_1" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_1" /></span>
             <span><input id="dsk_2" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_2" /></span>
             <span><input id="dsk_3" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_3" /></span> 
@@ -32,25 +28,14 @@
                                     icon="'fa-plus'">
                             </bb-row-spinner>
                     </button>
-                    
-                    <!--<button class="btn btn-success" ng-disabled="!smartStart.input.dsk || form_dsk.$invalid || smartStart.progress > 0">Install</button>--> 
                 </div>
             </form>
 
         </div>
-        <!-- registering -->
-         <!--<div class="entry"  ng-switch-when="registering">
-            <div class="image">
-                <i class="fa fa-spinner fa-spin"></i>
-            </div>
-            <p class="content">
-                Registering device... please wait
-            </p>
-        </div> -->
         <!-- success-register -->
         <div class="entry list" ng-switch-when="success-register">
              <div class="alert alert-success">
-                  <i class="fa fa-check"></i> Device has been included in the network and is ready for use.
+                  <i class="fa fa-check"></i>  {{_t('smartstart_enter_key_success')}}
                   <div>{{dsk.response}}</div>
             </div>
           <!--<ul class="scrollh">
@@ -59,33 +44,5 @@
               </li>
           </ul>-->
         </div>
-        <!--  <div class="entry enter-dsk success-register" ng-switch-when="success-register">
-            <div class="image clickable" ng-click="discover()">
-                <i class="fa fa-power-off"></i>
-            </div>
-            <p class="content">
-                Device is ready for inclusion. Install and power up the device
-            </p>
-        </div>-->
-        <!-- discovering -->
-         <!-- <div class="entry scan-qrcode discovering" ng-switch-when="discovering">
-            <div class="image">
-                <i class="fa fa-spinner fa-spin"></i>
-            </div>
-            <p class="content">
-                Discovering device... please wait
-            </p>
-
-        </div>-->
-        <!-- success-discover -->
-        <!--<div class="entry enter-dsk success-discover" ng-switch-when="success-discover">
-             <div class="image">
-                <i class="fa fa-check"></i>
-            </div>
-            <p class="content">
-                Device has been included in the network and is ready for use
-            </p>
-             <button class="btn btn-success" ng-click="resetState()">OK</button>
-        </div>-->
     </div>
 </div> <!-- /ng-controller --> 

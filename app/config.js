@@ -372,6 +372,10 @@ var config_data = {
             'popp',
             'jb'
         ],
+        // SmartStart
+        'smart_start':{
+            required_min_sdk:'6.80.00'// Required min SDK version
+        },
         // List of range values 0 - 255
         'knob_255': [
             'switchColor_red',

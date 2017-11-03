@@ -15501,37 +15501,6 @@ img.widget-promo-image {
   }
 }
 
-/* line 71, ../sass/base/_smartstart.scss */
-.dsk-info {
-  margin: 20px 0 0 0;
-}
-/* line 73, ../sass/base/_smartstart.scss */
-.dsk-info dl.inline-flex {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  width: 100%;
-  /* set the container width*/
-  max-width: 500px;
-  overflow: visible;
-}
-/* line 80, ../sass/base/_smartstart.scss */
-.dsk-info dl.inline-flex dt {
-  flex: 0 0 20%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin: 0 0 10px 0;
-}
-/* line 86, ../sass/base/_smartstart.scss */
-.dsk-info dl.inline-flex dd {
-  margin-left: auto;
-  text-align: left;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  flex: 0 0 80%;
-  margin: 0 0 10px 0;
-}
-
 /* Login
 -------------------------------------------------- */
 /* line 4, ../sass/base/_auth.scss */

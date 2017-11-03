@@ -1,5 +1,10 @@
 {
-    "page_from":" Page __currentPage__ from __pagesSum__",
+  "smartstart_not_supported":"Your device does not support SmartStart. Please upgrade your firmware",
+  "smartstart_enter_key":"Please enter the Key on new Device (DSK - device specific keys), which you find below QR code",
+  "smartstart_enter_key_success":"Device has been included in the network and is ready for use",
+  "empty_dsk_list": "The list is empty",
+  "dsk": "DSK",  
+  "page_from":" Page __currentPage__ from __pagesSum__",
     "next":"Next",
     "previous":"Previous",
       "delete_room": "Delete room",

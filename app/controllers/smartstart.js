@@ -27,30 +27,34 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
     };
     // Copy original input values
     $scope.origInput = angular.copy($scope.dsk.input);
-    //console.log(dataService.compareVersion(cfg.SDKVersion, cfg.smart_start.required_min_sdk, '>='))
+    /**
+     * Check if SDK version match
+     * TODO: Unncoment when finished
+     */
     $scope.checkSdkVersion = function () {
-        if(!dataService.compareVersion(cfg.SDKVersion, cfg.smart_start.required_min_sdk, '>=')){
-            //$scope.dsk.firmwareAlert = {message: $scope._t('Your device does not support SmartStart. Please upgrade your firmware'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-        }
+        dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
+           var SDKMatch = dataService.compareVersion(ZWaveAPIData.controller.data.SDK.value, cfg.smart_start.required_min_sdk, '>=');
+           if (!SDKMatch) {
+                $scope.dsk.firmwareAlert = {message: $scope._t('smartstart_not_supported'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+            }
+        });
     }
-    //$scope.checkSdkVersion();
+    /* $scope.checkSdkVersion(); */
 
     /**
      * Add DSK 
-     * @returns {undefined}
+     * @returns {undefined} 
      */
     $scope.addDskProvisioningList = function () {
         var dsk = _.map($scope.dsk.input, function (v) {
             return v;
         }).join('-');
-       
+
         $scope.dsk.state = 'registering';
         $scope.toggleRowSpinner(cfg.api.add_dsk);
         dataFactory.getApi('add_dsk_provisioning_list', dsk, true).then(function (response) {
 
             $timeout(function () {
-                //$scope.dsk.list.unshift($scope.dsk.input.dsk);
-                //$scope.getDskProvisioningList();
                 // Set state
                 $scope.dsk.state = 'success-register';
                 // Reset model
@@ -67,19 +71,6 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
             $timeout($scope.toggleRowSpinner, 1000);
         });
     };
-
-    /**
-     * Get DSK Provisioning List
-     */
-    /*$scope.getDskProvisioningList = function () {
-        dataFactory.getApi('get_dsk_provisioning_list', null, true).then(function (response) {
-            if (_.isEmpty(response.data)) {
-                return;
-            }
-            $scope.dsk.list = response.data;
-        });
-    };*/
-
 
 });
 
@@ -130,6 +121,7 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout)
  */
 myAppController.controller('SmartStartListController', function ($scope, $timeout, dataFactory) {
     $scope.list = {
+        alert: {},
         all: []
     };
 
@@ -139,10 +131,9 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
     $scope.getDskProvisioningList = function () {
         dataFactory.getApi('get_dsk_provisioning_list', null, true).then(function (response) {
             if (_.isEmpty(response.data)) {
-                $scope.alert = {message: $scope._t('empty_dsk_list'), status: 'alert', icon: 'fa-exclamation-circle'};
+                $scope.list.alert = { message: $scope._t('empty_dsk_list'), status: 'alert-warning', icon: 'fa-exclamation-circle' };
                 return;
             }
-
             $scope.list.all = response.data;
         }, function (error) {
             alertify.alertError($scope._t('error_load_data'));

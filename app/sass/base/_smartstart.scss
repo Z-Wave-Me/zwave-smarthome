@@ -68,28 +68,3 @@ $ss-img-w: 64px;
       }
   }
 }
-.dsk-info{
-    margin: $spacing-double 0 0 0;
-    dl.inline-flex {
-        display: flex;
-        flex-flow: row;
-        flex-wrap: wrap;
-        width: 100%; /* set the container width*/
-        max-width: 500px;
-        overflow: visible;
-        dt{
-            flex: 0 0 20%;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            margin: 0 0 $spacing 0;
-        }
-        dd{
-            margin-left: auto;
-            text-align: left;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            flex: 0 0 80%;
-            margin: 0 0 $spacing 0;
-        }
-    }
-}
