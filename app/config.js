@@ -233,7 +233,7 @@ var config_data = {
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
         // Online device icon url
-        'online_device_icon_url': 'http://manuals-backend.z-wave.info/',
+        'online_device_icon_url': 'http://manuals-backend.z-wave.info',
         // Online vendor icon url
         'online_vendor_icon_url': 'http://manuals-backend.z-wave.info/img/vendors_logo/',        
         // Post report url

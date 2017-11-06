@@ -221,12 +221,18 @@ myApp.directive('errSrc', function() {
                 if (attrs.src != attrs.errSrc) {
                     attrs.$set('src', attrs.errSrc);
                 }
+                else if (attrs.errSrc2 && attrs.src != attrs.errSrc2) {
+                    attrs.$set('src', attrs.errSrc2); 
+                }
             });
             // Displays the error image when ngSrc is blank
             attrs.$observe('ngSrc', function(value) {
                 if (!value && attrs.errSrc) {
                     attrs.$set('src', attrs.errSrc);
                 }
+                else if (!value && attrs.errSrc2) {
+                    attrs.$set('src', attrs.errSrc2);
+                }                
             });
         }
     }
