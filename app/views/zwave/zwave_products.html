@@ -30,7 +30,7 @@
         <tr ng-repeat="v in zwaveVendors.products.collection | orderBy:'name' track by $index">
             <td>
                 <a ng-href="#zwave/inclusion/{{v.id}}">
-                <img class="product-img" ng-src="{{cfg.img.zwavedevices + v.product_image}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                <img class="product-img" ng-src="{{cfg.img.zwavedevices + v.product_image}}" err-src="{{(cfg.online_device_icon_url + v.remote_image) || (cfg.img.placeholder)}}" alt="img" />
                 </a>
             </td>
             <td>

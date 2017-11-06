@@ -16,7 +16,7 @@
              ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1">
             <a class="vendor-list" title="{{v.Name}}">
                 <p class="vendor-image" ng-show="v.Image">
-                    <img class="endor-image" alt="altimg | {{v.Name|cutText:true:20}}" ng-src="{{cfg.img.zwavevendors + v.Image}}" />
+                    <img class="vendor-image" alt="altimg | {{v.Name|cutText:true:20}}" ng-src="{{cfg.img.zwavevendors + v.Image}}" err-src="{{cfg.online_vendor_icon_url + v.Image}}" />
 
                 </p>
                 <p class="vendor-image" title="{{v.Name|cutText:true:20}}" ng-hide="v.Image">
