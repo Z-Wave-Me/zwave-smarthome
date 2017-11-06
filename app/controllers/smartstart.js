@@ -75,6 +75,98 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
 });
 
 /**
+ * The controller that displays DSK list.
+ * @class SmartStartListController
+ */
+myAppController.controller('SmartStartListController', function ($scope, $timeout, dataFactory) {
+    $scope.list = {
+        alert: {},
+        all: []
+    };
+
+    /**
+     * Get DSK Provisioning List
+     */
+    $scope.getDskProvisioningList = function () {
+        dataFactory.getApi('get_dsk_provisioning_list', null, true).then(function (response) {
+            if (_.isEmpty(response.data)) {
+                $scope.list.alert = { message: $scope._t('empty_dsk_list'), status: 'alert-warning', icon: 'fa-exclamation-circle' };
+                return;
+            }
+            $scope.list.all = _.map(response.data,function(v){
+                return {
+                    dsk: v,
+                    dsk_array: v.split('-')
+                };
+            });
+            
+        }, function (error) {
+            alertify.alertError($scope._t('error_load_data'));
+        });
+    };
+    $scope.getDskProvisioningList();
+
+    
+    /**
+     * Update DSK 
+     * @returns {undefined} 
+     */
+    $scope.updateDsk = function (index,input) {
+        console.log(input)
+        var dsk = _.map(input.dsk_array, function (v) {
+            return v;
+        }).join('-');
+
+        return;
+
+        $scope.dsk.state = 'registering';
+        $scope.toggleRowSpinner(cfg.api.add_dsk);
+        dataFactory.getApi('add_dsk_provisioning_list', dsk, true).then(function (response) {
+
+            $timeout(function () {
+                // Set state
+                $scope.dsk.state = 'success-register';
+                // Reset model
+                $scope.dsk.input = angular.copy($scope.origInput);
+                // Set response
+                $scope.dsk.response = response.data[0];
+
+            }, 1000);
+
+        }, function (error) {
+            $scope.dsk.state = null;
+            alertify.alertError($scope._t('error_update_data'));
+        }).finally(function () {
+            $timeout($scope.toggleRowSpinner, 1000);
+        });
+    };
+
+    /**
+     * Remov a DSK item
+     * @param {string} dsk
+     * @returns {undefined}
+     */
+    $scope.removeDsk = function (dsk) {
+        var index = $scope.list.all.indexOf(dsk);
+        if (index > -1) {
+            $scope.list.all.splice(index, 1);
+        }
+        $timeout(function(){
+            alertify.alertWarning('Device requires to be excluded  manually or reset to factory default in order to leave the Z-Wave Network');
+        });
+       /*  dataFactory.getApi('remove_dsk', dsk, true).then(function (response) {
+            var index = $scope.list.all.indexOf(dsk);
+            if (index > -1) {
+                $scope.list.all.splice(index, 1);
+            }
+        }, function (error) {
+            alertify.alertError($scope._t('error_delete_data'));
+        }); */
+    };
+});
+
+
+/**
  * The controller that include device by scanning QR code.
  * @class SmartStartQrController
  */
@@ -114,51 +206,3 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout)
     };
 
 });
-
-/**
- * The controller that displays DSK list.
- * @class SmartStartListController
- */
-myAppController.controller('SmartStartListController', function ($scope, $timeout, dataFactory) {
-    $scope.list = {
-        alert: {},
-        all: []
-    };
-
-    /**
-     * Get DSK Provisioning List
-     */
-    $scope.getDskProvisioningList = function () {
-        dataFactory.getApi('get_dsk_provisioning_list', null, true).then(function (response) {
-            if (_.isEmpty(response.data)) {
-                $scope.list.alert = { message: $scope._t('empty_dsk_list'), status: 'alert-warning', icon: 'fa-exclamation-circle' };
-                return;
-            }
-            $scope.list.all = response.data;
-        }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
-        });
-    };
-    $scope.getDskProvisioningList();
-
-    /**
-     * Remov a DSK item
-     * @param {string} dsk
-     * @returns {undefined}
-     */
-    $scope.removeDsk = function (dsk) {
-        dataFactory.getApi('remove_dsk', dsk, true).then(function (response) {
-            var index = $scope.list.all.indexOf(dsk);
-            if (index > -1) {
-                $scope.list.all.splice(index, 1);
-            }
-            //$scope.reloadData();
-        }, function (error) {
-            alertify.alertError($scope._t('error_delete_data'));
-        });
-    };
-
-
-
-});
-

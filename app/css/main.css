@@ -11816,6 +11816,11 @@ img {
   width: 30%;
 }
 
+/* line 42, ../sass/base/_table.scss */
+.td-action {
+  text-align: right;
+}
+
 /* Button
 -------------------------------------------------- */
 /* line 3, ../sass/base/_button.scss */
@@ -12400,6 +12405,55 @@ fieldset.submit-entry {
 /* line 17, ../sass/base/_imglist.scss */
 .imglist-entry .imglist-img {
   margin: 0 0 5px 0;
+}
+
+/* Definition list
+-------------------------------------------------- */
+/* line 3, ../sass/base/_definition_list.scss */
+dl {
+  margin: 10px 0;
+}
+/* line 5, ../sass/base/_definition_list.scss */
+dl.inline {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 5, ../sass/base/_definition_list.scss */
+  dl.inline {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    width: 100%;
+    /* set the container width*/
+    overflow: visible;
+  }
+  /* line 12, ../sass/base/_definition_list.scss */
+  dl.inline dt {
+    flex: 0 0 30%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  /* line 18, ../sass/base/_definition_list.scss */
+  dl.inline dd {
+    margin-left: auto;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 0 0 70%;
+    margin: 0 0 10px 0;
+  }
+}
+/* line 29, ../sass/base/_definition_list.scss */
+dl.w-50-p {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 29, ../sass/base/_definition_list.scss */
+  dl.w-50-p {
+    max-width: 50%;
+  }
 }
 
 /* Bar
