@@ -59,6 +59,7 @@
                         var functionHandler = $parse($attrs.onTouchEnd);
                         // Prevent the onLongPress event from firing
                         $timeout.cancel(timer);
+                        $scope.longPressSent = false;
                         // If there is an on-touch-end function attached to this element, apply it
                         if ($attrs.onTouchEnd) {
                             $scope.$apply(function () {

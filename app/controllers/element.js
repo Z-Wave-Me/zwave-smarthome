@@ -150,7 +150,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                                 {isFailed: v.metrics.isFailed},
                                 {metrics: v.metrics},
                                 {progress: false},
-                                {longpress: false},
                                 {iconPath: dataService.assignElementIcon(v)},
                                 {updateTime: v.updateTime}
                         );
@@ -459,20 +458,21 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         v.metrics.level = count;
          $scope.runCmd(cmd);
     };
-    
+ 
+    /**
+     * device on long press action
+     */
     $scope.itemOnLongPress = function(id) {
-        var dev = _.findWhere($scope.dataHolder.devices.collection, {id: id});
-        dev.longpress = true;
         $scope.longPressTimeout = $timeout(function() {
-            dev.longpress = false;
             $location.path("element/"+id);
         }, 1000);
     }
-
-    $scope.itemOnTouchEnd = function(id) {
-        var dev = _.findWhere($scope.dataHolder.devices.collection, {id: id});
-        dev.longpress = false;
-        $timeout.cancel($scope.longPressTimeout);
+    
+    /**
+     * device on end long press action
+     */
+    $scope.itemOnTouchEnd = function() {
+        $timeout.cancel($scope.longPressTimeout);    
     }
 
     /// --- Private functions --- ///

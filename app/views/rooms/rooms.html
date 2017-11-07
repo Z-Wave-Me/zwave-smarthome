@@ -23,6 +23,7 @@
              ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
             <div class="card-room-in" style="background-image: url('{{v.img_src}}');" 
                  on-long-press="onLongPress(v.id)"
+                 on-touch-end="onTouchEnd()"
                  prevent-click="true">
                 <!-- Card header -->
                 <div class="card-header">
