@@ -59,8 +59,7 @@ myApp.filter('cutText', function () {
                 value = value.substr(0, lastspace);
             }
         }
-
-        return value + (tail || ' …');
+        return value + (tail  || ' …');
     };
 });
 /**

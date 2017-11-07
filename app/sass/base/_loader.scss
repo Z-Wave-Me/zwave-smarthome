@@ -58,9 +58,9 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 $widget-loader-background: #FFF;
 $widget-loader-foreground: #184B7C;
-$widget-loader-w: 72px + 6;
-$widget-loader-h: 72px + 6;
-$widget-loader-before-h: 72px + 8;
+$widget-loader-w: 64px + 6;
+$widget-loader-h: 64px + 6;
+$widget-loader-before-h: 64px + 8;
 $widget-loader-before-w: $widget-loader-before-h/2;
 // Large devices
 $widget-loader-w-l: 64px + 6;
@@ -85,7 +85,7 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
     }
 
     .widget-loader {
-        top: 7px;
+        top: 2px;
         right: 0px;
         left: 0px;
         margin: 0 auto;

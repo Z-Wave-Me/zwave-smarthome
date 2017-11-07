@@ -2,7 +2,7 @@
 -------------------------------------------------- */
 .widget-entry-element {
     .widget-entry-in {
-        height: 160px;
+        height: 116px;
         // Media queries
         @include mediaQueries(min-esmall) {
             height: 150px;
@@ -11,8 +11,8 @@
             height: 124px;
         }
         .widget-img {
-            width: 72px;
-            height: 72px;     
+            width: 64px;
+            height: 64px;     
             background-color: #fff;
             @include appBorderRadius(50%);
             .widget-icon-update {
@@ -22,15 +22,15 @@
                 //border-color: $element-widget-img-update-border-color;
             }
             // Media queries
-            @include mediaQueries(min-esmall) {
+            /*@include mediaQueries(min-esmall) {
                 width: 64px;
                 height: 64px;  
-            }
+            }*/
 
             .widget-img-overlay {
                 background-color: rgba(255,255,255, 0.8);
-                width: 72px;
-                height: 72px;
+                width: 64px;
+                height: 64px;
                 display: table;
                 @include appBorderRadius(50%);
                 position: absolute;
@@ -73,12 +73,10 @@
             }
             h3{
                 font-size: 75%;
-                overflow:hidden;              /* don't show excess chars */
-                text-overflow: ellipsis;
+                @include textOverflow();
                 @include mediaQueries(min-esmall) {
                     font-size: 95%;
                 }
-
             }
             .widget-room {
                 display: block;
@@ -95,16 +93,15 @@
                         max-width: 200px;
                         @include textOverflow();
                     }
-
                     // Media queries
                     @include mediaQueries(max-esmall) {
                         h3{
                             font-size: 95%;
                             padding: 0 0 0 64px + $spacing;
                         }
-
                     }
                     .widget-room {
+                        white-space: nowrap;
                         display: block;
                         font-size: 85%;
                         color: lighten($app-body-color, 40%);
@@ -270,15 +267,14 @@
 
 .audioPlayer, .switchRGBW, .sensorMultiline, .multilevel, .motor {
     @include mediaQueries(max-esmall) {
-        //width: 66.66666%;
         width: 100%;
 
         .progress-true {
             .widget-img {
                 &:before {
                     content:'';
-                    width: 72px;
-                    height: 72px;
+                    width: 64px;
+                    height: 64px;
                     background-color: #fff;
                     opacity: 1;
                     left: 0;
@@ -295,7 +291,7 @@
                 width: 33.333%;
                 background: none;
                 position: absolute;
-                top: $spacing;
+                top: $spacing-half;
                 left: -3px;
                 margin: 0px;
                 border: none;
@@ -309,7 +305,7 @@
             }
 
             .widget-title {
-                height: 72px;
+                height: 68px;
                 padding: 18px 0 0 0;
 
                 .widget-room {
@@ -335,7 +331,8 @@
             }
 
             .bottom-aligner {
-                display: inline-block;
+                //display: inline-block;
+                display: none;
             }
         }
     }          
@@ -347,6 +344,7 @@
 .dragdrop-element{
     .dd-placeholder{
         width: 100%;//$widget-col-w;
+
         text-align: center;
         //background: whitesmoke;
         border: 3px dashed $app-brand-success;
@@ -354,16 +352,30 @@
         display: table;
         background-color: #FFFFFF;
         &.dd-element{
-            width: 100%;
-            height:  100px;
+            width: 50%;
+            @include appFloat(left);
+            height:  130px;
             // Media queries
-            @include mediaQueries(min-esmall) {
-                float: left;
-                width: 100px;
-                height: 130px;
-                //height: 130px + $spacing;
+            @include mediaQueries(min-usmall) {
+                @include appFloat(left);
+                width: 33.33333%;
             }
-
+            @include mediaQueries(min-esmall) {
+                @include appFloat(left);
+                width: 25%;
+            }
+            @include mediaQueriesMin(600px){
+                 width: 20%;
+            }
+            @include mediaQueries(min-small) {
+               width:14.28571%;
+            }
+            @include mediaQueries(min-medium) {
+               width: 12.5%;
+            }
+            @include mediaQueries(min-large) {
+                width: 10%;
+            }
         }
     }
 }
@@ -378,7 +390,6 @@
     @include mediaQueries(min-usmall) {
         @include appFloat(left);
         width: 33.33333%;
-      
     }
     @include mediaQueries(min-esmall) {
         @include appFloat(left);

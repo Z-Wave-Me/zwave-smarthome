@@ -453,7 +453,8 @@ myApp.directive('onLongPress', function($timeout) {
             });
         }
     };
-})
+});
+
 
 /**
  * Navigate DSK form fields with value === 5 or arrow keys
