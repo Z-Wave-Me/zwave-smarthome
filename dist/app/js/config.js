@@ -14,7 +14,7 @@ var config_data = {
         // Application version
         'app_version': '1.7.1',
         // Application (DIST) built date
-        'app_built': '28-09-2017 15:29:24',
+        'app_built': '07-11-2017 15:27:42',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -225,6 +225,10 @@ var config_data = {
         'online_icon_preview_url': 'https://developer.z-wave.me/?uri=api-iconpreview',
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
+        // Online device icon url
+        'online_device_icon_url': 'http://manuals-backend.z-wave.info',
+        // Online vendor icon url
+        'online_vendor_icon_url': 'http://manuals-backend.z-wave.info/img/vendors_logo/',        
         // Post report url
         'post_report_url': 'https://service.z-wave.me/report/index.php',
         // Postpassword url
