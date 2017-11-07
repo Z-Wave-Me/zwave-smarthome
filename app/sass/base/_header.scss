@@ -5,7 +5,11 @@
     top: 0;
     right: 0;
     left: 0;
-    z-index: $zindex-header;
+    z-index: 2300;
+    @include mediaQueries(min-small) {
+        z-index: $zindex-header;
+    }
+
     //margin-bottom: $spacing-double;
     color: lighten($app-color-primary, 5%);
     font-size: 120%;

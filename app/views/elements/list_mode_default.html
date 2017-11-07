@@ -53,7 +53,8 @@
                              ng-click="runCmd(v.id + '/command/'+ (v.metrics.level == 'open' ? 'close' : 'open'), v.id)" />        
                     </div>
                     <div ng-switch-default>
-                        <div class="widget-img-overlay" ng-show="cfg.element_level_is_number.indexOf(v.deviceType) > -1">
+                        <div class="widget-img-overlay" 
+                            ng-show="cfg.element_level_is_number.indexOf(v.deviceType) > -1">
                             <span class="widget-level">{{v.metrics.level}}</span> 
                             <span class="widget-scale">{{v.metrics.scaleTitle}}</span>    
                         </div>
@@ -63,11 +64,10 @@
                              ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
                         <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
                              err-src="{{cfg.img.placeholder}}"
-                             ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
+                             ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1"/>
                     </div>    
                 </div>
             </div>
-
             <!-- Widget header -->
             <div class="widget-header">
                 <!--{{$index}}| {{v.id}} | {{v.deviceType}}-->
@@ -100,9 +100,16 @@
             <div class="widget-content">
                 <!--order.{{getBodyId()}}: {{v.order[getBodyId()]}}-->
                 <!-- Widget title -->
-                <div class="widget-title">
-                    <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title|cutText:true:25}}</span>&nbsp;</span>
-                    <h3 title="{{v.metrics.title}}">{{v.metrics.title|cutText:true:25}}</h3>
+                <div class="widget-title" 
+                    ng-if="v.hasHistory || v.showNotification || v.metrics.intchartUrl"
+                    ng-click="dataHolder.devices.find = v;handleModal('modalInfo', $event)">
+                    <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title}}</span>&nbsp;</span>
+                    <h3 title="{{v.metrics.title}}">{{v.metrics.title}}</h3>
+                </div>
+                <div class="widget-title"
+                    ng-if="!v.hasHistory && !v.showNotification && !v.metrics.intchartUrl">
+                    <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title}}</span>&nbsp;</span>
+                    <h3 title="{{v.metrics.title}}">{{v.metrics.title}}</h3>
                 </div>
                 <hr class="bottom-aligner" />
                 <!-- Widget footer -->
@@ -164,18 +171,19 @@
     </div>
 </div><!-- /.row -->
 <!-- Modal windows -->
- <div ng-include="'app/views/elements/widgets/intchartModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/historyModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/infoModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/intchartModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/historyModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/eventModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/switchMultilevelModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/thermostatModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/sensorMultilineModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/openWeatherModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/multiButtonModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/textModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/cameraModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/climateControlModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/doorLockControlModal.html'"></div>
- <div ng-include="'app/views/elements/widgets/switchRGBWModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/switchMultilevelModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/thermostatModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/sensorMultilineModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/openWeatherModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/multiButtonModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/textModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/cameraModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/climateControlModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/doorLockControlModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/switchRGBWModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/securityControlModal.html'"></div>
  

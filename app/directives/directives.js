@@ -453,5 +453,6 @@ myApp.directive('onLongPress', function($timeout) {
             });
         }
     };
-})
+});
+
 
