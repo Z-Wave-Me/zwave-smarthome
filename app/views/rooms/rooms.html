@@ -46,7 +46,7 @@
                 <!-- Card image -->
                 <a class="room-link" ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
                    title="{{_t('lb_devices_room')}} {{v.title}}">
-                <span class="bcg-img" title="{{v.title}}" style="background-image: url('{{v.img_src}}');"></span>
+                <span class="bcg-img" title="{{v.title}}" ng-style="{'background-image': 'url('+v.img_src+')'}"></span>
                 </a>
                 <!--Card header-->
                 <div class="card-header">

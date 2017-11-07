@@ -29,8 +29,8 @@
 
      &.ng-enter {
             /* standard transition code */
-            -webkit-transition: 2s linear all;
-            transition: 2s linear all;
+            -webkit-transition: 0.25s linear all;
+            transition: 0.25s linear all;
             opacity:0;
             &.ng-enter-active {
                 /* standard transition styles */
