@@ -111,15 +111,15 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
      * Update DSK 
      * @returns {undefined} 
      */
-    $scope.updateDsk = function (index,input) {
-        console.log(input)
+    $scope.updateDsk = function ($index,input) {
         var dsk = _.map(input.dsk_array, function (v) {
             return v;
         }).join('-');
-
+        $scope.list.all[$index].dsk = dsk;
+        $scope.expandElement();
         return;
 
-        $scope.dsk.state = 'registering';
+        /* $scope.dsk.state = 'registering';
         $scope.toggleRowSpinner(cfg.api.add_dsk);
         dataFactory.getApi('add_dsk_provisioning_list', dsk, true).then(function (response) {
 
@@ -138,7 +138,7 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
             alertify.alertError($scope._t('error_update_data'));
         }).finally(function () {
             $timeout($scope.toggleRowSpinner, 1000);
-        });
+        }); */
     };
 
     /**

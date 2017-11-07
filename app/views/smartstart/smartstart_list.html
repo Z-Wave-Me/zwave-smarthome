@@ -21,18 +21,17 @@
                         </td>
                         <!-- DSK -->
                         <td data-title="DSK">
-                            <!-- key -->
-                            <div ng-hide="expand['edit_' + $index]">
-                            <div ng-show="[0,1].indexOf($index) === -1">
-                                    <span ng-click="expandElement('edit_' + $index)">{{v.dsk}}</span>
+                           <div ng-hide="expand['edit_' + $index]">
+                               <!-- DSK title -->
+                                <span ng-show="[0,1].indexOf($index) === -1">{{v.dsk}}</span>
+                                 <!-- DSK title and infomations -->
+                                <span class="clickable" ng-show="[0, 1].indexOf($index) > -1" ng-click="expandElement('info_' + $index)">
+                                    {{v.dsk}}
+                                    <i class="fa fa-chevron-down" ng-class="expand['info_' + $index] ? 'fa-chevron-up':'fa-chevron-down'"></i>
+                                </span>
                             </div>
-                            <div ng-show="[0, 1].indexOf($index) > -1">
-                                    <span ng-click="expandElement('edit_' + $index)">{{v.dsk}}</span>
-                                <i class="fa fa-info-circle clickable" ng-click="expandElement($index)"></i>
-                            </div>
-                        </div>
                             <!-- info -->
-                            <div class="dsk-info" ng-show="expand[$index]">
+                            <div class="dsk-info" ng-show="expand['info_' + $index]">
                                 <dl class="inline w-50-p">
                                     <!-- vendor -->
                                     <dt>Vendor</dt>
@@ -46,51 +45,43 @@
                                 </dl>
                             </div>
                             <!-- edit -->
-                            <div  ng-submit="addDskProvisioningList()" ng-if="expand['edit_' + $index]">
-                                <pre>{{v.dsk_array|json}}</pre>
+                            <div ng-if="expand['edit_' + $index]">
+                                <!-- <pre>{{v.dsk_array|json}}</pre> -->
                                 <div class="form-group dsk-input-group" bb-dsk-navigate>
                                     <span>
-                                        <input id="dsk_1" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[0]"
-                                        />
+                                        <input id="dsk_1" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[0]" />
                                     </span>
                                     <span>
-                                        <input id="dsk_2" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[1]"
-                                        />
+                                        <input id="dsk_2" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[1]" />
                                     </span>
                                     <span>
-                                        <input id="dsk_3" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[2]"
-                                        />
+                                        <input id="dsk_3" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[2]" />
                                     </span>
                                     <span>
-                                        <input id="dsk_4" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[3]"
-                                        />
+                                        <input id="dsk_4" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[3]" />
                                     </span>
                                     <span>
-                                        <input id="dsk_5" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[4]"
-                                        />
+                                        <input id="dsk_5" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[4]" />
                                     </span>
                                     <span>
-                                        <input id="dsk_6" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[5]"
-                                        />
+                                        <input id="dsk_6" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[5]" />
                                     </span>
                                     <span>
-                                        <input id="dsk_7" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[6]"
-                                        />
+                                        <input id="dsk_7" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[6]" />
                                     </span>
                                     <span>
-                                        <input id="dsk_8" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[7]"
-                                        />
+                                        <input id="dsk_8" type="text" maxlength="5" class="form-control dsk-number" ng-model="v.dsk_array[7]" />
                                     </span>
                                 </div>
 
                                 <div class="form-group">
-                                        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" 
-                                         ng-click="expandElement('edit_' + $index)">
-                                                <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
-                                            </button>
-                                    <button class="btn btn-primary" ng-click="updateDsk($index,v)">
-                                        <bb-row-spinner spinner="rowSpinner[cfg.api.add_dsk]" label="_t('Edit')" icon="'fa-pencil'">
-                                        </bb-row-spinner>
+                                    <button type="button" class="btn btn-cancel" title="{{_t('lb_cancel')}}" ng-click="expandElement('edit_' + $index);reloadData()">
+                                        <i class="fa fa-close"></i>
+                                        <span class="btn-name">{{_t('lb_cancel')}}</span>
+                                    </button>
+                                    <button class="btn btn-submit" title="{{_t('lb_update')}}" ng-click="updateDsk($index,v)">
+                                        <i class="fa fa-check"></i>
+                                        <span class="btn-name">{{_t('lb_update')}}</span>
                                     </button>
                                 </div>
                             </div>
@@ -99,30 +90,34 @@
 
                         <!-- state -->
                         <td class="text-center" data-title="">
-                            <div ng-hide="[3, 5].indexOf($index) > -1">
-                                <span class="label label-primary" ng-show="[0, 3, 5, 9].indexOf($index) > -1">included</span>
-                                <span class="label label-warning" ng-show="[0, 3, 5, 9].indexOf($index) === -1">pending</span>
-                            </div>
-                            <!-- info window -->
-                            <div class="infowindow-wrap" ng-show="[3, 5].indexOf($index) > -1">
-                                <i class="fa fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
-                                <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
-                                    <div class="infowindow-in text-center">
-                                        <p>This device does not support SmartStart.</p>
-                                        <a href="#zwave/vendors" class="btn btn-primary">Add device manually</a>
+                            <div ng-hide="expand['edit_' + $index]">
+                                <div ng-hide="[3, 5].indexOf($index) > -1">
+                                    <span class="label label-primary" ng-show="[0, 3, 5, 9].indexOf($index) > -1">included</span>
+                                    <span class="label label-warning" ng-show="[0, 3, 5, 9].indexOf($index) === -1">pending</span>
+                                </div>
+                                <!-- info window -->
+                                <div class="infowindow-wrap" ng-show="[3, 5].indexOf($index) > -1">
+                                    <i class="fa fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
+                                    <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
+                                        <div class="infowindow-in text-center">
+                                            <p>This device does not support SmartStart.</p>
+                                            <a href="#zwave/vendors" class="btn btn-primary">Add device manually</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <span class="clickable" ng-show="[3, 5].indexOf($index) > -1">
-                            <i class="fa fa-question-circle fa-lg text-info"></i>
-                        </span> -->
 
                         </td>
                         <!-- action -->
                         <td class="td-action" data-title="">
-                            <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v)">
-                                <i class="fa fa-trash text-danger"></i>
-                            </button>
+                            <div class="btn-group" ng-hide="expand['edit_' + $index]">
+                                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="expandElement('edit_' + $index,true)">
+                                    <i class="fa fa-pencil text-primary"></i>
+                                </button>
+                                <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v)">
+                                    <i class="fa fa-trash text-danger"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

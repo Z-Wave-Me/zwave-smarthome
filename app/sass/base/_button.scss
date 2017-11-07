@@ -79,6 +79,15 @@
   }
 }
 
+.btn-cancel {
+  color: $app-body-color;
+  background: transparent;
+  border: 0;
+  .fa{
+    color: $app-brand-danger;
+  }
+}
+
 .btn-installed {
   border: 0 none;
   background-color: none !important;

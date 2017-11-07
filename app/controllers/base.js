@@ -369,10 +369,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
 
     /**
      * Causes $route service to reload the current route even if $location hasn't changed.
+     * @param {boolean} cache
      * @returns {undefined}
      */
-    $scope.reloadData = function () {
-        myCache.removeAll();
+    $scope.reloadData = function (cache) {
+        // Clear also cache?
+        if(cache){
+            myCache.removeAll();
+        }
+       
         $route.reload();
     };
 
@@ -520,9 +525,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     /**
      * Expand/collapse an element
      * @param {string} key
+     * @param {boolean} hidePrevious
      * @returns {undefined}
      */
-    $scope.expandElement = function (key) {
+    $scope.expandElement = function (key,hidePrevious) {
+        // Reset if an empty key
+        if (!key) {
+            $scope.expand = [];
+            return;
+        }
+        // Also hide previous expanded elements
+        if (hidePrevious) {
+            $scope.expand = [];
+        }
         $scope.expand[key] = !($scope.expand[key]);
     };
 
