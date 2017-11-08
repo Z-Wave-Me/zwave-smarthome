@@ -92,6 +92,12 @@
   }
 }
 
+.btn{
+  &.no-borders {
+    border: 0;
+  }
+}
+
 .btn-tag {
   display: block;
   position: relative;
