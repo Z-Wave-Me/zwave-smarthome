@@ -89,7 +89,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             method: "get",
             timeout: cfg.pending_timeout_limit,
             cancel:  $q.defer(),
-            url: url
+            url: url,
+            headers: {
+                'isZWAY': true
+            }
         }).then(function (response) {
             return response;
         }, function (response) {// something went wrong
@@ -185,7 +188,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
                 'Accept-Language': lang,
-                'ZWAYSession': ZWAYSession
+                'ZWAYSession': ZWAYSession,
+                'isZWAY': true
                         //'Accept-Encoding': 'gzip, deflate',
                         //'Allow-compression': 'gz' 
             }
@@ -534,7 +538,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             failWait:api,
             headers: {
                 'Accept-Language': lang,
-                'ZWAYSession': ZWAYSession
+                'ZWAYSession': ZWAYSession,
+                'isZWAY': true
             }
         }).then(function (response) {
             if (typeof response.data === 'object') {

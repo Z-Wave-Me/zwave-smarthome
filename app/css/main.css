@@ -9329,7 +9329,17 @@ img {
   margin: 0 0 10px 0;
 }
 
+<<<<<<< HEAD
 /* Header
+=======
+/* line 302, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
+.scrollh {
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+/* Header
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 -------------------------------------------------- */
 #header {
   position: fixed;
@@ -9355,7 +9365,24 @@ img {
   font-size: 120%;
 }
 
+<<<<<<< HEAD
 /* Main navigation
+=======
+/* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_header.scss */
+#header .timestamp, #header .online, #header .local {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 767px) {
+  /* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_header.scss */
+  #header .timestamp, #header .online, #header .local {
+    display: none;
+  }
+}
+
+/* Main navigation
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 -------------------------------------------------- */
 #main_navigation_wrap {
   background-color: #FFFFFF;
@@ -9533,7 +9560,12 @@ img {
   line-height: 50px;
 }
 
+<<<<<<< HEAD
 #footer #footer_in .timestamp {
+=======
+/* line 19, E:/GitHub/zwave-smarthome/app/sass/base/_footer.scss */
+#footer #footer_in .timestamp, #footer #footer_in .local, #footer #footer_in .online {
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
   display: none;
 }
 
@@ -9867,6 +9899,7 @@ img {
   font-size: 180%;
 }
 
+<<<<<<< HEAD
 /* Widget securityControl
 -------------------------------------------------- */
 /* Device sensorDiscrete
@@ -9880,6 +9913,9 @@ img {
 }
 
 /* Report
+=======
+/* Report
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 -------------------------------------------------- */
 .app-row-report {
   border-top: solid 1px #cccccc;
@@ -11010,7 +11046,62 @@ http://codepen.io/MattIn4D/pen/LiKFC
   }
 }
 
+<<<<<<< HEAD
 /* Alert
+=======
+/* line 188, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
+.widget-entry-in:before, .widget-entry-in:after, .card-room-in:before, .card-room-in:after {
+  box-sizing: inherit;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 2px solid transparent;
+}
+
+/* line 197, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
+.widget-entry-in:before, .card-room-in:before {
+  top: 0;
+  left: 0;
+}
+
+/* line 202, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
+.widget-entry-in:after, .card-room-in:after {
+  bottom: 0;
+  right: 0;
+}
+
+/* line 207, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
+.longpress-true {
+  opacity: 0.5;
+  transition: opacity 1.5s ease-out;
+}
+
+/* line 211, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
+.longpress-true .widget-entry-in:before,
+.longpress-true .widget-entry-in:after,
+.longpress-true .card-room-in:before,
+.longpress-true .card-room-in:after {
+  width: 100%;
+  height: 100%;
+}
+
+/* line 219, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
+.longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before {
+  border-top-color: #184B7C;
+  border-right-color: #184B7C;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+}
+
+/* line 227, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
+.longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after {
+  border-bottom-color: #184B7C;
+  border-left-color: #184B7C;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+}
+
+/* Alert
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 -------------------------------------------------- */
 .alert {
   margin: 10px 0;
@@ -11244,7 +11335,40 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-color: #cccccc;
 }
 
+<<<<<<< HEAD
 /* Aoutocomplete
+=======
+/* line 27, E:/GitHub/zwave-smarthome/app/sass/base/_pagination.scss */
+.paginate-sm {
+  padding: 10px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 27, E:/GitHub/zwave-smarthome/app/sass/base/_pagination.scss */
+  .paginate-sm {
+    display: none;
+  }
+}
+
+/* line 34, E:/GitHub/zwave-smarthome/app/sass/base/_pagination.scss */
+.paginate-lg {
+  padding: 10px;
+  display: none;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 34, E:/GitHub/zwave-smarthome/app/sass/base/_pagination.scss */
+  .paginate-lg {
+    display: block;
+  }
+}
+
+/* Aoutocomplete
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 -------------------------------------------------- */
 /* Variables */
 /* Style */
@@ -11330,6 +11454,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+<<<<<<< HEAD
+=======
+  /*@include mediaQueries(min-esmall) {
+                width: 64px;
+                height: 64px;  
+            }*/
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 }
 
 .widget-entry-element .widget-entry-in .widget-img .widget-icon-update {
@@ -11517,7 +11648,96 @@ http://codepen.io/MattIn4D/pen/LiKFC
   opacity: 0.4;
 }
 
+<<<<<<< HEAD
 /* Elements drag & drop cards
+=======
+/* line 260, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+.sensorDiscrete .ctrl-left {
+  width: 30% !important;
+}
+
+/* line 263, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+.sensorDiscrete .ctrl-right {
+  width: 70% !important;
+}
+
+/* line 268, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+.audioPlayer, .switchRGBW, .sensorMultiline, .multilevel, .motor {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 479px) {
+  /* line 268, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer, .switchRGBW, .sensorMultiline, .multilevel, .motor {
+    width: 100%;
+  }
+  /* line 274, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .progress-true .widget-img:before, .switchRGBW .progress-true .widget-img:before, .sensorMultiline .progress-true .widget-img:before, .multilevel .progress-true .widget-img:before, .motor .progress-true .widget-img:before {
+    content: '';
+    width: 64px;
+    height: 64px;
+    background-color: #fff;
+    opacity: 1;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    position: absolute;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+  }
+  /* line 290, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .widget-entry-in .widget-img, .switchRGBW .widget-entry-in .widget-img, .sensorMultiline .widget-entry-in .widget-img, .multilevel .widget-entry-in .widget-img, .motor .widget-entry-in .widget-img {
+    width: 33.333%;
+    background: none;
+    position: absolute;
+    top: 5px;
+    left: -3px;
+    margin: 0px;
+    border: none;
+    text-align: center;
+  }
+  /* line 300, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .widget-entry-in .widget-img .widget-img-overlay, .switchRGBW .widget-entry-in .widget-img .widget-img-overlay, .sensorMultiline .widget-entry-in .widget-img .widget-img-overlay, .multilevel .widget-entry-in .widget-img .widget-img-overlay, .motor .widget-entry-in .widget-img .widget-img-overlay {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  /* line 307, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .widget-entry-in .widget-title, .switchRGBW .widget-entry-in .widget-title, .sensorMultiline .widget-entry-in .widget-title, .multilevel .widget-entry-in .widget-title, .motor .widget-entry-in .widget-title {
+    height: 68px;
+    padding: 18px 0 0 0;
+  }
+  /* line 311, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .widget-entry-in .widget-title .widget-room, .switchRGBW .widget-entry-in .widget-title .widget-room, .sensorMultiline .widget-entry-in .widget-title .widget-room, .multilevel .widget-entry-in .widget-title .widget-room, .motor .widget-entry-in .widget-title .widget-room {
+    margin-left: 33.333%;
+    font-size: 85%;
+    text-align: left;
+  }
+  /* line 317, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .widget-entry-in .widget-title h3, .switchRGBW .widget-entry-in .widget-title h3, .sensorMultiline .widget-entry-in .widget-title h3, .multilevel .widget-entry-in .widget-title h3, .motor .widget-entry-in .widget-title h3 {
+    margin-left: 33.333%;
+    font-size: 85%;
+    text-align: left;
+  }
+  /* line 324, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .widget-entry-in .widget-loader, .switchRGBW .widget-entry-in .widget-loader, .sensorMultiline .widget-entry-in .widget-loader, .multilevel .widget-entry-in .widget-loader, .motor .widget-entry-in .widget-loader {
+    right: 66.666%;
+    left: -6px;
+  }
+  /* line 329, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .widget-entry-in .widget-footer, .switchRGBW .widget-entry-in .widget-footer, .sensorMultiline .widget-entry-in .widget-footer, .multilevel .widget-entry-in .widget-footer, .motor .widget-entry-in .widget-footer {
+    display: block;
+  }
+  /* line 333, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .audioPlayer .widget-entry-in .bottom-aligner, .switchRGBW .widget-entry-in .bottom-aligner, .sensorMultiline .widget-entry-in .bottom-aligner, .multilevel .widget-entry-in .bottom-aligner, .motor .widget-entry-in .bottom-aligner {
+    display: none;
+  }
+}
+
+/* Elements drag & drop cards
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 ----------------------------------------------------*/
 .dragdrop-element .dd-placeholder {
   width: 100%;
@@ -11611,7 +11831,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-radius: 50%;
 }
 
+<<<<<<< HEAD
 /* Element detail
+=======
+/* line 421, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+.card-element-dragdrop .card-element-dragdrop-in h3 {
+  margin: 10px 0 0 0;
+  font-size: 95%;
+}
+
+/* Element detail
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 ----------------------------------------------------*/
 .btn-tag {
   float: none !important;
@@ -11850,6 +12080,12 @@ img.widget-promo-image {
 
 .widget-entry-app .widget-entry-in .widget-content {
   margin: 20px 0 0 74px;
+<<<<<<< HEAD
+=======
+  /*@include mediaQueries(min-esmall) {
+              margin: $spacing-double 0 0 64px + $spacing;
+            }*/
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 }
 
 .widget-entry-app .widget-entry-in .bottom-aligner {
@@ -11948,8 +12184,13 @@ img.widget-promo-image {
   text-align: right;
   width: 25%;
   float: right;
+<<<<<<< HEAD
   /*display: table-cell;
       vertical-align: bottom;*/
+=======
+  /*display: table-cell;
+            vertical-align: bottom;*/
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 }
 
 .app-entry-online .app-entry-cat .app-entry-btn .btn {
@@ -12901,6 +13142,124 @@ img.widget-promo-image {
 /* Camera
 -------------------------------------------------- */
 .app-row-cameraadd .report-media {
+<<<<<<< HEAD
+=======
+  width: 68px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 237, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+  .app-row-cameraadd .report-media {
+    width: 84px;
+  }
+}
+
+/* SmartStart
+-------------------------------------------------- */
+/* line 250, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.row-smartstart .report-entry {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 479px) {
+  /* line 250, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+  .row-smartstart .report-entry {
+    display: block;
+  }
+}
+
+/* line 255, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.row-smartstart .report-entry .report-col {
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 479px) {
+  /* line 255, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+  .row-smartstart .report-entry .report-col {
+    display: block;
+  }
+}
+
+/* QR code
+-------------------------------------------------- */
+/* line 271, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.qrcode-wrap #qrcode_network {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+/* line 275, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.qrcode-wrap #qrcode_network img {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  display: block;
+  width: 200px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 271, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+  .qrcode-wrap #qrcode_network {
+    margin: 0;
+  }
+}
+
+/* Security 2 icons
+-------------------------------------------------- */
+/* line 292, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.security-2.fa-stack {
+  margin: 0 20px 0 0;
+  width: 1em;
+  left: -3px;
+  display: inline;
+  height: 1em;
+  line-height: 1em;
+}
+
+/* line 301, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.security-2 .fa-stack-1x, .security-2 .fa-stack-1x {
+  text-align: left;
+}
+
+/* line 304, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.security-2 .icon-bottom {
+  color: darkgray;
+}
+
+/* line 307, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.security-2 .icon-top {
+  color: green;
+  left: 4px;
+  top: 4px;
+}
+
+/* line 312, E:/GitHub/zwave-smarthome/app/sass/base/_devices.scss */
+.security-2.false .icon-top {
+  color: #a94442;
+}
+
+/* SmartStart
+-------------------------------------------------- */
+/* 
+-------------------------------------------------- */
+/* line 9, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+.smart-start .container {
+  padding: 0;
+}
+
+/* line 12, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+.smart-start .container .entry {
+  background-color: #eeeeee;
+  padding: 20px;
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
   text-align: center;
   width: 84px;
 }
@@ -13135,7 +13494,13 @@ img.widget-promo-image {
   vertical-align: top;
 }
 
+<<<<<<< HEAD
 /* SmartHome UI custom
+=======
+/* SmartHome UI custom
+/* blank - without @import "custom/_skinname"
+/* shui, bayernshui, blueshui, darkshui, homekit
+>>>>>>> 39c8e03... add connection state (online/offline, remote/local)
 -------------------------------------------------- */
 /* Default SmartHome skin
 -------------------------------------------------- */

@@ -141,7 +141,15 @@
                         </a>
                         <!-- time -->
                         <span class="divider-vertical"></span> 
-                        &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string"><i class="fa fa-clock-o"></i> {{cfg.route.time.string}}</span>
+                        &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
+                            <i class="fa fa-clock-o"></i> {{cfg.route.time.string}}
+                        </span>
+                        <span class="online" ng-if="connection.local">
+                            <i class="fa fa-globe" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                        </span>
+                        <span class="local" ng-if="connection.remote">
+                            <i class="fa fa-cloud" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                        </span>
                     </div>
                     <div id="navigation_right">
                         <span class="divider-vertical"></span> 
@@ -193,7 +201,7 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-            <div ng-if="cfg.route.fatalError.message" ng-cloak>
+            <div ng-if="cfg.route.fatalError.message" ng-cloak ng-hide="isMobile">
                 <div class="app-fatal-error">
                     <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
@@ -206,7 +214,15 @@
         <div id="footer">
             <div id="footer_in">
                 <div class="container">
-                    <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string"><i class="fa fa-clock-o"></i> {{cfg.route.time.string}}</span>
+                    <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
+                        <i class="fa fa-clock-o"></i> {{cfg.route.time.string}}
+                    </span>
+                    <span class="online" ng-if="connection.local">
+                        <i class="fa fa-globe" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                    </span>
+                    <span class="local" ng-if="connection.remote">
+                        <i class="fa fa-cloud" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                    </span>
                 </div>
             </div>         
         </div>
