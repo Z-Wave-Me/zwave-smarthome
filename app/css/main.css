@@ -11159,14 +11159,14 @@ img {
 }
 
 /* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_header.scss */
-#header .timestamp {
+#header .timestamp, #header .online, #header .local {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 767px) {
   /* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_header.scss */
-  #header .timestamp {
+  #header .timestamp, #header .online, #header .local {
     display: none;
   }
 }
@@ -11387,7 +11387,7 @@ img {
 }
 
 /* line 19, E:/GitHub/zwave-smarthome/app/sass/base/_footer.scss */
-#footer #footer_in .timestamp {
+#footer #footer_in .timestamp, #footer #footer_in .local, #footer #footer_in .online {
   display: none;
 }
 
@@ -13300,17 +13300,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 /* line 227, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert
