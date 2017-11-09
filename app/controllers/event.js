@@ -178,16 +178,18 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     $scope.refreshData = function () {
         var refresh = function () {
-            dataFactory.refreshApi('notifications').then(function (response) {
-                if(!response){
-                    return;
-                }
-                //console.log('Run refresh',response.data.data.notifications)
-                angular.forEach(response.data.data.notifications, function (v, k) {
-                    //$scope.collection.push(v);
-                    setEvent(v);
+            if(cfg.route.fatalError.type !== "network") {
+                dataFactory.refreshApi('notifications').then(function (response) {
+                    if(!response){
+                        return;
+                    }
+                    //console.log('Run refresh',response.data.data.notifications)
+                    angular.forEach(response.data.data.notifications, function (v, k) {
+                        //$scope.collection.push(v);
+                        setEvent(v);
+                    });
                 });
-            });
+            }
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };

@@ -133,34 +133,36 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.refreshDevices = function () {
         var refresh = function () {
-            dataFactory.refreshApi('devices').then(function (response) {
-                if(!response){
-                    return;
-                }
-                if (response.data.data.devices.length > 0) {
-                    angular.forEach(response.data.data.devices, function (v, k) {
-                         var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
-                         if (!$scope.dataHolder.devices.all[index]) {
-                            return;
-                        }
-                        if (v.metrics.level) {
-                            v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
-                        }
-                        angular.extend($scope.dataHolder.devices.all[index],
-                                {isFailed: v.metrics.isFailed},
-                                {metrics: v.metrics},
-                                {progress: false},
-                                {iconPath: dataService.assignElementIcon(v)},
-                                {updateTime: v.updateTime}
-                        );
-                        //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
-                    });
-                }
-                if (response.data.data.structureChanged === true) {
-                    $scope.allSettled(true);
-                }
+            if(cfg.route.fatalError.type !== "network") {
+                dataFactory.refreshApi('devices').then(function (response) {
+                    if(!response){
+                        return;
+                    }
+                    if (response.data.data.devices.length > 0) {
+                        angular.forEach(response.data.data.devices, function (v, k) {
+                             var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
+                             if (!$scope.dataHolder.devices.all[index]) {
+                                return;
+                            }
+                            if (v.metrics.level) {
+                                v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
+                            }
+                            angular.extend($scope.dataHolder.devices.all[index],
+                                    {isFailed: v.metrics.isFailed},
+                                    {metrics: v.metrics},
+                                    {progress: false},
+                                    {iconPath: dataService.assignElementIcon(v)},
+                                    {updateTime: v.updateTime}
+                            );
+                            //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
+                        });
+                    }
+                    if (response.data.data.structureChanged === true) {
+                        $scope.allSettled(true);
+                    }
 
-            });
+                });
+            }
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
