@@ -1,0 +1,37 @@
+<div class="widget-ctrl ctrl-left">
+    <div class="btn-group">
+        <button class="btn btn-default btn-label-on" id="btn_step_backward_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/previous', v.id)"
+                title="{{_t('lb_step_backward')}}">
+            <i class="fa fa-step-backward"></i>
+        </button>
+        <button class="btn btn-default" id="btn_play_pause_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/'+ (v.metrics.pStatus == 'Play' && v.metrics.pStatus != 'Stop' ? 'pause' : 'play'), v.id)"
+                ng-class="v.metrics.pStatus =='Play' || v.metrics.pStatus =='Pause' ? 'btn-primary': 'btn-default'"
+                title="{{v.metrics.pStatus == 'Play' ? _t('lb_pause') : _t('lb_play')}}">
+            <i  ng-if="v.metrics.pStatus == 'Play'" class="fa fa-pause"></i>
+            <i  ng-if="v.metrics.pStatus == 'Pause' || v.metrics.pStatus == 'Stop'" class="fa fa-play"></i>
+        </button>
+        <button class="btn btn-default" id="btn_stop_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/stop', v.id)"
+                ng-class="v.metrics.pStatus =='Stop' ? 'btn-primary': 'btn-default'"
+                title="{{_t('lb_stop')}}">
+            <i class="fa fa-stop"></i>
+        </button>
+        <button class="btn btn-default btn-label-on" id="btn_step_forward _{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/next', v.id)"
+                title="{{_t('lb_step_forward')}}">
+            <i class="fa fa-step-forward"></i>
+        </button>
+    </div>
+</div>
+<div class="widget-ctrl ctrl-right">
+    <div class="btn-group">
+        <button class="btn btn-default btn-label-on" id="btn_volume_{{ v.id}}"
+                ng-click="dataHolder.devices.find = v;handleModal('switchMultilevelModal', $event)"
+                title="{{_t('lb_volume')}}">
+            <span class="widget-btn-symbol">{{v.metrics.level | getMaxLevel:v.minMax.max}}</span>
+            <i class="fa fa-volume-up"></i>
+        </button>
+    </div>
+</div>

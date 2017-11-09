@@ -1,0 +1,18 @@
+<!-- doorLockControl -->
+<div class="widget-ctrl ctrl-left">
+    <div class="btn-group">
+        <button class="btn btn-off"
+            ng-class="v.metrics.level=='close' ? 'btn-primary': 'btn-default'"
+            data-ng-click="runCmd(v.id + '/command/close', v.id)">
+            <i class="fa fa-lock"></i>
+        </button>
+        <button class="btn btn-on"
+            ng-class="v.metrics.level =='open' ? 'btn-primary': 'btn-default'"
+            data-ng-click="runCmd(v.id + '/command/open', v.id)">
+            <i class="fa fa-unlock"></i>
+        </button>
+    </div>
+</div>
+<div class="widget-ctrl ctrl-right widget-ctrl-click" title="{{_t('lb_settings')}}" ng-click="dataHolder.devices.find = v;handleModal('doorLockControlModal', $event)">
+  <i class="fa fa-caret-down"></i> <span class="widget-level">Closed at</span> <span>{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
+</div>

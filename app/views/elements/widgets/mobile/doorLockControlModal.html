@@ -1,0 +1,16 @@
+<!-- doorLockModal -->
+<div id="doorLockControlModal" class="appmodal" ng-controller_="ElementThermostatController" ng-if="modalArr.doorLockControlModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('doorLockControlModal', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{dataHolder.devices.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body text-center">
+            <bb-alert alert="widgetThermostat.alert"></bb-alert>
+            Content: doorLockControlModal
+        </div>
+        <!--<div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('doorLockControlModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+        </div>-->
+    </div>
+</div>

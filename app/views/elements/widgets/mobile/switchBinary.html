@@ -1,4 +1,4 @@
-<!-- doorlock -->
+<!-- switchBinary -->
 <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
     err-src="{{cfg.img.placeholder}}"
-    ng-click="runCmd(v.id + '/command/'+ (v.metrics.level == 'open' ? 'close' : 'open'), v.id)" />
+    ng-click="runCmd(v.id + '/command/'+ (v.metrics.level == 'on' ? 'off' : 'on'), v.id)" /> 

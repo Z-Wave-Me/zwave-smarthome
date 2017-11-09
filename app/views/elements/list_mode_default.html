@@ -17,65 +17,57 @@
              <!-- Widget icon -->
             <div class="widget-img" title="{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}">
                 <div ng-switch="v.deviceType">
-                    <div ng-switch-when="thermostat">
-                        <div class="widget-img-overlay" 
-                             ng-show="cfg.element_level_is_number.indexOf(v.deviceType) > -1"
-                             ng-click="dataHolder.devices.find = v;handleModal('thermostatModal', $event)">
-                            <span class="widget-level">{{v.metrics.level}}</span> 
-                            <span class="widget-scale">{{v.metrics.scaleTitle}}</span>    
-                        </div>    
-                        <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-                             err-src="{{cfg.img.placeholder}}" />
+                    <div ng-switch-when="switchMultilevel">
+                        <div ng-include="'app/views/elements/widgets/mobile/switchMultilevel.html'"></div>
                     </div>
                     <div ng-switch-when="switchBinary">
-                        <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-                             err-src="{{cfg.img.placeholder}}"
-                             ng-click="runCmd(v.id + '/command/'+ (v.metrics.level == 'on' ? 'off' : 'on'), v.id)" />        
+                        <div ng-include="'app/views/elements/widgets/mobile/switchBinary.html'"></div>
                     </div>
-                    <div ng-switch-when="switchControl">
-                        <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-                             err-src="{{cfg.img.placeholder}}"
-                             ng-click="runCmd(v.id + '/command/'+ (v.metrics.level == 'on' ? 'off' : 'on'), v.id)" />        
-                    </div>
-                    <div ng-switch-when="toggleButton">
-                        <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-                             err-src="{{cfg.img.placeholder}}"
-                             ng-click="runCmd(v.id + '/command/on')" />        
-                    </div>
-                    <div ng-switch-when="camera">
-                        <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-                             err-src="{{cfg.img.placeholder}}"
-                             ng-click="dataHolder.devices.find = v;handleModal('cameraModal', $event)" />        
+                    <div ng-switch-when="switchRGBW">
+                        <div ng-include="'app/views/elements/widgets/mobile/switchRGBW.html'"></div>
                     </div>
                     <div ng-switch-when="doorlock">
-                        <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-                             err-src="{{cfg.img.placeholder}}"
-                             ng-click="runCmd(v.id + '/command/'+ (v.metrics.level == 'open' ? 'close' : 'open'), v.id)" />        
+                        <div ng-include="'app/views/elements/widgets/mobile/doorlock.html'"></div>
                     </div>
-                    <div ng-switch-when="switchMultilevel">
-                        <div class="widget-img-overlay" 
-                             ng-show="cfg.element_level_is_number.indexOf(v.deviceType) > -1"
-                             ng-click="dataHolder.devices.find = v;handleModal('switchMultilevelModal', $event)">
-                            <span class="widget-level">{{v.metrics.level}}</span>
-                            <span class="widget-scale">{{v.metrics.scaleTitle}}</span>    
-                        </div>    
-                        <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-                             err-src="{{cfg.img.placeholder}}" />     
+                    <div ng-switch-when="doorLockControl">
+                        <div ng-include="'app/views/elements/widgets/mobile/doorLockControl.html'"></div>
+                     </div>
+                    <div ng-switch-when="toggleButton">
+                        <div ng-include="'app/views/elements/widgets/mobile/toggleButton.html'"></div>
                     </div>
+                    <div ng-switch-when="sensorMultilevel">
+                        <div ng-include="'app/views/elements/widgets/mobile/sensorMultilevel.html'"></div>
+                    </div>
+                    <div ng-switch-when="sensorBinary">
+                        <div ng-include="'app/views/elements/widgets/mobile/sensorBinary.html'"></div>
+                    </div>
+                    <div ng-switch-when="sensorDiscrete">
+                        <div ng-include="'app/views/elements/widgets/mobile/sensorDiscrete.html'"></div>
+                    </div>
+                    <div ng-switch-when="thermostat">
+                        <div ng-include="'app/views/elements/widgets/mobile/thermostat.html'"></div>
+                    </div>
+                    <div ng-switch-when="camera">
+                        <div ng-include="'app/views/elements/widgets/mobile/camera.html'"></div>
+                    </div>
+                    <div ng-switch-when="text">
+                        <div ng-include="'app/views/elements/widgets/mobile/text.html'"></div>
+                    </div>
+                    <div ng-switch-when="switchControl">
+                        <div ng-include="'app/views/elements/widgets/mobile/switchControl.html'"></div>
+                    </div>
+                    <div ng-switch-when="sensorMultiline">
+                        <div ng-include="'app/views/elements/widgets/mobile/sensorMultiline.html'"></div>
+                    </div>
+                    <div ng-switch-when="audioPlayer">
+                        <div ng-include="'app/views/elements/widgets/mobile/audioPlayer.html'"></div>
+                    </div>
+                    <div ng-switch-when="poppKeypad">
+                        <div ng-include="'app/views/elements/widgets/mobile/poppKeypad.html'"></div>
+                    </div>                    
                     <div ng-switch-default>
-                        <div class="widget-img-overlay" 
-                            ng-show="cfg.element_level_is_number.indexOf(v.deviceType) > -1">
-                            <span class="widget-level">{{v.metrics.level}}</span> 
-                            <span class="widget-scale">{{v.metrics.scaleTitle}}</span>    
-                        </div>
-                        <img class="widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" 
-                             ng-click="runCmd(v.id + '/command/' + v.updateCmd)" 
-                             err-src="{{cfg.img.placeholder}}"
-                             ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
-                        <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-                             err-src="{{cfg.img.placeholder}}"
-                             ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1"/>
-                    </div>    
+                        <div ng-include="'app/views/elements/widgets/mobile/default.html'"></div>
+                    </div> 
                 </div>
             </div>
             <!-- Widget header -->
@@ -110,14 +102,7 @@
             <div class="widget-content">
                 <!--order.{{getBodyId()}}: {{v.order[getBodyId()]}}-->
                 <!-- Widget title -->
-                <div class="widget-title" 
-                    ng-if="v.hasHistory || v.showNotification || v.metrics.intchartUrl"
-                    ng-click="dataHolder.devices.find = v;handleModal('modalInfo', $event)">
-                    <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title}}</span>&nbsp;</span>
-                    <h3 title="{{v.metrics.title}}">{{v.metrics.title}}</h3>
-                </div>
-                <div class="widget-title"
-                    ng-if="!v.hasHistory && !v.showNotification && !v.metrics.intchartUrl">
+                <div class="widget-title">
                     <span class="widget-room"><span ng-if="v.location !== 0">{{dataHolder.devices.rooms[v.location].title}}</span>&nbsp;</span>
                     <h3 title="{{v.metrics.title}}">{{v.metrics.title}}</h3>
                 </div>
@@ -193,7 +178,9 @@
 <div ng-include="'app/views/elements/widgets/textModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/cameraModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/climateControlModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/mobile/climateControlModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/doorLockControlModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/switchRGBWModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/securityControlModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/mobile/securityControlModal.html'"></div>
  
