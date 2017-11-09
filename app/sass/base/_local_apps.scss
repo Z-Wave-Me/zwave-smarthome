@@ -1,7 +1,18 @@
 /* Local apps
 -------------------------------------------------- */
+
 $localapp-height: 120px;
 $localapp-img: 64px;
+.app-entry-local {
+    margin: 0 0 $spacing-double 0;
+    h2 {
+        padding: 0 $spacing;
+        font-size: 120%;
+        color: $accordion-heading-color;
+        font-weight: normal;
+    }
+}
+
 .localapp {
     @include appFloat(left);
     width: 33.3333%;
@@ -18,84 +29,108 @@ $localapp-img: 64px;
     @include mediaQueries(min-large) {
         width: 16.6666%;
     }
-    /* Inner element */
-    .localapp-in {
-        border: solid 1px $app-border-color;
-        background-color: $card-bcg-color;
-        position: relative;
-        height: $localapp-height;
-        padding: $spacing;
-        margin: $spacing-half;
-        text-align: center; // Media queries
+}
+
+
+/* Inner element */
+
+.localapp-in {
+    border: solid 1px $app-border-color;
+    background-color: $card-bcg-color;
+    position: relative;
+    height: $localapp-height;
+    padding: $spacing;
+    margin: $spacing-half;
+    text-align: center; // Media queries
+    @include mediaQueries(min-small) {
+        //height: 268px;
+        height: $localapp-height + 60px;
+    }
+    @include mediaQueries(min-large) {
+        //height: $localapp-height + 80px;
+    }
+    .has-instance {
+        font-size: 75%;
+        position: absolute;
+        top: $spacing-half;
+        right: $spacing-half;
+        @include mediaQueries(max-small) {
+            display: none;
+        }
+    }
+    /* Card header */
+    .localapp-header {
+        display: inline-block;
+        margin: 0 0 $spacing 0;
+        width: 100%;
+        max-width: $localapp-img;
+        height: $localapp-img;
         @include mediaQueries(min-small) {
-            //height: 268px;
-            height: $localapp-height + 60px;
+            max-width: $localapp-img + 20px;
+            height: $localapp-img + 20px;
         }
-        @include mediaQueries(min-large) {
-            //height: $localapp-height + 80px;
-        }
-        .has-instance {
-            font-size: 75%;
-            position: absolute;
-            top: $spacing-half;
-            right: $spacing-half;
-        }
-        /* Card header */
-        .localapp-header {
-            display: inline-block;
-            margin: 0 0 $spacing 0;
+        .localapp-img {
             width: 100%;
             max-width: $localapp-img;
-            max-height: $localapp-img;
+            //max-height: $localapp-img;
             @include mediaQueries(min-small) {
                 max-width: $localapp-img + 20px;
-                max-height: $localapp-img + 20px;
-            }
-            .localapp-img {
-                width: 100%;
-                max-width: $localapp-img;
-                max-height: $localapp-img;
-                @include mediaQueries(min-small) {
-                    max-width: $localapp-img + 20px;
-                    max-height: $localapp-img + 20px;
-                }
+                //height: $localapp-img + 20px;
             }
         }
-        .localapp-body {
-            .localapp-title {
-                font-size: 80%;
+    }
+    .localapp-body {
+        .localapp-title {
+            font-size: 80%;
+            display: block;
+            color: lighten($app-body-color, 10%);
+            text-decoration: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            @include mediaQueries(min-small) {
+                font-size: 100%;
+            }
+        }
+    }
+    /* Card content */
+    .localapp-footer {
+        .btn-name {
+            display: none;
+        }
+        position: absolute;
+        left: 0px;
+        bottom: $spacing;
+        width: 100%;
+        .btn-default[disabled]{
+            border-color: lighten($app-body-disabled-color, 30%);
+            cursor: not-allowed;
+            //pointer-events: all !important;
+            .fa{
+                color: lighten($app-body-disabled-color, 20%);
+            }
+        }
+        @include mediaQueries(max-small) {
+            padding: $spacing-half;
+            ;
+            display: none;
+            top: 0;
+            left: 0px;
+            background-color: #fff;
+            height: $localapp-height - 2px;
+            &.has-longpress {
                 display: block;
-                color: lighten($app-body-color, 10%);
-                text-decoration: none;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                @include mediaQueries(min-small) {
-                    font-size: 100%;
-                }
-            }
-        }
-        /* Card content */
-        .localapp-footer {
-            .btn-name{
-                display: none;
-            }
-           position: absolute;
-           left: 0px;
-            bottom: $spacing;
-            width: 100%;
-            @include mediaQueries(max-small) {
-                padding: $spacing 0;
-               
-                display: none;
-                top: 0;
-                left: 0px;
-                background-color: #fff;
-                height: $localapp-height - 2px;
-                &.has-longpress{
+                .btn-group {
                     display: block;
-                    
-                    
+                    .btn {
+                        margin: 2px;
+                        position: static;
+                        float: none;
+                        display: block;
+                        width: 100%;
+                        padding: 3px 6px;
+                        @include appBorderRadius(4px);
+                    }
                 }
             }
         }

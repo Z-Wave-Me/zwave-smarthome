@@ -30,6 +30,19 @@
     }
 }
 
+.page-control{   
+    .form-group{
+        margin: 0 $spacing-double 0 0;
+    }
+
+    text-align: right;
+    margin-bottom: $spacing;
+     input[type=text]{
+       min-height: 22px;
+       line-height: 22px;
+    }
+}
+
 .page-navi{
     font-size: 120%;
     position: relative;
