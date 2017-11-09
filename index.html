@@ -146,14 +146,20 @@
                         <!-- time -->
                         <span class="divider-vertical"></span> 
                         &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
-                            <i class="fa fa-clock-o"></i> {{cfg.route.time.string}}
+                            <i class="fa fa-globe" 
+                               ng-if="connection.local" 
+                               ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                            <i class="fa fa-grav" 
+                               ng-if="connection.remote"
+                               ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                            <!--<i class="fa fa-clock-o"></i>--> {{cfg.route.time.string}}
                         </span>
-                        <span class="online" ng-if="connection.local">
+                        <!--<span class="online" ng-if="connection.local">
                             <i class="fa fa-globe" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
                         </span>
                         <span class="local" ng-if="connection.remote">
                             <i class="fa fa-cloud" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                        </span>
+                        </span>-->
                     </div>
                     <div id="navigation_right">
                         <span class="divider-vertical"></span> 
@@ -222,14 +228,23 @@
             <div id="footer_in">
                 <div class="container">
                     <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
-                        <i class="fa fa-clock-o"></i> {{cfg.route.time.string}}
+                        <i class="fa fa-globe" 
+                           ng-if="connection.local" 
+                           ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                        <i class="fa fa-grav" 
+                           ng-if="connection.remote"
+                           ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                        <!--<i class="fa fa-clock-o"></i>--> {{cfg.route.time.string}}
                     </span>
-                    <span class="online" ng-if="connection.local">
+                    <!--<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
+                        <i class="fa fa-clock-o"></i> {{cfg.route.time.string}}
+                    </span>-->
+                    <!--<span class="online" ng-if="connection.local">
                         <i class="fa fa-globe" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
                     </span>
                     <span class="local" ng-if="connection.remote">
-                        <i class="fa fa-cloud" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                    </span>
+                        <i class="fa fa-grav" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                    </span>-->
                 </div>
             </div>         
         </div>
