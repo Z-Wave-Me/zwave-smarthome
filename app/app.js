@@ -131,10 +131,22 @@ myApp.config(function ($provide, $httpProvider) {
                     case 0:
                         // Check if request has no timeout or location url is on the black list and pending is from a remote server
                         // then does not display an error message
-                        if(!rejection.config.timeout || rejection.config.suppressFtalError || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.isRemote)){
+                        if(rejection.config.headers.isZWAY) {
+                            angular.extend(cfg.route.fatalError, {
+                                type: 'network',
+                                message: 'The request failed because server does not responding',
+                                hide: false
+                            });    
+                            break;
+                        }
+                        var test = (!rejection.config.headers.timeout || rejection.config.headers.suppressFtalError || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.headers.isRemote));
+                        //if(!rejection.config.headers.timeout || rejection.config.headers.suppressFtalError || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.headers.isRemote)){
+                        if(test) {  
                            break;
                         }
+                        console.log("connection error 2");
                         angular.extend(cfg.route.fatalError, {
+                            type: 'network',
                             message: 'The request failed because server does not responding',
                             hide: false
                         });

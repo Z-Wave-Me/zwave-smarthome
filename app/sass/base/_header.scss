@@ -27,7 +27,7 @@
         font-size: 120%;
     }
     // Media queries
-    .timestamp{
+    .timestamp, .online, .local {
         @include mediaQueries(max-small) {
         display: none;
     }

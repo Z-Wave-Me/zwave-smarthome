@@ -5411,15 +5411,15 @@ a.badge:hover, a.badge:focus {
 /* Font Awesome files
 -------------------------------------------------- */
 /*!
- *  Font Awesome 4.4.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
  */
 /* FONT PATH
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../fonts/fontawesome-webfont.eot?v=4.4.0");
-  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.4.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.4.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.4.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.4.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular") format("svg");
+  src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -5578,7 +5578,7 @@ a.badge:hover, a.badge:focus {
 
 /* line 4, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_rotated-flipped.scss */
 .fa-rotate-90 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
@@ -5586,7 +5586,7 @@ a.badge:hover, a.badge:focus {
 
 /* line 5, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_rotated-flipped.scss */
 .fa-rotate-180 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
@@ -5594,7 +5594,7 @@ a.badge:hover, a.badge:focus {
 
 /* line 6, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_rotated-flipped.scss */
 .fa-rotate-270 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
   -webkit-transform: rotate(270deg);
   -ms-transform: rotate(270deg);
   transform: rotate(270deg);
@@ -5602,7 +5602,7 @@ a.badge:hover, a.badge:focus {
 
 /* line 8, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_rotated-flipped.scss */
 .fa-flip-horizontal {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
   -webkit-transform: scale(-1, 1);
   -ms-transform: scale(-1, 1);
   transform: scale(-1, 1);
@@ -5610,7 +5610,7 @@ a.badge:hover, a.badge:focus {
 
 /* line 9, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_rotated-flipped.scss */
 .fa-flip-vertical {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
   -webkit-transform: scale(1, -1);
   -ms-transform: scale(1, -1);
   transform: scale(1, -1);
@@ -7630,7 +7630,7 @@ a.badge:hover, a.badge:focus {
 }
 
 /* line 387, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
-.fa-pied-piper:before {
+.fa-pied-piper-pp:before {
   content: "";
 }
 
@@ -7832,6 +7832,7 @@ a.badge:hover, a.badge:focus {
 
 /* line 425, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
 .fa-ra:before,
+.fa-resistance:before,
 .fa-rebel:before {
   content: "";
 }
@@ -8360,6 +8361,7 @@ a.badge:hover, a.badge:focus {
 
 /* line 528, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
 .fa-battery-4:before,
+.fa-battery:before,
 .fa-battery-full:before {
   content: "";
 }
@@ -8672,6 +8674,498 @@ a.badge:hover, a.badge:focus {
 /* line 588, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
 .fa-fonticons:before {
   content: "";
+}
+
+/* line 589, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-reddit-alien:before {
+  content: "";
+}
+
+/* line 590, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-edge:before {
+  content: "";
+}
+
+/* line 591, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-credit-card-alt:before {
+  content: "";
+}
+
+/* line 592, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-codiepie:before {
+  content: "";
+}
+
+/* line 593, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-modx:before {
+  content: "";
+}
+
+/* line 594, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-fort-awesome:before {
+  content: "";
+}
+
+/* line 595, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-usb:before {
+  content: "";
+}
+
+/* line 596, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-product-hunt:before {
+  content: "";
+}
+
+/* line 597, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-mixcloud:before {
+  content: "";
+}
+
+/* line 598, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-scribd:before {
+  content: "";
+}
+
+/* line 599, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-pause-circle:before {
+  content: "";
+}
+
+/* line 600, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-pause-circle-o:before {
+  content: "";
+}
+
+/* line 601, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-stop-circle:before {
+  content: "";
+}
+
+/* line 602, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-stop-circle-o:before {
+  content: "";
+}
+
+/* line 603, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-shopping-bag:before {
+  content: "";
+}
+
+/* line 604, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-shopping-basket:before {
+  content: "";
+}
+
+/* line 605, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-hashtag:before {
+  content: "";
+}
+
+/* line 606, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-bluetooth:before {
+  content: "";
+}
+
+/* line 607, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-bluetooth-b:before {
+  content: "";
+}
+
+/* line 608, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-percent:before {
+  content: "";
+}
+
+/* line 609, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-gitlab:before {
+  content: "";
+}
+
+/* line 610, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-wpbeginner:before {
+  content: "";
+}
+
+/* line 611, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-wpforms:before {
+  content: "";
+}
+
+/* line 612, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-envira:before {
+  content: "";
+}
+
+/* line 613, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-universal-access:before {
+  content: "";
+}
+
+/* line 614, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-wheelchair-alt:before {
+  content: "";
+}
+
+/* line 615, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-question-circle-o:before {
+  content: "";
+}
+
+/* line 616, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-blind:before {
+  content: "";
+}
+
+/* line 617, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-audio-description:before {
+  content: "";
+}
+
+/* line 618, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-volume-control-phone:before {
+  content: "";
+}
+
+/* line 619, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-braille:before {
+  content: "";
+}
+
+/* line 620, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-assistive-listening-systems:before {
+  content: "";
+}
+
+/* line 621, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-asl-interpreting:before,
+.fa-american-sign-language-interpreting:before {
+  content: "";
+}
+
+/* line 622, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-deafness:before,
+.fa-hard-of-hearing:before,
+.fa-deaf:before {
+  content: "";
+}
+
+/* line 623, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-glide:before {
+  content: "";
+}
+
+/* line 624, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-glide-g:before {
+  content: "";
+}
+
+/* line 625, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-signing:before,
+.fa-sign-language:before {
+  content: "";
+}
+
+/* line 626, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-low-vision:before {
+  content: "";
+}
+
+/* line 627, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-viadeo:before {
+  content: "";
+}
+
+/* line 628, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-viadeo-square:before {
+  content: "";
+}
+
+/* line 629, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-snapchat:before {
+  content: "";
+}
+
+/* line 630, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-snapchat-ghost:before {
+  content: "";
+}
+
+/* line 631, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-snapchat-square:before {
+  content: "";
+}
+
+/* line 632, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-pied-piper:before {
+  content: "";
+}
+
+/* line 633, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-first-order:before {
+  content: "";
+}
+
+/* line 634, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-yoast:before {
+  content: "";
+}
+
+/* line 635, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-themeisle:before {
+  content: "";
+}
+
+/* line 636, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-google-plus-circle:before,
+.fa-google-plus-official:before {
+  content: "";
+}
+
+/* line 637, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-fa:before,
+.fa-font-awesome:before {
+  content: "";
+}
+
+/* line 638, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-handshake-o:before {
+  content: "";
+}
+
+/* line 639, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-envelope-open:before {
+  content: "";
+}
+
+/* line 640, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-envelope-open-o:before {
+  content: "";
+}
+
+/* line 641, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-linode:before {
+  content: "";
+}
+
+/* line 642, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-address-book:before {
+  content: "";
+}
+
+/* line 643, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-address-book-o:before {
+  content: "";
+}
+
+/* line 644, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-vcard:before,
+.fa-address-card:before {
+  content: "";
+}
+
+/* line 645, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-vcard-o:before,
+.fa-address-card-o:before {
+  content: "";
+}
+
+/* line 646, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-user-circle:before {
+  content: "";
+}
+
+/* line 647, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-user-circle-o:before {
+  content: "";
+}
+
+/* line 648, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-user-o:before {
+  content: "";
+}
+
+/* line 649, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-id-badge:before {
+  content: "";
+}
+
+/* line 650, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-drivers-license:before,
+.fa-id-card:before {
+  content: "";
+}
+
+/* line 651, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-drivers-license-o:before,
+.fa-id-card-o:before {
+  content: "";
+}
+
+/* line 652, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-quora:before {
+  content: "";
+}
+
+/* line 653, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-free-code-camp:before {
+  content: "";
+}
+
+/* line 654, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-telegram:before {
+  content: "";
+}
+
+/* line 655, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-thermometer-4:before,
+.fa-thermometer:before,
+.fa-thermometer-full:before {
+  content: "";
+}
+
+/* line 656, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-thermometer-3:before,
+.fa-thermometer-three-quarters:before {
+  content: "";
+}
+
+/* line 657, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-thermometer-2:before,
+.fa-thermometer-half:before {
+  content: "";
+}
+
+/* line 658, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-thermometer-1:before,
+.fa-thermometer-quarter:before {
+  content: "";
+}
+
+/* line 659, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-thermometer-0:before,
+.fa-thermometer-empty:before {
+  content: "";
+}
+
+/* line 660, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-shower:before {
+  content: "";
+}
+
+/* line 661, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-bathtub:before,
+.fa-s15:before,
+.fa-bath:before {
+  content: "";
+}
+
+/* line 662, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-podcast:before {
+  content: "";
+}
+
+/* line 663, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-window-maximize:before {
+  content: "";
+}
+
+/* line 664, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-window-minimize:before {
+  content: "";
+}
+
+/* line 665, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-window-restore:before {
+  content: "";
+}
+
+/* line 666, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-times-rectangle:before,
+.fa-window-close:before {
+  content: "";
+}
+
+/* line 667, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-times-rectangle-o:before,
+.fa-window-close-o:before {
+  content: "";
+}
+
+/* line 668, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-bandcamp:before {
+  content: "";
+}
+
+/* line 669, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-grav:before {
+  content: "";
+}
+
+/* line 670, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-etsy:before {
+  content: "";
+}
+
+/* line 671, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-imdb:before {
+  content: "";
+}
+
+/* line 672, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-ravelry:before {
+  content: "";
+}
+
+/* line 673, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-eercast:before {
+  content: "";
+}
+
+/* line 674, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-microchip:before {
+  content: "";
+}
+
+/* line 675, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-snowflake-o:before {
+  content: "";
+}
+
+/* line 676, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-superpowers:before {
+  content: "";
+}
+
+/* line 677, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-wpexplorer:before {
+  content: "";
+}
+
+/* line 678, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_icons.scss */
+.fa-meetup:before {
+  content: "";
+}
+
+/* line 4, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_screen-reader.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* line 51, E:/GitHub/zwave-smarthome/app/sass/vendor/fontawesome/_mixins.scss */
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
 }
 
 /* SmartHome UI variables nad functions
@@ -11159,14 +11653,14 @@ img {
 }
 
 /* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_header.scss */
-#header .timestamp {
+#header .timestamp, #header .online, #header .local {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 767px) {
   /* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_header.scss */
-  #header .timestamp {
+  #header .timestamp, #header .online, #header .local {
     display: none;
   }
 }
@@ -11387,7 +11881,7 @@ img {
 }
 
 /* line 19, E:/GitHub/zwave-smarthome/app/sass/base/_footer.scss */
-#footer #footer_in .timestamp {
+#footer #footer_in .timestamp, #footer #footer_in .local, #footer #footer_in .online {
   display: none;
 }
 
@@ -13300,17 +13794,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 /* line 227, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert

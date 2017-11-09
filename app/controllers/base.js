@@ -35,6 +35,11 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
+    $scope.connection = {
+        online: false,
+        local: false,
+        remote: false
+    }
 
     /**
      * Extend an user
@@ -161,13 +166,27 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         }
         dataFactory.pingServer(cfg.server_url + cfg.api['time']).then(function (response) {
             $interval.cancel($scope.timeZoneInterval);
+            $scope.connection.online = true;
+            
+            var remote  = cfg.find_hosts.indexOf($location.host());    
+            if(remote > -1) {
+                $scope.connection.remote = true;
+            } else {
+                $scope.connection.local = true;
+            }
+
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
                 {timestamp: response.data.data.localTimeUT});
             var refresh = function () {
+                var oldTime = cfg.route.time.string;
                 cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
                 cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
                 if (cfg.route.fatalError.type === 'network') {
+                    $scope.connection.online = false;
+                    cfg.route.time.string = oldTime;
                     $scope.reloadAfterError();
+                } else {
+                    $scope.connection.online = true;   
                 }
 
             };
