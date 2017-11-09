@@ -113,8 +113,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
         if(!id){
             return;
         }
-       
-        $scope.longPressTimeout = $timeout(function () {
+         $scope.longPressTimeout = $timeout(function () {
             $scope.hasLongPress = id;
         }, 1000);
     };

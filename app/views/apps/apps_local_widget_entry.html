@@ -1,0 +1,47 @@
+<div class="localapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(v.id)" on-touch-end="onTouchEnd()" prevent-click="true">
+    <span class="has-instance" ng-if="v.hasInstance">
+        <i class="fa fa-fire text-success"></i> ({{v.hasInstance}})
+    </span>
+    <!-- Local app header -->
+    <a class="localapp-header" href="#apps/local/{{v.id}}" title="{{v.toolTipDescription}}">
+        <img class="localapp-img" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="{{v.defaults.title}}"
+        />
+        <img class="localapp-img" ng-src="storage/img/placeholder-img.png" ng-if="!v.icon" alt="{{v.defaults.title}}" />
+
+    </a>
+    <div class="localapp-body">
+
+        <!-- Local app title -->
+        <a class="localapp-title" href="#apps/local/{{v.id}}" title="{{v.defaults.title}}" ng-bind="v.defaults.title"></a>
+        <!-- Local app footer -->
+        <div class="localapp-footer" ng-class="v.id == hasLongPress ? 'has-longpress' : ''" on-long-press="onLongPress()" prevent-click="true">
+            <div class="btn-group">
+                <!-- Add -->
+                <a ng-href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_add_app')}}{{v.singleton ? ' - ' + _t('singleton_info') : ''}}"
+                    ng-disabled="v.preventInstall">
+                    <i class="fa fa-plus text-success"></i>
+                    <span class="btn-name" ng-bind="_t('lb_add_app')"></span>
+                </a>
+                <!-- Remove -->
+                <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="deleteModule({'id': v.id}, _t('app_delete_confirm'),'#local_module_' + v.id)"
+                    ng-if="v.custom && !v.hasReset">
+                    <i class="fa fa-remove text-danger"></i>
+                    <span class="btn-name" ng-bind="_t('lb_remove')"></span>
+                </button>
+                <!-- Reset -->
+                <button class="btn btn-default" title="{{_t('reset')}}" ng-click="resetModule({'id': v.id}, _t('app_reset_confirm'),'#local_module_' + v.id)"
+                    ng-if="v.custom && v.hasReset">
+                    <i class="fa fa-remove fa-refresh text-warning"></i>
+                    <span class="btn-name" ng-bind="_t('reset')"></span>
+                </button>
+                <!-- Updgrade -->
+                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}" ng-click="updateModule(dataHolder.onlineModules.ids[v.moduleName], _t('app_update_confirm'))"
+                    ng-if="dataHolder.onlineModules.ids[v.moduleName] && dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'">
+                    <i class="fa fa-level-up"></i>
+                    <span class="btn-name">{{_t('update_to_latest')}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.localapp-in -->
