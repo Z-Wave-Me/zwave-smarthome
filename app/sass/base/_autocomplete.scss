@@ -8,12 +8,22 @@ $autocomplete-israted-color: lighten(#f0ad4e,10%);
 .autocomplete{
     width: 100%;
     // Media queries
-    @include mediaQueries(min-small) {
+   @include mediaQueries(min-small) {
         min-width: 500px !important;
     }
 
     .aoutocomplete-title{
         display: inline-block;
         padding: 0 $spacing 0 0;
+        /* text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; */
     }
+    .dropdown-ctrl_{
+        @include mediaQueries(max-small) {
+            display: none;
+        }
+    }
+    
 }

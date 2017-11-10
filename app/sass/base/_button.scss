@@ -103,8 +103,9 @@
 }
 
 .btn{
-  &.no-borders {
+  &.btn-text {
     border: 0;
+    background: transparent;
   }
 }
 

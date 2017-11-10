@@ -81,7 +81,10 @@
     height: 40px;
     line-height: 40px !important;
     padding: 7px;
-    margin-right: 15px;
+     // Media queries
+     @include mediaQueries(min-small) {
+        margin-right: 15px;
+    } 
 }
 .navi-time-link{
     cursor: pointer;

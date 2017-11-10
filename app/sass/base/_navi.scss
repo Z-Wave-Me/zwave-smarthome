@@ -68,6 +68,11 @@
             padding: $spacing;
             border-bottom: solid 1px $app-border-color;
             // Media queries
+            @include mediaQueries(max-small) {
+                padding: $spacing-half $spacing;
+                font-size: 90%;
+            }
+            
             @include mediaQueries(min-small) {
                 display: block;
                 float: left;
@@ -91,14 +96,15 @@
                 display: inline-block;
                 margin: 0 $spacing 0 0;
             }
-
+            //TODO: deprecetad
             .page-navi-icon{
-                position: absolute;
+                display: none;
+                /* position: absolute;
                 right: 1%;
                 display: inline-block !important;
                 @include mediaQueries(min-small) {
                     display: none !important;
-                }
+                } */
             }
         }
         .active{
