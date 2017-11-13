@@ -49,6 +49,21 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 when('/events/:param?/:val?', {
                     templateUrl: 'app/views/events/events.html',
                     requireLogin: true
+                }).//Automation - scenes
+                when('/automation/scenes', {
+                    templateUrl: 'app/views/automation/scenes.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
+                }).//Automation - rules
+                when('/automation/rules', {
+                    templateUrl: 'app/views/automation/rules.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
+                }).//Automation - schedule
+                when('/automation/schedules', {
+                    templateUrl: 'app/views/automation/schedules.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
                 }).//Admin
                 when('/admin', {
                     templateUrl: 'app/views/management/management.html',

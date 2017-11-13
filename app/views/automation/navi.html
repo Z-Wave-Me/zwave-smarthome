@@ -1,0 +1,16 @@
+<div class="tabs-wrap form-inline">
+    <div class="btn-group btn-group-justified btn-goup-tabs">
+        <a class="btn btn-default" title="{{_t('scenes')}}" href="#automation/scenes" 
+           ng-class="routeMatch('/automation/scenes') ? 'active' : ''">
+            <i class="fa fa-lightbulb-o"></i> <span class="btn-name">{{_t('scenes')}}</span>
+        </a>
+        <a class="btn btn-default" title="{{_t('rules')}}" href="#automation/rules" 
+           ng-class="routeMatch('/automation/rules')  ? 'active' : ''">
+            <i class="fa fa-sliders"></i> <span class="btn-name">{{_t('rules')}}</span>
+        </a>
+        <a class="btn btn-default" title="{{_t('schedules')}}" href="#automation/schedules"  
+           ng-class="routeMatch('/automation/schedules') ? 'active' : ''">
+            <i class="fa fa-calendar-check-o"></i> <span class="btn-name">{{_t('schedules')}}</span>
+        </a>
+    </div>
+</div>

@@ -1,5 +1,9 @@
 {
     "newtrans": "---",
+    "automation":"Automation",
+    "scenes":"Scenes",
+    "rules":"Rules",
+    "schedules":"Schedules",
     "---": "newtrans",
     "smartstart_not_supported":"Your device does not support SmartStart. Please upgrade your firmware",
     "smartstart_enter_key":"Please enter the Key on new Device (DSK - device specific keys), which you find below QR code",
