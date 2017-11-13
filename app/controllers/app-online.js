@@ -7,7 +7,7 @@
  * The controller that handles all online APPs actions.
  * @class AppOnlineController
  */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $location, $routeParams, dataFactory, dataService, _) {
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $location, $routeParams, $timeout,dataFactory, dataService, _) {
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
 
     /**
@@ -106,6 +106,30 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         });
 
     };
+
+     /**
+     * On long press
+     * @param {string} id
+     * @returns {undefined}
+     */
+    $scope.onLongPress = function (id) {
+        $scope.hasLongPress = '';
+        // We only reset hasLongPress if id is missing
+        if(!id){
+            return;
+        }
+         $scope.longPressTimeout = $timeout(function () {
+            $scope.hasLongPress = id;
+        }, 1000);
+    };
+
+    /**
+     * On long press end
+     * @returns {undefined}
+     */
+    $scope.onTouchEnd = function(id) {
+        $timeout.cancel($scope.longPressTimeout);
+    }
 
 
 });

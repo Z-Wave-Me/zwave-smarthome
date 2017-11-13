@@ -1,256 +1,67 @@
-/* Apps
+/* Apps search 
 -------------------------------------------------- */
-.widget-entry-app {
-    width: 100%;
-    padding: 0;
-    @include mediaQueries(min-small) {
-        width: 50%;
-    }  
-    @include mediaQueries(min-large) {
-        width: 33.33333%;;
-    }  
 
-    .widget-entry-in {
-        min-height: 128px;
-        height: auto;
-        border-bottom: solid 1px #cccccc;
-        // Media queries
-        @include mediaQueries(min-small) {
-            min-height: 1px;
-            height: 110px;
+// Media queries
+@include mediaQueries(max-small) {
+    .app-search {
+        .page-control {
+            text-align: left;
         }
-        .widget-img {
-            position: absolute;
-            top: $spacing-double;
-            left: $spacing;
-            margin: 0;   
-
-            .widget-preview-img {  
-                max-width: 64px;
-                max-height: 64px;
+        #form_search {
+            width: 80%;
+            display: inline-table;
+            .form-control {
+                min-height: 20px;
+                padding: 6px 8px;
             }
         }
-        .widget-header {
-            display: none;
-        }
-        .widget-content {
-            margin: $spacing-double 0 0 64px + $spacing;
-            /*@include mediaQueries(min-esmall) {
-              margin: $spacing-double 0 0 64px + $spacing;
-            }*/
-        }
-        .bottom-aligner {
-            display: none;
-        }
-        .widget-footer {
-            margin-top: 10px;
-            display: block;
-            // Media queries
-            @include mediaQueries(min-small) {
-                margin: $spacing 0 0 0;
-            }
-            .btn-name {
-                display: none !important;
-            }
-            .btn-default[disabled]{
-                border-color: lighten($app-body-disabled-color, 30%);
-                .fa{
-                    color: lighten($app-body-disabled-color, 20%);
-                }
-            }
-            .rating-group {
-                //margin: $spacing 0 0 0;
-                .widget-rating {
-                    font-size: 150% * 0.6;
-                    padding: 0 2px 0 0;
-                    color: lighten($app-body-color,50%);
-                    &.israted {
-                        color: lighten(#f0ad4e,10%);
-                    }
-                }
-            }
-
-        }
-    }
-
-}
-
-#apps_online, #apps_instances {
-    .widget-warning {
-        .widget-img {
-            opacity: 0.4;
-            filter: alpha(opacity=40);
-
-        }
-        .widget-title {
-            h3 {
-                a {
-                    color: lighten($app-heading-color, 40%) !important;
-                }
-            }
-        }
-        .widget-footer {
-            .rating-group {
-                //margin: $spacing 0 0 0;
-                .widget-rating {
-                    //color: lighten($app-body-color, 10%);
-                    &.israted {
-                        color: lighten(#f0ad4e, 20%);
-                    }
-                }
-            }
-
-        }
-    }
-}
-
-#apps_instances {
-    .widget-warning {
-        .widget-entry-in {
-            border-color: lighten($app-brand-danger,20%) !important;
-            border-width: 4px;
-        }
-    }
-}
-
-/* Apps local
--------------------------------------------------- */
-.app-entry-local {
-    margin: 0 0 40px 0;
-    h2 {
-        padding: 0 0 10px 0;
-        font-size: 120%;
-        color: $accordion-heading-color;
-        font-weight: normal;
-    }
-
-}
-
-/* Apps online
--------------------------------------------------- */
-.app-entry-online {
-    margin: 0 0 $spacing-double 0;
-    // With categories
-    .app-entry-cat {
-        margin: 0 0 $spacing 0;
-
-        .app-entry-title {
-            width: 70%;
-            float: left;
-
-            color: $accordion-heading-color;
-            font-weight: normal;
-            h2 {
-                font-size: 120%;
-            }
-
-        }
-        .app-entry-btn {
-            text-align: right;
-            width: 25%;
-            float: right;
-            /*display: table-cell;
-            vertical-align: bottom;*/
+        .btn-group {
+            vertical-align: baseline;
             .btn {
-                margin: $spacing-double 0 0 0;
+                background: transparent;
+                border: 0;
+                @include appBoxShadow(none);
+            }
+        }
+        .app-dropdown{
+            float: left;
+            left: 0;
+            right: auto;
+        }
+        // Apps fixed search for small devices
+        &.app-fix-search {
+            width: 90%;
+            z-index: 1000000;
+            background-color: #E9E9E9;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            padding: $spacing-half;
+            height: 50px;
+            .page-navi-in{
+                top: -$spacing;
             }
         }
     }
-    .widget-entry {
-        @include mediaQueries(min-esmall) {
-            border: 0;
-            width: 50%;
-        }
-         @include mediaQueries(min-small) {
-            border: 0;
-            width: 25%;
-        }
-        .widget-entry-in {
-            @include mediaQueries(min-esmall) {
-                height: 220px;
-                margin: $spacing;
-            }
-             @include mediaQueries(min-small) {
-                height: 256px;
-            }
-            // Image
-            .widget-img {
-                @include mediaQueries(min-esmall) {
-                    position: static;
-                    text-align: center;
-                }
-                .widget-preview-img {
-                    @include mediaQueries(min-esmall) {
-                        max-width: 80px;
-                        max-height:80px;
-                        width: 100%;
-                        //width: 128px;
-                        //height: 128px;
-                    }
-                     @include mediaQueries(min-small) {
-                        max-width: 128px;
-                        max-height:128px;
-                    }
-                }
-            }
-            // Content
-            .widget-content {
-                @include mediaQueries(min-esmall) {
-                    margin: $spacing-double 0 0 0;
-                }
-            }
-            // Title
-            .widget-title {
-                @include mediaQueries(min-esmall) {
-                    text-align: center;
-                }
-                @include mediaQueriesMaxMin($site-max-w,$break-large) {
-                    max-width:170px;
-                    @include textOverflow();
-                }
-            }
-            // Control
-            .widget-ctrl {
-                @include mediaQueries(min-esmall) {
-                    width: 100%;
-                    float: none;
-
-                }
-             }
-              .ctrl-left {
-                    @include mediaQueries(min-esmall) {
-                        text-align: center;
-
-                    }
-                }
-               .ctrl-right {
-                    @include mediaQueries(min-esmall) {
-                        margin: $spacing-half 0 0 0;
-                    }
-
-                }
-        }
-    }
-
 }
+
 
 /* Apps instances
 -------------------------------------------------- */
-#apps_instances {
 
+#apps_instances {
     .accordion-entry {
-        background-color: #FFFFFF;
-        //border: solid 2px $report-border-color;
+        background-color: #FFFFFF; //border: solid 2px $report-border-color;
         margin: 0;
         .accordion-entry-title {
             font-size: 100%;
             margin: 0;
             padding: 10px 0;
             font-weight: bold;
-            .report-img-s{
+            .report-img-s {
                 margin: 0 0 0 $spacing-half;
             }
-            .accordion-title-text{
+            .accordion-title-text {
                 padding: 0 0 0 13px;
             }
         }
@@ -278,11 +89,12 @@
     }
 }
 
+
 /* App detail
 -------------------------------------------------- */
+
 .app-detail-img {
-    margin: 0 0 $spacing 0;
-    // Media queries
+    margin: 0 0 $spacing 0; // Media queries
     @include mediaQueries(min-small) {
         @include appFloat(left);
         width: 128px + $spacing-double;
@@ -314,19 +126,23 @@
     padding: $spacing 0 0 0;
 }
 
+
 /* Apps rating
 -------------------------------------------------- */
+
 .module-rating {
     font-size: 150%;
     padding: 0 $spacing 0 0;
     color: $app-body-color;
     &.israted {
-        color: lighten(#f0ad4e,10%);
+        color: lighten(#f0ad4e, 10%);
     }
 }
 
+
 /* Apps comments
 -------------------------------------------------- */
+
 .comment-entry {
     margin: 0 0 $spacing 0;
     padding: $spacing;
@@ -339,15 +155,12 @@
         color: lighten($app-body-color, 20%);
         margin: 0 0 $spacing-half 0;
     }
-    .comment-body {
-
-    }
+    .comment-body {}
 }
 
 .comment-entry.even {
-    background-color:  #E9E9E9;
+    background-color: #E9E9E9;
 }
 
 // Author comment
-.comment-type-1 {
-}
+.comment-type-1 {}

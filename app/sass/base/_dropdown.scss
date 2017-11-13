@@ -1,6 +1,7 @@
 /* Dropdown
 -------------------------------------------------- */
-.app-dropdown{
+
+.app-dropdown {
     font-size: 110%;
     position: absolute;
     top: 100%;
@@ -15,87 +16,86 @@
     @include appBoxShadow($app-box-shadow);
     border: 1px solid $app-border-color;
     background-clip: padding-box;
-    color: $app-a-color;
-    // Media queries
+    color: $app-a-color; // Media queries
     @include mediaQueries(min-small) {
         min-width: 380px;
     }
     .dropdown-entry {
         // Media queries
         //@include mediaQueries(min-small) {
-            display: table;
-            width: 100%
-        //}
-
+        display: table;
+        width: 100% //}
     }
     .dropdown-col {
         // Media queries
         //@include mediaQueries(min-small) {
-            display: table-cell;
-            vertical-align: middle;
-        //}
-
+        display: table-cell;
+        vertical-align: middle; //}
     }
-
     .dropdown-ctrl {
-        // Media queries
-        //@include mediaQueries(min-small) {
-            text-align: right;
-        //}
-
+        text-align: right; // Media queries
+        @include mediaQueries(max-small) {
+            display: none;
+        }
     }
-
-    .app-dropdown-title{
+    .app-dropdown-title {
         color: $app-heading-color;
         margin: 0;
         padding: $spacing;
         font-weight: bold;
         border-bottom: solid 1px $app-border-color;
     }
-    .app-dropdown-content{
+    .app-dropdown-content {
         padding: $spacing;
     }
-    ul{
+    ul {
         padding: 0;
-        margin:0;
+        margin: 0;
         list-style: none;
-        li{
+        li {
             padding: $spacing;
             border-bottom: solid 1px $app-border-color;
-            a{
+            @include mediaQueries(max-small) {
+                padding: $spacing-half $spacing;
+                font-size: 90%;
+            }
+            a {
                 display: block;
-                position:relative;
+                position: relative;
                 padding: 0;
                 vertical-align: middle;
                 color: $app-a-color;
             }
-
-            .menu-arrow{
+            .menu-arrow {
                 position: absolute;
                 right: 1%;
                 display: inline-block;
             }
-            img{
-              display: inline-block; 
-              margin: 0 $spacing 0 0;
+            img {
+                display: inline-block;
+                margin: 0 $spacing 0 0;
+                @include mediaQueries(max-small) {
+                    max-width: 24px;
+                    max-height: 24px;
+                }
             }
-            &:hover{
-                background-color: #F6F6F6;;
+            &:hover {
+                background-color: #F6F6F6;
+                ;
             }
-
         }
-        .active{
-            a{
+        .active {
+            a {
                 color: lighten($app-a-color, 40%);
                 font-weight: bold;
                 text-decoration: underline;
-                cursor:text;
+                cursor: text;
             }
         }
-        .fa{
+        .fa {
             font-size: 120%;
         }
-        .btn{
+        .btn {
             display: inline-block;
             position: static;
             padding: 3px 10px;
@@ -104,36 +104,40 @@
             border: 0;
             border-radius: 0;
         }
-
     }
 }
-.dropdown-100{
+
+.dropdown-100 {
     width: 100%;
 }
-.dropdown-50{
+
+.dropdown-50 {
     width: 50%;
 }
-.dropdown-lang{
+
+.dropdown-lang {
     min-width: 250px;
-    ul{
-        li{
+    ul {
+        li {
             display: inline-block;
             padding: $spacing-half;
             border: 0;
         }
     }
 }
-.app-dropdown-left{
+
+.app-dropdown-left {
     float: left;
     left: 0;
     right: auto;
 }
-.app-dropdown-bottom{
+
+.app-dropdown-bottom {
     top: auto;
     bottom: 100%;
 }
 
-.app-dropdown-mxh-600{
+.app-dropdown-mxh-600 {
     height: auto;
     max-height: 600px;
     overflow-x: hidden;
