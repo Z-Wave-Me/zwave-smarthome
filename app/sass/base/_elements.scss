@@ -15,6 +15,19 @@
             height: 64px;     
             background-color: #fff;
             @include appBorderRadius(50%);
+
+            &.mobile {
+                display: block;
+                @include mediaQueries(min-small) {
+                    display: none;            
+                }
+            }
+
+            display: none;
+                @include mediaQueries(min-small) {
+                    display: block;            
+                } 
+
             .widget-icon-update {
 
                 //z-index: 10;

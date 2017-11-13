@@ -1,4 +1,16 @@
 <!-- doorlock -->
-<img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
-    err-src="{{cfg.img.placeholder}}"
-    ng-click="runCmd(v.id + '/command/'+ (v.metrics.level == 'open' ? 'close' : 'open'), v.id)" />
+<div class="widget-ctrl ctrl-left">&nbsp;</div>
+<div class="widget-ctrl ctrl-right widget-ctrl-click">
+   <div class="btn-group">
+        <button class="btn btn-off"
+            ng-class="v.metrics.level=='close' ? 'btn-primary': 'btn-default'"
+            data-ng-click="runCmd(v.id + '/command/close', v.id)">
+            <i class="fa fa-lock"></i>
+        </button>
+        <button class="btn btn-on"
+            ng-class="v.metrics.level =='open' ? 'btn-primary': 'btn-default'"
+            data-ng-click="runCmd(v.id + '/command/open', v.id)">
+            <i class="fa fa-unlock"></i>
+        </button>
+    </div>
+</div>

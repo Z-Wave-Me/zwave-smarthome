@@ -15,7 +15,7 @@
         <div class="widget-entry-in progress-{{v.progress}}">
             <span class="widget-loader"></span>
              <!-- Widget icon -->
-            <div class="widget-img" title="{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}">
+            <div class="widget-img mobile" title="{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}">
                 <div ng-switch="v.deviceType">
                     <div ng-switch-when="switchMultilevel">
                         <div ng-include="'app/views/elements/widgets/mobile/switchMultilevel.html'"></div>
@@ -69,6 +69,10 @@
                         <div ng-include="'app/views/elements/widgets/mobile/default.html'"></div>
                     </div> 
                 </div>
+            </div>
+            <div class="widget-img" title="{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}">
+                <img class="widget-preview-img widget-icon-update img-circle trans-{{v.imgTrans}}" ng-src="{{v.iconPath}}" alt="img" ng-click="runCmd(v.id + '/command/' + v.updateCmd)" ng-if="cfg.element_update_icon.indexOf(v.deviceType) > -1" />
+                <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1" />
             </div>
             <!-- Widget header -->
             <div class="widget-header">
@@ -171,6 +175,7 @@
 <div ng-include="'app/views/elements/widgets/historyModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/eventModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/switchMultilevelModal.html'"></div>
+<div ng-include="'app/views/elements/widgets/mobile/switchMultilevelModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/thermostatModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/sensorMultilineModal.html'"></div>
 <div ng-include="'app/views/elements/widgets/openWeatherModal.html'"></div>

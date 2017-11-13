@@ -13300,14 +13300,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 /* line 227, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -13724,18 +13727,42 @@ http://codepen.io/MattIn4D/pen/LiKFC
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+  display: none;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   /*@include mediaQueries(min-esmall) {
                 width: 64px;
                 height: 64px;  
             }*/
 }
 
-/* line 18, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 19, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+.widget-entry-element .widget-entry-in .widget-img.mobile {
+  display: block;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 19, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .widget-entry-element .widget-entry-in .widget-img.mobile {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 13, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  .widget-entry-element .widget-entry-in .widget-img {
+    display: block;
+  }
+}
+
+/* line 31, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-img .widget-icon-update {
   cursor: pointer;
 }
 
-/* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 43, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-img .widget-img-overlay {
   background-color: rgba(255, 255, 255, 0.8);
   width: 64px;
@@ -13750,13 +13777,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 480px) {
-  /* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 43, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-img .widget-img-overlay {
     display: none;
   }
 }
 
-/* line 41, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 54, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-img .widget-img-overlay .widget-level {
   display: table-cell;
   vertical-align: middle;
@@ -13765,7 +13792,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   font-weight: bold;
 }
 
-/* line 49, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 62, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-img .widget-img-overlay .widget-scale {
   display: table-cell;
   vertical-align: middle;
@@ -13773,20 +13800,20 @@ http://codepen.io/MattIn4D/pen/LiKFC
   text-align: left;
 }
 
-/* line 58, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 71, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-content {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 479px) {
-  /* line 58, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 71, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-content {
     margin-left: 0;
   }
 }
 
-/* line 64, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 77, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-title {
   text-align: center;
   /* MIN WIDTH */
@@ -13794,14 +13821,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 480px) {
-  /* line 64, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 77, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title {
     text-align: left;
   }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 1024px) {
-  /* line 64, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 77, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title {
     max-width: 200px;
     white-space: nowrap;
@@ -13814,7 +13841,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   }
 }
 
-/* line 74, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 87, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-title h3 {
   font-size: 75%;
   white-space: nowrap;
@@ -13829,13 +13856,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 480px) {
-  /* line 74, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 87, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title h3 {
     font-size: 95%;
   }
 }
 
-/* line 81, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 94, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-title .widget-room {
   display: block;
   white-space: nowrap;
@@ -13852,20 +13879,20 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 480px) {
-  /* line 81, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 94, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title .widget-room {
     font-size: 85%;
   }
 }
 
-/* line 90, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 103, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-title .widget-room .widget-title {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 1024px) {
-  /* line 90, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 103, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title .widget-room .widget-title {
     max-width: 200px;
     white-space: nowrap;
@@ -13879,14 +13906,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (max-width: 479px) {
-  /* line 98, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 111, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title .widget-room .widget-title h3 {
     font-size: 95%;
     padding: 0 0 0 74px;
   }
 }
 
-/* line 103, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 116, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-title .widget-room .widget-title .widget-room {
   white-space: nowrap;
   display: block;
@@ -13897,59 +13924,59 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (max-width: 479px) {
-  /* line 103, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 116, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-entry-element .widget-entry-in .widget-title .widget-room .widget-title .widget-room {
     padding: 0 0 0 74px;
   }
 }
 
-/* line 114, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 127, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-title .widget-room .widget-level {
   font-weight: bold;
   font-size: 130%;
   color: #0d0d0d;
 }
 
-/* line 119, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 132, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in .widget-title .widget-room .widget-scale {
   font-size: 110%;
 }
 
-/* line 126, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 139, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in.isfailed-true .widget-entry-in {
   opacity: 0.8;
   border-color: #f2dede;
 }
 
-/* line 129, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 142, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-entry-element .widget-entry-in.isfailed-true .widget-entry-in .widget-preview-img {
   opacity: 0.6;
 }
 
-/* line 138, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 151, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .fa-caret-down, .tbl-widget-ctrl .fa-caret-down {
   font-size: 140%;
   color: #737373;
 }
 
-/* line 143, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 156, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn, .tbl-widget-ctrl .btn-group .btn {
   color: #d9d9d9;
 }
 
-/* line 145, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 158, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn .fa, .tbl-widget-ctrl .btn-group .btn .fa {
   font-size: 110%;
 }
 
-/* line 149, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 162, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .widget-btn-symbol, .tbl-widget-ctrl .btn-group .widget-btn-symbol {
   font-weight: bold;
   display: inline-block;
   padding: 0 5px;
 }
 
-/* line 154, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 167, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-primary, .tbl-widget-ctrl .btn-group .btn-primary {
   background-color: #FFFFFF !important;
   border-color: #d9d9d9;
@@ -13959,28 +13986,28 @@ http://codepen.io/MattIn4D/pen/LiKFC
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
-/* line 159, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 172, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-primary .fa {
   color: #80AD80 !important;
 }
 
-/* line 163, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 176, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-off.btn-primary, .tbl-widget-ctrl .btn-group .btn-off.btn-primary {
   color: #d9534f !important;
 }
 
-/* line 165, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 178, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-off.btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-off.btn-primary .fa {
   color: #80AD80 !important;
 }
 
-/* line 169, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 182, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-label-on, .tbl-widget-ctrl .btn-group .btn-label-on {
   color: #737373;
   text-transform: lowercase;
 }
 
-/* line 173, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 186, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-ctrl .btn-group .btn-widget-time, .widget-ctrl .btn-group .txt-widget-time, .tbl-widget-ctrl .btn-group .btn-widget-time, .tbl-widget-ctrl .btn-group .txt-widget-time {
   display: none;
   /* MIN WIDTH */
@@ -13988,7 +14015,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 173, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 186, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-ctrl .btn-group .btn-widget-time, .widget-ctrl .btn-group .txt-widget-time, .tbl-widget-ctrl .btn-group .btn-widget-time, .tbl-widget-ctrl .btn-group .txt-widget-time {
     padding: 10px 0 0 0;
     border: 0 none;
@@ -14000,82 +14027,82 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Specifics element styles
 ----------------------------------------------------*/
-/* line 191, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 204, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .sensorMultiline .control-left {
   width: 60% !important;
 }
 
-/* line 194, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 207, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .sensorMultiline .control-right {
   width: 40%;
 }
 
-/* line 200, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 213, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .switchMultilevel .control-left {
   width: 60% !important;
 }
 
-/* line 203, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 216, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .switchMultilevel .control-right {
   width: 40%;
 }
 
-/* line 208, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 221, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .element-camera-control {
   text-align: center;
   margin: 0 0 10px 0;
 }
 
-/* line 211, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 224, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .element-camera-control .fa {
   font-size: 180%;
 }
 
-/* line 216, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 229, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .camera-img {
   text-align: center;
 }
 
-/* line 218, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 231, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .camera-img img {
   width: 100%;
   display: inline-block;
 }
 
-/* line 224, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 237, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .color-picker-show {
   display: inline-block;
   width: 24px;
   height: 24px;
 }
 
-/* line 231, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 244, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .drop-down-tags div {
   padding: 5px;
 }
 
-/* line 238, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 251, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .drop-down-tags a {
   display: inline-block;
   margin: 0 5px;
 }
 
-/* line 243, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 256, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .bcg-success.false {
   color: #a8a8a8;
 }
 
-/* line 245, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 258, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .bcg-success.false .report-img {
   opacity: 0.4;
 }
 
-/* line 260, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 273, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .sensorDiscrete .ctrl-left {
   width: 30% !important;
 }
 
-/* line 263, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 276, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .sensorDiscrete .ctrl-right {
   width: 70% !important;
 }
@@ -14155,7 +14182,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }*/
 /* Elements drag & drop cards
 ----------------------------------------------------*/
-/* line 345, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 358, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .dragdrop-element .dd-placeholder {
   width: 100%;
   text-align: center;
@@ -14165,7 +14192,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   background-color: #FFFFFF;
 }
 
-/* line 354, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 367, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .dragdrop-element .dd-placeholder.dd-element {
   width: 50%;
   float: left;
@@ -14185,7 +14212,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 320px) {
-  /* line 354, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 367, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .dragdrop-element .dd-placeholder.dd-element {
     float: left;
     position: relative;
@@ -14195,7 +14222,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 480px) {
-  /* line 354, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 367, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .dragdrop-element .dd-placeholder.dd-element {
     float: left;
     position: relative;
@@ -14205,34 +14232,34 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 354, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 367, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .dragdrop-element .dd-placeholder.dd-element {
     width: 20%;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 354, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 367, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .dragdrop-element .dd-placeholder.dd-element {
     width: 14.28571%;
   }
 }
 
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 354, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 367, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .dragdrop-element .dd-placeholder.dd-element {
     width: 12.5%;
   }
 }
 
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 354, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 367, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .dragdrop-element .dd-placeholder.dd-element {
     width: 10%;
   }
 }
 
-/* line 382, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 395, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .card-element-dragdrop {
   background: #f6f6f6;
   /* Old browsers */
@@ -14272,7 +14299,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 320px) {
-  /* line 382, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 395, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .card-element-dragdrop {
     float: left;
     position: relative;
@@ -14282,7 +14309,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 480px) {
-  /* line 382, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 395, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .card-element-dragdrop {
     float: left;
     position: relative;
@@ -14292,40 +14319,40 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 600px) {
-  /* line 382, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 395, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .card-element-dragdrop {
     width: 20%;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 382, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 395, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .card-element-dragdrop {
     width: 14.28571%;
   }
 }
 
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 382, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 395, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .card-element-dragdrop {
     width: 12.5%;
   }
 }
 
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 382, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 395, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .card-element-dragdrop {
     width: 10%;
   }
 }
 
-/* line 412, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 425, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .card-element-dragdrop .card-element-dragdrop-in {
   padding: 10px;
   word-break: break-word;
 }
 
-/* line 415, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 428, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .card-element-dragdrop .card-element-dragdrop-in .element-dragdrop-img {
   max-width: 48px;
   max-height: 48px;
@@ -14334,7 +14361,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-radius: 50%;
 }
 
-/* line 421, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 434, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .card-element-dragdrop .card-element-dragdrop-in h3 {
   margin: 10px 0 0 0;
   font-size: 95%;
@@ -14342,31 +14369,31 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Element detail
 ----------------------------------------------------*/
-/* line 432, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 445, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .btn-tag {
   float: none !important;
   border-radius: 4px !important;
 }
 
-/* line 436, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 449, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .btn-tag label input[type="checkbox"] {
   display: inline-block;
 }
 
-/* line 443, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 456, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .app-row-icons .report-body {
   width: 30px;
 }
 
 /* Custom icons
 -------------------------------------------------- */
-/* line 450, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 463, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .element-icon-list {
   border-bottom: solid 1px #cccccc;
   margin: 10px;
 }
 
-/* line 453, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 466, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .element-icon-list .element-icon-img {
   display: inline-block;
   margin: 10px;
@@ -14377,7 +14404,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 453, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+  /* line 466, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .element-icon-list .element-icon-img {
     max-width: 32px;
     max-height: 32px;
@@ -14386,72 +14413,72 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* OpenWeather widget
 ----------------------------------------------------*/
-/* line 468, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 481, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline table td {
   text-align: left;
   padding: 5px 0;
 }
 
-/* line 473, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 486, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline table td:first-child {
   padding-left: 20px;
   vertical-align: top;
 }
 
-/* line 478, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 491, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline h4 {
   display: inline;
 }
 
-/* line 482, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 495, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline .text-center {
   margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
-/* line 488, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 501, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body.text-widget h3 {
   font-weight: bold;
 }
 
-/* line 492, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 505, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body.text-widget-no-img {
   padding-left: 15px;
 }
 
-/* line 496, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 509, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-control.text {
   width: 95%;
 }
 
-/* line 500, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 513, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .text-widget-modal.modal-dialog {
   text-align: center;
 }
 
-/* line 504, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 517, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 img.widget-promo-image {
   max-height: 200px;
   margin-bottom: 10px;
 }
 
-/* line 509, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 522, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-promo-text {
   text-align: left;
 }
 
-/* line 513, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 526, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-control.text a {
   font-weight: normal;
 }
 
-/* line 517, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 530, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-control.text a:hover {
   text-decoration: none;
 }
 
-/* line 521, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 534, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-control.text a:after {
   content: "\f1ea";
   font-family: FontAwesome;
@@ -14464,13 +14491,13 @@ img.widget-promo-image {
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
-/* line 533, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 546, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
   padding: 10px 0;
   height: auto;
 }
 
-/* line 538, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 551, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .hidden-sensor-multiline .widget-image {
   position: relative;
   top: 0;
@@ -14479,76 +14506,76 @@ img.widget-promo-image {
   height: 25px;
 }
 
-/* line 546, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 559, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
   padding-left: 5px;
 }
 
-/* line 550, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 563, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
   width: inherit;
   padding: 5px 5px 5px 10px;
 }
 
-/* line 555, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 568, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
-/* line 562, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 575, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm, .toggleButton .widget-body div.widget-control.control-right.ng-scope > div.btn-group-sm > button.btn.btn-default {
   cursor: default;
 }
 
 /* RGB color wheel
 --------------------------------------------------------*/
-/* line 569, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 582, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .wheel-colorpicker .col-rgb {
   margin: 0 auto;
   text-align: center;
 }
 
-/* line 573, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 586, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .wheel-colorpicker #wheel_picker {
   margin: 0 auto;
   text-align: center;
   cursor: pointer;
 }
 
-/* line 579, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 592, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .wheel-colorpicker #wheel_picker_selected {
   margin: 0 auto;
   text-align: center;
 }
 
-/* line 584, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 597, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .wheel-colorpicker #wheel_picker_preview {
   margin: 0 auto;
   text-align: center;
 }
 
-/* line 589, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 602, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .wheel-colorpicker .wheel-picker-circle-half {
   margin: 0;
   height: 80px;
   line-height: 80px;
 }
 
-/* line 595, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 608, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .wheel-colorpicker .wheel-picker-circle-half {
   width: 150px;
   height: 75px;
 }
 
-/* line 600, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 613, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .wheel-colorpicker .wheel-picker-circle-top {
   border-top-left-radius: 150px;
   border-top-right-radius: 150px;
 }
 
-/* line 605, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
+/* line 618, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
 .wheel-colorpicker .wheel-picker-circle-bottom {
   border-bottom-left-radius: 150px;
   border-bottom-right-radius: 150px;
