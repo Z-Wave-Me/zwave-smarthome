@@ -58,7 +58,8 @@
                                    <i class="fa fa-square text-danger"></i>
                             </button>
                      </p>
-                    <div class="btn-group"  ng-if="widgetSwitchMultilevel.find.deviceType == 'audioPlayer'">
+                    <div class="btn-group btn-goup-block btn-goup-4" 
+                         ng-if="widgetSwitchMultilevel.find.deviceType == 'audioPlayer'">
 
                         <button class="btn btn-default btn-label-on" id="btn_step_backward_{{ widgetSwitchMultilevel.find.id}}"
                                 data-ng-click="runCmd(widgetSwitchMultilevel.find.id + '/command/previous', widgetSwitchMultilevel.find.id)"
