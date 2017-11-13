@@ -1,0 +1,29 @@
+<!-- cameraModal -->
+<div id="cameraModal" class="appmodal" ng-controller="ElementCameraController" ng-if="modalArr.cameraModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('cameraModal', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{widgetCamera.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body text-center">
+            <bb-alert alert="widgetCamera.alert"></bb-alert>
+            <div class="element-camera-control">
+                <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/zoomIn')" ng-if="widgetCamera.find.metrics.hasZoomIn"><i class="fa fa-search-plus"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/zoomOut')" ng-if="widgetCamera.find.metrics.hasZoomOut"><i class="fa fa-search-minus"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/left')" ng-if="widgetCamera.find.metrics.hasLeft"><i class="fa fa-arrow-circle-left"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/right')" ng-if="widgetCamera.find.metrics.hasRight"><i class="fa fa-arrow-circle-right"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/up')" ng-if="widgetCamera.find.metrics.hasUp"><i class="fa fa-arrow-circle-up"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/down')" ng-if="widgetCamera.find.metrics.hasDown"><i class="fa fa-arrow-circle-down"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/open')" ng-if="widgetCamera.find.metrics.hasOpen"><i class="fa fa-power-off"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/close')" ng-if="widgetCamera.find.metrics.hasClose"><i class="fa fa-close"></i></a>&nbsp;&nbsp;&nbsp;
+            </div>
+
+            <div class="camera-img">
+                <img class="text-center camera-img" ng-src="{{url}}">
+            </div>
+        </div>
+        <!--<div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('cameraModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+        </div>-->
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<!-- switchRGBWModal -->
+<div id="switchRGBWModal" class="appmodal" ng-controller="ElementSwitchRGBWController" ng-if="modalArr.switchRGBWModal">
+	<div class="appmodal-in">
+		<div class="appmodal-header">
+			<span class="appmodal-close" ng-click="handleModal('switchRGBWModal', $event)"><i class="fa fa-times"></i></span>
+			<h3>{{widgetSwitchRGBW.find.metrics.title}}</h3>
+		</div>
+		<div class="appmodal-body text-center">
+			<bb-alert alert="widgetSwitchRGBW.alert"></bb-alert>
+			<div class="fieldset">
+				<div class="form form-page" 
+					ng-repeat="dev in widgetSwitchRGBW.all"
+					ng-if="dev.deviceType == 'switchMultilevel' && dev.probeType == 'multilevel'">
+					<fieldset>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="row">
+									<h3>{{_t('rgb_dimmer')}}</h3>
+									<div class="col-sm-1">
+										
+									</div>
+									<div class="col-sm-11">
+										<div id="range_slider_dimmer"
+											 class="app-range-slider"
+											 range-slider
+											 min='0'
+											 max='99'
+											 model-max="dev.metrics.level"
+											 pin-handle="min"
+											 decimal-places="0"
+											 step="0"
+											 on-handle-down="sliderOnHandleDown(dev)"
+											 on-handle-up="sliderOnHandleUp(dev)">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="form form-page">
+					<fieldset>
+						<div class="row">
+							<div class="col-sm-12">
+								<h3>{{_t('rgb_color')}}</h3>
+								<div class="row wheel-colorpicker">
+									<div class="col-sm-3"></div>
+									<div class="col-rgb col-sm-3">
+										<canvas id="wheel_picker" var="4" width="150" height="150" ng-mousemove="setColor($element)"></canvas>
+										<input type="hidden" id="rgbVal" />
+									</div>
+									<div class="col-rgb col-sm-3">
+										<div id="wheel_picker_selected" class="wheel-picker-circle-half wheel-picker-circle-top" style="background-color: {{widgetSwitchRGBW.selectedColor}};">
+											<div id="wheel_picker_selected_spin" ng-if="widgetSwitchRGBW.process">
+												<i class="fa fa-spinner fa-spin"></i> {{_t('updating')}}
+											</div>
+										</div>
+										<div id="wheel_picker_preview" class="wheel-picker-circle-half wheel-picker-circle-bottom" style="background-color: {{widgetSwitchRGBW.previewColor}};">
+											&nbsp;
+										</div>
+										<p>{{widgetSwitchRGBW.previewColor}}</p>
+									</div>
+									<div class="col-sm-3"></div>
+								</div>
+								<div class="input-group form-block">
+									<span class="input-group-addon" id="basic-addon1">#</span>
+									<input type="text" ng-blur="colorHexChange(); setRGBColor(widgetSwitchRGBW.find)" class="form-control" ng-model="widgetSwitchRGBW.colorHex">
+								</div>
+								<div ng-repeat="dev in widgetSwitchRGBW.all" ng-if="dev.deviceType == 'switchRGBW'">
+									<div class="row form-block" ng-repeat="(k, v) in dev.metrics.color">
+										<div class="col-sm-1">
+											<span><i class="fa fa-circle fa-lg {{widgetSwitchRGBW.color[k]}}"></i></span>
+										</div>
+										<div class="col-sm-11">
+											<div id="range_slider_{{$index}}"
+												 class="app-range-slider"
+												 range-slider
+												 min='0'
+												 max='255'
+												 model-max="dev.metrics.color[k]"
+												 pin-handle="min"
+												 decimal-places="0"
+												 step="0"
+												 on-handle-down="sliderOnHandleDown(dev)"
+												 on-handle-up="sliderOnHandleUpRGB(dev)">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>						
+				</div>				
+				<div class="form form-page last" 
+					ng-repeat="dev in widgetSwitchRGBW.all"
+					ng-if="dev.deviceType == 'switchMultilevel' && ['switchColor_soft_white'].indexOf(dev.probeType) > -1">
+					<fieldset>
+						<div class="row">
+							<div class="col-sm-12">
+								<h3>{{_t('rgb_softcold')}}</h3>
+								<div ng-repeat="dev in widgetSwitchRGBW.all"
+									 ng-if="dev.deviceType == 'switchMultilevel' && ['switchColor_soft_white','switchColor_cold_white'].indexOf(dev.probeType) > -1"
+									 class="row form-block">
+									<div class="col-sm-1">
+										<span ng-if="dev.probeType == 'switchColor_soft_white'">{{_t('rgb_soft')}}</span>
+										<span ng-if="dev.probeType == 'switchColor_cold_white'">{{_t('rgb_cold')}}</span>
+									</div>
+									<div class="col-sm-11">
+										<div id="range_slider_{{$index}}"
+											 class="app-range-slider"
+											 range-slider
+											 min='0'
+											 max='99'
+											 model-max="dev.metrics.level"
+											 pin-handle="min"
+											 decimal-places="0"
+											 step="0"
+											 on-handle-down="sliderOnHandleDown(dev)"
+											 on-handle-up="sliderOnHandleUp(dev)">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>					
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>

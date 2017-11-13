@@ -54,6 +54,15 @@
   z-index: $zindex-modal + 1;
 }
 
+#securityControlModal {
+  .switch-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-bottom: -8px;
+  }
+}
+
 .appmodal:before {
   content: '';
   display: block;
