@@ -33,7 +33,7 @@
 <div class="widget-ctrl ctrl-right">
     <div class="btn-group">
         <button class="btn btn-default btn-label-on" id="btn_volume_{{ v.id}}"
-                ng-click="dataHolder.devices.find = v;handleModal('switchMultilevelModal', $event)"
+                ng-click="dataHolder.devices.find = v;handleModal('switchMultilevelModal_m', $event)"
                 title="{{_t('lb_volume')}}">
             <span class="widget-btn-symbol">{{v.metrics.level | getMaxLevel:v.minMax.max}}</span>
             <i class="fa fa-volume-up"></i>
