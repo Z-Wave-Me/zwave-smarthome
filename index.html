@@ -82,10 +82,9 @@
         <script src="app/controllers/app-instance.js"></script>
         <script src="app/controllers/app-alpaca.js"></script>
         <script src="app/controllers/skin.js"></script>
-         <script src="app/controllers/icon.js"></script>
+        <script src="app/controllers/icon.js"></script>
         <script src="app/controllers/device.js"></script>
-        <script src="app/controllers/smartstart.js"></script>
-         <script src="app/controllers/zwave-inclusion.js"></script>
+        <script src="app/controllers/zwave-inclusion.js"></script>
         <script src="app/controllers/zwave-manage.js"></script>
         <script src="app/controllers/zwave-exclude.js"></script>
         <script src="app/controllers/zwave-vendor.js"></script>
@@ -198,7 +197,7 @@
                                 </a>
                             </li>
                             <!-- Logout -->
-                            <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">
+                            <li class="subnavi-logout" ng-if="cfg.route.os != 'unknown'">
                                 <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                         </ul>

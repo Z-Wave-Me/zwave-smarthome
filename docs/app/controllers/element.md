@@ -137,6 +137,16 @@ Set visibility
 Set exact value for the command
 
 
+### ElementBaseController.itemOnLongPress() 
+
+device on long press action
+
+
+### ElementBaseController.itemOnTouchEnd() 
+
+device on end long press action
+
+
 ### ElementBaseController.setDevices() 
 
 Set device

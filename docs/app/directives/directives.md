@@ -61,6 +61,10 @@ Auto focus for input box
 Watch for an error loading an image and to replace the src
 
 
+## bindClassOnScroll
+Bind class toggle to window scroll event
+
+
 ## bbCompareTo
 Compare two values
 
@@ -95,10 +99,6 @@ Upload a file
 
 ## bbKeyEvent
 Catch a key event
-
-
-## onLongPress
-Catch a long press event
 
 
 
