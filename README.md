@@ -11,6 +11,9 @@ Marcel Kermer
 
 ## v1.8.0
 #### New features
+- Added ITALIAN language.
+- Online Apps: Improved mobile view.
+- Local Apps: Improved mobile view.
 - Elements: Improved mobile view.
 - Rooms: Improved mobile view.
 - Chekboxes replaced with the switcher.
