@@ -44,12 +44,20 @@ $inclusion-img-w: 96px;
     border: solid 1px $app-border-color;
 
     .vendor-image{
+        font-size: 80%;
         line-height: 80px + 5;
         margin: 0 !important;
         img {
+            padding: $spacing;
             vertical-align: middle;
             max-width: 80px;
             max-height: 80px;
+        }
+        span{
+            display: block;
+            padding: $spacing;
+            line-height: 1.3em;  
+            height: 85px;
         }
     }
 }
@@ -213,15 +221,96 @@ $inclusion-img-w: 96px;
 /* Images
 -------------------------------------------------- */
 .product-img{
-    max-width: 64px;
-    max-height: 64px;
+    max-width: 48px;
+    max-height: 48px;
+    // Media queries
+    @include mediaQueries(min-small) {
+        max-width: 64px;
+        max-height: 64px;
+    }
+
 }
 
 /* Camera
 -------------------------------------------------- */
 .app-row-cameraadd{
     .report-media{
-        text-align: center;
-        width: 64px + $spacing-double;// Img width + spacing
+        width: 48px + $spacing-double;// Img width + spacing
+        //text-align: center;
+        // Media queries
+        @include mediaQueries(min-small) {
+            width: 64px + $spacing-double;// Img width + spacing
+        }
+
+    }
+}
+/* SmartStart
+-------------------------------------------------- */
+.row-smartstart{
+    .report-entry{
+        // Media queries
+        @include mediaQueries(max-esmall) {
+            display: block;
+        }
+        .report-col {
+            padding: $spacing;
+            vertical-align: top;
+            border-bottom:0;
+            // Media queries
+            @include mediaQueries(max-esmall) {
+                display: block;
+            }
+        }
+    }
+}
+
+/* QR code
+-------------------------------------------------- */
+.qrcode-wrap{
+    //margin: 0 auto;
+    #qrcode_network{
+        // margin: $spacing-double auto 0 auto;
+        //width: 200px;
+        //text-align: center;
+        img {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            display: block;
+            width: 200px;
+        }
+        @include mediaQueries(min-small) {
+            margin: 0;
+        }
+    }
+}
+
+/* Security 2 icons
+-------------------------------------------------- */
+.security-2{
+    &.fa-stack{
+        margin: 0 $spacing-double 0 0;
+        width: 1em;
+        //top: -5px;
+        left: -3px;
+        display: inline;
+        height: 1em;
+        line-height: 1em;
+    }
+    .fa-stack-1x,.fa-stack-1x{
+        text-align: left;
+    }
+    .icon-bottom{
+        color: darkgray;
+    }
+    .icon-top{
+        color: green;
+        left:4px; top:4px;
+    }
+    &.false{
+        .icon-top{
+            color: #a94442;
+        }
     }
 }

@@ -11,7 +11,7 @@
             <div>{{c.description}}</div>
         </div>
         <div class="app-entry-btn">
-            <a class="btn btn-info" ng-href="#/apps/online/filter" ng-click="setFilter({category: c.id})" ng-if="_.size(c.onlineModules) > 5">
+            <a class="btn btn-default btn-text" ng-href="#/apps/online/filter" ng-click="setFilter({category: c.id})" ng-if="_.size(c.onlineModules) > 5">
                 <span class="btn-name">{{_t('show_more_apps')}}</span>
                 <i class="fa fa-chevron-right"></i>
             </a>

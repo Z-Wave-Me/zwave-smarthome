@@ -39,7 +39,6 @@
         }
 
     .widget-entry-in{
-        border-bottom: solid 1px $app-border-color;
         background-color: #FFFFFF;
         height: 150px;
         position: relative;
@@ -53,12 +52,14 @@
             border-color: $app-border-color;
             border: solid 1px $app-border-color;
             margin: $spacing;
-        }
+        } 
+
+
         .widget-img{
             position: relative;
             margin: 0px auto 5px;
             top: 0;
-            left: 0; 
+            left: 0;
             // Media queries
             @include mediaQueries(min-esmall) {
                 position: absolute;

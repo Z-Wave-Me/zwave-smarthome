@@ -808,17 +808,17 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
      */
     $scope.loadDeviceId = function () {
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
-            var lastTriggerList = response.data.data.metrics.lastTriggerList;
-            if (_.isEmpty(lastTriggerList)) {
+            var device = response.data.data;
+            console.log("device", device);
+            if (_.isEmpty(device.metrics.lastTriggerList)) {
                 $scope.widgetSecurityControl.alert = {
                     message: $scope._t('no_data'),
                     status: 'alert-warning',
                     icon: 'fa-exclamation-circle'
                 };
-                return;
             }
 
-            $scope.widgetSecurityControl.find = lastTriggerList;
+            $scope.widgetSecurityControl.find = device;
 
         }, function (error) {
             $scope.widgetSecurityControl.alert = {

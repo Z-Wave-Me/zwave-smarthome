@@ -45,10 +45,24 @@
   }
 }
 
+.btn-goup-5 {
+  .btn {
+    width: 20%;
+  }
+}
+
 .btn-default {
   color: $app-body-color;
   background-color: #FFFFFF;
   border-color: #CCCCCC;
+}
+.btn-delete {
+  color: $app-body-color;
+  background: transparent;
+  border: 0;
+  .fa{
+      color: $app-brand-danger;
+  }
 }
 
 .btn-default.active {
@@ -58,11 +72,7 @@
 .btn, .btn-device-admin {
   font-size: 110%;
   .fa {
-    font-size: 150%;
-    // Media queries
-    @include mediaQueries(min-small) {
-      font-size: 120%;
-    }
+    font-size: 120%;
   }
 }
 
@@ -93,8 +103,9 @@
 }
 
 .btn{
-  &.no-borders {
+  &.btn-text {
     border: 0;
+    background: transparent;
   }
 }
 

@@ -1,0 +1,48 @@
+<div class="smart-start" ng-controller="SmartStartDskController">
+     <bb-alert alert="dsk.firmwareAlert"></bb-alert>
+     <div class="container" ng-switch="dsk.state" ng-if="_.isEmpty(dsk.firmwareAlert)">
+        <!-- Navigation -->
+        <div ng-include="'app/views/smartstart/navi.html'"></div>
+        <!-- Start -->
+        <div class="entry add-dsk">
+            <p class="content">
+               {{_t('smartstart_enter_key')}}
+            </p>
+            <form name="form_dsk" class="form-inline_" ng-submit="addDskProvisioningList()">
+              <div class="form-group dsk-input-group" bb-dsk-navigate>
+              <span><input id="dsk_1" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_1" /></span>
+            <span><input id="dsk_2" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_2" /></span>
+            <span><input id="dsk_3" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_3" /></span> 
+            <span><input id="dsk_4" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_4" /></span>  
+            <span><input id="dsk_5" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_5" /></span>  
+            <span><input id="dsk_6" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_6" /></span>  
+            <span><input id="dsk_7" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_7" /></span>  
+            <span><input id="dsk_8" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_8" /></span>  
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-success btn-block_">
+                        <bb-row-spinner
+                                    spinner="rowSpinner[cfg.api.add_dsk]"
+                                    label="_t('Register')"
+                                    icon="'fa-plus'">
+                            </bb-row-spinner>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+        <!-- success-register -->
+        <div class="entry list" ng-switch-when="success-register">
+             <div class="alert alert-success">
+                  <i class="fa fa-check"></i>  {{_t('smartstart_enter_key_success')}}
+                  <div>{{dsk.response}}</div>
+            </div>
+          <!--<ul class="scrollh">
+              <li ng-repeat="v in dsk.list track by $index">
+                 {{v}} 
+              </li>
+          </ul>-->
+        </div>
+    </div>
+</div> <!-- /ng-controller --> 

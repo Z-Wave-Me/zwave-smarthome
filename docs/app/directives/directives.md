@@ -97,5 +97,9 @@ Upload a file
 Catch a key event
 
 
+## onLongPress
+Catch a long press event
+
+
 
 * * *

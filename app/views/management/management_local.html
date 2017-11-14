@@ -1,6 +1,6 @@
 <!-- Admin local access view -->
 <h2 class="accordion-entry-title" ng-click="expandElement('local')">
-    <i class="fa fa-database"></i> <span ng-bind="_t('local_access_manage')"></span>
+    <i class="fa fa-database fa-fw"></i> <span ng-bind="_t('local_access_manage')"></span>
     <i class="fa accordion-arrow" ng-class="expand.local ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-class="" ng-if="expand.local" ng-controller="ManagementLocalController">
@@ -14,7 +14,7 @@
                 <div>
                     <input type="checkbox" name="wan_port_access" id="wan_port_access" value="true" 
                                ng-model="handleTimezone.instance.params.wan_port_access" ng-checked="handleTimezone.instance.params.wan_port_access" /> 
-                         <label ng-bind="_t('local_access_activate')"></label>
+                         <label for="wan_port_access" ng-bind="_t('local_access_activate')"></label>
                          <bb-help-text trans="_t('timezone_info')"></bb-help-text>
                    
                 </div>

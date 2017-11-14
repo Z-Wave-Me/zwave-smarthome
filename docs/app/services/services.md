@@ -86,12 +86,6 @@ Log error in the console
 
 **Returns**: `undefined`
 
-### dataService.getOs() 
-
-Get OS (operating system)
-
-**Returns**: `String`
-
 ### dataService.isIeEdge() 
 
 Get OS (operating system)
@@ -209,6 +203,18 @@ Build a new file name without invalid chars
 **fileName**: `string`
 
 **Returns**: `string`
+
+### dataService.hasCommandClass(node, ccId) 
+
+Check if device has a given command class
+
+**Parameters**
+
+**node**: `object`
+
+**ccId**: `int`
+
+**Returns**: `boolean | object`
 
 ### dataService.assignElementIcon(element) 
 

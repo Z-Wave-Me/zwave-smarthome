@@ -1,0 +1,17 @@
+<div class="smart-start" ng-controller="SmartStartListController">
+    <div class="container">
+        <!-- Navigation -->
+        <div ng-include="'app/views/zwave/smartstart/navi.html'"></div>
+         <!-- Entry -->
+        <div class="entry list">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+          <ul class="scrollh">
+              <li class="list-group-item" ng-repeat="v in list.all track by $index"><span class="badge">{{$index + 1}}</span> {{v}}</li>
+          </ul>
+          <pre>
+         
+          </pre>
+        </div>
+    </div>
+</div> <!-- /ng-controller --> 
+

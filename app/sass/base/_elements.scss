@@ -201,63 +201,63 @@
 /* Specifics element styles
 ----------------------------------------------------*/
 .sensorMultiline {
-  .control-left {
-    width: 60% !important;
-  }
-  .control-right {
-    width: 40%;
-  }
+    .control-left {
+        width: 60% !important;
+    }
+    .control-right {
+        width: 40%;
+    }
 }
 
 .switchMultilevel {
-  .control-left {
-    width: 60% !important;
-  }
-  .control-right {
-    width: 40%;
-  }
+    .control-left {
+        width: 60% !important;
+    }
+    .control-right {
+        width: 40%;
+    }
 }
 
 .element-camera-control {
-  text-align: center;
-  margin: 0 0 $spacing 0;
-  .fa {
-    font-size: 180%;
-  }
+    text-align: center;
+    margin: 0 0 $spacing 0;
+    .fa {
+        font-size: 180%;
+    }
 }
 
 .camera-img {
-  text-align: center;
-  img {
-    width: 100%;
-    display: inline-block;
-  }
+    text-align: center;
+    img {
+        width: 100%;
+        display: inline-block;
+    }
 }
 
 .color-picker-show {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
 }
 
 .drop-down-tags {
-  div {
-    padding: 5px;
-  }
+    div {
+        padding: 5px;
+    }
 
-  //min-width: 260px;
+    //min-width: 260px;
 }
 
 .drop-down-tags a {
-  display: inline-block;
-  margin: 0 5px;
+    display: inline-block;
+    margin: 0 5px;
 }
 
 .bcg-success.false {
-  color: #a8a8a8;
-  .report-img {
-    opacity: 0.4;
-  }
+    color: #a8a8a8;
+    .report-img {
+        opacity: 0.4;
+    }
 }
 
 .securityControl{
@@ -440,185 +440,183 @@
 
 }
 
-.element-dragdrop-img{
-  max-width: 48px;
-  max-height: 48px;
-  //border: solid 4px $widget-img-border-color;
-  @include appBorderRadius(50%);
-}
-
 /* Element detail
 ----------------------------------------------------*/
 .btn-tag {
-  float: none !important;
-  border-radius: 4px !important;
+    float: none !important;
+    border-radius: 4px !important;
+    label {
+        input[type="checkbox"] {
+            display: inline-block;
+        }    
+    }
 }
 
 .app-row-icons {
-  .report-body {
-    width: 30px;
-  }
+    .report-body {
+        width: 30px;
+    }
 }
 
 /* Custom icons
 -------------------------------------------------- */
 .element-icon-list {
-  border-bottom: solid 1px $app-border-color;
-  margin: $spacing;
-  .element-icon-img {
-    display: inline-block;
+    border-bottom: solid 1px $app-border-color;
     margin: $spacing;
-    max-width: 48px;
-    max-height: 48px;
-    // Media queries
-    @include mediaQueries(min-small) {
-      max-width: 32px;
-      max-height: 32px;
+    .element-icon-img {
+        display: inline-block;
+        margin: $spacing;
+        max-width: 48px;
+        max-height: 48px;
+        // Media queries
+        @include mediaQueries(min-small) {
+            max-width: 32px;
+            max-height: 32px;
+        }
     }
-  }
 }
 
 /* OpenWeather widget
 ----------------------------------------------------*/
 .widget-body .hidden-sensor-multiline table td {
-  text-align: left;
-  padding: 5px 0;
+    text-align: left;
+    padding: 5px 0;
 }
 
 .widget-body .hidden-sensor-multiline table td:first-child {
-  padding-left: 20px;
-  vertical-align: top;
+    padding-left: 20px;
+    vertical-align: top;
 }
 
 .widget-body .hidden-sensor-multiline h4 {
-  display: inline;
+    display: inline;
 }
 
 .widget-body .hidden-sensor-multiline .text-center {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 /* Text widget
 -----------------------------------------------------*/
 .widget-body.text-widget h3 {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .widget-body.text-widget-no-img {
-  padding-left: 15px;
+    padding-left: 15px;
 }
 
 .widget-control.text {
-  width: 95%;
+    width: 95%;
 }
 
 .text-widget-modal.modal-dialog {
-  text-align: center;
+    text-align: center;
 }
 
 img.widget-promo-image {
-  max-height: 200px;
-  margin-bottom: 10px;
+    max-height: 200px;
+    margin-bottom: 10px;
 }
 
 .widget-promo-text {
-  text-align: left;
+    text-align: left;
 }
 
 .widget-control.text a {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .widget-control.text a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .widget-control.text a:after {
-  content: "\f1ea";
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  /*--adjust as necessary--*/
-  padding-left: 4px;
-  position: absolute;
+    content: "\f1ea";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    /*--adjust as necessary--*/
+    padding-left: 4px;
+    position: absolute;
 }
 
 /* MultilevelSensor widget
 -----------------------------------------------------*/
 .widget-body .element-hidden.hidden-sensor-multiline.multiline-sensor {
-  padding: 10px 0;
-  height: auto;
+    padding: 10px 0;
+    height: auto;
 }
 
 .hidden-sensor-multiline .widget-image {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 25px;
-  height: 25px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
 }
 
 .widget-body .hidden-sensor-multiline.multiline-sensor table td:first-child {
-  padding-left: 5px;
+    padding-left: 5px;
 }
 
 .widget-body .hidden-sensor-multiline.multiline-sensor table td {
-  width: inherit;
-  padding: 5px 5px 5px 10px;
+    width: inherit;
+    padding: 5px 5px 5px 10px;
 }
 
 .widget-body .hidden-sensor-multiline.multiline-sensor table tr:nth-child(odd) {
-  background-color: #f9f9f9;
+    background-color: #f9f9f9;
 }
 
 /* ToggleButton widget
 --------------------------------------------------------*/
 
 .toggleButton .widget-body div.widget-control.control-right.ng-scope > div > button.btn.btn-default.btn-sm {
-  cursor: default;
+    cursor: default;
 }
 
 /* RGB color wheel
 --------------------------------------------------------*/
 .wheel-colorpicker {
-  .col-rgb {
-    margin: 0 auto;
-    text-align: center;
-  }
-  #wheel_picker {
-    margin: 0 auto;
-    text-align: center;
-    cursor: pointer;
-  }
+    .col-rgb {
+        margin: 0 auto;
+        text-align: center;
+    }
+    #wheel_picker {
+        margin: 0 auto;
+        text-align: center;
+        cursor: pointer;
+    }
 
-  #wheel_picker_selected {
-    margin: 0 auto;
-    text-align: center;
-  }
+    #wheel_picker_selected {
+        margin: 0 auto;
+        text-align: center;
+    }
 
-  #wheel_picker_preview { 
-    margin: 0 auto;
-    text-align: center;
-  }
+    #wheel_picker_preview { 
+        margin: 0 auto;
+        text-align: center;
+    }
 
-  .wheel-picker-circle-half {
-    margin: 0;
-    height: 80px;
-    line-height: 80px;
-  }
+    .wheel-picker-circle-half {
+        margin: 0;
+        height: 80px;
+        line-height: 80px;
+    }
 
-  .wheel-picker-circle-half {
-    width: 150px;
-    height: 75px;
-  }
+    .wheel-picker-circle-half {
+        width: 150px;
+        height: 75px;
+    }
 
-  .wheel-picker-circle-top {
-    border-top-left-radius: 150px;
-    border-top-right-radius: 150px;
-  }
+    .wheel-picker-circle-top {
+        border-top-left-radius: 150px;
+        border-top-right-radius: 150px;
+    }
 
-  .wheel-picker-circle-bottom {
-    border-bottom-left-radius: 150px;
-    border-bottom-right-radius: 150px;
-  }
+    .wheel-picker-circle-bottom {
+        border-bottom-left-radius: 150px;
+        border-bottom-right-radius: 150px;
+    }
 }

@@ -50,9 +50,9 @@ Set elements created by zWave device
 
 **Returns**: `undefined`
 
-### ZwaveManageController.getInstances() 
+### ZwaveManageController.awakeCont() 
 
-Get selected instances status
+todo: deprecatedGet selected instances status
 
 
 

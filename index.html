@@ -31,6 +31,7 @@
         <script src="vendor/knob/jquery.knob.js"></script>
         <script src="vendor/alertify/alertify.min.js"></script>
         <script src="vendor/tweenmax/TweenMax.js"></script>
+        <script src="vendor/qrcode/qrcode.min.js"></script>
         <!-- Angular js -->
         <script src="vendor/angular/angular-1.2.28/angular.js"></script>
         <script src="vendor/upload/angular-file-upload.js"></script>
@@ -54,6 +55,7 @@
         <script src="app/routes.js"></script>
         <script src="app/templates.js"></script>
         <script src="app/modules/qAllSettled.js"></script>
+        <script src="app/modules/ngDeviceDetector.min.js"></script>
         <script src="app/modules/httpLatency.js"></script>
         <script src="app/factories/factories.js"></script>
         <script src="app/services/services.js"></script>
@@ -63,6 +65,7 @@
         <script src="app/directives/dir-pagination.js"></script>
         <script src="app/directives/tc-angular-chartjs.js"></script>
         <script src="app/directives/angular-slider.js"></script>
+        <script src="app/directives/angular-long-press.js"></script>
         <script src="vendor/alertify/ngAlertify.js"></script> 
         <script src="app/filters/filters.js"></script>
         <script src="app/jquery/postrender.js"></script>
@@ -81,6 +84,7 @@
         <script src="app/controllers/skin.js"></script>
          <script src="app/controllers/icon.js"></script>
         <script src="app/controllers/device.js"></script>
+        <script src="app/controllers/smartstart.js"></script>
          <script src="app/controllers/zwave-inclusion.js"></script>
         <script src="app/controllers/zwave-manage.js"></script>
         <script src="app/controllers/zwave-exclude.js"></script>
@@ -110,7 +114,7 @@
 
         <!-- /build -->
     </head>
-    <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}}">
+    <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}} rss-{{rss.unread}}">
         <a class="skinreset" href="#skinreset">Reset skin to default</a>
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
@@ -128,7 +132,7 @@
                         <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i> <span class="main-nav-text">{{_t('nav_rooms')}}</span></a>
                         <!-- elements -->
                         <span class="divider-vertical"></span>
-                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i> <span class="main-nav-text">{{_t('elements')}}</span></a>
+                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i> <span class="main-nav-text">{{_t('nav_elements')}}</span></a>
                         <!-- events -->
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i> <span class="main-nav-text">{{_t('nav_events')}}</span></a>
@@ -169,10 +173,6 @@
                             <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
                                 <a href="#devices"><i class="fa fa-cogs fa-fw"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
-                            <!-- Config rooms -->
-                            <!--<li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
-                                <a href="#config-rooms"><i class="fa fa-building-o"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>-->
                              <!-- Customize -->
                             <li class="subnavi-report" ng-class="isActive('customize')"
                                 ng-if="elementAccess(cfg.role_access.customize)">
@@ -189,6 +189,13 @@
                             <!-- Rss -->
                             <li class="subnavi-admin" ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
                                 <a href="#rss"><i class="fa fa-comment fa-fw"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                            </li>
+                             <!-- My Hubs -->
+                            <li class="subnavi-myhubs" ng-if="cfg.route.os == 'android'">
+                                <a ng-href="{{cfg.android_html_dir}}">
+                                    
+                                    <i class="fa fa-android fa-fw"></i><span>{{_t('my_hubs')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i>
+                                </a>
                             </li>
                             <!-- Logout -->
                             <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">

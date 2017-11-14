@@ -8,13 +8,13 @@
     </div>-->
     <!-- Collapsed-->
     <div class="form-group">
-        <label>
-            <input type="checkbox" name="instances_expanded"
+        <input type="checkbox" name="instances_expanded" id="instances_expanded"
                    ng-change="expandInstances(dataHolder.instances.expanded)"
                    ng-model="dataHolder.instances.expanded"
                    ng-checked="dataHolder.instances.expanded"/>
+        <label for="instances_expanded">
             {{_t('expand_all')}}
-        </label>
+        </label>        
     </div>
     <!-- Search and autocomplete -->
     <form id="form_search" class="input-group" ng-submit="setFilter({q: dataHolder.instances.autocomplete.term})"

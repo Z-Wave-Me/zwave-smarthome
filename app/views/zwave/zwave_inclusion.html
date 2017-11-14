@@ -117,7 +117,7 @@
                                 <i class="fa fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong> 
                                 <span>(#{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}})</span>
                             </div>
-                            <div class="progress" ng-if_="zwaveInclusion.automatedConfiguration.progress < 101">
+                             <div class="progress">
                                 <div class="progress-bar" 
                                      style="min-height:40px;min-width: 2em; width: {{zwaveInclusion.automatedConfiguration.progress}}%;"
                                      ng-class="zwaveInclusion.automatedConfiguration.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'">
@@ -131,7 +131,7 @@
                     <div class="report-col report-ctrl">
                         <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.automatedConfiguration.done"></i> 
                     </div>
-                </div><!-- /.report-entry --> 
+                </div><!-- /.report-entry -->
                 <!-- 4 -->
                 <div class="report-entry">
                     <div class="report-col report-media">
@@ -180,6 +180,51 @@
             </div>
         </div>
     </div>
+
+    <!-- inclusionVerifyDSKModal -->
+    <div id="inclusionVerifyDSKModal" class="appmodal" ng-if="zwaveInclusion.s2.verifyWindow">
+        <div class="appmodal-in">
+            <form name="dskForm">
+                <div class="appmodal-header">
+                    <!-- <span class="appmodal-close" ng-click="closeInclusionModal()"><i
+                             class="fa fa-times"></i></span>-->
+                    <h3>{{_t('verify_device_pin')}}</h3>
+                </div>
+                <div class="appmodal-body form-group form-inline">
+                    <!--<pre>{{zwaveInclusion.s2.input|json}}</pre>-->
+                    <!-- name -->
+                    <label>{{_t('pin')}}</label>
+                    <input name="dsk_pin" id="dsk_pin" type="number" size="5" class="form-control input_number input-valid-{{dskForm.dsk_pin.$valid}}" min="0" max="65533" ng-show="zwaveInclusion.s2.input.publicKeyAuthenticationRequired"
+                           ng-model="zwaveInclusion.s2.input.dskPin" required />
+
+                    <input name="dsk_1" id="dsk_1" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 1)" disabled="true" ng-show="!zwaveInclusion.s2.input.publicKeyAuthenticationRequired" />
+                    -
+                    <input name="dsk_2" id="dsk_2" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 2)" disabled="true" />
+                    -
+                    <input name="dsk_3" id="dsk_3" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 3)" disabled="true" />
+                    -
+                    <input name="dsk_4" id="dsk_4" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 4)" disabled="true" />
+                    -
+                    <input name="dsk_5" id="dsk_5" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 5)" disabled="true" />
+                    -
+                    <input name="dsk_6" id="dsk_6" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 6)" disabled="true" />
+                    -
+                    <input name="dsk_7" id="dsk_7" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 7)" disabled="true" />
+                    -
+                    <input name="dsk_8" id="dsk_8" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 8)" disabled="true" />
+                </div>
+                <div class="appmodal-footer">
+                    <!-- Confirm -->
+                    <button type="button" class="btn btn-submit"
+                            ng-click="handleInclusionVerifyDSK(zwaveInclusion.automatedConfiguration.includedDevice.nodeId)"
+                            ng-click_="handleInclusionVerifyDSK(12)">
+                        <i class="fa fa-check"></i> <span class="btn-name">{{_t('confirm')}}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div><!-- /#inclusionVerifyDSKModal -->
+
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
 </div> <!-- /ng-controller --> 
 

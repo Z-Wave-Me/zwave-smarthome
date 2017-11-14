@@ -662,7 +662,11 @@ a {
           }
         }
       }
-      .card-sensors {
+
+    }
+    
+    .card-sensors {
+         background: transparent;
         .sensor {
           .sensor-img {
             background: transparent;
@@ -670,8 +674,6 @@ a {
         }
 
       }
-
-    }
 
   }
 

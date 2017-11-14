@@ -9,6 +9,12 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.8.0
+#### New features
+- Elements: Improved mobile view.
+- Rooms: Improved mobile view.
+- Chekboxes replaced with the switcher.
+
 ## v1.7.1
 #### New features
 - Local Apps: Possibility to filter by Updated apps.

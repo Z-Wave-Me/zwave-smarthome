@@ -5,22 +5,17 @@
                 title="{{_t('lb_step_backward')}}">
             <i class="fa fa-step-backward"></i>
         </button>
-        <button class="btn btn-default" id="btn_play_{{ v.id}}"
-                data-ng-click="runCmd(v.id + '/command/play', v.id)"
-                ng-class="v.metrics.pStatus =='Play' ? 'btn-primary': 'btn-default'"
-                title="{{_t('lb_play')}}">
-            <i class="fa fa-play"></i>
-        </button>
-        <button class="btn btn-default" id="btn_pause_{{ v.id}}"
-                data-ng-click="runCmd(v.id + '/command/pause', v.id)"
-                ng-class="v.metrics.pStatus =='Pause' ? 'btn-primary': 'btn-default'"
-                title="{{_t('lb_pause')}}">
-            <i class="fa fa-pause"></i>
+        <button class="btn btn-default" id="btn_play_pause_{{ v.id}}"
+                data-ng-click="runCmd(v.id + '/command/'+ (v.metrics.pStatus == 'Play' && v.metrics.pStatus != 'Stop' ? 'pause' : 'play'), v.id)"
+                ng-class="v.metrics.pStatus =='Play' || v.metrics.pStatus =='Pause' ? 'btn-primary': 'btn-default'"
+                title="{{v.metrics.pStatus == 'Play' ? _t('lb_pause') : _t('lb_play')}}">
+            <i  ng-if="v.metrics.pStatus == 'Play'" class="fa fa-pause"></i>
+            <i  ng-if="v.metrics.pStatus == 'Pause' || v.metrics.pStatus == 'Stop'" class="fa fa-play"></i>
         </button>
         <button class="btn btn-default" id="btn_stop_{{ v.id}}"
                 data-ng-click="runCmd(v.id + '/command/stop', v.id)"
                 ng-class="v.metrics.pStatus =='Stop' ? 'btn-primary': 'btn-default'"
-                title="{{_t('lb_pause')}}">
+                title="{{_t('lb_stop')}}">
             <i class="fa fa-stop"></i>
         </button>
         <button class="btn btn-default btn-label-on" id="btn_step_forward _{{ v.id}}"

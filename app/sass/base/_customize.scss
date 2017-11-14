@@ -15,30 +15,22 @@
     .widget-entry-in{
         min-height: 120px;
         height: auto;
-        // Media queries
-        @include mediaQueries(min-small) {
-            position: static;
-        }
+        position: static;
+            text-align: center;
         // Media queries
         @include mediaQueries(min-small) {
             height: 250px;
-            text-align: center;
+            
         }
         .widget-img{
-            top: $spacing;
-            left: 0;
-            // Media queries
-            @include mediaQueries(min-small) {
-                position: static;
-            }
+            position: static;
             .customize-preview-img{
-                width: 120px;
-                height:60px;
+                width: 100%;
                 border: solid 4px $app-border-color;
                 // Media queries
                 @include mediaQueries(min-small) {
-                    width: 300px;
-                    height: 150px;
+                     max-width: 300px;
+                    max-height: 150px;
                 }
             }
 
@@ -47,20 +39,13 @@
             display: none;
         }
         .widget-content{
-            margin: $spacing-double 0 0 120px + $spacing;
-            // Media queries
-            @include mediaQueries(min-small) {
-                margin: $spacing 0 0 0;
-            }
+            margin: $spacing 0 0 0;
         }
         .bottom-aligner{
             display: none;
         }
         .widget-footer{
-            margin-top: 10px;
-            @include mediaQueries(min-small) {
-                margin: $spacing 0 0 0;
-            }
+            margin: $spacing 0 0 0;
             .btn-name{
                 display: none !important;
             }
@@ -71,6 +56,13 @@
             width: 100%;
             &.ctrl-left{
                 display: none;
+            }
+            &.ctrl-right{
+                float: none;
+                text-align: center;
+                .btn-group{
+                    float: none;
+                }
             }
         }
     }
@@ -109,8 +101,9 @@
      border-top: solid 1px $app-border-color;
 }
 .customize-image-detail{
-    width: 400px;
-     height: 200px;
+    width: 100%;
+    //width: 400px;
+     //height: 200px;
     border: solid 4px $app-border-color;
 }
 .customize-detail-perex{

@@ -1,59 +1,104 @@
-/* Apps
+/* Apps search 
 -------------------------------------------------- */
+
+// Media queries
+@include mediaQueries(max-small) {
+    .app-search {
+        .page-control {
+            text-align: left;
+        }
+        #form_search {
+            width: 80%;
+            display: inline-table;
+            .form-control {
+                min-height: 20px;
+                padding: 6px 8px;
+            }
+        }
+        .btn-group {
+            vertical-align: baseline;
+            .btn {
+                background: transparent;
+                border: 0;
+                @include appBoxShadow(none);
+            }
+        }
+        .app-dropdown{
+            float: left;
+            left: 0;
+            right: auto;
+        }
+        // Apps fixed search for small devices
+        &.app-fix-search {
+            width: 90%;
+            z-index: 1000000;
+            background-color: #E9E9E9;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            padding: $spacing-half;
+            height: 50px;
+            .page-navi-in{
+                top: -$spacing;
+            }
+        }
+    }
+}
+
 
 /* Apps instances
 -------------------------------------------------- */
-#apps_instances {
 
-  .accordion-entry {
-    background-color: #FFFFFF;
-    //border: solid 2px $report-border-color;
-    margin: 0;
-    .accordion-entry-title {
-      font-size: 100%;
-      margin: 0;
-      padding: 10px 0;
-      font-weight: bold;
-      .report-img-s{
-       margin: 0 0 0 $spacing-half;
-      }
-      .accordion-title-text{
-        padding: 0 0 0 13px;
-      }
+#apps_instances {
+    .accordion-entry {
+        background-color: #FFFFFF; //border: solid 2px $report-border-color;
+        margin: 0;
+        .accordion-entry-title {
+            font-size: 100%;
+            margin: 0;
+            padding: 10px 0;
+            font-weight: bold;
+            .report-img-s {
+                margin: 0 0 0 $spacing-half;
+            }
+            .accordion-title-text {
+                padding: 0 0 0 13px;
+            }
+        }
     }
-  }
 }
 
 .instance-entry-single {
-  .app-row-report {
-    border-bottom: 0;
-    border-top: 0;
-  }
+    .app-row-report {
+        border-bottom: 0;
+        border-top: 0;
+    }
 }
 
 .instance-entry-multiple {
-  .app-row-report {
-    //border: solid 2px $report-border-color;
-    //border-bottom: 0;
-    border-top: 0;
-    .report-body {
-      padding: 0 0 0 32px;
+    .app-row-report {
+        //border: solid 2px $report-border-color;
+        //border-bottom: 0;
+        border-top: 0;
+        .report-body {
+            padding: 0 0 0 32px;
+        }
     }
-  }
-  .report-entry {
-    border-bottom: 0;
-  }
+    .report-entry {
+        border-bottom: 0;
+    }
 }
+
 
 /* App detail
 -------------------------------------------------- */
+
 .app-detail-img {
-  margin: 0 0 $spacing 0;
-  // Media queries
-  @include mediaQueries(min-small) {
-    @include appFloat(left);
-    width: 128px + $spacing-double;
-  }
+    margin: 0 0 $spacing 0; // Media queries
+    @include mediaQueries(min-small) {
+        @include appFloat(left);
+        width: 128px + $spacing-double;
+    }
 }
 
 .app-image-detail {
@@ -66,55 +111,56 @@
 }
 
 .app-detail-body {
-  // Media queries
-  @include mediaQueries(min-small) {
-    margin: 0 0 0 128px + $spacing-double;
-  }
-  h2 {
-    margin: $spacing-double 0 $spacing 0;
-  }
+    // Media queries
+    @include mediaQueries(min-small) {
+        margin: 0 0 0 128px + $spacing-double;
+    }
+    h2 {
+        margin: $spacing-double 0 $spacing 0;
+    }
 }
 
 .app-detail-list {
-  border-top: solid 1px $app-border-color;
-  margin: $spacing 0 0 0;
-  padding: $spacing 0 0 0;
+    border-top: solid 1px $app-border-color;
+    margin: $spacing 0 0 0;
+    padding: $spacing 0 0 0;
 }
+
 
 /* Apps rating
 -------------------------------------------------- */
+
 .module-rating {
-  font-size: 150%;
-  padding: 0 $spacing 0 0;
-  color: $app-body-color;
-  &.israted {
-    color: lighten(#f0ad4e,10%);
-  }
+    font-size: 150%;
+    padding: 0 $spacing 0 0;
+    color: $app-body-color;
+    &.israted {
+        color: lighten(#f0ad4e, 10%);
+    }
 }
+
 
 /* Apps comments
 -------------------------------------------------- */
-.comment-entry {
-  margin: 0 0 $spacing 0;
-  padding: $spacing;
-  background-color: lighten(#E9E9E9, 4%);
-  color: $app-body-color;
-  font-size: 100%;
-  .comment-header {
-    font-style: italic;
-    font-size: 95%;
-    color: lighten($app-body-color, 20%);
-    margin: 0 0 $spacing-half 0;
-  }
-  .comment-body {
 
-  }
+.comment-entry {
+    margin: 0 0 $spacing 0;
+    padding: $spacing;
+    background-color: lighten(#E9E9E9, 4%);
+    color: $app-body-color;
+    font-size: 100%;
+    .comment-header {
+        font-style: italic;
+        font-size: 95%;
+        color: lighten($app-body-color, 20%);
+        margin: 0 0 $spacing-half 0;
+    }
+    .comment-body {}
 }
 
 .comment-entry.even {
-  background-color:  #E9E9E9;
+    background-color: #E9E9E9;
 }
 
 // Author comment
-.comment-type-1 {
-}
+.comment-type-1 {}

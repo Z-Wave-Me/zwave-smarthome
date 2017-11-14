@@ -1,0 +1,70 @@
+/* SmartStart
+-------------------------------------------------- */
+$ss-brand-color: #eeeeee;
+$ss-dark-color: darken($ss-brand-color,50%);
+$ss-img-w: 64px;
+/* 
+-------------------------------------------------- */
+.smart-start {
+    .container{
+        padding: 0;
+        //background-color: $ss-brand-color;
+        .entry{
+            background-color: $ss-brand-color;
+            padding: $spacing-double;
+            text-align: center;
+            margin: 0 0 $spacing-double 0;
+            //border: solid 1px $app-border-color;
+            .content{
+                margin: $spacing-double; 
+            }
+            .image{
+                .fa{
+                    font-size: $ss-img-w;
+                    color: $app-brand-success;
+                    &.fa-exclamation{
+                        color: $app-brand-danger;
+                    }
+                }
+            }
+            &.list{
+                text-align: left;
+                border: solid 1px $app-border-color;
+                background-color: transparent;
+                ul{
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    li{
+                        padding:  $spacing;
+                        width: auto;
+                        &.highlighted{
+                            //border: solid 1px red;
+                            background-color: $app-bcg-success;
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+    }
+
+}
+.dsk-number {
+    display: inline-block;
+    padding: 5px;
+    width: 4em;
+}
+.dsk-input-group{
+    // Media queries
+@include mediaQueries(min-small) {
+    span::after {
+        content: " - ";
+      }
+      span:last-child::after {
+        content: "";
+      }
+  }
+}

@@ -50,6 +50,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
+    $scope.pagesSum = 0;
     $scope.reset = function () {
         $scope.collection = angular.copy([]);
     };
@@ -324,6 +325,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             alertify.alertWarning($scope._t('no_events'));
             return;
         }
+        $scope.pagesSum = Math.ceil($scope.collection.length/$scope.pageSize);
     };
 
     /**
@@ -363,4 +365,37 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         });
         return;
     }
+    /**
+     * Swipe left/right or click previous/next
+     */
+    $scope.swipeMe = function (direction) {
+        var items = $scope.collection.length;
+        var itemsPerPage = cfg.page_results_events;
+        if(items  <= itemsPerPage){
+            return;
+        }
+        
+        var min = 1;
+        var max = Math.ceil(items/itemsPerPage);
+        var newCurrentPage = 1;
+        
+        if(direction === 'right'){
+            $scope.currentPage--;
+            newCurrentPage = ($scope.currentPage > min ? $scope.currentPage :  min);
+         }else{
+            $scope.currentPage++;
+            newCurrentPage = ($scope.currentPage > max ?  min :  $scope.currentPage);
+         }
+         $scope.currentPage = newCurrentPage;
+        //$scope.currentPage = 16;
+        //console.log('ng-swipe: ' + direction)
+        //console.log('currentPage: ' +  $scope.currentPage)
+    };
+
+    /**
+     * Go to page
+     */
+    $scope.goToPage = function (page) {
+        $scope.currentPage = page;
+    };
 });

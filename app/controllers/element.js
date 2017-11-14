@@ -7,7 +7,7 @@
  * The element root controller
  * @class ElementBaseController
  */
-myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, $routeParams, cfg,dataFactory, dataService, myCache) {
+myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, $routeParams, $timeout, $location, $rootElement, cfg, dataFactory, dataService, myCache) {
     $scope.dataHolder = {
         mode: 'default',
         firstLogin: false,
@@ -460,6 +460,22 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         v.metrics.level = count;
          $scope.runCmd(cmd);
     };
+ 
+    /**
+     * device on long press action
+     */
+    $scope.itemOnLongPress = function(id) {
+        $scope.longPressTimeout = $timeout(function() {
+            $location.path("element/"+id);
+        }, 1000);
+    }
+    
+    /**
+     * device on end long press action
+     */
+    $scope.itemOnTouchEnd = function() {
+        $timeout.cancel($scope.longPressTimeout);    
+    }
 
     /// --- Private functions --- ///
     /**

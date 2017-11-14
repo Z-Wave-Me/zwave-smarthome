@@ -3,6 +3,8 @@
 
 /*-------------------------------------*/
 // MEDIA QUERIES
+// Ultra small devices, (old Phones)
+$break-usmall: 320px; 
 // Extra Small Devices, Phones
 $break-esmall: 480px;
 //  Small Devices, Tablets
@@ -22,7 +24,7 @@ $spacing: 10px;
 $spacing-double: $spacing * 2;
 $spacing-third: $spacing * 3;
 $spacing-half: $spacing / 2;
-$spacing-fatal-error: 20px 20px 20px 52px;
+$spacing-fatal-error: 20px 20px 20px 52px; 
 
 /*-------------------------------------*/
 // DIMENSIONS: WIDTHS, HEIGHTS
@@ -35,6 +37,7 @@ $header-h: 50px;
 // Z:INDEX
 $zindex-alertify: 2500;
 $zindex-loader: 2400;
+$zindex-search: 2200;
 $zindex-header: 2100;
 $zindex-page-navi: 2101;
 $zindex-dropdown: 1100;
@@ -52,7 +55,7 @@ $app-font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 $app-font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 
 // Font size
-$app-body-font-size: 17px;
+$app-body-font-size: 16px;
 
 /*-------------------------------------*/
 // COLORS
@@ -74,7 +77,7 @@ $app-a-hover-color:  lighten($app-color-primary, 10%);
 $app-heading-color: lighten($app-body-color, 40%);
 $app-bcg-success: #dff0d8;
 $app-bcg-info: #d9edf7;
-$app-bcg-warning: #fcf8e3;
+$app-bcg-warning: #fcf8e3; 
 $app-bcg-danger: #f2dede;
 $card-bcg-color: #FFFFFF;
 
@@ -143,17 +146,18 @@ $loader-fadeout:  7s;
 @import "base/_customize";
 @import "base/_rooms";
 @import "base/_devices";
+@import "base/_smartstart";
 @import "base/_auth";
 @import "base/_commands";
 @import "base/_slider";
 @import "base/_rss";
+@import "base/_switch";
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
-/* shui, bayernshui, blueshui, darkshui
+/* shui, bayernshui, blueshui, darkshui, homekit
 -------------------------------------------------- */
-@import "custom/_shui";
-//@import "custom/_left_menu";
+@import "custom/_shui"; 
 
 /* SmartHome UI custom POPP
 -------------------------------------------------- */

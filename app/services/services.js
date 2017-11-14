@@ -100,10 +100,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
+     * todo: Deprecated
      * Get OS (operating system)
      * @returns {String}
      */
-    this.getOs = function () {
+    /*this.getOs = function () {
         if (navigator && navigator.userAgent && navigator.userAgent != null) {
             var agents = ['android', 'iemobile', 'iphone', 'ipad', 'ipod', 'opera mini', 'blackberry'];
             var ua = navigator.userAgent.toLowerCase();
@@ -115,7 +116,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return 'any';
         }
         return 'any';
-    };
+    };*/
 
     /**
      * Get OS (operating system)
@@ -327,6 +328,133 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
     };
 
     /**
+     * Check if device has a given command class
+     * @param {object} node
+     * @param {int} ccId
+     * @returns {boolean|object}
+     */
+    this.hasCommandClass = function(node,ccId) {
+        var hasCc = false;
+        angular.forEach(node.instances, function(instance, instanceId) {
+            if(instance.commandClasses[ccId]){
+                hasCc = instance.commandClasses[ccId];
+                return;
+            }
+        });
+        return hasCc;
+    };
+
+     /**
+    * Compare version
+    * http://locutus.io/php/info/version_compare/
+    * @param {string} v1
+    * @param {string} v2
+    * @param {string} operator
+    * @returns {Boolean|Number}
+    */
+    this.compareVersion = function (v1, v2, operator) {
+        
+
+        // Important: compare must be initialized at 0.
+        var i
+        var x
+        var compare = 0
+
+        // vm maps textual PHP versions to negatives so they're less than 0.
+        // PHP currently defines these as CASE-SENSITIVE. It is important to
+        // leave these as negatives so that they can come before numerical versions
+        // and as if no letters were there to begin with.
+        // (1alpha is < 1 and < 1.1 but > 1dev1)
+        // If a non-numerical value can't be mapped to this table, it receives
+        // -7 as its value.
+        var vm = {
+            'dev': -6,
+            'alpha': -5,
+            'a': -5,
+            'beta': -4,
+            'b': -4,
+            'RC': -3,
+            'rc': -3,
+            '#': -2,
+            'p': 1,
+            'pl': 1
+        }
+
+        // This function will be called to prepare each version argument.
+        // It replaces every _, -, and + with a dot.
+        // It surrounds any nonsequence of numbers/dots with dots.
+        // It replaces sequences of dots with a single dot.
+        //    version_compare('4..0', '4.0') === 0
+        // Important: A string of 0 length needs to be converted into a value
+        // even less than an unexisting value in vm (-7), hence [-8].
+        // It's also important to not strip spaces because of this.
+        //   version_compare('', ' ') === 1
+        var _prepVersion = function (v) {
+            v = ('' + v).replace(/[_\-+]/g, '.')
+            v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
+            return (!v.length ? [-8] : v.split('.'))
+        }
+        // This converts a version component to a number.
+        // Empty component becomes 0.
+        // Non-numerical component becomes a negative number.
+        // Numerical component becomes itself as an integer.
+        var _numVersion = function (v) {
+            return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10))
+        }
+
+        v1 = _prepVersion(v1)
+        v2 = _prepVersion(v2)
+        x = Math.max(v1.length, v2.length)
+        for (i = 0; i < x; i++) {
+            if (v1[i] === v2[i]) {
+                continue
+            }
+            v1[i] = _numVersion(v1[i])
+            v2[i] = _numVersion(v2[i])
+            if (v1[i] < v2[i]) {
+                compare = -1
+                break
+            } else if (v1[i] > v2[i]) {
+                compare = 1
+                break
+            }
+        }
+        if (!operator) {
+            return compare
+        }
+
+        // Important: operator is CASE-SENSITIVE.
+        // "No operator" seems to be treated as "<."
+        // Any other values seem to make the function return null.
+        switch (operator) {
+            case '>':
+            case 'gt':
+                return (compare > 0)
+            case '>=':
+            case 'ge':
+                return (compare >= 0)
+            case '<=':
+            case 'le':
+                return (compare <= 0)
+            case '===':
+            case '=':
+            case 'eq':
+                return (compare === 0)
+            case '<>':
+            case '!==':
+            case 'ne':
+                return (compare !== 0)
+            case '':
+            case '<':
+            case 'lt':
+                return (compare < 0)
+            default:
+                return null
+        }
+
+    };
+
+    /**
      * Assign an icon to the element
      * @param {object} element
      * @returns {string}
@@ -513,6 +641,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             .flatten()
             .filter(function (v) {
                 v.title = (v.id === 0 ? getLangLine(v.title) : v.title);
+                v.title_char = v.title.substring(0,1).toUpperCase();
                 v.img_src = 'storage/img/placeholder-img.png';
                 if (v.id === 0) {
                     v.img_src = 'storage/img/rooms/unassigned.png';
@@ -865,8 +994,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = iconArray.half;
                 }
                 break;
-
-            // multilevel
+            // multilevel / fan
+            case 'fan':
             case 'multilevel':
                 if (element.metrics.level === 0) {
                     icon = iconArray.off;

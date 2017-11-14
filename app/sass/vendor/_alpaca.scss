@@ -44,7 +44,15 @@
 /** Added to every container outer field element **/
 .alpaca-container
 {
-
+    .alpaca-field-checkbox {
+        .checkbox {
+            label {
+                input[type="checkbox"] {
+                    display: block;
+                }
+            }
+        }
+    }
 }
 
 /** Added to the optional label (or legend) accompanying any container **/

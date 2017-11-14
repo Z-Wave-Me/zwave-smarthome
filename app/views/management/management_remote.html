@@ -1,6 +1,6 @@
 <!-- Admin remote view -->
 <h2 class="accordion-entry-title" ng-click="expandElement('remote')">
-    <i class="fa fa-wifi"></i> <span ng-bind="_t('remote_access_manage')"></span>
+    <i class="fa fa-wifi fa-fw"></i> <span ng-bind="_t('remote_access_manage')"></span>
      <i class="fa accordion-arrow" ng-class="expand.remote  ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-class="" ng-if="expand.remote" ng-controller="ManagementRemoteController">
@@ -25,12 +25,12 @@
                 <div class="form-group">
                     <div>
                         <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
-                        <label ng-bind="_t('remote_access')"></label>
+                        <label for="remote_access" ng-bind="_t('remote_access')"></label>
                         <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
                     </div>
                     <div>
                         <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
-                        <label ng-bind="_t('remote_access_support')"></label>
+                        <label for="remote_support" ng-bind="_t('remote_access_support')"></label>
                     </div>
                 </div>
             </div>

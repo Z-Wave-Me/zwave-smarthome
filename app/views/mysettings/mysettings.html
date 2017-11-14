@@ -1,5 +1,5 @@
 <!-- Home view -->
-<div ng-controller="MySettingsController" class="mobile-padding">
+<div ng-controller="MySettingsController">
     <bb-loader></bb-loader>
     <div ng-show="input">
         <h2 ng-bind="_t('nav_myaccess')"></h2>
@@ -40,19 +40,19 @@
             <!-- Expert view -->
             <fieldset ng-if="elementAccess(cfg.role_access.expert_view)">
                 <div class="form-group form-inline">
-                    <input type="checkbox" name="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />
-                    <label ng-bind="_t('lb_expert_app_view')"></label>
+                    <input type="checkbox" name="expert_view" id="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />
+                    <label for="expert_view" ng-bind="_t('lb_expert_app_view')"></label>
                 </div>
             </fieldset>
             <fieldset>
                 <!--<h3><span ng-bind="_t('nav_events')"></span></h3>-->
                     <div class="form-check form-check-inline">
-                        <label class="form-check-label">
+                        <label for="hide_all_device_events" class="form-check-label">
                         <input class="form-check-input" type="checkbox" name="hide_all_device_events" value="true" id="hide_all_device_events" ng-model="input.hide_all_device_events" ng-checked="input.hide_all_device_events" /> {{_t('lb_hide_device_events')}}
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <label class="form-check-label">
+                        <label for="hide_system_events" class="form-check-label">
                         <input class="form-check-input" type="checkbox" name="hide_system_events" value="true" id="hide_system_events" ng-model="input.hide_system_events" ng-checked="input.hide_system_events" /> {{_t('lb_hide_system_events')}}
                       </label>
                     </div>

@@ -9,6 +9,13 @@
   border-radius: $radius;
 }
 
+// Border radius with values
+@mixin appBorderRadiusVal($top-left,$top-right,$bottom-right,$bottom-left) {
+  -webkit-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  -moz-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  border-radius: $top-left $top-right $bottom-right $bottom-left;
+}
+
 // Shadow
 @mixin appBoxShadow($param) {
   -webkit-box-shadow: $param;
@@ -32,7 +39,7 @@
 // Opacity
 @mixin appOpacity($o: 0.5) {
   opacity: $o;
-  filter: alpha(opacity=$o*100); /* For IE8 and earlier */
+  filter: alpha(opacity=$o*100);
 }
 
 // Gradient
@@ -118,6 +125,12 @@
 // Media queries
 @mixin mediaQueries($media) {
   /* MIN WIDTH */
+  // Ultra Small devices, old Phones 320px
+  @if $media == min-usmall {
+    @media only screen and (min-width: $break-usmall) {
+      @content;
+    }
+  }
   // Extra Small Devices, Phones 480px
   @if $media == min-esmall {
     @media only screen and (min-width: $break-esmall) {

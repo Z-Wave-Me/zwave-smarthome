@@ -237,6 +237,28 @@ myApp.directive('errSrc', function() {
         }
     }
 });
+/**
+ * Bind class toggle to window scroll event
+ * @class bindClassOnScroll
+ */
+myApp.directive('bindClassOnScroll', function ($window) {
+    return {
+      restrict: 'A',
+      scope: {
+          offset: "@",
+          scrollClass: "@"
+      },
+      link: function(scope, element) {
+          angular.element($window).bind("scroll", function() {
+              if (this.pageYOffset >= parseInt(scope.offset)) {
+                  element.addClass(scope.scrollClass);
+              } else {
+                  element.removeClass(scope.scrollClass);
+              }
+          });
+      }
+    };
+  })
 
 /**
  * Compare two values
@@ -420,6 +442,35 @@ myApp.directive('bbKeyEvent', function () {
                 event.preventDefault();
             }
         });
+    };
+});
+
+/**
+ * Navigate DSK form fields with value === 5 or arrow keys
+ */
+myApp.directive('bbDskNavigate', function () {
+    return{
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+                elem.find('input').on('keyup', function (e) {
+                    //var target = angular.element('#'+e.target.id);
+                    switch (e.which) {
+                        case 39:// Focus next input with right arrow key
+                            $(this).closest('span').next().find('input').focus();
+                            break;
+                        case 37:// Focus previus input with left arrow key
+                            $(this).closest('span').prev().find('input').focus();
+                            break;
+                        default:// Focus next input if input value length = 5
+                            var elLength =  $(this).val().length;
+                            if(elLength === 5) {
+                                $(this).closest('span').next().find('input').focus();
+                            }
+                            
+                            break;
+                    }
+                });
+        }
     };
 });
 

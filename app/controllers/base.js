@@ -12,10 +12,12 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q,cfg, cfgicons, dataFactory, dataService, myCache, _) {
+myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q,cfg, cfgicons, dataFactory, dataService, deviceDetector,myCache, _) {
+    
     // Global scopes
     $scope.$location = $location;
-    angular.extend(cfg.route, {os: dataService.getOs()});
+    $scope.deviceDetector = deviceDetector;
+    angular.extend(cfg.route, {os:  deviceDetector.os});
     $scope.cfg = cfg;
     $scope.css = 'app/css/main.css';
     $scope.timeZoneInterval = null;

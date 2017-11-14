@@ -1,6 +1,6 @@
 <!-- Admin user list view -->
 <h2 class="accordion-entry-title" ng-click="expandElement('user')">
-            <i class="fa fa-users"></i> <span ng-bind="_t('nav_admin')"></span>  <i class="fa accordion-arrow" ng-class="expand.user ? 'fa-chevron-up':'fa-chevron-down'"></i>
+            <i class="fa fa-users fa-fw"></i> <span ng-bind="_t('nav_admin')"></span>  <i class="fa accordion-arrow" ng-class="expand.user ? 'fa-chevron-up':'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-class="" ng-if="expand.user" ng-controller="ManagementUserController">
     <bb-loader></bb-loader>
