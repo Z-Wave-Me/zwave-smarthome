@@ -741,10 +741,10 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var device = response.data.data;
             if (_.isEmpty(device)) {
-                $scope.widgetClimateControl.alert = {
-                    message: $scope._t('error_load_data'),
-                    status: 'alert-danger',
-                    icon: 'fa-exclamation-triangle'
+                $scope.widgetSensorMultiline.alert = {
+                    message: $scope._t('no_data'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
                 };
                 return;
             }
@@ -808,17 +808,17 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
      */
     $scope.loadDeviceId = function () {
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
-            var lastTriggerList = response.data.data.metrics.lastTriggerList;
-            if (_.isEmpty(lastTriggerList)) {
+            var device = response.data.data;
+            console.log("device", device);
+            if (_.isEmpty(device.metrics.lastTriggerList)) {
                 $scope.widgetSecurityControl.alert = {
-                    message: $scope._t('error_load_data'),
-                    status: 'alert-danger',
-                    icon: 'fa-exclamation-triangle'
+                    message: $scope._t('no_data'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
                 };
-                return;
             }
 
-            $scope.widgetSecurityControl.find = lastTriggerList;
+            $scope.widgetSecurityControl.find = device;
 
         }, function (error) {
             $scope.widgetSecurityControl.alert = {
@@ -829,58 +829,4 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
         });
     };
     $scope.loadDeviceId();
-});
-
-/**
- * The controller that handles the info modal.
- * @class ElementInfoController
- */
-myAppController.controller('ElementInfoController', function ($scope, $filter,$cookies, cfg,dataFactory, dataService, _) {
-    $scope.widgetInfo = {
-        find: {},
-        alert: {message: false, status: 'is-hidden', icon: false},
-        infoExpanded: {}
-    };
-
-    $scope.checkInfo = function() {
-        if($scope.widgetInfo.find.showNotification) {
-            $scope.widgetInfo.infoExpanded.events = true;
-        } else if($scope.widgetInfo.find.metrics.intchartUrl) {
-            $scope.widgetInfo.infoExpanded.chart = true;
-        } else if($scope.widgetInfo.find.hasHistory) {
-            $scope.widgetInfo.infoExpanded.history = true;
-        }
-    }
-    
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
-        if (_.isEmpty(device)) {
-            $scope.widgetInfo.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        $scope.widgetInfo.find = device[0];
-        $scope.checkInfo();
-        return;
-    };
-    $scope.loadDeviceId();
-
-
-    $scope.expandInfo = function (key, $event) {
-        if ($scope.widgetInfo.infoExpanded[key]) {
-            $scope.widgetInfo.infoExpanded = {};
-            $event.stopPropagation();
-            return;
-        }
-        $scope.widgetInfo.infoExpanded = {};
-        $scope.widgetInfo.infoExpanded[key] = !$scope.widgetInfo.infoExpanded[key];
-        $event.stopPropagation();
-    };
-
 });

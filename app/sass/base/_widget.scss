@@ -59,7 +59,7 @@
             position: relative;
             margin: 0px auto 5px;
             top: 0;
-            left: 0; 
+            left: 0;
             // Media queries
             @include mediaQueries(min-esmall) {
                 position: absolute;

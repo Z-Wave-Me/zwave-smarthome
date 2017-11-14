@@ -102,6 +102,13 @@
   }
 }
 
+.btn{
+  &.btn-text {
+    border: 0;
+    background: transparent;
+  }
+}
+
 .btn-tag {
   display: block;
   position: relative;

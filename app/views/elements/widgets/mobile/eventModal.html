@@ -1,0 +1,40 @@
+<!-- modalEvent -->
+<div id="modalEvent" class="appmodal" ng-controller="ElementEventController" ng-if="modalArr.modalEvent">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="resetDevices({byId:{}});handleModal('modalEvent', $event)">
+                <i class="fa fa-times"></i>
+            </span>
+            <h3>{{widgetEvent.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body">
+            <bb-alert alert="widgetEvent.alert"></bb-alert>
+            <!--<pre>{{widgetEvent.collection|json}}</pre>-->
+            <table class="table table-report table-condensed">
+                <tbody>
+                <tr class="event-level-{{v.level}}" ng-repeat="v in widgetEvent.collection | orderBy: '-timestamp' | limitTo: 10">
+                <td class="td-img">
+                    <!--<img id="event_img_{{v.id}}" class="report-img-s" ng-src="{{v.type|getEventIcon:v.message}}" alt="{{v.type}}"/>-->
+                    <img id="event_img_{{v.id}}" class="report-img-s" ng-src="{{v.iconPath}}" alt="{{v.type}}"/>
+                </td>
+                    <td>
+                        <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}">{{v.timestamp | eventDate}}</span>
+                    </td>
+                    <td>
+                        <span ng-if="v.message | hasNode:'l'"> <span ng-bind="v.message.dev"></span> : <strong ng-bind="v.message.l"></strong></span>
+                        <span ng-if="!(v.message | hasNode:'l')" ng-bind="v.message"></span>
+                    </td>
+                </tr>
+
+                </tbody>
+                </table>
+        </div>
+        <div class="appmodal-footer" ng-if="!_.isEmpty(widgetEvent.collection)">
+            <!--<a class="btn btn-default" ng-href="#events/source/{{widgetEvent.find.id}}"-->
+            <button class="btn btn-default"
+                ng-click="handleModal('modalEvent', $event);redirectToEvents('events/source/' + widgetEvent.find.id)">
+                {{_t('see_more')}} <i class="fa fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>

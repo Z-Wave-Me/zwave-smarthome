@@ -89,3 +89,21 @@ body {
     @include appGradient();
   }
 }
+
+/* Local and online apps
+-------------------------------------------------- */
+.app-fix-search{
+  border-bottom: solid 4px #DDD;
+}
+//
+  .localapp-in, .onlineapp-in{
+    border-color: #d3d3d3;
+    // Media queries
+    @include mediaQueries(min-esmall) {
+      border: solid 4px #FFFFFF;
+     // border-width: 4px !important;
+      @include appGradient();
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
+    }
+  }
+//}
