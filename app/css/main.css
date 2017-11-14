@@ -9061,6 +9061,28 @@ a.badge:hover, a.badge:focus {
   content: "";
 }
 
+/* line 4, ../sass/vendor/fontawesome/_screen-reader.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* line 51, ../sass/vendor/fontawesome/_mixins.scss */
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+
 /* SmartHome UI variables nad functions
 -------------------------------------------------- */
 /* Vendors
@@ -11352,13 +11374,19 @@ a.link-underline {
 }
 
 /* line 200, ../sass/base/_body.scss */
+.block {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* line 205, ../sass/base/_body.scss */
 .block-50 {
   width: 100%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 200, ../sass/base/_body.scss */
+  /* line 205, ../sass/base/_body.scss */
   .block-50 {
     float: left;
     position: relative;
@@ -11369,17 +11397,17 @@ a.link-underline {
 
 /* Images
 -------------------------------------------------- */
-/* line 211, ../sass/base/_body.scss */
+/* line 216, ../sass/base/_body.scss */
 img {
   vertical-align: middle;
 }
 
-/* line 214, ../sass/base/_body.scss */
+/* line 219, ../sass/base/_body.scss */
 .img-circle {
   border-radius: 50%;
 }
 
-/* line 217, ../sass/base/_body.scss */
+/* line 222, ../sass/base/_body.scss */
 .img-opacity-50 {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -11387,7 +11415,7 @@ img {
 
 /* Others
 -------------------------------------------------- */
-/* line 225, ../sass/base/_body.scss */
+/* line 230, ../sass/base/_body.scss */
 .timestamp {
   color: #333333;
   font-size: 17px;
@@ -11395,52 +11423,52 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 225, ../sass/base/_body.scss */
+  /* line 230, ../sass/base/_body.scss */
   .timestamp {
     font-size: 90%;
   }
 }
-/* line 232, ../sass/base/_body.scss */
+/* line 237, ../sass/base/_body.scss */
 .timestamp .fa {
   font-size: 110%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 232, ../sass/base/_body.scss */
+  /* line 237, ../sass/base/_body.scss */
   .timestamp .fa {
     font-size: 90%;
   }
 }
 
-/* line 241, ../sass/base/_body.scss */
+/* line 246, ../sass/base/_body.scss */
 .bcg-success {
   background-color: #dff0d8;
 }
 
-/* line 245, ../sass/base/_body.scss */
+/* line 250, ../sass/base/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede;
 }
 
-/* line 249, ../sass/base/_body.scss */
+/* line 254, ../sass/base/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 253, ../sass/base/_body.scss */
+/* line 258, ../sass/base/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 258, ../sass/base/_body.scss */
+/* line 263, ../sass/base/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 263, ../sass/base/_body.scss */
+/* line 268, ../sass/base/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -11448,17 +11476,17 @@ img {
   margin: 5px 0;
 }
 
-/* line 270, ../sass/base/_body.scss */
+/* line 275, ../sass/base/_body.scss */
 .inline .help-text {
   display: inline;
 }
 
-/* line 275, ../sass/base/_body.scss */
+/* line 280, ../sass/base/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 279, ../sass/base/_body.scss */
+/* line 284, ../sass/base/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -11471,19 +11499,19 @@ img {
   border-radius: 50%;
 }
 
-/* line 291, ../sass/base/_body.scss */
+/* line 296, ../sass/base/_body.scss */
 .icon-hidden {
   visibility: hidden;
 }
 
-/* line 295, ../sass/base/_body.scss */
+/* line 300, ../sass/base/_body.scss */
 .device-available-block.assigned {
   padding: 10px 10px 5px 10px;
   border: solid 1px #cccccc;
   margin: 0 0 10px 0;
 }
 
-/* line 302, ../sass/base/_body.scss */
+/* line 307, ../sass/base/_body.scss */
 .scrollh {
   overflow-y: auto;
   white-space: nowrap;

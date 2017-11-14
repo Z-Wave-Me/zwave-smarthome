@@ -1,6 +1,6 @@
 {
     "newtrans": "---",
-    "automation":"Automation",
+     "automation":"Automation",
     "scenes":"Scenes",
     "rules":"Rules",
     "schedules":"Schedules",
@@ -35,7 +35,6 @@
     "add_new": "Add new",
     "add_new_device": "Add new device",
     "add_token": "Add token",
-    "advanced_apps": "Apps for Advanced",
     "all_apps": "All Apps",
     "all_elements": "All elements",
     "already_rated": "You have already rated this APP",
@@ -97,7 +96,6 @@
     "can_include_device": "You can include a device in the section",
     "check_all": "Check all",
     "clear_all_filters": "Clear all filters",
-     "---": "newtrans",
     "clear_sensors": "Clear sensors",
     "cloudbackup": "CloudBackup",
     "cloudbackup_active": "Cloud Backup active",
