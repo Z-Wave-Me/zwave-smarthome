@@ -13798,7 +13798,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* line 188, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
-.widget-entry-in:before, .widget-entry-in:after, .card-room-in:before, .card-room-in:after, .elemnts-room-bar:before, .elemnts-room-bar:after {
+.widget-entry-in:before, .widget-entry-in:after, .card-room-in:before, .card-room-in:after, .bar-row:before, .bar-row:after {
   box-sizing: inherit;
   content: '';
   position: absolute;
@@ -13808,13 +13808,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* line 197, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
-.widget-entry-in:before, .card-room-in:before, .elemnts-room-bar:before, .elemnts-room-bar:after {
+.widget-entry-in:before, .card-room-in:before, .bar-row:before, .bar-row:after {
   top: 0;
   left: 0;
 }
 
 /* line 202, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
-.widget-entry-in:after, .card-room-in:after, .elemnts-room-bar:before {
+.widget-entry-in:after, .card-room-in:after, .bar-row:after {
   bottom: 0;
   right: 0;
 }
@@ -13830,27 +13830,24 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:after,
 .longpress-true .card-room-in:before,
 .longpress-true .card-room-in:after,
-.longpress-true .elemnts-room-bar:after,
-.longpress-true .elemnts-room-bar:before {
+.longpress-true .bar-row:after,
+.longpress-true .bar-row:before {
   width: 100%;
   height: 100%;
 }
 
 /* line 221, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
-.longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .elemnts-room-bar:before {
+.longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 /* line 229, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
-.longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .elemnts-room-bar:after {
+.longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert
