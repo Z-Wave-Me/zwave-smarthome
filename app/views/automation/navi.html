@@ -1,0 +1,16 @@
+<div class="tabs-wrap form-inline">
+    <div class="btn-group btn-group-justified btn-goup-tabs">
+        <a class="btn btn-default" title="{{_t('scenes')}}" ng-href="#automation/LightScene" 
+           ng-class="{'active': automation.moduleId == 'LightScene'}">
+            <i class="fa fa-lightbulb-o"></i> <span class="btn-name">{{_t('scenes')}}</span>
+        </a>
+        <a class="btn btn-default" title="{{_t('rules')}}" ng-href="#automation/IfThen"  
+        ng-class="{'active': automation.moduleId == 'IfThen'}">
+            <i class="fa fa-sliders"></i> <span class="btn-name">{{_t('rules')}}</span>
+        </a>
+        <a class="btn btn-default" title="{{_t('schedules')}}" ng-href="#automation/ScheduledScene"  
+        ng-class="{'active': automation.moduleId == 'ScheduledScene'}">
+            <i class="fa fa-calendar-check-o"></i> <span class="btn-name">{{_t('schedules')}}</span>
+        </a>
+    </div>
+</div>

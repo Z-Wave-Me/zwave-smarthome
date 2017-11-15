@@ -68,23 +68,17 @@ angular.forEach(icon_data, function (key, value) {
  * @function run
  */
 myApp.run(function ($rootScope, $location, dataService, dataFactory,cfg) {
+    
     // Run underscore js in views
     $rootScope._ = _;
-    /**
-     * todo: deprecated
-     */
-   /* $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        /!**
-         * Reset fatal error object
-         *!/
-        dataService.resetFatalError();
-
-        /!**
-         * Check if access is allowed for the page
-         *!/
-        dataService.isAccessAllowed(next);
-
-    });*/
+      $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        var route = {
+            event: event,
+            next: next,
+            current: current
+        };
+        angular.extend(cfg.route,route);
+    });
 });
 
 /**
