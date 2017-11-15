@@ -1,0 +1,73 @@
+/* Active apps
+-------------------------------------------------- */
+/* Apps instances
+-------------------------------------------------- */
+
+#apps_instances {
+    .accordion-entry {
+        background-color: #FFFFFF; //border: solid 2px $report-border-color;
+        margin: 0;
+        .accordion-entry-title {
+            font-size: 100%;
+            margin: 0;
+            padding: 10px 0;
+            font-weight: bold;
+            .report-img-s {
+                margin: 0 0 0 $spacing-half;
+            }
+            .accordion-title-text {
+                padding: 0 0 0 13px;
+            }
+        }
+    }
+
+    .dropdown-options {
+        .group-dropdown{
+           width: 100%;
+               .btn{
+               float: right;
+           }
+           .app-dropdown{
+               width: 100%;
+           }
+        }
+        @include mediaQueries(min-small) {
+            display: none;
+        }    
+    }
+
+    .btn-group {
+        &.options {
+            display: none;
+            @include mediaQueries(min-small) {
+                display: inline-block;
+            }    
+        }
+    }
+
+    
+    
+}
+
+.instance-entry-single {
+    .app-row-report {
+        border-bottom: 0;
+        border-top: 0;
+    }
+}
+
+.instance-entry-multiple {
+    .app-row-report {
+        //border: solid 2px $report-border-color;
+        //border-bottom: 0;
+        border-top: 0;
+        .report-body {
+            padding: 0 0 0 32px;
+        }
+    }
+    .report-entry {
+        border-bottom: 0;
+    }
+}
+
+
