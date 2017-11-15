@@ -1,5 +1,9 @@
 <div class="tabs-wrap form-inline">
     <div class="btn-group btn-group-justified btn-goup-tabs">
+        <a class="btn btn-default" title="{{_t('lb_active')}}" href="#apps/instance"  
+           ng-class="routeMatch('/apps/instance') ? 'active' : ''">
+            <i class="fa fa-fire"></i> <span class="btn-name">{{_t('lb_active')}}</span>
+        </a>
         <a class="btn btn-default" title="{{_t('lb_local_modules')}}" href="#apps/local" 
            ng-class="routeMatch('/apps/local') ? 'active' : ''">
             <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('lb_local_modules')}}</span>
@@ -7,10 +11,6 @@
         <a class="btn btn-default" title="{{_t('lb_online_modules')}}" href="#apps/online" 
            ng-class="routeMatch('/apps/online') ||  routeMatch('/apps/online/filter') ? 'active' : ''">
             <i class="fa {{dataHolder.onlineModules.connect.icon}}"></i> <span class="btn-name">{{_t('lb_online_modules')}}</span>
-        </a>
-        <a class="btn btn-default" title="{{_t('lb_active')}}" href="#apps/instance"  
-           ng-class="routeMatch('/apps/instance') ? 'active' : ''">
-            <i class="fa fa-fire"></i> <span class="btn-name">{{_t('lb_active')}}</span>
         </a>
     </div>
 </div>

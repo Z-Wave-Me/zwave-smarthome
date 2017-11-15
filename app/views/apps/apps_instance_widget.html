@@ -1,4 +1,5 @@
 <!-- Instances widget view -->
+<!-- Instances widget view -->
 <!-- No search result -->
 <div class="alert alert-warning" ng-if="dataHolder.instances.noSearch">
     <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" +
@@ -33,7 +34,7 @@
                         <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
                     </div>
                     <div class="report-col report-ctrl report-ctrl-3">
-                        <div class="btn-group">
+                        <div class="btn-group options">
                             <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
                                 <i class="fa fa-cog"></i>
                             </a>
@@ -62,6 +63,17 @@
                                 <i class="fa fa-remove text-danger"></i>
                             </button>
                         </div>
+                        <div class="dropdown-options">
+                            <div class="btn-group group-dropdown">
+                                <button type="button" class="btn btn-default" title="{{_t('lb_settings')}}" 
+                                    ng-click="expandNavi('opDropDown_' + indexG+indexA, $event)">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="app-dropdown" 
+                                ng-if="naviExpanded['opDropDown_' + indexG+indexA]"  
+                                ng-include="'app/views/apps/dropdown.html'"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,7 +96,7 @@
                     <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
                 </div>
                 <div class="report-col report-ctrl report-ctrl-3">
-                    <div class="btn-group">
+                    <div class="btn-group options">
                         <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
                             <i class="fa fa-cog"></i>
                         </a>
@@ -113,11 +125,21 @@
                             <i class="fa fa-remove text-danger"></i>
                         </button>
                     </div>
+                    <div class="dropdown-options">
+                        <div class="btn-group group-dropdown">
+                            <button type="button" class="btn btn-default" title="{{_t('lb_settings')}}" 
+                                ng-click="expandNavi('opDropDown_' + indexG, $event)">
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="app-dropdown" 
+                            ng-if="naviExpanded['opDropDown_' + indexG]" 
+                            ng-include="'app/views/apps/dropdown.html'"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 
@@ -135,3 +157,4 @@
         </div>
     </div>
 </div> -->
+

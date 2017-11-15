@@ -41,7 +41,8 @@ var config_data = {
             // Time zone
             time: {
                 string: false,
-                timestamp: false
+                timestamp: false,
+                timeZoneOffset: 0
             },
             // User agent operating system
             os: 'unknown',
