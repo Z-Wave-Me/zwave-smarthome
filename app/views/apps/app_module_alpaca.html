@@ -104,7 +104,8 @@
                         id="btn_module_submit"
                         class="btn btn-submit"
                         data-sid="{{ZWAYSession}}"
-                        data-fromapp="{{moduleId.fromapp}}"
+                        data-fromapp="{{moduleId.fromapp}}",
+                        data-fromroute ="{{moduleId.fromRoute}}"
                         data-lang="{{lang}}"
                         ng-disabled="!moduleId.submit"
                         ng-if="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>

@@ -1,24 +1,12 @@
 <!-- Scenes -->
 <div ng-controller="AutomationController">
-    <div ng-controller="AutomationSceneController">
-        <bb-loader></bb-loader>
+    <bb-loader></bb-loader>
 
-        <!-- Navigation -->
-        <div ng-include="'app/views/automation/navi.html'"></div>
-        <!-- The list -->
-        <div class="app-row app-row-report clearfix"
-        ng-include="'app/views/automation/list.html'">
-            
-        </div>
-
-        <!-- Add new -->
-        <div class="block text-right">
-            <a class="btn btn-default" href="#module/post/LightScene">
-                <i class="fa fa-plus text-success"></i>
-                <span class="btn-name">{{_t('add_new')}}</span>
-            </a>
-        </div>
-    </div>
-    <!-- /ng-controller -->
+    <!-- Navigation -->
+    <div ng-include="'app/views/automation/navi.html'"></div>
+    <!-- The blank state -->
+    <div ng-if="automation.state == 'blank'" ng-include="'app/views/automation/blank.html'"></div>
+    <!-- The list -->
+    <div ng-if="automation.state == 'success'" ng-include="'app/views/automation/list.html'"></div>
 </div>
 <!-- /ng-controller -->

@@ -1,4 +1,5 @@
 <!-- The list -->
+<div class="app-row app-row-report clearfix">
 <div class="report-entry bcg-active" ng-repeat="v in automation.instances.all track by $index" ng-class="v.active ? 'true': 'false'">
         <div class="report-col report-media">
             <img class="report-img-s" ng-src="{{automation.localModules[v.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img"
@@ -29,4 +30,12 @@
                 </button>
             </div>
         </div>
+    </div>
+</div>
+    <!-- Add new -->
+    <div class="block text-right">
+        <a class="btn btn-default" href="#module/post/{{automation.moduleId}}">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name">{{_t('add_new')}}</span>
+        </a>
     </div>

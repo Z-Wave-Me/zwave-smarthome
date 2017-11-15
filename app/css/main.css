@@ -13602,6 +13602,58 @@ http://codepen.io/MattIn4D/pen/LiKFC
   margin: 10px 0;
 }
 
+/* Blank
+-------------------------------------------------- */
+/* line 14, ../sass/base/_blank.scss */
+.blank {
+  color: #0d0d0d;
+  font-size: 105%;
+  padding: 10px 20px;
+  background-color: #eeeeee;
+  margin: 10px 0;
+  position: relative;
+}
+/* line 21, ../sass/base/_blank.scss */
+.blank .blank-img {
+  position: absolute;
+  text-align: center;
+  top: 20px;
+  left: 20px;
+  margin: 0;
+  padding: 0;
+  width: 64px;
+  height: 64px;
+}
+/* line 30, ../sass/base/_blank.scss */
+.blank .blank-img .fa {
+  font-size: 64px;
+}
+/* line 34, ../sass/base/_blank.scss */
+.blank .blank-body {
+  margin: 0 0 0 84px;
+}
+/* line 36, ../sass/base/_blank.scss */
+.blank .blank-body p {
+  padding: 0;
+  margin: 0;
+}
+/* line 40, ../sass/base/_blank.scss */
+.blank .blank-body .blank-title {
+  font-size: 120%;
+}
+/* line 44, ../sass/base/_blank.scss */
+.blank .blank-body .blank-text {
+  margin: 10px 0;
+}
+/* line 51, ../sass/base/_blank.scss */
+.blank.is-info .blank-img .fa {
+  color: #5bc0de;
+}
+/* line 59, ../sass/base/_blank.scss */
+.blank.is-danger .blank-img .fa {
+  color: #d9534f;
+}
+
 /* Modal
 -------------------------------------------------- */
 /* line 3, ../sass/base/_modal.scss */
