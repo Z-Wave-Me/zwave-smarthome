@@ -198,7 +198,9 @@
     background-color: $card-bcg-color;
     border: solid 1px $app-border-color;
     margin: 0 0 $spacing-double 0;
+    position: relative;
     .bar-row{
+        position:relative;
         .bar-ctrl {
             .btn-group{
                 .btn{

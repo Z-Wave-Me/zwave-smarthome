@@ -40,6 +40,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             data: []
         }
     };
+    $scope.list = [];
     $scope.apiDataInterval = null;
 
     $scope.autocomplete = {
@@ -219,6 +220,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             angular.extend($scope.dataHolder.devices, {filter: {}});
             $cookies.filterElements = angular.toJson({});
         } else {// Set filter
+            
             angular.extend($scope.dataHolder.devices, {filter: filter});
             $cookies.filterElements = angular.toJson(filter);
         }
@@ -226,6 +228,41 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         //$scope.reloadData();
     };
+
+    /**
+     * Set filter
+     */
+    $scope.setListFilter = function (item) {
+        var list = [];
+        // Reset data
+        $scope.autocomplete.results = [];
+        $scope.dataHolder.devices.noSearch = false;
+        $scope.expandAutocomplete();
+        
+        if($scope.dataHolder.devices.filter.list) {
+            var index = _.findIndex($scope.dataHolder.devices.filter.list, item);
+            list = $scope.dataHolder.devices.filter.list;
+            if(index > -1) {
+                list.splice(index, 1);
+            } else {
+               list.push(item);
+            }
+        } else {
+            list.push(item);
+        }
+        if(list.length > 0) {
+            angular.extend($scope.dataHolder.devices, {filter: {list: list}});    
+            $cookies.filterElements = angular.toJson({list: list});
+        } else {
+            angular.extend($scope.dataHolder.devices, {filter: {}});
+            $cookies.filterElements = angular.toJson({});
+        }
+        
+        console.log($scope.dataHolder.devices.filter.list);
+
+        $scope.allSettled();
+    };
+
 
     /**
      * Show hidden elements
@@ -532,6 +569,17 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                     return v;
                 }
             });
+        } else if ('list' in $scope.dataHolder.devices.filter) {// Filter by list 
+            var list =  {},
+                key = Object.keys($scope.dataHolder.devices.filter.list[0])[0];
+            _.each($scope.dataHolder.devices.filter.list, function(i) {
+                list[i[key]] = true;
+            });    
+
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
+                return list[v[key]];
+            }, list);
+
         } else {
             $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
         }
@@ -582,8 +630,24 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams) {
-   $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $timeout, $location) {
+    $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
+
+    /**
+     * device on long press action
+     */
+    $scope.itemOnLongPress = function(id) {
+        $scope.longPressTimeout = $timeout(function() {
+            $location.path("config-rooms/"+id);
+        }, 1000);
+    }
+    
+    /**
+     * device on end long press action
+     */
+    $scope.itemOnTouchEnd = function() {
+        $timeout.cancel($scope.longPressTimeout);    
+    }
 
 });

@@ -463,6 +463,11 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      */
     $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
+
+        if(key == "elCategories") {
+            $scope.expand = {};
+        } 
+        
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
             $event.stopPropagation();
