@@ -28,6 +28,7 @@ var postRenderAlpaca = function (renderedForm) {
         var sid = $(this).data('sid');
         var lang = $(this).data('lang');
         var fromapp = $(this).data('fromapp');
+        var fromroute= $(this).data('fromroute');
         
         // submit via ajax
         $.ajax({
@@ -48,7 +49,9 @@ var postRenderAlpaca = function (renderedForm) {
             },
             success: function (response) {
                 $('.module-spinner').fadeOut();
-                if (fromapp) {
+                if(fromroute){
+                    window.location.replace("#" + fromroute);
+                } else if (fromapp) {
                     window.location.replace("#module/post/" + fromapp);
                 } else {
                     if (data.instanceId > 0) {

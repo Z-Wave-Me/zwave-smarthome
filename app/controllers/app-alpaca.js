@@ -24,6 +24,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     $scope.moduleId = {
         submit: true,
         fromapp: ($routeParams.fromapp && $routeParams.fromapp !== 'false') ? $routeParams.fromapp : false,
+        fromRoute: false,
         find: {},
         categoryName: null,
         singletonActive: false,
@@ -35,6 +36,17 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             download: {}
         }
     };
+    // Where the route comes from
+    $scope.fromRoute = function(route){
+        if(route.current && route.current.routeName){
+            switch(route.current.routeName){
+                case 'automation':
+                $scope.moduleId.fromRoute = route.current.routeName + '/' + route.current.params['moduleId']
+                break;
+            }
+        }
+    };
+    $scope.fromRoute(cfg.route);
 
 
     $scope.onLoad = function () {
