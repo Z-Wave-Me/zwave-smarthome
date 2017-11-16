@@ -29,16 +29,8 @@
             right: auto;
         }
         // Apps fixed search for small devices
-        &.app-fix-search {
-            width: 90%;
-            z-index: 1000000;
-            background-color: #E9E9E9;
-            position: fixed;
-            top: 0px;
-            left: 0;
-            padding: $spacing-half;
-            height: 50px;
-            .page-navi-in{
+        &.fix-me-top {
+           .page-navi-in{
                 top: -$spacing;
             }
         }
