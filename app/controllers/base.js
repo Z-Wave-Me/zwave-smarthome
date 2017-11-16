@@ -167,7 +167,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         dataFactory.pingServer(cfg.server_url + cfg.api['time']).then(function (response) {
             $interval.cancel($scope.timeZoneInterval);
             $scope.connection.online = true;
-
+            
             var remote  = cfg.find_hosts.indexOf($location.host());    
             if(remote > -1) {
                 $scope.connection.remote = true;
@@ -178,7 +178,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
                 {timestamp: response.data.data.localTimeUT},
                 {timeZoneOffset: response.data.data.localTimeZoneOffset});
-            
+
             var refresh = function () {
                 //var oldTime = cfg.route.time.string;
                 //cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
@@ -190,9 +190,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 } else {
                     $scope.connection.online = true;   
                 }
+
             };
             $scope.timeZoneInterval = $interval(refresh, $scope.cfg.interval);
-            
+
         }, function (error) {
             console.log('Error connection', error)
             if (error.status === 0) {

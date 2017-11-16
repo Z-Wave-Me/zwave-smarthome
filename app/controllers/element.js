@@ -134,12 +134,11 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.refreshDevices = function () {
         var refresh = function () {
-            if (cfg.route.fatalError.type !== 'network') {
+            if(cfg.route.fatalError.type !== "network") {
                 dataFactory.refreshApi('devices').then(function (response) {
                     if(!response){
                         return;
                     }
-
                     if (response.data.data.devices.length > 0) {
                         angular.forEach(response.data.data.devices, function (v, k) {
                              var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});

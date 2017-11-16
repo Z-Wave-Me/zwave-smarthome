@@ -179,7 +179,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     $scope.refreshData = function () {
         var refresh = function () {
-            if (cfg.route.fatalError.type !== 'network') {
+            if(cfg.route.fatalError.type !== "network") {
                 dataFactory.refreshApi('notifications').then(function (response) {
                     if(!response){
                         return;

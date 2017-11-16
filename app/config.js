@@ -270,7 +270,7 @@ var config_data = {
         // Default language
         'lang': 'en', // !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es','it'],
         // List of supported languages in the zwave products
         'zwaveproducts_langs': ['en', 'de'],
         // Role access
@@ -302,7 +302,8 @@ var config_data = {
             'de': 'de_AT',
             'ru': 'en_EN',
             'fr': 'fr_FR',
-            'fi': 'fi_FI'
+            'fi': 'fi_FI',
+            'it': 'it-IT'
         },
         // Chart colors
         'chart_colors': {

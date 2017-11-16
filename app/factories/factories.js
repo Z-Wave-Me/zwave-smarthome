@@ -545,11 +545,11 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         }).then(function (response) {
             if (typeof response.data === 'object') {
                 updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
-
+                
                 var timestamp = response.data.data.updateTime + ((cfg.route.time.timeZoneOffset * -1) * 3600);
                 cfg.route.time.timestamp = (timestamp);
                 cfg.route.time.string = $filter('setTimeFromBox')(timestamp);
-
+                
                 return response;
             } else {// invalid response
                 return $q.reject(response);
