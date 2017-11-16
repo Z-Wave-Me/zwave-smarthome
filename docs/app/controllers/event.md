@@ -70,6 +70,16 @@ Set data
 Update profile
 
 
+### EventController.swipeMe() 
+
+Swipe left/right or click previous/next
+
+
+### EventController.goToPage() 
+
+Go to page
+
+
 
 
 * * *

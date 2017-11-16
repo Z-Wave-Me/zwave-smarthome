@@ -36,15 +36,29 @@ Set order by
 
 **Returns**: `undefined`
 
-### RoomController.deleteRoom(roomId, message) 
+### RoomController.setOrderBy(key) 
 
-Delete a room
+Set order by
 
 **Parameters**
 
-**roomId**: `int`
+**key**: `string`
 
-**message**: `string`
+**Returns**: `undefined`
+
+### RoomController.onLongPress(id) 
+
+Room on long press
+
+**Parameters**
+
+**id**: `string`
+
+**Returns**: `undefined`
+
+### RoomController.onTouchEnd() 
+
+Room on long press end
 
 **Returns**: `undefined`
 
@@ -133,6 +147,18 @@ Create new or update an existing location
 **form**: `object`
 
 **input**: `object`
+
+**Returns**: `undefined`
+
+### RoomConfigIdController.deleteRoom(roomId, message) 
+
+Delete a room
+
+**Parameters**
+
+**roomId**: `int`
+
+**message**: `string`
 
 **Returns**: `undefined`
 

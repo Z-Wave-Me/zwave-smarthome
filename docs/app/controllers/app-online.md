@@ -45,6 +45,22 @@ Set filter
 Install module
 
 
+### AppOnlineController.onLongPress(id) 
+
+On long press
+
+**Parameters**
+
+**id**: `string`
+
+**Returns**: `undefined`
+
+### AppOnlineController.onTouchEnd() 
+
+On long press end
+
+**Returns**: `undefined`
+
 
 ## AppOnlineDetailController
 The controller that handles on-line app detail actions.

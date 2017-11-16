@@ -55,6 +55,11 @@ Change view mode - default/edit
 Set filter
 
 
+### ElementBaseController.setListFilter() 
+
+Set filter
+
+
 ### ElementBaseController.showHiddenEl() 
 
 Show hidden elements
@@ -137,6 +142,16 @@ Set visibility
 Set exact value for the command
 
 
+### ElementBaseController.itemOnLongPress() 
+
+device on long press action
+
+
+### ElementBaseController.itemOnTouchEnd() 
+
+device on end long press action
+
+
 ### ElementBaseController.setDevices() 
 
 Set device
@@ -149,6 +164,16 @@ The controller that handles elements on the dashboard.
 
 ## ElementRoomController
 The controller that handles elements in the room.
+
+### ElementRoomController.itemOnLongPress() 
+
+device on long press action
+
+
+### ElementRoomController.itemOnTouchEnd() 
+
+device on end long press action
+
 
 
 

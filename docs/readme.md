@@ -22,6 +22,7 @@ name | overview
 [app\controllers\app-online.js](app/controllers/app-online.md) | _Controllers that handle the Online apps._
 [app\controllers\app.js](app/controllers/app.md) | _Controllers that handle the Local apps, Online Apps and Active apps._
 [app\controllers\auth.js](app/controllers/auth.md) | _Controllers that handle the authentication of existing users, as well as forgot password._
+[app\controllers\automation.js](app/controllers/automation.md) | _Controllers that handle automation actions – scenes, rules, schedules._
 [app\controllers\base.js](app/controllers/base.md) | _The parent controller that stores all function used in the child controllers._
 [app\controllers\camera.js](app/controllers/camera.md) | _Controllers that handle all Camera actions – manage and add camera._
 [app\controllers\controllers.js](app/controllers/controllers.md) | _The uncategorized controllers._
@@ -51,12 +52,12 @@ name | overview
 [app\controllers\room.js](app/controllers/room.md) | _Controllers that handle room actions._
 [app\controllers\rss.js](app/controllers/rss.md) | _Controllers that handle all Camera actions – manage and add camera._
 [app\controllers\skin.js](app/controllers/skin.md) | _Controllers that handle all Skins actions._
+[app\controllers\smartstart.js](app/controllers/smartstart.md) | _Handles Z-Wave SmartStart process._
 [app\controllers\zwave-commands.js](app/controllers/zwave-commands.md) | _Handles expert commands  in the device hardware configuration._
 [app\controllers\zwave-configuration.js](app/controllers/zwave-configuration.md) | _Handles actions in the device hardware configuration._
 [app\controllers\zwave-exclude.js](app/controllers/zwave-exclude.md) | _Handles Reset/Remove proccess of elemnts._
 [app\controllers\zwave-inclusion.js](app/controllers/zwave-inclusion.md) | _Handles Z-Wave device inclusion actions._
 [app\controllers\zwave-manage.js](app/controllers/zwave-manage.md) | _Controllers that manage Z-Wave devices._
-[app\controllers\zwave-smartstart.js](app/controllers/zwave-smartstart.md) | _Handles Z-Wave SmartStart process._
 [app\controllers\zwave-vendor.js](app/controllers/zwave-vendor.md) | _The controller that renders Z-Wave vendors and products._
 - - -
 
@@ -65,6 +66,8 @@ app/directives
 ---
 name | overview
 :-- | :--
+[app\directives\angular-long-press.js](app/directives/angular-long-press.md) | 
+[app\directives\angular-long-press.min.js](app/directives/angular-long-press.min.md) | 
 [app\directives\angular-slider.js](app/directives/angular-slider.md) | 
 [app\directives\dir-pagination.js](app/directives/dir-pagination.md) | _AngularJS module for paginating (almost) anything._
 [app\directives\directives-expert.js](app/directives/directives-expert.md) | _Angular directives that are used in device hardware configuration view._

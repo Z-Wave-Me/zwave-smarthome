@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.8.0-RC-3',
+        'app_version': '1.8.0-RC-4',
         // Application (DIST) built date
-        'app_built': '27-10-2017 12:06:27',
+        'app_built': '16-11-2017 15:01:42',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -41,7 +41,8 @@ var config_data = {
             // Time zone
             time: {
                 string: false,
-                timestamp: false
+                timestamp: false,
+                timeZoneOffset: 0
             },
             // User agent operating system
             os: 'unknown',
@@ -130,7 +131,14 @@ var config_data = {
             'time_zone': 'ZAutomation/api/v1/system/timezone',
             'get_pulse_trains': 'RF433API/GetPulseTrains',
             'send_pulse_train': 'RF433API/Send',
-            'reorder': 'ZAutomation/api/v1/devices/reorder'
+            'reorder': 'ZAutomation/api/v1/devices/reorder',
+            'get_dsk':'ZWaveAPI/GetDSKCollection', // Get DSK collection
+            'add_dsk':'ZWaveAPI/AddDSKEntry?dsk=', // Add DSK
+            'remove_dsk':'ZWaveAPI/RemoveDSKEntry?dsk=', // Remove DSK
+            'get_dsk_provisioning_list':'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
+            'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry?dsk=', // Add DSK to ProvisioningList (Response with added DSK) GET 
+            'remove_dsk_collection':'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
+            'enable_smart_start':'JS/Run/zway.SmartStartEnable()', // enable SmartStart
         },
         // List of remote api URLs
         'api_remote': {
@@ -225,6 +233,10 @@ var config_data = {
         'online_icon_preview_url': 'https://developer.z-wave.me/?uri=api-iconpreview',
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
+        // Online device icon url
+        'online_device_icon_url': 'http://manuals-backend.z-wave.info',
+        // Online vendor icon url
+        'online_vendor_icon_url': 'http://manuals-backend.z-wave.info/img/vendors_logo/',        
         // Post report url
         'post_report_url': 'https://service.z-wave.me/report/index.php',
         // Postpassword url
@@ -258,7 +270,7 @@ var config_data = {
         // Default language
         'lang': 'en', // !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es','it'],
         // List of supported languages in the zwave products
         'zwaveproducts_langs': ['en', 'de'],
         // Role access
@@ -290,7 +302,8 @@ var config_data = {
             'de': 'de_AT',
             'ru': 'en_EN',
             'fr': 'fr_FR',
-            'fi': 'fi_FI'
+            'fi': 'fi_FI',
+            'it': 'it-IT'
         },
         // Chart colors
         'chart_colors': {
@@ -365,6 +378,10 @@ var config_data = {
             'popp',
             'jb'
         ],
+        // SmartStart
+        'smart_start':{
+            required_min_sdk:'6.80.00'// Required min SDK version
+        },
         // List of range values 0 - 255
         'knob_255': [
             'switchColor_red',

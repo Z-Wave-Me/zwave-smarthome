@@ -45,6 +45,22 @@ Delete module
 Reset module
 
 
+### AppLocalController.onLongPress(id) 
+
+On long press
+
+**Parameters**
+
+**id**: `string`
+
+**Returns**: `undefined`
+
+### AppLocalController.onTouchEnd() 
+
+On long press end
+
+**Returns**: `undefined`
+
 
 ## AppLocalDetailController
 The controller that handles local app detail actions.
