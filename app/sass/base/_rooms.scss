@@ -17,17 +17,32 @@
     @include mediaQueries(min-large) {
         //width: 20%;
     }
-    /* Inner element */
-    .card-room-in {
-        border: solid 1px $app-border-color;
-        background-color: $card-bcg-color;
-        position: relative;
-        height: 200px;
-        padding: 0;
-         margin: $spacing-half;
+
+
+    .bcg-img {
+        position: absolute; 
+        top:9px; 
+        left:9px; 
+        right:9px; 
+        bottom: 9px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background-color: $card-bcg-color;
+        
+        -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
+        webkit-mask: linear-gradient( black, black 10%, transparent);
+    }
+
+
+
+    /* Inner element */
+    .card-room-in {
+        border: solid 1px $app-border-color;
+        position: relative;
+        height: 200px;
+        padding: 0;
+        margin: $spacing-half;
 
         // Media queries
         @include mediaQueries(min-small) {
@@ -76,12 +91,10 @@
             position:absolute; 
             bottom:0px; 
             left:0px; 
-            //background-color: rgba(255, 255, 255, 0.6);
-            background: linear-gradient(to top, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.3) 80%,rgba(255,255,255,0) 100%);
             width:100%;
             text-align: center;
-
         }
+
         .card-title {
             display: none;
             @include mediaQueries(min-medium) {
@@ -102,6 +115,11 @@
             text-align: left;
             margin: $spacing-half 0;
             width: 100%;
+
+
+            @include mediaQueries(min-medium) {
+                text-align: center;
+            }
 
             /* Sensor */
             .sensor {
