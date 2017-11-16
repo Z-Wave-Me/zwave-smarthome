@@ -50,7 +50,7 @@
                         </a>
                     </h3>
                     <!-- Card sensors -->
-                    <div class="card-sensors">
+                    <div class="card-sensors" ng-show="v.main_sensors.length > 0>
                         <div class="sensor" title="{{device.metrics.title + ': ' + device.metrics.level + ' ' + device.metrics.scaleTitle}}"
                              ng-show="v.main_sensors.indexOf(device.id) > -1"
                              ng-repeat="device in dataHolder.devices.all">
