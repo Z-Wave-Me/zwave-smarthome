@@ -12611,29 +12611,29 @@ img {
 
 /* Button tabs
 -------------------------------------------------- */
-/* line 171, ../sass/base/_button.scss */
+/* line 170, ../sass/base/_button.scss */
 .btn-goup-tabs {
   /* display: table;
   width: 100%;*/
   margin: 0 0 10px 0;
 }
-/* line 175, ../sass/base/_button.scss */
+/* line 174, ../sass/base/_button.scss */
 .btn-goup-tabs .btn {
   background-color: #FFFFFF;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 177, ../sass/base/_button.scss */
+/* line 176, ../sass/base/_button.scss */
 .btn-goup-tabs .btn.active {
   background-color: #f2f2f2;
 }
 @media only screen and (min-width: 768px) {
-  /* line 175, ../sass/base/_button.scss */
+  /* line 174, ../sass/base/_button.scss */
   .btn-goup-tabs .btn {
     padding: 10px;
   }
 }
-/* line 183, ../sass/base/_button.scss */
+/* line 182, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa {
   font-size: 130%;
   color: #404040;
@@ -12641,15 +12641,15 @@ img {
   font-size: 130%;
 } */
 }
-/* line 186, ../sass/base/_button.scss */
+/* line 185, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa.text-danger {
   color: #d9534f;
 }
-/* line 195, ../sass/base/_button.scss */
+/* line 194, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa {
   color: #80AD80;
 }
-/* line 197, ../sass/base/_button.scss */
+/* line 196, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa.text-danger {
   color: #d9534f;
 }
@@ -12657,12 +12657,12 @@ img {
 /* MIN WIDTH */
 /* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 207, ../sass/base/_button.scss */
+  /* line 206, ../sass/base/_button.scss */
   .fix-me-top .btn-goup-tabs {
     display: inline-block;
     width: auto;
   }
-  /* line 210, ../sass/base/_button.scss */
+  /* line 209, ../sass/base/_button.scss */
   .fix-me-top .btn-goup-tabs .btn {
     border: 0;
     background: transparent;
@@ -12673,17 +12673,17 @@ img {
     width: auto;
   }
 }
-/* line 223, ../sass/base/_button.scss */
+/* line 221, ../sass/base/_button.scss */
 .btn-tabs-2 .btn {
   width: 50%;
 }
 
-/* line 229, ../sass/base/_button.scss */
+/* line 227, ../sass/base/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
 
-/* line 235, ../sass/base/_button.scss */
+/* line 233, ../sass/base/_button.scss */
 .btn-tabs-4 .btn {
   width: 25%;
 }
@@ -12691,7 +12691,7 @@ img {
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
-/* line 245, ../sass/base/_button.scss */
+/* line 243, ../sass/base/_button.scss */
 .switch {
   position: relative;
   display: inline-block;
@@ -12701,7 +12701,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 245, ../sass/base/_button.scss */
+  /* line 243, ../sass/base/_button.scss */
   .switch {
     width: 60px;
     height: 34px;
@@ -12709,13 +12709,13 @@ img {
 }
 
 /* Hide default HTML checkbox */
-/* line 259, ../sass/base/_button.scss */
+/* line 257, ../sass/base/_button.scss */
 .switch input {
   display: none;
 }
 
 /* The slider */
-/* line 266, ../sass/base/_button.scss */
+/* line 264, ../sass/base/_button.scss */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -12729,7 +12729,7 @@ img {
   transition: .4s;
 }
 
-/* line 280, ../sass/base/_button.scss */
+/* line 278, ../sass/base/_button.scss */
 .slider:before {
   position: absolute;
   content: "";
@@ -12746,24 +12746,24 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 280, ../sass/base/_button.scss */
+  /* line 278, ../sass/base/_button.scss */
   .slider:before {
     height: 26px;
     width: 26px;
   }
 }
 
-/* line 302, ../sass/base/_button.scss */
+/* line 300, ../sass/base/_button.scss */
 input:checked + .slider:before {
   background-color: #80AD80;
 }
 
-/* line 306, ../sass/base/_button.scss */
+/* line 304, ../sass/base/_button.scss */
 input:focus + .slider {
   box-shadow: 0 0 1px #80AD80;
 }
 
-/* line 310, ../sass/base/_button.scss */
+/* line 308, ../sass/base/_button.scss */
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -12771,14 +12771,51 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-/* line 319, ../sass/base/_button.scss */
+/* line 317, ../sass/base/_button.scss */
 .slider.round {
   border-radius: 4px;
 }
 
-/* line 323, ../sass/base/_button.scss */
+/* line 321, ../sass/base/_button.scss */
 .slider.round:before {
   border-radius: 4px;
+}
+
+/* Button group hiden on small devices
+-------------------------------------------------- */
+/* line 329, ../sass/base/_button.scss */
+.btn-wrapper {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 767px) {
+  /* line 329, ../sass/base/_button.scss */
+  .btn-wrapper {
+    position: relative;
+  }
+  /* line 332, ../sass/base/_button.scss */
+  .btn-wrapper .btn-group {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    z-index: 1100;
+    float: right;
+    min-width: 200px;
+    padding: 10px;
+    text-align: left;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    border: 1px solid #cccccc;
+    background-clip: padding-box;
+    text-align: right;
+  }
+  /* line 347, ../sass/base/_button.scss */
+  .btn-wrapper .btn-group.btn-group-collapsed {
+    display: none;
+  }
 }
 
 /* Form 

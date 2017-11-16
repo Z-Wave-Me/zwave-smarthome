@@ -167,7 +167,6 @@
 /* Button tabs
 -------------------------------------------------- */
 
-
 .btn-goup-tabs {
   /* display: table;
   width: 100%;*/
@@ -207,17 +206,16 @@
     .btn-goup-tabs {
       display: inline-block;
       width: auto;
-      .btn{
+      .btn {
         border: 0;
         background: transparent;
-        @include  appBorderRadius(0);
+        @include appBorderRadius(0);
         display: inline-block;
         width: auto;
       }
-
     }
-   }
- }
+  }
+}
 
 .btn-tabs-2 {
   .btn {
@@ -322,4 +320,33 @@ input:checked+.slider:before {
 
 .slider.round:before {
   border-radius: 4px;
+}
+
+
+/* Button group hiden on small devices
+-------------------------------------------------- */
+
+.btn-wrapper {
+  @include mediaQueries(max-small) {
+    position: relative;
+    .btn-group {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: auto;
+      z-index: $zindex-dropdown;
+      float: right;
+      min-width: 200px;
+      padding: $spacing;
+      text-align: left;
+      background-color: #FFFFFF;
+      @include appBoxShadow($app-box-shadow);
+      border: 1px solid $app-border-color;
+      background-clip: padding-box;
+      text-align: right;
+      &.btn-group-collapsed{
+        display: none;
+      }
+    }
+  }
 }
