@@ -176,14 +176,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             }
 
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
-                {timestamp: response.data.data.localTimeUT});
+                {timestamp: response.data.data.localTimeUT},
+                {timeZoneOffset: response.data.data.localTimeZoneOffset});
+
             var refresh = function () {
-                var oldTime = cfg.route.time.string;
-                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
-                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
+                //var oldTime = cfg.route.time.string;
+                //cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
+                //cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
                 if (cfg.route.fatalError.type === 'network') {
                     $scope.connection.online = false;
-                    cfg.route.time.string = oldTime;
+                    //cfg.route.time.string = oldTime;
                     $scope.reloadAfterError();
                 } else {
                     $scope.connection.online = true;   
@@ -462,6 +464,11 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      */
     $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
+
+        if(key == "elCategories") {
+            $scope.expand = {};
+        } 
+        
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
             $event.stopPropagation();
