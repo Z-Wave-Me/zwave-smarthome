@@ -1,5 +1,8 @@
 <!-- Elements room header -->
-<div class="elemnts-room-bar">
+<div class="elemnts-room-bar longpress-{{longPressSent}}" 
+    on-long-press="itemOnLongPress(room.id)"
+    on-touch-end="itemOnTouchEnd()"
+    prevent-click="true">
     <!-- Bar row -->
     <div class="bar-row">
         <!-- Bar col -->
@@ -44,7 +47,7 @@
             <!-- Elements mode ctrl -->
             <span ng-include="'app/views/elements/elements_ctrl_mode.html'" ng-if="_.size(dataHolder.devices.collection) > 1 && elementAccess(cfg.role_access.admin)"></span>
             <!-- Settings -->
-            <a class="btn btn-default _bar-icon" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
+            <a id="room-settings" class="btn btn-default" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
                ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0 && dataHolder.mode === 'default'">
                 <i class="fa fa-cog"></i>
             </a>
