@@ -199,6 +199,14 @@
     border: solid 1px $app-border-color;
     margin: 0 0 $spacing-double 0;
     position: relative;
+
+    #room-settings {
+        display: none;
+        @include mediaQueries(min-small) {
+            display: inline-block;
+        }
+    }
+
     .bar-row{
         position:relative;
         .bar-ctrl {

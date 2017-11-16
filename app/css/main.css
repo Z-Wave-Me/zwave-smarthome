@@ -13808,7 +13808,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* line 197, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
-.widget-entry-in:before, .card-room-in:before, .bar-row:before, .bar-row:after {
+.widget-entry-in:before, .card-room-in:before, .bar-row:before {
   top: 0;
   left: 0;
 }
@@ -13830,8 +13830,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:after,
 .longpress-true .card-room-in:before,
 .longpress-true .card-room-in:after,
-.longpress-true .bar-row:after,
-.longpress-true .bar-row:before {
+.longpress-true .bar-row:before,
+.longpress-true .bar-row:after {
   width: 100%;
   height: 100%;
 }
@@ -13840,14 +13840,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 /* line 229, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -16324,19 +16327,33 @@ img.widget-promo-image {
   position: relative;
 }
 
-/* line 202, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+/* line 203, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+.elemnts-room-bar #room-settings {
+  display: none;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  /* line 203, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+  .elemnts-room-bar #room-settings {
+    display: inline-block;
+  }
+}
+
+/* line 210, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row {
   position: relative;
 }
 
-/* line 206, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+/* line 214, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 991px) {
-  /* line 206, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+  /* line 214, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
     margin: 0;
     float: none;
@@ -16344,7 +16361,7 @@ img.widget-promo-image {
   }
 }
 
-/* line 214, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+/* line 222, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor {
   /* MIN WIDTH */
   /* MAX WIDTH */
@@ -16352,7 +16369,7 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 
-/* line 215, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+/* line 223, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
   cursor: text;
   border: 0 none;
@@ -16364,20 +16381,20 @@ img.widget-promo-image {
 }
 
 @media only screen and (max-width: 991px) {
-  /* line 215, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+  /* line 223, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
     margin: 0;
   }
 }
 
-/* line 227, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+/* line 235, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
   display: inline-block;
   max-width: 24px;
   max-height: 24px;
 }
 
-/* line 233, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+/* line 241, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
   font-weight: bold;
   font-size: 90%;
@@ -16385,14 +16402,14 @@ img.widget-promo-image {
   vertical-align: middle;
 }
 
-/* line 238, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+/* line 246, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level small {
   font-weight: normal;
   font-size: 80%;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 214, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+  /* line 222, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor {
     text-align: left;
     margin: 10px 0;
@@ -16401,12 +16418,12 @@ img.widget-promo-image {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 252, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+  /* line 260, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
     max-width: 32px;
     max-height: 32px;
   }
-  /* line 256, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+  /* line 264, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
     font-size: 120%;
   }
@@ -16414,7 +16431,7 @@ img.widget-promo-image {
 
 /* Images
 -------------------------------------------------- */
-/* line 268, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+/* line 276, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
