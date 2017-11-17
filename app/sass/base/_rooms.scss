@@ -123,11 +123,13 @@
 
             /* Sensor */
             .sensor {
-                vertical-align: middle;
                 margin: 5px;
-                display: inline-block;     
+                display: block;     
+                @include mediaQueries(min-medium) {
+                    display: inline-block
+                }
                 .sensor-img {
-                    float: left;
+                    display: inline-block;
                     width: 20px;
                     height: 20px;
                     .sensor-preview-img {
@@ -137,11 +139,10 @@
                 }
 
                 .sensor-ctrl {
-                    float: left;
+                    display: inline-block;
                     margin: 0 0 0 2px ;
                     .sensor-level {
                         font-weight: bold;
-                        /*font-size: 100%;*/
                     }
                     .sensor-scale {
                         font-size: 90%;
