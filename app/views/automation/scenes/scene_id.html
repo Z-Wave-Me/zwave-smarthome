@@ -1,0 +1,64 @@
+<!-- The scenee -->
+<div ng-controller_="Ctrl">
+    <div class="blank is-info">
+        <div class="blank-img">
+            <i class="fa fa-file-image-o"></i>
+        </div>
+        <div class="blank-body">
+            <p class="blank-title">Module name</p>
+            <p class="blank-text">
+                Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
+                dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.
+                Aenean imperdiet. Etiam ultricies nisi vel augue.
+            </p>
+
+        </div>
+    </div>
+    <!-- Form -->
+    <form id="form_module" class="form form-page">
+        <fieldset>
+             <!-- Name -->
+            <div class="form-group form-inline">
+                <label>{{_t('lb_name')}}</label>
+                <input name="title" id="title" type="text" class="form-control" />
+            </div>
+             <!-- Active -->
+            <div class="form-group">
+                Active
+                <input type="checkbox" name="instances_expanded" id="instances_expanded" ng-checked="input.show_background"/>
+                <label for="instances_expanded">
+                  &nbsp;
+                </label>
+            </div>
+             <!-- Upload -->
+            <div class="form-group">
+                    <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
+                           ng-click="icons.find = v" 
+                           onchange="angular.element(this).scope().uploadFile(this.files)" />
+                        <label for="file{{v.id}}" class="btn btn-default" title="{{_t('lb_upload_image')}}" 
+                               ng-click="icons.find = v">
+                            <i class="fa fa-upload text-success"></i> Upload icon
+                        </label>
+                    <div ng-if="file.upload">{{file.upload|cutText:true:30}}</div>
+                     <bb-help-text trans="_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})"></bb-help-text>
+                   <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})"></bb-help-text>
+               </div>
+        </fieldset>
+
+        <!-- Submit -->
+        <fieldset class="submit-entry">
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                <i class="fa fa-reply"></i>
+                <span class="btn-name">{{_t('lb_cancel')}}</span>
+            </button>
+            <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+                <i class="fa fa-check"></i>
+                <span class="btn-name">{{_t('lb_save')}}</span>
+            </button>
+
+        </fieldset>
+
+    </form>
+
+</div>
+<!-- /ng-controller -->
