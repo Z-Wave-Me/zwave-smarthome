@@ -16900,6 +16900,13 @@ input[type="checkbox"]:checked + label:before {
   background: #4e794e;
 }
 
+/* Automation
+-------------------------------------------------- */
+/* line 3, ../sass/base/_automation.scss */
+.app-row-automation {
+  border: 0;
+}
+
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit

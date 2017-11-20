@@ -115,3 +115,47 @@ myAppController.controller('AutomationController', function ($scope,  $routePara
     };
 
 });
+
+/**
+ * Aoutomation scene controller
+ * @class AutomationSceneController
+ */
+myAppController.controller('AutomationSceneController', function ($scope,  $routeParams,$location, cfg, dataFactory, dataService, _, myCache) {
+    $scope.scene = {
+        rooms : [],
+        modules: {
+            switches: {
+                title: 'Switches',
+                all: ['Dummy Binary Switch','Everspring Switch 1','Everspring Switch 2','POPP Switch 1','POPP Switch 2']
+            },
+            dimmers: {
+                title: 'Dimmers',
+                all: ['Dimmer 1','Dimmer 2']
+            },
+            thermostats: {
+                title: 'Thermostats',
+                all: ['Thermostat 1','Thermostat 2','Thermostat 3']
+            },
+            locks: {
+                title: 'Locks',
+                all: ['Lock 1']
+            },
+            scenes: {
+                title: 'Scenes',
+                all: ['Scene 1','Scene 2','Scene 3','Scene 4']
+            }
+        }
+       
+        
+    }
+
+    /**
+     * Load locations
+     */
+    $scope.loadLocations = function () {
+        dataFactory.getApi('locations').then(function (response) {
+            $scope.scene.rooms = dataService.getRooms(response.data.data).value();
+        }, function (error) {});
+    };
+    $scope.loadLocations();
+});
