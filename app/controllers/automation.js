@@ -11,7 +11,12 @@ myAppController.controller('AutomationController', function ($scope,  $routePara
     $scope.automation = {
         moduleId: $routeParams.moduleId,
         allowedIds: ['LightScene', 'IfThen', 'ScheduledScene'],
-        imgPath: cfg.server_url + cfg.api_url + 'load/modulemedia/',
+        icons: {
+            LightScene: 'scene.png', 
+            IfThen: 'security-pending.png', 
+            ScheduledScene: 'alarm.png'
+        },
+        //imgPath: cfg.server_url + cfg.api_url + 'load/modulemedia/',
         state: '',
         localModules: {},
         instances: {
@@ -31,7 +36,8 @@ myAppController.controller('AutomationController', function ($scope,  $routePara
                 if ($scope.automation.allowedIds.indexOf(v.moduleName) > -1) {
                     $scope.automation.localModules[v.moduleName] = {
                         version: v.version,
-                        icon: $scope.automation.imgPath + v.id + '/' + v.icon,
+                        //icon: $scope.automation.imgPath + v.id + '/' + v.icon,
+                        icon: cfg.img.icons + $scope.automation.icons[v.moduleName],
                         singleton: v.singleton,
                         title: v.defaults.title
                     };

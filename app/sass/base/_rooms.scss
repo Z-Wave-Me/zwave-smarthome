@@ -1,6 +1,74 @@
 /* Rooms
 -------------------------------------------------- */
 
+.page-room {      
+    @include mediaQueries(max-small) {
+        width: 100%;
+        position: absolute;
+        padding-top: 60px;
+        padding-bottom: 60px; 
+        display: block;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        overflow-x:hidden;
+    }
+
+    &.ng-enter { 
+        z-index: 1900; 
+    }
+    
+    &.ng-leave {
+        z-index: 2000; 
+    }     
+
+    &.swipe-left {
+        &.ng-enter {
+            animation:slideInRight 0.5s both ease-in;
+        }
+
+        &.ng-leave {
+            animation:slideOutLeft 0.5s both ease-in;
+        }
+    }
+
+    &.swipe-right {
+        &.ng-enter {
+            animation:slideInLeft 0.5s both ease-in;
+        }
+
+        &.ng-leave {
+            animation:slideOutRight 0.5s both ease-in;
+        }
+    }    
+}
+
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform: translateX(100%); }
+    to      { transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+    from    { transform: translateX(-100%); }
+    to      { transform: translateX(0); }
+}
+
+
+/* slide in from the bottom */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-100%); }
+}
+
+/* slide in from the bottom */
+@keyframes slideOutRight {
+    from      { transform: translateX(0); }
+    to        { transform: translateX(100%);}
+}
+
+
 /* Cards
 -------------------------------------------------- */
 .card-room {
@@ -32,6 +100,7 @@
         
         -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
         webkit-mask: linear-gradient( black, black 10%, transparent);
+        mask: linear-gradient( black, black 10%, transparent);
     }
 
 
@@ -123,11 +192,13 @@
 
             /* Sensor */
             .sensor {
-                vertical-align: middle;
                 margin: 5px;
-                display: inline-block;     
+                display: block;     
+                @include mediaQueries(min-medium) {
+                    display: inline-block
+                }
                 .sensor-img {
-                    float: left;
+                    display: inline-block;
                     width: 20px;
                     height: 20px;
                     .sensor-preview-img {
@@ -137,11 +208,10 @@
                 }
 
                 .sensor-ctrl {
-                    float: left;
+                    display: inline-block;
                     margin: 0 0 0 2px ;
                     .sensor-level {
                         font-weight: bold;
-                        /*font-size: 100%;*/
                     }
                     .sensor-scale {
                         font-size: 90%;
@@ -218,16 +288,75 @@
     margin: 0 0 $spacing-double 0;
     position: relative;
 
-    #room-settings {
-        display: none;
-        @include mediaQueries(min-small) {
-            display: inline-block;
-        }
-    }
-
     .bar-row{
         position:relative;
+        .bar-col {
+            display: block;
+            margin: 0 auto;
+            @include mediaQueries(min-small) {
+                display: table-cell;
+            }
+        }
+
+        .bar-media {
+            @include mediaQueries(max-small) {
+                margin: 0 auto;
+                text-align: center;
+                img {
+                    border-radius: 50%;
+                }   
+            }
+        }
+
+        .bar-body {
+            margin-top: 5px; 
+            .btn-group {
+                width: 100%;
+                .bar-title {
+                    &.swipe {
+                        display: table;
+                        width: 100%;
+                        
+                        .fa-arrow-left {
+                            display: table-cell;
+                            vertical-align: middle;
+                            text-align: left;
+                            color: $app-heading-color;
+                        }
+
+                        .fa-arrow-right {
+                            display: table-cell;
+                            vertical-align: middle;
+                            text-align: right;
+                            color: $app-heading-color;
+                        }
+                        
+                        .room-title {
+                            display: table-cell;
+                            vertical-align: middle;
+                            text-align: center;
+                        }
+
+                        @include mediaQueries(min-small) {
+                                display: none;
+                        }
+                    }
+                    display: none;
+                    @include mediaQueries(min-small) {
+                        display: inline-block;
+                    }
+                    
+                }
+            }
+        }
+
         .bar-ctrl {
+            display: none;
+
+            @include mediaQueries(min-small) {
+                display: table-cell;;
+            }
+
             .btn-group{
                 .btn{
                     @include mediaQueries(max-medium) {

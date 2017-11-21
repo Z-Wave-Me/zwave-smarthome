@@ -1,7 +1,7 @@
 <!-- Elements room header -->
 <div class="elemnts-room-bar longpress-{{longPressSent}}" 
-    on-long-press="itemOnLongPress(room.id)"
-    on-touch-end="itemOnTouchEnd()"
+    on-long-press="roomBarOnLongPress(room.id)"
+    on-touch-end="roomBarOnTouchEnd()"
     prevent-click="true">
     <!-- Bar row -->
     <div class="bar-row">
@@ -12,6 +12,11 @@
         <!-- Bar col -->
         <div class="bar-col bar-body">
             <div class="btn-group">
+                <span class="bar-title swipe">
+                    <i class="fa fa-arrow-left"></i>
+                    <span class="room-title">{{room.title}}</span>
+                    <i class="fa fa-arrow-right"></i>
+                </span>
                 <span class="bar-title clickable" ng-if="_.size(dataHolder.cnt.rooms) > 0"
                       ng-click="expandNavi('roomDropDown', $event)">{{room.title}}  <i class="fa fa-caret-down"></i>
                 </span>
@@ -28,8 +33,6 @@
                     </ul>
                 </div>
             </div>
-
-
         </div>
         <!-- Bar col - control -->
         <!--<pre>{{room.main_sensors|json}}</pre>-->
@@ -47,7 +50,7 @@
             <!-- Elements mode ctrl -->
             <span ng-include="'app/views/elements/elements_ctrl_mode.html'" ng-if="_.size(dataHolder.devices.collection) > 1 && elementAccess(cfg.role_access.admin)"></span>
             <!-- Settings -->
-            <a id="room-settings" class="btn btn-default" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
+            <a class="btn btn-default" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
                ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0 && dataHolder.mode === 'default'">
                 <i class="fa fa-cog"></i>
             </a>
