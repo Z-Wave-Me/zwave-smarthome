@@ -122,6 +122,7 @@ myAppController.controller('AutomationController', function ($scope,  $routePara
  */
 myAppController.controller('AutomationSceneController', function ($scope,  $routeParams,$location, cfg, dataFactory, dataService, _, myCache) {
     $scope.scene = {
+      input:{},
         rooms : [],
         modules: {
             switches: {

@@ -12262,7 +12262,7 @@ img {
 
 /* Report
 -------------------------------------------------- */
-/* line 3, ../sass/base/_report.scss */
+/* line 6, ../sass/base/_report.scss */
 .app-row-report {
   border-top: solid 1px #cccccc;
   background-color: #FFFFFF;
@@ -12271,7 +12271,7 @@ img {
   width: 100%;
 }
 
-/* line 11, ../sass/base/_report.scss */
+/* line 14, ../sass/base/_report.scss */
 .report-entry {
   border-bottom: solid 1px #cccccc;
   padding: 10px 5px;
@@ -12279,55 +12279,60 @@ img {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 19, ../sass/base/_report.scss */
+/* line 22, ../sass/base/_report.scss */
 .report-entry .report-col {
   padding: 5px;
   display: table-cell;
   vertical-align: middle;
   border-bottom: solid 1px #cccccc;
 }
-/* line 25, ../sass/base/_report.scss */
+/* line 28, ../sass/base/_report.scss */
 .report-entry .report-media {
   width: 37px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 25, ../sass/base/_report.scss */
+  /* line 28, ../sass/base/_report.scss */
   .report-entry .report-media {
     width: 50px;
   }
 }
-/* line 34, ../sass/base/_report.scss */
+/* line 37, ../sass/base/_report.scss */
 .report-entry .report-ctrl {
   text-align: right;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 34, ../sass/base/_report.scss */
+  /* line 37, ../sass/base/_report.scss */
   .report-entry .report-ctrl {
     min-width: 110px;
   }
 }
-/* line 41, ../sass/base/_report.scss */
+/* line 44, ../sass/base/_report.scss */
 .report-entry .report-ctrl-3 {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 41, ../sass/base/_report.scss */
+  /* line 44, ../sass/base/_report.scss */
   .report-entry .report-ctrl-3 {
     min-width: 160px;
   }
 }
-/* line 47, ../sass/base/_report.scss */
+/* line 50, ../sass/base/_report.scss */
 .report-entry .report-col-w30 {
   width: 30%;
 }
+/* line 54, ../sass/base/_report.scss */
+.report-entry.report-header .report-title {
+  margin: 10px 0 5px 0;
+  font-weight: bold;
+}
 
 /* Images */
-/* line 52, ../sass/base/_report.scss */
+/* line 61, ../sass/base/_report.scss */
 .report-img {
   max-width: 32px;
   max-height: 32px;
@@ -12335,27 +12340,27 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 52, ../sass/base/_report.scss */
+  /* line 61, ../sass/base/_report.scss */
   .report-img {
     max-width: 40px;
     max-height: 40px;
   }
 }
 
-/* line 61, ../sass/base/_report.scss */
+/* line 70, ../sass/base/_report.scss */
 .report-img-s {
   max-width: 32px;
   max-height: 32px;
 }
 
 /* Zwave row */
-/* line 69, ../sass/base/_report.scss */
+/* line 78, ../sass/base/_report.scss */
 .app-row-zwave .report-entry .report-ctrl {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 69, ../sass/base/_report.scss */
+  /* line 78, ../sass/base/_report.scss */
   .app-row-zwave .report-entry .report-ctrl {
     vertical-align: top !important;
   }
@@ -13032,9 +13037,16 @@ fieldset.submit-entry {
   margin: 10px 0 0 0;
 }
 
+/* line 151, ../sass/base/_form.scss */
+.input-number {
+  display: inline-block;
+  padding: 5px;
+  width: 4em !important;
+}
+
 /* Config form
 -------------------------------------------------- */
-/* line 154, ../sass/base/_form.scss */
+/* line 160, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -16903,8 +16915,33 @@ input[type="checkbox"]:checked + label:before {
 /* Automation
 -------------------------------------------------- */
 /* line 3, ../sass/base/_automation.scss */
-.app-row-automation {
+.automation-report {
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+/* line 6, ../sass/base/_automation.scss */
+.automation-report .app-row-report {
   border: 0;
+}
+/* line 10, ../sass/base/_automation.scss */
+.automation-report .app-row-report .report-entry .report-col {
+  border-bottom: dotted 1px #cccccc;
+  padding: 0;
+  width: 33%;
+}
+/* line 14, ../sass/base/_automation.scss */
+.automation-report .app-row-report .report-entry .report-col .form-group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+/* line 20, ../sass/base/_automation.scss */
+.automation-report .app-row-report .report-entry .report-ctrl {
+  min-width: 50%;
+}
+/* line 23, ../sass/base/_automation.scss */
+.automation-report .app-row-report .report-entry input[type=radio] {
+  margin: 0 5px 0;
 }
 
 /* SmartHome UI custom

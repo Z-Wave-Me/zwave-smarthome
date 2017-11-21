@@ -1,5 +1,8 @@
 /* Report
 -------------------------------------------------- */
+
+
+
 .app-row-report{
     border-top: solid 1px $app-border-color;
     background-color: #FFFFFF;
@@ -46,6 +49,12 @@
     }
     .report-col-w30{
         width: 30%;
+    }
+    &.report-header{
+        .report-title{
+            margin: $spacing 0 $spacing-half 0;
+             font-weight: bold;
+         }
     }
 }
 /* Images */

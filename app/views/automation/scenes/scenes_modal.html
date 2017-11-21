@@ -1,0 +1,27 @@
+<!-- scenesModal -->
+<div id="scenesModal " class="appmodal" ng-if="modalArr.scenes">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('scenes', $event)"><i class="fa fa-times"></i></span>
+            <h3>Add new</h3>
+        </div>
+        <div class="appmodal-body">
+            <!-- Switch select -->
+        <div class="form-group  form-inline">
+            <select class="form-control">
+              <option ng-repeat="v in scene.modules.scenes.all">{{v}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="appmodal-footer">
+            <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleModal('scenes', $event)">
+              <i class="fa fa-times text-danger"></i>
+              <span class="btn-name">{{_t('lb_close')}} </span>
+            </button>
+            <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleModal('scenes', $event)">
+              <i class="fa fa-check"></i>
+              <span class="btn-name">{{_t('lb_save')}}</span>
+            </button>
+          </div>
+    </div>
+</div>

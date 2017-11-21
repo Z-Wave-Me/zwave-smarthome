@@ -1,5 +1,29 @@
 /* Automation
 -------------------------------------------------- */
-.app-row-automation{
-    border: 0;
+.automation-report{
+    margin-bottom: $spacing-double;
+    padding: 0 $spacing-double;
+    .app-row-report{
+        border: 0;
+        .report-entry{
+            
+            .report-col{
+               border-bottom: dotted 1px $app-border-color;
+                padding: 0;
+                width: 33%;
+                .form-group{
+                    border: 0;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+            .report-ctrl{
+                min-width: 50%;
+            }
+            input[type=radio]{
+                margin: 0 $spacing-half 0;
+            }
+        }
+    }
 }
+

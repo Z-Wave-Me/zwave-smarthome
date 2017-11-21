@@ -148,6 +148,12 @@ fieldset.submit-entry {
     margin: $spacing 0 0 0;
 }
 
+.input-number {
+  display: inline-block;
+  padding: $spacing-half;
+  width: 4em !important;
+}
+
 /* Config form
 -------------------------------------------------- */
 #form_wakeup {
