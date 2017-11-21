@@ -15,57 +15,40 @@
         overflow-x:hidden;
     }
 
-    &.ng-enter { 
-        z-index: 1900; 
+    &.swipe-right, &.swipe-left {
+        transition: transform 0.5s ease;
+        transform: translate3d(0, 0, 0);
     }
-    
-    &.ng-leave {
-        z-index: 2000; 
-    }     
 
     &.swipe-left {
         &.ng-enter {
-            animation:slideInRight 0.5s both ease-in;
+            transform: translate3d(100%, 0, 0);  // Move to the right (up to 100% of width)
         }
-
+        &.ng-enter-active {
+            transform: translate3d(0, 0, 0);
+        }
         &.ng-leave {
-            animation:slideOutLeft 0.5s both ease-in;
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave-active {
+            transform: translate3d(-100%, 0, 0);  
         }
     }
 
     &.swipe-right {
         &.ng-enter {
-            animation:slideInLeft 0.5s both ease-in;
+            transform: translate3d(-100%, 0, 0);  // Move to the right (up to 100% of width)
         }
-
+        &.ng-enter-active {
+            transform: translate3d(0, 0, 0);
+        }
         &.ng-leave {
-            animation:slideOutRight 0.5s both ease-in;
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave-active {
+            transform: translate3d(100%, 0, 0);  
         }
     }    
-}
-
-
-/* slide in from the right */
-@keyframes slideInRight {
-    from    { transform: translateX(100%); }
-    to      { transform: translateX(0); }
-}
-
-@keyframes slideInLeft {
-    from    { transform: translateX(-100%); }
-    to      { transform: translateX(0); }
-}
-
-
-/* slide in from the bottom */
-@keyframes slideOutLeft {
-    to      { transform: translateX(-100%); }
-}
-
-/* slide in from the bottom */
-@keyframes slideOutRight {
-    from      { transform: translateX(0); }
-    to        { transform: translateX(100%);}
 }
 
 
