@@ -280,6 +280,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
          * Set timestamp and ping server if request fails
          */
         $scope.setTimeStamp();
+        
+        angular.copy({}, $scope.naviExpanded);
+        angular.copy({}, $scope.autocompleteExpanded);
+        angular.copy({}, $scope.expand);
     });
 
     /**
@@ -465,22 +469,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
 
-        if(key == "elCategories") {
-            $scope.expand = {};
-        } 
-        
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
-            $event.stopPropagation();
+            $event.stopPropagation();    
             return;
         }
+
         $scope.naviExpanded = {};
         if (typeof status === 'boolean') {
             $scope.naviExpanded[key] = status;
         } else {
             $scope.naviExpanded[key] = !$scope.naviExpanded[key];
         }
-        $event.stopPropagation();
+        $event.stopPropagation();    
     };
 
     /**
@@ -520,7 +521,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             angular.copy({}, $scope.autocompleteExpanded);
             $scope.$apply();
         }
-        if ($scope.naviExpanded) {
+        if ($scope.naviExpanded && !$scope.naviExpanded.elCategories) {
             angular.copy({}, $scope.naviExpanded);
             $scope.$apply();
         }
