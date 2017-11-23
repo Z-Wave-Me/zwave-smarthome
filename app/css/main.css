@@ -12262,7 +12262,17 @@ img {
 
 /* Report
 -------------------------------------------------- */
-/* line 6, ../sass/base/_report.scss */
+/* line 5, ../sass/base/_report.scss */
+.report-header {
+  display: block;
+}
+/* line 7, ../sass/base/_report.scss */
+.report-header .report-title {
+  margin: 10px 0 5px 0;
+  font-weight: bold;
+}
+
+/* line 12, ../sass/base/_report.scss */
 .app-row-report {
   border-top: solid 1px #cccccc;
   background-color: #FFFFFF;
@@ -12271,7 +12281,7 @@ img {
   width: 100%;
 }
 
-/* line 14, ../sass/base/_report.scss */
+/* line 20, ../sass/base/_report.scss */
 .report-entry {
   border-bottom: solid 1px #cccccc;
   padding: 10px 5px;
@@ -12279,60 +12289,55 @@ img {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 22, ../sass/base/_report.scss */
+/* line 28, ../sass/base/_report.scss */
 .report-entry .report-col {
   padding: 5px;
   display: table-cell;
   vertical-align: middle;
   border-bottom: solid 1px #cccccc;
 }
-/* line 28, ../sass/base/_report.scss */
+/* line 34, ../sass/base/_report.scss */
 .report-entry .report-media {
   width: 37px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 28, ../sass/base/_report.scss */
+  /* line 34, ../sass/base/_report.scss */
   .report-entry .report-media {
     width: 50px;
   }
 }
-/* line 37, ../sass/base/_report.scss */
+/* line 43, ../sass/base/_report.scss */
 .report-entry .report-ctrl {
   text-align: right;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 37, ../sass/base/_report.scss */
+  /* line 43, ../sass/base/_report.scss */
   .report-entry .report-ctrl {
     min-width: 110px;
   }
 }
-/* line 44, ../sass/base/_report.scss */
+/* line 50, ../sass/base/_report.scss */
 .report-entry .report-ctrl-3 {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 44, ../sass/base/_report.scss */
+  /* line 50, ../sass/base/_report.scss */
   .report-entry .report-ctrl-3 {
     min-width: 160px;
   }
 }
-/* line 50, ../sass/base/_report.scss */
+/* line 56, ../sass/base/_report.scss */
 .report-entry .report-col-w30 {
   width: 30%;
 }
-/* line 54, ../sass/base/_report.scss */
-.report-entry.report-header .report-title {
-  margin: 10px 0 5px 0;
-  font-weight: bold;
-}
 
 /* Images */
-/* line 61, ../sass/base/_report.scss */
+/* line 62, ../sass/base/_report.scss */
 .report-img {
   max-width: 32px;
   max-height: 32px;
@@ -12340,27 +12345,27 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 61, ../sass/base/_report.scss */
+  /* line 62, ../sass/base/_report.scss */
   .report-img {
     max-width: 40px;
     max-height: 40px;
   }
 }
 
-/* line 70, ../sass/base/_report.scss */
+/* line 71, ../sass/base/_report.scss */
 .report-img-s {
   max-width: 32px;
   max-height: 32px;
 }
 
 /* Zwave row */
-/* line 78, ../sass/base/_report.scss */
+/* line 79, ../sass/base/_report.scss */
 .app-row-zwave .report-entry .report-ctrl {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 78, ../sass/base/_report.scss */
+  /* line 79, ../sass/base/_report.scss */
   .app-row-zwave .report-entry .report-ctrl {
     vertical-align: top !important;
   }
@@ -12904,7 +12909,17 @@ input[type=checkbox] {
   }
 }
 
-/* line 49, ../sass/base/_form.scss */
+/* .checkbox{
+  input[type=checkbox] {
+    position: static;
+    margin-left: 0;
+  
+  }
+  label{
+    padding-left: 0;
+  }
+} */
+/* line 59, ../sass/base/_form.scss */
 input[type=radio] {
   transform: scale(1.6, 1.6);
   -moz-transform: scale(1.6, 1.6);
@@ -12917,7 +12932,7 @@ input[type=radio] {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 49, ../sass/base/_form.scss */
+  /* line 59, ../sass/base/_form.scss */
   input[type=radio] {
     transform: scale(1.2, 1.2);
     -moz-transform: scale(1.2, 1.2);
@@ -12929,32 +12944,32 @@ input[type=radio] {
   }
 }
 
-/* line 57, ../sass/base/_form.scss */
+/* line 67, ../sass/base/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
-/* line 63, ../sass/base/_form.scss */
+/* line 73, ../sass/base/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 66, ../sass/base/_form.scss */
+/* line 76, ../sass/base/_form.scss */
 .form-page .form-group.first {
   padding-top: 10px;
 }
-/* line 69, ../sass/base/_form.scss */
+/* line 79, ../sass/base/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
   margin-bottom: 0;
 }
-/* line 75, ../sass/base/_form.scss */
+/* line 85, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 80, ../sass/base/_form.scss */
+/* line 90, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -12964,46 +12979,46 @@ input[type=radio] {
   z-index: -1;
 }
 
-/* line 90, ../sass/base/_form.scss */
+/* line 100, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 94, ../sass/base/_form.scss */
+/* line 104, ../sass/base/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
-/* line 96, ../sass/base/_form.scss */
+/* line 106, ../sass/base/_form.scss */
 fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 {
   margin: 0;
 }
 
-/* line 101, ../sass/base/_form.scss */
+/* line 111, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 106, ../sass/base/_form.scss */
+/* line 116, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 110, ../sass/base/_form.scss */
+/* line 120, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 114, ../sass/base/_form.scss */
+/* line 124, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 118, ../sass/base/_form.scss */
+/* line 128, ../sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 122, ../sass/base/_form.scss */
+/* line 132, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -13011,33 +13026,33 @@ fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 
   border-top: solid 1px #cccccc;
 }
 
-/* line 130, ../sass/base/_form.scss */
+/* line 140, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 134, ../sass/base/_form.scss */
+/* line 144, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 138, ../sass/base/_form.scss */
+/* line 148, ../sass/base/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 144, ../sass/base/_form.scss */
+/* line 154, ../sass/base/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 147, ../sass/base/_form.scss */
+/* line 157, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 151, ../sass/base/_form.scss */
+/* line 161, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13046,7 +13061,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 160, ../sass/base/_form.scss */
+/* line 170, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -16829,11 +16844,11 @@ img.widget-promo-image {
 }
 
 /* line 1, ../sass/base/_switch.scss */
-input[type="checkbox"] {
+input[type="checkbox"]:not(.default) {
   display: none;
 }
 /* line 4, ../sass/base/_switch.scss */
-input[type="checkbox"] + label {
+input[type="checkbox"]:not(.default) + label {
   margin: 5px 5px 5px 0;
   position: relative;
   display: inline-block;
@@ -16842,33 +16857,33 @@ input[type="checkbox"] + label {
   line-height: 34px;
 }
 /* line 12, ../sass/base/_switch.scss */
-input[type="checkbox"] + label.right {
+input[type="checkbox"]:not(.default) + label.right {
   padding-right: 72px;
   padding-left: 0;
 }
 /* line 15, ../sass/base/_switch.scss */
-input[type="checkbox"] + label.right:before, input[type="checkbox"] + label.right:after {
+input[type="checkbox"]:not(.default) + label.right:before, input[type="checkbox"]:not(.default) + label.right:after {
   left: auto;
   right: 0;
 }
 /* line 20, ../sass/base/_switch.scss */
-input[type="checkbox"] + label.right:before {
+input[type="checkbox"]:not(.default) + label.right:before {
   left: auto;
 }
 /* line 24, ../sass/base/_switch.scss */
-input[type="checkbox"] + label.right:after {
+input[type="checkbox"]:not(.default) + label.right:after {
   left: auto;
   right: 4px;
 }
 /* line 30, ../sass/base/_switch.scss */
-input[type="checkbox"] + label:before, input[type="checkbox"] + label:after {
+input[type="checkbox"]:not(.default) + label:before, input[type="checkbox"]:not(.default) + label:after {
   position: absolute;
   content: "";
   top: 0;
   left: 0;
 }
 /* line 37, ../sass/base/_switch.scss */
-input[type="checkbox"] + label:before {
+input[type="checkbox"]:not(.default) + label:before {
   width: 60px;
   height: 34px;
   top: 0;
@@ -16885,7 +16900,7 @@ input[type="checkbox"] + label:before {
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 /* line 54, ../sass/base/_switch.scss */
-input[type="checkbox"] + label:after {
+input[type="checkbox"]:not(.default) + label:after {
   height: 26px;
   width: 26px;
   left: 4px;
@@ -16900,15 +16915,15 @@ input[type="checkbox"] + label:after {
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.15);
 }
 /* line 70, ../sass/base/_switch.scss */
-input[type="checkbox"]:checked + label:after {
+input[type="checkbox"]:not(.default):checked + label:after {
   margin-left: 26px;
 }
 /* line 74, ../sass/base/_switch.scss */
-input[type="checkbox"]:checked + label.right:after {
+input[type="checkbox"]:not(.default):checked + label.right:after {
   margin-right: 26px;
 }
 /* line 78, ../sass/base/_switch.scss */
-input[type="checkbox"]:checked + label:before {
+input[type="checkbox"]:not(.default):checked + label:before {
   background: #4e794e;
 }
 
@@ -16942,6 +16957,18 @@ input[type="checkbox"]:checked + label:before {
 /* line 23, ../sass/base/_automation.scss */
 .automation-report .app-row-report .report-entry input[type=radio] {
   margin: 0 5px 0;
+}
+
+/* Schedules
+-------------------------------------------------- */
+/* line 33, ../sass/base/_automation.scss */
+.table-calendar .first-col {
+  width: 80px;
+  background-color: #d9edf7;
+}
+/* line 37, ../sass/base/_automation.scss */
+.table-calendar th {
+  text-align: center;
 }
 
 /* SmartHome UI custom

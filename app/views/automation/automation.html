@@ -1,12 +1,26 @@
 <!-- Scenes -->
 <div ng-controller="AutomationController">
-    <bb-loader></bb-loader>
+  <bb-loader></bb-loader>
 
-    <!-- Navigation -->
-    <div ng-include="'app/views/automation/navi.html'"></div>
-    <!-- The blank state -->
-    <div ng-if="automation.state == 'blank'" ng-include="'app/views/automation/blank.html'"></div>
-    <!-- The list -->
-    <div ng-if="automation.state == 'success'" ng-include="'app/views/automation/list.html'"></div>
+  <!-- Navigation -->
+  <div ng-include="'app/views/automation/navi.html'"></div>
+  <!-- The blank state -->
+  <div ng-if="automation.state == 'blank'" ng-include="'app/views/automation/blank.html'"></div>
+  <!-- The list -->
+  <div ng-if="automation.state == 'success'" ng-include="'app/views/automation/list.html'"></div>
+  <!-- The list -->
+  <div class="form form-page"  ng-if="automation.state == 'success' && automation.moduleId == 'ScheduledScene'">
+    <div class="fieldset">
+        <h2>Variant with calendar</h2>
+    </div>
+  
+    <div class="fieldset" ng-include="'app/views/automation/schedules/schedule_calendar.html'"></div>
+    <div class="fieldset text-right">
+      <a class="btn btn-default" href="#schedules">
+        <i class="fa fa-plus text-success"></i>
+        <span class="btn-name">Add DUMMY</span>
+      </a>
+    </div>
+  </div>
 </div>
 <!-- /ng-controller -->

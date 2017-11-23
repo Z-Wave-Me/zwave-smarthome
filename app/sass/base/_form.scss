@@ -45,6 +45,16 @@ input[type=checkbox] {
   }
 
 }
+/* .checkbox{
+  input[type=checkbox] {
+    position: static;
+    margin-left: 0;
+  
+  }
+  label{
+    padding-left: 0;
+  }
+} */
 
 input[type=radio] {
    @include radioScale(1.6, $spacing);
