@@ -10,11 +10,11 @@
 myAppController.controller('AutomationController', function ($scope,  $routeParams,$location, cfg, dataFactory, dataService, _, myCache) {
     $scope.automation = {
         moduleId: $routeParams.moduleId,
-        allowedIds: ['LightScene', 'IfThen', 'ScheduledScene'],
+        allowedIds: ['Scenes', 'Rules', 'Schedules'],
         icons: {
-            LightScene: 'scene.png', 
-            IfThen: 'security-pending.png', 
-            ScheduledScene: 'alarm.png'
+          Scenes: 'scene.png', 
+          Rules: 'security-pending.png', 
+          Schedules: 'alarm.png'
         },
         //imgPath: cfg.server_url + cfg.api_url + 'load/modulemedia/',
         state: '',
