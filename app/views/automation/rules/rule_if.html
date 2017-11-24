@@ -1,0 +1,10 @@
+ <!-- Select -->
+ <div class="form-group form-inline">
+  <label>{{_t('Device')}}</label>
+  <select name="" id="" class="form-control" ng-model="mock.input.deviceType">
+    <option value="{{v.type}}" ng-repeat="v in mock.devices">{{v.title}} {{$index}}</option>
+  </select>
+</div>
+ <!-- Form-->
+
+  <div ng-include="'app/views/automation/rules/' + mock.input.deviceType +'.html'" ng-if="mock.input.deviceType"></div>

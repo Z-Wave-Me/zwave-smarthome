@@ -491,7 +491,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -542,7 +545,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -574,7 +580,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -606,7 +615,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',

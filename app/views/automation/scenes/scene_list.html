@@ -1,4 +1,4 @@
-<div class="accordion-entry" ng-repeat="v in scene.rooms track by $index">
+<div class="accordion-entry" ng-repeat="v in mock.rooms track by $index">
   <!-- Accordion header -->
   <h2 class="accordion-entry-title" ng-click="expandElement('room_' + v.id)">
     <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> {{v.title}}
@@ -6,7 +6,7 @@
   </h2>
   <!-- Accordion body -->
   <div class="accordion-entry-ctrl" ng-if="expand['room_' + v.id]">
-    <div class="automation-report" ng-repeat="(k,m) in scene.modules">
+    <div class="automation-report" ng-repeat="(k,m) in mock.modules">
        <!-- Report header -->
        <div class="report-header">
           <p class="report-title">{{m.title}}
@@ -27,12 +27,12 @@
               <!-- Switches -->
               <span ng-switch-when="switches">
                  <!--
-                <input type="checkbox" name="dontcare_{{v.title}}_{{$index}}" id="dontcare_{{v.title}}_{{$index}}" ng-model="scene.input['dontcare_' + v.title + $index]" /> 
+                <input type="checkbox" name="dontcare_{{v.title}}_{{$index}}" id="dontcare_{{v.title}}_{{$index}}" ng-model="mock.input['dontcare_' + v.title + $index]" /> 
                 <label for="dontcare_{{v.title}}_{{$index}}"><span class="btn-name">Don't care</span></label>
                  -->
 
-                <input type="checkbox" name="switch_{{v.title}}_{{$index}}" id="switch_{{v.title}}_{{$index}}" ng-model="scene.input['switch_' + v.title + $index]" />
-              <label for="switch_{{v.title}}_{{$index}}"><span class="btn-name">{{scene.input['switch_' + v.title + $index] ? 'ON':'OFF'}}</span></label>
+                <input type="checkbox" name="switch_{{v.title}}_{{$index}}" id="switch_{{v.title}}_{{$index}}" ng-model="mock.input['switch_' + v.title + $index]" />
+              <label for="switch_{{v.title}}_{{$index}}"><span class="btn-name">{{mock.input['switch_' + v.title + $index] ? 'ON':'OFF'}}</span></label>
               </span>
               <!-- Dimmers -->
               <input type="text" class="form-control input-number" placeholder="Level" ng-switch-when="dimmers">
@@ -40,9 +40,9 @@
               <input type="text" class="form-control input-number" placeholder="&deg;C" ng-switch-when="thermostats">
               <!-- Locks-->
               <span ng-switch-when="locks">
-                <input type="checkbox" name="lock_{{v.title}}_{{$index}}" id="lock_{{v.title}}_{{$index}}" ng-model="scene.input['lock_' + v.title + $index]" />
+                <input type="checkbox" name="lock_{{v.title}}_{{$index}}" id="lock_{{v.title}}_{{$index}}" ng-model="mock.input['lock_' + v.title + $index]" />
                 <label for="lock_{{v.title}}_{{$index}}">
-                  <span class="btn-name">{{scene.input['lock_' + v.title + $index] ? 'OPEN':'CLOSE'}}</span>
+                  <span class="btn-name">{{mock.input['lock_' + v.title + $index] ? 'OPEN':'CLOSE'}}</span>
                 </label>
               </span>
               <!-- Scenes-->

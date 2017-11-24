@@ -1,0 +1,11 @@
+<!--on/off -->
+<div class="form-group">
+  <input type="checkbox" name="on_off" id="on_off" ng-model="mock.input.on_off" ng-checked="scene.input.on_off" />
+  <label for="on_off">{{mock.input.on_off ? 'On' : 'Off'}}</label>
+</div>
+<!-- command -->
+<div class="form-group">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="scene.input.send_command" ng-checked="scene.input.send_command"
+  />
+  <label for="send_command">Don't send On command, if device is already turned On, similarly for Off</label>
+</div>

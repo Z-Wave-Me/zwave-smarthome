@@ -1,0 +1,25 @@
+
+  <!-- Name -->
+  <div class="form-group form-inline">
+      <label>{{_t('lb_name')}}</label>
+      <input name="title" id="title" type="text" class="form-control" />
+  </div>
+  <!-- Active -->
+  <div class="form-group">
+      Active
+      <input type="checkbox" name="instances_expanded" id="instances_expanded" ng-checked="input.show_background" />
+      <label for="instances_expanded">
+          &nbsp;
+      </label>
+  </div>
+  <!-- Upload -->
+  <div class="form-group">
+      <input class="inputfile" type="file" name="file" id="file{{v.id}}" ng-click="icons.find = v" onchange="angular.element(this).scope().uploadFile(this.files)"
+      />
+      <label for="file{{v.id}}" class="btn btn-default" title="{{_t('lb_upload_image')}}" ng-click="icons.find = v">
+          <i class="fa fa-upload text-success"></i> Upload icon
+      </label>
+      <div ng-if="file.upload">{{file.upload|cutText:true:30}}</div>
+      <bb-help-text trans="_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})"></bb-help-text>
+      <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})"></bb-help-text>
+  </div>
