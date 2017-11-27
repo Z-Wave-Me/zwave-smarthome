@@ -40,6 +40,12 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         local: false,
         remote: false
     }
+    $scope.swipeDir = false;
+
+    $scope.swipe = function(dir) {
+        $scope.swipeDir = dir;
+        $scope.$broadcast('swipe',dir);
+    }
 
     /**
      * Extend an user

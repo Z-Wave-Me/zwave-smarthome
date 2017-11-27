@@ -42,7 +42,8 @@ var config_data = {
             time: {
                 string: false,
                 timestamp: false,
-                timeZoneOffset: 0
+                timeZoneOffset: 0,
+                timeUpdating: false
             },
             // User agent operating system
             os: 'unknown',
@@ -61,7 +62,8 @@ var config_data = {
             // User data
             user: false,
             // Translations
-            t: {}
+            t: {},
+            pageClass: ''
         },
         // Zwave - will be extended
         'zwave': {

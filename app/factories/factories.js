@@ -549,7 +549,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                 var timestamp = response.data.data.updateTime + ((cfg.route.time.timeZoneOffset * -1) * 3600);
                 cfg.route.time.timestamp = (timestamp);
                 cfg.route.time.string = $filter('setTimeFromBox')(timestamp);
-                
+                cfg.route.time.timeUpdating = true;
                 return response;
             } else {// invalid response
                 return $q.reject(response);

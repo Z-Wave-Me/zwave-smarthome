@@ -60,6 +60,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Cancel interval on page destroy
      */
     $scope.$on('$destroy', function () {
+        cfg.route.time.timeUpdating = false;
         $interval.cancel($scope.apiDataInterval);
     });
 
@@ -629,24 +630,78 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $timeout, $location) {
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $timeout, $location, cfg) {
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
+    cfg.route.pageClass = "page-room";
+
+
+    $scope.$on('$destroy', function() {
+        cfg.route.pageClass = false;   
+        cfg.route.swipeDir = false;
+    });
 
     /**
-     * device on long press action
+     * room bar on long press action
      */
-    $scope.itemOnLongPress = function(id) {
+    $scope.roomBarOnLongPress = function(id) {
         $scope.longPressTimeout = $timeout(function() {
             $location.path("config-rooms/"+id);
         }, 1000);
     }
     
     /**
-     * device on end long press action
+     * room bar on end long press action
      */
-    $scope.itemOnTouchEnd = function() {
+    $scope.roomBarOnTouchEnd = function() {
         $timeout.cancel($scope.longPressTimeout);    
+    }
+
+
+    /**
+     * Handle swipe event
+     */
+    $scope.$on('swipe',function(event, args) {
+        $scope.swipeMe(args);
+    });
+
+    /**
+     * Room navigation
+     */
+    $scope.swipeMe = function(dir) {       
+        if(dir == "left") {
+            if($(".appmodal").length  == 0) {
+                var currentRoom = $scope.dataHolder.devices.filter.location,
+                    keys = Object.keys($scope.dataHolder.devices.rooms),
+                    loc = keys.indexOf(currentRoom.toString());
+
+                if (loc > -1) {
+                    var i = 0;
+                    if (loc < keys.length - 1) {
+                        i = keys[loc + 1];
+                    }
+                    $location.path("rooms/" + i);
+                }
+            }
+        }
+
+        if(dir == "right") {
+            if($(".appmodal").length  == 0) {
+                var currentRoom = $scope.dataHolder.devices.filter.location,
+                    keys = Object.keys($scope.dataHolder.devices.rooms),
+                    loc = keys.indexOf(currentRoom.toString());
+
+                if (loc > -1) {
+                    var i = 0;
+                    if (loc > 0) {
+                        i = keys[loc - 1];
+                    } else {
+                        i = keys[keys.length - 1];
+                    }
+                    $location.path("rooms/" + i);
+                }
+            }
+        }
     }
 
 });
