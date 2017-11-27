@@ -55,6 +55,11 @@ Change view mode - default/edit
 Set filter
 
 
+### ElementBaseController.setListFilter() 
+
+Set filter
+
+
 ### ElementBaseController.showHiddenEl() 
 
 Show hidden elements
@@ -159,6 +164,21 @@ The controller that handles elements on the dashboard.
 
 ## ElementRoomController
 The controller that handles elements in the room.
+
+### ElementRoomController.roomBarOnLongPress() 
+
+room bar on long press action
+
+
+### ElementRoomController.roomBarOnTouchEnd() 
+
+room bar on end long press action
+
+
+### ElementRoomController.swipeMe() 
+
+Room navigation
+
 
 
 

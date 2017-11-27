@@ -76,6 +76,7 @@
         <script src="app/controllers/element-widget.js"></script>
         <script src="app/controllers/element-id.js"></script>
         <script src="app/controllers/event.js"></script>
+        <script src="app/controllers/automation.js"></script>
         <script src="app/controllers/app.js"></script>
         <script src="app/controllers/app-local.js"></script>
         <script src="app/controllers/app-online.js"></script>
@@ -84,7 +85,8 @@
         <script src="app/controllers/skin.js"></script>
         <script src="app/controllers/icon.js"></script>
         <script src="app/controllers/device.js"></script>
-        <script src="app/controllers/zwave-inclusion.js"></script>
+        <script src="app/controllers/smartstart.js"></script>
+         <script src="app/controllers/zwave-inclusion.js"></script>
         <script src="app/controllers/zwave-manage.js"></script>
         <script src="app/controllers/zwave-exclude.js"></script>
         <script src="app/controllers/zwave-vendor.js"></script>
@@ -135,23 +137,28 @@
                         <!-- events -->
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i> <span class="main-nav-text">{{_t('nav_events')}}</span></a>
+                         <!-- automation -->
+                         <span class="divider-vertical"></span>
+                         <a href="#automation/Scenes" title="{{_t('automation')}}" ng-class="isActive('automation')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>
                         <!-- rss -->
                         <span class="divider-vertical" ng-show="rss.unread > 0"></span>
                         <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
                             <i class="fa fa-comment"></i>
-                            <span class="main-nav-text">{{_t('news')}} </span><small>{{rss.unread}}</small>
+                            <span class="main-nav-text">{{_t('news')}} </span><small class="s-hide">{{rss.unread}}</small>
 
                         </a>
                         <!-- time -->
                         <span class="divider-vertical"></span> 
-                        &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
-                            <i class="fa fa-globe" 
+                        &nbsp;<span class="timestamp clickable" 
+                                ng-click="reloadData()" 
+                                ng-if="cfg.route.time.string">
+                            <i class="fa fa-home" 
                                ng-if="connection.local" 
                                ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            <i class="fa fa-grav" 
+                            <i class="fa fa-globe" 
                                ng-if="connection.remote"
                                ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                                {{cfg.route.time.string}}
+                                <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string}}</span>
                         </span>
                     </div>
                     <div id="navigation_right">
@@ -166,7 +173,7 @@
                         <ul>
                             <!-- Apps -->
                             <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                                <a href="#apps/local"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                <a href="#apps/instance"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Devices -->
                             <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
@@ -197,7 +204,7 @@
                                 </a>
                             </li>
                             <!-- Logout -->
-                            <li class="subnavi-logout" ng-if="cfg.route.os != 'unknown'">
+                            <li class="subnavi-logout" ng-if="cfg.route.os !== 'unknown'">
                                 <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                         </ul>
@@ -213,21 +220,25 @@
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
                 </div>
             </div>
-            <div id="view_content" ng-hide="cfg.route.fatalError.hide" ng-view></div>
+            <div id="view_content" ng-hide="cfg.route.fatalError.hide" class="{{cfg.route.pageClass}} swipe-{{swipeDir}}" ng-view 
+            ng-swipe-left="swipe('left')" 
+            ng-swipe-right="swipe('right')"></div>
         </div>
         <div class="clearfix"></div>
 
         <div id="footer">
             <div id="footer_in">
                 <div class="container">
-                    <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
-                        <i class="fa fa-globe" 
+                    <span class="timestamp clickable" 
+                            ng-click="reloadData()" 
+                            ng-if="cfg.route.time.string">
+                        <i class="fa fa-home" 
                            ng-if="connection.local" 
                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                        <i class="fa fa-grav" 
+                        <i class="fa fa-globe" 
                            ng-if="connection.remote"
                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            {{cfg.route.time.string}}
+                            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
                     </span>
                 </div>
             </div>         

@@ -1,46 +1,43 @@
 /* Slider:  http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/
 -------------------------------------------------- */
+
+
 /* Variables */
+
 $slider-w: 330px;
 $slider-h: 169px;
-
 $slider-small-w: $break-small - 30;
 $slider-small-h: 189px;
-
 $slider-medium-w: $break-medium - 30;
 $slider-medium-h: 164px;
-
 $slider-large-w: $break-large - 30;
 $slider-large-h: 170px;
-
 $slider-max-w: $site-max-w - 30;
 $slider-max-h: 200px;
 
 /* CSS */
+
 .app-slider {
     width: $slider-w;
     height: $slider-h;
     overflow: hidden;
     position: relative;
-    background: #EEEEEE;;
-    //border: 20px solid #FFF;
-    margin: $spacing auto;
-
+    background: #EEEEEE;
+    margin: $spacing auto; // Media queries
+    @include mediaQueries(max-esmall) {
+        width: auto;
+    }
     .slide {
-    position: relative;
+        position: relative;
         display: inline-block;
         text-align: center;
-        //border: solid 4px #ffffff;
-       /* width: $slider-w;
-        height: $slider-h;*/
-        //position: absolute;
         top: 0;
         left: 0;
-        img{
+        img {
             width: $slider-w;
             height: $slider-h;
         }
-        .slider-label{
+        .slider-label {
             background-color: rgba(0, 0, 0, 0.2);
             width: 100%;
             text-align: center;
@@ -48,52 +45,50 @@ $slider-max-h: 200px;
             left: 0;
             bottom: 0;
             padding: $spacing;
-            h3{
+            h3 {
                 font-weight: bold;
                 font-size: 130%;
                 color: #FFFFFF;
                 text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
             }
-            .slider-footer{
-                color: #ffffff;
-                //text-align: right;
-                .widget-rating{
+            .slider-footer {
+                color: #ffffff; //text-align: right;
+                .widget-rating {
                     text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
                     font-size: 120%;
                     padding: 0 4px 0 0;
                     color: #ffffff;
-                    &.israted{
+                    &.israted {
                         color: #ffffff;
                     }
                 }
-                button{
+                button {
                     margin: 0 0 0 $spacing-double;
                 }
             }
         }
-        &.installed{
-            img{
+        &.installed {
+            img {
                 //display: none;
                 @include appOpacity(0.1);
             }
         }
     }
 }
+
 // Media queries
 @include mediaQueries(min-small) {
     .app-slider {
         width: $slider-small-w;
         height: $slider-small-h;
         .slide {
-           /* width: $slider-small-w/2;
+            /* width: $slider-small-w/2;
             height: $slider-small-h;*/
-            img{
+            img {
                 width: $slider-small-w/2;
                 height: $slider-small-h;
             }
-
         }
-
     }
 }
 
@@ -105,13 +100,11 @@ $slider-max-h: 200px;
         .slide {
             /* width: $slider-small-w/2;
              height: $slider-small-h;*/
-            img{
+            img {
                 width: $slider-medium-w/3;
                 height: $slider-medium-h;
             }
-
         }
-
     }
 }
 
@@ -121,34 +114,29 @@ $slider-max-h: 200px;
         width: $slider-large-w;
         height: $slider-large-h;
         .slide {
-            img{
+            img {
                 width: $slider-large-w/3;
                 height: $slider-large-h;
             }
-
         }
-
     }
 }
+
 // Media queries
 @include mediaQueriesMin($site-max-w) {
     .app-slider {
         width: $slider-max-w;
         height: $slider-max-h;
         .slide {
-            img{
+            img {
                 width: $slider-max-w/3;
                 height: $slider-max-h;
             }
-
         }
-
     }
 }
 
-
-
-.slider-btn{
+.slider-btn {
     height: 100%;
     font-size: 200%;
     color: #fff!important;
@@ -163,32 +151,26 @@ $slider-max-h: 200px;
     background-color: inherit;*/
     text-align: center;
     cursor: pointer;
-    white-space: nowrap;
-    //background-color: #000!important;
+    white-space: nowrap; //background-color: #000!important;
     background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
-    top: 50%;
-    //left: 0%;
-    transform: translate(0%,-50%);
-   // -ms-transform: translate(-0%,-50%);
-    &:hover{
+    top: 50%; //left: 0%;
+    transform: translate(0%, -50%); // -ms-transform: translate(-0%,-50%);
+    &:hover {
         background-color: rgba(0, 0, 0, 0.8);
     }
 }
 
-
 .slider-btn-prev {
-   // position: absolute;
+    // position: absolute;
     //top: 50%;
-    left: 0%;
-    //transform: translate(0%,-50%);
-    -ms-transform: translate(-0%,-50%);
+    left: 0%; //transform: translate(0%,-50%);
+    -ms-transform: translate(-0%, -50%);
 }
 
 .slider-btn-next {
     //position: absolute;
     //top: 50%;
-    right: 0%;
-    //transform: translate(0%,-50%);
-    -ms-transform: translate(0%,-50%);
+    right: 0%; //transform: translate(0%,-50%);
+    -ms-transform: translate(0%, -50%);
 }

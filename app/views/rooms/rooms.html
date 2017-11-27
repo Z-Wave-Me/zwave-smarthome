@@ -16,12 +16,14 @@
     <!--<pre>{{rooms.all | json }}</pre>-->
     <div class="clearfix" ng-if="rooms.show" ng-controller="ElementBaseController">
         <div class="card-room longpress-{{longPressSent}}"
+             
              id="card_{{v.id}}"
              ng-click="redirectToRoute('rooms' + (rooms.cnt.devices[v.id] ? '/' + v.id : ''))"
              ng-class="rooms.cnt.devices[v.id] ? 'room-has-device' : 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
              ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
-            <div class="card-room-in" style="background-image: url('{{v.img_src}}');" 
+            <div class="bcg-img" style="background-image: url('{{v.img_src}}');"></div>
+            <div class="card-room-in"
                  on-long-press="onLongPress(v.id)"
                  on-touch-end="onTouchEnd()"
                  prevent-click="true">
@@ -50,7 +52,7 @@
                         </a>
                     </h3>
                     <!-- Card sensors -->
-                    <div class="card-sensors">
+                    <div class="card-sensors" ng-show="v.main_sensors.length > 0">
                         <div class="sensor" title="{{device.metrics.title + ': ' + device.metrics.level + ' ' + device.metrics.scaleTitle}}"
                              ng-show="v.main_sensors.indexOf(device.id) > -1"
                              ng-repeat="device in dataHolder.devices.all">
@@ -60,6 +62,15 @@
                             <div class="sensor-ctrl">
                                 <span class="sensor-level">{{device.metrics.level}}</span>
                                 <span class="sensor-scale">{{device.metrics.scaleTitle|cutText:true:7}}</span>
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-sensors" ng-show="v.main_sensors.length == 0 || !v.main_sensors">
+                        <div class="sensor">
+                            <div class="sensor-ctrl">
+                                <span class="sensor-level">&nbsp;</span>
+                                <span class="sensor-scale">&nbsp;</span>
                                 &nbsp;
                             </div>
                         </div>

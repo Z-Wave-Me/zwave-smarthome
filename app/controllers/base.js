@@ -40,6 +40,12 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         local: false,
         remote: false
     }
+    $scope.swipeDir = false;
+
+    $scope.swipe = function(dir) {
+        $scope.swipeDir = dir;
+        $scope.$broadcast('swipe',dir);
+    }
 
     /**
      * Extend an user
@@ -176,14 +182,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             }
 
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
-                {timestamp: response.data.data.localTimeUT});
+                {timestamp: response.data.data.localTimeUT},
+                {timeZoneOffset: response.data.data.localTimeZoneOffset});
+
             var refresh = function () {
-                var oldTime = cfg.route.time.string;
-                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
-                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
+                //var oldTime = cfg.route.time.string;
+                //cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
+                //cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
                 if (cfg.route.fatalError.type === 'network') {
                     $scope.connection.online = false;
-                    cfg.route.time.string = oldTime;
+                    //cfg.route.time.string = oldTime;
                     $scope.reloadAfterError();
                 } else {
                     $scope.connection.online = true;   
@@ -278,6 +286,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
          * Set timestamp and ping server if request fails
          */
         $scope.setTimeStamp();
+        
+        angular.copy({}, $scope.naviExpanded);
+        angular.copy({}, $scope.autocompleteExpanded);
+        angular.copy({}, $scope.expand);
     });
 
     /**
@@ -462,18 +474,20 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      */
     $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
+
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
-            $event.stopPropagation();
+            $event.stopPropagation();    
             return;
         }
+
         $scope.naviExpanded = {};
         if (typeof status === 'boolean') {
             $scope.naviExpanded[key] = status;
         } else {
             $scope.naviExpanded[key] = !$scope.naviExpanded[key];
         }
-        $event.stopPropagation();
+        $event.stopPropagation();    
     };
 
     /**
@@ -513,7 +527,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             angular.copy({}, $scope.autocompleteExpanded);
             $scope.$apply();
         }
-        if ($scope.naviExpanded) {
+        if ($scope.naviExpanded && !$scope.naviExpanded.elCategories) {
             angular.copy({}, $scope.naviExpanded);
             $scope.$apply();
         }

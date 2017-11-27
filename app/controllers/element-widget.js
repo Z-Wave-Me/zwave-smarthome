@@ -809,7 +809,6 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
     $scope.loadDeviceId = function () {
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var device = response.data.data;
-            console.log("device", device);
             if (_.isEmpty(device.metrics.lastTriggerList)) {
                 $scope.widgetSecurityControl.alert = {
                     message: $scope._t('no_data'),

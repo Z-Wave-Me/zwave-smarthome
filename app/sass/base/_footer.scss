@@ -18,6 +18,9 @@
         line-height: 50px;
         .timestamp, .local, .online{
             display: none;
+            .pause {
+                opacity: 0.5;
+            }
         }
     }
     a{}

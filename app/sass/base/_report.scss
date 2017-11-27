@@ -73,5 +73,25 @@
             }
 
         }
+        .report-body {
+            .btn-group {
+                .network-zwave-title {
+                    max-width: 170px;
+                    display: block;
+                    // Media queries
+                    @include mediaQueries(min-small) {
+                        max-width: 100%;
+                    }
+                    @include textOverflow();
+                }
+            }
+        }
+
+        .report-battery-info {
+            display: none;
+            @include mediaQueries(min-small) {
+                display: table-cell;
+            }
+        }
     }
 }

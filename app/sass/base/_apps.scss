@@ -29,63 +29,11 @@
             right: auto;
         }
         // Apps fixed search for small devices
-        &.app-fix-search {
-            width: 90%;
-            z-index: 1000000;
-            background-color: #E9E9E9;
-            position: fixed;
-            top: 0px;
-            left: 0;
-            padding: $spacing-half;
-            height: 50px;
-            .page-navi-in{
+        &.fix-me-top {
+           .page-navi-in{
                 top: -$spacing;
             }
         }
-    }
-}
-
-
-/* Apps instances
--------------------------------------------------- */
-
-#apps_instances {
-    .accordion-entry {
-        background-color: #FFFFFF; //border: solid 2px $report-border-color;
-        margin: 0;
-        .accordion-entry-title {
-            font-size: 100%;
-            margin: 0;
-            padding: 10px 0;
-            font-weight: bold;
-            .report-img-s {
-                margin: 0 0 0 $spacing-half;
-            }
-            .accordion-title-text {
-                padding: 0 0 0 13px;
-            }
-        }
-    }
-}
-
-.instance-entry-single {
-    .app-row-report {
-        border-bottom: 0;
-        border-top: 0;
-    }
-}
-
-.instance-entry-multiple {
-    .app-row-report {
-        //border: solid 2px $report-border-color;
-        //border-bottom: 0;
-        border-top: 0;
-        .report-body {
-            padding: 0 0 0 32px;
-        }
-    }
-    .report-entry {
-        border-bottom: 0;
     }
 }
 

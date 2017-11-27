@@ -60,6 +60,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     $scope.$on('$destroy', function () {
         $scope.currSource = false;
         $scope.currLevel = false;
+        cfg.route.time.timeUpdating = false;
         $interval.cancel($scope.apiDataInterval);
     });
 
