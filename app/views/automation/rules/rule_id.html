@@ -1,45 +1,45 @@
-<!-- The schedule -->
+<!-- The rule id -->
+<div ng-controller="AutomationRuleIdController">
 <div ng-controller="AutomationMockController">
-  
-<div class="blank is-info">
-  <div class="blank-img">
-    <i class="fa fa-info-circle"></i>
-  </div>
-  <div class="blank-body">
-    <p class="blank-title">Module name</p>
-    <p class="blank-text">
-      Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-      dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
-      imperdiet. Etiam ultricies nisi vel augue.
-    </p>
 
-  </div>
-</div>
-<!-- Form -->
-<form class="form form-page">
-  <!-- Form -->
-  <fieldset ng-include="'app/views/automation/rules/rule_form.html'"></fieldset>
-   <!-- if -->
-   <legend>IF</legend>
-   <fieldset ng-include="'app/views/automation/rules/rule_if.html'"></fieldset>
-  <!-- List -->
-  <legend>THEN</legend>
-   <fieldset ng-include="'app/views/automation/rules/rule_list.html'"></fieldset>
+  <!-- <div class="blank is-info">
+    <div class="blank-img">
+      <i class="fa fa-info-circle"></i>
+    </div>
+    <div class="blank-body">
+      <p class="blank-title">Module name</p>
+      <p class="blank-text">
+        Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
+        dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
+        imperdiet. Etiam ultricies nisi vel augue.
+      </p>
+
+    </div>
+  </div> -->
+  <pre>{{rule.input|json}}</pre>
  
+  <!-- Form -->
+  <form class="form form-page" ng-submit="storeInstance()">
+    <!-- Form -->
+    <fieldset ng-include="'app/views/automation/rules/rule_form.html'"></fieldset>
+    <!-- if -->
+    <section ng-include="'app/views/automation/rules/rule_if.html'"></section>
+    <!-- Then 
+    <section ng-include="'app/views/automation/rules/rule_then.html'"></section>-->
+    <!-- Submit -->
+    <fieldset class="submit-entry">
+      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </button>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
 
-  <!-- Submit  -->
-  <fieldset class="submit-entry">
-    <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-      <i class="fa fa-reply"></i>
-      <span class="btn-name">{{_t('lb_cancel')}}</span>
-    </button>
-    <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-      <i class="fa fa-check"></i>
-      <span class="btn-name">{{_t('lb_save')}}</span>
-    </button>
-
-  </fieldset>
-</form>
-
+    </fieldset>  
+  </form>
+  <pre>{{rule.data|json}}</pre>
+</div>
 </div>
 <!-- /ng-controller -->

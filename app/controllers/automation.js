@@ -150,7 +150,7 @@ myAppController.controller('AutomationMockController', function ($scope, $routeP
     },
     deviceTypes:[
       {type: 'switchBinary',title: 'Binary Switch'},
-      {type: 'switchRGBW',title: 'Color Switch'},
+      {type: 'sensorBinary',title: 'Sensor binary'},
       {type: 'doorlock',title: 'Doorlock'},
       {type: 'switchMultilevel',title: 'Multilevel Switch'},
       {type: 'notification',title: 'Notification'},
@@ -160,14 +160,14 @@ myAppController.controller('AutomationMockController', function ($scope, $routeP
     ],
     devices:[
       {id: 1,type:'switchBinary',title: 'Device switchBinary'},
-      {id: 2,type:'switchRGBW',title: 'Device switchRGBW'},
+      {id: 2,type:'sensorBinary',title: 'Device sensorBinary'},
       {id: 3,type:'doorlock',title: 'Device doorlock'},
       {id: 4,type:'switchMultilevel',title: 'Device switchMultilevel'},
       {id: 5,type:'notification',title: 'Device notification'},
       {id: 6,type:'scene',title: 'Device scene'},
       {id: 7,type:'thermostat',title: 'Device thermostat'},
       {id: 10,type:'switchBinary',title: 'Device switchBinary'},
-      {id: 20,type:'switchRGBW',title: 'Device switchRGBW'},
+      {id: 20,type:'sensorBinary',title: 'Device sensorBinary'},
       {id: 30,type:'doorlock',title: 'Device doorlock'},
       {id: 40,type:'switchMultilevel',title: 'Device switchMultilevel'},
       {id: 50,type:'notification',title: 'Device notification'},
@@ -185,5 +185,82 @@ myAppController.controller('AutomationMockController', function ($scope, $routeP
     }, function (error) {});
   };
   $scope.loadLocations();
+});
+
+/**
+ * Aoutomation rule detail controller
+ * @class AutomationRuleIdController
+ */
+myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $filter, cfg, dataFactory, dataService, _, myCache) {
+  $scope.rule = {
+    sourceDevice: {},
+    targets: [],
+    data: {},
+    input:{
+      instanceId: $routeParams.id,
+      moduleId: "Rules",
+      active: true,
+      title: "",
+      params: {
+        sourceDevice: {
+          filterIf: "sensorBinary",
+          sensorBinary: {
+            "device": "Wunderground_56-2",
+            "status": "on"
+          }
+        },
+        targets: [{
+          filterThen: "switchBinary",
+          switchBinary: {
+            target: "DummyDevice_40",
+            status: "off",
+            sendAction: false
+          }
+        }]
+      }
+    }
+  }
+
+   /**
+   * Load module
+   */
+  $scope.loadModule = function () {
+    dataFactory.getApi('modules','/Rules').then(function (response) {
+      $scope.rule.data = response.data.data;
+      var schema = response.data.data.schema.properties.sourceDevice.properties;
+      var options = response.data.data.options.fields.sourceDevice.fields;
+      getSourceDevice(schema, options);
+    }, function (error) {});
+  };
+  $scope.loadModule();
+
+  /**
+   * Store instance
+   */
+  $scope.storeInstance = function () {
+   var input =  $scope.rule.input;
+
+  };
+// Private fubctions
+  function getSourceDevice(schema, options){
+    var deviceId = [];
+    _.filter(schema,function(v){
+      if(!v.properties){
+        return;
+      }
+      var hasEnum = $filter('hasNode')(v,'properties.device.enum');
+      deviceId.push(hasEnum);
+      //console.log(v.properties.device.enum)
+    });
+
+    console.log(deviceId)
+
+  }
+  function getSourceDeviceId(){
+    
+  }
+  function getSourceDeviceTitle(){
+    
+  }
 });
 

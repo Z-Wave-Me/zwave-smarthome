@@ -12950,26 +12950,26 @@ input[type=radio] {
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
-/* line 73, ../sass/base/_form.scss */
+/* line 71, ../sass/base/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 76, ../sass/base/_form.scss */
+/* line 74, ../sass/base/_form.scss */
 .form-page .form-group.first {
   padding-top: 10px;
 }
-/* line 79, ../sass/base/_form.scss */
+/* line 77, ../sass/base/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
   margin-bottom: 0;
 }
-/* line 85, ../sass/base/_form.scss */
+/* line 83, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 90, ../sass/base/_form.scss */
+/* line 88, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -12979,46 +12979,46 @@ input[type=radio] {
   z-index: -1;
 }
 
-/* line 100, ../sass/base/_form.scss */
+/* line 98, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 104, ../sass/base/_form.scss */
+/* line 102, ../sass/base/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
-/* line 106, ../sass/base/_form.scss */
+/* line 104, ../sass/base/_form.scss */
 fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 {
   margin: 0;
 }
 
-/* line 111, ../sass/base/_form.scss */
+/* line 109, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 116, ../sass/base/_form.scss */
+/* line 114, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 120, ../sass/base/_form.scss */
+/* line 118, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 124, ../sass/base/_form.scss */
+/* line 122, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 128, ../sass/base/_form.scss */
+/* line 126, ../sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 132, ../sass/base/_form.scss */
+/* line 130, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -13026,33 +13026,33 @@ fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 
   border-top: solid 1px #cccccc;
 }
 
-/* line 140, ../sass/base/_form.scss */
+/* line 138, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 144, ../sass/base/_form.scss */
+/* line 142, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 148, ../sass/base/_form.scss */
+/* line 146, ../sass/base/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 154, ../sass/base/_form.scss */
+/* line 152, ../sass/base/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 157, ../sass/base/_form.scss */
+/* line 155, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 161, ../sass/base/_form.scss */
+/* line 159, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13061,7 +13061,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 170, ../sass/base/_form.scss */
+/* line 168, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -13091,6 +13091,38 @@ fieldset.submit-entry {
 /* line 17, ../sass/base/_imglist.scss */
 .imglist-entry .imglist-img {
   margin: 0 0 5px 0;
+}
+
+/* Section
+-------------------------------------------------- */
+/* line 3, ../sass/base/_section.scss */
+section {
+  display: block;
+}
+/* line 6, ../sass/base/_section.scss */
+section .header {
+  font-size: 110%;
+  padding: 10px;
+  border-bottom: solid 1px #cccccc;
+  background-color: #F6F6F6;
+}
+/* line 12, ../sass/base/_section.scss */
+section .content {
+  padding: 10px;
+}
+/* line 15, ../sass/base/_section.scss */
+section.has-border {
+  border: solid 1px #cccccc;
+}
+
+/* line 22, ../sass/base/_section.scss */
+fieldset section, .fieldset section {
+  margin: 0;
+}
+
+/* line 28, ../sass/base/_section.scss */
+fieldset section, .fieldset section {
+  margin: 0;
 }
 
 /* Bar
@@ -16932,7 +16964,6 @@ input[type="checkbox"]:not(.default):checked + label:before {
 /* line 3, ../sass/base/_automation.scss */
 .automation-report {
   margin-bottom: 20px;
-  padding: 0 20px;
 }
 /* line 6, ../sass/base/_automation.scss */
 .automation-report .app-row-report {

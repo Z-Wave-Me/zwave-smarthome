@@ -58,19 +58,19 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     routeName: 'automation'
                 }).
                 //Scenes
-                when('/scenes', {
+                when('/scenes/:id', {
                     templateUrl: 'app/views/automation/scenes/scene_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
                  //Rules
-                 when('/rules', {
+                 when('/rules/:id', {
                     templateUrl: 'app/views/automation/rules/rule_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
                  //Schedules
-                 when('/schedules', {
+                 when('/schedules/:id', {
                     templateUrl: 'app/views/automation/schedules/schedule_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin

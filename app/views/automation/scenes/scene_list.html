@@ -26,10 +26,8 @@
             <div class="form-group" ng-switch="k">
               <!-- Switches -->
               <span ng-switch-when="switches">
-                 <!--
                 <input type="checkbox" name="dontcare_{{v.title}}_{{$index}}" id="dontcare_{{v.title}}_{{$index}}" ng-model="mock.input['dontcare_' + v.title + $index]" /> 
                 <label for="dontcare_{{v.title}}_{{$index}}"><span class="btn-name">Don't care</span></label>
-                 -->
 
                 <input type="checkbox" name="switch_{{v.title}}_{{$index}}" id="switch_{{v.title}}_{{$index}}" ng-model="mock.input['switch_' + v.title + $index]" />
               <label for="switch_{{v.title}}_{{$index}}"><span class="btn-name">{{mock.input['switch_' + v.title + $index] ? 'ON':'OFF'}}</span></label>
