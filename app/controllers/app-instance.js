@@ -100,7 +100,6 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
-
         });
     };
 
