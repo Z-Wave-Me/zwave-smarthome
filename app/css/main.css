@@ -12555,9 +12555,12 @@ img {
   }
 }
 
-/* line 77, E:/GitHub/zwave-smarthome/app/sass/base/_report.scss */
-.app-row-zwave .report-entry .report-body .btn-group {
-  max-width: 200px;
+/* line 78, E:/GitHub/zwave-smarthome/app/sass/base/_report.scss */
+.app-row-zwave .report-entry .report-body .btn-group .network-zwave-title {
+  max-width: 170px;
+  display: block;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   white-space: nowrap;
   /* force single line */
   overflow: hidden;
@@ -12567,7 +12570,14 @@ img {
   /* Opera */
 }
 
-/* line 83, E:/GitHub/zwave-smarthome/app/sass/base/_report.scss */
+@media only screen and (min-width: 768px) {
+  /* line 78, E:/GitHub/zwave-smarthome/app/sass/base/_report.scss */
+  .app-row-zwave .report-entry .report-body .btn-group .network-zwave-title {
+    max-width: 100%;
+  }
+}
+
+/* line 90, E:/GitHub/zwave-smarthome/app/sass/base/_report.scss */
 .app-row-zwave .report-entry .report-battery-info {
   display: none;
   /* MIN WIDTH */
@@ -12575,7 +12585,7 @@ img {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 83, E:/GitHub/zwave-smarthome/app/sass/base/_report.scss */
+  /* line 90, E:/GitHub/zwave-smarthome/app/sass/base/_report.scss */
   .app-row-zwave .report-entry .report-battery-info {
     display: table-cell;
   }
@@ -13974,14 +13984,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 /* line 229, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert

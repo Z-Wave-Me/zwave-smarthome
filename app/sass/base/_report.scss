@@ -75,8 +75,15 @@
         }
         .report-body {
             .btn-group {
-                max-width: 200px;
-                @include textOverflow();
+                .network-zwave-title {
+                    max-width: 170px;
+                    display: block;
+                    // Media queries
+                    @include mediaQueries(min-small) {
+                        max-width: 100%;
+                    }
+                    @include textOverflow();
+                }
             }
         }
 
