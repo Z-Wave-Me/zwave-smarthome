@@ -156,7 +156,7 @@
                             <i class="fa fa-grav" 
                                ng-if="connection.remote"
                                ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                                {{cfg.route.time.string}}
+                               {{cfg.route.time.string}}
                         </span>
                     </div>
                     <div id="navigation_right">
@@ -231,8 +231,7 @@
                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
                         <i class="fa fa-grav" 
                            ng-if="connection.remote"
-                           ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            {{cfg.route.time.string}}
+                           ng-class="connection.online ? 'text-success' : 'text-danger'"></i>                            {{cfg.route.time.string | cutText:true:5:' '}}
                     </span>
                 </div>
             </div>         
