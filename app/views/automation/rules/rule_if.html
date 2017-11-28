@@ -4,11 +4,13 @@
     <!-- Select -->
     <div class="form-group last">
       <!-- <label>{{_t('Device')}}</label> -->
-      <select name="" id="" class="form-control" ng-model="mock.input.deviceType">
-        <option value="{{v.type}}" ng-repeat="v in mock.devices">{{v.title}} {{$index}}</option>
+      <select name="" id="" class="form-control" 
+      ng-model="rule.model.sourceDevice.id"
+      ng-change="onSourceDeviceChange(rule.model.sourceDevice.id)">
+        <option value="{{v.id}}" ng-repeat="v in rule.devices">{{v.title}} {{v.deviceType}}</option>
       </select>
       <span></span>
     </div>
     <!-- Form-->
-    <div class="form-group last" ng-include="'app/views/automation/rules/' + mock.input.deviceType +'.html'" ng-if="mock.input.deviceType"></div>
+    <div class="form-group last" ng-include="'app/views/automation/rules/' + rule.input.params.sourceDevice.filterIf +'.html'" ng-if="rule.input.params.sourceDevice.filterIf"></div>
   </div>

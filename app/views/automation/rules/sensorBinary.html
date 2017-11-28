@@ -1,3 +1,3 @@
 <!--on/off -->
-<input type="checkbox" name="on_off" id="on_off" ng-model="mock.input.on_off" ng-checked="scene.input.on_off" />
+<input type="checkbox" name="on_off" id="on_off" ng-model="rule.model.sourceDevice.value" ng-true-value="on" ng-false-value="off" ng-checked="scene.input.on_off" ng-change="onSourceDeviceChangeValue(rule.model.sourceDevice.value,rule.model.sourceDevice.device)" />
 <label for="on_off">{{mock.input.on_off ? 'On' : 'Off'}}</label>
