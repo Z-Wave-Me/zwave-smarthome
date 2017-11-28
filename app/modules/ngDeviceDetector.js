@@ -85,6 +85,7 @@
             MS_EDGE: "ms-edge",
             PS4: "ps4",
             VITA: "vita",
+            POPPAPPZWAY: "PoppApp_Z_Way",
             UNKNOWN: "unknown"
         })
         .constant("DEVICES", {
@@ -98,6 +99,7 @@
             WINDOWS_PHONE: "windows-phone",
             PS4: "ps4",
             VITA: "vita",
+            POPPAPPZWAY: "PoppApp_Z_Way",
             UNKNOWN: "unknown"
         })
         .constant("OS", {
@@ -112,6 +114,7 @@
             WINDOWS_PHONE: "windows-phone",
             PS4: "ps4",
             VITA: "vita",
+            POPPAPPZWAY: "PoppApp_Z_Way",
             UNKNOWN: "unknown"
         })
         .constant("OS_VERSIONS", {
@@ -165,7 +168,8 @@
                     CHROME_OS: /\bCrOS\b/,
                     WINDOWS_PHONE: {or:[/\bIEMobile\b/,/\bWindows Phone\b/]},
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
-                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/
+                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
+                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/ 
                 };
 
                 var BROWSERS_RE = {
@@ -176,7 +180,8 @@
                     IE: {or: [/\bMSIE\b/, /\bTrident\b/]},
                     MS_EDGE: {or: [/\bEdge\b/]},
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
-                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/
+                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
+                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/ 
                 };
 
                 var DEVICES_RE = {
@@ -189,7 +194,8 @@
                     CHROME_BOOK: /\bCrOS\b/,
                     WINDOWS_PHONE: {or:[/\bIEMobile\b/,/\bWindows Phone\b/]},
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
-                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/
+                    VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
+                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/ 
                 };
 
                 var OS_VERSIONS_RE = {
@@ -227,7 +233,6 @@
                 },{});
 
                 var ua = $window.navigator.userAgent;
-
                 var deviceInfo = {
                     raw: {
                         userAgent: ua,
@@ -268,7 +273,8 @@
                     OS.CHROME_OS,
                     OS.WINDOWS_PHONE,
                     OS.PS4,
-                    OS.VITA
+                    OS.VITA,
+                    OS.POPPAPPZWAY
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === OS.UNKNOWN && deviceInfo.raw.os[currentValue]) ? currentValue : previousValue;
                     }, OS.UNKNOWN);
@@ -281,7 +287,8 @@
                     BROWSERS.IE,
                     BROWSERS.MS_EDGE,
                     BROWSERS.PS4,
-                    BROWSERS.VITA
+                    BROWSERS.VITA,
+                    BROWSERS.POPPAPPZWAY
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === BROWSERS.UNKNOWN && deviceInfo.raw.browser[currentValue]) ? currentValue : previousValue;
                     }, BROWSERS.UNKNOWN);
@@ -296,7 +303,8 @@
                     DEVICES.CHROME_BOOK,
                     DEVICES.WINDOWS_PHONE,
                     DEVICES.PS4,
-                    DEVICES.VITA
+                    DEVICES.VITA,
+                    DEVICES.POPPAPPZWAY
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === DEVICES.UNKNOWN && deviceInfo.raw.device[currentValue]) ? currentValue : previousValue;
                     }, DEVICES.UNKNOWN);
