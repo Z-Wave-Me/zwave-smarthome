@@ -46,7 +46,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         $scope.swipeDir = dir;
         $scope.$broadcast('swipe',dir);
     }
-
     /**
      * Extend an user
      * @returns {undefined}
