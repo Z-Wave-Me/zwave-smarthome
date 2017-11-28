@@ -537,6 +537,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             method: 'get',
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),
             failWait:api,
+            timeout: cfg.pending_timeout_limit,
             headers: {
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession,
