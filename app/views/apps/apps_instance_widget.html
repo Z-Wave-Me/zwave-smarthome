@@ -21,7 +21,6 @@
             <!-- Arrow -->
             <i class="fa accordion-arrow" ng-class="expand[g.moduleId] ? 'fa-chevron-up':'fa-chevron-down'"></i>
         </h2>
-        <!--<pre>{{dataHolder.modules.ids[g.moduleId]|json}}</pre>-->
         <!-- Accordion body -->
         <div class="accordion-entry-ctrl instance-entry-multiple" ng-class="" ng-if="expand[g.moduleId]">
             <!-- Instances -->
@@ -29,7 +28,7 @@
                 <div class="report-entry bcg-active"
                     ng-repeat="(indexA,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexA"
                      ng-class="v.active ? 'true': 'false'"
-                     ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
+                     ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1">
                     <div class="report-col report-body">
                         <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
                     </div>
@@ -87,7 +86,7 @@
             <div class="report-entry bcg-active"
                  ng-repeat="(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR"
                  ng-class="v.active ? 'true': 'false'"
-                 ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1">
+                 ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1">
                 <div class="report-col report-media">
                     <img class="report-img-s" ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
                 </div>
