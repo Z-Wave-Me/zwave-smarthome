@@ -1,6 +1,57 @@
 /* Rooms
 -------------------------------------------------- */
 
+.page-room {      
+    @include mediaQueries(max-small) {
+        width: 100%;
+        position: absolute;
+        padding-top: 60px;
+        padding-bottom: 60px; 
+        display: block;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        overflow-x:hidden;
+    }
+
+    &.swipe-right, &.swipe-left {
+        transition: transform 0.5s ease;
+        transform: translate3d(0, 0, 0);
+    }
+
+    &.swipe-left {
+        &.ng-enter {
+            transform: translate3d(100%, 0, 0);  // Move to the right (up to 100% of width)
+        }
+        &.ng-enter-active {
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave {
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave-active {
+            transform: translate3d(-100%, 0, 0);  
+        }
+    }
+
+    &.swipe-right {
+        &.ng-enter {
+            transform: translate3d(-100%, 0, 0);  // Move to the right (up to 100% of width)
+        }
+        &.ng-enter-active {
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave {
+            transform: translate3d(0, 0, 0);
+        }
+        &.ng-leave-active {
+            transform: translate3d(100%, 0, 0);  
+        }
+    }    
+}
+
+
 /* Cards
 -------------------------------------------------- */
 .card-room {
@@ -17,17 +68,33 @@
     @include mediaQueries(min-large) {
         //width: 20%;
     }
-    /* Inner element */
-    .card-room-in {
-        border: solid 1px $app-border-color;
-        background-color: $card-bcg-color;
-        position: relative;
-        height: 200px;
-        padding: 0;
-         margin: $spacing-half;
+
+
+    .bcg-img {
+        position: absolute; 
+        top:9px; 
+        left:9px; 
+        right:9px; 
+        bottom: 9px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background-color: $card-bcg-color;
+        
+        -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
+        webkit-mask: linear-gradient( black, black 10%, transparent);
+        mask: linear-gradient( black, black 10%, transparent);
+    }
+
+
+
+    /* Inner element */
+    .card-room-in {
+        border: solid 1px $app-border-color;
+        position: relative;
+        height: 200px;
+        padding: 0;
+        margin: $spacing-half;
 
         // Media queries
         @include mediaQueries(min-small) {
@@ -76,11 +143,10 @@
             position:absolute; 
             bottom:0px; 
             left:0px; 
-             background-color: rgba(255, 255, 255, 0.6);
             width:100%;
             text-align: center;
-
         }
+
         .card-title {
             display: none;
             @include mediaQueries(min-medium) {
@@ -98,17 +164,24 @@
 
         /* Card Sensors */
         .card-sensors {
-            text-align: center;
+            text-align: left;
             margin: $spacing-half 0;
             width: 100%;
 
+
+            @include mediaQueries(min-medium) {
+                text-align: center;
+            }
+
             /* Sensor */
             .sensor {
-                vertical-align: middle;
                 margin: 5px;
-                display: inline-block;     
+                display: block;     
+                @include mediaQueries(min-medium) {
+                    display: inline-block
+                }
                 .sensor-img {
-                    float: left;
+                    display: inline-block;
                     width: 20px;
                     height: 20px;
                     .sensor-preview-img {
@@ -118,11 +191,10 @@
                 }
 
                 .sensor-ctrl {
-                    float: left;
+                    display: inline-block;
                     margin: 0 0 0 2px ;
                     .sensor-level {
                         font-weight: bold;
-                        /*font-size: 100%;*/
                     }
                     .sensor-scale {
                         font-size: 90%;
@@ -197,8 +269,77 @@
     background-color: $card-bcg-color;
     border: solid 1px $app-border-color;
     margin: 0 0 $spacing-double 0;
+    position: relative;
+
     .bar-row{
+        position:relative;
+        .bar-col {
+            display: block;
+            margin: 0 auto;
+            @include mediaQueries(min-small) {
+                display: table-cell;
+            }
+        }
+
+        .bar-media {
+            @include mediaQueries(max-small) {
+                margin: 0 auto;
+                text-align: center;
+                img {
+                    border-radius: 50%;
+                }   
+            }
+        }
+
+        .bar-body {
+            margin-top: 5px; 
+            .btn-group {
+                width: 100%;
+                .bar-title {
+                    &.swipe {
+                        display: table;
+                        width: 100%;
+                        
+                        .fa-arrow-left {
+                            display: table-cell;
+                            vertical-align: middle;
+                            text-align: left;
+                            color: $app-heading-color;
+                        }
+
+                        .fa-arrow-right {
+                            display: table-cell;
+                            vertical-align: middle;
+                            text-align: right;
+                            color: $app-heading-color;
+                        }
+                        
+                        .room-title {
+                            display: table-cell;
+                            vertical-align: middle;
+                            text-align: center;
+                        }
+
+                        @include mediaQueries(min-small) {
+                                display: none;
+                        }
+                    }
+                    display: none;
+                    @include mediaQueries(min-small) {
+                        display: inline-block;
+                    }
+                    
+                }
+            }
+        }
+
         .bar-ctrl {
+            display: none;
+
+            @include mediaQueries(min-small) {
+                display: table-cell;;
+            }
+
             .btn-group{
                 .btn{
                     @include mediaQueries(max-medium) {

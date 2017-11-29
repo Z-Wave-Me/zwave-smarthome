@@ -2,19 +2,29 @@
 -------------------------------------------------- */
 .widget-entry-element {
     .widget-entry-in {
-        height: 160px;
+        height: 116px;
         // Media queries
-        @include mediaQueries(min-esmall) {
-            height: 150px;
-        }
         @include mediaQueries(min-small) {
             height: 124px;
         }
         .widget-img {
-            width: 72px;
-            height: 72px;     
+            width: 64px;
+            height: 64px;     
             background-color: #fff;
             @include appBorderRadius(50%);
+
+            &.mobile {
+                display: block;
+                @include mediaQueries(min-small) {
+                    display: none;            
+                }
+            }
+
+            display: none;
+                @include mediaQueries(min-small) {
+                    display: block;            
+                } 
+
             .widget-icon-update {
 
                 //z-index: 10;
@@ -22,20 +32,20 @@
                 //border-color: $element-widget-img-update-border-color;
             }
             // Media queries
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 width: 64px;
                 height: 64px;  
             }
 
             .widget-img-overlay {
                 background-color: rgba(255,255,255, 0.8);
-                width: 72px;
-                height: 72px;
+                width: 64px;
+                height: 64px;
                 display: table;
                 @include appBorderRadius(50%);
                 position: absolute;
                 // Media queries
-                @include mediaQueries(min-esmall) {
+                @include mediaQueries(min-small) {
                     display: none;
                 }
                 .widget-level {
@@ -64,7 +74,7 @@
         .widget-title {
             text-align: center;
             // Media queries
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 text-align: left;
             }
             @include mediaQueriesMaxMin($site-max-w,$break-large) {
@@ -73,12 +83,10 @@
             }
             h3{
                 font-size: 75%;
-                overflow:hidden;              /* don't show excess chars */
-                text-overflow: ellipsis;
-                @include mediaQueries(min-esmall) {
+                @include textOverflow();
+                @include mediaQueries(min-small) {
                     font-size: 95%;
                 }
-
             }
             .widget-room {
                 display: block;
@@ -86,7 +94,7 @@
                 font-size: 75%;;
                 color: lighten($app-body-color, 40%);
                 // Media queries
-                @include mediaQueries(min-esmall) {
+                @include mediaQueries(min-small) {
                     font-size: 85%;
                 }
                 .widget-title {
@@ -95,16 +103,15 @@
                         max-width: 200px;
                         @include textOverflow();
                     }
-
                     // Media queries
-                    @include mediaQueries(max-esmall) {
+                    @include mediaQueries(max-small) {
                         h3{
                             font-size: 95%;
                             padding: 0 0 0 64px + $spacing;
                         }
-
                     }
                     .widget-room {
+                        white-space: nowrap;
                         display: block;
                         font-size: 85%;
                         color: lighten($app-body-color, 40%);
@@ -267,18 +274,17 @@
         width: 70% !important;
     }
 }
-
-.audioPlayer, .switchRGBW, .sensorMultiline {
+/*
+.audioPlayer, .switchRGBW, .sensorMultiline, .multilevel, .motor {
     @include mediaQueries(max-esmall) {
-        //width: 66.66666%;
         width: 100%;
 
         .progress-true {
             .widget-img {
                 &:before {
                     content:'';
-                    width: 72px;
-                    height: 72px;
+                    width: 64px;
+                    height: 64px;
                     background-color: #fff;
                     opacity: 1;
                     left: 0;
@@ -295,15 +301,21 @@
                 width: 33.333%;
                 background: none;
                 position: absolute;
-                top: $spacing;
+                top: $spacing-half;
                 left: -3px;
                 margin: 0px;
                 border: none;
                 text-align: center;
+
+                .widget-img-overlay {
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                }
             }
 
             .widget-title {
-                height: 72px;
+                height: 68px;
                 padding: 18px 0 0 0;
 
                 .widget-room {
@@ -329,11 +341,12 @@
             }
 
             .bottom-aligner {
-                display: inline-block;
+                //display: inline-block;
+                display: none;
             }
         }
     }          
-}
+}*/
 
 
 /* Elements drag & drop cards
@@ -341,6 +354,7 @@
 .dragdrop-element{
     .dd-placeholder{
         width: 100%;//$widget-col-w;
+
         text-align: center;
         //background: whitesmoke;
         border: 3px dashed $app-brand-success;
@@ -348,16 +362,30 @@
         display: table;
         background-color: #FFFFFF;
         &.dd-element{
-            width: 100%;
-            height:  100px;
+            width: 50%;
+            @include appFloat(left);
+            height:  130px;
             // Media queries
-            @include mediaQueries(min-esmall) {
-                float: left;
-                width: 100px;
-                height: 130px;
-                //height: 130px + $spacing;
+            @include mediaQueries(min-usmall) {
+                @include appFloat(left);
+                width: 33.33333%;
             }
-
+            @include mediaQueries(min-esmall) {
+                @include appFloat(left);
+                width: 25%;
+            }
+            @include mediaQueriesMin(600px){
+                 width: 20%;
+            }
+            @include mediaQueries(min-small) {
+               width:14.28571%;
+            }
+            @include mediaQueries(min-medium) {
+               width: 12.5%;
+            }
+            @include mediaQueries(min-large) {
+                width: 10%;
+            }
         }
     }
 }
@@ -372,7 +400,6 @@
     @include mediaQueries(min-usmall) {
         @include appFloat(left);
         width: 33.33333%;
-      
     }
     @include mediaQueries(min-esmall) {
         @include appFloat(left);

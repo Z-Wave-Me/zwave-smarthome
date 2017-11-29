@@ -9,7 +9,7 @@
     <div class="app-entry-cat clearfix">
         <div class="app-entry-title">
             <h2>
-               <small><a class="btn btn-default btn-sm" href="#apps/online" ><i class="fa fa-chevron-left"></i></a></small> &nbsp;
+               <a class="btn btn-default btn-sm btn-text" href="#apps/online" ><i class="fa fa-chevron-left"></i></a> &nbsp;
                 <span ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
                 <span ng-if="dataHolder.onlineModules.filter.q">{{dataHolder.onlineModules.filter.q|cutText:true:30}}</span>
                 <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
@@ -19,70 +19,14 @@
 
     </div>
     <!-- Widgets -->
-    <div class="app-row app-row-widget clearfix">
-        <div class="widget-entry widget-entry-app"
+    <div class="clearfix">
+        <div class="onlineapp"
              ng-class="{'widget-warning': dataHolder.modules.ids[v.modulename],'widget-danger': dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version != v.version}"
              ng-if_="!v.featured"
              ng-repeat="v in dataHolder.onlineModules.collection| orderBy: cfg.orderby.appsonline[dataHolder.onlineModules.orderBy] | filter:q track by v.id"
              ng-hide="v.status !== 'download' && dataHolder.onlineModules.hideInstalled">
-            <div class="widget-entry-in">
-                <!-- Widget img -->
-                <div class="widget-img">
-                    <a ng-href="#apps/online/{{v.id}}">
-                        <img class="widget-preview-img" alt="{{v.title}}" title="{{v.toolTipDescription}}"
-                             ng-src="{{v.icon ? onlineMediaUrl + v.icon : 'storage/img/placeholder-img.png'}}"
-                             ng-click="redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)"/>
-                    </a>
-                </div>
-                <!-- Widget header -->
-                <div class="widget-header"></div>
-                <div class="widget-content">
-                    <!-- Widget title -->
-                    <div class="widget-title">
-                        <h3>
-                            <a ng-href="#apps/online/{{v.id}}" title="{{v.title}}">{{v.title|cutText:true:20}}</a>
-                        </h3>
-
-                    </div>
-                    <hr class="bottom-aligner"/>
-                    <!-- Widget footer -->
-                    <div class="widget-footer">
-                        <div class="widget-ctrl ctrl-left">
-                            <div class="rating-group">
-                                <i class="fa widget-rating" title="{{r}}"
-                                   ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'"
-                                   ng-repeat="r in dataHolder.onlineModules.ratingRange"></i>
-                                <span class="widget-rating"> | <i
-                                        class="fa fa-download"></i> {{v.installed}}&times;</span>
-                            </div>
-
-                        </div>
-                        <div class="widget-ctrl ctrl-right">
-
-                            <div class="btn-group group-apps">
-                                <!-- Download -->
-                                <button class="btn btn-default" title="{{_t('lb_download')}}"
-                                        ng-click="installModule(v, 'online_install')"
-                                        ng-if="!dataHolder.modules.ids[v.modulename]">
-                                    <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
-                                </button>
-                                <!-- Installed -->
-                                <button class="btn btn-disabled" disabled title="{{_t('installed')}}"
-                                        ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
-                                    <i class="fa fa-check"></i> <span class="btn-name">{{_t('installed')}}</span>
-                                </button>
-                                <!-- Updgrade -->
-                                <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}"
-                                        ng-click="updateModule(v, _t('app_update_confirm'))"
-                                        ng-if="dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' ">
-                                    <i class="fa fa-level-up"></i> <span
-                                        class="btn-name">{{_t('update_to_latest')}}</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Onlineapp entry -->
+            <div ng-include="'app/views/apps/apps_online_widget_entry.html'"></div>
         </div>
     </div>
 </div>

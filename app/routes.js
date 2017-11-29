@@ -49,7 +49,15 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 when('/events/:param?/:val?', {
                     templateUrl: 'app/views/events/events.html',
                     requireLogin: true
-                }).//Admin
+                }).
+                //Automation
+                when('/automation/:moduleId', {
+                    templateUrl: 'app/views/automation/automation.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin,
+                    routeName: 'automation'
+                }).
+                //Admin
                 when('/admin', {
                     templateUrl: 'app/views/management/management.html',
                     requireLogin: true,

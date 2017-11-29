@@ -10,6 +10,7 @@
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {});
+    $scope.hasLongPress = '';
 
     /**
      * Renders search result in the list
@@ -101,6 +102,30 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
         });
     };
 
+    /**
+     * On long press
+     * @param {string} id
+     * @returns {undefined}
+     */
+    $scope.onLongPress = function (id) {
+        $scope.hasLongPress = '';
+        // We only reset hasLongPress if id is missing
+        if(!id){
+            return;
+        }
+         $scope.longPressTimeout = $timeout(function () {
+            $scope.hasLongPress = id;
+        }, 1000);
+    };
+
+    /**
+     * On long press end
+     * @returns {undefined}
+     */
+    $scope.onTouchEnd = function(id) {
+        $timeout.cancel($scope.longPressTimeout);
+    }
+
 });
 /**
  * The controller that handles local app detail actions.
@@ -161,7 +186,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
                     $scope.hasInstance.push(v);
                 }
             });
-            console.log($scope.hasInstance)
+            //console.log($scope.hasInstance)
         }, function (error) {
         });
     }

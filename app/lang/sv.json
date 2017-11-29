@@ -1,4 +1,12 @@
 {
+    "automation":"Automation",
+    "scenes":"Scenes",
+    "rules":"Rules",
+    "schedules":"Schedules",
+    "no_items_yet":"There are no items added yet in this category.",
+    "LightScene":"The scene is a basic function of a smart home. Multiple devices are switched into individual status by just one click. Using other apps like Delayed Scene or Scheduled Scene this scene can also be activated automatically depending on events generated in the Smart Home.",
+    "IfThen":"The rule the foundation of automation. A selected action WHEN is executed automatically at the moment when a certain event IF has happen. This app allows defining these relationships. ",
+    "ScheduledScene":"The schedule allow to control relays, dimmers, thermostats and scenes on a schedule.",
     "smartstart_not_supported":"Your device does not support SmartStart. Please upgrade your firmware",
     "smartstart_enter_key":"Please enter the Key on new Device (DSK - device specific keys), which you find below QR code",
     "smartstart_enter_key_success":"Device has been included in the network and is ready for use",

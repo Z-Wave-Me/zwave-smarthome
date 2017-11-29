@@ -7,7 +7,7 @@
  * The element root controller
  * @class ElementBaseController
  */
-myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, $routeParams, $timeout, $location, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, $routeParams, $timeout, $location, $rootElement, cfg, dataFactory, dataService, myCache) {
     $scope.dataHolder = {
         mode: 'default',
         firstLogin: false,
@@ -40,6 +40,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             data: []
         }
     };
+    $scope.list = [];
     $scope.apiDataInterval = null;
 
     $scope.autocomplete = {
@@ -59,6 +60,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Cancel interval on page destroy
      */
     $scope.$on('$destroy', function () {
+        cfg.route.time.timeUpdating = false;
         $interval.cancel($scope.apiDataInterval);
     });
 
@@ -133,35 +135,36 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.refreshDevices = function () {
         var refresh = function () {
-            dataFactory.refreshApi('devices').then(function (response) {
-                if(!response){
-                    return;
-                }
-                if (response.data.data.devices.length > 0) {
-                    angular.forEach(response.data.data.devices, function (v, k) {
-                         var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
-                         if (!$scope.dataHolder.devices.all[index]) {
-                            return;
-                        }
-                        if (v.metrics.level) {
-                            v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
-                        }
-                        angular.extend($scope.dataHolder.devices.all[index],
-                                {isFailed: v.metrics.isFailed},
-                                {metrics: v.metrics},
-                                {progress: false},
-                                {longpress: false},
-                                {iconPath: dataService.assignElementIcon(v)},
-                                {updateTime: v.updateTime}
-                        );
-                        //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
-                    });
-                }
-                if (response.data.data.structureChanged === true) {
-                    $scope.allSettled(true);
-                }
+            if(cfg.route.fatalError.type !== "network") {
+                dataFactory.refreshApi('devices').then(function (response) {
+                    if(!response){
+                        return;
+                    }
+                    if (response.data.data.devices.length > 0) {
+                        angular.forEach(response.data.data.devices, function (v, k) {
+                             var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
+                             if (!$scope.dataHolder.devices.all[index]) {
+                                return;
+                            }
+                            if (v.metrics.level) {
+                                v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
+                            }
+                            angular.extend($scope.dataHolder.devices.all[index],
+                                    {isFailed: v.metrics.isFailed},
+                                    {metrics: v.metrics},
+                                    {progress: false},
+                                    {iconPath: dataService.assignElementIcon(v)},
+                                    {updateTime: v.updateTime}
+                            );
+                            //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
+                        });
+                    }
+                    if (response.data.data.structureChanged === true) {
+                        $scope.allSettled(true);
+                    }
 
-            });
+                });
+            }
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
@@ -217,6 +220,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             angular.extend($scope.dataHolder.devices, {filter: {}});
             $cookies.filterElements = angular.toJson({});
         } else {// Set filter
+            
             angular.extend($scope.dataHolder.devices, {filter: filter});
             $cookies.filterElements = angular.toJson(filter);
         }
@@ -224,6 +228,41 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         //$scope.reloadData();
     };
+
+    /**
+     * Set filter
+     */
+    $scope.setListFilter = function (item) {
+        var list = [];
+        // Reset data
+        $scope.autocomplete.results = [];
+        $scope.dataHolder.devices.noSearch = false;
+        $scope.expandAutocomplete();
+        
+        if($scope.dataHolder.devices.filter.list) {
+            var index = _.findIndex($scope.dataHolder.devices.filter.list, item);
+            list = $scope.dataHolder.devices.filter.list;
+            if(index > -1) {
+                list.splice(index, 1);
+            } else {
+               list.push(item);
+            }
+        } else {
+            list.push(item);
+        }
+        if(list.length > 0) {
+            angular.extend($scope.dataHolder.devices, {filter: {list: list}});    
+            $cookies.filterElements = angular.toJson({list: list});
+        } else {
+            angular.extend($scope.dataHolder.devices, {filter: {}});
+            $cookies.filterElements = angular.toJson({});
+        }
+        
+        console.log($scope.dataHolder.devices.filter.list);
+
+        $scope.allSettled();
+    };
+
 
     /**
      * Show hidden elements
@@ -459,20 +498,21 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         v.metrics.level = count;
          $scope.runCmd(cmd);
     };
-    
+ 
+    /**
+     * device on long press action
+     */
     $scope.itemOnLongPress = function(id) {
-        var dev = _.findWhere($scope.dataHolder.devices.collection, {id: id});
-        dev.longpress = true;
         $scope.longPressTimeout = $timeout(function() {
-            dev.longpress = false;
             $location.path("element/"+id);
         }, 1000);
     }
-
-    $scope.itemOnTouchEnd = function(id) {
-        var dev = _.findWhere($scope.dataHolder.devices.collection, {id: id});
-        dev.longpress = false;
-        $timeout.cancel($scope.longPressTimeout);
+    
+    /**
+     * device on end long press action
+     */
+    $scope.itemOnTouchEnd = function() {
+        $timeout.cancel($scope.longPressTimeout);    
     }
 
     /// --- Private functions --- ///
@@ -529,6 +569,17 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                     return v;
                 }
             });
+        } else if ('list' in $scope.dataHolder.devices.filter) {// Filter by list 
+            var list =  {},
+                key = Object.keys($scope.dataHolder.devices.filter.list[0])[0];
+            _.each($scope.dataHolder.devices.filter.list, function(i) {
+                list[i[key]] = true;
+            });    
+
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
+                return list[v[key]];
+            }, list);
+
         } else {
             $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
         }
@@ -579,8 +630,78 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams) {
-   $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $timeout, $location, cfg) {
+    $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
+    cfg.route.pageClass = "page-room";
+
+
+    $scope.$on('$destroy', function() {
+        cfg.route.pageClass = false;   
+        cfg.route.swipeDir = false;
+    });
+
+    /**
+     * room bar on long press action
+     */
+    $scope.roomBarOnLongPress = function(id) {
+        $scope.longPressTimeout = $timeout(function() {
+            $location.path("config-rooms/"+id);
+        }, 1000);
+    }
+    
+    /**
+     * room bar on end long press action
+     */
+    $scope.roomBarOnTouchEnd = function() {
+        $timeout.cancel($scope.longPressTimeout);    
+    }
+
+
+    /**
+     * Handle swipe event
+     */
+    $scope.$on('swipe',function(event, args) {
+        $scope.swipeMe(args);
+    });
+
+    /**
+     * Room navigation
+     */
+    $scope.swipeMe = function(dir) {       
+        if(dir == "left") {
+            if($(".appmodal").length  == 0) {
+                var currentRoom = $scope.dataHolder.devices.filter.location,
+                    keys = Object.keys($scope.dataHolder.devices.rooms),
+                    loc = keys.indexOf(currentRoom.toString());
+
+                if (loc > -1) {
+                    var i = 0;
+                    if (loc < keys.length - 1) {
+                        i = keys[loc + 1];
+                    }
+                    $location.path("rooms/" + i);
+                }
+            }
+        }
+
+        if(dir == "right") {
+            if($(".appmodal").length  == 0) {
+                var currentRoom = $scope.dataHolder.devices.filter.location,
+                    keys = Object.keys($scope.dataHolder.devices.rooms),
+                    loc = keys.indexOf(currentRoom.toString());
+
+                if (loc > -1) {
+                    var i = 0;
+                    if (loc > 0) {
+                        i = keys[loc - 1];
+                    } else {
+                        i = keys[keys.length - 1];
+                    }
+                    $location.path("rooms/" + i);
+                }
+            }
+        }
+    }
 
 });

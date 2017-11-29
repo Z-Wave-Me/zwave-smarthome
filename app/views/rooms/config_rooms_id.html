@@ -58,8 +58,16 @@
                     </div>
                 </div>
             </fieldset>
-            
-             <fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <!-- Remove -->
+                    <button type="button" title="{{_t('delete_room')}}" class="btn btn-danger"
+                                ng-click="deleteRoom(input.id, _t('delete_confirm_label',{__label__:input.title}))">
+                        <i class="fa fa-times"></i> {{ _t('delete_room')}}
+                    </button>
+                </div>
+            </fieldset>
+            <fieldset>
                 <h3><span ng-bind="_t('lb_devices_in_room')"></span></h3>
                 <p>
                 <span class="inline">
@@ -115,15 +123,7 @@
                  <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_room.$invalid">
                      <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
                  </button>
-                  <!-- Remove -->
-                <button type="button" title="{{_t('delete_room')}}" class="btn btn-delete"
-                            ng-click="deleteRoom(input.id, _t('delete_confirm_label',{__label__:input.title}))">
-                        <i class="fa fa-times"></i> <span class="btn-name">{{ _t('delete_room')}}</span>
-                    </button>
-                 
             </fieldset>
         </form>
-
     </div>
-
 </div> <!-- /ng-controller --> 

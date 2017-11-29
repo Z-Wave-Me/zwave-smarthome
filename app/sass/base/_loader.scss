@@ -58,9 +58,9 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 $widget-loader-background: #FFF;
 $widget-loader-foreground: #184B7C;
-$widget-loader-w: 72px + 6;
-$widget-loader-h: 72px + 6;
-$widget-loader-before-h: 72px + 8;
+$widget-loader-w: 64px + 6;
+$widget-loader-h: 64px + 6;
+$widget-loader-before-h: 64px + 8;
 $widget-loader-before-w: $widget-loader-before-h/2;
 // Large devices
 $widget-loader-w-l: 64px + 6;
@@ -85,7 +85,7 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
     }
 
     .widget-loader {
-        top: 7px;
+        top: 2px;
         right: 0px;
         left: 0px;
         margin: 0 auto;
@@ -185,7 +185,7 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
 
 
 
-.widget-entry-in:before, .widget-entry-in:after,.card-room-in:before, .card-room-in:after{
+.widget-entry-in:before, .widget-entry-in:after,.card-room-in:before, .card-room-in:after, .bar-row:before, .bar-row:after {
     box-sizing: inherit;
     content: '';
     position: absolute;
@@ -194,12 +194,12 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
     border: 2px solid transparent;    
 }
 
-.widget-entry-in:before,.card-room-in:before {
+.widget-entry-in:before,.card-room-in:before,.bar-row:before {
     top: 0;
     left: 0;      
 }
 
-.widget-entry-in:after,.card-room-in:after {
+.widget-entry-in:after,.card-room-in:after, .bar-row:after {
     bottom: 0;
     right: 0;      
 }
@@ -211,12 +211,14 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
     .widget-entry-in:before,
     .widget-entry-in:after, 
     .card-room-in:before, 
-    .card-room-in:after {
+    .card-room-in:after,
+    .bar-row:before,
+    .bar-row:after {
         width: 100%;
         height: 100%; 
     }
 
-    .widget-entry-in:before, .card-room-in:before {
+    .widget-entry-in:before, .card-room-in:before, .bar-row:before {
         border-top-color: $widget-loader-foreground; 
         border-right-color: $widget-loader-foreground;
         transition:
@@ -224,7 +226,7 @@ $widget-loader-before-w-m: $widget-loader-before-h-m/2;
           height 0.25s ease-out 0.25s; 
       }
 
-    .widget-entry-in:after, .card-room-in:after {
+    .widget-entry-in:after, .card-room-in:after, .bar-row:after {
         border-bottom-color: $widget-loader-foreground; 
         border-left-color: $widget-loader-foreground; 
         transition:

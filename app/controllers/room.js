@@ -82,15 +82,25 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
         $scope.reloadData();
         //$scope.allSettled();
     };
+
     /**
-     * 
+     * Room on long press
+     * @param {string} id
+     * @returns {undefined}
      */
     $scope.onLongPress = function (id) {
-        $timeout(function () {
+        $scope.longPressTimeout = $timeout(function () {
             $scope.redirectToRoute('config-rooms/' + id);
         }, 1000);
     };
 
+    /**
+     * Room on long press end
+     * @returns {undefined}
+     */
+    $scope.onTouchEnd = function() {
+        $timeout.cancel($scope.longPressTimeout);
+    }
 
 
     /**

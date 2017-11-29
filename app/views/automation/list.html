@@ -1,0 +1,46 @@
+<!-- The list -->
+<div class="app-row app-row-report clearfix">
+    <div class="report-entry bcg-active" ng-repeat="v in automation.instances.all track by $index" ng-class="v.active ? 'true': 'false'">
+        <div class="report-col report-media">
+            <img class="report-img-s" ng-src="{{automation.localModules[v.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img"
+            />
+        </div>
+        <div class="report-col report-body">
+            <a href="#module/put/{{v.id}}">
+                <span ng-bind="v.title"></span>
+            </a>
+        </div>
+        <div class="report-col report-ctrl report-ctrl-3">
+            <div class="btn-wrapper">
+                <button type="button" class="btn btn-default l-hide" title="{{_t('lb_settings')}}" ng-click="expandNavi('autoDropdown_' + $index, $event)">
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="btn-group" ng-class="naviExpanded['autoDropdown_' + $index] ? 'btn-group-expanded': 'btn-group-collapsed'">
+                    <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <button title="{{_t('lb_deactivate')}}" class="btn btn-default" href="" ng-if="v.active" ng-class="v.active ? 'active' : ''"
+                        ng-click="activateInstance(v, false)">
+                        <i class="fa fa-fire text-success"></i>
+                    </button>
+                    <button title="{{_t('lb_activate')}}" class="btn btn-default" ng-if="!v.active" ng-click="activateInstance(v, true)">
+                        <i class="fa fa-power-off text-danger"></i>
+                    </button>
+                    <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}" class="btn btn-default" title="{{_t('lb_clone')}}">
+                        <i class="fa fa-clone"></i>
+                    </a>
+                    <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
+                        <i class="fa fa-remove text-danger"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add new -->
+<div class="block text-right">
+    <a class="btn btn-default" href="#module/post/{{automation.moduleId}}">
+        <i class="fa fa-plus text-success"></i>
+        <span class="btn-name">{{_t('add_new')}}</span>
+    </a>
+</div>

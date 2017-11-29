@@ -1,0 +1,14 @@
+<!-- sensorMultilevel -->
+<div class="widget-img-overlay" ng-if="!v.hasHistory">
+	<span class="widget-level">{{v.metrics.level}}</span> 
+	<span class="widget-scale">{{v.metrics.scaleTitle}}</span>    
+</div>
+<div class="widget-img-overlay" 
+	ng-if="v.hasHistory"
+	ng-click="dataHolder.devices.find = v;handleModal('modalHistory', $event)">
+	<span class="widget-level">{{v.metrics.level}}</span> 
+	<span class="widget-scale">{{v.metrics.scaleTitle}}</span>    
+</div>
+<img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
+	err-src="{{cfg.img.placeholder}}"
+	ng-if="cfg.element_update_icon.indexOf(v.deviceType) === -1"/>

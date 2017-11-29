@@ -216,6 +216,20 @@ Check if device has a given command class
 
 **Returns**: `boolean | object`
 
+### dataService.compareVersion(v1, v2, operator) 
+
+Compare versionhttp://locutus.io/php/info/version_compare/
+
+**Parameters**
+
+**v1**: `string`
+
+**v2**: `string`
+
+**operator**: `string`
+
+**Returns**: `Boolean | Number`
+
 ### dataService.assignElementIcon(element) 
 
 Assign an icon to the element

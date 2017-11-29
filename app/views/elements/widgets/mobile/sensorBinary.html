@@ -1,0 +1,10 @@
+<!-- sensorBinary -->
+<img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
+  err-src="{{cfg.img.placeholder}}"
+  ng-if="v.showNotification"
+  ng-click="dataHolder.devices.find = v;handleModal('modalEvent', $event)"
+/>
+<img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
+  err-src="{{cfg.img.placeholder}}"
+  ng-if="!v.showNotification"
+/>

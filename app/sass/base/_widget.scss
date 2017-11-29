@@ -13,40 +13,52 @@
     padding: 1%;
     
     // Media queries
-    @include mediaQueries(min-esmall) {
-        width: 100%;
-        padding: 0; 
-    }
     @include mediaQueries(min-small) {
         @include appFloat(left);
+        padding: 0; 
         border: 0;
         width: 50%;;
     }
     @include mediaQueries(min-large) {
         width: 33.33333%;;
     }  
+
+
+     &.ng-enter {
+            /* standard transition code */
+            -webkit-transition: 0.25s linear all;
+            transition: 0.25s linear all;
+            opacity:0;
+            &.ng-enter-active {
+                /* standard transition styles */
+                opacity:1;
+            }
+        }
+
     .widget-entry-in{
         background-color: #FFFFFF;
         height: 150px;
         position: relative;
-        padding: $spacing;
+        padding: $spacing-half;
         // Media queries  
         @include mediaQueries(min-esmall) {
             border-color: $app-border-color;
-            border-bottom: solid 1px $app-border-color;
+            //border-bottom: solid 1px $app-border-color;
         } 
         @include mediaQueries(min-small) {
             border-color: $app-border-color;
             border: solid 1px $app-border-color;
             margin: $spacing;
         } 
+
+
         .widget-img{
             position: relative;
             margin: 0px auto 5px;
             top: 0;
-            left: 0; 
+            left: 0;
             // Media queries
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 position: absolute;
                 top: $spacing-double;
                 left: $spacing;
@@ -55,9 +67,37 @@
         }
 
         .widget-header {
+            position: absolute;
+            top: 0;
+            left: 0;
             display: none;
+
+            .widget-icon {
+                &.widget-room {
+                    text-align: center;
+                    background-color: rgba(223, 223, 223, 0.5);
+                    //background-color: rgba(0, 198, 198, 0.9);
+                    border-radius: 10px;
+                    //border-top-right-radius: 10px; 
+                    //border-bottom-right-radius: 10px; 
+                    //border-bottom-left-radius: 10px; 
+                    //border-bottom-right-radius: 10px; 
+                    //color: rgba(0, 198, 198, 1);
+                    color: #737373;
+                    padding: 0 4px;
+                    font-size: 14px;  
+                    //font-weight: bold;
+                    width: 20px;
+                    height: 20px;
+                    line-height: 20px;
+                    display: inline-block;
+                    margin: 5px 0 0 5px;
+                    //box-shadow: 1px 1px 1px #888888;
+                }
+            }
+
             // Media queries
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 display: block;
                 position: relative;
                 text-align: right;
@@ -82,7 +122,7 @@
         .widget-content{
             margin: 0;
             // Media queries 
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 margin: -$spacing 0 0 64px + $spacing-double;   
             }
         }
@@ -101,7 +141,7 @@
         .widget-footer{
             height:50%;
             display: none;
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 display: block;
             }
         }
@@ -111,7 +151,7 @@
             height: 100%;
             vertical-align: bottom;
             width:1px;    
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 display: inline-block;
             }
         }
@@ -149,15 +189,10 @@
 }
 
 .widget-preview-img{
-    max-width: 72px;
-    max-height: 72px;
+    max-width: 64px;
+    max-height: 64px;
     //border: solid 4px $widget-img-border-color;
     @include appBorderRadius(50%);
-    // Media queries
-    @include mediaQueries(min-esmall) {
-        max-width: 64px;
-        max-height: 64px;
-    }
 }
 
 .tbl-widget-ctrl{ 

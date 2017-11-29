@@ -1,10 +1,10 @@
 /* Button
 -------------------------------------------------- */
+
 .btn-goup-block {
   display: table;
   width: 100%;
-  margin: 0 0 $spacing 0;
-  // Media queries
+  margin: 0 0 $spacing 0; // Media queries
   @include mediaQueries(min-small) {
     width: auto !important;
     display: inline-block;
@@ -19,7 +19,6 @@
       color: $app-brand-success;
     }
   }
-
 }
 
 .btn-goup-1 {
@@ -39,9 +38,16 @@
     width: 33.33333%;
   }
 }
+
 .btn-goup-4 {
   .btn {
     width: 25%;
+  }
+}
+
+.btn-goup-5 {
+  .btn {
+    width: 20%; 
   }
 }
 
@@ -50,12 +56,13 @@
   background-color: #FFFFFF;
   border-color: #CCCCCC;
 }
+
 .btn-delete {
   color: $app-body-color;
   background: transparent;
   border: 0;
-  .fa{
-      color: $app-brand-danger;
+  .fa {
+    color: $app-brand-danger;
   }
 }
 
@@ -63,7 +70,8 @@
   background-color: #FFFFFF;
 }
 
-.btn, .btn-device-admin {
+.btn,
+.btn-device-admin {
   font-size: 110%;
   .fa {
     font-size: 120%;
@@ -74,7 +82,8 @@
   color: #FFFFFF;
   border: solid 1px $app-brand-success;
   background-color: darken($app-brand-success, 20%);
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: $app-brand-success;
   }
 }
@@ -105,14 +114,19 @@
   }
 }
 
+.btn {
+  &.btn-text {
+    border: 0;
+    background: transparent;
+  }
+}
+
 .btn-tag {
   display: block;
   position: relative;
   text-align: left;
   font-size: 100%;
-  margin: 0 0 $spacing 0;
-
-  // Media queries
+  margin: 0 0 $spacing 0; // Media queries
   @include mediaQueries(min-small) {
     display: inline-block;
     position: static;
@@ -123,79 +137,91 @@
     position: absolute;
     top: $spacing-half;
     right: $spacing;
-    font-size: 150%;
-    // Media queries
+    font-size: 150%; // Media queries
     @include mediaQueries(min-small) {
       position: static;
       margin: 0 0 0 $spacing;
       font-size: 120%;
     }
   }
-  &.btn-group{
+  &.btn-group {
     @include mediaQueries(max-small) {
       display: table !important;
-      width:100%;
-      .btn{
-        //position: static;
+      width: 100%;
+      .btn {
         float: none;
         display: table-cell;
-        //width: 50%;
-        .fa{
-          //position: static;
-        }
       }
     }
-
   }
-  .btn-addon{
+  .btn-addon {
     .fa {
       margin: 0;
     }
   }
-  .btn{
+  .btn {
     text-align: left;
     font-size: 100%;
     margin: 0;
   }
-  label{
-
-      text-align: center  !important;
+  label {
+    text-align: center !important;
     @include mediaQueries(max-small) {
       width: 20px;
     }
-
-
   }
 }
 
+
 /* Button tabs
 -------------------------------------------------- */
+
 .btn-goup-tabs {
- /* display: table;
+  /* display: table;
   width: 100%;*/
   margin: 0 0 $spacing 0;
   .btn {
-    padding: $spacing;
-    font-size: 120%;
     background-color: #FFFFFF;
     &.active {
-      background-color:  darken(#FFFFFF, 5%);
+      background-color: darken(#FFFFFF, 5%);
+    } // Media queries
+    @include mediaQueries(min-small) {
+      padding: $spacing; //font-size: 120%;
     }
     .fa {
       font-size: 130%;
       color: lighten($app-body-color, 20%);
-      &.text-danger{
+      &.text-danger {
         color: $app-brand-danger;
-      }
+      } // Media queries
+      /* @include mediaQueries(min-small) {
+      font-size: 130%;
+    } */
     }
   }
   .active {
     .fa {
       color: $app-brand-success;
-      &.text-danger{
+      &.text-danger {
         color: $app-brand-danger;
       }
+    }
+  }
+}
 
+// Media queries
+@include mediaQueries(max-small) {
+  .fix-me-top {
+    .btn-goup-tabs {
+      display: inline-block;
+      width: auto;
+      .btn {
+        border: 0;
+        background: transparent;
+        @include appBorderRadius(0);
+        display: inline-block;
+        width: auto;
+      }
     }
   }
 }
@@ -218,27 +244,32 @@
   }
 }
 
+
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
+
 .switch {
   position: relative;
   display: inline-block;
   width: 72px;
-  height: 40px;
-  // Media queries
+  height: 40px; // Media queries
   @include mediaQueries(min-small) {
     width: 60px;
     height: 34px;
   }
 }
 
+
 /* Hide default HTML checkbox */
+
 .switch input {
   display: none;
 }
 
+
 /* The slider */
+
 .slider {
   position: absolute;
   cursor: pointer;
@@ -247,8 +278,7 @@
   right: 0;
   bottom: 0;
   background-color: #fff;
-  border: solid 1px #CCCCCC;
-  //box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.125);
+  border: solid 1px #CCCCCC; //box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.125);
   //@include appGradientDanger();
   -webkit-transition: .4s;
   transition: .4s;
@@ -272,30 +302,60 @@
   }
 }
 
-input:checked + .slider {
+input:checked+.slider {
   //background-color: green;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   background-color: $app-brand-success;
-
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px $app-brand-success;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
+
 /* Rounded sliders */
+
 .slider.round {
   border-radius: 4px;
 }
 
 .slider.round:before {
   border-radius: 4px;
+}
+
+
+/* Button group hiden on small devices
+-------------------------------------------------- */
+
+.btn-wrapper {
+  @include mediaQueries(max-small) {
+    position: relative;
+    .btn-group {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: auto;
+      z-index: $zindex-dropdown;
+      float: right;
+      min-width: 200px;
+      padding: $spacing;
+      text-align: left;
+      background-color: #FFFFFF;
+      @include appBoxShadow($app-box-shadow);
+      border: 1px solid $app-border-color;
+      background-clip: padding-box;
+      text-align: right;
+      &.btn-group-collapsed{
+        display: none;
+      }
+    }
+  }
 }

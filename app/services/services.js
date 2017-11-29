@@ -540,7 +540,6 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     {hasHistory: hasHistory},
                     {showNotification: showNotification},
                     {progress: false},
-                    {longpress: false},
                     {isNew: isNew},
                     {iconPath: assignElementIcon(v)},
                     {title: v.metrics.title},
@@ -693,6 +692,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     brandid: v.BrandName,
                     //brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
                     product_image: v.Product_Image.split('/').pop(),
+                    remote_image: v.Product_Image,
                     product_image_base64: v.Product_Image_Base64,
                     prep: v.Preperation_Description,
                     secure: (v.Secure === '1'),
@@ -994,8 +994,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = iconArray.half;
                 }
                 break;
-
-            // multilevel
+            // multilevel / fan
+            case 'fan':
             case 'multilevel':
                 if (element.metrics.level === 0) {
                     icon = iconArray.off;

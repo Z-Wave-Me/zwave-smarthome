@@ -100,7 +100,6 @@ $inclusion-img-w: 96px;
 .network-zwave-title{
     font-weight: bold;
     //display: block;
-    width: 100%;
     &.noelements{
         color: lighten($app-body-color,20%);
         font-weight: normal;

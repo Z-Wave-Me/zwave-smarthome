@@ -41,7 +41,9 @@ var config_data = {
             // Time zone
             time: {
                 string: false,
-                timestamp: false
+                timestamp: false,
+                timeZoneOffset: 0,
+                timeUpdating: false
             },
             // User agent operating system
             os: 'unknown',
@@ -60,7 +62,8 @@ var config_data = {
             // User data
             user: false,
             // Translations
-            t: {}
+            t: {},
+            pageClass: ''
         },
         // Zwave - will be extended
         'zwave': {
@@ -232,6 +235,10 @@ var config_data = {
         'online_icon_preview_url': 'https://developer.z-wave.me/?uri=api-iconpreview',
         //'online_icon_preview_url': 'http://dev.dev/developer-console/?uri=api-iconpreview',
         // Online module download url
+        // Online device icon url
+        'online_device_icon_url': 'http://manuals-backend.z-wave.info',
+        // Online vendor icon url
+        'online_vendor_icon_url': 'http://manuals-backend.z-wave.info/img/vendors_logo/',        
         // Post report url
         'post_report_url': 'https://service.z-wave.me/report/index.php',
         // Postpassword url
@@ -265,7 +272,7 @@ var config_data = {
         // Default language
         'lang': 'en', // !!!!Do not change it
         // List of supported languages
-        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es'],
+        'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es','it'],
         // List of supported languages in the zwave products
         'zwaveproducts_langs': ['en', 'de'],
         // Role access
@@ -297,7 +304,8 @@ var config_data = {
             'de': 'de_AT',
             'ru': 'en_EN',
             'fr': 'fr_FR',
-            'fi': 'fi_FI'
+            'fi': 'fi_FI',
+            'it': 'it-IT'
         },
         // Chart colors
         'chart_colors': {
@@ -485,7 +493,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -536,7 +547,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -568,7 +582,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -600,7 +617,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',

@@ -741,10 +741,10 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
             var device = response.data.data;
             if (_.isEmpty(device)) {
-                $scope.widgetClimateControl.alert = {
-                    message: $scope._t('error_load_data'),
-                    status: 'alert-danger',
-                    icon: 'fa-exclamation-triangle'
+                $scope.widgetSensorMultiline.alert = {
+                    message: $scope._t('no_data'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
                 };
                 return;
             }
@@ -808,17 +808,16 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
      */
     $scope.loadDeviceId = function () {
         dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
-            var lastTriggerList = response.data.data.metrics.lastTriggerList;
-            if (_.isEmpty(lastTriggerList)) {
+            var device = response.data.data;
+            if (_.isEmpty(device.metrics.lastTriggerList)) {
                 $scope.widgetSecurityControl.alert = {
-                    message: $scope._t('error_load_data'),
-                    status: 'alert-danger',
-                    icon: 'fa-exclamation-triangle'
+                    message: $scope._t('no_data'),
+                    status: 'alert-warning',
+                    icon: 'fa-exclamation-circle'
                 };
-                return;
             }
 
-            $scope.widgetSecurityControl.find = lastTriggerList;
+            $scope.widgetSecurityControl.find = device;
 
         }, function (error) {
             $scope.widgetSecurityControl.alert = {
