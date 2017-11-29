@@ -33,6 +33,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
             singleton: {},
             filter: {},
             cameraIds: [],
+            wifiplugIds: [],
             imgs: [],
             cats: [],
             currentCategory: {
@@ -287,6 +288,11 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                     $scope.dataHolder.modules.cameraIds.push(item.id);
                     isHidden = true;
                 }
+                // Hides wifi plug item
+                if (item.category === 'wifiplug') {
+                    $scope.dataHolder.modules.wifiplugIds.push(item.id);
+                    isHidden = true;
+                }                
                 // Hides singelton item with instance
 //                if (item.singleton && item.hasInstance) {
 //                    isHidden = true;

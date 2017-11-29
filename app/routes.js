@@ -241,14 +241,24 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/rf433/teachin.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
-                }).//Enocean devices
+                }).
                 when('/rf433/manage', {
                     templateUrl: 'app/views/rf433/manage.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
-                }).//Enocean device manage
+                }).
                 when('/rf433/manage/:vDevId', {
                     templateUrl: 'app/views/rf433/manage_detail.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//wifiplug add
+                when('/wifiplug/add', {
+                    templateUrl: 'app/views/wifiplug/wifiplug_add.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).//wifiplug manage
+                when('/wifiplug/manage', {
+                    templateUrl: 'app/views/wifiplug/wifiplug_manage.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).//Rooms
