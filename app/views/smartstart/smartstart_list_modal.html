@@ -1,0 +1,58 @@
+<div id="dskModal" class="appmodal" ng-if="modalArr.dskModal">
+  <div class="appmodal-in">
+    <div class="appmodal-header">
+      <span class="appmodal-close" ng-click="handleModal('dskModal', $event)">
+        <i class="fa fa-times"></i>
+      </span>
+      <h3>{{cfg.app_name}}</h3>
+    </div>
+    <div class="appmodal-body">
+      <form name="form_dsk_update" ng-submit="handleModal('dskModal', $event);updateDsk(collection.find)">
+        <pre>{{collection.find|json}}</pre>
+        <fieldset class="text-center">
+            <div class="form-group dsk-input-group" bb-dsk-navigate>
+                <span>
+                  <input id="dsk_1" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[0]" />
+                </span>
+                <span>
+                  <input id="dsk_2" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[1]" />
+                </span>
+                <span>
+                  <input id="dsk_3" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[2]" />
+                </span>
+                <span>
+                  <input id="dsk_4" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[3]" />
+                </span>
+                <span>
+                  <input id="dsk_5" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[4]" />
+                </span>
+                <span>
+                  <input id="dsk_6" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[5]" />
+                </span>
+                <span>
+                  <input id="dsk_7" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[6]" />
+                </span>
+                <span>
+                  <input id="dsk_8" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[7]" />
+                </span>
+              </div>
+        </fieldset>
+        <fieldset class="text-center">
+         <!-- Update -->
+          <button type="submit" class="btn btn-submit" title="{{_t('lb_update')}}" ng-click_="handleModal('dskModal', $event)">
+            <i class="fa fa-check"></i>
+            <span>{{_t('lb_update')}}</span>
+          </button>
+          </fieldset>
+      </form>
+    </div>
+    <div class="appmodal-footer">
+       <!-- Close -->
+       <button type="button" class="btn btn-default" ng-click="handleModal('dskModal', $event)">
+          <i class="fa fa-times text-danger"></i>
+          <span class="btn-name">{{_t('lb_close')}}</span>
+        </button>
+
+    </div>
+  </div>
+</div>

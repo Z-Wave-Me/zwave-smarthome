@@ -1,5 +1,6 @@
 {
     "newtrans": "---",
+    "delete_no_smartstart_warning":"Device requires to be excluded  manually or reset to factory default in order to leave the Z-Wave Network",
     "automation":"Automation",
     "scenes":"Scenes",
     "rules":"Rules",

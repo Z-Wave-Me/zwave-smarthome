@@ -136,6 +136,7 @@ var config_data = {
             'reorder': 'ZAutomation/api/v1/devices/reorder',
             'get_dsk':'ZWaveAPI/GetDSKCollection', // Get DSK collection
             'add_dsk':'ZWaveAPI/AddDSKEntry?dsk=', // Add DSK
+            'update_dsk':'ZWaveAPI/UpdateDSKEntry', // Update DSK
             'remove_dsk':'ZWaveAPI/RemoveDSKEntry?dsk=', // Remove DSK
             'get_dsk_provisioning_list':'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
             'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry?dsk=', // Add DSK to ProvisioningList (Response with added DSK) GET 
