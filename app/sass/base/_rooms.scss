@@ -282,17 +282,16 @@
         }
 
         .bar-media {
-            @include mediaQueries(max-small) {
-                margin: 0 auto;
-                text-align: center;
-                img {
-                    border-radius: 50%;
-                }   
+            display: none;
+            @include mediaQueries(min-small) {
+                display: table-cell;
             }
         }
 
         .bar-body {
-            margin-top: 5px; 
+            @include mediaQueries(min-small) {
+                margin-top: 5px; 
+            }
             .btn-group {
                 width: 100%;
                 .bar-title {
