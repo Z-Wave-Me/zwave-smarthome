@@ -82,7 +82,7 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
  * The controller that displays DSK list.
  * @class SmartStartListController
  */
-myAppController.controller('SmartStartListController', function ($scope, $timeout, $filter, dataFactory) {
+myAppController.controller('SmartStartListController', function ($scope, $timeout, $filter,cfg, dataFactory) {
   $scope.list = {
     alert: {},
     all: []
@@ -91,14 +91,38 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
   $scope.collection = {
     alert: {},
     all: [],
-    find: {}
+    find: {},
+    vendorIds: {},
+    deviceClasses: {}
   };
+
+   /**
+     * Load xml from translations
+     */
+    $scope.loadXml= function () {
+    // VendorIds.xml
+      dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'VendorIds.xml').then(function (response) {
+        $scope.collection.vendorIds = response.VendorIds.Vendor;
+         /* var vendor = _.findWhere(response.VendorIds.Vendor,{_id:"0x0059"})
+         console.log(vendor)
+         console.log(response.VendorIds.Vendor) */
+
+     });
+     // DeviceClasses.xml
+     dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'DeviceClasses.xml').then(function (response) {
+      $scope.collection.deviceClasses = response.DeviceClasses.Generic;
+      //console.log(response.DeviceClasses.Generic)
+     
+
+   });
+  };
+  $scope.loadXml();
 
 
   /**
    * Get DSK Collection - DEMO
    */
-  $scope.getDskCollectionDemo = function () {
+ var getDskCollectionDemo = function () {
     dataFactory.getApiLocal('dsk-collection.json').then(function (response) {
       if (_.isEmpty(response.data)) {
         $scope.collection.alert = {
@@ -111,6 +135,7 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
       $scope.collection.all = _.filter(response.data, function (v) {
         // Extending an object
         v.added = {
+          vendor:  _.findWhere($scope.collection.vendorIds,{_id:"0x0059"} || {}),
           dskArray: v.ZW_QR_DSK.split('-'),
           timeformat: $filter('dateTimeFromTimestamp')(v.timestamp)
         }
@@ -118,11 +143,14 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
         return v;
       });
 
+      console.log($scope.collection.deviceClasses)
+
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
     });
   };
-  $scope.getDskCollectionDemo();
+  $timeout(getDskCollectionDemo);
+ // $scope.getDskCollectionDemo();
 
   /**
    * Get DSK Collection

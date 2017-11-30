@@ -264,6 +264,8 @@ var config_data = {
         'enocean_black_list': ['81048201'],
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
+         // Path to to translations XML dir
+         'translations_xml_path': 'translations/',
         // Url to update capabilities
         'license_load_url': 'ZWaveAPI/ZMELicense',
         // Language directory
