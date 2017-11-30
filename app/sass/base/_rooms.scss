@@ -318,6 +318,11 @@
                             display: table-cell;
                             vertical-align: middle;
                             text-align: center;
+                            @include textOverflow();
+                            max-width: 200px;
+                            @included mediaQueries(min-small) {
+                                max-width: 100%;
+                            }
                         }
 
                         @include mediaQueries(min-small) {
