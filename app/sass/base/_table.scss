@@ -1,10 +1,15 @@
 /* Table
 -------------------------------------------------- */
 .table{
-    tbody{
-        tr{
-            td{
+    tbody {
+        tr {
+            td {
                 border-top: 1px solid $app-border-color; 
+            }
+            &:nth-child(2) {
+                td {
+                    border: none; 
+                }   
             }
         }
     }
@@ -26,6 +31,10 @@
             text-align: right;
         }
     }
+
+    .room-title {
+        @include textOverflow();
+    }
 }
 .table-products{
     td{
@@ -38,4 +47,7 @@
 }
 .td30{
     width: 30%;
+}
+.td40{
+    width: 40%;
 }

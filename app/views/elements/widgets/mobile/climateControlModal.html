@@ -44,12 +44,11 @@ ng-if="modalArr.climateControlModal_m">
             </div>
             <div class="multiline-entry" ng-if="widgetClimateControl.rooms">
                 <table class="table table-report table-condensed">
-                    <tbody>
-                        <tr class="bcg-success" ng-repeat="n in widgetClimateControl.rooms" ng-if="n.room > 0">
-                            <td class="td-img">
-                                <img class="report-img img-circle" ng-src="{{n.roomIcon}}" />
-                            </td>
-                            <td class="text-left">{{n.roomTitle}}</td>
+                    <tbody ng-repeat="n in widgetClimateControl.rooms" ng-if="n.room > 0">
+                        <tr class="bcg-success">
+                            <td class="text-left room-title" colspan="5">{{n.roomTitle}}:</td>
+                        </tr>
+                        <tr class="bcg-success" >
                             <td>
                                 <span class="text-primary_">{{n.sensorLevel}}  {{n.scaleTitle}}</span>
                             </td>
@@ -59,7 +58,7 @@ ng-if="modalArr.climateControlModal_m">
                             <td class="text-right">
                                <span class="text-success">{{n.targetTemp}}  °C</span>
                             </td>
-                            <td class="text-right">
+                            <td class="text-right td40">
 
                                 <select class="form-control" 
                                         name="changeMode_{{n.room}}" 

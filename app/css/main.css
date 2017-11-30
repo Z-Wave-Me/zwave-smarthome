@@ -12607,41 +12607,62 @@ img {
   border-top: 1px solid #cccccc;
 }
 
-/* line 13, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+/* line 10, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+.table tbody tr:nth-child(2) td {
+  border: none;
+}
+
+/* line 18, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
 .table-report {
   background-color: #FFFFFF;
   border: 0 !important;
   margin-bottom: 0 !important;
 }
 
-/* line 18, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+/* line 23, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
 .table-report tbody td {
   vertical-align: middle !important;
 }
 
-/* line 22, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+/* line 27, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
 .table-report tbody .td-img {
   width: 30px;
 }
 
-/* line 25, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+/* line 30, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
 .table-report tbody .td-action {
   text-align: right;
 }
 
-/* line 31, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+/* line 35, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+.table-report .room-title {
+  white-space: nowrap;
+  /* force single line */
+  overflow: hidden;
+  /* don't show excess chars */
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  /* Opera */
+}
+
+/* line 40, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
 .table-products td {
   vertical-align: middle !important;
 }
 
-/* line 36, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+/* line 45, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
 .td20 {
   width: 20%;
 }
 
-/* line 39, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+/* line 48, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
 .td30 {
   width: 30%;
+}
+
+/* line 51, E:/GitHub/zwave-smarthome/app/sass/base/_table.scss */
+.td40 {
+  width: 40%;
 }
 
 /* Button
@@ -13993,14 +14014,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 /* line 229, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
