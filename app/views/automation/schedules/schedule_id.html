@@ -1,28 +1,30 @@
 <!-- The schedule -->
-<div ng-controller="AutomationMockController">
-    
+<div ng-controller="AutomationScheduleController">
+
   <div class="blank is-info">
     <div class="blank-img">
       <i class="fa fa-info-circle"></i>
     </div>
     <div class="blank-body">
-      <p class="blank-title">Module name</p>
+      <p class="blank-title">Schedule</p>
       <p class="blank-text">
-        Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-        dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
-        imperdiet. Etiam ultricies nisi vel augue.
+        This app allow to control relays, dimmers, thermostats and scenes on a schedule.
       </p>
 
     </div>
   </div>
+  <pre>{{schedule.model|json}}</pre>
+  <pre>{{schedule.input|json}}</pre>
   <!-- Form -->
-  <form class="form form-page">
-    <!-- Form -->
+  <form class="form form-page" ng-submit="storeInstance(schedule.input)">
+    <!-- Form header -->
     <fieldset ng-include="'app/views/automation/schedules/schedule_form.html'"></fieldset>
-    <!-- Calendar -->
-     <!-- List -->
-     <fieldset ng-include="'app/views/automation/schedules/schedule_list.html'"></fieldset>
-   
+     <!-- Form days and times -->
+     <legend>Days and times</legend>
+     <fieldset ng-include="'app/views/automation/schedules/schedule_form_dates_times.html'"></fieldset>
+    <!-- List -->
+    <fieldset ng-include="'app/views/automation/schedules/schedule_list.html'"></fieldset>
+
 
     <!-- Submit  -->
     <fieldset class="submit-entry">
@@ -37,6 +39,30 @@
 
     </fieldset>
   </form>
+</div><!-- /ng-controller -->
+
+<div ng-controller="AutomationMockController">
+  <!-- DEMO -->
+  <div class="form form-page">
+    <!-- Form -->
+    <fieldset ng-include="'app/views/automation/schedules/schedule_form_demo.html'"></fieldset>
+    <!-- List -->
+    <fieldset ng-include="'app/views/automation/schedules/schedule_list_demo.html'"></fieldset>
+
+
+    <!-- Submit  -->
+    <fieldset class="submit-entry">
+      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </button>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+
+    </fieldset>
+  </div>
 
 </div>
 <!-- /ng-controller -->

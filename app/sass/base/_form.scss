@@ -22,6 +22,11 @@
   }
 }
 
+input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
+  /* line-height: 34px; */
+ line-height: 1.42857;
+}
+
 
 .input-group-addon {
   border: solid 1px #CCCCCC;

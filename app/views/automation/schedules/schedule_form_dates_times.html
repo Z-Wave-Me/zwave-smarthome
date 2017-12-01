@@ -1,0 +1,59 @@
+<div class="row clearfix">
+  <div class="col col-sm-6 form-inline">
+    <!-- Monday -->
+    <div class="checkbox">
+      <input class="default" type="checkbox" id="Monday" ng-change="toggleWeekday(1)" ng-model="schedule.model.weekday[1]" ng-checked="schedule.input.params.weekdays.indexOf('1')  > -1" />
+      <label for="Monday">Monday</label>
+    </div>
+    <!-- Tuesday -->
+    <div class="checkbox">
+      <input class="default" type="checkbox" id="Tuesday" ng-change="toggleWeekday(2)" ng-model="schedule.model.weekday[2]" ng-checked="schedule.input.params.weekdays.indexOf('2')  > -1" />
+      <label for="Tuesday">Tuesday</label>
+    </div>
+    <!-- Wednesday -->
+    <div class="checkbox">
+      <input class="default" type="checkbox" id="Wednesday" ng-change="toggleWeekday(3)" ng-model="schedule.model.weekday[3]" ng-checked="schedule.input.params.weekdays.indexOf('3') > -1" />
+      <label for="Wednesday">Wednesday</label>
+    </div>
+    <!--Thursday -->
+    <div class="checkbox">
+      <input class="default" type="checkbox" id="Thursday" ng-change="toggleWeekday(4)" ng-model="schedule.model.weekday[4]" ng-checked="schedule.input.params.weekdays.indexOf('4')> -1" />
+      <label for="Thursday">Thursday</label>
+    </div>
+    <!--Friday -->
+    <div class="checkbox">
+      <input class="default" type="checkbox" id="Friday" ng-change="toggleWeekday(5)" ng-model="schedule.model.weekday[5]" ng-checked="schedule.input.params.weekdays.indexOf('5')> -1" />
+      <label for="Friday">Friday</label>
+    </div>
+    <!--Saturday -->
+    <div class="checkbox">
+      <input class="default" type="checkbox" id="Saturday" ng-change="toggleWeekday(6)" ng-model="schedule.model.weekday[6]" ng-checked="schedule.input.params.weekdays.indexOf('6')> -1" />
+      <label for="Saturday">Saturday</label>
+    </div>
+    <!--Sunday -->
+    <div class="checkbox">
+      <input class="default" type="checkbox" id="Sunday" ng-change="toggleWeekday(0)" ng-model="schedule.model.weekday[0]" 
+      ng-checked="schedule.input.params.weekdays.indexOf('0') > -1" />
+      <label for="Sunday">Sunday</label>
+    </div>
+  </div>
+
+  <div class="col col-sm-6">
+
+    <div class="form-group form-inline">
+      <label>Time (HH:MM)</label>
+      <div class="input-group">
+        <input type="time" class="form-control" placeholder="HH:MM" ng-model="schedule.input.params.times[0]">
+        <!-- <span class="input-group-addon clickable" title="{{_t('add_new')}}" ng-click="addTime(schedule.model.time)">
+          <i class="fa fa-plus text-success"></i>
+        </span> -->
+      </div>
+    </div>
+    <!-- <div class="form-group last">
+      <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}" ng-repeat="t in schedule.input.params.times| orderBy:'toString()'"
+        ng-click="removeTime(t)">{{t}}
+        <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i>
+      </a>
+    </div> -->
+  </div>
+</div>

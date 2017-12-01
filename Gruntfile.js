@@ -115,6 +115,7 @@ module.exports = function (grunt) {
                     'app/controllers/element-id.js',
                     'app/controllers/event.js',
                     'app/controllers/automation.js',
+                    'app/controllers/automation-schedule.js',
                     'app/controllers/app.js',
                     'app/controllers/app-local.js',
                     'app/controllers/app-online.js',
