@@ -16,22 +16,28 @@
     @include appBoxShadow($app-box-shadow);
     border: 1px solid $app-border-color;
     background-clip: padding-box;
-    color: $app-a-color; // Media queries
+    color: $app-a-color;
+    // Media queries
     @include mediaQueries(min-small) {
         min-width: 380px;
     }
     .dropdown-entry {
         // Media queries
         //@include mediaQueries(min-small) {
-        display: table;
-        width: 100% //}
+            display: table;
+            width: 100%
+        //}
+
     }
     .dropdown-col {
         // Media queries
         //@include mediaQueries(min-small) {
-        display: table-cell;
-        vertical-align: middle; //}
+            display: table-cell;
+            vertical-align: middle;
+        //}
+
     }
+
     .dropdown-ctrl {
         text-align: right; // Media queries
         @include mediaQueries(max-small) {
@@ -79,10 +85,10 @@
                     max-height: 24px;
                 }
             }
-            &:hover {
-                background-color: #F6F6F6;
-                ;
+            &:hover{
+                background-color: #F6F6F6;;
             }
+
         }
         .active {
             a {

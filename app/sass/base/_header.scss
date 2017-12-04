@@ -1,6 +1,5 @@
 /* Header
 -------------------------------------------------- */
-
 #header {
     position: fixed;
     top: 0;
@@ -121,18 +120,22 @@
 #sub_navigation_in {
     ul {
         padding: 0;
-        list-style: none; //w: margin: 0 0 0 66%;
+        list-style: none;
+        //w: margin: 0 0 0 66%;
         margin: 0 $spacing;
         background-color: #FFFFFF;
         @include appBoxShadow($app-box-shadow);
-        border: 1px solid $app-border-color; // Media queries
+        border: 1px solid $app-border-color;
+        // Media queries
         @include mediaQueries(min-small) {
             margin: 0 0 0 50%
-        } // Media queries
+        }
+        // Media queries
         @include mediaQueries(min-large) {
             margin: 0 0 0 66%;
         }
-        li {
+        li{
+           
             @include mediaQueries(min-small) {
                 padding: $spacing 0;
             }
@@ -142,7 +145,8 @@
                 position: relative;
                 padding: $spacing;
                 vertical-align: middle;
-                color: $app-a-color; // Media queries
+                color: $app-a-color;
+                // Media queries
                 @include mediaQueries(min-small) {
                     padding: 0 $spacing;
                 }
@@ -152,7 +156,8 @@
                     left: 50px;
                 }
             }
-            .subnavi-arrow {
+
+            .subnavi-arrow{
                 position: absolute;
                 right: 1%;
                 display: inline-block;
@@ -169,7 +174,8 @@
             }
         }
         .fa {
-            color: lighten($app-a-color, 20%); //padding-right: 7px;
+            color: lighten($app-a-color, 20%);
+            //padding-right: 7px;
         }
     }
 }

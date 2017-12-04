@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp" ng-controller="BaseController">
+<html lang="en" ng-app="myApp" ng-controller="BaseController" ng-swipe-right="openSideNav($event)" ng-swipe-left="closeSideNav($event)" ng-click="closeSideNav($event)">
     <head>
         <meta charset="utf-8">
         <title>Z-Wave Smart Home</title>
@@ -121,6 +121,39 @@
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
                 <div id="main_navigation" class="container">
+                    <span  class="openbtn" ng-click="openSideNav($event)">&#9776;</span>
+
+                    <span class="nav_title">
+                        <h3 ng-if="isActive('dashboard')">{{_t('nav_home')}}</h3>
+                        <h3 ng-if="isActive('rooms')">{{_t('nav_rooms')}}</h3>
+                        <h3 ng-if="isActive('elements')">{{_t('nav_elements')}}</h3>
+                        <h3 ng-if="isActive('events')">{{_t('nav_events')}}</h3>
+                        <h3 ng-if="isActive('cameras')">{{_t('nav_cameras')}}</h3>
+                        <h3 ng-if="routeMatch('/zwave/batteries')">{{_t('lb_battery_status')}}</h3>
+                        <h3 ng-if="routeMatch('/zwave/devices')">{{_t('nav_devices')}}</h3>
+                    </span>
+                    <div id="mySidenav" ng-swipe-left="closeSideNav($event)">
+                        
+                        <div class="nav_side_bar_header">
+                            <a href="javascript:void(0)" class="closebtn" ng-click="closeSideNav($event)">&#9776;</a>
+                        </div>
+                        <a class="nav_item" href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')" ng-click="closeSideNav($event)"> {{_t('nav_home')}}</a>
+                        
+                        <a class="nav_item" href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)" ng-click="closeSideNav($event)"> {{_t('nav_rooms')}}</a>
+                        
+                        <a class="nav_item" href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')" ng-click="closeSideNav($event)"> {{_t('nav_elements')}}</a>
+
+                        <a class="nav_item" href="#cameras" title="{{_t('nav_cameras')}}" ng-class="isActive('cameras')" ng-click="closeSideNav($event)"> {{_t('nav_cameras')}}</a>
+                        
+                        <a class="nav_item" href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')" ng-click="closeSideNav($event)"> {{_t('nav_events')}}</a>
+
+                        <a class="nav_item" href="#zwave/batteries" title="{{_t('lb_battery_status')}}" ng-class="routeMatch('/zwave/batteries')  ? 'active' : ''" ng-click="closeSideNav($event)"> {{_t('lb_battery_status')}}</a>
+                        <a class="nav_item" href=" #zwave/devices" title="{{_t('nav_devices')}}" ng-class="routeMatch('/zwave/devices')  ? 'active' : ''" ng-click="closeSideNav($event)"> {{_t('nav_devices')}}</a>
+
+                        <a class="nav_item" href=" #apps/instance" title="{{_t('nav_apps')}}" ng-class="routeMatch('/apps/instance')  ? 'active' : ''" ng-click="closeSideNav($event)"> {{_t('nav_apps')}}</a>
+                        <a class="nav_item" href=" #ios_setup" title="{{_t('nav_apps')}}" ng-class="routeMatch('/ios_setup')  ? 'active' : ''" ng-click="closeSideNav($event)"> {{_t('nav_ios_setup')}}</a>
+                    </div>
+
                     <div id="navigation_left">
                         <!-- logo -->
                         <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
@@ -215,12 +248,12 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-            <div ng-if="cfg.route.fatalError.message" ng-cloak ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
+            <!--<div ng-if="cfg.route.fatalError.message" ng-cloak ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
                 <div class="app-fatal-error">
                     <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
                 </div>
-            </div>
+            </div>-->
             <div id="view_content" ng-hide="cfg.route.fatalError.hide" class="{{cfg.route.pageClass}} swipe-{{swipeDir}}" ng-view 
             ng-swipe-left="swipe('left')" 
             ng-swipe-right="swipe('right')"></div>

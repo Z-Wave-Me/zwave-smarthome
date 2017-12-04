@@ -63,7 +63,8 @@
         <span ng-bind="_t('events_hidden')"></span>
     </div>
 
-    <div class="app-row app-row-report app-row-event clearfix" ng-swipe-left="swipeMe('left')" ng-swipe-right="swipeMe('right')">
+    <!-- <div class="app-row app-row-report app-row-event clearfix" ng-swipe-left="swipeMe('left')" ng-swipe-right="swipeMe('right')">-->
+    <div class="app-row app-row-report app-row-event clearfix">
         <div class="report-entry event-level-{{v.level}}" dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize track by $index"
             current-page="currentPage" id="row_{{v.id}}">
             <div class="report-col report-media">

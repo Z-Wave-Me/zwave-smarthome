@@ -26,7 +26,8 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
      * Load all promises
      * @returns {undefined}
      */
-    $scope.allSettled = function () {        
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, true)
