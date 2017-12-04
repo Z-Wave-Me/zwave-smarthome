@@ -196,11 +196,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 when('/zwave/network', {
                     templateUrl: 'app/views/zwave/zwave_network.html',
                     requireLogin: true
-    }).//Cameras 
-    when('/cameras', {
-        templateUrl: 'app/views/elements/elements_camera.html',
-        requireLogin: true,
-        roles: cfg.role_access.devices_include
                 }).//Camera add
                 when('/camera/add', {
                     templateUrl: 'app/views/camera/camera_add.html',
@@ -315,9 +310,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).//Error 403
                 when('/error403', {
                     templateUrl: 'app/views/error_403.html'
-    }).//Mobile settings
-    when('/ios_setup', {
-        templateUrl: 'app/views/ios_setup.html'
                 }).//Not found
                 otherwise({
                     template: ' ',

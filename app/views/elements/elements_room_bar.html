@@ -2,11 +2,13 @@
 <div class="elemnts-room-bar longpress-{{longPressSent}}" 
     on-long-press="roomBarOnLongPress(room.id)"
     on-touch-end="roomBarOnTouchEnd()"
-    prevent-click="true"
-    style="background-image: url({{room.img_src}}); background-size: 100%;">
+    prevent-click="true">
     <!-- Bar row -->
-    <div class="bar-row" >
-       
+    <div class="bar-row">
+        <!-- Bar col -->
+        <div class="bar-col bar-media">
+            <img ng-src="{{room.img_src}}"/>
+        </div>
         <!-- Bar col -->
         <div class="bar-col bar-body">
             <div class="btn-group">

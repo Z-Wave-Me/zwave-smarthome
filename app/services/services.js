@@ -909,11 +909,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return iconKey;
         } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
             if (iconKey.indexOf('/') > -1) {
-                if(iconKey.indexOf('/ZAutomation/api/v1/load/modulemedia') > -1) {
-                    return 'https://find.z-wave.me' + iconKey;
-                } else {
-                    return iconKey;
-                }
+                return iconKey;
             } else {
                 return cfg.img.icons + iconKey;
             }
@@ -1051,13 +1047,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             // If a custom icon exists set it otherwise set a default icon
             angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
                 var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons);
-                obj[k] = (customIcon[k] ? "https://find.z-wave.me/smarthome/" + cfg.img.custom_icons + customIcon[k] : path + v);
+                obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
             });
             return obj;
         } else {
             // If a custom icon exists set it otherwise set false
             if (!_.isEmpty(customIcon.default)) {
-                obj['default'] = "https://find.z-wave.me/smarthome/" + cfg.img.custom_icons + customIcon['default'];
+                obj['default'] = cfg.img.custom_icons + customIcon['default'];
                 return obj;
             }
             return false;

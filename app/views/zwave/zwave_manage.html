@@ -3,7 +3,6 @@
      <bb-loader></bb-loader>
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <div ng-include="'app/views/zwave/zwave_add_nav.html'"></div>
     <div class="app-row app-row-report app-row-zwave clearfix">
          <div id="row_zwave_{{v.id}}" class="report-entry" ng-repeat="v in devices.zw | orderBy:'title':false">
              <div class="report-col report-body zwave-devices">

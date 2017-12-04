@@ -68,6 +68,7 @@ angular.forEach(icon_data, function (key, value) {
  * @function run
  */
 myApp.run(function ($rootScope, $location, dataService, dataFactory,cfg) {
+    
     // Run underscore js in views
     $rootScope._ = _;
       $rootScope.$on("$routeChangeStart", function (event, next, current) {
