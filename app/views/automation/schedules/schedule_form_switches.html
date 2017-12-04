@@ -1,0 +1,27 @@
+<div class="app-row app-row-report clearfix">
+  <!-- Report body -->
+  <div class="report-entry" ng-repeat="sw in schedule.input.params.devices.switches track by $index">
+    <div class="report-col">
+      <pre>{{sw|json}}</pre>
+      {{deviceById(sw.device).metrics.title}}
+    </div>
+    <div class="report-col form-inline">
+          <input type="checkbox" name="switch_{{$index}}" id="switch_{{$index}}" ng-model="schedule.input.params.devices.switches[$index].status"
+          ng-checked="schedule.input.params.devices.switches[$index].status == 'on'"  ng-true-value="on" ng-false-value="off" />
+          <label for="switch_{{$index}}">
+            <span class="btn-name">{{schedule.input.params.devices.switches[$index].status}}</span>
+          </label>
+    </div>
+    <div class="report-col report-ctrl form-inline">
+
+      <div class="form-group">
+        <button type="button" class="btn btn-text" title="{{_t('lb_update')}}" ng-click="schedule.model.switchBinary = sw;handleModal('switchBinary', $event)">
+          <i class="fa fa-pencil text-info"></i>
+        </button>
+        <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="removeSwitch($index)">
+          <i class="fa fa-times text-danger"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

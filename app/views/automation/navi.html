@@ -8,8 +8,8 @@
         ng-class="{'active': automation.moduleId == 'Rules'}">
             <i class="fa fa-sliders"></i> <span class="btn-name">{{_t('rules')}}</span>
         </a>
-        <a class="btn btn-default" title="{{_t('schedules')}}" ng-href="#automation/Schedules"  
-        ng-class="{'active': automation.moduleId == 'Schedules'}">
+        <a class="btn btn-default" title="{{_t('schedules')}}" ng-href="#schedules"  
+        ng-class="{'active': routeMatch('/schedules')}">
             <i class="fa fa-calendar-check-o"></i> <span class="btn-name">{{_t('schedules')}}</span>
         </a>
     </div>

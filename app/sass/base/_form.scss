@@ -50,16 +50,9 @@ input[type=checkbox] {
   }
 
 }
-/* .checkbox{
-  input[type=checkbox] {
-    position: static;
-    margin-left: 0;
-  
-  }
-  label{
-    padding-left: 0;
-  }
-} */
+.checkbox{
+  margin-right: $spacing;
+}
 
 input[type=radio] {
    @include radioScale(1.6, $spacing);
@@ -102,6 +95,11 @@ input[type=radio] {
 
 .inputfile + label {
   cursor: pointer;
+}
+legend{
+  font-size: 110%;
+  font-weight: bold;
+  padding: 0 0 $spacing-half $spacing;
 }
 
 fieldset, .fieldset {

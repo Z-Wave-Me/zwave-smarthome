@@ -69,7 +69,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
-                 //Schedules
+                //Schedules
+                when('/schedules', {
+                  templateUrl: 'app/views/automation/schedules/schedules.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
+                 //Schedule ID
                  when('/schedules/:id', {
                     templateUrl: 'app/views/automation/schedules/schedule_id.html',
                     requireLogin: true,

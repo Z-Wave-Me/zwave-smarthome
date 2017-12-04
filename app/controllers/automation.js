@@ -74,6 +74,7 @@ myAppController.controller('AutomationController', function ($scope, $routeParam
       alertify.alertError($scope._t('error_load_data'));
     });
   };
+  
   if ($scope.automation.allowedIds.indexOf($routeParams.moduleId) > -1) {
     $scope.loadLocalModules();
     $scope.loadInstances($routeParams.moduleId);

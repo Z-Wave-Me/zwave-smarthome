@@ -18,6 +18,7 @@
 @import "vendor/_alpaca";
 @import "vendor/_alertify";
 @import "vendor/_angular.slider";
+@import "vendor/_minireset";
 
 /* SmartHome UI base
 -------------------------------------------------- */
@@ -59,6 +60,7 @@
 @import "base/_rss";
 @import "base/_switch";
 @import "base/_automation"; 
+@import "base/_label"; 
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"

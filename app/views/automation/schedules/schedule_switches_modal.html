@@ -1,0 +1,43 @@
+<!-- switchesModal -->
+<div id="switchesModal " class="appmodal" ng-if="modalArr.switchBinary">
+  <div class="appmodal-in">
+    <div class="appmodal-header">
+      <span class="appmodal-close" ng-click="handleModal('switchBinary', $event)">
+        <i class="fa fa-times"></i>
+      </span>
+      <h3>Switch</h3>
+    </div>
+    <div class="appmodal-body">
+      <pre>{{schedule.model.switchBinary|json}}</pre>
+      <div class="fieldset">
+        <!-- Switch select -->
+        <div class="form-group  form-inline">
+          <select class="form-control" ng-model="schedule.model.switchBinary.device">
+            <option value="{{v.id}}" ng-repeat="v in schedule.devices" ng-if="v.deviceType == 'switchBinary'" ng-selected="v.id = schedule.model.switchBinary.device">{{v.metrics.title}}</option>
+          </select>
+        </div>
+        <!--on/off -->
+        <div class="form-group">
+          <input type="checkbox" name="on_off" id="on_off" ng-model="schedule.model.switchBinary.status" ng-checked="schedule.model.switchBinary.status == 'on'" ng-true-value="on" ng-false-value="off" />
+          <label for="on_off">{{schedule.model.switchBinary.status}}</label>
+        </div>
+        <!-- command -->
+        <div class="form-group">
+          <input type="checkbox" name="send_command" id="send_command" ng-model="schedule.model.switchBinary.sendAction" ng-checked="schedule.model.switchBinary.sendAction"
+          />
+          <label for="send_command">Don't send On command, if device is already turned On, similarly for Off</label>
+        </div>
+      </div>
+    </div>
+    <div class="appmodal-footer">
+      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleModal('switchBinary', $event)">
+        <i class="fa fa-times text-danger"></i>
+        <span class="btn-name">{{_t('lb_close')}} </span>
+      </button>
+      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="addSwitch(schedule.model.switchBinary)">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </div>
+  </div>
+</div>
