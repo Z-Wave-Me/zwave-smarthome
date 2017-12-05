@@ -106,6 +106,15 @@ myApp.filter('typeOf', function () {
     };
 });
 
+//This converts a number to a string hex AND pads leading zeros
+myApp.filter('decToHexString', function () {
+  return function (decimal, chars, x) {
+      var hex = (decimal + Math.pow(16, chars)).toString(16).slice(-chars).toUpperCase();
+      return (x || '') + hex;
+  };
+});
+
+
 /**
  * Convert a dec value to hex
  * @function dec2hex

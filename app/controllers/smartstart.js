@@ -82,7 +82,7 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
  * The controller that displays DSK list.
  * @class SmartStartListController
  */
-myAppController.controller('SmartStartListController', function ($scope, $timeout, $filter,cfg, dataFactory) {
+myAppController.controller('SmartStartListController', function ($scope, $timeout, $filter, cfg, dataFactory, expertService) {
   $scope.list = {
     alert: {},
     all: []
@@ -96,34 +96,37 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
     deviceClasses: {}
   };
 
-   /**
-     * Load xml from translations
-     */
-    $scope.loadXml= function () {
-    // VendorIds.xml
-      dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'VendorIds.xml').then(function (response) {
-        $scope.collection.vendorIds = response.VendorIds.Vendor;
-         /* var vendor = _.findWhere(response.VendorIds.Vendor,{_id:"0x0059"})
-         console.log(vendor)
-         console.log(response.VendorIds.Vendor) */
+  /**
+   * Load xml from translations
+   */
+  $scope.loadXml = function () {
 
-     });
-     // DeviceClasses.xml
-     dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'DeviceClasses.xml').then(function (response) {
+    // DeviceClasses.xml
+    dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'DeviceClasses.xml').then(function (response) {
       $scope.collection.deviceClasses = response.DeviceClasses.Generic;
       //console.log(response.DeviceClasses.Generic)
-     
-
-   });
+    });
   };
   $scope.loadXml();
+
+  $scope.loadDeviceInfo = function () {
+    dataFactory.getApi('zwave_devices', '?lang=' + $scope.lang).then(function (response) {
+      console.log(response.data.data.zwave_devices)
+
+    });
+
+  }
+  // $scope.loadDeviceInfo();
+
+
 
 
   /**
    * Get DSK Collection - DEMO
    */
- var getDskCollectionDemo = function () {
+  var getDskCollectionDemo = function () {
     dataFactory.getApiLocal('dsk-collection.json').then(function (response) {
+      // There are no data
       if (_.isEmpty(response.data)) {
         $scope.collection.alert = {
           message: $scope._t('empty_dsk_list'),
@@ -132,25 +135,36 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
         };
         return;
       }
+
+      // Data collection
       $scope.collection.all = _.filter(response.data, function (v) {
+        var typeId = $filter('decToHexString')(parseInt(v.ZW_QR_TLVVAL_PRODUCTID_ZWPRODUCTTYPE), 2, '0x');
+        var pId = v.p_id.split('.');
+        console.log('pId',pId.map(parseInt,10))
+
         // Extending an object
         v.added = {
-          vendor:  _.findWhere($scope.collection.vendorIds,{_id:"0x0059"} || {}),
+          vendor: _.findWhere($scope.collection.vendorIds, {
+            _id: "0x0059"
+          } || {}),
+          product: '',
+          deviceType: getDeviceType($scope.collection.deviceClasses, typeId),
           dskArray: v.ZW_QR_DSK.split('-'),
           timeformat: $filter('dateTimeFromTimestamp')(v.timestamp)
+
         }
 
         return v;
       });
 
-      console.log($scope.collection.deviceClasses)
+      // console.log($scope.collection.all)
 
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
     });
   };
   $timeout(getDskCollectionDemo);
- // $scope.getDskCollectionDemo();
+  // $scope.getDskCollectionDemo();
 
   /**
    * Get DSK Collection
@@ -189,8 +203,8 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
    * @param {string} message
    * @returns {undefined}
    */
-  $scope.removeDsk = function (input,message) {
-    if(!input.isSmartStart){
+  $scope.removeDsk = function (input, message) {
+    if (!input.isSmartStart) {
       alertify.alertError($scope._t('delete_no_smartstart_warning'));
       return;
     }
@@ -208,6 +222,21 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
       });
     });
   };
+
+  function getDeviceInfo() {
+
+  }
+  /**
+   * Get device type from DeviceClasses.xml
+   * @param {object} deviceClasses 
+   * @param {string} typeId 
+   */
+  function getDeviceType(deviceClasses, typeId) {
+    var type = _.findWhere(deviceClasses, {
+      _id: typeId
+    });
+    return expertService.configGetZddxLang($filter('hasNode')(type, 'name.lang'), $scope.lang);
+  }
 
 
   /**
