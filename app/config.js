@@ -26,6 +26,8 @@ var config_data = {
         'pending_timeout_limit': 20000,
         // Displays an remote server connection warning after reaching the limit (milisecons)
         'pending_remote_limit': 20000,
+        // Command pending limit (milisecons)
+        'pending_cmd_limit': 10000,
         // Avoid to display Pending error message on the following routes if trying to connet to the remote server
         'pending_black_list': ['/apps/local', '/apps/instance','/customize/skinslocal','/customize/iconslocal'],
         /// Set to > 0 (milisecons) to simulate latency for http Calls
