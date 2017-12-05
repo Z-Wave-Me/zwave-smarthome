@@ -72,7 +72,7 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
  * Controller that handles schedules
  * @class AutomationScheduleController
  */
-myAppController.controller('AutomationScheduleIdController', function ($scope, $routeParams, $location, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('AutomationScheduleIdController', function ($scope, $routeParams, $location,  $route,cfg, dataFactory, dataService, _, myCache) {
   $scope.schedule = {
     model: {
       weekday:{},
@@ -84,6 +84,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       }
     },
     devices:[],
+    devicesById:[],
     cfg:{
       switchBinary:{
         valName: 'status',
@@ -113,6 +114,11 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       }
     }
   };
+  // Original data
+  $scope.orig = {
+    model: {}
+  };
+  $scope.orig.model = angular.copy($scope.schedule.model);
 
   /**
    * Load instances
@@ -141,6 +147,9 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   $scope.loadDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
       $scope.schedule.devices = dataService.getDevicesData(response.data.data.devices).value();
+      _.filter($scope.schedule.devices,function(v){
+        $scope.schedule.devicesById[v.id] = v.metrics.title;
+      });
     }, function (error) {});
   };
   $scope.loadDevices();
@@ -164,9 +173,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    * Add time
    */
   $scope.addTime = function (time) {
-    console.log(time)
     var index = $scope.schedule.input.params.times.indexOf(time);
-    console.log(index)
     if(index === -1){
       $scope.schedule.input.params.times.push(time);
     }
@@ -176,41 +183,48 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    /**
    * Remove time
    */
-  $scope.removeTime = function (time) {
-    console.log(time)
+  /* $scope.removeTime = function (time) {
     var index = $scope.schedule.input.params.times.indexOf(time);
-    console.log(index)
     if(index > -1){
       $scope.schedule.input.params.times.splice(index, 1);
     }
 
+  }; */
+
+  /**
+   * Reset model
+   */
+  $scope.resetModel = function () {
+    $scope.schedule.model = angular.copy($scope.orig.model);
+
   };
 
   /**
-   * Get device object by ID
+   * Handle switch - add new switch and close modal
    */
-  $scope.deviceById = function (id) {
-    var device =  _.findWhere($scope.schedule.devices,{id: id});
-    if(!device){
-      return {};
+  $scope.handleSwitchModal = function (v,modal,$event) {
+    $scope.resetModel();
+     $scope.handleModal(modal, $event);
+    // Open/close modal only
+    if(!v){
+      //$route.reload();
+      return;
     }
-    return device;
-    
-    
-  };
-
-  /**
-   * Add switch
-   */
-  $scope.addSwitch = function (v) {
-    console.log($scope.schedule.input.params.devices.switches)
+    //console.log($scope.schedule.input.params.devices.switches)
+    // Adding new switch
     var index = _.findIndex($scope.schedule.input.params.devices.switches,{device: v.device});
     if(index > -1){
-     angular.extend($scope.schedule.input.params.devices.switches[index],v);
+     //angular.extend($scope.schedule.input.params.devices.switches[index],v);
+     console.log('EXTEND old')
+     $scope.schedule.input.params.devices.switches[index] = v;
     }else{
+      console.log('PUSH new')
       $scope.schedule.input.params.devices.switches.push(v)
     }
-    console.log($scope.schedule.input.params.devices.switches)
+   
+    //$scope.storeSchedule($scope.schedule.input);
+    //$route.reload();
+   // console.log($scope.schedule.input.params.devices.switches)
     
     
   };
@@ -227,9 +241,12 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   /**
    * Store schedule
    */
-  $scope.storeSchedule = function (input) {
+  $scope.storeSchedule = function (input,redirect) {
     dataFactory.storeApi('instances', parseInt(input.instanceId, 10),input).then(function (response) {
-      $location.path('/schedules');
+      if(redirect){
+        $location.path('/schedules');
+      }
+     
   }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
   });

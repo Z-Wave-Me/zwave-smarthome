@@ -16,11 +16,11 @@
   <pre>{{schedule.model|json}}</pre>
   <pre>{{schedule.input|json}}</pre>
   <!-- Form -->
-  <form class="form form-page" ng-submit="storeSchedule(schedule.input)">
+  <form class="form form-page" ng-submit="storeSchedule(schedule.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/schedules/schedule_form.html'"></fieldset>
     <!-- Switches -->
-    <legend>Switches  <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleModal('switchBinary', $event)">
+    <legend>Switches  <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleSwitchModal(false,'switchBinary', $event)">
         <i class="fa fa-plus text-success"></i>
       </button>
     </legend>
