@@ -81,6 +81,16 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
         device: '',
         status:'off',
         sendAction: false
+      },
+      switchMultilevel:{
+        device: '',
+        status: 0,
+        sendAction: false
+      },
+      thermostat:{
+        device: '',
+        status: 0,
+        sendAction: false
       }
     },
     devices:[],
@@ -90,8 +100,14 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
         valName: 'status',
         enum: ['off', 'on']
       },
-      switchMultilevel:{},
-      thermostat:{},
+      switchMultilevel:{
+        min: 0,
+        max: 99
+      },
+      thermostat:{
+        min: 0,
+        max: 99
+      },
       doorlock:{},
       toggleButton:{}
 
@@ -207,24 +223,17 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
      $scope.handleModal(modal, $event);
     // Open/close modal only
     if(!v){
-      //$route.reload();
       return;
     }
-    //console.log($scope.schedule.input.params.devices.switches)
     // Adding new switch
     var index = _.findIndex($scope.schedule.input.params.devices.switches,{device: v.device});
     if(index > -1){
-     //angular.extend($scope.schedule.input.params.devices.switches[index],v);
      console.log('EXTEND old')
      $scope.schedule.input.params.devices.switches[index] = v;
     }else{
       console.log('PUSH new')
       $scope.schedule.input.params.devices.switches.push(v)
     }
-   
-    //$scope.storeSchedule($scope.schedule.input);
-    //$route.reload();
-   // console.log($scope.schedule.input.params.devices.switches)
     
     
   };
@@ -234,6 +243,67 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    */
   $scope.removeSwitch = function (index) {
     $scope.schedule.input.params.devices.switches.splice(index, 1);
+    
+    
+  };
+
+    /**
+   * Handle switch multilevel - add new dimmer and close modal
+   */
+  $scope.handleDimmerModal = function (v,modal,$event) {
+    $scope.resetModel();
+     $scope.handleModal(modal, $event);
+    // Open/close modal only
+    if(!v){
+      return;
+    }
+    // Add new dimmer
+    var index = _.findIndex($scope.schedule.input.params.devices.dimmers,{device: v.device});
+    if(index > -1){
+     console.log('EXTEND old')
+     $scope.schedule.input.params.devices.dimmers[index] = v;
+    }else{
+      console.log('PUSH new')
+      $scope.schedule.input.params.devices.dimmers.push(v)
+    }
+    
+    
+  };
+
+  /**
+   * Remove dimmer
+   */
+  $scope.removeDimmer = function (index) {
+    $scope.schedule.input.params.devices.dimmers.splice(index, 1);
+    
+    
+  };
+  /**
+   * Handle thermostat modal
+   */
+  $scope.handleThermostatModal = function (v,modal,$event) {
+    $scope.resetModel();
+     $scope.handleModal(modal, $event);
+    // Open/close modal only
+    if(!v){
+      return;
+    }
+    // Add new dimmer
+    var index = _.findIndex($scope.schedule.input.params.devices.thermostats,{device: v.device});
+    if(index > -1){
+     $scope.schedule.input.params.devices.thermostats[index] = v;
+    }else{
+      $scope.schedule.input.params.devices.thermostats.push(v)
+    }
+    
+    
+  };
+
+  /**
+   * Remove thermostat
+   */
+  $scope.removeThermostat = function (index) {
+    $scope.schedule.input.params.devices.thermostats.splice(index, 1);
     
     
   };

@@ -20,24 +20,35 @@
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/schedules/schedule_form.html'"></fieldset>
     <!-- Switches -->
-    <legend>Switches  <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleSwitchModal(false,'switchBinary', $event)">
+    <legend>Switches
+      <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleSwitchModal(false,'switchBinary', $event)">
         <i class="fa fa-plus text-success"></i>
       </button>
     </legend>
     <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_form_switches.html'"></fieldset>
-    <fieldset ng-include="'app/views/automation/schedules/schedule_switches_modal.html'"></fieldset>
+    <div ng-include="'app/views/automation/schedules/schedule_switches_modal.html'"></div>
     <!-- Dimmers -->
-    <legend>Dimmers</legend>
-    <fieldset ng-include="'app/views/automation/schedules/schedule_form_dimmers.html'"></fieldset>
-     <!-- Thermostats -->
-     <legend>Thermostat</legend>
-     <fieldset ng-include="'app/views/automation/schedules/schedule_form_thermostats.html'"></fieldset>
-     <!-- Locks -->
-     <legend>Locks</legend>
-     <fieldset ng-include="'app/views/automation/schedules/schedule_form_locks.html'"></fieldset>
-     <!-- Scenes -->
-     <legend>Scenes</legend>
-     <fieldset ng-include="'app/views/automation/schedules/schedule_form_scenes.html'"></fieldset>
+    <legend>Dimmers
+      <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleDimmerModal(false,'switchMultilevel', $event)">
+        <i class="fa fa-plus text-success"></i>
+      </button>
+    </legend>
+    <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_form_dimmers.html'"></fieldset>
+    <div ng-include="'app/views/automation/schedules/schedule_dimmers_modal.html'"></div>
+    <!-- Thermostats -->
+    <legend>Thermostats
+      <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleThermostatModal(false,'thermostat', $event)">
+        <i class="fa fa-plus text-success"></i>
+      </button>
+    </legend>
+    <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_form_thermostats.html'"></fieldset>
+    <div ng-include="'app/views/automation/schedules/schedule_thermostats_modal.html'"></div>
+    <!-- Locks -->
+    <legend>Locks</legend>
+    <fieldset ng-include="'app/views/automation/schedules/schedule_form_locks.html'"></fieldset>
+    <!-- Scenes -->
+    <legend>Scenes</legend>
+    <fieldset ng-include="'app/views/automation/schedules/schedule_form_scenes.html'"></fieldset>
 
     <!-- Submit  -->
     <fieldset class="submit-entry">
@@ -51,7 +62,8 @@
       </button>
     </fieldset>
   </form>
-</div><!-- /ng-controller -->
+</div>
+<!-- /ng-controller -->
 
 <div ng-controller="AutomationMockController">
   <!-- DEMO -->
