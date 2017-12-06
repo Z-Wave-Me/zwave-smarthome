@@ -83,43 +83,51 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
  * @class SmartStartListController
  */
 myAppController.controller('SmartStartListController', function ($scope, $timeout, $filter, cfg, dataFactory, expertService) {
-  $scope.list = {
-    alert: {},
-    all: []
-  };
+ 
 
   $scope.collection = {
     alert: {},
     all: [],
     find: {},
-    vendorIds: {},
-    deviceClasses: {}
+    deviceTypes: {},
+    deviceInfos: {}
   };
 
   /**
-   * Load xml from translations
+   * Load DeviceClasses.xml from translations
    */
   $scope.loadXml = function () {
 
-    // DeviceClasses.xml
+    // 
     dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'DeviceClasses.xml').then(function (response) {
-      $scope.collection.deviceClasses = response.DeviceClasses.Generic;
-      //console.log(response.DeviceClasses.Generic)
+      _.filter(response.DeviceClasses.Generic, function (v) {
+        $scope.collection.deviceTypes[v._id] = expertService.configGetZddxLang($filter('hasNode')(v, 'name.lang'), $scope.lang);
+      })
     });
   };
   $scope.loadXml();
 
+  /**
+   * Load device info
+   */
   $scope.loadDeviceInfo = function () {
     dataFactory.getApi('zwave_devices', '?lang=' + $scope.lang).then(function (response) {
-      console.log(response.data.data.zwave_devices)
+      _.filter(response.data.data.zwave_devices, function (v) {
+        var parts = v.ConfigData.ProductId.split('.');
+        if(parts.length > 3){
+          parts.pop();
+        }
+        
+        var id = parts.join('.');
+        $scope.collection.deviceInfos[id] = {
+          BrandName: v.BrandName,
+          Name: v.Name
+        }
+      });
 
     });
-
   }
-  // $scope.loadDeviceInfo();
-
-
-
+  $scope.loadDeviceInfo();
 
   /**
    * Get DSK Collection - DEMO
@@ -139,16 +147,16 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
       // Data collection
       $scope.collection.all = _.filter(response.data, function (v) {
         var typeId = $filter('decToHexString')(parseInt(v.ZW_QR_TLVVAL_PRODUCTID_ZWPRODUCTTYPE), 2, '0x');
-        var pId = v.p_id.split('.');
-        console.log('pId',pId.map(parseInt,10))
+        var pIdArray = v.p_id.split('.');
+        var pId = parseInt(pIdArray[0]) + '.' + parseInt(pIdArray[1]) + '.' + parseInt(pIdArray[2]);
+        //var pId = parseInt(pIdArray[0]) + '.' + parseInt(pIdArray[1]) + '.' + parseInt(pIdArray[2]) + (pIdArray[3] ? '.' + parseInt(pIdArray[3]) : '');
+        //getDeviceInfo(pId);
+        //console.log('pId',pId.map(parseInt,10))
 
         // Extending an object
         v.added = {
-          vendor: _.findWhere($scope.collection.vendorIds, {
-            _id: "0x0059"
-          } || {}),
-          product: '',
-          deviceType: getDeviceType($scope.collection.deviceClasses, typeId),
+          pId: pId,
+          typeId: typeId,
           dskArray: v.ZW_QR_DSK.split('-'),
           timeformat: $filter('dateTimeFromTimestamp')(v.timestamp)
 
@@ -222,74 +230,6 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
       });
     });
   };
-
-  function getDeviceInfo() {
-
-  }
-  /**
-   * Get device type from DeviceClasses.xml
-   * @param {object} deviceClasses 
-   * @param {string} typeId 
-   */
-  function getDeviceType(deviceClasses, typeId) {
-    var type = _.findWhere(deviceClasses, {
-      _id: typeId
-    });
-    return expertService.configGetZddxLang($filter('hasNode')(type, 'name.lang'), $scope.lang);
-  }
-
-
-  /**
-   * TODO: deprecated
-   *  Get DSK Provisioning List
-   */
-  /* $scope.getDskProvisioningList = function () {
-    dataFactory.getApi('get_dsk_provisioning_list', null, true).then(function (response) {
-      if (_.isEmpty(response.data)) {
-        $scope.list.alert = {
-          message: $scope._t('empty_dsk_list'),
-          status: 'alert-warning',
-          icon: 'fa-exclamation-circle'
-        };
-        return;
-      }
-      $scope.list.all = _.map(response.data, function (v) {
-        return {
-          dsk: v,
-          dsk_array: v.split('-')
-        };
-      });
-
-    }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
-    });
-  };
-  $scope.getDskProvisioningList(); */
-
-
-
-
-  /* $scope.dsk.state = 'registering';
-  $scope.toggleRowSpinner(cfg.api.add_dsk);
-  dataFactory.getApi('add_dsk_provisioning_list', dsk, true).then(function (response) {
-
-      $timeout(function () {
-          // Set state
-          $scope.dsk.state = 'success-register';
-          // Reset model
-          $scope.dsk.input = angular.copy($scope.origInput);
-          // Set response
-          $scope.dsk.response = response.data[0];
-
-      }, 1000);
-
-  }, function (error) {
-      $scope.dsk.state = null;
-      alertify.alertError($scope._t('error_update_data'));
-  }).finally(function () {
-      $timeout($scope.toggleRowSpinner, 1000);
-  }); */
-
 
 
 });

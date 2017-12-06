@@ -9,11 +9,11 @@
     <div class="appmodal-body">
       <dl class="inline-dl">
         <dt>Vendor</dt>
-        <dd>{{collection.find.added.vendor}}</dd>
+        <dd>{{collection.deviceInfos[collection.find.added.pId].BrandName}}</dd>
         <dt>Product</dt>
-        <dd>{{collection.find.added.product}}</dd>
+        <dd>{{collection.deviceInfos[collection.find.added.pId].Name}}</dd>
         <dt>Device type</dt>
-        <dd>{{collection.find.added.deviceType}}</dd>
+        <dd>{{collection.deviceTypes[collection.find.added.typeId]}}</dd>
         <dt>State</dt>
         <dd>{{collection.find.state}}</dd>
         <dt>Node ID</dt>
@@ -69,7 +69,6 @@
         </div>
        
       </form>
-      <pre>{{collection.find|json}}</pre>
     </div>
     <div class="appmodal-footer">
       <!-- Close -->

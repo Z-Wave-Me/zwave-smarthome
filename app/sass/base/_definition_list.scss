@@ -1,30 +1,42 @@
 /* Definition list
 -------------------------------------------------- */
-dl{
-    dt{
-        font-weight: bold;
-    }
+
+dl {
+  dt {
+    font-weight: bold;
+  }
 }
-.inline-dl{
+
+.inline-dl {
+  @include mediaQueries(min-small) {
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
     width: 100%;
     /* set the container width*/
-    max-width: 500px;
+    //max-width: 500px;
     overflow: visible;
     dt {
-        flex: 0 0 20%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        margin: 0 0 $spacing 0;
+      flex: 0 0 30%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin: 0 0 $spacing 0;
     }
     dd {
-        margin-left: auto;
-        text-align: left;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        flex: 0 0 80%;
-        margin: 0 0 $spacing 0;
+      margin-left: auto;
+      text-align: left;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      flex: 0 0 70%;
+      margin: 0 0 $spacing 0;
     }
+  }
+  @include mediaQueries(min-large) {
+    dt {
+      flex: 0 0 15%;
+    }
+    dd {
+      flex: 0 0 85%;
+    }
+  }
 }

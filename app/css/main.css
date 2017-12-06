@@ -13117,36 +13117,54 @@ fieldset.submit-entry {
 
 /* Definition list
 -------------------------------------------------- */
-/* line 4, ../sass/base/_definition_list.scss */
+/* line 5, ../sass/base/_definition_list.scss */
 dl dt {
   font-weight: bold;
 }
 
-/* line 8, ../sass/base/_definition_list.scss */
+/* line 10, ../sass/base/_definition_list.scss */
 .inline-dl {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  width: 100%;
-  /* set the container width*/
-  max-width: 500px;
-  overflow: visible;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 16, ../sass/base/_definition_list.scss */
-.inline-dl dt {
-  flex: 0 0 20%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin: 0 0 10px 0;
+@media only screen and (min-width: 768px) {
+  /* line 10, ../sass/base/_definition_list.scss */
+  .inline-dl {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    width: 100%;
+    /* set the container width*/
+    overflow: visible;
+  }
+  /* line 19, ../sass/base/_definition_list.scss */
+  .inline-dl dt {
+    flex: 0 0 30%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0 0 10px 0;
+  }
+  /* line 25, ../sass/base/_definition_list.scss */
+  .inline-dl dd {
+    margin-left: auto;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 0 0 70%;
+    margin: 0 0 10px 0;
+  }
 }
-/* line 22, ../sass/base/_definition_list.scss */
-.inline-dl dd {
-  margin-left: auto;
-  text-align: left;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  flex: 0 0 80%;
-  margin: 0 0 10px 0;
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 35, ../sass/base/_definition_list.scss */
+  .inline-dl dt {
+    flex: 0 0 15%;
+  }
+  /* line 38, ../sass/base/_definition_list.scss */
+  .inline-dl dd {
+    flex: 0 0 85%;
+  }
 }
 
 /* Bar
