@@ -1,8 +1,8 @@
-<div class="smart-start" ng-controller="SmartStartDskController">
-     <bb-alert alert="dsk.firmwareAlert"></bb-alert>
-     <div class="container" ng-switch="dsk.state" ng-if="_.isEmpty(dsk.firmwareAlert)">
+<div ng-controller="SmartStartDskController">
+    <div ng-if="_.isEmpty(dsk.firmwareAlert) && !dataHolder.video.supported">
+        <bb-alert alert="dsk.firmwareAlert"></bb-alert>
         <!-- Navigation -->
-        <div ng-include="'app/views/smartstart/navi.html'"></div>
+        <!--<div ng-include="'app/views/smartstart/navi.html'"></div>-->
         <!-- Start -->
         <div class="entry add-dsk">
             <p class="content">
@@ -33,7 +33,7 @@
 
         </div>
         <!-- success-register -->
-        <div class="entry list" ng-switch-when="success-register">
+        <div class="entry list" ng-if="success-register">
              <div class="alert alert-success">
                   <i class="fa fa-check"></i>  {{_t('smartstart_enter_key_success')}}
                   <div>{{dsk.response}}</div>
@@ -43,6 +43,30 @@
                  {{v}} 
               </li>
           </ul>-->
+        </div>
+      </div>
+      <div class="entry" ng-if="!dataHolder.video.supported">
+        <div class="entry-in">    
+            <div class="entry-media">
+                <img ng-src="app/img/smartphone.png" alt="Image">
+            </div>
+            <div class="entry-content">
+                <div class="inner">
+                    <div class="text">
+                        <h1>HEADLINE</h1>
+                        <p>
+                            HERE TEXT HERE TEXT HERE TEXT HERE TEXT
+                            HERE TEXT HERE TEXT HERE TEXT HERE TEXT
+                            HERE TEXT HERE TEXT HERE TEXT HERE TEXT
+                            HERE TEXT HERE TEXT HERE TEXT HERE TEXT
+                        </p>
+                    </div>
+                    <div class="badges">
+                        <a class="google" href=""><img ng-src="app/img/google-play-badge.png" alt="Goole Play"></a>
+                        <a class="apple" href=""><img ng-src="app/img/apple-store-badges.svg" alt="Apple Store"></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div> <!-- /ng-controller --> 
