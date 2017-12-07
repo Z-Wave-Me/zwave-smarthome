@@ -1,0 +1,28 @@
+<div class="app-row app-row-report clearfix">
+  <!-- Report body -->
+  <div class="report-entry" ng-repeat="lo in schedule.input.params.devices.locks track by $index">
+    <div class="report-col">
+        {{schedule.devices[lo.device].metrics.title}}
+    </div>
+    <div class="report-col form-inline">
+          <input type="checkbox" id="lock_{{$index}}" ng-model="lo.status"
+          ng-checked="lo.status == 'open'"  ng-true-value="open" ng-false-value="close" />
+          <label for="lock_{{$index}}">
+            &nbsp;
+          </label>
+    </div>
+    <div class="report-col report-ctrl form-inline">
+        <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="removeLock($index)">
+            <i class="fa fa-times text-danger"></i>
+          </button>
+      <!-- <div class="btn-group">
+        <button type="button" class="btn btn-default" title="{{_t('lb_update')}}" ng-click="schedule.model.doorlock = lo;handleModal('doorlock')">
+          <i class="fa fa-pencil text-info"></i>
+        </button>
+        <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="removeLock($index)">
+          <i class="fa fa-times text-danger"></i>
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>

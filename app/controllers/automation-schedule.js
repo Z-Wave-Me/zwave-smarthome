@@ -91,13 +91,19 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
         device: '',
         status: 0,
         sendAction: false
-      }
+      },
+      doorlock:{
+        device: '',
+        status:'close',
+        sendAction: false
+      },
+      toggleButton:''
     },
     devices:[],
     devicesById:[],
+    deviceTypeCnt:[],
     cfg:{
       switchBinary:{
-        valName: 'status',
         enum: ['off', 'on']
       },
       switchMultilevel:{
@@ -108,7 +114,9 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
         min: 0,
         max: 99
       },
-      doorlock:{},
+      doorlock:{
+        enum: ['close', 'open']
+      },
       toggleButton:{}
 
     },
@@ -162,10 +170,16 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    */
   $scope.loadDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
-      $scope.schedule.devices = dataService.getDevicesData(response.data.data.devices).value();
-      _.filter($scope.schedule.devices,function(v){
+      var devices = dataService.getDevicesData(response.data.data.devices);
+      // Set by type counter
+      $scope.schedule.deviceTypeCnt = devices.countBy(function (v) {
+        return v.deviceType;
+    }).value();
+      $scope.schedule.devices = devices.indexBy('id').value();
+       
+     /*  _.filter(devices.value(),function(v){
         $scope.schedule.devicesById[v.id] = v.metrics.title;
-      });
+      }); */
     }, function (error) {});
   };
   $scope.loadDevices();
@@ -196,17 +210,6 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
 
   };
 
-   /**
-   * Remove time
-   */
-  /* $scope.removeTime = function (time) {
-    var index = $scope.schedule.input.params.times.indexOf(time);
-    if(index > -1){
-      $scope.schedule.input.params.times.splice(index, 1);
-    }
-
-  }; */
-
   /**
    * Reset model
    */
@@ -228,10 +231,8 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     // Adding new switch
     var index = _.findIndex($scope.schedule.input.params.devices.switches,{device: v.device});
     if(index > -1){
-     console.log('EXTEND old')
      $scope.schedule.input.params.devices.switches[index] = v;
     }else{
-      console.log('PUSH new')
       $scope.schedule.input.params.devices.switches.push(v)
     }
     
@@ -260,10 +261,8 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     // Add new dimmer
     var index = _.findIndex($scope.schedule.input.params.devices.dimmers,{device: v.device});
     if(index > -1){
-     console.log('EXTEND old')
      $scope.schedule.input.params.devices.dimmers[index] = v;
     }else{
-      console.log('PUSH new')
       $scope.schedule.input.params.devices.dimmers.push(v)
     }
     
@@ -304,9 +303,60 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    */
   $scope.removeThermostat = function (index) {
     $scope.schedule.input.params.devices.thermostats.splice(index, 1);
-    
-    
   };
+
+  /**
+   * Handle lock modal
+   */
+  $scope.handleLockModal = function (v,modal,$event) {
+    $scope.resetModel();
+     $scope.handleModal(modal, $event);
+    // Open/close modal only
+    if(!v || v.device == ''){
+      return;
+    }
+    // Adding new switch
+    var index = _.findIndex($scope.schedule.input.params.devices.locks,{device: v.device});
+    if(index > -1){
+     $scope.schedule.input.params.devices.locks[index] = v;
+    }else{
+      $scope.schedule.input.params.devices.locks.push(v)
+    }
+  };
+
+  /**
+   * Remove lock
+   */
+  $scope.removeLock = function (index) {
+    $scope.schedule.input.params.devices.locks.splice(index, 1);
+   };
+
+   /**
+   * Handle scene modal
+   */
+  $scope.handleSceneModal = function (v,modal) {
+    $scope.resetModel();
+     $scope.handleModal(modal);
+    // Open/close modal only
+    if(!v){
+      return;
+    }
+   
+    //var index = _.findIndex($scope.schedule.input.params.devices.scenes,{device: v.device});
+    var index = $scope.schedule.input.params.devices.scenes.indexOf(v);
+    if(index > -1){  // Update an item
+     $scope.schedule.input.params.devices.scenes[index] = v;
+    }else{ // Add new item
+      $scope.schedule.input.params.devices.scenes.push(v)
+    }
+  };
+
+  /**
+   * Remove scene
+   */
+  $scope.removeScene = function (index) {
+    $scope.schedule.input.params.devices.scenes.splice(index, 1);
+   };
 
   /**
    * Store schedule

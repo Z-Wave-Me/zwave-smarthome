@@ -13,43 +13,76 @@
 
     </div>
   </div>
-  <pre>{{schedule.model|json}}</pre>
-  <pre>{{schedule.input|json}}</pre>
+  <!-- <pre>{{schedule.model|json}}</pre>
+  <pre>{{schedule.input|json}}</pre> -->
   <!-- Form -->
   <form class="form form-page" ng-submit="storeSchedule(schedule.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/schedules/schedule_form.html'"></fieldset>
     <!-- Switches -->
-    <legend>Switches
-      <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleSwitchModal(false,'switchBinary', $event)">
-        <i class="fa fa-plus text-success"></i>
-      </button>
-    </legend>
-    <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_form_switches.html'"></fieldset>
-    <div ng-include="'app/views/automation/schedules/schedule_switches_modal.html'"></div>
+    <div ng-if="schedule.deviceTypeCnt['switchBinary']">
+      <div class="legend has-control">
+        <span>Switches
+          <em class="item-cnt">({{schedule.deviceTypeCnt['switchBinary']}})</em>
+        </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-if="schedule.deviceTypeCnt['switchBinary'] > schedule.input.params.devices.switches.length"
+          ng-click="handleSwitchModal(false,'switchBinary')">
+          {{_t('add_new')}}
+        </span>
+      </div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_switches_list.html'"></fieldset>
+      <div ng-include="'app/views/automation/schedules/schedule_switches_modal.html'"></div>
+    </div>
     <!-- Dimmers -->
-    <legend>Dimmers
-      <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleDimmerModal(false,'switchMultilevel', $event)">
-        <i class="fa fa-plus text-success"></i>
-      </button>
-    </legend>
-    <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_form_dimmers.html'"></fieldset>
-    <div ng-include="'app/views/automation/schedules/schedule_dimmers_modal.html'"></div>
+    <div ng-if="schedule.deviceTypeCnt['switchMultilevel']">
+        <div class="legend has-control">
+        <span>Dimmers
+          <em class="item-cnt">({{schedule.deviceTypeCnt['switchMultilevel']}})</em>
+        </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-if="schedule.deviceTypeCnt['switchMultilevel'] > schedule.input.params.devices.dimmers.length"
+          ng-click="handleDimmerModal(false,'switchMultilevel')">
+          {{_t('add_new')}}
+        </button>
+      </div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_dimmers_list.html'"></fieldset>
+      <div ng-include="'app/views/automation/schedules/schedule_dimmers_modal.html'"></div>
+    </div>
     <!-- Thermostats -->
-    <legend>Thermostats
-      <button type="button" class="btn btn-default btn-small" title="{{_t('lb_update')}}" ng-click="handleThermostatModal(false,'thermostat', $event)">
-        <i class="fa fa-plus text-success"></i>
-      </button>
-    </legend>
-    <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_form_thermostats.html'"></fieldset>
-    <div ng-include="'app/views/automation/schedules/schedule_thermostats_modal.html'"></div>
+    <div ng-if="schedule.deviceTypeCnt['thermostat']">
+        <div class="legend has-control">
+        <span>Thermostats
+          <em class="item-cnt">({{schedule.deviceTypeCnt['thermostat']}})</em>
+        </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-click="handleThermostatModal(false,'thermostat')">
+          {{_t('add_new')}}
+        </span>
+      </div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_thermostats_list.html'"></fieldset>
+      <div ng-include="'app/views/automation/schedules/schedule_thermostats_modal.html'"></div>
+    </div>
     <!-- Locks -->
-    <legend>Locks</legend>
-    <fieldset ng-include="'app/views/automation/schedules/schedule_form_locks.html'"></fieldset>
+    <div ng-if="schedule.deviceTypeCnt['doorlock']">
+        <div class="legend has-control">
+          <span>Locks <em class="item-cnt">({{schedule.deviceTypeCnt['doorlock']}})</em>
+          </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-click="handleLockModal(false,'doorlock')">
+          {{_t('add_new')}}
+        </span>
+      </div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_locks_list.html'"></fieldset>
+      <div ng-include="'app/views/automation/schedules/schedule_locks_modal.html'"></div>
+    </div>
     <!-- Scenes -->
-    <legend>Scenes</legend>
-    <fieldset ng-include="'app/views/automation/schedules/schedule_form_scenes.html'"></fieldset>
-
+    <div ng-if="schedule.deviceTypeCnt['toggleButton']">
+        <div class="legend has-control">
+      <span>Scenes <em class="item-cnt">({{schedule.deviceTypeCnt['toggleButton']}})</em></span>
+      <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-click="handleSceneModal(false,'toggleButton')">
+        {{_t('add_new')}}
+      </span>
+    </div>
+    <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_scenes_list.html'"></fieldset>
+    <div ng-include="'app/views/automation/schedules/schedule_scenes_modal.html'"></div>
+  </div>
     <!-- Submit  -->
     <fieldset class="submit-entry">
       <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
@@ -62,31 +95,5 @@
       </button>
     </fieldset>
   </form>
-</div>
-<!-- /ng-controller -->
-
-<div ng-controller="AutomationMockController">
-  <!-- DEMO -->
-  <div class="form form-page">
-    <!-- Form -->
-    <fieldset ng-include="'app/views/automation/schedules/schedule_form_demo.html'"></fieldset>
-    <!-- List -->
-    <fieldset ng-include="'app/views/automation/schedules/schedule_form_list_demo.html'"></fieldset>
-
-
-    <!-- Submit  -->
-    <fieldset class="submit-entry">
-      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-        <i class="fa fa-reply"></i>
-        <span class="btn-name">{{_t('lb_cancel')}}</span>
-      </button>
-      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-        <i class="fa fa-check"></i>
-        <span class="btn-name">{{_t('lb_save')}}</span>
-      </button>
-
-    </fieldset>
-  </div>
-
 </div>
 <!-- /ng-controller -->

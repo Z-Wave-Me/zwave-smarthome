@@ -1,0 +1,31 @@
+<div id="toggleButton" class="appmodal" ng-if="modalArr.toggleButton" enter-submit="handleSceneModal(schedule.model.toggleButton,'toggleButton')">
+  <div class="appmodal-in">
+    <div class="appmodal-header">
+      <span class="appmodal-close" ng-click="handleSceneModal(false,'toggleButton', $event)">
+        <i class="fa fa-times"></i>
+      </span>
+      <h3>Scenes</h3>
+    </div>
+    <div class="appmodal-body">
+      <div class="fieldset">
+        <!-- Switch select -->
+        <div class="form-group  form-inline last">
+          <select class="form-control" ng-model="schedule.model.toggleButton">
+            <option value="">--- {{_t('lb_select')}} ---</option>
+            <option value="{{v.id}}" ng-repeat="v in schedule.devices" ng-if="v.deviceType == 'toggleButton'" ng-selected="v.id == schedule.model.toggleButton">{{v.metrics.title}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="appmodal-footer">
+      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleSceneModal(false,'toggleButton')">
+        <i class="fa fa-times text-danger"></i>
+        <span class="btn-name">{{_t('lb_close')}} </span>
+      </button>
+      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleSceneModal(schedule.model.toggleButton,'toggleButton')">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </div>
+  </div>
+</div>

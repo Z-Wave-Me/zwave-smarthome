@@ -1,14 +1,12 @@
-<!-- thermostats -->
-<div id="switchesModal " class="appmodal" ng-if="modalArr.thermostat">
+<div id="thermostat" class="appmodal" ng-if="modalArr.thermostat" enter-submit="handleThermostatModal(schedule.model.thermostat,'thermostat')">
   <div class="appmodal-in">
     <div class="appmodal-header">
-      <span class="appmodal-close" ng-click="handleDimmerModal(false,'thermostat', $event)">
+      <span class="appmodal-close" ng-click="handleThermostatModal(false,'thermostat')">
         <i class="fa fa-times"></i>
       </span>
-      <h3>{{cfg.app_name}}</h3>
+      <h3>Thermostats</h3>
     </div>
     <div class="appmodal-body">
-      <pre>{{schedule.model.thermostat|json}}</pre>
       <div class="fieldset">
         <!-- Switch select -->
         <div class="form-group  form-inline">
@@ -28,11 +26,11 @@
       </div>
     </div>
     <div class="appmodal-footer">
-      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleThermostatModal(false,'thermostat', $event)">
+      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleThermostatModal(false,'thermostat')">
         <i class="fa fa-times text-danger"></i>
         <span class="btn-name">{{_t('lb_close')}} </span>
       </button>
-      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleThermostatModal(schedule.model.thermostat,'thermostat', $event)">
+      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleThermostatModal(schedule.model.thermostat,'thermostat')">
         <i class="fa fa-check"></i>
         <span class="btn-name">{{_t('lb_save')}}</span>
       </button>

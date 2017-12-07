@@ -96,10 +96,15 @@ input[type=radio] {
 .inputfile + label {
   cursor: pointer;
 }
-legend{
+legend,.legend{
   font-size: 110%;
   font-weight: bold;
-  padding: 0 0 $spacing-half $spacing;
+  padding: 0 $spacing $spacing-half $spacing;
+  border-bottom: 1px solid #e5e5e5;
+  &.has-control{
+    display: flex;
+    justify-content: space-between; 
+  }
 }
 
 fieldset, .fieldset {

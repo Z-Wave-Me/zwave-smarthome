@@ -1,18 +1,17 @@
-<!-- switchesModal -->
-<div id="switchesModal " class="appmodal" ng-if="modalArr.switchBinary">
+<div id="switchBinary" class="appmodal" ng-if="modalArr.switchBinary" enter-submit="handleSwitchModal(schedule.model.switchBinary,'switchBinary')">
   <div class="appmodal-in">
     <div class="appmodal-header">
-      <span class="appmodal-close" ng-click="handleSwitchModal(false,'switchBinary', $event)">
+      <span class="appmodal-close" ng-click="handleSwitchModal(false,'switchBinary')">
         <i class="fa fa-times"></i>
       </span>
-      <h3>{{cfg.app_name}}</h3>
+      <h3>Switches</h3>
     </div>
     <div class="appmodal-body">
-      <pre>{{schedule.model.switchBinary|json}}</pre>
       <div class="fieldset">
         <!-- Switch select -->
         <div class="form-group  form-inline">
           <select class="form-control" ng-model="schedule.model.switchBinary.device">
+              <option value="">--- {{_t('lb_select')}} ---</option>
             <option value="{{v.id}}" ng-repeat="v in schedule.devices" ng-if="v.deviceType == 'switchBinary'" ng-selected="v.id == schedule.model.switchBinary.device">{{v.metrics.title}}</option>
           </select>
         </div>
@@ -30,11 +29,11 @@
       </div>
     </div>
     <div class="appmodal-footer">
-      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleSwitchModal(false,'switchBinary', $event)">
+      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleSwitchModal(false,'switchBinary')">
         <i class="fa fa-times text-danger"></i>
         <span class="btn-name">{{_t('lb_close')}} </span>
       </button>
-      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleSwitchModal(schedule.model.switchBinary,'switchBinary', $event)">
+      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleSwitchModal(schedule.model.switchBinary,'switchBinary')">
         <i class="fa fa-check"></i>
         <span class="btn-name">{{_t('lb_save')}}</span>
       </button>

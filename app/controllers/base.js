@@ -539,8 +539,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         } else {
             $scope.modalArr[key] = !($scope.modalArr[key]);
         }
-
-        $event.stopPropagation();
+        if($event){
+          $event.stopPropagation();
+        }
+        
     };
     $scope.expand = {};
     /**

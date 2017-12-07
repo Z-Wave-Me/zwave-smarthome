@@ -1,18 +1,17 @@
-<!-- switchesModal -->
-<div id="switchesModal " class="appmodal" ng-if="modalArr.switchMultilevel">
+<div id="switchMultilevel" class="appmodal" ng-if="modalArr.switchMultilevel" enter-submit="handleDimmerModal(schedule.model.switchMultilevel,'switchMultilevel')">
   <div class="appmodal-in">
     <div class="appmodal-header">
-      <span class="appmodal-close" ng-click="handleDimmerModal(false,'switchMultilevel', $event)">
+      <span class="appmodal-close" ng-click="handleDimmerModal(false,'switchMultilevel')">
         <i class="fa fa-times"></i>
       </span>
-      <h3>{{cfg.app_name}}</h3>
+      <h3>Dimmers</h3>
     </div>
     <div class="appmodal-body">
-      <pre>{{schedule.model.switchMultilevel|json}}</pre>
       <div class="fieldset">
         <!-- Switch select -->
         <div class="form-group  form-inline">
           <select class="form-control" ng-model="schedule.model.switchMultilevel.device">
+              <option value="">--- {{_t('lb_select')}} ---</option>
             <option value="{{v.id}}" ng-repeat="v in schedule.devices" ng-if="v.deviceType == 'switchMultilevel'" ng-selected="v.id == schedule.model.switchMultilevel.device">{{v.metrics.title}}</option>
           </select>
           <input type="number" class="form-control input-number" min="{{schedule.cfg.switchMultilevel.min}}" max="{{schedule.cfg.switchMultilevel.max}}"
@@ -28,11 +27,11 @@
       </div>
     </div>
     <div class="appmodal-footer">
-      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleDimmerModal(false,'switchMultilevel', $event)">
+      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleDimmerModal(false,'switchMultilevel')">
         <i class="fa fa-times text-danger"></i>
         <span class="btn-name">{{_t('lb_close')}} </span>
       </button>
-      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleDimmerModal(schedule.model.switchMultilevel,'switchMultilevel', $event)">
+      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleDimmerModal(schedule.model.switchMultilevel,'switchMultilevel')">
         <i class="fa fa-check"></i>
         <span class="btn-name">{{_t('lb_save')}}</span>
       </button>
