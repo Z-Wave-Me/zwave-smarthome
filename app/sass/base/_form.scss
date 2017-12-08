@@ -74,7 +74,7 @@ input[type=radio] {
     }
     &.last {
       border-bottom: 0;
-      //padding-bottom: 0;
+      padding-bottom: 0;
       margin-bottom: 0;
     }
   }
@@ -111,6 +111,14 @@ fieldset, .fieldset {
   padding: $spacing;
   h1,h2,h3{
       margin: 0;
+  }
+  &.expanded{
+    padding: $spacing;
+  
+    .form-group {
+      border-bottom: 0;
+      
+    }
   }
 }
 

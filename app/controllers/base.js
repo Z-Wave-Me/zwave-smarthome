@@ -269,6 +269,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             request.timeout = request.cancel.promise;
         });
         /**
+         * Reset expanded elements
+         */
+        $scope.expand = {};
+        /**
          * Reset fatal error object
          */
         dataService.resetFatalError();
