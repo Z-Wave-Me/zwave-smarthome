@@ -20,6 +20,11 @@
 ## AuthController
 This is the Auth root controller
 
+### AuthController.processUser() 
+
+Login with selected data from server response
+
+
 ### AuthController.allSettled() 
 
 Load all promises
@@ -28,11 +33,6 @@ Load all promises
 ### AuthController.setLoginLang() 
 
 Login language
-
-
-### AuthController.processUser() 
-
-Login with selected data from server response
 
 
 ### AuthController.redirectAfterLogin() 

@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.8.0-RC-7',
+        'app_version': '1.8.0-RC-8',
         // Application (DIST) built date
-        'app_built': '27-11-2017 15:05:09',
+        'app_built': '08-12-2017 15:01:15',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -136,6 +136,7 @@ var config_data = {
             'reorder': 'ZAutomation/api/v1/devices/reorder',
             'get_dsk':'ZWaveAPI/GetDSKCollection', // Get DSK collection
             'add_dsk':'ZWaveAPI/AddDSKEntry?dsk=', // Add DSK
+            'update_dsk':'ZWaveAPI/UpdateDSKEntry', // Update DSK
             'remove_dsk':'ZWaveAPI/RemoveDSKEntry?dsk=', // Remove DSK
             'get_dsk_provisioning_list':'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
             'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry?dsk=', // Add DSK to ProvisioningList (Response with added DSK) GET 
@@ -263,6 +264,8 @@ var config_data = {
         'enocean_black_list': ['81048201'],
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
+         // Path to to translations XML dir
+         'translations_xml_path': 'translations/',
         // Url to update capabilities
         'license_load_url': 'ZWaveAPI/ZMELicense',
         // Language directory

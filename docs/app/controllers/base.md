@@ -135,9 +135,13 @@ Check if the route match the given param and set active class in the element.
 
 **Returns**: `String`
 
-### BaseController.reloadData() 
+### BaseController.reloadData(cache) 
 
 Causes $route service to reload the current route even if $location hasn't changed.
+
+**Parameters**
+
+**cache**: `boolean`
 
 **Returns**: `undefined`
 
@@ -190,13 +194,15 @@ Redirect to Expert
 Collapse navi, menu and autocomplete when clicking outside
 
 
-### BaseController.expandElement(key) 
+### BaseController.expandElement(key, hidePrevious) 
 
 Expand/collapse an element
 
 **Parameters**
 
 **key**: `string`
+
+**hidePrevious**: `boolean`
 
 **Returns**: `undefined`
 
