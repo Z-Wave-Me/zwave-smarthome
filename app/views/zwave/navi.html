@@ -1,4 +1,4 @@
-<div class="tabs-wrap form-inline" ng-if_="devices.show">
+<div class="tabs-wrap form-inline" ng-if="devices.show">
     <div class="btn-group btn-group-justified btn-goup-tabs">
         <a class="btn btn-default" href="#zwave/devices" title="{{_t('lb_zwave_devices')}}"  
            ng-class="routeMatch('/zwave/devices') ? 'active' : ''">
@@ -13,10 +13,6 @@
            ng-class="routeMatch('/zwave/network') ? 'active' : ''"
            ng-if="elementAccess(cfg.role_access.network)">
             <i class="fa fa-sitemap"></i> <span class="btn-name">{{_t('lb_network_status')}}</span>
-        </a>
-        <a class="btn btn-default" title="{{_t('Device Key List')}}" href="#smartstartlist" 
-           ng-class="routeMatch('/smartstartlist') ? 'active' : ''">
-            <i class="fa fa-list"></i> <span class="btn-name">{{_t('Device Key List')}}</span>
         </a>
     </div>
 </div>
