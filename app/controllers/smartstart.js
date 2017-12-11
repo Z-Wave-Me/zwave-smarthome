@@ -5,6 +5,116 @@
 
 
 /**
+ * The controller that .
+ * @class SmartStartBaseController
+ */
+myAppController.controller('SmartStartBaseController', function ($scope, $timeout, cfg, dataFactory, dataService, _) { 
+  $scope.dataHolder = {
+    video: {
+      obj: null,
+      supported: false
+    },
+    canvas: {
+      gCanvas: null,
+      gCtx: null,
+      width:640,
+      height: 480
+    }
+  };
+
+  $scope.checkWebcam = function() {
+    var hasWebcam = false,
+        isGetUserMediaSupported = false;
+
+    // Older browsers might not implement mediaDevices at all, so we set an empty object first
+    if (navigator.mediaDevices === undefined) {
+      navigator.mediaDevices = {};
+    }
+
+    // Some browsers partially implement mediaDevices. We can't just assign an object
+    // with getUserMedia as it would overwrite existing properties.
+    // Here, we will just add the getUserMedia property if it's missing.
+    if (navigator.mediaDevices.getUserMedia === undefined) {
+      navigator.mediaDevices.getUserMedia = function(constraints) {
+
+        // First get ahold of the legacy getUserMedia, if present
+        var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+        // Some browsers just don't implement it - return a rejected promise with an error
+        // to keep a consistent interface
+        if (!getUserMedia) {
+          return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+        }
+
+        // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
+        return new Promise(function(resolve, reject) {
+          getUserMedia.call(navigator, constraints, resolve, reject);
+        });
+      }
+    }
+
+    if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
+        navigator.enumerateDevices = function(callback) {
+            var enumerateDevices = navigator.mediaDevices.enumerateDevices();
+            if (enumerateDevices && enumerateDevices.then) {
+                navigator.mediaDevices.enumerateDevices().then(callback).catch(function() {
+                    callback([]);
+                });
+            } else {
+                callback([]);
+            }
+        };
+    }
+
+   if (!navigator.enumerateDevices && window.MediaStreamTrack && window.MediaStreamTrack.getSources) {
+      navigator.enumerateDevices = window.MediaStreamTrack.getSources.bind(window.MediaStreamTrack);
+   }
+
+    if (!navigator.enumerateDevices && navigator.enumerateDevices) {
+        navigator.enumerateDevices = navigator.enumerateDevices.bind(navigator);
+    }
+
+    if (navigator.getUserMedia) {
+        isGetUserMediaSupported = true;
+    } else if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        isGetUserMediaSupported = true;
+    }
+
+    if($scope.deviceDetector.browser == 'chrome' && 
+       $scope.deviceDetector.browser_version.split(".")[0]  >= 46 && 
+       !/^(https:|chrome-extension:)$/g.test(location.protocol || '')) { 
+
+      if (typeof document !== 'undefined' && typeof document.domain === 'string' && document.domain.search && document.domain.search(/localhost|127.0./g) === -1) {
+          isGetUserMediaSupported = false;
+      }
+    }
+
+    navigator.enumerateDevices(function(devices) {
+      devices.forEach(function(_device) {
+          var device = {};
+          for (var d in _device) {
+              try {
+                  if (typeof _device[d] !== 'function') {
+                      device[d] = _device[d];
+                  }
+              } catch (e) {}
+          }
+
+          if (device.kind === 'videoinput') {
+              hasWebcam = true;
+          }
+      });
+      if(hasWebcam && isGetUserMediaSupported) {
+        $scope.dataHolder.video.supported = true;  
+      }
+    });
+
+  };
+  $scope.checkWebcam();
+
+});
+
+/**
  * The controller that include device with DSK.
  * @class SmartStartDskController
  */
@@ -50,13 +160,12 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
    * @returns {undefined} 
    */
   $scope.addDskProvisioningList = function () {
-    var dsk = _.map($scope.dsk.input, function (v) {
-      return v;
-    }).join('-');
-
+    var dsk = {dsk: _.map($scope.dsk.input, function (v) { return v;}).join('-') };
+    
     $scope.dsk.state = 'registering';
     $scope.toggleRowSpinner(cfg.api.add_dsk);
-    dataFactory.getApi('add_dsk_provisioning_list', dsk, true).then(function (response) {
+    console.log("dsk", dsk);
+    dataFactory.postApi('add_dsk_provisioning_list', dsk).then(function (response) {
 
       $timeout(function () {
         // Set state
@@ -234,7 +343,6 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
     });
   };
 
-
 });
 
 
@@ -249,32 +357,83 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout)
     },
     state: 'start'
   };
+  $scope.error = null;
 
   /**
-   * Reset state to start
+   * Init QR-Code-Reader if supported
    */
-  $scope.resetState = function () {
-    $scope.qrcode.state = 'start';
-    $scope.reloadData();
+  $scope.initQRCodeReader =  function() {
+    if($scope.dataHolder.video.supported) {
+      var constraints = $scope.deviceDetector.isMobile() ? {video: {facingMode: "environment"}} : {video: true};
+
+      navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+        $scope.initCanvas();
+        qrcode.callback = $scope.callbackQrCode;
+        $scope.dataHolder.video.obj = document.querySelector('video');
+
+        // Older browsers may not have srcObject
+        if ("srcObject" in $scope.dataHolder.video) {
+          $scope.dataHolder.video.obj.srcObject = stream;
+        } else {
+          // Avoid using this in new browsers, as it is going away.
+          $scope.dataHolder.video.obj.src = window.URL.createObjectURL(stream);
+        }
+        $scope.dataHolder.video.obj.onloadedmetadata = function(e) {
+          $scope.dataHolder.video.obj.play();
+        };
+        setTimeout(captureToCanvas(), 500);
+      
+      }).catch(function(err) {
+        $scope.dataHolder.video.supported = false;
+        console.log(err.name + ": " + err.message);
+      });
+    }
   };
+  //$scope.initQRCodeReader();
+
+  $scope.$watch("dataHolder.video.supported", function(newVal, oldVal) {
+    if($scope.dataHolder.video.supported) {
+      $scope.initQRCodeReader();
+    }
+  });
+
   /**
-   * Scan QR code
+   * Init canvas to discover qrcode
    */
-  $scope.scan = function (error) {
-    $scope.qrcode.state = 'scanning';
-    $timeout(function () {
-      $scope.qrcode.state = (error ? 'error' : 'success-scan');
-    }, 4000);
+  $scope.initCanvas = function() {
+    $scope.dataHolder.canvas.gCanvas = document.getElementById("qr-canvas");
+    $scope.dataHolder.canvas.gCanvas.style.width = $scope.dataHolder.canvas.width + "px";
+    $scope.dataHolder.canvas.gCanvas.style.height = $scope.dataHolder.canvas.height + "px";
+    $scope.dataHolder.canvas.gCanvas.width = $scope.dataHolder.canvas.width;
+    $scope.dataHolder.canvas.gCanvas.height = $scope.dataHolder.canvas.height;
+    $scope.dataHolder.canvas.gCtx = $scope.dataHolder.canvas.gCanvas.getContext("2d");
+    //$scope.dataHolder.canvas.gCtx.clearRect(0, 0, $scope.dataHolder.canvas.width, $scope.dataHolder.canvas.height);
   };
 
   /**
-   * Discover the device
+   * Callback   
    */
-  $scope.discover = function () {
-    $scope.qrcode.state = 'discovering';
-    $timeout(function () {
-      $scope.qrcode.state = 'success-discover';
-    }, 2000);
+  $scope.callbackQrCode = function(data) {
+    alert(data);
+    var index = data.indexOf(":");
+    if(index !== -1) {
+      var data = data.substr(0, index);  
+    }
+    dataFactory.postApi("add_dsk", data).then(function(response) {
+      alert("OK", data);
+    }, function(error) {
+      alert("ERROR", error);
+    });
   };
 
+  function captureToCanvas() {
+    try {
+     $scope.dataHolder.canvas.gCtx.drawImage($scope.dataHolder.video.obj, 0, 0);
+     qrcode.decode();
+    } catch(e) {
+      console.log(e);
+      $scope.error = e;
+      setTimeout(captureToCanvas, 500);  
+    };
+  }
 });
