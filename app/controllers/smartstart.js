@@ -245,7 +245,7 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
     /*dataFactory.getApiLocal('dsk-collection.json').then(function (response) {
       var data = response.data;*/
       dataFactory.getApi('get_dsk', null, true).then(function (response) {
-        var data = response.data.data;
+        var data = response.data;
       // There are no data
       if (_.isEmpty(data)) {
         $scope.collection.alert = {
