@@ -769,5 +769,10 @@
     "works_with_internet": "Funktioniert nur mit Internetverbindung",
     "yes": "Ja",
     "zwave_device_failed": "Z-Wave-Ger\u00e4t ist ausgefallen",
-    "z_way_restart": "Das System wird nun automatisch neugestartet. Sie werden zum Login weitergeleitet in __val__ __level__."
+    "z_way_restart": "Das System wird nun automatisch neugestartet. Sie werden zum Login weitergeleitet in __val__ __level__.",
+    "camera_not_supported": "No camera found or browser doesn't support. Please enter DSK manually or use our App wich is now available on Google Play (Android) and the App Store (iOS). Links below",
+    "manual_add": "Add Manually",
+    "qr_code_desc": "Use the camera off your Smartphone or Laptop/PC to scan the QR code or add manually. You'll find this code somewhere on the box.",
+    "error_smartstart_add_dsk": "Unable to add DSK",
+    "error_smartstart_already_exists": "DSK is already added!"
 }

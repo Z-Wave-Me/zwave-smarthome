@@ -12,14 +12,17 @@ myAppController.controller('SmartStartBaseController', function ($scope, $timeou
   $scope.dataHolder = {
     video: {
       obj: null,
-      supported: false
+      mediaStream: null,
+      supported: false,
+      alert: {}
     },
     canvas: {
       gCanvas: null,
       gCtx: null,
       width:640,
       height: 480
-    }
+    },
+    manual_add: false
   };
 
   $scope.checkWebcam = function() {
@@ -106,11 +109,14 @@ myAppController.controller('SmartStartBaseController', function ($scope, $timeou
       });
       if(hasWebcam && isGetUserMediaSupported) {
         $scope.dataHolder.video.supported = true;  
+      } else {
+        $scope.dataHolder.video.alert = {message: $scope._t('camera_not_supported'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
       }
     });
 
   };
   $scope.checkWebcam();
+
 
 });
 
@@ -131,9 +137,8 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
       dsk_7: '',
       dsk_8: ''
     },
-    state: null,
     list: [],
-    response: ''
+    response: '',
   };
   // Copy original input values
   $scope.origInput = angular.copy($scope.dsk.input);
@@ -162,12 +167,11 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
   $scope.addDskProvisioningList = function () {
     var dsk = {dsk: _.map($scope.dsk.input, function (v) { return v;}).join('-') };
     
-    $scope.dsk.state = 'registering';
+    $scope.dataHolder.state = 'registering';
     $scope.toggleRowSpinner(cfg.api.add_dsk);
     console.log("dsk", dsk);
     dataFactory.postApi('add_dsk_provisioning_list', dsk).then(function (response) {
 
-      $timeout(function () {
         // Set state
         $scope.dsk.state = 'success-register';
         // Reset model
@@ -175,10 +179,8 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
         // Set response
         $scope.dsk.response = response.data[0];
 
-      }, 1000);
-
     }, function (error) {
-      $scope.dsk.state = null;
+      $scope.dataHolder.state = null;
       alertify.alertError($scope._t('error_update_data'));
     }).finally(function () {
       $timeout($scope.toggleRowSpinner, 1000);
@@ -347,14 +349,61 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
  * The controller that include device by scanning QR code.
  * @class SmartStartQrController
  */
-myAppController.controller('SmartStartQrController', function ($scope, $timeout) {
+myAppController.controller('SmartStartQrController', function ($scope, $timeout,$location, dataFactory) {
   $scope.qrcode = {
     input: {
       qrcode: ''
     },
-    state: 'start'
+    state: 'start',
+    response: ''
   };
-  $scope.error = null;
+
+  /**
+  * stop video on page destroy
+  */
+  $scope.$on('$destroy', function () {
+    $scope.stopStream();    
+  });
+
+  $scope.stopStream = function() {
+    if($scope.dataHolder.video.mediaStream !== null) {
+      $scope.dataHolder.video.mediaStream.stop();
+      $scope.dataHolder.video.mediaStream = null;
+      $scope.dataHolder.video.obj = null;  
+    }
+  }
+
+  /**
+  * Callback   
+  */
+ $scope.callbackQrCode = function(data) {
+    var index = data.indexOf(":");
+    if(index !== -1) {
+      data = data.substr(index, data.length);  
+    }
+    $scope.qrcode.input = data;
+    var qr_code_str = {dsk: data};
+    dataFactory.postApi('add_dsk', qr_code_str).then(function (response) {
+      $scope.qrcode.state = 'success-register';
+      $scope.stopStream();
+      $scope.qrcode.response = response.data;
+
+      $timeout(function() {
+          $location.path('/smartstartlist');
+      }, 1000);
+
+      
+    }, function (error) {
+      $scope.dataHolder.state = null;
+      if(error.status == 409) {
+        alertify.alertError($scope._t('error_smartstart_already_exists'));
+      } else {
+        alertify.alertError($scope._t('error_smartstart_add_dsk'));
+      }
+      
+    });
+  };
+
 
   /**
    * Init QR-Code-Reader if supported
@@ -364,10 +413,9 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout)
       var constraints = $scope.deviceDetector.isMobile() ? {video: {facingMode: "environment"}} : {video: true};
 
       navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-        $scope.initCanvas();
         qrcode.callback = $scope.callbackQrCode;
         $scope.dataHolder.video.obj = document.querySelector('video');
-
+        $scope.dataHolder.video.mediaStream = stream;
         // Older browsers may not have srcObject
         if ("srcObject" in $scope.dataHolder.video) {
           $scope.dataHolder.video.obj.srcObject = stream;
@@ -375,9 +423,18 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout)
           // Avoid using this in new browsers, as it is going away.
           $scope.dataHolder.video.obj.src = window.URL.createObjectURL(stream);
         }
+
+        $scope.dataHolder.video.mediaStream.stop = function () {
+            this.getVideoTracks().forEach(function (track) { 
+                track.stop();
+            });
+        };
+
         $scope.dataHolder.video.obj.onloadedmetadata = function(e) {
+          $scope.initCanvas();
           $scope.dataHolder.video.obj.play();
         };
+
         setTimeout(captureToCanvas(), 500);
       
       }).catch(function(err) {
@@ -386,8 +443,7 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout)
       });
     }
   };
-  //$scope.initQRCodeReader();
-
+ 
   $scope.$watch("dataHolder.video.supported", function(newVal, oldVal) {
     if($scope.dataHolder.video.supported) {
       $scope.initQRCodeReader();
@@ -399,37 +455,20 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout)
    */
   $scope.initCanvas = function() {
     $scope.dataHolder.canvas.gCanvas = document.getElementById("qr-canvas");
-    $scope.dataHolder.canvas.gCanvas.style.width = $scope.dataHolder.canvas.width + "px";
-    $scope.dataHolder.canvas.gCanvas.style.height = $scope.dataHolder.canvas.height + "px";
-    $scope.dataHolder.canvas.gCanvas.width = $scope.dataHolder.canvas.width;
-    $scope.dataHolder.canvas.gCanvas.height = $scope.dataHolder.canvas.height;
+    $scope.dataHolder.canvas.gCanvas.style.width = $scope.dataHolder.video.obj.videoWidth + "px";
+    $scope.dataHolder.canvas.gCanvas.style.height = $scope.dataHolder.video.obj.videoHeight + "px";
+    $scope.dataHolder.canvas.gCanvas.width = $scope.dataHolder.video.obj.videoWidth;
+    $scope.dataHolder.canvas.gCanvas.height = $scope.dataHolder.video.obj.videoHeight;
     $scope.dataHolder.canvas.gCtx = $scope.dataHolder.canvas.gCanvas.getContext("2d");
-    //$scope.dataHolder.canvas.gCtx.clearRect(0, 0, $scope.dataHolder.canvas.width, $scope.dataHolder.canvas.height);
-  };
-
-  /**
-   * Callback   
-   */
-  $scope.callbackQrCode = function(data) {
-    alert(data);
-    var index = data.indexOf(":");
-    if(index !== -1) {
-      var data = data.substr(0, index);  
-    }
-    dataFactory.postApi("add_dsk", data).then(function(response) {
-      alert("OK", data);
-    }, function(error) {
-      alert("ERROR", error);
-    });
+    $scope.dataHolder.canvas.gCtx.clearRect(0, 0, $scope.dataHolder.video.obj.videoWidth, $scope.dataHolder.video.obj.videoHeight);
   };
 
   function captureToCanvas() {
     try {
-     $scope.dataHolder.canvas.gCtx.drawImage($scope.dataHolder.video.obj, 0, 0);
-     qrcode.decode();
+      $scope.dataHolder.canvas.gCtx.drawImage($scope.dataHolder.video.obj, 0, 0);
+      qrcode.decode();
     } catch(e) {
       console.log(e);
-      $scope.error = e;
       setTimeout(captureToCanvas, 500);  
     };
   }

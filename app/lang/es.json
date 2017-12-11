@@ -739,5 +739,10 @@
     "btn_teach_in_start": "Iniciar programación",
     "btn_teach_in_stop": "Detener programación",
     "lb_ready_teach_in": "Listo para la programación",
-    "room_main_sensors": "Puede añadir un máx. de 3 sensores al encabezado de la habitación (__cnt__/3)."
+    "room_main_sensors": "Puede añadir un máx. de 3 sensores al encabezado de la habitación (__cnt__/3).",
+    "camera_not_supported": "No camera found or browser doesn't support. Please enter DSK manually or use our App wich is now available on Google Play (Android) and the App Store (iOS). Links below",
+    "manual_add": "Add Manually",
+    "qr_code_desc": "Use the camera off your Smartphone or Laptop/PC to scan the QR code or add manually. You'll find this code somewhere on the box.",
+    "error_smartstart_add_dsk": "Unable to add DSK",
+    "error_smartstart_already_exists": "DSK is already added!"
 }
