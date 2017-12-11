@@ -133,9 +133,12 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
    * Get DSK Collection - DEMO
    */
   var getDskCollectionDemo = function () {
-    dataFactory.getApiLocal('dsk-collection.json').then(function (response) {
+    /*dataFactory.getApiLocal('dsk-collection.json').then(function (response) {
+      var data = response.data;*/
+      dataFactory.getApi('get_dsk', null, true).then(function (response) {
+        var data = response.data.data;
       // There are no data
-      if (_.isEmpty(response.data)) {
+      if (_.isEmpty(data)) {
         $scope.collection.alert = {
           message: $scope._t('empty_dsk_list'),
           status: 'alert-warning',
@@ -145,7 +148,7 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
       }
 
       // Data collection
-      $scope.collection.all = _.filter(response.data, function (v) {
+      $scope.collection.all = _.filter(data, function (v) {
         var typeId = $filter('decToHexString')(parseInt(v.ZW_QR_TLVVAL_PRODUCTID_ZWPRODUCTTYPE), 2, '0x');
         var pIdArray = v.p_id.split('.');
         var pId = parseInt(pIdArray[0]) + '.' + parseInt(pIdArray[1]) + '.' + parseInt(pIdArray[2]);
