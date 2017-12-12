@@ -38,19 +38,10 @@
                             <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
                                 <i class="fa fa-cog"></i>
                             </a>
-                            <button title="{{_t('lb_deactivate')}}"
-                                    class="btn btn-default" href=""
-                                    ng-if="v.active"
-                                    ng-class="v.active ? 'active' : ''"
-                                    ng-click="activateInstance(v, false)">
-                                <i class="fa fa-fire text-success"></i>
-                            </button>
-                            <button title="{{_t('lb_activate')}}"
-                                    class="btn btn-default"
-                                    ng-if="!v.active"
-                                    ng-click="activateInstance(v, true)">
-                                <i class="fa fa-power-off text-danger"></i>
-                            </button>
+                            <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
+                            ng-click="activateInstance(v, v.active ? false : true)">
+                            <i class="fa " ng-class="v.active ? 'fa-pause' : 'fa-play text-success'"></i>
+                          </button>
                             <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
                                class="btn btn-default"
                                title="{{_t('lb_clone')}}"
@@ -100,19 +91,10 @@
                         <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
                             <i class="fa fa-cog"></i>
                         </a>
-                        <button title="{{_t('lb_deactivate')}}"
-                                class="btn btn-default" href=""
-                                ng-if="v.active"
-                                ng-class="v.active ? 'active' : ''"
-                                ng-click="activateInstance(v, false)">
-                            <i class="fa fa-fire text-success"></i>
-                        </button>
-                        <button title="{{_t('lb_activate')}}"
-                                class="btn btn-default"
-                                ng-if="!v.active"
-                                ng-click="activateInstance(v, true)">
-                            <i class="fa fa-power-off text-danger"></i>
-                        </button>
+                        <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
+                        ng-click="activateInstance(v, v.active ? false : true)">
+                        <i class="fa " ng-class="v.active ? 'fa-pause' : 'fa-play text-success'"></i>
+                      </button>
                         <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
                            class="btn btn-default"
                            title="{{_t('lb_clone')}}"
@@ -141,19 +123,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- todo: backend support Add new group:
-<div class="page-control form-inline">
-    <div class="form-group form-inline">
-        <div class="input-group">
-            <input name="add_tag" id="add_tag" type="text"
-                   class="form-control"
-                   placeholder="{{_t('Add new group')}}"
-                   ng-model="search.text" bb-key-event="searchMe()" data-toggle="dropdown"/>
-            <span class="input-group-addon clickable" title="{{_t('Add new group')}}">
-                           <i class="fa fa-plus text-success"></i>
-                       </span>
-        </div>
-    </div>
-</div> -->

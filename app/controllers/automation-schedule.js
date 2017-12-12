@@ -33,6 +33,26 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
   };
   $scope.loadSchedules();
 
+  /**
+   * Activate schedule
+   * @param {object} input 
+   * @param {boolean} activeStatus 
+   */
+  $scope.activateSchedule = function (input, state) {
+    input.active = state;
+    if (!input.id) {
+      return;
+    }
+    dataFactory.putApi('instances', input.id, input).then(function (response) {
+
+    }, function (error) {
+      alertify.alertError($scope._t('error_update_data'));
+    });
+
+
+  };
+
+
 
   /**
    * Clone schedule
@@ -102,7 +122,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     devices: [],
     deviceTypeCnt: [],
     cfg: {
-      days:[1,2,3,4,5,6,0],
+      days: [1, 2, 3, 4, 5, 6, 0],
       switchBinary: {
         enum: ['off', 'on']
       },
@@ -218,12 +238,12 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    * Add or update device to the list (by type)
    * type: switches|dimmers|thermostats|locks
    */
-  $scope.handleDevice = function (v, type,element) {
-    if(element){
+  $scope.handleDevice = function (v, type, element) {
+    if (element) {
       $scope.expandElement(element);
     }
     $scope.resetModel(element);
-    if (!v || v.device == '')  {
+    if (!v || v.device == '') {
       return;
     }
     // Adding new device
@@ -242,8 +262,8 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   /**
    * Add or update scene device
    */
-  $scope.handleSceneDevice= function (v,element) {
-    if(element){
+  $scope.handleSceneDevice = function (v, element) {
+    if (element) {
       $scope.expandElement(element);
     }
     $scope.resetModel(element);
@@ -258,10 +278,10 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     }
   };
 
-   /**
+  /**
    * Remove device from the list (by type)
    */
-  $scope.removeDeviceFromList = function (index,type) {
+  $scope.removeDeviceFromList = function (index, type) {
     $scope.schedule.input.params.devices[type].splice(index, 1);
 
 
