@@ -7,7 +7,7 @@
 
  <!-- Weekdays -->
 <div class="form-group form-inline">
-    <div class="checkbox" ng-repeat="d in schedule.cfg.days">
+    <div class="checkbox" ng-repeat="d in schedule.days">
         <input class="default" type="checkbox" id="day_{{d}}" ng-change="toggleWeekday(d)" ng-model="schedule.model.weekday[d]" ng-checked="schedule.input.params.weekdays.indexOf(d.toString())  > -1" />
         <label for="day_{{d}}">{{_t('day_' + d)}}</label>
       </div>

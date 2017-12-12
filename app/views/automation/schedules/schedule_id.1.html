@@ -1,0 +1,91 @@
+<!-- The schedule -->
+<div ng-controller="AutomationScheduleIdController">
+
+  <h2>{{_t('schedules')}}</h2>
+  <!-- <pre>{{schedule.model|json}}</pre>
+  <pre>{{schedule.input|json}}</pre> -->
+  <!-- Form -->
+  <form class="form form-page" ng-submit="storeSchedule(schedule.input,true)">
+    <!-- Form-->
+    <fieldset ng-include="'app/views/automation/schedules/schedule_id_form.html'"></fieldset>
+    <!-- Switches -->
+    <div ng-if="schedule.deviceTypeCnt['switchBinary']">
+      <div class="legend has-control">
+        <span>{{_t('switches')}}
+          <em class="item-cnt">({{schedule.deviceTypeCnt['switchBinary']}})</em>
+        </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.switch}" ng-click="handleDevice(false,'switches','switch')">
+            {{_t('edit')}}
+          </span>
+      </div>
+      <div ng-if="expand.switch" ng-include="'app/views/automation/schedules/schedule_switches_edit.html'"></div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_switches_list.html'"></fieldset>
+    </div>
+    <!-- Dimmers -->
+    <div ng-if="schedule.deviceTypeCnt['switchMultilevel']">
+      <div class="legend has-control">
+        <span>{{_t('dimmers')}}
+          <em class="item-cnt">({{schedule.deviceTypeCnt['switchMultilevel']}})</em>
+        </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.dimmer}" ng-click="handleDevice(false,'dimmers','dimmer')">
+            {{_t('edit')}}
+          </span>
+      </div>
+      <div ng-if="expand.dimmer" ng-include="'app/views/automation/schedules/schedule_dimmers_edit.html'"></div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_dimmers_list.html'"></fieldset>
+    </div>
+    <!-- Thermostats -->
+    <div ng-if="schedule.deviceTypeCnt['thermostat']">
+      <div class="legend has-control">
+        <span>{{_t('thermostats')}}
+          <em class="item-cnt">({{schedule.deviceTypeCnt['thermostat']}})</em>
+        </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.thermostat}" ng-click="handleDevice(false,'thermostats','thermostat')">
+          {{_t('edit')}}
+        </span>
+      </div>
+      <div ng-if="expand.thermostat" ng-include="'app/views/automation/schedules/schedule_thermostats_edit.html'"></div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_thermostats_list.html'"></fieldset>
+    </div>
+    <!-- Locks -->
+    <div ng-if="schedule.deviceTypeCnt['doorlock']">
+      <div class="legend has-control">
+        <span>{{_t('locks')}}
+          <em class="item-cnt">({{schedule.deviceTypeCnt['doorlock']}})</em>
+        </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.lock}" ng-click="handleDevice(false,'locks','lock')">
+          {{_t('edit')}}
+        </span>
+      </div>
+      <div ng-if="expand.lock" ng-include="'app/views/automation/schedules/schedule_locks_edit.html'"></div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_locks_list.html'"></fieldset>
+    </div>
+    <!-- Scenes -->
+    <div ng-if="schedule.deviceTypeCnt['toggleButton']">
+      <div class="legend has-control">
+        <span>{{_t('scenes')}}
+          <em class="item-cnt">({{schedule.deviceTypeCnt['toggleButton']}})</em>
+        </span>
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.scene}" ng-click="handleSceneDevice(false,'scene')">
+          {{_t('edit')}}
+        </span>
+       
+      </div>
+      <div ng-if="expand.scene" ng-include="'app/views/automation/schedules/schedule_scenes_edit.html'"></div>
+      <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_scenes_list.html'"></fieldset>
+     
+    </div>
+    <!-- Submit  -->
+    <fieldset class="submit-entry">
+      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </button>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </fieldset>
+  </form>
+</div>
+<!-- /ng-controller -->

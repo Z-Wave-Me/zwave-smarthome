@@ -40,7 +40,7 @@
                             </a>
                             <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
                             ng-click="activateInstance(v, v.active ? false : true)">
-                            <i class="fa " ng-class="v.active ? 'fa-pause' : 'fa-play text-success'"></i>
+                            <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
                           </button>
                             <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
                                class="btn btn-default"
@@ -93,7 +93,7 @@
                         </a>
                         <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
                         ng-click="activateInstance(v, v.active ? false : true)">
-                        <i class="fa " ng-class="v.active ? 'fa-pause' : 'fa-play text-success'"></i>
+                        <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
                       </button>
                         <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
                            class="btn btn-default"

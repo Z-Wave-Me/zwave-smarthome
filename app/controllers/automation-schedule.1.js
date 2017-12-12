@@ -119,11 +119,10 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       },
       toggleButton: ''
     },
-    days: [1, 2, 3, 4, 5, 6, 0],
-    availableDevices: [],
-    assignedDevices: [],
+    devices: [],
+    deviceTypeCnt: [],
     cfg: {
-     
+      days: [1, 2, 3, 4, 5, 6, 0],
       switchBinary: {
         enum: ['off', 'on']
       },
@@ -171,36 +170,14 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
       var instance = instances.data.data;
-      var assignedDevices = $scope.schedule.assignedDevices;
       angular.extend($scope.schedule.input, {
         title: instance.title,
         active: instance.active,
         params: instance.params
       });
-      console.log(instance.params.devices)
-      angular.forEach(instance.params.devices,function(v,k) {
-        switch(k){
-          case 'scenes':
-          _.filter(v,function(s){
-            if(assignedDevices.indexOf(s) === -1){
-              $scope.schedule.assignedDevices.push(s);
-            }
-           
-          })
-          break;
-          default:
-          _.filter(v,function(d){
-            if(assignedDevices.indexOf(d.device) === -1){
-              $scope.schedule.assignedDevices.push(d.device);
-            }
-           
-          })
-          break;
-        }
-      });
-     
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
+      $scope.loading = false;
     });
 
   };
@@ -213,11 +190,12 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    */
   $scope.loadDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
-      var whiteList  = _.keys($scope.schedule.cfg);
       var devices = dataService.getDevicesData(response.data.data.devices);
-      $scope.schedule.availableDevices = devices.filter(function(v){
-        return whiteList.indexOf(v.deviceType) > -1;
+      // Set by type counter
+      $scope.schedule.deviceTypeCnt = devices.countBy(function (v) {
+        return v.deviceType;
       }).value();
+      $scope.schedule.devices = devices.indexBy('id').value();
     }, function (error) {});
   };
   $scope.loadDevices();

@@ -1,5 +1,7 @@
 {
   "newtrans": "---",
+  "assigned_devices": "Assigned devices",
+  "---": "newtrans",
   "dont_send_on_command": "Don't send On command, if device is already turned On, similarly for Off",
   "switches": "Switches",
   "dimmers": "Dimmers",
@@ -24,7 +26,6 @@
   "rules": "Rules",
   "schedules": "Schedules",
   "no_items_yet": "There are no items added yet in this category.",
-  "---": "newtrans",
   "smartstart_not_supported": "Your device does not support SmartStart. Please upgrade your firmware",
   "smartstart_enter_key": "Please enter the Key on new Device (DSK - device specific keys), which you find below QR code",
   "smartstart_enter_key_success": "Device has been included in the network and is ready for use",
