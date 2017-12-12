@@ -215,7 +215,7 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-            <div ng-if="cfg.route.fatalError.message" ng-cloak ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
+            <div ng-if="cfg.route.fatalError.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
                 <div class="app-fatal-error">
                     <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>

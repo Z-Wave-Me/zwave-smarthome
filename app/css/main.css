@@ -17427,60 +17427,65 @@ img.widget-promo-image {
   vertical-align: middle;
 }
 
-/* line 112, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 104, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+.smart-start .container .table tbody tr td .td-action {
+  text-align: right;
+}
+
+/* line 115, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 .dsk-number {
   display: inline-block;
   padding: 5px;
   width: 4em;
 }
 
-/* line 117, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 120, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 .dsk-input-group {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
-/* line 118, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 121, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 .dsk-input-group input {
   margin-bottom: 5px;
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 123, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+  /* line 126, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
   .dsk-input-group span::after {
     content: " - ";
   }
-  /* line 126, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+  /* line 129, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
   .dsk-input-group span:last-child::after {
     content: "";
   }
 }
 
-/* line 132, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 135, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 #table_mobile {
   display: block;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
-/* line 139, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 142, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 #table_mobile .table tbody tr:nth-child(2) td {
   border: none;
 }
 
-/* line 144, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 147, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 #table_mobile .table tbody tr td .time_string {
   vertical-align: middle;
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 132, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+  /* line 135, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
   #table_mobile {
     display: none;
   }
 }
 
-/* line 157, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 160, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 #table_desktop {
   display: none;
   /* MIN WIDTH */
@@ -17488,13 +17493,13 @@ img.widget-promo-image {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 157, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+  /* line 160, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
   #table_desktop {
     display: block;
   }
 }
 
-/* line 164, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 167, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 .dsk {
   position: relative;
   width: 200px;
@@ -17505,20 +17510,20 @@ img.widget-promo-image {
 }
 
 @media only screen and (min-width: 480px) {
-  /* line 164, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+  /* line 167, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
   .dsk {
     width: auto;
   }
 }
 
-/* line 174, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 177, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 .dsk:after {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 479px) {
-  /* line 174, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+  /* line 177, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
   .dsk:after {
     content: attr(data-dsk-last-pos);
     position: absolute;
@@ -17527,14 +17532,14 @@ img.widget-promo-image {
   }
 }
 
-/* line 184, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 187, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 .dsk span {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 479px) {
-  /* line 184, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+  /* line 187, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
   .dsk span {
     display: block;
     white-space: nowrap;
@@ -17547,7 +17552,7 @@ img.widget-promo-image {
   }
 }
 
-/* line 193, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 196, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 .video-wrapper video {
   width: 100%;
   /* MIN WIDTH */
@@ -17558,18 +17563,18 @@ img.widget-promo-image {
 }
 
 @media only screen and (min-width: 480px) {
-  /* line 193, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+  /* line 196, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
   .video-wrapper video {
     width: 300px;
   }
 }
 
-/* line 205, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 208, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 #qr-canvas {
   display: none;
 }
 
-/* line 210, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
+/* line 213, E:/GitHub/zwave-smarthome/app/sass/base/_smartstart.scss */
 .state_text {
   display: inline-block;
 }

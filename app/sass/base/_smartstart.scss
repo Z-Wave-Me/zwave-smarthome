@@ -101,6 +101,9 @@ $ss-img-w: 64px;
                 tr{
                     td {
                         vertical-align: middle;
+                        .td-action {
+                            text-align: right;    
+                        }
                     }
                 }
             }
