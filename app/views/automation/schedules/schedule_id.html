@@ -1,18 +1,7 @@
 <!-- The schedule -->
 <div ng-controller="AutomationScheduleIdController">
 
-  <div class="blank is-info">
-    <div class="blank-img">
-      <i class="fa fa-info-circle"></i>
-    </div>
-    <div class="blank-body">
-      <p class="blank-title">Schedule</p>
-      <p class="blank-text">
-        This app allow to control relays, dimmers, thermostats and scenes on a schedule.
-      </p>
-
-    </div>
-  </div>
+  <h2>{{_t('schedules')}}</h2>
   <!-- <pre>{{schedule.model|json}}</pre>
   <pre>{{schedule.input|json}}</pre> -->
   <!-- Form -->
@@ -22,74 +11,61 @@
     <!-- Switches -->
     <div ng-if="schedule.deviceTypeCnt['switchBinary']">
       <div class="legend has-control">
-        <span>Switches
+        <span>{{_t('switches')}}
           <em class="item-cnt">({{schedule.deviceTypeCnt['switchBinary']}})</em>
         </span>
         <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.switch}" ng-click="handleDevice(false,'switches','switch')">
             {{_t('edit')}}
           </span>
-       <!--  <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-if="schedule.deviceTypeCnt['switchBinary'] > schedule.input.params.devices.switches.length"
-          ng-click="handleSwitchModal(false,'switchBinary')">
-          {{_t('add_new')}} 
-        </span>-->
       </div>
       <div ng-if="expand.switch" ng-include="'app/views/automation/schedules/schedule_switches_edit.html'"></div>
       <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_switches_list.html'"></fieldset>
-      <!-- <div ng-include="'app/views/automation/schedules/schedule_switches_modal.html'"></div> -->
     </div>
     <!-- Dimmers -->
     <div ng-if="schedule.deviceTypeCnt['switchMultilevel']">
       <div class="legend has-control">
-        <span>Dimmers
+        <span>{{_t('dimmers')}}
           <em class="item-cnt">({{schedule.deviceTypeCnt['switchMultilevel']}})</em>
         </span>
         <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.dimmer}" ng-click="handleDevice(false,'dimmers','dimmer')">
             {{_t('edit')}}
           </span>
-        <!-- <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-if="schedule.deviceTypeCnt['switchMultilevel'] > schedule.input.params.devices.dimmers.length"
-          ng-click="handleDimmerModal(false,'switchMultilevel')">
-          {{_t('add_new')}}
-          </button> -->
       </div>
       <div ng-if="expand.dimmer" ng-include="'app/views/automation/schedules/schedule_dimmers_edit.html'"></div>
       <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_dimmers_list.html'"></fieldset>
-      <!-- <div ng-include="'app/views/automation/schedules/schedule_dimmers_modal.html'"></div> -->
     </div>
     <!-- Thermostats -->
     <div ng-if="schedule.deviceTypeCnt['thermostat']">
       <div class="legend has-control">
-        <span>Thermostats
+        <span>{{_t('thermostats')}}
           <em class="item-cnt">({{schedule.deviceTypeCnt['thermostat']}})</em>
         </span>
-        <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-click="handleThermostatModal(false,'thermostat')">
-          {{_t('add_new')}}
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.thermostat}" ng-click="handleDevice(false,'thermostats','thermostat')">
+          {{_t('edit')}}
         </span>
       </div>
+      <div ng-if="expand.thermostat" ng-include="'app/views/automation/schedules/schedule_thermostats_edit.html'"></div>
       <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_thermostats_list.html'"></fieldset>
-      <div ng-include="'app/views/automation/schedules/schedule_thermostats_modal.html'"></div>
     </div>
     <!-- Locks -->
     <div ng-if="schedule.deviceTypeCnt['doorlock']">
       <div class="legend has-control">
-        <span>Locks
+        <span>{{_t('locks')}}
           <em class="item-cnt">({{schedule.deviceTypeCnt['doorlock']}})</em>
         </span>
-        <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-click="handleLockModal(false,'doorlock')">
-          {{_t('add_new')}}
+        <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.lock}" ng-click="handleDevice(false,'locks','lock')">
+          {{_t('edit')}}
         </span>
       </div>
+      <div ng-if="expand.lock" ng-include="'app/views/automation/schedules/schedule_locks_edit.html'"></div>
       <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_locks_list.html'"></fieldset>
-      <div ng-include="'app/views/automation/schedules/schedule_locks_modal.html'"></div>
     </div>
     <!-- Scenes -->
     <div ng-if="schedule.deviceTypeCnt['toggleButton']">
       <div class="legend has-control">
-        <span>Scenes
+        <span>{{_t('scenes')}}
           <em class="item-cnt">({{schedule.deviceTypeCnt['toggleButton']}})</em>
         </span>
-        <!-- <span type="button" class="btn btn-primary btn-small" title="{{_t('add_new')}}" ng-click="handleSceneModal(false,'toggleButton')">
-          {{_t('add_new')}}
-        </span> -->
         <span type="button" class="btn btn-primary btn-small" title="{{_t('edit')}}" ng-class="{'btn-default':expand.scene}" ng-click="handleSceneDevice(false,'scene')">
           {{_t('edit')}}
         </span>
@@ -97,7 +73,6 @@
       </div>
       <div ng-if="expand.scene" ng-include="'app/views/automation/schedules/schedule_scenes_edit.html'"></div>
       <fieldset class="automation-report" ng-include="'app/views/automation/schedules/schedule_scenes_list.html'"></fieldset>
-      <!-- <div ng-include="'app/views/automation/schedules/schedule_scenes_modal.html'"></div> -->
      
     </div>
     <!-- Submit  -->

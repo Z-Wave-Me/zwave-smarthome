@@ -6,7 +6,7 @@
       <option value="{{v.id}}" ng-repeat="v in schedule.devices" ng-if="v.deviceType == 'switchBinary'" ng-selected="v.id == schedule.model.switchBinary.device">{{v.metrics.title}}</option>
     </select>
      <!--on/off -->
-    is
+    {{_t('lb_is')}}
     <input type="checkbox" name="on_off" id="on_off" ng-model="schedule.model.switchBinary.status" ng-checked="schedule.model.switchBinary.status == 'on'"
       ng-true-value="on" ng-false-value="off" />
     <label for="on_off">{{schedule.model.switchBinary.status}}</label>
@@ -16,7 +16,7 @@
   <div class="form-group">
       <input type="checkbox" name="send_command" id="send_command" ng-model="schedule.model.switchBinary.sendAction" ng-checked="schedule.model.switchBinary.sendAction"
       />
-      <label for="send_command">Don't send On command, if device is already turned On, similarly for Off</label>
+      <label for="send_command">{{_t('dont_send_on_command')}}</label>
     </div>
 
     

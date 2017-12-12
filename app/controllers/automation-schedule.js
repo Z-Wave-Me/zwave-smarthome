@@ -100,9 +100,9 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       toggleButton: ''
     },
     devices: [],
-    devicesById: [],
     deviceTypeCnt: [],
     cfg: {
+      days:[1,2,3,4,5,6,0],
       switchBinary: {
         enum: ['off', 'on']
       },
@@ -176,10 +176,6 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
         return v.deviceType;
       }).value();
       $scope.schedule.devices = devices.indexBy('id').value();
-
-      /*  _.filter(devices.value(),function(v){
-         $scope.schedule.devicesById[v.id] = v.metrics.title;
-       }); */
     }, function (error) {});
   };
   $scope.loadDevices();
@@ -227,7 +223,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       $scope.expandElement(element);
     }
     $scope.resetModel(element);
-    if (!v) {
+    if (!v || v.device == '')  {
       return;
     }
     // Adding new device
@@ -270,156 +266,6 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
 
 
   };
-
-
-  /**
-   * Handle switch - add new switch and close modal
-   */
-  $scope.handleSwitchModal = function (v, modal, $event) {
-    $scope.resetModel();
-    $scope.handleModal(modal, $event);
-    // Open/close modal only
-    if (!v) {
-      return;
-    }
-    // Adding new switch
-    var index = _.findIndex($scope.schedule.input.params.devices.switches, {
-      device: v.device
-    });
-    if (index > -1) {
-      $scope.schedule.input.params.devices.switches[index] = v;
-    } else {
-      $scope.schedule.input.params.devices.switches.push(v)
-    }
-
-
-  };
-
-  /**
-   * Remove switch
-   */
-  $scope.removeSwitch = function (index) {
-    $scope.schedule.input.params.devices.switches.splice(index, 1);
-
-
-  };
-
-  /**
-   * Handle switch multilevel - add new dimmer and close modal
-   */
-  $scope.handleDimmerModal = function (v, modal, $event) {
-    $scope.resetModel();
-    $scope.handleModal(modal, $event);
-    // Open/close modal only
-    if (!v) {
-      return;
-    }
-    // Add new dimmer
-    var index = _.findIndex($scope.schedule.input.params.devices.dimmers, {
-      device: v.device
-    });
-    if (index > -1) {
-      $scope.schedule.input.params.devices.dimmers[index] = v;
-    } else {
-      $scope.schedule.input.params.devices.dimmers.push(v)
-    }
-
-
-  };
-
-  /**
-   * Remove dimmer
-   */
-  $scope.removeDimmer = function (index) {
-    $scope.schedule.input.params.devices.dimmers.splice(index, 1);
-
-
-  };
-  /**
-   * Handle thermostat modal
-   */
-  $scope.handleThermostatModal = function (v, modal, $event) {
-    $scope.resetModel();
-    $scope.handleModal(modal, $event);
-    // Open/close modal only
-    if (!v) {
-      return;
-    }
-    // Add new dimmer
-    var index = _.findIndex($scope.schedule.input.params.devices.thermostats, {
-      device: v.device
-    });
-    if (index > -1) {
-      $scope.schedule.input.params.devices.thermostats[index] = v;
-    } else {
-      $scope.schedule.input.params.devices.thermostats.push(v)
-    }
-
-
-  };
-
-  /**
-   * Remove thermostat
-   */
-  $scope.removeThermostat = function (index) {
-    $scope.schedule.input.params.devices.thermostats.splice(index, 1);
-  };
-
-  /**
-   * Handle lock modal
-   */
-  $scope.handleLockModal = function (v, modal, $event) {
-    $scope.resetModel();
-    $scope.handleModal(modal, $event);
-    // Open/close modal only
-    if (!v || v.device == '') {
-      return;
-    }
-    // Adding new switch
-    var index = _.findIndex($scope.schedule.input.params.devices.locks, {
-      device: v.device
-    });
-    if (index > -1) {
-      $scope.schedule.input.params.devices.locks[index] = v;
-    } else {
-      $scope.schedule.input.params.devices.locks.push(v)
-    }
-  };
-
-  /**
-   * Remove lock
-   */
-  $scope.removeLock = function (index) {
-    $scope.schedule.input.params.devices.locks.splice(index, 1);
-  };
-
-  /**
-   * Handle scene modal
-   */
-  $scope.handleSceneModal = function (v, modal) {
-    $scope.resetModel();
-    $scope.handleModal(modal);
-    // Open/close modal only
-    if (!v) {
-      return;
-    }
-
-    //var index = _.findIndex($scope.schedule.input.params.devices.scenes,{device: v.device});
-    var index = $scope.schedule.input.params.devices.scenes.indexOf(v);
-    if (index > -1) { // Update an item
-      $scope.schedule.input.params.devices.scenes[index] = v;
-    } else { // Add new item
-      $scope.schedule.input.params.devices.scenes.push(v)
-    }
-  };
-
-  /**
-   * Remove scene
-   */
-  /* $scope.removeScene = function (index) {
-    $scope.schedule.input.params.devices.scenes.splice(index, 1);
-  }; */
-
   /**
    * Store schedule
    */

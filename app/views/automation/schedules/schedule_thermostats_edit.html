@@ -1,39 +1,29 @@
-<div id="thermostat" class="appmodal" ng-if="modalArr.thermostat" enter-submit="handleThermostatModal(schedule.model.thermostat,'thermostat')">
-  <div class="appmodal-in">
-    <div class="appmodal-header">
-      <span class="appmodal-close" ng-click="handleThermostatModal(false,'thermostat')">
-        <i class="fa fa-times"></i>
-      </span>
-      <h3>Thermostats</h3>
-    </div>
-    <div class="appmodal-body">
-      <div class="fieldset">
-        <!-- Switch select -->
-        <div class="form-group  form-inline">
-          <select class="form-control" ng-model="schedule.model.thermostat.device">
-            <option value="{{v.id}}" ng-repeat="v in schedule.devices" ng-if="v.deviceType == 'thermostat'" ng-selected="v.id == schedule.model.thermostat.device">{{v.metrics.title}}</option>
-          </select>
-          <input type="number" class="form-control input-number" min="{{schedule.cfg.thermostat.min}}" max="{{schedule.cfg.thermostat.max}}"
-          ng-model="schedule.model.thermostat.status">
-        </div>
+<div class="fieldset expanded" enter-submit="handleDevice(schedule.model.thermostat,'thermostats')">
+  <!-- Switch select -->
+  <div class="form-group  form-inline">
+    <select class="form-control" ng-model="schedule.model.thermostat.device">
+      <option value="{{v.id}}" ng-repeat="v in schedule.devices" ng-if="v.deviceType == 'thermostat'" ng-selected="v.id == schedule.model.thermostat.device">{{v.metrics.title}}</option>
+    </select>
+    <!-- status -->
+    {{_t('lb_is')}}
+    <input type="number" class="form-control input-number" min="{{schedule.cfg.thermostat.min}}" max="{{schedule.cfg.thermostat.max}}"
+      ng-model="schedule.model.thermostat.status">
+  </div>
 
-        <!-- command -->
-        <div class="form-group">
-          <input type="checkbox" name="send_command" id="send_command" ng-model="schedule.model.thermostat.sendAction" ng-checked="schedule.model.thermostat.sendAction"
-          />
-          <label for="send_command">Don't send On command, if device is already turned On, similarly for Off</label>
-        </div>
-      </div>
-    </div>
-    <div class="appmodal-footer">
-      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleThermostatModal(false,'thermostat')">
-        <i class="fa fa-times text-danger"></i>
-        <span class="btn-name">{{_t('lb_close')}} </span>
-      </button>
-      <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleThermostatModal(schedule.model.thermostat,'thermostat')">
-        <i class="fa fa-check"></i>
-        <span class="btn-name">{{_t('lb_save')}}</span>
-      </button>
-    </div>
+  <!-- command -->
+  <div class="form-group">
+    <input type="checkbox" name="send_command" id="send_command" ng-model="schedule.model.thermostat.sendAction" ng-checked="schedule.model.thermostat.sendAction"
+    />
+    <label for="send_command">{{_t('dont_send_on_command')}}</label>
+  </div>
+
+  <!-- submit -->
+  <div class="form-group last">
+    <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleDevice(schedule.model.thermostat,'thermostats')">
+      {{_t('lb_save')}}
+    </button>
+    <button type="button" class="btn btn-text" title="{{_t('lb_close')}}" ng-click="handleDevice(false,false,'thermostat')">
+      {{_t('lb_cancel')}}
+    </button>
   </div>
 </div>
