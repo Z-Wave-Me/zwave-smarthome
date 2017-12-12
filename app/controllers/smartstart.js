@@ -195,7 +195,6 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
  */
 myAppController.controller('SmartStartListController', function ($scope, $timeout, $filter, cfg, dataFactory, expertService) {
  
-
   $scope.collection = {
     alert: {},
     all: [],
@@ -399,11 +398,12 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout,
     }, function (error) {
       $scope.dataHolder.state = null;
       if(error.status == 409) {
-        alertify.alertError($scope._t('error_smartstart_already_exists'));
+        alertify.alertError($scope._t('error_smartstart_already_exists')).set('onok', function(closeEvent){ 
+          captureToCanvas();
+        });
       } else {
         alertify.alertError($scope._t('error_smartstart_add_dsk'));
       }
-      
     });
   };
 

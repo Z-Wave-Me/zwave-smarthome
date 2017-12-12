@@ -137,7 +137,7 @@ var config_data = {
             'get_dsk':'ZWaveAPI/GetDSKCollection', // Get DSK collection
             'add_dsk':'ZWaveAPI/AddDSKEntry', // Add DSK
             'update_dsk':'ZWaveAPI/UpdateDSKEntry', // Update DSK
-            'remove_dsk':'ZWaveAPI/RemoveDSKEntry?dsk=', // Remove DSK
+            'remove_dsk':'ZWaveAPI/RemoveDSKEntry?id=', // Remove DSK
             'get_dsk_provisioning_list':'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
             'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST 
             'remove_dsk_collection':'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
