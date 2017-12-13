@@ -1,0 +1,13 @@
+<!-- status -->
+<div class="form-group">
+{{_t('lb_is')}}
+  <input type="number" class="form-control input-number" min="{{schedule.cfg.thermostat.min}}" max="{{schedule.cfg.thermostat.max}}"
+    ng-model="schedule.model.thermostat.status" ng-change="handleDevice(schedule.model.thermostat,'thermostats')">
+</div>
+
+<!-- command -->
+<div class="form-group">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="schedule.model.thermostat.sendAction" ng-checked="schedule.model.thermostat.sendAction" ng-change="handleDevice(schedule.model.thermostat,'thermostats')"
+  />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>

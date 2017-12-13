@@ -1,6 +1,19 @@
 <div class="device-available-block">
-  <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in schedule.availableDevices" ng-if="schedule.assignedDevices.indexOf(d.id) === -1"
-    ng-click="assignDevice(d)">{{d.metrics.title|cutText:true:20}}
-    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
-  </a>
+ 
+
+  <div class="accordion-entry" ng-repeat="r in schedule.rooms track by $index" ng-hide="!schedule.devicesInRoom[r.id]">
+     <!-- Accordion header -->
+  <h2 class="accordion-entry-title" ng-click="expandElement('room_' + r.id)">
+      <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}} <span class="item-cnt">({{schedule.devicesInRoom[r.id]}})</span>
+      <i class="fa accordion-arrow" ng-class="expand['room_' + r.id] ? 'fa-chevron-up':'fa-chevron-down'"></i>
+    </h2>
+    <!-- Accordion body -->
+    
+  <div class="accordion-entry-ctrl" ng-if="expand['room_' + r.id]">
+      <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in schedule.availableDevices" ng-if="d.location == r.id &&  schedule.assignedDevices.indexOf(d.id) === -1"
+      ng-click="assignDevice(d)">{{d.metrics.title|cutText:true:20}}
+      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+    </a>
+  </div>
+  </div>
 </div>

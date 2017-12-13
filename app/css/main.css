@@ -17072,43 +17072,44 @@ input[type="checkbox"]:not(.default):checked + label:before {
 
 /* Automation
 -------------------------------------------------- */
-/* line 3, ../sass/base/_automation.scss */
-.automation-report {
-  margin-bottom: 20px;
-}
 /* line 6, ../sass/base/_automation.scss */
-.automation-report .app-row-report {
+.automation-report.app-row-report {
   border: 0;
 }
 /* line 10, ../sass/base/_automation.scss */
-.automation-report .app-row-report .report-entry .report-col {
+.automation-report.app-row-report .report-entry .report-col {
   border-bottom: dotted 1px #cccccc;
-  padding: 0;
-  width: 33%;
+  vertical-align: top;
 }
-/* line 14, ../sass/base/_automation.scss */
-.automation-report .app-row-report .report-entry .report-col .form-group {
+/* line 15, ../sass/base/_automation.scss */
+.automation-report.app-row-report .report-entry .report-col .form-group {
   border: 0;
   margin: 0;
   padding: 0;
 }
-/* line 20, ../sass/base/_automation.scss */
-.automation-report .app-row-report .report-entry .report-ctrl {
+/* line 21, ../sass/base/_automation.scss */
+.automation-report.app-row-report .report-entry .report-ctrl {
   min-width: 50%;
 }
-/* line 23, ../sass/base/_automation.scss */
-.automation-report .app-row-report .report-entry input[type=radio] {
+/* line 24, ../sass/base/_automation.scss */
+.automation-report.app-row-report .report-entry input[type=radio] {
   margin: 0 5px 0;
+}
+/* line 29, ../sass/base/_automation.scss */
+.automation-report.app-row-report .form-collapsed {
+  background-color: #F6F6F6;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 /* Schedules
 -------------------------------------------------- */
-/* line 33, ../sass/base/_automation.scss */
+/* line 40, ../sass/base/_automation.scss */
 .table-calendar .first-col {
   width: 80px;
   background-color: #d9edf7;
 }
-/* line 37, ../sass/base/_automation.scss */
+/* line 44, ../sass/base/_automation.scss */
 .table-calendar th {
   text-align: center;
 }

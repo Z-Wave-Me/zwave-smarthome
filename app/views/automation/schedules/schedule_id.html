@@ -2,15 +2,16 @@
 <div ng-controller="AutomationScheduleIdController">
 
   <h2>{{_t('schedules')}}</h2>
-  <!-- <pre>{{schedule.model|json}}</pre>
-  <pre>{{schedule.input|json}}</pre> -->
   <!-- Form -->
   <form class="form form-page" ng-submit="storeSchedule(schedule.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/schedules/schedule_id_form.html'"></fieldset>
      <!-- Used -->
-     <legend>{{_t('assigned_devices')}}</legend>
-    <fieldset ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
+     <div ng-if="schedule.assignedDevices.length">
+        <legend>{{_t('assigned_devices')}}</legend>
+        <fieldset ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
+     </div>
+     
       <!-- Available -->
     <legend>{{_t('lb_available_devices')}}</legend>
     <fieldset ng-include="'app/views/automation/schedules/schedule_id_available.html'"></fieldset>
@@ -26,5 +27,7 @@
       </button>
     </fieldset>
   </form>
+ <!--  <pre>{{schedule.model|json}}</pre>
+  <pre>{{schedule.input|json}}</pre> -->
 </div>
 <!-- /ng-controller -->
