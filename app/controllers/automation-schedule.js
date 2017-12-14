@@ -217,13 +217,13 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   }
 
   /**
-     * Load rooms
-     */
-    $scope.loadRooms = function () {
-      dataFactory.getApi('locations').then(function (response) {
-          $scope.schedule.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
-      });
-     
+   * Load rooms
+   */
+  $scope.loadRooms = function () {
+    dataFactory.getApi('locations').then(function (response) {
+      $scope.schedule.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
+    });
+
   };
   $scope.loadRooms();
 
@@ -237,9 +237,9 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       $scope.schedule.availableDevices = devices.filter(function (v) {
         return whiteList.indexOf(v.deviceType) > -1;
       }).value();
-      $scope.schedule.devicesInRoom =  _.countBy($scope.schedule.availableDevices, function (v) {
+      $scope.schedule.devicesInRoom = _.countBy($scope.schedule.availableDevices, function (v) {
         return v.location;
-    });
+      });
     }, function (error) {});
   };
   $scope.loadDevices();
@@ -302,7 +302,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
         $scope.handleDevice(model, type);
         break;
     }
-   $scope.schedule.assignedDevices.push(device.id);
+    $scope.schedule.assignedDevices.push(device.id);
     return;
   };
 
@@ -321,24 +321,29 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
 
   };
 
-    /**
+  /**
    * Add or update device to the list (by type)
    * type: switches|dimmers|thermostats|locks
    */
-  $scope.expandParams = function (element,device) {
-   // $scope.expand = {};
-   var type = $scope.schedule.cfg[device.deviceType].paramsDevices;
-   var params = _.findWhere($scope.schedule.input.params.devices[type],{device: device.id});
+  $scope.expandParams = function (element, device) {
+
+    var type = $scope.schedule.cfg[device.deviceType].paramsDevices;
+    var params = _.findWhere($scope.schedule.input.params.devices[type], {
+      device: device.id
+    });
+
+    // Colapse all params except 'element'
+    _.filter($scope.expand, function (v, k) {
+      if (k != element) {
+        $scope.expand[k] = false;
+      }
+
+    });
     $scope.resetModel();
-    if(!element){
-      $scope.expandElement(element);
-      return;
-    }
-   
     
-      $scope.schedule.model[device.deviceType] = params;
-      $scope.expandElement(element);
-   
+    $scope.schedule.model[device.deviceType] = params;
+    $scope.expandElement(element);
+
 
 
   };
@@ -356,7 +361,9 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
         break;
         // switches|dimmers|thermostats|locks
       default:
-      index = _.findIndex($scope.schedule.input.params.devices[type],{device: device.id});
+        index = _.findIndex($scope.schedule.input.params.devices[type], {
+          device: device.id
+        });
         break;
     }
     if (index > -1) {
@@ -400,7 +407,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       $scope.resetModel(element);
       $scope.expandElement(element);
     }
-   
+
     if (!v) {
       return;
     }

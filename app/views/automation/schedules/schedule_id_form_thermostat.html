@@ -1,7 +1,6 @@
 <!-- status -->
 <div class="form-group">
-{{_t('lb_is')}}
-  <input type="number" class="form-control input-number" min="{{schedule.cfg.thermostat.min}}" max="{{schedule.cfg.thermostat.max}}"
+<input type="number" class="form-control input-number" min="{{schedule.cfg.thermostat.min}}" max="{{schedule.cfg.thermostat.max}}"
     ng-model="schedule.model.thermostat.status" ng-change="handleDevice(schedule.model.thermostat,'thermostats')">
 </div>
 

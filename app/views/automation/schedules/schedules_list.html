@@ -14,20 +14,30 @@
     </div>
     <div class="report-col report-ctrl report-ctrl-3">
       <div class="btn-wrapper">
+        <!-- expand/collapse -->
         <button type="button" class="btn btn-default l-hide" title="{{_t('lb_settings')}}" ng-click="expandNavi('autoDropdown_' + $index, $event)">
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="btn-group" ng-class="naviExpanded['autoDropdown_' + $index] ? 'btn-group-expanded': 'btn-group-collapsed'">
+           <!-- test -->
+            <button title="{{_t('btn_test')}}" class="btn btn-default"
+            ng-click="runTest()">
+            <i class="fa fa-play-circle"></i>
+          </button>
+           <!--edit -->
           <a ng-href="#schedules/{{v.id}}" class="btn btn-default" title="{{_t('lb_update')}}">
             <i class="fa fa-pencil text-primary"></i>
           </a>
+           <!-- activate -->
           <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
             ng-click="activateSchedule(v, v.active ? false : true)">
             <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
           </button>
+           <!-- clone -->
           <button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneSchedule(v)">
             <i class="fa fa-clone"></i>
             </button>
+             <!-- remove -->
             <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteSchedule({'id': v.id}, _t('lb_delete_confirm'))">
               <i class="fa fa-remove text-danger"></i>
             </button>

@@ -1,10 +1,11 @@
 <!-- <pre>{{schedule.assignedDevices|json}}</pre> -->
 <div class="automation-report app-row-report clearfix">
   <!-- Report body -->
-  <div class="report-entry" ng-repeat="d in schedule.availableDevices track by $index" ng-if="schedule.assignedDevices.indexOf(d.id) > -1">
+  <div class="report-entry" ng-repeat="d in schedule.availableDevices|orderBy: 'location' track by $index" ng-if="schedule.assignedDevices.indexOf(d.id) > -1">
     
       <div class="report-col">
-        <div class="clickable" ng-click="expandParams(d.deviceType + $index,d)">{{d.metrics.title}} - <em>{{schedule.rooms[d.location].title}}</em> </div>
+          <div ng-if="d.deviceType == 'toggleButton'">{{d.metrics.title}} - <em>{{schedule.rooms[d.location].title}}</em> </div>
+        <div class="clickable"  ng-if="d.deviceType != 'toggleButton'" ng-click="expandParams(d.deviceType + $index,d)">{{d.metrics.title}} - <em>{{schedule.rooms[d.location].title}}</em> </div>
         <div class="form-collapsed form-inline" ng-if="expand[d.deviceType + $index]" ng-include="'app/views/automation/schedules/schedule_id_form_'+ d.deviceType +'.html'"></div>
       </div>
       <div class="report-col report-ctrl form-inline">

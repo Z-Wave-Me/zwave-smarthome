@@ -1,7 +1,6 @@
 <!-- status -->
 <div class="form-group">
-    {{_t('lb_is')}} 
-  <input type="number" class="form-control input-number" min="{{schedule.cfg.switchMultilevel.min}}" max="{{schedule.cfg.switchMultilevel.max}}"
+   <input type="number" class="form-control input-number" min="{{schedule.cfg.switchMultilevel.min}}" max="{{schedule.cfg.switchMultilevel.max}}"
     ng-model="schedule.model.switchMultilevel.status" ng-change="handleDevice(schedule.model.switchMultilevel,'dimmers')">
 
 </div>
