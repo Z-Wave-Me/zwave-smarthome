@@ -1,0 +1,16 @@
+
+  <div class="header">IF</div>
+  <div class="content form-inline">
+    <!-- Select -->
+    <div class="form-group last">
+      <!-- <label>{{_t('Device')}}</label> -->
+      <select name="" id="" class="form-control" 
+      ng-model="rule.model.sourceDevice.id"
+      ng-change="onSourceDeviceChange(rule.model.sourceDevice.id)">
+        <option value="{{v.id}}" ng-repeat="v in rule.devices">{{v.title}} {{v.deviceType}}</option>
+      </select>
+      <span></span>
+    </div>
+    <!-- Form-->
+    <div class="form-group last" ng-include="'app/views/automation/rules/' + rule.input.params.sourceDevice.filterIf +'.html'" ng-if="rule.input.params.sourceDevice.filterIf"></div>
+  </div>

@@ -1,0 +1,17 @@
+{
+  "instanceId": "0",
+  "moduleId": "Rules",
+  "active": "true",
+  "title": "If -> Then",
+  "params": {
+    "sourceDevice": {
+      "filterIf": "scene",
+      "scene": {
+        "device": "LightScene_58"
+      }
+    },
+    "targets": [
+      
+    ]
+  }
+}

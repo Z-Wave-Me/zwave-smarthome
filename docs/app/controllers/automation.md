@@ -43,5 +43,43 @@ Delete instance
 
 
 
+## AutomationMockController
+Aoutomation mock controller
+
+### AutomationMockController.loadLocations() 
+
+Load locations
+
+
+
+## AutomationRuleIdController
+Aoutomation rule detail controller
+
+### AutomationRuleIdController.loadDevices() 
+
+Load devices
+
+
+### AutomationRuleIdController.onSourceDeviceChange() 
+
+On source device change
+
+
+### AutomationRuleIdController.onSourceDeviceChangeStatus() 
+
+On source device change value
+
+
+### AutomationRuleIdController.loadModule() 
+
+Load module
+
+
+### AutomationRuleIdController.storeInstance() 
+
+Store instance
+
+
+
 
 * * *

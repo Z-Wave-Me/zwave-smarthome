@@ -101,5 +101,9 @@ Upload a file
 Catch a key event
 
 
+## enterSubmit
+Submit form on pressing Enter (without <form> tag)
+
+
 
 * * *

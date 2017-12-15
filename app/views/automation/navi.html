@@ -1,15 +1,15 @@
 <div class="tabs-wrap form-inline" bind-class-on-scroll offset="50" scroll-class="fix-me-top">
     <div class="btn-group btn-group-justified btn-goup-tabs">
-        <a class="btn btn-default" title="{{_t('scenes')}}" ng-href="#automation/Scenes" 
-           ng-class="{'active': automation.moduleId == 'Scenes'}">
+        <a class="btn btn-default" title="{{_t('scenes')}}" ng-href="#scenes" 
+           ng-class="{'active': routeMatch('/scenes')}">
             <i class="fa fa-lightbulb-o"></i> <span class="btn-name">{{_t('scenes')}}</span>
         </a>
         <a class="btn btn-default" title="{{_t('rules')}}" ng-href="#automation/Rules"  
         ng-class="{'active': automation.moduleId == 'Rules'}">
             <i class="fa fa-sliders"></i> <span class="btn-name">{{_t('rules')}}</span>
         </a>
-        <a class="btn btn-default" title="{{_t('schedules')}}" ng-href="#automation/Schedules"  
-        ng-class="{'active': automation.moduleId == 'Schedules'}">
+        <a class="btn btn-default" title="{{_t('schedules')}}" ng-href="#schedules"  
+        ng-class="{'active': routeMatch('/schedules')}">
             <i class="fa fa-calendar-check-o"></i> <span class="btn-name">{{_t('schedules')}}</span>
         </a>
     </div>

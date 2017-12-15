@@ -41,6 +41,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         logInApi: logInApi,
         sessionApi: sessionApi,
         getApiLocal: getApiLocal,
+        runJs: runJs,
         getApi: getApi,
         deleteApi: deleteApi,
         deleteApiFormdata: deleteApiFormdata,
@@ -56,7 +57,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         xmlToJson: xmlToJson,
         uploadApiFile: uploadApiFile,
         putCfgXml: putCfgXml,
-        //getJSCmd: getJSCmd,
         refreshZwaveApiData: refreshZwaveApiData,
         getSystemCmd: getSystemCmd,
         getLanguageFile: getLanguageFile,
@@ -164,6 +164,27 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
 
     }
+
+    /**
+     * Run zway JS
+     * @param {string} param
+     * @returns {unresolved}
+     */
+    function runJs(params) {
+      return $http({
+         method: "get",
+         url: cfg.server_url + cfg.zwave_jsrun_url + params,
+         headers: {
+          'Accept-Language': lang,
+          'ZWAYSession': ZWAYSession
+         }
+     }).then(function (response) {
+         return response;
+     }, function (response) {// something went wrong
+         //return response;
+         return $q.reject(response);
+     });
+ }
 
     /**
      * Get ZAutomation api data
@@ -639,6 +660,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             return $q.reject(response);
         });
     }
+
+     
+
 
     /**
      * Get data holder from ZWaveAPI api

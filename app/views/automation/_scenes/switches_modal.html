@@ -1,0 +1,42 @@
+<!-- switchesModal -->
+<div id="switchesModal " class="appmodal" ng-if="modalArr.switches">
+  <div class="appmodal-in">
+    <div class="appmodal-header">
+      <span class="appmodal-close" ng-click="handleModal('switches', $event)">
+        <i class="fa fa-times"></i>
+      </span>
+      <h3>Switch</h3>
+    </div>
+    <div class="appmodal-body">
+      <div class="fieldset">
+        <!-- Switch select -->
+        <div class="form-group  form-inline">
+          <select class="form-control">
+            <option ng-repeat="v in mock.modules.switches.all">{{v}}</option>
+          </select>
+        </div>
+        <!--on/off -->
+        <div class="form-group">
+          <input type="checkbox" name="on_off" id="on_off" ng-model="scene.input.on_off" ng-checked="scene.input.on_off" />
+          <label for="on_off">{{scene.input.on_off ? 'On' : 'Off'}}</label>
+        </div>
+        <!-- command -->
+        <div class="form-group">
+          <input type="checkbox" name="send_command" id="send_command" ng-model="scene.input.send_command" ng-checked="scene.input.send_command"
+          />
+          <label for="send_command">Don't send On command, if device is already turned On, similarly for Off</label>
+        </div>
+      </div>
+    </div>
+    <div class="appmodal-footer">
+      <button type="button" class="btn btn-default" title="{{_t('lb_close')}}" ng-click="handleModal('switches', $event)">
+        <i class="fa fa-times text-danger"></i>
+        <span class="btn-name">{{_t('lb_close')}} </span>
+      </button>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit" ng-click="handleModal('switches', $event)">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </div>
+  </div>
+</div>

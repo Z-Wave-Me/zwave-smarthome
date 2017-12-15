@@ -1,0 +1,30 @@
+/* Label
+-------------------------------------------------- */
+.label-wrap{
+  .label{
+    margin-right: $spacing-half;
+  }
+}
+
+.label-round{
+  width: 32px;
+  height:32px;
+  padding: &spacing-half;
+  background-color: #E9E9E9;
+  border-radius: 50%;
+  line-height: 32px;
+  text-align: center;
+  font-size: 90%;
+  & > span{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    
+   
+  }
+  &.is-48px{
+    width: 48px;
+    height:48px;
+    line-height: 48px;
+  }
+}

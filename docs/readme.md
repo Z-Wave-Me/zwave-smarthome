@@ -22,6 +22,8 @@ name | overview
 [app\controllers\app-online.js](app/controllers/app-online.md) | _Controllers that handle the Online apps._
 [app\controllers\app.js](app/controllers/app.md) | _Controllers that handle the Local apps, Online Apps and Active apps._
 [app\controllers\auth.js](app/controllers/auth.md) | _Controllers that handle the authentication of existing users, as well as forgot password._
+[app\controllers\automation-scene.js](app/controllers/automation-scene.md) | _Controllers that handls scenes_
+[app\controllers\automation-schedule.js](app/controllers/automation-schedule.md) | _Controllers that handls schedules_
 [app\controllers\automation.js](app/controllers/automation.md) | _Controllers that handle automation actions – scenes, rules, schedules._
 [app\controllers\base.js](app/controllers/base.md) | _The parent controller that stores all function used in the child controllers._
 [app\controllers\camera.js](app/controllers/camera.md) | _Controllers that handle all Camera actions – manage and add camera._
@@ -53,6 +55,7 @@ name | overview
 [app\controllers\rss.js](app/controllers/rss.md) | _Controllers that handle all Camera actions – manage and add camera._
 [app\controllers\skin.js](app/controllers/skin.md) | _Controllers that handle all Skins actions._
 [app\controllers\smartstart.js](app/controllers/smartstart.md) | _Handles Z-Wave SmartStart process._
+[app\controllers\wifiplug.js](app/controllers/wifiplug.md) | _Controllers that handle all Wifi Plug actions – manage and add wifi plugs._
 [app\controllers\zwave-commands.js](app/controllers/zwave-commands.md) | _Handles expert commands  in the device hardware configuration._
 [app\controllers\zwave-configuration.js](app/controllers/zwave-configuration.md) | _Handles actions in the device hardware configuration._
 [app\controllers\zwave-exclude.js](app/controllers/zwave-exclude.md) | _Handles Reset/Remove proccess of elemnts._
@@ -118,4 +121,6 @@ name | overview
 [app\services\services-expert.js](app/services/services-expert.md) | _Common functions that are used within device hardware configuration_
 [app\services\services.js](app/services/services.md) | _Stores methods that are used within controllers._
 - - -
+
+
 

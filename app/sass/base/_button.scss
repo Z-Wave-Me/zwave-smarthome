@@ -55,6 +55,11 @@
   color: $app-body-color;
   background-color: #FFFFFF;
   border-color: #CCCCCC;
+  &[disabled]{
+    .fa {
+      color: lighten($app-body-color,60%);
+    }
+  }
 }
 
 .btn-delete {
@@ -106,6 +111,7 @@
   border: 0 none;
   background-color: transparent !important;
 }
+
 
 .btn-small {
   font-size: 90%;

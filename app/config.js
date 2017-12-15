@@ -203,8 +203,8 @@ var config_data = {
         'zwave_api_url': 'ZWaveAPI/',
         // ZWave JS url
         'zwave_js_url': 'JS/',
-        // ZWave run JS url - DEPRECATED
-        //'zwave_jsrun_url': 'JS/Run/',
+        // ZWave run JS url
+        'zwave_jsrun_url': 'JS/Run/',
         // Local data path
         'local_data_url': 'storage/data/',
         // Help data path

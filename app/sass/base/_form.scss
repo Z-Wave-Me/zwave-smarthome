@@ -23,6 +23,11 @@
   }
 }
 
+input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
+  /* line-height: 34px; */
+ line-height: 1.42857;
+}
+
 
 .input-group-addon {
   border: solid 1px #CCCCCC;
@@ -46,6 +51,9 @@ input[type=checkbox] {
   }
 
 }
+.checkbox{
+  margin-right: $spacing;
+}
 
 input[type=radio] {
    @include radioScale(1.6, $spacing);
@@ -59,8 +67,6 @@ input[type=radio] {
   margin-bottom: $spacing-double;
   background-color: #FFFFFF;
   border: solid 1px $app-border-color;
-  h3 {
-  }
   .form-group {
     border-bottom: solid 1px $app-border-color;
     padding-bottom: $spacing;
@@ -69,7 +75,7 @@ input[type=radio] {
     }
     &.last {
       border-bottom: 0;
-      //padding-bottom: 0;
+      padding-bottom: 0;
       margin-bottom: 0;
     }
   }
@@ -91,11 +97,29 @@ input[type=radio] {
 .inputfile + label {
   cursor: pointer;
 }
+legend,.legend{
+  font-size: 110%;
+  font-weight: bold;
+  padding: 0 $spacing $spacing-half $spacing;
+  border-bottom: 1px solid #e5e5e5;
+  &.has-control{
+    display: flex;
+    justify-content: space-between; 
+  }
+}
 
 fieldset, .fieldset {
   padding: $spacing;
   h1,h2,h3{
       margin: 0;
+  }
+  &.expanded{
+    padding: $spacing;
+  
+    .form-group {
+      border-bottom: 0;
+      
+    }
   }
 }
 
@@ -147,6 +171,12 @@ fieldset.submit-entry {
 }
 .form-block{
     margin: $spacing 0 0 0;
+}
+
+.input-number {
+  display: inline-block;
+  padding: $spacing-half;
+  width: 4em !important;
 }
 
 /* Config form

@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.8.0-RC-9',
+        'app_version': '1.8.0-RC-10',
         // Application (DIST) built date
-        'app_built': '08-12-2017 15:08:00',
+        'app_built': '15-12-2017 15:16:26',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -135,11 +135,11 @@ var config_data = {
             'send_pulse_train': 'RF433API/Send',
             'reorder': 'ZAutomation/api/v1/devices/reorder',
             'get_dsk':'ZWaveAPI/GetDSKCollection', // Get DSK collection
-            'add_dsk':'ZWaveAPI/AddDSKEntry?dsk=', // Add DSK
+            'add_dsk':'ZWaveAPI/AddDSKEntry', // Add DSK
             'update_dsk':'ZWaveAPI/UpdateDSKEntry', // Update DSK
-            'remove_dsk':'ZWaveAPI/RemoveDSKEntry?dsk=', // Remove DSK
+            'remove_dsk':'ZWaveAPI/RemoveDSKEntry?id=', // Remove DSK
             'get_dsk_provisioning_list':'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
-            'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry?dsk=', // Add DSK to ProvisioningList (Response with added DSK) GET 
+            'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST 
             'remove_dsk_collection':'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
             'enable_smart_start':'JS/Run/zway.SmartStartEnable()', // enable SmartStart
         },
@@ -203,8 +203,8 @@ var config_data = {
         'zwave_api_url': 'ZWaveAPI/',
         // ZWave JS url
         'zwave_js_url': 'JS/',
-        // ZWave run JS url - DEPRECATED
-        //'zwave_jsrun_url': 'JS/Run/',
+        // ZWave run JS url
+        'zwave_jsrun_url': 'JS/Run/',
         // Local data path
         'local_data_url': 'storage/data/',
         // Help data path
