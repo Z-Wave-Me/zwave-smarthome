@@ -1,0 +1,54 @@
+<!-- The list -->
+<div class="app-row app-row-report clearfix">
+  <div class="report-entry bcg-active" ng-repeat="v in schedules.all track by $index" ng-class="{'bcg-danger':!v.active}">
+     <div class="report-col report-media">
+      <figure class="label-round is-48px">
+        <span>{{v.params.times[0]}}</span>
+      </figure>
+    </div>
+    <div class="report-col report-body">
+      <a href="#schedules/{{v.id}}">{{v.title}}</a>
+      <div class="label-wrap">
+        <span class="label label-info" title="{{_t('day_' + d)}}" ng-repeat="d in v.params.weekdays">{{_t('day_short_' + d)}}</span>
+      </div>
+    </div>
+    <div class="report-col report-ctrl report-ctrl-3">
+      <div class="btn-wrapper">
+        <!-- expand/collapse -->
+        <button type="button" class="btn btn-default l-hide" title="{{_t('lb_settings')}}" ng-click="expandNavi('autoDropdown_' + $index, $event)">
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="btn-group" ng-class="naviExpanded['autoDropdown_' + $index] ? 'btn-group-expanded': 'btn-group-collapsed'">
+          <!-- test -->
+          <button title="{{_t('btn_test')}}" class="btn btn-default" ng-disabled="!_.contains(schedules.enableTest, v.id)" ng-click="runScheduleTest(v)">
+            <bb-row-spinner spinner="rowSpinner[v.id]" icon="'fa-play-circle-o text-success'">
+            </bb-row-spinner>
+          </button>
+          <!--edit -->
+          <a ng-href="#schedules/{{v.id}}" class="btn btn-default" title="{{_t('lb_update')}}">
+            <i class="fa fa-pencil text-primary"></i>
+          </a>
+          <!-- activate -->
+          <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default" ng-click="activateSchedule(v, v.active ? false : true)">
+            <i class="fa " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
+          </button>
+          <!-- clone -->
+          <button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneSchedule(v)">
+            <i class="fa fa-clone"></i>
+          </button>
+          <!-- remove -->
+          <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteSchedule({'id': v.id}, _t('lb_delete_confirm'))">
+            <i class="fa fa-remove text-danger"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add new -->
+<div class="block text-right">
+  <a class="btn btn-default" href="#schedules/0">
+    <i class="fa fa-plus text-success"></i>
+    <span class="btn-name">{{_t('add_new')}}</span>
+  </a>
+</div>

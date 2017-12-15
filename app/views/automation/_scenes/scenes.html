@@ -1,0 +1,8 @@
+<h2 class="accordion-entry-title" ng-click="expandElement('scenes')">
+    <i class="fa fa-lightbulb-o fa-fw"></i>
+    {{_t('Scenes to activate')}}
+    <i class="fa accordion-arrow" ng-class="expand.scenes ? 'fa-chevron-up':'fa-chevron-down'"></i>
+</h2>
+<div class="accordion-entry-ctrl" ng-if="expand.scenes">
+    List
+</div>

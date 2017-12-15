@@ -1,0 +1,18 @@
+{
+  "instanceId": "0",
+  "moduleId": "Rules",
+  "active": "true",
+  "title": "If -> Then",
+  "params": {
+    "sourceDevice": {
+      "filterIf": "sensorDiscrete",
+      "sensorDiscrete": {
+        "device": "ZWayVDev_zway_8-0-91-DS",
+        "level": "2"
+      }
+    },
+    "targets": [
+      
+    ]
+  }
+}

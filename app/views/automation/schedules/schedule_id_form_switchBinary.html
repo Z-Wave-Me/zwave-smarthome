@@ -1,0 +1,15 @@
+
+  <!-- switch -->
+  <div class="form-group">
+    <input type="checkbox" name="on_off" id="on_off" ng-model="schedule.model.switchBinary.status" ng-checked="schedule.model.switchBinary.status == 'on'"
+      ng-true-value="on" ng-false-value="off" ng-change="handleDevice(schedule.model.switchBinary,'switches')" />
+    <label for="on_off">{{schedule.model.switchBinary.status}}</label>
+
+  </div>
+
+  <!-- command -->
+  <div class="form-group">
+      <input type="checkbox" name="send_command" id="send_command" ng-model="schedule.model.switchBinary.sendAction" ng-checked="schedule.model.switchBinary.sendAction" ng-change="handleDevice(schedule.model.switchBinary,'switches')"
+      />
+      <label for="send_command">{{_t('dont_send_on_command')}}</label>
+  </div>

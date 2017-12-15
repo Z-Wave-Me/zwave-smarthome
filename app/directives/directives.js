@@ -444,6 +444,30 @@ myApp.directive('bbKeyEvent', function () {
         });
     };
 });
+/**
+ * Submit form on pressing Enter (without <form> tag)
+ * @class enterSubmit
+ */
+myApp.directive('enterSubmit', function () {
+  return{
+    restrict: 'A',
+    link:  function (scope, element, attrs) {
+      element.bind('keydown', function (event) {
+        var code = event.keyCode || event.which;
+          if (code === 13) {
+            if (!event.shiftKey) {
+            scope.$apply(function () {
+                  scope.$eval(attrs.enterSubmit);
+              });
+  
+              event.preventDefault();
+            }
+          }
+      });
+  }
+  }
+ 
+});
 
 /**
  * Navigate DSK form fields with value === 5 or arrow keys

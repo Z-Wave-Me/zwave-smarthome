@@ -274,6 +274,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             request.timeout = request.cancel.promise;
         });
         /**
+         * Reset expanded elements
+         */
+        $scope.expand = {};
+        /**
          * Reset fatal error object
          */
         dataService.resetFatalError();
@@ -550,8 +554,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         } else {
             $scope.modalArr[key] = !($scope.modalArr[key]);
         }
-
-        $event.stopPropagation();
+        if($event){
+          $event.stopPropagation();
+        }
+        
     };
     $scope.expand = {};
     /**

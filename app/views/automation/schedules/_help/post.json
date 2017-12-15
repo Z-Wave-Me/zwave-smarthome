@@ -1,0 +1,42 @@
+{
+  "instanceId": "0",
+  "moduleId": "Schedules",
+  "active": "true",
+  "title": "New Schedule Test",
+  "params": {
+    "weekdays": ["2", "4", "6", "0"],
+    "times": ["00:00", "06:00", "10:30", "14:56"],
+    "devices": {
+      "switches": [{
+        "device": "ZWayVDev_zway_9-0-37",
+        "status": "off",
+        "sendAction": true
+      }, {
+        "device": "ZWayVDev_zway_9-0-37",
+        "status": "off",
+        "sendAction": false
+      }, {
+        "device": "ZWayVDev_zway_10-0-37",
+        "sendAction": false
+      }],
+      "dimmers": [{
+        "device": "DummyDevice_39",
+        "status": 25,
+        "sendAction": false
+      }, {
+        "device": "DummyDevice_39",
+        "status": 245,
+        "sendAction": false
+      }],
+      "thermostats": [{
+        "status": 64,
+        "sendAction": false
+      }],
+      "locks": [{
+        "status": "close",
+        "sendAction": true
+      }],
+      "scenes": ["Scenes_80"]
+    }
+  }
+}
