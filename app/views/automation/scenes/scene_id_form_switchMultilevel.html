@@ -1,0 +1,12 @@
+<!-- status -->
+<div class="form-group">
+   <input type="number" class="form-control input-number" min="{{scene.cfg.switchMultilevel.min}}" max="{{scene.cfg.switchMultilevel.max}}"
+    ng-model="scene.model.switchMultilevel.status" ng-change="handleDevice(scene.model.switchMultilevel,'dimmers')">
+
+</div>
+<!-- command -->
+<div class="form-group">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="scene.model.switchMultilevel.sendAction" ng-checked="scene.model.switchMultilevel.sendAction"
+    ng-change="handleDevice(scene.model.switchMultilevel,'dimmers')" />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>

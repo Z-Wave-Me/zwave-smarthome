@@ -57,6 +57,12 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.admin,
                     routeName: 'automation'
                 }).
+                 //Scenes
+                 when('/scenes', {
+                  templateUrl: 'app/views/automation/scenes/scenes.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
                 //Scenes
                 when('/scenes/:id', {
                     templateUrl: 'app/views/automation/scenes/scene_id.html',

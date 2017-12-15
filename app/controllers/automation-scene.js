@@ -1,13 +1,13 @@
 /**
- * @overview Controllers that handls schedules
+ * @overview Controllers that handls scenes
  * @author Martin Vach
  */
 /**
- * Controller that handles list of schedules
- * @class AutomationScheduleController
+ * Controller that handles list of scenes
+ * @class AutomationSceneController
  */
-myAppController.controller('AutomationScheduleController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
-  $scope.schedules = {
+myAppController.controller('AutomationSceneController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+  $scope.scenes = {
     state: '',
     enableTest: [],
 
@@ -18,42 +18,42 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
    * Load schedules
    * @returns {undefined}
    */
-  $scope.loadSchedules = function () {
+  $scope.loadScenes = function () {
     dataFactory.getApi('instances', null, true).then(function (response) {
-      $scope.schedules.all = _.chain(response.data.data).flatten().where({
-        moduleId: 'Schedules'
+      $scope.scenes.all = _.chain(response.data.data).flatten().where({
+        moduleId: 'Scenes'
       }).filter(function (v) {
         var size = 0;
-        for (k in v.params.devices) {
-          if (v.params.devices[k].length) {
+        for (k in v.params) {
+          if (v.params[k].length) {
             size++;
           }
         }
         if (size) {
-          $scope.schedules.enableTest.push(v.id)
+          $scope.scenes.enableTest.push(v.id)
         }
         return v;
       }).value();
-      if (!_.size($scope.schedules.all)) {
-        $scope.schedules.state = 'blank';
+      if (!_.size($scope.scenes.all)) {
+        $scope.scenes.state = 'blank';
         return;
       }
-      $scope.schedules.state = 'success';
+      $scope.scenes.state = 'success';
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
     });
   };
-  $scope.loadSchedules();
+  $scope.loadScenes();
 
   /**
-   * Run schedule test
+   * Run test
    * @param {object} instance
    */
-  $scope.runScheduleTest = function (instance) {
+  $scope.runSceneTest = function (instance) {
     $scope.toggleRowSpinner(instance.id);
     $timeout($scope.toggleRowSpinner, 1000);
-    var params = 'controller.emit("scheduledScene.run.' + instance.id + '")';
-    dataFactory.runJs(params).then(function (response) {
+    var params = '/Scenes_' + instance.id + '/command/on';
+    dataFactory.getApi('devices',params).then(function (response) {
       $timeout($scope.toggleRowSpinner, 2000);
     }, function (error) {
       $timeout($scope.toggleRowSpinner, 2000);
@@ -62,11 +62,11 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
 
 
   /**
-   * Activate schedule
+   * Activate
    * @param {object} input 
    * @param {boolean} activeStatus 
    */
-  $scope.activateSchedule = function (input, state) {
+  $scope.activateScene = function (input, state) {
     input.active = state;
     if (!input.id) {
       return;
@@ -79,33 +79,27 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
 
 
   };
-
-
-
   /**
-   * Clone schedule
+   * Clone 
    * @param {object} input
    * @returns {undefined}
    */
-  $scope.cloneSchedule = function (input) {
+  $scope.cloneScene = function (input) {
     input.id = 0;
     input.title = input.title + ' - copy';
     dataFactory.postApi('instances', input).then(function (response) {
-      $location.path('/schedules/' + response.data.data.id);
+      $location.path('/scenes/' + response.data.data.id);
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
     });
   };
 
   /**
-   * Delete schedule
+   * Delete
    */
-  $scope.deleteSchedule = function (input, message) {
+  $scope.deleteScene = function (input, message) {
     alertify.confirm(message, function () {
       dataFactory.deleteApi('instances', input.id).then(function (response) {
-        /*dataService.showNotifier({
-          message: $scope._t('delete_successful')
-        });*/
         $scope.reloadData();
       }, function (error) {
         alertify.alertError($scope._t('error_delete_data'));
@@ -118,14 +112,12 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
 
 
 /**
- * Controller that handles schedules
- * @class AutomationScheduleIdController
+ * Controller that handles scene detail
+ * @class AutomationSceneIdController
  */
-myAppController.controller('AutomationScheduleIdController', function ($scope, $routeParams, $location, $route, cfg, dataFactory, dataService, _, myCache) {
-  $scope.schedule = {
+myAppController.controller('AutomationSceneIdController', function ($scope, $routeParams, $location, $route, cfg, dataFactory, dataService, _, myCache) {
+  $scope.scene = {
     model: {
-      weekday: {},
-      time: '',
       switchBinary: {
         device: '',
         status: 'off',
@@ -148,7 +140,6 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       },
       toggleButton: ''
     },
-    days: [1, 2, 3, 4, 5, 6, 0],
     rooms: [],
     devicesInRoom: [],
     availableDevices: [],
@@ -180,19 +171,15 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     },
     input: {
       instanceId: $routeParams.id,
-      moduleId: "Schedules",
+      moduleId: "Scenes",
       active: true,
       title: "",
       params: {
-        weekdays: [],
-        times: ['00:00'],
-        devices: {
-          switches: [],
-          dimmers: [],
-          thermostats: [],
-          locks: [],
-          scenes: []
-        }
+        switches: [],
+        dimmers: [],
+        thermostats: [],
+        locks: [],
+        scenes: []
       }
     }
   };
@@ -200,7 +187,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   $scope.orig = {
     model: {}
   };
-  $scope.orig.model = angular.copy($scope.schedule.model);
+  $scope.orig.model = angular.copy($scope.scene.model);
 
   /**
    * Load instances
@@ -208,18 +195,18 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
       var instance = instances.data.data;
-      var assignedDevices = $scope.schedule.assignedDevices;
-      angular.extend($scope.schedule.input, {
+      var assignedDevices = $scope.scene.assignedDevices;
+      angular.extend( $scope.scene.input, {
         title: instance.title,
         active: instance.active,
         params: instance.params
       });
-      angular.forEach(instance.params.devices, function (v, k) {
+      angular.forEach(instance.params, function (v, k) {
         switch (k) {
           case 'scenes':
             _.filter(v, function (s) {
               if (assignedDevices.indexOf(s) === -1) {
-                $scope.schedule.assignedDevices.push(s);
+                $scope.scene.assignedDevices.push(s);
               }
 
             })
@@ -227,7 +214,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
           default:
             _.filter(v, function (d) {
               if (assignedDevices.indexOf(d.device) === -1) {
-                $scope.schedule.assignedDevices.push(d.device);
+                $scope.scene.assignedDevices.push(d.device);
               }
 
             })
@@ -250,7 +237,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    */
   $scope.loadRooms = function () {
     dataFactory.getApi('locations').then(function (response) {
-      $scope.schedule.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
+      $scope.scene.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
     });
 
   };
@@ -261,12 +248,12 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    */
   $scope.loadDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
-      var whiteList = _.keys($scope.schedule.cfg);
+      var whiteList = _.keys( $scope.scene.cfg);
       var devices = dataService.getDevicesData(response.data.data.devices);
-      $scope.schedule.availableDevices = devices.filter(function (v) {
+      $scope.scene.availableDevices = devices.filter(function (v) {
         return whiteList.indexOf(v.deviceType) > -1;
       }).value();
-      $scope.schedule.devicesInRoom = _.countBy($scope.schedule.availableDevices, function (v) {
+      $scope.scene.devicesInRoom = _.countBy( $scope.scene.availableDevices, function (v) {
         return v.location;
       });
     }, function (error) {});
@@ -274,36 +261,10 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   $scope.loadDevices();
 
   /**
-   * Toggle Weekday
-   */
-  $scope.toggleWeekday = function (day) {
-    day = day.toString();
-    var index = $scope.schedule.input.params.weekdays.indexOf(day);
-    if (index > -1) {
-      $scope.schedule.input.params.weekdays.splice(index, 1);
-    } else {
-      $scope.schedule.input.params.weekdays.push(day);
-
-    }
-
-  };
-
-  /**
-   * Add time
-   */
-  $scope.addTime = function (time) {
-    var index = $scope.schedule.input.params.times.indexOf(time);
-    if (index === -1) {
-      $scope.schedule.input.params.times.push(time);
-    }
-
-  };
-
-  /**
    * Reset model
    */
   $scope.resetModel = function () {
-    $scope.schedule.model = angular.copy($scope.orig.model);
+    $scope.scene.model = angular.copy($scope.orig.model);
 
   };
 
@@ -325,13 +286,13 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
         break;
         // switches|dimmers|thermostats|locks
       default:
-        model = $scope.schedule.model[device.deviceType];
+        model = $scope.scene.model[device.deviceType];
         model.device = device.id;
-        type = $scope.schedule.cfg[device.deviceType].paramsDevices;
+        type = $scope.scene.cfg[device.deviceType].paramsDevices;
         $scope.handleDevice(model, type);
         break;
     }
-    $scope.schedule.assignedDevices.push(device.id);
+    $scope.scene.assignedDevices.push(device.id);
     return;
   };
 
@@ -340,11 +301,10 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    * @param {object} device 
    */
   $scope.unassignDevice = function (device) {
-    var index = $scope.schedule.assignedDevices.indexOf(device.id);
+    var index = $scope.scene.assignedDevices.indexOf(device.id);
     if (index > -1) {
-      $scope.schedule.assignedDevices.splice(index, 1);
+      $scope.scene.assignedDevices.splice(index, 1);
       removeDeviceFromParams(device);
-
 
     }
 
@@ -356,8 +316,8 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    */
   $scope.expandParams = function (element, device) {
 
-    var type = $scope.schedule.cfg[device.deviceType].paramsDevices;
-    var params = _.findWhere($scope.schedule.input.params.devices[type], {
+    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
+    var params = _.findWhere($scope.scene.input.params[type], {
       device: device.id
     });
 
@@ -370,7 +330,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     });
     $scope.resetModel();
 
-    $scope.schedule.model[device.deviceType] = params;
+    $scope.scene.model[device.deviceType] = params;
     $scope.expandElement(element);
 
 
@@ -382,21 +342,21 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    */
   function removeDeviceFromParams(device) {
     var index;
-    var type = $scope.schedule.cfg[device.deviceType].paramsDevices;
+    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
     switch (device.deviceType) {
       // scenes
       case 'toggleButton':
-        index = $scope.schedule.input.params.devices[type].indexOf(device.id);
+        index = $scope.scene.input.params[type].indexOf(device.id);
         break;
         // switches|dimmers|thermostats|locks
       default:
-        index = _.findIndex($scope.schedule.input.params.devices[type], {
+        index = _.findIndex( $scope.scene.input.params[type], {
           device: device.id
         });
         break;
     }
     if (index > -1) {
-      $scope.schedule.input.params.devices[type].splice(index, 1);
+      $scope.scene.input.params[type].splice(index, 1);
     }
 
 
@@ -407,22 +367,17 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    * type: switches|dimmers|thermostats|locks
    */
   $scope.handleDevice = function (v, type, element) {
-    /* if (element) {
-      $scope.expandElement(element);
-    } */
-    //$scope.expand = {};
-    //$scope.resetModel();
     if (!v || v.device == '') {
       return;
     }
     // Adding new device
-    var index = _.findIndex($scope.schedule.input.params.devices[type], {
+    var index = _.findIndex($scope.scene.input.params[type], {
       device: v.device
     });
     if (index > -1) {
-      $scope.schedule.input.params.devices[type][index] = v;
+      $scope.scene.input.params[type][index] = v;
     } else {
-      $scope.schedule.input.params.devices[type].push(v)
+      $scope.scene.input.params[type].push(v)
     }
 
 
@@ -440,29 +395,21 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     if (!v) {
       return;
     }
-    var index = $scope.schedule.input.params.devices.scenes.indexOf(v);
+    var index = $scope.scene.input.params.scenes.indexOf(v);
     if (index > -1) { // Update an item
-      $scope.schedule.input.params.devices.scenes[index] = v;
+      $scope.scene.input.params.scenes[index] = v;
     } else { // Add new item
-      $scope.schedule.input.params.devices.scenes.push(v)
+      $scope.scene.input.params.scenes.push(v)
     }
   };
 
   /**
-   * Remove device from the list (by type)
+   * Store 
    */
-  /* $scope.removeDeviceFromList = function (index, type) {
-    $scope.schedule.input.params.devices[type].splice(index, 1);
-
-
-  }; */
-  /**
-   * Store schedule
-   */
-  $scope.storeSchedule = function (input, redirect) {
+  $scope.storeScene = function (input, redirect) {
     dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
       if (redirect) {
-        $location.path('/schedules');
+        $location.path('/scenes');
       }
 
     }, function (error) {
