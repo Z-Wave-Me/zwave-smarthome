@@ -6,10 +6,11 @@
  * Controller that handles list of schedules
  * @class AutomationScheduleController
  */
-myAppController.controller('AutomationScheduleController', function ($scope, $routeParams, $location, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('AutomationScheduleController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
   $scope.schedules = {
     state: '',
-    all: []
+    enableTest: [],
+
   };
 
 
@@ -19,9 +20,20 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
    */
   $scope.loadSchedules = function () {
     dataFactory.getApi('instances', null, true).then(function (response) {
-      $scope.schedules.all = _.where(response.data.data, {
+      $scope.schedules.all = _.chain(response.data.data).flatten().where({
         moduleId: 'Schedules'
-      });
+      }).filter(function (v) {
+        var size = 0;
+        for (k in v.params.devices) {
+          if (v.params.devices[k].length) {
+            size++;
+          }
+        }
+        if (size) {
+          $scope.schedules.enableTest.push(v.id)
+        }
+        return v;
+      }).value();
       if (!_.size($scope.schedules.all)) {
         $scope.schedules.state = 'blank';
         return;
@@ -32,6 +44,23 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
     });
   };
   $scope.loadSchedules();
+
+  /**
+   * Run schedule test
+   * @param {object} instance
+   */
+  $scope.runScheduleTest = function (instance) {
+    $scope.toggleRowSpinner(instance.id);
+    console.log(instance)
+    $timeout($scope.toggleRowSpinner, 1000);
+    var params = 'controller.emit("scheduledScene.run.' + instance.id + '")';
+    dataFactory.runJs(params).then(function (response) {
+      $timeout($scope.toggleRowSpinner, 2000);
+    }, function (error) {
+      $timeout($scope.toggleRowSpinner, 2000);
+    });
+  };
+
 
   /**
    * Activate schedule
@@ -61,6 +90,7 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
    */
   $scope.cloneSchedule = function (input) {
     input.id = 0;
+    input.title = input.title + ' - copy';
     dataFactory.postApi('instances', input).then(function (response) {
       $location.path('/schedules/' + response.data.data.id);
     }, function (error) {
@@ -340,7 +370,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
 
     });
     $scope.resetModel();
-    
+
     $scope.schedule.model[device.deviceType] = params;
     $scope.expandElement(element);
 

@@ -12565,73 +12565,77 @@ img {
   background-color: #FFFFFF;
   border-color: #CCCCCC;
 }
+/* line 59, ../sass/base/_button.scss */
+.btn-default[disabled] .fa {
+  color: #a6a6a6;
+}
 
-/* line 60, ../sass/base/_button.scss */
+/* line 65, ../sass/base/_button.scss */
 .btn-delete {
   color: #0d0d0d;
   background: transparent;
   border: 0;
 }
-/* line 64, ../sass/base/_button.scss */
+/* line 69, ../sass/base/_button.scss */
 .btn-delete .fa {
   color: #d9534f;
 }
 
-/* line 69, ../sass/base/_button.scss */
+/* line 74, ../sass/base/_button.scss */
 .btn-default.active {
   background-color: #FFFFFF;
 }
 
-/* line 73, ../sass/base/_button.scss */
+/* line 78, ../sass/base/_button.scss */
 .btn,
 .btn-device-admin {
   font-size: 110%;
 }
-/* line 76, ../sass/base/_button.scss */
+/* line 81, ../sass/base/_button.scss */
 .btn .fa,
 .btn-device-admin .fa {
   font-size: 120%;
 }
 
-/* line 81, ../sass/base/_button.scss */
+/* line 86, ../sass/base/_button.scss */
 .btn-submit {
   color: #FFFFFF;
   border: solid 1px #80AD80;
   background-color: #4e794e;
 }
-/* line 85, ../sass/base/_button.scss */
+/* line 90, ../sass/base/_button.scss */
 .btn-submit:hover, .btn-submit:focus {
   background-color: #80AD80;
 }
 
-/* line 91, ../sass/base/_button.scss */
+/* line 96, ../sass/base/_button.scss */
 .btn-installed {
   border: 0 none;
   background-color: none !important;
 }
 
-/* line 96, ../sass/base/_button.scss */
+/* line 101, ../sass/base/_button.scss */
 .btn-disabled {
   border: 0 none;
   background-color: transparent !important;
 }
 
-/* line 101, ../sass/base/_button.scss */
+/* line 107, ../sass/base/_button.scss */
 .btn-small {
   font-size: 90%;
 }
-/* line 103, ../sass/base/_button.scss */
+/* line 109, ../sass/base/_button.scss */
 .btn-small .fa {
   font-size: 95%;
 }
 
-/* line 109, ../sass/base/_button.scss */
+/* line 115, ../sass/base/_button.scss */
 .btn.btn-text {
   border: 0;
   background: transparent;
 }
 
-/* line 115, ../sass/base/_button.scss */
+/* line 121, ../sass/base/_button.scss */
 .btn-tag {
   display: block;
   position: relative;
@@ -12642,7 +12646,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 115, ../sass/base/_button.scss */
+  /* line 121, ../sass/base/_button.scss */
   .btn-tag {
     display: inline-block;
     position: static;
@@ -12650,7 +12654,7 @@ img {
     margin: 0 10px 10px 0;
   }
 }
-/* line 127, ../sass/base/_button.scss */
+/* line 133, ../sass/base/_button.scss */
 .btn-tag .fa {
   position: absolute;
   top: 5px;
@@ -12660,48 +12664,48 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 127, ../sass/base/_button.scss */
+  /* line 133, ../sass/base/_button.scss */
   .btn-tag .fa {
     position: static;
     margin: 0 0 0 10px;
     font-size: 120%;
   }
 }
-/* line 138, ../sass/base/_button.scss */
+/* line 144, ../sass/base/_button.scss */
 .btn-tag.btn-group {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 138, ../sass/base/_button.scss */
+  /* line 144, ../sass/base/_button.scss */
   .btn-tag.btn-group {
     display: table !important;
     width: 100%;
   }
-  /* line 142, ../sass/base/_button.scss */
+  /* line 148, ../sass/base/_button.scss */
   .btn-tag.btn-group .btn {
     float: none;
     display: table-cell;
   }
 }
-/* line 149, ../sass/base/_button.scss */
+/* line 155, ../sass/base/_button.scss */
 .btn-tag .btn-addon .fa {
   margin: 0;
 }
-/* line 153, ../sass/base/_button.scss */
+/* line 159, ../sass/base/_button.scss */
 .btn-tag .btn {
   text-align: left;
   font-size: 100%;
   margin: 0;
 }
-/* line 158, ../sass/base/_button.scss */
+/* line 164, ../sass/base/_button.scss */
 .btn-tag label {
   text-align: center !important;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 158, ../sass/base/_button.scss */
+  /* line 164, ../sass/base/_button.scss */
   .btn-tag label {
     width: 20px;
   }
@@ -12709,29 +12713,29 @@ img {
 
 /* Button tabs
 -------------------------------------------------- */
-/* line 170, ../sass/base/_button.scss */
+/* line 176, ../sass/base/_button.scss */
 .btn-goup-tabs {
   /* display: table;
   width: 100%;*/
   margin: 0 0 10px 0;
 }
-/* line 174, ../sass/base/_button.scss */
+/* line 180, ../sass/base/_button.scss */
 .btn-goup-tabs .btn {
   background-color: #FFFFFF;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 176, ../sass/base/_button.scss */
+/* line 182, ../sass/base/_button.scss */
 .btn-goup-tabs .btn.active {
   background-color: #f2f2f2;
 }
 @media only screen and (min-width: 768px) {
-  /* line 174, ../sass/base/_button.scss */
+  /* line 180, ../sass/base/_button.scss */
   .btn-goup-tabs .btn {
     padding: 10px;
   }
 }
-/* line 182, ../sass/base/_button.scss */
+/* line 188, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa {
   font-size: 130%;
   color: #404040;
@@ -12739,15 +12743,15 @@ img {
   font-size: 130%;
 } */
 }
-/* line 185, ../sass/base/_button.scss */
+/* line 191, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa.text-danger {
   color: #d9534f;
 }
-/* line 194, ../sass/base/_button.scss */
+/* line 200, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa {
   color: #80AD80;
 }
-/* line 196, ../sass/base/_button.scss */
+/* line 202, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa.text-danger {
   color: #d9534f;
 }
@@ -12755,12 +12759,12 @@ img {
 /* MIN WIDTH */
 /* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 206, ../sass/base/_button.scss */
+  /* line 212, ../sass/base/_button.scss */
   .fix-me-top .btn-goup-tabs {
     display: inline-block;
     width: auto;
   }
-  /* line 209, ../sass/base/_button.scss */
+  /* line 215, ../sass/base/_button.scss */
   .fix-me-top .btn-goup-tabs .btn {
     border: 0;
     background: transparent;
@@ -12771,17 +12775,17 @@ img {
     width: auto;
   }
 }
-/* line 221, ../sass/base/_button.scss */
+/* line 227, ../sass/base/_button.scss */
 .btn-tabs-2 .btn {
   width: 50%;
 }
 
-/* line 227, ../sass/base/_button.scss */
+/* line 233, ../sass/base/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
 
-/* line 233, ../sass/base/_button.scss */
+/* line 239, ../sass/base/_button.scss */
 .btn-tabs-4 .btn {
   width: 25%;
 }
@@ -12789,7 +12793,7 @@ img {
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
-/* line 243, ../sass/base/_button.scss */
+/* line 249, ../sass/base/_button.scss */
 .switch {
   position: relative;
   display: inline-block;
@@ -12799,7 +12803,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 243, ../sass/base/_button.scss */
+  /* line 249, ../sass/base/_button.scss */
   .switch {
     width: 60px;
     height: 34px;
@@ -12807,13 +12811,13 @@ img {
 }
 
 /* Hide default HTML checkbox */
-/* line 257, ../sass/base/_button.scss */
+/* line 263, ../sass/base/_button.scss */
 .switch input {
   display: none;
 }
 
 /* The slider */
-/* line 264, ../sass/base/_button.scss */
+/* line 270, ../sass/base/_button.scss */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -12827,7 +12831,7 @@ img {
   transition: .4s;
 }
 
-/* line 278, ../sass/base/_button.scss */
+/* line 284, ../sass/base/_button.scss */
 .slider:before {
   position: absolute;
   content: "";
@@ -12844,24 +12848,24 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 278, ../sass/base/_button.scss */
+  /* line 284, ../sass/base/_button.scss */
   .slider:before {
     height: 26px;
     width: 26px;
   }
 }
 
-/* line 300, ../sass/base/_button.scss */
+/* line 306, ../sass/base/_button.scss */
 input:checked + .slider:before {
   background-color: #80AD80;
 }
 
-/* line 304, ../sass/base/_button.scss */
+/* line 310, ../sass/base/_button.scss */
 input:focus + .slider {
   box-shadow: 0 0 1px #80AD80;
 }
 
-/* line 308, ../sass/base/_button.scss */
+/* line 314, ../sass/base/_button.scss */
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -12869,29 +12873,29 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-/* line 317, ../sass/base/_button.scss */
+/* line 323, ../sass/base/_button.scss */
 .slider.round {
   border-radius: 4px;
 }
 
-/* line 321, ../sass/base/_button.scss */
+/* line 327, ../sass/base/_button.scss */
 .slider.round:before {
   border-radius: 4px;
 }
 
 /* Button group hiden on small devices
 -------------------------------------------------- */
-/* line 329, ../sass/base/_button.scss */
+/* line 335, ../sass/base/_button.scss */
 .btn-wrapper {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 329, ../sass/base/_button.scss */
+  /* line 335, ../sass/base/_button.scss */
   .btn-wrapper {
     position: relative;
   }
-  /* line 332, ../sass/base/_button.scss */
+  /* line 338, ../sass/base/_button.scss */
   .btn-wrapper .btn-group {
     position: absolute;
     top: 100%;
@@ -12910,7 +12914,7 @@ input:checked + .slider:before {
     background-clip: padding-box;
     text-align: right;
   }
-  /* line 347, ../sass/base/_button.scss */
+  /* line 353, ../sass/base/_button.scss */
   .btn-wrapper .btn-group.btn-group-collapsed {
     display: none;
   }

@@ -1,4 +1,6 @@
 {
+  "assigned_devices": "Assigned devices",
+  "no_schedules_available": "There are no schedules available",
   "dont_send_on_command": "Don't send On command, if device is already turned On, similarly for Off",
   "switches": "Switches",
   "dimmers": "Dimmers",
