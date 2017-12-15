@@ -301,7 +301,11 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 if (item.category === 'wifiplug') {
                     $scope.dataHolder.modules.wifiplugIds.push(item.id);
                     isHidden = true;
-                }                
+                }
+                // hide system item
+                if (item.category === 'system') {
+                    isHidden = true;
+                }
                 // Hides singelton item with instance
 //                if (item.singleton && item.hasInstance) {
 //                    isHidden = true;
