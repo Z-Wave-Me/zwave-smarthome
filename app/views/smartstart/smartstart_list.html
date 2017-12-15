@@ -93,7 +93,7 @@
                   <i class="fa fa-info-circle text-primary"></i>
                 </button>
                 <!-- delete -->
-                <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v,_t('lb_delete_confirm'))">
+                <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="v.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
                   <i class="fa fa-trash text-danger"></i>
                 </button>
               </div>
