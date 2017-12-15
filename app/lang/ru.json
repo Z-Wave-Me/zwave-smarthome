@@ -847,7 +847,7 @@
     "manual_add": "Add Manually",
     "qr_code_desc": "Use the camera off your Smartphone or Laptop/PC to scan the QR code or add manually. You'll find this code somewhere on the box.",
     "error_smartstart_add_dsk": "Unable to add DSK",
-    "error_smartstart_already_exists": "DSK is already added!"
+    "error_smartstart_already_exists": "DSK is already added!",
   "assigned_devices": "Assigned devices",
   "no_schedules_available": "There are no schedules available",
   "dont_send_on_command": "Don't send On command, if device is already turned On, similarly for Off",
