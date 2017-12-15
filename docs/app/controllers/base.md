@@ -20,6 +20,7 @@
 ## BaseController
 The app base controller.
 
+**expand**:  , Reset expanded elements
 **naviExpanded**:  , Expand/collapse navigation
 **autocompleteExpanded**:  , Expand/collapse autocomplete
 **modalArr**:  , Open/close a modal window

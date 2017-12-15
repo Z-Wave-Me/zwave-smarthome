@@ -17,6 +17,10 @@
 
 * * *
 
+## SmartStartBaseController
+The controller that .
+
+
 ## SmartStartDskController
 The controller that include device with DSK.
 
@@ -72,19 +76,19 @@ Remov a DSK item
 ## SmartStartQrController
 The controller that include device by scanning QR code.
 
-### SmartStartQrController.resetState() 
+### SmartStartQrController.callbackQrCode() 
 
-Reset state to start
-
-
-### SmartStartQrController.scan() 
-
-Scan QR code
+Callback
 
 
-### SmartStartQrController.discover() 
+### SmartStartQrController.initQRCodeReader() 
 
-Discover the device
+Init QR-Code-Reader if supported
+
+
+### SmartStartQrController.initCanvas() 
+
+Init canvas to discover qrcode
 
 
 
