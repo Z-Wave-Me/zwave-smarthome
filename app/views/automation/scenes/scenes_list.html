@@ -1,11 +1,10 @@
 <!-- The list -->
 <div class="app-row app-row-report clearfix">
   <div class="report-entry bcg-active" ng-repeat="v in scenes.all track by $index" ng-class="{'bcg-danger':!v.active}">
-     <!-- <div class="report-col report-media">
-      <figure class="label-round is-48px">
-        <span>img</span>
-      </figure>
-    </div> -->
+    <div class="report-col report-media" ng-click="activateScene(v, v.active ? false : true)">
+      <img class="report-img-s" ng-src="{{cfg.img.custom_icons + v.params.customIcon.table['0'].icon}}" err-src="{{cfg.img.placeholder}}" alt="img"
+      />
+  </div>
     <div class="report-col report-body">
       <a href="#scenes/{{v.id}}">{{v.title}}</a>
     </div>
