@@ -248,7 +248,7 @@ img {
 }
 
 .bcg-active.false, .bcg-danger {
-  background-color: $app-bcg-danger;
+  background-color: $app-bcg-danger !important;
 }
 
 .clickable {

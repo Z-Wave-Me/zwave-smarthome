@@ -1,0 +1,47 @@
+/* List panel
+-------------------------------------------------- */
+// input top, bottom spacing
+$list-panel-spacing: $spacing;
+$list-panel-img-w: 64px;
+$list-panel-bcg-color: #fff;
+$list-panel-border-color: $app-border-color;
+.list-panel{
+ @include appClearFix();
+
+ background-color: $list-panel-bcg-color;
+  border-bottom: 1px solid $list-panel-border-color; 
+  padding: $list-panel-spacing;
+  > * {
+    float: left;
+  }
+  figure{
+    margin-right: $list-panel-spacing;
+    min-width: 32px;
+    
+  }
+  .body{
+    div{
+      display: inline-block;
+     margin-top: $spacing-half;
+    }
+  }
+  .control{
+    float: right;
+    text-align: right;
+    margin-left: $list-panel-spacing;
+    min-width: 20%;
+
+    @include mediaQueries(max-small) {
+      &.expand-false{
+        display: none;
+      }
+      &.expand-true{
+        margin-top: $spacing;
+        display: block;
+        float: right;
+        width: 100%;
+      }
+      
+    }
+  }
+}
