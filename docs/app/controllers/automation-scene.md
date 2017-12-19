@@ -65,6 +65,11 @@ Delete
 ## AutomationSceneIdController
 Controller that handles scene detail
 
+### AutomationSceneIdController.resetModel() 
+
+Reset model
+
+
 ### AutomationSceneIdController.loadInstance() 
 
 Load instances
@@ -80,10 +85,27 @@ Load rooms
 Load devices
 
 
-### AutomationSceneIdController.resetModel() 
+### AutomationSceneIdController.uploadIcon(files, info) 
 
-Reset model
+Validate an uploaded icon
 
+**Parameters**
+
+**files**: `object`
+
+**info**: `object`
+
+**Returns**: `undefined`
+
+### AutomationSceneIdController.deleteIcon(string) 
+
+Delete icon
+
+**Parameters**
+
+**string**: `string`
+
+**Returns**: `undefined`
 
 ### AutomationSceneIdController.assignDevice(device) 
 
@@ -109,15 +131,6 @@ Remove device id from assigned device
 Add or update device to the list (by type)type: switches|dimmers|thermostats|locks
 
 
-### AutomationSceneIdController.removeDeviceFromParams(device) 
-
-Remove device from the params list
-
-**Parameters**
-
-**device**: `object`
-
-
 ### AutomationSceneIdController.handleDevice() 
 
 Add or update device to the list (by type)type: switches|dimmers|thermostats|locks
@@ -131,6 +144,15 @@ Add or update scene device
 ### AutomationSceneIdController.storeScene() 
 
 Store
+
+
+### AutomationSceneIdController.removeDeviceFromParams(device) 
+
+Remove device from the params list
+
+**Parameters**
+
+**device**: `object`
 
 
 

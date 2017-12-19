@@ -11536,7 +11536,7 @@ img {
 
 /* line 250, ../sass/base/_body.scss */
 .bcg-active.false, .bcg-danger {
-  background-color: #f2dede;
+  background-color: #f2dede !important;
 }
 
 /* line 254, ../sass/base/_body.scss */
@@ -12492,6 +12492,60 @@ img {
   }
 }
 
+/* List panel
+-------------------------------------------------- */
+/* line 8, ../sass/base/_list_panel.scss */
+.list-panel {
+  background-color: #fff;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px;
+}
+/* line 7, ../sass/base/_mixins.scss */
+.list-panel:before, .list-panel:after {
+  content: " ";
+  display: table;
+}
+/* line 12, ../sass/base/_mixins.scss */
+.list-panel:after {
+  clear: both;
+}
+/* line 14, ../sass/base/_list_panel.scss */
+.list-panel > * {
+  float: left;
+}
+/* line 17, ../sass/base/_list_panel.scss */
+.list-panel figure {
+  margin-right: 10px;
+  min-width: 32px;
+}
+/* line 23, ../sass/base/_list_panel.scss */
+.list-panel .body div {
+  display: inline-block;
+  margin-top: 5px;
+}
+/* line 28, ../sass/base/_list_panel.scss */
+.list-panel .control {
+  float: right;
+  text-align: right;
+  margin-left: 10px;
+  min-width: 20%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 767px) {
+  /* line 35, ../sass/base/_list_panel.scss */
+  .list-panel .control.expand-false {
+    display: none;
+  }
+  /* line 38, ../sass/base/_list_panel.scss */
+  .list-panel .control.expand-true {
+    margin-top: 10px;
+    display: block;
+    float: right;
+    width: 100%;
+  }
+}
+
 /* Table
 -------------------------------------------------- */
 /* line 6, ../sass/base/_table.scss */
@@ -12952,7 +13006,7 @@ input:checked + .slider:before {
     left: auto;
     z-index: 2140;
     float: right;
-    min-width: 200px;
+    min-width: 280px;
     padding: 10px;
     text-align: left;
     background-color: #FFFFFF;
@@ -13057,11 +13111,20 @@ input[type=checkbox] {
 }
 
 /* line 54, ../sass/base/_form.scss */
-.checkbox {
+.checkbox, .radio {
   margin-right: 10px;
 }
+/* line 56, ../sass/base/_form.scss */
+.checkbox input[type=checkbox], .radio input[type=checkbox] {
+  position: static;
+  margin-left: 10px;
+}
+/* line 60, ../sass/base/_form.scss */
+.checkbox label, .radio label {
+  padding-left: 10px;
+}
 
-/* line 58, ../sass/base/_form.scss */
+/* line 65, ../sass/base/_form.scss */
 input[type=radio] {
   transform: scale(1.6, 1.6);
   -moz-transform: scale(1.6, 1.6);
@@ -13074,7 +13137,7 @@ input[type=radio] {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 58, ../sass/base/_form.scss */
+  /* line 65, ../sass/base/_form.scss */
   input[type=radio] {
     transform: scale(1.2, 1.2);
     -moz-transform: scale(1.2, 1.2);
@@ -13086,33 +13149,33 @@ input[type=radio] {
   }
 }
 
-/* line 66, ../sass/base/_form.scss */
+/* line 73, ../sass/base/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
-/* line 70, ../sass/base/_form.scss */
+/* line 77, ../sass/base/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 73, ../sass/base/_form.scss */
+/* line 80, ../sass/base/_form.scss */
 .form-page .form-group.first {
   padding-top: 10px;
 }
-/* line 76, ../sass/base/_form.scss */
+/* line 83, ../sass/base/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 82, ../sass/base/_form.scss */
+/* line 89, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 87, ../sass/base/_form.scss */
+/* line 94, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -13122,67 +13185,67 @@ input[type=radio] {
   z-index: -1;
 }
 
-/* line 97, ../sass/base/_form.scss */
+/* line 104, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 100, ../sass/base/_form.scss */
+/* line 107, ../sass/base/_form.scss */
 legend, .legend {
   font-size: 110%;
   font-weight: bold;
   padding: 0 10px 5px 10px;
   border-bottom: 1px solid #e5e5e5;
 }
-/* line 105, ../sass/base/_form.scss */
+/* line 112, ../sass/base/_form.scss */
 legend.has-control, .legend.has-control {
   display: flex;
   justify-content: space-between;
 }
 
-/* line 111, ../sass/base/_form.scss */
+/* line 118, ../sass/base/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
-/* line 113, ../sass/base/_form.scss */
+/* line 120, ../sass/base/_form.scss */
 fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 {
   margin: 0;
 }
-/* line 116, ../sass/base/_form.scss */
+/* line 123, ../sass/base/_form.scss */
 fieldset.expanded, .fieldset.expanded {
   padding: 10px;
 }
-/* line 119, ../sass/base/_form.scss */
+/* line 126, ../sass/base/_form.scss */
 fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-bottom: 0;
 }
 
-/* line 126, ../sass/base/_form.scss */
+/* line 133, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 131, ../sass/base/_form.scss */
+/* line 138, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 135, ../sass/base/_form.scss */
+/* line 142, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 139, ../sass/base/_form.scss */
+/* line 146, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 143, ../sass/base/_form.scss */
+/* line 150, ../sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 147, ../sass/base/_form.scss */
+/* line 154, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -13190,33 +13253,33 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-top: solid 1px #cccccc;
 }
 
-/* line 155, ../sass/base/_form.scss */
+/* line 162, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 159, ../sass/base/_form.scss */
+/* line 166, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 163, ../sass/base/_form.scss */
+/* line 170, ../sass/base/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 169, ../sass/base/_form.scss */
+/* line 176, ../sass/base/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 172, ../sass/base/_form.scss */
+/* line 179, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 176, ../sass/base/_form.scss */
+/* line 183, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13225,9 +13288,31 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 185, ../sass/base/_form.scss */
+/* line 192, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
+}
+
+/* Images
+-------------------------------------------------- */
+/* line 4, ../sass/base/_img.scss */
+.img.wh-16x16 {
+  width: 16px;
+  height: 16px;
+}
+/* line 8, ../sass/base/_img.scss */
+.img.wh-32x32 {
+  width: 32px;
+  height: 32px;
+}
+/* line 12, ../sass/base/_img.scss */
+.img.wh-64x64 {
+  width: 64px;
+  height: 64px;
+}
+/* line 16, ../sass/base/_img.scss */
+.img img {
+  width: 100%;
 }
 
 /* Image list
