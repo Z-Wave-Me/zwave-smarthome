@@ -3,4 +3,26 @@
   <label>{{_t('lb_name')}}</label>
   <input name="title" id="title" type="text" class="form-control" ng-model="scene.input.title" />
 </div>
-
+<!-- Icon -->
+<div class="form-group form-inline" ng-if="scene.input.params.customIcon.table['0'].icon">
+  <img class="imglist-img" alt="img" ng-src="{{cfg.img.custom_icons + scene.input.params.customIcon.table['0'].icon}}"  err-src="{{cfg.img.placeholder}}" /> 
+   <!-- Delete -->
+    <button type="button" class="btn btn-text is-text" ng-click="deleteIcon(scene.input.params.customIcon.table['0'].icon)"><i class="fa fa-remove text-danger"></i> {{_t('delete')}}</button>
+</div>
+ <!-- Upload -->
+ <div class="form-group">
+  <!--  <pre>{{scene.input|json}}</pre> -->
+   
+  <input class="inputfile" type="file" name="file" id="file{{v.id}}"
+         ng-click="icons.find = v"
+         onchange="angular.element(this).scope().uploadIcon(this.files, angular.element(this).scope().cfg.upload.icon)"/>
+  <label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}"
+         ng-click="icons.find = v">
+      <i class="fa fa-upload"></i> {{_t('lb_upload_image')}}
+  </label>
+ 
+  <bb-help-text
+          trans="_t('upload_file_info',{'__size__':scene.upload.maxSize,'__extensions__': scene.upload.extensions})"></bb-help-text>
+  <bb-help-text
+          trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})"></bb-help-text>
+</div>

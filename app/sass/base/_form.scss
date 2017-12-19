@@ -51,8 +51,15 @@ input[type=checkbox] {
   }
 
 }
-.checkbox{
+.checkbox,.radio{
   margin-right: $spacing;
+  input[type=checkbox] {
+    position: static;
+   margin-left: $spacing;
+  }
+  label{
+    padding-left: $spacing;
+  }
 }
 
 input[type=radio] {

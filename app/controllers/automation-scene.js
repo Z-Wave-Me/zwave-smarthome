@@ -24,8 +24,8 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
         moduleId: 'Scenes'
       }).filter(function (v) {
         var size = 0;
-        for (k in v.params) {
-          if (v.params[k].length) {
+        for (k in v.params.devices) {
+          if (v.params.devices[k].length) {
             size++;
           }
         }
@@ -53,7 +53,7 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
     $scope.toggleRowSpinner(instance.id);
     $timeout($scope.toggleRowSpinner, 1000);
     var params = '/Scenes_' + instance.id + '/command/on';
-    dataFactory.getApi('devices',params).then(function (response) {
+    dataFactory.getApi('devices', params).then(function (response) {
       $timeout($scope.toggleRowSpinner, 2000);
     }, function (error) {
       $timeout($scope.toggleRowSpinner, 2000);
@@ -115,7 +115,7 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
  * Controller that handles scene detail
  * @class AutomationSceneIdController
  */
-myAppController.controller('AutomationSceneIdController', function ($scope, $routeParams, $location, $route, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('AutomationSceneIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.scene = {
     model: {
       switchBinary: {
@@ -174,14 +174,27 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
       moduleId: "Scenes",
       active: true,
       title: "",
+     
       params: {
-        switches: [],
-        dimmers: [],
-        thermostats: [],
-        locks: [],
-        scenes: []
+        customIcon: {
+          table:[{icon: false}]
+          
+        },
+        devices:{
+          switches: [],
+          dimmers: [],
+          thermostats: [],
+          locks: [],
+          scenes: []
+        }
+       
       }
-    }
+    },
+    upload: {
+      fileName: false,
+      maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
+      extensions: cfg.upload.icon.extension.toString()
+    },
   };
   // Original data
   $scope.orig = {
@@ -190,18 +203,27 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
   $scope.orig.model = angular.copy($scope.scene.model);
 
   /**
+   * Reset model
+   */
+  $scope.resetModel = function () {
+    $scope.scene.model = angular.copy($scope.orig.model);
+
+  };
+
+
+  /**
    * Load instances
    */
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
       var instance = instances.data.data;
       var assignedDevices = $scope.scene.assignedDevices;
-      angular.extend( $scope.scene.input, {
+      angular.extend($scope.scene.input, {
         title: instance.title,
         active: instance.active,
         params: instance.params
       });
-      angular.forEach(instance.params, function (v, k) {
+      angular.forEach(instance.params.devices, function (v, k) {
         switch (k) {
           case 'scenes':
             _.filter(v, function (s) {
@@ -248,24 +270,88 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
    */
   $scope.loadDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
-      var whiteList = _.keys( $scope.scene.cfg);
+      var whiteList = _.keys($scope.scene.cfg);
       var devices = dataService.getDevicesData(response.data.data.devices);
       $scope.scene.availableDevices = devices.filter(function (v) {
         return whiteList.indexOf(v.deviceType) > -1;
       }).value();
-      $scope.scene.devicesInRoom = _.countBy( $scope.scene.availableDevices, function (v) {
+      $scope.scene.devicesInRoom = _.countBy($scope.scene.availableDevices, function (v) {
         return v.location;
       });
     }, function (error) {});
   };
   $scope.loadDevices();
 
-  /**
-   * Reset model
-   */
-  $scope.resetModel = function () {
-    $scope.scene.model = angular.copy($scope.orig.model);
 
+  /**
+   * Validate an uploaded icon
+   * @param {object} files
+   * @param {object} info
+   * @returns {undefined}
+   */
+  $scope.uploadIcon = function (files, info) {
+   var ext =  $filter('fileExtension')(files[0].name);
+    // Extends files object with a new property
+    files[0].newName = dataService.uploadFileNewName('scene_' + $routeParams.id + '.' + ext);
+    // Check allowed file formats
+    if (info.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+      alertify.alertError(
+        $scope._t('upload_format_unsupported', {
+          '__extension__': $filter('fileExtension')(files[0].name)
+        }) + ' ' +
+        $scope._t('upload_allowed_formats', {
+          '__extensions__': info.extension.toString()
+        })
+      );
+      return;
+
+    }
+    // Check allowed file size
+    if (files[0].size > info.size) {
+      alertify.alertError(
+        $scope._t('upload_allowed_size', {
+          '__size__': $filter('fileSizeString')(info.size)
+        }) + ' ' +
+        $scope._t('upload_size_is', {
+          '__size__': $filter('fileSizeString')(files[0].size)
+        })
+      );
+      return;
+
+    }
+   // Set selected file name
+   $scope.scene.upload.fileName = files[0].name;
+   // Set form data
+    // Set local variables
+    var fd = new FormData();
+   fd.append('files_files', files[0]);
+   // Atempt to upload a file
+   dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function (response) {
+     console.log(response)
+     $scope.scene.input.params.customIcon.table['0'].icon = response.data.data;
+     /* if ($routeParams.id > 0) {
+      $scope.storeScene($scope.scene.input);
+    } */
+   }, function (error) {
+      alertify.alertError($scope._t('error_upload'));
+   });
+  };
+
+   /**
+   * Delete icon
+   * @param {string} string
+   * @returns {undefined}
+   */
+  $scope.deleteIcon = function (icon) {
+    dataFactory.deleteApi('icons',icon).then(function (response) {
+      $scope.scene.input.params.customIcon.table['0'].icon = false;
+      /* if ($routeParams.id > 0) {
+        $scope.storeScene($scope.scene.input);
+      } */
+      
+    }, function (error) {
+      alertify.alertError($scope._t('error_delete_data'));
+    });
   };
 
   /**
@@ -317,7 +403,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
   $scope.expandParams = function (element, device) {
 
     var type = $scope.scene.cfg[device.deviceType].paramsDevices;
-    var params = _.findWhere($scope.scene.input.params[type], {
+    var params = _.findWhere($scope.scene.input.params.devices[type], {
       device: device.id
     });
 
@@ -336,31 +422,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 
 
   };
-  /**
-   * Remove device from the params list
-   * @param {object} device 
-   */
-  function removeDeviceFromParams(device) {
-    var index;
-    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
-    switch (device.deviceType) {
-      // scenes
-      case 'toggleButton':
-        index = $scope.scene.input.params[type].indexOf(device.id);
-        break;
-        // switches|dimmers|thermostats|locks
-      default:
-        index = _.findIndex( $scope.scene.input.params[type], {
-          device: device.id
-        });
-        break;
-    }
-    if (index > -1) {
-      $scope.scene.input.params[type].splice(index, 1);
-    }
 
-
-  };
 
   /**
    * Add or update device to the list (by type)
@@ -371,13 +433,13 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
       return;
     }
     // Adding new device
-    var index = _.findIndex($scope.scene.input.params[type], {
+    var index = _.findIndex($scope.scene.input.params.devices[type], {
       device: v.device
     });
     if (index > -1) {
-      $scope.scene.input.params[type][index] = v;
+      $scope.scene.input.params.devices[type][index] = v;
     } else {
-      $scope.scene.input.params[type].push(v)
+      $scope.scene.input.params.devices[type].push(v)
     }
 
 
@@ -395,11 +457,11 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
     if (!v) {
       return;
     }
-    var index = $scope.scene.input.params.scenes.indexOf(v);
+    var index = $scope.scene.input.params.devices.scenes.indexOf(v);
     if (index > -1) { // Update an item
-      $scope.scene.input.params.scenes[index] = v;
+      $scope.scene.input.params.devices.scenes[index] = v;
     } else { // Add new item
-      $scope.scene.input.params.scenes.push(v)
+      $scope.scene.input.params.devices.scenes.push(v)
     }
   };
 
@@ -415,6 +477,33 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
     });
+
+  };
+
+  /// --- Private functions --- ///
+  /**
+   * Remove device from the params list
+   * @param {object} device 
+   */
+  function removeDeviceFromParams(device) {
+    var index;
+    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
+    switch (device.deviceType) {
+      // scenes
+      case 'toggleButton':
+        index = $scope.scene.input.params.devices[type].indexOf(device.id);
+        break;
+        // switches|dimmers|thermostats|locks
+      default:
+        index = _.findIndex($scope.scene.input.params.devices[type], {
+          device: device.id
+        });
+        break;
+    }
+    if (index > -1) {
+      $scope.scene.input.params.devices[type].splice(index, 1);
+    }
+
 
   };
 

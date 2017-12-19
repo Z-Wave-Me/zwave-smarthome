@@ -2,7 +2,7 @@
 <div class="app-row app-row-report clearfix">
   <div class="report-entry bcg-active" ng-repeat="v in schedules.all track by $index" ng-class="{'bcg-danger':!v.active}">
      <div class="report-col report-media">
-      <figure class="label-round is-48px">
+      <figure class="label-round is-48px clickable" ng-click="activateSchedule(v, v.active ? false : true)">
         <span>{{v.params.times[0]}}</span>
       </figure>
     </div>
