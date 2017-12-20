@@ -11463,8 +11463,7 @@ a.link-underline {
 
 /* line 200, ../sass/base/_body.scss */
 .block {
-  width: 100%;
-  margin: 10px 0;
+  margin: 10px;
 }
 
 /* line 205, ../sass/base/_body.scss */
@@ -12486,7 +12485,7 @@ img {
   min-width: 32px;
 }
 /* line 23, ../sass/base/_list_panel.scss */
-.list-panel .body div {
+.list-panel .body > div {
   display: inline-block;
   margin-top: 5px;
 }

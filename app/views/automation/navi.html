@@ -4,8 +4,8 @@
            ng-class="{'active': routeMatch('/scenes')}">
             <i class="fa fa-lightbulb-o"></i> <span class="btn-name">{{_t('scenes')}}</span>
         </a>
-        <a class="btn btn-default" title="{{_t('rules')}}" ng-href="#automation/Rules"  
-        ng-class="{'active': automation.moduleId == 'Rules'}">
+        <a class="btn btn-default" title="{{_t('rules')}}" ng-href="#rules"  
+        ng-class="{'active': routeMatch('/rules')}">
             <i class="fa fa-sliders"></i> <span class="btn-name">{{_t('rules')}}</span>
         </a>
         <a class="btn btn-default" title="{{_t('schedules')}}" ng-href="#schedules"  
