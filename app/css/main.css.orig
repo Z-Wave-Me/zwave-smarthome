@@ -11463,8 +11463,7 @@ a.link-underline {
 
 /* line 200, ../sass/base/_body.scss */
 .block {
-  width: 100%;
-  margin: 10px 0;
+  margin: 10px;
 }
 
 /* line 205, ../sass/base/_body.scss */
@@ -12462,7 +12461,7 @@ img {
 /* line 88, ../sass/base/_report.scss */
 .app-row-zwave .report-entry .report-body .btn-group .network-zwave-title {
   max-width: 170px;
-  display: block;
+  display: inline-block;
   /* MIN WIDTH */
   /* MAX WIDTH */
   white-space: nowrap;
@@ -12473,20 +12472,26 @@ img {
   -o-text-overflow: ellipsis;
   /* Opera */
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 480px) {
   /* line 88, ../sass/base/_report.scss */
   .app-row-zwave .report-entry .report-body .btn-group .network-zwave-title {
     max-width: 100%;
   }
 }
-/* line 100, ../sass/base/_report.scss */
+/* line 98, ../sass/base/_report.scss */
+.app-row-zwave .report-entry .report-body .btn-group .label {
+  padding: .3em .6em .3em;
+  vertical-align: top;
+  display: inline-block;
+}
+/* line 106, ../sass/base/_report.scss */
 .app-row-zwave .report-entry .report-battery-info {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 100, ../sass/base/_report.scss */
+  /* line 106, ../sass/base/_report.scss */
   .app-row-zwave .report-entry .report-battery-info {
     display: table-cell;
   }
@@ -12519,7 +12524,7 @@ img {
   min-width: 32px;
 }
 /* line 23, ../sass/base/_list_panel.scss */
-.list-panel .body div {
+.list-panel .body > div {
   display: inline-block;
   margin-top: 5px;
 }
@@ -12552,44 +12557,63 @@ img {
 .table tbody tr td {
   border-top: 1px solid #cccccc;
 }
+/* line 10, ../sass/base/_table.scss */
+.table tbody tr:nth-child(2) td {
+  border: none;
+}
 
-/* line 12, ../sass/base/_table.scss */
+/* line 17, ../sass/base/_table.scss */
 .table-report {
   background-color: #FFFFFF;
   border: 0 !important;
   margin-bottom: 0 !important;
 }
-/* line 17, ../sass/base/_table.scss */
+/* line 22, ../sass/base/_table.scss */
 .table-report tbody td {
   vertical-align: middle !important;
 }
-/* line 21, ../sass/base/_table.scss */
+/* line 26, ../sass/base/_table.scss */
 .table-report tbody .td-img {
   width: 30px;
 }
-/* line 24, ../sass/base/_table.scss */
+/* line 29, ../sass/base/_table.scss */
 .table-report tbody .td-action {
   text-align: right;
 }
+/* line 34, ../sass/base/_table.scss */
+.table-report .room-title {
+  white-space: nowrap;
+  /* force single line */
+  overflow: hidden;
+  /* don't show excess chars */
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  /* Opera */
+}
 
-/* line 30, ../sass/base/_table.scss */
+/* line 39, ../sass/base/_table.scss */
 .table-products td {
   vertical-align: middle !important;
 }
 
-/* line 35, ../sass/base/_table.scss */
+/* line 44, ../sass/base/_table.scss */
 .td20 {
   width: 20%;
 }
 
-/* line 38, ../sass/base/_table.scss */
+/* line 47, ../sass/base/_table.scss */
 .td30 {
   width: 30%;
 }
 
-/* line 41, ../sass/base/_table.scss */
+/* line 50, ../sass/base/_table.scss */
 .td-action {
   text-align: right;
+}
+
+/* line 53, ../sass/base/_table.scss */
+.td40 {
+  width: 40%;
 }
 
 /* Button
@@ -16446,106 +16470,123 @@ img.widget-promo-image {
 }
 /* line 284, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-media {
+  display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 768px) {
   /* line 284, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-media {
-    margin: 0 auto;
-    text-align: center;
-  }
-  /* line 288, ../sass/base/_rooms.scss */
-  .elemnts-room-bar .bar-row .bar-media img {
-    border-radius: 50%;
+    display: table-cell;
   }
 }
-/* line 294, ../sass/base/_rooms.scss */
+/* line 291, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body {
-  margin-top: 5px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 296, ../sass/base/_rooms.scss */
+@media only screen and (min-width: 768px) {
+  /* line 291, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-body {
+    margin-top: 5px;
+  }
+}
+/* line 295, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group {
   width: 100%;
 }
-/* line 298, ../sass/base/_rooms.scss */
+/* line 297, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 299, ../sass/base/_rooms.scss */
+/* line 298, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe {
   display: table;
   width: 100%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 303, ../sass/base/_rooms.scss */
+/* line 302, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .fa-arrow-left {
   display: table-cell;
   vertical-align: middle;
   text-align: left;
   color: #737373;
 }
-/* line 310, ../sass/base/_rooms.scss */
+/* line 309, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .fa-arrow-right {
   display: table-cell;
   vertical-align: middle;
   text-align: right;
   color: #737373;
 }
-/* line 317, ../sass/base/_rooms.scss */
+/* line 316, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .room-title {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  white-space: nowrap;
+  /* force single line */
+  overflow: hidden;
+  /* don't show excess chars */
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  /* Opera */
+  max-width: 200px;
+}
+@included mediaQueries(min-small) {
+  /* line 316, ../sass/base/_rooms.scss */
+  .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .room-title {
+    max-width: 100%;
+  }
 }
 @media only screen and (min-width: 768px) {
-  /* line 299, ../sass/base/_rooms.scss */
+  /* line 298, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe {
     display: none;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 298, ../sass/base/_rooms.scss */
+  /* line 297, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title {
     display: inline-block;
   }
 }
-/* line 336, ../sass/base/_rooms.scss */
+/* line 340, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 336, ../sass/base/_rooms.scss */
+  /* line 340, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl {
     display: table-cell;
   }
 }
-/* line 344, ../sass/base/_rooms.scss */
+/* line 348, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 344, ../sass/base/_rooms.scss */
+  /* line 348, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
     margin: 0;
     float: none;
     display: inline;
   }
 }
-/* line 352, ../sass/base/_rooms.scss */
+/* line 356, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor {
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 353, ../sass/base/_rooms.scss */
+/* line 357, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
   cursor: text;
   border: 0 none;
@@ -16556,31 +16597,31 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 353, ../sass/base/_rooms.scss */
+  /* line 357, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
     margin: 0;
   }
 }
-/* line 365, ../sass/base/_rooms.scss */
+/* line 369, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
   display: inline-block;
   max-width: 24px;
   max-height: 24px;
 }
-/* line 371, ../sass/base/_rooms.scss */
+/* line 375, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
   font-weight: bold;
   font-size: 90%;
   display: inline-block;
   vertical-align: middle;
 }
-/* line 376, ../sass/base/_rooms.scss */
+/* line 380, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level small {
   font-weight: normal;
   font-size: 80%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 352, ../sass/base/_rooms.scss */
+  /* line 356, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor {
     text-align: left;
     margin: 10px 0;
@@ -16588,12 +16629,12 @@ img.widget-promo-image {
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 390, ../sass/base/_rooms.scss */
+  /* line 394, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
     max-width: 32px;
     max-height: 32px;
   }
-  /* line 394, ../sass/base/_rooms.scss */
+  /* line 398, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
     font-size: 120%;
   }
@@ -16601,7 +16642,7 @@ img.widget-promo-image {
 
 /* Images
 -------------------------------------------------- */
-/* line 406, ../sass/base/_rooms.scss */
+/* line 410, ../sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;

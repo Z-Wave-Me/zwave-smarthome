@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 19-12-2017 15:34:45 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 20-12-2017 15:36:31 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -17237,26 +17237,25 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/events/events.html',
                     requireLogin: true
                 }).
-                //Automation
-                when('/automation/:moduleId', {
-                    templateUrl: 'app/views/automation/automation.html',
-                    requireLogin: true,
-                    roles: cfg.role_access.admin,
-                    routeName: 'automation'
-                }).
                  //Scenes
                  when('/scenes', {
                   templateUrl: 'app/views/automation/scenes/scenes.html',
                   requireLogin: true,
                   roles: cfg.role_access.admin
               }).
-                //Scenes
+                //Scene ID
                 when('/scenes/:id', {
                     templateUrl: 'app/views/automation/scenes/scene_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
-                 //Rules
+                //Rules
+                when('/rules', {
+                 templateUrl: 'app/views/automation/rules/rules.html',
+                 requireLogin: true,
+                 roles: cfg.role_access.admin
+             }).
+                 //Rule id
                  when('/rules/:id', {
                     templateUrl: 'app/views/automation/rules/rule_id.html',
                     requireLogin: true,
@@ -17553,7 +17552,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_instance_ctrl.html',
-    "<div class=\"page-control form-inline\"><div class=form-group><input type=checkbox name=instances_expanded id=instances_expanded ng-change=expandInstances(dataHolder.instances.expanded) ng-model=dataHolder.instances.expanded ng-checked=\"dataHolder.instances.expanded\"><label for=instances_expanded>{{_t('expand_all')}}</label></div><form id=form_search class=input-group ng-submit=\"setFilter({q: dataHolder.instances.autocomplete.term})\" autocomplete=off novalidate><input id=input_search focus={{dataHolder.instances.filter.q}} class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=dataHolder.instances.autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" ng-click=\"setFilter({q: dataHolder.instances.autocomplete.term})\"><i class=\"fa fa-search\" ng-class=\"{'text-success':dataHolder.instances.autocomplete.term}\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocompleteExpanded.searchInstances><ul><li class=dropdown-entry title={{v.title}} ng-repeat=\"v in dataHolder.instances.autocomplete.results | orderBy:'toString()' track by $index\"><span class=dropdown-col ng-click=\"setFilter({q: dataHolder.instances.autocomplete.term})\"><img class=report-img-s ng-src={{dataHolder.modules.ids[v.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span></span> <span class=\"dropdown-col dropdown-ctrl\" title=\"{{_t('lb_cfg_view')}}\"><div class=btn-group><button type=button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default btn-sm\" href=\"\" ng-if=v.active ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button type=button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default btn-sm\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i></a> <button type=button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default btn-sm\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button> <a class=\"btn btn-default btn-sm\" ng-href=#module/put/{{v.id}}><i class=\"fa fa-chevron-circle-right\"></i></a></div></span></li></ul></div></form></div>"
+    "<div class=\"page-control form-inline\"><div class=form-group ng-if=dataHolder.instances.expandable><input type=checkbox name=instances_expanded id=instances_expanded ng-change=expandInstances(dataHolder.instances.expanded) ng-model=dataHolder.instances.expanded ng-checked=\"dataHolder.instances.expanded\"><label for=instances_expanded>{{_t('expand_all')}}</label></div><form id=form_search class=input-group ng-submit=\"setFilter({q: dataHolder.instances.autocomplete.term})\" autocomplete=off novalidate><input id=input_search focus={{dataHolder.instances.filter.q}} class=form-control placeholder=\"{{_t('lb_search')}}\" ng-model=dataHolder.instances.autocomplete.term bb-key-event=searchMe() data-toggle=\"dropdown\"> <span class=\"input-group-addon clickable\" ng-click=\"setFilter({q: dataHolder.instances.autocomplete.term})\"><i class=\"fa fa-search\" ng-class=\"{'text-success':dataHolder.instances.autocomplete.term}\"></i></span><div class=\"app-dropdown autocomplete\" ng-if=autocompleteExpanded.searchInstances><ul><li class=dropdown-entry title={{v.title}} ng-repeat=\"v in dataHolder.instances.autocomplete.results | orderBy:'toString()' track by $index\"><span class=dropdown-col ng-click=\"setFilter({q: dataHolder.instances.autocomplete.term})\"><img class=report-img-s ng-src={{dataHolder.modules.ids[v.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"> <span class=aoutocomplete-title>{{v.title|cutText:true:30}}</span></span> <span class=\"dropdown-col dropdown-ctrl\" title=\"{{_t('lb_cfg_view')}}\"><div class=btn-group><button type=button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default btn-sm\" href=\"\" ng-if=v.active ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button type=button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default btn-sm\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i></a> <button type=button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default btn-sm\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button> <a class=\"btn btn-default btn-sm\" ng-href=#module/put/{{v.id}}><i class=\"fa fa-chevron-circle-right\"></i></a></div></span></li></ul></div></form></div>"
   );
 
 
@@ -17682,148 +17681,83 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/automation/_scenes/dimmers.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('dimmers')\"><i class=\"fa fa-circle-o-notch fa-fw\"></i> {{_t('Dimmers')}} <i class=\"fa accordion-arrow\" ng-class=\"expand.dimmers ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.dimmers>List</div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/dimmers_modal.html',
-    "<div id=\"dimmersModal \" class=appmodal ng-if=modalArr.dimmers><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('dimmers', $event)\"><i class=\"fa fa-times\"></i></span><h3>Dimmer</h3></div><div class=appmodal-body><div class=fieldset><div class=\"form-group form-inline\"><select class=form-control><option ng-repeat=\"v in mock.modules.dimmers.all\">{{v}}</option></select><input class=\"form-control input-number\" placeholder=Level></div><div class=form-group><input type=checkbox name=send_command id=send_command ng-model=scene.input.send_command ng-checked=\"scene.input.send_command\"><label for=send_command>Don't send On command, if device is already turned On, similarly for Off</label></div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" title=\"{{_t('lb_close')}}\" ng-click=\"handleModal('dimmers', $event)\"><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_close')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-click=\"handleModal('dimmers', $event)\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/locks.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('locks')\"><i class=\"fa fa-lock fa-fw\"></i> {{_t('Locks')}} <i class=\"fa accordion-arrow\" ng-class=\"expand.locks ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.locks>List</div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/locks_modal.html',
-    "<div id=\"locksModal \" class=appmodal ng-if=modalArr.locks><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('locks', $event)\"><i class=\"fa fa-times\"></i></span><h3>Add new</h3></div><div class=appmodal-body><div class=fieldset><div class=\"form-group form-inline\"><select class=form-control><option ng-repeat=\"v in mock.modules.locks.all\">{{v}}</option></select></div><div class=form-group><input type=checkbox name=on_off id=on_off ng-model=scene.input.on_off ng-checked=\"scene.input.on_off\"><label for=on_off>{{scene.input.on_off ? 'Open' : 'Close'}}</label></div><div class=form-group><input type=checkbox name=send_command id=send_command ng-model=scene.input.send_command ng-checked=\"scene.input.send_command\"><label for=send_command>Don't send On command, if device is already turned On, similarly for Off</label></div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" title=\"{{_t('lb_close')}}\" ng-click=\"handleModal('locks', $event)\"><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_close')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-click=\"handleModal('locks', $event)\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/scene_id.html',
-    "<div ng-controller=AutomationMockController><div class=\"blank is-info\"><div class=blank-img><i class=\"fa fa-file-image-o\"></i></div><div class=blank-body><p class=blank-title>Module name</p><p class=blank-text>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p></div></div><form class=\"form form-page\"><fieldset><div class=\"form-group form-inline\"><label>{{_t('lb_name')}}</label><input name=title id=title class=\"form-control\"></div><div class=form-group>Active <input type=checkbox name=instances_expanded id=instances_expanded ng-checked=\"input.show_background\"><label for=instances_expanded>&nbsp;</label></div><div class=form-group><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().uploadFile(this.files)\"><label for=file{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload text-success\"></i> Upload icon</label><div ng-if=file.upload>{{file.upload|cutText:true:30}}</div><bb-help-text trans=\"_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})\"></bb-help-text></div></fieldset><fieldset ng-include=\"'app/views/automation/scenes/scene_list.html'\"></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/scene_list.html',
-    "<div class=accordion-entry ng-repeat=\"v in mock.rooms track by $index\"><h2 class=accordion-entry-title ng-click=\"expandElement('room_' + v.id)\"><img class=navi-img ng-src={{v.img_src}} alt=\"img\"> {{v.title}} <i class=\"fa accordion-arrow\" ng-class=\"expand['room_' + v.id] ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=\"expand['room_' + v.id]\"><div class=automation-report ng-repeat=\"(k,m) in mock.modules\"><div class=report-header><p class=report-title>{{m.title}} <button class=\"btn btn-default btn-small\" title=\"{{_t('lb_update')}}\" ng-click=\"handleModal(k, $event)\"><i class=\"fa fa-plus text-success\"></i></button></p></div><div class=\"app-row app-row-report clearfix\"><div class=report-entry ng-repeat=\"mr in m.all track by $index\"><div class=report-col>{{mr}}</div><div class=\"report-col form-inline\"><div class=form-group ng-switch=k><span ng-switch-when=switches><input type=checkbox name=dontcare_{{v.title}}_{{$index}} id=dontcare_{{v.title}}_{{$index}} ng-model=\"mock.input['dontcare_' + v.title + $index]\"><label for=dontcare_{{v.title}}_{{$index}}><span class=btn-name>Don't care</span></label><input type=checkbox name=switch_{{v.title}}_{{$index}} id=switch_{{v.title}}_{{$index}} ng-model=\"mock.input['switch_' + v.title + $index]\"><label for=switch_{{v.title}}_{{$index}}><span class=btn-name>{{mock.input['switch_' + v.title + $index] ? 'ON':'OFF'}}</span></label></span> <input class=\"form-control input-number\" placeholder=Level ng-switch-when=dimmers> <input class=\"form-control input-number\" placeholder=&deg;C ng-switch-when=thermostats> <span ng-switch-when=locks><input type=checkbox name=lock_{{v.title}}_{{$index}} id=lock_{{v.title}}_{{$index}} ng-model=\"mock.input['lock_' + v.title + $index]\"><label for=lock_{{v.title}}_{{$index}}><span class=btn-name>{{mock.input['lock_' + v.title + $index] ? 'OPEN':'CLOSE'}}</span></label></span><select class=form-control ng-switch-when=scenes><option>Scene 1</option><option>Scene 2</option><option>Scene 3</option></select></div></div><div class=\"report-col report-ctrl form-inline\"><div class=form-group><button class=\"btn btn-text\" title=\"{{_t('lb_update')}}\" ng-click=\"handleModal(k, $event)\"><i class=\"fa fa-pencil text-info\"></i></button> <button class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\"><i class=\"fa fa-times text-danger\"></i></button></div></div></div></div></div></div></div><div ng-include=\"'app/views/automation/scenes/switches_modal.html'\"></div><div ng-include=\"'app/views/automation/scenes/dimmers_modal.html'\"></div><div ng-include=\"'app/views/automation/scenes/locks_modal.html'\"></div><div ng-include=\"'app/views/automation/scenes/thermostats_modal.html'\"></div><div ng-include=\"'app/views/automation/scenes/scenes_modal.html'\"></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/scenes.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('scenes')\"><i class=\"fa fa-lightbulb-o fa-fw\"></i> {{_t('Scenes to activate')}} <i class=\"fa accordion-arrow\" ng-class=\"expand.scenes ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.scenes>List</div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/scenes_modal.html',
-    "<div id=\"scenesModal \" class=appmodal ng-if=modalArr.scenes><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('scenes', $event)\"><i class=\"fa fa-times\"></i></span><h3>Add new</h3></div><div class=appmodal-body><div class=\"form-group form-inline\"><select class=form-control><option ng-repeat=\"v in mock.modules.scenes.all\">{{v}}</option></select></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" title=\"{{_t('lb_close')}}\" ng-click=\"handleModal('scenes', $event)\"><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_close')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-click=\"handleModal('scenes', $event)\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/switches.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('switches')\"><i class=\"fa fa-toggle-on fa-fw\"></i> {{_t('Switches')}} <i class=\"fa accordion-arrow\" ng-class=\"expand.switches ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.switches><div class=\"app-row app-row-report app-row-user clearfix\"><div class=report-entry ng-repeat=\"v in scene.switches.all track by $index\"><div class=\"report-col report-media\"><img class=report-img ng-src=storage/img/icons/placeholder.png alt=\"img\"></div><div class=\"report-col report-body\">Switch device {{$index + 1}}</div><div class=\"report-col report-ctrl\"><div class=btn-group><button class=\"btn btn-default\" title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-info\"></i></button> <button class=\"btn btn-default\" title=\"{{_t('lb_remove')}}\" ng-hide=\"v.id == 1\" ng-click=\"deleteProfile(v, _t('lb_delete_confirm'), 1)\"><i class=\"fa fa-times text-danger\"></i></button></div></div></div></div><div class=\"fieldset submit-entry\"><button class=\"btn btn-submit\" title=\"{{_t('lb_add')}}\"><i class=\"fa fa-plus\"></i> <span class=btn-name>{{_t('add_new')}}</span></button></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/switches_modal.html',
-    "<div id=\"switchesModal \" class=appmodal ng-if=modalArr.switches><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('switches', $event)\"><i class=\"fa fa-times\"></i></span><h3>Switch</h3></div><div class=appmodal-body><div class=fieldset><div class=\"form-group form-inline\"><select class=form-control><option ng-repeat=\"v in mock.modules.switches.all\">{{v}}</option></select></div><div class=form-group><input type=checkbox name=on_off id=on_off ng-model=scene.input.on_off ng-checked=\"scene.input.on_off\"><label for=on_off>{{scene.input.on_off ? 'On' : 'Off'}}</label></div><div class=form-group><input type=checkbox name=send_command id=send_command ng-model=scene.input.send_command ng-checked=\"scene.input.send_command\"><label for=send_command>Don't send On command, if device is already turned On, similarly for Off</label></div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" title=\"{{_t('lb_close')}}\" ng-click=\"handleModal('switches', $event)\"><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_close')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-click=\"handleModal('switches', $event)\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/thermostats.html',
-    "<h2 class=accordion-entry-title ng-click=\"expandElement('thermostats')\"><i class=\"fa fa-thermometer-full fa-fw\"></i> {{_t('Thermostats')}} <i class=\"fa accordion-arrow\" ng-class=\"expand.thermostats ? 'fa-chevron-up':'fa-chevron-down'\"></i></h2><div class=accordion-entry-ctrl ng-if=expand.thermostats>List</div>"
-  );
-
-
-  $templateCache.put('app/views/automation/_scenes/thermostats_modal.html',
-    "<div id=\"thermostatsModal \" class=appmodal ng-if=modalArr.thermostats><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('thermostats', $event)\"><i class=\"fa fa-times\"></i></span><h3>Thermostat</h3></div><div class=appmodal-body><div class=fieldset><div class=\"form-group form-inline\"><select class=form-control><option ng-repeat=\"v in mock.modules.thermostats.all\">{{v}}</option></select><input class=\"form-control input-number\" placeholder=&deg;C></div><div class=form-group><input type=checkbox name=send_command id=send_command ng-model=scene.input.send_command ng-checked=\"scene.input.send_command\"><label for=send_command>Don't send On command, if device is already turned On, similarly for Off</label></div></div></div><div class=appmodal-footer><button type=button class=\"btn btn-default\" title=\"{{_t('lb_close')}}\" ng-click=\"handleModal('thermostats', $event)\"><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_close')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-click=\"handleModal('thermostats', $event)\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></div></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/automation.html',
-    "<div ng-controller=AutomationController><bb-loader></bb-loader><div ng-include=\"'app/views/automation/navi.html'\"></div><div ng-if=\"automation.state == 'blank'\" ng-include=\"'app/views/automation/blank.html'\"></div><div ng-if=\"automation.state == 'success'\" ng-include=\"'app/views/automation/list.html'\"></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/blank.html',
-    "<div class=\"blank is-info\"><div class=blank-img><i class=\"fa fa-info-circle\"></i></div><div class=blank-body><p class=blank-title>{{_t(automation.moduleId)}}</p><p class=blank-text>{{_t('no_items_yet')}}</p><a class=\"btn btn-default\" href=#module/post/{{automation.moduleId}}><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/list.html',
-    "<div class=\"app-row app-row-report clearfix\"><div class=\"report-entry bcg-active\" ng-repeat=\"v in automation.instances.all track by $index\" ng-class=\"v.active ? 'true': 'false'\"><div class=\"report-col report-media\"><img class=\"report-img-s clickable\" ng-click=\"activateInstance(v, v.active ? false : true)\" ng-src={{automation.localModules[v.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=\"img\"></div><div class=\"report-col report-body\"><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-wrapper><button type=button class=\"btn btn-default l-hide\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('autoDropdown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button><div class=btn-group ng-class=\"naviExpanded['autoDropdown_' + $index] ? 'btn-group-expanded': 'btn-group-collapsed'\"><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i></a> <button title=\"{{_t('lb_deactivate')}}\" class=\"btn btn-default\" href=\"\" ng-if=v.active ng-class=\"v.active ? 'active' : ''\" ng-click=\"activateInstance(v, false)\"><i class=\"fa fa-fire text-success\"></i></button> <button title=\"{{_t('lb_activate')}}\" class=\"btn btn-default\" ng-if=!v.active ng-click=\"activateInstance(v, true)\"><i class=\"fa fa-power-off text-danger\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\"><i class=\"fa fa-clone\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div><div class=\"block text-right\"><a class=\"btn btn-default\" href=#module/post/{{automation.moduleId}}><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/navi.html',
-    "<div class=\"tabs-wrap form-inline\" bind-class-on-scroll offset=50 scroll-class=fix-me-top><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" title=\"{{_t('scenes')}}\" ng-href=#scenes ng-class=\"{'active': routeMatch('/scenes')}\"><i class=\"fa fa-lightbulb-o\"></i> <span class=btn-name>{{_t('scenes')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('rules')}}\" ng-href=#automation/Rules ng-class=\"{'active': automation.moduleId == 'Rules'}\"><i class=\"fa fa-sliders\"></i> <span class=btn-name>{{_t('rules')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('schedules')}}\" ng-href=#schedules ng-class=\"{'active': routeMatch('/schedules')}\"><i class=\"fa fa-calendar-check-o\"></i> <span class=btn-name>{{_t('schedules')}}</span></a></div></div>"
-  );
-
-
-  $templateCache.put('app/views/automation/rules/rule_form.html',
+  $templateCache.put('app/views/automation/_rules/rule_form.html',
     "<div class=\"form-group form-inline\"><label>{{_t('lb_name')}}</label><input name=title id=title class=form-control ng-model=\"rule.input.title\"></div><div class=form-group>Active <input type=checkbox name=active id=active ng-checked=rule.input.active ng-model=\"rule.input.active\"><label for=active>&nbsp;</label></div><div class=form-group><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().uploadFile(this.files)\"><label for=file{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload text-success\"></i> Upload icon</label><div ng-if=file.upload>{{file.upload|cutText:true:30}}</div><bb-help-text trans=\"_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})\"></bb-help-text></div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/rule_id.html',
+  $templateCache.put('app/views/automation/_rules/rule_id.html',
     "<div ng-controller=AutomationRuleIdController><div ng-controller=AutomationMockController><pre>{{rule.model|json}}</pre><pre>{{rule.input|json}}</pre><form class=\"form form-page\" ng-submit=storeInstance()><fieldset ng-include=\"'app/views/automation/rules/rule_form.html'\"></fieldset><section ng-include=\"'app/views/automation/rules/rule_if.html'\"></section><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form><pre>{{rule.data|json}}</pre></div></div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/rule_if.html',
+  $templateCache.put('app/views/automation/_rules/rule_if.html',
     "<div class=header>IF</div><div class=\"content form-inline\"><div class=\"form-group last\"><select name=\"\" class=form-control ng-model=rule.model.sourceDevice.id ng-change=onSourceDeviceChange(rule.model.sourceDevice.id)><option value={{v.id}} ng-repeat=\"v in rule.devices\">{{v.title}} {{v.deviceType}}</option></select><span></span></div><div class=\"form-group last\" ng-include=\"'app/views/automation/rules/' + rule.input.params.sourceDevice.filterIf +'.html'\" ng-if=rule.input.params.sourceDevice.filterIf></div></div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/rule_then.html',
+  $templateCache.put('app/views/automation/_rules/rule_then.html',
     "<div class=header>THEN <button class=\"btn btn-default btn-small\" title=\"{{_t('lb_update')}}\" ng-click=\"handleModal('thenModal', $event)\"><i class=\"fa fa-plus text-success\"></i> Add new item</button></div><div class=content><div class=automation-report ng-repeat=\"(k,m) in mock.deviceTypes\"><div class=\"app-row app-row-report clearfix\"><div class=report-entry ng-repeat=\"d in mock.devices track by $index\" ng-if=\"d.type == m.type\"><div class=report-col>{{d.title}} {{$index}}</div><div class=\"report-col form-inline\"><div class=form-group ng-switch=k><span ng-switch-when=switches><input type=checkbox name=switch_{{v.title}}_{{$index}} id=switch_{{v.title}}_{{$index}} ng-model=\"mock.input['switch_' + v.title + $index]\"><label for=switch_{{v.title}}_{{$index}}><span class=btn-name>{{mock.input['switch_' + v.title + $index] ? 'ON':'OFF'}}</span></label></span> <input class=\"form-control input-number\" placeholder=Level ng-switch-when=dimmers> <input class=\"form-control input-number\" placeholder=&deg;C ng-switch-when=thermostats> <span ng-switch-when=locks><input type=checkbox name=lock_{{v.title}}_{{$index}} id=lock_{{v.title}}_{{$index}} ng-model=\"mock.input['lock_' + v.title + $index]\"><label for=lock_{{v.title}}_{{$index}}><span class=btn-name>{{mock.input['lock_' + v.title + $index] ? 'OPEN':'CLOSE'}}</span></label></span><select class=form-control ng-switch-when=scenes><option>Scene 1</option><option>Scene 2</option><option>Scene 3</option></select></div></div><div class=\"report-col report-ctrl form-inline\"><div class=form-group><button class=\"btn btn-text\" title=\"{{_t('lb_update')}}\" ng-click=\"handleModal('thenModal', $event)\"><i class=\"fa fa-pencil text-info\"></i></button> <button class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\"><i class=\"fa fa-times text-danger\"></i></button></div></div></div></div></div></div><div ng-include=\"'app/views/automation/rules/then_modal.html'\"></div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/sensorBinary.html',
+  $templateCache.put('app/views/automation/_rules/sensorBinary.html',
     " <input type=checkbox name=on_off id=on_off ng-model=rule.model.sourceDevice.value ng-true-value=on ng-false-value=off ng-checked=scene.input.on_off ng-change=\"onSourceDeviceChangeValue(rule.model.sourceDevice.value,rule.model.sourceDevice.device)\"><label for=on_off>{{mock.input.on_off ? 'On' : 'Off'}}</label>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/sensorDiscrete.html',
+  $templateCache.put('app/views/automation/_rules/sensorDiscrete.html',
     "<div class=\"alert alert-warning\">Sensor discrete</div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/sensorMultilevel.html',
+  $templateCache.put('app/views/automation/_rules/sensorMultilevel.html',
     "<div class=\"alert alert-warning\">sensorMultilevel form comes here</div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/switchBinary.html',
+  $templateCache.put('app/views/automation/_rules/switchBinary.html',
     " <span>is</span> <input type=checkbox name=on_off id=on_off ng-model=mock.input.on_off ng-checked=\"scene.input.on_off\"><label for=on_off>{{mock.input.on_off ? 'On' : 'Off'}}</label>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/switchControl.html',
+  $templateCache.put('app/views/automation/_rules/switchControl.html',
     "<div class=\"alert alert-warning\">SwitchControl form comes here</div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/switchMultilevel.html',
+  $templateCache.put('app/views/automation/_rules/switchMultilevel.html',
     "<div class=\"alert alert-warning\">SwitchMultilevel form comes here</div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/then_modal.html',
+  $templateCache.put('app/views/automation/_rules/then_modal.html',
     "<div id=thenModal class=appmodal ng-if=modalArr.thenModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('thenModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>THEN</h3></div><div class=appmodal-body>Forms comes here</div><div class=appmodal-footer><button type=button class=\"btn btn-default\" title=\"{{_t('lb_close')}}\" ng-click=\"handleModal('thenModal', $event)\"><i class=\"fa fa-times text-danger\"></i> <span class=btn-name>{{_t('lb_close')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-click=\"handleModal('thenModal', $event)\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></div></div></div>"
   );
 
 
-  $templateCache.put('app/views/automation/rules/toggleButton.html',
+  $templateCache.put('app/views/automation/_rules/toggleButton.html',
     "<select class=form-control><option ng-repeat=\"v in mock.modules.scenes.all\">{{v}}</option></select>"
   );
 
 
-  $templateCache.put('app/views/automation/scenes/_scenes_list.html',
-    "<div class=\"app-row app-row-report clearfix\"><div class=\"report-entry bcg-active\" ng-repeat=\"v in scenes.all track by $index\" ng-class=\"{'bcg-danger':!v.active}\"><div class=\"report-col report-media\"><img class=\"report-img-s clickable\" ng-click=\"activateScene(v, v.active ? false : true)\" ng-src=\"{{cfg.img.custom_icons + v.params.customIcon.table['0'].icon}}\" err-src={{cfg.img.placeholder}} alt=\"img\"></div><div class=\"report-col report-body\"><a href=#scenes/{{v.id}}>{{v.title}}</a></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-wrapper><button type=button class=\"btn btn-default l-hide\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('autoDropdown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button><div class=btn-group ng-class=\"naviExpanded['autoDropdown_' + $index] ? 'btn-group-expanded': 'btn-group-collapsed'\"><button title=\"{{_t('btn_test')}}\" class=\"btn btn-default\" ng-disabled=\"!_.contains(scenes.enableTest, v.id)\" ng-click=runSceneTest(v)><bb-row-spinner spinner=rowSpinner[v.id] icon=\"'fa-play-circle-o text-success'\"></bb-row-spinner></button> <a ng-href=#scenes/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-primary\"></i></a> <button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateScene(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-stop text-danger' : 'fa-play text-success'\"></i></button> <button class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-click=cloneScene(v)><i class=\"fa fa-clone\"></i></button> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteScene({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div><div class=\"block text-right\"><a class=\"btn btn-default\" href=#scenes/0><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div>"
+  $templateCache.put('app/views/automation/navi.html',
+    "<div class=\"tabs-wrap form-inline\" bind-class-on-scroll offset=50 scroll-class=fix-me-top><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" title=\"{{_t('scenes')}}\" ng-href=#scenes ng-class=\"{'active': routeMatch('/scenes')}\"><i class=\"fa fa-lightbulb-o\"></i> <span class=btn-name>{{_t('scenes')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('rules')}}\" ng-href=#rules ng-class=\"{'active': routeMatch('/rules')}\"><i class=\"fa fa-sliders\"></i> <span class=btn-name>{{_t('rules')}}</span></a> <a class=\"btn btn-default\" title=\"{{_t('schedules')}}\" ng-href=#schedules ng-class=\"{'active': routeMatch('/schedules')}\"><i class=\"fa fa-calendar-check-o\"></i> <span class=btn-name>{{_t('schedules')}}</span></a></div></div>"
+  );
+
+
+  $templateCache.put('app/views/automation/rules/rules.html',
+    "<div ng-controller=AutomationRuleController><div ng-include=\"'app/views/automation/navi.html'\"></div><div ng-if=\"rules.state == 'blank'\" ng-include=\"'app/views/automation/rules/rules_blank.html'\"></div><div ng-if_=\"rules.state == 'success'\" ng-include=\"'app/views/automation/rules/rules_list.html'\"></div></div>"
+  );
+
+
+  $templateCache.put('app/views/automation/rules/rules_blank.html',
+    "<div class=\"blank is-info\"><div class=blank-img><i class=\"fa fa-info-circle\"></i></div><div class=blank-body><p class=blank-text>{{_t('no_rule_available')}}</p><a class=\"btn btn-default\" href=#module/post/Rules><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div></div>"
+  );
+
+
+  $templateCache.put('app/views/automation/rules/rules_list.html',
+    "<div class=list-panel ng-repeat=\"v in rules.all track by $index\" ng-class=\"{'bcg-danger':!v.active}\"><figure class=\"img wh-32x32 clickable\" ng-click=\"activateRule(v, v.active ? false : true)\"><img ng-src=\"{{cfg.img.icons + 'security-pending.png'}}\" err-src={{cfg.img.placeholder}} alt=\"img\"></figure><div class=body><div><a href=#module/put/{{v.id}}>{{v.title}}</a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('autoDropdown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button></div><div class=control ng-class=\"naviExpanded['autoDropdown_' + $index] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-primary\"></i></a> <button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateRule(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-stop text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/Rules/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-disabled=!v.active><i class=\"fa fa-clone\"></i></a> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteRule({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div><div class=\"block text-right\"><a class=\"btn btn-default\" href=#module/post/Rules><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div>"
   );
 
 
@@ -17883,7 +17817,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/scenes/scenes_list.html',
-    "<div class=list-panel ng-repeat=\"v in scenes.all track by $index\" ng-class=\"{'bcg-danger':!v.active}\"><figure class=\"img wh-32x32 clickable\" ng-click=\"activateScene(v, v.active ? false : true)\"><img class=\"report-img-s clickable\" ng-src=\"{{cfg.img.custom_icons + v.params.customIcon.table['0'].icon}}\" err-src={{cfg.img.placeholder}} alt=\"img\"></figure><div class=body><div><a href=#scenes/{{v.id}}>{{v.title}}</a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('autoDropdown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button></div><div class=control ng-class=\"naviExpanded['autoDropdown_' + $index] ? 'expand-true': 'expand-false'\"><div class=btn-group><button title=\"{{_t('btn_test')}}\" class=\"btn btn-default\" ng-disabled=\"!_.contains(scenes.enableTest, v.id)\" ng-click=runSceneTest(v)><bb-row-spinner spinner=rowSpinner[v.id] icon=\"'fa-play-circle-o text-success'\"></bb-row-spinner></button> <a ng-href=#scenes/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-primary\"></i></a> <button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateScene(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-stop text-danger' : 'fa-play text-success'\"></i></button> <button class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-click=cloneScene(v)><i class=\"fa fa-clone\"></i></button> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteScene({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div><div class=\"block text-right\"><a class=\"btn btn-default\" href=#scenes/0><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div>"
+    "<div class=list-panel ng-repeat=\"v in scenes.all track by $index\" ng-class=\"{'bcg-danger':!v.active}\"><figure class=\"img wh-32x32 clickable\" ng-click=\"activateScene(v, v.active ? false : true)\"><img ng-src=\"{{cfg.img.custom_icons + v.params.customIcon.table['0'].icon}}\" err-src={{cfg.img.placeholder}} alt=\"img\"></figure><div class=body><div><a href=#scenes/{{v.id}}>{{v.title}}</a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('autoDropdown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button></div><div class=control ng-class=\"naviExpanded['autoDropdown_' + $index] ? 'expand-true': 'expand-false'\"><div class=btn-group><button title=\"{{_t('btn_test')}}\" class=\"btn btn-default\" ng-disabled=\"!_.contains(scenes.enableTest, v.id)\" ng-click=runSceneTest(v)><bb-row-spinner spinner=rowSpinner[v.id] icon=\"'fa-play-circle-o text-success'\"></bb-row-spinner></button> <a ng-href=#scenes/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-primary\"></i></a> <button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateScene(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-stop text-danger' : 'fa-play text-success'\"></i></button> <button class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-click=cloneScene(v) ng-disabled=!v.active><i class=\"fa fa-clone\"></i></button> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteScene({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div><div class=\"block text-right\"><a class=\"btn btn-default\" href=#scenes/0><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div>"
   );
 
 
@@ -17943,7 +17877,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/schedules/schedules_list.html',
-    "<div class=\"app-row app-row-report clearfix\"><div class=\"report-entry bcg-active\" ng-repeat=\"v in schedules.all track by $index\" ng-class=\"{'bcg-danger':!v.active}\"><div class=\"report-col report-media\"><figure class=\"label-round is-48px clickable\" ng-click=\"activateSchedule(v, v.active ? false : true)\"><span>{{v.params.times[0]}}</span></figure></div><div class=\"report-col report-body\"><a href=#schedules/{{v.id}}>{{v.title}}</a><div class=label-wrap><span class=\"label label-info\" title=\"{{_t('day_' + d)}}\" ng-repeat=\"d in v.params.weekdays\">{{_t('day_short_' + d)}}</span></div></div><div class=\"report-col report-ctrl report-ctrl-3\"><div class=btn-wrapper><button type=button class=\"btn btn-default l-hide\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('autoDropdown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button><div class=btn-group ng-class=\"naviExpanded['autoDropdown_' + $index] ? 'btn-group-expanded': 'btn-group-collapsed'\"><button title=\"{{_t('btn_test')}}\" class=\"btn btn-default\" ng-disabled=\"!_.contains(schedules.enableTest, v.id)\" ng-click=runScheduleTest(v)><bb-row-spinner spinner=rowSpinner[v.id] icon=\"'fa-play-circle-o text-success'\"></bb-row-spinner></button> <a ng-href=#schedules/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-primary\"></i></a> <button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateSchedule(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-stop text-danger' : 'fa-play text-success'\"></i></button> <button class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-click=cloneSchedule(v)><i class=\"fa fa-clone\"></i></button> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteSchedule({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div><div class=\"block text-right\"><a class=\"btn btn-default\" href=#schedules/0><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div>"
+    "<div class=list-panel ng-repeat=\"v in schedules.all track by $index\" ng-class=\"{'bcg-danger':!v.active}\"><figure class=\"label-round is-48px clickable\" ng-click=\"activateSchedule(v, v.active ? false : true)\"><span>{{v.params.times[0]}}</span></figure><div class=body><div><a href=#schedules/{{v.id}}>{{v.title}}</a><div class=label-wrap><span class=\"label label-info\" title=\"{{_t('day_' + d)}}\" ng-repeat=\"d in v.params.weekdays\">{{_t('day_short_' + d)}}</span></div></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('autoDropdown_' + $index, $event)\"><i class=\"fa fa-caret-down\"></i></button></div><div class=control ng-class=\"naviExpanded['autoDropdown_' + $index] ? 'expand-true': 'expand-false'\"><div class=btn-group><button title=\"{{_t('btn_test')}}\" class=\"btn btn-default\" ng-disabled=\"!_.contains(schedules.enableTest, v.id)\" ng-click=runScheduleTest(v)><bb-row-spinner spinner=rowSpinner[v.id] icon=\"'fa-play-circle-o text-success'\"></bb-row-spinner></button> <a ng-href=#schedules/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_update')}}\"><i class=\"fa fa-pencil text-primary\"></i></a> <button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateSchedule(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-stop text-danger' : 'fa-play text-success'\"></i></button> <button class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-click=cloneSchedule(v) ng-disabled=!v.active><i class=\"fa fa-clone\"></i></button> <button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteSchedule({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div><div class=\"block text-right\"><a class=\"btn btn-default\" href=#schedules/0><i class=\"fa fa-plus text-success\"></i> <span class=btn-name>{{_t('add_new')}}</span></a></div>"
   );
 
 
@@ -18148,7 +18082,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/widgets/mobile/climateControlModal.html',
-    "<div id=climateControlModal class=appmodal ng-controller=ElementClimateControlController ng-if=modalArr.climateControlModal_m><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('climateControlModal_m', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{dataHolder.devices.find.metrics.title}}</h3></div><div class=appmodal-body><bb-alert alert=widgetClimateControl.alert></bb-alert><div class=\"btn-group btn-goup-block btn-goup-4\"><button class=\"btn widget-btn-frostProtection\" id=\"btn_frostProtection_{{ widgetClimateControl.find.id}}\" ng-click=\"runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[0] + '?room=null', widgetClimateControl.find.id)\" ng-class=\"widgetClimateControl.find.metrics.state == cfg.climate_state[0] ? 'btn-primary': 'btn-default'\" title={{_t(cfg.climate_state[0])}}><i class=\"fa fa-asterisk\"></i></button> <button class=\"btn widget-btn-energySave\" id=\"btn_energySave_{{ widgetClimateControl.find.id}}\" ng-click=\"runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[1] + '?room=null', widgetClimateControl.find.id)\" ng-class=\"widgetClimateControl.find.metrics.state ==cfg.climate_state[1] ? 'btn-primary': 'btn-default'\" title={{_t(cfg.climate_state[1])}}><i class=\"fa fa-moon-o\"></i></button> <button class=\"btn widget-btn-comfort\" id=\"btn_comfort_{{ widgetClimateControl.find.id}}\" ng-click=\"runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[2] + '?room=null', widgetClimateControl.find.id)\" ng-class=\"widgetClimateControl.find.metrics.state == cfg.climate_state[2] ? 'btn-primary': 'btn-default'\" title={{_t(cfg.climate_state[2])}}><i class=\"fa fa-sun-o\"></i></button> <button class=\"btn widget-btn-schedule\" id=\"btn_schedule_{{ widgetClimateControl.find.id}}\" ng-click=\"runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[3] + '?room=null', widgetClimateControl.find.id)\" ng-class=\"widgetClimateControl.find.metrics.state == cfg.climate_state[3] ? 'btn-primary': 'btn-default'\" title={{_t(cfg.climate_state[3])}}><i class=\"fa fa-calendar\"></i></button></div><div class=multiline-entry ng-if=widgetClimateControl.rooms><table class=\"table table-report table-condensed\"><tbody><tr class=bcg-success ng-repeat=\"n in widgetClimateControl.rooms\" ng-if=\"n.room > 0\"><td class=td-img><img class=\"report-img img-circle\" ng-src=\"{{n.roomIcon}}\"></td><td class=text-left>{{n.roomTitle}}</td><td><span class=text-primary_>{{n.sensorLevel}} {{n.scaleTitle}}</span></td><td class=text-right><i class=\"fa fa-arrow-right\"></i></td><td class=text-right><span class=text-success>{{n.targetTemp}} °C</span></td><td class=text-right><select class=form-control name=changeMode_{{n.room}} id=changeMode_{{n.room}} ng-model=n.state ng-change=\"changeClimateControlMode({cmd: widgetClimateControl.find.id + '/command/' + n.state + '?room=' + n.room, room: n.room})\"><option value={{m}} ng-repeat=\"m in cfg.climate_state\" ng-disabled=\"m == 'schedule' && !n.hasSchedule\" ng-selected=\"n.state == m\">{{_t(m)}}</option></select></td></tr></tbody></table></div></div></div></div>"
+    "<div id=climateControlModal class=appmodal ng-controller=ElementClimateControlController ng-if=modalArr.climateControlModal_m><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('climateControlModal_m', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{dataHolder.devices.find.metrics.title}}</h3></div><div class=appmodal-body><bb-alert alert=widgetClimateControl.alert></bb-alert><div class=\"btn-group btn-goup-block btn-goup-4\"><button class=\"btn widget-btn-frostProtection\" id=\"btn_frostProtection_{{ widgetClimateControl.find.id}}\" ng-click=\"runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[0] + '?room=null', widgetClimateControl.find.id)\" ng-class=\"widgetClimateControl.find.metrics.state == cfg.climate_state[0] ? 'btn-primary': 'btn-default'\" title={{_t(cfg.climate_state[0])}}><i class=\"fa fa-asterisk\"></i></button> <button class=\"btn widget-btn-energySave\" id=\"btn_energySave_{{ widgetClimateControl.find.id}}\" ng-click=\"runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[1] + '?room=null', widgetClimateControl.find.id)\" ng-class=\"widgetClimateControl.find.metrics.state ==cfg.climate_state[1] ? 'btn-primary': 'btn-default'\" title={{_t(cfg.climate_state[1])}}><i class=\"fa fa-moon-o\"></i></button> <button class=\"btn widget-btn-comfort\" id=\"btn_comfort_{{ widgetClimateControl.find.id}}\" ng-click=\"runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[2] + '?room=null', widgetClimateControl.find.id)\" ng-class=\"widgetClimateControl.find.metrics.state == cfg.climate_state[2] ? 'btn-primary': 'btn-default'\" title={{_t(cfg.climate_state[2])}}><i class=\"fa fa-sun-o\"></i></button> <button class=\"btn widget-btn-schedule\" id=\"btn_schedule_{{ widgetClimateControl.find.id}}\" ng-click=\"runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[3] + '?room=null', widgetClimateControl.find.id)\" ng-class=\"widgetClimateControl.find.metrics.state == cfg.climate_state[3] ? 'btn-primary': 'btn-default'\" title={{_t(cfg.climate_state[3])}}><i class=\"fa fa-calendar\"></i></button></div><div class=multiline-entry ng-if=widgetClimateControl.rooms><table class=\"table table-report table-condensed\"><tbody ng-repeat=\"n in widgetClimateControl.rooms\" ng-if=\"n.room > 0\"><tr class=bcg-success><td class=\"text-left room-title\" colspan=5>{{n.roomTitle}}:</td></tr><tr class=bcg-success><td><span class=text-primary_>{{n.sensorLevel}} {{n.scaleTitle}}</span></td><td class=text-right><i class=\"fa fa-arrow-right\"></i></td><td class=text-right><span class=text-success>{{n.targetTemp}} °C</span></td><td class=\"text-right td40\"><select class=form-control name=changeMode_{{n.room}} id=changeMode_{{n.room}} ng-model=n.state ng-change=\"changeClimateControlMode({cmd: widgetClimateControl.find.id + '/command/' + n.state + '?room=' + n.room, room: n.room})\"><option value={{m}} ng-repeat=\"m in cfg.climate_state\" ng-disabled=\"m == 'schedule' && !n.hasSchedule\" ng-selected=\"n.state == m\">{{_t(m)}}</option></select></td></tr></tbody></table></div></div></div></div>"
   );
 
 
@@ -18213,7 +18147,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/widgets/mobile/sensorMultilevel.html',
-    "<div class=widget-img-overlay ng-if=!v.hasHistory><span class=widget-level>{{v.metrics.level}}</span> <span class=widget-scale>{{v.metrics.scaleTitle}}</span></div><div class=widget-img-overlay ng-if=v.hasHistory ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\"><span class=widget-level>{{v.metrics.level}}</span> <span class=widget-scale>{{v.metrics.scaleTitle}}</span></div><img class=\"widget-preview-img img-circle\" ng-src={{v.iconPath}} alt=img err-src={{cfg.img.placeholder}} ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) === -1\">"
+    "<div class=widget-img-overlay ng-if=!v.hasHistory ng-click=\"runCmd(v.id + '/command/update')\"><span class=widget-level>{{v.metrics.level}}</span> <span class=widget-scale>{{v.metrics.scaleTitle}}</span></div><div class=widget-img-overlay ng-if=v.hasHistory ng-click=\"dataHolder.devices.find = v;handleModal('modalHistory', $event)\"><span class=widget-level>{{v.metrics.level}}</span> <span class=widget-scale>{{v.metrics.scaleTitle}}</span></div><img class=\"widget-preview-img img-circle\" ng-src={{v.iconPath}} alt=img err-src={{cfg.img.placeholder}} ng-if=\"cfg.element_update_icon.indexOf(v.deviceType) === -1\">"
   );
 
 
@@ -18689,12 +18623,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_inclusion.html',
-    "<div ng-controller=ZwaveInclusionController id=zwave_inclusion><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=fieldset><h1>{{_t('add_new_device')}}</h1></div><div class=\"fieldset bar-row inclusion\" ng-show=!_.isEmpty(zwaveInclusion.device.find)><div class=\"bar-col bar-media\"><img ng-src=\"{{cfg.img.zwavedevices + zwaveInclusion.device.find.product_image}}\" err-src={{cfg.img.placeholder}} alt=\"img\"></div><div class=\"bar-col bar-body\"><em>{{zwaveInclusion.device.find.brandname + ' ' + zwaveInclusion.device.find.name}}</em></div></div><div class=\"fieldset clearfix\"><div class=\"app-row app-row-report clearfix\"><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">1</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!zwaveInclusion.exclusionProcess.process><button class=\"btn btn-default\" title=\"{{_t('lb_include_preparation_start')}}\" ng-disabled=\"zwaveInclusion.inclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0\" ng-click=startStopExclusion(true)><i class=\"fa fa-refresh\"></i> {{_t('lb_include_preparation_start')}}</button><bb-help-text trans=\"_t('lb_include_preparation')\"></bb-help-text><p ng-if=zwaveInclusion.device.find.prep><em>{{zwaveInclusion.device.find.prep}}</em></p></div><div class=inclusion-process ng-if=zwaveInclusion.exclusionProcess.process><div class=\"alert alert-warning\"><h4><i class=\"fa fa-spinner fa-spin\"></i> {{_t('lb_ready_exclude')}}</h4><p ng-bind-html=zwaveInclusion.device.find.exc|toTrusted></p></div><button class=\"btn btn-danger btn-lg\" title=\"{{_t('stop')}}\" ng-click=startStopExclusion(false)><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop')}}</span></button></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.exclusionProcess.done></i></div></div><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">2</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!zwaveInclusion.inclusionProcess.process><button class=\"btn btn-success btn-lg\" title=\"{{_t('start')}}\" ng-disabled=\"zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0\" ng-click=startStopInclusion(true)><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('start')}}</span></button> <button type=button class=\"btn btn-default btn-lg\" id=btn_force_unsecure_lock ng-class=\"zwaveInclusion.controller.secureInclusion ? 'active' : ''\" ng-click=\"setSecureInclusion('controller.data.secureInclusion=' + (zwaveInclusion.controller.secureInclusion ? 'false' : 'true'))\" ng-disabled=\"zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.process\"><span ng-if=!zwaveInclusion.controller.secureInclusion title=\"{{_t('btn_unsecure')}}\"><i class=\"fa fa-unlock text-danger\"></i> <span class=btn-name>{{_t('btn_unsecure')}}</span></span> <span ng-if=zwaveInclusion.controller.secureInclusion title=\"{{_t('btn_secure')}}\"><i class=\"fa fa-lock text-success\"></i> <span class=btn-name>{{_t('btn_secure')}}</span></span></button></div><div class=inclusion-process ng-if=zwaveInclusion.inclusionProcess.process><div class=\"alert alert-warning\"><h4><i class=\"fa fa-spinner fa-spin\"></i> {{_t('lb_ready_include')}}</h4><p ng-bind-html=zwaveInclusion.device.find.inc|toTrusted></p></div><button class=\"btn btn-danger btn-lg\" title=\"{{_t('stop')}}\" ng-click=startStopInclusion(false)><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop')}}</span></button></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.inclusionProcess.done></i></div></div><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">3</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!zwaveInclusion.automatedConfiguration.process><h3>{{_t('automated_konfiguration')}}</h3></div><div class=inclusion-process ng-if=zwaveInclusion.automatedConfiguration.process><div class=\"alert alert-warning\" ng-hide=\"zwaveInclusion.automatedConfiguration.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong> <span>(#{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}})</span></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInclusion.automatedConfiguration.progress}}%\" ng-class=\"zwaveInclusion.automatedConfiguration.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInclusion.automatedConfiguration.progress}}%</div></div></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.automatedConfiguration.done></i></div></div><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">4</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!zwaveInclusion.manualConfiguration.process><h3>{{_t('manual_konfiguration')}}</h3></div><div class=inclusion-process ng-if=zwaveInclusion.manualConfiguration.process><div class=\"alert alert-warning\"><i class=\"fa fa-spinner fa-spin\"></i> <strong ng-bind=\"_t('manual_config_prepare')\"></strong></div></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.manualConfiguration.done></i></div></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div><div id=cancelConfigurationModal class=appmodal ng-if=zwaveInclusion.cancelModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelManualConfiguration(true)><i class=\"fa fa-times\"></i></span><h3>{{cfg.app_name}}</h3></div><div class=appmodal-body>{{_t('configuration_cancel')}}</div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelManualConfiguration(true)><i class=\"fa fa-refresh text-success\"></i> {{_t('reset_redo_inclusion')}}</button> <button type=button class=\"btn btn-default\" ng-click=cancelManualConfiguration(false)>{{_t('continue_anyway')}} <i class=\"fa fa-arrow-right text-primary\"></i></button></div></div></div><div id=inclusionVerifyDSKModal class=appmodal ng-if=zwaveInclusion.s2.verifyWindow><div class=appmodal-in><form name=dskForm><div class=appmodal-header><h3>{{_t('verify_device_pin')}}</h3></div><div class=\"appmodal-body form-group form-inline\"><label>{{_t('pin')}}</label><input name=dsk_pin id=dsk_pin type=number size=5 class=\"form-control input_number input-valid-{{dskForm.dsk_pin.$valid}}\" min=0 max=65533 ng-show=zwaveInclusion.s2.input.publicKeyAuthenticationRequired ng-model=zwaveInclusion.s2.input.dskPin required> <input name=dsk_1 id=dsk_1 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 1)\" disabled ng-show=\"!zwaveInclusion.s2.input.publicKeyAuthenticationRequired\"> - <input name=dsk_2 id=dsk_2 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 2)\" disabled> - <input name=dsk_3 id=dsk_3 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 3)\" disabled> - <input name=dsk_4 id=dsk_4 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 4)\" disabled> - <input name=dsk_5 id=dsk_5 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 5)\" disabled> - <input name=dsk_6 id=dsk_6 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 6)\" disabled> - <input name=dsk_7 id=dsk_7 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 7)\" disabled> - <input name=dsk_8 id=dsk_8 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 8)\" disabled></div><div class=appmodal-footer><button type=button class=\"btn btn-submit\" ng-click=handleInclusionVerifyDSK(zwaveInclusion.automatedConfiguration.includedDevice.nodeId) ng-click_=handleInclusionVerifyDSK(12)><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('confirm')}}</span></button></div></form></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveInclusionController id=zwave_inclusion><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=fieldset><h1>{{_t('add_new_device')}}</h1></div><div class=\"fieldset bar-row inclusion\" ng-show=!_.isEmpty(zwaveInclusion.device.find)><div class=\"bar-col bar-media\"><img ng-src=\"{{cfg.img.zwavedevices + zwaveInclusion.device.find.product_image}}\" err-src=\"{{cfg.online_device_icon_url + zwaveInclusion.device.find.remote_image}}\" err-src2={{cfg.img.placeholder}} alt=\"img\"></div><div class=\"bar-col bar-body\"><em>{{zwaveInclusion.device.find.brandname + ' ' + zwaveInclusion.device.find.name}}</em></div></div><div class=\"fieldset clearfix\"><div class=\"app-row app-row-report clearfix\"><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">1</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!zwaveInclusion.exclusionProcess.process><button class=\"btn btn-default\" title=\"{{_t('lb_include_preparation_start')}}\" ng-disabled=\"zwaveInclusion.inclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0\" ng-click=startStopExclusion(true)><i class=\"fa fa-refresh\"></i> {{_t('lb_include_preparation_start')}}</button><bb-help-text trans=\"_t('lb_include_preparation')\"></bb-help-text><p ng-if=zwaveInclusion.device.find.prep><em>{{zwaveInclusion.device.find.prep}}</em></p></div><div class=inclusion-process ng-if=zwaveInclusion.exclusionProcess.process><div class=\"alert alert-warning\"><h4><i class=\"fa fa-spinner fa-spin\"></i> {{_t('lb_ready_exclude')}}</h4><p ng-bind-html=zwaveInclusion.device.find.exc|toTrusted></p></div><button class=\"btn btn-danger btn-lg\" title=\"{{_t('stop')}}\" ng-click=startStopExclusion(false)><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop')}}</span></button></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.exclusionProcess.done></i></div></div><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">2</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!zwaveInclusion.inclusionProcess.process><button class=\"btn btn-success btn-lg\" title=\"{{_t('start')}}\" ng-disabled=\"zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0\" ng-click=startStopInclusion(true)><i class=\"fa fa-plug\"></i> <span class=btn-name>{{_t('start')}}</span></button> <button type=button class=\"btn btn-default btn-lg\" id=btn_force_unsecure_lock ng-class=\"zwaveInclusion.controller.secureInclusion ? 'active' : ''\" ng-click=\"setSecureInclusion('controller.data.secureInclusion=' + (zwaveInclusion.controller.secureInclusion ? 'false' : 'true'))\" ng-disabled=\"zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.process\"><span ng-if=!zwaveInclusion.controller.secureInclusion title=\"{{_t('btn_unsecure')}}\"><i class=\"fa fa-unlock text-danger\"></i> <span class=btn-name>{{_t('btn_unsecure')}}</span></span> <span ng-if=zwaveInclusion.controller.secureInclusion title=\"{{_t('btn_secure')}}\"><i class=\"fa fa-lock text-success\"></i> <span class=btn-name>{{_t('btn_secure')}}</span></span></button></div><div class=inclusion-process ng-if=zwaveInclusion.inclusionProcess.process><div class=\"alert alert-warning\"><h4><i class=\"fa fa-spinner fa-spin\"></i> {{_t('lb_ready_include')}}</h4><p ng-bind-html=zwaveInclusion.device.find.inc|toTrusted></p></div><button class=\"btn btn-danger btn-lg\" title=\"{{_t('stop')}}\" ng-click=startStopInclusion(false)><i class=\"fa fa-ban\"></i> <span class=btn-name>{{_t('stop')}}</span></button></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.inclusionProcess.done></i></div></div><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">3</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!zwaveInclusion.automatedConfiguration.process><h3>{{_t('automated_konfiguration')}}</h3></div><div class=inclusion-process ng-if=zwaveInclusion.automatedConfiguration.process><div class=\"alert alert-warning\" ng-hide=\"zwaveInclusion.automatedConfiguration.progress > 99\"><i class=\"fa fa-spinner fa-spin\"></i> <strong>{{_t('configuring_device')}}</strong> <span>(#{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}})</span></div><div class=progress><div class=progress-bar style=\"min-height:40px;min-width: 2em; width: {{zwaveInclusion.automatedConfiguration.progress}}%\" ng-class=\"zwaveInclusion.automatedConfiguration.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'\">{{zwaveInclusion.automatedConfiguration.progress}}%</div></div></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.automatedConfiguration.done></i></div></div><div class=report-entry><div class=\"report-col report-media\"><span class=\"badge badge-number\">4</span></div><div class=\"report-col report-body\"><div class=inclusion-header ng-if=!zwaveInclusion.manualConfiguration.process><h3>{{_t('manual_konfiguration')}}</h3></div><div class=inclusion-process ng-if=zwaveInclusion.manualConfiguration.process><div class=\"alert alert-warning\"><i class=\"fa fa-spinner fa-spin\"></i> <strong ng-bind=\"_t('manual_config_prepare')\"></strong></div></div></div><div class=\"report-col report-ctrl\"><i class=\"fa fa-check fa-2x text-success\" ng-if=zwaveInclusion.manualConfiguration.done></i></div></div></div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button></div></div><div id=cancelConfigurationModal class=appmodal ng-if=zwaveInclusion.cancelModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=cancelManualConfiguration(true)><i class=\"fa fa-times\"></i></span><h3>{{cfg.app_name}}</h3></div><div class=appmodal-body>{{_t('configuration_cancel')}}</div><div class=appmodal-footer><button type=button class=\"btn btn-default\" ng-click=cancelManualConfiguration(true)><i class=\"fa fa-refresh text-success\"></i> {{_t('reset_redo_inclusion')}}</button> <button type=button class=\"btn btn-default\" ng-click=cancelManualConfiguration(false)>{{_t('continue_anyway')}} <i class=\"fa fa-arrow-right text-primary\"></i></button></div></div></div><div id=inclusionVerifyDSKModal class=appmodal ng-if=zwaveInclusion.s2.verifyWindow><div class=appmodal-in><form name=dskForm><div class=appmodal-header><h3>{{_t('verify_device_pin')}}</h3></div><div class=\"appmodal-body form-group form-inline\"><label>{{_t('pin')}}</label><input name=dsk_pin id=dsk_pin type=number size=5 class=\"form-control input_number input-valid-{{dskForm.dsk_pin.$valid}}\" min=0 max=65533 ng-show=zwaveInclusion.s2.input.publicKeyAuthenticationRequired ng-model=zwaveInclusion.s2.input.dskPin required> <input name=dsk_1 id=dsk_1 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 1)\" disabled ng-show=\"!zwaveInclusion.s2.input.publicKeyAuthenticationRequired\"> - <input name=dsk_2 id=dsk_2 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 2)\" disabled> - <input name=dsk_3 id=dsk_3 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 3)\" disabled> - <input name=dsk_4 id=dsk_4 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 4)\" disabled> - <input name=dsk_5 id=dsk_5 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 5)\" disabled> - <input name=dsk_6 id=dsk_6 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 6)\" disabled> - <input name=dsk_7 id=dsk_7 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 7)\" disabled> - <input name=dsk_8 id=dsk_8 type=number size=5 class=\"form-control input_number\" ng-value=\"dskBlock(zwaveInclusion.s2.input.publicKey, 8)\" disabled></div><div class=appmodal-footer><button type=button class=\"btn btn-submit\" ng-click=handleInclusionVerifyDSK(zwaveInclusion.automatedConfiguration.includedDevice.nodeId) ng-click_=handleInclusionVerifyDSK(12)><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('confirm')}}</span></button></div></form></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
   $templateCache.put('app/views/zwave/zwave_manage.html',
-    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\"><div class=\"report-col report-body zwave-devices\"><div class=btn-group><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span> <a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\" ng-if=\"_.size(v.elements) > 0\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a> <span class=\"label label-success\" ng-if=\"v.securityType === 'security-1'\"><i class=\"fa fa-shield\"></i> {{_t('secure')}}</span> <span class=\"label label-success\" ng-if=\"v.securityType === 'security-2'\"><i class=\"fa fa-shield\"></i> <i class=\"fa fa-shield\"></i> S2 {{_t('secure')}}</span><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=zwave-hidden-{{e.permanently_hidden}} ng-init=\"elUrl = (e.permanently_hidden ? '': '#/element/' + e.id)\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href={{elUrl}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\" ng-if=elementAccess(cfg.role_access.network)><div class=btn-group><a class=\"btn btn-default\" href=#zwave/devices/{{v.id}} title=\"{{_t('lb_configuration')}}\"><i class=\"fa fa-cog text-primary\"></i></a> <a class=\"btn btn-default\" href=#zwave/exclude/{{v.id}} title=\"{{_t('lb_remove')}}\"><i class=\"fa fa-remove text-danger\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageController><bb-loader></bb-loader><div ng-include=\"'app/views/zwave/navi.html'\"></div><div class=\"app-row app-row-report app-row-zwave clearfix\"><div id=row_zwave_{{v.id}} class=report-entry ng-repeat=\"v in devices.zw | orderBy:'title':false\"><div class=\"report-col report-body zwave-devices\"><div class=btn-group><span class=\"network-zwave-title noelements\" ng-if=\"_.size(v.elements) < 1\">{{v.title}} (#{{v.id}})</span> <a href=\"\" class=network-zwave-title ng-click=\"expandNavi('accZwaveManage_' + v.id, $event)\" ng-if=\"_.size(v.elements) > 0\"><i class=fa ng-class=\"naviExpanded['accZwaveManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'\"></i> {{v.title}} (#{{v.id}})</a> <span class=\"label label-success\" ng-if=\"v.securityType === 'security-1'\"><i class=\"fa fa-shield\"></i></span> <span class=\"label label-success\" ng-if=\"v.securityType === 'security-2'\"><i class=\"fa fa-shield\"></i> <i class=\"fa fa-shield\"></i> S2</span><div class=\"app-dropdown app-dropdown-left\" ng-if=\"naviExpanded['accZwaveManage_' + v.id]\"><ul><li class=zwave-hidden-{{e.permanently_hidden}} ng-init=\"elUrl = (e.permanently_hidden ? '': '#/element/' + e.id)\" ng-repeat=\"e in v.elements| orderBy:'metrics.title':false\"><a ng-href={{elUrl}} title={{e.metrics.title}}><img class=report-img-s ng-src={{e.iconPath}} alt=\"img\"> {{e.metrics.title|cutText:true:20}} <span class=zwave-raquo>&raquo;</span></a></li></ul></div></div></div><div class=\"report-col report-ctrl\" ng-if=elementAccess(cfg.role_access.network)><div class=btn-group><a class=\"btn btn-default\" href=#zwave/devices/{{v.id}} title=\"{{_t('lb_configuration')}}\"><i class=\"fa fa-cog text-primary\"></i></a> <a class=\"btn btn-default\" href=#zwave/exclude/{{v.id}} title=\"{{_t('lb_remove')}}\"><i class=\"fa fa-remove text-danger\"></i></a></div></div></div></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -25548,7 +25482,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Load all promises
      */
     $scope.allSettled = function (noCache) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        if (!$scope.deviceDetector.isMobile()) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        }
         // Notifications since
         //var since = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
         var promises = [
@@ -27799,416 +27735,6 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     };
 });
 /**
- * @overview Controllers that handle automation actions – scenes, rules, schedules.
- * @author Martin Vach
- */
-
-/**
- * Aoutomation parent controller
- * @class AutomationController
- */
-myAppController.controller('AutomationController', function ($scope, $routeParams, $location, cfg, dataFactory, dataService, _, myCache) {
-  $scope.automation = {
-    moduleId: $routeParams.moduleId,
-    allowedIds: ['Scenes', 'Rules', 'Schedules'],
-    icons: {
-      Scenes: 'scene.png',
-      Rules: 'security-pending.png',
-      Schedules: 'alarm.png'
-    },
-    prototypeRoutes: {
-      Scenes: 'scenes',
-      Rules: 'rules',
-      Schedules: 'schedules'
-    },
-    imgPath: cfg.server_url + cfg.api_url + 'load/modulemedia/',
-
-    //imgPath: cfg.server_url + cfg.api_url + 'load/modulemedia/',
-    state: '',
-    localModules: {},
-    instances: {
-      all: []
-
-    }
-  };
-
-  /**
-   * Load local modules
-   * @returns {undefined}
-   */
-  $scope.loadLocalModules = function () {
-    dataFactory.getApi('modules').then(function (response) {
-      // Get info from module
-      _.filter(response.data.data, function (v) {
-        if ($scope.automation.allowedIds.indexOf(v.moduleName) > -1) {
-          $scope.automation.localModules[v.moduleName] = {
-            version: v.version,
-            icon: $scope.automation.imgPath + v.id + '/' + v.icon,
-            //icon: cfg.img.icons + $scope.automation.icons[v.moduleName],
-            singleton: v.singleton,
-            title: v.defaults.title
-          };
-
-        }
-
-      });
-    });
-  };
-
-
-  /**
-   * Load instances
-   * @returns {undefined}
-   */
-  $scope.loadInstances = function (moduleId) {
-    dataFactory.getApi('instances', null, true).then(function (response) {
-      $scope.automation.instances.all = _.where(response.data.data, {
-        moduleId: moduleId
-      });
-      if (!_.size($scope.automation.instances.all)) {
-        $scope.automation.state = 'blank';
-        return;
-      }
-      $scope.automation.state = 'success';
-    }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
-    });
-  };
-  
-  if ($scope.automation.allowedIds.indexOf($routeParams.moduleId) > -1) {
-    $scope.loadLocalModules();
-    $scope.loadInstances($routeParams.moduleId);
-  } else {
-    $location.path('/error403');
-  }
-
-
-  /**
-   * Activate instance
-   */
-  $scope.activateInstance = function (input, activeStatus) {
-    input.active = activeStatus;
-    if (input.id) {
-      dataFactory.putApi('instances', input.id, input).then(function (response) {
-        $scope.loading = false;
-
-      }, function (error) {
-        alertify.alertError($scope._t('error_update_data'));
-        $scope.loading = false;
-      });
-    }
-
-  };
-
-  /**
-   * Delete instance
-   */
-  $scope.deleteInstance = function (input, message) {
-    alertify.confirm(message, function () {
-      dataFactory.deleteApi('instances', input.id).then(function (response) {
-        dataService.showNotifier({
-          message: $scope._t('delete_successful')
-        });
-        $scope.reloadData();
-      }, function (error) {
-        alertify.alertError($scope._t('error_delete_data'));
-      });
-
-    });
-  };
-
-});
-
-/**
- * Aoutomation mock controller
- * @class AutomationMockController
- */
-myAppController.controller('AutomationMockController', function ($scope, $routeParams, $location, cfg, dataFactory, dataService, _, myCache) {
-  $scope.mock = {
-    input: {},
-    rooms: [],
-    modules: {
-      switches: {
-        title: 'Switches',
-        all: ['Dummy Binary Switch', 'Everspring Switch 1', 'Everspring Switch 2', 'POPP Switch 1', 'POPP Switch 2']
-      },
-      dimmers: {
-        title: 'Dimmers',
-        all: ['Dimmer 1', 'Dimmer 2']
-      },
-      thermostats: {
-        title: 'Thermostats',
-        all: ['Thermostat 1', 'Thermostat 2', 'Thermostat 3']
-      },
-      locks: {
-        title: 'Locks',
-        all: ['Lock 1']
-      },
-      scenes: {
-        title: 'Scenes',
-        all: ['Scene 1', 'Scene 2', 'Scene 3', 'Scene 4']
-      }
-    },
-    deviceTypes: [{
-        type: 'switchBinary',
-        title: 'Binary Switch'
-      },
-      {
-        type: 'sensorBinary',
-        title: 'Sensor binary'
-      },
-      {
-        type: 'doorlock',
-        title: 'Doorlock'
-      },
-      {
-        type: 'switchMultilevel',
-        title: 'Multilevel Switch'
-      },
-      {
-        type: 'notification',
-        title: 'Notification'
-      },
-      {
-        type: 'scene',
-        title: 'Scene'
-      },
-      {
-        type: 'thermostat',
-        title: 'Thermostat'
-      }
-
-    ],
-    devices: [{
-        id: 1,
-        type: 'switchBinary',
-        title: 'Device switchBinary'
-      },
-      {
-        id: 2,
-        type: 'sensorBinary',
-        title: 'Device sensorBinary'
-      },
-      {
-        id: 3,
-        type: 'doorlock',
-        title: 'Device doorlock'
-      },
-      {
-        id: 4,
-        type: 'switchMultilevel',
-        title: 'Device switchMultilevel'
-      },
-      {
-        id: 5,
-        type: 'notification',
-        title: 'Device notification'
-      },
-      {
-        id: 6,
-        type: 'scene',
-        title: 'Device scene'
-      },
-      {
-        id: 7,
-        type: 'thermostat',
-        title: 'Device thermostat'
-      },
-      {
-        id: 10,
-        type: 'switchBinary',
-        title: 'Device switchBinary'
-      },
-      {
-        id: 20,
-        type: 'sensorBinary',
-        title: 'Device sensorBinary'
-      },
-      {
-        id: 30,
-        type: 'doorlock',
-        title: 'Device doorlock'
-      },
-      {
-        id: 40,
-        type: 'switchMultilevel',
-        title: 'Device switchMultilevel'
-      },
-      {
-        id: 50,
-        type: 'notification',
-        title: 'Device notification'
-      },
-      {
-        id: 60,
-        type: 'scene',
-        title: 'Device scene'
-      },
-      {
-        id: 70,
-        type: 'thermostat',
-        title: 'Device thermostat'
-      }
-    ]
-  }
-
-  /**
-   * Load locations
-   */
-  $scope.loadLocations = function () {
-    dataFactory.getApi('locations').then(function (response) {
-      $scope.mock.rooms = dataService.getRooms(response.data.data).value();
-    }, function (error) {});
-  };
-  $scope.loadLocations();
-});
-
-/**
- * Aoutomation rule detail controller
- * @class AutomationRuleIdController
- */
-myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $filter, cfg, dataFactory, dataService, _, myCache) {
-
-  $scope.rule = {
-    deviceType: ["toggleButton", "switchControl", "switchBinary", "switchMultilevel", "sensorBinary", "sensorMultilevel", "sensorDiscrete"],
-    cfg:{
-      toggleButton: {},
-      switchControl:{},
-      switchBinary:{},
-      switchMultilevel:{},
-      sensorBinary:{},
-      sensorMultilevel:{},
-      sensorDiscrete: {}
-
-
-
-    },
-    devices: [],
-    sourceDevice: {},
-    targets: [],
-    data: {},
-    model:{
-      sourceDevice:{
-        id:'',
-        value: '',
-        device: {}
-      }
-    },
-    input: {
-      instanceId: $routeParams.id,
-      moduleId: "Rules",
-      active: true,
-      title: "",
-      params: {
-        sourceDevice: { },
-        targets: [{
-          filterThen: "switchBinary",
-          switchBinary: {
-            target: "DummyDevice_40",
-            status: "off",
-            sendAction: false
-          }
-        }]
-      }
-    }
-  }
-
-  
-  /**
-   * Load devices
-   */
-  $scope.loadDevices = function () {
-    dataFactory.getApi('devices').then(function (response) {
-      $scope.rule.devices = dataService.getDevicesData(response.data.data.devices)
-        .filter(function (v) {
-          return $scope.rule.deviceType.indexOf(v.deviceType) > -1;
-        }).value();
-    }, function (error) {});
-  };
-  $scope.loadDevices();
-
-  /**
-   * On source device change
-   */
-  $scope.onSourceDeviceChange = function (deviceId) {
-    console.log(deviceId)
-   var device = _.findWhere($scope.rule.devices,{id: deviceId});
-   //console.log(device)
-    var sourceDevice = {};
-    sourceDevice['filterIf'] = device.deviceType;
-    sourceDevice[device.deviceType] = {
-      device: device.id
-    };
-
-    console.log(sourceDevice)
-   // $scope.rule.input.params.sourceDevice = sourceDevice;
-   
-  angular.extend($scope.rule.input.params,{sourceDevice: sourceDevice});
-    angular.extend($scope.rule.model.sourceDevice,{id:device.id,value:'',device:device});
-
-  };
-
-  /**
-   * On source device change value
-   */
-  $scope.onSourceDeviceChangeStatus = function (v,device) {
-    console.log(v)
-    angular.extend($scope.rule.input.params.sourceDevice[device.deviceType],{status: v});
-    
-
-  };
-
-
-  /**
-   * Load module
-   */
-  $scope.loadModule = function () {
-    dataFactory.getApi('modules', '/Rules').then(function (response) {
-      $scope.rule.data = response.data.data;
-      $scope.rule.deviceType = $filter('hasNode')(response.data.data, 'schema.properties.sourceDevice.properties.filterIf.enum');
-      console.log($scope.rule.deviceType);
-      var schema = response.data.data.schema.properties.sourceDevice.properties;
-      var options = response.data.data.options.fields.sourceDevice.fields;
-      //getSourceDevice(schema, options);
-    }, function (error) {});
-  };
-  //$scope.loadModule();
-
-
-  /**
-   * Store instance
-   */
-  $scope.storeInstance = function () {
-    var input = $scope.rule.input;
-
-  };
-  /// --- Private functions --- ///
-
-  function getSourceDevice(schema, options) {
-    var deviceId = [];
-    _.filter(schema, function (v) {
-      if (!v.properties) {
-        return;
-      }
-      var hasEnum = $filter('hasNode')(v, 'properties.device.enum');
-      deviceId.push(hasEnum);
-      //console.log(v.properties.device.enum)
-    });
-
-    console.log(deviceId)
-
-  }
-
-  function getSourceDeviceId() {
-
-  }
-
-  function getSourceDeviceTitle() {
-
-  }
-});
-
-/**
  * @overview Controllers that handls scenes
  * @author Martin Vach
  */
@@ -28326,6 +27852,516 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
  * @class AutomationSceneIdController
  */
 myAppController.controller('AutomationSceneIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
+  $scope.scene = {
+    model: {
+      switchBinary: {
+        device: '',
+        status: 'off',
+        sendAction: false
+      },
+      switchMultilevel: {
+        device: '',
+        status: 0,
+        sendAction: false
+      },
+      thermostat: {
+        device: '',
+        status: 0,
+        sendAction: false
+      },
+      doorlock: {
+        device: '',
+        status: 'close',
+        sendAction: false
+      },
+      toggleButton: ''
+    },
+    rooms: [],
+    devicesInRoom: [],
+    availableDevices: [],
+    assignedDevices: [],
+    cfg: {
+
+      switchBinary: {
+        paramsDevices: 'switches',
+        enum: ['off', 'on']
+      },
+      switchMultilevel: {
+        paramsDevices: 'dimmers',
+        min: 0,
+        max: 99
+      },
+      thermostat: {
+        paramsDevices: 'thermostats',
+        min: 0,
+        max: 99
+      },
+      doorlock: {
+        paramsDevices: 'locks',
+        enum: ['close', 'open']
+      },
+      toggleButton: {
+        paramsDevices: 'scenes',
+      }
+
+    },
+    input: {
+      instanceId: $routeParams.id,
+      moduleId: "Scenes",
+      active: true,
+      title: "",
+     
+      params: {
+        customIcon: {
+          table:[{icon: false}]
+          
+        },
+        devices:{
+          switches: [],
+          dimmers: [],
+          thermostats: [],
+          locks: [],
+          scenes: []
+        }
+       
+      }
+    },
+    upload: {
+      fileName: false,
+      maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
+      extensions: cfg.upload.icon.extension.toString()
+    },
+  };
+  // Original data
+  $scope.orig = {
+    model: {}
+  };
+  $scope.orig.model = angular.copy($scope.scene.model);
+
+  /**
+   * Reset model
+   */
+  $scope.resetModel = function () {
+    $scope.scene.model = angular.copy($scope.orig.model);
+
+  };
+
+
+  /**
+   * Load instances
+   */
+  $scope.loadInstance = function (id) {
+    dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
+      var instance = instances.data.data;
+      var assignedDevices = $scope.scene.assignedDevices;
+      angular.extend($scope.scene.input, {
+        title: instance.title,
+        active: instance.active,
+        params: instance.params
+      });
+      angular.forEach(instance.params.devices, function (v, k) {
+        switch (k) {
+          case 'scenes':
+            _.filter(v, function (s) {
+              if (assignedDevices.indexOf(s) === -1) {
+                $scope.scene.assignedDevices.push(s);
+              }
+
+            })
+            break;
+          default:
+            _.filter(v, function (d) {
+              if (assignedDevices.indexOf(d.device) === -1) {
+                $scope.scene.assignedDevices.push(d.device);
+              }
+
+            })
+            break;
+        }
+      });
+
+    }, function (error) {
+      alertify.alertError($scope._t('error_load_data'));
+    });
+
+  };
+
+  if ($routeParams.id > 0) {
+    $scope.loadInstance($routeParams.id);
+  }
+
+  /**
+   * Load rooms
+   */
+  $scope.loadRooms = function () {
+    dataFactory.getApi('locations').then(function (response) {
+      $scope.scene.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
+    });
+
+  };
+  $scope.loadRooms();
+
+  /**
+   * Load devices
+   */
+  $scope.loadDevices = function () {
+    dataFactory.getApi('devices').then(function (response) {
+      var whiteList = _.keys($scope.scene.cfg);
+      var devices = dataService.getDevicesData(response.data.data.devices);
+      $scope.scene.availableDevices = devices.filter(function (v) {
+        return whiteList.indexOf(v.deviceType) > -1;
+      }).value();
+      $scope.scene.devicesInRoom = _.countBy($scope.scene.availableDevices, function (v) {
+        return v.location;
+      });
+    }, function (error) {});
+  };
+  $scope.loadDevices();
+
+
+  /**
+   * Validate an uploaded icon
+   * @param {object} files
+   * @param {object} info
+   * @returns {undefined}
+   */
+  $scope.uploadIcon = function (files, info) {
+   var ext =  $filter('fileExtension')(files[0].name);
+    // Extends files object with a new property
+    files[0].newName = dataService.uploadFileNewName('scene_' + $routeParams.id + '.' + ext);
+    // Check allowed file formats
+    if (info.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+      alertify.alertError(
+        $scope._t('upload_format_unsupported', {
+          '__extension__': $filter('fileExtension')(files[0].name)
+        }) + ' ' +
+        $scope._t('upload_allowed_formats', {
+          '__extensions__': info.extension.toString()
+        })
+      );
+      return;
+
+    }
+    // Check allowed file size
+    if (files[0].size > info.size) {
+      alertify.alertError(
+        $scope._t('upload_allowed_size', {
+          '__size__': $filter('fileSizeString')(info.size)
+        }) + ' ' +
+        $scope._t('upload_size_is', {
+          '__size__': $filter('fileSizeString')(files[0].size)
+        })
+      );
+      return;
+
+    }
+   // Set selected file name
+   $scope.scene.upload.fileName = files[0].name;
+   // Set form data
+    // Set local variables
+    var fd = new FormData();
+   fd.append('files_files', files[0]);
+   // Atempt to upload a file
+   dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function (response) {
+     console.log(response)
+     $scope.scene.input.params.customIcon.table['0'].icon = response.data.data;
+     /* if ($routeParams.id > 0) {
+      $scope.storeScene($scope.scene.input);
+    } */
+   }, function (error) {
+      alertify.alertError($scope._t('error_upload'));
+   });
+  };
+
+   /**
+   * Delete icon
+   * @param {string} string
+   * @returns {undefined}
+   */
+  $scope.deleteIcon = function (icon) {
+    dataFactory.deleteApi('icons',icon).then(function (response) {
+      $scope.scene.input.params.customIcon.table['0'].icon = false;
+      /* if ($routeParams.id > 0) {
+        $scope.storeScene($scope.scene.input);
+      } */
+      
+    }, function (error) {
+      alertify.alertError($scope._t('error_delete_data'));
+    });
+  };
+
+  /**
+   * Assign device to a schedule
+   * @param {object} device
+   * @returns {undefined}
+   */
+  $scope.assignDevice = function (device) {
+    console.log('device', device)
+    var model = [];
+    var type = '';
+
+    switch (device.deviceType) {
+      // scenes
+      case 'toggleButton':
+        model = device.id;
+        $scope.handleSceneDevice(model);
+        break;
+        // switches|dimmers|thermostats|locks
+      default:
+        model = $scope.scene.model[device.deviceType];
+        model.device = device.id;
+        type = $scope.scene.cfg[device.deviceType].paramsDevices;
+        $scope.handleDevice(model, type);
+        break;
+    }
+    $scope.scene.assignedDevices.push(device.id);
+    return;
+  };
+
+  /**
+   * Remove device id from assigned device
+   * @param {object} device 
+   */
+  $scope.unassignDevice = function (device) {
+    var index = $scope.scene.assignedDevices.indexOf(device.id);
+    if (index > -1) {
+      $scope.scene.assignedDevices.splice(index, 1);
+      removeDeviceFromParams(device);
+
+    }
+
+  };
+
+  /**
+   * Add or update device to the list (by type)
+   * type: switches|dimmers|thermostats|locks
+   */
+  $scope.expandParams = function (element, device) {
+
+    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
+    var params = _.findWhere($scope.scene.input.params.devices[type], {
+      device: device.id
+    });
+
+    // Colapse all params except 'element'
+    _.filter($scope.expand, function (v, k) {
+      if (k != element) {
+        $scope.expand[k] = false;
+      }
+
+    });
+    $scope.resetModel();
+
+    $scope.scene.model[device.deviceType] = params;
+    $scope.expandElement(element);
+
+
+
+  };
+
+
+  /**
+   * Add or update device to the list (by type)
+   * type: switches|dimmers|thermostats|locks
+   */
+  $scope.handleDevice = function (v, type, element) {
+    if (!v || v.device == '') {
+      return;
+    }
+    // Adding new device
+    var index = _.findIndex($scope.scene.input.params.devices[type], {
+      device: v.device
+    });
+    if (index > -1) {
+      $scope.scene.input.params.devices[type][index] = v;
+    } else {
+      $scope.scene.input.params.devices[type].push(v)
+    }
+
+
+  };
+
+  /**
+   * Add or update scene device
+   */
+  $scope.handleSceneDevice = function (v, element) {
+    if (element) {
+      $scope.resetModel(element);
+      $scope.expandElement(element);
+    }
+
+    if (!v) {
+      return;
+    }
+    var index = $scope.scene.input.params.devices.scenes.indexOf(v);
+    if (index > -1) { // Update an item
+      $scope.scene.input.params.devices.scenes[index] = v;
+    } else { // Add new item
+      $scope.scene.input.params.devices.scenes.push(v)
+    }
+  };
+
+  /**
+   * Store 
+   */
+  $scope.storeScene = function (input, redirect) {
+    dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
+      if (redirect) {
+        $location.path('/scenes');
+      }
+
+    }, function (error) {
+      alertify.alertError($scope._t('error_update_data'));
+    });
+
+  };
+
+  /// --- Private functions --- ///
+  /**
+   * Remove device from the params list
+   * @param {object} device 
+   */
+  function removeDeviceFromParams(device) {
+    var index;
+    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
+    switch (device.deviceType) {
+      // scenes
+      case 'toggleButton':
+        index = $scope.scene.input.params.devices[type].indexOf(device.id);
+        break;
+        // switches|dimmers|thermostats|locks
+      default:
+        index = _.findIndex($scope.scene.input.params.devices[type], {
+          device: device.id
+        });
+        break;
+    }
+    if (index > -1) {
+      $scope.scene.input.params.devices[type].splice(index, 1);
+    }
+
+
+  };
+
+});
+/**
+ * @overview Controllers that handls rules
+ * @author Martin Vach
+ */
+/**
+ * Controller that handles list of rules
+ * @class AutomationRuleController
+ */
+myAppController.controller('AutomationRuleController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+  $scope.rules = {
+    state: '',
+    enableTest: [],
+
+  };
+
+
+  /**
+   * Load
+   * @returns {undefined}
+   */
+  $scope.loadRules = function () {
+    dataFactory.getApi('instances', null, true).then(function (response) {
+      $scope.rules.all = _.chain(response.data.data).flatten().where({
+        moduleId: 'Rules'
+      }).filter(function (v) {
+        var size = 0;
+        for (k in v.params.devices) {
+          if (v.params.devices[k].length) {
+            size++;
+          }
+        }
+        if (size) {
+          $scope.rules.enableTest.push(v.id)
+        }
+        return v;
+      }).value();
+      if (!_.size($scope.rules.all)) {
+        $scope.rules.state = 'blank';
+        return;
+      }
+      $scope.rules.state = 'success';
+    }, function (error) {
+      alertify.alertError($scope._t('error_load_data'));
+    });
+  };
+  $scope.loadRules();
+
+  /**
+   * Run test
+   * @param {object} instance
+   */
+  $scope.runRuleTest = function (instance) {
+    $scope.toggleRowSpinner(instance.id);
+    $timeout($scope.toggleRowSpinner, 1000);
+    var params = '/Scenes_' + instance.id + '/command/on';
+    dataFactory.getApi('devices', params).then(function (response) {
+      $timeout($scope.toggleRowSpinner, 2000);
+    }, function (error) {
+      $timeout($scope.toggleRowSpinner, 2000);
+    });
+  };
+
+
+  /**
+   * Activate
+   * @param {object} input 
+   * @param {boolean} activeStatus 
+   */
+  $scope.activateRule = function (input, state) {
+    input.active = state;
+    if (!input.id) {
+      return;
+    }
+    dataFactory.putApi('instances', input.id, input).then(function (response) {
+
+    }, function (error) {
+      alertify.alertError($scope._t('error_update_data'));
+    });
+
+
+  };
+  /**
+   * Clone 
+   * @param {object} input
+   * @returns {undefined}
+   */
+  $scope.cloneRule = function (input) {
+    input.id = 0;
+    input.title = input.title + ' - copy';
+    dataFactory.postApi('instances', input).then(function (response) {
+      $location.path('/scenes/' + response.data.data.id);
+    }, function (error) {
+      alertify.alertError($scope._t('error_update_data'));
+    });
+  };
+
+  /**
+   * Delete
+   */
+  $scope.deleteRule = function (input, message) {
+    alertify.confirm(message, function () {
+      dataFactory.deleteApi('instances', input.id).then(function (response) {
+        $scope.reloadData();
+      }, function (error) {
+        alertify.alertError($scope._t('error_delete_data'));
+      });
+
+    });
+  };
+
+});
+
+
+/**
+ * Controller that handles rule detail
+ * @class AutomationRuleIdController
+ */
+myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.scene = {
     model: {
       switchBinary: {
@@ -29282,6 +29318,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         },
         instances: {
             expanded: ($cookies.instancesExpanded == 'true'),//$cookies.instancesExpanded,
+            expandable: false,
             all: {},
             groups: {},
             cnt: {
@@ -29401,6 +29438,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
             // Success - instances
             if (instances.state === 'fulfilled') {
                 setInstances(instances.value.data.data);
+                $scope.instancesExpandable();
             }
 
             // Success - modules
@@ -29411,6 +29449,13 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         });
     };
 
+
+    /**
+     * Check if instances expandable
+     */
+    $scope.instancesExpandable = function() {
+        $scope.dataHolder.instances.expandable = _.find($scope.dataHolder.instances.cnt.modules, function(m) {return m >= 2;}) == undefined ? false : true ;
+    }
 
     /**
      * Update module
@@ -29486,7 +29531,11 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 if (item.category === 'wifiplug') {
                     $scope.dataHolder.modules.wifiplugIds.push(item.id);
                     isHidden = true;
-                }                
+                }
+                // hide system item
+                if (item.category === 'system') {
+                    isHidden = true;
+                }
                 // Hides singelton item with instance
 //                if (item.singleton && item.hasInstance) {
 //                    isHidden = true;
@@ -30361,7 +30410,6 @@ myAppController.controller('AppOnlineFeaturedController', function ($scope, _) {
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
     //$scope.dataHolder.instances.filter = ($cookies.filterAppsInstances ? angular.fromJson($cookies.filterAppsInstances) : {});
-
     /**
      * Expand instances
      */
@@ -35830,8 +35878,7 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
      * Load all promises
      * @returns {undefined}
      */
-    $scope.allSettled = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+    $scope.allSettled = function () {        
         var promises = [
             dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, true)
