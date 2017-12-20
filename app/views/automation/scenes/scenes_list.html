@@ -1,7 +1,7 @@
 <div class="list-panel" ng-repeat="v in scenes.all track by $index" ng-class="{'bcg-danger':!v.active}">
   <!-- img -->
   <figure class="img wh-32x32 clickable" ng-click="activateScene(v, v.active ? false : true)" >
-      <img class="report-img-s clickable" ng-src="{{cfg.img.custom_icons + v.params.customIcon.table['0'].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+      <img ng-src="{{cfg.img.custom_icons + v.params.customIcon.table['0'].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
   </figure>
    <!-- body -->
   <div class="body">
@@ -31,7 +31,7 @@
             <i class="fa " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
           </button>
           <!-- clone -->
-          <button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneScene(v)">
+          <button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneScene(v)" ng-disabled="!v.active">
             <i class="fa fa-clone"></i>
           </button>
           <!-- remove -->

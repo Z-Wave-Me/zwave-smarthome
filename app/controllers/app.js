@@ -88,6 +88,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         },
         instances: {
             expanded: ($cookies.instancesExpanded == 'true'),//$cookies.instancesExpanded,
+            expandable: false,
             all: {},
             groups: {},
             cnt: {
@@ -207,6 +208,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
             // Success - instances
             if (instances.state === 'fulfilled') {
                 setInstances(instances.value.data.data);
+                $scope.instancesExpandable();
             }
 
             // Success - modules
@@ -217,6 +219,13 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         });
     };
 
+
+    /**
+     * Check if instances expandable
+     */
+    $scope.instancesExpandable = function() {
+        $scope.dataHolder.instances.expandable = _.find($scope.dataHolder.instances.cnt.modules, function(m) {return m >= 2;}) == undefined ? false : true ;
+    }
 
     /**
      * Update module
@@ -292,7 +301,11 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
                 if (item.category === 'wifiplug') {
                     $scope.dataHolder.modules.wifiplugIds.push(item.id);
                     isHidden = true;
-                }                
+                }
+                // hide system item
+                if (item.category === 'system') {
+                    isHidden = true;
+                }
                 // Hides singelton item with instance
 //                if (item.singleton && item.hasInstance) {
 //                    isHidden = true;

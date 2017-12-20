@@ -20,7 +20,7 @@ $list-panel-border-color: $app-border-color;
     
   }
   .body{
-    div{
+   & > div{
       display: inline-block;
      margin-top: $spacing-half;
     }

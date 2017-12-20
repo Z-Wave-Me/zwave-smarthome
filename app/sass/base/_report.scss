@@ -87,12 +87,18 @@
             .btn-group {
                 .network-zwave-title {
                     max-width: 170px;
-                    display: block;
+                    display: inline-block;
                     // Media queries
-                    @include mediaQueries(min-small) {
+                    @include mediaQueries(min-esmall) {
                         max-width: 100%;
                     }
                     @include textOverflow();
+                }
+
+                .label {
+                    padding: .3em .6em .3em;
+                    vertical-align: top;
+                    display: inline-block;    
                 }
             }
         }
