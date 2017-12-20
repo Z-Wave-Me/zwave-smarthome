@@ -93,6 +93,7 @@
         <script src="app/controllers/zwave-exclude.js"></script>
         <script src="app/controllers/zwave-vendor.js"></script>
         <script src="app/controllers/camera.js"></script>
+        <script src="app/controllers/wifiplug.js"></script>
         <script src="app/controllers/enocean.js"></script>
         <script src="app/controllers/rf433.js"></script>
         <script src="app/controllers/room.js"></script>
@@ -151,14 +152,16 @@
                         </a>
                         <!-- time -->
                         <span class="divider-vertical"></span> 
-                        &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
-                            <i class="fa fa-globe" 
+                        &nbsp;<span class="timestamp clickable" 
+                                ng-click="reloadData()" 
+                                ng-if="cfg.route.time.string">
+                            <i class="fa fa-home" 
                                ng-if="connection.local" 
                                ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            <i class="fa fa-grav" 
+                            <i class="fa fa-globe" 
                                ng-if="connection.remote"
                                ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                                {{cfg.route.time.string}}
+                                <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string}}</span>
                         </span>
                     </div>
                     <div id="navigation_right">
@@ -197,14 +200,14 @@
                                 <a href="#rss"><i class="fa fa-comment fa-fw"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                              <!-- My Hubs -->
-                            <li class="subnavi-myhubs" ng-if="cfg.route.os == 'unknown'">
+                            <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
                                 <a ng-href="{{cfg.android_html_dir}}">
                                     
                                     <i class="fa fa-android fa-fw"></i><span>{{_t('my_hubs')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i>
                                 </a>
                             </li>
                             <!-- Logout -->
-                            <li class="subnavi-logout" ng-if="cfg.route.os !== 'unknown'">
+                            <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
                                 <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                         </ul>
@@ -214,27 +217,31 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-            <div ng-if="cfg.route.fatalError.message" ng-cloak ng-hide="isMobile">
+            <div ng-if="cfg.route.fatalError.message" ng-cloak ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
                 <div class="app-fatal-error">
                     <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
                 </div>
             </div>
-            <div id="view_content" ng-hide="cfg.route.fatalError.hide" ng-view></div>
+            <div id="view_content" ng-hide="cfg.route.fatalError.hide" class="{{cfg.route.pageClass}} swipe-{{swipeDir}}" ng-view 
+            ng-swipe-left="swipe('left')" 
+            ng-swipe-right="swipe('right')"></div>
         </div>
         <div class="clearfix"></div>
 
         <div id="footer">
             <div id="footer_in">
                 <div class="container">
-                    <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
-                        <i class="fa fa-globe" 
+                    <span class="timestamp clickable" 
+                            ng-click="reloadData()" 
+                            ng-if="cfg.route.time.string">
+                        <i class="fa fa-home" 
                            ng-if="connection.local" 
                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                        <i class="fa fa-grav" 
+                        <i class="fa fa-globe" 
                            ng-if="connection.remote"
                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            {{cfg.route.time.string}}
+                            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
                     </span>
                 </div>
             </div>         

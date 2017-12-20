@@ -9,7 +9,6 @@
  */
 myAppController.controller('AppInstanceController', function ($scope, $cookies, dataFactory, dataService, myCache, _) {
     //$scope.dataHolder.instances.filter = ($cookies.filterAppsInstances ? angular.fromJson($cookies.filterAppsInstances) : {});
-
     /**
      * Expand instances
      */
@@ -100,7 +99,6 @@ myAppController.controller('AppInstanceController', function ($scope, $cookies, 
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
-
         });
     };
 

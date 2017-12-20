@@ -4,9 +4,6 @@
     .widget-entry-in {
         height: 116px;
         // Media queries
-        @include mediaQueries(min-esmall) {
-            height: 150px;
-        }
         @include mediaQueries(min-small) {
             height: 124px;
         }
@@ -35,10 +32,10 @@
                 //border-color: $element-widget-img-update-border-color;
             }
             // Media queries
-            /*@include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 width: 64px;
                 height: 64px;  
-            }*/
+            }
 
             .widget-img-overlay {
                 background-color: rgba(255,255,255, 0.8);
@@ -48,7 +45,7 @@
                 @include appBorderRadius(50%);
                 position: absolute;
                 // Media queries
-                @include mediaQueries(min-esmall) {
+                @include mediaQueries(min-small) {
                     display: none;
                 }
                 .widget-level {
@@ -77,7 +74,7 @@
         .widget-title {
             text-align: center;
             // Media queries
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 text-align: left;
             }
             @include mediaQueriesMaxMin($site-max-w,$break-large) {
@@ -87,7 +84,7 @@
             h3{
                 font-size: 75%;
                 @include textOverflow();
-                @include mediaQueries(min-esmall) {
+                @include mediaQueries(min-small) {
                     font-size: 95%;
                 }
             }
@@ -97,7 +94,7 @@
                 font-size: 75%;;
                 color: lighten($app-body-color, 40%);
                 // Media queries
-                @include mediaQueries(min-esmall) {
+                @include mediaQueries(min-small) {
                     font-size: 85%;
                 }
                 .widget-title {
@@ -107,7 +104,7 @@
                         @include textOverflow();
                     }
                     // Media queries
-                    @include mediaQueries(max-esmall) {
+                    @include mediaQueries(max-small) {
                         h3{
                             font-size: 95%;
                             padding: 0 0 0 64px + $spacing;

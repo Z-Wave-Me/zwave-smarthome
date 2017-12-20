@@ -50,11 +50,6 @@ Set elements created by zWave device
 
 **Returns**: `undefined`
 
-### ZwaveManageController.awakeCont() 
-
-todo: deprecatedGet selected instances status
-
-
 
 ## ZwaveInterviewController
 The controller that handles interview process in the Z-Wave/Network section.

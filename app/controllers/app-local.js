@@ -186,7 +186,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
                     $scope.hasInstance.push(v);
                 }
             });
-            console.log($scope.hasInstance)
+            //console.log($scope.hasInstance)
         }, function (error) {
         });
     }

@@ -558,6 +558,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             method: 'get',
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),
             failWait:api,
+            timeout: cfg.pending_timeout_limit,
             headers: {
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession,
@@ -570,7 +571,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                 var timestamp = response.data.data.updateTime + ((cfg.route.time.timeZoneOffset * -1) * 3600);
                 cfg.route.time.timestamp = (timestamp);
                 cfg.route.time.string = $filter('setTimeFromBox')(timestamp);
-                
+                cfg.route.time.timeUpdating = true;
                 return response;
             } else {// invalid response
                 return $q.reject(response);

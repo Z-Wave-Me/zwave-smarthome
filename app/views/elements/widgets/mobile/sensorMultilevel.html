@@ -1,5 +1,7 @@
 <!-- sensorMultilevel -->
-<div class="widget-img-overlay" ng-if="!v.hasHistory">
+<div class="widget-img-overlay" 
+	ng-if="!v.hasHistory"
+	ng-click="runCmd(v.id + '/command/update')">
 	<span class="widget-level">{{v.metrics.level}}</span> 
 	<span class="widget-scale">{{v.metrics.scaleTitle}}</span>    
 </div>

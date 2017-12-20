@@ -9,15 +9,12 @@
                     </td>
                     <td class="td-action">
                      <div class="btn-group">
-                         <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" 
-                            ng-click="toExpert('/expert',_t('redirect_to_expert'))" ng-if="elementAccess(cfg.role_access.admin,isMobile) && cfg.app_type === 'default'">
+                        <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" 
+                            ng-click="toExpert('/expert',_t('redirect_to_expert'))" ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'">
                             <i class="fa fa-external-link"></i> <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
                         </a>
                         <a class="btn btn-default" href="#zwave/vendors" title="{{_t('add_new')}}">
                             <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
-                        </a>
-                         <a class="btn btn-default" href="#smartstartdsk" title="{{_t('scan_qrcode')}}">
-                            <i class="fa fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')"></span>
                         </a>
                         <a class="btn btn-default" href="#zwave/devices" title="{{_t('manage')}}">
                             <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
@@ -76,6 +73,21 @@
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <img class="device-type-logo" ng-src="app/img/logo-wifiplug.png" alt="Logo" />
+                    </td>
+                   <td class="td-action">
+                      <div class="btn-group">
+                        <a class="btn btn-default" href="#wifiplug/add" title="{{_t('add_new')}}">
+                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                        </a>
+                       <a class="btn btn-default" href="#wifiplug/manage" title="{{_t('manage')}}">
+                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                        </a> 
+                    </div>
+                    </td>
+                </tr>                
             </tbody>
         </table>
 </div> <!-- /ng-controller --> 

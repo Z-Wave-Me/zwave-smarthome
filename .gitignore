@@ -12,3 +12,4 @@ npm-debug.log
 /.idea
 /user
 sftp-config.json
+.DS_Store

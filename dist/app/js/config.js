@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.8.0-RC-5',
+        'app_version': '1.8.0-RC-7',
         // Application (DIST) built date
-        'app_built': '16-11-2017 15:03:47',
+        'app_built': '27-11-2017 15:05:09',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -42,7 +42,8 @@ var config_data = {
             time: {
                 string: false,
                 timestamp: false,
-                timeZoneOffset: 0
+                timeZoneOffset: 0,
+                timeUpdating: false
             },
             // User agent operating system
             os: 'unknown',
@@ -61,7 +62,8 @@ var config_data = {
             // User data
             user: false,
             // Translations
-            t: {}
+            t: {},
+            pageClass: ''
         },
         // Zwave - will be extended
         'zwave': {
@@ -491,7 +493,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -542,7 +547,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -574,7 +582,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',
@@ -606,7 +617,10 @@ var config_data = {
                     'SensorsPolling',
                     'SwitchControlGenerator',
                     'ZWave',
-                    'PhilioHW'
+                    'PhilioHW',
+                    'Rules',
+                    'Scenes',
+                    'Schedules'
                 ],
                 featured_apps: [
                     'IfThen',

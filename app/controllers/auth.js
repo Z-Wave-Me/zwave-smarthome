@@ -7,7 +7,7 @@
  * This is the Auth root controller
  * @class AuthController
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $location, $cookies, $window, $q, cfg, dataFactory, dataService, _) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location, $cookies, $window, $q, $timeout, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
@@ -19,9 +19,35 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         count_of_reconnects: 0
     };
 
+    /**
+     * Login with selected data from server response
+     */
+    $scope.processUser = function (user, rememberme) {
+
+        if(user.lang){// If user language exits use from profile
+            $cookies.lang = user.lang;
+        }else{// Uses from selected login language
+            user.lang = $scope.loginLang;
+        }
+        /*if ($scope.loginLang) {
+            user.lang
+             = $scope.loginLang;
+        }*/
+        dataService.setZWAYSession(user.sid);
+        dataService.setUser(user);
+        //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
+        if (rememberme) {
+            dataService.setRememberMe(rememberme);
+        }
+
+        $scope.auth.form = false;
+    };
+
     if (dataService.getUser()) {
         $scope.auth.form = false;
-        window.location = '#/dashboard';
+        $timeout(function() {
+            window.location = '#/dashboard';
+        }, 0);
         return;
     }
     // IF IE or Edge displays an message
@@ -76,29 +102,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         $scope.loadLang(lang);
     };
 
-    /**
-     * Login with selected data from server response
-     */
-    $scope.processUser = function (user, rememberme) {
-
-        if(user.lang){// If user language exits use from profile
-            $cookies.lang = user.lang;
-        }else{// Uses from selected login language
-            user.lang = $scope.loginLang;
-        }
-        /*if ($scope.loginLang) {
-            user.lang
-             = $scope.loginLang;
-        }*/
-        dataService.setZWAYSession(user.sid);
-        dataService.setUser(user);
-        //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
-        if (rememberme) {
-            dataService.setRememberMe(rememberme);
-        }
-
-        $scope.auth.form = false;
-    };
     /**
      * Redirect
      */

@@ -13,12 +13,9 @@
     padding: 1%;
     
     // Media queries
-    @include mediaQueries(min-esmall) {
-        width: 100%;
-        padding: 0; 
-    }
     @include mediaQueries(min-small) {
         @include appFloat(left);
+        padding: 0; 
         border: 0;
         width: 50%;;
     }
@@ -46,7 +43,7 @@
         // Media queries  
         @include mediaQueries(min-esmall) {
             border-color: $app-border-color;
-            border-bottom: solid 1px $app-border-color;
+            //border-bottom: solid 1px $app-border-color;
         } 
         @include mediaQueries(min-small) {
             border-color: $app-border-color;
@@ -61,7 +58,7 @@
             top: 0;
             left: 0;
             // Media queries
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 position: absolute;
                 top: $spacing-double;
                 left: $spacing;
@@ -100,7 +97,7 @@
             }
 
             // Media queries
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 display: block;
                 position: relative;
                 text-align: right;
@@ -125,7 +122,7 @@
         .widget-content{
             margin: 0;
             // Media queries 
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 margin: -$spacing 0 0 64px + $spacing-double;   
             }
         }
@@ -144,7 +141,7 @@
         .widget-footer{
             height:50%;
             display: none;
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 display: block;
             }
         }
@@ -154,7 +151,7 @@
             height: 100%;
             vertical-align: bottom;
             width:1px;    
-            @include mediaQueries(min-esmall) {
+            @include mediaQueries(min-small) {
                 display: inline-block;
             }
         }

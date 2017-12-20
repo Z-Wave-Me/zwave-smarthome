@@ -165,14 +165,19 @@ The controller that handles elements on the dashboard.
 ## ElementRoomController
 The controller that handles elements in the room.
 
-### ElementRoomController.itemOnLongPress() 
+### ElementRoomController.roomBarOnLongPress() 
 
-device on long press action
+room bar on long press action
 
 
-### ElementRoomController.itemOnTouchEnd() 
+### ElementRoomController.roomBarOnTouchEnd() 
 
-device on end long press action
+room bar on end long press action
+
+
+### ElementRoomController.swipeMe() 
+
+Room navigation
 
 
 
