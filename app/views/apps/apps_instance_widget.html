@@ -7,7 +7,8 @@
 </div>
 <!-- List -->
 <div ng-repeat="(indexG,g) in dataHolder.instances.groups track by indexG"
-     ng-init="instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]">
+     ng-init="instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]"
+     ng-if="dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1">
     <!-- ----------------------------------- Accordion ----------------------------------- -->
     <div class="accordion-entry" ng-if="instanveModuleCnt > 1">
         <!--  Accordion header -->
