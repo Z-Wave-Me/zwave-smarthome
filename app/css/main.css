@@ -5321,6 +5321,10 @@ a.badge:hover, a.badge:focus {
     display: none !important;
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* Font Awesome files
 -------------------------------------------------- */
 /*!
@@ -9158,6 +9162,10 @@ a.badge:hover, a.badge:focus {
     max-width: 100%;
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /*
  * jQuery File Upload Plugin CSS
  * https://github.com/blueimp/jQuery-File-Upload
@@ -9197,6 +9205,10 @@ a.badge:hover, a.badge:focus {
     height: 100%;
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* Custom
 -------------------------------------------------- */
 /* line 3, ../sass/vendor/_alpaca.scss */
@@ -9461,7 +9473,11 @@ legend.alpaca-container-label {
 /* line 448, ../sass/vendor/_alpaca.scss */
 .alpaca-field-object .alpaca-container .alpaca-field-object > .alpaca-container.alpaca-container-has-items {
   /*border: 1px #ddd solid;
+<<<<<<< HEAD
   border-radius: 4px;*/
+=======
+    border-radius: 4px;*/
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   padding: 10px;
 }
 
@@ -10803,6 +10819,7 @@ div.timepicker-picker > table.table-condensed tr td {
 	THE SOFTWARE.
 
  */
+<<<<<<< HEAD
 /*------------------------------------*\
     COMPASS IMPORTS
 \*------------------------------------*/
@@ -10811,6 +10828,13 @@ div.timepicker-picker > table.table-condensed tr td {
 \*------------------------------------*/
 /*------------------------------------*\
     THE CSS
+=======
+/*------------------------------------*    COMPASS IMPORTS
+\*------------------------------------*/
+/*------------------------------------*    SETTINGS
+\*------------------------------------*/
+/*------------------------------------*    THE CSS
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 \*------------------------------------*/
 /* line 69, scss/angular.rangeSlider.scss */
 /* line 47, ../sass/vendor/_angular.slider.scss */
@@ -10835,6 +10859,7 @@ div.timepicker-picker > table.table-condensed tr td {
   transition: border linear 0.2s, box-shadow linear 0.2s;
   -webkit-tap-highlight-color: transparent;
   min-width: 100px;
+<<<<<<< HEAD
   /*------------------------------------*\
       RUNNER
   \*------------------------------------*/
@@ -10858,6 +10883,23 @@ div.timepicker-picker > table.table-condensed tr td {
   \*------------------------------------*/
   /*------------------------------------*\
       DISABLED STATE
+=======
+  /*------------------------------------*      RUNNER
+  \*------------------------------------*/
+  /*------------------------------------*      JOIN (connects the two handles)
+  \*------------------------------------*/
+  /*------------------------------------*      HANDLE
+  \*------------------------------------*/
+  /*------------------------------------*      HANDLE SPECIFICS
+  \*------------------------------------*/
+  /*------------------------------------*      VALUE LABELS
+  \*------------------------------------*/
+  /*------------------------------------*      VERTICAL SLIDER
+  \*------------------------------------*/
+  /*------------------------------------*      FOCUS STATE
+  \*------------------------------------*/
+  /*------------------------------------*      DISABLED STATE
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   \*------------------------------------*/
 }
 
@@ -10920,8 +10962,12 @@ div.timepicker-picker > table.table-condensed tr td {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
+<<<<<<< HEAD
   /*------------------------------------*\
       HANDLE ICON
+=======
+  /*------------------------------------*      HANDLE ICON
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   \*------------------------------------*/
 }
 
@@ -10991,6 +11037,7 @@ div.timepicker-picker > table.table-condensed tr td {
 .ngrs-range-slider.ngrs-vertical {
   width: 28px;
   margin: 10px auto;
+<<<<<<< HEAD
   /*------------------------------------*\
       RUNNER
   \*------------------------------------*/
@@ -11011,6 +11058,21 @@ div.timepicker-picker > table.table-condensed tr td {
   \*------------------------------------*/
   /*------------------------------------*\
       VERTICAL RIGHT SLIDER
+=======
+  /*------------------------------------*      RUNNER
+  \*------------------------------------*/
+  /*------------------------------------*      JOIN
+  \*------------------------------------*/
+  /*------------------------------------*      HANDLE
+  \*------------------------------------*/
+  /*------------------------------------*      HANDLE SPECIFICS
+  \*------------------------------------*/
+  /*------------------------------------*      VALUE LABELS
+  \*------------------------------------*/
+  /*------------------------------------*      VERTICAL LEFT SLIDER
+  \*------------------------------------*/
+  /*------------------------------------*      VERTICAL RIGHT SLIDER
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   \*------------------------------------*/
 }
 
@@ -11081,8 +11143,12 @@ div.timepicker-picker > table.table-condensed tr td {
 /* line 268, ../sass/vendor/_angular.slider.scss */
 .ngrs-range-slider.ngrs-vertical.ngrs-right {
   margin: 10px 0 10px auto;
+<<<<<<< HEAD
   /*------------------------------------*\
       VALUE LABELS
+=======
+  /*------------------------------------*      VALUE LABELS
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   \*------------------------------------*/
 }
 
@@ -11145,8 +11211,12 @@ div.timepicker-picker > table.table-condensed tr td {
   color: #ddd;
 }
 
+<<<<<<< HEAD
 /*------------------------------------*\
     TOUCH STATE
+=======
+/*------------------------------------*    TOUCH STATE
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 \*------------------------------------*/
 /* line 359, scss/angular.rangeSlider.scss */
 /* line 322, ../sass/vendor/_angular.slider.scss */
@@ -11154,6 +11224,7 @@ body.ngrs-touching {
   -ms-touch-action: none;
 }
 
+<<<<<<< HEAD
 /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
 /* line 2, ../sass/vendor/_minireset.scss */
 html,
@@ -11242,6 +11313,8 @@ th {
   text-align: left;
 }
 
+=======
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* SmartHome UI base
 -------------------------------------------------- */
 /* Body
@@ -11863,6 +11936,10 @@ img {
     height: 50px;
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* Footer
 -------------------------------------------------- */
 /* line 3, ../sass/base/_footer.scss */
@@ -12011,11 +12088,19 @@ img {
 .page-navi ul li .page-navi-icon {
   display: none;
   /* position: absolute;
+<<<<<<< HEAD
   right: 1%;
   display: inline-block !important;
   @include mediaQueries(min-small) {
       display: none !important;
   } */
+=======
+                right: 1%;
+                display: inline-block !important;
+                @include mediaQueries(min-small) {
+                    display: none !important;
+                } */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 }
 /* line 95, ../sass/base/_navi.scss */
 .page-navi ul .active a {
@@ -12497,7 +12582,11 @@ img {
   }
 }
 
+<<<<<<< HEAD
 /* List panel
+=======
+/* Table
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 -------------------------------------------------- */
 /* line 8, ../sass/base/_list_panel.scss */
 .list-panel {
@@ -12871,8 +12960,13 @@ img {
   font-size: 130%;
   color: #404040;
   /* @include mediaQueries(min-small) {
+<<<<<<< HEAD
   font-size: 130%;
 } */
+=======
+      font-size: 130%;
+    } */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 }
 /* line 200, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa.text-danger {
@@ -13307,6 +13401,7 @@ fieldset.submit-entry {
   margin: 10px 0 0 0;
 }
 
+<<<<<<< HEAD
 /* line 183, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
@@ -13314,6 +13409,8 @@ fieldset.submit-entry {
   width: 4em !important;
 }
 
+=======
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* Config form
 -------------------------------------------------- */
 /* line 192, ../sass/base/_form.scss */
@@ -13321,6 +13418,7 @@ fieldset.submit-entry {
   visibility: hidden;
 }
 
+<<<<<<< HEAD
 /* Images
 -------------------------------------------------- */
 /* line 4, ../sass/base/_img.scss */
@@ -13343,6 +13441,8 @@ fieldset.submit-entry {
   width: 100%;
 }
 
+=======
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* Image list
 -------------------------------------------------- */
 /* line 4, ../sass/base/_imglist.scss */
@@ -13370,6 +13470,7 @@ fieldset.submit-entry {
   margin: 0 0 5px 0;
 }
 
+<<<<<<< HEAD
 /* Definition list
 -------------------------------------------------- */
 /* line 5, ../sass/base/_definition_list.scss */
@@ -13454,6 +13555,8 @@ fieldset section, .fieldset section {
   margin: 0;
 }
 
+=======
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* Bar
 -------------------------------------------------- */
 /* Variables */
@@ -14055,13 +14158,24 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
+<<<<<<< HEAD
   transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+=======
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 }
 /* line 229, ../sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
+<<<<<<< HEAD
   transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+=======
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 }
 
 /* Alert
@@ -14425,9 +14539,15 @@ http://codepen.io/MattIn4D/pen/LiKFC
   display: inline-block;
   padding: 0 10px 0 0;
   /* text-decoration: none;
+<<<<<<< HEAD
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; */
+=======
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 }
 /* line 23, ../sass/base/_autocomplete.scss */
 .autocomplete .dropdown-ctrl_ {
@@ -15388,6 +15508,10 @@ img.widget-promo-image {
     top: -10px;
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* App detail
 -------------------------------------------------- */
 /* line 44, ../sass/base/_apps.scss */
@@ -15501,9 +15625,15 @@ img.widget-promo-image {
   min-height: 1px;
   width: 33.3333%;
   /* @include mediaQueries(min-esmall) {
+<<<<<<< HEAD
       
       width: 33.3333%;
   } */
+=======
+        
+        width: 33.3333%;
+    } */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
@@ -15776,7 +15906,11 @@ img.widget-promo-image {
   width: 25%;
   float: right;
   /*display: table-cell;
+<<<<<<< HEAD
   vertical-align: bottom;*/
+=======
+            vertical-align: bottom;*/
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 }
 /* line 25, ../sass/base/_online_apps.scss */
 .app-entry-online .app-entry-cat .app-entry-btn .btn {
@@ -15790,9 +15924,15 @@ img.widget-promo-image {
   min-height: 1px;
   width: 33.3333%;
   /* @include mediaQueries(min-esmall) {
+<<<<<<< HEAD
       
       width: 33.3333%;
   } */
+=======
+        
+        width: 33.3333%;
+    } */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
@@ -16482,51 +16622,94 @@ img.widget-promo-image {
   /* line 284, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-media {
     display: table-cell;
+    width: 64px;
+    height: 64px;
+    background-color: #ffffff;
   }
 }
+<<<<<<< HEAD
 /* line 291, ../sass/base/_rooms.scss */
+=======
+
+/* line 294, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-body {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
+<<<<<<< HEAD
   /* line 291, ../sass/base/_rooms.scss */
+=======
+  /* line 294, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-body {
     margin-top: 5px;
+    padding-left: 10px;
   }
 }
+<<<<<<< HEAD
 /* line 295, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group {
   width: 100%;
 }
 /* line 297, ../sass/base/_rooms.scss */
+=======
+
+/* line 299, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+.elemnts-room-bar .bar-row .bar-body .btn-group {
+  width: 100%;
+}
+
+/* line 301, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
+<<<<<<< HEAD
 /* line 298, ../sass/base/_rooms.scss */
+=======
+
+/* line 302, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe {
   display: table;
   width: 100%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
+<<<<<<< HEAD
 /* line 302, ../sass/base/_rooms.scss */
+=======
+
+/* line 306, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .fa-arrow-left {
   display: table-cell;
   vertical-align: middle;
   text-align: left;
   color: #737373;
 }
+<<<<<<< HEAD
 /* line 309, ../sass/base/_rooms.scss */
+=======
+
+/* line 313, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .fa-arrow-right {
   display: table-cell;
   vertical-align: middle;
   text-align: right;
   color: #737373;
 }
+<<<<<<< HEAD
 /* line 316, ../sass/base/_rooms.scss */
+=======
+
+/* line 320, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .room-title {
   display: table-cell;
   vertical-align: middle;
@@ -16541,56 +16724,96 @@ img.widget-promo-image {
   max-width: 200px;
 }
 @included mediaQueries(min-small) {
+<<<<<<< HEAD
   /* line 316, ../sass/base/_rooms.scss */
+=======
+  /* line 320, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .room-title {
     max-width: 100%;
   }
 }
 @media only screen and (min-width: 768px) {
+<<<<<<< HEAD
   /* line 298, ../sass/base/_rooms.scss */
+=======
+  /* line 302, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe {
     display: none;
   }
 }
 @media only screen and (min-width: 768px) {
+<<<<<<< HEAD
   /* line 297, ../sass/base/_rooms.scss */
+=======
+  /* line 301, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title {
     display: inline-block;
   }
 }
+<<<<<<< HEAD
 /* line 340, ../sass/base/_rooms.scss */
+=======
+
+/* line 344, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-ctrl {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
+<<<<<<< HEAD
   /* line 340, ../sass/base/_rooms.scss */
+=======
+  /* line 344, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-ctrl {
     display: table-cell;
   }
 }
+<<<<<<< HEAD
 /* line 348, ../sass/base/_rooms.scss */
+=======
+
+/* line 352, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
+<<<<<<< HEAD
   /* line 348, ../sass/base/_rooms.scss */
+=======
+  /* line 352, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
     margin: 0;
     float: none;
     display: inline;
   }
 }
+<<<<<<< HEAD
 /* line 356, ../sass/base/_rooms.scss */
+=======
+
+/* line 360, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-ctrl .sensor {
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
+<<<<<<< HEAD
 /* line 357, ../sass/base/_rooms.scss */
+=======
+
+/* line 361, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
   cursor: text;
   border: 0 none;
@@ -16601,31 +16824,54 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
+<<<<<<< HEAD
   /* line 357, ../sass/base/_rooms.scss */
+=======
+  /* line 361, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
     margin: 0;
   }
 }
+<<<<<<< HEAD
 /* line 369, ../sass/base/_rooms.scss */
+=======
+
+/* line 373, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
   display: inline-block;
   max-width: 24px;
   max-height: 24px;
 }
+<<<<<<< HEAD
 /* line 375, ../sass/base/_rooms.scss */
+=======
+
+/* line 379, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
   font-weight: bold;
   font-size: 90%;
   display: inline-block;
   vertical-align: middle;
 }
+<<<<<<< HEAD
 /* line 380, ../sass/base/_rooms.scss */
+=======
+
+/* line 384, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level small {
   font-weight: normal;
   font-size: 80%;
 }
 @media only screen and (max-width: 767px) {
+<<<<<<< HEAD
   /* line 356, ../sass/base/_rooms.scss */
+=======
+  /* line 360, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-ctrl .sensor {
     text-align: left;
     margin: 10px 0;
@@ -16633,12 +16879,20 @@ img.widget-promo-image {
   }
 }
 @media only screen and (min-width: 768px) {
+<<<<<<< HEAD
   /* line 394, ../sass/base/_rooms.scss */
+=======
+  /* line 398, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
     max-width: 32px;
     max-height: 32px;
   }
+<<<<<<< HEAD
   /* line 398, ../sass/base/_rooms.scss */
+=======
+  /* line 402, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
     font-size: 120%;
   }
@@ -16646,7 +16900,11 @@ img.widget-promo-image {
 
 /* Images
 -------------------------------------------------- */
+<<<<<<< HEAD
 /* line 410, ../sass/base/_rooms.scss */
+=======
+/* line 414, E:/GitHub/zwave-smarthome/app/sass/base/_rooms.scss */
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -17174,6 +17432,7 @@ img.widget-promo-image {
   }
 }
 
+<<<<<<< HEAD
 /* line 135, ../sass/base/_smartstart.scss */
 #table_mobile {
   display: block;
@@ -17282,6 +17541,8 @@ img.widget-promo-image {
   display: inline-block;
 }
 
+=======
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* Login
 -------------------------------------------------- */
 /* line 4, ../sass/base/_auth.scss */
@@ -17441,7 +17702,11 @@ img.widget-promo-image {
   /* line 84, ../sass/base/_slider.scss */
   .app-slider .slide {
     /* width: $slider-small-w/2;
+<<<<<<< HEAD
     height: $slider-small-h;*/
+=======
+            height: $slider-small-h;*/
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   }
   /* line 87, ../sass/base/_slider.scss */
   .app-slider .slide img {
@@ -17489,9 +17754,15 @@ img.widget-promo-image {
   padding: 8px 16px;
   vertical-align: middle;
   /*overflow: hidden;
+<<<<<<< HEAD
   text-decoration: none;
   color: inherit;
   background-color: inherit;*/
+=======
+    text-decoration: none;
+    color: inherit;
+    background-color: inherit;*/
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
   text-align: center;
   cursor: pointer;
   white-space: nowrap;
@@ -17628,6 +17899,7 @@ input[type="checkbox"]:not(.default):checked + label:before {
   background: #4e794e;
 }
 
+<<<<<<< HEAD
 /* Automation
 -------------------------------------------------- */
 /* line 6, ../sass/base/_automation.scss */
@@ -17710,6 +17982,17 @@ input[type="checkbox"]:not(.default):checked + label:before {
 /* Default SmartHome skin
 -------------------------------------------------- */
 /* Variables
+=======
+/* SmartHome UI custom
+/* blank - without @import "custom/_skinname"
+/* shui, bayernshui, blueshui, darkshui, homekit
+-------------------------------------------------- */
+/* Default SmartHome skin
+-------------------------------------------------- */
+/* Variables
+-------------------------------------------------- */
+/* Body
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 -------------------------------------------------- */
 /* Body
 -------------------------------------------------- */
@@ -17762,6 +18045,7 @@ body {
   border-top: solid 1px  #e7e7e7;
 }
 
+<<<<<<< HEAD
 /* line 53, ../sass/custom/_shui.scss */
 fieldset.expanded, .fieldset.expanded {
   background-color: #F6F6F6;
@@ -17769,6 +18053,8 @@ fieldset.expanded, .fieldset.expanded {
   border-bottom: solid 4px #e7e7e7;
 }
 
+=======
+>>>>>>> 64564f1d3480ad7bc511ebcdea18fcde7f95b07f
 /* Button
 -------------------------------------------------- */
 /* line 63, ../sass/custom/_shui.scss */
