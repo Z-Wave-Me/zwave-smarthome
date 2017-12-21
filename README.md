@@ -11,6 +11,9 @@ Marcel Kermer
 
 ## v1.8.0
 #### New features
+- New automation menu with improved Scenes, Rules and Schedules.
+- New section Wifi devices.
+- SmartStart.
 - Added ITALIAN language.
 - Online Apps: Improved mobile view.
 - Local Apps: Improved mobile view.

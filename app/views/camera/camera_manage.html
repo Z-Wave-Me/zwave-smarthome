@@ -17,19 +17,10 @@
                     <a href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
                         <i class="fa fa-cog"></i>
                     </a>
-                    <button title="{{_t('lb_deactivate')}}" 
-                            class="btn btn-default" href="" 
-                            ng-if="v.active"
-                            ng-class="v.active ? 'active' : ''"
-                            ng-click="activateInstance(v, false)">
-                        <i class="fa fa-fire text-success"></i>
-                    </button>
-                    <button title="{{_t('lb_activate')}}" 
-                            class="btn btn-default" 
-                            ng-if="!v.active" 
-                            ng-click="activateInstance(v, true)">
-                         <i class="fa fa-power-off text-danger"></i>
-                    </button>
+                    <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
+                    ng-click="activateInstance(v, v.active ? false : true)">
+                    <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
+                  </button>
                     <button title="{{_t('lb_remove')}}" 
                             class="btn btn-default"
                             ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">

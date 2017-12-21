@@ -12553,13 +12553,17 @@ img {
 
 /* Table
 -------------------------------------------------- */
+/* line 5, ../sass/base/_table.scss */
+.table tbody tr {
+  /* &:nth-child(2) {
+      td {
+          border: none; 
+      }   
+  } */
+}
 /* line 6, ../sass/base/_table.scss */
 .table tbody tr td {
   border-top: 1px solid #cccccc;
-}
-/* line 10, ../sass/base/_table.scss */
-.table tbody tr:nth-child(2) td {
-  border: none;
 }
 
 /* line 17, ../sass/base/_table.scss */
