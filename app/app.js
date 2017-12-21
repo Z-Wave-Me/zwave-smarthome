@@ -67,15 +67,14 @@ angular.forEach(icon_data, function (key, value) {
  * Angular run function
  * @function run
  */
-myApp.run(function ($rootScope, $location, dataService, dataFactory,cfg) {
+myApp.run(function ($rootScope,  $route,$location, dataService, dataFactory,cfg) {
     
     // Run underscore js in views
     $rootScope._ = _;
       $rootScope.$on("$routeChangeStart", function (event, next, current) {
+      
         var route = {
-            event: event,
-            next: next,
-            current: current
+            previous: current ? current.$$route.originalPath : false
         };
         angular.extend(cfg.route,route);
     });
