@@ -53,7 +53,7 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
     $scope.toggleRowSpinner(instance.id);
     $timeout($scope.toggleRowSpinner, 1000);
     var params = '/Scenes_' + instance.id + '/command/on';
-    dataFactory.getApi('devices', params).then(function (response) {
+    dataFactory.getApi('devices', params,true).then(function (response) {
       $timeout($scope.toggleRowSpinner, 2000);
     }, function (error) {
       $timeout($scope.toggleRowSpinner, 2000);

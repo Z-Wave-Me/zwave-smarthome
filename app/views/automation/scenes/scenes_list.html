@@ -18,7 +18,7 @@
   <div class="control" ng-class="naviExpanded['autoDropdown_' + $index] ? 'expand-true': 'expand-false'">
       <div class="btn-group">
           <!-- test -->
-          <button title="{{_t('btn_test')}}" class="btn btn-default" ng-disabled="!_.contains(scenes.enableTest, v.id)" ng-click="runSceneTest(v)">
+          <button title="{{_t('btn_test')}}" class="btn btn-default" ng-disabled_="!_.contains(scenes.enableTest, v.id)" ng-click="runSceneTest(v)">
             <bb-row-spinner spinner="rowSpinner[v.id]" icon="'fa-play-circle-o text-success'">
             </bb-row-spinner>
           </button>

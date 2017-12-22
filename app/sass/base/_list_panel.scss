@@ -20,9 +20,9 @@ $list-panel-border-color: $app-border-color;
     
   }
   .body{
+    max-width: 70%;
    & > div{
-      display: inline-block;
-     margin-top: $spacing-half;
+      margin-top: $spacing-half;
     }
   }
   .control{

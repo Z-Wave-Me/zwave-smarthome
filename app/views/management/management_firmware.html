@@ -44,14 +44,17 @@
     </form>
 
     <!-- firmwareUpdateModal -->
-    <div id="firmwareUpdateModal" class="appmodal appmodal-100" ng-if="modalArr.firmwareUpdateModal && firmwareUpdate.show">
+    <div id="firmwareUpdateModal" class="appmodal appmodal-90 modal-h-700" ng-if="modalArr.firmwareUpdateModal && firmwareUpdate.show">
         <div class="appmodal-in">
             <div class="appmodal-header">
                 <span class="appmodal-close" ng-click="setAccess('?allow_access=0');handleModal('firmwareUpdateModal', $event)"><i class="fa fa-times"></i></span>
                 <h3>{{_t('firmware_update')}}</h3>
             </div>
             <div class="appmodal-body text-center">
-               <iframe ng-src="{{firmwareUpdate.url}}" height="600" style="width: 100%;" ng-if="firmwareUpdate.loaded"></iframe> 
+              <div class="iframe-wrapper">
+                  <iframe ng-src="{{firmwareUpdate.url}}" height="600" style="width: 100%;" ng-if="firmwareUpdate.loaded"></iframe> 
+              </div>
+              
             </div>
         </div>
     </div>
