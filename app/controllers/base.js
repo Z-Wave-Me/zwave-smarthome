@@ -43,9 +43,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     $scope.swipeDir = false;
 
     $scope.swipe = function(dir) {
-        $scope.swipeDir = dir;
         $scope.$broadcast('swipe',dir);
     }
+
+    /**
+     * Disable contextmenu on mobile devices
+     */
+    if($scope.deviceDetector.isMobile()) {
+        $(document).contextmenu(function(){return false;});
+    }
+
     /**
      * Extend an user
      * @returns {undefined}
