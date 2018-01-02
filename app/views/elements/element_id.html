@@ -58,8 +58,20 @@
                                ng-checked="!elementId.input.visibility"/> <label for="hide_element">{{_t('hide_element')}}</label>
                         <bb-help-text trans="_t('hide_element_info')"></bb-help-text>
                     </div>
-
                 </div>
+                <!-- Add element to today bar -->
+                <div class="form-group" 
+                    ng-show="cfg.route.os == 'PoppApp_Z_Way'"
+                    ng-if="elementId.input.deviceType == 'toggleButton' || 
+                           elementId.input.deviceType == 'switchBinary' &&
+                           elementId.input.probeType != 'notification_email' && 
+                           elementId.input.probeType != 'notification_push'">
+                    <a title="{{_t('lb_add_today')}}" class="btn btn-primary"
+                        href="/?id={{elementId.input.id}}&name={{elementId.input.metrics.title|stringToSlug}}&device_type={{elementId.input.deviceType }}">
+                        {{ _t('lb_add_widget')}}
+                    </a>
+                    <bb-help-text trans="_t('info_add_widget')"></bb-help-text>
+                </div>  
                 <!-- Delete element -->
                 <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
                     <!-- <input type="checkbox" name="permanently_hidden" id="permanently_hidden" value=""
