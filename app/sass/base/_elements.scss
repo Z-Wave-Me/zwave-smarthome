@@ -367,21 +367,19 @@
             height:  130px;
             // Media queries
             @include mediaQueries(min-usmall) {
-                @include appFloat(left);
                 width: 33.33333%;
             }
             @include mediaQueries(min-esmall) {
-                @include appFloat(left);
                 width: 25%;
             }
             @include mediaQueriesMin(600px){
-                 width: 20%;
+                width: 20%;
             }
             @include mediaQueries(min-small) {
-               width:14.28571%;
+                width:14.28571%;
             }
             @include mediaQueries(min-medium) {
-               width: 12.5%;
+                width: 12.5%;
             }
             @include mediaQueries(min-large) {
                 width: 10%;
@@ -398,13 +396,10 @@
     height: 130px;
     @include appFloat(left);
     @include mediaQueries(min-usmall) {
-        @include appFloat(left);
         width: 33.33333%;
     }
     @include mediaQueries(min-esmall) {
-        @include appFloat(left);
         width: 25%;
-      
     }
     @include mediaQueriesMin(600px){
          width: 20%;

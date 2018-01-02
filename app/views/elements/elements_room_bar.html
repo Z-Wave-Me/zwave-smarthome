@@ -6,8 +6,8 @@
     <!-- Bar row -->
     <div class="bar-row">
         <!-- Bar col -->
-        <div class="bar-col bar-media">
-            <img ng-src="{{room.img_src}}"/>
+        <div class="bar-col bar-media" 
+             ng-style="{'background-image':'url(' + room.img_src + ')', 'background-position': 'center center', 'background-size': 'cover'}">
         </div>
         <!-- Bar col -->
         <div class="bar-col bar-body">

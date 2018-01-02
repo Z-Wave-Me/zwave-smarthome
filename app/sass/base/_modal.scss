@@ -182,6 +182,17 @@
 
 }
 
+/* Modal with scroll
+-------------------------------------------------- */
+.modal-h-700 {
+  .appmodal-body {
+    height: auto;
+    max-height: 700px;
+    overflow-x: hidden;
+  }
+
+}
+
 /* Modal with color set
 -------------------------------------------------- */
 .app-row-color-set {

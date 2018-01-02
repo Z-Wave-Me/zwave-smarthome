@@ -55,6 +55,11 @@
   color: $app-body-color;
   background-color: #FFFFFF;
   border-color: #CCCCCC;
+  &[disabled]{
+    .fa {
+      color: lighten($app-body-color,60%);
+    }
+  }
 }
 
 .btn-delete {
@@ -88,6 +93,15 @@
   }
 }
 
+.btn-cancel {
+  color: $app-body-color;
+  background: transparent;
+  border: 0;
+  .fa{
+    color: $app-brand-danger;
+  }
+}
+
 .btn-installed {
   border: 0 none;
   background-color: none !important;
@@ -97,6 +111,7 @@
   border: 0 none;
   background-color: transparent !important;
 }
+
 
 .btn-small {
   font-size: 90%;
@@ -336,7 +351,7 @@ input:checked+.slider:before {
       left: auto;
       z-index: $zindex-dropdown;
       float: right;
-      min-width: 200px;
+      min-width: 280px;
       padding: $spacing;
       text-align: left;
       background-color: #FFFFFF;

@@ -671,36 +671,39 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
      * Room navigation
      */
     $scope.swipeMe = function(dir) {       
-        if(dir == "left") {
-            if($(".appmodal").length  == 0) {
-                var currentRoom = $scope.dataHolder.devices.filter.location,
-                    keys = Object.keys($scope.dataHolder.devices.rooms),
-                    loc = keys.indexOf(currentRoom.toString());
+        if($scope.dataHolder.mode === 'default') {
+            $scope.swipeDir = dir;
+            if(dir == "left") {
+                if($(".appmodal").length  == 0) {
+                    var currentRoom = $scope.dataHolder.devices.filter.location,
+                        keys = Object.keys($scope.dataHolder.devices.rooms),
+                        loc = keys.indexOf(currentRoom.toString());
 
-                if (loc > -1) {
-                    var i = 0;
-                    if (loc < keys.length - 1) {
-                        i = keys[loc + 1];
+                    if (loc > -1) {
+                        var i = 0;
+                        if (loc < keys.length - 1) {
+                            i = keys[loc + 1];
+                        }
+                        $location.path("rooms/" + i);
                     }
-                    $location.path("rooms/" + i);
                 }
             }
-        }
 
-        if(dir == "right") {
-            if($(".appmodal").length  == 0) {
-                var currentRoom = $scope.dataHolder.devices.filter.location,
-                    keys = Object.keys($scope.dataHolder.devices.rooms),
-                    loc = keys.indexOf(currentRoom.toString());
+            if(dir == "right") {
+                if($(".appmodal").length  == 0) {
+                    var currentRoom = $scope.dataHolder.devices.filter.location,
+                        keys = Object.keys($scope.dataHolder.devices.rooms),
+                        loc = keys.indexOf(currentRoom.toString());
 
-                if (loc > -1) {
-                    var i = 0;
-                    if (loc > 0) {
-                        i = keys[loc - 1];
-                    } else {
-                        i = keys[keys.length - 1];
+                    if (loc > -1) {
+                        var i = 0;
+                        if (loc > 0) {
+                            i = keys[loc - 1];
+                        } else {
+                            i = keys[keys.length - 1];
+                        }
+                        $location.path("rooms/" + i);
                     }
-                    $location.path("rooms/" + i);
                 }
             }
         }

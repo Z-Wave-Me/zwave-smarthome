@@ -43,9 +43,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     $scope.swipeDir = false;
 
     $scope.swipe = function(dir) {
-        $scope.swipeDir = dir;
         $scope.$broadcast('swipe',dir);
     }
+
+    /**
+     * Disable contextmenu on mobile devices
+     */
+    if($scope.deviceDetector.isMobile()) {
+        $(document).contextmenu(function(){return false;});
+    }
+
     /**
      * Extend an user
      * @returns {undefined}
@@ -274,6 +281,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             request.timeout = request.cancel.promise;
         });
         /**
+         * Reset expanded elements
+         */
+        $scope.expand = {};
+        /**
          * Reset fatal error object
          */
         dataService.resetFatalError();
@@ -399,10 +410,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
 
     /**
      * Causes $route service to reload the current route even if $location hasn't changed.
+     * @param {boolean} cache
      * @returns {undefined}
      */
-    $scope.reloadData = function () {
-        myCache.removeAll();
+    $scope.reloadData = function (cache) {
+        // Clear also cache?
+        if(cache){
+            myCache.removeAll();
+        }
+       
         $route.reload();
     };
 
@@ -545,16 +561,28 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         } else {
             $scope.modalArr[key] = !($scope.modalArr[key]);
         }
-
-        $event.stopPropagation();
+        if($event){
+          $event.stopPropagation();
+        }
+        
     };
     $scope.expand = {};
     /**
      * Expand/collapse an element
      * @param {string} key
+     * @param {boolean} hidePrevious
      * @returns {undefined}
      */
-    $scope.expandElement = function (key) {
+    $scope.expandElement = function (key,hidePrevious) {
+        // Reset if an empty key
+        if (!key) {
+            $scope.expand = [];
+            return;
+        }
+        // Also hide previous expanded elements
+        if (hidePrevious) {
+            $scope.expand = [];
+        }
         $scope.expand[key] = !($scope.expand[key]);
     };
 

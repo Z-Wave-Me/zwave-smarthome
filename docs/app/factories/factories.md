@@ -64,6 +64,16 @@ Get local data from the storage directory
 
 **Returns**: `unresolved`
 
+### dataFactory.runJs(param) 
+
+Run zway JS
+
+**Parameters**
+
+**param**: `string`
+
+**Returns**: `unresolved`
+
 ### dataFactory.getApi(api, params, noCache, fatalError) 
 
 Get ZAutomation api data

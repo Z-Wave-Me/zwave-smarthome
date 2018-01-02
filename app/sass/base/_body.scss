@@ -24,6 +24,9 @@
 html {
   font-size: $app-body-font-size;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none; /* Disables long-touch menu */
+  -webkit-user-select: none; /* Disable text selection (for Webkit) */
+  user-select: none; /* Disable text selection (standard syntax) */
 }
 
 body {
@@ -198,8 +201,8 @@ a {
 }
 
 .block{
-  width: 100%;
- margin: $spacing 0;
+  //width: 100%;
+ margin: $spacing;
 }
 
 .block-50 {
@@ -215,6 +218,14 @@ a {
 -------------------------------------------------- */
 img {
   vertical-align: middle;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+
 }
 .img-circle{
   border-radius: 50%;
@@ -248,7 +259,7 @@ img {
 }
 
 .bcg-active.false, .bcg-danger {
-  background-color: $app-bcg-danger;
+  background-color: $app-bcg-danger !important; 
 }
 
 .clickable {

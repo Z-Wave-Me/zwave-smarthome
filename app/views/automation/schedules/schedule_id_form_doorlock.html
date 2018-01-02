@@ -1,0 +1,12 @@
+<!--on/off -->
+<div class="form-group">
+  <input type="checkbox" name="on_off" id="on_off" ng-model="schedule.model.doorlock.status" ng-checked="schedule.model.doorlock.status == 'open'"
+    ng-true-value="open" ng-false-value="close" ng-change="handleDevice(schedule.model.doorlock,'locks')" />
+  <label for="on_off">{{schedule.model.doorlock.status}}</label>
+</div>
+<!-- command -->
+<div class="form-group">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="schedule.model.doorlock.sendAction" ng-checked="schedule.model.doorlock.sendAction" ng-change="handleDevice(schedule.model.doorlock,'locks')"
+  />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>

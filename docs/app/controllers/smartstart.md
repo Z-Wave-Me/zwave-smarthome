@@ -17,6 +17,10 @@
 
 * * *
 
+## SmartStartBaseController
+The controller that .
+
+
 ## SmartStartDskController
 The controller that include device with DSK.
 
@@ -32,42 +36,60 @@ Add DSK
 **Returns**: `undefined`
 
 
-## SmartStartQrController
-The controller that include device by scanning QR code.
-
-### SmartStartQrController.resetState() 
-
-Reset state to start
-
-
-### SmartStartQrController.scan() 
-
-Scan QR code
-
-
-### SmartStartQrController.discover() 
-
-Discover the device
-
-
-
 ## SmartStartListController
 The controller that displays DSK list.
 
-### SmartStartListController.getDskProvisioningList() 
+### SmartStartListController.loadXml() 
 
-Get DSK Provisioning List
+Load DeviceClasses.xml from translations
 
 
-### SmartStartListController.removeDsk(dsk) 
+### SmartStartListController.loadDeviceInfo() 
+
+Load device info
+
+
+### SmartStartListController.getDskCollectionDemo() 
+
+Get DSK Collection - DEMO
+
+
+### SmartStartListController.updateDsk() 
+
+Update DSK
+
+**Returns**: `undefined`
+
+### SmartStartListController.removeDsk(input, message) 
 
 Remov a DSK item
 
 **Parameters**
 
-**dsk**: `string`
+**input**: `object`
+
+**message**: `string`
 
 **Returns**: `undefined`
+
+
+## SmartStartQrController
+The controller that include device by scanning QR code.
+
+### SmartStartQrController.callbackQrCode() 
+
+Callback
+
+
+### SmartStartQrController.initQRCodeReader() 
+
+Init QR-Code-Reader if supported
+
+
+### SmartStartQrController.initCanvas() 
+
+Init canvas to discover qrcode
+
 
 
 

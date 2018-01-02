@@ -106,6 +106,15 @@ myApp.filter('typeOf', function () {
     };
 });
 
+//This converts a number to a string hex AND pads leading zeros
+myApp.filter('decToHexString', function () {
+  return function (decimal, chars, x) {
+      var hex = (decimal + Math.pow(16, chars)).toString(16).slice(-chars).toUpperCase();
+      return (x || '') + hex;
+  };
+});
+
+
 /**
  * Convert a dec value to hex
  * @function dec2hex
@@ -544,7 +553,7 @@ myApp.filter('isTodayFromUnix', function () {
 });
 /**
  * Get time from the box and displays it in the hrs:min:sec format
- * @function getCurrentTime
+ * @function setTimeFromBox
  */
 myApp.filter('setTimeFromBox', function () {
     return function (input) {
@@ -678,6 +687,24 @@ myApp.filter('eventDate', function () {
             return day + '.' + mon + '. -  ' + hrs + ':' + min;
         }
     };
+});
+
+/**
+ * Renders andate time from unix timestamp in format d:m:y - h:m
+ * @function eventDate
+ */
+myApp.filter('dateTimeFromTimestamp', function () {
+  return function (input) {
+      var d = new Date(input);
+      var day = d.getDate();
+      var mon = d.getMonth() + 1; //Months are zero based
+      var year = d.getFullYear();
+      var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
+      var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
+      var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
+
+      return day + '.' + mon + '.' + year + ' - ' + hrs + ':' + min;
+  };
 });
 
 /**

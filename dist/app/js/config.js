@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.8.0-RC-7',
+        'app_version': '1.8.0-RC-22',
         // Application (DIST) built date
-        'app_built': '27-11-2017 15:05:09',
+        'app_built': '22-12-2017 11:18:37',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -135,10 +135,11 @@ var config_data = {
             'send_pulse_train': 'RF433API/Send',
             'reorder': 'ZAutomation/api/v1/devices/reorder',
             'get_dsk':'ZWaveAPI/GetDSKCollection', // Get DSK collection
-            'add_dsk':'ZWaveAPI/AddDSKEntry?dsk=', // Add DSK
-            'remove_dsk':'ZWaveAPI/RemoveDSKEntry?dsk=', // Remove DSK
+            'add_dsk':'ZWaveAPI/AddDSKEntry', // Add DSK
+            'update_dsk':'ZWaveAPI/UpdateDSKEntry', // Update DSK
+            'remove_dsk':'ZWaveAPI/RemoveDSKEntry?id=', // Remove DSK
             'get_dsk_provisioning_list':'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
-            'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry?dsk=', // Add DSK to ProvisioningList (Response with added DSK) GET 
+            'add_dsk_provisioning_list':'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST 
             'remove_dsk_collection':'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
             'enable_smart_start':'JS/Run/zway.SmartStartEnable()', // enable SmartStart
         },
@@ -202,8 +203,8 @@ var config_data = {
         'zwave_api_url': 'ZWaveAPI/',
         // ZWave JS url
         'zwave_js_url': 'JS/',
-        // ZWave run JS url - DEPRECATED
-        //'zwave_jsrun_url': 'JS/Run/',
+        // ZWave run JS url
+        'zwave_jsrun_url': 'JS/Run/',
         // Local data path
         'local_data_url': 'storage/data/',
         // Help data path
@@ -263,6 +264,8 @@ var config_data = {
         'enocean_black_list': ['81048201'],
         // Url to config XML file
         'cfg_xml_url': 'config/Configuration.xml',
+         // Path to to translations XML dir
+         'translations_xml_path': 'translations/',
         // Url to update capabilities
         'license_load_url': 'ZWaveAPI/ZMELicense',
         // Language directory

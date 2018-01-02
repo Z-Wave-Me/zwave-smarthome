@@ -18,8 +18,9 @@
 @import "vendor/_alpaca";
 @import "vendor/_alertify";
 @import "vendor/_angular.slider";
+@import "vendor/_minireset";
 
-/* SmartHome UI base
+/* SmartHome UI base 
 -------------------------------------------------- */
 @import "base/_body";
 @import "base/_header";
@@ -27,10 +28,14 @@
 @import "base/_navi";
 @import "base/_widget"; 
 @import "base/_report"; 
+@import "base/_list_panel"; 
 @import "base/_table"; 
 @import "base/_button"; 
 @import "base/_form";
+@import "base/_img";
 @import "base/_imglist";
+@import "base/_definition_list";
+@import "base/_section";
 @import "base/_bar";
 @import "base/_dropdown";
 @import "base/_infowindow";
@@ -39,6 +44,7 @@
 @import "base/_alert";
 @import "base/_blank";
 @import "base/_modal";
+@import "base/_iframe";
 @import "base/_pagination";
 @import "base/_autocomplete";
 @import "base/_dragdrop";
@@ -57,6 +63,8 @@
 @import "base/_slider";
 @import "base/_rss";
 @import "base/_switch";
+@import "base/_automation"; 
+@import "base/_label"; 
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"

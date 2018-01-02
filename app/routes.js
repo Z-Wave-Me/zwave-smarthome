@@ -50,12 +50,41 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/events/events.html',
                     requireLogin: true
                 }).
-                //Automation
-                when('/automation/:moduleId', {
-                    templateUrl: 'app/views/automation/automation.html',
+                 //Scenes
+                 when('/scenes', {
+                  templateUrl: 'app/views/automation/scenes/scenes.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
+                //Scene ID
+                when('/scenes/:id', {
+                    templateUrl: 'app/views/automation/scenes/scene_id.html',
                     requireLogin: true,
-                    roles: cfg.role_access.admin,
-                    routeName: 'automation'
+                    roles: cfg.role_access.admin
+                }).
+                //Rules
+                when('/rules', {
+                 templateUrl: 'app/views/automation/rules/rules.html',
+                 requireLogin: true,
+                 roles: cfg.role_access.admin
+             }).
+                 //Rule id
+                 when('/rules/:id', {
+                    templateUrl: 'app/views/automation/rules/rule_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
+                }).
+                //Schedules
+                when('/schedules', {
+                  templateUrl: 'app/views/automation/schedules/schedules.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
+                 //Schedule ID
+                 when('/schedules/:id', {
+                    templateUrl: 'app/views/automation/schedules/schedule_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
                 }).
                 //Admin
                 when('/admin', {
@@ -138,6 +167,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/devices/devices.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
+                }).//SmartStart
+                when('/smartstart', {
+                    templateUrl: 'app/views/smartstart/smartstart.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
                 }).//SmartStart with QR code
                 when('/smartstartqr', {
                     templateUrl: 'app/views/smartstart/smartstart_qr.html',

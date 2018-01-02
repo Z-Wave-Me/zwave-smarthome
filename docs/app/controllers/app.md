@@ -35,6 +35,11 @@ Load online modules
 Load all promises
 
 
+### AppBaseController.instancesExpandable() 
+
+Check if instances expandable
+
+
 ### AppBaseController.updateModule() 
 
 Update module

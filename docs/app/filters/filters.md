@@ -143,7 +143,7 @@ Today from unix - ExpertUI filter used in the device hardware configuration
 
 
 
-### getCurrentTime() 
+### setTimeFromBox() 
 
 Get time from the box and displays it in the hrs:min:sec format
 
@@ -170,6 +170,12 @@ If is today display h:m otherwise d:m:y
 ### eventDate() 
 
 Renders an event date - If is today display h:m otherwise d:m:y
+
+
+
+### eventDate() 
+
+Renders andate time from unix timestamp in format d:m:y - h:m
 
 
 

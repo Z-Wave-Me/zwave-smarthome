@@ -1,0 +1,19 @@
+{
+  "instanceId": "0",
+  "moduleId": "Rules",
+  "active": "true",
+  "title": "If -> Then",
+  "params": {
+    "sourceDevice": {
+      "filterIf": "switchControl",
+      "switchControl": {
+        "status": "level",
+        "operator": "=",
+        "level": 25
+      }
+    },
+    "targets": [
+      
+    ]
+  }
+}

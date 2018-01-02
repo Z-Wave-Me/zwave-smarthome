@@ -285,12 +285,16 @@
             display: none;
             @include mediaQueries(min-small) {
                 display: table-cell;
+                width: 64px;
+                height: 64px;
+                background-color: #ffffff;
             }
         }
 
         .bar-body {
             @include mediaQueries(min-small) {
-                margin-top: 5px; 
+                margin-top: 5px;
+                padding-left: $spacing; 
             }
             .btn-group {
                 width: 100%;

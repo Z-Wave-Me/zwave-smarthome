@@ -1,0 +1,20 @@
+{
+  "instanceId": "0",
+  "moduleId": "Rules",
+  "active": "true",
+  "title": "If -> Then",
+  "params": {
+    "sourceDevice": {
+      "filterIf": "switchMultilevel",
+      "switchMultilevel": {
+        "device": "DummyDevice_39",
+        "status": "level",
+        "operator": "<",
+        "level": 25
+      }
+    },
+    "targets": [
+      
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+/* Images
+-------------------------------------------------- */
+.img{
+    &.wh-16x16{
+        width: 16px;
+        height: 16px;
+    }
+    &.wh-32x32{
+        width: 32px;
+        height: 32px;
+    }
+    &.wh-64x64{
+        width: 64px;
+        height: 64px;
+    }
+    img{
+        width: 100%;
+    }
+}
