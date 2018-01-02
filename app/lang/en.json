@@ -1,6 +1,8 @@
 {
-  "no_rule_available":"There are no rules available",
-  "lb_delete_confirm_included_dsk":"This action will only remove the registration of the device. You need also to remove the device manually from your network. Do you wish to continue?",
+"lb_add_widget":"Add shortcut",
+"info_add_widget":"Add shortcut to Widget.",
+"no_rule_available":"There are no rules available",
+"lb_delete_confirm_included_dsk":"This action will only remove the registration of the device. You need also to remove the device manually from your network. Do you wish to continue?",
 "delete_no_smartstart_warning":"Device requires to be excluded  manually or reset to factory default in order to leave the Z-Wave Network",
 "automation":"Automation",
 "scenes":"Scenes",
