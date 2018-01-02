@@ -381,7 +381,7 @@ myAppController.controller('SmartStartQrController', function ($scope, $timeout,
  $scope.callbackQrCode = function(data) {
     var index = data.indexOf(":");
     if(index !== -1) {
-      data = data.substr(index, data.length);  
+      data = data.substr(index + 1);  
     }
     $scope.qrcode.input = data;
     var qr_code_str = {dsk: data};
