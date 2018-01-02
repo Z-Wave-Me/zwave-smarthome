@@ -350,7 +350,8 @@
                         DEVICES.FIREFOX_OS,
                         DEVICES.CHROME_BOOK,
                         DEVICES.WINDOWS_PHONE,
-                        DEVICES.VITA
+                        DEVICES.VITA,
+                        DEVICES.POPPAPPZWAY
                     ].some(function (item) {
                             return deviceInfo.device == item;
                         });
