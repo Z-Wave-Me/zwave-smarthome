@@ -26,7 +26,8 @@
             <div class="card-room-in"
                  on-long-press="onLongPress(v.id)"
                  on-touch-end="onTouchEnd()"
-                 prevent-click="true">
+                 prevent-click="true"
+                 long-press-mobile="{{deviceDetector.isMobile()}}">
                 <!-- Card header -->
                 <div class="card-header">
 

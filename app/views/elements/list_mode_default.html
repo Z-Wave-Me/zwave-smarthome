@@ -10,7 +10,8 @@
         ng-repeat="v in dataHolder.devices.collection| orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id"
         on-long-press="itemOnLongPress(v.id)"
         on-touch-end="itemOnTouchEnd()"
-        prevent-click="true">
+        prevent-click="true"
+        long-press-mobile="{{deviceDetector.isMobile()}}">
        <!-- ng-repeat="v in dataHolder.devices.collection track by v.id">-->
         <div class="widget-entry-in progress-{{v.progress}}">
             <span class="widget-loader"></span>

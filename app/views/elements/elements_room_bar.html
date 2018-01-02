@@ -2,7 +2,9 @@
 <div class="elemnts-room-bar longpress-{{longPressSent}}" 
     on-long-press="roomBarOnLongPress(room.id)"
     on-touch-end="roomBarOnTouchEnd()"
-    prevent-click="true">
+    prevent-click="true"
+    long-press-mobile="{{deviceDetector.isMobile()}}"
+    >
     <!-- Bar row -->
     <div class="bar-row">
         <!-- Bar col -->

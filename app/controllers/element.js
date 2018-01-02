@@ -507,7 +507,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.itemOnLongPress = function(id) {
         $scope.longPressTimeout = $timeout(function() {
             $location.path("element/"+id);
-        }, 1000);
+        }, 1000);        
     }
     
     /**
@@ -671,7 +671,7 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
      * Room navigation
      */
     $scope.swipeMe = function(dir) {       
-        if($scope.dataHolder.mode === 'default') {
+        if($scope.dataHolder.mode === 'default' && $scope.deviceDetector.isMobile()) {
             $scope.swipeDir = dir;
             if(dir == "left") {
                 if($(".appmodal").length  == 0) {
