@@ -45,9 +45,11 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
 
     if (dataService.getUser()) {
         $scope.auth.form = false;
-        $timeout(function() {
-            window.location = '#/dashboard';
-        }, 0);
+        if(cfg.route.os !== 'PoppApp_Z_Way') {
+            $timeout(function() {
+                window.location = '#/dashboard';
+            }, 0);
+        }
         return;
     }
     // IF IE or Edge displays an message
