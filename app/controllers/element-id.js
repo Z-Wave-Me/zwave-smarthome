@@ -204,8 +204,10 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
 
             }
         }
-    }
-    ;
+        angular.extend($scope.elementId.input,
+            {iconPath: dataService.assignElementIcon($scope.elementId.input)},
+        );
+    };
 
     /**
      * todo: deprecated
