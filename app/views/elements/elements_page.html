@@ -144,7 +144,7 @@
     
     <!-- Page subnavi  categories -->
     <div class="page-navi" ng-if="naviExpanded.elCategories">
-        <div class="page-navi-in">
+        <div class="page-navi-in" id="elCategories">
             <ul>
                 <li class="page-cat-{{v}}" ng-repeat="(v,k) in dataHolder.devices.deviceType"
                     ng-class="_.findIndex(dataHolder.devices.filter.list, {deviceType: v}) > -1 ? 'active': ''">

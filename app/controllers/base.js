@@ -537,16 +537,17 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
     /**
      * Collapse navi, menu and autocomplete when clicking outside
      */
-    window.onclick = function () {
+    window.onclick = function (event) {
         if ($scope.autocompleteExpanded) {
             angular.copy({}, $scope.autocompleteExpanded);
             $scope.$apply();
         }
-        if ($scope.naviExpanded && !$scope.naviExpanded.elCategories) {
+        if ($scope.naviExpanded && !$scope.naviExpanded.elCategories || $('#elCategories').has($(event.target)).length == 0) {
             angular.copy({}, $scope.naviExpanded);
             $scope.$apply();
         }
     };
+
     /**
      * Open/close a modal window
      * @param {string} key

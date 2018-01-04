@@ -259,9 +259,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             angular.extend($scope.dataHolder.devices, {filter: {}});
             $cookies.filterElements = angular.toJson({});
         }
-        
-        console.log($scope.dataHolder.devices.filter.list);
-
         $scope.allSettled();
     };
 
