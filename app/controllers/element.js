@@ -51,6 +51,8 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         strLength: 2,
         resultLength: 10
     };
+
+    $scope.cmdTimeouts = [];
     /**
      * Room data
      */
@@ -150,6 +152,11 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                             }
                             if (v.metrics.level) {
                                 v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
+                            }
+                            if($scope.cmdTimeouts[v.id]) {
+                                $timeout.cancel($scope.cmdTimeouts[v.id]);
+                                delete $scope.cmdTimeouts[v.id]
+                                $scope.cmdTimeouts.splice($scope.cmdTimeouts.indexOf(v.id), 1);    
                             }
                             angular.extend($scope.dataHolder.devices.all[index],
                                     {isFailed: v.metrics.isFailed},
@@ -339,14 +346,26 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Run command
      */
     $scope.runCmd = function (cmd, id) {
+
         dataFactory.runApiCmd(cmd).then(function (response) {
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
             if ($scope.dataHolder.devices.all[index]) {
                 angular.extend($scope.dataHolder.devices.all[index],
                     {progress: true}
                 );
-            }
 
+                var cmdTimeout = $timeout(function() {
+                    angular.extend($scope.dataHolder.devices.all[index],
+                        {progress: false}
+                    );   
+                    if($scope.cmdTimeouts[id]) {
+                        delete $scope.cmdTimeouts[id]
+                        $scope.cmdTimeouts.splice($scope.cmdTimeouts.indexOf(id), 1);                 
+                    }
+                }, cfg.pending_cmd_limit);
+
+                $scope.cmdTimeouts[id] = cmdTimeout;
+            }
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
