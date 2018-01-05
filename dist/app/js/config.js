@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.8.0-RC-23',
+        'app_version': '1.8.0-RC-24',
         // Application (DIST) built date
-        'app_built': '04-01-2018 12:42:57',
+        'app_built': '05-01-2018 14:43:21',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -26,6 +26,8 @@ var config_data = {
         'pending_timeout_limit': 20000,
         // Displays an remote server connection warning after reaching the limit (milisecons)
         'pending_remote_limit': 20000,
+        // Command pending limit (milisecons)
+        'pending_cmd_limit': 10000,
         // Avoid to display Pending error message on the following routes if trying to connet to the remote server
         'pending_black_list': ['/apps/local', '/apps/instance','/customize/skinslocal','/customize/iconslocal'],
         /// Set to > 0 (milisecons) to simulate latency for http Calls
