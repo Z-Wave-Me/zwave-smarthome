@@ -192,7 +192,8 @@ module.exports = function (grunt) {
                             'app/img/**',
                             'app/img/**',
                             //'app/views/**',
-                            'app/lang/**'
+                            'app/lang/**',
+                            'favicon.ico'
                         ], dest: 'dist/'
                     },
                     //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
