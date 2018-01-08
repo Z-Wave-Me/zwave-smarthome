@@ -1,0 +1,20 @@
+{
+  "instanceId": "0",
+  "moduleId": "Rules",
+  "active": "true",
+  "title": "Rules",
+  "params": {
+    "sourceDevice": {},
+    "delay": {},
+    "targets": {
+      "elements": []
+    },
+    "advanced": {
+      "activate": false,
+      "delay": {}
+    },
+    "reverse": {
+      "activate": false
+    }
+  }
+}
