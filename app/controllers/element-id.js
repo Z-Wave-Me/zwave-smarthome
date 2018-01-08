@@ -28,7 +28,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('devices', '/' + $routeParams.id),
+            dataFactory.getApi('devices', '/' + $routeParams.id, true),
             dataFactory.getApi('locations'),
             dataFactory.getApi('devices')
 
