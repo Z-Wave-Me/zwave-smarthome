@@ -14,12 +14,15 @@
     <!-- Available -->
     <legend>{{_t('lb_available_devices')}}</legend>
     <fieldset ng-include="'app/views/automation/scenes/scene_id_available.html'"></fieldset>
+     <!-- Icons -->
+   <div ng-include="'app/views/automation/scenes/scene_id_icons.html'"></div>
+ 
     <!-- Submit  -->
     <fieldset class="submit-entry">
-      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+      <a href="#scenes" class="btn btn-default" title="{{_t('lb_cancel')}}">
         <i class="fa fa-reply"></i>
         <span class="btn-name">{{_t('lb_cancel')}}</span>
-      </button>
+      </a>
       <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
         <i class="fa fa-check"></i>
         <span class="btn-name">{{_t('lb_save')}}</span>
