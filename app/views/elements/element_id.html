@@ -51,11 +51,14 @@
                     </div>
                     <!-- Hide element -->
                     <div class="form-group">
-                        <input type="checkbox" name="hide_element" id="hide_element"
-                               ng-init="visibility.checked = !elementId.input.visibility"
-                               ng-model="visibility.checked"
-                               ng-change="elementId.input.visibility = !visibility.checked"
-                               ng-checked="!elementId.input.visibility"/> <label for="hide_element">{{_t('hide_element')}}</label>
+                        <label for="hide_element">
+                            <input type="checkbox" name="hide_element" id="hide_element"
+                                   ng-init="visibility.checked = !elementId.input.visibility"
+                                   ng-model="visibility.checked"
+                                   ng-change="elementId.input.visibility = !visibility.checked"
+                                   ng-checked="!elementId.input.visibility"/> 
+                            <span>{{_t('hide_element')}}</span>
+                        </label>
                         <bb-help-text trans="_t('hide_element_info')"></bb-help-text>
                     </div>
                 </div>
