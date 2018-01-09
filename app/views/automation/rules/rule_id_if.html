@@ -1,0 +1,7 @@
+<!-- Name -->
+<div class="form-group form-inline">
+  <select class="form-control">
+    <option value="">--- Select a source device ---</option>
+    <option ng-repeat="v in rule.source.devices | orderBy:'metrics.title' track by $index" ng-selected="v.id == rule.source.selected.device">{{v.metrics.title}} - {{rule.rooms[v.location].title}}</option>
+  </select>
+</div>

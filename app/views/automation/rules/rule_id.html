@@ -6,14 +6,28 @@
   <form class="form form-page" ng-submit="storeRule(rule.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/rules/rule_id_form.html'"></fieldset>
-     <!-- Used -->
-     <div ng-if="rule.assignedDevices.length">
-        <legend>{{_t('assigned_devices')}}</legend>
-        <fieldset ng-include="'app/views/automation/scenes/scene_id_assigned.html'"></fieldset>
-     </div>
-    <!-- Available -->
-    <legend>{{_t('lb_available_devices')}}</legend>
-    <fieldset ng-include="'app/views/automation/scenes/scene_id_available.html'"></fieldset>
+    <div ng-if="!rule.input.params.advanced.activate">
+    <!-- if -->
+    <legend class="accordion-entry-title" ng-click="expandElement('ruleIf')">{{_t('IF')}}
+      <i class="fa accordion-arrow" ng-class="expand.ruleIf  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+    </legend>
+    <fieldset ng-if_="expand.ruleIf" ng-include="'app/views/automation/rules/rule_id_if.html'"></fieldset>
+    <!-- then -->
+    <legend class="accordion-entry-title" ng-click="expandElement('ruleThen')">{{_t('THEN')}}
+       <i class="fa accordion-arrow" ng-class="expand.ruleThen  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+    </legend>
+    <fieldset ng-if="expand.ruleThen" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
+    <!-- else -->
+    <legend class="accordion-entry-title" ng-click="expandElement('ruleElse')">{{_t('ELSE')}} 
+      <i class="fa accordion-arrow" ng-class="expand.ruleElse  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+    </legend>
+    <fieldset ng-if="expand.ruleElse" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
+  </div>
+    <!-- advanced -->
+    <legend ng-click="expandElement('ruleAdvanced')">
+        <input type="checkbox" name="advanced_activate" id="advanced_activate" ng-model="rule.input.params.advanced.activate" ng-checked="rule.input.params.advanced.activate" /> <label for="advanced_activate">{{_t('Use advanced settings')}}</label>
+        </legend>
+    <fieldset ng-if="rule.input.params.advanced.activate" ng-include="'app/views/automation/rules/rule_id_advanced.html'"></fieldset>
     <!-- Submit  -->
     <fieldset class="submit-entry">
       <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
@@ -26,7 +40,6 @@
       </button>
     </fieldset>
   </form>
-  <!-- <pre>{{scene.model|json}}</pre>
-  <pre>{{scene.input|json}}</pre> -->
+  <pre>{{rule.input|json}}</pre>
 </div>
 <!-- /ng-controller -->

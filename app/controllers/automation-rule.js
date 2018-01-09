@@ -118,33 +118,23 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
     model: {},
+    source:{
+      selected: {},
+      devices:[]
+    },
     rooms: [],
-    devicesInRoom: [],
-    availableDevices: [],
-    assignedDevices: [],
     cfg: {
-
-      switchBinary: {
-        paramsDevices: 'switches',
-        enum: ['off', 'on']
-      },
-      switchMultilevel: {
-        paramsDevices: 'dimmers',
-        min: 0,
-        max: 99
-      },
-      thermostat: {
-        paramsDevices: 'thermostats',
-        min: 0,
-        max: 99
-      },
-      doorlock: {
-        paramsDevices: 'locks',
-        enum: ['close', 'open']
-      },
-      toggleButton: {
-        paramsDevices: 'scenes',
+      source:{
+        toggleButton: {},
+        switchControl:{},
+        switchBinary:{},
+        switchMultilevel:{},
+        sensorBinary:{},
+        sensorMultilevel:{},
+        sensorDiscrete:{}
       }
+
+      
 
     },
     input: {
@@ -153,14 +143,20 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       active: true,
       title: "",
       params: {
-        sourceDevice: {},
-        delay: {},
+        sourceDevice: {
+          filterIf:''
+        },
+        delay: {
+          eventstart: 0
+        },
         targets: {
           elements: []
         },
         advanced: {
           activate: false,
-          delay: {}
+          delay: {
+            eventstart: 0
+          }
         },
         reverse: {
           activate: false
@@ -189,32 +185,15 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
       var instance = instances.data.data;
-      var assignedDevices = $scope.rule.assignedDevices;
       angular.extend($scope.rule.input, {
         title: instance.title,
         active: instance.active,
         params: instance.params
       });
-      angular.forEach(instance.params.devices, function (v, k) {
-        switch (k) {
-          case 'scenes':
-            _.filter(v, function (s) {
-              if (assignedDevices.indexOf(s) === -1) {
-                $scope.rule.assignedDevices.push(s);
-              }
-
-            })
-            break;
-          default:
-            _.filter(v, function (d) {
-              if (assignedDevices.indexOf(d.device) === -1) {
-                $scope.rule.assignedDevices.push(d.device);
-              }
-
-            })
-            break;
-        }
-      });
+      var filterIf = instance.params.sourceDevice.filterIf;
+      if(filterIf){
+        $scope.rule.source.selected = instance.params.sourceDevice[filterIf]
+      }
 
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
@@ -242,14 +221,14 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    */
   $scope.loadDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
-      var whiteList = _.keys($scope.rule.cfg);
+      var whiteList = _.keys($scope.rule.cfg.source);
       var devices = dataService.getDevicesData(response.data.data.devices);
-      $scope.rule.availableDevices = devices.filter(function (v) {
+      $scope.rule.source.devices = devices.filter(function (v) {
         return whiteList.indexOf(v.deviceType) > -1;
       }).value();
-      $scope.rule.devicesInRoom = _.countBy($scope.rule.availableDevices, function (v) {
+      /* $scope.rule.devicesInRoom = _.countBy($scope.rule.availableDevices, function (v) {
         return v.location;
-      });
+      }); */
     }, function (error) {});
   };
   $scope.loadDevices();
