@@ -438,6 +438,10 @@
     float: none !important;
     border-radius: 4px !important;
     label {
+        padding: 12px 5px 5px;
+        @include mediaQueries(min-small) {
+            padding: 6px 5px 5px;
+        }
         input[type="checkbox"] {
             display: inline-block;
         }    

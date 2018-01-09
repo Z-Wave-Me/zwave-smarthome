@@ -90,15 +90,19 @@
                 <!-- dashboard etc -->
                 <div class="form-group">
                     <div>
-                        <input type="checkbox" name="dashboard" value="{{elementId.input.onDashboard}}" id="dashboard"
+                        <label for="dashboard">
+                            <input type="checkbox" name="dashboard" value="{{elementId.input.onDashboard}}" id="dashboard"
                                ng-model="elementId.input.onDashboard" ng-checked="elementId.input.onDashboard"/> 
-                               <label for="dashboard">{{_t('lb_add_dashboard')}}</label>
+                            <span>{{_t('lb_add_dashboard')}}</span>
+                        </label>
                     </div>
                     <div>
-                        <input type="checkbox" name="hide_events" value="{{elementId.input.id}}" id="hide_events"
+                        <label for="hide_events">
+                            <input type="checkbox" name="hide_events" value="{{elementId.input.id}}" id="hide_events"
                                ng-model="elementId.input.hide_events"
                                ng-checked="user.hide_single_device_events.indexOf(elementId.input.id) === -1 ? false : true"/>
-                        <label for="hide_events">{{_t('lb_hide_events_device')}}</label>
+                            <span>{{_t('lb_hide_events_device')}}</span>
+                        </label>
                     </div>
                 </div>
                 <!-- Rooms -->

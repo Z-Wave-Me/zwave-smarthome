@@ -62,6 +62,17 @@
                 float: left;
                 width: 33.33333%;
             }
+            
+            .switch-label {
+                display: inline-block;
+                line-height: 40px;
+                position: absolute;
+                margin-left: 10px;
+                @include mediaQueries(min-small) {
+                    line-height: 34px;
+                }
+            }
+
             a{
                  position:relative;
                 min-height: 1px;

@@ -3,6 +3,12 @@
 -------------------------------------------------- */
 .infowindow-wrap{
     position: relative;
+    @include mediaQueries(max-small) {
+        input[type="checkbox"] {
+            margin: 10px 22px 20px 0;
+        }
+        margin-bottom: 10px;
+    }
 }
 
 .infowindow{
