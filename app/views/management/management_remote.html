@@ -24,13 +24,17 @@
 
                 <div class="form-group">
                     <div>
-                        <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
-                        <label for="remote_access" ng-bind="_t('remote_access')"></label>
+                        <label for="remote_access">
+                            <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
+                            <span>{{_t('remote_access')}}</span>
+                        </label>
                         <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
                     </div>
                     <div>
-                        <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
-                        <label for="remote_support" ng-bind="_t('remote_access_support')"></label>
+                        <label for="remote_support">
+                            <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
+                            <span>{{_t('remote_access_support')}}</span>
+                        </label>
                     </div>
                 </div>
             </div>
