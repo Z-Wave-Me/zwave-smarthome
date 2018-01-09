@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 09-01-2018 14:07:30 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 09-01-2018 14:44:33 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -1070,7 +1070,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/navi.html',
-    "<div class=\"tabs-wrap form-inline\" ng-if_=devices.show><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('lb_zwave_devices')}}\" ng-class=\"routeMatch('/zwave/devices') ? 'active' : ''\"><i class=\"fa fa-wifi\"></i> <span class=btn-name>{{_t('lb_zwave_devices')}}</span> </a><a class=\"btn btn-default\" href=#zwave/batteries title=\"{{_t('lb_battery_status')}}\" ng-class=\"routeMatch('/zwave/batteries') ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-battery-three-quarters\"></i> <span class=btn-name>{{_t('lb_battery_status')}}</span> </a><a class=\"btn btn-default\" href=#zwave/network title=\"{{_t('lb_network_status')}}\" ng-class=\"routeMatch('/zwave/network') ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-sitemap\"></i> <span class=btn-name>{{_t('lb_network_status')}}</span> </a><a class=\"btn btn-default\" title=\"{{_t('Device Key List')}}\" href=#smartstartlist ng-class=\"routeMatch('/smartstartlist') ? 'active' : ''\"><i class=\"fa fa-list\"></i> <span class=btn-name>{{_t('Device Key List')}}</span></a></div></div>"
+    "<div class=\"tabs-wrap form-inline\" ng-if_=devices.show><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('lb_zwave_devices')}}\" ng-class=\"routeMatch('/zwave/devices') ? 'active' : ''\"><i class=\"fa fa-wifi\"></i> <span class=btn-name>{{_t('lb_zwave_devices')}}</span> </a><a class=\"btn btn-default\" href=#zwave/batteries title=\"{{_t('lb_battery_status')}}\" ng-class=\"routeMatch('/zwave/batteries') ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-battery-three-quarters\"></i> <span class=btn-name>{{_t('lb_battery_status')}}</span> </a><a class=\"btn btn-default\" href=#zwave/network title=\"{{_t('lb_network_status')}}\" ng-class=\"routeMatch('/zwave/network') ? 'active' : ''\" ng-if=elementAccess(cfg.role_access.network)><i class=\"fa fa-sitemap\"></i> <span class=btn-name>{{_t('lb_network_status')}}</span></a></div></div>"
   );
 
 
@@ -1125,7 +1125,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_vendors_autodetect.html',
-    "<div class=\"tabs-wrap form-inline device-autodetect\"><div class=\"btn-group btn-group-justified\"><a href=#zwave/inclusion class=\"btn btn-default btn-lg btn-block\" title=\"{{_t('lb_zwave_autodetect')}}\"><i class=\"fa fa-plug text-success\"></i> <span class=btn-name>{{_t('lb_zwave_autodetect')}}</span> </a><a class=\"btn btn-default btn-lg btn-block\" href=#smartstart title=\"{{_t('scan_qrcode')}}\"><i class=\"fa fa-qrcode text-success\"></i> <span class=btn-name ng-bind=\"_t('scan_qrcode')\"></span></a></div></div>"
+    "<div class=\"tabs-wrap form-inline device-autodetect\"><div class=\"btn-group btn-group-justified\"><a href=#zwave/inclusion class=\"btn btn-default btn-lg btn-block\" title=\"{{_t('lb_zwave_autodetect')}}\"><i class=\"fa fa-plug text-success\"></i> <span class=btn-name>{{_t('lb_zwave_autodetect')}}</span></a></div></div>"
   );
 
 
