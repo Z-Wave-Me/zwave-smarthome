@@ -148,22 +148,28 @@
             <ul>
                 <li class="page-cat-{{v}}" ng-repeat="(v,k) in dataHolder.devices.deviceType"
                     ng-class="_.findIndex(dataHolder.devices.filter.list, {deviceType: v}) > -1 ? 'active': ''">
-                    <input type="checkbox"
+                    <label ng-click="setListFilter({deviceType: v},$event)" for="{{v}}" class="switch">
+                        <input type="checkbox" name="{{v}}"
                         ng-checked="_.findIndex(dataHolder.devices.filter.list, {deviceType: v}) > -1 ? true : false"/>
-                    <label ng-click="setListFilter({deviceType: v},$event)">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="switch-label" ng-click="setListFilter({deviceType: v},$event)">
                         <i class="fa {{v|getElCategoryIcon}}"></i> {{_t(v) | cutText:true:30}} 
                         <span class="item-cnt">({{k}})</span>
                         <span class="page-navi-icon">
                             <i class="fa fa-chevron-right"></i>
                         </span>
-                    </label>
+                    </span>
                 </li>
                 <li>
-                    <input type="checkbox" 
+                    <label ng-click="showHiddenEl((dataHolder.devices.showHidden ? false:true))" for="show_hidden" class="switch">
+                        <input type="checkbox" name="show_hidden"
                         ng-checked="dataHolder.devices.showHidden ? true : false"/>
-                    <label ng-click="showHiddenEl((dataHolder.devices.showHidden ? false:true))"> 
-                        <i class="fa fa-eye"></i>{{_t('show_hidden')}}
+                        <span class="slider"></span> 
                     </label>
+                    <span class="switch-label" ng-click="showHiddenEl((dataHolder.devices.showHidden ? false:true))">
+                        <i class="fa fa-eye"></i>{{_t('show_hidden')}}
+                    </span>
                 </li>
             </ul>
         </div>
