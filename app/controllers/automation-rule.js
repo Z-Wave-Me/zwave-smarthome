@@ -119,19 +119,97 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
   $scope.rule = {
     model: {},
     source:{
-      selected: {},
+      selected: {
+        device:''
+      },
       devices:[]
     },
     rooms: [],
     cfg: {
+      operators:[
+        '=',
+        '>',
+        '<'
+      ],
       source:{
         toggleButton: {},
-        switchControl:{},
-        switchBinary:{},
-        switchMultilevel:{},
-        sensorBinary:{},
-        sensorMultilevel:{},
-        sensorDiscrete:{}
+        switchControl:{
+          status:{
+            type: 'string',
+            name: 'status',
+            enum: [
+              'off',
+              'on',
+              'level'
+            ],
+            operator:[
+              '=',
+              '>',
+              '<'
+            ],
+            level:{
+              min: 0,
+              max: 99
+            }
+          }
+        },
+        switchBinary:{
+          status:{
+            type: 'string',
+            name: 'status',
+            enum: [
+              'off',
+              'on'
+            ],
+          }
+        },
+        switchMultilevel:{
+          status:{
+            type: 'string',
+            name: 'status',
+            enum: [
+              'off',
+              'on',
+              'level'
+            ],
+            operator:[
+              '=',
+              '>',
+              '<'
+            ],
+            level:{
+              min: 0,
+              max: 99
+            }
+          }
+        },
+        sensorBinary:{
+          status:{
+            type: 'string',
+            name: 'status',
+            enum: [
+              'off',
+              'on'
+            ],
+          }
+        },
+        sensorMultilevel:{
+          status:{
+            type: 'string',
+            name: 'status'
+          }, 
+          operator:[
+            '=',
+            '>',
+            '<'
+          ],
+        },
+        sensorDiscrete:{
+          status:{
+            type: 'integer',
+            name: 'level'
+          }
+        }
       }
 
       
@@ -191,8 +269,9 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         params: instance.params
       });
       var filterIf = instance.params.sourceDevice.filterIf;
+      console.log(instance.params.sourceDevice[filterIf])
       if(filterIf){
-        $scope.rule.source.selected = instance.params.sourceDevice[filterIf]
+        $scope.rule.source.selected = instance.params.sourceDevice[filterIf];
       }
 
     }, function (error) {
@@ -232,6 +311,29 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
     }, function (error) {});
   };
   $scope.loadDevices();
+
+  /**
+   * Change source device
+   */
+  $scope.changeSource = function (deviceId) {
+    var device = _.findWhere($scope.rule.source.devices,{id: deviceId});
+    if(!device){
+      return;
+    }
+    $scope.rule.input.params.sourceDevice = {};
+    $scope.rule.source.selected = {};
+    
+    var sourceDevice = {
+      filterIf: device.deviceType
+    };
+    $scope.rule.source.selected = {device: device.id,filterIf:device.deviceType};
+    sourceDevice[device.deviceType] = {
+      device: device.id
+    }
+   angular.extend($scope.rule.input.params.sourceDevice,sourceDevice);
+
+
+  };
 
    /**
    * Store 
