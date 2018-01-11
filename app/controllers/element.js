@@ -291,6 +291,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $scope.reloadData();
     };
 
+    $scope.elementOnLongPress = function(){};
+    $scope.elementOnTouchEnd = function(){};
+
     /**
      * Function to run when when a user starts moving an element
      * @param item -  is the item in model which started being moved
@@ -301,8 +304,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.dragDropStart = function (item, part, index, helper) {
         angular.element('#' + helper.element.context.id).addClass('dd-on-start');
         //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
-
-
     }
     /**
      * Function to run when elements order has changed after sorting
@@ -318,8 +319,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             $scope.dataHolder.dragdrop.data.push(v.id);
 
         });
-
-
     }
 
     /**
