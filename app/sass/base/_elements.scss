@@ -274,80 +274,6 @@
         width: 70% !important;
     }
 }
-/*
-.audioPlayer, .switchRGBW, .sensorMultiline, .multilevel, .motor {
-    @include mediaQueries(max-esmall) {
-        width: 100%;
-
-        .progress-true {
-            .widget-img {
-                &:before {
-                    content:'';
-                    width: 64px;
-                    height: 64px;
-                    background-color: #fff;
-                    opacity: 1;
-                    left: 0;
-                    right: 0;
-                    margin: 0 auto;
-                    position: absolute;
-                    @include appBorderRadius(50%);
-                }
-            }
-        }
-
-        .widget-entry-in {
-            .widget-img {
-                width: 33.333%;
-                background: none;
-                position: absolute;
-                top: $spacing-half;
-                left: -3px;
-                margin: 0px;
-                border: none;
-                text-align: center;
-
-                .widget-img-overlay {
-                    left: 0;
-                    right: 0;
-                    margin: 0 auto;
-                }
-            }
-
-            .widget-title {
-                height: 68px;
-                padding: 18px 0 0 0;
-
-                .widget-room {
-                    margin-left: 33.333%;
-                    font-size: 85%;
-                    text-align: left;
-                }
-
-                h3 {
-                    margin-left: 33.333%;
-                    font-size: 85%;
-                    text-align: left;
-                }
-            }
-
-            .widget-loader {
-                right: 66.666%;
-                left: -6px;
-            }
-
-            .widget-footer {
-                display: block; 
-            }
-
-            .bottom-aligner {
-                //display: inline-block;
-                display: none;
-            }
-        }
-    }          
-}*/
-
 
 /* Elements drag & drop cards
 ----------------------------------------------------*/
@@ -369,20 +295,14 @@
             @include mediaQueries(min-usmall) {
                 width: 33.33333%;
             }
-            @include mediaQueries(min-esmall) {
-                width: 25%;
-            }
-            @include mediaQueriesMin(600px){
+            /*@include mediaQueriesMin(600px){
                 width: 20%;
-            }
+            }*/
             @include mediaQueries(min-small) {
-                width:14.28571%;
-            }
-            @include mediaQueries(min-medium) {
-                width: 12.5%;
+                width: 50%;
             }
             @include mediaQueries(min-large) {
-                width: 10%;
+                width: 33.33333%;
             }
         }
     }
@@ -398,20 +318,17 @@
     @include mediaQueries(min-usmall) {
         width: 33.33333%;
     }
-    @include mediaQueries(min-esmall) {
+    /*@include mediaQueries(min-esmall) {
         width: 25%;
     }
     @include mediaQueriesMin(600px){
          width: 20%;
-    }
+    }*/
     @include mediaQueries(min-small) {
-       width:14.28571%;
-    }
-    @include mediaQueries(min-medium) {
-       width: 12.5%;
+       width:50%;
     }
     @include mediaQueries(min-large) {
-        width: 10%;
+        width: 33.33333%;
     }
     /* Inner element */
     .card-element-dragdrop-in {

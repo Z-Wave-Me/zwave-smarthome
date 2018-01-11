@@ -53,7 +53,7 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
     $scope.toggleRowSpinner(instance.id);
     $timeout($scope.toggleRowSpinner, 1000);
     var params = '/Scenes_' + instance.id + '/command/on';
-    dataFactory.getApi('devices', params,true).then(function (response) {
+    dataFactory.getApi('devices', params, true).then(function (response) {
       $timeout($scope.toggleRowSpinner, 2000);
     }, function (error) {
       $timeout($scope.toggleRowSpinner, 2000);
@@ -173,21 +173,23 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
       instanceId: $routeParams.id,
       moduleId: "Scenes",
       active: true,
-      title: "",
-     
+      title: "Scene",
+
       params: {
         customIcon: {
-          table:[{icon: false}]
-          
+          table: [{
+            icon: false
+          }]
+
         },
-        devices:{
+        devices: {
           switches: [],
           dimmers: [],
           thermostats: [],
           locks: [],
           scenes: []
         }
-       
+
       }
     },
     upload: {
@@ -195,6 +197,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
       maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
       extensions: cfg.upload.icon.extension.toString()
     },
+    icons: {}
   };
   // Original data
   $scope.orig = {
@@ -282,6 +285,22 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
   };
   $scope.loadDevices();
 
+  /**
+   * Load already uploaded icons
+   * @returns {undefined}
+   */
+  $scope.loadUploadedIcons = function () {
+    // Atempt to load data
+    dataFactory.getApi('icons', null, true).then(function (response) {
+      $scope.scene.icons = response.data.data;
+    }, function (error) {
+      alertify.alertError($scope._t('error_load_data'));
+      $scope.loading = false;
+    });
+
+  };
+  $scope.loadUploadedIcons();
+
 
   /**
    * Validate an uploaded icon
@@ -289,8 +308,8 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
    * @param {object} info
    * @returns {undefined}
    */
-  $scope.uploadIcon = function (files, info) {
-   var ext =  $filter('fileExtension')(files[0].name);
+  $scope.uploadCustomIcon = function (files, info) {
+    var ext = $filter('fileExtension')(files[0].name);
     // Extends files object with a new property
     files[0].newName = dataService.uploadFileNewName('scene_' + $routeParams.id + '.' + ext);
     // Check allowed file formats
@@ -319,39 +338,46 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
       return;
 
     }
-   // Set selected file name
-   $scope.scene.upload.fileName = files[0].name;
-   // Set form data
+    // Set selected file name
+    $scope.scene.upload.fileName = files[0].name;
+    // Set form data
     // Set local variables
     var fd = new FormData();
-   fd.append('files_files', files[0]);
-   // Atempt to upload a file
-   dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function (response) {
-     console.log(response)
-     $scope.scene.input.params.customIcon.table['0'].icon = response.data.data;
-     /* if ($routeParams.id > 0) {
-      $scope.storeScene($scope.scene.input);
-    } */
-   }, function (error) {
+    fd.append('files_files', files[0]);
+    // Atempt to upload a file
+    dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function (response) {
+      $scope.scene.input.params.customIcon.table['0'].icon = response.data.data;
+      $scope.loadUploadedIcons();
+     // $scope.storeScene($scope.scene.input);
+    }, function (error) {
       alertify.alertError($scope._t('error_upload'));
-   });
+    });
   };
 
-   /**
-   * Delete icon
+  /**
+   * Set a custom icon with an icon from the list
+   * @param {string} icon
+   * @returns {undefined}
+   */
+  $scope.setCustomIcon = function (icon) {
+    if (!icon) {
+      return;
+    }
+    $scope.scene.input.params.customIcon.table['0'].icon = icon;
+    //$scope.storeScene($scope.scene.input);
+
+  };
+
+  /**
+   * Remove custom icon
    * @param {string} string
    * @returns {undefined}
    */
-  $scope.deleteIcon = function (icon) {
-    dataFactory.deleteApi('icons',icon).then(function (response) {
-      $scope.scene.input.params.customIcon.table['0'].icon = false;
-      /* if ($routeParams.id > 0) {
-        $scope.storeScene($scope.scene.input);
-      } */
-      
-    }, function (error) {
-      alertify.alertError($scope._t('error_delete_data'));
-    });
+  $scope.removeCustomIcon = function (icon) {
+    if (!icon) {
+      return;
+    }
+    $scope.scene.input.params.customIcon.table['0'].icon = false;
   };
 
   /**
@@ -422,8 +448,6 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 
 
   };
-
-
   /**
    * Add or update device to the list (by type)
    * type: switches|dimmers|thermostats|locks
@@ -472,7 +496,12 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
     dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
       if (redirect) {
         $location.path('/scenes');
+        return;
       }
+     /*  if(input.instanceId == 0){
+        $location.path('/scenes/' + response.data.data.id);
+        return;
+      } */
 
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
