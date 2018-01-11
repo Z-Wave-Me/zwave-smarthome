@@ -85,7 +85,13 @@ Load rooms
 Load devices
 
 
-### AutomationSceneIdController.uploadIcon(files, info) 
+### AutomationSceneIdController.loadUploadedIcons() 
+
+Load already uploaded icons
+
+**Returns**: `undefined`
+
+### AutomationSceneIdController.uploadCustomIcon(files, info) 
 
 Validate an uploaded icon
 
@@ -97,9 +103,19 @@ Validate an uploaded icon
 
 **Returns**: `undefined`
 
-### AutomationSceneIdController.deleteIcon(string) 
+### AutomationSceneIdController.setCustomIcon(icon) 
 
-Delete icon
+Set a custom icon with an icon from the list
+
+**Parameters**
+
+**icon**: `string`
+
+**Returns**: `undefined`
+
+### AutomationSceneIdController.removeCustomIcon(string) 
+
+Remove custom icon
 
 **Parameters**
 

@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 09-01-2018 14:44:33 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 11-01-2018 13:32:41 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -223,7 +223,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/scenes/scene_id.html',
-    "<div ng-controller=AutomationSceneIdController><h2>{{_t('scenes')}}</h2><form class=\"form form-page\" ng-submit=storeScene(scene.input,true)><fieldset ng-include=\"'app/views/automation/scenes/scene_id_form.html'\"></fieldset><div ng-if=scene.assignedDevices.length><legend>{{_t('assigned_devices')}}</legend><fieldset ng-include=\"'app/views/automation/scenes/scene_id_assigned.html'\"></fieldset></div><legend>{{_t('lb_available_devices')}}</legend><fieldset ng-include=\"'app/views/automation/scenes/scene_id_available.html'\"></fieldset><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div>"
+    "<div ng-controller=AutomationSceneIdController><h2>{{_t('scenes')}}</h2><form class=\"form form-page\" ng-submit=storeScene(scene.input,true)><fieldset ng-include=\"'app/views/automation/scenes/scene_id_form.html'\"></fieldset><div ng-if=scene.assignedDevices.length><legend>{{_t('assigned_devices')}}</legend><fieldset ng-include=\"'app/views/automation/scenes/scene_id_assigned.html'\"></fieldset></div><legend>{{_t('lb_available_devices')}}</legend><fieldset ng-include=\"'app/views/automation/scenes/scene_id_available.html'\"></fieldset><div ng-include=\"'app/views/automation/scenes/scene_id_icons.html'\"></div><fieldset class=submit-entry><a href=#scenes class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div>"
   );
 
 
@@ -238,7 +238,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/scenes/scene_id_form.html',
-    "<div class=\"form-group form-inline\"><label>{{_t('lb_name')}}</label><input name=title id=title class=form-control ng-model=scene.input.title></div><div class=\"form-group form-inline\" ng-if=\"scene.input.params.customIcon.table['0'].icon\"><img class=imglist-img alt=img ng-src=\"{{cfg.img.custom_icons + scene.input.params.customIcon.table['0'].icon}}\" err-src={{cfg.img.placeholder}}> <button type=button class=\"btn btn-text is-text\" ng-click=\"deleteIcon(scene.input.params.customIcon.table['0'].icon)\"><i class=\"fa fa-remove text-danger\"></i> {{_t('delete')}}</button></div><div class=form-group><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().uploadIcon(this.files, angular.element(this).scope().cfg.upload.icon)\"><label for=file{{v.id}} class=\"btn btn-success\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload\"></i> {{_t('lb_upload_image')}}</label><bb-help-text trans=\"_t('upload_file_info',{'__size__':scene.upload.maxSize,'__extensions__': scene.upload.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})\"></bb-help-text></div>"
+    "<div class=\"form-group form-inline\"><label>{{_t('lb_name')}}</label><input name=title id=title class=form-control ng-model=scene.input.title></div>"
   );
 
 
@@ -264,6 +264,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/automation/scenes/scene_id_form_toggleButton.html',
     "&nbsp;"
+  );
+
+
+  $templateCache.put('app/views/automation/scenes/scene_id_icons.html',
+    "<legend>{{_t('custom_icons')}}</legend><fieldset><div ng-if=\"scene.input.params.customIcon.table['0'].icon\"><img class=imglist-img alt=img ng-src=\"{{cfg.img.custom_icons + scene.input.params.customIcon.table['0'].icon}}\" err-src={{cfg.img.placeholder}}> <button type=button class=\"btn btn-text is-text\" ng-click=\"removeCustomIcon(scene.input.params.customIcon.table['0'].icon)\"><i class=\"fa fa-remove text-danger\"></i> {{_t('lb_cancel')}}</button></div></fieldset><fieldset ng-if=!_.isEmpty(scene.icons)><p>{{_t('select_icon')}}</p><div class=\"app-row clearfix app-row-imglist\"><div class=imglist-entry ng-repeat=\"v in scene.icons| orderBy : '-timestamp' track by $index\"><div class=\"imglist-entry-in infowindow-wrap\"><img class=\"imglist-img clickable\" ng-click=setCustomIcon(v.file) ng-src=\"{{cfg.img.custom_icons + v.file}}\"></div></div></div></fieldset><fieldset><input class=inputfile type=file name=file id=file{{v.id}} ng-click=\"icons.find = v\" onchange=\"angular.element(this).scope().uploadCustomIcon(this.files, angular.element(this).scope().cfg.upload.icon)\"><label for=file{{v.id}} class=\"btn btn-success\" title=\"{{_t('lb_upload_image')}}\" ng-click=\"icons.find = v\"><i class=\"fa fa-upload\"></i> {{_t('upload_icon')}}</label><bb-help-text trans=\"_t('upload_file_info',{'__size__':scene.upload.maxSize,'__extensions__': scene.upload.extensions})\"></bb-help-text><bb-help-text trans=\"_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})\"></bb-help-text></fieldset>"
   );
 
 
