@@ -1,1 +1,23 @@
-This is switchControl form
+<!-- status -->
+<div class="form-group">
+  <label>
+    <input type="radio" ng-model="rule.input.params.sourceDevice.switchControl.status" value="on">
+    <span>{{_t('on')}}</span>
+  </label>
+  <label>
+    <input type="radio" ng-model="rule.input.params.sourceDevice.switchControl.status" value="off">
+    <span>{{_t('off')}}</span>
+  </label>
+  <label>
+    <input type="radio" ng-model="rule.input.params.sourceDevice.switchControl.status" value="level">
+    <span>{{_t('set level')}}</span>
+  </label>
+  <!-- level -->
+<span class="form-group form-inline" ng-if="rule.input.params.sourceDevice.switchControl.status == 'level'">
+  <select class="form-control" ng-model="rule.input.params.sourceDevice.switchControl.operator">
+    <option value="{{v}}" ng-repeat="v in rule.cfg.operators track by $index" ng-selected="v == rule.input.params.sourceDevice.switchControl.operator">{{v}}</option>
+  </select>
+  <input type="number" class="form-control input-number" id="if_status" min="{{rule.cfg.source.switchControl.min}}" max="{{rule.cfg.source.switchControl.max}}" ng-model="rule.input.params.sourceDevice.switchControl.level"
+  />
+</span>
+</div>

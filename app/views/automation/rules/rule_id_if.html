@@ -5,4 +5,4 @@
     <option value="{{v.id}}" ng-repeat="v in rule.source.devices | orderBy:'metrics.title' track by $index" ng-selected="v.id == rule.source.selected.device">{{v.metrics.title}} - {{rule.rooms[v.location].title}}</option>
   </select>
 </div>
-<div ng-include="'app/views/automation/rules/rule_id_if_'+ rule.input.params.sourceDevice.filterIf +'.html'"></div>
+<div ng-hide="rule.input.params.sourceDevice.filterIf == 'toggleButton'" ng-include="'app/views/automation/rules/rule_id_if_'+ rule.input.params.sourceDevice.filterIf +'.html'"></div>

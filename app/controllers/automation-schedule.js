@@ -313,7 +313,6 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    * @returns {undefined}
    */
   $scope.assignDevice = function (device) {
-    console.log('device', device)
     var model = [];
     var type = '';
 

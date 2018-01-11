@@ -118,101 +118,51 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
     model: {},
-    source:{
+    source: {
       selected: {
-        device:''
+        device: ''
       },
-      devices:[]
+      devices: []
+    },
+    target: {
+      devicesInRoom: [],
+      availableDevices: [],
+      assignedDevices: [],
     },
     rooms: [],
     cfg: {
-      operators:[
+      operators: [
         '=',
         '>',
         '<'
       ],
-      source:{
+      source: {
         toggleButton: {},
-        switchControl:{
-          status:{
-            type: 'string',
-            name: 'status',
-            enum: [
-              'off',
-              'on',
-              'level'
-            ],
-            operator:[
-              '=',
-              '>',
-              '<'
-            ],
-            level:{
-              min: 0,
-              max: 99
-            }
-          }
+        switchControl: {
+          min: 0,
+          max: 99
         },
-        switchBinary:{
-          status:{
-            type: 'string',
-            name: 'status',
-            enum: [
-              'off',
-              'on'
-            ],
-          }
+        switchBinary: {},
+        switchMultilevel: {
+          min: 0,
+          max: 99
         },
-        switchMultilevel:{
-          status:{
-            type: 'string',
-            name: 'status',
-            enum: [
-              'off',
-              'on',
-              'level'
-            ],
-            operator:[
-              '=',
-              '>',
-              '<'
-            ],
-            level:{
-              min: 0,
-              max: 99
-            }
-          }
+        sensorBinary: {},
+        sensorMultilevel: {},
+        sensorDiscrete: {}
+      },
+      target: {
+        doorlock: {},
+        notification: {},
+        switchBinary: {},
+        switchMultilevel: {},
+        switchRGBW: {},
+        thermostat: {
+          min: 0,
+          max: 99
         },
-        sensorBinary:{
-          status:{
-            type: 'string',
-            name: 'status',
-            enum: [
-              'off',
-              'on'
-            ],
-          }
-        },
-        sensorMultilevel:{
-          status:{
-            type: 'string',
-            name: 'status'
-          }, 
-          operator:[
-            '=',
-            '>',
-            '<'
-          ],
-        },
-        sensorDiscrete:{
-          status:{
-            type: 'integer',
-            name: 'level'
-          }
-        }
+        toggleButton: {},
       }
-
-      
 
     },
     input: {
@@ -222,7 +172,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       title: "",
       params: {
         sourceDevice: {
-          filterIf:''
+          filterIf: ''
         },
         delay: {
           eventstart: 0
@@ -263,16 +213,26 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
       var instance = instances.data.data;
+      var assignedTargetDevices = $scope.rule.target.assignedDevices;
+      // Set input data
       angular.extend($scope.rule.input, {
         title: instance.title,
         active: instance.active,
         params: instance.params
       });
+      // Set source device
       var filterIf = instance.params.sourceDevice.filterIf;
-      console.log(instance.params.sourceDevice[filterIf])
-      if(filterIf){
+      if (filterIf) {
         $scope.rule.source.selected = instance.params.sourceDevice[filterIf];
       }
+      // Set target assigned devices
+      angular.forEach(instance.params.targets.elements, function (v, k) {
+        var targetId = $filter('hasNode')(v[v['filterThen']], 'target');
+        if (targetId) {
+          $scope.rule.target.assignedDevices.push(targetId);
+        }
+
+      });
 
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
@@ -300,14 +260,23 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    */
   $scope.loadDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
-      var whiteList = _.keys($scope.rule.cfg.source);
+      var whiteListSource = _.keys($scope.rule.cfg.source);
+      var whiteListTarget = _.keys($scope.rule.cfg.target);
       var devices = dataService.getDevicesData(response.data.data.devices);
+      // Set source devices
       $scope.rule.source.devices = devices.filter(function (v) {
-        return whiteList.indexOf(v.deviceType) > -1;
+        return whiteListSource.indexOf(v.deviceType) > -1;
       }).value();
-      /* $scope.rule.devicesInRoom = _.countBy($scope.rule.availableDevices, function (v) {
+      // Set target devices
+      $scope.rule.target.availableDevices = devices.filter(function (v) {
+        return whiteListTarget.indexOf(v.deviceType) > -1;
+      })
+      .indexBy('id')
+      .value();
+      // Set target sum of devices in the room
+      $scope.rule.target.devicesInRoom = _.countBy($scope.rule.target.availableDevices, function (v) {
         return v.location;
-      }); */
+      });
     }, function (error) {});
   };
   $scope.loadDevices();
@@ -316,26 +285,114 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * Change source device
    */
   $scope.changeSource = function (deviceId) {
-    var device = _.findWhere($scope.rule.source.devices,{id: deviceId});
-    if(!device){
+    var device = _.findWhere($scope.rule.source.devices, {
+      id: deviceId
+    });
+    if (!device) {
       return;
     }
     $scope.rule.input.params.sourceDevice = {};
     $scope.rule.source.selected = {};
-    
+
     var sourceDevice = {
       filterIf: device.deviceType
     };
-    $scope.rule.source.selected = {device: device.id,filterIf:device.deviceType};
+    $scope.rule.source.selected = {
+      device: device.id,
+      filterIf: device.deviceType
+    };
     sourceDevice[device.deviceType] = {
       device: device.id
     }
-   angular.extend($scope.rule.input.params.sourceDevice,sourceDevice);
+    angular.extend($scope.rule.input.params.sourceDevice, sourceDevice);
+
+
+  };
+  /**
+   * Assign device to the target
+   * @param {object} device
+   * @returns {undefined}
+   */
+  $scope.assignTargetDevice = function (device) {
+    var element = {
+      filterThen: device.deviceType,
+      reverseLVL: "undefined"
+    };
+    element[device.deviceType] = {
+      target: device.id
+    };
+    $scope.rule.target.assignedDevices.push(device.id);
+    $scope.rule.input.params.targets.elements.push(element);
+    
+  };
+  /**
+   * Remove device id from target assigned device
+   * @param {int} index 
+   * @param {string} deviceId 
+   */
+  $scope.unassignTargetDevice = function (targetIndex,deviceId) {
+    var deviceIndex = $scope.rule.target.assignedDevices.indexOf(deviceId);
+    if (targetIndex > -1) {
+      $scope.rule.input.params.targets.elements.splice(targetIndex, 1);
+      $scope.rule.target.assignedDevices.splice(deviceIndex, 1);
+    }
+
+  };
+
+  /**
+   * todo: deprecated
+   * Remove device id from target assigned device
+   * @param {object} device 
+   */
+ /*  $scope.unassignTargetDevice = function (device) {
+    var index = $scope.rule.target.assignedDevices.indexOf(device.id);
+    if (index > -1) {
+      $scope.rule.target.assignedDevices.splice(index, 1);
+      $scope.removeDeviceFromTarget(device);
+    }
+
+  }; */
+
+  /**
+   * Expand/Collapse target params
+   */
+  $scope.expandTargetParams = function (element) {
+
+    // Colapse all params except 'element'
+    _.filter($scope.expand, function (v, k) {
+      if (k != element) {
+        $scope.expand[k] = false;
+      }
+
+    });
+     $scope.expandElement(element);
+
+  };
+
+  /**
+   * Remove device from the target list
+   * @param {object} device 
+   */
+  $scope.removeDeviceFromTarget = function (device) {
+    var index;
+    // Find index of the target device
+    _.filter($scope.rule.input.params.targets.elements, function (v, k) {
+      var targetId = $filter('hasNode')(v[v['filterThen']], 'target');
+      if (targetId == device.id) {
+        index = k;
+        return;
+      }
+
+    });
+    // Remove target device
+    if (index > -1) {
+      $scope.rule.input.params.targets.elements.splice(index, 1);
+    }
 
 
   };
 
-   /**
+  /**
    * Store 
    */
   $scope.storeRule = function (input, redirect) {
