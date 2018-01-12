@@ -581,7 +581,7 @@
     "vendors_error_load_data": "Aggiornamento database Produttori fallito.",
     "verifying_licence_key": "Verifica la License Key",
     "verify_device_pin": "Verifica codice PIN sul dispositivo",
-    "verify_qrcode": "Please enter your password",
+    "verify_qrcode": "Please enter your password to confirm the creation of the QR code",
     "version": "Versione",
     "wakeup_list": "Impostazioni di Wakeup",
     "wan_port_access_info": "L'accesso attraverso Ethernet è spenta di base. Se attivata la sicurezza del tuo POPP hub dipende dalla sicurezza della tuta rete di casa.",

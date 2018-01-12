@@ -581,7 +581,7 @@
     "vendors_error_load_data": "Se ha producido un fallo al actualizar la base de datos del distribuidor.",
     "verifying_licence_key": "Verificando la clave de la licencia",
     "verify_device_pin": "Verify PIN code on the device",
-    "verify_qrcode": "Please enter your password",
+    "verify_qrcode": "Please enter your password to confirm the creation of the QR code",
     "version": "Versión",
     "wakeup_list": "Ajustes de activación",
     "wan_port_access_info": "El acceso a través de Ethernet está desactivado de fábrica. Si se activa, la seguridad de su hub POPP dependerá de la seguridad de su red doméstica por cable.",
