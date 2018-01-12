@@ -13689,6 +13689,12 @@ fieldset.submit-entry {
   width: 100%;
 }
 
+/* line 21, E:/GitHub/zwave-smarthome/app/sass/base/_img.scss */
+.img-wrap {
+  text-align: center;
+  display: inline-block;
+}
+
 /* Image list
 -------------------------------------------------- */
 /* line 4, E:/GitHub/zwave-smarthome/app/sass/base/_imglist.scss */
