@@ -13422,6 +13422,12 @@ fieldset.submit-entry {
   width: 100%;
 }
 
+/* line 21, ../sass/base/_img.scss */
+.img-wrap {
+  text-align: center;
+  display: inline-block;
+}
+
 /* Image list
 -------------------------------------------------- */
 /* line 4, ../sass/base/_imglist.scss */
