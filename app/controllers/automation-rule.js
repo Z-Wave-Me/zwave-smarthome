@@ -88,7 +88,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
     input.id = 0;
     input.title = input.title + ' - copy';
     dataFactory.postApi('instances', input).then(function (response) {
-      $location.path('/scenes/' + response.data.data.id);
+      $location.path('/rules/' + response.data.data.id);
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
     });
@@ -117,6 +117,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
  */
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
+    tab: 'if',
     source: {
       selected: {
         device: ''

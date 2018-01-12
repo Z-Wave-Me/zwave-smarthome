@@ -6,33 +6,41 @@
   <form class="form form-page" ng-submit="storeRule(rule.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/rules/rule_id_form.html'"></fieldset>
+    <!-- ////////////////////////////////////////// itabs  ////////////////////////////////////////// -->
+    <fieldset ng-if="!rule.input.params.advanced.activate">
+      <div class="tabs-wrap form-inline" bind-class-on-scroll offset="50" scroll-class="fix-me-top">
+        <div class="btn-group btn-group-justified btn-goup-tabs">
+          <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.tab == 'if'}" ng-click="rule.tab = 'if'">
+            {{_t('if')}}
+          </a>
+          <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.tab == 'then'}" ng-click="rule.tab = 'then'">
+            {{_t('then')}}
+          </a>
+          <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.tab == 'else'}" ng-click="rule.tab = 'else'">
+            {{_t('else')}}
+          </a>
+        </div>
+      </div>
+
+    </fieldset>
     <div ng-if="!rule.input.params.advanced.activate">
-    <!-- ////////////////////////////////////////// if  ////////////////////////////////////////// -->
-    <legend class="accordion-entry-title" ng-click="expandElement('ruleIf')">{{_t('IF')}}
-      <i class="fa accordion-arrow" ng-class="expand.ruleIf  ? 'fa-chevron-up':'fa-chevron-down'"></i>
-    </legend>
-    <fieldset ng-if="expand.ruleIf" ng-include="'app/views/automation/rules/rule_id_if.html'"></fieldset>
-    <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
-    <legend class="accordion-entry-title" ng-click="expandElement('ruleThen')">{{_t('THEN')}}
-       <i class="fa accordion-arrow" ng-class="expand.ruleThen  ? 'fa-chevron-up':'fa-chevron-down'"></i>
-    </legend>
-    <fieldset ng-if="expand.ruleThen" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
-    <div ng-if="expand.ruleThen">
-       <!-- Used -->
-     <div ng-if="_.size(rule.input.params.targets.elements)">
-        <legend>{{_t('assigned_devices')}}</legend>
-        <fieldset ng-include="'app/views/automation/rules/rule_id_then_assigned.html'"></fieldset>
-     </div>
-    <!-- Available -->
-    <legend>{{_t('lb_available_devices')}}</legend>
-    <fieldset ng-include="'app/views/automation/rules/rule_id_then_available.html'"></fieldset>
+      <!-- ////////////////////////////////////////// if  ////////////////////////////////////////// -->
+      <fieldset ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_if.html'"></fieldset>
+      <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
+      <fieldset ng-if="rule.tab == 'then'" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
+      <div ng-if="rule.tab == 'then'">
+        <!-- Used -->
+        <div ng-if="_.size(rule.input.params.targets.elements)">
+          <legend>{{_t('assigned_devices')}}</legend>
+          <fieldset ng-include="'app/views/automation/rules/rule_id_then_assigned.html'"></fieldset>
+        </div>
+        <!-- Available -->
+        <legend>{{_t('lb_available_devices')}}</legend>
+        <fieldset ng-include="'app/views/automation/rules/rule_id_then_available.html'"></fieldset>
+      </div>
+      <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
+      <fieldset ng-if="rule.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
     </div>
-    <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
-    <legend class="accordion-entry-title" ng-click="expandElement('ruleElse')">{{_t('ELSE')}} 
-      <i class="fa accordion-arrow" ng-class="expand.ruleElse  ? 'fa-chevron-up':'fa-chevron-down'"></i>
-    </legend>
-    <fieldset ng-if="expand.ruleElse" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
-  </div>
     <!--  ////////////////////////////////////////// advanced  ////////////////////////////////////////// -->
     <!-- <legend ng-click="expandElement('ruleAdvanced')">
         <input type="checkbox" name="advanced_activate" id="advanced_activate" ng-model="rule.input.params.advanced.activate" ng-checked="rule.input.params.advanced.activate" /> <label for="advanced_activate">{{_t('Use advanced settings')}}</label>

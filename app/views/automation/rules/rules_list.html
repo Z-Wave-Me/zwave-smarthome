@@ -3,13 +3,10 @@
    <figure class="img wh-32x32 clickable" ng-click="activateRule(v, v.active ? false : true)" >
       <img ng-src="{{cfg.img.icons + 'security-pending.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
   </figure>
-  <!-- <figure class="img wh-32x32 clickable" ng-click="activateRule(v, v.active ? false : true)" >
-      <img ng-src="{{cfg.img.custom_icons + v.params.customIcon.table['0'].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-  </figure> -->
  
    <!-- body -->
   <div class="body">
-      <div><a href="#module/put/{{v.id}}">{{v.title}}</a></div>
+      <div><a ng-href="#rules/{{v.id}}">{{v.title}}</a></div>
   </div>
    <!-- arrow -->
   <div class="l-hide control">
@@ -35,12 +32,9 @@
             <i class="fa " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
           </button>
           <!-- clone -->
-          <a ng-href="#module/clone/Rules/false/{{v.id}}" class="btn btn-default" title="{{_t('lb_clone')}}" ng-disabled="!v.active">
+          <button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneRule(v)" ng-disabled="!v.active">
             <i class="fa fa-clone"></i>
-        </a>
-          <!-- <button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneRule(v)" ng-disabled="!v.active">
-            <i class="fa fa-clone"></i>
-          </button> -->
+          </button>
           <!-- remove -->
           <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteRule({'id': v.id}, _t('lb_delete_confirm'))">
             <i class="fa fa-remove text-danger"></i>
