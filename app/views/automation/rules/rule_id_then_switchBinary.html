@@ -1,6 +1,5 @@
 <!-- status -->
 <div class="form-group">
-   <!--  <pre>{{targetModel}}</pre> -->
   <label>
     <input type="radio" ng-model="targetModel.status" value="on">
     <span>{{_t('on')}}</span>
@@ -13,7 +12,6 @@
 
 <!-- command -->
 <div class="form-group">
-    <input type="checkbox" name="send_command" id="send_command" ng-model="targetModel.sendAction" ng-checked="targetModel.sendAction" ng-change_="handleDevice(schedule.model.switchBinary,'switches')"
-    />
+    <input type="checkbox" name="send_command" id="send_command" ng-model="targetModel.sendAction" ng-checked="targetModel.sendAction" />
     <label for="send_command">{{_t('dont_send_on_command')}}</label>
 </div>

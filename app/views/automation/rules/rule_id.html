@@ -16,10 +16,10 @@
     <legend class="accordion-entry-title" ng-click="expandElement('ruleThen')">{{_t('THEN')}}
        <i class="fa accordion-arrow" ng-class="expand.ruleThen  ? 'fa-chevron-up':'fa-chevron-down'"></i>
     </legend>
-    <fieldset ng-if_="expand.ruleThen" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
-    <div ng-if_="expand.ruleThen">
+    <fieldset ng-if="expand.ruleThen" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
+    <div ng-if="expand.ruleThen">
        <!-- Used -->
-     <div ng-if_="schedule.assignedDevices.length">
+     <div ng-if="_.size(rule.input.params.targets.elements)">
         <legend>{{_t('assigned_devices')}}</legend>
         <fieldset ng-include="'app/views/automation/rules/rule_id_then_assigned.html'"></fieldset>
      </div>
@@ -34,10 +34,10 @@
     <fieldset ng-if="expand.ruleElse" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
   </div>
     <!--  ////////////////////////////////////////// advanced  ////////////////////////////////////////// -->
-    <legend ng-click="expandElement('ruleAdvanced')">
+    <!-- <legend ng-click="expandElement('ruleAdvanced')">
         <input type="checkbox" name="advanced_activate" id="advanced_activate" ng-model="rule.input.params.advanced.activate" ng-checked="rule.input.params.advanced.activate" /> <label for="advanced_activate">{{_t('Use advanced settings')}}</label>
         </legend>
-    <fieldset ng-if="rule.input.params.advanced.activate" ng-include="'app/views/automation/rules/rule_id_advanced.html'"></fieldset>
+    <fieldset ng-if="rule.input.params.advanced.activate" ng-include="'app/views/automation/rules/rule_id_advanced.html'"></fieldset> -->
     <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
     <fieldset class="submit-entry">
       <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
@@ -50,7 +50,7 @@
       </button>
     </fieldset>
   </form>
-  <pre>{{rule.input|json}}</pre>
-  <pre>{{rule.source.selected|json}}</pre>
+  <!-- <pre>{{rule.input|json}}</pre>
+  <pre>{{rule.source.selected|json}}</pre> -->
 </div>
 <!-- /ng-controller -->

@@ -15,7 +15,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
 
 
   /**
-   * Load
+   * Load 
    * @returns {undefined}
    */
   $scope.loadRules = function () {
@@ -117,7 +117,6 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
  */
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
-    model: {},
     source: {
       selected: {
         device: ''
@@ -155,8 +154,14 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         doorlock: {},
         notification: {},
         switchBinary: {},
-        switchMultilevel: {},
-        switchRGBW: {},
+        switchMultilevel: {
+          min: 0,
+          max: 99
+        },
+        switchRGBW: {
+          min: 0,
+          max: 255
+        },
         thermostat: {
           min: 0,
           max: 99
@@ -192,21 +197,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       }
     }
   };
-  // Original data
-  $scope.orig = {
-    model: {}
-  };
-  $scope.orig.model = angular.copy($scope.rule.model);
-
-  /**
-   * Reset model
-   */
-  $scope.resetModel = function () {
-    $scope.rule.model = angular.copy($scope.orig.model);
-
-  };
-
-
+ 
   /**
    * Load instances
    */
@@ -269,6 +260,11 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       }).value();
       // Set target devices
       $scope.rule.target.availableDevices = devices.filter(function (v) {
+        // Replacing deviceType with "notification"
+        if(v.probeType == 'notification_push'){
+          v.deviceType = 'notification';
+        }
+        
         return whiteListTarget.indexOf(v.deviceType) > -1;
       })
       .indexBy('id')
@@ -340,31 +336,17 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
   };
 
   /**
-   * todo: deprecated
-   * Remove device id from target assigned device
-   * @param {object} device 
-   */
- /*  $scope.unassignTargetDevice = function (device) {
-    var index = $scope.rule.target.assignedDevices.indexOf(device.id);
-    if (index > -1) {
-      $scope.rule.target.assignedDevices.splice(index, 1);
-      $scope.removeDeviceFromTarget(device);
-    }
-
-  }; */
-
-  /**
    * Expand/Collapse target params
    */
   $scope.expandTargetParams = function (element) {
-
+    var blackList = ['ruleThen'];
     // Colapse all params except 'element'
-    _.filter($scope.expand, function (v, k) {
-      if (k != element) {
+   /*  _.filter($scope.expand, function (v, k) {
+      if (k != element || blackList.indexOf(k) === -1) {
         $scope.expand[k] = false;
       }
 
-    });
+    }); */
      $scope.expandElement(element);
 
   };

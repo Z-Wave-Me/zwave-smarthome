@@ -3,16 +3,16 @@
     <!-- Report body -->
     <div class="report-entry" ng-repeat="d in rule.input.params.targets.elements track by $index" ng-init="targetModel=d[d.filterThen]">
       <div class="report-col">
-        <div ng-if="d.deviceType == 'toggleButton'">
+        <div ng-if="d.filterThen == 'toggleButton'">
               {{rule.target.availableDevices[targetModel.target].metrics.title}} - <em>{{rule.rooms[rule.target.availableDevices[targetModel.target].location].title}}</em>  
             </div>
-          <div class="clickable"  ng-if="d.deviceType != 'toggleButton'" ng-click="expandTargetParams('target_' + targetModel.target)">
+          <div class="clickable"  ng-if="d.filterThen != 'toggleButton'" ng-click="expandTargetParams('target_' + targetModel.target)">
               {{rule.target.availableDevices[targetModel.target].metrics.title}} - <em>{{rule.rooms[rule.target.availableDevices[targetModel.target].location].title}}</em> 
             </div>
-          <div class="form-collapsed" ng-if_="expand['target_' + targetModel.target]" ng-include="'app/views/automation/rules/rule_id_then_'+ d.filterThen +'.html'"></div>
+          <div class="form-collapsed" ng-if="expand['target_' + targetModel.target]" ng-include="'app/views/automation/rules/rule_id_then_'+ d.filterThen +'.html'" ng-hide="d.filterThen == 'toggleButton'"></div>
         </div>
         <div class="report-col report-ctrl">
-            <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="d.deviceType == 'toggleButton'" ng-click="expandTargetParams('target_' + targetModel.target)">
+            <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="d.filterThen == 'toggleButton'" ng-click="expandTargetParams('target_' + targetModel.target)">
               <i class="fa" ng-class="expand['target_' + targetModel.target] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
             </button>
             <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignTargetDevice($index,targetModel.target)">
@@ -20,21 +20,4 @@
             </button>
         </div>
     </div>
-  <!-- Report body -->
- <!--  <div class="report-entry" ng-repeat="d in rule.target.availableDevices|orderBy: 'location' track by $index" ng-if="rule.target.assignedDevices.indexOf(d.id) > -1">
-    
-      <div class="report-col">
-          <div ng-if="d.deviceType == 'toggleButton'">{{d.metrics.title}} - <em>{{rule.rooms[d.location].title}}</em> </div>
-        <div class="clickable"  ng-if="d.deviceType != 'toggleButton'" ng-click="expandElement('target_' + d.id)">{{d.metrics.title}} - <em>{{rule.rooms[d.location].title}}</em> </div>
-        <div class="form-collapsed form-inline" ng-if_="expand['target_' + d.id]" ng-include="'app/views/automation/rules/rule_id_then_'+ d.deviceType +'.html'"></div>
-      </div>
-      <div class="report-col report-ctrl">
-          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="d.deviceType == 'toggleButton'" ng-click="expandElement('target_' + d.id)">
-            <i class="fa" ng-class="expand['target_' + d.id] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
-          </button>
-          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignTargetDevice(d)">
-            <i class="fa fa-times text-danger"></i>
-          </button>
-      </div>
-  </div> -->
 </div>
