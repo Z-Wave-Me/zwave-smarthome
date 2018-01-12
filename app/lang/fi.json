@@ -581,6 +581,7 @@
     "vendors_error_load_data": "Update vendors database failed.",
     "verifying_licence_key": "Tarkistetaan lisenssiavainta",
     "verify_device_pin": "Verify PIN code on the device",
+    "verify_qrcode": "Please enter your password",
     "version": "Versio",
     "wakeup_list": "Herätysasetukset",
     "wan_port_access_info": "Ethernet-käyttö on oletusarvoisesti pois päältä. Jos se aktivoidaan, POPP hubisi turvallisuus riippuu kotiverkkosi asetuksista.",

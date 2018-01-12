@@ -581,6 +581,7 @@
     "vendors_error_load_data": "Update vendors database failed.",
     "verifying_licence_key": "Overovanie vášho Licenčného klúča",
     "verify_device_pin": "Verify PIN code on the device",
+    "verify_qrcode": "Please enter your password",
     "version": "Version",
     "wakeup_list": "Nastavenia Prebudenia",
     "wan_port_access_info": "Access by Ethernet is turned off by factory default. If activated the security of your POPP hub depends on the security of your cable based home network.",

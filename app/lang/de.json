@@ -581,6 +581,7 @@
     "vendors_error_load_data": "Update Herstellerdatenbank fehlgeschlagen.",
     "verifying_licence_key": "Prüfe Lizenzschlüssel. Bitte warten ...",
     "verify_device_pin": "Verify PIN code on the device",
+    "verify_qrcode": "Bitte geben Sie ihr Passwort ein",
     "version": "Version",
     "wakeup_list": "Wakeup Einstellungen",
     "wan_port_access_info": "Konfiguriert den Ethernet-Zugang. Dieser ist werkseitig deaktiviert. Wenn Sie das Gerät mit ihrem eigenem lokalen Netzwerk verbinden, ist die Gateway-Sicherheit von ihrem eigenen Netzwerk abhängig.",
