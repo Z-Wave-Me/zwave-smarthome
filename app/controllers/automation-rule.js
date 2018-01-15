@@ -117,7 +117,10 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
  */
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
-    tab: 'if',
+    tab: {
+      default: 'if',
+      advanced: 'if'
+    },
     source: {
       selected: {
         device: ''
@@ -188,6 +191,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         },
         advanced: {
           activate: false,
+          logicalOperator: 'and',
           delay: {
             eventstart: 0
           }

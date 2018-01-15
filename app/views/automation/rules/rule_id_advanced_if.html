@@ -1,0 +1,17 @@
+<!-- operator -->
+<div class="form-group">
+    <label>
+      <input type="radio" ng-model="rule.input.params.advanced.logicalOperator" value="and">
+      <span>{{_t('All conditions must be met (AND)')}}</span>
+    </label>
+    <label>
+      <input type="radio" ng-model="rule.input.params.advanced.logicalOperator" value="or">
+      <span>{{_t('At least one condition is fulfilled (OR)')}}</span>
+    </label>
+    <bb-help-text trans="_t('This option links all conditions in the list to a logical OR or AND. With OR, the action is executed if at least one condition applies. With AND, the action is only executed if all conditions apply.')"></bb-help-text>
+  </div>
+<!-- <div class="form-group">
+   <input type="checkbox" name="reverse" id="dvanced_logical_operator" ng-model="rule.input.params.advanced.logicalOperator" ng-true-value="and" ng-false-value="or" />  
+   <label for="dvanced_logical_operator" ng-if="rule.input.params.advanced.logicalOperator == 'and'">{{_t('All conditions must be met (AND)')}}</label>
+   <label for="dvanced_logical_operator" ng-if="rule.input.params.advanced.logicalOperator == 'or'">{{_t('At least one condition is fulfilled (OR)')}}</label>
+  </div> -->
