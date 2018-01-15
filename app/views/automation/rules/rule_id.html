@@ -6,7 +6,7 @@
   <form class="form form-page" ng-submit="storeRule(rule.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/rules/rule_id_form.html'"></fieldset>
-    <!-- ////////////////////////////////////////// itabs  ////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////// tabs  ////////////////////////////////////////// -->
     <fieldset ng-if="!rule.input.params.advanced.activate">
       <div class="tabs-wrap form-inline" bind-class-on-scroll offset="50" scroll-class="fix-me-top">
         <div class="btn-group btn-group-justified btn-goup-tabs">
@@ -25,11 +25,18 @@
     </fieldset>
     <div ng-if="!rule.input.params.advanced.activate">
       <!-- ////////////////////////////////////////// if  ////////////////////////////////////////// -->
-      <fieldset ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_if.html'"></fieldset>
+       <!-- Assigned -->
+       <div ng-if="_.size(rule.source.selected.device)">
+          <legend>{{_t('assigned_devices')}}</legend>
+          <fieldset ng-include="'app/views/automation/rules/rule_id_if_assigned.html'"></fieldset>
+        </div>
+      <!-- Available -->
+      <legend>{{_t('lb_available_devices')}}</legend>
+      <fieldset ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_if_available.html'"></fieldset>
       <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
       <fieldset ng-if="rule.tab == 'then'" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
       <div ng-if="rule.tab == 'then'">
-        <!-- Used -->
+        <!-- Assigned -->
         <div ng-if="_.size(rule.input.params.targets.elements)">
           <legend>{{_t('assigned_devices')}}</legend>
           <fieldset ng-include="'app/views/automation/rules/rule_id_then_assigned.html'"></fieldset>

@@ -7,7 +7,7 @@
   <!-- Accordion body -->
 
   <div class="accordion-entry-ctrl" ng-if="expand['room_' + r.id]">
-    <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in rule.target.availableDevices track by $index" ng-if="d.location == r.id &&  rule.target.assignedDevices.indexOf(d.id) === -1"
+    <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in rule.target.availableDevices track by $index" ng-if="d.location == r.id && rule.target.assignedDevices.indexOf(d.id) === -1" ng-hide="d.id == rule.source.selected.device"
       ng-click="assignTargetDevice(d)">{{d.metrics.title|cutText:true:20}}
       <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>

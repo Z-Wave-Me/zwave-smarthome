@@ -1,0 +1,27 @@
+
+<pre>{{rule.source.selected|json}}</pre>
+<!-- Available -->
+<div class="accordion-entry" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.target.devicesInRoom[r.id]">
+  <!-- Accordion header -->
+  <h2 class="accordion-entry-title" ng-click="expandElement('room_' + r.id)">
+    <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+    <i class="fa accordion-arrow" ng-class="expand['room_' + r.id] ? 'fa-chevron-up':'fa-chevron-down'"></i>
+  </h2>
+  <!-- Accordion body -->
+
+  <div class="accordion-entry-ctrl" ng-if="expand['room_' + r.id]">
+    <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in rule.source.devices | orderBy:'metrics.title' track by $index" ng-if="d.location == r.id && d.id != rule.source.selected.device" ng-click_="assignTargetDevice(d)">{{d.metrics.title|cutText:true:20}}
+      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+    </a>
+  </div>
+</div>
+
+
+<!-- Select-->
+<div class="form-group first form-inline">
+  <select class="form-control" ng-model="rule.source.selected.device" ng-change="changeSource(rule.source.selected.device)">
+    <option value="">--- Select a source device ---</option>
+    <option value="{{v.id}}" ng-repeat="v in rule.source.devices | orderBy:'metrics.title' track by $index" ng-selected="v.id == rule.source.selected.device">{{v.metrics.title}} - {{rule.rooms[v.location].title}}</option>
+  </select>
+</div>
+<div ng-hide="rule.input.params.sourceDevice.filterIf == 'toggleButton'" ng-include="'app/views/automation/rules/rule_id_if_'+ rule.input.params.sourceDevice.filterIf +'.html'"></div>
