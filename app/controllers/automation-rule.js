@@ -258,7 +258,9 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       // Set source devices
       $scope.rule.source.devices = devices.filter(function (v) {
         return whiteListSource.indexOf(v.deviceType) > -1;
-      }).value();
+      })
+      .indexBy('id')
+      .value();
       // Set target devices
       $scope.rule.target.availableDevices = devices.filter(function (v) {
         // Replacing deviceType with "notification"
@@ -278,10 +280,45 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
   };
   $scope.loadDevices();
 
+
   /**
+   * Assign source device
+   * @param {object} device
+   */
+  $scope.assignSourceDevice = function (device) {
+   if (!device) {
+      return;
+    }
+    $scope.rule.input.params.sourceDevice = {};
+    $scope.rule.source.selected = {};
+
+    var sourceDevice = {
+      filterIf: device.deviceType
+    };
+    $scope.rule.source.selected = {
+      device: device.id,
+      filterIf: device.deviceType
+    };
+    sourceDevice[device.deviceType] = {
+      device: device.id
+    }
+    angular.extend($scope.rule.input.params.sourceDevice, sourceDevice);
+   };
+
+   /**
+   * Remove device id from source assigned device
+   */
+  $scope.unassignSourceDevice = function () {
+    $scope.rule.input.params.sourceDevice = {};
+    $scope.rule.source.selected = {};
+
+  };
+
+  /**
+   * todo: deprecated
    * Change source device
    */
-  $scope.changeSource = function (deviceId) {
+  /* $scope.changeSource = function (deviceId) {
     var device = _.findWhere($scope.rule.source.devices, {
       id: deviceId
     });
@@ -304,7 +341,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
     angular.extend($scope.rule.input.params.sourceDevice, sourceDevice);
 
 
-  };
+  }; */
   /**
    * Assign device to the target
    * @param {object} device
