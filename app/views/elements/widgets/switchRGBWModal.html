@@ -14,7 +14,7 @@
 					<fieldset>
 						<div class="row">
 							<div class="col-sm-12">
-								<div class="row">
+								<div class="row form-block">
 									<h3>{{_t('rgb_dimmer')}}</h3>
 									<div class="col-sm-1">
 										
@@ -91,7 +91,7 @@
 						</div>
 					</fieldset>						
 				</div>				
-				<div class="form form-page last" 
+				<div class="form form-page" 
 					ng-repeat="dev in widgetSwitchRGBW.all"
 					ng-if="dev.deviceType == 'switchMultilevel' && ['switchColor_soft_white'].indexOf(dev.probeType) > -1">
 					<fieldset>
@@ -123,7 +123,46 @@
 							</div>
 						</div>
 					</fieldset>					
-				</div>				
+				</div>
+				<div class="form form-page last">
+					<fieldset class="widget-ctrl">
+						<div class="btn-group">
+					        <button class="btn btn-off" id="btn_off_{{widgetSwitchRGBW.find.id}}"
+					                ng-if="getRgbState(widgetSwitchRGBW.find.id)"
+					                ng-class="getRgbState(widgetSwitchRGBW.find.id) == 'off' ? 'btn-primary': 'btn-default'"
+					                data-ng-click="runRgbCmd('off', widgetSwitchRGBW.find.id)"
+					                title="{{_t('lb_off')}}">
+					            <span class="widget-btn-symbol">0</span> 
+					        </button>
+					        <button class="btn btn-on" id="btn_w_{{widgetSwitchRGBW.find.id}}"
+					                ng-if="getRgbState(widgetSwitchRGBW.find.id)"
+					                ng-class="getRgbState(widgetSwitchRGBW.find.id) == 'w' ? 'btn-primary': 'btn-default'"
+					                data-ng-click="runRgbCmd('w', widgetSwitchRGBW.find.id)"
+					                title="{{_t('lb_on')}}"><span class="widget-btn-symbol">W</span>
+					        </button>
+					        <button class="btn btn-on" id="btn_rgb_{{widgetSwitchRGBW.find.id}}"
+					                ng-if="getRgbState(widgetSwitchRGBW.find.id)"
+					                ng-class="getRgbState(widgetSwitchRGBW.find.id) == 'rgb' ? 'btn-primary': 'btn-default'"
+					                data-ng-click="runRgbCmd('rgb', widgetSwitchRGBW.find.id)"
+					                title="{{_t('lb_rgb')}}"><span class="widget-btn-symbol">RGB</span>
+					        </button>
+					        <button class="btn btn-off" id="btn_off_{{ widgetSwitchRGBW.find.id}}"
+					                ng-if="!getRgbState(widgetSwitchRGBW.find.id)"
+					                ng-class="widgetSwitchRGBW.find.metrics.level == 'off' ? 'btn-primary': 'btn-default'"
+					                data-ng-click="runCmd(widgetSwitchRGBW.find.id + '/command/off', widgetSwitchRGBW.find.id)"
+					                title="{{_t('lb_off')}}">
+					            <span class="widget-btn-symbol">0</span>
+					        </button>
+					        <button class="btn btn-on" id="btn_on_{{ widgetSwitchRGBW.find.id}}"
+					                ng-if="!getRgbState(widgetSwitchRGBW.find.id)"
+					                ng-class="v.metrics.level =='on' ? 'btn-primary': 'btn-default'"
+					                data-ng-click="runCmd(widgetSwitchRGBW.find.id + '/command/on', widgetSwitchRGBW.find.id)"
+					                title="{{_t('lb_on')}}">
+					            <span class="widget-btn-symbol">I</span>
+					        </button>        
+					    </div>
+					</fieldset>	
+				</div>			
 			</div>
 		</div>
 	</div>
