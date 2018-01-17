@@ -1,7 +1,7 @@
 
 <!-- <pre>{{rule.source.selected|json}}</pre> -->
 <!-- Available -->
-<div class="accordion-entry" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.target.devicesInRoom[r.id]">
+<div class="accordion-entry" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.source.devicesInRoom[r.id]">
   <!-- Accordion header -->
   <h2 class="accordion-entry-title" ng-click="expandElement('room_source_' + r.id)">
     <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}

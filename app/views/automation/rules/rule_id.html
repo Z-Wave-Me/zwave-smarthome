@@ -89,6 +89,11 @@
          <!-- Available -->
          <legend>{{_t('lb_available_devices')}}</legend>
          <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
+          <!-- Expert settings -->
+          <legend>
+              <label for="advanced_activate"></label><input type="checkbox" ng-model="rule.input.params.advanced.expertSettings" ng-checked="rule.input.params.advanced.expertSettings" /> {{_t('further settings')}}</label>
+            </legend>
+          <fieldset ng-if="rule.input.params.advanced.expertSettings" ng-include="'app/views/automation/rules/rule_id_advanced_then_expert.html'"></fieldset>
       </div>
        <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
       <fieldset ng-if="rule.advanced.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
@@ -105,7 +110,7 @@
       </button>
     </fieldset>
   </form>
- <!--  <pre>{{rule.input.params.advanced|json}}</pre> -->
+  <pre>{{rule.input.params.advanced|json}}</pre>
   <!-- <pre>{{rule.source.selected|json}}</pre> -->
 </div>
 <!-- /ng-controller -->

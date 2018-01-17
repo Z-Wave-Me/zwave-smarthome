@@ -21,15 +21,83 @@
 </div>
 <!-- dimmers -->
 <div class="automation-report app-row-report clearfix" ng-repeat="v in rule.input.params.advanced.action.dimmers track by $index">
-  {{v}}
+  <div class="report-entry">
+    <div class="report-col">
+        <span class="clickable" ng-click="expandElement('advanced_target_' + v.device)">
+           {{rule.advanced.target.availableDevices[v.device].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em> 
+        </span>
+        <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_switchMultilevel.html'"></div>
+    </div>
+    <div class="report-col report-ctrl">
+        <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.device)">
+            <i class="fa" ng-class="expand['advanced_target_' + v.device] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
+          </button>
+      <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('dimmers',$index,v.device)">
+        <i class="fa fa-times text-danger"></i>
+      </button>
+    </div>
+
+  </div>
 </div>
 <!-- thermostats -->
 <div class="automation-report app-row-report clearfix" ng-repeat="v in rule.input.params.advanced.action.thermostats track by $index">
-  {{v}}
+  <div class="report-entry">
+    <div class="report-col">
+        <span class="clickable" ng-click="expandElement('advanced_target_' + v.device)">
+           {{rule.advanced.target.availableDevices[v.device].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em> 
+        </span>
+        <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_thermostat.html'"></div>
+    </div>
+    <div class="report-col report-ctrl">
+        <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.device)">
+            <i class="fa" ng-class="expand['advanced_target_' + v.device] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
+          </button>
+      <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('thermostats',$index,v.device)">
+        <i class="fa fa-times text-danger"></i>
+      </button>
+    </div>
+
+  </div>
 </div>
 <!-- locks -->
 <div class="automation-report app-row-report clearfix" ng-repeat="v in rule.input.params.advanced.action.locks track by $index">
-  {{v}}
+  <div class="report-entry">
+    <div class="report-col">
+        <span class="clickable" ng-click="expandElement('advanced_target_' + v.device)">
+           {{rule.advanced.target.availableDevices[v.device].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em> 
+        </span>
+        <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_doorlock.html'"></div>
+    </div>
+    <div class="report-col report-ctrl">
+        <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.device)">
+            <i class="fa" ng-class="expand['advanced_target_' + v.device] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
+          </button>
+      <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('locks',$index,v.device)">
+        <i class="fa fa-times text-danger"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+<!-- notification -->
+<div class="automation-report app-row-report clearfix" ng-repeat="v in rule.input.params.advanced.action.notification track by $index">
+  <div class="report-entry">
+  <div class="report-col">
+      <span class="clickable" ng-click="expandElement('advanced_target_' + v.target)">
+         {{rule.advanced.target.availableDevices[v.target].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.target].location].title}}</em> 
+      </span>
+      <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.target]" ng-include="'app/views/automation/rules/rule_id_advanced_then_notification.html'"></div>
+  </div>
+  <div class="report-col report-ctrl">
+      <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.target)">
+          <i class="fa" ng-class="expand['advanced_target_' + v.target] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
+        </button>
+    <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('notification',$index,v.target)">
+      <i class="fa fa-times text-danger"></i>
+    </button>
+  </div>
+
+</div>
 </div>
 <!-- scenes -->
 <div class="automation-report app-row-report clearfix" ng-repeat="v in rule.input.params.advanced.action.scenes track by $index">
@@ -46,8 +114,4 @@
         </div>
     
       </div>
-</div>
-<!-- notification -->
-<div class="automation-report app-row-report clearfix" ng-repeat="v in rule.input.params.advanced.action.notification track by $index">
-  {{v}}
 </div>

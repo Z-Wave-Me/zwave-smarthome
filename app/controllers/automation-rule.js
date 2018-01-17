@@ -122,6 +122,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       selected: {
         device: ''
       },
+      devicesInRoom: [],
       devices: []
     },
     target: {
@@ -238,7 +239,10 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
             locks:[],
             scenes:[],
             notification:[]
-          }
+          },
+          expertSettings: false,
+          eventSource: [],
+          triggerOnDevicesChange: true
         },
         reverse: {
           activate: false
@@ -318,6 +322,11 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       })
       .indexBy('id')
       .value();
+       // Set source sum of devices in the room
+       $scope.rule.source.devicesInRoom = _.countBy($scope.rule.source.devices, function (v) {
+        return v.location;
+      });
+
       // Set target devices
       $scope.rule.target.availableDevices = devices.filter(function (v) {
         // Replacing deviceType with "notification"
@@ -326,6 +335,11 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         }
         
         return whiteListTarget.indexOf(v.deviceType) > -1;
+      })
+      .reject(function (v) {
+        if ($scope.rule.source.selected.device == v.id) {
+          return true;
+        }
       })
       .indexBy('id')
       .value();
@@ -339,19 +353,32 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         if(v.probeType == 'notification_push'){
           v.deviceType = 'notification';
         }
-        
         return whiteListAdvancedTarget.indexOf(v.deviceType) > -1;
+      })
+      .reject(function (v) {
+        if ($scope.rule.source.selected.device == v.id) {
+          return true;
+        }
       })
       .indexBy('id')
       .value();
-
-       // Set advanced target sum of devices in the room
+      
+      // Set advanced target sum of devices in the room
        $scope.rule.advanced.target.devicesInRoom = _.countBy($scope.rule.advanced.target.availableDevices, function (v) {
         return v.location;
       });
     }, function (error) {});
   };
-  $scope.loadDevices();
+  //$scope.loadDevices();
+
+  // ctrl watch ?
+  $scope.$watch('rule.source.selected.device', function(newVal, oldVal) {
+    $scope.loadDevices();
+    if(newVal !== oldVal) {
+      console.log(newVal, oldVal)
+      //$scope.loadDevices();
+    }
+  });
 
 
   /**
@@ -465,12 +492,15 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    */
   $scope.assignAdvancedTargetDevice = function (device) {
     var action = {
-      device: device.id,
       reverseLVL: "undefined"
     };
     var actionType = $scope.rule.advanced.cfg.target[device.deviceType].action;
     if(!actionType){
       return;
+    }else if(actionType == 'notification'){
+      action['target'] = device.id
+    }else{
+      action['device'] = device.id
     }
     var status = $filter('hasNode')($scope.rule.advanced.cfg.target[device.deviceType],'enum.0');
     if(status){
