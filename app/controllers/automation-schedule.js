@@ -201,6 +201,14 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     model: {}
   };
   $scope.orig.model = angular.copy($scope.schedule.model);
+  
+  /**
+   * Reset model
+   */
+  $scope.resetModel = function () {
+    $scope.schedule.model = angular.copy($scope.orig.model);
+
+  };
 
   /**
    * Load instances
@@ -299,13 +307,6 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
 
   };
 
-  /**
-   * Reset model
-   */
-  $scope.resetModel = function () {
-    $scope.schedule.model = angular.copy($scope.orig.model);
-
-  };
 
   /**
    * Assign device to a schedule
@@ -313,22 +314,23 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    * @returns {undefined}
    */
   $scope.assignDevice = function (device) {
-    console.log('device', device)
     var model = [];
     var type = '';
-
+    $scope.resetModel();
     switch (device.deviceType) {
       // scenes
       case 'toggleButton':
-        model = device.id;
-        $scope.handleSceneDevice(model);
+      $scope.schedule.input.params.devices.scenes.push(device.id)
+        //model = device.id;
+        //$scope.handleSceneDevice(model);
         break;
         // switches|dimmers|thermostats|locks
       default:
         model = $scope.schedule.model[device.deviceType];
         model.device = device.id;
         type = $scope.schedule.cfg[device.deviceType].paramsDevices;
-        $scope.handleDevice(model, type);
+        $scope.schedule.input.params.devices[type].push(model);
+        //$scope.handleDevice(model, type);
         break;
     }
     $scope.schedule.assignedDevices.push(device.id);
@@ -403,15 +405,10 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   };
 
   /**
-   * Add or update device to the list (by type)
+   * Update device to the list (by type)
    * type: switches|dimmers|thermostats|locks
    */
-  $scope.handleDevice = function (v, type, element) {
-    /* if (element) {
-      $scope.expandElement(element);
-    } */
-    //$scope.expand = {};
-    //$scope.resetModel();
+  $scope.handleDevice = function (v, type) {
     if (!v || v.device == '') {
       return;
     }
@@ -419,19 +416,21 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     var index = _.findIndex($scope.schedule.input.params.devices[type], {
       device: v.device
     });
-    if (index > -1) {
+    $scope.schedule.input.params.devices[type][index] = v;
+    /* if (index > -1) {
       $scope.schedule.input.params.devices[type][index] = v;
     } else {
       $scope.schedule.input.params.devices[type].push(v)
-    }
+    } */
 
 
   };
 
   /**
+   * todo: deprecated
    * Add or update scene device
    */
-  $scope.handleSceneDevice = function (v, element) {
+  /* $scope.handleSceneDevice = function (v, element) {
     if (element) {
       $scope.resetModel(element);
       $scope.expandElement(element);
@@ -446,7 +445,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     } else { // Add new item
       $scope.schedule.input.params.devices.scenes.push(v)
     }
-  };
+  }; */
 
   /**
    * Remove device from the list (by type)

@@ -1,0 +1,9 @@
+<!-- status -->
+<div class="form-group form-inline">
+  <select class="form-control" ng-model="rule.input.params.sourceDevice.sensorMultilevel.operator">
+    <option value="{{v}}" ng-repeat="v in rule.cfg.operators track by $index" ng-selected="v == rule.input.params.sourceDevice.sensorMultilevel.operator">{{v}}</option>
+  </select>
+  <input type="number" class="form-control input-number" id="if_status" ng-model="rule.input.params.sourceDevice.sensorMultilevel.status"
+  />
+  <label for="if_status">{{_t('level')}}</label>
+</div>

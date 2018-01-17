@@ -15,7 +15,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
 
 
   /**
-   * Load
+   * Load 
    * @returns {undefined}
    */
   $scope.loadRules = function () {
@@ -88,7 +88,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
     input.id = 0;
     input.title = input.title + ' - copy';
     dataFactory.postApi('instances', input).then(function (response) {
-      $location.path('/scenes/' + response.data.data.id);
+      $location.path('/rules/' + response.data.data.id);
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
     });
@@ -116,132 +116,170 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
  * @class AutomationRuleIdController
  */
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
-  $scope.scene = {
-    model: {
-      switchBinary: {
-        device: '',
-        status: 'off',
-        sendAction: false
+  $scope.rule = {
+    tab: 'if',
+    source: {
+      selected: {
+        device: ''
       },
-      switchMultilevel: {
-        device: '',
-        status: 0,
-        sendAction: false
-      },
-      thermostat: {
-        device: '',
-        status: 0,
-        sendAction: false
-      },
-      doorlock: {
-        device: '',
-        status: 'close',
-        sendAction: false
-      },
-      toggleButton: ''
+      devices: []
     },
+    target: {
+      devicesInRoom: [],
+      availableDevices: [],
+      assignedDevices: [],
+    },
+   
     rooms: [],
-    devicesInRoom: [],
-    availableDevices: [],
-    assignedDevices: [],
     cfg: {
-
-      switchBinary: {
-        paramsDevices: 'switches',
-        enum: ['off', 'on']
+      operators: [
+        '=',
+        '>',
+        '<'
+      ],
+      source: {
+        toggleButton: {},
+        switchControl: {
+          min: 0,
+          max: 99
+        },
+        switchBinary: {},
+        switchMultilevel: {
+          min: 0,
+          max: 99
+        },
+        sensorBinary: {},
+        sensorMultilevel: {},
+        sensorDiscrete: {}
       },
-      switchMultilevel: {
-        paramsDevices: 'dimmers',
-        min: 0,
-        max: 99
-      },
-      thermostat: {
-        paramsDevices: 'thermostats',
-        min: 0,
-        max: 99
-      },
-      doorlock: {
-        paramsDevices: 'locks',
-        enum: ['close', 'open']
-      },
-      toggleButton: {
-        paramsDevices: 'scenes',
+      target: {
+        doorlock: {},
+        notification: {},
+        switchBinary: {},
+        switchMultilevel: {
+          min: 0,
+          max: 99
+        },
+        switchRGBW: {
+          min: 0,
+          max: 255
+        },
+        thermostat: {
+          min: 0,
+          max: 99
+        },
+        toggleButton: {},
       }
 
+    },
+    advanced:{
+      tab: 'then',
+      target: {
+        devicesInRoom: [],
+        availableDevices: [],
+        assignedDevices: [],
+      },
+      cfg:{
+       target:{
+        switchBinary: {
+          action: 'switches',
+          default: {status: 'off'},
+          enum: ['off', 'on']
+        },
+        switchMultilevel: {
+          action: 'dimmers',
+          min: 0,
+          max: 99
+        },
+        thermostat: {
+          action: 'thermostats',
+          min: 0,
+          max: 99
+        },
+        doorlock: {
+          action: 'locks',
+          enum: ['close', 'open']
+        },
+        toggleButton: {
+          action: 'scenes',
+        },
+        notification: {
+          action: 'notification',
+        }
+      }
+      }
     },
     input: {
       instanceId: $routeParams.id,
-      moduleId: "Scenes",
+      moduleId: "Rules",
       active: true,
       title: "",
-     
       params: {
-        customIcon: {
-          table:[{icon: false}]
-          
+        sourceDevice: {
+          filterIf: ''
         },
-        devices:{
-          switches: [],
-          dimmers: [],
-          thermostats: [],
-          locks: [],
-          scenes: []
+        delay: {
+          eventstart: 0
+        },
+        targets: {
+          elements: []
+        },
+        advanced: {
+          activate: false,
+          logicalOperator: 'none',
+          delay: {
+            eventstart: 0
+          },
+          tests:[],
+          action: {
+            switches:[],
+            dimmers:[],
+            sthermostats:[],
+            locks:[],
+            scenes:[],
+            notification:[]
+          }
+        },
+        reverse: {
+          activate: false
         }
-       
       }
-    },
-    upload: {
-      fileName: false,
-      maxSize: $filter('fileSizeString')(cfg.upload.icon.size),
-      extensions: cfg.upload.icon.extension.toString()
-    },
+    }
   };
-  // Original data
-  $scope.orig = {
-    model: {}
-  };
-  $scope.orig.model = angular.copy($scope.scene.model);
-
-  /**
-   * Reset model
-   */
-  $scope.resetModel = function () {
-    $scope.scene.model = angular.copy($scope.orig.model);
-
-  };
-
-
+ 
   /**
    * Load instances
    */
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
       var instance = instances.data.data;
-      var assignedDevices = $scope.scene.assignedDevices;
-      angular.extend($scope.scene.input, {
+      var assignedTargetDevices = $scope.rule.target.assignedDevices;
+      // Set input data
+      angular.extend($scope.rule.input, {
         title: instance.title,
         active: instance.active,
         params: instance.params
       });
-      angular.forEach(instance.params.devices, function (v, k) {
-        switch (k) {
-          case 'scenes':
-            _.filter(v, function (s) {
-              if (assignedDevices.indexOf(s) === -1) {
-                $scope.scene.assignedDevices.push(s);
-              }
-
-            })
-            break;
-          default:
-            _.filter(v, function (d) {
-              if (assignedDevices.indexOf(d.device) === -1) {
-                $scope.scene.assignedDevices.push(d.device);
-              }
-
-            })
-            break;
+      // Set source device
+      var filterIf = instance.params.sourceDevice.filterIf;
+      if (filterIf) {
+        $scope.rule.source.selected = instance.params.sourceDevice[filterIf];
+      }
+      // Set target assigned devices
+      angular.forEach(instance.params.targets.elements, function (v, k) {
+        var targetId = $filter('hasNode')(v[v['filterThen']], 'target');
+        if (targetId) {
+          $scope.rule.target.assignedDevices.push(targetId);
         }
+
+      });
+       // Set advanced target assigned devices
+       angular.forEach(instance.params.advanced.action, function (v, k) {
+       _.filter(v,function(val,key){
+         if(val.device)
+          $scope.rule.advanced.target.assignedDevices.push(val.device);
+        });
+
       });
 
     }, function (error) {
@@ -259,7 +297,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    */
   $scope.loadRooms = function () {
     dataFactory.getApi('locations').then(function (response) {
-      $scope.scene.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
+      $scope.rule.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
     });
 
   };
@@ -270,12 +308,45 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    */
   $scope.loadDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
-      var whiteList = _.keys($scope.scene.cfg);
+      var whiteListSource = _.keys($scope.rule.cfg.source);
+      var whiteListTarget = _.keys($scope.rule.cfg.target);
+      var whiteListAdvancedTarget = _.keys($scope.rule.advanced.cfg.target);
       var devices = dataService.getDevicesData(response.data.data.devices);
-      $scope.scene.availableDevices = devices.filter(function (v) {
-        return whiteList.indexOf(v.deviceType) > -1;
-      }).value();
-      $scope.scene.devicesInRoom = _.countBy($scope.scene.availableDevices, function (v) {
+      // Set source devices
+      $scope.rule.source.devices = devices.filter(function (v) {
+        return whiteListSource.indexOf(v.deviceType) > -1;
+      })
+      .indexBy('id')
+      .value();
+      // Set target devices
+      $scope.rule.target.availableDevices = devices.filter(function (v) {
+        // Replacing deviceType with "notification"
+        if(v.probeType == 'notification_push'){
+          v.deviceType = 'notification';
+        }
+        
+        return whiteListTarget.indexOf(v.deviceType) > -1;
+      })
+      .indexBy('id')
+      .value();
+      // Set target sum of devices in the room
+      $scope.rule.target.devicesInRoom = _.countBy($scope.rule.target.availableDevices, function (v) {
+        return v.location;
+      });
+       // Set advanced target devices
+      $scope.rule.advanced.target.availableDevices = devices.filter(function (v) {
+        // Replacing deviceType with "notification"
+        if(v.probeType == 'notification_push'){
+          v.deviceType = 'notification';
+        }
+        
+        return whiteListAdvancedTarget.indexOf(v.deviceType) > -1;
+      })
+      .indexBy('id')
+      .value();
+
+       // Set advanced target sum of devices in the room
+       $scope.rule.advanced.target.devicesInRoom = _.countBy($scope.rule.advanced.target.availableDevices, function (v) {
         return v.location;
       });
     }, function (error) {});
@@ -284,226 +355,160 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
 
 
   /**
-   * Validate an uploaded icon
-   * @param {object} files
-   * @param {object} info
-   * @returns {undefined}
+   * Assign source device
+   * @param {object} device
    */
-  $scope.uploadIcon = function (files, info) {
-   var ext =  $filter('fileExtension')(files[0].name);
-    // Extends files object with a new property
-    files[0].newName = dataService.uploadFileNewName('scene_' + $routeParams.id + '.' + ext);
-    // Check allowed file formats
-    if (info.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
-      alertify.alertError(
-        $scope._t('upload_format_unsupported', {
-          '__extension__': $filter('fileExtension')(files[0].name)
-        }) + ' ' +
-        $scope._t('upload_allowed_formats', {
-          '__extensions__': info.extension.toString()
-        })
-      );
+  $scope.assignSourceDevice = function (device) {
+   if (!device) {
       return;
-
     }
-    // Check allowed file size
-    if (files[0].size > info.size) {
-      alertify.alertError(
-        $scope._t('upload_allowed_size', {
-          '__size__': $filter('fileSizeString')(info.size)
-        }) + ' ' +
-        $scope._t('upload_size_is', {
-          '__size__': $filter('fileSizeString')(files[0].size)
-        })
-      );
-      return;
+    $scope.rule.input.params.sourceDevice = {};
+    $scope.rule.source.selected = {};
 
+    var sourceDevice = {
+      filterIf: device.deviceType
+    };
+    $scope.rule.source.selected = {
+      device: device.id,
+      filterIf: device.deviceType
+    };
+    sourceDevice[device.deviceType] = {
+      device: device.id
     }
-   // Set selected file name
-   $scope.scene.upload.fileName = files[0].name;
-   // Set form data
-    // Set local variables
-    var fd = new FormData();
-   fd.append('files_files', files[0]);
-   // Atempt to upload a file
-   dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function (response) {
-     console.log(response)
-     $scope.scene.input.params.customIcon.table['0'].icon = response.data.data;
-     /* if ($routeParams.id > 0) {
-      $scope.storeScene($scope.scene.input);
-    } */
-   }, function (error) {
-      alertify.alertError($scope._t('error_upload'));
-   });
-  };
+    angular.extend($scope.rule.input.params.sourceDevice, sourceDevice);
+   };
 
    /**
-   * Delete icon
-   * @param {string} string
-   * @returns {undefined}
+   * Remove device id from source assigned device
    */
-  $scope.deleteIcon = function (icon) {
-    dataFactory.deleteApi('icons',icon).then(function (response) {
-      $scope.scene.input.params.customIcon.table['0'].icon = false;
-      /* if ($routeParams.id > 0) {
-        $scope.storeScene($scope.scene.input);
-      } */
-      
-    }, function (error) {
-      alertify.alertError($scope._t('error_delete_data'));
-    });
+  $scope.unassignSourceDevice = function () {
+    $scope.rule.input.params.sourceDevice = {};
+    $scope.rule.source.selected = {};
+
   };
 
   /**
-   * Assign device to a schedule
+   * Assign device to the target
    * @param {object} device
    * @returns {undefined}
    */
-  $scope.assignDevice = function (device) {
-    console.log('device', device)
-    var model = [];
-    var type = '';
-
-    switch (device.deviceType) {
-      // scenes
-      case 'toggleButton':
-        model = device.id;
-        $scope.handleSceneDevice(model);
-        break;
-        // switches|dimmers|thermostats|locks
-      default:
-        model = $scope.scene.model[device.deviceType];
-        model.device = device.id;
-        type = $scope.scene.cfg[device.deviceType].paramsDevices;
-        $scope.handleDevice(model, type);
-        break;
-    }
-    $scope.scene.assignedDevices.push(device.id);
-    return;
+  $scope.assignTargetDevice = function (device) {
+    var element = {
+      filterThen: device.deviceType,
+      reverseLVL: "undefined"
+    };
+    element[device.deviceType] = {
+      target: device.id
+    };
+    $scope.rule.target.assignedDevices.push(device.id);
+    $scope.rule.input.params.targets.elements.push(element);
+    
   };
-
   /**
-   * Remove device id from assigned device
-   * @param {object} device 
+   * Remove device id from target assigned device
+   * @param {int} index 
+   * @param {string} deviceId 
    */
-  $scope.unassignDevice = function (device) {
-    var index = $scope.scene.assignedDevices.indexOf(device.id);
-    if (index > -1) {
-      $scope.scene.assignedDevices.splice(index, 1);
-      removeDeviceFromParams(device);
-
+  $scope.unassignTargetDevice = function (targetIndex,deviceId) {
+    var deviceIndex = $scope.rule.target.assignedDevices.indexOf(deviceId);
+    if (targetIndex > -1) {
+      $scope.rule.input.params.targets.elements.splice(targetIndex, 1);
+      $scope.rule.target.assignedDevices.splice(deviceIndex, 1);
     }
 
   };
 
   /**
-   * Add or update device to the list (by type)
-   * type: switches|dimmers|thermostats|locks
+   * Expand/Collapse target params
    */
-  $scope.expandParams = function (element, device) {
-
-    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
-    var params = _.findWhere($scope.scene.input.params.devices[type], {
-      device: device.id
-    });
-
+  $scope.expandTargetParams = function (element) {
+    var blackList = ['ruleThen'];
     // Colapse all params except 'element'
-    _.filter($scope.expand, function (v, k) {
-      if (k != element) {
+   /*  _.filter($scope.expand, function (v, k) {
+      if (k != element || blackList.indexOf(k) === -1) {
         $scope.expand[k] = false;
       }
 
-    });
-    $scope.resetModel();
-
-    $scope.scene.model[device.deviceType] = params;
-    $scope.expandElement(element);
-
-
+    }); */
+     $scope.expandElement(element);
 
   };
 
-
   /**
-   * Add or update device to the list (by type)
-   * type: switches|dimmers|thermostats|locks
+   * Remove device from the target list
+   * @param {object} device 
    */
-  $scope.handleDevice = function (v, type, element) {
-    if (!v || v.device == '') {
-      return;
-    }
-    // Adding new device
-    var index = _.findIndex($scope.scene.input.params.devices[type], {
-      device: v.device
+  $scope.removeDeviceFromTarget = function (device) {
+    var index;
+    // Find index of the target device
+    _.filter($scope.rule.input.params.targets.elements, function (v, k) {
+      var targetId = $filter('hasNode')(v[v['filterThen']], 'target');
+      if (targetId == device.id) {
+        index = k;
+        return;
+      }
+
     });
+    // Remove target device
     if (index > -1) {
-      $scope.scene.input.params.devices[type][index] = v;
-    } else {
-      $scope.scene.input.params.devices[type].push(v)
+      $scope.rule.input.params.targets.elements.splice(index, 1);
     }
 
 
   };
 
+  
   /**
-   * Add or update scene device
+   * Assign device to the advanced target
+   * @param {object} device
+   * @returns {undefined}
    */
-  $scope.handleSceneDevice = function (v, element) {
-    if (element) {
-      $scope.resetModel(element);
-      $scope.expandElement(element);
-    }
-
-    if (!v) {
+  $scope.assignAdvancedTargetDevice = function (device) {
+    var action = {
+      device: device.id,
+      reverseLVL: "undefined"
+    };
+    var actionType = $scope.rule.advanced.cfg.target[device.deviceType].action;
+    if(!actionType){
       return;
     }
-    var index = $scope.scene.input.params.devices.scenes.indexOf(v);
-    if (index > -1) { // Update an item
-      $scope.scene.input.params.devices.scenes[index] = v;
-    } else { // Add new item
-      $scope.scene.input.params.devices.scenes.push(v)
+    var status = $filter('hasNode')($scope.rule.advanced.cfg.target[device.deviceType],'enum.0');
+    if(status){
+      action['status'] = status;
     }
+    $scope.rule.input.params.advanced.action[actionType].push(action);
+    $scope.rule.advanced.target.assignedDevices.push( device.id,);
+   
+    
+  };
+
+  /**
+   * Remove device id from advanced target assigned device
+   *  @param {string} targetType
+   * @param {int} targetIndex 
+   * @param {string} deviceId 
+   */
+  $scope.unassignAdvancedTargetDevice = function (targetType,targetIndex,deviceId) {
+    var deviceIndex = $scope.rule.advanced.target.assignedDevices.indexOf(deviceId);
+    if (targetIndex > -1) {
+      $scope.rule.input.params.advanced.action[targetType].splice(targetIndex, 1);
+      $scope.rule.advanced.target.assignedDevices.splice(deviceIndex, 1);
+    }
+
   };
 
   /**
    * Store 
    */
-  $scope.storeScene = function (input, redirect) {
+  $scope.storeRule = function (input, redirect) {
     dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
       if (redirect) {
-        $location.path('/scenes');
+        $location.path('/rules');
       }
 
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
     });
-
-  };
-
-  /// --- Private functions --- ///
-  /**
-   * Remove device from the params list
-   * @param {object} device 
-   */
-  function removeDeviceFromParams(device) {
-    var index;
-    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
-    switch (device.deviceType) {
-      // scenes
-      case 'toggleButton':
-        index = $scope.scene.input.params.devices[type].indexOf(device.id);
-        break;
-        // switches|dimmers|thermostats|locks
-      default:
-        index = _.findIndex($scope.scene.input.params.devices[type], {
-          device: device.id
-        });
-        break;
-    }
-    if (index > -1) {
-      $scope.scene.input.params.devices[type].splice(index, 1);
-    }
-
 
   };
 

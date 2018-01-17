@@ -386,22 +386,24 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
    * @returns {undefined}
    */
   $scope.assignDevice = function (device) {
-    console.log('device', device)
+    
     var model = [];
     var type = '';
-
+    $scope.resetModel();
     switch (device.deviceType) {
       // scenes
       case 'toggleButton':
-        model = device.id;
-        $scope.handleSceneDevice(model);
+        //model = device.id;
+        $scope.scene.input.params.devices.scenes.push(device.id);
+        //$scope.handleSceneDevice(model);
         break;
         // switches|dimmers|thermostats|locks
       default:
         model = $scope.scene.model[device.deviceType];
         model.device = device.id;
         type = $scope.scene.cfg[device.deviceType].paramsDevices;
-        $scope.handleDevice(model, type);
+        $scope.scene.input.params.devices[type].push(model)
+        //$scope.handleDevice(model, type);
         break;
     }
     $scope.scene.assignedDevices.push(device.id);
@@ -427,11 +429,11 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
    * type: switches|dimmers|thermostats|locks
    */
   $scope.expandParams = function (element, device) {
-
-    var type = $scope.scene.cfg[device.deviceType].paramsDevices;
+   var type = $scope.scene.cfg[device.deviceType].paramsDevices;
     var params = _.findWhere($scope.scene.input.params.devices[type], {
       device: device.id
     });
+ 
 
     // Colapse all params except 'element'
     _.filter($scope.expand, function (v, k) {
@@ -449,10 +451,10 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 
   };
   /**
-   * Add or update device to the list (by type)
+   * Update device to the list (by type)
    * type: switches|dimmers|thermostats|locks
    */
-  $scope.handleDevice = function (v, type, element) {
+  $scope.handleDevice = function (v, type) {
     if (!v || v.device == '') {
       return;
     }
@@ -460,21 +462,24 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
     var index = _.findIndex($scope.scene.input.params.devices[type], {
       device: v.device
     });
-    if (index > -1) {
+    $scope.scene.input.params.devices[type][index] = v;
+    //return;
+    /* if (index > -1) {
       $scope.scene.input.params.devices[type][index] = v;
     } else {
       $scope.scene.input.params.devices[type].push(v)
-    }
+    } */
 
 
   };
 
   /**
+   * todo: deprecated
    * Add or update scene device
    */
-  $scope.handleSceneDevice = function (v, element) {
+  /* $scope.handleSceneDevice = function (v, element) {
     if (element) {
-      $scope.resetModel(element);
+      $scope.resetModel();
       $scope.expandElement(element);
     }
 
@@ -487,7 +492,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
     } else { // Add new item
       $scope.scene.input.params.devices.scenes.push(v)
     }
-  };
+  }; */
 
   /**
    * Store 
@@ -498,10 +503,6 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
         $location.path('/scenes');
         return;
       }
-     /*  if(input.instanceId == 0){
-        $location.path('/scenes/' + response.data.data.id);
-        return;
-      } */
 
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));

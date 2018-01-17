@@ -6,7 +6,7 @@
       <div class="report-col">
           <div ng-if="d.deviceType == 'toggleButton'">{{d.metrics.title}} - <em>{{schedule.rooms[d.location].title}}</em> </div>
         <div class="clickable"  ng-if="d.deviceType != 'toggleButton'" ng-click="expandParams(d.deviceType + $index,d)">{{d.metrics.title}} - <em>{{schedule.rooms[d.location].title}}</em> </div>
-        <div class="form-collapsed form-inline" ng-if="expand[d.deviceType + $index]" ng-include="'app/views/automation/schedules/schedule_id_form_'+ d.deviceType +'.html'"></div>
+        <div class="form-collapsed" ng-if="expand[d.deviceType + $index]" ng-include="'app/views/automation/schedules/schedule_id_form_'+ d.deviceType +'.html'"></div>
       </div>
       <div class="report-col report-ctrl form-inline">
           <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="d.deviceType == 'toggleButton'" ng-click="expandParams(d.deviceType + $index,d)">

@@ -12,11 +12,7 @@
                vertical-align: top;
                 //padding: 0;
                 //width: 33%;
-                .form-group{
-                    border: 0;
-                    margin: 0;
-                    padding: 0;
-                }
+               
             }
             .report-ctrl{
                 min-width: 50%;
@@ -30,6 +26,15 @@
           background-color: #F6F6F6;
           padding: $spacing;
           margin-top: $spacing;
+          .form-group{
+            //border: 0;
+            &:last-child{
+              border: 0;
+              margin: 0;
+              padding: 0; 
+          }
+        }
+          
         }
     }
 }

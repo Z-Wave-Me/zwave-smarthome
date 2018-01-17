@@ -24,9 +24,12 @@
 html {
   font-size: $app-body-font-size;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none; /* Disables long-touch menu */
-  -webkit-user-select: none; /* Disable text selection (for Webkit) */
-  user-select: none; /* Disable text selection (standard syntax) */
+   
+  @include mediaQueries(max-small) {
+    -webkit-touch-callout: none; /* Disables long-touch menu */
+    -webkit-user-select: none; /* Disable text selection (for Webkit) */
+    user-select: none; /* Disable text selection (standard syntax) */
+  }
 }
 
 body {
