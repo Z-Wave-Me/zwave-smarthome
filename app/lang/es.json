@@ -358,6 +358,7 @@
     "local_access_not_installed": "No se ha encontrado la configuración del acceso Ethernet local. Actívela añadiendo 'Time zone and access from home network' en 'Apps > local > Time zone and access from home network > +New App'.",
     "local_backup": "Copia de seguridad local",
     "local_icons": "Iconos locales",
+    "local_ip_address": "Gateway ip address",
     "local_skins": "Tapices locales",
     "manage": "Gestionar",
     "management": "Gestión",
