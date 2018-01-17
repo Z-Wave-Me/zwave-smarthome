@@ -106,6 +106,7 @@ var config_data = {
       'tokens': 'ZAutomation/api/v1/modules/tokens',
       'password_reset': 'ZAutomation/api/v1/auth/forgotten',
       'remote_id': 'ZAutomation/api/v1/system/remote-id',
+      'ip_address': 'ZAutomation/api/v1/system/ip-address',
       'firmwareupdate': 'ZAutomation/api/v1/system/webif-access',
       'trust_my_network': 'ZAutomation/api/v1/system/trust-my-network',
       'firstaccess': 'ZAutomation/api/v1/system/first-access',

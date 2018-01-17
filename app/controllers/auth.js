@@ -69,12 +69,15 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('remote_id'),
-            dataFactory.getApi('firstaccess')
+            dataFactory.getApi('firstaccess'),
+            dataFactory.getApi('ip_address')
         ];
 
         $q.allSettled(promises).then(function (response) {
-            var remoteId = response[0];
-            var firstAccess = response[1];
+            var remoteId = response[0],
+                firstAccess = response[1],
+                ipAddress = response[2];
+                
             $scope.loading = false;
             // Error message
             if (firstAccess.state === 'rejected') {
@@ -90,6 +93,11 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             if (firstAccess.state === 'fulfilled') {
                 $scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
                 $scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
+            }
+
+            // Success - IP address
+            if (ipAddress.state === 'fulfilled') {
+                $scope.auth.ipAddress = ipAddress.value.data.data.ip_address;
             }
         });
     };
