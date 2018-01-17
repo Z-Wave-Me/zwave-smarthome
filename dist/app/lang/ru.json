@@ -358,6 +358,7 @@
     "local_access_not_installed": "Local Ethernet Access configuration wasn't found. Please activate it by adding 'Time zone and access from home network' in 'Apps > local > Time zone and access from home network > +New App'.",
     "local_backup": "Локальная резервная копия",
     "local_icons": "Локальные иконки",
+    "local_ip_address": "Gateway ip address",
     "local_skins": "Локальные скины",
     "manage": "Управление",
     "management": "Управление",
