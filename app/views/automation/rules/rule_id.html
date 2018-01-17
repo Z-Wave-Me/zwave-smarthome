@@ -12,13 +12,13 @@
       <fieldset ng-if="!rule.input.params.advanced.activate">
         <div class="tabs-wrap form-inline" bind-class-on-scroll offset="50" scroll-class="fix-me-top">
           <div class="btn-group btn-group-justified btn-goup-tabs">
-            <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.tab.default == 'if'}" ng-click="rule.tab.default = 'if'">
+            <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.tab == 'if'}" ng-click="rule.tab = 'if'">
               {{_t('if')}}
             </a>
-            <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.tab.default == 'then'}" ng-click="rule.tab.default = 'then'">
+            <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.tab == 'then'}" ng-click="rule.tab = 'then'">
               {{_t('then')}}
             </a>
-            <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.tab.default == 'else'}" ng-click="rule.tab.default = 'else'">
+            <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.tab == 'else'}" ng-click="rule.tab = 'else'">
               {{_t('else')}}
             </a>
           </div>
@@ -27,7 +27,7 @@
       </fieldset>
 
       <!-- ////////////////////////////////////////// if  ////////////////////////////////////////// -->
-      <div ng-if="rule.tab.default == 'if'">
+      <div ng-if="rule.tab == 'if'">
         <!-- Assigned -->
         <div ng-if="rule.source.selected.device">
           <legend>{{_t('assigned_devices')}}</legend>
@@ -35,12 +35,12 @@
         </div>
         <!-- Available -->
         <legend>{{_t('lb_available_devices')}}</legend>
-        <fieldset ng-if="rule.tab.default == 'if'" ng-include="'app/views/automation/rules/rule_id_if_available.html'"></fieldset>
+        <fieldset ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_if_available.html'"></fieldset>
       </div>
       <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
-      <div ng-if="rule.tab.default == 'then'">
+      <div ng-if="rule.tab == 'then'">
         <!-- Delay -->
-        <fieldset ng-if="rule.tab.default == 'then'" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
+        <fieldset ng-if="rule.tab == 'then'" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
         <!-- Assigned -->
         <div ng-if="_.size(rule.input.params.targets.elements)">
           <legend>{{_t('assigned_devices')}}</legend>
@@ -51,7 +51,7 @@
         <fieldset ng-include="'app/views/automation/rules/rule_id_then_available.html'"></fieldset>
       </div>
       <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
-      <fieldset ng-if="rule.tab.default == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
+      <fieldset ng-if="rule.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
     </div>
     <!--  ////////////////////////////////////////// advanced  ////////////////////////////////////////// -->
     <div ng-if="rule.input.params.advanced.activate">
@@ -59,13 +59,13 @@
       <fieldset ng-if="rule.input.params.advanced.activate">
         <div class="tabs-wrap form-inline" bind-class-on-scroll offset="50" scroll-class="fix-me-top">
           <div class="btn-group btn-group-justified btn-goup-tabs">
-            <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.tab.advanced == 'if'}" ng-click="rule.tab.advanced = 'if'">
+            <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.advanced.tab == 'if'}" ng-click="rule.advanced.tab = 'if'">
               {{_t('if')}}
             </a>
-            <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.tab.advanced == 'then'}" ng-click="rule.tab.advanced = 'then'">
+            <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.advanced.tab == 'then'}" ng-click="rule.advanced.tab = 'then'">
               {{_t('then')}}
             </a>
-            <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.tab.advanced == 'else'}" ng-click="rule.tab.advanced = 'else'">
+            <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.advanced.tab == 'else'}" ng-click="rule.advanced.tab = 'else'">
               {{_t('else')}}
             </a>
           </div>
@@ -73,17 +73,25 @@
 
       </fieldset>
       <!--  ////////////////////////////////////////// if  ////////////////////////////////////////// -->
-      <div ng-if="rule.tab.advanced == 'if'">
+      <div ng-if="rule.advanced.tab == 'if'">
           <!-- Delay -->
           <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
         </div>
         <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
-      <div ng-if="rule.tab.advanced == 'then'">
+      <div ng-if="rule.advanced.tab == 'then'">
         <!-- Delay -->
         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then.html'"></fieldset>
+        <!-- Assigned -->
+        <div ng-if="_.size(rule.input.params.advanced.action)">
+          <legend>{{_t('assigned_devices')}}</legend>
+          <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_assigned.html'"></fieldset>
+        </div>
+         <!-- Available -->
+         <legend>{{_t('lb_available_devices')}}</legend>
+         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
       </div>
        <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
-      <fieldset ng-if="rule.tab.advanced == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
+      <fieldset ng-if="rule.advanced.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
     </div>
     <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
     <fieldset class="submit-entry">
@@ -97,7 +105,7 @@
       </button>
     </fieldset>
   </form>
-  <pre>{{rule.input.params.advanced|json}}</pre>
+ <!--  <pre>{{rule.input.params.advanced|json}}</pre> -->
   <!-- <pre>{{rule.source.selected|json}}</pre> -->
 </div>
 <!-- /ng-controller -->

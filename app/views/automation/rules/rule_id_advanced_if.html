@@ -1,6 +1,11 @@
 <!-- operator -->
 <div class="form-group">
     <label>
+        <input type="radio" ng-model="rule.input.params.advanced.logicalOperator" value="none">
+        <span>{{_t('none')}}</span>
+      </label>
+  
+    <label>
       <input type="radio" ng-model="rule.input.params.advanced.logicalOperator" value="and">
       <span>{{_t('All conditions must be met (AND)')}}</span>
     </label>

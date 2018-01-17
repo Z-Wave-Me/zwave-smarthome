@@ -1,0 +1,15 @@
+<!-- status -->
+<div class="form-group form-inline">
+
+    <!-- level -->
+    <span ng-if="v.status == 'level'">
+      <input type="number" class="form-control input-number" id="then_level" min="{{rule.cfg.target.switchMultilevel.min}}" max="{{rule.cfg.target.switchMultilevel.max}}"  ng-model="v.level"
+      />
+    </span>
+</div>
+
+  <!-- command -->
+<div class="form-group">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="v.sendAction" ng-checked="v.sendAction" />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>
