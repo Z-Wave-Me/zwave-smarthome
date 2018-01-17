@@ -20,6 +20,12 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
         active: false,
         alert: {message: false}
     };
+
+    $scope.zigbee = {
+        installed: false,
+        active: false,
+        alert: {message: false}
+    };
      /**
      * Load ext. Peripherals modules (EnOcean, Rf433)
      */
@@ -43,6 +49,16 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
                     return;
                 }
                 $scope.rf433.active = true;
+            }
+
+            var ZigBee_module = _.findWhere(response.data.data,{moduleId:'ZigbeeGateway'});
+            if(ZigBee_module){
+                $scope.zigbee.installed = true;
+                if (!ZigBee_module.active) {
+                    $scope.zigbee.alert = {message: $scope._t('zigbee_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    return;
+                }
+                $scope.zigbee.active = true;
             }
 
         });
