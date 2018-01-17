@@ -13689,6 +13689,12 @@ fieldset.submit-entry {
   width: 100%;
 }
 
+/* line 21, E:/GitHub/zwave-smarthome/app/sass/base/_img.scss */
+.img-wrap {
+  text-align: center;
+  display: inline-block;
+}
+
 /* Image list
 -------------------------------------------------- */
 /* line 4, E:/GitHub/zwave-smarthome/app/sass/base/_imglist.scss */
@@ -14686,7 +14692,12 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #737373;
 }
 
-/* line 110, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 111, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+.appmodal-body .rss-description ul {
+  list-style-position: inside;
+}
+
+/* line 118, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 .appmodal-footer {
   border-top: solid 1px #cccccc;
   text-align: right;
@@ -14694,21 +14705,21 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal with knob
 -------------------------------------------------- */
-/* line 117, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 125, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 .app-row-knob {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 117, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+  /* line 125, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
   .app-row-knob {
     display: table;
     width: 100%;
   }
 }
 
-/* line 123, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 131, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 .app-row-knob .knob-col {
   padding: 10px;
   /* MIN WIDTH */
@@ -14716,7 +14727,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 123, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+  /* line 131, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
   .app-row-knob .knob-col {
     display: table-cell;
     vertical-align: middle;
@@ -14725,27 +14736,32 @@ http://codepen.io/MattIn4D/pen/LiKFC
   }
 }
 
-/* line 134, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 142, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 .app-row-knob .knob-ctrl {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 134, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+  /* line 142, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
   .app-row-knob .knob-ctrl {
     text-align: right;
   }
 }
 
-/* line 139, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 147, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 .app-row-knob .knob-btn {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
+/* line 148, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+.app-row-knob .knob-btn p {
+  margin: 0 0 10px;
+}
+
 @media only screen and (min-width: 768px) {
-  /* line 139, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+  /* line 147, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
   .app-row-knob .knob-btn {
     text-align: left;
   }
@@ -14753,7 +14769,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Confirm content
 -------------------------------------------------- */
-/* line 149, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 159, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 .app-confirm-content {
   padding: 10px;
   border: solid 1px #cccccc;
@@ -14764,7 +14780,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal James Box
 -------------------------------------------------- */
-/* line 159, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 169, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 #jamesBoxUpdateModal #updateTimeout {
   text-align: center;
   font-weight: bold;
@@ -14772,19 +14788,19 @@ http://codepen.io/MattIn4D/pen/LiKFC
   font-size: 16px;
 }
 
-/* line 166, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 176, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 #jamesBoxUpdateModal ol {
   margin: 15px 0;
 }
 
-/* line 170, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 180, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 #jamesBoxUpdateModal li.jamesboxUpdateInfoList {
   margin: 0 0 5px 0;
 }
 
 /* Modal element event
 -------------------------------------------------- */
-/* line 177, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 187, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 #modalEvent .appmodal-body {
   height: auto;
   max-height: 500px;
@@ -14793,7 +14809,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal with scroll
 -------------------------------------------------- */
-/* line 188, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
+/* line 198, E:/GitHub/zwave-smarthome/app/sass/base/_modal.scss */
 .modal-h-700 .appmodal-body {
   height: auto;
   max-height: 700px;

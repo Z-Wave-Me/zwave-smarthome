@@ -45,6 +45,11 @@ Create/Update a profile
 Change password
 
 
+### MySettingsController.addQRCode() 
+
+Add Qrcode
+
+
 ### MySettingsController.loadDevices() 
 
 Load devices
