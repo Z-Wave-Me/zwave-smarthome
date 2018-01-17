@@ -358,6 +358,7 @@
     "local_access_not_installed": "La configurazione per l'accesso Ethernet locale non è stato trovato. Attivalo aggiungendo 'Fuso orario e accesso da rete di casa' in 'Applicazioni > Locali > Fuso Orario e accesso da rete di casa > +Nuova App'.",
     "local_backup": "Backup Locale",
     "local_icons": "Icone Locali",
+    "local_ip_address": "Gateway ip address",
     "local_skins": "Skin Locali",
     "manage": "Gestisci",
     "management": "Gestione",

@@ -358,6 +358,7 @@
     "local_access_not_installed": "Die Konfiguration für den Ethernet-Zugang konnte nicht gefunden werden. Bitte aktivieren sie diese durch hinzufügen der App 'Zeitzone und Ethernet-Zugang' unter 'Anwendungen > Lokal > Zeitzone und Ethernet-Zugang > +Neue App'.",
     "local_backup": "Datensicherung",
     "local_icons": "Icons Lokal",
+    "local_ip_address": "Gateway IP-Adresse",
     "local_skins": "Skins Lokal",
     "manage": "Verwalten",
     "management": "Management",
