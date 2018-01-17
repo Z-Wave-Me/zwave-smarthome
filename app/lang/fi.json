@@ -358,6 +358,7 @@
     "local_access_not_installed": "Paikallista Ethernetiä koskevia asetuksia ei löydy. Aktivoi se lisäämällä 'Time zone and access from home network' valikosta 'Sovellukset > Paikalliset > Time zone and access from home network > +Uusi sovellus'.",
     "local_backup": "Paikallinen varmuuskopio",
     "local_icons": "Paikalliset kuvakkeet",
+    "local_ip_address": "Gateway ip address",
     "local_skins": "Paikalliset skinit",
     "manage": "Hallitse",
     "management": "Hallinta",
