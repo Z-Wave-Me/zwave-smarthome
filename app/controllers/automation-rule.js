@@ -179,7 +179,9 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         devicesInRoom: [],
         availableDevices: [],
         assignedDevices: [],
+        eventSourceDevices:[],
       },
+      
       cfg:{
        target:{
         switchBinary: {
@@ -316,6 +318,14 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       var whiteListTarget = _.keys($scope.rule.cfg.target);
       var whiteListAdvancedTarget = _.keys($scope.rule.advanced.cfg.target);
       var devices = dataService.getDevicesData(response.data.data.devices);
+
+      // Set advanced event source devices
+      $scope.rule.advanced.target.eventSourceDevices = devices.filter(function (v) {
+       return v.deviceType == 'toggleButton';
+     })
+     .indexBy('id')
+     .value();
+
       // Set source devices
       $scope.rule.source.devices = devices.filter(function (v) {
         return whiteListSource.indexOf(v.deviceType) > -1;
@@ -367,6 +377,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
        $scope.rule.advanced.target.devicesInRoom = _.countBy($scope.rule.advanced.target.availableDevices, function (v) {
         return v.location;
       });
+
     }, function (error) {});
   };
   //$scope.loadDevices();
@@ -374,10 +385,9 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
   // ctrl watch ?
   $scope.$watch('rule.source.selected.device', function(newVal, oldVal) {
     $scope.loadDevices();
-    if(newVal !== oldVal) {
-      console.log(newVal, oldVal)
-      //$scope.loadDevices();
-    }
+    /* if(newVal !== oldVal) {
+      console.log(newVal, oldVal);
+    } */
   });
 
 
@@ -523,6 +533,29 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
     if (targetIndex > -1) {
       $scope.rule.input.params.advanced.action[targetType].splice(targetIndex, 1);
       $scope.rule.advanced.target.assignedDevices.splice(deviceIndex, 1);
+    }
+
+  };
+
+  /**
+   * Assign device ID to the advanced event source
+   * @param {string} deviceId
+   * @returns {undefined}
+   */
+  $scope.assignAdvancedEventSource = function (deviceId) {
+    $scope.rule.input.params.advanced.eventSource.push(deviceId);
+   
+  };
+
+  /**
+   * Remove device id from advanced event source
+   * @param {string} deviceId
+   * @returns {undefined}
+   */
+  $scope.unassignAdvancedEventSource = function (deviceId) {
+    var deviceIndex = $scope.rule.input.params.advanced.eventSource.indexOf(deviceId);
+    if (deviceIndex > -1) {
+       $scope.rule.input.params.advanced.eventSource.splice(deviceIndex, 1);
     }
 
   };

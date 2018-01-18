@@ -74,10 +74,10 @@
       </fieldset>
       <!--  ////////////////////////////////////////// if  ////////////////////////////////////////// -->
       <div ng-if="rule.advanced.tab == 'if'">
-          <!-- Delay -->
-          <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
-        </div>
-        <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
+        <!-- Delay -->
+        <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
+      </div>
+      <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
       <div ng-if="rule.advanced.tab == 'then'">
         <!-- Delay -->
         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then.html'"></fieldset>
@@ -86,16 +86,19 @@
           <legend>{{_t('assigned_devices')}}</legend>
           <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_assigned.html'"></fieldset>
         </div>
-         <!-- Available -->
-         <legend>{{_t('lb_available_devices')}}</legend>
-         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
-          <!-- Expert settings -->
-          <legend>
-              <label for="advanced_activate"></label><input type="checkbox" ng-model="rule.input.params.advanced.expertSettings" ng-checked="rule.input.params.advanced.expertSettings" /> {{_t('further settings')}}</label>
-            </legend>
-          <fieldset ng-if="rule.input.params.advanced.expertSettings" ng-include="'app/views/automation/rules/rule_id_advanced_then_expert.html'"></fieldset>
-      </div>
-       <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
+        <!-- Available -->
+        <legend>{{_t('lb_available_devices')}}</legend>
+        <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
+        <!-- Expert settings -->
+        <legend>
+          <label class="switch">
+            <input type="checkbox" ng-model="rule.input.params.advanced.expertSettings" ng-checked="rule.input.params.advanced.expertSettings">
+            <span class="slider"></span>
+          </label>
+          <span class="switch-label">{{_t('further settings')}}</span>
+        </legend>
+        <div ng-if="rule.input.params.advanced.expertSettings" ng-include="'app/views/automation/rules/rule_id_advanced_then_expert.html'"></div>
+      <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
       <fieldset ng-if="rule.advanced.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
     </div>
     <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->

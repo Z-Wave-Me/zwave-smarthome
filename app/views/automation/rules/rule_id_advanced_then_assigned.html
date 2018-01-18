@@ -1,4 +1,3 @@
-<pre>{{rule.input.params.advanced.action|json}}</pre>
 <!-- switches -->
 <div class="automation-report app-row-report clearfix" ng-repeat="(k,v) in rule.input.params.advanced.action.switches track by $index">
   <div class="report-entry">
@@ -6,7 +5,7 @@
         <span class="clickable" ng-click="expandElement('advanced_target_' + v.device)">
            {{rule.advanced.target.availableDevices[v.device].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em> 
         </span>
-        <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_switchBinary.html'"></div>
+        <div class="form-collapsed" ng-if="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_switchBinary.html'"></div>
     </div>
     <div class="report-col report-ctrl">
         <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.device)">
@@ -26,7 +25,7 @@
         <span class="clickable" ng-click="expandElement('advanced_target_' + v.device)">
            {{rule.advanced.target.availableDevices[v.device].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em> 
         </span>
-        <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_switchMultilevel.html'"></div>
+        <div class="form-collapsed" ng-if="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_switchMultilevel.html'"></div>
     </div>
     <div class="report-col report-ctrl">
         <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.device)">
@@ -46,7 +45,7 @@
         <span class="clickable" ng-click="expandElement('advanced_target_' + v.device)">
            {{rule.advanced.target.availableDevices[v.device].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em> 
         </span>
-        <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_thermostat.html'"></div>
+        <div class="form-collapsed" ng-if="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_thermostat.html'"></div>
     </div>
     <div class="report-col report-ctrl">
         <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.device)">
@@ -66,7 +65,7 @@
         <span class="clickable" ng-click="expandElement('advanced_target_' + v.device)">
            {{rule.advanced.target.availableDevices[v.device].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em> 
         </span>
-        <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_doorlock.html'"></div>
+        <div class="form-collapsed" ng-if="expand['advanced_target_' + v.device]" ng-include="'app/views/automation/rules/rule_id_advanced_then_doorlock.html'"></div>
     </div>
     <div class="report-col report-ctrl">
         <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.device)">
@@ -86,7 +85,7 @@
       <span class="clickable" ng-click="expandElement('advanced_target_' + v.target)">
          {{rule.advanced.target.availableDevices[v.target].metrics.title}} - <em>{{rule.rooms[rule.advanced.target.availableDevices[v.target].location].title}}</em> 
       </span>
-      <div class="form-collapsed" ng-if_="expand['advanced_target_' + v.target]" ng-include="'app/views/automation/rules/rule_id_advanced_then_notification.html'"></div>
+      <div class="form-collapsed" ng-if="expand['advanced_target_' + v.target]" ng-include="'app/views/automation/rules/rule_id_advanced_then_notification.html'"></div>
   </div>
   <div class="report-col report-ctrl">
       <button type="button" class="btn btn-default" ng-click="expandElement('advanced_target_' + v.target)">

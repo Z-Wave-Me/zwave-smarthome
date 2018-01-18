@@ -68,9 +68,6 @@
                 line-height: 40px;
                 position: absolute;
                 margin-left: 10px;
-                @include mediaQueries(min-small) {
-                    line-height: 34px;
-                }
             }
 
             a{
