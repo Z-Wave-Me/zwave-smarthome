@@ -74,9 +74,15 @@
       </fieldset>
       <!--  ////////////////////////////////////////// if  ////////////////////////////////////////// -->
       <div ng-if="rule.advanced.tab == 'if'">
-        <!-- Delay -->
+        <!-- Operator -->
         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
-      </div>
+        <!-- Assigned -->
+            <legend>{{_t('Assigned conditions')}}</legend>
+            <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_assigned.html'"></fieldset>
+          </div>
+          <!-- Available -->
+          <legend>{{_t('Available conditions')}}</legend>
+          <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
       <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
       <div ng-if="rule.advanced.tab == 'then'">
         <!-- Delay -->
