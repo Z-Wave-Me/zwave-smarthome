@@ -1,0 +1,10 @@
+<div class="form-group form-inline">
+   <!-- device -->
+   <label>{{testModel.device}}</label>
+  <!-- operator -->
+  <select class="form-control" ng-model="testModel.testOperator">
+    <option value="{{v}}" ng-repeat="v in rule.advanced.cfg.tests.multilevel.testOperator" ng-selected="testModel.testOperator == v">{{v}}</option>
+  </select>
+  <!-- value -->
+  <input type="number" class="form-control input-number" min="{{rule.advanced.cfg.tests.multilevel.min}}" max="{{rule.advanced.cfg.tests.multilevel.max}}"  ng-model="testModel.testValue" />
+</div>

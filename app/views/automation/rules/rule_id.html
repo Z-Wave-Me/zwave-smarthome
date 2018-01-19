@@ -79,10 +79,11 @@
         <!-- Assigned -->
             <legend>{{_t('Assigned conditions')}}</legend>
             <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_assigned.html'"></fieldset>
-          </div>
+         
           <!-- Available -->
           <legend>{{_t('Available conditions')}}</legend>
           <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
+        </div>
       <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
       <div ng-if="rule.advanced.tab == 'then'">
         <!-- Delay -->

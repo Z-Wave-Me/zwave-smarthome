@@ -186,7 +186,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         tests:{
           binary:{
            testName: 'testBinary',
-            testValue: ['off', 'on', 'upstart', 'upstop', 'downstart', 'downstop'],
+            testValue: ['off', 'on'],
             default:{
               testType: 'binary',
               testBinary: {
@@ -198,6 +198,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           multilevel:{
            testName: 'testMultilevel',
             testOperator:  ['=', '!=', '>', '>=', '<', '<='],
+            min: 0,
+            max: 99,
             default:{
               testType: 'multilevel',
               testMultilevel: {
@@ -234,7 +236,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
             default:{
               testType: 'time',
               testTime: {
-                testOperator: '<',
+                testOperator: '>=',
                 testValue: '00:00'
               }
             }
@@ -298,7 +300,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         },
         advanced: {
           activate: false,
-          logicalOperator: 'none',
+          logicalOperator: 'and',
           delay: {
             eventstart: 0
           },
@@ -330,11 +332,14 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       var instance = instances.data.data;
       var assignedTargetDevices = $scope.rule.target.assignedDevices;
       // Set input data
+      instance.params.advanced.tests = _.sortBy(instance.params.advanced.tests, 'testType');
       angular.extend($scope.rule.input, {
         title: instance.title,
         active: instance.active,
         params: instance.params
       });
+      console.log(instance.params.advanced.tests)
+      console.log(_.sortBy(instance.params.advanced.tests, 'testType'))
       // Set source device
       var filterIf = instance.params.sourceDevice.filterIf;
       if (filterIf) {
@@ -570,21 +575,19 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * @returns {undefined}
    */
   $scope.assignAdvancedTest = function (test) {
-    //console.log(test.default)
+    var index = _.size($scope.rule.input.params.advanced.tests);
     $scope.rule.input.params.advanced.tests.push(test.default);
+    $scope.expandElement('test_' + index);
    
   };
 
   /**
    * Remove advanced condition
-   * @param {object} deviceId
+   * @param {object} index
    * @returns {undefined}
    */
-  $scope.unassignAdvancedTest = function (deviceId) {
-    var deviceIndex = $scope.rule.input.params.advanced.eventSource.indexOf(deviceId);
-    if (deviceIndex > -1) {
-       $scope.rule.input.params.advanced.eventSource.splice(deviceIndex, 1);
-    }
+  $scope.unassignAdvancedTest = function (index) {
+    $scope.rule.input.params.advanced.tests.splice(index, 1);
 
   };
 

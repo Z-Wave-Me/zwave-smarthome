@@ -1,0 +1,8 @@
+<div class="form-group form-inline">
+   <!-- device -->
+   <label>{{testModel.device}}</label>
+    <!-- value -->
+    <select class="form-control" ng-model="testModel.testValue">
+      <option value="{{v}}" ng-repeat="v in rule.advanced.cfg.tests.remote.testValue" ng-selected="testModel.testValue == v">{{v}}</option>
+    </select>
+  </div>
