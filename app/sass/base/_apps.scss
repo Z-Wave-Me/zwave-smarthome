@@ -43,7 +43,9 @@
 
 .app-detail-img {
     margin: 0 0 $spacing 0; // Media queries
+    text-align: center;
     @include mediaQueries(min-small) {
+        text-align: left;
         @include appFloat(left);
         width: 128px + $spacing-double;
     }
@@ -64,7 +66,17 @@
         margin: 0 0 0 128px + $spacing-double;
     }
     h2 {
+        text-align: center;
         margin: $spacing-double 0 $spacing 0;
+        @include mediaQueries(min-small) {
+            text-align: left;
+        }
+    }
+
+    .app-detail-perex {
+        ul,ol {
+            list-style-position: inside;
+        }
     }
 }
 
