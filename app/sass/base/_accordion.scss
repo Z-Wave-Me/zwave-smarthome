@@ -33,3 +33,10 @@ $accordion-heading-color: $app-heading-color;
         padding:0;
     }
 }
+
+.accordion-entry-ctrl {
+    p {
+        margin: $spacing-half;
+        padding: $spacing;      
+    }
+}
