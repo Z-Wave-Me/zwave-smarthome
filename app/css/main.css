@@ -15928,12 +15928,17 @@ img.widget-promo-image {
   }
 }
 
-/* line 77, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
+/* line 76, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
+.app-detail-body .app-detail-perex {
+  text-align: justify;
+}
+
+/* line 78, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
 .app-detail-body .app-detail-perex ul, .app-detail-body .app-detail-perex ol {
   list-style-position: inside;
 }
 
-/* line 83, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
+/* line 84, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
 .app-detail-list {
   border-top: solid 1px #cccccc;
   margin: 10px 0 0 0;
@@ -15942,21 +15947,21 @@ img.widget-promo-image {
 
 /* Apps rating
 -------------------------------------------------- */
-/* line 93, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
+/* line 94, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
 .module-rating {
   font-size: 150%;
   padding: 0 10px 0 0;
   color: #0d0d0d;
 }
 
-/* line 97, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
+/* line 98, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
 .module-rating.israted {
   color: #f4c37d;
 }
 
 /* Apps comments
 -------------------------------------------------- */
-/* line 106, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
+/* line 107, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
 .comment-entry {
   margin: 0 0 10px 0;
   padding: 10px;
@@ -15965,7 +15970,7 @@ img.widget-promo-image {
   font-size: 100%;
 }
 
-/* line 112, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
+/* line 113, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
 .comment-entry .comment-header {
   font-style: italic;
   font-size: 95%;
@@ -15973,7 +15978,7 @@ img.widget-promo-image {
   margin: 0 0 5px 0;
 }
 
-/* line 121, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
+/* line 122, E:/GitHub/zwave-smarthome/app/sass/base/_apps.scss */
 .comment-entry.even {
   background-color: #E9E9E9;
 }
