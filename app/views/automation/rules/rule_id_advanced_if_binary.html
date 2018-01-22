@@ -1,6 +1,7 @@
+<div class="alert alert-warning" ng-if="!testModel.device">{{_t('select_device')}}</div>
 <div class="form-group form-inline" ng-if="testModel.device">
   <!-- device -->
-  <label>{{testModel.device}}</label>
+ <!--  <label>{{rule.namespaces[testModel.device].deviceName}}</label> -->
   <!-- value -->
   <label class="switch">
     <input type="checkbox" ng-model="testModel.testValue" ng-false-value="off" ng-true-value="on">
@@ -10,10 +11,10 @@
     {{testModel.testValue | uppercase}}
   </span>
 </div>
- <!-- available device -->
+ <!-- available devices -->
 <div class="form-group form-inline">
     <h3>{{_t('lb_available_devices')}}</h3>
-  <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in rule.advanced.target.eventSourceDevices track by $index" ng-click="testModel.device = d.id" ng-hide="d.id == testModel.device">{{d.metrics.title|cutText:true:20}}
+  <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in rule.namespaces track by $index" ng-click="testModel.device = d.deviceId" ng-if="rule.advanced.cfg.tests.binary.deviceTypes.indexOf(d.deviceType) > - 1" ng-hide="d.deviceId == testModel.device">{{d.deviceName|cutText:true:20}}
     <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
   </a>
 </div>

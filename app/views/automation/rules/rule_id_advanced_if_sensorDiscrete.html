@@ -1,16 +1,17 @@
+<div class="alert alert-warning" ng-if="!testModel.device">{{_t('select_device')}}</div>
 <div class="form-group form-inline" ng-if="testModel.device">
-  <!-- device -->
-  <label>{{testModel.device}}</label>  
+   <!-- device -->
+  <!-- <label>{{rule.namespaces[testModel.device].deviceName}}</label> -->
   <!-- value -->
    <input type="number" class="form-control input-number" min="10" max="99"  ng-model="testModel.testValue" />
      <!-- help -->
    <bb-help-text trans="_t('The action is described with a two-digit value: The first digit is the button number, the second digit points to the action of this button (0=short press, 1=release, 2=hold, 3=short press two times, 4 = short press three times, and so on. Examples: Double Click button 2 => 23, Single Click button 1 = 10)')"></bb-help-text>
  </div>
 
- <!-- available device -->
+  <!-- available devices -->
 <div class="form-group form-inline">
     <h3>{{_t('lb_available_devices')}}</h3>
-  <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in rule.advanced.target.eventSourceDevices track by $index" ng-click="testModel.device = d.id" ng-hide="d.id == testModel.device">{{d.metrics.title|cutText:true:20}}
+  <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in rule.namespaces track by $index" ng-click="testModel.device = d.deviceId" ng-if="rule.advanced.cfg.tests.sensorDiscrete.deviceTypes.indexOf(d.deviceType) > - 1" ng-hide="d.deviceId == testModel.device">{{d.deviceName|cutText:true:20}}
     <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
   </a>
-</div>
+  </div>

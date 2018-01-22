@@ -1,1 +1,41 @@
-nested form
+<!-- operator -->
+<div class="form-group">
+  Add a new nested condition - like in logical notation: A AND B AND (C OR D). The additional nested condition is (C OR D).
+  An action is only triggered if the conditions A and B and either the condition C or D are met together. Example: If outside
+  the light sensor A > 80% and the temperature sensor B > 26°C and (time
+  < 12:00 am or time> 02:00 pm) then the jalousie in the living room is set to 50%.
+</div>
+<!-- operator -->
+<div class="form-group">
+  <label class="switch">
+    <input type="checkbox" ng-model="testModel.logicalOperator" ng-true-value="or" ng-false-value="and">
+    <span class="slider"></span>
+  </label>
+  <span class="switch-label">
+    {{testModel.logicalOperator| uppercase}}
+    <em ng-if="testModel.logicalOperator == 'and'">({{_t('All conditions must be met')}})</em>
+    <em ng-if="testModel.logicalOperator == 'or'">({{_t('At least one condition is fulfilled')}})</em>
+  </span>
+  <bb-help-text trans="_t('This option links all conditions in the list to a logical OR or AND. With OR, the action is executed if at least one condition applies. With AND, the action is only executed if all conditions apply.')"></bb-help-text>
+</div>
+<!-- assigned -->
+
+<div class="" ng-repeat="n in d.testNested.tests track by $index" ng-init="testModel=n[rule.advanced.cfg.tests[n.testType].testName]">
+  <!-- <pre>{{nestedModel|json}}</pre> -->
+  <div class="clickable" ng-click="expandElement('testNested_' + testIndex + $index)">
+    <span>{{rule.namespaces[testModel.device].deviceName}} </span>
+    <strong ng-if="testModel.testValue">({{testModel.testValue}}) </strong>
+    <em>{{n.testType}}</em>
+  </div>
+  <div class="form-collapsed" ng-if="expand['testNested_' + testIndex + $index]" ng-include="'app/views/automation/rules/rule_id_advanced_if_'+ n.testType +'.html'"></div>
+</div>
+
+<!-- available -->
+<div class="form-group">
+
+  <a href="" class="btn btn-default btn-tag" title="{{v.testName}}" ng-repeat="v in rule.advanced.cfg.tests track by $index"
+    ng-click="assignAdvancedNestedTest(testIndex,v)" ng-if="v.testName != 'testNested'">{{v.testName}}
+    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+  </a>
+</div>
+<pre>{{d|json}}</pre>
