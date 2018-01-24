@@ -498,3 +498,35 @@ myApp.directive('bbDskNavigate', function () {
     };
 });
 
+/**
+ * Toggle accordion
+ */
+myApp.directive('bbAccordion', function () {
+  return{
+      restrict: 'A',
+      link: function (scope, elem, attrs) {
+              elem.on('click', function (e) {
+                elem.attr('aria-expanded', function(_, attr){ 
+                  return attr == 'true' ? false : true;
+                });
+                elem.parent().next().attr('hidden', function(_, attr){ return !attr});
+                return false;
+              });
+      }
+  };
+});
+
+/**
+ * Remove attributte
+ */
+myApp.directive('bbRemoveAttr', function () {
+  return{
+      restrict: 'A',
+      link: function (scope, elem, attrs) {
+       if(attrs.bbRemoveAttr){
+          elem.removeAttr(attrs.bbRemoveAttr);
+        }
+      }
+  };
+});
+

@@ -1,5 +1,41 @@
 /* Automation
 -------------------------------------------------- */
+.automation{
+  .accordion-wrap{
+    position: relative;
+    .label{
+      position: absolute;
+      top: -$spacing;
+      left: 0;
+    }
+  .accordion-toggle{
+    display: flex;
+    align-items: center;
+  
+    &:last-child{
+      margin-bottom: $spacing;
+    }
+    
+  }
+  .accordion{
+    padding: $spacing;
+    background-color: #F6F6F6;
+    border-bottom: 0;
+    .form-group{
+      border: 0;
+      margin-bottom: $spacing;
+      padding: 0;
+    }
+    &:last-child{
+      margin-bottom: 0;
+    }
+    .accordion{
+     // background-color: lighten(#F6F6F6,10%);
+      border: solid 1px darken(#F6F6F6,20%)
+    }
+  }
+}
+}
 .automation-report{
     //margin-bottom: $spacing-double;
     //padding: 0 $spacing-double;

@@ -20,14 +20,40 @@
 </div>
 <!-- assigned -->
 
-<div class="" ng-repeat="n in d.testNested.tests track by $index" ng-init="testModel=n[rule.advanced.cfg.tests[n.testType].testName]">
-  <!-- <pre>{{nestedModel|json}}</pre> -->
-  <div class="clickable" ng-click="expandElement('testNested_' + testIndex + $index)">
-    <span>{{rule.namespaces[testModel.device].deviceName}} </span>
-    <strong ng-if="testModel.testValue">({{testModel.testValue}}) </strong>
-    <em>{{n.testType}}</em>
-  </div>
-  <div class="form-collapsed" ng-if="expand['testNested_' + testIndex + $index]" ng-include="'app/views/automation/rules/rule_id_advanced_if_'+ n.testType +'.html'"></div>
+<div class="accordion-wrap" ng-repeat="n in d.testNested.tests track by $index" ng-init="testModel=n[rule.advanced.cfg.tests[n.testType].testName]">
+  <!-- Operator -->
+  <span class="label label-default" ng-hide_="testIndex == 0">{{testModel.logicalOperator| uppercase}}</span>
+    <h2 class="accordion-toggle chevron">
+        <!-- Deleted device -->
+    <span class="text-danger" ng-show="testModel.device && !rule.namespaces[testModel.device]">
+        <i class="fa fa-exclamation-circle"></i> {{testModel.device}} {{_t('device_removed')}}
+      </span>
+
+       <!-- Title -->
+    <button type="button" aria-expanded="{{expand['testNested_' + testIndex + $index]||false}}" bb-accordion ng-hide="testModel.device && !rule.namespaces[testModel.device]">
+      <span>{{rule.namespaces[testModel.device].deviceName}}
+          <strong ng-if="testModel.testValue">({{testModel.testValue}}) </strong>
+          <em>{{d.testType}}</em>
+      </span>
+  
+      </button>
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedNestedTest(testIndex,$index)">
+          <i class="fa fa-times text-danger"></i>
+          </span>
+    </h2>
+   <!-- Content -->
+   <div  class="accordion" bb-remove-attr="{{expand['testNested_' + testIndex + $index] ? 'hidden': ''}}" ng-include="'app/views/automation/rules/rule_id_advanced_if_'+ n.testType +'.html'" hidden></div>
+  
+  <!-- <span>
+    <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-hide="testModel.device && !rule.namespaces[testModel.device]"
+        ng-click="expandElement('testNested_' + testIndex + $index)">
+        <i class="fa" ng-class="expand['testNested_' + testIndex + $index] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
+      </button>
+      <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedNestedTest(testIndex,$index)">
+        <i class="fa fa-times text-danger"></i>
+      </button>
+    </span> -->
+ 
 </div>
 
 <!-- available -->
@@ -38,4 +64,4 @@
     <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
   </a>
 </div>
-<pre>{{d|json}}</pre>
+<!-- <pre>{{d|json}}</pre> -->

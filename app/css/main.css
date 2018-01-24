@@ -13903,15 +13903,69 @@ fieldset section, .fieldset section {
 /* Accordion
 -------------------------------------------------- */
 /* Variables */
-/* Style */
-/* line 12, ../sass/base/_accordion.scss */
+/* NEW version
+-------------------------------------------------- */
+/* line 19, ../sass/base/_accordion.scss */
+.accordion-toggle > button {
+  all: inherit;
+  border: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-weight: normal;
+  cursor: pointer;
+}
+/* line 28, ../sass/base/_accordion.scss */
+.accordion-toggle > button::after {
+  margin-left: 10px;
+  padding: 10px;
+  font-size: 130%;
+}
+/* line 33, ../sass/base/_accordion.scss */
+.accordion-toggle > button[aria-expanded="false"] {
+  border-bottom: solid 1px #cccccc;
+}
+/* line 35, ../sass/base/_accordion.scss */
+.accordion-toggle > button[aria-expanded="false"]::after {
+  content: "+";
+}
+/* line 40, ../sass/base/_accordion.scss */
+.accordion-toggle > button[aria-expanded="true"]::after {
+  content: "-";
+}
+/* line 46, ../sass/base/_accordion.scss */
+.accordion-toggle > button:focus::after {
+  font-weight: bold;
+  color: #5bc0de;
+}
+/* line 56, ../sass/base/_accordion.scss */
+.accordion-toggle.chevron > button[aria-expanded="false"]::after {
+  font-family: fontawesome;
+  content: "\f078";
+}
+/* line 62, ../sass/base/_accordion.scss */
+.accordion-toggle.chevron > button[aria-expanded="true"]::after {
+  font-family: fontawesome;
+  content: "\f077";
+}
+
+/* line 70, ../sass/base/_accordion.scss */
+.accordion {
+  border-bottom: solid 1px #cccccc;
+  padding-bottom: 10px;
+}
+
+/* Old version
+-------------------------------------------------- */
+/* line 77, ../sass/base/_accordion.scss */
 .accordion-entry {
   margin-bottom: 10px;
   border-bottom: dotted 1px #cccccc;
   color: #333333;
 }
 
-/* line 17, ../sass/base/_accordion.scss */
+/* line 82, ../sass/base/_accordion.scss */
 .accordion-entry-title {
   font-size: 120%;
   position: relative;
@@ -13920,13 +13974,13 @@ fieldset section, .fieldset section {
   color: #737373;
   cursor: pointer;
 }
-/* line 24, ../sass/base/_accordion.scss */
+/* line 89, ../sass/base/_accordion.scss */
 .accordion-entry-title .fa {
   color: #666666;
   padding-right: 10px;
   font-size: 120%;
 }
-/* line 29, ../sass/base/_accordion.scss */
+/* line 94, ../sass/base/_accordion.scss */
 .accordion-entry-title .accordion-arrow {
   position: absolute;
   right: 1%;
@@ -17675,30 +17729,70 @@ img.widget-promo-image {
 */
 /* Automation
 -------------------------------------------------- */
+/* line 4, ../sass/base/_automation.scss */
+.automation .accordion-wrap {
+  position: relative;
+}
 /* line 6, ../sass/base/_automation.scss */
+.automation .accordion-wrap .label {
+  position: absolute;
+  top: -10px;
+  left: 0;
+}
+/* line 11, ../sass/base/_automation.scss */
+.automation .accordion-wrap .accordion-toggle {
+  display: flex;
+  align-items: center;
+}
+/* line 15, ../sass/base/_automation.scss */
+.automation .accordion-wrap .accordion-toggle:last-child {
+  margin-bottom: 10px;
+}
+/* line 20, ../sass/base/_automation.scss */
+.automation .accordion-wrap .accordion {
+  padding: 10px;
+  background-color: #F6F6F6;
+  border-bottom: 0;
+}
+/* line 24, ../sass/base/_automation.scss */
+.automation .accordion-wrap .accordion .form-group {
+  border: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+/* line 29, ../sass/base/_automation.scss */
+.automation .accordion-wrap .accordion:last-child {
+  margin-bottom: 0;
+}
+/* line 32, ../sass/base/_automation.scss */
+.automation .accordion-wrap .accordion .accordion {
+  border: solid 1px #c3c3c3;
+}
+
+/* line 42, ../sass/base/_automation.scss */
 .automation-report.app-row-report {
   border: 0;
 }
-/* line 10, ../sass/base/_automation.scss */
+/* line 46, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry .report-col {
   border-bottom: dotted 1px #cccccc;
   vertical-align: top;
 }
-/* line 17, ../sass/base/_automation.scss */
+/* line 53, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry .report-ctrl {
   min-width: 50%;
 }
-/* line 20, ../sass/base/_automation.scss */
+/* line 56, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry input[type=radio] {
   margin: 0 5px 0;
 }
-/* line 25, ../sass/base/_automation.scss */
+/* line 61, ../sass/base/_automation.scss */
 .automation-report.app-row-report .form-collapsed {
   background-color: #F6F6F6;
   padding: 10px;
   margin-top: 10px;
 }
-/* line 31, ../sass/base/_automation.scss */
+/* line 67, ../sass/base/_automation.scss */
 .automation-report.app-row-report .form-collapsed .form-group:last-child {
   border: 0;
   margin: 0;
@@ -17707,12 +17801,12 @@ img.widget-promo-image {
 
 /* Schedules
 -------------------------------------------------- */
-/* line 45, ../sass/base/_automation.scss */
+/* line 81, ../sass/base/_automation.scss */
 .table-calendar .first-col {
   width: 80px;
   background-color: #d9edf7;
 }
-/* line 49, ../sass/base/_automation.scss */
+/* line 85, ../sass/base/_automation.scss */
 .table-calendar th {
   text-align: center;
 }

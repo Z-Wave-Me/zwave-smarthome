@@ -622,13 +622,21 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
     if(!_.isArray(nested)){
       return
     }
-    //console.log($scope.rule.input.params.advanced.tests[testIndex].testNested.tests)
-    //console.log(test)
+    var index = _.size($scope.rule.input.params.advanced.tests[testIndex].testNested.tests);
     $scope.rule.input.params.advanced.tests[testIndex].testNested.tests.push(test.default);
-    //var index = _.size($scope.rule.input.params.advanced.tests);
-    //$scope.rule.input.params.advanced.tests.push(test.default);
-    //$scope.expandElement('test_' + index);
+    $scope.expandElement('testNested_' + testIndex + index);
    
+  };
+
+  /**
+   * Remove advanced nested condition
+   * @param {int} testIndex
+   * @param {int} index
+   * @returns {undefined}
+   */
+  $scope.unassignAdvancedNestedTest = function (testIndex,index) {
+    $scope.rule.input.params.advanced.tests[testIndex].testNested.tests.splice(index, 1);
+
   };
 
   
@@ -653,6 +661,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
     if(status){
       action['status'] = status;
     }
+   
     $scope.rule.input.params.advanced.action[actionType].push(action);
     $scope.rule.advanced.target.assignedDevices.push( device.id,);
    

@@ -8,7 +8,72 @@ $accordion-border-color: $app-border-color;
 $accordion-icon-color: lighten($accordion-color, 20%);
 $accordion-heading-color: $app-heading-color;
 
-/* Style */
+$accordion-spacing: $spacing;
+$accordion-focus-color: $focus-color; 
+
+/* NEW version
+-------------------------------------------------- */
+
+.accordion-toggle{
+ 
+ > button{
+    all: inherit;
+    border: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-weight: normal;
+    cursor: pointer;
+    &::after{
+      margin-left: $accordion-spacing;
+      padding: $spacing;
+      font-size: 130%;
+    }
+    &[aria-expanded="false"]{
+      border-bottom: solid 1px $accordion-border-color;
+     &::after{
+      content: "+";
+      }
+    }
+    &[aria-expanded="true"]{
+      &::after{
+        content: "-";
+      }
+    }
+    &:focus{
+     
+      &::after{
+        font-weight: bold;
+        color: $accordion-focus-color;
+      }
+      
+    }
+  }
+  &.chevron{
+    > button{
+      &[aria-expanded="false"]{
+        &::after{
+        font-family: fontawesome;
+        content: "\f078";
+        }
+      }
+      &[aria-expanded="true"]{
+        &::after{
+          font-family: fontawesome;
+          content: "\f077";
+        }
+      }
+    }
+  }
+}
+.accordion{
+  border-bottom: solid 1px $accordion-border-color;
+  padding-bottom: $accordion-spacing;
+}
+
+/* Old version
+-------------------------------------------------- */
 .accordion-entry{
     margin-bottom: $spacing;
     border-bottom: dotted 1px $accordion-border-color;

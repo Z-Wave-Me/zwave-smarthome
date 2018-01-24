@@ -1,31 +1,39 @@
-<div class="automation-report app-row-report clearfix">
-  <!-- Report body -->
-  <div class="report-entry" ng-repeat="d in rule.input.params.advanced.tests track by $index" ng-if_="d.testType =='nested'" ng-init="testModel=d[rule.advanced.cfg.tests[d.testType].testName];testIndex = $index">
+<section class="accordion-wrap" ng-repeat="d in rule.input.params.advanced.tests track by $index" ng-if_="d.testType =='nested'" ng-init="testModel=d[rule.advanced.cfg.tests[d.testType].testName];testIndex = $index">
+  <!-- Operator -->
+  <span class="label label-default" ng-hide="$index == 0">{{rule.input.params.advanced.logicalOperator| uppercase}}</span>
+  <h2 class="accordion-toggle chevron">
     <!-- Deleted device -->
-    <div class="report-col" ng-show="testModel.device && !rule.namespaces[testModel.device]">
-      <span class="text-danger"><i class="fa fa-exclamation-circle"></i> {{testModel.device}} {{_t('device_removed')}}</span>
-    </div>
-    <!-- Device row -->
-    <div class="report-col" ng-hide="testModel.device && !rule.namespaces[testModel.device]">
-       
-       <div class="clickable" ng-click="expandElement('test_' + $index)">
-          <span class="label label-info" ng-hide="$index == 0">{{rule.input.params.advanced.logicalOperator| uppercase}}</span> 
-         <span>{{rule.namespaces[testModel.device].deviceName}} </span>     <strong ng-if="testModel.testValue">({{testModel.testValue}}) </strong> <em>{{d.testType}}</em>    
-        <!-- <span class="label label-info" ng-hide="$index == 0">{{rule.input.params.advanced.logicalOperator| uppercase}}</span>
-        <span ng-hide="d.testType == 'nested'">{{rule.namespaces[testModel.device].deviceName}} ({{testModel.testValue}})</span>
-        <span ng-show="d.testType == 'nested'">{{testModel.logicalOperator}}</span> -->
-      </div>
-      <div class="form-collapsed" ng-if="expand['test_' + $index]" ng-include="'app/views/automation/rules/rule_id_advanced_if_'+ d.testType +'.html'"></div>
-    </div>
-    <div class="report-col report-ctrl">
-      <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="testModel.device && !rule.namespaces[testModel.device]"
-        ng-click="expandElement('test_' + $index)">
-        <i class="fa" ng-class="expand['test_' + $index] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
-      </button>
-      <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTest($index)">
-        <i class="fa fa-times text-danger"></i>
-      </button>
-    </div>
-  </div>
-</div>
+    <span class="text-danger" ng-show="testModel.device && !rule.namespaces[testModel.device]">
+      <i class="fa fa-exclamation-circle"></i> {{testModel.device}} {{_t('device_removed')}}
+    </span>
+    <!-- Title -->
+    <button type="button" aria-expanded="{{expand['test_' + $index]||false}}" bb-accordion ng-hide="testModel.device && !rule.namespaces[testModel.device]">
+
+      <span>{{rule.namespaces[testModel.device].deviceName}}
+        <strong ng-if="testModel.testValue">({{testModel.testValue}}) </strong>
+        <em>{{d.testType}}</em>
+
+      </span>
+
+    </button>
+    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTest($index)">
+      <i class="fa fa-times text-danger"></i>
+      </span>
+      <!-- Control -->
+      <!-- <span class="report-col report-ctrl">
+          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="testModel.device && !rule.namespaces[testModel.device]"
+            ng-click="expandElement('test_' + $index)">
+            <i class="fa" ng-class="expand['test_' + $index] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
+          </button>
+          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTest($index)">
+            <i class="fa fa-times text-danger"></i>
+          </button>
+        </span> -->
+
+  </h2>
+   <!-- Content -->
+  <div class="accordion" bb-remove-attr="{{expand['test_' + $index] ? 'hidden': ''}}" ng-include="'app/views/automation/rules/rule_id_advanced_if_'+ d.testType +'.html'"
+    hidden></div>
+
+</section>
 <!-- <pre>{{rule.input.params.advanced.tests|json}}</pre> -->
