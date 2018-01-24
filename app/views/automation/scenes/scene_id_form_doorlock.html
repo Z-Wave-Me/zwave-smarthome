@@ -1,12 +1,11 @@
 <!--on/off -->
 <div class="form-group">
-  <input type="checkbox" name="on_off" id="on_off" ng-model="scene.model.doorlock.status" ng-checked="scene.model.doorlock.status == 'open'"
-    ng-true-value="open" ng-false-value="close" ng-change="handleDevice(scene.model.doorlock,'locks')" />
-  <label for="on_off">{{scene.model.doorlock.status}}</label>
+  <input type="checkbox" name="on_off" id="on_off" ng-model="v.status" ng-checked="v.status == 'open'"
+    ng-true-value="open" ng-false-value="close" />
+  <label for="on_off">{{v.status}}</label>
 </div>
 <!-- command -->
 <div class="form-group">
-  <input type="checkbox" name="send_command" id="send_command" ng-model="scene.model.doorlock.sendAction" ng-checked="scene.model.doorlock.sendAction" ng-change="handleDevice(scene.model.doorlock,'locks')"
-  />
+  <input type="checkbox" name="send_command" id="send_command" ng-model="v.sendAction" ng-checked="v.sendAction" />
   <label for="send_command">{{_t('dont_send_on_command')}}</label>
 </div>

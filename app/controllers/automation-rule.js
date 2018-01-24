@@ -175,7 +175,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
 
     },
     advanced:{
-      tab: 'if',
+      tab: 'then',
       target: {
         devicesInRoom: [],
         availableDevices: [],

@@ -1,20 +1,114 @@
-<!-- <pre>{{scene.assignedDevices|json}}</pre> -->
-<div class="automation-report app-row-report clearfix">
-  <!-- Report body -->
-  <div class="report-entry" ng-repeat="d in scene.availableDevices|orderBy: 'location' track by $index" ng-if="scene.assignedDevices.indexOf(d.id) > -1">
-    
-      <div class="report-col">
-          <div ng-if="d.deviceType == 'toggleButton'">{{d.metrics.title}} - <em>{{scene.rooms[d.location].title}}</em> </div>
-        <div class="clickable"  ng-if="d.deviceType != 'toggleButton'" ng-click="expandParams(d.deviceType + $index,d)">{{d.metrics.title}} - <em>{{scene.rooms[d.location].title}}</em> </div>
-        <div class="form-collapsed" ng-if="expand[d.deviceType + $index]" ng-include="'app/views/automation/scenes/scene_id_form_'+ d.deviceType +'.html'"></div>
-      </div>
-      <div class="report-col report-ctrl form-inline">
-          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="d.deviceType == 'toggleButton'" ng-click="expandParams(d.deviceType + $index,d)">
-            <i class="fa" ng-class="expand[d.deviceType + $index] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
-          </button>
-          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d)">
-            <i class="fa fa-times text-danger"></i>
-          </button>
-      </div>
-  </div>
-</div>
+<!--  ////////////////////////////////////////// switchBinary  ////////////////////////////////////////// -->
+<section class="accordion-wrap" ng-repeat="v in scene.input.params.devices.switches track by $index">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+      <!-- Deleted device -->
+      <span class="no-toggle text-danger" ng-if="!scene.namespaces[v.device]">
+          <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
+        </span>
+        <!-- Toggle -->
+        <button type="button" aria-expanded="false" bb-accordion ng-hide="!scene.namespaces[v.device]">
+        <span>{{scene.namespaces[v.device].deviceName}} -
+          <em>{{scene.namespaces[v.device].locationName}}</em>
+        </span>
+      </button>
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice('switches',$inde,v.device)">
+        <i class="fa fa-times text-danger"></i>
+      </span>
+  
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden ng-include="'app/views/automation/scenes/scene_id_form_switchBinary.html'"></div>
+  </section>
+
+  <!--  ////////////////////////////////////////// switchMultilevel  ////////////////////////////////////////// -->
+<section class="accordion-wrap" ng-repeat="v in scene.input.params.devices.dimmers track by $index">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+      <!-- Deleted device -->
+      <span class="no-toggle text-danger" ng-if="!scene.namespaces[v.device]">
+          <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
+        </span>
+        <!-- Toggle -->
+        <button type="button" aria-expanded="false" bb-accordion ng-hide="!scene.namespaces[v.device]">
+        <span>{{scene.namespaces[v.device].deviceName}} -
+          <em>{{scene.namespaces[v.device].locationName}}</em>
+        </span>
+      </button>
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice('dimmers',$inde,v.device)">
+        <i class="fa fa-times text-danger"></i>
+      </span>
+  
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden ng-include="'app/views/automation/scenes/scene_id_form_switchMultilevel.html'"></div>
+  </section>
+
+  <!--  ////////////////////////////////////////// thermostat  ////////////////////////////////////////// -->
+<section class="accordion-wrap" ng-repeat="v in scene.input.params.devices.thermostats track by $index">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+      <!-- Deleted device -->
+      <span class="no-toggle text-danger" ng-if="!scene.namespaces[v.device]">
+          <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
+        </span>
+        <!-- Toggle -->
+        <button type="button" aria-expanded="false" bb-accordion ng-hide="!scene.namespaces[v.device]">
+        <span>{{scene.namespaces[v.device].deviceName}} -
+          <em>{{scene.namespaces[v.device].locationName}}</em>
+        </span>
+      </button>
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice('thermostats',$inde,v.device)">
+        <i class="fa fa-times text-danger"></i>
+      </span>
+  
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden ng-include="'app/views/automation/scenes/scene_id_form_thermostat.html'"></div>
+  </section>
+
+  <!--  ////////////////////////////////////////// doorlock  ////////////////////////////////////////// -->
+<section class="accordion-wrap" ng-repeat="v in scene.input.params.devices.locks track by $index">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+      <!-- Deleted device -->
+      <span class="no-toggle text-danger" ng-if="!scene.namespaces[v.device]">
+          <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
+        </span>
+        <!-- Toggle -->
+        <button type="button" aria-expanded="false" bb-accordion ng-hide="!scene.namespaces[v.device]">
+        <span>{{scene.namespaces[v.device].deviceName}} -
+          <em>{{scene.namespaces[v.device].locationName}}</em>
+        </span>
+      </button>
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice('locks',$inde,v.device)">
+        <i class="fa fa-times text-danger"></i>
+      </span>
+  
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden ng-include="'app/views/automation/scenes/scene_id_form_doorlock.html'"></div>
+  </section>
+
+    <!--  ////////////////////////////////////////// toggleButton  ////////////////////////////////////////// -->
+<section class="accordion-wrap" ng-repeat="v in scene.input.params.devices.scenes track by $index">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+      <!-- Deleted device -->
+      <span class="no-toggle text-danger" ng-if="!scene.namespaces[v]">
+          <i class="fa fa-exclamation-circle"></i> {{v}} {{_t('device_removed')}}
+        </span>
+        <!-- NO Toggle -->
+      <span class="no-toggle" ng-hide="!scene.namespaces[v]">
+          <span>{{scene.namespaces[v].deviceName}} -
+              <em>{{scene.namespaces[v].locationName}}</em>
+            </span>
+        </span>
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice('scenes',$inde,v.device)">
+        <i class="fa fa-times text-danger"></i>
+      </span>
+  
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden ng-include="'app/views/automation/scenes/scene_id_form_doorlock.html'"></div>
+  </section>

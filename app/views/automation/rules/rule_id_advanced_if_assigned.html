@@ -3,7 +3,7 @@
   <span class="label label-default" ng-hide="$index == 0">{{rule.input.params.advanced.logicalOperator| uppercase}}</span>
   <h2 class="accordion-toggle chevron">
     <!-- Deleted device -->
-    <span class="text-danger" ng-show="testModel.device && !rule.namespaces[testModel.device]">
+    <span class="no-toggle text-danger" ng-show="testModel.device && !rule.namespaces[testModel.device]">
       <i class="fa fa-exclamation-circle"></i> {{testModel.device}} {{_t('device_removed')}}
     </span>
     <!-- Title -->
@@ -19,21 +19,9 @@
     <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTest($index)">
       <i class="fa fa-times text-danger"></i>
       </span>
-      <!-- Control -->
-      <!-- <span class="report-col report-ctrl">
-          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="testModel.device && !rule.namespaces[testModel.device]"
-            ng-click="expandElement('test_' + $index)">
-            <i class="fa" ng-class="expand['test_' + $index] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
-          </button>
-          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTest($index)">
-            <i class="fa fa-times text-danger"></i>
-          </button>
-        </span> -->
-
   </h2>
    <!-- Content -->
   <div class="accordion" bb-remove-attr="{{expand['test_' + $index] ? 'hidden': ''}}" ng-include="'app/views/automation/rules/rule_id_advanced_if_'+ d.testType +'.html'"
     hidden></div>
-
 </section>
 <!-- <pre>{{rule.input.params.advanced.tests|json}}</pre> -->

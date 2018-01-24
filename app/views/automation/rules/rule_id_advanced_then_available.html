@@ -1,17 +1,18 @@
-<div class="accordion-entry" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.advanced.target.devicesInRoom[r.id]">
-  <!-- Accordion header -->
-  <h2 class="accordion-entry-title" ng-click="expandElement('room_' + r.id)">
-    <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
-    <i class="fa accordion-arrow" ng-class="expand['room_' + r.id] ? 'fa-chevron-up':'fa-chevron-down'"></i>
-  </h2>
-  <!-- Accordion body -->
-
-  <div class="accordion-entry-ctrl" ng-if="expand['room_' + r.id]">
-    <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in rule.advanced.target.availableDevices track by $index" ng-if="d.location == r.id && rule.advanced.target.assignedDevices.indexOf(d.id) === -1" ng-hide="d.id == rule.source.selected.device"
+<section class="accordion-wrap" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.advanced.target.devicesInRoom[r.id]">
+    <!-- Accordion header -->
+    <h2 class="accordion-toggle chevron">
+        <button type="button" aria-expanded="false" bb-accordion>
+            <span>
+                <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+            </span>
+          </button>
+    </h2>
+    <!-- Content -->
+  <div class="accordion" hidden>
+      <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in rule.advanced.target.availableDevices track by $index" ng-if="d.location == r.id && rule.advanced.target.assignedDevices.indexOf(d.id) === -1" ng-hide="d.id == rule.source.selected.device"
       ng-click="assignAdvancedTargetDevice(d)">{{d.metrics.title|cutText:true:20}}
       <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
   </div>
-</div>
-
+  </section>
 <!-- <pre>{{rule.advanced.target.availableDevices|json}}</pre> -->

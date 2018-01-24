@@ -1,89 +1,91 @@
 /* Automation
 -------------------------------------------------- */
-.automation{
-  .accordion-wrap{
+
+.automation {
+  .accordion-wrap {
     position: relative;
-    .label{
+    .label {
       position: absolute;
       top: -$spacing;
       left: 0;
     }
-  .accordion-toggle{
-    display: flex;
-    align-items: center;
-  
-    &:last-child{
-      margin-bottom: $spacing;
+    .accordion-toggle {
+      display: flex;
+      align-items: center;
+      .no-toggle {
+        padding: $spacing 0;
+        width: 100%;
+        font-weight: normal;
+        border-bottom: dotted 1px $accordion-border-color;
+      }
+     /*  &:last-child {
+        margin-bottom: $spacing;
+      } */
     }
-    
-  }
-  .accordion{
-    padding: $spacing;
-    background-color: #F6F6F6;
-    border-bottom: 0;
-    .form-group{
-      border: 0;
-      margin-bottom: $spacing;
-      padding: 0;
-    }
-    &:last-child{
-      margin-bottom: 0;
-    }
-    .accordion{
-     // background-color: lighten(#F6F6F6,10%);
-      border: solid 1px darken(#F6F6F6,20%)
-    }
-  }
-}
-}
-.automation-report{
-    //margin-bottom: $spacing-double;
-    //padding: 0 $spacing-double;
-    &.app-row-report{
+    .accordion {
+      padding: $spacing;
+      background-color: #F6F6F6;
+      border-bottom: 0;
+      .form-group {
         border: 0;
-        .report-entry{
-            
-            .report-col{
-               border-bottom: dotted 1px $app-border-color;
-               vertical-align: top;
-                //padding: 0;
-                //width: 33%;
-               
-            }
-            .report-ctrl{
-                min-width: 50%;
-            }
-            input[type=radio]{
-                margin: 0 $spacing-half 0;
-            }
-        }
-
-        .form-collapsed{
-          background-color: #F6F6F6;
-          padding: $spacing;
-          margin-top: $spacing;
-          .form-group{
-            //border: 0;
-            &:last-child{
-              border: 0;
-              margin: 0;
-              padding: 0; 
-          }
-        }
-          
-        }
+        margin-bottom: $spacing;
+        padding: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .accordion {
+        // background-color: lighten(#F6F6F6,10%);
+        border: solid 1px darken(#F6F6F6, 20%)
+      }
     }
+  }
 }
+
+.automation-report {
+  //margin-bottom: $spacing-double;
+  //padding: 0 $spacing-double;
+  &.app-row-report {
+    border: 0;
+    .report-entry {
+      .report-col {
+        border-bottom: dotted 1px $app-border-color;
+        vertical-align: top; //padding: 0;
+        //width: 33%;
+      }
+      .report-ctrl {
+        min-width: 50%;
+      }
+      input[type=radio] {
+        margin: 0 $spacing-half 0;
+      }
+    }
+    .form-collapsed {
+      background-color: #F6F6F6;
+      padding: $spacing;
+      margin-top: $spacing;
+      .form-group {
+        //border: 0;
+        &:last-child {
+          border: 0;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
 
 /* Schedules
 -------------------------------------------------- */
-.table-calendar{
-  .first-col{
+
+.table-calendar {
+  .first-col {
     width: 80px;
     background-color: $app-bcg-info;
   }
- th{
-   text-align: center;
- }
+  th {
+    text-align: center;
+  }
 }
-

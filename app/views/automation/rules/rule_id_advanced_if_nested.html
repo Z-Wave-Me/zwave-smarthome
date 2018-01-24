@@ -25,7 +25,7 @@
   <span class="label label-default" ng-hide_="testIndex == 0">{{testModel.logicalOperator| uppercase}}</span>
     <h2 class="accordion-toggle chevron">
         <!-- Deleted device -->
-    <span class="text-danger" ng-show="testModel.device && !rule.namespaces[testModel.device]">
+    <span class="no-toggle text-danger" ng-show="testModel.device && !rule.namespaces[testModel.device]">
         <i class="fa fa-exclamation-circle"></i> {{testModel.device}} {{_t('device_removed')}}
       </span>
 

@@ -25,18 +25,20 @@ $accordion-focus-color: $focus-color;
     width: 100%;
     font-weight: normal;
     cursor: pointer;
+    border-bottom: dotted 1px $accordion-border-color;
     &::after{
       margin-left: $accordion-spacing;
       padding: $spacing;
       font-size: 130%;
     }
     &[aria-expanded="false"]{
-      border-bottom: solid 1px $accordion-border-color;
+     
      &::after{
       content: "+";
       }
     }
     &[aria-expanded="true"]{
+      border-bottom: 0;
       &::after{
         content: "-";
       }
@@ -68,7 +70,7 @@ $accordion-focus-color: $focus-color;
   }
 }
 .accordion{
-  border-bottom: solid 1px $accordion-border-color;
+  border-bottom: dotted 1px $accordion-border-color;
   padding-bottom: $accordion-spacing;
 }
 
