@@ -1,0 +1,84 @@
+<!-- Include -->
+<div ng-controller="ZigbeeAddDeviceController" id="zwave_inclusion">
+    <bb-loader></bb-loader>
+     
+    <div class="form form-inline form-page">
+        <div class="fieldset">
+             <h1>{{_t('add_new_device')}}</h1>
+        </div>
+        <pre>
+            {{zigbeeInclusion | json}}
+        </pre>        
+        <div class="fieldset clearfix">
+            <div class="app-row app-row-report clearfix">
+                <!-- 1 -->
+                <!--<div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">1</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <div class="inclusion-header" ng-if="!zwaveInclusion.exclusionProcess.process">
+
+                            <button class="btn btn-default" title="{{_t('lb_include_preparation_start')}}"
+                                    ng-disabled="zwaveInclusion.inclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0"
+                                    ng-click="openCloseNetwork(true)">
+                                <i class="fa fa-refresh"></i> {{_t('lb_include_preparation_start')}}
+                            </button>
+                            <bb-help-text trans="_t('lb_include_preparation')"></bb-help-text>
+                            <p  ng-if="zwaveInclusion.device.find.prep"><em>{{zwaveInclusion.device.find.prep}}</em></p>
+                        </div>
+                        <div class="inclusion-process" ng-if="zwaveInclusion.exclusionProcess.process">
+                            <div class="alert alert-warning">
+                                <h4><i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_exclude')}} </h4>
+                                <p ng-bind-html="zwaveInclusion.device.find.exc|toTrusted"></p>
+                            </div>
+                            <button class="btn btn-danger btn-lg" title="{{_t('stop')}}" ng-click="startStopExclusion(false)">
+                                <i class="fa fa-ban"></i> <span class="btn-name">{{_t('stop')}}</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.exclusionProcess.done"></i> 
+                    </div>
+                </div>--><!-- /.report-entry -->
+                <!-- 1 -->
+                <div class="report-entry">
+                    <!--<div class="report-col report-media">
+                        <span class="badge badge-number">1</span>
+                    </div>-->
+                    <div class="report-col report-body">
+                        <div class="inclusion-header" ng-if="!zigbeeInclusion.inclusionProcess.networkOpen">
+                            <!-- Header --> 
+                            <button class="btn btn-success btn-lg" title="{{_t('start')}}" 
+                                    ng-disabled="zigbeeInclusion.inclusionProcess.networkOpen"
+                                    ng-click="openCloseNetwork(true)">
+                                <i class="fa fa-plug"></i> <span class="btn-name">{{_t('start')}}</span>
+                            </button>
+                        </div>
+                        <!-- Process -->
+                        <div class="inclusion-process" ng-if="zigbeeInclusion.inclusionProcess.networkOpen">
+                            <div class="alert alert-warning">
+                                <h4><i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} {{zigbeeInclusion.inclusionProcess.countdown}}</h4>
+                                <p ng-bind-html="zwaveInclusion.device.find.inc|toTrusted"></p>
+
+                            </div>
+                            <button class="btn btn-danger btn-lg" title="{{_t('stop')}}"
+                                    ng-click="openCloseNetwork(false)">
+                                <i class="fa fa-ban"></i> <span class="btn-name">{{_t('stop')}}</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fa fa-check fa-2x text-success" ng-if="zigbeeInclusion.inclusionProcess.done"></i> 
+                    </div>
+                </div><!-- /.report-entry --> 
+            </div><!-- /.app-row --> 
+        </div>
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+            <!-- <a href="#zwave/devices" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a> --> 
+        </div>
+    </div>
+    <div class="device-logo" ng-include="'app/views/zigbee/zigbee_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

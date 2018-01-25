@@ -6,205 +6,100 @@
 
 /**
  * The controller that pairing a device.
- * @class ZigbeePairingController
+ * @class ZigbeeAddDeviceController
  */
-myAppController.controller('ZigbeePairingController', function($scope, $q, $routeParams, $interval, $timeout, $location, dataFactory, dataService, myCache) {
-    $scope.inclusion = {
-        process: false,
-        done: false
-    };
-
-    $scope.input = {
-        device_typ: "",
-        table: []
-    };
-
-    $scope.intervalTime = 1000;
-    $scope.timeoutTime = 1000 * 300; // 5 min
-    $scope.inclusionTimeout = null;
-    $scope.inclusionInterval = null;
-
-    $scope.device_typs = [];
-    $scope.module = [];
-    $scope.instance = {};
+myAppController.controller('ZigbeeAddDeviceController', function($scope, $q, $routeParams, $interval, $timeout, $location, dataFactory, dataService, myCache) {
+    $scope.zigbeeInclusion = {
+        inclusionProcess: {
+            networkOpen: false,
+            done: false,
+            timer: null,
+            countdown: 0,
+            interval: null,
+            joinInterval: null
+        }
+    }
 
     // Cancel interval on page destroy
-    $scope.$on('$destroy', function() {
-        $timeout.cancel($scope.inclusionTimout);
-        $interval.cancel($scope.inclusionInterval);
+    $scope.$on('$destroy', function () {
+        $scope.restOpenCloseNetwork(false);
     });
 
-    $scope.startStopTeachin = function(process) {
-        if(process) {
-            $scope.inclusionInterval = $interval(function() {
-                $scope.loadPulseTrain();
-            }, $scope.intervalTime);
 
-            /* stop inclusin after 5 min */
-            $scope.inclusionTimeout = $timeout(function() {
-                $scope.inclusion.process = false;
-                $interval.cancel($scope.inclusionInterval);
-            }, $scope.timeoutTime);
-
-        } else {
-            /* stop inclusin */
-            $timeout.cancel($scope.inclusionTimout);
-            $interval.cancel($scope.inclusionInterval);
-        }
-        $scope.inclusion.done = true;
-        $scope.inclusion.process = process;
+    $scope.openCloseNetwork = function(open) {
+        $scope.restOpenCloseNetwork(open, false);
     };
 
-    $scope.removeRow = function(index) {
-        $scope.input.table.splice(index, 1);
-    }
-
-
-    $scope.testCode = function(code) {
-        dataFactory.postApi('send_pulse_train', null, '/'+code).then(function(response) {
-
-        }, function(error){
-
-        });
-    }
-
-
-    $scope.loadPulseTrain = function() {
-
-        dataFactory.getApi('get_pulse_trains', false, true).then(function(response) {
-            var data = response.data
-
-            var row = {
-                'code': "",
-                'nano_string': "",
-                'on': $scope.input.device_typ == 'sensorBinary' ? true : false,
-                'off': false,
-                'btn': null,
-                'timeout': 30,
-                'timeout_on': true,
-                'count': 0
-            };
-
-            if(_.isEmpty(data)) {
-                return;
-            }
-
-            var iRow = $scope.input.table.map(function(row) {
-                return row.code
-            }).indexOf(data.code);
-
-            if(iRow != -1) {
-                $scope.input.table[iRow].count++;
-            } else {
-                row.code = data.code;
-                row.nano_string = data.nano_string;
-                row.count = 1;
-
-                $scope.input.table.push(row);
-            }
-
-        }, function(error){
-
-        });
-
-    };
-
-    $scope.toggleOnOff = function(index) {
-
-        if($scope.input.table[index].on == true) {
-            $scope.input.table[index].off = true;
-            $scope.input.table[index].on = false;
-        } else {
-            $scope.input.table[index].off = false;
-            $scope.input.table[index].on = true;
-        }
-    };
-
-
-    $scope.allSettled = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-
-        var promises = [
-            dataFactory.getApi('instances', '/ZigbeeGateway', true),
-            dataFactory.getApi('modules', '/ZigbeeGateway')
-        ];
-
-        $q.allSettled(promises).then(function (response) {
-            $scope.loading = false;
-            var instance = response[0];
-            var module = response[1];
-
-            if (instance.state === 'fulfilled') {
-                $scope.instance = instance.value.data.data[0];
-            }
-
-            if (module.state === 'fulfilled') {
-                // Module
-                $scope.module = module.value.data.data;
-                $scope.loadDeviceTyps();
-            }
-        });
-    };
-    $scope.allSettled();
-
-    $scope.loadDeviceTyps = function() {
-
-        angular.forEach($scope.module.schema.definitions.device.properties.deviceTyp.enum, function(v) {
-           var device_typ = {"value": v, "label": ""};
-
-           $scope.device_typs.push(device_typ);
-        });
-
-        angular.forEach($scope.module.options.definitions.device.fields.deviceTyp.optionLabels, function(v, k) {
-            $scope.device_typs[k].label = v;
-        });
-    };
-
-
-    /**
-     * Update instance
-     */
-    $scope.updateInstance = function (input) {
-
-        var new_id = input.params.device_list.length + 1;
-        var device_data = {
-            "deviceName": "Zigbee Device " + new_id,
-            "deviceTyp": $scope.input.device_typ,
-            "pulseTrainTable": $scope.input.table
+    $scope.restOpenCloseNetwork = function(open, done) {
+        var data = {
+            open: open
         };
-        input.params.device_list.push(device_data);
 
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        if (input.id) {
-            dataFactory.putApi('instances', input.id, input).then(function (response) {
-                dataService.showNotifier({message: $scope._t('success_updated')});
+        dataFactory.postApi('open_network', data).then(function(response) {
+            console.log("response", response);
+            if(response.data.open) {
+                console.log("openNetwork");
+                $scope.zigbeeInclusion.inclusionProcess.timer = $timeout(function() {
+                        $scope.restOpenCloseNetwork(false, false);   
+                }, response.data.time);
+                $scope.countdown(response.data.time);
+                $scope.deviceJoined();
+            } else {
+                if($scope.zigbeeInclusion.inclusionProcess.timer) {
+                    $timeout.cancel($scope.zigbeeInclusion.inclusionProcess.timer);
+                }
+                if($scope.zigbeeInclusion.inclusionProcess.interval) {
+                    $interval.cancel($scope.zigbeeInclusion.inclusionProcess.interval);
+                }
+                if($scope.zigbeeInclusion.inclusionProcess.joinInterval) {
+                    $interval.cancel($scope.zigbeeInclusion.inclusionProcess.joinInterval);
+                }
+            }
+        
+            // Set scope
+            angular.extend($scope.zigbeeInclusion.inclusionProcess, {
+                    networkOpen: open,
+                    done: done
+                }
+            );
 
-                $timeout(function() {
-                    dataFactory.getApi('instances', '/ZigbeeGateway', true).then(function (response) {
-                        var devices = response.data.data[0].params.device_list;
-                        var i = _.find(devices, function (dev) {
-                            return dev.deviceName == device_data.deviceName;
-                        });
-                        console.log(i);
-                        if (typeof i !== 'undefined') {
-                            var vDevId = i.vdevId
-                            $location.path('/Zigbee/manage/' + vDevId);
-                        }
-                        $scope.loading = false;
-                    }, function (error) {
-                        $scope.loading = false;
-                        alertify.alertError($scope._t('error_load_data'));
-                        alertify.dismissAll();
-                    });
-                }, 10000);
-            }, function (error) {
+        }, function(error) {
 
-                alertify.alertError($scope._t('error_update_data'));
-                alertify.dismissAll();
-                $scope.loading = false;
+        });                  
+    }
+
+
+    $scope.deviceJoined = function () {
+        console.log("loop");
+        var refresh = function() {
+            console.log("DATA incomming");
+            dataFactory.getApi('joined_device', null, true).then(function(response) {
+                console.log("response", response.data.joinedDevices);
+                if(response.data.joinedDevices.length > 0) {
+                    $scope.restOpenCloseNetwork(false, true);
+                    $timeout(function() {
+                        $location.path('/zigbee/manage/' + response.data.joinedDevices[0]);
+                    }, 1000)
+                }
+            }, function(error) {
+
             });
-        }
+        } 
+
+
+        $scope.zigbeeInclusion.inclusionProcess.joinInterval = $interval(refresh, 2000);
     };
+
+
+    $scope.countdown = function(time) {
+        $scope.zigbeeInclusion.inclusionProcess.countdown = time/1000;
+        $scope.zigbeeInclusion.inclusionProcess.interval = $interval(function () {
+            $scope.zigbeeInclusion.inclusionProcess.countdown--;
+            if ($scope.zigbeeInclusion.inclusionProcess.countdown === 0) {
+                $interval.cancel($scope.zigbeeInclusion.inclusionProcess.interval);
+            }
+        }, 1000);
+    }
 
 });
 /**
@@ -234,7 +129,7 @@ myAppController.controller('ZigbeeManageController', function($scope, $location,
             }
 
             if (devices.state === 'fulfilled') {
-                setDevices(devices.value.data.data.devices, $scope.instance);
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices, false,true), $scope.instance);
             }
         });
     };
@@ -243,26 +138,18 @@ myAppController.controller('ZigbeeManageController', function($scope, $location,
     /**
      * Delete device
      */
-    $scope.deleteDevice = function(vDevId, target, input, message) {
-        alertify.confirm(message, function() {
-
-            var index = input.params.device_list.map(function(dev) {return dev.vdevId}).indexOf(vDevId);
-            if(index !== -1) {
-
-                input.params.device_list.splice(index, 1);
-                dataFactory.putApi('instances', input.id, input).then(function (response) {
-                    $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-                    $timeout(function() {
-                        $scope.loading = false;
-                        $(target).fadeOut(500);
-                    }, 10000);
-                }, function(error) {
-                    $scope.loading = false;
-                });
-            } else {
-                alertify.alertError($scope._t('error_delete_data'));
-            }
-
+    $scope.removeDevice = function(nodeId, target) {
+        alertify.confirm("Remove Device?", function() {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+            dataFactory.deleteApi('remove_device', nodeId).then(function(response) {
+                console.log("response", response);
+                $scope.loading = false;    
+                $(target).fadeOut(500); 
+            }, function(error) {
+                console.log("error", error);
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_load_data'));
+            });
         });
     };
 
@@ -270,21 +157,28 @@ myAppController.controller('ZigbeeManageController', function($scope, $location,
     /**
      * Set devices
      */
-    function setDevices(devices, instance) {
-        console.log(instance);
-        console.log(devices);
-        angular.forEach(devices, function(v, k) {
+    function setDevices(devices, instance) { 
+        angular.forEach(devices.value(), function(v, k) {
             if(v.creatorId !== instance.id) {
                 return;
             }
-            $scope.ZigbeeDevices[k] = {
-                id: k,
-                vDevId: v.id,
-                givenName: v.metrics.title
-            };
+            var nodeId = v.metrics.nodeId,
+                findZigbeeStr = v.id.split('_'),
+                eui64 = findZigbeeStr[2];
 
+            if($scope.ZigbeeDevices[nodeId]) {
+                $scope.ZigbeeDevices[nodeId]['elements'][v.id] = v;    
+            } else {
+                $scope.ZigbeeDevices[nodeId] = {};
+                angular.extend($scope.ZigbeeDevices[nodeId], {
+                    id: nodeId,
+                    eui64: eui64,  
+                    title: "ZigbeeDevice_"+nodeId,
+                    elements: {}
+                });
+                $scope.ZigbeeDevices[nodeId]['elements'][v.id] = v;
+            }
         });
-
     };
 });
 /**
@@ -292,27 +186,32 @@ myAppController.controller('ZigbeeManageController', function($scope, $location,
  * @class ZigbeeManageDetailController
  */
 myAppController.controller('ZigbeeManageDetailController', function($scope, $routeParams, $filter, $q, $window, $timeout, dataFactory, dataService, myCache) {
-    $scope.vDevId = $routeParams.vDevId;
-    $scope.apiDevices = [];
+    $scope.eui64 = $routeParams.eui64;
     $scope.rooms = [];
-    $scope.dev = [];
-    $scope.modelRoom;
+    $scope.devices = [];
+    $scope.ZigbeeDevice = {
+        eui64: $scope.eui64,
+        title: "",
+        nodeId: ""
+    };
     $scope.instance = {};
-    $scope.input = {
-        id: "",
-        name: "",
-        device_typ: "",
-        table: []
+    $scope.formInput = {
+        show: true,
+        newRoom: '',
+        elements: {},
+        room: 0,
     };
 
+    /**
+     * Load all promises
+     */
     $scope.allSettled = function() {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
 
         var promises = [
             dataFactory.getApi('devices', null, true),
             dataFactory.getApi('instances', '/ZigbeeGateway', true),
-            dataFactory.getApi('locations'),
-            dataFactory.getApi('modules', '/ZigbeeGateway')
+            dataFactory.getApi('locations')
         ];
 
         $q.allSettled(promises).then(function (response) {
@@ -320,142 +219,104 @@ myAppController.controller('ZigbeeManageDetailController', function($scope, $rou
             var devices = response[0];
             var instance = response[1];
             var locations = response[2];
-            var module = response[3];
 
-            if (devices.state === 'fulfilled') {
-                setDevices(devices.value.data.data.devices);
+            // Error message
+            if (devices.state === 'rejected') {
+                $scope.loading = false;
+                $scope.formInput.show = false;
+                alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
+                    dataService.goBack();
+                });
+                return;
             }
 
-            if (instance.state === 'fulfilled') {
+            if (devices.state === 'fulfilled' && instance.state === 'fulfilled') {
                 $scope.instance = instance.value.data.data[0];
-
-                var device = _.find($scope.instance.params.device_list, function(dev) {
-                    return dev.vdevId == $scope.vDevId;
-                });
-
-                if(typeof device !== 'undefined') {
-                    $scope.input.device_typ = device.deviceTyp
-                    $scope.input.table = device.pulseTrainTable
-                }
+                setDevices(dataService.getDevicesData(devices.value.data.data.devices, false,true), $scope.instance);
             }
 
             if(locations.state === 'fulfilled') {
-                $scope.rooms = locations.value.data.data;
-            }
-            if (module.state === 'fulfilled') {
-                $scope.module = module.value.data.data;
+                $scope.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
             }
         });
     };
     $scope.allSettled();
 
     /**
-     * Update device
+     * Add room
      */
-    $scope.updateDevice = function(input) {
+    $scope.addRoom = function (room) {
+        if (!room) {
+            return;
+        }
+        var input = {
+            id: 0,
+            title: room
+        };
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('devices', input.id, input).then(function(response) {
-            myCache.remove('devices');
-            $scope.allSettled();
+        dataFactory.storeApi('locations', input.id, input).then(function (response) {
             $scope.loading = false;
-        }, function(error) {
+            dataService.showNotifier({message: $scope._t('success_updated')});
+            $scope.formInput.newRoom = '';
+            $scope.allSettled();
+        }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
+
         });
 
     };
 
+
     /**
-     * Assign devices to room
+     * Update all devices
      */
-    $scope.devicesToRoom = function(roomId, devices) {
-        if (!roomId) {
-            return;
-        }
+    $scope.updateAllDevices = function (input) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        for (var i = 0; i <= devices.length; i++) {
-            var v = devices[i];
-            if (!v) {
-                continue;
+
+        // Update element
+        angular.forEach(input.elements, function (v, k) {
+            if (input.room) {
+                angular.extend(v, {location: parseInt(input.room)})
             }
-            var input = {
-                id: v.id,
-                location: roomId
-            };
-
-            dataFactory.putApi('devices', v.id, input).then(function(response) {
-            }, function(error) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            });
-        }
-        $scope.allSettled();
-        $scope.loading = false;
-        return;
-
-    };
-
-    $scope.toggleOnOff = function(index) {
-
-        if($scope.input.table[index].on == true) {
-            $scope.input.table[index].off = true;
-            $scope.input.table[index].on = false;
-        } else {
-            $scope.input.table[index].off = false;
-            $scope.input.table[index].on = true;
-        }
-    };
-
-
-    /**
-     * update instacne
-     * @param {object} instance
-     * @returns {undefined}
-     */
-    $scope.updateInstance = function(input) {
-
-        var index = input.params.device_list.map(function(dev){return dev.vdevId}).indexOf($scope.input.id);
-
-        if(index > -1) {
-            input.params.device_list[index].pulseTrainTable = $scope.input.table;
-        }
-
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            console.log(input);
-            console.log($scope.input);
-
-            dataFactory.putApi('instances', input.id, input).then(function (response) {
-                $timeout(function() {
-                    $scope.loading = false;
-                    dataService.showNotifier({message: $scope._t('success_updated')});
-                    $window.location.reload();
-                }, 10000);
+            dataFactory.putApi('devices', v.id, v).then(function (response) {
             }, function (error) {
-
-                alertify.alertError($scope._t('error_update_data'));
-                alertify.dismissAll();
-                $scope.loading = false;
             });
-
+        });
+        //Update device name
+        var cmd = 'devices[' + $scope.zWaveDevice.id + '].data.givenName.value=\'' + input.deviceName + '\'';
+        dataFactory.runZwaveCmd(cmd).then(function () {});
+        myCache.removeAll();
+        $scope.loading = false;
+        dataService.showNotifier({message: $scope._t('success_updated')});
+        if (angular.isDefined($routeParams.nohistory)) {
+            $location.path('/zwave/devices');
+        } else {
+            dataService.goBack();
+        }
     };
 
-        /// --- Private functions --- ///
+    /// --- Private functions --- ///
     /**
      * Set devices
      */
-    function setDevices(devices) {
-        $scope.apiDevices = [];
-        var elements = dataService.getDevicesData(devices,false);
-        obj = _.find(elements.value(), function(el) {
-            return  el.id == $scope.vDevId;
-        });
-
-        $scope.input.id = obj.id;
-        $scope.input.name = obj.metrics.title;
-
-
-        $scope.apiDevices.push(obj);
-
+    function setDevices(devices, instance) { 
+        angular.forEach(devices.value(), function(v, k) {
+            if(v.creatorId !== instance.id) {
+                return;
+            }
+            var findZigbeeStr = v.id.split('_'),
+                 eui64 = findZigbeeStr[2];
+            if(eui64 !== $scope.eui64) {
+                return
+            }
+            $scope.devices.push(v);
+            $scope.formInput.elements[v.id] = v;
+        }); 
+        if($scope.devices.length > 0) {
+            $scope.ZigbeeDevice.title = "ZigbeeDevice_" + $scope.devices[0].metrics.nodeId;
+            $scope.ZigbeeDevice.nodeId = $scope.devices[0].metrics.nodeId;
+        } 
     };
+
 });

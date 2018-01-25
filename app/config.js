@@ -144,6 +144,9 @@ var config_data = {
       'add_dsk_provisioning_list': 'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST 
       'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
       'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
+      'open_network': 'ZigbeeGatewayAPI/openNetwork', // Open ZigBee network for new devices
+      'remove_device': 'ZigbeeGatewayAPI/removeDevice', // Delete ZigBee devices
+      'joined_device': 'ZigbeeGatewayAPI/getJoinedDevices' // joined ZigBee devices
     },
     // List of remote api URLs
     'api_remote': {

@@ -286,8 +286,8 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).//zigbee add
-                when('/zigbee/pairing', {
-                    templateUrl: 'app/views/zigbee/pairing.html',
+                when('/zigbee/add', {
+                    templateUrl: 'app/views/zigbee/add.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).//zigbee manage
@@ -296,7 +296,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).//zigbee manage detail
-                when('/zigbee/manage/:vDevId', {
+                when('/zigbee/manage/:eui64', {
                     templateUrl: 'app/views/zigbee/manage_detail.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices

@@ -1,102 +1,76 @@
-<div ng-controller="RF433ManageDetailController" class="mobile-padding">
+<div ng-controller="ZigbeeManageDetailController" class="mobile-padding">
     <bb-loader></bb-loader> 
     <!-- Enocean navigation -->
-    <div ng-include="'app/views/rf433/navi.html'"></div>
-     <div class="tab-content">
-    <h2><span ng-bind="_t('rf433_device')"></span>: {{input.name}} (#{{input.id}})</h2>
-     <form name="form_rf433_edit" id="form_rf433_edit" class="form form-page" ng-submit="updateInstance(instance)" novalidate>
-         <fieldset>
-             <table class="table">
-                 <thead>
-                 <tr>
-                     <th>{{_t('lb_pulse_train')}}</th>
-                     <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_on')}}</th>
-                     <th ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">{{_t('lb_off')}}</th>
-                     <th ng-show="input.device_typ == 'sensorDiscrete'">{{_t('lb_button_remote_control')}}</th>
-                     <th ng-show="input.device_typ == 'sensorBinary'">{{_t('lb_timout_auto_off')}}</th>
-                     <th>{{_t('lb_count')}}</th>
-                     <!--<th>{{_t('lb_action')}}</th>-->
-                 </tr>
-                 </thead>
-                 <tbody>
-                 <tr ng-repeat="row in input.table track by $index">
-                     <td>
-                         <input name="code" id="code" type="text" class="form-control" value="{{row.code}}" ng-model="row.code" disabled/>
-                     </td>
-                     <td ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">
-                         <input type="radio" name="on-off-{{$index}}" ng-value="true" ng-model="row.on" ng-click="toggleOnOff($index)">
-                     </td>
-                     <td ng-show="input.device_typ == 'switchBinary' || input.device_typ == 'sensorBinary'">
-                         <input type="radio" name="on-off-{{$index}}" ng-value="true" ng-model="row.off" ng-click="toggleOnOff($index)">
-                     </td>
-                     <td ng-show="input.device_typ == 'sensorDiscrete'">
-                         <select class="form-control" ng-model="row.btn">
-                             <option ng-repeat="n in module.schema.definitions.device.properties.pulseTrainTable.items.properties.btn.enum" ng-selected="row.btn == n" value="{{n}}">{{n}}</option>
-                         </select>
-                     </td>
-                     <td ng-show="input.device_typ == 'sensorBinary'">
-                         <div class="input-group">
-                            <input name="timeout" id="timeout" type="text" class="form-control" ng-value="{{row.timeout}}" ng-model="row.timeout" ng-disabled="!row.timeout_on" />
-                             <span class="input-group-addon">
-                                <input type="checkbox" id="timeout_on" name="timeout_on" ng-model="row.timeout_on">
-                            </span>
-                         </div>
-                     </td>
-                     <td style="width: 15%;">
-                         <input name="count" id="count" type="text" class="form-control" value="{{row.count}}" ng-model="row.count" disabled />
-                     </td>
-                     <!--<td>
-                         <button type="button" class="btn btn-default" ng-click="testCode(row.nano_string)">
-                             <i class="fa fa-paper-plane"></i>
-                             <span class="btn-name">{{_t('btn_test')}}</span>
-                         </button>
-                         <button type="button" class="btn btn-default" ng-click="removeRow($index)">
-                             <i class="fa fa-minus"></i>
-                             <span class="btn-name">{{_t('btn_remove')}}</span>
-                         </button>
-                     </td>-->
-                 </tr>
-                 </tbody>
-             </table>
-         </fieldset>
-         <fieldset class="submit-entry">
-             <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
-         </fieldset>
-     </form>
-    <form name="form_rf433_config" id="form_rf433_config" class="form form-page" novalidate ng-if="_.size(apiDevices) > 0">
-        <fieldset>
-        <div class="form-group form-inline" ng-repeat="e in apiDevices | orderBy:'title':false" ng-init="dev[e.id] = e">
-            <h3>
-                <img id="widget_img_{{v.id}}" class="report-img" ng-src="{{e.iconPath}}" alt="img" />
-                 <span ng-bind="dev[e.id].metrics.title"></span>
-            </h3>
-                <div>
-                        <input type="text" name="fdf" class="form-control form-control-md" ng-model="dev[e.id].metrics.title" value="{{dev[e.id].metrics.title}}" />
-                         <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> 
-                         <button class="btn" 
-                             ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
-                             ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
-                             ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-info'"> </button>
-                 </div>
+    <div ng-include="'app/views/zigbee/navi.html'"></div>
+    <div ng-show="formInput.show">
+        <h1>{{ZigbeeDevice.title}}</h1>
+        <!-- Zigbee config form -->
+        <!--<pre>{{formInput | json }}</pre>-->
+        <form name="form_network_config" id="form_network_config" class="form form-page" ng-submit="updateAllDevices(formInput)" novalidate>
+            <div ng-if="devices.length > 0">
+                <fieldset>
+                    <!-- Add room -->
+                    <div class="form-group form-inline">
+                        <div class="input-group">
+                            <input name="appstore_token" id="appstore_token" class="form-control" placeholder="{{_t('lb_add_room')}}" ng-model="formInput.newRoom" /> 
+                           <span class="input-group-addon clickable" title="{{_t('add_new')}}" ng-click="addRoom(formInput.newRoom)">
+                               <i class="fa fa-plus text-success"></i>
+                           </span> 
+                        </div>
+                    </div>
+                    <!-- Rooms -->
+                    <div class="form-group form-inline">
+                        <label class="display-block" ng-bind="_t('devices_to_room')"></label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" 
+                                    ng-click="expandNavi('devidDropDown', $event)">
+                                {{rooms[formInput.room].title|cutText:true:20}} <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.devidDropDown">
+                                <ul>
+                                    <li class="clickable" 
+                                        ng-click="formInput.room = v.id"
+                                        ng-repeat="v in rooms">
+                                        <a>
+                                            <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> 
+                                            {{v.title|cutText:true:20}} <i class="fa fa-check menu-arrow" ng-if="formInput.room == v.id"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="form-group form-inline zigbee-hidden-{{formInput.elements[e.id].permanently_hidden}}" ng-repeat="e in devices| orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
+                        <ng-form name="subForm">
+                            <h3>
+                                <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                                <span ng-bind="formInput.elements[e.id].metrics.title"></span>
+                            </h3>
+                            <div class="form-group form-inline">
+                                <input type="text" name="title" id="title" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" ng-blur="titleBlur = true" ng-required="true"/>
+                                <span class="mobile-block">
+                                    <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
+                                    <label for="permanently_hidden_{{$index}}">{{_t('lb_deactivate')}}</label>
+                                </span>
+                                <bb-validator input-name="subForm.title.$error.required" trans='_t("field_required")' has-blur='titleBlur'></bb-validator>
+                            </div>
+                        </div>
+                    </ng-form>
+                </fieldset>
             </div>
-        </fieldset>
-         <fieldset>
-            <!-- Rooms -->
-            <div class="form-group form-inline">
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
-                <select class="form-control" ng-model="modelRoom">
-                    <option ng-repeat="v in rooms" value="{{v.id}}" ng-bind="(v.id === 0 ? _t(v.title) : v.title)"></option>
-                </select>
-                <button class="btn btn-primary" ng-click="devicesToRoom(modelRoom, apiDevices)" ng-bind="_t('lb_save')"></button> 
+            <fieldset class="submit-entry">
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" ng-if="!nohistory" bb-go-back>
+                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                </button>
+                <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_network_config.$invalid">
+                    <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
+                </button>
 
-            </div>
-        </fieldset>
-    </form>
-     <div class="fieldset submit-entry">
-            <a href="#rf433/manage" class="btn btn-submit" title="{{_t('continue')}}">
-                <span class="btn-name">{{_t('continue')}}</span> <i class="fa fa-chevron-right"></i>
-            </a>
-        </div>
-   </div>
-    <div class="device-logo" ng-include="'app/views/rf433/rf433_nav.html'"></div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="device-logo" ng-include="'app/views/zigbee/zigbee_nav.html'"></div>
 </div> <!-- /ng-controller --> 
+
