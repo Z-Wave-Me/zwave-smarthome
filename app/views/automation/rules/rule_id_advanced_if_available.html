@@ -1,4 +1,4 @@
 
-<a href="" class="btn btn-default btn-tag" title="{{v.testName}}" ng-repeat="v in rule.advanced.cfg.tests track by $index" ng-click="assignAdvancedTest(v)">{{v.testName}}
+<a href="" class="btn btn-default btn-tag" title="{{v.testName}}" ng-repeat="v in rule.advanced.cfg.tests track by $index" ng-click="assignAdvancedTest(v)">{{_t(v.testName)}}
     <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>

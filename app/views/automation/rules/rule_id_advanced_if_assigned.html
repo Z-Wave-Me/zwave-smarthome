@@ -11,7 +11,7 @@
 
       <span>{{rule.namespaces[testModel.device].deviceName}}
         <strong ng-if="testModel.testValue">({{testModel.testValue}}) </strong>
-        <em>{{d.testType}}</em>
+        <em ng-if="d.testType =='nested'">{{_t(rule.advanced.cfg.tests[d.testType].testName)}}</em>
 
       </span>
 

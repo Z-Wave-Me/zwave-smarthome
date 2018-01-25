@@ -33,7 +33,6 @@
     <button type="button" aria-expanded="{{expand['testNested_' + testIndex + $index]||false}}" bb-accordion ng-hide="testModel.device && !rule.namespaces[testModel.device]">
       <span>{{rule.namespaces[testModel.device].deviceName}}
           <strong ng-if="testModel.testValue">({{testModel.testValue}}) </strong>
-          <em>{{d.testType}}</em>
       </span>
   
       </button>
@@ -60,7 +59,7 @@
 <div class="form-group">
 
   <a href="" class="btn btn-default btn-tag" title="{{v.testName}}" ng-repeat="v in rule.advanced.cfg.tests track by $index"
-    ng-click="assignAdvancedNestedTest(testIndex,v)" ng-if="v.testName != 'testNested'">{{v.testName}}
+    ng-click="assignAdvancedNestedTest(testIndex,v)" ng-if="v.testName != 'testNested'">{{_t(v.testName)}}
     <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
   </a>
 </div>
