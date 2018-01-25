@@ -225,7 +225,8 @@
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
                 </div>
             </div>
-            <div id="view_content" ng-hide="cfg.route.fatalError.hide" class="{{cfg.route.pageClass}} swipe-{{swipeDir}}" ng-view 
+          
+            <div id="view_content" ng-hide="cfg.route.fatalError.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view 
             ng-swipe-left="swipe('left')" 
             ng-swipe-right="swipe('right')"></div>
         </div>

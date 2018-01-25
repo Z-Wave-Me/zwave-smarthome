@@ -12,9 +12,9 @@ var config_data = {
     //Application name
     'app_name': 'SmartHome UI',
     // Application version
-    'app_version': '1.8.0-RC-28',
+    'app_version': '1.8.0-RC-29',
     // Application (DIST) built date
-    'app_built': '17-01-2018 11:32:46',
+    'app_built': '17-01-2018 15:11:00',
     // Application ID
     'app_id': 'SmartHomeUI',
     // Server base url
@@ -106,6 +106,7 @@ var config_data = {
       'tokens': 'ZAutomation/api/v1/modules/tokens',
       'password_reset': 'ZAutomation/api/v1/auth/forgotten',
       'remote_id': 'ZAutomation/api/v1/system/remote-id',
+      'ip_address': 'ZAutomation/api/v1/system/ip-address',
       'firmwareupdate': 'ZAutomation/api/v1/system/webif-access',
       'trust_my_network': 'ZAutomation/api/v1/system/trust-my-network',
       'firstaccess': 'ZAutomation/api/v1/system/first-access',
