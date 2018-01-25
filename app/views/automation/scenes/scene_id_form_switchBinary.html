@@ -1,10 +1,11 @@
 
-  <!-- switch -->
+  <!-- status -->
   <div class="form-group">
-    <input type="checkbox" name="on_off" id="on_off" ng-model="v.status" ng-checked="v.status == 'on'"
-      ng-true-value="on" ng-false-value="off" />
-    <label for="on_off">{{v.status}}</label>
-
+      <label class="switch">
+          <input type="checkbox" ng-model="v.status" ng-checked="v.status == 'on'" ng-true-value="on" ng-false-value="off">
+          <span class="slider"></span>
+      </label>
+      <span class="switch-label">{{v.status}}</span>
   </div>
   <!-- command -->
   <div class="form-group">

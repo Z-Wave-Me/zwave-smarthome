@@ -1,20 +1,15 @@
-<div class="automation-report app-row-report clearfix">
-    <!-- Report body -->
-    <div class="report-entry">
-      <div class="report-col">
-          <div>
-              {{rule.source.devices[rule.source.selected.device].metrics.title}} - <em>{{rule.rooms[rule.source.devices[rule.source.selected.device].location].title}}</em> 
-            </div>
-            <div class="form-collapsed" ng-if="rule.input.params.sourceDevice.filterIf != 'toggleButton'" ng-include="'app/views/automation/rules/rule_id_if_'+ rule.input.params.sourceDevice.filterIf +'.html'"></div>
-          
-        </div>
-        <div class="report-col report-ctrl">
-           <!--  <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="d.filterThen == 'toggleButton'" ng-click="expandTargetParams('target_' + targetModel.target)">
-              <i class="fa" ng-class="expand['target_' + targetModel.target] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
-            </button> -->
-            <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignSourceDevice()">
-              <i class="fa fa-times text-danger"></i>
-            </button>
-        </div>
-    </div>
-</div>
+<section class="accordion-wrap">
+ <!-- Title -->
+ <h2 class="accordion-toggle chevron">
+    <span class="no-toggle" ng-if="!rule.advanced.target.availableDevices[v.device]">
+        {{rule.source.devices[rule.source.selected.device].metrics.title}} - <em>{{rule.rooms[rule.source.devices[rule.source.selected.device].location].title}}</em> 
+      </span>
+      <!-- Delete -->
+    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignSourceDevice()">
+      <i class="fa fa-times text-danger"></i>
+    </span>
+
+  </h2>
+  <div class="accordion"  ng-if="rule.input.params.sourceDevice.filterIf != 'toggleButton'" ng-include="'app/views/automation/rules/rule_id_if_'+ rule.input.params.sourceDevice.filterIf +'.html'"></div>
+
+  </section>

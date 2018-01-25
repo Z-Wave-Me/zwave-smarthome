@@ -175,7 +175,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
 
     },
     advanced:{
-      tab: 'then',
+      tab: 'if',
       target: {
         devicesInRoom: [],
         availableDevices: [],
@@ -359,13 +359,13 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
 
       });
        // Set advanced target assigned devices
-       angular.forEach(instance.params.advanced.action, function (v, k) {
+      /*  angular.forEach(instance.params.advanced.action, function (v, k) {
        _.filter(v,function(val,key){
          if(val.device)
           $scope.rule.advanced.target.assignedDevices.push(val.device);
         });
 
-      });
+      }); */
 
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
@@ -541,6 +541,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * @param {string} deviceId 
    */
   $scope.unassignTargetDevice = function (targetIndex,deviceId) {
+    
     var deviceIndex = $scope.rule.target.assignedDevices.indexOf(deviceId);
     if (targetIndex > -1) {
       $scope.rule.input.params.targets.elements.splice(targetIndex, 1);

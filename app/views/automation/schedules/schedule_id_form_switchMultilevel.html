@@ -1,12 +1,11 @@
 <!-- status -->
 <div class="form-group">
    <input type="number" class="form-control input-number" min="{{schedule.cfg.switchMultilevel.min}}" max="{{schedule.cfg.switchMultilevel.max}}"
-    ng-model="schedule.model.switchMultilevel.status" ng-change="handleDevice(schedule.model.switchMultilevel,'dimmers')">
+    ng-model="v..status" />
 
 </div>
 <!-- command -->
 <div class="form-group">
-  <input type="checkbox" name="send_command" id="send_command" ng-model="schedule.model.switchMultilevel.sendAction" ng-checked="schedule.model.switchMultilevel.sendAction"
-    ng-change="handleDevice(schedule.model.switchMultilevel,'dimmers')" />
+  <input type="checkbox" name="send_command" id="send_command" ng-model="v..sendAction" ng-checked="v..sendAction" />
   <label for="send_command">{{_t('dont_send_on_command')}}</label>
 </div>

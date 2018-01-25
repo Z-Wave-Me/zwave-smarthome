@@ -1,5 +1,5 @@
 <section class="accordion-wrap" ng-repeat="r in scene.rooms track by $index" ng-hide="!scene.devicesInRoom[r.id]">
-  <!-- Accordion header -->
+  <!-- Title -->
   <h2 class="accordion-toggle chevron">
     <button type="button" aria-expanded="false" bb-accordion>
       <span>
@@ -9,10 +9,10 @@
   </h2>
   <!-- Content -->
   <div class="accordion" hidden>
-    <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in scene.availableDevices" ng-if="d.location == r.id &&  scene.assignedDevices.indexOf(d.id) === -1"
-      ng-click="assignDevice(d)">{{d.metrics.title|cutText:true:20}}
+    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in scene.availableDevices" ng-if="d.location == r.id &&  scene.assignedDevices.indexOf(d.deviceId) === -1"
+      ng-click="assignDevice(d)">{{d.deviceName|cutText:true:20}}
       <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
   </div>
 </section>
-<pre>{{scene.input.params.devices|json}}</pre>
+<!-- <pre>{{scene.input.params.devices|json}}</pre> -->
