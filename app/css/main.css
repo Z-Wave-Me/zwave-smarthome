@@ -13905,10 +13905,6 @@ fieldset section, .fieldset section {
 /* Variables */
 /* NEW version
 -------------------------------------------------- */
-/* line 17, ../sass/base/_accordion.scss */
-.accordion-toggle {
-  color: #333333;
-}
 /* line 19, ../sass/base/_accordion.scss */
 .accordion-toggle > button {
   all: inherit;

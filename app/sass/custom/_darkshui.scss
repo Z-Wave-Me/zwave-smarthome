@@ -356,6 +356,19 @@ a {
   border: solid 4px $app-color-additional !important;
 }
 
+/* Legend
+-------------------------------------------------- */
+legend {
+  display: block;
+  width: 100%;
+  //padding: 0;
+ // margin-bottom: 20px;
+  font-size: 120%;
+  line-height: inherit;
+  color: $app-body-color;
+  border: 0;
+  border-bottom: 0px solid $app-border-color;
+}
 /* Button
 -------------------------------------------------- */
 .btn-default,.btn-primary,.btn-info,.btn-success,.btn-warning,.btn-danger{
@@ -428,6 +441,19 @@ a {
   }
 }
 
+/* Slider
+-------------------------------------------------- */
+
+.slider {
+  color: $app-color-lighter;
+  background-color: $app-color-dark-lightest;
+  border-color: $app-color-darkest;
+}
+.slider:before {
+  background-color: $app-brand-danger;
+}
+
+
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown{
@@ -466,6 +492,27 @@ a {
 
 /* Accordion
 -------------------------------------------------- */
+.accordion-toggle, .automation .accordion-wrap .accordion-toggle{
+  .no-toggle {
+    border-color: $app-border-color;
+  }
+  color: $app-color-lighter;
+  > button{
+    border-color: $app-border-color;
+  }
+}
+.accordion,.automation .accordion-wrap .accordion{
+  background-color: $app-color-dark-lighter;
+  border-color: $app-border-color;
+  color: $app-color-lighter;
+}
+.automation .accordion-wrap .accordion{
+  background-color: $app-color-dark;
+  .accordion{
+    border: 0;
+    background-color: $app-color-darkest;
+  }
+}
 .accordion-entry{
   border-bottom: dotted 1px  $app-border-color;
   color: $app-color-lighter;
@@ -512,6 +559,13 @@ a {
 }
 .report-entry {
   border-bottom: solid 1px $app-border-color;
+}
+
+/* List panel
+-------------------------------------------------- */
+.list-panel{
+  background-color: $app-color-dark-lightest;
+  border-color: $app-border-color; 
 }
 
 /* Table
@@ -973,19 +1027,7 @@ a {
   }
 }
 
-/* Alpaca
--------------------------------------------------- */
-legend {
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 20px;
-  font-size: 110%;
-  line-height: inherit;
-  color: $app-body-color;
-  border: 0;
-  border-bottom: 0px solid $app-border-color;
-}
+
 .alpaca-field-object {
   border: 1px $app-border-color solid;
 }
