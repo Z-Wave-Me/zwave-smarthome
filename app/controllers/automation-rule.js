@@ -291,7 +291,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       }
     },
     input: {
-      instanceId: $routeParams.id,
+      id: $routeParams.id,
       moduleId: "Rules",
       active: true,
       title: "",
@@ -340,13 +340,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       var assignedTargetDevices = $scope.rule.target.assignedDevices;
       // Set input data
       instance.params.advanced.tests = _.sortBy(instance.params.advanced.tests, 'testType');
-      angular.extend($scope.rule.input, {
-        title: instance.title,
-        active: instance.active,
-        params: instance.params
-      });
-      /* console.log(instance.params.advanced.tests)
-      console.log(_.sortBy(instance.params.advanced.tests, 'testType')) */
+      angular.extend($scope.rule.input,instance);
+
       // Set source device
       var filterIf = instance.params.sourceDevice.filterIf;
       if (filterIf) {
@@ -363,7 +358,6 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       // Set advanced target assigned devices
       angular.forEach(instance.params.advanced.action, function (v, k) {
         var deviceId;
-        // console.log(v)
         _.filter(v, function (val, key) {
           switch (k) {
             case 'scenes':
@@ -728,7 +722,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * Store 
    */
   $scope.storeRule = function (input, redirect) {
-    dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
+    dataFactory.storeApi('instances', parseInt(input.id, 10), input).then(function (response) {
       if (redirect) {
         $location.path('/rules');
       }

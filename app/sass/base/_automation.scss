@@ -18,7 +18,7 @@
         font-weight: normal;
         border-bottom: dotted 1px $accordion-border-color;
       }
-     /*  &:last-child {
+      /*  &:last-child {
         margin-bottom: $spacing;
       } */
     }
@@ -37,6 +37,24 @@
       .accordion {
         // background-color: lighten(#F6F6F6,10%);
         border: solid 1px darken(#F6F6F6, 20%)
+      }
+    }
+    &.no-items {
+      .accordion-toggle {
+        opacity: 0.7;
+        >button {
+          cursor: text;
+          padding: $spacing 0;
+          &::after {
+            content: "" !important;
+          }
+          &[aria-expanded="true"]{
+            border-bottom: dotted 1px $accordion-border-color;
+          }
+        }
+      }
+      .accordion {
+        display: none;
       }
     }
   }

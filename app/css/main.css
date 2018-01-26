@@ -13905,6 +13905,10 @@ fieldset section, .fieldset section {
 /* Variables */
 /* NEW version
 -------------------------------------------------- */
+/* line 17, ../sass/base/_accordion.scss */
+.accordion-toggle {
+  color: #333333;
+}
 /* line 19, ../sass/base/_accordion.scss */
 .accordion-toggle > button {
   all: inherit;
@@ -17745,8 +17749,8 @@ img.widget-promo-image {
   display: flex;
   align-items: center;
   /*  &:last-child {
-     margin-bottom: $spacing;
-   } */
+    margin-bottom: $spacing;
+  } */
 }
 /* line 15, ../sass/base/_automation.scss */
 .automation .accordion-wrap .accordion-toggle .no-toggle {
@@ -17775,31 +17779,52 @@ img.widget-promo-image {
 .automation .accordion-wrap .accordion .accordion {
   border: solid 1px #c3c3c3;
 }
-
+/* line 43, ../sass/base/_automation.scss */
+.automation .accordion-wrap.no-items .accordion-toggle {
+  opacity: 0.7;
+}
+/* line 45, ../sass/base/_automation.scss */
+.automation .accordion-wrap.no-items .accordion-toggle > button {
+  cursor: text;
+  padding: 10px 0;
+}
 /* line 48, ../sass/base/_automation.scss */
+.automation .accordion-wrap.no-items .accordion-toggle > button::after {
+  content: "" !important;
+}
+/* line 51, ../sass/base/_automation.scss */
+.automation .accordion-wrap.no-items .accordion-toggle > button[aria-expanded="true"] {
+  border-bottom: dotted 1px #cccccc;
+}
+/* line 56, ../sass/base/_automation.scss */
+.automation .accordion-wrap.no-items .accordion {
+  display: none;
+}
+
+/* line 66, ../sass/base/_automation.scss */
 .automation-report.app-row-report {
   border: 0;
 }
-/* line 51, ../sass/base/_automation.scss */
+/* line 69, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry .report-col {
   border-bottom: dotted 1px #cccccc;
   vertical-align: top;
 }
-/* line 56, ../sass/base/_automation.scss */
+/* line 74, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry .report-ctrl {
   min-width: 50%;
 }
-/* line 59, ../sass/base/_automation.scss */
+/* line 77, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry input[type=radio] {
   margin: 0 5px 0;
 }
-/* line 63, ../sass/base/_automation.scss */
+/* line 81, ../sass/base/_automation.scss */
 .automation-report.app-row-report .form-collapsed {
   background-color: #F6F6F6;
   padding: 10px;
   margin-top: 10px;
 }
-/* line 69, ../sass/base/_automation.scss */
+/* line 87, ../sass/base/_automation.scss */
 .automation-report.app-row-report .form-collapsed .form-group:last-child {
   border: 0;
   margin: 0;
@@ -17808,12 +17833,12 @@ img.widget-promo-image {
 
 /* Schedules
 -------------------------------------------------- */
-/* line 84, ../sass/base/_automation.scss */
+/* line 102, ../sass/base/_automation.scss */
 .table-calendar .first-col {
   width: 80px;
   background-color: #d9edf7;
 }
-/* line 88, ../sass/base/_automation.scss */
+/* line 106, ../sass/base/_automation.scss */
 .table-calendar th {
   text-align: center;
 }

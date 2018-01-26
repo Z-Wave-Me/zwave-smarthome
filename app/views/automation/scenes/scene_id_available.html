@@ -1,4 +1,4 @@
-<section class="accordion-wrap" ng-repeat="r in scene.rooms track by $index" ng-hide="!scene.devicesInRoom[r.id]">
+<section class="accordion-wrap" ng-repeat="r in scene.rooms track by $index" ng-class="scene.devicesInRoom[r.id] ? 'available-devices' : 'ng-hide'">
   <!-- Title -->
   <h2 class="accordion-toggle chevron">
     <button type="button" aria-expanded="false" bb-accordion>

@@ -15,7 +15,7 @@ $accordion-focus-color: $focus-color;
 -------------------------------------------------- */
 
 .accordion-toggle{
- 
+  color: $accordion-color;
  > button{
     all: inherit;
     border: 0;
