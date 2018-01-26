@@ -8,7 +8,7 @@
       </span>
       <!-- Toggle -->
       <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} -
+      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}}  <strong ng-if="v.status">({{v.status}}) </strong> -
         <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
       </span>
     </button>
@@ -31,7 +31,7 @@
       </span>
       <!-- Toggle -->
       <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} -
+      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} <strong ng-if="v.status">({{v.status}}) </strong> -
         <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
       </span>
     </button>
@@ -52,7 +52,7 @@
     </span>
     <!-- Toggle -->
     <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} -
+      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} - <strong ng-if="v.status">({{v.status}}) </strong> 
         <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
       </span>
     </button>
@@ -75,7 +75,7 @@
       </span>
       <!-- Toggle -->
       <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} -
+      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} - <strong ng-if="v.status">({{v.status}}) </strong> 
         <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
       </span>
     </button>
@@ -92,13 +92,13 @@
   <!-- Title -->
   <h2 class="accordion-toggle chevron">
      <!-- Deleted device -->
-     <span class="no-toggle text-danger" ng-if="!rule.advanced.target.availableDevices[v.device]">
-        <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
+     <span class="no-toggle text-danger" ng-if="!rule.advanced.target.availableDevices[v.target]">
+        <i class="fa fa-exclamation-circle"></i> {{v.target}} {{_t('device_removed')}}
       </span>
       <!-- Toggle -->
-      <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} -
-        <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
+      <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.target]">
+      <span>{{rule.advanced.target.availableDevices[v.target].metrics.title}} -
+        <em>{{rule.rooms[rule.advanced.target.availableDevices[v.target].location].title}}</em>
       </span>
     </button>
     <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('notification',$index,v.target)">
@@ -129,3 +129,5 @@
 
   </h2>
 </section>
+
+<!-- <pre>{{rule.input.params.advanced.action|json}}</pre> -->
