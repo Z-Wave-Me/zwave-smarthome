@@ -13440,19 +13440,14 @@ fieldset.submit-entry {
 .imglist-entry {
   text-align: center;
   width: 50px;
-  height: 80px;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
+  height: 50px;
+  /* @include mediaQueries(min-small) {
+      height: 60px;    
+  } */
   float: left;
   position: relative;
   min-height: 1px;
   margin: 10px;
-}
-@media only screen and (min-width: 768px) {
-  /* line 8, ../sass/base/_imglist.scss */
-  .imglist-entry {
-    height: 60px;
-  }
 }
 /* line 18, ../sass/base/_imglist.scss */
 .imglist-entry.in-device {
@@ -16043,16 +16038,19 @@ img.widget-promo-image {
 .onlineapp.widget-warning .onlineapp-img {
   opacity: 0.4;
   filter: alpha(opacity=40);
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
 }
-/* line 159, ../sass/base/_online_apps.scss */
+/* line 160, ../sass/base/_online_apps.scss */
 .onlineapp.widget-warning .onlineapp-title {
   color: #d9d9d9 !important;
 }
-/* line 165, ../sass/base/_online_apps.scss */
+/* line 166, ../sass/base/_online_apps.scss */
 .onlineapp.widget-warning .onlineapp-footer .rating-group .widget-rating.israted {
   color: #f8d9ac;
 }
-/* line 172, ../sass/base/_online_apps.scss */
+/* line 173, ../sass/base/_online_apps.scss */
 .onlineapp.widget-warning .onlineapp-footer .btn .fa {
   color: #d9d9d9 !important;
 }
@@ -17874,191 +17872,1190 @@ img.widget-promo-image {
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit
 -------------------------------------------------- */
-/* Default SmartHome skin
+/* Dark SmartHome skin
 -------------------------------------------------- */
 /* Variables
 -------------------------------------------------- */
+/* Gird
+-------------------------------------------------- */
+/*#header{
+  position: static;
+  width: 20%;
+  float: left;
+  #main_navigation{
+    //position: static;
+    position: relative;
+    .timestamp{
+      display: block;
+      top: 0;
+      left: 100%;
+      position: absolute;
+    }
+    #navigation_left{
+      position: static;
+
+    }
+    a{
+      display: block;
+    }
+    #navigation_right {
+      float: none;
+    }
+  }
+}
+#main_content{
+  margin-top: $spacing;
+  width: 80%;
+  float: left;
+}
+.container{
+  max-width: 100%
+  //width: 100%;
+}*/
 /* Body
 -------------------------------------------------- */
-/* line 8, ../sass/custom/_shui.scss */
+/* line 68, ../sass/custom/_darkshui.scss */
 body {
-  background-color: #F6F6F6;
+  color: #aeb8c3;
+  background-color: #2D3038;
 }
 
-/* line 13, ../sass/custom/_shui.scss */
+/* line 73, ../sass/custom/_darkshui.scss */
+.timestamp {
+  color: #aeb8c3;
+}
+
+/* Typo
+-------------------------------------------------- */
+/* line 80, ../sass/custom/_darkshui.scss */
+h1,
+h2,
+h3,
+h4 {
+  color: #8291a2;
+}
+
+/* line 87, ../sass/custom/_darkshui.scss */
+.app-entry-local h2 {
+  color: #8291a2;
+}
+
+/* line 91, ../sass/custom/_darkshui.scss */
+.text-supp {
+  color: #919ead;
+}
+
+/* Links
+-------------------------------------------------- */
+/* line 98, ../sass/custom/_darkshui.scss */
+a {
+  color: #aeb8c3;
+}
+/* line 100, ../sass/custom/_darkshui.scss */
+a:hover, a:focus {
+  color: #aeb8c3;
+  text-decoration: underline;
+}
+/* line 105, ../sass/custom/_darkshui.scss */
+a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+/* line 111, ../sass/custom/_darkshui.scss */
+a.link-dotted {
+  color: #aeb8c3;
+  border-bottom: 1px dotted #aeb8c3;
+}
+/* line 114, ../sass/custom/_darkshui.scss */
+a.link-dotted:hover, a.link-dotted:focus {
+  border-bottom: 1px solid #aeb8c3;
+  text-decoration: none;
+}
+/* line 120, ../sass/custom/_darkshui.scss */
+a.link-underline {
+  color: #aeb8c3;
+}
+
+/* Others
+-------------------------------------------------- */
+/* line 128, ../sass/custom/_darkshui.scss */
+.bcg-success {
+  background-color: #dff0d8;
+  background: transparent;
+}
+
+/* line 133, ../sass/custom/_darkshui.scss */
+.bcg-active.false,
+.bcg-danger {
+  background-color: #2D3038 !important;
+}
+/* line 137, ../sass/custom/_darkshui.scss */
+.bcg-active.false .report-img-s,
+.bcg-danger .report-img-s {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+/* line 142, ../sass/custom/_darkshui.scss */
+.badge-number {
+  background-color: #5a6071;
+  color: #aeb8c3;
+}
+
+/*.fa {
+  &.text-success{
+    color: $app-color-additional;
+  }
+}*/
+/* line 154, ../sass/custom/_darkshui.scss */
 .device-available-block.assigned {
-  background-color: #e7e7e7;
   border: 0;
+  background-color: #24262D;
+}
+
+/* line 160, ../sass/custom/_darkshui.scss */
+.text-primary {
+  color: #6494BC;
+}
+
+/* line 164, ../sass/custom/_darkshui.scss */
+.text-success {
+  color: #80AD80;
+}
+
+/* line 168, ../sass/custom/_darkshui.scss */
+.text-info {
+  color: #5bc0de;
+}
+
+/* line 172, ../sass/custom/_darkshui.scss */
+.text-warning {
+  color: #f0ad4e;
+}
+
+/* line 176, ../sass/custom/_darkshui.scss */
+.text-danger {
+  color: #d9534f;
+}
+
+/* Alert
+-------------------------------------------------- */
+/* line 183, ../sass/custom/_darkshui.scss */
+.alert {
+  background-color: #3B3E47;
+  border: 2px solid #44464F;
+  color: #aeb8c3;
+  font-size: 110%;
+}
+
+/* line 190, ../sass/custom/_darkshui.scss */
+.alert-success {
+  border-color: #80AD80;
+}
+
+/* line 194, ../sass/custom/_darkshui.scss */
+.alert-info {
+  border-color: #5bc0de;
+}
+
+/* line 198, ../sass/custom/_darkshui.scss */
+.alert-warning {
+  border-color: #f0ad4e;
+}
+
+/* line 202, ../sass/custom/_darkshui.scss */
+.alert-danger {
+  border-color: #d9534f;
+}
+
+/* Fatal error
+-------------------------------------------------- */
+/* line 209, ../sass/custom/_darkshui.scss */
+.app-fatal-error {
+  background-color: #3B3E47;
+  border: solid 1px #d9534f;
+}
+/* line 212, ../sass/custom/_darkshui.scss */
+.app-fatal-error .fatal-error-message {
+  color: #d9534f;
+}
+/* line 215, ../sass/custom/_darkshui.scss */
+.app-fatal-error .fatal-error-info {
+  color: #aeb8c3;
+}
+
+/* Header
+-------------------------------------------------- */
+/* line 223, ../sass/custom/_darkshui.scss */
+#header {
+  color: #aeb8c3;
+}
+/* line 225, ../sass/custom/_darkshui.scss */
+#header .divider-vertical {
+  display: none;
 }
 
 /* Main navigation
 -------------------------------------------------- */
-/* line 20, ../sass/custom/_shui.scss */
+/* line 233, ../sass/custom/_darkshui.scss */
 #main_navigation_wrap {
-  border-bottom: solid 4px #DDD;
-  background-color: #E9E9E9;
+  background-color: #2A2D35;
+  border-bottom: solid 1px #44464F;
 }
-/* line 24, ../sass/custom/_shui.scss */
-#main_navigation_wrap #main_navigation .active {
-  background-color: #DDD;
-  color: #ffffff;
+
+/* line 239, ../sass/custom/_darkshui.scss */
+#main_navigation a {
+  color: #aeb8c3;
+}
+/* line 242, ../sass/custom/_darkshui.scss */
+#main_navigation a:hover {
+  background: transparent;
+  color: #F6A821;
+}
+/* line 246, ../sass/custom/_darkshui.scss */
+#main_navigation .active {
+  background-color: #44464F;
+  color: #F6A821;
+}
+/* line 249, ../sass/custom/_darkshui.scss */
+#main_navigation .active:hover {
+  background-color: #44464F;
+}
+
+/* Subnavigation
+-------------------------------------------------- */
+/* line 259, ../sass/custom/_darkshui.scss */
+#sub_navigation_in ul {
+  background-color: #2A2D35;
+  border: 1px solid #6f777e;
+}
+/* line 262, ../sass/custom/_darkshui.scss */
+#sub_navigation_in ul li {
+  border-bottom: solid 1px #6f777e;
+}
+/* line 264, ../sass/custom/_darkshui.scss */
+#sub_navigation_in ul li a {
+  color: #aeb8c3;
+}
+/* line 266, ../sass/custom/_darkshui.scss */
+#sub_navigation_in ul li a:hover {
+  color: #F6A821;
+}
+/* line 270, ../sass/custom/_darkshui.scss */
+#sub_navigation_in ul li.active {
+  background-color: #44464F;
+}
+/* line 272, ../sass/custom/_darkshui.scss */
+#sub_navigation_in ul li.active a {
+  color: #F6A821;
+}
+/* line 275, ../sass/custom/_darkshui.scss */
+#sub_navigation_in ul li.active .fa {
+  color: #F6A821;
+}
+/* line 280, ../sass/custom/_darkshui.scss */
+#sub_navigation_in ul .fa {
+  color: #aeb8c3;
 }
 
 /* Top fixed elements for mobile devices
 -------------------------------------------------- */
-/* line 33, ../sass/custom/_shui.scss */
-.fix-me-top {
-  background-color: #E9E9E9;
-  border-bottom: solid 4px #DDD;
+/* MIN WIDTH */
+/* MAX WIDTH */
+@media only screen and (max-width: 767px) {
+  /* line 290, ../sass/custom/_darkshui.scss */
+  .fix-me-top {
+    background-color: #2A2D35;
+    border-bottom: solid 1px #44464F;
+  }
+}
+/* Page navigation
+-------------------------------------------------- */
+/* line 299, ../sass/custom/_darkshui.scss */
+.page-navi {
+  color: #aeb8c3;
+}
+/* line 301, ../sass/custom/_darkshui.scss */
+.page-navi .page-navi-in {
+  background-color: #2A2D35;
+  border: 1px solid #6f777e;
+}
+/* line 306, ../sass/custom/_darkshui.scss */
+.page-navi ul li {
+  border-bottom: solid 1px #6f777e;
+}
+/* line 308, ../sass/custom/_darkshui.scss */
+.page-navi ul li a {
+  color: #aeb8c3;
+}
+/* line 313, ../sass/custom/_darkshui.scss */
+.page-navi ul .active a {
+  color: #F6A821;
+}
+/* line 316, ../sass/custom/_darkshui.scss */
+.page-navi ul .active .fa {
+  color: #F6A821;
+}
+/* line 320, ../sass/custom/_darkshui.scss */
+.page-navi ul .fa {
+  color: #aeb8c3;
+}
+/* line 324, ../sass/custom/_darkshui.scss */
+.page-navi .page-navi-title {
+  color: #8291a2;
+}
+/* line 327, ../sass/custom/_darkshui.scss */
+.page-navi .page-navi-tag {
+  border: solid 1px #6f777e;
+}
+/* line 330, ../sass/custom/_darkshui.scss */
+.page-navi .page-navi-tag.active {
+  background-color: #6f777e;
 }
 
 /* Form
 -------------------------------------------------- */
-/* line 40, ../sass/custom/_shui.scss */
+/* line 338, ../sass/custom/_darkshui.scss */
+.form-control {
+  color: #aeb8c3;
+  border: solid 1px #24262D;
+  background-color: #44464F;
+}
+/* line 342, ../sass/custom/_darkshui.scss */
+.form-control:focus {
+  border-color: #F6A821;
+}
+/* line 345, ../sass/custom/_darkshui.scss */
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  color: #8e919e;
+  background-color: #44464F;
+}
+
+/* line 353, ../sass/custom/_darkshui.scss */
+.input-group-addon {
+  border: solid 1px #24262D;
+  background-color: #24262D;
+}
+/* line 356, ../sass/custom/_darkshui.scss */
+.input-group-addon .fa {
+  color: #d4d4d4;
+}
+
+/* line 361, ../sass/custom/_darkshui.scss */
 .form-page {
-  border: solid 4px #e7e7e7;
+  background-color: #3B3E47;
+  border: 0 none;
 }
-/* line 42, ../sass/custom/_shui.scss */
+/* line 364, ../sass/custom/_darkshui.scss */
 .form-page .form-group {
-  border-color: #e7e7e7;
+  border-bottom: solid 1px #2D3038;
 }
 
-/* line 46, ../sass/custom/_shui.scss */
+/* line 369, ../sass/custom/_darkshui.scss */
 .submit-entry {
-  background-color: #e7e7e7;
-  border-top: solid 1px  #e7e7e7;
+  background-color: #24262D;
+  border-top: 0;
 }
 
-/* line 53, ../sass/custom/_shui.scss */
-fieldset.expanded, .fieldset.expanded {
-  background-color: #F6F6F6;
-  border-top: solid 4px #e7e7e7;
-  border-bottom: solid 4px #e7e7e7;
+/* line 374, ../sass/custom/_darkshui.scss */
+.control-active {
+  border: solid 4px #F6A821 !important;
+}
+
+/* Legend
+-------------------------------------------------- */
+/* line 381, ../sass/custom/_darkshui.scss */
+legend {
+  display: block;
+  width: 100%;
+  font-size: 120%;
+  line-height: inherit;
+  color: #aeb8c3;
+  border: 0;
+  border-bottom: 0px solid #6f777e;
 }
 
 /* Button
 -------------------------------------------------- */
-/* line 63, ../sass/custom/_shui.scss */
-.btn-goup-tabs .btn {
-  background-color: #eeeeee;
+/* line 395, ../sass/custom/_darkshui.scss */
+.btn-default,
+.btn-primary,
+.btn-info,
+.btn-success,
+.btn-warning,
+.btn-danger {
+  background-color: #44464F;
+  color: #aeb8c3;
+  border: solid 1px #737786;
 }
-/* line 65, ../sass/custom/_shui.scss */
+/* line 404, ../sass/custom/_darkshui.scss */
+.btn-default:hover,
+.btn-primary:hover,
+.btn-info:hover,
+.btn-success:hover,
+.btn-warning:hover,
+.btn-danger:hover {
+  background-color: #24262D;
+  color: #aeb8c3;
+}
+/* line 408, ../sass/custom/_darkshui.scss */
+.btn-default.active,
+.btn-primary.active,
+.btn-info.active,
+.btn-success.active,
+.btn-warning.active,
+.btn-danger.active {
+  background-color: #2D3038;
+  color: #aeb8c3;
+}
+/* line 412, ../sass/custom/_darkshui.scss */
+.btn-default:active,
+.btn-primary:active,
+.btn-info:active,
+.btn-success:active,
+.btn-warning:active,
+.btn-danger:active {
+  bbackground-color: #3B3E47;
+  color: #aeb8c3;
+}
+/* line 416, ../sass/custom/_darkshui.scss */
+.btn-default:focus,
+.btn-primary:focus,
+.btn-info:focus,
+.btn-success:focus,
+.btn-warning:focus,
+.btn-danger:focus {
+  background-color: #3B3E47;
+  color: #aeb8c3;
+}
+
+/* line 424, ../sass/custom/_darkshui.scss */
+.btn-goup-block .btn.active .fa {
+  color: #F6A821;
+}
+
+/* line 430, ../sass/custom/_darkshui.scss */
+.btn-submit {
+  color: #fce2b4;
+  border: solid 1px #aa6e07;
+  background-color: #F6A821;
+}
+/* line 434, ../sass/custom/_darkshui.scss */
+.btn-submit:hover, .btn-submit:focus {
+  background-color: #aa6e07;
+  color: #fef5e5;
+}
+
+/* Button tabs
+-------------------------------------------------- */
+/* line 445, ../sass/custom/_darkshui.scss */
+.btn-goup-tabs .btn {
+  background-color: #2D3038;
+  color: #aeb8c3;
+  border: solid 1px #737786;
+}
+/* line 449, ../sass/custom/_darkshui.scss */
 .btn-goup-tabs .btn.active {
-  background-color: #dcdcdc;
+  background-color: #44464F;
+  color: #F6A821;
+}
+/* line 453, ../sass/custom/_darkshui.scss */
+.btn-goup-tabs .btn .fa {
+  color: #aeb8c3;
+}
+/* line 455, ../sass/custom/_darkshui.scss */
+.btn-goup-tabs .btn .fa.text-danger {
+  color: #d9534f;
+}
+/* line 461, ../sass/custom/_darkshui.scss */
+.btn-goup-tabs .active .fa {
+  color: #F6A821;
+}
+/* line 463, ../sass/custom/_darkshui.scss */
+.btn-goup-tabs .active .fa.text-danger {
+  color: #d9534f;
+}
+
+/* Slider
+-------------------------------------------------- */
+/* line 473, ../sass/custom/_darkshui.scss */
+.slider {
+  color: #aeb8c3;
+  background-color: #44464F;
+  border-color: #24262D;
+}
+
+/* line 479, ../sass/custom/_darkshui.scss */
+.slider:before {
+  background-color: #d9534f;
+}
+
+/* Dropdown
+-------------------------------------------------- */
+/* line 486, ../sass/custom/_darkshui.scss */
+.app-dropdown {
+  background-color: #2A2D35;
+  border: 1px solid #6f777e;
+  color: #aeb8c3;
+}
+/* line 490, ../sass/custom/_darkshui.scss */
+.app-dropdown .app-dropdown-title {
+  color: #8291a2;
+  border-bottom: solid 1px #6f777e;
+}
+/* line 495, ../sass/custom/_darkshui.scss */
+.app-dropdown ul li {
+  border-bottom: solid 1px #6f777e;
+}
+/* line 497, ../sass/custom/_darkshui.scss */
+.app-dropdown ul li a {
+  color: #aeb8c3;
+}
+/* line 500, ../sass/custom/_darkshui.scss */
+.app-dropdown ul li:hover {
+  background-color: #2D3038;
+  color: #F6A821;
+}
+/* line 506, ../sass/custom/_darkshui.scss */
+.app-dropdown ul .active a {
+  color: #F6A821;
+}
+/* line 510, ../sass/custom/_darkshui.scss */
+.app-dropdown ul .btn {
+  color: #aeb8c3;
+}
+
+/* Accordion
+-------------------------------------------------- */
+/* line 519, ../sass/custom/_darkshui.scss */
+.accordion-toggle,
+.automation .accordion-wrap .accordion-toggle {
+  color: #aeb8c3;
+}
+/* line 521, ../sass/custom/_darkshui.scss */
+.accordion-toggle .no-toggle,
+.automation .accordion-wrap .accordion-toggle .no-toggle {
+  border-color: #6f777e;
+}
+/* line 525, ../sass/custom/_darkshui.scss */
+.accordion-toggle > button,
+.automation .accordion-wrap .accordion-toggle > button {
+  border-color: #6f777e;
+}
+
+/* line 530, ../sass/custom/_darkshui.scss */
+.accordion,
+.automation .accordion-wrap .accordion {
+  background-color: #3B3E47;
+  border-color: #6f777e;
+  color: #aeb8c3;
+}
+
+/* line 537, ../sass/custom/_darkshui.scss */
+.automation .accordion-wrap .accordion {
+  background-color: #2D3038;
+}
+/* line 539, ../sass/custom/_darkshui.scss */
+.automation .accordion-wrap .accordion .accordion {
+  border: 0;
+  background-color: #24262D;
+}
+
+/* line 545, ../sass/custom/_darkshui.scss */
+.accordion-entry {
+  border-bottom: dotted 1px #6f777e;
+  color: #aeb8c3;
+}
+
+/* line 550, ../sass/custom/_darkshui.scss */
+.accordion-entry-title {
+  color: #aeb8c3;
+}
+/* line 552, ../sass/custom/_darkshui.scss */
+.accordion-entry-title .fa {
+  color: #919ead;
+}
+
+/* Modal
+-------------------------------------------------- */
+/* line 560, ../sass/custom/_darkshui.scss */
+.appmodal {
+  color: #aeb8c3;
+}
+/* line 562, ../sass/custom/_darkshui.scss */
+.appmodal .appmodal-in {
+  background-color: #2A2D35;
+}
+
+/* line 567, ../sass/custom/_darkshui.scss */
+.appmodal-header {
+  border-bottom: solid 1px #44464F;
+  background-color: #24262D;
+}
+/* line 570, ../sass/custom/_darkshui.scss */
+.appmodal-header h3 {
+  color: #8291a2;
+}
+
+/* line 577, ../sass/custom/_darkshui.scss */
+.appmodal-footer {
+  border-top: solid 1px #44464F;
+  background-color: #24262D;
+}
+
+/* Report
+-------------------------------------------------- */
+/* line 585, ../sass/custom/_darkshui.scss */
+.app-row-report {
+  border-top: solid 1px #6f777e;
+  border-bottom: solid 1px #6f777e;
+  background-color: #44464F;
+  color: #aeb8c3;
+}
+
+/* line 592, ../sass/custom/_darkshui.scss */
+.report-entry {
+  background-color: #3B3E47;
+}
+/* line 596, ../sass/custom/_darkshui.scss */
+.report-entry .report-col {
+  border-bottom: dotted 1px #6f777e;
+}
+/* line 600, ../sass/custom/_darkshui.scss */
+.report-entry.false .report-body {
+  color: #d9534f;
+}
+/* line 602, ../sass/custom/_darkshui.scss */
+.report-entry.false .report-body a {
+  color: #d9534f;
+}
+
+/* List panel
+-------------------------------------------------- */
+/* line 612, ../sass/custom/_darkshui.scss */
+.list-panel {
+  background-color: #44464F;
+  border-color: #6f777e;
+}
+
+/* Table
+-------------------------------------------------- */
+/* line 623, ../sass/custom/_darkshui.scss */
+.table tbody tr td {
+  border-top: 1px solid #6f777e;
+}
+
+/* line 630, ../sass/custom/_darkshui.scss */
+.table-report {
+  background-color: #44464F;
+}
+
+/* Loader
+-------------------------------------------------- */
+/* line 637, ../sass/custom/_darkshui.scss */
+#loading {
+  color: #aeb8c3;
+}
+/* line 639, ../sass/custom/_darkshui.scss */
+#loading .loading-in {
+  background-color: #24262D;
+  border: solid 2px #6f777e;
+}
+
+/* line 646, ../sass/custom/_darkshui.scss */
+.progress-true .widget-loader {
+  color: #F6A821;
+}
+
+/* Pagination
+-------------------------------------------------- */
+/* line 656, ../sass/custom/_darkshui.scss */
+.pagination > li > a,
+.pagination > li > span {
+  color: #aeb8c3;
+  background-color: #44464F;
+  border: solid 1px #737786;
+}
+/* line 665, ../sass/custom/_darkshui.scss */
+.pagination > li > a:hover, .pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
+  color: #aeb8c3;
+  background-color: #2D3038;
+  border-color: #737786;
+}
+/* line 674, ../sass/custom/_darkshui.scss */
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  color: #aeb8c3;
+  background-color: #2D3038;
+  border-color: #737786;
+}
+/* line 683, ../sass/custom/_darkshui.scss */
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #738598;
+  background-color: #44464F;
+  border-color: #737786;
 }
 
 /* Widget
 -------------------------------------------------- */
-/* line 74, ../sass/custom/_shui.scss */
+/* line 700, ../sass/custom/_darkshui.scss */
 .widget-entry .widget-entry-in {
-  border-color: #d3d3d3;
+  border-bottom: solid 1px #6f777e;
+  background-color: #44464F;
+  color: #aeb8c3;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 74, ../sass/custom/_shui.scss */
+  /* line 700, ../sass/custom/_darkshui.scss */
   .widget-entry .widget-entry-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    border: solid 2px #44464F;
   }
+}
+/* line 709, ../sass/custom/_darkshui.scss */
+.widget-entry .widget-entry-in .widget-header .widget-icon {
+  color: #aeb8c3;
+}
+/* line 713, ../sass/custom/_darkshui.scss */
+.widget-entry .widget-entry-in .widget-title {
+  color: #8291a2;
+}
+/* line 716, ../sass/custom/_darkshui.scss */
+.widget-entry .widget-entry-in .widget-title h3 a {
+  color: #8291a2;
+}
+/* line 723, ../sass/custom/_darkshui.scss */
+.widget-entry.widget-success .widget-entry-in {
+  border: solid 2px #80AD80;
 }
 
 /* Rooms
 -------------------------------------------------- */
-/* MIN WIDTH */
-@media only screen and (min-width: 320px) {
-  /* line 91, ../sass/custom/_shui.scss */
-  .card-room .card-room-in {
-    border: solid 4px #ffffff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
+/* line 732, ../sass/custom/_darkshui.scss */
+.card-room {
+  /* Inner element */
 }
-/* MAX WIDTH */
-/* Elements in Room
--------------------------------------------------- */
-/* line 100, ../sass/custom/_shui.scss */
-.elemnts-room-bar {
+/* line 734, ../sass/custom/_darkshui.scss */
+.card-room .card-room-in {
+  border-color: #6f777e;
+}
+/* line 737, ../sass/custom/_darkshui.scss */
+.card-room .card-room-in .card-icon {
+  color: #24262D;
+}
+/* line 740, ../sass/custom/_darkshui.scss */
+.card-room .card-room-in .card-title {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 768px) {
-  /* line 100, ../sass/custom/_shui.scss */
-  .elemnts-room-bar {
-    border: 0;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 742, ../sass/custom/_darkshui.scss */
+  .card-room .card-room-in .card-title a {
+    color: #d4d4d4;
   }
 }
 
-/* Local and online apps
+/* line 753, ../sass/custom/_darkshui.scss */
+.elemnts-room-bar {
+  border: 0 none;
+  background-color: #44464F;
+}
+
+/* Elements
 -------------------------------------------------- */
-/* line 112, ../sass/custom/_shui.scss */
-.localapp-in, .onlineapp-in {
-  border-color: #d3d3d3;
+/* line 763, ../sass/custom/_darkshui.scss */
+.widget-entry-element .widget-entry-in .widget-img {
+  background-color: #fff;
+}
+/* line 767, ../sass/custom/_darkshui.scss */
+.widget-entry-element .widget-entry-in .widget-title .widget-room {
+  color: #aeb8c3;
+}
+/* line 771, ../sass/custom/_darkshui.scss */
+.widget-entry-element .widget-entry-in .widget-level {
+  color: #aeb8c3;
+}
+
+/* line 779, ../sass/custom/_darkshui.scss */
+.widget-ctrl .fa-caret-down,
+.tbl-widget-ctrl .fa-caret-down {
+  color: #cbd2d9;
+}
+/* line 783, ../sass/custom/_darkshui.scss */
+.widget-ctrl .btn-group .btn,
+.tbl-widget-ctrl .btn-group .btn {
+  color: #aeb8c3;
+}
+/* line 786, ../sass/custom/_darkshui.scss */
+.widget-ctrl .btn-group .btn-primary,
+.tbl-widget-ctrl .btn-group .btn-primary {
+  background-color: #aeb8c3 !important;
+  border-color: #e9ebee;
+  color: #24262D !important;
+}
+/* line 790, ../sass/custom/_darkshui.scss */
+.widget-ctrl .btn-group .btn-primary .fa,
+.tbl-widget-ctrl .btn-group .btn-primary .fa {
+  color: #24262D !important;
+}
+/* line 794, ../sass/custom/_darkshui.scss */
+.widget-ctrl .btn-group .btn-off.btn-primary,
+.tbl-widget-ctrl .btn-group .btn-off.btn-primary {
+  color: #24262D !important;
+}
+/* line 796, ../sass/custom/_darkshui.scss */
+.widget-ctrl .btn-group .btn-off.btn-primary .fa,
+.tbl-widget-ctrl .btn-group .btn-off.btn-primary .fa {
+  color: #24262D !important;
+}
+/* line 800, ../sass/custom/_darkshui.scss */
+.widget-ctrl .btn-group .btn-label-on,
+.tbl-widget-ctrl .btn-group .btn-label-on {
+  color: #aeb8c3;
+}
+/* line 803, ../sass/custom/_darkshui.scss */
+.widget-ctrl .btn-group .btn-widget-time,
+.widget-ctrl .btn-group .txt-widget-time,
+.tbl-widget-ctrl .btn-group .btn-widget-time,
+.tbl-widget-ctrl .btn-group .txt-widget-time {
+  color: #aeb8c3;
+}
+
+/* line 811, ../sass/custom/_darkshui.scss */
+.dragdrop-element .dd-placeholder {
+  border: 3px dashed #44464F;
+  background-color: #aeb8c3;
+}
+
+/* line 817, ../sass/custom/_darkshui.scss */
+.card-element-dragdrop {
+  background: none #44464F;
+  border: solid 1px #2D3038;
+}
+
+/* Apps
+-------------------------------------------------- */
+/* line 829, ../sass/custom/_darkshui.scss */
+.widget-entry-app .widget-entry-in .widget-footer .rating-group .widget-rating {
+  color: #919ead;
+}
+/* line 831, ../sass/custom/_darkshui.scss */
+.widget-entry-app .widget-entry-in .widget-footer .rating-group .widget-rating.israted {
+  color: #aeb8c3;
+}
+
+/* line 844, ../sass/custom/_darkshui.scss */
+#apps_online .widget-warning .widget-img img,
+#apps_instances .widget-warning .widget-img img {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+/* line 850, ../sass/custom/_darkshui.scss */
+#apps_online .widget-warning .widget-title h3 a,
+#apps_instances .widget-warning .widget-title h3 a {
+  color: #515f6d !important;
+}
+/* line 858, ../sass/custom/_darkshui.scss */
+#apps_online .widget-warning .widget-footer .rating-group .widget-rating.israted,
+#apps_instances .widget-warning .widget-footer .rating-group .widget-rating.israted {
+  color: #738598;
+}
+
+/* Local apps
+-------------------------------------------------- */
+/* line 872, ../sass/custom/_darkshui.scss */
+.app-entry-online .app-entry-cat .app-entry-title {
+  color: #aeb8c3;
+}
+
+/* line 878, ../sass/custom/_darkshui.scss */
+.localapp-in {
+  border: solid 1px #6f777e;
+  background-color: #44464F;
+}
+/* line 882, ../sass/custom/_darkshui.scss */
+.localapp-in .localapp-body .localapp-title {
+  color: #cbd2d9;
+}
+/* line 886, ../sass/custom/_darkshui.scss */
+.localapp-in .localapp-footer {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 480px) {
-  /* line 112, ../sass/custom/_shui.scss */
-  .localapp-in, .onlineapp-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+@media only screen and (max-width: 767px) {
+  /* line 886, ../sass/custom/_darkshui.scss */
+  .localapp-in .localapp-footer {
+    background-color: #44464F;
   }
+}
+
+/* Online apps
+-------------------------------------------------- */
+/* line 895, ../sass/custom/_darkshui.scss */
+.onlineapp-in {
+  border: solid 1px #6f777e;
+  background-color: #44464F;
+  /* Body */
+  /* Footer */
+}
+/* line 900, ../sass/custom/_darkshui.scss */
+.onlineapp-in .onlineapp-body .onlineapp-title {
+  color: #cbd2d9;
+}
+/* line 905, ../sass/custom/_darkshui.scss */
+.onlineapp-in .onlineapp-footer {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+/* line 906, ../sass/custom/_darkshui.scss */
+.onlineapp-in .onlineapp-footer .rating-group {
+  color: #738598;
+}
+/* line 910, ../sass/custom/_darkshui.scss */
+.onlineapp-in .onlineapp-footer .rating-group .widget-rating.israted {
+  color: #f8d9ac;
+}
+@media only screen and (max-width: 767px) {
+  /* line 905, ../sass/custom/_darkshui.scss */
+  .onlineapp-in .onlineapp-footer {
+    background-color: #44464F;
+  }
+}
+
+/* Apps online detail
+-------------------------------------------------- */
+/* line 924, ../sass/custom/_darkshui.scss */
+.app-detail-list {
+  border-top: solid 1px #6f777e;
+}
+
+/* line 928, ../sass/custom/_darkshui.scss */
+.module-rating {
+  color: #aeb8c3;
+}
+/* line 930, ../sass/custom/_darkshui.scss */
+.module-rating.israted {
+  color: #aeb8c3;
+}
+
+/* Apps comments
+-------------------------------------------------- */
+/* line 938, ../sass/custom/_darkshui.scss */
+.comment-entry {
+  background-color: #3B3E47;
+  color: #aeb8c3;
+}
+/* line 941, ../sass/custom/_darkshui.scss */
+.comment-entry .comment-header {
+  color: #e9ebee;
+}
+
+/* line 946, ../sass/custom/_darkshui.scss */
+.comment-entry.even {
+  background-color: #44464F;
+}
+
+/* Apps instances
+-------------------------------------------------- */
+/* line 954, ../sass/custom/_darkshui.scss */
+#apps_instances .accordion-entry {
+  background-color: #3B3E47;
+}
+
+/* Events
+-------------------------------------------------- */
+/* line 962, ../sass/custom/_darkshui.scss */
+.event-level-warning,
+.event-level-error,
+.event-level-critical {
+  background-color: #3B3E47;
+}
+/* line 966, ../sass/custom/_darkshui.scss */
+.event-level-warning.report-entry,
+.event-level-error.report-entry,
+.event-level-critical.report-entry {
+  border-bottom: solid 1px #d9534f;
+}
+
+/* line 971, ../sass/custom/_darkshui.scss */
+.event-room {
+  color: #aeb8c3;
+}
+
+/* Customize
+-------------------------------------------------- */
+/* line 978, ../sass/custom/_darkshui.scss */
+.customize-detail-img {
+  border-top: solid 1px #44464F;
+}
+
+/* line 982, ../sass/custom/_darkshui.scss */
+.customize-image-detail {
+  border: solid 4px #6f777e;
+}
+
+/* Image list
+-------------------------------------------------- */
+/* line 988, ../sass/custom/_darkshui.scss */
+.widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
+  border-color: #6f777e;
+}
+
+/* line 992, ../sass/custom/_darkshui.scss */
+.app-row-imglist {
+  border: solid 1px #6f777e;
+  background-color: #44464F;
+}
+
+/* line 998, ../sass/custom/_darkshui.scss */
+.imglist-entry.in-device {
+  background-color: #2D3038;
+}
+
+/* ZWave
+-------------------------------------------------- */
+/* line 1007, ../sass/custom/_darkshui.scss */
+.network-zwave-title.noelements {
+  color: #aeb8c3;
+}
+
+/* line 1012, ../sass/custom/_darkshui.scss */
+.device-type-logo,
+.device-logo img {
+  /* -webkit-filter: brightness(300%);
+  filter: brightness(300%);*/
+  /*-webkit-filter: saturate(800%); !* Safari *!
+  filter: saturate(800%);*/
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
+
+/* Expert Commands
+-------------------------------------------------- */
+/* line 1025, ../sass/custom/_darkshui.scss */
+.commands-data-control {
+  background-color: #3B3E47;
+}
+
+/* RSS
+-------------------------------------------------- */
+/* line 1033, ../sass/custom/_darkshui.scss */
+.report-entry.read-true {
+  border: 0;
+  background-color: #2D3038;
+}
+/* line 1036, ../sass/custom/_darkshui.scss */
+.report-entry.read-true .event-date,
+.report-entry.read-true .rss-title,
+.report-entry.read-true .rss-description {
+  color: #738598;
+}
+
+/* line 1045, ../sass/custom/_darkshui.scss */
+.read-false .rss-title {
+  font-weight: bold;
+}
+
+/* Footer
+-------------------------------------------------- */
+/* line 1054, ../sass/custom/_darkshui.scss */
+#footer {
+  border-top: solid 1px #6f777e;
+}
+/* line 1056, ../sass/custom/_darkshui.scss */
+#footer #footer_in {
+  color: #aeb8c3;
+  background-color: #24262D;
+}
+
+/* Alertify
+-------------------------------------------------- */
+/* line 1066, ../sass/custom/_darkshui.scss */
+.alertify .ajs-dialog {
+  border: solid 2px #6f777e;
+}
+/* line 1069, ../sass/custom/_darkshui.scss */
+.alertify .ajs-dialog,
+.alertify .ajs-header,
+.alertify .ajs-footer {
+  color: #aeb8c3;
+  background-color: #24262D;
+}
+/* line 1076, ../sass/custom/_darkshui.scss */
+.alertify .ajs-footer .ajs-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857;
+  border-radius: 4px;
+  font-size: 110%;
+  background-color: #44464F;
+  color: #aeb8c3;
+  border: solid 1px #737786;
+}
+/* line 1094, ../sass/custom/_darkshui.scss */
+.alertify .ajs-footer .ajs-button.ajs-ok {
+  color: #fce2b4;
+  border: solid 1px #aa6e07;
+  background-color: #F6A821;
+}
+/* line 1098, ../sass/custom/_darkshui.scss */
+.alertify .ajs-footer .ajs-button.ajs-ok:hover, .alertify .ajs-footer .ajs-button.ajs-ok:focus {
+  background-color: #aa6e07;
+  color: #fef5e5;
+}
+
+/* line 1108, ../sass/custom/_darkshui.scss */
+.alpaca-field-object {
+  border: 1px #6f777e solid;
+}
+
+/* line 1112, ../sass/custom/_darkshui.scss */
+.table-bordered {
+  border: 1px solid #6f777e;
+}
+
+/* line 1116, ../sass/custom/_darkshui.scss */
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #44464F;
+}
+
+/* line 1122, ../sass/custom/_darkshui.scss */
+#alpaca_data .table-bordered > thead > tr > th,
+#alpaca_data .table-bordered > thead > tr > td {
+  border: 1px solid #6f777e;
+}
+/* line 1126, ../sass/custom/_darkshui.scss */
+#alpaca_data .table-bordered > tbody > tr > td,
+#alpaca_data .table-bordered > tfoot > tr > th,
+#alpaca_data .table-bordered > tfoot > tr > td {
+  border: 0px solid #6f777e;
+}
+/* line 1131, ../sass/custom/_darkshui.scss */
+#alpaca_data .btn-default[disabled] {
+  background: transparent;
+  border-color: #6f777e;
 }
 
 /* SmartHome UI custom POPP
