@@ -8,13 +8,13 @@
          <a href="" title="{{_t('lb_deactivate')}}"
             ng-class="v.active ? 'active' : ''"
             ng-click="activateInstance(v, false)">
-             <i class="fa fa-fire fa-fw text-success"></i><span ng-bind="_t('lb_deactivate')"></span>
+             <i class="fa fa-pause fa-fw text-danger"></i><span ng-bind="_t('lb_deactivate')"></span>
          </a>    
      </li> 
      <li ng-if="!v.active">
          <a href="" title="{{_t('lb_activate')}}"
              ng-click="activateInstance(v, true)">
-             <i class="fa fa-power-off fa-fw text-danger"></i> 
+             <i class="fa fa-play fa-fw text-success"></i> 
              <span ng-bind="_t('lb_activate')"></span>
          </a>
      </li> 

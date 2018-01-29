@@ -65,6 +65,11 @@
                     display: inline-block;
                     position: absolute;
                     left: 30px;
+                    &.item-cnt {
+                        position: relative;
+                        display: inline-block;
+                        left: auto;
+                    }
                 }
             }
             .menu-arrow {
