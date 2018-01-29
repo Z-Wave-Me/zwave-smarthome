@@ -7,7 +7,7 @@
   <form class="form form-page" ng-submit="storeRule(rule.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/rules/rule_id_form.html'"></fieldset>
-    <!-- ////////////////////////////////////////// simple  ////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////// default  ////////////////////////////////////////// -->
     <div ng-if="!rule.input.params.advanced.activate">
       <!-- ////////////////////////////////////////// tabs  ////////////////////////////////////////// -->
       <fieldset ng-if="!rule.input.params.advanced.activate">
@@ -123,7 +123,7 @@
       </button>
     </fieldset>
   </form>
-  <pre>{{rule.input|json}}</pre>
+  <!-- <pre>{{rule.input|json}}</pre> -->
   <!-- <pre>{{rule.source.selected|json}}</pre> -->
 </div>
 <!-- /ng-controller -->

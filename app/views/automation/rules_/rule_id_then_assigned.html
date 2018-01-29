@@ -1,0 +1,53 @@
+<section class="accordion-wrap" ng-repeat="d in rule.input.params.targets.elements track by $index" ng-init="targetModel=d[d.filterThen]">
+   <h2 class="accordion-toggle chevron">
+      <!-- Deleted device -->
+      <span class="no-toggle text-danger" ng-show="!rule.namespaces[targetModel.target]">
+        <i class="fa fa-exclamation-circle"></i> {{targetModel.target}} {{_t('device_removed')}}
+      </span>
+      <!-- <pre>{{targetModel|json}}</pre> -->
+      <!-- Title -->
+      <button type="button" aria-expanded="false" bb-accordion ng-if="d.filterThen != 'toggleButton'" ng-hide="!rule.namespaces[targetModel.target]">
+        <span>
+          {{rule.namespaces[targetModel.target].deviceName}} - <em>{{rule.namespaces[targetModel.target].locationName}}</em>
+        </span>
+      </button>
+      <!-- NO Toggle -->
+      <span class="no-toggle" ng-if="d.filterThen == 'toggleButton'" ng-hide="!rule.namespaces[targetModel.target]">
+          <span>
+              {{rule.namespaces[targetModel.target].deviceName}} - <em>{{rule.namespaces[targetModel.target].locationName}}</em>
+            </span>
+        </span>
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignTargetDevice($index,targetModel.target)">
+        <i class="fa fa-times text-danger"></i>
+        </span>
+    </h2>
+     <!-- Content -->
+    <div class="accordion" ng-include="'app/views/automation/rules/rule_id_then_'+ d.filterThen +'.html'" ng-hide="d.filterThen == 'toggleButton'"
+      hidden></div>
+  </section>
+ <!-- <pre>{{rule.input.params.targets.elements|json}}</pre> -->
+
+
+
+<!-- <pre>{{schedule.assignedDevices|json}}</pre> -->
+<!-- <div class="automation-report app-row-report clearfix">
+    <div class="report-entry" ng-repeat="d in rule.input.params.targets.elements track by $index" ng-init="targetModel=d[d.filterThen]">
+      <div class="report-col">
+        <div ng-if="d.filterThen == 'toggleButton'">
+              {{rule.target.availableDevices[targetModel.target].metrics.title}} - <em>{{rule.rooms[rule.target.availableDevices[targetModel.target].location].title}}</em>  
+            </div>
+          <div class="clickable"  ng-if="d.filterThen != 'toggleButton'" ng-click="expandTargetParams('target_' + targetModel.target)">
+              {{rule.target.availableDevices[targetModel.target].metrics.title}} - <em>{{rule.rooms[rule.target.availableDevices[targetModel.target].location].title}}</em> 
+            </div>
+          <div class="form-collapsed" ng-if="expand['target_' + targetModel.target]" ng-include="'app/views/automation/rules/rule_id_then_'+ d.filterThen +'.html'" ng-hide="d.filterThen == 'toggleButton'"></div>
+        </div>
+        <div class="report-col report-ctrl">
+            <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="d.filterThen == 'toggleButton'" ng-click="expandTargetParams('target_' + targetModel.target)">
+              <i class="fa" ng-class="expand['target_' + targetModel.target] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
+            </button>
+            <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignTargetDevice($index,targetModel.target)">
+              <i class="fa fa-times text-danger"></i>
+            </button>
+        </div>
+    </div>
+</div> -->

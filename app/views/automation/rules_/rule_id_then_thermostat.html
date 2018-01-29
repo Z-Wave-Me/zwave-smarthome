@@ -1,0 +1,9 @@
+<!-- status -->
+<div class="form-group">
+    <input type="number" class="form-control input-number" id="target_thermostat" step="0.5" min="{{rule.cfg.target.thermostat.min}}" max="{{rule.cfg.target.thermostat.max}}" ng-model="targetModel.status"> <label for="arget_thermostat">&deg;C</label>
+    </div>
+<!-- command -->
+<div class="form-group">
+    <input type="checkbox" name="send_command" id="send_command" ng-model="targetModel.sendAction" ng-checked="targetModel.sendAction" />
+    <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>

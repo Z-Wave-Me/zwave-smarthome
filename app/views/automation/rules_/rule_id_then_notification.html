@@ -1,0 +1,12 @@
+ <!--email -->
+<div class="form-group form-inline">
+  <select class="form-control" ng-model="targetModel.mail_to_input">
+      <option value="">--- {{_t('email')}} --- </option>
+    <option value="{{v.id}}" ng-if="v.probeType == 'notification_email'" ng-repeat="v in rule.source.devices track by $index" ng-selected="v.id == targetModel.mail_to_input">
+      {{v.metrics.title}}</option>
+  </select>
+</div>
+<!-- mesage -->
+<div class="form-group">
+  <textarea name="message" id="content" class="form-control report-content" ng-model="targetModel.message" placeholder="{{_t('message')}}"></textarea>
+  </div>

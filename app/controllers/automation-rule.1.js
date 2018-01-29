@@ -296,25 +296,37 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       active: true,
       title: "",
       params: {
-        simple: {
-          triggerEvent: {},
-          triggerDelay: 0,
-          targetElements: [],
-          sendNotifications: [],
-          reverseDelay: 0
+        sourceDevice: {
+          filterIf: ''
+        },
+        delay: {
+          eventstart: 0
+        },
+        targets: {
+          elements: []
         },
         advanced: {
-          active: false,
-          triggerScenes : [],
-          triggerDelay: 0,
-          logicalOperator : "and",
-          tests : [],
-          targetElements: [],
-          sendNotifications: [],
-          reverseDelay: 0,
-          triggerOnDevicesChange : true
+          activate: false,
+          logicalOperator: 'and',
+          delay: {
+            eventstart: 0
+          },
+          tests: [],
+          action: {
+            switches: [],
+            dimmers: [],
+            sthermostats: [],
+            locks: [],
+            scenes: [],
+            notification: []
+          },
+          expertSettings: false,
+          eventSource: [],
+          triggerOnDevicesChange: true
         },
-        reverse: false
+        reverse: {
+          activate: false
+        }
       }
     }
   };

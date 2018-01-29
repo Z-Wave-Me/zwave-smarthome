@@ -1,0 +1,17 @@
+<!-- status -->
+<div class="form-group">
+  <label>
+    <input type="radio" ng-model="targetModel.status" value="on">
+    <span>{{_t('on')}}</span>
+  </label>
+  <label>
+    <input type="radio" ng-model="targetModel.status" value="off">
+    <span>{{_t('off')}}</span>
+  </label>
+</div>
+
+<!-- command -->
+<div class="form-group">
+    <input type="checkbox" name="send_command" id="send_command" ng-model="targetModel.sendAction" ng-checked="targetModel.sendAction" />
+    <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>
