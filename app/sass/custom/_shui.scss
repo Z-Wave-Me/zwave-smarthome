@@ -119,4 +119,18 @@ fieldset, .fieldset {
       @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
     }
   }
-//}
+  
+/* Night mode
+-------------------------------------------------- */
+
+.night-true:root { 
+  background-color: #fefefe;
+  filter: invert(100%);
+  * { 
+    background-color: inherit;
+  }
+  
+  img:not([src*=".svg"]), video {  
+    filter: invert(100%);
+  }
+}
