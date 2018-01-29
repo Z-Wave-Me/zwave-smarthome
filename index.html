@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="myApp" ng-controller="BaseController">
+<html lang="en" ng-app="myApp" ng-controller="BaseController" class="night-{{nightMode}}">
     <head>
         <meta charset="utf-8">
         <title>Z-Wave Smart Home</title>
@@ -120,7 +120,7 @@
 
         <!-- /build -->
     </head>
-    <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}} rss-{{rss.unread}}">
+    <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}} rss-{{rss.unread}} night-{{nightMode}}">
         <a class="skinreset" href="#skinreset">Reset skin to default</a>
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
@@ -235,6 +235,7 @@
         <div id="footer">
             <div id="footer_in">
                 <div class="container">
+                
                     <span class="timestamp clickable" 
                             ng-click="reloadData()" 
                             ng-if="cfg.route.time.string">
@@ -246,6 +247,7 @@
                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
                             <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
                     </span>
+                   <!-- <i class="fa clickable" aria-hidden="true" ng-click="nightMode = !nightMode" ng-class="nightMode ? 'fa-sun-o' : 'fa-moon-o'"></i> -->
                 </div>
             </div>         
         </div>
