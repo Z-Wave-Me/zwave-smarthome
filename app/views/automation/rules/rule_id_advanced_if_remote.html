@@ -1,0 +1,16 @@
+<div class="alert alert-warning" ng-if="!testModel.device">{{_t('select_device')}}</div>
+<div class="form-group form-inline" ng-if="testModel.device">
+   <!-- device -->
+  <!-- <label>{{rule.namespaces[testModel.device].deviceName}}</label> -->
+    <!-- value -->
+    <select class="form-control" ng-model="testModel.testValue">
+      <option value="{{v}}" ng-repeat="v in rule.advanced.cfg.tests.remote.testValue" ng-selected="testModel.testValue == v">{{v}}</option>
+    </select>
+  </div>
+  <!-- available devices -->
+<div class="form-group form-inline">
+  <h3>{{_t('lb_available_devices')}}</h3>
+<a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in rule.namespaces track by $index" ng-click="testModel.device = d.deviceId" ng-if="rule.advanced.cfg.tests.remote.deviceTypes.indexOf(d.deviceType) > - 1" ng-hide="d.deviceId == testModel.device">{{d.deviceName|cutText:true:20}}
+  <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+</a>
+</div>

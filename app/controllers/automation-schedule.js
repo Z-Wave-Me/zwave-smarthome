@@ -123,58 +123,52 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
  */
 myAppController.controller('AutomationScheduleIdController', function ($scope, $routeParams, $location, $route, cfg, dataFactory, dataService, _, myCache) {
   $scope.schedule = {
-    model: {
-      weekday: {},
-      time: '',
-      switchBinary: {
-        device: '',
-        status: 'off',
-        sendAction: false
-      },
-      switchMultilevel: {
-        device: '',
-        status: 0,
-        sendAction: false
-      },
-      thermostat: {
-        device: '',
-        status: 0,
-        sendAction: false
-      },
-      doorlock: {
-        device: '',
-        status: 'close',
-        sendAction: false
-      },
-      toggleButton: ''
-    },
     days: [1, 2, 3, 4, 5, 6, 0],
     rooms: [],
     devicesInRoom: [],
     availableDevices: [],
     assignedDevices: [],
     cfg: {
-
       switchBinary: {
         paramsDevices: 'switches',
-        enum: ['off', 'on']
+        enum: ['off', 'on'],
+        default: {
+          device: '',
+          status: 'on',
+          sendAction: false
+        }
       },
       switchMultilevel: {
         paramsDevices: 'dimmers',
         min: 0,
-        max: 99
+        max: 99,
+        default: {
+          device: '',
+          status: 0,
+          sendAction: false
+        }
       },
       thermostat: {
         paramsDevices: 'thermostats',
         min: 0,
-        max: 99
+        max: 99,
+        default: {
+          device: '',
+          status: 0,
+          sendAction: false
+        }
       },
       doorlock: {
         paramsDevices: 'locks',
-        enum: ['close', 'open']
+        enum: ['close', 'open'],
+        default: {
+          device: '',
+          status: 'open',
+          sendAction: false
+        }
       },
       toggleButton: {
-        paramsDevices: 'scenes',
+        paramsDevices: 'scenes'
       }
 
     },
@@ -259,6 +253,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   $scope.loadRooms = function () {
     dataFactory.getApi('locations').then(function (response) {
       $scope.schedule.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
+      $scope.loadDevices($scope.schedule.rooms);
     });
 
   };
@@ -267,19 +262,34 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   /**
    * Load devices
    */
-  $scope.loadDevices = function () {
+  $scope.loadDevices = function (rooms) {
     dataFactory.getApi('devices').then(function (response) {
       var whiteList = _.keys($scope.schedule.cfg);
       var devices = dataService.getDevicesData(response.data.data.devices);
-      $scope.schedule.availableDevices = devices.filter(function (v) {
-        return whiteList.indexOf(v.deviceType) > -1;
-      }).value();
+     // Set available devices
+     $scope.schedule.availableDevices = devices.map(function (v) {
+      var obj = {
+        deviceId: v.id,
+        deviceName: v.metrics.title,
+        deviceType: v.deviceType,
+        probeType: v.probeType,
+        location: v.location,
+        locationName: rooms[v.location].title
+      };
+      return obj;
+    })
+    .filter(function (v) {
+      return whiteList.indexOf(v.deviceType) > -1;
+    })
+    .indexBy('deviceId')
+    .value();
+
       $scope.schedule.devicesInRoom = _.countBy($scope.schedule.availableDevices, function (v) {
         return v.location;
       });
     }, function (error) {});
   };
-  $scope.loadDevices();
+ 
 
   /**
    * Toggle Weekday
@@ -306,155 +316,48 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     }
 
   };
-
-
-  /**
+/**
    * Assign device to a schedule
    * @param {object} device
    * @returns {undefined}
    */
   $scope.assignDevice = function (device) {
-    var model = [];
-    var type = '';
-    $scope.resetModel();
+    var obj, data;
     switch (device.deviceType) {
       // scenes
       case 'toggleButton':
-      $scope.schedule.input.params.devices.scenes.push(device.id)
-        //model = device.id;
-        //$scope.handleSceneDevice(model);
+        $scope.schedule.input.params.devices.scenes.push(device.deviceId);
         break;
         // switches|dimmers|thermostats|locks
       default:
-        model = $scope.schedule.model[device.deviceType];
-        model.device = device.id;
-        type = $scope.schedule.cfg[device.deviceType].paramsDevices;
-        $scope.schedule.input.params.devices[type].push(model);
-        //$scope.handleDevice(model, type);
+        obj = $scope.schedule.cfg[device.deviceType];
+        var data = {
+          device: device.deviceId,
+          status: obj.default.status,
+          sendAction: obj.default.sendAction
+        };
+        $scope.schedule.input.params.devices[obj.paramsDevices].push(data);
         break;
     }
-    $scope.schedule.assignedDevices.push(device.id);
+    $scope.schedule.assignedDevices.push(device.deviceId);
     return;
   };
 
   /**
-   * Remove device id from assigned device
-   * @param {object} device 
+   * Remove device id from assigned device and from input
+   *  @param {string} targetType
+   * @param {int} targetIndex 
+   * @param {string} deviceId 
    */
-  $scope.unassignDevice = function (device) {
-    var index = $scope.schedule.assignedDevices.indexOf(device.id);
-    if (index > -1) {
-      $scope.schedule.assignedDevices.splice(index, 1);
-      removeDeviceFromParams(device);
-
-
+  $scope.unassignDevice = function (targetType, targetIndex, deviceId) {
+    var deviceIndex = $scope.schedule.assignedDevices.indexOf(deviceId);
+    $scope.schedule.input.params.devices[targetType].splice(targetIndex, 1);
+     if (deviceIndex > -1) {
+      $scope.schedule.assignedDevices.splice(deviceIndex, 1);
     }
 
   };
 
-  /**
-   * Add or update device to the list (by type)
-   * type: switches|dimmers|thermostats|locks
-   */
-  $scope.expandParams = function (element, device) {
-
-    var type = $scope.schedule.cfg[device.deviceType].paramsDevices;
-    var params = _.findWhere($scope.schedule.input.params.devices[type], {
-      device: device.id
-    });
-
-    // Colapse all params except 'element'
-    _.filter($scope.expand, function (v, k) {
-      if (k != element) {
-        $scope.expand[k] = false;
-      }
-
-    });
-    $scope.resetModel();
-
-    $scope.schedule.model[device.deviceType] = params;
-    $scope.expandElement(element);
-
-
-
-  };
-  /**
-   * Remove device from the params list
-   * @param {object} device 
-   */
-  function removeDeviceFromParams(device) {
-    var index;
-    var type = $scope.schedule.cfg[device.deviceType].paramsDevices;
-    switch (device.deviceType) {
-      // scenes
-      case 'toggleButton':
-        index = $scope.schedule.input.params.devices[type].indexOf(device.id);
-        break;
-        // switches|dimmers|thermostats|locks
-      default:
-        index = _.findIndex($scope.schedule.input.params.devices[type], {
-          device: device.id
-        });
-        break;
-    }
-    if (index > -1) {
-      $scope.schedule.input.params.devices[type].splice(index, 1);
-    }
-
-
-  };
-
-  /**
-   * Update device to the list (by type)
-   * type: switches|dimmers|thermostats|locks
-   */
-  $scope.handleDevice = function (v, type) {
-    if (!v || v.device == '') {
-      return;
-    }
-    // Adding new device
-    var index = _.findIndex($scope.schedule.input.params.devices[type], {
-      device: v.device
-    });
-    $scope.schedule.input.params.devices[type][index] = v;
-    /* if (index > -1) {
-      $scope.schedule.input.params.devices[type][index] = v;
-    } else {
-      $scope.schedule.input.params.devices[type].push(v)
-    } */
-
-
-  };
-
-  /**
-   * todo: deprecated
-   * Add or update scene device
-   */
-  /* $scope.handleSceneDevice = function (v, element) {
-    if (element) {
-      $scope.resetModel(element);
-      $scope.expandElement(element);
-    }
-
-    if (!v) {
-      return;
-    }
-    var index = $scope.schedule.input.params.devices.scenes.indexOf(v);
-    if (index > -1) { // Update an item
-      $scope.schedule.input.params.devices.scenes[index] = v;
-    } else { // Add new item
-      $scope.schedule.input.params.devices.scenes.push(v)
-    }
-  }; */
-
-  /**
-   * Remove device from the list (by type)
-   */
-  /* $scope.removeDeviceFromList = function (index, type) {
-    $scope.schedule.input.params.devices[type].splice(index, 1);
-
-
-  }; */
   /**
    * Store schedule
    */

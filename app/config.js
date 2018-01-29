@@ -40,6 +40,8 @@ var config_data = {
       location: {},
       // Server name
       serverName: '',
+      // Swipe direction
+      swipeDir: '',
       // Time zone
       time: {
         string: false,

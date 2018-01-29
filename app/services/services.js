@@ -469,9 +469,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get devices -  filtered data from devices dataholder
      * @param {object} data
      * @param {boolean} showHidden
+     * @param {boolean} showAll
+     * @param {boolean} showBattery
      * @returns {unresolved}
      */
-    this.getDevicesData = function (data, showHidden, showAll) {
+    this.getDevicesData = function (data, showHidden, showAll,showBattery) {
         //var user = this.getUser();
         var user = cfg.user;
         return _.chain(data)
@@ -480,7 +482,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 return v.id;
             })
             .reject(function (v) {
-                if(v.deviceType === 'battery'){
+                if(v.deviceType === 'battery' && !showBattery){
                     return v.deviceType === 'battery';
                 }
                 if (showAll) {

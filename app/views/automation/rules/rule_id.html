@@ -1,7 +1,8 @@
 <!-- The scene -->
-<div ng-controller="AutomationRuleIdController">
+<div class="automation" ng-controller="AutomationRuleIdController">
 
   <h2>{{_t('rules')}}</h2>
+  
   <!-- Form -->
   <form class="form form-page" ng-submit="storeRule(rule.input,true)">
     <!-- Form-->
@@ -52,7 +53,7 @@
       </div>
       <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
       <fieldset ng-if="rule.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
-    </div>
+    </div><!-- /end default -->
     <!--  ////////////////////////////////////////// advanced  ////////////////////////////////////////// -->
     <div ng-if="rule.input.params.advanced.activate">
       <!-- ////////////////////////////////////////// tabs  ////////////////////////////////////////// -->
@@ -74,10 +75,17 @@
       </fieldset>
       <!--  ////////////////////////////////////////// if  ////////////////////////////////////////// -->
       <div ng-if="rule.advanced.tab == 'if'">
-          <!-- Delay -->
-          <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
+        <!-- Operator -->
+        <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
+        <!-- Assigned -->
+            <legend>{{_t('Assigned conditions')}}</legend>
+            <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_assigned.html'"></fieldset>
+         
+          <!-- Available -->
+          <legend>{{_t('Available conditions')}}</legend>
+          <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
         </div>
-        <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
+      <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
       <div ng-if="rule.advanced.tab == 'then'">
         <!-- Delay -->
         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then.html'"></fieldset>
@@ -86,13 +94,23 @@
           <legend>{{_t('assigned_devices')}}</legend>
           <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_assigned.html'"></fieldset>
         </div>
-         <!-- Available -->
-         <legend>{{_t('lb_available_devices')}}</legend>
-         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
-      </div>
-       <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
-      <fieldset ng-if="rule.advanced.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
+        <!-- Available -->
+        <legend>{{_t('lb_available_devices')}}</legend>
+        <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
+        <!-- Expert settings -->
+        <legend>
+          <label class="switch">
+            <input type="checkbox" ng-model="rule.input.params.advanced.expertSettings" ng-checked="rule.input.params.advanced.expertSettings">
+            <span class="slider"></span>
+          </label>
+          <span class="switch-label">{{_t('further settings')}}</span>
+        </legend>
+        <div ng-if="rule.input.params.advanced.expertSettings" ng-include="'app/views/automation/rules/rule_id_advanced_then_expert.html'"></div>
+     
     </div>
+     <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
+     <fieldset ng-if="rule.advanced.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
+  </div><!-- /end advanced -->
     <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
     <fieldset class="submit-entry">
       <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
@@ -105,7 +123,7 @@
       </button>
     </fieldset>
   </form>
- <!--  <pre>{{rule.input.params.advanced|json}}</pre> -->
+  <!-- <pre>{{rule.input|json}}</pre> -->
   <!-- <pre>{{rule.source.selected|json}}</pre> -->
 </div>
 <!-- /ng-controller -->

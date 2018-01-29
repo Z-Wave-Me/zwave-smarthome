@@ -80,7 +80,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, noCache)
         ];
-
         $q.allSettled(promises).then(function (response) {
             var locations = response[0];
             var devices = response[1];
@@ -651,11 +650,11 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
     cfg.route.pageClass = "page-room";
+    $scope.swipeTimer = null;
 
 
     $scope.$on('$destroy', function() {
         cfg.route.pageClass = false;   
-        cfg.route.swipeDir = false;
     });
 
     /**
@@ -685,9 +684,17 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
     /**
      * Room navigation
      */
-    $scope.swipeMe = function(dir) {       
+    $scope.swipeMe = function(dir) {  
         if($scope.dataHolder.mode === 'default' && $scope.deviceDetector.isMobile()) {
-            $scope.swipeDir = dir;
+            if($scope.swipeTimer) {
+                $timeout.cancel($scope.swipeTimer);     
+            }
+
+            $timeout(function() {
+                cfg.route.swipeDir = false;    
+            }, 1000);
+
+            cfg.route.swipeDir = dir;
             if(dir == "left") {
                 if($(".appmodal").length  == 0) {
                     var currentRoom = $scope.dataHolder.devices.filter.location,

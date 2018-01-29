@@ -47,10 +47,22 @@
                      <!-- role -->
                     <div class="form-group form-inline" ng-if="user.id != id">
                         <label>{{_t('lb_role')}}:</label> </br>
-                        <input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1" bb-integer /> {{_t('lb_admin')}} </br>
-                        <input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2" bb-integer /> {{_t('lb_user')}} </br>
-                        <input type="radio" name="role" value="3" ng-model="input.role" ng-checked="input.role == 3" bb-integer /> {{_t('lb_local')}} </br>
-                        <input type="radio" name="role" value="4" ng-model="input.role" ng-checked="input.role == 4" bb-integer /> {{_t('lb_anonymous')}}
+                        <label>
+                          <input type="radio" name="role" value="1" ng-model="input.role" ng-checked="input.role == 1" bb-integer />
+                            <span>{{_t('lb_admin')}}</span>
+                        </label><br>
+                        <label>
+                          <input type="radio" name="role" value="2" ng-model="input.role" ng-checked="input.role == 2" bb-integer />
+                            <span>{{_t('lb_user')}}</span>
+                        </label><br>
+                        <label>
+                          <input type="radio" name="role" value="3" ng-model="input.role" ng-checked="input.role == 3" bb-integer /> 
+                            <span>{{_t('lb_local')}}</span>
+                        </label><br>
+                        <label>  
+                          <input type="radio" name="rol" value="4" ng-model="input.role" ng-checked="input.role == 4" bb-integer />
+                            <span>{{_t('lb_anonymous')}}</span>
+                        </label>
                     </div>
                     <!-- lang -->
                     <div class="form-group form-inline">

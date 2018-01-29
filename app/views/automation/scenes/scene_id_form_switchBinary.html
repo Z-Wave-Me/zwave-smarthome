@@ -1,15 +1,14 @@
 
-  <!-- switch -->
+  <!-- status -->
   <div class="form-group">
-    <input type="checkbox" name="on_off" id="on_off" ng-model="scene.model.switchBinary.status" ng-checked="scene.model.switchBinary.status == 'on'"
-      ng-true-value="on" ng-false-value="off" ng-change="handleDevice(scene.model.switchBinary,'switches')" />
-    <label for="on_off">{{scene.model.switchBinary.status}}</label>
-
+      <label class="switch">
+          <input type="checkbox" ng-model="v.status" ng-checked="v.status == 'on'" ng-true-value="on" ng-false-value="off">
+          <span class="slider"></span>
+      </label>
+      <span class="switch-label">{{v.status}}</span>
   </div>
-
   <!-- command -->
   <div class="form-group">
-      <input type="checkbox" name="send_command" id="send_command" ng-model="scene.model.switchBinary.sendAction" ng-checked="scene.model.switchBinary.sendAction" ng-change="handleDevice(scene.model.switchBinary,'switches')"
-      />
+      <input type="checkbox" name="send_command" id="send_command" ng-model="v.sendAction" ng-checked="v.sendAction" />
       <label for="send_command">{{_t('dont_send_on_command')}}</label>
   </div>

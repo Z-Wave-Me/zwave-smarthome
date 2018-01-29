@@ -1,5 +1,5 @@
 <!-- The scene -->
-<div ng-controller="AutomationSceneIdController">
+<div class="automation" ng-controller="AutomationSceneIdController">
 
   <h2>{{_t('scenes')}}</h2>
   <!-- Form -->
@@ -13,7 +13,7 @@
      </div>
     <!-- Available -->
     <legend>{{_t('lb_available_devices')}}</legend>
-    <fieldset ng-include="'app/views/automation/scenes/scene_id_available.html'"></fieldset>
+    <fieldset  bb-child-elem="scene.assignedDevices" ng-include="'app/views/automation/scenes/scene_id_available.html'"></fieldset>
      <!-- Icons -->
    <div ng-include="'app/views/automation/scenes/scene_id_icons.html'"></div>
  
