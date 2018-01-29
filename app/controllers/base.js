@@ -15,7 +15,7 @@ var myAppController = angular.module('myAppController', []);
 myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q,cfg, cfgicons, dataFactory, dataService, deviceDetector,myCache, _) {
     
     // Global scopes
-    $scope.nightMode = true;
+    $scope.nightMode = false;
     $scope.$location = $location;
     $scope.deviceDetector = deviceDetector;
     angular.extend(cfg.route, {os:  deviceDetector.os});

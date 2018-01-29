@@ -159,9 +159,9 @@ a {
                 padding: 0 30px;
             }
 
-            @include mediaQueries(min-small) {
+           /*  @include mediaQueries(min-small) {
                 width: 16.666%;
-            }
+            } */
             @include mediaQueries(min-medium) {
                 padding: 0;
             }
