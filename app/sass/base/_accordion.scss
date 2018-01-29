@@ -100,3 +100,10 @@ $accordion-focus-color: $focus-color;
         padding:0;
     }
 }
+
+.accordion-entry-ctrl {
+    p {
+        margin: $spacing-half;
+        padding: $spacing;      
+    }
+}
