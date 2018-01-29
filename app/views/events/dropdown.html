@@ -4,34 +4,34 @@
         <div class="app-dropdown dropdown-events" ng-if="naviExpanded['evDropDown' + '_' + $index]">
             <ul>
                 <li>
-                    <a ng-href="#events"> <i class="fa fa-eye"></i> <span ng-bind="_t('lb_show_all')"></span></a>
+                    <a ng-href="#events"> <i class="fa fa-eye fa-fw"></i> <span ng-bind="_t('lb_show_all')"></span></a>
                 </li>
                 <li>
-                    <a ng-href="#events/source/{{v.source}}"><i class="fa fa-check"></i> <span ng-bind="_t('lb_events_source')"></span></a>
+                    <a ng-href="#events/source/{{v.source}}"><i class="fa fa-check fa-fw"></i> <span ng-bind="_t('lb_events_source')"></span></a>
                 </li> 
                 <li>
-                    <a ng-href="#events/type/{{v.type}}"><i class="fa fa-check-square"></i> <span ng-bind="_t('lb_events_type')"></span></a>
+                    <a ng-href="#events/type/{{v.type}}"><i class="fa fa-check-square fa-fw"></i> <span ng-bind="_t('lb_events_type')"></span></a>
                 </li> 
                 <li>
                     <a ng-href="#events/source_type?source={{v.source}}&type={{v.type}}">
-                        <i class="fa fa-check-circle"></i> <span ng-bind="_t('lb_events_source_type')"></span>
+                        <i class="fa fa-check-circle fa-fw"></i> <span ng-bind="_t('lb_events_source_type')"></span>
                     </a>
                 </li>
                 <li ng-if="elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1) && (v.source && v.message)">
                     <a href="#element/{{v.source}}">
-                        <i class="fa fa-cog"></i> <span ng-bind="_t('lb_source_cfg')"></span>   
+                        <i class="fa fa-cog fa-fw"></i> <span ng-bind="_t('lb_source_cfg')"></span>   
                     </a>
                 </li> 
                 <li>
 
                     <a href="" ng-click="hideSourceEvents(v.source)" 
                        ng-if="user.hide_single_device_events.indexOf(v.source) === -1">
-                        <i class="fa fa-minus-circle text-danger"></i> <span  ng-bind="_t('lb_hide_events_source')" ></span>
+                        <i class="fa fa-minus-circle fa-fw text-danger"></i> <span  ng-bind="_t('lb_hide_events_source')" ></span>
                     </a>
                 </li>
                 <li ng-if="elementAccess(cfg.role_access.event_delete) && (v.level == 'error' || v.level == 'notification')">
                     <a href=""ng-click="deleteEvent(v.id, '?uid=' + v.h,_t('lb_delete_confirm'))">
-                        <i class="fa fa-times text-danger"></i> <span  ng-bind="_t('lb_delete_event')" ></span>
+                        <i class="fa fa-times fa-fw text-danger"></i> <span  ng-bind="_t('lb_delete_event')" ></span>
                     </a>
                 </li>
 
