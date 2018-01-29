@@ -110,10 +110,54 @@ input[type=checkbox] {
 }
 
 input[type=radio] {
-   @include radioScale(1.6, $spacing);
+  /* 
+  @include radioScale(1.6, $spacing);
   // Media queries
   @include mediaQueries(min-small) {
     @include radioScale(1.2, $spacing);
+  }
+  */
+ 
+  @include mediaQueries(min-small) {
+      margin: 0 10px 5px 0; 
+      font-size: 12px;
+  }
+
+  margin: 0px 22px 11px 0;
+  font-size: 22px;
+  font-family: FontAwesome;
+  position: relative;
+  border: none;
+  background-color: transparent;
+  
+  &:after {
+      margin: -11px $spacing/2 0 0;
+      vertical-align: baseline;
+      content: ' ';
+      padding: 6px 0 0 7px;
+      position: absolute;
+      display: inline-block;
+      border-radius: 50%;
+      border: solid 1px #CCC;
+      background-color: #f9f9f9;
+      width: 35px;
+      height: 35px;
+      @include mediaQueries(min-small) {
+          margin: -2px 0 0 -2px;
+          width: 20px;
+          height: 20px;
+          padding: 3px 0 0 4px;
+      }
+  }
+
+  &:checked {
+    &:after {
+      content: "\f111";
+      color: $app-heading-color;
+      -webkit-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+    }
   }
 }
 
