@@ -55,16 +55,22 @@
         li {
             padding: $spacing;
             border-bottom: solid 1px $app-border-color;
-            @include mediaQueries(max-small) {
-                padding: $spacing-half $spacing;
-                font-size: 90%;
-            }
             a {
                 display: block;
                 position: relative;
                 padding: 0;
                 vertical-align: middle;
                 color: $app-a-color;
+                span {
+                    display: inline-block;
+                    position: absolute;
+                    left: 30px;
+                    &.item-cnt {
+                        position: relative;
+                        display: inline-block;
+                        left: auto;
+                    }
+                }
             }
             .menu-arrow {
                 position: absolute;

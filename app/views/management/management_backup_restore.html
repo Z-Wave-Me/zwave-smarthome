@@ -105,10 +105,12 @@
                 <div class="form-group">
                     <h4>{{managementCloud.module.options.fields.email_log.label}}</h4>
                     <div ng-repeat="v in managementCloud.module.schema.properties.email_log.enum track by $index">
-                        <input type="radio" name="email_log" value="{{v}}" id="email_log_{{v}}"
+                        <label>
+                            <input type="radio" name="email_log" value="{{v}}" id="email_log_{{v}}"
                                ng-model="managementCloud.instance.params.email_log"
                                ng-checked="managementCloud.instance.params.email_log === v"/>
-                        <label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label>
+                            <span>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</span>
+                        </label>
                     </div>
                 </div>
             </fieldset>
