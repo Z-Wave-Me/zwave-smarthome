@@ -8,7 +8,7 @@
                  <!-- name -->
                     <div class="form-group form-inline">
                         <label>{{_t('lb_name')}}:</label>
-                        <input name="title" id="title" type="text" 
+                            <input name="title" id="title" type="text" 
                                class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" 
                                ng-model="input.title" ng-blur="titleBlur = true" ng-required="true" />
                         <bb-validator input-name='form_room.title.$error.required' trans='_t("field_required")' has-blur='titleBlur'></bb-validator> 
