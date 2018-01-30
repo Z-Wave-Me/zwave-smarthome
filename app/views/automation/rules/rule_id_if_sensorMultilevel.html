@@ -1,9 +1,24 @@
-<!-- status -->
+<!-- select -->
 <div class="form-group form-inline">
-  <select class="form-control" ng-model="rule.input.params.sourceDevice.sensorMultilevel.operator">
-    <option value="{{v}}" ng-repeat="v in rule.cfg.operators track by $index" ng-selected="v == rule.input.params.sourceDevice.sensorMultilevel.operator">{{v}}</option>
+  <span ng-show="rule.input.params.simple.triggerEvent.operator == ''">
+  <label class="switch">
+    <input type="checkbox" ng-model="rule.input.params.simple.triggerEvent.level" ng-checked="rule.input.params.simple.triggerEvent.level == 'on'" ng-true-value="on" ng-false-value="off" ng-disabled="rule.input.params.simple.triggerEvent.operator != ''">
+    <span class="slider"></span>
+  </label>
+  <span class="switch-label" ng-hide="_.isNumber(rule.input.params.simple.triggerEvent.level)">{{rule.input.params.simple.triggerEvent.level}}</span>
+</span>
+  <!-- operator -->
+  <select class="form-control" ng-model="rule.input.params.simple.triggerEvent.operator">
+    <option value="">---</option>
+    <option value="{{o}}" ng-repeat="o in rule.options.switchMultilevel.operator track by $index" ng-selected="o == rule.input.params.simple.triggerEvent.operator">
+      {{o}}</option>
   </select>
-  <input type="number" class="form-control input-number" id="if_status" ng-model="rule.input.params.sourceDevice.sensorMultilevel.status"
-  />
-  <label for="if_status">{{_t('level')}}</label>
+  <!-- level -->
+  <input type="number" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
+    ng-model="rule.input.params.simple.triggerEvent.level" ng-if="rule.input.params.simple.triggerEvent.operator != ''" />
+</div>
+<!-- command -->
+<div class="form-group" ng-if="!hideAction">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="rule.input.params.simple.triggerEvent.sendAction" ng-checked="rule.input.params.simple.triggerEvent.sendAction" />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
 </div>

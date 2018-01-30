@@ -9,8 +9,8 @@
      </h2>
    <!-- Content -->
   <div class="accordion" hidden>
-      <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in rule.target.availableDevices track by $index" ng-if="d.location == r.id && rule.target.assignedDevices.indexOf(d.id) === -1" ng-hide="d.id == rule.source.selected.device"
-      ng-click="assignTargetDevice(d)">{{d.metrics.title|cutText:true:20}}
+      <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in rule.target.availableDevices track by $index" ng-if="d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
+      ng-click="assignTargetDevice(d)">{{d.deviceName|cutText:true:20}}
       <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
    </div>

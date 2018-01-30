@@ -1,11 +1,13 @@
 <!-- status -->
 <div class="form-group">
-  <label>
-    <input type="radio" ng-model="rule.input.params.sourceDevice.switchBinary.status" value="on">
-    <span>{{_t('on')}}</span>
-  </label>
-  <label>
-    <input type="radio" ng-model="rule.input.params.sourceDevice.switchBinary.status" value="off">
-    <span>{{_t('off')}}</span>
-  </label>
-</div>
+    <label class="switch">
+      <input type="checkbox" ng-model="rule.input.params.simple.triggerEvent.level" ng-checked="rule.input.params.simple.triggerEvent.level == 'on'" ng-true-value="on" ng-false-value="off">
+      <span class="slider"></span>
+    </label>
+    <span class="switch-label">{{rule.input.params.simple.triggerEvent.level}}</span>
+  </div>
+  <!-- command -->
+  <div class="form-group" ng-if="!hideAction">
+    <input type="checkbox" name="send_command" id="send_command" ng-model="rule.input.params.simple.triggerEvent.sendAction" ng-checked="rule.input.params.simple.triggerEvent.sendAction" />
+    <label for="send_command">{{_t('dont_send_on_command')}}</label>
+  </div>
