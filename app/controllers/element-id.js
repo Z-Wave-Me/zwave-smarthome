@@ -14,7 +14,8 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         appType: {},
         input: {},
         locations: {},
-        instances: {}
+        instances: {},
+        modules: {}
     };
     $scope.tagList = [];
     $scope.search = {
@@ -30,8 +31,8 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var promises = [
             dataFactory.getApi('devices', '/' + $routeParams.id, true),
             dataFactory.getApi('locations'),
-            dataFactory.getApi('devices')
-
+            dataFactory.getApi('devices'),
+            dataFactory.getApi('modules')
         ];
 
         if ($scope.user.role === 1) {
@@ -42,7 +43,9 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             var device = response[0];
             var locations = response[1];
             var devices = response[2];
-            var instances = response[3];
+            var modules = response[3];
+            var instances = response[4];
+            
 
             $scope.loading = false;
             // Error message
@@ -61,6 +64,11 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             // Success - instances
             if (instances && instances.state === 'fulfilled') {
                 $scope.elementId.instances = instances.value.data.data;
+            }
+
+            // Success - modules
+            if (modules && modules.state === 'fulfilled') {
+                $scope.elementId.modules = modules.value.data.data;
             }
             // Success - device
             if (device.state === 'fulfilled') {
@@ -192,18 +200,20 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var zwaveId = false;
         $scope.elementId.input = device;
         //$scope.elementId.input.custom_icons = { on: 'Modem-icon.png',off: 'Stop-icon.png'};
+        
+        var instance = _.findWhere($scope.elementId.instances, {id: $filter('toInt')(device.creatorId)});         
+        var modul = _.findWhere($scope.elementId.modules, {moduleName: instance.moduleId});
+
+        $scope.elementId.appType['instance'] = instance;
+        $scope.elementId.appType['modul'] = modul;
+
         if (device.id.indexOf(findZwaveStr) > -1) {
             zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
             $scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
         } else if (device.id.indexOf(findZenoStr) > -1) {
             $scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
-        } else {
-            var instance = _.findWhere($scope.elementId.instances, {id: $filter('toInt')(device.creatorId)});
-            if (instance && instance['moduleId'] != 'ZWave') {
-                $scope.elementId.appType['instance'] = instance;
-
-            }
-        }
+        } 
+        
         angular.extend($scope.elementId.input,
             {iconPath: dataService.assignElementIcon($scope.elementId.input)},
         );

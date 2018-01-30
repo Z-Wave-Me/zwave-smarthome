@@ -25,27 +25,60 @@
             <fieldset>
                 <!-- App type -->
                 <div ng-if="elementAccess(cfg.role_access.admin)">
+                    <!--<pre>
+                        {{elementId.appType.instance.moduleId | json}}
+                    </pre>-->
                     <!-- instance -->
-                    <div class="form-group" ng-if="elementId.appType.instance" ng-switch="elementId.appType.instance.moduleId">
-                      <a class="btn btn-default" ng-href="#scenes/{{elementId.appType.instance.id}}" ng-switch-when="Scenes">
-                          {{_t('lb_gen_by')}}: <strong>{{elementId.appType.instance.title}}</strong>
-                      </a>
+                    <div class="form-group" ng-switch="elementId.appType.instance.moduleId">
+                        <label>{{_t('lb_gen_by')}} App:</label>
+                        <strong>{{elementId.appType.modul.defaults.title}}</strong><br>
+                        <!-- Scenes -->
+                        <a class="btn btn-default" ng-href="#scenes/{{elementId.appType.instance.id}}" ng-switch-when="Scenes">
+                            <i class="fa fa-cog"></i>
+                            <span class="btn-name">
+                                <strong>{{elementId.appType.instance.title}}</strong>
+                            </span>
+                        </a>
+                        <!-- zwave -->
+                        <a href="#zwave/devices/{{elementId.appType.zwave}}" class="btn btn-default" ng-switch-when="ZWave">
+                            <i class="fa fa-cog"></i>
+                            <span class="btn-name">
+                                <strong>{{_t('lb_zwave_device')}}</strong>
+                                #{{elementId.appType.zwave}}
+                            </span>
+                        </a>
+                         <!-- enocean -->
+                        <a href="#enocean/manage/{{elementId.appType.enocean}}" class="btn btn-default" ng-switch-when="EnOcean">
+                            <i class="fa fa-cog"></i>
+                            <strong>{{_t('enocean_device')}}</strong>
+                            #{{elementId.appType.enocean}}
+                        </a>
+                        <!-- default -->
                         <a class="btn btn-default" ng-href="#module/put/{{elementId.appType.instance.id}}" ng-switch-default>
-                          {{_t('lb_gen_by_module')}}: <strong>{{elementId.appType.instance.title}}</strong>
+                            <i class="fa fa-cog"></i>
+                            <span class="btn-name">
+                                <strong>{{elementId.appType.instance.title}}</strong>
+                            </span>
                         </a>
                     </div>
                     <!-- zwave -->
-                    <div class="form-group" ng-if="elementId.appType.zwave">
-                       <a href="#zwave/devices/{{elementId.appType.zwave}}"
-                                                class="btn btn-default">{{_t('lb_gen_by')}}: <strong>{{_t('lb_zwave_device')}}</strong>
-                            #{{elementId.appType.zwave}}</a>
-                    </div>
+                    <!--iv class="form-group" ng-if="elementId.appType.zwave">
+                        <label>{{_t('lb_gen_by')}} App:</label>
+                        <strong>{{elementId.appType.modul.defaults.title}}</strong><br>
+                        <a href="#zwave/devices/{{elementId.appType.zwave}}" class="btn btn-default">
+                            <strong>{{_t('lb_zwave_device')}}</strong>
+                            #{{elementId.appType.zwave}}
+                        </a>
+                    </div>-->
                     <!-- enocean -->
-                    <div class="form-group" ng-if="elementId.appType.enocean">
-                       <a href="#enocean/manage/{{elementId.appType.enocean}}"
-                                                class="btn btn-default"> {{_t('lb_gen_by')}}:  <strong>{{_t('enocean_device')}}</strong>
-                            #{{elementId.appType.enocean}}</a>
-                    </div>
+                    <!--<div class="form-group" ng-if="elementId.appType.enocean">
+                        <label>{{_t('lb_gen_by')}} App:</label>
+                        <strong>{{elementId.appType.modul.defaults.title}}</strong><br>
+                        <a href="#enocean/manage/{{elementId.appType.enocean}}" class="btn btn-default">
+                            <strong>{{_t('enocean_device')}}</strong>
+                            #{{elementId.appType.enocean}}
+                        </a>
+                    </div>-->
                     <!-- Hide element -->
                     <div class="form-group">
                         <label for="hide_element">
