@@ -41,6 +41,7 @@ textarea {
 label {
   font-weight: normal;
   font-size: 100%;
+  margin-right: $spacing-half;
   span {
       line-height: 35px;
       @include mediaQueries(min-small) {
@@ -57,11 +58,11 @@ input[type=checkbox] {
   }*/
   //padding: $spacing;
   @include mediaQueries(min-small) {
-      margin: 0 10px 5px 0; 
+      margin: 0 6px + $spacing-half 5px 0; 
       font-size: 15px;
   }
 
-  margin: 0px 22px 11px 0;
+  margin: 0px 21px + $spacing-half 11px 0;
   font-size: 22px;
   font-family: FontAwesome;
   position: relative;
