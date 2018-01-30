@@ -11684,19 +11684,20 @@ img {
   font-size: 95%;
   font-style: italic;
   margin: 5px 0;
+  padding-right: 5px;
 }
 
-/* line 289, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
+/* line 290, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
 .inline .help-text {
   display: inline;
 }
 
-/* line 294, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
+/* line 295, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 298, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
+/* line 299, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -11709,19 +11710,19 @@ img {
   border-radius: 50%;
 }
 
-/* line 310, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
+/* line 311, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
 .icon-hidden {
   visibility: hidden;
 }
 
-/* line 314, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
+/* line 315, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
 .device-available-block.assigned {
   padding: 10px 10px 5px 10px;
   border: solid 1px #cccccc;
   margin: 0 0 10px 0;
 }
 
-/* line 321, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
+/* line 322, E:/GitHub/zwave-smarthome/app/sass/base/_body.scss */
 .scrollh {
   overflow-y: auto;
   white-space: nowrap;
@@ -13393,9 +13394,10 @@ textarea {
 label {
   font-weight: normal;
   font-size: 100%;
+  margin-right: 5px;
 }
 
-/* line 44, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 45, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 label span {
   line-height: 35px;
   /* MIN WIDTH */
@@ -13403,13 +13405,13 @@ label span {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 44, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+  /* line 45, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
   label span {
     line-height: 20px;
   }
 }
 
-/* line 52, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 53, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 input[type=checkbox] {
   /*@include  checkboxScale(1.8,$spacing);
   // Media queries
@@ -13418,7 +13420,7 @@ input[type=checkbox] {
   }*/
   /* MIN WIDTH */
   /* MAX WIDTH */
-  margin: 0px 22px 11px 0;
+  margin: 0px 26px 11px 0;
   font-size: 22px;
   font-family: FontAwesome;
   position: relative;
@@ -13427,14 +13429,14 @@ input[type=checkbox] {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 52, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+  /* line 53, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
   input[type=checkbox] {
-    margin: 0 10px 5px 0;
+    margin: 0 11px 5px 0;
     font-size: 15px;
   }
 }
 
-/* line 71, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 72, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 input[type=checkbox]:after {
   margin: -11px 5px 0 0;
   vertical-align: baseline;
@@ -13452,7 +13454,7 @@ input[type=checkbox]:after {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 71, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+  /* line 72, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
   input[type=checkbox]:after {
     margin-top: -2px;
     width: 20px;
@@ -13461,7 +13463,7 @@ input[type=checkbox]:after {
   }
 }
 
-/* line 92, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 93, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 input[type=checkbox]:checked:after {
   content: "\f00c";
   color: #4e794e;
@@ -13470,23 +13472,23 @@ input[type=checkbox]:checked:after {
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 101, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 102, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .checkbox, .radio {
   margin-right: 10px;
 }
 
-/* line 103, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 104, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .checkbox input[type=checkbox], .radio input[type=checkbox] {
   position: static;
   margin-left: 10px;
 }
 
-/* line 107, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 108, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .checkbox label, .radio label {
   padding-left: 10px;
 }
 
-/* line 112, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 113, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 input[type=radio] {
   /* 
   @include radioScale(1.6, $spacing);
@@ -13506,14 +13508,14 @@ input[type=radio] {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 112, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+  /* line 113, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
   input[type=radio] {
     margin: 0 10px 5px 0;
     font-size: 12px;
   }
 }
 
-/* line 133, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 134, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 input[type=radio]:after {
   margin: -11px 5px 0 0;
   vertical-align: baseline;
@@ -13531,7 +13533,7 @@ input[type=radio]:after {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 133, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+  /* line 134, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
   input[type=radio]:after {
     margin: -2px 0 0 -2px;
     width: 20px;
@@ -13540,7 +13542,7 @@ input[type=radio]:after {
   }
 }
 
-/* line 154, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 155, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 input[type=radio]:checked:after {
   content: "\f111";
   color: #737373;
@@ -13549,37 +13551,37 @@ input[type=radio]:checked:after {
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 164, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 165, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
 
-/* line 168, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 169, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-page .form-group {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
 
-/* line 171, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 172, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-page .form-group.first {
   padding-top: 10px;
 }
 
-/* line 174, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 175, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-page .form-group.last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
 
-/* line 180, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 181, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 185, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 186, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -13589,12 +13591,12 @@ input[type=radio]:checked:after {
   z-index: -1;
 }
 
-/* line 195, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 196, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 198, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 199, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 legend, .legend {
   font-size: 110%;
   font-weight: bold;
@@ -13602,58 +13604,58 @@ legend, .legend {
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* line 203, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 204, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 legend.has-control, .legend.has-control {
   display: flex;
   justify-content: space-between;
 }
 
-/* line 209, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 210, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
 
-/* line 211, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 212, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 {
   margin: 0;
 }
 
-/* line 214, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 215, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 fieldset.expanded, .fieldset.expanded {
   padding: 10px;
 }
 
-/* line 217, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 218, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-bottom: 0;
 }
 
-/* line 224, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 225, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 229, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 230, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 233, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 234, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 237, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 238, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 241, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 242, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 245, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 246, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -13661,33 +13663,33 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-top: solid 1px #cccccc;
 }
 
-/* line 253, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 254, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 257, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 258, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 261, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 262, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-control-img {
   cursor: pointer;
   border: solid 4px transparent;
 }
 
-/* line 267, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 268, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .control-active {
   border: solid 4px black !important;
 }
 
-/* line 270, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 271, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 274, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 275, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13696,7 +13698,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 283, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
+/* line 284, E:/GitHub/zwave-smarthome/app/sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
