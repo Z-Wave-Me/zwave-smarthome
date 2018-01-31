@@ -1,17 +1,57 @@
+<!-- ////////////////////////////////////////// Devices ////////////////////////////////////////// -->
 <section class="accordion-wrap" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.target.devicesInRoom[r.id]">
-    <!-- Title -->
-    <h2 class="accordion-toggle chevron">
-       <button type="button" aria-expanded="false" bb-accordion>
-         <span>
-           <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
-         </span>
-       </button>
-     </h2>
-   <!-- Content -->
+  <!-- Title -->
+  <h2 class="accordion-toggle chevron">
+    <button type="button" aria-expanded="false" bb-accordion>
+      <span>
+        <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+      </span>
+    </button>
+  </h2>
+  <!-- Content -->
   <div class="accordion" hidden>
-      <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in rule.target.availableDevices track by $index" ng-if="d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
+    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in rule.target.availableDevices track by $index"
+      ng-if="d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
       ng-click="assignTargetDevice(d)">{{d.deviceName|cutText:true:20}}
       <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
-   </div>
- </section>
+  </div>
+</section>
+<!-- //////////////////////////////////////////Notifications ////////////////////////////////////////// -->
+<section class="accordion-wrap">
+  <!-- Title -->
+  <h2 class="accordion-toggle chevron">
+    <button type="button" aria-expanded="false" bb-accordion>
+      <span>
+          <img class="navi-img" ng-src="{{cfg.img.icons + 'alarm-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" /> {{_t('add_notification')}}
+      </span>
+    </button>
+  </h2>
+  <!-- Content -->
+  <div class="accordion" hidden>
+    <!--target  -->
+    <div class="form-group form-inline">
+      <select class="form-control" ng-model="rule.options.notification.default.target">
+        <option value="">--- {{_t('select_target')}} ---</option>
+        <option value="{{user.email}}" ng-if="rule.target.assignedDevices.indexOf(user.email) === -1">{{user.email}}</option>
+        <option value="{{e.deviceId}}" ng-if="e.probeType == 'notification_push' && rule.target.assignedDevices.indexOf(e.deviceId) === -1"
+          ng-repeat="e in rule.namespaces track by $index" ng-selected="e.deviceId == model.target">
+          {{e.deviceName}}</option>
+      </select>
+      &nbsp;
+      <label ng-hide="rule.namespaces[rule.options.notification.default.target]">{{_t('or')}} <input type="text" class="form-control" placeholder="Add email" ng-model="rule.options.notification.default.target" /></label>
+    </div>
+    <!-- mesage -->
+    <div class="form-group">
+      <textarea name="message" id="content" class="form-control report-content" ng-model="rule.options.notification.default.message"
+        placeholder="{{_t('message')}}"></textarea>
+    </div>
+    <!-- button -->
+    <div class="form-group">
+      <a href="" class="btn btn-default btn-tag" title="{{_t('add_new')}}" ng-click="assignTargetNotification(rule.options.notification.default)">
+          {{_t('add_new')}}
+      <i class="fa fa-plus text-success"></i>
+    </a>
+    </div>
+  </div>
+</section>
