@@ -10,6 +10,7 @@
        <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'" ng-hide="!rule.namespaces[d.deviceId]">
          <span>
            {{rule.namespaces[d.deviceId].deviceName}}
+          </span>
        </button>
        <!-- NO Toggle -->
        <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'" ng-hide="!rule.namespaces[d.deviceId]">

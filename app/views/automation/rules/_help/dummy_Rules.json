@@ -17,7 +17,7 @@
 					"level": "10"
 				}],
 			"triggerDelay": 4,
-			"logicalOperator": ["and", "or"]
+			"logicalOperator": ["and", "or"],
 			"tests": [{
                         "type": 'sensorMultilevel',
                         "deviceId": 'ZWayVDev_uzb_8-0-49',

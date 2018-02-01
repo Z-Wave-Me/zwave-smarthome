@@ -11523,6 +11523,11 @@ img {
 /* Others
 -------------------------------------------------- */
 /* line 244, ../sass/base/_body.scss */
+.section {
+  margin-top: 10px;
+}
+
+/* line 247, ../sass/base/_body.scss */
 .timestamp {
   color: #333333;
   font-size: 17px;
@@ -11530,52 +11535,52 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 244, ../sass/base/_body.scss */
+  /* line 247, ../sass/base/_body.scss */
   .timestamp {
     font-size: 90%;
   }
 }
-/* line 251, ../sass/base/_body.scss */
+/* line 254, ../sass/base/_body.scss */
 .timestamp .fa {
   font-size: 110%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 251, ../sass/base/_body.scss */
+  /* line 254, ../sass/base/_body.scss */
   .timestamp .fa {
     font-size: 90%;
   }
 }
 
-/* line 260, ../sass/base/_body.scss */
+/* line 263, ../sass/base/_body.scss */
 .bcg-success {
   background-color: #dff0d8;
 }
 
-/* line 264, ../sass/base/_body.scss */
+/* line 267, ../sass/base/_body.scss */
 .bcg-active.false, .bcg-danger {
   background-color: #f2dede !important;
 }
 
-/* line 268, ../sass/base/_body.scss */
+/* line 271, ../sass/base/_body.scss */
 .clickable {
   cursor: pointer;
 }
 
-/* line 272, ../sass/base/_body.scss */
+/* line 275, ../sass/base/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 277, ../sass/base/_body.scss */
+/* line 280, ../sass/base/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 282, ../sass/base/_body.scss */
+/* line 285, ../sass/base/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -11583,17 +11588,17 @@ img {
   margin: 5px 0;
 }
 
-/* line 289, ../sass/base/_body.scss */
+/* line 292, ../sass/base/_body.scss */
 .inline .help-text {
   display: inline;
 }
 
-/* line 294, ../sass/base/_body.scss */
+/* line 297, ../sass/base/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 298, ../sass/base/_body.scss */
+/* line 301, ../sass/base/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -11606,19 +11611,19 @@ img {
   border-radius: 50%;
 }
 
-/* line 310, ../sass/base/_body.scss */
+/* line 313, ../sass/base/_body.scss */
 .icon-hidden {
   visibility: hidden;
 }
 
-/* line 314, ../sass/base/_body.scss */
+/* line 317, ../sass/base/_body.scss */
 .device-available-block.assigned {
   padding: 10px 10px 5px 10px;
   border: solid 1px #cccccc;
   margin: 0 0 10px 0;
 }
 
-/* line 321, ../sass/base/_body.scss */
+/* line 324, ../sass/base/_body.scss */
 .scrollh {
   overflow-y: auto;
   white-space: nowrap;
@@ -17792,7 +17797,15 @@ img.widget-promo-image {
   top: -10px;
   left: 0;
 }
-/* line 12, ../sass/base/_automation.scss */
+/* line 11, ../sass/base/_automation.scss */
+.automation .accordion-wrap .label.index_0 {
+  display: none;
+}
+/* line 14, ../sass/base/_automation.scss */
+.automation .accordion-wrap .label.nested {
+  display: none;
+}
+/* line 19, ../sass/base/_automation.scss */
 .automation .accordion-wrap .accordion-toggle {
   display: flex;
   align-items: center;
@@ -17800,79 +17813,87 @@ img.widget-promo-image {
     margin-bottom: $spacing;
   } */
 }
-/* line 15, ../sass/base/_automation.scss */
+/* line 23, ../sass/base/_automation.scss */
+.automation .accordion-wrap .accordion-toggle button.no-toggle {
+  cursor: text !important;
+}
+/* line 25, ../sass/base/_automation.scss */
+.automation .accordion-wrap .accordion-toggle button.no-toggle::after {
+  content: "";
+}
+/* line 30, ../sass/base/_automation.scss */
 .automation .accordion-wrap .accordion-toggle .no-toggle {
   padding: 10px 0;
   width: 100%;
   font-weight: normal;
   border-bottom: dotted 1px #cccccc;
 }
-/* line 25, ../sass/base/_automation.scss */
+/* line 40, ../sass/base/_automation.scss */
 .automation .accordion-wrap .accordion {
   padding: 10px;
   background-color: #F6F6F6;
   border-bottom: 0;
 }
-/* line 29, ../sass/base/_automation.scss */
+/* line 44, ../sass/base/_automation.scss */
 .automation .accordion-wrap .accordion .form-group {
   border: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 34, ../sass/base/_automation.scss */
+/* line 49, ../sass/base/_automation.scss */
 .automation .accordion-wrap .accordion:last-child {
   margin-bottom: 0;
 }
-/* line 37, ../sass/base/_automation.scss */
+/* line 52, ../sass/base/_automation.scss */
 .automation .accordion-wrap .accordion .accordion {
   border: solid 1px #c3c3c3;
 }
-/* line 43, ../sass/base/_automation.scss */
+/* line 58, ../sass/base/_automation.scss */
 .automation .accordion-wrap.no-items .accordion-toggle {
   opacity: 0.7;
 }
-/* line 45, ../sass/base/_automation.scss */
+/* line 60, ../sass/base/_automation.scss */
 .automation .accordion-wrap.no-items .accordion-toggle > button {
   cursor: text;
   padding: 10px 0;
 }
-/* line 48, ../sass/base/_automation.scss */
+/* line 63, ../sass/base/_automation.scss */
 .automation .accordion-wrap.no-items .accordion-toggle > button::after {
   content: "" !important;
 }
-/* line 51, ../sass/base/_automation.scss */
+/* line 66, ../sass/base/_automation.scss */
 .automation .accordion-wrap.no-items .accordion-toggle > button[aria-expanded="true"] {
   border-bottom: dotted 1px #cccccc;
 }
-/* line 56, ../sass/base/_automation.scss */
+/* line 71, ../sass/base/_automation.scss */
 .automation .accordion-wrap.no-items .accordion {
   display: none;
 }
 
-/* line 66, ../sass/base/_automation.scss */
+/* line 81, ../sass/base/_automation.scss */
 .automation-report.app-row-report {
   border: 0;
 }
-/* line 69, ../sass/base/_automation.scss */
+/* line 84, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry .report-col {
   border-bottom: dotted 1px #cccccc;
   vertical-align: top;
 }
-/* line 74, ../sass/base/_automation.scss */
+/* line 89, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry .report-ctrl {
   min-width: 50%;
 }
-/* line 77, ../sass/base/_automation.scss */
+/* line 92, ../sass/base/_automation.scss */
 .automation-report.app-row-report .report-entry input[type=radio] {
   margin: 0 5px 0;
 }
-/* line 81, ../sass/base/_automation.scss */
+/* line 96, ../sass/base/_automation.scss */
 .automation-report.app-row-report .form-collapsed {
   background-color: #F6F6F6;
   padding: 10px;
   margin-top: 10px;
 }
-/* line 87, ../sass/base/_automation.scss */
+/* line 102, ../sass/base/_automation.scss */
 .automation-report.app-row-report .form-collapsed .form-group:last-child {
   border: 0;
   margin: 0;
@@ -17881,12 +17902,12 @@ img.widget-promo-image {
 
 /* Schedules
 -------------------------------------------------- */
-/* line 102, ../sass/base/_automation.scss */
+/* line 117, ../sass/base/_automation.scss */
 .table-calendar .first-col {
   width: 80px;
   background-color: #d9edf7;
 }
-/* line 106, ../sass/base/_automation.scss */
+/* line 121, ../sass/base/_automation.scss */
 .table-calendar th {
   text-align: center;
 }

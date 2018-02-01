@@ -36,7 +36,7 @@
         </div>
         <!-- Available -->
         <legend>{{_t('lb_available_devices')}}</legend>
-        <fieldset ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_simple_if_available.html'"></fieldset>
+        <fieldset bb-child-elem="rule.target.assignedDevices" ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_simple_if_available.html'"></fieldset>
       </div>
       <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
       <div ng-if="rule.tab == 'then'">
@@ -54,7 +54,7 @@
           </div>
         <!-- Available -->
         <legend>{{_t('lb_available_devices')}}</legend>
-        <fieldset ng-include="'app/views/automation/rules/rule_id_simple_then_available.html'"></fieldset>
+        <fieldset bb-child-elem="rule.target.assignedDevices" ng-include="'app/views/automation/rules/rule_id_simple_then_available.html'"></fieldset>
       </div>
       <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
       <fieldset ng-if="rule.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_simple_else.html'"></fieldset>
@@ -83,12 +83,12 @@
         <!-- Operator -->
         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
         <!-- Assigned -->
-            <legend>{{_t('Assigned conditions')}}</legend>
+            <legend>{{_t('assigned_conditions')}}</legend>
             <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_assigned.html'"></fieldset>
          
           <!-- Available -->
-          <legend>{{_t('lb_available_devices')}}</legend>
-          <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
+          <legend>{{_t('available_conditions')}}</legend>
+          <fieldset bb-child-elem="rule.advanced.tests.assignedDevices" ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
         </div>
       <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
       <div ng-if="rule.advanced.tab == 'then'">
@@ -106,7 +106,7 @@
           </div>
         <!-- Available -->
         <legend>{{_t('lb_available_devices')}}</legend>
-        <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
+        <fieldset bb-child-elem="rule.advanced.target.assignedDevices" ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
         <!-- Expert settings -->
         <legend>
           <label class="switch">

@@ -4,7 +4,7 @@
   "testRemote": "Remote condition",
   "testSensorDiscrete": "Scene contoller",
   "testTime": "Time condition",
-  "testNested": "Nested conditions",
+  "testNested": "Nested condition",
   "device_removed": "Device not available",
   "select_device":"Select device",
   "globalRoom": "N/A Room",

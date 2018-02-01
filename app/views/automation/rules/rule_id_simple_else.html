@@ -6,11 +6,34 @@
       </label>
       <span class="switch-label">{{_t('Activate reverse event')}}</span>
   </div>
+  
+
+<!-- ////////////////////////////////////////// targetElements  ////////////////////////////////////////// -->
+<section ng-if="rule.input.params.reverse">
   <!-- delay -->
 <div class="form-group form-inline">
-  <label>{{_t('delay')}}</label>
-    <div class="input-group">
-        <input class="form-control" id="then_delay" type="number" ng-model="rule.input.params.simple.reverseDelay">
+    <label>{{_t('delay')}}</label>
+      <div class="input-group">
+          <input class="form-control" id="then_delay" type="number" ng-model="rule.input.params.simple.reverseDelay">
+      </div>
+      <bb-help-text trans="_t('Time in seconds when event starts after triggering event')"></bb-help-text>
+  </div>
+<div class="list-panel" ng-repeat="d in rule.input.params.simple.targetElements track by $index" ng-if="rule.else.deviceTypes.indexOf(d.deviceType) > -1">
+    <!-- img -->
+    <!--  <figure class="img wh-32x32 clickable" ng-click="activateRule(v, v.active ? false : true)" >
+        <img ng-src="{{cfg.img.icons + 'security-pending.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+    </figure> -->
+   
+     <!-- body -->
+    <div class="body">
+        <div>{{rule.namespaces[d.deviceId].deviceName}} ({{d.deviceType}})</div>
     </div>
-    <bb-help-text trans="_t('Time in seconds when event starts after triggering event')"></bb-help-text>
-</div>
+    
+     <!-- control -->
+    <div class="control">
+        {{d.level}} -> {{d.reverseLevel}} reverseLevel???
+       <!--  <pre>{{rule.namespaces[d.deviceId]|json}}</pre> -->
+    </div>
+  
+  </div>
+  <section>

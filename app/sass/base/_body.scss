@@ -241,6 +241,9 @@ img {
 
 /* Others
 -------------------------------------------------- */
+.section{
+  margin-top: $spacing;
+}
 .timestamp {
   color: lighten($app-color-primary, 20%);
   font-size: 17px;

@@ -1,5 +1,5 @@
 <!-- ////////////////////////////////////////// Devices ////////////////////////////////////////// -->
-<section class="accordion-wrap" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.target.devicesInRoom[r.id]">
+<section class="accordion-wrap available-devices" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.target.devicesInRoom[r.id]">
     <!-- Title -->
     <h2 class="accordion-toggle chevron">
       <button type="button" aria-expanded="false" bb-accordion>

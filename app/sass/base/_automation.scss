@@ -8,12 +8,27 @@
       position: absolute;
       top: -$spacing;
       left: 0;
+      &.index_0 {
+        display: none;
+      }
+      &.nested {
+        display: none;
+      }
     }
+   
     .accordion-toggle {
       display: flex;
       align-items: center;
+      button{
+        &.no-toggle{
+          cursor: text !important;
+          &::after{
+            content: "";
+          }
+        }
+      }
       .no-toggle {
-        padding: $spacing 0;
+        padding: $spacing 0; 
         width: 100%;
         font-weight: normal;
         border-bottom: dotted 1px $accordion-border-color;

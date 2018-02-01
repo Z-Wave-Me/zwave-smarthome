@@ -1,4 +1,5 @@
-<section class="accordion-wrap" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.advanced.tests.devicesInRoom[r.id]">
+  <!-- Devices -->
+<section class="accordion-wrap available-devices" ng-repeat="r in rule.rooms track by $index" ng-if="rule.advanced.tests.devicesInRoom[r.id]">
     <!-- Title -->
     <h2 class="accordion-toggle chevron">
       <button type="button" aria-expanded="false" bb-accordion>
@@ -11,8 +12,18 @@
     <div class="accordion" hidden>
       <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in rule.advanced.tests.availableDevices track by $index"
         ng-if="d.location == r.id && rule.advanced.tests.assignedDevices.indexOf(d.deviceId) === -1" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
-        ng-click="assignAdvancedTargetDevice(d)">{{d.deviceName|cutText:true:20}}
+        ng-click="assignAdvancedTestDevice(d)">{{d.deviceName|cutText:true:20}}
         <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
       </a>
     </div>
   </section>
+    <!-- Time, nested -->
+    <section class="section">
+      <button type="button" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('time')">{{_t('testTime')}}
+          <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      </button>
+      <button type="button" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('nested')">{{_t('testNested')}}
+          <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      </button>
+    </section>
+  
