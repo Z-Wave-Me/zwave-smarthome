@@ -14587,14 +14587,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 /* line 229, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -15414,6 +15417,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 @media only screen and (min-width: 768px) {
   /* line 183, E:/GitHub/zwave-smarthome/app/sass/base/_elements.scss */
   .widget-ctrl .btn-group .btn-widget-time, .widget-ctrl .btn-group .txt-widget-time, .tbl-widget-ctrl .btn-group .btn-widget-time, .tbl-widget-ctrl .btn-group .txt-widget-time {
+    display: block;
     padding: 10px 0 0 0;
     border: 0 none;
     color: #737373;
