@@ -11891,7 +11891,7 @@ img {
 }
 /* Footer
 -------------------------------------------------- */
-/* line 3, ../sass/base/_footer.scss */
+/* line 4, ../sass/base/_footer.scss */
 #footer {
   position: fixed;
   left: 0px;
@@ -11904,7 +11904,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 3, ../sass/base/_footer.scss */
+  /* line 4, ../sass/base/_footer.scss */
   #footer {
     display: none;
   }
@@ -11915,13 +11915,35 @@ img {
   height: 50px;
   line-height: 50px;
 }
-/* line 19, ../sass/base/_footer.scss */
-#footer #footer_in .timestamp, #footer #footer_in .local, #footer #footer_in .online {
+/* line 20, ../sass/base/_footer.scss */
+#footer #footer_in .container .timestamp,
+#footer #footer_in .container .local,
+#footer #footer_in .container .online {
   display: none;
 }
-/* line 21, ../sass/base/_footer.scss */
-#footer #footer_in .timestamp .pause, #footer #footer_in .local .pause, #footer #footer_in .online .pause {
+/* line 24, ../sass/base/_footer.scss */
+#footer #footer_in .container .timestamp .pause,
+#footer #footer_in .container .local .pause,
+#footer #footer_in .container .online .pause {
   opacity: 0.5;
+}
+/* line 28, ../sass/base/_footer.scss */
+#footer #footer_in .container.has-night-mode {
+  display: flex;
+  justify-content: space-between;
+}
+/* line 31, ../sass/base/_footer.scss */
+#footer #footer_in .container.has-night-mode > span {
+  width: 50%;
+  display: inline-block;
+}
+/* line 35, ../sass/base/_footer.scss */
+#footer #footer_in .container.has-night-mode span:first-child {
+  text-align: left;
+}
+/* line 38, ../sass/base/_footer.scss */
+#footer #footer_in .container.has-night-mode span:last-child {
+  text-align: right;
 }
 
 /* Page navigation
@@ -18151,6 +18173,10 @@ fieldset.expanded, .fieldset.expanded {
 /* line 133, ../sass/custom/_shui.scss */
 .night-true:root img:not([src*=".svg"]), .night-true:root video {
   filter: invert(100%);
+}
+/* line 136, ../sass/custom/_shui.scss */
+.night-true:root #main_content {
+  margin-top: 50px;
 }
 
 /* SmartHome UI custom POPP
