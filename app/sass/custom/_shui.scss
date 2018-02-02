@@ -133,4 +133,7 @@ fieldset, .fieldset {
   img:not([src*=".svg"]), video {  
     filter: invert(100%);
   }
+  #main_content {
+    margin-top: $header-h;
+  }
 }

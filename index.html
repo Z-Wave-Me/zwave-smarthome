@@ -234,7 +234,7 @@
 
         <div id="footer">
             <div id="footer_in">
-                <div class="container">
+                <div class="container" ng-class="{'has-night-mode': cfg.skin.active == 'default'}">
                 
                     <span class="timestamp clickable" 
                             ng-click="reloadData()" 
@@ -247,7 +247,10 @@
                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
                             <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
                     </span>
-                   <!-- <i class="fa clickable" aria-hidden="true" ng-click="nightMode = !nightMode" ng-class="nightMode ? 'fa-sun-o' : 'fa-moon-o'"></i> -->
+                    <span ng-hide="cfg.skin.active != 'default'">
+                        <i class="fa clickable fa-lg" aria-hidden="true" ng-click="nightMode = !nightMode" ng-class="nightMode ? 'fa-sun-o' : 'fa-moon-o'"></i>
+                    </span>
+                  
                 </div>
             </div>         
         </div>
