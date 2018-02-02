@@ -12,9 +12,9 @@ var config_data = {
     //Application name
     'app_name': 'SmartHome UI',
     // Application version
-    'app_version': '1.8.0-RC-29',
+    'app_version': '1.8.0-RC-31',
     // Application (DIST) built date
-    'app_built': '17-01-2018 14:55:58',
+    'app_built': '02-02-2018 14:11:39',
     // Application ID
     'app_id': 'SmartHomeUI',
     // Server base url
@@ -40,6 +40,8 @@ var config_data = {
       location: {},
       // Server name
       serverName: '',
+      // Swipe direction
+      swipeDir: '',
       // Time zone
       time: {
         string: false,
