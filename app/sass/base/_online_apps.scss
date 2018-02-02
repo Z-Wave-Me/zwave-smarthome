@@ -154,6 +154,7 @@ $onlineapp-img: 64px;
         .onlineapp-img {
             opacity: 0.4;
             filter: alpha(opacity=40);
+            @include appGrayscale();
     
         }
         .onlineapp-title {

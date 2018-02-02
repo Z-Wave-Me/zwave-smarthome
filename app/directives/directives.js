@@ -540,7 +540,7 @@ myApp.directive('bbChildElem', function ($timeout) {
   return {
     restrict: 'A',
     link: function (scope, elem, attrs) {
-      scope.$watch(attrs.bbChildElem, function (newValue, oldValue) {
+      /* scope.$watch(attrs.bbChildElem, function (newValue, oldValue) {
         if (newValue) {
           $timeout(function () {
             $('.available-devices').each(function (k, v) {
@@ -553,7 +553,7 @@ myApp.directive('bbChildElem', function ($timeout) {
             });
           });
         }
-      }, true);
+      }, true); */
 
     }
   };

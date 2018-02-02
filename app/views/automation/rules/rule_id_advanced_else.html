@@ -1,0 +1,50 @@
+<!-- reverse -->
+<div class="form-group">
+    <label class="switch">
+        <input type="checkbox" ng-model="rule.input.params.reverse" ng-checked="rule.input.params.reverse">
+        <span class="slider"></span>
+      </label>
+      <span class="switch-label">{{_t('Activate reverse event')}}</span>
+  </div>
+  
+
+<!-- ////////////////////////////////////////// targetElements  ////////////////////////////////////////// -->
+<section ng-if="rule.input.params.reverse">
+  <!-- delay -->
+<div class="form-group form-inline">
+    <label>{{_t('delay')}}</label>
+      <div class="input-group">
+          <input class="form-control" id="then_delay" type="number" ng-model="rule.input.params.advanced.reverseDelay">
+      </div>
+      <bb-help-text trans="_t('Time in seconds when event starts after triggering event')"></bb-help-text>
+  </div>
+<div class="list-panel" ng-repeat="d in rule.input.params.advanced.targetElements track by $index" ng-if="rule.else.deviceTypes.indexOf(d.deviceType) > -1">
+    <!-- img -->
+    <!--  <figure class="img wh-32x32 clickable" ng-click="activateRule(v, v.active ? false : true)" >
+        <img ng-src="{{cfg.img.icons + 'security-pending.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+    </figure> -->
+   
+     <!-- body -->
+    <div class="body">
+        <div>{{rule.namespaces[d.deviceId].deviceName}}</div>
+    </div>
+    
+     <!-- control -->
+    <div class="control">
+      <div ng-if="d.deviceType == 'switchBinary'">
+        <span>{{d.level}}</span>&nbsp;->&nbsp; 
+        <strong>{{d.level == 'off' ? 'on' : 'off'}}</strong>
+      </div>
+      <div ng-if="d.deviceType == 'doorlock'">
+          <span>{{d.level}}</span>&nbsp;->&nbsp; 
+          <strong>{{d.level == 'open' ? 'close' : 'open'}}</strong>
+        </div>
+        <div ng-if="d.deviceType == 'switchMultilevel'">
+            <span>{{d.level}}</span>&nbsp;->&nbsp; 
+            <strong>{{d.reverseLevel||rule.namespaces[d.deviceId].level}}</strong>
+          </div>
+       <!--  <pre>{{rule.namespaces[d.deviceId]|json}}</pre> -->
+    </div>
+  
+  </div>
+  <section>

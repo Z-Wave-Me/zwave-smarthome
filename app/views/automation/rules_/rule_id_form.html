@@ -1,0 +1,11 @@
+ <!-- Name -->
+ <div class="form-group form-inline">
+  <label>{{_t('lb_name')}}</label>
+  <input name="title" id="title" type="text" class="form-control" ng-model="rule.input.title" />&nbsp;
+
+  <label class="switch">
+      <input type="checkbox" ng-model="rule.input.params.advanced.activate" ng-checked="rule.input.params.advanced.activate">
+      <span class="slider"></span>
+    </label>
+    <span class="switch-label">{{_t('Expert mode')}}</span>
+</div>

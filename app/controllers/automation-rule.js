@@ -119,7 +119,133 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
   $scope.rule = {
     tab: 'if',
     namespaces: [],
+    rooms: [],
+    options:{
+      switchBinary:{
+        level: ['on','off'],
+        default: {
+          deviceId: '',
+          deviceType: 'switchBinary',
+          level: 'on',
+          sendAction: false
+        }
+      },
+      sensorBinary:{
+        level: ['on','off'],
+        default: {
+          deviceId: '',
+          deviceType: 'sensorBinary',
+          level: 'on',
+          sendAction: false
+        }
+      },
+      doorlock:{
+        level: ['open','close'],
+        default: {
+          deviceId: '',
+          deviceType: 'doorlock',
+          level: 'open',
+          sendAction: false
+        }
+      },
+      switchRGBW:{
+        level: ['on','off'],
+        min: 0,
+        max: 255,
+        default: {
+          deviceId: '',
+          deviceType: 'switchRGBW',
+          level: 'on',
+          sendAction: false
+        }
+      },
+      switchControl:{
+        level: ['on', 'off', 'upstart', 'upstop', 'downstart', 'downstop'],
+        default: {
+          deviceId: '',
+          deviceType: 'switchControl',
+          level: 'on',
+          sendAction: false
+        }
+      },
+      sensorDiscrete:{
+        default: {
+          deviceId: '',
+          deviceType: 'switchControl',
+          level: '',
+          sendAction: false
+        }
+      },
+      sensorMultilevel:{
+        level: ['on', 'off'],
+        operator: ['=', '!=', '>', '>=', '<', '<='],
+        min: 0,
+        max: 99,
+        default: {
+          deviceId: '',
+          deviceType: 'sensorMultilevel',
+          level: 'on',
+          sendAction: false
+        }
+      },
+      switchMultilevel:{
+        level: ['on', 'off'],
+        operator: ['=', '!=', '>', '>=', '<', '<='],
+        min: 0,
+        max: 99,
+        default: {
+          deviceId: '',
+          deviceType: 'switchMultilevel',
+          level: 'on',
+          sendAction: false
+        }
+      },
+      thermostat:{
+        level: ['on', 'off'],
+        operator: ['=', '!=', '>', '>=', '<', '<='],
+        min: 0,
+        max: 99,
+        default: {
+          deviceId: '',
+          deviceType: 'thermostat',
+          level: 'on',
+          sendAction: false
+        }
+      },
+      toggleButton:{
+        default: {
+          deviceId: '',
+          deviceType: 'toggleButton',
+          level: 'on',
+          sendAction: false
+        }
+      },
+      time:{
+        operator: ['<=','>='],
+        default: {
+          type: 'time',
+          operator: '>=',
+          level: '00:00',
+        }
+      },
+      nested:{
+        logicalOperator: ['and',',or'],
+        default: {
+          type: 'nested',
+          logicalOperator: 'and',
+          tests: []
+         
+        }
+      },
+      notification:{
+        default: {
+         target: '',
+         message: ''
+        }
+      }
+    },
     source: {
+      deviceTypes:['toggleButton','switchControl','switchBinary','switchMultilevel','sensorBinary','sensorMultilevel','sensorDiscrete'],
       selected: {
         device: ''
       },
@@ -127,52 +253,13 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       devices: []
     },
     target: {
+      deviceTypes:['doorlock','switchBinary','switchMultilevel','thermostat','switchRGBW','switchControl','toggleButton','notification'],
       devicesInRoom: [],
       availableDevices: [],
       assignedDevices: [],
     },
-
-    rooms: [],
-    cfg: {
-      operators: [
-        '=',
-        '>',
-        '<'
-      ],
-      source: {
-        toggleButton: {},
-        switchControl: {
-          min: 0,
-          max: 99
-        },
-        switchBinary: {},
-        switchMultilevel: {
-          min: 0,
-          max: 99
-        },
-        sensorBinary: {},
-        sensorMultilevel: {},
-        sensorDiscrete: {}
-      },
-      target: {
-        doorlock: {},
-        notification: {},
-        switchBinary: {},
-        switchMultilevel: {
-          min: 0,
-          max: 99
-        },
-        switchRGBW: {
-          min: 0,
-          max: 255
-        },
-        thermostat: {
-          min: 0,
-          max: 99
-        },
-        toggleButton: {},
-      }
-
+    else: {
+      deviceTypes:['doorlock','switchBinary','switchMultilevel'],
     },
     advanced: {
       tab: 'if',
@@ -181,114 +268,18 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         availableDevices: [],
         assignedDevices: [],
         eventSourceDevices: [],
+        eventSourceTypes: ['toggleButton', 'notification']
       },
-
-      cfg: {
-        tests: {
-          binary: {
-            testName: 'testBinary',
-            testValue: ['off', 'on'],
-            deviceTypes: ['sensorBinary', 'switchBinary'],
-            default: {
-              testType: 'binary',
-              testBinary: {
-                device: '',
-                testValue: 'on'
-              }
-            }
-          },
-          multilevel: {
-            testName: 'testMultilevel',
-            testOperator: ['=', '!=', '>', '>=', '<', '<='],
-            deviceTypes: ['sensorMultilevel', 'switchMultilevel', 'battery'],
-            min: 0,
-            max: 99,
-            default: {
-              testType: 'multilevel',
-              testMultilevel: {
-                device: '',
-                testOperator: '=',
-                testValue: 0
-              }
-            }
-          },
-          remote: {
-            testName: 'testRemote',
-            testValue: ['off', 'on', 'upstart', 'upstop', 'downstart', 'downstop'],
-            deviceTypes: ['switchControl', 'toggleButton'],
-            default: {
-              testType: 'remote',
-              testRemote: {
-                device: '',
-                testValue: 'on'
-              }
-            }
-          },
-          sensorDiscrete: {
-            testName: 'testSensorDiscrete',
-            deviceTypes: ['sensorDiscrete'],
-            default: {
-              testType: 'sensorDiscrete',
-              testSensorDiscrete: {
-                device: '',
-                testValue: ''
-              }
-            }
-          },
-          time: {
-            testName: 'testTime',
-            testOperator: ['>=', '<='],
-            default: {
-              testType: 'time',
-              testTime: {
-                testOperator: '>=',
-                testValue: '00:00'
-              }
-            }
-          },
-          nested: {
-            testName: 'testNested',
-            logicalOperator: ['and', 'or'],
-            default: {
-              testType: 'nested',
-              testNested: {
-                logicalOperator: 'and',
-                tests: []
-              }
-            }
-          }
-        },
-        target: {
-          switchBinary: {
-            action: 'switches',
-            default: {
-              status: 'off'
-            },
-            enum: ['off', 'on']
-          },
-          switchMultilevel: {
-            action: 'dimmers',
-            min: 0,
-            max: 99
-          },
-          thermostat: {
-            action: 'thermostats',
-            min: 0,
-            max: 99
-          },
-          doorlock: {
-            action: 'locks',
-            enum: ['close', 'open']
-          },
-          toggleButton: {
-            action: 'scenes',
-          },
-          notification: {
-            action: 'notification',
-          }
-        },
-        eventSourceDevices: ['toggleButton', 'notification']
+      tests:{
+        devicesInRoom: [],
+        availableDevices: [],
+        assignedDevices: [],
+        types:['switchBinary','sensorBinary','doorlock','switchRGBW','switchControl','sensorDiscrete','sensorMultilevel','switchMultilevel','thermostat','toggleButton','time','nested']
       }
+      
+     /*  cfg: {
+        eventSourceDevices: ['toggleButton', 'notification']
+      } */
     },
     input: {
       id: $routeParams.id,
@@ -296,39 +287,39 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       active: true,
       title: "",
       params: {
-        sourceDevice: {
-          filterIf: ''
-        },
-        delay: {
-          eventstart: 0
-        },
-        targets: {
-          elements: []
+        simple: {
+          triggerEvent: {},
+          triggerDelay: 0,
+          targetElements: [],
+          sendNotifications: [],
+          reverseDelay: 0
         },
         advanced: {
-          activate: false,
-          logicalOperator: 'and',
-          delay: {
-            eventstart: 0
-          },
-          tests: [],
-          action: {
-            switches: [],
-            dimmers: [],
-            sthermostats: [],
-            locks: [],
-            scenes: [],
-            notification: []
-          },
-          expertSettings: false,
-          eventSource: [],
-          triggerOnDevicesChange: true
+          active: false,
+          triggerScenes : [],
+          triggerDelay: 0,
+          logicalOperator : "and",
+          tests : [],
+          targetElements: [],
+          sendNotifications: [],
+          reverseDelay: 0,
+          triggerOnDevicesChange : true
         },
-        reverse: {
-          activate: false
-        }
+        reverse: false
       }
     }
+  };
+
+ /**
+  *  Reset Original data 
+  */
+  $scope.orig = {
+    options: {}
+  };
+  $scope.orig.options = angular.copy($scope.rule.options);
+  $scope.resetOptions = function () {
+    $scope.rule.options = angular.copy($scope.orig.options);
+
   };
 
   /**
@@ -339,42 +330,43 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       var instance = instances.data.data;
       var assignedTargetDevices = $scope.rule.target.assignedDevices;
       // Set input data
-      instance.params.advanced.tests = _.sortBy(instance.params.advanced.tests, 'testType');
+      //instance.params.advanced.tests = _.sortBy(instance.params.advanced.tests, 'testType');
       angular.extend($scope.rule.input,instance);
-
-      // Set source device
-      var filterIf = instance.params.sourceDevice.filterIf;
-      if (filterIf) {
-        $scope.rule.source.selected = instance.params.sourceDevice[filterIf];
-      }
       // Set target assigned devices
-      angular.forEach(instance.params.targets.elements, function (v, k) {
-        var targetId = $filter('hasNode')(v[v['filterThen']], 'target');
-        if (targetId) {
-          $scope.rule.target.assignedDevices.push(targetId);
-        }
+      angular.forEach(instance.params.simple.targetElements, function (v, k) {
+        $scope.rule.target.assignedDevices.push(v.deviceId);
 
       });
-      // Set advanced target assigned devices
-      angular.forEach(instance.params.advanced.action, function (v, k) {
-        var deviceId;
-        _.filter(v, function (val, key) {
-          switch (k) {
-            case 'scenes':
-              deviceId = val;
-              break;
-            case 'notification':
-              deviceId = val.target;
-              break;
-            default:
-              deviceId = val.device;
-              break;
-          }
-          if (deviceId) {
-            $scope.rule.advanced.target.assignedDevices.push(deviceId);
-          }
+       // Set target assigned devices from notifications
+       angular.forEach(instance.params.simple.sendNotifications, function (v, k) {
+        $scope.rule.target.assignedDevices.push(v.target);
 
-        });
+      });
+       // Set advanced tests assigned devices
+       angular.forEach(instance.params.advanced.tests, function (v, k) {
+         if(v.type == 'nested'){
+            _.filter(v.tests,function(test){
+              if(test.deviceId && $scope.rule.advanced.tests.assignedDevices.indexOf(test.deviceId) === -1){
+                $scope.rule.advanced.tests.assignedDevices.push(test.deviceId);
+               }
+            });
+         }else{
+           if(v.deviceId && $scope.rule.advanced.tests.assignedDevices.indexOf(v.deviceId) === -1){
+            $scope.rule.advanced.tests.assignedDevices.push(v.deviceId);
+           }
+         }
+       
+
+      });
+
+      // Set advanced target assigned devices
+      angular.forEach(instance.params.advanced.targetElements, function (v, k) {
+        $scope.rule.advanced.target.assignedDevices.push(v.deviceId);
+
+      });
+       // Set advanced target assigned devices from notifications
+       angular.forEach(instance.params.advanced.sendNotifications, function (v, k) {
+        $scope.rule.advanced.target.assignedDevices.push(v.target);
 
       });
 
@@ -405,30 +397,30 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    */
   $scope.loadDevices = function (rooms) {
     dataFactory.getApi('devices').then(function (response) {
-      var whiteListSource = _.keys($scope.rule.cfg.source);
-      var whiteListTarget = _.keys($scope.rule.cfg.target);
-      var whiteListAdvancedTarget = _.keys($scope.rule.advanced.cfg.target);
-      var whiteListAdvancedEventSource = $scope.rule.advanced.cfg.eventSourceDevices;
-      var devices = dataService.getDevicesData(response.data.data.devices, false, false, true);
-      $scope.rule.namespaces = devices.map(function (v) {
-          var obj = {
-            deviceId: v.id,
-            deviceName: v.metrics.title,
-            deviceType: v.deviceType,
-            probeType: v.probeType,
-            location: v.location,
-            locationName: rooms[v.location].title
-          };
-          return obj;
-        })
-        .indexBy('deviceId')
-        .value();
+      var whiteListSource = $scope.rule.source.deviceTypes;
+      var whiteListTarget = $scope.rule.target.deviceTypes;
+      var whiteListAdvancedTests =  $scope.rule.advanced.tests.types;
+      var whiteListAdvancedEventSource = $scope.rule.advanced.target.eventSourceTypes;
+      var devices = dataService.getDevicesData(response.data.data.devices, false, false, true).map(function (v) {
+        var obj = {
+          deviceId: v.id,
+          deviceName: v.metrics.title,
+          deviceType: v.deviceType,
+          probeType: v.probeType,
+          level: v.metrics.level,
+          location: v.location,
+          locationName: rooms[v.location].title
+        };
+        return obj;
+      });
+
+      $scope.rule.namespaces = devices.indexBy('deviceId').value();
 
       // Set source devices
       $scope.rule.source.devices = devices.filter(function (v) {
           return whiteListSource.indexOf(v.deviceType) > -1;
         })
-        .indexBy('id')
+        .indexBy('deviceId')
         .value();
       // Set source sum of devices in the room
       $scope.rule.source.devicesInRoom = _.countBy($scope.rule.source.devices, function (v) {
@@ -449,30 +441,22 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
             return true;
           }
         })
-        .indexBy('id')
+        .indexBy('deviceId')
         .value();
       // Set target sum of devices in the room
       $scope.rule.target.devicesInRoom = _.countBy($scope.rule.target.availableDevices, function (v) {
         return v.location;
       });
-      // Set advanced target devices
-      $scope.rule.advanced.target.availableDevices = devices.filter(function (v) {
-          // Replacing deviceType with "notification"
-          if (v.probeType == 'notification_push') {
-            v.deviceType = 'notification';
-          }
-          return whiteListAdvancedTarget.indexOf(v.deviceType) > -1;
-        })
-        .reject(function (v) {
-          if ($scope.rule.source.selected.device == v.id) {
-            return true;
-          }
-        })
-        .indexBy('id')
-        .value();
 
-      // Set advanced target sum of devices in the room
-      $scope.rule.advanced.target.devicesInRoom = _.countBy($scope.rule.advanced.target.availableDevices, function (v) {
+      // Set advanced test devices
+      $scope.rule.advanced.tests.availableDevices = devices.filter(function (v) {
+        return whiteListAdvancedTests.indexOf(v.deviceType) > -1;
+      })
+      .indexBy('deviceId')
+      .value();
+
+      // Set advanced test sum of devices in the room
+      $scope.rule.advanced.tests.devicesInRoom = _.countBy($scope.rule.advanced.tests.availableDevices, function (v) {
         return v.location;
       });
 
@@ -480,7 +464,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       $scope.rule.advanced.target.eventSourceDevices = devices.filter(function (v) {
           return whiteListAdvancedEventSource.indexOf(v.deviceType) > -1;
         })
-        .indexBy('id')
+        .indexBy('deviceId')
         .value();
 
     }, function (error) {});
@@ -488,7 +472,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
 
 
   // ctrl watch ?
-  $scope.$watch('rule.source.selected.device', function (newVal, oldVal) {
+  $scope.$watch('rule.input.params.simple.triggerEvent', function (newVal, oldVal) {
 
     if (newVal !== oldVal) {
       $scope.loadRooms();
@@ -501,32 +485,19 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * @param {object} device
    */
   $scope.assignSourceDevice = function (device) {
-    if (!device) {
+    var defaultDevice = $scope.rule.options[device.deviceType].default;
+    if (!defaultDevice) {
       return;
     }
-    $scope.rule.input.params.sourceDevice = {};
-    $scope.rule.source.selected = {};
-
-    var sourceDevice = {
-      filterIf: device.deviceType
-    };
-    $scope.rule.source.selected = {
-      device: device.id,
-      filterIf: device.deviceType
-    };
-    sourceDevice[device.deviceType] = {
-      device: device.id
-    }
-    angular.extend($scope.rule.input.params.sourceDevice, sourceDevice);
+    defaultDevice.deviceId =  device.deviceId;
+    $scope.rule.input.params.simple.triggerEvent = defaultDevice;
   };
 
   /**
    * Remove device id from source assigned device
    */
   $scope.unassignSourceDevice = function () {
-    $scope.rule.input.params.sourceDevice = {};
-    $scope.rule.source.selected = {};
-
+    $scope.rule.input.params.simple.triggerEvent = {};
   };
 
   /**
@@ -535,17 +506,37 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * @returns {undefined}
    */
   $scope.assignTargetDevice = function (device) {
-    var element = {
-      filterThen: device.deviceType,
-      reverseLVL: "undefined"
-    };
-    element[device.deviceType] = {
-      target: device.id
-    };
-    $scope.rule.target.assignedDevices.push(device.id);
-    $scope.rule.input.params.targets.elements.push(element);
+    var input = $scope.rule.options[device.deviceType].default;
+    if (!input || $scope.rule.target.assignedDevices.indexOf(device.deviceId) > -1) {
+      return;
+    }
+    $scope.rule.target.assignedDevices.push(device.deviceId);
+    switch(device.deviceType){
+      // Notification
+      case 'notification':
+      var notifion = {
+        target: device.deviceId,
+        message: ''
+      };
+      $scope.rule.input.params.simple.sendNotifications.push(notifion);
+      break;
+       // Default
+      default:
+      var element = {
+        deviceId: device.deviceId,
+        deviceType:  device.deviceType,
+        level: input.level,
+        sendAction:  input.sendAction
+      };
+      $scope.rule.input.params.simple.targetElements.push(element);
+      break;
+
+    }
+    $scope.resetOptions();
 
   };
+
+  
   /**
    * Remove device id from target assigned device
    * @param {int} index 
@@ -555,72 +546,185 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
 
     var deviceIndex = $scope.rule.target.assignedDevices.indexOf(deviceId);
     if (targetIndex > -1) {
-      $scope.rule.input.params.targets.elements.splice(targetIndex, 1);
+      $scope.rule.input.params.simple.targetElements.splice(targetIndex, 1);
       $scope.rule.target.assignedDevices.splice(deviceIndex, 1);
     }
 
   };
 
   /**
-   * Expand/Collapse target params
-   */
-  $scope.expandTargetParams = function (element) {
-    var blackList = ['ruleThen'];
-    // Colapse all params except 'element'
-    /*  _.filter($scope.expand, function (v, k) {
-       if (k != element || blackList.indexOf(k) === -1) {
-         $scope.expand[k] = false;
-       }
-
-     }); */
-    $scope.expandElement(element);
-
-  };
-
-  /**
-   * Remove device from the target list
-   * @param {object} device 
-   */
-  $scope.removeDeviceFromTarget = function (device) {
-    var index;
-    // Find index of the target device
-    _.filter($scope.rule.input.params.targets.elements, function (v, k) {
-      var targetId = $filter('hasNode')(v[v['filterThen']], 'target');
-      if (targetId == device.id) {
-        index = k;
-        return;
-      }
-
-    });
-    // Remove target device
-    if (index > -1) {
-      $scope.rule.input.params.targets.elements.splice(index, 1);
-    }
-
-
-  };
-
-  /**
-   * Assign advanced condition
-   * @param {object} test
+   * Assign notification
+   * @param {object} notification
    * @returns {undefined}
    */
-  $scope.assignAdvancedTest = function (test) {
+  $scope.assignTargetNotification = function (notification) {
+   if(notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1) {
+      $scope.rule.input.params.simple.sendNotifications.push(notification);
+      $scope.rule.target.assignedDevices.push(notification.target);
+      $scope.resetOptions();
+    }
+    
+  };
+
+  /**
+   * Remove notification from sendNotifications
+   * @param {int} index 
+   * @param {string} deviceId 
+   */
+  $scope.unassignTargetNotification = function (targetIndex, target) {
+
+    var notificationIndex = $scope.rule.target.assignedDevices.indexOf(target);
+    if (targetIndex > -1) {
+      $scope.rule.input.params.simple.sendNotifications.splice(targetIndex, 1);
+      $scope.rule.target.assignedDevices.splice(notificationIndex, 1);
+    }
+
+  };
+
+  /**
+   * Assign advanced device condition
+   * @param {object} device
+   * @returns {undefined}
+   */
+  $scope.assignAdvancedTestDevice = function (device) {
+    var input = $scope.rule.options[device.deviceType].default;
+    if (!input || $scope.rule.advanced.tests.assignedDevices.indexOf(device.deviceId) > -1) {
+      return;
+    }
     var index = _.size($scope.rule.input.params.advanced.tests);
-    $scope.rule.input.params.advanced.tests.push(test.default);
+    var test = {
+      deviceId: device.deviceId,
+      type:  device.deviceType,
+      level: input.level,
+      sendAction:  input.sendAction
+    };
+    $scope.rule.advanced.tests.assignedDevices.push(device.deviceId);
+    $scope.rule.input.params.advanced.tests.push(test);
+    $scope.resetOptions();
     $scope.expandElement('test_' + index);
 
   };
 
   /**
+   * Assign advanced condition
+   *  @param {string} type
+   * @returns {undefined}
+   */
+  $scope.assignAdvancedTestCondition = function (type) {
+    var test = $scope.rule.options[type].default;
+    var index = _.size($scope.rule.input.params.advanced.tests);
+    $scope.rule.input.params.advanced.tests.push(test);
+    //$scope.resetOptions();
+    $scope.expandElement('test_' + index);
+
+  };
+
+  /**
+   * Remove advanced test
+   * @param {int} argetIndex 
+   * @param {string} target 
+   */
+  $scope.unassignAdvancedTest = function (targetIndex,deviceId) {
+    var test = $scope.rule.input.params.advanced.tests[targetIndex];
+    if(test.type == 'nested'){
+       // Set advanced tests assigned devices
+     angular.forEach(test.tests, function (v, k) {
+      if(v.deviceId){
+        var deviceIndex =  $scope.rule.advanced.tests.assignedDevices.indexOf(v.deviceId);
+        $scope.rule.advanced.tests.assignedDevices.splice(deviceId, 1);
+       }
+
+   });
+   $scope.rule.input.params.advanced.tests.splice(targetIndex, 1);
+
+    }else{
+      $scope.rule.input.params.advanced.tests.splice(targetIndex, 1);
+      if (deviceId) {
+        var deviceIndex =  $scope.rule.advanced.tests.assignedDevices.indexOf(deviceId);
+        $scope.rule.advanced.tests.assignedDevices.splice(deviceId, 1);
+      }
+    }
+   };
+
+  /**
+   * Assign advanced nested device condition
+   * @param {object} device
+   * @param {int} testIndex
+   * @returns {undefined}
+   */
+  $scope.assignAdvancedTestNestedDevice = function (device,testIndex) {
+    var input = $scope.rule.options[device.deviceType].default;
+    if (!input || $scope.rule.advanced.tests.assignedDevices.indexOf(device.deviceId) > -1) {
+      return;
+    }
+    var index = _.size($scope.rule.input.params.advanced.tests[testIndex].tests);
+    var test = {
+      deviceId: device.deviceId,
+      type:  device.deviceType,
+      level: input.level,
+      sendAction:  input.sendAction
+    };
+    $scope.rule.advanced.tests.assignedDevices.push(device.deviceId);
+    $scope.rule.input.params.advanced.tests[testIndex].tests.push(test);
+    $scope.resetOptions();
+    $scope.expandElement('test_nested_' + testIndex + index);
+
+  };
+
+  /**
+   * Assign advanced nested condition
+   *  @param {string} type
+   * @param {int} testIndex
+   * @returns {undefined}
+   */
+  $scope. assignAdvancedTestNestedCondition = function (type,testIndex) {
+    var test = $scope.rule.options[type].default;
+    var index = _.size($scope.rule.input.params.advanced.tests[testIndex].tests);
+    $scope.rule.input.params.advanced.tests[testIndex].tests.push(test);
+    //$scope.resetOptions();
+    $scope.expandElement('test_nested_' + testIndex + index);
+
+  };
+
+  /**
+   * Remove advanced nested test
+   * @param {int} targetIndex 
+   * @param {string} deviceId
+   * @param {int} testIndex 
+   */
+  $scope.unassignAdvancedTestNested = function (targetIndex,deviceId,testIndex) {
+    $scope.rule.input.params.advanced.tests[testIndex].tests.splice(targetIndex, 1);
+    
+    if (deviceId) {
+      var deviceIndex =  $scope.rule.advanced.tests.assignedDevices.indexOf(deviceId);
+      $scope.rule.advanced.tests.assignedDevices.splice(deviceId, 1);
+    }
+
+  };
+
+  /**
+   * todo: deprecated
+   * Assign advanced test
+   * @param {object} test
+   * @returns {undefined}
+   */
+  /* $scope.assignAdvancedTest______ = function (test) {
+    var index = _.size($scope.rule.input.params.advanced.tests);
+    $scope.rule.input.params.advanced.tests.push(test.default);
+    $scope.expandElement('test_' + index);
+
+  }; */
+
+  /**
+   * todo: deprecated
    * Remove advanced condition
    * @param {object} index
    * @returns {undefined}
    */
-  $scope.unassignAdvancedTest = function (index) {
+  /* $scope.unassignAdvancedTest = function (index) {
     $scope.rule.input.params.advanced.tests.splice(index, 1);
 
-  };
+  }; */
 
 
   /**
@@ -629,7 +733,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * @param {object} test
    * @returns {undefined}
    */
-  $scope.assignAdvancedNestedTest = function (testIndex, test) {
+ /*  $scope.assignAdvancedNestedTest = function (testIndex, test) {
     var nested = $filter('hasNode')($scope.rule.input.params.advanced.tests[testIndex], 'testNested.tests');
     if (!_.isArray(nested)) {
       return
@@ -638,7 +742,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
     $scope.rule.input.params.advanced.tests[testIndex].testNested.tests.push(test.default);
     $scope.expandElement('testNested_' + testIndex + index);
 
-  };
+  }; */
 
   /**
    * Remove advanced nested condition
@@ -646,54 +750,90 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * @param {int} index
    * @returns {undefined}
    */
-  $scope.unassignAdvancedNestedTest = function (testIndex, index) {
+ /*  $scope.unassignAdvancedNestedTest = function (testIndex, index) {
     $scope.rule.input.params.advanced.tests[testIndex].testNested.tests.splice(index, 1);
 
-  };
+  }; */
 
-
-  /**
-   * Assign device to the advanced target
+   /**
+   * Assign advanced device to the target
    * @param {object} device
    * @returns {undefined}
    */
   $scope.assignAdvancedTargetDevice = function (device) {
-    var action = {
-      reverseLVL: "undefined"
-    };
-    var actionType = $scope.rule.advanced.cfg.target[device.deviceType].action;
-    if (!actionType) {
+    var input = $scope.rule.options[device.deviceType].default;
+    if (!input || $scope.rule.advanced.target.assignedDevices.indexOf(device.deviceId) > -1) {
       return;
-    } else if (actionType == 'notification') {
-      action['target'] = device.id
-    } else {
-      action['device'] = device.id
     }
-    var status = $filter('hasNode')($scope.rule.advanced.cfg.target[device.deviceType], 'enum.0');
-    if (status) {
-      action['status'] = status;
+    $scope.rule.advanced.target.assignedDevices.push(device.deviceId);
+    switch(device.deviceType){
+      // Notification
+      case 'notification':
+      var notifion = {
+        target: device.deviceId,
+        message: ''
+      };
+      $scope.rule.input.params.advanced.sendNotifications.push(notifion);
+      break;
+       // Default
+      default:
+      var element = {
+        deviceId: device.deviceId,
+        deviceType:  device.deviceType,
+        level: input.level,
+        sendAction:  input.sendAction
+      };
+      $scope.rule.input.params.advanced.targetElements.push(element);
+      break;
+
     }
-
-    $scope.rule.input.params.advanced.action[actionType].push(action);
-    $scope.rule.advanced.target.assignedDevices.push(device.id, );
-
+    $scope.resetOptions();
 
   };
 
   /**
    * Remove device id from advanced target assigned device
-   *  @param {string} targetType
-   * @param {int} targetIndex 
+   * @param {int} index 
    * @param {string} deviceId 
    */
-  $scope.unassignAdvancedTargetDevice = function (targetType, targetIndex, deviceId) {
-    var deviceIndex = $scope.rule.advanced.target.assignedDevices.indexOf(deviceId);
+  $scope.unassignAdvancedTargetDevice = function (targetIndex, deviceId) {
+
+    var deviceIndex = $scope.rule.target.assignedDevices.indexOf(deviceId);
     if (targetIndex > -1) {
-      $scope.rule.input.params.advanced.action[targetType].splice(targetIndex, 1);
+      $scope.rule.input.params.advanced.targetElements.splice(targetIndex, 1);
       $scope.rule.advanced.target.assignedDevices.splice(deviceIndex, 1);
     }
 
   };
+
+  /**
+   * Assign notification
+   * @param {object} notification
+   * @returns {undefined}
+   */
+  $scope.assignAdvancedTargetNotification = function (notification) {
+    if(notification.target && $scope.rule.advanced.target.assignedDevices.indexOf(notification.target) === -1) {
+       $scope.rule.input.params.advanced.sendNotifications.push(notification);
+       $scope.rule.advanced.target.assignedDevices.push(notification.target);
+       $scope.resetOptions();
+     }
+     
+   };
+ 
+   /**
+    * Remove notification from sendNotifications
+    * @param {int} index 
+    * @param {string} deviceId 
+    */
+   $scope.unassignAdvancedTargetNotification = function (targetIndex, target) {
+ 
+     var notificationIndex = $scope.rule.advanced.target.assignedDevices.indexOf(target);
+     if (targetIndex > -1) {
+       $scope.rule.input.params.advanced.sendNotifications.splice(targetIndex, 1);
+       $scope.rule.advanced.target.assignedDevices.splice(notificationIndex, 1);
+     }
+ 
+   };
 
   /**
    * Assign device ID to the advanced event source
@@ -701,7 +841,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * @returns {undefined}
    */
   $scope.assignAdvancedEventSource = function (deviceId) {
-    $scope.rule.input.params.advanced.eventSource.push(deviceId);
+    $scope.rule.input.params.advanced.triggerScenes.push(deviceId);
 
   };
 
@@ -711,9 +851,9 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * @returns {undefined}
    */
   $scope.unassignAdvancedEventSource = function (deviceId) {
-    var deviceIndex = $scope.rule.input.params.advanced.eventSource.indexOf(deviceId);
+    var deviceIndex = $scope.rule.input.params.advanced.triggerScenes.indexOf(deviceId);
     if (deviceIndex > -1) {
-      $scope.rule.input.params.advanced.eventSource.splice(deviceIndex, 1);
+      $scope.rule.input.params.advanced.triggerScenes.splice(deviceIndex, 1);
     }
 
   };

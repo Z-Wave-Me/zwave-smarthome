@@ -1,133 +1,28 @@
-<!--  ////////////////////////////////////////// switches  ////////////////////////////////////////// -->
-<section class="accordion-wrap" ng-repeat="v in rule.input.params.advanced.action.switches track by $index">
-  <!-- Title -->
-  <h2 class="accordion-toggle chevron">
-    <!-- Deleted device -->
-    <span class="no-toggle text-danger" ng-if="!rule.advanced.target.availableDevices[v.device]">
-        <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
-      </span>
-      <!-- Toggle -->
-      <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}}  <strong ng-if="v.status">({{v.status}}) </strong> -
-        <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
-      </span>
-    </button>
-    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('switches',$index,v.device)">
-      <i class="fa fa-times text-danger"></i>
-    </span>
-
-  </h2>
-  <!-- Content -->
-  <div class="accordion" hidden ng-include="'app/views/automation/rules/rule_id_advanced_then_switchBinary.html'"></div>
-  <!-- expand['advanced_target_' + v.device] -->
-</section>
-<!--  ////////////////////////////////////////// dimmers  ////////////////////////////////////////// -->
-<section class="accordion-wrap" ng-repeat="v in rule.input.params.advanced.action.dimmers track by $index">
-  <!-- Title -->
-  <h2 class="accordion-toggle chevron">
-     <!-- Deleted device -->
-     <span class="no-toggle text-danger" ng-if="!rule.advanced.target.availableDevices[v.device]">
-        <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
-      </span>
-      <!-- Toggle -->
-      <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} <strong ng-if="v.status">({{v.status}}) </strong> -
-        <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
-      </span>
-    </button>
-    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('dimmers',$index,v.device)">
-      <i class="fa fa-times text-danger"></i>
-    </span>
-  </h2>
-  <!-- Content -->
-  <div class="accordion" hidden ng-include="'app/views/automation/rules/rule_id_advanced_then_switchMultilevel.html'"></div>
-</section>
-<!--  ////////////////////////////////////////// thermostats ////////////////////////////////////////// -->
-<section class="accordion-wrap" ng-repeat="v in rule.input.params.advanced.action.thermostats track by $index">
-  <!-- Title -->
-  <h2 class="accordion-toggle chevron">
-    <!-- Deleted device -->
-    <span class="no-toggle text-danger" ng-if="!rule.advanced.target.availableDevices[v.device]">
-      <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
-    </span>
-    <!-- Toggle -->
-    <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} - <strong ng-if="v.status">({{v.status}}) </strong> 
-        <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
-      </span>
-    </button>
-    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('thermostats',$index,v.device)">
-      <i class="fa fa-times text-danger"></i>
-    </span>
-
-  </h2>
-  <!-- Content -->
-  <div class="accordion" hidden ng-include="'app/views/automation/rules/rule_id_advanced_then_thermostat.html'"></div>
-</section>
-
-<!--  ////////////////////////////////////////// locks ////////////////////////////////////////// -->
-<section class="accordion-wrap" ng-repeat="v in rule.input.params.advanced.action.locks track by $index">
-  <!-- Title -->
-  <h2 class="accordion-toggle chevron">
-     <!-- Deleted device -->
-     <span class="no-toggle text-danger" ng-if="!rule.advanced.target.availableDevices[v.device]">
-        <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
-      </span>
-      <!-- Toggle -->
-      <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} - <strong ng-if="v.status">({{v.status}}) </strong> 
-        <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
-      </span>
-    </button>
-    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('locks',$index,v.device)">
-      <i class="fa fa-times text-danger"></i>
-    </span>
-
-  </h2>
-  <!-- Content -->
-  <div class="accordion" hidden ng-include="'app/views/automation/rules/rule_id_advanced_then_doorlock.html'"></div>
-</section>
-<!--  ////////////////////////////////////////// notifications  ////////////////////////////////////////// -->
-<section class="accordion-wrap" ng-repeat="v in rule.input.params.advanced.action.notification track by $index">
-  <!-- Title -->
-  <h2 class="accordion-toggle chevron">
-     <!-- Deleted device -->
-     <span class="no-toggle text-danger" ng-if="!rule.advanced.target.availableDevices[v.target]">
-        <i class="fa fa-exclamation-circle"></i> {{v.target}} {{_t('device_removed')}}
-      </span>
-      <!-- Toggle -->
-      <button type="button" aria-expanded="false" bb-accordion ng-hide="!rule.advanced.target.availableDevices[v.target]">
-      <span>{{rule.advanced.target.availableDevices[v.target].metrics.title}} -
-        <em>{{rule.rooms[rule.advanced.target.availableDevices[v.target].location].title}}</em>
-      </span>
-    </button>
-    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('notification',$index,v.target)">
-      <i class="fa fa-times text-danger"></i>
-    </span>
-
-  </h2>
-  <!-- Content -->
-  <div class="accordion" hidden ng-include="'app/views/automation/rules/rule_id_advanced_then_notification.html'"></div>
-</section>
-<!--  ////////////////////////////////////////// scenes  ////////////////////////////////////////// -->
-<section class="accordion-wrap" ng-repeat="v in rule.input.params.advanced.action.scenes track by $index">
-  <!-- Title -->
-  <h2 class="accordion-toggle">
-     <!-- Deleted device -->
-     <span class="no-toggle text-danger" ng-if="!rule.advanced.target.availableDevices[v.device]">
-        <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
-      </span>
-      <!-- Toggle -->
-    <span class="no-toggle" ng-hide="!rule.advanced.target.availableDevices[v.device]">
-      <span>{{rule.advanced.target.availableDevices[v.device].metrics.title}} -
-        <em>{{rule.rooms[rule.advanced.target.availableDevices[v.device].location].title}}</em>
-      </span>
-    </span>
-    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice('scenes',$index,v.device)">
-      <i class="fa fa-times text-danger"></i>
-    </span>
-
-  </h2>
-</section>
-
-<!-- <pre>{{rule.input.params.advanced.action|json}}</pre> -->
+ <!-- ////////////////////////////////////////// targetElements  ////////////////////////////////////////// -->
+ <section class="accordion-wrap" ng-repeat="d in rule.input.params.advanced.targetElements track by $index" ng-init="model=d">
+    <h2 class="accordion-toggle chevron">
+       <!-- Deleted device -->
+       <span class="no-toggle text-danger" ng-show="!rule.namespaces[d.deviceId]">
+         <i class="fa fa-exclamation-circle"></i> {{d.deviceId}} {{_t('device_removed')}}
+       </span>
+       <!-- <pre>{{targetModel|json}}</pre> -->
+       <!-- Title -->
+       <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'" ng-hide="!rule.namespaces[d.deviceId]">
+         <span>
+           {{rule.namespaces[d.deviceId].deviceName}}
+          </span>
+       </button>
+       <!-- NO Toggle -->
+       <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'" ng-hide="!rule.namespaces[d.deviceId]">
+           <span>
+               {{rule.namespaces[d.deviceId].deviceName}}
+             </span>
+         </span>
+       <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice($index,d.deviceId)">
+         <i class="fa fa-times text-danger"></i>
+         </span>
+     </h2>
+      <!-- Content -->
+     <div class="accordion" ng-include="'app/views/automation/rules/inputs/'+ d.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
+       hidden></div>
+   </section>

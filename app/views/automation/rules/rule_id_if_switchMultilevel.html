@@ -1,23 +1,24 @@
-<!-- status -->
-<div class="form-group">
-  <label>
-    <input type="radio" ng-model="rule.input.params.sourceDevice.switchMultilevel.status" value="on">
-    <span>{{_t('on')}}</span>
-  </label>
-  <label>
-    <input type="radio" ng-model="rule.input.params.sourceDevice.switchMultilevel.status" value="off">
-    <span>{{_t('off')}}</span>
-  </label>
-  <label>
-    <input type="radio" ng-model="rule.input.params.sourceDevice.switchMultilevel.status" value="level">
-    <span>{{_t('level')}}</span>
-  </label>
-  <!-- level -->
-<span class="form-group form-inline" ng-if="rule.input.params.sourceDevice.switchMultilevel.status == 'level'">
-  <select class="form-control" ng-model="rule.input.params.sourceDevice.switchMultilevel.operator">
-    <option value="{{v}}" ng-repeat="v in rule.cfg.operators track by $index" ng-selected="v == rule.input.params.sourceDevice.switchMultilevel.operator">{{v}}</option>
-  </select>
-  <input type="number" class="form-control input-number" id="if_status" min="{{rule.cfg.source.switchMultilevel.min}}" max="{{rule.cfg.source.switchMultilevel.max}}" ng-model="rule.input.params.sourceDevice.switchMultilevel.level"
-  />
-</span>
-</div>
+<!-- select -->
+<div class="form-group form-inline">
+    <span ng-show="rule.input.params.simple.triggerEvent.operator == ''">
+    <label class="switch">
+      <input type="checkbox" ng-model="rule.input.params.simple.triggerEvent.level" ng-checked="rule.input.params.simple.triggerEvent.level == 'on'" ng-true-value="on" ng-false-value="off" ng-disabled="rule.input.params.simple.triggerEvent.operator != ''">
+      <span class="slider"></span>
+    </label>
+    <span class="switch-label" ng-hide="_.isNumber(rule.input.params.simple.triggerEvent.level)">{{rule.input.params.simple.triggerEvent.level}}</span>
+  </span>
+    <!-- operator -->
+    <select class="form-control" ng-model="rule.input.params.simple.triggerEvent.operator">
+      <option value="">---</option>
+      <option value="{{o}}" ng-repeat="o in rule.options.switchMultilevel.operator track by $index" ng-selected="o == rule.input.params.simple.triggerEvent.operator">
+        {{o}}</option>
+    </select>
+    <!-- level -->
+    <input type="number" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
+      ng-model="rule.input.params.simple.triggerEvent.level" ng-if="rule.input.params.simple.triggerEvent.operator != ''" />
+  </div>
+  <!-- command -->
+  <div class="form-group" ng-if="!hideAction">
+    <input type="checkbox" name="send_command" id="send_command" ng-model="rule.input.params.simple.triggerEvent.sendAction" ng-checked="rule.input.params.simple.triggerEvent.sendAction" />
+    <label for="send_command">{{_t('dont_send_on_command')}}</label>
+  </div>

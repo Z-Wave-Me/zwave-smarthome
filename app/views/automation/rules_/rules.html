@@ -1,0 +1,10 @@
+<!-- Scenes -->
+<div ng-controller="AutomationRuleController">
+  <!-- Navigation -->
+  <div ng-include="'app/views/automation/navi.html'"></div>
+  <!-- The blank state -->
+  <div ng-if="rules.state == 'blank'" ng-include="'app/views/automation/rules/rules_blank.html'"></div>
+  <!-- The list -->
+  <div ng-if="rules.state == 'success'" ng-include="'app/views/automation/rules/rules_list.html'"></div>
+</div>
+<!-- /ng-controller -->

@@ -1,23 +1,13 @@
-<!-- status -->
-<div class="form-group">
-  <label>
-    <input type="radio" ng-model="rule.input.params.sourceDevice.switchControl.status" value="on">
-    <span>{{_t('on')}}</span>
-  </label>
-  <label>
-    <input type="radio" ng-model="rule.input.params.sourceDevice.switchControl.status" value="off">
-    <span>{{_t('off')}}</span>
-  </label>
-  <label>
-    <input type="radio" ng-model="rule.input.params.sourceDevice.switchControl.status" value="level">
-    <span>{{_t('level')}}</span>
-  </label>
-  <!-- level -->
-<span class="form-group form-inline" ng-if="rule.input.params.sourceDevice.switchControl.status == 'level'">
-  <select class="form-control" ng-model="rule.input.params.sourceDevice.switchControl.operator">
-    <option value="{{v}}" ng-repeat="v in rule.cfg.operators track by $index" ng-selected="v == rule.input.params.sourceDevice.switchControl.operator">{{v}}</option>
-  </select>
-  <input type="number" class="form-control input-number" id="if_status" min="{{rule.cfg.source.switchControl.min}}" max="{{rule.cfg.source.switchControl.max}}" ng-model="rule.input.params.sourceDevice.switchControl.level"
-  />
-</span>
-</div>
+<!-- select -->
+<div class="form-group form-inline">
+    <select class="form-control" ng-model="rule.input.params.simple.triggerEvent.level">
+        <option value="">---</option>
+        <option value="{{o}}" ng-repeat="o in rule.options.switchControl.level track by $index" ng-selected="o == rule.input.params.simple.triggerEvent.level">
+          {{o}}</option>
+      </select>
+  </div>
+  <!-- command -->
+  <div class="form-group" ng-if="!hideAction">
+    <input type="checkbox" name="send_command" id="send_command" ng-model="rule.input.params.simple.triggerEvent.sendAction" ng-checked="rule.input.params.simple.triggerEvent.sendAction" />
+    <label for="send_command">{{_t('dont_send_on_command')}}</label>
+  </div>
