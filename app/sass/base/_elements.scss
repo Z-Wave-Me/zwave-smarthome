@@ -183,7 +183,7 @@
         .btn-widget-time, .txt-widget-time {
             display: none;
             @include mediaQueries(min-small) {
-
+                display: block;
                 padding: $spacing 0 0 0;
                 border: 0 none;
                 color: lighten($app-body-color, 40%);
