@@ -26,7 +26,7 @@
    
      <!-- body -->
     <div class="body">
-        <div>{{rule.namespaces[d.deviceId].deviceName}} ({{d.deviceType}})</div>
+        <div>{{rule.namespaces[d.deviceId].deviceName}}</div>
     </div>
     
      <!-- control -->
@@ -39,9 +39,9 @@
           <span>{{d.level}}</span>&nbsp;->&nbsp; 
           <strong>{{d.level == 'open' ? 'close' : 'open'}}</strong>
         </div>
-        <div ng-if="d.deviceType == 'switchMultilevel' && d.reverseLevel !== undefined">
+        <div ng-if="d.deviceType == 'switchMultilevel'">
             <span>{{d.level}}</span>&nbsp;->&nbsp; 
-            <strong>{{d.reverseLevel}}</strong>
+            <strong>{{d.reverseLevel||rule.namespaces[d.deviceId].level}}</strong>
           </div>
        <!--  <pre>{{rule.namespaces[d.deviceId]|json}}</pre> -->
     </div>

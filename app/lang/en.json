@@ -1,8 +1,9 @@
 {
-  "testBinary": "Binary condition",
-  "testMultilevel": "Multilevel condition",
-  "testRemote": "Remote condition",
-  "testSensorDiscrete": "Scene contoller",
+  "assigned_notifications": "Assigned notifications",
+  "add_notification": "Create notification",
+  "assigned_conditions": "Assigned conditions",
+  "available_conditions": "Available conditions",
+  "select_target": "Select target",
   "testTime": "Time condition",
   "testNested": "Nested condition",
   "device_removed": "Device not available",

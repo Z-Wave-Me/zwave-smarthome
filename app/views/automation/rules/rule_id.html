@@ -83,9 +83,10 @@
         <!-- Operator -->
         <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
         <!-- Assigned -->
+        <div ng-if="_.size(rule.input.params.advanced.tests)">
             <legend>{{_t('assigned_conditions')}}</legend>
             <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_assigned.html'"></fieldset>
-         
+          </div>
           <!-- Available -->
           <legend>{{_t('available_conditions')}}</legend>
           <fieldset bb-child-elem="rule.advanced.tests.assignedDevices" ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
@@ -133,7 +134,7 @@
       </button>
     </fieldset>
   </form>
-  <pre>{{rule.input.params|json}}</pre>
+  <!-- <pre>{{rule.input.params|json}}</pre> -->
   <!-- <pre>{{rule.source.selected|json}}</pre> -->
 </div>
 <!-- /ng-controller -->
