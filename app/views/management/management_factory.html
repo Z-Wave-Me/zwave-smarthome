@@ -1,6 +1,21 @@
 <!-- Admin factory view -->
-<h2 class="accordion-entry-title" ng-click="expandElement('factory')">
+<h2 class="accordion-entry-title" ng-click="expandElement('factory')" 
+    ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.local)">
     <i class="fa fa-repeat fa-fw"></i> <span ng-bind="_t('factory_default')"></span>
+    <i class="fa accordion-arrow" ng-class="expand.factory ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+</h2>
+<h2 class="accordion-entry-title" 
+    ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
+    <i class="fa fa-repeat fa-fw"></i> <span ng-bind="_t('factory_default')"></span>
+    <div class="infowindow-wrap">
+        <i class="fa fa-exclamation-circle fa-lg text-warning clickable" ng-click="expandNavi('factoryInfowindow', $event)"></i>
+        <div class="infowindow top" ng-if="naviExpanded['factoryInfowindow']">
+            <div class="infowindow-in">
+                sfsdf sdfsdf sdfs sfd sdfsdfs sdf sdf sflösdfsld. 
+                sdfsdfslöd sd sdfsf sdfsdf  sdfsdf sdfsdf sdfsff!
+            </div>
+        </div>
+    </div>
     <i class="fa accordion-arrow" ng-class="expand.factory ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-if="expand.factory" ng-controller="ManagementFactoryController">

@@ -7,12 +7,16 @@
     <bb-loader></bb-loader>
     <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
         <fieldset>
+            <div class="alert alert-warning" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+                <i class="fa fa-lg fa-info"></i>
+                <span>
+                    {{_t('firmware_update_not_possible')}}
+                </span>
+            </div>  
             <!-- Currentt version -->
-
             <p class="form-control-static">
                 <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
             </p>
-
             <div class="form-group">
                 <bb-help-text trans="_t('firmware_update_info')"></bb-help-text>
             </div>
@@ -20,6 +24,7 @@
         </fieldset>
         <fieldset class="submit-entry">
             <button type="button" class="btn btn-submit" title="{{_t('update_to_latest')}}"
+                    ng-disabled="cfg.route.os == 'PoppApp_Z_Way'"
                     ng-click="setAccess('?allow_access=1',true);handleModal('firmwareUpdateModal', $event)">
                 <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('update_to_latest')}}</span>
             </button>

@@ -80,6 +80,17 @@ $accordion-focus-color: $focus-color;
     margin-bottom: $spacing;
     border-bottom: dotted 1px $accordion-border-color;
     color: $accordion-color;
+    &.disabled {
+      .accordion-entry-title {
+        color: #BDBDBD;
+        .fa {
+          color: #BDBDBD;
+          &.text-warning {
+              color: #8a6d3b;     
+          }
+        }
+      }  
+    }
 }
 .accordion-entry-title{
     font-size: $accordion-heading-font-size; 
