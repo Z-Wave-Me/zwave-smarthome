@@ -117,7 +117,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
  */
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
-    tab: 'else',
+    tab: 'if',
     namespaces: [],
     rooms: [],
     options:{

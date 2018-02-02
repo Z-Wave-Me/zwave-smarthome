@@ -14,11 +14,11 @@
 <div class="form-group form-inline">
     <label>{{_t('delay')}}</label>
       <div class="input-group">
-          <input class="form-control" id="then_delay" type="number" ng-model="rule.input.params.simple.reverseDelay">
+          <input class="form-control" id="then_delay" type="number" ng-model="rule.input.params.advanced.reverseDelay">
       </div>
       <bb-help-text trans="_t('Time in seconds when event starts after triggering event')"></bb-help-text>
   </div>
-<div class="list-panel" ng-repeat="d in rule.input.params.simple.targetElements track by $index" ng-if="rule.else.deviceTypes.indexOf(d.deviceType) > -1">
+<div class="list-panel" ng-repeat="d in rule.input.params.advanced.targetElements track by $index" ng-if="rule.else.deviceTypes.indexOf(d.deviceType) > -1">
     <!-- img -->
     <!--  <figure class="img wh-32x32 clickable" ng-click="activateRule(v, v.active ? false : true)" >
         <img ng-src="{{cfg.img.icons + 'security-pending.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
