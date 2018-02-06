@@ -1,4 +1,4 @@
-<section class="accordion-wrap" ng-repeat="d in rule.input.params.advanced.tests track by $index" ng-init="model=d;testIndex = $index" ng-if_="d.type =='nested'" >
+<section class="accordion-wrap" ng-repeat="d in rule.input.params.advanced.tests track by $index" ng-init="model=d;testIndex = $index;hideAction=true">
     <span class="label label-default index_{{$index}} {{d.type}}">{{rule.input.params.advanced.logicalOperator| uppercase}}</span>
   <h2 class="accordion-toggle chevron">
      <!-- Title -->

@@ -1,16 +1,12 @@
 <!-- select -->
 <div class="form-group form-inline">
   <!-- select level -->
-   <select class="form-control" ng-model="model.level"ng-change="model.level = (model.level == 'rgb' ? {r:0,g:0,b:0} : model.level)">
+   <select class="form-control" ng-model="model.level" ng-change="model.level = (model.level == 'rgb' ? {r:0,g:0,b:0} : model.level)">
       <!-- <option value="">---</option> -->
       <option value="{{o}}" ng-repeat="o in rule.options.switchRGBW.level track by $index" ng-selected="o == model.level">
         {{o}}</option>
         <option value="rgb" ng-selected="_.isObject(model.level)">RGB</option>
     </select>
-    <!-- rgb level -->
-    <span ng-if="model.operator == 'status'">
-    
-  </span>
     
    <!-- level rgb -->
    <span class="form-inline" ng-hide="rule.options.switchRGBW.level.indexOf(model.level) > -1">
