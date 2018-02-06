@@ -51,7 +51,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true
                 }).
                  //Scenes
-                /*when('/scenes', {
+                when('/scenes', {
                   templateUrl: 'app/views/automation/scenes/scenes.html',
                   requireLogin: true,
                   roles: cfg.role_access.admin
@@ -85,7 +85,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/automation/schedules/schedule_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
-                }).*/
+                }).
                 //Admin
                 when('/admin', {
                     templateUrl: 'app/views/management/management.html',
