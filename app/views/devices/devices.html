@@ -24,6 +24,21 @@
                 </tr>
                 <tr>
                     <td>
+                        <img class="device-type-logo" ng-src="app/img/logo-mobile.png" alt="Logo" />
+                    </td>
+                   <td class="td-action">
+                    <div class="btn-group">
+                        <button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
+                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                        </button>
+                        <a class="btn btn-default" href="#module/put/{{mobileAppSupport.instanceId}}" title="{{_t('manage')}}">
+                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                        </a> 
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <img class="device-type-logo" ng-src="app/img/logo-camera.png" alt="Logo" />
                     </td>
                    <td class="td-action">
@@ -91,3 +106,47 @@
             </tbody>
         </table>
 </div> <!-- /ng-controller --> 
+
+
+<!-- switchRGBWModal -->
+<div id="qrCodeModal" class="appmodal" ng-controller="MobileAddController" ng-if="modalArr.qrCodeModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('qrCodeModal', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{_t('add_mobile_device')}}</h3>
+        </div>
+        <div class="appmodal-body text-center">
+            <div class="fieldset">
+                <div class="form-group form-inline">
+                    <div class="img-wrap">
+                        <div ng-if="qrcode != ''">
+                            <img width="255" height="255" ng-src="/ZAutomation/api/v1/load/image/{{qrcode}}">
+                        </div>
+                        <button class="btn btn-default" ng-if="qrcode != ''" 
+                            ng-click="addQRCode('update')" 
+                            ng-disabled="rowSpinner['update']"
+                            title="{{_t('lb_update_qrcode')}}">
+                            <bb-row-spinner
+                                spinner="rowSpinner['update']"
+                                label="_t('lb_update_qrcode')"
+                                icon="'fa-qrcode'">
+                            </bb-row-spinner>
+                        </button>
+                        <button class="btn btn-default" ng-if="qrcode == ''" 
+                            ng-click="addQRCode('create')"
+                            ng-disabled="rowSpinner['create']" 
+                            title="{{_t('lb_create_qrcode')}}">
+                            <bb-row-spinner
+                                spinner="rowSpinner['create']"
+                                label="_t('lb_create_qrcode')"
+                                icon="'fa-qrcode'">
+                            </bb-row-spinner>
+                        </button>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+</div>
+
+                        
