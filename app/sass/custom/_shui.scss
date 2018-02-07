@@ -125,10 +125,13 @@ fieldset, .fieldset {
 
 .automation {
   .accordion-wrap {
+    .accordion {
+    background-color: #F6F6F6;
+    }
     &.nested {
       .accordion {
         .accordion {
-          background-color: #F6F6F6;
+          background-color: darken(#F6F6F6,5%);
         }
       }
     }

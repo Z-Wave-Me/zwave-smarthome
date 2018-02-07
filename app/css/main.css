@@ -17856,7 +17856,6 @@ img.widget-promo-image {
 /* line 39, ../sass/base/_automation.scss */
 .automation .accordion-wrap .accordion {
   padding: 10px;
-  background-color: #F6F6F6;
   border-bottom: 0;
   /* .accordion {
     // background-color: lighten(#F6F6F6,10%);
@@ -17899,10 +17898,6 @@ img.widget-promo-image {
 .automation .accordion-wrap.nested .legend {
   padding: 20px 10px 5px 0;
   font-size: 110%;
-}
-/* line 80, ../sass/base/_automation.scss */
-.automation .accordion-wrap.nested .accordion {
-  background: transparent;
 }
 /* line 82, ../sass/base/_automation.scss */
 .automation .accordion-wrap.nested .accordion .accordion {
@@ -18133,27 +18128,31 @@ fieldset.expanded, .fieldset.expanded {
 
   /* Automation
 -------------------------------------------------- */
-/* line 130, ../sass/custom/_shui.scss */
-.automation .accordion-wrap.nested .accordion .accordion {
+/* line 128, ../sass/custom/_shui.scss */
+.automation .accordion-wrap .accordion {
   background-color: #F6F6F6;
+}
+/* line 133, ../sass/custom/_shui.scss */
+.automation .accordion-wrap.nested .accordion .accordion {
+  background-color: #e9e9e9;
 }
 
 /* Night mode
 -------------------------------------------------- */
-/* line 141, ../sass/custom/_shui.scss */
+/* line 144, ../sass/custom/_shui.scss */
 .night-true:root {
   background-color: #fefefe;
   filter: invert(100%);
 }
-/* line 144, ../sass/custom/_shui.scss */
+/* line 147, ../sass/custom/_shui.scss */
 .night-true:root * {
   background-color: inherit;
 }
-/* line 148, ../sass/custom/_shui.scss */
+/* line 151, ../sass/custom/_shui.scss */
 .night-true:root img:not([src*=".svg"]), .night-true:root video {
   filter: invert(100%);
 }
-/* line 151, ../sass/custom/_shui.scss */
+/* line 154, ../sass/custom/_shui.scss */
 .night-true:root #main_content {
   margin-top: 50px;
 }

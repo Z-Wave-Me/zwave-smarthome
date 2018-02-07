@@ -5,7 +5,7 @@
       <!-- <option value="">---</option> -->
       <option value="{{o}}" ng-repeat="o in rule.options.switchRGBW.level track by $index" ng-selected="o == model.level">
         {{o}}</option>
-        <option value="rgb" ng-selected="_.isObject(model.level)">RGB</option>
+        <option value="rgb" ng-selected="_.isObject(model.level)">{{_t('colors')}}</option>
     </select>
     
    <!-- level rgb -->
