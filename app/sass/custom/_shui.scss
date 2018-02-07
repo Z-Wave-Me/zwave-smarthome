@@ -119,6 +119,21 @@ fieldset, .fieldset {
       @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
     }
   }
+
+  /* Automation
+-------------------------------------------------- */
+
+.automation {
+  .accordion-wrap {
+    &.nested {
+      .accordion {
+        .accordion {
+          background-color: #F6F6F6;
+        }
+      }
+    }
+  }
+}
   
 /* Night mode
 -------------------------------------------------- */
