@@ -8,7 +8,7 @@
  * @class MobileAddController
  */
 myAppController.controller('MobileAddController', function ($scope, $timeout, $window, dataFactory, dataService, _) {
-    $scope.qrcode = $scope.user.qrcode;
+    $scope.qrcode = "";
 
     /**
      *  Add Qrcode
@@ -19,12 +19,18 @@ myAppController.controller('MobileAddController', function ($scope, $timeout, $w
                 "password": pass
             };
             $scope.toggleRowSpinner(id);
-            dataFactory.putApi('profiles', 'qrcode/'+$scope.user.id, data).then(function(response) {
+            dataFactory.postApi('profiles', data, '/qrcode/'+$scope.user.id,).then(function(response) {
                 dataService.showNotifier({message: $scope._t('success_updated')});
-                $timeout(function () {
-                    $scope.toggleRowSpinner(id);
-                    $window.location.reload();
-                }, 2000);
+                
+                var qr = new QRious({
+                  level: 'H',
+                  size: 255,
+                  value: response.data.data
+                });
+                $scope.qrcode = qr.toDataURL();
+                
+                $scope.toggleRowSpinner(id);
+
             }, function(error) {
                 $scope.toggleRowSpinner(id);
                 if(error.data.error == "wrong_password") {

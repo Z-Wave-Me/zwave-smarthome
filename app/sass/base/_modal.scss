@@ -113,6 +113,56 @@
     }
   }
 
+  
+    .entry-in {
+                padding: $spacing;
+                display: table;
+                margin: 0 auto;
+                .entry-media {
+                    display: none;
+                    @include mediaQueries(min-small) {
+                        display: table-cell;
+                        vertical-align: middle;
+                        img {
+                            width: 200px;
+                        }    
+                    }
+                }
+                .entry-content {
+                    display: table-cell;
+                    padding: $spacing;
+                    vertical-align: middle;
+                    .text {
+                        max-width: 400px;
+                        h1 {
+                            margin-bottom: 20px;
+                        }
+                        p {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    }
+                    
+                    .inner {
+                        @include mediaQueries(min-small) {
+                            margin-left: 50px;
+                        }
+                        .badges {
+                            margin-top: 50px;
+                            a {
+                                display: inline-block;
+                                margin: 10px;
+                                img {
+                                    height: 50px;
+                                }
+                            }
+                        }    
+                    }
+                    
+                }
+            }
+
+
 }
 
 .appmodal-footer {

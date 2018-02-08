@@ -72,7 +72,7 @@ module.exports = function (grunt) {
                     'vendor/handlebars/handlebars-v3.0.3.min.js',
                     'vendor/alpaca/1.5.14/bootstrap/alpaca.min.js',
                     'vendor/alertify/alertify.min.js',
-                    'vendor/qrcode/qrcode.min.js',
+                    'vendor/qrcode/qrious.min.js',
                     // Angular
                     'vendor/angular/angular-1.2.28/angular.min.js',
                     'vendor/upload/angular-file-upload.min.js',
