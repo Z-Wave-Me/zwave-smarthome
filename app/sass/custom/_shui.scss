@@ -133,6 +133,23 @@ fieldset, .fieldset {
   }
 }
 
+  /* Automation
+-------------------------------------------------- */
+
+.automation {
+  .accordion-wrap {
+    .accordion {
+    background-color: #F6F6F6;
+    }
+    &.nested {
+      .accordion {
+        .accordion {
+          background-color: darken(#F6F6F6,5%);
+        }
+      }
+    }
+  }
+}
   
 /* Night mode
 -------------------------------------------------- */

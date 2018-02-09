@@ -197,10 +197,10 @@ input[type=radio] {
   cursor: pointer;
 }
 legend,.legend{
-  font-size: 110%;
+  font-size: 120%;
   font-weight: bold;
   padding: 0 $spacing $spacing-half $spacing;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 0;
   &.has-control{
     display: flex;
     justify-content: space-between; 

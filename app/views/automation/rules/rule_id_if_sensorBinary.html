@@ -4,7 +4,7 @@
       <input type="checkbox" ng-model="rule.input.params.simple.triggerEvent.level" ng-checked="rule.input.params.simple.triggerEvent.level == 'on'" ng-true-value="on" ng-false-value="off">
       <span class="slider"></span>
     </label>
-    <span class="switch-label">{{rule.namespaces[rule.input.params.simple.triggerEvent.level}}</span>
+    <span class="switch-label">{{rule.input.params.simple.triggerEvent.level}}</span>
   </div>
   <!-- command -->
   <div class="form-group" ng-if="!hideAction">

@@ -15,20 +15,19 @@
         display: none;
       }
     }
-   
     .accordion-toggle {
       display: flex;
       align-items: center;
-      button{
-        &.no-toggle{
+      button {
+        &.no-toggle {
           cursor: text !important;
-          &::after{
+          &::after {
             content: "";
           }
         }
       }
       .no-toggle {
-        padding: $spacing 0; 
+        padding: $spacing 0;
         width: 100%;
         font-weight: normal;
         border-bottom: dotted 1px $accordion-border-color;
@@ -39,7 +38,7 @@
     }
     .accordion {
       padding: $spacing;
-      background-color: #F6F6F6;
+     
       border-bottom: 0;
       .form-group {
         border: 0;
@@ -49,10 +48,10 @@
       &:last-child {
         margin-bottom: 0;
       }
-      .accordion {
+      /* .accordion {
         // background-color: lighten(#F6F6F6,10%);
         border: solid 1px darken(#F6F6F6, 20%)
-      }
+      } */
     }
     &.no-items {
       .accordion-toggle {
@@ -63,7 +62,7 @@
           &::after {
             content: "" !important;
           }
-          &[aria-expanded="true"]{
+          &[aria-expanded="true"] {
             border-bottom: dotted 1px $accordion-border-color;
           }
         }
@@ -72,53 +71,18 @@
         display: none;
       }
     }
-  }
-}
-
-.automation-report {
-  //margin-bottom: $spacing-double;
-  //padding: 0 $spacing-double;
-  &.app-row-report {
-    border: 0;
-    .report-entry {
-      .report-col {
-        border-bottom: dotted 1px $app-border-color;
-        vertical-align: top; //padding: 0;
-        //width: 33%;
+    &.nested {
+      legend,
+      .legend {
+        padding: $spacing-double $spacing $spacing-half 0;
+        font-size: 110%;
       }
-      .report-ctrl {
-        min-width: 50%;
-      }
-      input[type=radio] {
-        margin: 0 $spacing-half 0;
-      }
-    }
-    .form-collapsed {
-      background-color: #F6F6F6;
-      padding: $spacing;
-      margin-top: $spacing;
-      .form-group {
-        //border: 0;
-        &:last-child {
-          border: 0;
-          margin: 0;
-          padding: 0;
+      .accordion {
+       // background: transparent;
+        .accordion {
+          margin-bottom: $spacing-double;
         }
       }
     }
-  }
-}
-
-
-/* Schedules
--------------------------------------------------- */
-
-.table-calendar {
-  .first-col {
-    width: 80px;
-    background-color: $app-bcg-info;
-  }
-  th {
-    text-align: center;
   }
 }

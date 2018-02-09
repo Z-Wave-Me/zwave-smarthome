@@ -6,8 +6,8 @@
   </label>
   <span class="switch-label">
     {{rule.input.params.advanced.logicalOperator| uppercase}}
-    <em ng-if="rule.input.params.advanced.logicalOperator == 'and'">({{_t('All conditions must be met')}})</em>
-    <em ng-if="rule.input.params.advanced.logicalOperator == 'or'">({{_t('At least one condition is fulfilled')}})</em>
+    <em ng-if="rule.input.params.advanced.logicalOperator == 'and'">({{_t('operator_and_info')}})</em>
+    <em ng-if="rule.input.params.advanced.logicalOperator == 'or'">({{_t('operator_or_info')}})</em>
   </span>
   <bb-help-text trans="_t('This option links all conditions in the list to a logical OR or AND. With OR, the action is executed if at least one condition applies. With AND, the action is only executed if all conditions apply.')"></bb-help-text>
 </div>
