@@ -138,12 +138,12 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.module
                 }).//Local skins
                 when('/customize/skinslocal', {
-                    templateUrl: 'app/views/customize/skins_local.html',
+                    templateUrl: 'app/views/customize/skins/skins_local.html',
                     requireLogin: true,
                     roles: cfg.role_access.customize
                 }).//Online skins
                 when('/customize/skinsonline', {
-                    templateUrl: 'app/views/customize/skins_online.html',
+                    templateUrl: 'app/views/customize/skins/skins_online.html',
                     requireLogin: true,
                     roles: cfg.role_access.customize
                 }).//Online skins
@@ -154,12 +154,12 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.customize
                 }).//Custom icons
                 when('/customize/iconslocal', {
-                    templateUrl: 'app/views/customize/icons_local.html',
+                    templateUrl: 'app/views/customize/icons/icons_local.html',
                     requireLogin: true,
                     roles: cfg.role_access.customize
                 }).//Online icons
                 when('/customize/iconsonline', {
-                    templateUrl: 'app/views/customize/icons_online.html',
+                    templateUrl: 'app/views/customize/icons/icons_online.html',
                     requireLogin: true,
                     roles: cfg.role_access.customize
                 }).//Devices_

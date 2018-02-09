@@ -119,6 +119,20 @@ fieldset, .fieldset {
       @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
     }
   }
+
+  /* Customize
+-------------------------------------------------- */
+// Media queries
+@include mediaQueries(min-usmall) {
+  .card-customize {
+    border: 0;
+    .card-customize-in {
+      border: solid 4px #ffffff;
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+    }
+  }
+}
+
   
 /* Night mode
 -------------------------------------------------- */

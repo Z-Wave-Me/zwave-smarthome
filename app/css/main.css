@@ -16141,11 +16141,187 @@ img.widget-promo-image {
 
 /* Customize - skins and icons
 -------------------------------------------------- */
-/* Variables
+/* Card
 -------------------------------------------------- */
-/* Widget
+/* line 7, ../sass/base/_customize.scss */
+.card-customize {
+  width: 100%;
+  padding-top: 10px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 7, ../sass/base/_customize.scss */
+  .card-customize {
+    padding: 5px;
+    border: solid 1px #cccccc;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* line 7, ../sass/base/_customize.scss */
+  .card-customize {
+    width: 33.3333%;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 7, ../sass/base/_customize.scss */
+  .card-customize {
+    width: 25%;
+  }
+}
+/* line 22, ../sass/base/_customize.scss */
+.card-customize .card-customize-in {
+  height: 250px;
+  margin: 5px;
+  position: relative;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f2f2f2;
+  /* -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
+  webkit-mask: linear-gradient( black, black 10%, transparent);
+  mask: linear-gradient( black, black 10%, transparent); */
+  /* Card icon */
+  /* Card icon */
+}
+/* line 34, ../sass/base/_customize.scss */
+.card-customize .card-customize-in .card-header {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 34, ../sass/base/_customize.scss */
+  .card-customize .card-customize-in .card-header {
+    text-align: right;
+  }
+}
+/* line 40, ../sass/base/_customize.scss */
+.card-customize .card-customize-in .card-icon {
+  font-size: 24px;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  display: inline-block;
+  color: #737373;
+  background-color: #fff;
+  border-radius: 50%;
+  margin: 10px 0 0 10px;
+  cursor: pointer;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 40, ../sass/base/_customize.scss */
+  .card-customize .card-customize-in .card-icon {
+    margin: 10px 10px 0 0;
+  }
+}
+/* line 56, ../sass/base/_customize.scss */
+.card-customize .card-customize-in .card-footer {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  font-size: 110%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+/* line 68, ../sass/base/_customize.scss */
+.card-customize .card-customize-in.widget-warning {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+
+/* line 77, ../sass/base/_customize.scss */
+.app-row-customize .widget-warning .widget-img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+/* line 82, ../sass/base/_customize.scss */
+.app-row-customize .widget-warning .widget-title h3 {
+  color: #d9d9d9 !important;
+}
+
+/* Detail
 -------------------------------------------------- */
-/* line 15, ../sass/base/_customize.scss */
+/* line 92, ../sass/base/_customize.scss */
+.customize-detail {
+  padding: 10px;
+  margin: 10px 0;
+  max-height: 600px;
+  overflow: auto;
+}
+
+/* line 99, ../sass/base/_customize.scss */
+.customize-detail-title {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+/* line 104, ../sass/base/_customize.scss */
+.customize-detail-img {
+  padding: 10px 0;
+  text-align: center;
+  border-top: solid 1px #cccccc;
+}
+
+/* line 110, ../sass/base/_customize.scss */
+.customize-image-detail {
+  width: 100%;
+  border: solid 4px #cccccc;
+}
+
+/* line 116, ../sass/base/_customize.scss */
+.customize-detail-perex {
+  margin: 10px 0;
+}
+
+/* line 120, ../sass/base/_customize.scss */
+.customize-icon-list {
+  border-top: solid 1px #cccccc;
+  height: 300px;
+  overflow: scroll;
+}
+/* line 124, ../sass/base/_customize.scss */
+.customize-icon-list .customize-icon-preview {
+  display: inline-block;
+  margin: 10px;
+}
+
+/* Images
+-------------------------------------------------- */
+/* line 133, ../sass/base/_customize.scss */
+.customize-icon-preview {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+/* line 138, ../sass/base/_customize.scss */
+.imglist-img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+/* line 143, ../sass/base/_customize.scss */
+.imglist-img-preview {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+/* DEPRECATED - Widget
+-------------------------------------------------- */
+/* line 152, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in {
   min-height: 120px;
   height: auto;
@@ -16155,16 +16331,16 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 15, ../sass/base/_customize.scss */
+  /* line 152, ../sass/base/_customize.scss */
   .widget-entry-customize .widget-entry-in {
     height: 250px;
   }
 }
-/* line 25, ../sass/base/_customize.scss */
+/* line 160, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-img {
   position: static;
 }
-/* line 27, ../sass/base/_customize.scss */
+/* line 162, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
   width: 100%;
   border: solid 4px #cccccc;
@@ -16172,125 +16348,49 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 27, ../sass/base/_customize.scss */
+  /* line 162, ../sass/base/_customize.scss */
   .widget-entry-customize .widget-entry-in .widget-img .customize-preview-img {
     max-width: 300px;
     max-height: 150px;
   }
 }
-/* line 38, ../sass/base/_customize.scss */
+/* line 171, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-header {
   display: none;
 }
-/* line 41, ../sass/base/_customize.scss */
+/* line 174, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-content {
   margin: 10px 0 0 0;
 }
-/* line 44, ../sass/base/_customize.scss */
+/* line 177, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .bottom-aligner {
   display: none;
 }
-/* line 47, ../sass/base/_customize.scss */
+/* line 180, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-footer {
   margin: 10px 0 0 0;
 }
-/* line 49, ../sass/base/_customize.scss */
+/* line 182, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-footer .btn-name {
   display: none !important;
 }
-/* line 54, ../sass/base/_customize.scss */
+/* line 186, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-ctrl {
   float: none;
   width: 100%;
 }
-/* line 57, ../sass/base/_customize.scss */
+/* line 189, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-left {
   display: none;
 }
-/* line 60, ../sass/base/_customize.scss */
+/* line 192, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-right {
   float: none;
   text-align: center;
 }
-/* line 63, ../sass/base/_customize.scss */
+/* line 195, ../sass/base/_customize.scss */
 .widget-entry-customize .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
   float: none;
-}
-
-/* line 73, ../sass/base/_customize.scss */
-.app-row-customize .widget-warning .widget-img {
-  opacity: 0.4;
-  filter: alpha(opacity=40);
-}
-/* line 79, ../sass/base/_customize.scss */
-.app-row-customize .widget-warning .widget-title h3 {
-  color: #d9d9d9 !important;
-}
-
-/* Detail
--------------------------------------------------- */
-/* line 88, ../sass/base/_customize.scss */
-.customize-detail {
-  padding: 10px;
-  margin: 10px 0;
-  max-height: 600px;
-  overflow: auto;
-}
-
-/* line 94, ../sass/base/_customize.scss */
-.customize-detail-title {
-  font-weight: bold;
-  font-size: 110%;
-}
-
-/* line 98, ../sass/base/_customize.scss */
-.customize-detail-img {
-  padding: 10px 0;
-  text-align: center;
-  border-top: solid 1px #cccccc;
-}
-
-/* line 103, ../sass/base/_customize.scss */
-.customize-image-detail {
-  width: 100%;
-  border: solid 4px #cccccc;
-}
-
-/* line 109, ../sass/base/_customize.scss */
-.customize-detail-perex {
-  margin: 10px 0;
-}
-
-/* line 112, ../sass/base/_customize.scss */
-.customize-icon-list {
-  border-top: solid 1px #cccccc;
-  height: 300px;
-  overflow: scroll;
-}
-/* line 116, ../sass/base/_customize.scss */
-.customize-icon-list .customize-icon-preview {
-  display: inline-block;
-  margin: 10px;
-}
-
-/* Images
--------------------------------------------------- */
-/* line 124, ../sass/base/_customize.scss */
-.customize-icon-preview {
-  max-width: 64px;
-  max-height: 64px;
-}
-
-/* line 128, ../sass/base/_customize.scss */
-.imglist-img {
-  max-width: 40px;
-  max-height: 40px;
-}
-
-/* line 132, ../sass/base/_customize.scss */
-.imglist-img-preview {
-  max-width: 64px;
-  max-height: 64px;
 }
 
 /* Rooms
@@ -16719,8 +16819,10 @@ img.widget-promo-image {
   -o-text-overflow: ellipsis;
   /* Opera */
   max-width: 200px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-@included mediaQueries(min-small) {
+@media only screen and (min-width: 768px) {
   /* line 328, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .room-title {
     max-width: 100%;
@@ -18159,22 +18261,39 @@ fieldset.expanded, .fieldset.expanded {
   }
 }
 
+  /* Customize
+-------------------------------------------------- */
+/* MIN WIDTH */
+@media only screen and (min-width: 320px) {
+  /* line 127, ../sass/custom/_shui.scss */
+  .card-customize {
+    border: 0;
+  }
+  /* line 129, ../sass/custom/_shui.scss */
+  .card-customize .card-customize-in {
+    border: solid 4px #ffffff;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  }
+}
+/* MAX WIDTH */
 /* Night mode
 -------------------------------------------------- */
-/* line 126, ../sass/custom/_shui.scss */
+/* line 140, ../sass/custom/_shui.scss */
 .night-true:root {
   background-color: #fefefe;
   filter: invert(100%);
 }
-/* line 129, ../sass/custom/_shui.scss */
+/* line 143, ../sass/custom/_shui.scss */
 .night-true:root * {
   background-color: inherit;
 }
-/* line 133, ../sass/custom/_shui.scss */
+/* line 147, ../sass/custom/_shui.scss */
 .night-true:root img:not([src*=".svg"]), .night-true:root video {
   filter: invert(100%);
 }
-/* line 136, ../sass/custom/_shui.scss */
+/* line 150, ../sass/custom/_shui.scss */
 .night-true:root #main_content {
   margin-top: 50px;
 }
