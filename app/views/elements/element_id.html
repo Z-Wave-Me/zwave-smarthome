@@ -99,10 +99,18 @@
                            elementId.input.deviceType == 'switchBinary' &&
                            elementId.input.probeType != 'notification_email' && 
                            elementId.input.probeType != 'notification_push'">
-                    <a title="{{_t('lb_add_today')}}" class="btn btn-primary"
-                        href="/AndoridWidget?id={{elementId.input.id}}&name={{elementId.input.metrics.title|stringToSlug}}&device_type={{elementId.input.deviceType}}&icon={{elementId.input.metrics.icon}}&iconPath={{elementId.input.iconPath}}&state={{elementId.input.metrics.level}}">
-                        {{ _t('lb_add_widget')}}
-                    </a>
+                    <div class="fieldset">
+                        <a title="{{_t('lb_add_today')}}&nbsp{{_t('lb_on')}}" class="btn btn-primary"
+                            href="{{elementId.input.addOnUrl}}">
+                            {{ _t('lb_add_widget')}}&nbsp{{_t('lb_on')}}
+                        </a>
+                    </div>
+                    <div class="fieldset" ng-if="elementId.input.deviceType !== 'toggleButton'">
+                        <a title="{{_t('lb_add_today')}} {{_t('lb_off')}}" class="btn btn-primary"
+                            href="{{elementId.input.addOffUrl}}">
+                            {{ _t('lb_add_widget')}}&nbsp{{_t('lb_off')}}
+                        </a>
+                    </div>
                     <bb-help-text trans="_t('info_add_widget')"></bb-help-text>
                 </div>  
                 <!-- Delete element -->
