@@ -8,7 +8,7 @@
 <!-- List -->
 <div ng-repeat="(indexG,g) in dataHolder.instances.groups track by indexG"
      ng-init="instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]"
-     ng-if="dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1">
+     ng-if="dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1 || g.moduleId !== 'MobileAppSupport'">
     <!-- ----------------------------------- Accordion ----------------------------------- -->
     <div class="accordion-entry" ng-if="instanveModuleCnt > 1">
         <!--  Accordion header -->
@@ -78,7 +78,7 @@
             <div class="report-entry bcg-active"
                  ng-repeat="(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR"
                  ng-class="v.active ? 'true': 'false'"
-                 ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1">
+                 ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1 && v.moduleId !== 'MobileAppSupport'">
                 <div class="report-col report-media">
                     <img class="report-img-s" ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
                 </div>

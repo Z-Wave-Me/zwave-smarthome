@@ -31,7 +31,7 @@
         <script src="vendor/knob/jquery.knob.js"></script>
         <script src="vendor/alertify/alertify.min.js"></script>
         <script src="vendor/tweenmax/TweenMax.js"></script>
-        <script src="vendor/qrcode/qrcode.min.js"></script>
+        <script src="vendor/qrcode/qrious.min.js"></script>
         <script src="vendor/qrcode_reader/qr_packed.js"></script>
         <!-- Angular js -->
         <script src="vendor/angular/angular-1.2.28/angular.js"></script>
@@ -94,6 +94,7 @@
         <script src="app/controllers/zwave-exclude.js"></script>
         <script src="app/controllers/zwave-vendor.js"></script>
         <script src="app/controllers/camera.js"></script>
+        <script src="app/controllers/mobile.js"></script>
         <script src="app/controllers/wifiplug.js"></script>
         <script src="app/controllers/enocean.js"></script>
         <script src="app/controllers/rf433.js"></script>
@@ -143,10 +144,9 @@
                         <span class="divider-vertical"></span>
                         <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i> <span class="main-nav-text">{{_t('nav_events')}}</span></a>
                          <!-- automation -->
-                         <!--
                          <span class="divider-vertical"></span>
-                         <a href="#scenes" title="{{_t('automation')}}" ng-class="isActive('automation')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>
-                         -->
+                         <a href="#scenes" title="{{_t('automation')}}" ng-class="isActive('scenes') || isActive('rules') || isActive('schedules')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>
+                        
                         <!-- rss -->
                         <span class="divider-vertical" ng-show="rss.unread > 0"></span>
                         <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">

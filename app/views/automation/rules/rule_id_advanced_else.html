@@ -28,9 +28,33 @@
     <div class="body">
         <div>{{rule.namespaces[d.deviceId].deviceName}}</div>
     </div>
+
+    <!-- control -->
+    <div class="control" ng-switch="d.deviceType">
+      <span>{{d.level}}</span>&nbsp;->&nbsp;
+      <!-- switchBinary -->
+      <span ng-switch-when="switchBinary" ng-init="d.reverseLevel = (d.level == 'off' ? 'on' : 'off')">
+        <strong>{{d.reverseLevel}}</strong>
+      </span>
+      <!-- doorlock -->
+      <span ng-switch-when="doorlock" ng-init="d.reverseLevel = (d.level == 'open' ? 'close' : 'open')">
+        <strong>{{d.reverseLevel}}</strong>
+      </span>
+       <!--switchMultilevel -->
+      <span ng-switch-when="switchMultilevel" ng-init="d.reverseLevel = (d.reverseLevel == null ? rule.namespaces[d.deviceId].level : d.reverseLevel)">
+       <!-- on/off -->
+        <strong ng-if="rule.options.switchMultilevel.level.indexOf(d.level) > -1">{{d.level == 'off' ? 'on' : 'off'}}</strong>
+        <!-- level -->
+        <span ng-if="rule.options.switchMultilevel.level.indexOf(d.level) === -1">
+        <input type="text" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
+          ng-model="d.reverseLevel" />
+        </span>
+      </span>
+       <!-- <pre>{{rule.namespaces[d.deviceId]|json}}</pre> -->
+    </div>
     
      <!-- control -->
-    <div class="control">
+    <!-- <div class="control">
       <div ng-if="d.deviceType == 'switchBinary'">
         <span>{{d.level}}</span>&nbsp;->&nbsp; 
         <strong>{{d.level == 'off' ? 'on' : 'off'}}</strong>
@@ -43,8 +67,7 @@
             <span>{{d.level}}</span>&nbsp;->&nbsp; 
             <strong>{{d.reverseLevel||rule.namespaces[d.deviceId].level}}</strong>
           </div>
-       <!--  <pre>{{rule.namespaces[d.deviceId]|json}}</pre> -->
-    </div>
+    </div> -->
   
   </div>
   <section>

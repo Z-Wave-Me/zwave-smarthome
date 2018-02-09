@@ -2,7 +2,7 @@
 <div class="form-group form-inline">
     <span ng-show="model.operator == ''">
     <label class="switch">
-      <input type="checkbox" ng-model="model.level" ng-checked="model.level == 'on'" ng-true-value="on" ng-false-value="off" ng-disabled="model.operator != ''">
+      <input type="checkbox" ng-model="model.level" ng-checked="model.level == 'on'" ng-true-value="on" ng-false-value="off">
       <span class="slider"></span>
     </label>
     <span class="switch-label" ng-hide="_.isNumber(model.level)">{{model.level}}</span>

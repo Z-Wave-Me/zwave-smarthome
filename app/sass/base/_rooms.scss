@@ -331,7 +331,7 @@
                             text-align: center;
                             @include textOverflow();
                             max-width: 200px;
-                            @included mediaQueries(min-small) {
+                            @include mediaQueries(min-small) {
                                 max-width: 100%;
                             }
                         }

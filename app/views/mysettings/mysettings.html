@@ -118,35 +118,6 @@
             </form>
          </div>
         </div>
-
-        <!-- ///////////////////////////// Add mobile devce ///////////////////////////// -->
-        <div class="accordion-entry">
-            <h2 class="accordion-entry-title" ng-click="expandElement('add_mobile_device')">
-                <i class="fa fa-mobile-phone"></i> {{_t('add_mobile_device')}}
-                <i class="fa accordion-arrow" ng-class="expand.add_mobile_device ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-            </h2>
-            <div class="accordion-entry-ctrl" ng-if="expand.add_mobile_device" ng-controller="ManagementAddMobileDevice">
-                <div class="form form-page">
-                    <div class="fieldset">
-                        <div class="form-group form-inline">
-                            <div class="img-wrap">
-                                <div ng-if="qrcode != ''">
-                                    <img width="255" height="255" ng-src="/ZAutomation/api/v1/load/image/{{qrcode}}">
-                                </div>
-                                <button class="btn btn-default" ng-if="qrcode != ''" ng-click="addQRCode()" title="{{_t('lb_update_qrcode')}}">
-                                        <i class="fa fa-qrcode"></i> 
-                                        <span class="btn-name">{{_t('lb_update_qrcode')}}</span>
-                                </button>
-                                <button class="btn btn-default" ng-if="qrcode == ''" ng-click="addQRCode()" title="{{_t('lb_create_qrcode')}}">
-                                        <i class="fa fa-qrcode"></i> 
-                                        <span class="btn-name">{{_t('lb_create_qrcode')}}</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
  </div>
 
 </div> <!-- /ng-controller --> 

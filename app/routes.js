@@ -51,7 +51,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true
                 }).
                  //Scenes
-                /*when('/scenes', {
+                when('/scenes', {
                   templateUrl: 'app/views/automation/scenes/scenes.html',
                   requireLogin: true,
                   roles: cfg.role_access.admin
@@ -85,7 +85,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/automation/schedules/schedule_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
-                }).*/
+                }).
                 //Admin
                 when('/admin', {
                     templateUrl: 'app/views/management/management.html',
@@ -138,12 +138,12 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.module
                 }).//Local skins
                 when('/customize/skinslocal', {
-                    templateUrl: 'app/views/customize/skins_local.html',
+                    templateUrl: 'app/views/customize/skins/skins_local.html',
                     requireLogin: true,
                     roles: cfg.role_access.customize
                 }).//Online skins
                 when('/customize/skinsonline', {
-                    templateUrl: 'app/views/customize/skins_online.html',
+                    templateUrl: 'app/views/customize/skins/skins_online.html',
                     requireLogin: true,
                     roles: cfg.role_access.customize
                 }).//Online skins
@@ -154,12 +154,12 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     roles: cfg.role_access.customize
                 }).//Custom icons
                 when('/customize/iconslocal', {
-                    templateUrl: 'app/views/customize/icons_local.html',
+                    templateUrl: 'app/views/customize/icons/icons_local.html',
                     requireLogin: true,
                     roles: cfg.role_access.customize
                 }).//Online icons
                 when('/customize/iconsonline', {
-                    templateUrl: 'app/views/customize/icons_online.html',
+                    templateUrl: 'app/views/customize/icons/icons_online.html',
                     requireLogin: true,
                     roles: cfg.role_access.customize
                 }).//Devices_
@@ -168,7 +168,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).//SmartStart
-                /*when('/smartstart', {
+                when('/smartstart', {
                     templateUrl: 'app/views/smartstart/smartstart.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
@@ -188,7 +188,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/smartstart/smartstart_list.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
-                }).//Zwave select vendors*/
+                }).//Zwave select vendors
                 when('/zwave/vendors', {
                     templateUrl: 'app/views/zwave/zwave_vendors.html',
                     requireLogin: true,
