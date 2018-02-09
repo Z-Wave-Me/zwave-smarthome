@@ -20,6 +20,13 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
         active: false,
         alert: {message: false}
     };
+
+    $scope.mobileAppSupport = {
+        installed: false,
+        active: false,
+        alert: {message: false},
+        instanceId: null
+    };
      /**
      * Load ext. Peripherals modules (EnOcean, Rf433)
      */
@@ -43,6 +50,17 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
                     return;
                 }
                 $scope.rf433.active = true;
+            }
+
+            var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
+            if(MobileAppSupport_module){
+                $scope.mobileAppSupport.installed = true;
+                if (!MobileAppSupport_module.active) {
+                    $scope.mobileAppSupport.alert = {message: $scope._t('mobile_app_support_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    return;
+                }
+                $scope.mobileAppSupport.instanceId = MobileAppSupport_module.id;
+                $scope.mobileAppSupport.active = true;
             }
 
         });
