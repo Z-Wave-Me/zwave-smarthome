@@ -117,7 +117,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
  */
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
-    tab: 'if',
+    tab: 'else',
     namespaces: [],
     rooms: [],
     options: {
@@ -127,7 +127,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'switchBinary',
           level: 'on',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       sensorBinary: {
@@ -136,7 +137,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'sensorBinary',
           level: 'on',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       doorlock: {
@@ -145,7 +147,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'doorlock',
           level: 'open',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       switchRGBW: {
@@ -156,7 +159,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'switchRGBW',
           level: 'on',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       switchControl: {
@@ -165,7 +169,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'switchControl',
           level: 'on',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       sensorDiscrete: {
@@ -173,7 +178,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'switchControl',
           level: '',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       sensorMultilevel: {
@@ -185,7 +191,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'sensorMultilevel',
           level: 'on',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       switchMultilevel: {
@@ -197,7 +204,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'switchMultilevel',
           level: 'on',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       thermostat: {
@@ -209,7 +217,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'thermostat',
           level: 'on',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       toggleButton: {
@@ -217,7 +226,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'toggleButton',
           level: 'on',
-          sendAction: false
+          sendAction: false,
+          reverseLevel: null
         }
       },
       time: {
@@ -407,7 +417,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceName: v.metrics.title,
           deviceType: v.deviceType,
           probeType: v.probeType,
-          level: v.metrics.level,
+          //level: !_.isNaN(v.metrics.level) ? parseInt(v.metrics.level) : v.metrics.level,
+          level:v.metrics.level,
           location: v.location,
           locationName: rooms[v.location].title
         };
@@ -526,7 +537,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: device.deviceId,
           deviceType: device.deviceType,
           level: input.level,
-          sendAction: input.sendAction
+          sendAction: input.sendAction,
+          reverseLevel: input.reverseLevel
         };
         $scope.rule.input.params.simple.targetElements.push(element);
         break;
@@ -769,7 +781,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: device.deviceId,
           deviceType: device.deviceType,
           level: input.level,
-          sendAction: input.sendAction
+          sendAction: input.sendAction,
+          reverseLevel: input.reverseLevel
         };
         $scope.rule.input.params.advanced.targetElements.push(element);
         break;
