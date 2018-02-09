@@ -168,7 +168,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.devices
                 }).//SmartStart
-                when('/smartstart', {
+                /*when('/smartstart', {
                     templateUrl: 'app/views/smartstart/smartstart.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
@@ -188,7 +188,7 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/smartstart/smartstart_list.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin
-                }).//Zwave select vendors
+                }).//Zwave select vendors*/
                 when('/zwave/vendors', {
                     templateUrl: 'app/views/zwave/zwave_vendors.html',
                     requireLogin: true,
