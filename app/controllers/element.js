@@ -689,42 +689,133 @@ myAppController.controller('ElementRoomController', function ($scope, $q, $route
             if($scope.swipeTimer) {
                 $timeout.cancel($scope.swipeTimer);     
             }
-
+            console.log($scope.dataHolder.devices.rooms);
+            console.log(Object.keys($scope.dataHolder.devices.rooms));
             $timeout(function() {
                 cfg.route.swipeDir = false;    
             }, 1000);
 
             cfg.route.swipeDir = dir;
             if(dir == "left") {
+                console.log("left");
                 if($(".appmodal").length  == 0) {
                     var currentRoom = $scope.dataHolder.devices.filter.location,
                         keys = Object.keys($scope.dataHolder.devices.rooms),
                         loc = keys.indexOf(currentRoom.toString());
-
                     if (loc > -1) {
-                        var i = 0;
+                        console.log("loc", loc);
                         if (loc < keys.length - 1) {
-                            i = keys[loc + 1];
+                            for(var x = (loc + 1); x < keys.length; x++) {
+                                if($scope.dataHolder.devices.rooms[keys[x]].namespaces && x !== 0) { 
+                                    console.log("keys[x]", keys[x]);
+                                    $location.path("rooms/" + keys[x]);
+                                    break;
+                                } 
+                            }
+                            if(x == keys.length ) {
+                                $location.path("rooms/" + keys[0]);
+                            }
                         }
-                        $location.path("rooms/" + i);
+                        /* else {
+                            for(var x = keys.length - 1; x >= 0; x--) {
+                                console.log(keys[x]);
+                                console.log($scope.dataHolder.devices.rooms[keys[x]]);
+                                if($scope.dataHolder.devices.rooms[keys[x]].namespaces) { 
+                                    $location.path("rooms/" + keys[x]);
+                                    break;
+                                } 
+                            }
+                        }*/
+
+
+
+
+                        /*
+                        var index = 0;
+                        if (loc < keys.length - 1) {
+                            index = loc + 1;
+                        }
+                        console.log(index);
+                        for(var x = index; x < keys.length; x++) {
+                            if($scope.dataHolder.devices.rooms[keys[x]].namespaces) { 
+                                $location.path("rooms/" + keys[x]);
+                                break;
+                            } 
+                        }
+                        */
+
+                        /*
+                        console.log("loc", loc); 
+                        console.log("I", i);
+                        if($scope.dataHolder.devices.rooms[i].namespaces) {
+                            console.log("HAS DEVICES");
+                            console.log($scope.dataHolder.devices.rooms[i]);
+                            $location.path("rooms/" + i);
+                        } else {
+                            console.log("NO DEVICES");
+                            console.log($scope.dataHolder.devices.rooms[i]);
+                            
+                        }
+
+                        $location.path("rooms/" + i);*/
                     }
                 }
             }
 
             if(dir == "right") {
+                console.log("right");
                 if($(".appmodal").length  == 0) {
                     var currentRoom = $scope.dataHolder.devices.filter.location,
                         keys = Object.keys($scope.dataHolder.devices.rooms),
                         loc = keys.indexOf(currentRoom.toString());
-
                     if (loc > -1) {
-                        var i = 0;
                         if (loc > 0) {
-                            i = keys[loc - 1];
+                            console.log("loc > 0");
+                            for(var x = (loc - 1); x < keys.length; x++) {
+                                console.log(keys[x]);
+                                console.log($scope.dataHolder.devices.rooms[keys[x]]);
+                                if($scope.dataHolder.devices.rooms[keys[x]].namespaces && x !== 0) { 
+                                    $location.path("rooms/" + keys[x]);
+                                    break;
+                                } 
+                            }
+                            
+                            for(var x = keys.length - 1; x >= 0; x--) {
+                                console.log(keys[x]);
+                                console.log($scope.dataHolder.devices.rooms[keys[x]]);
+                                if($scope.dataHolder.devices.rooms[keys[x]].namespaces && x !== 0) { 
+                                    $location.path("rooms/" + keys[x]);
+                                    break;
+                                } 
+                            }
                         } else {
-                            i = keys[keys.length - 1];
+                            console.log("else");
+                            for(var x = keys.length - 1; x >= 0; x--) {
+                                console.log(keys[x]);
+                                console.log($scope.dataHolder.devices.rooms[keys[x]]);
+                                if($scope.dataHolder.devices.rooms[keys[x]].namespaces && x !== 0) { 
+                                    $location.path("rooms/" + keys[x]);
+                                    break;
+                                } 
+                            }
                         }
-                        $location.path("rooms/" + i);
+                        
+                        /*
+                        console.log("loc", loc); 
+                        console.log("I", i);
+                        if($scope.dataHolder.devices.rooms[i].namespaces) {
+                            console.log("HAS DEVICES");    
+                            console.log($scope.dataHolder.devices.rooms[i]);
+                            $location.path("rooms/" + i);
+                        } else {
+                            console.log("NO DEVICES");
+
+
+
+                            console.log($scope.dataHolder.devices.rooms[i]);
+                        }
+                        */
+                        //$location.path("rooms/" + i);
                     }
                 }
             }
