@@ -16,7 +16,7 @@
     "apply_config_into_device": "Применить настройки параметра",
     "app_average_scored": "Среднее значение подсчитанных точек",
     "app_description": "Z-Wave is the international standard for wireless communication in the Smart Home. This app implements a User Interface to access a Z_Wave based Smart Home controlled by Z-Way, the (Z-Wave)-certified controller software running on Smart-Hub. You need to run a Popp-Hub in your home in order to use this app.",
-    "app_name": "Popp Hub",
+    "app_name": "Mobile App",
     "app_store_access": "Доступ в магазин приложений",
     "app_store_access_info": "Доступ в магазин приложений",
     "app_update_confirm": "После обновления активные приложения могут не работать, в таком случае удалите активное приложение из списка на вкладке \"Активные\" и создайте его заново. Вы действительно хотите обновить приложение? ",
