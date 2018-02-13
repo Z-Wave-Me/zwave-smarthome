@@ -71,9 +71,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Load all promises
      */
     $scope.allSettled = function (noCache) {
-        if (!$scope.deviceDetector.isMobile()) {
+        //if (!$scope.deviceDetector.isMobile()) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        }
+        //}
         // Notifications since
         //var since = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
         var promises = [
