@@ -214,61 +214,62 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             $scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
         } 
 
-        if($scope.elementId.input.deviceType == 'toggleButton' || 
-           $scope.elementId.input.deviceType == 'switchBinary' &&
-           $scope.elementId.input.probeType != 'notification_email' && 
-           $scope.elementId.input.probeType != 'notification_push') {
+        if(cfg.route.os == 'PoppApp_Z_Way') {
+            if(($scope.elementId.input.deviceType == 'toggleButton' && 
+               $scope.elementId.input.probeType !== 'notification_push' &&
+               $scope.elementId.input.probeType !== 'notification_email') ||
+               $scope.elementId.input.deviceType == 'switchBinary') {
+                if($scope.elementId.input.metrics.level == "on") {
+                    var device_on = angular.copy($scope.elementId.input);
+                    
+                    var device_off = angular.copy($scope.elementId.input);
+                    device_off.metrics.level = "off";
+                } else if($scope.elementId.input.metrics.level == "off") {
+                    var device_off = angular.copy($scope.elementId.input);
+                    
+                    var device_on = angular.copy($scope.elementId.input);
+                    device_on.metrics.level = "on";
+                } 
 
-            if($scope.elementId.input.metrics.level == "on") {
-                var device_on = angular.copy($scope.elementId.input);
-                
-                var device_off = angular.copy($scope.elementId.input);
-                device_off.metrics.level = "off";
-            } else if($scope.elementId.input.metrics.level == "off") {
-                var device_off = angular.copy($scope.elementId.input);
-                
-                var device_on = angular.copy($scope.elementId.input);
-                device_on.metrics.level = "on";
-            } 
+                offIconPath = dataService.assignElementIcon(device_off);
+                onIconPath = dataService.assignElementIcon(device_on);
 
-            offIconPath = dataService.assignElementIcon(device_off);
-            onIconPath = dataService.assignElementIcon(device_on);
+                var offData = {
+                    "id":           $scope.elementId.input.id,
+                    "name":         $filter('stringToSlug')($scope.elementId.input.metrics.title),
+                    "device_type":  $scope.elementId.input.deviceType,
+                    "icon":         $scope.elementId.input.metrics.icon,
+                    "iconPath":     offIconPath,
+                    "state":        "off"  
+                };
 
-            var offData = {
-                "id":           $scope.elementId.input.id,
-                "name":         $filter('stringToSlug')($scope.elementId.input.metrics.title),
-                "device_type":  $scope.elementId.input.deviceType,
-                "icon":         $scope.elementId.input.metrics.icon,
-                "iconPath":     offIconPath,
-                "state":        "off"  
-            };
+                var onData = {
+                    "id":           $scope.elementId.input.id,
+                    "name":         $filter('stringToSlug')($scope.elementId.input.metrics.title),
+                    "device_type":  $scope.elementId.input.deviceType,
+                    "icon":         $scope.elementId.input.metrics.icon,
+                    "iconPath":     onIconPath,
+                    "state":        "on"  
+                };
 
-            var onData = {
-                "id":           $scope.elementId.input.id,
-                "name":         $filter('stringToSlug')($scope.elementId.input.metrics.title),
-                "device_type":  $scope.elementId.input.deviceType,
-                "icon":         $scope.elementId.input.metrics.icon,
-                "iconPath":     onIconPath,
-                "state":        "on"  
-            };
+                onParams = Object.keys(onData).map(function(key){
+                    return key + '=' + onData[key];
+                }).join('&');
 
-            onParams = Object.keys(onData).map(function(key){
-                return key + '=' + onData[key];
-            }).join('&');
+                offParams = Object.keys(offData).map(function(key){
+                    return key + '=' + offData[key];
+                }).join('&');
 
-            offParams = Object.keys(offData).map(function(key){
-                return key + '=' + offData[key];
-            }).join('&');
+                var addOffUrl = "/AndoridWidget?" + offParams;
+                var addOnUrl = "/AndoridWidget?" + onParams;
 
-            var addOffUrl = "/AndoridWidget?" + offParams;
-            var addOnUrl = "/AndoridWidget?" + onParams;
-
-            angular.extend($scope.elementId.input,
-                {addOffUrl: addOffUrl},
-                {addOnUrl: addOnUrl}
-            );    
+                angular.extend($scope.elementId.input,
+                    {addOffUrl: addOffUrl},
+                    {addOnUrl: addOnUrl}
+                );    
+            }
         }
-        
+
         angular.extend($scope.elementId.input,
             {iconPath: dataService.assignElementIcon($scope.elementId.input)},
         );
