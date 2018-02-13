@@ -14,7 +14,7 @@ myAppController.controller('MobileAddController', function ($scope, $timeout, $w
      *  Add Qrcode
      */
     $scope.addQRCode = function(id) {
-        alertify.prompt($scope._t('verify_qrcode'), $scope._t('lb_password'), function(evt, pass) {
+        alertify.prompt($scope._t('verify_qrcode'), "", function(evt, pass) {
             var data = {
                 "password": pass
             };
