@@ -1,18 +1,33 @@
 <!-- Admin firmware view -->
-<h2 class="accordion-entry-title" ng-click="expandElement('firmware')">
+<h2 class="accordion-entry-title" ng-click="expandElement('firmware')"
+    ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.local)">
     <i class="fa fa-level-up fa-fw"></i> <span ng-bind="_t('firmware_update')"></span>
     <i class="fa accordion-arrow" ng-class="expand.firmware ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+</h2>
+<h2 class="accordion-entry-title" 
+    ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
+    <i class="fa fa-level-up fa-fw"></i> <span ng-bind="_t('firmware_update')"></span>
+    <div class="infowindow-wrap">
+        <i class="fa fa-exclamation-circle fa-lg text-warning clickable" ng-click="expandNavi('firmwareInfowindow', $event)"></i>
+        <div class="infowindow top" ng-if="naviExpanded['firmwareInfowindow']">
+            <div class="infowindow-in" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+                {{_t('not_supported_on_mobile')}}
+            </div>
+            <div class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
+                {{_t('not_supported_on_remote')}}
+            </div>
+        </div>
+    </div>
+    <i class="fa accordion-arrow" ng-class="expand.factory ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-if="expand.firmware" ng-controller="ManagementFirmwareController">
     <bb-loader></bb-loader>
     <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
         <fieldset>
             <!-- Currentt version -->
-
             <p class="form-control-static">
                 <span ng-bind="_t('current_firmware')"></span>: <strong ng-bind="controllerInfo.softwareRevisionVersion"></strong>
             </p>
-
             <div class="form-group">
                 <bb-help-text trans="_t('firmware_update_info')"></bb-help-text>
             </div>
