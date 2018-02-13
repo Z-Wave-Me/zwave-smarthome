@@ -10,10 +10,11 @@
     <div class="infowindow-wrap">
         <i class="fa fa-exclamation-circle fa-lg text-warning clickable" ng-click="expandNavi('factoryInfowindow', $event)"></i>
         <div class="infowindow top" ng-if="naviExpanded['factoryInfowindow']">
-            <div class="infowindow-in">
-                sfsdf sdfsdf sdfs sfd sdfsdfs sdf sdf sflösdfsld. 
-                sdfsdfslöd sd sdfsf sdfsdf  sdfsdf sdfsdf sdfsff!
-                {{_t('')}}
+            <div class="infowindow-in" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+                {{_t('not_supported_on_mobile')}}
+            </div>
+            <div class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
+                {{_t('not_supported_on_remote')}}
             </div>
         </div>
     </div>

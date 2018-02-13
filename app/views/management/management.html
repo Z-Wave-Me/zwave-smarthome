@@ -33,6 +33,7 @@
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
     <div class="accordion-entry" 
             ng-if="!isInArray(['wd','jb'],cfg.app_type)"
+            ng-class="((cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)) ? 'disabled' : ''"
          ng-include="'app/views/management/management_firmware.html'"></div>
     <div class="accordion-entry" 
             ng-if="cfg.app_type === 'jb' && cfg.route.os !== 'PoppApp_Z_Way'"
