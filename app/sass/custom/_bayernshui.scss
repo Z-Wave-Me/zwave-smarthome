@@ -927,24 +927,19 @@ a {
     color: $app-color-lighter;
 }
 
-/* Customize
+  /* Customize
 -------------------------------------------------- */
-.customize-detail-img{
-    border-top: solid 1px $app-color-red-lightest;
-}
-
-.customize-image-detail{
-    border: solid 4px $app-border-color;
-}
-.widget-entry-customize{
-    .widget-entry-in{
-        .widget-img{
-            .customize-preview-img{
-                border-color: $app-border-color;
-            }
-
-        }
+// Media queries
+@include mediaQueries(min-usmall) {
+  .card-customize {
+    border: 0;
+    .card-customize-in {
+      border: solid 4px $app-border-color;
+      .card-footer {
+        color: $app-color-additional;
+      }
     }
+  }
 }
 
 /* Image list

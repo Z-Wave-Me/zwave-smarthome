@@ -49,6 +49,7 @@
       border-radius: 50%;
       margin: $spacing 0 0 $spacing;
       cursor: pointer;
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
       @include mediaQueries(min-medium) {
         margin: $spacing $spacing 0 0;
       }

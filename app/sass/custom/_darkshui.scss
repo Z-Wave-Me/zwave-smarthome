@@ -974,13 +974,17 @@ legend {
 
 /* Customize
 -------------------------------------------------- */
-
-.customize-detail-img {
-  border-top: solid 1px $app-color-dark-lightest;
-}
-
-.customize-image-detail {
-  border: solid 4px $app-border-color;
+// Media queries
+@include mediaQueries(min-usmall) {
+  .card-customize {
+    border-color: $app-border-color;
+    .card-customize-in {
+     
+      .card-footer {
+        color: $app-color-darkest;
+      }
+    }
+  }
 }
 
 /* Image list
