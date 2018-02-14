@@ -11,11 +11,7 @@
     "add_notification": "Create notification",
     "add_token": "Schlüssel hinzufügen",
     "advanced_apps": "Apps für Fortgeschrittene",
-<<<<<<< HEAD
-    "advanced_sttings": "Erweiterte Einstellungen",
-=======
     "advanced_settings": "Erweiterte Einstellungen",
->>>>>>> f8a1ca91444db569ce129091b2a5d2ae4203e9bc
     "all_apps": "Alle Apps",
     "all_elements": "Alle Elemente",
     "already_rated": "Sie haben diese App bereits bewertet",
@@ -129,10 +125,7 @@
     "device_database_info": "Hier erhalten Sie die aktuellsten Geräte- und Herstellerinformationen.",
     "device_exists": "Das Gerät existiert bereits. Bitte erneut installieren.",
     "device_no_event": "Dieses Gerät hat keine Events",
-<<<<<<< HEAD
-=======
     "device_removed": "Device not available",
->>>>>>> f8a1ca91444db569ce129091b2a5d2ae4203e9bc
     "disable_only_on_local_possible": "Deaktivierung nur lokal möglich.",
     "dont_send_on_command": "Don't send On command, if device is already turned On, similarly for Off",
     "doorlock": "Türschloss",

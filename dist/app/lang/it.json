@@ -11,11 +11,7 @@
     "add_notification": "Create notification",
     "add_token": "Aggiungi token",
     "advanced_apps": "Applicazioni per Esperti",
-<<<<<<< HEAD
-    "advanced_sttings": "Advanced settings",
-=======
     "advanced_settings": "Advanced settings",
->>>>>>> f8a1ca91444db569ce129091b2a5d2ae4203e9bc
     "all_apps": "Tutte le Applicazioni",
     "all_elements": "Tutti",
     "already_rated": "Hai già votato questa applicazione",
@@ -129,10 +125,7 @@
     "device_database_info": "Usa questo per acquisire gli ultimi dati su Dispositivi e Produttori.",
     "device_exists": "Il Dispositivo esiste già. Disinstalla e reinstalla il dispositivo.",
     "device_no_event": "Questo dispositivo non ha eventi",
-<<<<<<< HEAD
-=======
     "device_removed": "Device not available",
->>>>>>> f8a1ca91444db569ce129091b2a5d2ae4203e9bc
     "disable_only_on_local_possible": "Disable only on local possible.",
     "dont_send_on_command": "Don't send On command, if device is already turned On, similarly for Off",
     "doorlock": "Serratura",
