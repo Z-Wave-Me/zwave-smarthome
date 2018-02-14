@@ -117,7 +117,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
  */
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
-    tab: 'else',
+    tab: 'if',
     namespaces: [],
     rooms: [],
     options: {
@@ -128,7 +128,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceType: 'switchBinary',
           level: 'on',
           sendAction: false,
-          reverseLevel: null
+          reverseLevel: 'off'
         }
       },
       sensorBinary: {
@@ -148,7 +148,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceType: 'doorlock',
           level: 'open',
           sendAction: false,
-          reverseLevel: null
+          reverseLevel: 'close'
         }
       },
       switchRGBW: {
@@ -205,7 +205,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceType: 'switchMultilevel',
           level: 'on',
           sendAction: false,
-          reverseLevel: null
+          reverseLevel: 'off'
         }
       },
       thermostat: {
@@ -417,8 +417,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceName: v.metrics.title,
           deviceType: v.deviceType,
           probeType: v.probeType,
-          //level: !_.isNaN(v.metrics.level) ? parseInt(v.metrics.level) : v.metrics.level,
-          level:v.metrics.level,
+          level: !_.isNaN(v.metrics.level) ? parseInt(v.metrics.level) : v.metrics.level,
+          //level:v.metrics.level,
           location: v.location,
           locationName: rooms[v.location].title
         };
@@ -590,6 +590,32 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       $scope.rule.input.params.simple.sendNotifications.splice(targetIndex, 1);
       $scope.rule.target.assignedDevices.splice(notificationIndex, 1);
     }
+
+  };
+
+  /**
+   * Set reverse level
+   * @param {string} deviceType
+   */
+  $scope.setReverseLevel = function (deviceType,inputType,index) {
+    var model =  $scope.rule.input.params[inputType].targetElements[index];
+    switch(deviceType){
+      case 'switchBinary':
+      model.reverseLevel = (model.level == 'on' ? 'off' : 'on');
+      break;
+      case 'doorlock':
+      model.reverseLevel = (model.level == 'open' ? 'close' : 'open');
+      break;
+      case 'switchMultilevel':
+      if(['off','on'].indexOf(model.level) > -1){
+        model.reverseLevel = (model.level == 'on' ? 'off' : 'on');
+      }else{
+        model.reverseLevel = $scope.rule.namespaces[model.deviceId].level;
+      }
+      break;
+    }
+   
+    
 
   };
 

@@ -1,5 +1,5 @@
  <!-- ////////////////////////////////////////// targetElements  ////////////////////////////////////////// -->
- <section class="accordion-wrap" ng-repeat="d in rule.input.params.advanced.targetElements track by $index" ng-init="model=d">
+ <section class="accordion-wrap" ng-repeat="d in rule.input.params.advanced.targetElements track by $index" ng-init="model=d;inputType='advanced'">
     <h2 class="accordion-toggle chevron">
        <!-- Deleted device -->
        <span class="no-toggle text-danger" ng-show="!rule.namespaces[d.deviceId]">

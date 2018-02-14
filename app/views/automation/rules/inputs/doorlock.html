@@ -1,7 +1,7 @@
 <!-- status -->
 <div class="form-group">
     <label class="switch">
-      <input type="checkbox" ng-model="model.level" ng-checked="model.level == 'on'" ng-true-value="close" ng-false-value="open" ng-change="model.reverseLevel = model.level == 'open' ? 'close' : 'open'">
+      <input type="checkbox" ng-model="model.level" ng-checked="model.level == 'on'" ng-true-value="close" ng-false-value="open" ng-change="setReverseLevel(model.deviceType,inputType,$index)">
       <span class="slider"></span>
     </label>
     <span class="switch-label">{{model.level}}</span>

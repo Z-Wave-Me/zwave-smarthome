@@ -19,10 +19,6 @@
     <bb-help-text trans="_t('Time in seconds when event starts after triggering event')"></bb-help-text>
   </div>
   <div class="list-panel" ng-repeat="d in rule.input.params.simple.targetElements track by $index" ng-if="rule.else.deviceTypes.indexOf(d.deviceType) > -1">
-    <!-- img -->
-    <!--  <figure class="img wh-32x32 clickable" ng-click="activateRule(v, v.active ? false : true)" >
-        <img ng-src="{{cfg.img.icons + 'security-pending.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-    </figure> -->
 
     <!-- body -->
     <div class="body">
@@ -48,28 +44,10 @@
         <strong ng-if="rule.options.switchMultilevel.level.indexOf(d.level) > -1">{{d.level == 'off' ? 'on' : 'off'}}</strong>
         <!-- level -->
         <span ng-if="rule.options.switchMultilevel.level.indexOf(d.level) === -1">
-        <input type="text" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
+        <input type="number" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
           ng-model="d.reverseLevel" />
         </span>
       </span>
-       <!-- <pre>{{rule.namespaces[d.deviceId]|json}}</pre> -->
     </div>
-
-    <!-- control -->
-    <!-- <div class="control">
-    <div ng-if="d.deviceType == 'switchBinary'">
-      <span>{{d.level}}</span>&nbsp;->&nbsp;
-      <strong>{{d.level == 'off' ? 'on' : 'off'}}</strong>
-    </div>
-    <div ng-if="d.deviceType == 'doorlock'">
-      <span>{{d.level}}</span>&nbsp;->&nbsp;
-      <strong>{{d.level == 'open' ? 'close' : 'open'}}</strong>
-    </div>
-    <div ng-if="d.deviceType == 'switchMultilevel'">
-      <span>{{d.level}}</span>&nbsp;->&nbsp;
-      <strong>{{d.reverseLevel||rule.namespaces[d.deviceId].level}}</strong>
-    </div>
-  </div> -->
-
-  </div>
+</div>
   <section>

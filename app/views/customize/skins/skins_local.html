@@ -5,58 +5,36 @@
         <bb-loader></bb-loader> 
         <!-- Skins navigation -->
         <div ng-include="'app/views/customize/navi.html'"></div>
-        <div ng-if="skins.local.show">
-            <div class="app-row app-row-widget app-row-customize clearfix">
-                <div class="widget-entry widget-entry-customize"
-                     id="local_skin_{{v.id}}" 
-                     ng-class="{'widget-warning': v.name === skins.local.active}"
-                     ng-repeat="v in skins.local.all track by v.name">
-                    <div class="widget-entry-in">
-                        <!-- Widget img -->
-                        <div class="widget-img">
-                            <img class="customize-preview-img clickable" ng-src="{{v.icon}}" alt="{{v.title}}" ng-click="skins.local.find = v;handleModal('skinLocalModal', $event)" />
-                        </div>
-
-                        <!-- Widget header -->
-                        <div class="widget-header"></div>
-                        <div class="widget-content">
-                            <!-- Widget title -->
-                            <div class="widget-title">
-                                <h3 class="clickable" title="{{v.title}}" ng-click="skins.local.find = v;handleModal('skinLocalModal', $event)">
-                                    {{v.title|cutText:true:25}}  <span class="btn-name">&raquo;</span>
-                                </h3>
-                            </div>
-                            <hr class="bottom-aligner" />
-                            <!-- Widget footer -->
-                            <div class="widget-footer">
-                                <div class="widget-ctrl ctrl-left">&nbsp;</div>
-                                <div class="widget-ctrl ctrl-right clearfix">
-                                    <div class="btn-group">
-                                        <!-- Activate -->
-                                        <button href="" class="btn btn-default" title="{{_t('lb_activate')}}" ng-if="v.name !== skins.local.active" ng-click="activateSkin(v)">
-                                            <i class="fa fa-fire text-success"></i> <span class="btn-name">{{_t('lb_activate')}}</span>
-                                        </button> 
-                                        <!-- Is active -->
-                                        <button class="btn btn-disabled" title="{{_t('lb_active')}}" disabled ng-if="v.name === skins.local.active">
-                                            <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_active')}}</span>
-                                        </button> 
-                                        <!-- Upgrade -->
-                                        <button class="btn btn-danger" title="{{_t('upgrade')}}" 
-                                                ng-click="updateSkin(skins.online.all[v.name])" 
-                                                ng-if="skins.online.all[v.name] && skins.online.all[v.name].status === 'notequal'">
-                                            <i class="fa fa-level-up"></i> <span class="btn-name">{{_t('upgrade')}}</span>
-                                        </button>
-                                        <!-- Delete -->
-                                        <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="removeSkin(v, _t('lb_delete_confirm'))" ng-hide="v.name === skins.local.active" ng-if="v.name !== 'default'">
-                                            <i class="fa fa-remove text-danger"></i> <span class="btn-name">{{_t('lb_remove')}}</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.widget-entry-in --> 
-                </div><!-- /.widget-entry --> 
-            </div><!-- /.app-row --> 
+        <div class="clearfix" ng-if="skins.local.show">
+            <div class="card-customize" title="{{v.title}}" ng-repeat="v in skins.local.all track by v.name">
+                <div class="card-customize-in" style="background-image:url('{{v.icon}}');"  
+                ng-class="{'widget-warning': v.name === skins.local.active}">
+                <div class="card-header">
+                  <!-- Activate -->
+                  <span class="card-icon" title="{{_t('lb_activate')}}" ng-if="v.name !== skins.local.active" ng-click="activateSkin(v)">
+                      <i class="fa fa-fire text-success"></i>
+                  </span> 
+                  <!-- Is active -->
+                  <span class="card-icon" title="{{_t('lb_active')}}" ng-if="v.name === skins.local.active">
+                      <i class="fa fa-check"></i>
+                  </span> 
+                  <!-- Upgrade -->
+                  <span class="card-icon" title="{{_t('upgrade')}}" 
+                          ng-click="updateSkin(skins.online.all[v.name])" 
+                          ng-if="skins.online.all[v.name] && skins.online.all[v.name].status === 'notequal'">
+                      <i class="fa fa-level-up"></i>
+                </span>
+                  <!-- Delete -->
+                  <span class="card-icon" title="{{_t('lb_remove')}}" ng-click="removeSkin(v, _t('lb_delete_confirm'))" ng-hide="v.name === skins.local.active" ng-if="v.name !== 'default'">
+                      <i class="fa fa-remove text-danger"></i>
+                  </span>
+                </div>
+                   <!-- Footer -->
+                 <div class="card-footer" ng-click="skins.local.find = v;handleModal('skinLocalModal', $event)">
+                    {{v.title| cutText:true:25}}
+                 </div>
+                </div>
+                </div>
         </div>
         <div id="skinLocalModal" class="appmodal" ng-if="modalArr.skinLocalModal">
             <div class="appmodal-in">

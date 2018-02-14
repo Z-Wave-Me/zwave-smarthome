@@ -1,6 +1,12 @@
 {
     "name": "SmartHome UI",
+<<<<<<< HEAD
     "version": "1.8.0-RC-36",
     "built": "13-02-2018 15:11:35",
     "timestamp": "1518531095"
+=======
+    "version": "1.8.0-RC-35",
+    "built": "14-02-2018 13:28:07",
+    "timestamp": "1518611287"
+>>>>>>> f8a1ca91444db569ce129091b2a5d2ae4203e9bc
 }
