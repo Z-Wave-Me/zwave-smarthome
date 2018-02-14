@@ -2,20 +2,20 @@
 <div class="form-group form-inline">
   <span ng-show="!model.operator">
   <label class="switch">
-    <input type="checkbox" ng-model="model.level" ng-checked="model.level == 'on'" ng-true-value="on" ng-false-value="off">
+    <input type="checkbox" ng-model="model.level" ng-checked="model.level == 'on'" ng-true-value="on" ng-false-value="off" ng-change="setReverseLevel(model.deviceType,inputType,$index)">
     <span class="slider"></span>
   </label>
   <span class="switch-label" ng-hide="_.isNumber(model.level)">{{model.level}}</span>
 </span>
   <!-- operator -->
-  <select class="form-control" ng-model="model.operator">
+  <select class="form-control" ng-model="model.operator" ng-change="model.level = (model.operator == '' ? 'on' : model.level);setReverseLevel(model.deviceType,inputType,$index)">
     <option value="">---</option>
     <option value="{{o}}" ng-repeat="o in rule.options.switchMultilevel.operator track by $index" ng-selected="o == model.operator">
       {{o}}</option>
   </select>
   <!-- level -->
   <input type="number" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
-    ng-model="model.level" ng-if="model.operator" />
+    ng-model="model.level" ng-if="model.operator" ng-change="setReverseLevel(model.deviceType,inputType,$index)" />
 </div>
 <!-- command -->
 <div class="form-group" ng-if="!hideAction">
