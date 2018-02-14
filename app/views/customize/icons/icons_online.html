@@ -5,49 +5,29 @@
     <div ng-include="'app/views/customize/navi.html'"></div>
     <!-- Alert -->
     <bb-alert alert="iconsOnline.alert"></bb-alert>
-   <!-- <pre>{{iconsOnline.all|json}}</pre>-->
-    <!-- list -->
-    <div class="app-row app-row-widget app-row-customize clearfix">
-        <div class="widget-entry widget-entry-customize"
-             id="icon_online_{{v.id}}"
-             ng-repeat="v in iconsOnline.all track by v.id">
-            <div class="widget-entry-in">
-                <!-- Widget img -->
-                <div class="widget-img">
-                    <img class="customize-preview-img clickable" ng-src="{{v.icon_path}}" alt="{{v.title}}" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)" />
-                </div>
-
-                <!-- Widget header -->
-                <div class="widget-header"></div>
-                <div class="widget-content">
-                    <!-- Widget title -->
-                    <div class="widget-title">
-                        <h3 class="clickable" title="{{v.title}}" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)">
-                            {{v.title|cutText:true:25}}  <span class="btn-name">&raquo;</span>
-                        </h3>
-                    </div>
-                    <hr class="bottom-aligner" />
-                    <!-- Widget footer -->
-                    <div class="widget-footer">
-                        <div class="widget-ctrl ctrl-left">&nbsp;</div>
-                        <div class="widget-ctrl ctrl-right clearfix">
-                            <!--<div class="btn-group">-->
-                            <!-- Installed -->
-                            <button class="btn btn-disabled" title="{{_t('installed')}}" disabled ng-if="v.status === 'installed'">
-                                <i class="fa fa-check"></i> <span class="btn-name_">{{_t('installed')}}</span>
-                            </button>
-                                <!-- Download -->
-                                <button class="btn btn-default" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadIconSet(v)">
-                                    <i class="fa fa-download text-success"></i> <span class="btn-name">{{_t('lb_download')}}</span>
-                                </button>
-
-                            <!--</div>-->
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.widget-entry-in --> 
-        </div><!-- /.widget-entry --> 
-    </div><!-- /.app-row --> 
+     <!-- List -->
+     <div class="clearfix">
+        <div class="card-customize" title="{{v.title}}" ng-repeat="v in iconsOnline.all track by v.id">
+        <div class="card-customize-in" style="background-image:url('{{v.icon_path}}');" ng-class="{'widget-warning': v.status === 'installed'}">
+        <div class="card-header">
+           <!-- Installed -->
+           <span class="card-icon" title="{{_t('installed')}}" disabled ng-if="v.status === 'installed'">
+              <i class="fa fa-check"></i>
+          </span>
+              <!-- Download -->
+              <span class="card-icon" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadIconSet(v)">
+                  <i class="fa fa-download text-success"></i>
+              </span>
+        </div>
+           <!-- Footer -->
+         <div class="card-footer" ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)">
+            {{v.title| cutText:true:25}}
+         </div>
+        </div>
+        </div>
+        
+      </div>
+    
     <!-- Modal --> 
     <div id="iconOnlineModal" class="appmodal" ng-if="modalArr.iconOnlineModal">
         <div class="appmodal-in">
