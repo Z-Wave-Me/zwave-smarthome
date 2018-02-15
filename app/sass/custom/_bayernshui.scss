@@ -282,6 +282,16 @@ a {
     }
 }
 
+/* Top fixed elements for mobile devices
+-------------------------------------------------- */
+
+@include mediaQueries(max-small) {
+  .fix-me-top {
+    background-color: $app-color-red-darkest;
+    border-bottom: solid 1px $app-color-red-lightest;
+  }
+}
+
 /* Subnavigation
 -------------------------------------------------- */
 #sub_navigation_in{

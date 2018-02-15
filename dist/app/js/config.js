@@ -12,9 +12,9 @@ var config_data = {
     //Application name
     'app_name': 'SmartHome UI',
     // Application version
-    'app_version': '1.8.0-RC-36',
+    'app_version': '1.8.0-RC-37',
     // Application (DIST) built date
-    'app_built': '14-02-2018 15:29:00',
+    'app_built': '15-02-2018 09:29:46',
     // Application ID
     'app_id': 'SmartHomeUI',
     // Server base url
@@ -476,6 +476,8 @@ var config_data = {
     'page_results_events': 50,
     // Apps with custom UI (app will be hidden in Active APPs)
     'custom_apps': ['Rules', 'Scenes', 'Schedules'],
+    // Scroll offset (px) for bind-class-on-scroll directive
+    'scroll_offset': 80,
     // ---------------------------------- Custom config for specifics app_type ---------------------------------- //
     // Application type : default/popp/jb/wd
     'app_type': 'default',

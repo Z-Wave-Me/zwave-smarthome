@@ -1,27 +1,31 @@
 /* Default SmartHome skin
 -------------------------------------------------- */
+
 /* Variables
 -------------------------------------------------- */
 
 /* Body
 -------------------------------------------------- */
+
 body {
   background-color: #F6F6F6;
-
 }
-.device-available-block{
-  &.assigned{
+
+.device-available-block {
+  &.assigned {
     background-color: #e7e7e7;
     border: 0;
   }
 }
+
 /* Main navigation
 -------------------------------------------------- */
-#main_navigation_wrap{
+
+#main_navigation_wrap {
   border-bottom: solid 4px #DDD;
   background-color: #E9E9E9;
-  #main_navigation{
-    .active{
+  #main_navigation {
+    .active {
       background-color: #DDD;
       color: #ffffff;
     }
@@ -30,27 +34,32 @@ body {
 
 /* Top fixed elements for mobile devices
 -------------------------------------------------- */
-.fix-me-top {
-  background-color: #E9E9E9;
-  border-bottom: solid 4px #DDD;
+
+@include mediaQueries(max-small) {
+  .fix-me-top {
+    background-color: #E9E9E9;
+    border-bottom: solid 4px #DDD;
+  }
 }
 
 /* Form
 -------------------------------------------------- */
-.form-page{
+
+.form-page {
   border: solid 4px #e7e7e7;
-  .form-group{
+  .form-group {
     border-color: #e7e7e7;
   }
 }
-.submit-entry{
+
+.submit-entry {
   background-color: #e7e7e7;
-  border-top: solid 1px  #e7e7e7;
+  border-top: solid 1px #e7e7e7;
 }
 
-fieldset, .fieldset {
- 
-  &.expanded{
+fieldset,
+.fieldset {
+  &.expanded {
     background-color: #F6F6F6;
     border-top: solid 4px #e7e7e7;
     border-bottom: solid 4px #e7e7e7;
@@ -59,6 +68,7 @@ fieldset, .fieldset {
 
 /* Button
 -------------------------------------------------- */
+
 .btn-goup-tabs {
   .btn {
     background-color: #eeeeee;
@@ -70,13 +80,12 @@ fieldset, .fieldset {
 
 /* Widget
 -------------------------------------------------- */
-.widget-entry{
-  .widget-entry-in{
-    border-color: #d3d3d3;
-    // Media queries
+
+.widget-entry {
+  .widget-entry-in {
+    border-color: #d3d3d3; // Media queries
     @include mediaQueries(min-small) {
-      border: solid 4px #FFFFFF;
-     // border-width: 4px !important;
+      border: solid 4px #FFFFFF; // border-width: 4px !important;
       @include appGradient();
       @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
     }
@@ -85,6 +94,7 @@ fieldset, .fieldset {
 
 /* Rooms
 -------------------------------------------------- */
+
 // Media queries
 @include mediaQueries(min-usmall) {
   .card-room {
@@ -97,7 +107,8 @@ fieldset, .fieldset {
 
 /* Elements in Room
 -------------------------------------------------- */
-.elemnts-room-bar{
+
+.elemnts-room-bar {
   // Media queries
   @include mediaQueries(min-small) {
     border: 0;
@@ -109,19 +120,19 @@ fieldset, .fieldset {
 /* Local and online apps
 -------------------------------------------------- */
 
-  .localapp-in, .onlineapp-in{
-    border-color: #d3d3d3;
-    // Media queries
-    @include mediaQueries(min-esmall) {
-      border: solid 4px #FFFFFF;
-     // border-width: 4px !important;
-      @include appGradient();
-      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
-    }
+.localapp-in,
+.onlineapp-in {
+  border-color: #d3d3d3; // Media queries
+  @include mediaQueries(min-esmall) {
+    border: solid 4px #FFFFFF; // border-width: 4px !important;
+    @include appGradient();
+    @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
   }
+}
 
-  /* Customize
+/* Customize
 -------------------------------------------------- */
+
 // Media queries
 @include mediaQueries(min-usmall) {
   .card-customize {
@@ -133,35 +144,35 @@ fieldset, .fieldset {
   }
 }
 
-  /* Automation
+/* Automation
 -------------------------------------------------- */
 
 .automation {
   .accordion-wrap {
     .accordion {
-    background-color: #F6F6F6;
+      background-color: #F6F6F6;
     }
     &.nested {
       .accordion {
         .accordion {
-          background-color: darken(#F6F6F6,5%);
+          background-color: darken(#F6F6F6, 5%);
         }
       }
     }
   }
 }
-  
+
 /* Night mode
 -------------------------------------------------- */
 
-.night-true:root { 
+.night-true:root {
   background-color: #fefefe;
   filter: invert(100%);
-  * { 
+  * {
     background-color: inherit;
   }
-  
-  img:not([src*=".svg"]), video {  
+  img:not([src*=".svg"]),
+  video {
     filter: invert(100%);
   }
   #main_content {
