@@ -18,7 +18,7 @@
     "apply_config": "Save into Device",
     "apply_config_into_device": "Save this parameter",
     "app_average_scored": "The average number of points scored",
-    "app_description": "Z-Wave is the international standard for wireless communication in the Smart Home. This app implements a User Interface to access a Z_Wave based Smart Home controlled by Z-Way, the (Z-Wave)-certified controller software running on Smart-Hub. You need to run a Popp-Hub in your home in order to use this app.",
+    "app_description": "Z-Wave is the international standard for wireless communication in the  Smart Home. This app implements a User Interface to access a Z-Wave  based Smart Home controlled by Z-Way.",
     "app_name": "Mobile App",
     "app_store_access": "App Store Access",
     "app_store_access_info": "The App Store contains apps from different sources and on different maturity levels. On default you will only see mature and approved apps for download. Adding different Tokens may open you the access to apps not shared to the public yet and apps that are in alpha or beta state. The developers will usually give you can access token you can add to the list of tokens below",

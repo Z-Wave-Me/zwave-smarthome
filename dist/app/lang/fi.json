@@ -18,7 +18,7 @@
     "apply_config": "Tallenna laitteeseen",
     "apply_config_into_device": "Tallenna tämä parametri",
     "app_average_scored": "Keskimääräiset pisteet",
-    "app_description": "Z-Wave is the international standard for wireless communication in the Smart Home. This app implements a User Interface to access a Z_Wave based Smart Home controlled by Z-Way, the (Z-Wave)-certified controller software running on Smart-Hub. You need to run a Popp-Hub in your home in order to use this app.",
+    "app_description": "Z-Wave is the international standard for wireless communication in the  Smart Home. This app implements a User Interface to access a Z-Wave  based Smart Home controlled by Z-Way.",
     "app_name": "Mobile App",
     "app_store_access": "Sovelluskauppa",
     "app_store_access_info": "Sovelluskauppa sisältää sovelluksia eri lähteistä ja eri kypsyystasoilta. Oletusarvoisesti näet ladattavissa olevina ainoastaan stabiileja ja hyväksyttyjä sovelluksia. Lisäämällä eri tokeneita saatat päästä käsiksi sovelluksiin jotka eivät ole vielä julkisesti saatavilla tai ovat vasta alpha\/beta-vaiheessa. Sovelluksien kehittäjät antavat yleensä pääsyyn tarvittavan tokenin, jonka voit lisätä alla olevalle listalle",
