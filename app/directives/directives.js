@@ -252,6 +252,7 @@ myApp.directive('bindClassOnScroll', function ($window) {
       scrollClass: "@"
     },
     link: function (scope, element) {
+      console.log(scope.offset)
       angular.element($window).bind("scroll", function () {
         if (this.pageYOffset >= parseInt(scope.offset)) {
           element.addClass(scope.scrollClass);
