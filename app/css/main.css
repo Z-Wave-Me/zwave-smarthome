@@ -18123,34 +18123,318 @@ img.widget-promo-image {
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit
 -------------------------------------------------- */
-/* Default SmartHome skin
+/* Dark SmartHome skin
 -------------------------------------------------- */
 /* Variables
 -------------------------------------------------- */
 /* Body
 -------------------------------------------------- */
-/* line 10, ../sass/custom/_shui.scss */
+/* line 29, ../sass/custom/_bayernshui.scss */
 body {
-  background-color: #F6F6F6;
+  color: #F7BEC8;
+  background-color: #961432;
 }
 
-/* line 15, ../sass/custom/_shui.scss */
+/* line 34, ../sass/custom/_bayernshui.scss */
+.timestamp {
+  color: #F7BEC8;
+}
+
+/* Gird
+-------------------------------------------------- */
+/* Style */
+/* line 41, ../sass/custom/_bayernshui.scss */
+#main_content {
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+/* Typo
+-------------------------------------------------- */
+/* line 48, ../sass/custom/_bayernshui.scss */
+h1, h2, h3, h4 {
+  color: #f4a7b5;
+}
+
+/* line 51, ../sass/custom/_bayernshui.scss */
+.app-entry-local h2 {
+  color: #f4a7b5;
+}
+
+/* line 55, ../sass/custom/_bayernshui.scss */
+.text-supp {
+  color: #f191a2;
+}
+
+/* Links
+-------------------------------------------------- */
+/* line 61, ../sass/custom/_bayernshui.scss */
+a {
+  color: #fad5db;
+}
+/* line 63, ../sass/custom/_bayernshui.scss */
+a:hover, a:focus {
+  color: #fad5db;
+  text-decoration: underline;
+}
+/* line 68, ../sass/custom/_bayernshui.scss */
+a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+/* line 76, ../sass/custom/_bayernshui.scss */
+a.link-dotted {
+  color: #fad5db;
+  border-bottom: 1px dotted #fad5db;
+}
+/* line 80, ../sass/custom/_bayernshui.scss */
+a.link-dotted:hover, a.link-dotted:focus {
+  border-bottom: 1px solid #fad5db;
+  text-decoration: none;
+}
+/* line 86, ../sass/custom/_bayernshui.scss */
+a.link-underline {
+  color: #fad5db;
+}
+
+/* Others
+-------------------------------------------------- */
+/* line 95, ../sass/custom/_bayernshui.scss */
+.bcg-success {
+  background-color: #dff0d8;
+  background: transparent;
+}
+
+/* line 100, ../sass/custom/_bayernshui.scss */
+.bcg-active.false, .bcg-danger {
+  background-color: #f2dede;
+  background: transparent;
+}
+/* line 103, ../sass/custom/_bayernshui.scss */
+.bcg-active.false .report-img-s, .bcg-danger .report-img-s {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+/* line 110, ../sass/custom/_bayernshui.scss */
+.badge-number {
+  background-color: #fb4c6d;
+  color: #F7BEC8;
+}
+
+/*.fa {
+  &.text-success{
+    color: $app-color-additional;
+  }
+}*/
+/* line 122, ../sass/custom/_bayernshui.scss */
 .device-available-block.assigned {
-  background-color: #e7e7e7;
   border: 0;
+  background-color: #6E0A28;
+}
+
+/* Text colors
+-------------------------------------------------- */
+/* line 130, ../sass/custom/_bayernshui.scss */
+.text-primary {
+  color: #1685c6;
+}
+
+/* line 133, ../sass/custom/_bayernshui.scss */
+.text-success {
+  color: #00B559;
+}
+
+/* line 136, ../sass/custom/_bayernshui.scss */
+.text-info {
+  color: #096BA5;
+}
+
+/* line 139, ../sass/custom/_bayernshui.scss */
+.text-warning {
+  color: #FF8C00;
+}
+
+/* line 142, ../sass/custom/_bayernshui.scss */
+.text-danger {
+  color: #750000;
+}
+
+/* Label colors
+-------------------------------------------------- */
+/* line 148, ../sass/custom/_bayernshui.scss */
+.label-primary {
+  background-color: #1685c6;
+}
+
+/* line 151, ../sass/custom/_bayernshui.scss */
+.label-success {
+  background-color: #00B559;
+}
+
+/* line 154, ../sass/custom/_bayernshui.scss */
+.label-info {
+  background-color: #096BA5;
+}
+
+/* line 157, ../sass/custom/_bayernshui.scss */
+.label-warning {
+  background-color: #FF8C00;
+}
+
+/* line 160, ../sass/custom/_bayernshui.scss */
+.label-danger {
+  background-color: #750000;
+}
+
+/* Button colors
+-------------------------------------------------- */
+/* line 166, ../sass/custom/_bayernshui.scss */
+.btn-primary {
+  background-color: #1685c6;
+}
+
+/* line 169, ../sass/custom/_bayernshui.scss */
+.btn-success {
+  background-color: #00B559;
+}
+
+/* line 172, ../sass/custom/_bayernshui.scss */
+.btn-info {
+  background-color: #096BA5;
+}
+
+/* line 175, ../sass/custom/_bayernshui.scss */
+.btn-warning {
+  background-color: #FF8C00;
+}
+
+/* line 178, ../sass/custom/_bayernshui.scss */
+.btn-danger {
+  background-color: #750000;
+}
+
+/* Alert
+-------------------------------------------------- */
+/* line 184, ../sass/custom/_bayernshui.scss */
+.alert {
+  background-color: #a51c39;
+  border: 2px solid #b72847;
+  color: #F7BEC8;
+  font-size: 110%;
+}
+
+/* line 190, ../sass/custom/_bayernshui.scss */
+.alert-success {
+  border-color: #00B559;
+}
+
+/* line 193, ../sass/custom/_bayernshui.scss */
+.alert-info {
+  border-color: #096BA5;
+}
+
+/* line 196, ../sass/custom/_bayernshui.scss */
+.alert-warning {
+  border-color: #FF8C00;
+}
+
+/* line 199, ../sass/custom/_bayernshui.scss */
+.alert-danger {
+  border-color: #750000;
+}
+
+/* Fatal error
+-------------------------------------------------- */
+/* line 205, ../sass/custom/_bayernshui.scss */
+.app-fatal-error {
+  background-color: #a51c39;
+  border: solid 1px #750000;
+}
+/* line 208, ../sass/custom/_bayernshui.scss */
+.app-fatal-error .fatal-error-message {
+  color: #750000;
+}
+/* line 211, ../sass/custom/_bayernshui.scss */
+.app-fatal-error .fatal-error-info {
+  color: #F7BEC8;
+}
+
+/* Header
+-------------------------------------------------- */
+/* line 218, ../sass/custom/_bayernshui.scss */
+#header {
+  color: #F7BEC8;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+/* line 220, ../sass/custom/_bayernshui.scss */
+#header .divider-vertical {
+  display: none;
+}
+/* line 223, ../sass/custom/_bayernshui.scss */
+#header .nav-logo {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 70px;
+  height: 70px;
+}
+@media only screen and (min-width: 768px) {
+  /* line 233, ../sass/custom/_bayernshui.scss */
+  #header .nav-home {
+    margin: 0 0 0 90px;
+  }
+}
+
+/* line 240, ../sass/custom/_bayernshui.scss */
+#header_logo {
+  border: solid 6px #6E0A28;
+  max-height: 70px;
+  max-width: 70px;
+  border-radius: 50%;
 }
 
 /* Main navigation
 -------------------------------------------------- */
-/* line 24, ../sass/custom/_shui.scss */
+/* line 249, ../sass/custom/_bayernshui.scss */
 #main_navigation_wrap {
-  border-bottom: solid 4px #DDD;
-  background-color: #E9E9E9;
+  background-color: #6E0A28;
+  border-bottom: solid 1px #b72847;
 }
-/* line 28, ../sass/custom/_shui.scss */
-#main_navigation_wrap #main_navigation .active {
-  background-color: #DDD;
-  color: #ffffff;
+
+/* line 255, ../sass/custom/_bayernshui.scss */
+#main_navigation a {
+  display: inline-block;
+  padding: 0;
+  color: #fad5db;
+  line-height: 40px;
+  text-align: center;
+  color: #F7BEC8;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border-radius: 50%;
+}
+/* line 268, ../sass/custom/_bayernshui.scss */
+#main_navigation a .fa {
+  line-height: 40px;
+}
+/* line 272, ../sass/custom/_bayernshui.scss */
+#main_navigation a:hover {
+  background: transparent;
+  color: #fff;
+}
+/* line 276, ../sass/custom/_bayernshui.scss */
+#main_navigation .active {
+  background-color: #b72847;
+  color: #fff;
+}
+/* line 280, ../sass/custom/_bayernshui.scss */
+#main_navigation .active:hover {
+  background-color: #b72847;
 }
 
 /* Top fixed elements for mobile devices
@@ -18158,211 +18442,925 @@ body {
 /* MIN WIDTH */
 /* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 39, ../sass/custom/_shui.scss */
+  /* line 290, ../sass/custom/_bayernshui.scss */
   .fix-me-top {
-    background-color: #E9E9E9;
-    border-bottom: solid 4px #DDD;
+    background-color: #6E0A28;
+    border-bottom: solid 1px #b72847;
   }
 }
+/* Subnavigation
+-------------------------------------------------- */
+/* line 299, ../sass/custom/_bayernshui.scss */
+#sub_navigation_in ul {
+  background-color: #961432;
+  border: 1px solid #d95270;
+}
+/* line 303, ../sass/custom/_bayernshui.scss */
+#sub_navigation_in ul li {
+  border-bottom: solid 1px #d95270;
+}
+/* line 305, ../sass/custom/_bayernshui.scss */
+#sub_navigation_in ul li a {
+  color: #fad5db;
+}
+/* line 307, ../sass/custom/_bayernshui.scss */
+#sub_navigation_in ul li a:hover {
+  color: #fff;
+}
+/* line 312, ../sass/custom/_bayernshui.scss */
+#sub_navigation_in ul li.active {
+  background-color: #b72847;
+}
+/* line 314, ../sass/custom/_bayernshui.scss */
+#sub_navigation_in ul li.active a {
+  color: #0A3C64;
+}
+/* line 317, ../sass/custom/_bayernshui.scss */
+#sub_navigation_in ul li.active .fa {
+  color: #0A3C64;
+}
+/* line 323, ../sass/custom/_bayernshui.scss */
+#sub_navigation_in ul .fa {
+  color: #fad5db;
+}
+
+/* Page navigation
+-------------------------------------------------- */
+/* line 331, ../sass/custom/_bayernshui.scss */
+.page-navi {
+  color: #fad5db;
+}
+/* line 333, ../sass/custom/_bayernshui.scss */
+.page-navi .page-navi-in {
+  background-color: #961432;
+  border: 1px solid #d95270;
+}
+/* line 338, ../sass/custom/_bayernshui.scss */
+.page-navi ul li {
+  border-bottom: solid 1px #d95270;
+}
+/* line 340, ../sass/custom/_bayernshui.scss */
+.page-navi ul li a {
+  color: #fad5db;
+}
+/* line 346, ../sass/custom/_bayernshui.scss */
+.page-navi ul .active a {
+  color: #0A3C64;
+}
+/* line 349, ../sass/custom/_bayernshui.scss */
+.page-navi ul .active .fa {
+  color: #0A3C64;
+}
+/* line 354, ../sass/custom/_bayernshui.scss */
+.page-navi ul .fa {
+  color: #fad5db;
+}
+/* line 359, ../sass/custom/_bayernshui.scss */
+.page-navi .page-navi-title {
+  color: #f4a7b5;
+}
+/* line 362, ../sass/custom/_bayernshui.scss */
+.page-navi .page-navi-tag {
+  border: solid 1px #d95270;
+}
+/* line 366, ../sass/custom/_bayernshui.scss */
+.page-navi .page-navi-tag.active {
+  background-color: #d95270;
+}
+
 /* Form
 -------------------------------------------------- */
-/* line 48, ../sass/custom/_shui.scss */
+/* line 373, ../sass/custom/_bayernshui.scss */
+.form-control {
+  color: #F7BEC8;
+  border: solid 1px #6E0A28;
+  background-color: #b72847;
+}
+/* line 377, ../sass/custom/_bayernshui.scss */
+.form-control:focus {
+  border-color: #0A3C64;
+}
+/* line 380, ../sass/custom/_bayernshui.scss */
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: #b72847;
+  color: #de6781;
+}
+
+/* line 387, ../sass/custom/_bayernshui.scss */
+.help-block {
+  color: #F7BEC8;
+}
+
+/* line 390, ../sass/custom/_bayernshui.scss */
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline {
+  color: #F7BEC8;
+}
+
+/* line 394, ../sass/custom/_bayernshui.scss */
+.input-group-addon {
+  border: solid 1px #6E0A28;
+  background-color: #6E0A28;
+}
+/* line 397, ../sass/custom/_bayernshui.scss */
+.input-group-addon .fa {
+  color: #fff;
+}
+
+/* line 401, ../sass/custom/_bayernshui.scss */
 .form-page {
-  border: solid 4px #e7e7e7;
+  background-color: #a51c39;
+  border: 0 none;
 }
-/* line 50, ../sass/custom/_shui.scss */
+/* line 404, ../sass/custom/_bayernshui.scss */
 .form-page .form-group {
-  border-color: #e7e7e7;
+  border-bottom: solid 1px #6E0A28;
 }
 
-/* line 55, ../sass/custom/_shui.scss */
+/* line 409, ../sass/custom/_bayernshui.scss */
 .submit-entry {
-  background-color: #e7e7e7;
-  border-top: solid 1px #e7e7e7;
+  background-color: #6E0A28;
+  border-top: 0;
 }
 
-/* line 62, ../sass/custom/_shui.scss */
-fieldset.expanded,
-.fieldset.expanded {
-  background-color: #F6F6F6;
-  border-top: solid 4px #e7e7e7;
-  border-bottom: solid 4px #e7e7e7;
+/* line 414, ../sass/custom/_bayernshui.scss */
+.control-active {
+  border: solid 4px #0A3C64 !important;
+}
+
+/* Legend
+-------------------------------------------------- */
+/* line 421, ../sass/custom/_bayernshui.scss */
+legend {
+  color: #F7BEC8;
+  border: 0;
 }
 
 /* Button
 -------------------------------------------------- */
-/* line 73, ../sass/custom/_shui.scss */
-.btn-goup-tabs .btn {
-  background-color: #eeeeee;
+/* line 428, ../sass/custom/_bayernshui.scss */
+.btn-default, .btn-primary, .btn-info, .btn-success, .btn-warning, .btn-danger {
+  background-color: #b72847;
+  color: #F7BEC8;
+  border: solid 1px #de6781;
 }
-/* line 75, ../sass/custom/_shui.scss */
+/* line 432, ../sass/custom/_bayernshui.scss */
+.btn-default:hover, .btn-primary:hover, .btn-info:hover, .btn-success:hover, .btn-warning:hover, .btn-danger:hover {
+  background-color: #6E0A28;
+  color: #F7BEC8;
+  border-color: #d95270;
+}
+/* line 437, ../sass/custom/_bayernshui.scss */
+.btn-default.active, .btn-primary.active, .btn-info.active, .btn-success.active, .btn-warning.active, .btn-danger.active {
+  /*background-color: $app-color-red-darkest;
+  color: $app-color-lighter;*/
+  background-color: #F7BEC8 !important;
+  color: #6E0A28 !important;
+}
+/* line 444, ../sass/custom/_bayernshui.scss */
+.btn-default:active, .btn-primary:active, .btn-info:active, .btn-success:active, .btn-warning:active, .btn-danger:active {
+  bbackground-color: #a51c39;
+  color: #F7BEC8;
+  border-color: #d95270;
+}
+/* line 449, ../sass/custom/_bayernshui.scss */
+.btn-default:focus, .btn-primary:focus, .btn-info:focus, .btn-success:focus, .btn-warning:focus, .btn-danger:focus {
+  background-color: #a51c39;
+  color: #F7BEC8;
+  border-color: #d95270;
+}
+
+/* line 458, ../sass/custom/_bayernshui.scss */
+.btn-goup-block .btn.active .fa {
+  color: #0A3C64;
+}
+
+/* line 465, ../sass/custom/_bayernshui.scss */
+.btn-submit {
+  color: #F7BEC8;
+  border: solid 1px #010407;
+  background-color: #0A3C64;
+}
+/* line 469, ../sass/custom/_bayernshui.scss */
+.btn-submit:hover, .btn-submit:focus {
+  background-color: #010407;
+  color: #4da6ed;
+}
+
+/* Slider
+-------------------------------------------------- */
+/* line 478, ../sass/custom/_bayernshui.scss */
+.slider {
+  color: #F7BEC8;
+  background-color: #b72847;
+  border-color: #6E0A28;
+}
+
+/* line 484, ../sass/custom/_bayernshui.scss */
+.slider:before {
+  background-color: #750000;
+}
+
+/* Button tabs
+-------------------------------------------------- */
+/* line 492, ../sass/custom/_bayernshui.scss */
+.btn-goup-tabs .btn {
+  background-color: #961432;
+  color: #F7BEC8;
+  border: solid 1px #de6781;
+}
+/* line 496, ../sass/custom/_bayernshui.scss */
 .btn-goup-tabs .btn.active {
-  background-color: #dcdcdc;
+  /*background-color: $app-color-red-lightest;
+  color: $app-color-additional;*/
+  background-color: #b72847 !important;
+  color: #fff;
+}
+/* line 502, ../sass/custom/_bayernshui.scss */
+.btn-goup-tabs .btn .fa {
+  color: #F7BEC8;
+}
+/* line 504, ../sass/custom/_bayernshui.scss */
+.btn-goup-tabs .btn .fa.text-danger {
+  color: #750000;
+}
+/* line 510, ../sass/custom/_bayernshui.scss */
+.btn-goup-tabs .active .fa {
+  color: #0A3C64;
+}
+/* line 512, ../sass/custom/_bayernshui.scss */
+.btn-goup-tabs .active .fa.text-danger {
+  color: #750000;
+}
+
+/* Dropdown
+-------------------------------------------------- */
+/* line 522, ../sass/custom/_bayernshui.scss */
+.app-dropdown {
+  background-color: #961432;
+  border: 1px solid #d95270;
+  color: #fad5db;
+}
+/* line 527, ../sass/custom/_bayernshui.scss */
+.app-dropdown .app-dropdown-title {
+  color: #f4a7b5;
+  border-bottom: solid 1px #d95270;
+}
+/* line 533, ../sass/custom/_bayernshui.scss */
+.app-dropdown ul li {
+  border-bottom: solid 1px #d95270;
+}
+/* line 535, ../sass/custom/_bayernshui.scss */
+.app-dropdown ul li a {
+  color: #fad5db;
+}
+/* line 538, ../sass/custom/_bayernshui.scss */
+.app-dropdown ul li:hover {
+  background-color: #DC052D;
+  color: #0A3C64;
+}
+/* line 545, ../sass/custom/_bayernshui.scss */
+.app-dropdown ul .active a {
+  color: #0A3C64;
+}
+/* line 549, ../sass/custom/_bayernshui.scss */
+.app-dropdown ul .btn {
+  color: #fad5db;
+}
+
+/* Accordion - new version
+-------------------------------------------------- */
+/* line 559, ../sass/custom/_bayernshui.scss */
+.accordion-toggle,
+.automation .accordion-wrap .accordion-toggle {
+  color: #F7BEC8;
+}
+/* line 561, ../sass/custom/_bayernshui.scss */
+.accordion-toggle .no-toggle,
+.automation .accordion-wrap .accordion-toggle .no-toggle {
+  border-color: #d95270;
+}
+/* line 565, ../sass/custom/_bayernshui.scss */
+.accordion-toggle > button,
+.automation .accordion-wrap .accordion-toggle > button {
+  border-color: #d95270;
+}
+/* line 569, ../sass/custom/_bayernshui.scss */
+.accordion-toggle > button:focus::after,
+.automation .accordion-wrap .accordion-toggle > button:focus::after {
+  color: #0A3C64;
+}
+
+/* line 577, ../sass/custom/_bayernshui.scss */
+.accordion {
+  border-color: #d95270;
+}
+
+/* line 581, ../sass/custom/_bayernshui.scss */
+.automation .accordion-wrap .accordion {
+  background-color: #b72847;
+  color: #F7BEC8;
+}
+
+/* line 589, ../sass/custom/_bayernshui.scss */
+.automation .accordion-wrap .accordion .accordion {
+  border: 0;
+  background-color: #a51c39;
+}
+
+/* Accordion - old version
+-------------------------------------------------- */
+/* line 596, ../sass/custom/_bayernshui.scss */
+.accordion-entry {
+  border-bottom: dotted 1px #d95270;
+  color: #F7BEC8;
+}
+
+/* line 600, ../sass/custom/_bayernshui.scss */
+.accordion-entry-title {
+  color: #F7BEC8;
+}
+/* line 602, ../sass/custom/_bayernshui.scss */
+.accordion-entry-title .fa {
+  color: #f191a2;
+}
+
+/* Modal
+-------------------------------------------------- */
+/* line 609, ../sass/custom/_bayernshui.scss */
+.appmodal {
+  color: #F7BEC8;
+}
+/* line 611, ../sass/custom/_bayernshui.scss */
+.appmodal .appmodal-in {
+  background-color: #961432;
+}
+
+/* line 616, ../sass/custom/_bayernshui.scss */
+.appmodal-header {
+  border-bottom: solid 1px #b72847;
+  background-color: #6E0A28;
+}
+/* line 619, ../sass/custom/_bayernshui.scss */
+.appmodal-header h3 {
+  color: #f4a7b5;
+}
+
+/* line 627, ../sass/custom/_bayernshui.scss */
+.appmodal-footer {
+  border-top: solid 1px #b72847;
+  background-color: #6E0A28;
+}
+
+/* Report
+-------------------------------------------------- */
+/* line 634, ../sass/custom/_bayernshui.scss */
+.app-row-report {
+  /* border-top: solid 1px $app-border-color;
+  border-bottom: solid 1px $app-border-color; */
+  border-color: #d95270;
+  background-color: #b72847;
+  color: #F7BEC8;
+}
+
+/* line 643, ../sass/custom/_bayernshui.scss */
+.report-entry .report-col {
+  border-bottom: dotted 1px #d95270;
+}
+
+/* List panel
+-------------------------------------------------- */
+/* line 651, ../sass/custom/_bayernshui.scss */
+.list-panel {
+  background-color: #b72847;
+  border-color: #d95270;
+  color: #F7BEC8;
+}
+
+/* Table
+-------------------------------------------------- */
+/* line 660, ../sass/custom/_bayernshui.scss */
+.table > thead > tr > th {
+  border-bottom: 0;
+}
+/* line 665, ../sass/custom/_bayernshui.scss */
+.table tbody tr td {
+  border-top: 1px solid #d95270;
+}
+
+/* line 672, ../sass/custom/_bayernshui.scss */
+.table-report {
+  background-color: #b72847;
+}
+
+/* Loader
+-------------------------------------------------- */
+/* line 678, ../sass/custom/_bayernshui.scss */
+#loading {
+  color: #F7BEC8;
+}
+/* line 680, ../sass/custom/_bayernshui.scss */
+#loading .loading-in {
+  background-color: #6E0A28;
+  border: solid 2px #d95270;
+}
+
+/* line 687, ../sass/custom/_bayernshui.scss */
+.progress-true .widget-loader {
+  color: #0A3C64;
+}
+
+/* Pagination
+-------------------------------------------------- */
+/* line 698, ../sass/custom/_bayernshui.scss */
+.pagination > li > a,
+.pagination > li > span {
+  color: #F7BEC8;
+  background-color: #b72847;
+  border: solid 1px #de6781;
+}
+/* line 710, ../sass/custom/_bayernshui.scss */
+.pagination > li > a:hover, .pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
+  color: #F7BEC8;
+  background-color: #DC052D;
+  border-color: #de6781;
+}
+/* line 720, ../sass/custom/_bayernshui.scss */
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  color: #F7BEC8;
+  background-color: #DC052D;
+  border-color: #de6781;
+}
+/* line 730, ../sass/custom/_bayernshui.scss */
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #ec637b;
+  background-color: #b72847;
+  border-color: #de6781;
 }
 
 /* Widget
 -------------------------------------------------- */
-/* line 85, ../sass/custom/_shui.scss */
+/* line 746, ../sass/custom/_bayernshui.scss */
 .widget-entry .widget-entry-in {
-  border-color: #d3d3d3;
+  border-bottom: solid 1px #d95270;
+  background-color: #b72847;
+  color: #F7BEC8;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 85, ../sass/custom/_shui.scss */
+  /* line 746, ../sass/custom/_bayernshui.scss */
   .widget-entry .widget-entry-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    border: solid 2px #b72847;
   }
+}
+/* line 757, ../sass/custom/_bayernshui.scss */
+.widget-entry .widget-entry-in .widget-header .widget-icon {
+  color: #F7BEC8;
+}
+/* line 762, ../sass/custom/_bayernshui.scss */
+.widget-entry .widget-entry-in .widget-title {
+  color: #f4a7b5;
+}
+/* line 765, ../sass/custom/_bayernshui.scss */
+.widget-entry .widget-entry-in .widget-title h3 a {
+  color: #f4a7b5;
+}
+/* line 772, ../sass/custom/_bayernshui.scss */
+.widget-entry.widget-success .widget-entry-in {
+  border: solid 2px #00B559;
+}
+
+/* Apps online
+-------------------------------------------------- */
+/* line 783, ../sass/custom/_bayernshui.scss */
+.app-entry-online .app-entry-cat .app-entry-title {
+  color: #f4a7b5;
 }
 
 /* Rooms
 -------------------------------------------------- */
-/* MIN WIDTH */
-@media only screen and (min-width: 320px) {
-  /* line 101, ../sass/custom/_shui.scss */
-  .card-room .card-room-in {
-    border: solid 4px #ffffff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+/* line 794, ../sass/custom/_bayernshui.scss */
+.card-room {
+  /* Inner element */
+}
+/* line 796, ../sass/custom/_bayernshui.scss */
+.card-room .card-room-in {
+  border-color: #d95270;
+}
+/* line 799, ../sass/custom/_bayernshui.scss */
+.card-room .card-room-in .card-icon {
+  color: #6E0A28;
+}
+/* line 802, ../sass/custom/_bayernshui.scss */
+.card-room .card-room-in .card-title {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 804, ../sass/custom/_bayernshui.scss */
+  .card-room .card-room-in .card-title a {
+    color: #F7BEC8;
   }
 }
-/* MAX WIDTH */
-/* Elements in Room
--------------------------------------------------- */
-/* line 111, ../sass/custom/_shui.scss */
+
+/* line 814, ../sass/custom/_bayernshui.scss */
 .elemnts-room-bar {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 111, ../sass/custom/_shui.scss */
-  .elemnts-room-bar {
-    border: 0;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-  }
+  border: 0 none;
+  background-color: #b72847;
 }
 
-/* Local and online apps
+/* Elements
 -------------------------------------------------- */
-/* line 123, ../sass/custom/_shui.scss */
-.localapp-in,
-.onlineapp-in {
-  border-color: #d3d3d3;
+/* line 824, ../sass/custom/_bayernshui.scss */
+.widget-entry-element .widget-entry-in .widget-img {
+  background-color: #fff;
+}
+/* line 828, ../sass/custom/_bayernshui.scss */
+.widget-entry-element .widget-entry-in .widget-title .widget-room {
+  color: #F7BEC8;
+}
+/* line 832, ../sass/custom/_bayernshui.scss */
+.widget-entry-element .widget-entry-in .widget-level {
+  color: #F7BEC8;
+}
+
+/* line 840, ../sass/custom/_bayernshui.scss */
+.widget-ctrl .fa-caret-down, .tbl-widget-ctrl .fa-caret-down {
+  color: #fdebee;
+}
+/* line 844, ../sass/custom/_bayernshui.scss */
+.widget-ctrl .btn-group .btn, .tbl-widget-ctrl .btn-group .btn {
+  color: #F7BEC8;
+}
+/* line 847, ../sass/custom/_bayernshui.scss */
+.widget-ctrl .btn-group .btn-primary, .tbl-widget-ctrl .btn-group .btn-primary {
+  background-color: #F7BEC8 !important;
+  border-color: white;
+  color: #6E0A28 !important;
+}
+/* line 851, ../sass/custom/_bayernshui.scss */
+.widget-ctrl .btn-group .btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-primary .fa {
+  color: #6E0A28 !important;
+}
+/* line 855, ../sass/custom/_bayernshui.scss */
+.widget-ctrl .btn-group .btn-off.btn-primary, .tbl-widget-ctrl .btn-group .btn-off.btn-primary {
+  color: #6E0A28 !important;
+}
+/* line 857, ../sass/custom/_bayernshui.scss */
+.widget-ctrl .btn-group .btn-off.btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-off.btn-primary .fa {
+  color: #6E0A28 !important;
+}
+/* line 861, ../sass/custom/_bayernshui.scss */
+.widget-ctrl .btn-group .btn-label-on, .tbl-widget-ctrl .btn-group .btn-label-on {
+  color: #F7BEC8;
+}
+/* line 864, ../sass/custom/_bayernshui.scss */
+.widget-ctrl .btn-group .btn-widget-time, .widget-ctrl .btn-group .txt-widget-time, .tbl-widget-ctrl .btn-group .btn-widget-time, .tbl-widget-ctrl .btn-group .txt-widget-time {
+  color: #F7BEC8;
+}
+
+/* line 871, ../sass/custom/_bayernshui.scss */
+.dragdrop-element .dd-placeholder {
+  border: 3px dashed #b72847;
+  background-color: #F7BEC8;
+}
+
+/* line 876, ../sass/custom/_bayernshui.scss */
+.card-element-dragdrop {
+  background: none #b72847;
+  border: solid 1px #DC052D;
+}
+
+/* Apps
+-------------------------------------------------- */
+/* line 890, ../sass/custom/_bayernshui.scss */
+.widget-entry-app .widget-entry-in .widget-footer .rating-group .widget-rating {
+  color: #f191a2;
+}
+/* line 892, ../sass/custom/_bayernshui.scss */
+.widget-entry-app .widget-entry-in .widget-footer .rating-group .widget-rating.israted {
+  color: #F7BEC8;
+}
+
+/* line 904, ../sass/custom/_bayernshui.scss */
+#apps_online .widget-warning .widget-img img, #apps_instances .widget-warning .widget-img img {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+/* line 912, ../sass/custom/_bayernshui.scss */
+#apps_online .widget-warning .widget-title h3 a, #apps_instances .widget-warning .widget-title h3 a {
+  color: #e94c68 !important;
+}
+/* line 920, ../sass/custom/_bayernshui.scss */
+#apps_online .widget-warning .widget-footer .rating-group .widget-rating.israted, #apps_instances .widget-warning .widget-footer .rating-group .widget-rating.israted {
+  color: #ec637b;
+}
+
+/* Local apps
+-------------------------------------------------- */
+/* line 936, ../sass/custom/_bayernshui.scss */
+.app-entry-online .app-entry-cat .app-entry-title {
+  color: #F7BEC8;
+}
+
+/* line 942, ../sass/custom/_bayernshui.scss */
+.localapp-in {
+  border: solid 1px #d95270;
+  background-color: #b72847;
+}
+/* line 946, ../sass/custom/_bayernshui.scss */
+.localapp-in .localapp-body .localapp-title {
+  color: #fdebee;
+}
+/* line 950, ../sass/custom/_bayernshui.scss */
+.localapp-in .localapp-footer {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 480px) {
-  /* line 123, ../sass/custom/_shui.scss */
-  .localapp-in,
-  .onlineapp-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+@media only screen and (max-width: 767px) {
+  /* line 950, ../sass/custom/_bayernshui.scss */
+  .localapp-in .localapp-footer {
+    background-color: #b72847;
   }
 }
 
-/* Customize
+/* Online apps
+-------------------------------------------------- */
+/* line 959, ../sass/custom/_bayernshui.scss */
+.onlineapp-in {
+  border: solid 1px #d95270;
+  background-color: #b72847;
+  /* Body */
+  /* Footer */
+}
+/* line 964, ../sass/custom/_bayernshui.scss */
+.onlineapp-in .onlineapp-body .onlineapp-title {
+  color: #fdebee;
+}
+/* line 969, ../sass/custom/_bayernshui.scss */
+.onlineapp-in .onlineapp-footer {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+/* line 970, ../sass/custom/_bayernshui.scss */
+.onlineapp-in .onlineapp-footer .rating-group {
+  color: #ec637b;
+}
+/* line 974, ../sass/custom/_bayernshui.scss */
+.onlineapp-in .onlineapp-footer .rating-group .widget-rating.israted {
+  color: #ffba66;
+}
+@media only screen and (max-width: 767px) {
+  /* line 969, ../sass/custom/_bayernshui.scss */
+  .onlineapp-in .onlineapp-footer {
+    background-color: #b72847;
+  }
+}
+
+/* Apps online detail
+-------------------------------------------------- */
+/* line 987, ../sass/custom/_bayernshui.scss */
+.app-detail-list {
+  border-top: solid 1px #d95270;
+}
+
+/* line 991, ../sass/custom/_bayernshui.scss */
+.module-rating {
+  color: #F7BEC8;
+}
+/* line 993, ../sass/custom/_bayernshui.scss */
+.module-rating.israted {
+  color: #F7BEC8;
+}
+
+/* Apps comments
+-------------------------------------------------- */
+/* line 1000, ../sass/custom/_bayernshui.scss */
+.comment-entry {
+  background-color: #a51c39;
+  color: #F7BEC8;
+}
+/* line 1003, ../sass/custom/_bayernshui.scss */
+.comment-entry .comment-header {
+  color: white;
+}
+
+/* line 1008, ../sass/custom/_bayernshui.scss */
+.comment-entry.even {
+  background-color: #b72847;
+}
+
+/* Apps instances
+-------------------------------------------------- */
+/* line 1015, ../sass/custom/_bayernshui.scss */
+#apps_instances .accordion-entry {
+  background-color: #a51c39;
+}
+
+/* Events
+-------------------------------------------------- */
+/* line 1022, ../sass/custom/_bayernshui.scss */
+.event-level-warning, .event-level-error, .event-level-critical {
+  background-color: #a51c39;
+}
+/* line 1024, ../sass/custom/_bayernshui.scss */
+.event-level-warning.report-entry, .event-level-error.report-entry, .event-level-critical.report-entry {
+  border-bottom: solid 1px #750000;
+}
+
+/* line 1029, ../sass/custom/_bayernshui.scss */
+.event-room {
+  color: #F7BEC8;
+}
+
+  /* Customize
 -------------------------------------------------- */
 /* MIN WIDTH */
 @media only screen and (min-width: 320px) {
-  /* line 138, ../sass/custom/_shui.scss */
+  /* line 1037, ../sass/custom/_bayernshui.scss */
   .card-customize {
     border: 0;
   }
-  /* line 140, ../sass/custom/_shui.scss */
+  /* line 1039, ../sass/custom/_bayernshui.scss */
   .card-customize .card-customize-in {
-    border: solid 4px #ffffff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+    border: solid 4px #d95270;
+  }
+  /* line 1041, ../sass/custom/_bayernshui.scss */
+  .card-customize .card-customize-in .card-footer {
+    color: #0A3C64;
   }
 }
 /* MAX WIDTH */
-/* Automation
+/* Image list
 -------------------------------------------------- */
-/* line 152, ../sass/custom/_shui.scss */
-.automation .accordion-wrap .accordion {
-  background-color: #F6F6F6;
-}
-/* line 157, ../sass/custom/_shui.scss */
-.automation .accordion-wrap.nested .accordion .accordion {
-  background-color: #e9e9e9;
+/* line 1050, ../sass/custom/_bayernshui.scss */
+.app-row-imglist {
+  border: solid 1px #d95270;
+  background-color: #b72847;
 }
 
-/* Night mode
+/* line 1055, ../sass/custom/_bayernshui.scss */
+.imglist-entry.in-device {
+  background-color: #f2dede;
+}
+
+/* ZWave
 -------------------------------------------------- */
-/* line 168, ../sass/custom/_shui.scss */
-.night-true:root {
-  background-color: #fefefe;
-  filter: invert(100%);
+/* line 1063, ../sass/custom/_bayernshui.scss */
+.network-zwave-title.noelements {
+  color: #F7BEC8;
 }
-/* line 171, ../sass/custom/_shui.scss */
-.night-true:root * {
-  background-color: inherit;
+
+/* line 1068, ../sass/custom/_bayernshui.scss */
+.device-type-logo, .device-logo img {
+  /* -webkit-filter: brightness(300%);
+   filter: brightness(300%);*/
+  /*-webkit-filter: saturate(800%); !* Safari *!
+  filter: saturate(800%);*/
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
-/* line 174, ../sass/custom/_shui.scss */
-.night-true:root img:not([src*=".svg"]),
-.night-true:root video {
-  filter: invert(100%);
+
+/* line 1077, ../sass/custom/_bayernshui.scss */
+.cfg-info {
+  border-color: #d95270;
 }
-/* line 178, ../sass/custom/_shui.scss */
-.night-true:root #main_content {
-  margin-top: 50px;
+
+/* Expert Commands
+-------------------------------------------------- */
+/* line 1083, ../sass/custom/_bayernshui.scss */
+.commands-data-control {
+  background-color: #a51c39;
+}
+
+/* RSS
+-------------------------------------------------- */
+/* line 1090, ../sass/custom/_bayernshui.scss */
+.report-entry.read-true {
+  border: 0;
+  background-color: #961432;
+}
+/* line 1093, ../sass/custom/_bayernshui.scss */
+.report-entry.read-true .event-date, .report-entry.read-true .rss-title, .report-entry.read-true .rss-description {
+  color: #ec637b;
+}
+
+/* line 1101, ../sass/custom/_bayernshui.scss */
+.read-false .rss-title {
+  font-weight: bold;
+}
+
+/* Footer
+-------------------------------------------------- */
+/* line 1110, ../sass/custom/_bayernshui.scss */
+#footer {
+  border-top: solid 1px #d95270;
+}
+/* line 1112, ../sass/custom/_bayernshui.scss */
+#footer #footer_in {
+  color: #F7BEC8;
+  background-color: #6E0A28;
+}
+
+/* Slider
+-------------------------------------------------- */
+/* line 1123, ../sass/custom/_bayernshui.scss */
+.app-slider .slide .slider-label {
+  background-color: rgba(110, 10, 40, 0.5);
+}
+
+/* line 1130, ../sass/custom/_bayernshui.scss */
+.slider-btn {
+  background-color: rgba(110, 10, 40, 0.4);
+}
+/* line 1132, ../sass/custom/_bayernshui.scss */
+.slider-btn:hover {
+  background-color: rgba(110, 10, 40, 0.8);
+}
+
+/* Alertify
+-------------------------------------------------- */
+/* line 1139, ../sass/custom/_bayernshui.scss */
+.alertify .ajs-dialog {
+  border: solid 2px #d95270;
+}
+/* line 1142, ../sass/custom/_bayernshui.scss */
+.alertify .ajs-dialog, .alertify .ajs-header, .alertify .ajs-footer {
+  color: #F7BEC8;
+  background-color: #6E0A28;
+}
+/* line 1147, ../sass/custom/_bayernshui.scss */
+.alertify .ajs-footer .ajs-button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857;
+  border-radius: 4px;
+  font-size: 110%;
+  background-color: #b72847;
+  color: #F7BEC8;
+  border: solid 1px #de6781;
+}
+/* line 1165, ../sass/custom/_bayernshui.scss */
+.alertify .ajs-footer .ajs-button.ajs-ok {
+  color: #1e8fe9;
+  border: solid 1px #010407;
+  background-color: #0A3C64;
+}
+/* line 1169, ../sass/custom/_bayernshui.scss */
+.alertify .ajs-footer .ajs-button.ajs-ok:hover, .alertify .ajs-footer .ajs-button.ajs-ok:focus {
+  background-color: #010407;
+  color: #4da6ed;
+}
+
+/* Alpaca
+-------------------------------------------------- */
+/* line 1180, ../sass/custom/_bayernshui.scss */
+.alpaca-field-object {
+  border: 1px #d95270 solid;
+}
+
+/* line 1183, ../sass/custom/_bayernshui.scss */
+.table-bordered {
+  border: 1px solid #d95270;
+}
+
+/* line 1186, ../sass/custom/_bayernshui.scss */
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #b72847;
+}
+
+/* line 1191, ../sass/custom/_bayernshui.scss */
+#alpaca_data .table-bordered > thead > tr > th, #alpaca_data .table-bordered > thead > tr > td {
+  border: 1px solid #d95270;
+}
+/* line 1195, ../sass/custom/_bayernshui.scss */
+#alpaca_data .table-bordered > tbody > tr > td, #alpaca_data .table-bordered > tfoot > tr > th, #alpaca_data .table-bordered > tfoot > tr > td {
+  border: 0px solid #d95270;
+}
+/* line 1198, ../sass/custom/_bayernshui.scss */
+#alpaca_data .btn-default[disabled] {
+  background: transparent;
+  border-color: #d95270;
 }
 
 /* SmartHome UI custom POPP
