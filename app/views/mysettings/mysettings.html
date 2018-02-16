@@ -81,43 +81,52 @@
         </form>
 
         <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
-        <div class="accordion-entry">
-            <h2 class="accordion-entry-title" ng-click="expandElement('settingsaccount')">
-                <i class="fa fa-key"></i> {{_t('my_local_access')}}
-                <i class="fa accordion-arrow" ng-class="expand.settingsaccount ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-            </h2>
-            <div class="accordion-entry-ctrl" ng-if="expand.settingsaccount" ng-controller_="ManagementFirmwareController">
-
-            <form name="form_password" id="form_password" class="form form-inline form-page" ng-submit="changePassword(form_password,newPassword)" novalidate>
-                <fieldset>
-                    <!-- login  -->
-                    <p class="form-control-static">
-                        <span ng-bind="_t('lb_login')"></span>: <strong ng-bind="input.login"></strong>
-                    </p>
-                    <!-- password -->
-                    <div class="form-group last">
-                        <label class="isrequired">{{_t('lb_new_password')}}: </label>
-                        <input name="password" id="password" type="password" class="form-control" value="" ng-model="newPassword" ng-blur="passwordBlur = true" ng-required="true" ng-minlength="6" />
-                        <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")' has-blur='passwordBlur'></bb-validator> 
-                <bb-validator input-name='form_password.password.$error.minlength' trans='_t("password_valid")' has-blur='passwordBlur'></bb-validator>
-
-                    </div>
+        <section>
+          <!-- Title -->
+          <h2 class="accordion-toggle chevron">
+            <button type="button" aria-expanded="false" bb-accordion>
+              <span>
+                <i class="fa fa-key fa-fw"></i> {{_t('my_local_access')}}</span>
+            </button>
+    
+          </h2>
+          <!-- Content -->
+          <div class="accordion" hidden>
+            <form name="form_password" id="form_password" class="form form-inline form-page" ng-submit="changePassword(form_password,newPassword)"
+              novalidate>
+              <fieldset>
+                <!-- login  -->
+                <p class="form-control-static">
+                  <span ng-bind="_t('lb_login')"></span>:
+                  <strong ng-bind="input.login"></strong>
+                </p>
+                <!-- password -->
+                <div class="form-group last">
+                  <label class="isrequired">{{_t('lb_new_password')}}: </label>
+                  <input name="password" id="password" type="password" class="form-control" value="" ng-model="newPassword" ng-blur="passwordBlur = true"
+                    ng-required="true" ng-minlength="6" />
+                  <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")' has-blur='passwordBlur'></bb-validator>
+                  <bb-validator input-name='form_password.password.$error.minlength' trans='_t("password_valid")' has-blur='passwordBlur'></bb-validator>
+    
+                </div>
                 <!-- confirm password -->
-                    <div class="form-group last">
-               <label class="isrequired">{{_t('confirm_password')}}: </label>
-                 <input name="password_confirm" id="password_confirm" type="password" class="form-control" value="" ng-blur="passwordConfirmBlur = true" ng-model="input.passwordConfirm" bb-compare-to="password" />
-                 <bb-validator input-name='form_password.password_confirm.$error.compareto' trans='_t("passwords_must_match")' has-blur='passwordConfirmBlur'></bb-validator>
-                    </div>
-
-            </fieldset>
-                <fieldset class="submit-entry">
-                    <button type="submit" class="btn btn-submit" title="{{_t('lb_change_password')}}" ng-disabled="form_password.$invalid">
-                        <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_change_password')}}</span>
-                    </button>
-                </fieldset>
+                <div class="form-group last">
+                  <label class="isrequired">{{_t('confirm_password')}}: </label>
+                  <input name="password_confirm" id="password_confirm" type="password" class="form-control" value="" ng-blur="passwordConfirmBlur = true"
+                    ng-model="input.passwordConfirm" bb-compare-to="password" />
+                  <bb-validator input-name='form_password.password_confirm.$error.compareto' trans='_t("passwords_must_match")' has-blur='passwordConfirmBlur'></bb-validator>
+                </div>
+    
+              </fieldset>
+              <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-submit" title="{{_t('lb_change_password')}}" ng-disabled="form_password.$invalid">
+                  <i class="fa fa-check"></i>
+                  <span class="btn-name">{{_t('lb_change_password')}}</span>
+                </button>
+              </fieldset>
             </form>
-         </div>
-        </div>
+          </div>
+        </section>
  </div>
 
 </div> <!-- /ng-controller --> 
