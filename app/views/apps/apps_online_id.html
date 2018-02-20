@@ -4,12 +4,12 @@
     <bb-alert alert="local.alert"></bb-alert>
      <div ng-if="!_.isEmpty(module)">
     <!-- ///////////////////////////// App info ///////////////////////////// -->
-    <div class="accordion-entry" ng-include="'app/views/apps/apps_online_id_info.html'"></div>
+    <section ng-include="'app/views/apps/apps_online_id_info.html'"></section>
     
     <!-- ///////////////////////////// App patch notes ///////////////////////////// -->
-    <div class="accordion-entry" ng-if="module.patchnotes" ng-include="'app/views/apps/apps_online_id_patches.html'"></div>
+    <section ng-if="module.patchnotes" ng-include="'app/views/apps/apps_online_id_patches.html'"></section>
     
     <!-- ///////////////////////////// App comments ///////////////////////////// -->
-    <div class="accordion-entry" ng-include="'app/views/apps/apps_online_id_comments.html'"></div>
+    <section ng-include="'app/views/apps/apps_online_id_comments.html'"></section>
     </div>
 </div> <!-- /ng-controller --> 
