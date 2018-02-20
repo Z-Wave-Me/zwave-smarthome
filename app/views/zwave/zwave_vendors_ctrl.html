@@ -1,6 +1,6 @@
 <!-- Zwave control view -->
 <!--<pre>{{zwaveVendors.filter|json}}</pre>-->
-<div class="page-control form-inline">
+<div class="app-search_" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
     <!-- Search and autocomplete -->
     <form id="form_search" class="input-group" ng-submit="setFilter({q: autocomplete.term})" autocomplete="off"
           novalidate>
