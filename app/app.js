@@ -93,6 +93,10 @@ myApp.config(function ($provide, $httpProvider) {
             // On request success
             request: function (config) {
                 // Return the config or wrap it in a promise if blank.
+                if(config.url.indexOf('views') !== -1 && cfg.app_version == "@@app_version") { // only for dev
+                        config.url += "?rel=" + Date.now();
+                }
+
                 return config || $q.when(config);
             },
             // On request failure
