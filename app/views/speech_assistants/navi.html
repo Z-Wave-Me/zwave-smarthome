@@ -1,0 +1,12 @@
+<div class="tabs-wrap form-inline" ng-if_="devices.show">
+    <div class="btn-group btn-group-justified btn-goup-tabs">
+        <a class="btn btn-default" href="#speech_assistants/devices" title="{{_t('add_new')}}" 
+           ng-class="routeMatch('/speech_assistants/devices') ? 'active' : ''">
+            <i class="fa fa-plus"></i> <span class="btn-name">{{_t('add_new')}}</span>
+        </a>
+        <a class="btn btn-default" href="#speech_assistants/manage" title="{{_t('nav_devices')}}"  
+           ng-class="routeMatch('/speech_assistants/manage') ? 'active' : ''">
+            <i class="fa fa-microphone"></i> <span class="btn-name">{{_t('nav_devices')}}</span>
+        </a>
+    </div>
+</div>

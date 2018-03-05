@@ -403,6 +403,20 @@ var config_data = {
     'rgb_blacklist': {
       134: [99]
     },
+    'speechAssistants': {
+      'Alexa': {
+        'deviceTypeWhitelist': [
+          {"sensorMultilevel":
+              ["temperature"]
+          }, 
+          {"switchBinary":[]}, 
+          {"toggleButton":[]}, 
+          {"switchMultilevel":[]}, 
+          {"thermostat":[]}, 
+          {"doorlock":[]}
+        ]
+      }
+    },
     // Order by
     orderby: {
       blacklist: ['order_dashboard', 'order_rooms'], //Do not display in the orderby list in the view
