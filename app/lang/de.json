@@ -14,7 +14,7 @@
     "advanced_apps": "Apps für Fortgeschrittene",
     "advanced_settings": "Erweiterte Einstellungen",
     "alexa_info": "Einschalten wenn das Geräte beim nächsten Gerätesuchlauf von Alexa gefunden werden \tsoll.",
-    "alexa_room_assigned_info": "Die Option „Räume zuweisen“ ist aktiviert. Der Rufname des Gerätes lautet:<strong> __call_name__ __room_name__<\/strong>.",
+    "alexa_room_assigned_info": "Die Option „Räume zuweisen“ ist aktiviert. Der Rufname des Gerätes lautet:<b> __call_name__ __room_name__<\/b>.",
     "all_apps": "Alle Apps",
     "all_elements": "Alle Elemente",
     "already_rated": "Sie haben diese App bereits bewertet",

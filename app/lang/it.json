@@ -14,7 +14,7 @@
     "advanced_apps": "Applicazioni per Esperti",
     "advanced_settings": "Advanced settings",
     "alexa_info": "Switch on if the device is to be found during Alexa's next device search. ",
-    "alexa_room_assigned_info": "The „Assign to rooms“ option is enabled. The call name for the given device is:<strong> __call_name__ __room_name__<\/strong>. ",
+    "alexa_room_assigned_info": "The „Assign to rooms“ option is enabled. The call name for the given device is:<b> __call_name__ __room_name__<\/b>. ",
     "all_apps": "Tutte le Applicazioni",
     "all_elements": "Tutti",
     "already_rated": "Hai già votato questa applicazione",
