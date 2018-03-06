@@ -127,7 +127,7 @@ myApp.config(function ($provide, $httpProvider) {
                         if(rejection.config.headers.isZWAY) {
                             angular.extend(cfg.route.fatalError, {
                                 type: 'network',
-                                message: 'The request failed because server does not responding',
+                                message: 'The request failed because the server is not responding',
                                 hide: false
                             });    
                             break;
@@ -140,7 +140,7 @@ myApp.config(function ($provide, $httpProvider) {
                         console.log("connection error 2");
                         angular.extend(cfg.route.fatalError, {
                             type: 'network',
-                            message: 'The request failed because server does not responding',
+                            message: 'The request failed because the server is not responding',
                             hide: false
                         });
                         break;
