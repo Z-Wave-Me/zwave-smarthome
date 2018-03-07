@@ -1,14 +1,5 @@
 <div ng-controller="WelcomeController">
     <div class="form-page">
-        <div class="fieldset">
-            <ul class="wizard">
-                <li ng-repeat="v in steps" class="clickable"
-                    ng-class="{'active' : $index + 1 == currentStep}"
-                    ng-model="currentStep"
-                    ng-click="setStep($index + 1)">{{$index + 1}}
-                </li>
-            </ul>
-        </div>
         <div ng-switch="currentStep" class="wizard-tabs">
             <div class="fieldset tab" ng-switch-when="1">
                 <div class="content" ng-include="'app/views/welcome/tab_welcome.html'"></div>
@@ -24,6 +15,9 @@
             </div>
             <div class="fieldset tab" ng-switch-when="5">
                 <div class="content" ng-include="'app/views/welcome/tab_events.html'"></div>
+            </div>
+            <div class="fieldset tab" ng-switch-when="6">
+                <div class="content" ng-include="'app/views/welcome/tab_lets_start.html'"></div>
             </div>
         </div>
         <ol class="dots">

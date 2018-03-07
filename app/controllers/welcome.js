@@ -9,7 +9,7 @@
  */
 myAppController.controller('WelcomeController', function ($scope) {
  	$scope.currentStep = 1;
- 	$scope.steps = _.range(0, 5);
+ 	$scope.steps = _.range(0, 6);
 
  	$scope.prevNext = function(n) {
  		$scope.currentStep += n;			

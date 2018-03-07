@@ -158,12 +158,9 @@
                                class="form-control" value="{{elementId.input.callName}}"
                                placeholder="{{_t('lb_add_call_name')}}"
                                ng-model="elementId.input.callName"/>
-                            <i ng-if="speechAssistants.Alexa.instance.params.assign_room && elementId.input.location != 0">
-                                {{elementId.locations[elementId.input.location].title}}
-                            </i>
                             <bb-help-text trans="_t('call_name_info')"></bb-help-text>
-                            <bb-help-text ng-if="speechAssistants.Alexa.instance.params.assign_room" 
-                                    trans="_t('alexa_room_assigned_info')"></bb-help-text>
+                            <bb-help-text ng-if="speechAssistants.Alexa.instance.params.assign_room && elementId.input.location != 0" 
+                                    trans="_t('alexa_room_assigned_info',  {'__call_name__': elementId.input.callName, '__room_name__': elementId.locations[elementId.input.location].title})|toTrusted"></bb-help-text>
                        </div>
                     </div>
                     <div ng-if="speechAssistants.GoogleHome.active">

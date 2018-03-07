@@ -59,18 +59,47 @@
 
 .wizard-tabs {
     .tab {
-        min-height: 450px;
+        min-height: 300px;
         .content {
+        	display: flex;
+        	flex-direction: column;
+        	@include mediaQueries(min-small) {
+		        display: block;
+		    }
+
         	h1 {
         		text-align: center;
+        		order: 0;
+        		margin: 10px 0 20px; 
         	}
+			.text {
+				order: 2;
+				text-align: justify;
+				ul, ol {
+					list-style-position: inside;	
+				}
+			}
+
+			.image {
+				order: 1;
+				text-align: center;
+				img {
+					max-height: 290px;
+				}
+			}
+
 
     		.text, .image {
-		        display: table-cell;
+		        display: block;
+				flex-direction: column;
 		        vertical-align: middle;
-		        text-align: center;
-		        width: 50%;
-		        padding: 50px;
+		        width: 100%;
+		        
+		        @include mediaQueries(min-small) {
+		        	display: table-cell;
+		        	padding: 10px 50px;
+		        	width: 50%;
+		        }
 		    }
     	}
     }

@@ -1,12 +1,12 @@
 <div ng-controller="AlexaManageController">
 	<bb-loader></bb-loader>
 	<!--<pre>{{alexa.devices.active | json}}</pre>-->
-	<h2>{{_t('alexa')}}</h2>
+	<h2>{{_t('lb_alexa')}}</h2>
 	<!-- Form -->
 	<form class="form form-page" ng-submit="store()">
 		<fieldset><!-- assign room -->
 			<div class="form-group form-inline ng-scope">
-				<label>{{_t("assign_room")}}</label>
+				<label>{{_t("assign_rooms")}}</label>
 				<div class="input-group">
 					<input id="then_delay" type="checkbox" ng-model="alexa.instance.params.assign_room">
 				</div>
@@ -15,7 +15,7 @@
 		</fieldset>
 		<!-- active devices -->
 		<div ng-if="_.size(alexa.devices.active) > 0">
-			<legend>{{_t('active_devices')}}</legend>
+			<legend>{{_t('activated_devices')}}</legend>
 			<fieldset>
 				<section class="accordion-wrap" ng-repeat="d in alexa.devices.active">
 					<h2 class="accordion-toggle chevron">
@@ -46,9 +46,6 @@
 							<input type="text" class="form-control" 
 									ng-model="d.callName" 
 									placeholder="{{_t('lb_add_call_name')}}" required="" />
-							<i ng-if="alexa.instance.params.assign_room && d.location != 0">
-								{{d.locationName}}
-							</i>
 							<bb-help-text trans="_t('call_name_info')"></bb-help-text>
 						</div>
 					</div>

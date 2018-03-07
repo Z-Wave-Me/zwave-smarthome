@@ -3,55 +3,64 @@
   <!-- SpeechAssistants navigation -->
   <div ng-include="'app/views/speech_assistants/navi.html'"></div>
   <div class="app-row app-row-report clearfix">
-    
-
     <!-- Widgets -->
     <div class="clearfix">
-        <div class="onlineapp" 
-            ng-class="{'widget-warning': v.hasInstance}"
-            ng-repeat="v in speechAssistants.modules track by v.id">
+        <!-- Alexa -->
+        <div class="onlineapp" ng-class="{'widget-warning': speechAssistants.Alexa.instance.active}">
              <!-- Onlineapp entry -->
-             <div class="onlineapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(v.id)" on-touch-end="onTouchEnd()" prevent-click="true">
+             <div class="onlineapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(speechAssistants.Alexa.module.id)" on-touch-end="onTouchEnd()" prevent-click="true">
               <!-- Online app header -->
-              <a class="onlineapp-header" href="#apps/online/{{v.id}}">
-                  <img class="onlineapp-img" alt="{{v.title}}" title="{{v.toolTipDescription}}" ng-src="{{v.icon ? v.iconPath : 'storage/img/placeholder-img.png'}}"
-                      ng-click_="redirectToRoute(dataHolder.modules.ids[v.modulename] ? false : 'apps/online/' + v.id)" />
+              <a class="onlineapp-header" href="#speech_assistants/Alexa/setup">
+                  <img class="onlineapp-img" alt="{{speechAssistants.Alexa.module.defaults.title}}" title="{{v.toolTipDescription}}" 
+                      ng-src="{{speechAssistants.Alexa.module.icon ? speechAssistants.Alexa.module.iconPath : 'storage/img/placeholder-img.png'}}" />
               </a>
               <!-- Online app body-->
               <div class="onlineapp-body">
                   <!-- Online app title -->
-                  <a class="onlineapp-title" ng-href_="#apps/online/{{v.id}}" title="{{v.title}}">{{v.title}}</a>
-
+                  <a class="onlineapp-title" 
+                    ng-href="#speech_assistants/Alexa/setup" 
+                    title="{{speechAssistants.Alexa.module.defaults.title}}">
+                      {{speechAssistants.Alexa.module.defaults.title}}
+                  </a>
+                  <!-- Online app footer -->
+                  <div class="onlineapp-footer" 
+                      ng-class="speechAssistants.Alexa.module.id == hasLongPress ? 'has-longpress' : ''" 
+                      on-long-press="onLongPress()" 
+                      prevent-click="true">
+                      <div class="btn-group group-apps">
+                        <button class="btn btn-default" title=""
+                            ng-click="createInstance(speechAssistants.Alexa.module)">
+                            <i class="fa fa-plus text-success"></i>
+                            <span class="btn-name" ng-bind="_t('lb_add_app')">Add App</span>
+                        </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!-- Google Home -->
+        <div class="onlineapp" ng-class="{'widget-warning': speechAssistants.GoogleHome.instance.active}">
+             <!-- Onlineapp entry -->
+             <div class="onlineapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(v.id)" on-touch-end="onTouchEnd()" prevent-click="true">
+              <!-- Online app header -->
+              <a class="onlineapp-header" href="#apps/online/{{v.id}}">
+                  <img class="onlineapp-img" alt="{{v.title}}" title="{{v.toolTipDescription}}" 
+                      ng-src="{{v.icon ? v.iconPath : 'storage/img/placeholder-img.png'}}" />
+              </a>
+              <!-- Online app body-->
+              <div class="onlineapp-body">
+                  <!-- Online app title -->
+                  <a class="onlineapp-title" ng-href="#speech_assistants/Alexa/setup" title="{{v.title}}">{{v.title}}</a>
                   <!-- Online app footer -->
                   <div class="onlineapp-footer" ng-class="v.id == hasLongPress ? 'has-longpress' : ''" on-long-press="onLongPress()" prevent-click="true">
-                      <!-- Ratings -->
-                      <!--<div class="rating-group">
-                          <i class="fa widget-rating" title="{{r}}" ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'" ng-repeat="r in dataHolder.onlineModules.ratingRange"></i>
-                          <span class="widget-rating-download">
-                              <i class="fa fa-download"></i> {{v.installed}}&times;</span>
-                      </div>-->
-                      <!-- Buttons -->
                       <div class="btn-group group-apps">
-                          <!-- Installed -->
-                          <!--<button class="btn btn-disabled" disabled title="{{_t('installed')}}" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
-                              <i class="fa fa-check"></i>
-                              <span class="btn-name">{{_t('installed')}}</span>
-                          </button>-->
-                          <!-- Updgrade -->
-                          <!--<button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}" ng-click="updateModule(v, _t('app_update_confirm'))"
-                              ng-if="dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' ">
-                              <i class="fa fa-level-up"></i>
-                              <span class="btn-name">{{_t('update_to_latest')}}</span>
-                          </button>-->
+
                       </div>
                   </div>
               </div>
           </div>
         </div>
     </div>
-
-
-
   </div>
   <div class="device-logo" ng-include="'app/views/speech_assistants/nav.html'"></div>
 </div> <!-- /ng-controller --> 

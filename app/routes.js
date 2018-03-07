@@ -255,6 +255,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/speech_assistants/alexa.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
+                }).// Speechassitant Alexa setup
+                when('/speech_assistants/Alexa/setup', {
+                    templateUrl: 'app/views/speech_assistants/setup_alexa.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).// Speechassitant Google Home
                 when('/speech_assistants/GoogleHome', {
                     templateUrl: 'app/views/speech_assistants/google_home.html',

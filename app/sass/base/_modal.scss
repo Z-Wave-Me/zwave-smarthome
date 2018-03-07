@@ -36,6 +36,33 @@
       width: 60%;
     }
   }
+
+  &.image {
+    padding-top: 100px;
+    .appmodal-close {
+        position: absolute;
+        top: $spacing-double;
+        transition: 0.3s;
+        font-size: 140%;
+        display: block;
+        text-decoration: none;
+        right: $spacing-third;
+        color: #ffffff;
+        z-index: 2;
+        cursor: pointer;
+        span {
+          display: inline-block;
+        }
+    }
+    .appmodal-in {
+        display: block;
+        background-color: transparent;
+        img {
+          margin: 0px auto;
+          display: block;
+        }
+    }
+  }
 }
 
 .appmodal-100 {
