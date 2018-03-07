@@ -1,0 +1,197 @@
+/* Night mode
+-------------------------------------------------- */
+
+// COLORS
+$app-brand-primary: #3bafda !default;
+$app-brand-success: #00b19d !default;
+$app-brand-info: #3ddcf7 !default;
+$app-brand-warning: #ffaa00 !default;
+$app-brand-danger: #ef5350 !default;
+$app-color-darkest: #24262D;
+$app-color-darker: #2A2D35;
+$app-color-dark:#2D3038;
+$app-color-dark-lighter:#3B3E47;
+$app-color-dark-lightest:#44464F;
+$app-color-light: #8a8d8f;
+$app-color-lighter: #aeb8c3;
+$app-color-lightest: #d4d4d4;
+$app-color-additional: rgb(116, 0, 71);
+$app-body-color: $app-color-lighter;
+$app-a-color: $app-color-lighter;
+$app-border-color: $app-color-dark-lightest;
+$app-border-color-lighter: lighten($app-border-color, 20%);
+;
+$app-heading-color: darken($app-body-color, 15%);
+$card-bcg-color: $app-color-dark-lightest;
+.night-true_:root {
+  background-color: #fefefe;
+  filter: invert(100%);
+  * {
+    background-color: inherit;
+  }
+  img:not([src*=".svg"]),
+  video {
+    filter: invert(100%);
+  }
+  #main_content {
+    margin-top: $header-h;
+  }
+}
+
+//.skin-default {
+.night-true {
+  /* Common
+    -------------------------------------------------- */
+  background-color: $app-color-darkest;
+  * {
+    color: $app-body-color;
+    border-color: $app-border-color;
+  }
+  /* Text
+    -------------------------------------------------- */
+  // Light
+  #sub_navigation_in ul .fa,
+  .page-navi ul li a,
+  .card-room .card-room-in .card-title a,
+  .localapp-in .localapp-body .localapp-title,
+  .onlineapp-in .onlineapp-body .onlineapp-title,
+  .badge-number {
+    color: $app-body-color;
+  } 
+  // Darker
+  .page-navi ul .fa,
+  .btn-goup-tabs .btn .fa,
+  .accordion-entry-title .fa,
+  .app-entry-local h2,
+  .comment-entry .comment-header,
+  a:hover, a:focus {
+    color: $app-color-light;
+  }
+  .text-primary {
+    color: $app-brand-primary;
+  }
+  .text-success {
+    color: $app-brand-success;
+  }
+  .text-info {
+    color: $app-brand-info;
+  }
+  .text-warning {
+    color: $app-brand-warning;
+  }
+  .text-danger {
+    color: $app-brand-danger;
+  }
+  /* Dark background
+    -------------------------------------------------- */
+  #main_navigation_wrap,
+  #main_navigation .active,
+  #main_navigation a:hover,
+  #sub_navigation_in .active,
+  .card-room .card-room-in .card-icon,
+  .app-row-report,
+  #apps_instances .accordion-entry,
+  .form-page,
+  .table-report,
+  .card-customize .card-customize-in .card-icon,
+  .app-row-imglist,
+  .list-panel,
+  #footer #footer_in,
+  .btn {
+    background: $app-color-darkest;
+  }
+  /* Lighter background
+    -------------------------------------------------- */
+    #main_navigation .active,
+  #sub_navigation_in ul,
+  .page-navi .page-navi-in,
+  .btn-goup-tabs .btn.active,
+  .widget-entry .widget-entry-in,
+  .widget-ctrl .btn-group .btn-primary,
+  .tbl-widget-ctrl .btn-group .btn-primary,
+  .card-element-dragdrop,
+  .elemnts-room-bar,
+  .event-level-warning,
+  .event-level-error,
+  .event-level-critical,
+  .localapp-in,
+  .localapp-in .localapp-footer .btn-default[disabled],
+  .onlineapp-in,
+  .submit-entry,
+  .bcg-active.false,
+  .bcg-danger,
+  .comment-entry,
+  .form-control,
+  .vendor-list,
+  .badge-number,
+  .label {
+    background: $app-color-dark !important;
+  }
+  /* Additional background
+    -------------------------------------------------- */
+  .btn-submit {
+    background: $app-color-additional !important;
+  }
+  /* Border darker
+    -------------------------------------------------- */
+  #main_navigation_wrap,
+  #sub_navigation_in ul,
+  #sub_navigation_in ul li,
+  #header .divider-vertical,
+  .page-navi .page-navi-in,
+  .page-navi ul li,
+  .widget-entry .widget-entry-in,
+  .widget-ctrl .btn-group .btn-primary,
+  .tbl-widget-ctrl .btn-group .btn-primary,
+  .card-room .card-room-in,
+  .report-entry .report-col,
+  .localapp-in .localapp-footer .btn-default[disabled],
+  .table tbody tr td,
+  .accordion-toggle > button,
+  .form-page .form-group,
+  .device-available-block.assigned,
+  .form-control,
+  .card-customize,
+  .vendor-list,
+  .list-panel,
+  #footer {
+    border-color: $app-border-color !important;
+  }
+  /* Border lighter
+    -------------------------------------------------- */
+  .btn-default.active,
+  .btn-default:hover,
+  .btn-default:focus,
+  .btn-default:active {
+    border-color: $app-border-color-lighter !important;
+  }
+  /* No border
+    -------------------------------------------------- */
+  .form-page,
+  .app-row-imglist {
+    border: 0;
+  }
+  
+ /* White images
+    -------------------------------------------------- */
+    #main_navigation .nav-logo,
+    .device-type-logo,
+    .device-logo img{
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+  }
+  /* Footer
+    -------------------------------------------------- */
+  #footer {
+    .container {
+      display: flex;
+      justify-content: space-between;
+      span:last-child {
+        margin-left: auto;
+        ;
+      }
+    }
+  }
+}
+
+//}
