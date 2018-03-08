@@ -133,11 +133,13 @@
   text-align: left;
   font-size: 100%;
   margin: 0 0 $spacing 0; // Media queries
+  width: 100%;
   @include mediaQueries(min-small) {
     display: inline-block;
     position: static;
     font-size: 100%;
     margin: 0 $spacing $spacing 0;
+    width: auto;
   }
   .fa {
     position: absolute;

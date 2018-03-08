@@ -15,7 +15,7 @@ var myAppController = angular.module('myAppController', []);
 myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q,cfg, cfgicons, dataFactory, dataService, deviceDetector,myCache, _) {
     
     // Global scopes
-    $scope.nightMode = true;
+    $scope.nightMode = false;
     $scope.$location = $location;
     $scope.deviceDetector = deviceDetector;
     angular.extend(cfg.route, {os:  deviceDetector.os});
@@ -62,6 +62,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         dataFactory.getApi('profiles', '/' + $scope.user.id).then(function (response) {
             angular.extend($scope.user, response.data.data);
             angular.extend(cfg.user, response.data.data);
+
         }, function (error) {
         });
 
@@ -95,8 +96,19 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 }
             });
         }
+        // Set night mode
+        $scope.nightMode = $cookies.nightMode ? true : false;
     };
     $scope.setSkin();
+
+    /**
+     * Set night mode
+     * @returns {undefined}
+     */
+    $scope.setNightMode = function (state) {
+      $scope.nightMode = state;
+      $cookies.nightMode = state;
+  };
 
 
     /**

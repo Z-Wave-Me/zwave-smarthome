@@ -144,4 +144,18 @@ body {
   }
 }
 
+/* Footer
+    -------------------------------------------------- */
+
+#footer {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    span:last-child {
+      margin-left: auto;
+      ;
+    }
+  }
+}
+
 @import "_shui_night";

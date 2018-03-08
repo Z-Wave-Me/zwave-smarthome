@@ -249,7 +249,7 @@
                             <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
                     </span>
                     <span ng-hide="cfg.skin.active != 'default'">
-                        <i class="fa clickable fa-lg" aria-hidden="true" ng-click="nightMode = !nightMode" ng-class="nightMode ? 'fa-sun-o' : 'fa-moon-o'"></i>
+                        <i class="fa clickable fa-lg" aria-hidden="true" ng-click="setNightMode(nightMode = !nightMode)" ng-class="nightMode ? 'fa-sun-o' : 'fa-moon-o'"></i>
                     </span>
                   
                 </div>

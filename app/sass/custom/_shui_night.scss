@@ -20,24 +20,7 @@ $app-body-color: $app-color-lighter;
 $app-a-color: $app-color-lighter;
 $app-border-color: $app-color-dark-lightest;
 $app-border-color-lighter: lighten($app-border-color, 20%);
-;
-$app-heading-color: darken($app-body-color, 15%);
-$card-bcg-color: $app-color-dark-lightest;
-.night-true_:root {
-  background-color: #fefefe;
-  filter: invert(100%);
-  * {
-    background-color: inherit;
-  }
-  img:not([src*=".svg"]),
-  video {
-    filter: invert(100%);
-  }
-  #main_content {
-    margin-top: $header-h;
-  }
-}
-
+$input-bcg-color: $app-color-dark-lightest;
 //.skin-default {
 .night-true {
   /* Common
@@ -55,18 +38,32 @@ $card-bcg-color: $app-color-dark-lightest;
   .card-room .card-room-in .card-title a,
   .localapp-in .localapp-body .localapp-title,
   .onlineapp-in .onlineapp-body .onlineapp-title,
+  .app-dropdown ul li a,
+  #loading,
+  .btn-widget-time,
+  .txt-widget-time,
+  .alert,
   .badge-number {
     color: $app-body-color;
-  } 
-  // Darker
+  } // Darker
   .page-navi ul .fa,
   .btn-goup-tabs .btn .fa,
   .accordion-entry-title .fa,
   .app-entry-local h2,
   .comment-entry .comment-header,
-  a:hover, a:focus {
+  .appmodal-header h3,
+  a:hover,
+  a:focus,
+  .read-true .report-body>*,
+  .btn-default:hover,
+  .btn-default:focus,
+  .btn-default:active,
+  .btn-default.active {
     color: $app-color-light;
-  }
+  } // Dark
+  .card-customize .card-customize-in .card-footer {
+    color: $app-color-darkest;
+  } // State
   .text-primary {
     color: $app-brand-primary;
   }
@@ -96,13 +93,19 @@ $card-bcg-color: $app-color-dark-lightest;
   .card-customize .card-customize-in .card-icon,
   .app-row-imglist,
   .list-panel,
+  .app-dropdown ul li:hover,
+  .input-group-addon,
+  .automation .accordion-wrap.nested .accordion .accordion,
+  #loading .loading-in,
+  .appmodal .appmodal-in,
+  .smart-start .container .entry,
   #footer #footer_in,
   .btn {
-    background: $app-color-darkest;
+    background: $app-color-darkest !important;
   }
   /* Lighter background
     -------------------------------------------------- */
-    #main_navigation .active,
+  #main_navigation .active,
   #sub_navigation_in ul,
   .page-navi .page-navi-in,
   .btn-goup-tabs .btn.active,
@@ -118,19 +121,38 @@ $card-bcg-color: $app-color-dark-lightest;
   .localapp-in .localapp-footer .btn-default[disabled],
   .onlineapp-in,
   .submit-entry,
+  .app-dropdown,
   .bcg-active.false,
+  .automation .accordion-wrap .accordion,
   .bcg-danger,
   .comment-entry,
-  .form-control,
   .vendor-list,
   .badge-number,
-  .label {
+  .appmodal-header,
+  .appmodal-footer,
+  .alert,
+  .bcg-success,
+  .infowindow
+   {
     background: $app-color-dark !important;
   }
   /* Additional background
     -------------------------------------------------- */
   .btn-submit {
     background: $app-color-additional !important;
+  }
+  
+  /* Input background
+    -------------------------------------------------- */
+  .form-control,
+  .slider,
+  .ajs-input,
+  .label-round,
+  .label {
+    background: $input-bcg-color;
+  }
+  .slider:before {
+    background: $app-brand-danger;
   }
   /* Border darker
     -------------------------------------------------- */
@@ -147,13 +169,25 @@ $card-bcg-color: $app-color-dark-lightest;
   .report-entry .report-col,
   .localapp-in .localapp-footer .btn-default[disabled],
   .table tbody tr td,
-  .accordion-toggle > button,
+  .accordion-toggle>button,
   .form-page .form-group,
   .device-available-block.assigned,
   .form-control,
+  .ajs-input,
+  .input-group-addon,
+  .slider,
+  .slider:before,
+  .app-dropdown,
+  .app-dropdown ul li,
   .card-customize,
   .vendor-list,
+  .automation .accordion-wrap .accordion-toggle .no-toggle,
   .list-panel,
+  .appmodal-header,
+  .appmodal-footer,
+  .infowindow,
+  #loading .loading-in,
+  .label-round,
   #footer {
     border-color: $app-border-color !important;
   }
@@ -168,30 +202,113 @@ $card-bcg-color: $app-color-dark-lightest;
   /* No border
     -------------------------------------------------- */
   .form-page,
+  .submit-entry,
   .app-row-imglist {
     border: 0;
   }
-  
- /* White images
+  /* Fix me
     -------------------------------------------------- */
-    #main_navigation .nav-logo,
-    .device-type-logo,
-    .device-logo img{
+  @include mediaQueries(max-small) {
+    .fix-me-top {
+      background: $app-color-darkest;
+      border-color: $app-border-color;
+    }
+  }
+  /* Alert
+    -------------------------------------------------- */
+  .alert-success {
+    border-color: $app-brand-warning;
+  }
+  .alert-warning {
+    border-color: $app-brand-warning;
+  }
+  .alert-danger {
+    border-color: $app-brand-danger;
+  }
+  /* Modal
+    -------------------------------------------------- */
+  @include mediaQueries(min-small) {
+    .appmodal-in {
+      border: solid 4px $app-border-color;
+    }
+  }
+  /* White images
+    -------------------------------------------------- */
+  #main_navigation .nav-logo,
+  .device-type-logo,
+  .device-logo img {
     -webkit-filter: brightness(0) invert(1);
     filter: brightness(0) invert(1);
   }
-  /* Footer
-    -------------------------------------------------- */
-  #footer {
-    .container {
-      display: flex;
-      justify-content: space-between;
-      span:last-child {
-        margin-left: auto;
-        ;
+  /* Alertify
+-------------------------------------------------- */
+  .alertify {
+    .ajs-dialog {
+      border: solid 2px $app-border-color;
+    }
+    .ajs-dialog,
+    .ajs-header,
+    .ajs-footer {
+      color: $app-body-color;
+      background-color: $app-color-darkest;
+    }
+    .ajs-footer {
+      .ajs-button {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857;
+        border-radius: 4px;
+        font-size: 110%;
+        background-color: $app-color-dark-lightest;
+        color: $app-color-lighter;
+        border: solid 1px lighten($app-color-dark-lightest, 20%);
+        &.ajs-ok {
+          color: $app-color-light;
+          border: solid 1px $app-border-color;
+          background-color: $app-color-additional;
+          &:hover,
+          &:focus {
+            background-color: $app-border-color;
+            color: $app-color-light;
+          }
+        }
       }
     }
   }
-}
-
-//}
+  /* Alpaca
+    -------------------------------------------------- */
+  .alpaca-field-object {
+    border: 1px $app-border-color solid;
+  }
+  .table-bordered {
+    border: 1px solid $app-border-color;
+  }
+  .table-striped>tbody>tr:nth-child(odd)>td,
+  .table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: $app-color-dark-lightest;
+  }
+  #alpaca_data {
+    .table-bordered>thead>tr>th,
+    .table-bordered>thead>tr>td {
+      border: 1px solid $app-border-color; //border-bottom: 0;
+    }
+    .table-bordered>tbody>tr>td,
+    .table-bordered>tfoot>tr>th,
+    .table-bordered>tfoot>tr>td {
+      border: 0px solid $app-border-color;
+    }
+    .btn-default[disabled] {
+      background: transparent;
+      border-color: $app-border-color;
+    }
+  }
+} //}

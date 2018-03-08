@@ -188,7 +188,7 @@
                 border: 0 none;
                 color: lighten($app-body-color, 40%);
                 font-size: 85%;
-                background-color: transparent;
+                background-color: transparent !important;
             }
 
         }
