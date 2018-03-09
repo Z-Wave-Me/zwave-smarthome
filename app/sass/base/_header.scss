@@ -6,7 +6,7 @@
   top: 0;
   right: 0;
   left: 0;
-  z-index: 2300;
+  z-index: $zindex-header;
   @include mediaQueries(min-small) {
     z-index: $zindex-header;
   } //margin-bottom: $spacing-double;

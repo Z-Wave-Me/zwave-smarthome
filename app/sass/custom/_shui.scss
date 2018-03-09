@@ -34,6 +34,7 @@
       border-left: 1px solid $app-border-color;
       ul {
         margin: 0;
+        margin: $header-h 0 0;
         background: transparent;
         @include appBoxShadow(none);
         border: 0;

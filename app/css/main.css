@@ -11638,7 +11638,7 @@ img {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 2300;
+  z-index: 2100;
   /* MIN WIDTH */
   /* MAX WIDTH */
   color: #0d0d0d;
@@ -18193,25 +18193,26 @@ img.widget-promo-image {
   /* line 35, ../sass/custom/_shui.scss */
   #sub_navigation #sub_navigation_in ul {
     margin: 0;
+    margin: 50px 0 0;
     background: transparent;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
     border: 0;
   }
-  /* line 41, ../sass/custom/_shui.scss */
+  /* line 42, ../sass/custom/_shui.scss */
   #sub_navigation #sub_navigation_in ul li .subnavi-arrow {
     display: none;
   }
 }
 /* Skin colors
 -------------------------------------------------- */
-/* line 54, ../sass/custom/_shui.scss */
+/* line 55, ../sass/custom/_shui.scss */
 body.night-false {
   background-color: #F6F6F6;
 }
 
-/* line 59, ../sass/custom/_shui.scss */
+/* line 60, ../sass/custom/_shui.scss */
 .night-false {
   /* Main navigation
 -------------------------------------------------- */
@@ -18240,64 +18241,64 @@ body.night-false {
   /* Automation
 -------------------------------------------------- */
 }
-/* line 61, ../sass/custom/_shui.scss */
+/* line 62, ../sass/custom/_shui.scss */
 .night-false .device-available-block.assigned {
   background-color: #e7e7e7;
   border: 0;
 }
-/* line 68, ../sass/custom/_shui.scss */
+/* line 69, ../sass/custom/_shui.scss */
 .night-false #main_navigation_wrap {
   border-bottom: solid 4px #DDD;
   background-color: #E9E9E9;
 }
-/* line 72, ../sass/custom/_shui.scss */
+/* line 73, ../sass/custom/_shui.scss */
 .night-false #main_navigation_wrap #main_navigation .active {
   background-color: #DDD;
   color: #ffffff;
 }
 @media only screen and (max-width: 767px) {
-  /* line 81, ../sass/custom/_shui.scss */
+  /* line 82, ../sass/custom/_shui.scss */
   .night-false .fix-me-top {
     background-color: #E9E9E9;
     border-bottom: solid 4px #DDD;
   }
 }
-/* line 88, ../sass/custom/_shui.scss */
+/* line 89, ../sass/custom/_shui.scss */
 .night-false .form-page {
   border: solid 4px #e7e7e7;
 }
-/* line 90, ../sass/custom/_shui.scss */
+/* line 91, ../sass/custom/_shui.scss */
 .night-false .form-page .form-group {
   border-color: #e7e7e7;
 }
-/* line 94, ../sass/custom/_shui.scss */
+/* line 95, ../sass/custom/_shui.scss */
 .night-false .submit-entry {
   background-color: #e7e7e7;
   border-top: solid 1px #e7e7e7;
 }
-/* line 100, ../sass/custom/_shui.scss */
+/* line 101, ../sass/custom/_shui.scss */
 .night-false fieldset.expanded,
 .night-false .fieldset.expanded {
   background-color: #F6F6F6;
   border-top: solid 4px #e7e7e7;
   border-bottom: solid 4px #e7e7e7;
 }
-/* line 109, ../sass/custom/_shui.scss */
+/* line 110, ../sass/custom/_shui.scss */
 .night-false .btn-goup-tabs .btn {
   background-color: #eeeeee;
 }
-/* line 111, ../sass/custom/_shui.scss */
+/* line 112, ../sass/custom/_shui.scss */
 .night-false .btn-goup-tabs .btn.active {
   background-color: #dcdcdc;
 }
-/* line 119, ../sass/custom/_shui.scss */
+/* line 120, ../sass/custom/_shui.scss */
 .night-false .widget-entry .widget-entry-in {
   border-color: #d3d3d3;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 119, ../sass/custom/_shui.scss */
+  /* line 120, ../sass/custom/_shui.scss */
   .night-false .widget-entry .widget-entry-in {
     border: solid 4px #FFFFFF;
     background: #f6f6f6;
@@ -18322,7 +18323,7 @@ body.night-false {
   }
 }
 @media only screen and (min-width: 320px) {
-  /* line 133, ../sass/custom/_shui.scss */
+  /* line 134, ../sass/custom/_shui.scss */
   .night-false .card-room .card-room-in {
     border: solid 4px #ffffff;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18330,13 +18331,13 @@ body.night-false {
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 141, ../sass/custom/_shui.scss */
+/* line 142, ../sass/custom/_shui.scss */
 .night-false .elemnts-room-bar {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 141, ../sass/custom/_shui.scss */
+  /* line 142, ../sass/custom/_shui.scss */
   .night-false .elemnts-room-bar {
     border: 0;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18360,7 +18361,7 @@ body.night-false {
     /* IE6-9 */
   }
 }
-/* line 151, ../sass/custom/_shui.scss */
+/* line 152, ../sass/custom/_shui.scss */
 .night-false .localapp-in,
 .night-false .onlineapp-in {
   border-color: #d3d3d3;
@@ -18368,7 +18369,7 @@ body.night-false {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 151, ../sass/custom/_shui.scss */
+  /* line 152, ../sass/custom/_shui.scss */
   .night-false .localapp-in,
   .night-false .onlineapp-in {
     border: solid 4px #FFFFFF;
@@ -18394,11 +18395,11 @@ body.night-false {
   }
 }
 @media only screen and (min-width: 320px) {
-  /* line 164, ../sass/custom/_shui.scss */
+  /* line 165, ../sass/custom/_shui.scss */
   .night-false .card-customize {
     border: 0;
   }
-  /* line 166, ../sass/custom/_shui.scss */
+  /* line 167, ../sass/custom/_shui.scss */
   .night-false .card-customize .card-customize-in {
     border: solid 4px #ffffff;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18406,23 +18407,23 @@ body.night-false {
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 176, ../sass/custom/_shui.scss */
+/* line 177, ../sass/custom/_shui.scss */
 .night-false .automation .accordion-wrap .accordion {
   background-color: #F6F6F6;
 }
-/* line 181, ../sass/custom/_shui.scss */
+/* line 182, ../sass/custom/_shui.scss */
 .night-false .automation .accordion-wrap.nested .accordion .accordion {
   background-color: #e9e9e9;
 }
 
 /* Footer
     -------------------------------------------------- */
-/* line 194, ../sass/custom/_shui.scss */
+/* line 195, ../sass/custom/_shui.scss */
 #footer .container {
   display: flex;
   justify-content: space-between;
 }
-/* line 197, ../sass/custom/_shui.scss */
+/* line 198, ../sass/custom/_shui.scss */
 #footer .container span:last-child {
   margin-left: auto;
 }
