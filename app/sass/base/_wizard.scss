@@ -46,14 +46,22 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
-
+	
     .next {
-    	margin-left: auto;
+    	text-align: right;
+    	margin-left: $spacing-half;
 	}
 
 	.prev {
-		margin-right: auto;
+		text-align: left;
+	}
+	.cancel {
+		margin-left: auto;
+		text-align: right;
 	}
 }
 

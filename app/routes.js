@@ -265,6 +265,11 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/speech_assistants/google_home.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
+                }).// Speechassitant Google Home setup
+                when('/speech_assistants/GoogleHome/setup', {
+                    templateUrl: 'app/views/speech_assistants/setup_google_home.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).//Enocean Devices
                 when('/enocean/devices/:brandname?', {
                     templateUrl: 'app/views/enocean/devices.html',

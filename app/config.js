@@ -413,7 +413,20 @@ var config_data = {
           {"toggleButton":[]}, 
           {"switchMultilevel":[]}, 
           {"thermostat":[]}, 
-          {"doorlock":[]}
+          {"doorlock":[]},
+          {"switchRGBW":[]}
+        ]
+      },
+      'GoogleHome': {
+        'deviceTypeWhitelist': [
+          {"sensorMultilevel":
+              ["temperature"]
+          }, 
+          {"switchBinary":[]}, 
+          {"toggleButton":[]}, 
+          {"switchMultilevel":[]}, 
+          {"thermostat":[]},
+          {"switchRGBW":[]}
         ]
       }
     },

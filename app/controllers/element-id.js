@@ -148,6 +148,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
                 $scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, input.id, input.hide_events);
                 $scope.updateProfile($scope.user, input.id);
                 $scope.updateAlexaInstance($scope.speechAssistants.Alexa.instance, input);
+                $scope.updateGoogleHomeInstance($scope.speechAssistants.GoogleHome.instance, input);
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;
@@ -200,7 +201,45 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             instance.params.devices.push(obj);
             action = true;
         }
+        console.log("instance.params.devices", instance.params.devices);
+        if(action) {
+            dataFactory.storeApi('instances', parseInt(instance.id, 10), instance).then(function (response) {
+                $scope.loading = false
+                dataService.showNotifier({message: $scope._t('success_updated')});
+            }, function (error) {
+                $scope.loading = false
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        } else {
+            dataService.showNotifier({message: $scope._t('success_updated')});
+        }
+    }
 
+    /**
+     * Update Google Home instance
+     */
+    $scope.updateGoogleHomeInstance = function(instance, device) {
+        var action = false,
+            googleHomeDevIndex = instance.params.devices.findIndex(function(dev) {return dev.id == device.id});
+        
+        if(device.googleHomeActivated && googleHomeDevIndex !== -1) {
+            if(instance.params.devices[googleHomeDevIndex].callName !== device.callName) { // update
+                instance.params.devices[googleHomeDevIndex].callName = device.callName;
+                action = true;
+            }
+        } else if(!device.googleHomeActivated && googleHomeDevIndex !== -1) { // delete
+            instance.params.devices.splice(googleHomeDevIndex, 1);
+            action = true;
+        } else if(device.googleHomeActivated && googleHomeDevIndex == -1) { // add
+            var obj = {
+                "id": device.id,
+                "name": device.metrics.title,
+                "callName": device.callName
+            }
+            instance.params.devices.push(obj);
+            action = true;
+        }
+        console.log("instance.params.devices", instance.params.devices);
         if(action) {
             dataFactory.storeApi('instances', parseInt(instance.id, 10), instance).then(function (response) {
                 $scope.loading = false
@@ -323,6 +362,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         );
 
         setAlexa($scope.speechAssistants.Alexa.instance, $scope.elementId.input);
+        setGoogleHome($scope.speechAssistants.GoogleHome.instance, $scope.elementId.input);
     };
 
     function setAlexa(instance, device) {
@@ -352,15 +392,65 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             if(pos != -1) {
                 callName = instance.params.devices[pos].callName;
                 alexaActivated = true;
-            }    
-            angular.extend($scope.elementId.input, {
-                callName: callName, 
-                alexaActivated: alexaActivated,
-                alexaWhitelisted: isWhitelisted
-            });
+            } 
+            console.log($scope.elementId.input.callName);
+            if($scope.elementId.input.callName && $scope.elementId.input.callName !== "") {
+                angular.extend($scope.elementId.input, {
+                    alexaActivated: alexaActivated,
+                    alexaWhitelisted: isWhitelisted
+                });
+            } else { 
+                angular.extend($scope.elementId.input, {
+                    callName: callName, 
+                    alexaActivated: alexaActivated,
+                    alexaWhitelisted: isWhitelisted
+                });
+            }
         }
     }
 
+    function setGoogleHome(instance, device) {
+        // Alexa
+        var isWhitelisted = false,
+            wlDev = _.find(cfg.speechAssistants.GoogleHome.deviceTypeWhitelist, function(needle) {
+            if(Object.keys(needle) == device.deviceType) {
+                return needle;
+            }
+        });
+
+        if(typeof wlDev !== 'undefined') {
+            if(wlDev[Object.keys(wlDev)].length > 0) {
+                if(wlDev[Object.keys(wlDev)].indexOf(device.probeType) > -1) {
+                    isWhitelisted = true;
+                }
+            } else {
+                isWhitelisted = true;
+            }
+        }
+
+        if(instance.active && isWhitelisted) {
+            var pos = instance.params.devices.findIndex(function(dev) {return dev.id == device.id}),
+                callName = device.metrics.title,
+                googleHomeActivated = false;
+            
+            if(pos != -1) {
+                callName = instance.params.devices[pos].callName;
+                googleHomeActivated = true;
+            }
+            if($scope.elementId.input.callName && $scope.elementId.input.callName !== "") {
+                angular.extend($scope.elementId.input, { 
+                    googleHomeActivated: googleHomeActivated,
+                    googleHomeWhitelisted: isWhitelisted
+                });    
+            } else {
+                angular.extend($scope.elementId.input, {
+                    callName: callName, 
+                    googleHomeActivated: googleHomeActivated,
+                    googleHomeWhitelisted: isWhitelisted
+                });
+            }
+        }
+    }
 
     function setSpeechAssitants(instances) {
         var Alexa_instance = _.findWhere(instances, {moduleId:'Alexa'});
@@ -379,22 +469,6 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             $scope.speechAssistants.GoogleHome.instance = GoogleHome_instance;
         }
     }
-
-    /**
-     * todo: deprecated
-     * Set output
-     */
-    /*function setOutput(input) {
-        return {
-            'id': input.id,
-            'location': parseInt(input.location, 10),
-            'tags': input.tags,
-            'metrics': input.metrics,
-            'visibility': input.visibility,
-            'permanently_hidden': input.permanently_hidden
-        };
-    }
-    ;*/
 
     /**
      * Set tag list

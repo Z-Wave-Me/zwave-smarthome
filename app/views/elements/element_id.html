@@ -1,6 +1,7 @@
 <!-- Element view -->
 <div ng-controller="ElementIdController" class="mobile-padding">
     <bb-loader></bb-loader>
+    <pre>{{elementId.input | json}}</pre>
     <div ng-if="elementId.show">
         <h2><span ng-bind="_t('lb_cfg_view') + ':'"></span> <span ng-bind="elementId.input.metrics.title"></span></h2>
         <form name="form_element" id="form_element" class="form form-page" autocomplete="off"
@@ -152,36 +153,37 @@
                             </label>
                             <bb-help-text trans="_t('alexa_info')"></bb-help-text>
                         </div>
-                        <div ng-if="elementId.input.alexaActivated" class="form-inline">
+                        <!--<div ng-if="elementId.input.alexaActivated" class="form-inline">
                             <label>{{_t('lb_call_name')}}:</label>
-                            <input name="call_name" id="call_name" type="text"
-                               class="form-control" value="{{elementId.input.callName}}"
+                            <input name="alexa_call_name" id="alexa_call_name" type="text"
+                               class="form-control" value="{{elementId.input.alexaCallName}}"
                                placeholder="{{_t('lb_add_call_name')}}"
-                               ng-model="elementId.input.callName"/>
+                               ng-model="elementId.input.alexaCallName"/>
                             <bb-help-text trans="_t('call_name_info')"></bb-help-text>
-                            <bb-help-text ng-if="speechAssistants.Alexa.instance.params.assign_room && elementId.input.location != 0" 
-                                    trans="_t('alexa_room_assigned_info',  {'__call_name__': elementId.input.callName, '__room_name__': elementId.locations[elementId.input.location].title})|toTrusted"></bb-help-text>
-                       </div>
+                       </div>-->
                     </div>
-                    <div ng-if="speechAssistants.GoogleHome.active">
+                    <div ng-if="speechAssistants.GoogleHome.active && elementId.input.googleHomeWhitelisted">
                         <!-- Google Home -->
-                        <div>
+                        <div> 
                             <label for="activate_google_home">
                                 <input type="checkbox" name="activate_google_home" value="" id="activate_google_home"
-                                   ng-model_=""
+                                   ng-model="elementId.input.googleHomeActivated"
                                    ng-checked_=""/>
-                                <span>{{_t('lb_activated_google_home')}}</span>
+                                <span>{{_t('lb_activate_google_home')}}</span>
                             </label>
                             <bb-help-text trans="_t('google_home_info')"></bb-help-text>
                         </div>
-                        <div class="form-inline">
-                            <label>{{_t('lb_call_name')}}:</label>
-                            <input name="title" id="title" type="text"
-                               class="form-control" value=""
-                               placeholder="{{_t('lb_add_call_name')}}"
-                               ng-model_=""/>
-                        </div>
                     </div>
+                    <div ng-if="elementId.input.googleHomeActivated || elementId.input.alexaActivated" class="form-inline">
+                        <label>{{_t('lb_call_name')}}:</label>
+                        <input name="google_home_call_name" id="google_home_call_name" type="text"
+                           class="form-control" value="{{elementId.input.callName}}"
+                           placeholder="{{_t('lb_add_call_name')}}"
+                           ng-model="elementId.input.callName"/>
+                        <bb-help-text trans="_t('call_name_info')"></bb-help-text>
+                        <bb-help-text ng-if="speechAssistants.Alexa.instance.params.assign_room && elementId.input.location != 0" 
+                                    trans="_t('alexa_room_assigned_info',  {'__call_name__': elementId.input.alexaCallName, '__room_name__': elementId.locations[elementId.input.location].title})|toTrusted"></bb-help-text>
+                   </div>
                 </div>
                 <!-- Rooms -->
                 <div class="form-group form-inline" ng-if="elementAccess(cfg.role_access.admin)">
