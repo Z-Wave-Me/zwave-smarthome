@@ -1,10 +1,53 @@
 /* Default SmartHome skin
 -------------------------------------------------- */
 
-/* Variables
+/* Navigation
 -------------------------------------------------- */
 
-/* Body
+/* #main_navigation_wrap {
+  #main_navigation {
+    @include mediaQueries(max-small) {
+      #navigation_right{
+        float: left;
+      }
+      #navigation_left{
+        position: static;
+        float: right;
+      }
+    }
+  }
+} */
+
+/* Subnavigation
+-------------------------------------------------- */
+@include mediaQueries(max-small) {
+  #sub_navigation {
+    
+    #sub_navigation_in {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 75%;
+      background-color: #FFFFFF;
+      @include appBoxShadow($app-box-shadow);
+      border-left: 1px solid $app-border-color;
+      ul {
+        margin: 0;
+        background: transparent;
+        @include appBoxShadow(none);
+        border: 0;
+        li {
+          .subnavi-arrow {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Skin colors
 -------------------------------------------------- */
 
 body {

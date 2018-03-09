@@ -97,7 +97,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             });
         }
         // Set night mode
-        $scope.nightMode = $cookies.nightMode ? true : false;
+        $scope.nightMode = ($cookies.nightMode == 'true');
     };
     $scope.setSkin();
 

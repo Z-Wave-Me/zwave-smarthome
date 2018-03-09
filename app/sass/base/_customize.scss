@@ -93,8 +93,11 @@
 .customize-detail {
   padding: $spacing;
   margin: $spacing 0;
-  max-height: 600px;
-  overflow: auto;
+  @include mediaQueries(min-small) { 
+    max-height: 600px;
+    overflow: auto;
+  }
+ 
 }
 
 .customize-detail-title {
@@ -120,8 +123,8 @@
 
 .customize-icon-list {
   border-top: solid 1px $app-border-color;
-  height: 300px;
-  overflow: scroll;
+  //max-height: 600px;
+  //overflow: scroll;
   .customize-icon-preview {
     display: inline-block;
     margin: $spacing;

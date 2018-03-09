@@ -99,7 +99,7 @@ $input-bcg-color: $app-color-dark-lightest;
   #loading .loading-in,
   .appmodal .appmodal-in,
   .smart-start .container .entry,
-  #footer #footer_in,
+   #footer #footer_in,
   .btn {
     background: $app-color-darkest !important;
   }
@@ -193,6 +193,7 @@ $input-bcg-color: $app-color-dark-lightest;
   }
   /* Border lighter
     -------------------------------------------------- */
+    #sub_navigation_in,
   .btn-default.active,
   .btn-default:hover,
   .btn-default:focus,
@@ -206,6 +207,19 @@ $input-bcg-color: $app-color-dark-lightest;
   .app-row-imglist {
     border: 0;
   }
+
+  /* Subnavigation
+-------------------------------------------------- */
+
+@include mediaQueries(max-small) {
+  #sub_navigation {
+    #sub_navigation_in {
+       background-color: $app-color-dark;
+     
+    }
+  }
+}
+
   /* Fix me
     -------------------------------------------------- */
   @include mediaQueries(max-small) {
@@ -227,7 +241,15 @@ $input-bcg-color: $app-color-dark-lightest;
   }
   /* Modal
     -------------------------------------------------- */
+    @include mediaQueries(max-small) {
+      .appmodal:before {
+        background: $app-color-darkest !important;
+        }
+    }
   @include mediaQueries(min-small) {
+    .appmodal:before {
+      background-color: $app-overlay-bcg-color;
+      }
     .appmodal-in {
       border: solid 4px $app-border-color;
     }
