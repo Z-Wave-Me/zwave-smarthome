@@ -22,7 +22,6 @@
 -------------------------------------------------- */
 @include mediaQueries(max-small) {
   #sub_navigation {
-    
     #sub_navigation_in {
       position: fixed;
       top: 0;
@@ -202,4 +201,4 @@ body {
   }
 }
 
-@import "_shui_night";
+@import "_shui_night"; 

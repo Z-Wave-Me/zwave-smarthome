@@ -4,178 +4,161 @@
 $onlineapp-height: 120px;
 $onlineapp-img: 64px;
 .app-entry-online {
-    margin: 0 $spacing; // With categories
-    .app-entry-cat {
-        margin: 0;
-        .app-entry-title {
-            width: 70%;
-            float: left;
-            color: $accordion-heading-color;
-            font-weight: normal;
-            h2 {
-                font-size: 120%;
-            }
-        }
-        .app-entry-btn {
-            text-align: right;
-            width: 25%;
-            float: right;
-            /*display: table-cell;
-            vertical-align: bottom;*/
-            .btn {
-                margin: $spacing-double 0 0 0;
-            }
-        }
+  margin: 0 $spacing; // With categories
+  .app-entry-cat {
+    margin: 0;
+    @include displayFlex();
+    @include justifyContent(space-between);
+    @include alignItems(center);
+    color: $accordion-heading-color;
+    font-weight: normal;
+    h2 {
+      font-size: 120%;
     }
+  }
 }
 
 .onlineapp {
-    @include appFloat(left);
-    width: 33.3333%;
-    /* @include mediaQueries(min-esmall) {
+  @include appFloat(left);
+  width: 33.3333%;
+  /* @include mediaQueries(min-esmall) {
         
         width: 33.3333%;
     } */
-    @include mediaQueries(min-small) {
-        width: 25%;
-    }
-    @include mediaQueries(min-medium) {
-        width: 20%;
-    }
-    @include mediaQueries(min-large) {
-        width: 16.6666%;
-    }
+  @include mediaQueries(min-small) {
+    width: 25%;
+  }
+  @include mediaQueries(min-medium) {
+    width: 20%;
+  }
+  @include mediaQueries(min-large) {
+    width: 16.6666%;
+  }
 }
-
 
 /* Inner element */
 
 .onlineapp-in {
-    border: solid 1px $app-border-color;
-    background-color: $card-bcg-color;
-    position: relative;
-    height: $onlineapp-height;
-    padding: $spacing;
-    margin: $spacing-half;
-    text-align: center; // Media queries
+  border: solid 1px $app-border-color;
+  background-color: $card-bcg-color;
+  position: relative;
+  height: $onlineapp-height;
+  padding: $spacing;
+  margin: $spacing-half;
+  text-align: center; // Media queries
+  @include mediaQueries(min-small) {
+    //height: 268px;
+    height: $onlineapp-height + 90px;
+  }
+  @include mediaQueries(min-large) {
+    //height: $onlineapp-height + 80px;
+  }
+  /* Card header */
+  .onlineapp-header {
+    display: inline-block;
+    margin: 0 0 $spacing 0;
+    width: 100%;
+    width: $onlineapp-img;
+    height: $onlineapp-img;
     @include mediaQueries(min-small) {
-        //height: 268px;
-        height: $onlineapp-height + 90px;
+      width: $onlineapp-img + 20px;
+      height: $onlineapp-img + 20px;
     }
-    @include mediaQueries(min-large) {
-        //height: $onlineapp-height + 80px;
+    .onlineapp-img {
+      width: 100%;
+      max-width: $onlineapp-img; //max-height: $onlineapp-img;
+      @include mediaQueries(min-small) {
+        max-width: $onlineapp-img + 20px; // max-height: $onlineapp-img + 20px;
+      }
     }
-    /* Card header */
-    .onlineapp-header {
-        display: inline-block;
-        margin: 0 0 $spacing 0;
-        width: 100%;
-        width: $onlineapp-img;
-        height: $onlineapp-img;
-        @include mediaQueries(min-small) {
-            width: $onlineapp-img + 20px;
-            height: $onlineapp-img + 20px;
+  }
+  /* Body */
+  .onlineapp-body {
+    .onlineapp-title {
+      font-size: 80%;
+      display: block;
+      color: lighten($app-body-color, 10%);
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @include mediaQueries(min-small) {
+        font-size: 100%;
+      }
+    }
+  }
+  /* Footer */
+  .onlineapp-footer {
+    .rating-group {
+      color: #8c8c8c;
+      font-size: 90%;
+      margin: $spacing 0;
+      .widget-rating {
+        //color: lighten($app-body-color, 10%);
+        &.israted {
+          color: lighten(#f0ad4e, 20%);
         }
-        .onlineapp-img {
-            width: 100%;
-            max-width: $onlineapp-img;
-            //max-height: $onlineapp-img;
-            @include mediaQueries(min-small) {
-                max-width: $onlineapp-img + 20px;
-               // max-height: $onlineapp-img + 20px;
-            }
-        }
+      }
     }
-    /* Body */
-    .onlineapp-body {
-        .onlineapp-title {
-            font-size: 80%;
+    .btn-name {
+      display: none;
+    }
+    position: absolute;
+    left: 0px;
+    bottom: $spacing;
+    width: 100%;
+    @include mediaQueries(max-small) {
+      padding: $spacing-half;
+      display: none;
+      top: 0;
+      left: 0px;
+      background-color: #fff;
+      height: $onlineapp-height - 2px;
+      &.has-longpress {
+        display: block;
+        .widget-rating-download {
+          display: block;
+        }
+        .btn-group {
+          display: block;
+          .btn {
+            margin: 2px;
+            position: static;
+            float: none;
             display: block;
-            color: lighten($app-body-color, 10%);
-            text-decoration: none;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            @include mediaQueries(min-small) {
-                font-size: 100%;
-            }
+            width: 100%;
+            padding: 3px 6px;
+            @include appBorderRadius(4px);
+          }
         }
+      }
     }
-    /* Footer */
-    .onlineapp-footer {
-        .rating-group {
-            color: #8c8c8c;
-            font-size: 90%;
-            margin: $spacing 0;
-            .widget-rating {
-                //color: lighten($app-body-color, 10%);
-                &.israted {
-                    color: lighten(#f0ad4e, 20%);
-                }
-            }
-        }
-        .btn-name {
-            display: none;
-        }
-        position: absolute;
-        left: 0px;
-        bottom: $spacing;
-        width: 100%;
-        @include mediaQueries(max-small) {
-            padding: $spacing-half;
-            display: none;
-            top: 0;
-            left: 0px;
-            background-color: #fff;
-            height: $onlineapp-height - 2px;
-            &.has-longpress {
-                display: block;
-                .widget-rating-download{
-                    display: block;
-                }
-                .btn-group {
-                    display: block;
-                    .btn {
-                        margin: 2px;
-                        position: static;
-                        float: none;
-                        display: block;
-                        width: 100%;
-                        padding: 3px 6px;
-                        @include appBorderRadius(4px);
-                    }
-                }
-            }
-        }
-    }
+  }
 }
-.onlineapp{
-    &.widget-warning {
-        .onlineapp-img {
-            opacity: 0.4;
-            filter: alpha(opacity=40);
-            @include appGrayscale();
-    
-        }
-        .onlineapp-title {
-            color: lighten($app-heading-color, 40%) !important;
-        }
-        .onlineapp-footer {
-            .rating-group {
-                .widget-rating {
-                    &.israted {
-                        color: lighten(#f0ad4e, 20%);
-                    }
-                }
-            }
 
-            .btn {
-               .fa{
-                color: lighten($app-heading-color, 40%) !important; 
-               }
-            }
-    
-        }
+.onlineapp {
+  &.widget-warning {
+    .onlineapp-img {
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+      @include appGrayscale();
     }
-
+    .onlineapp-title {
+      color: lighten($app-heading-color, 40%) !important;
+    }
+    .onlineapp-footer {
+      .rating-group {
+        .widget-rating {
+          &.israted {
+            color: lighten(#f0ad4e, 20%);
+          }
+        }
+      }
+      .btn {
+        .fa {
+          color: lighten($app-heading-color, 40%) !important;
+        }
+      }
+    }
+  }
 }

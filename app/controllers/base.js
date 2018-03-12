@@ -97,7 +97,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             });
         }
         // Set night mode
-        $scope.nightMode = ($cookies.nightMode == 'true');
+        $scope.user.night_mode = ($scope.user.night_mode == 'true');
     };
     $scope.setSkin();
 
@@ -105,9 +105,12 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      * Set night mode
      * @returns {undefined}
      */
-    $scope.setNightMode = function (state) {
-      $scope.nightMode = state;
-      $cookies.nightMode = state;
+    $scope.setNightMode = function (nightMode) {
+      $scope.user.night_mode = nightMode;
+      //$cookies.nightMode = nightMode;
+      dataFactory.putApi('profiles', $scope.user.id,  $scope.user).then(function(response) {
+        
+    });
   };
 
 

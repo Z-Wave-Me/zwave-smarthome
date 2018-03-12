@@ -43,6 +43,9 @@ $input-bcg-color: $app-color-dark-lightest;
   .btn-widget-time,
   .txt-widget-time,
   .alert,
+  .app-fatal-error,
+  .app-fatal-error .fatal-error-message,
+  .app-fatal-error .fatal-error-info,
   .badge-number {
     color: $app-body-color;
   } // Darker
@@ -132,6 +135,8 @@ $input-bcg-color: $app-color-dark-lightest;
   .appmodal-footer,
   .alert,
   .bcg-success,
+  .blank,
+  .app-fatal-error,
   .infowindow
    {
     background: $app-color-dark !important;
