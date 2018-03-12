@@ -68,7 +68,7 @@
     "bugreport_info": "Tämä lomake on tarkoitettu Smart Home UI -bugien raportointiin, älä käytä palautteen lähettämiseen. Tarvitessasi tukea ole hyvä ja käy tukifoorumilla tai laita sähköpostia tukeen.",
     "built_date": "Buildattu",
     "button": "Nappi",
-    "call_name_info": "A custom name used by the Alexa module to identify the device. By default the device name will used.",
+    "call_name_info": "A custom name used by the Alexa and Google Home module to identify the device. By default the device name will used.",
     "camera": "Kamera",
     "camera_not_supported": "No camera found or browser doesn't support. Please enter DSK manually or use our App wich is now available on Google Play (Android) and the App Store (iOS). Links below",
     "cannot_delete_all_icons": "Cannot delete all specified icons",

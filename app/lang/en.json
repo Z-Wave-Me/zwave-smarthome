@@ -68,7 +68,7 @@
     "bugreport_info": "This form is dedicated to report bugs in the UI please do not provide any response. If you need support please consult the support forums or email addresses provided.",
     "built_date": "Built date",
     "button": "Button",
-    "call_name_info": "A custom name used by the Alexa module to identify the device. By default the device name will used.",
+    "call_name_info": "A custom name used by the Alexa and Google Home module to identify the device. By default the device name will used.",
     "camera": "Camera",
     "camera_not_supported": "No camera found or browser doesn't support. Please enter DSK manually or use our App wich is now available on Google Play (Android) and the App Store (iOS). Links below",
     "cannot_delete_all_icons": "Cannot delete all specified icons",

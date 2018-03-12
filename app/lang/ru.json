@@ -68,7 +68,7 @@
     "bugreport_info": "Данная форма позволяет сообщать о багах в UI. Пожалуйста, не оставляйте других запросов. Если Вам нужна помощь, проконсультируйтесь на форумах тех. поддержки, или по info@z-wave.me.",
     "built_date": "Дата сборки",
     "button": "Кнопка",
-    "call_name_info": "A custom name used by the Alexa module to identify the device. By default the device name will used.",
+    "call_name_info": "A custom name used by the Alexa and Google Home module to identify the device. By default the device name will used.",
     "camera": "Камеры",
     "camera_not_supported": "No camera found or browser doesn't support. Please enter DSK manually or use our App wich is now available on Google Play (Android) and the App Store (iOS). Links below",
     "cannot_delete_all_icons": "Cannot delete all specified icons",
