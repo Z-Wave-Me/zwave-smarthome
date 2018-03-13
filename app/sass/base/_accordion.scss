@@ -68,6 +68,29 @@ $accordion-focus-color: $focus-color;
       }
     }
   }
+  &.inline{
+    > button{
+      display: block;
+      width: auto;
+      font-size: 100%;
+      border-bottom: 0;
+      &[aria-expanded="false"]{
+        &::after{
+        font-family: fontawesome;
+        content: "\f0d7";
+        }
+      }
+      &[aria-expanded="true"]{
+        &::after{
+          font-family: fontawesome;
+          content: "\f0d8";
+        }
+      }
+    }
+    + .accordion{
+      border-bottom: 0;
+    }
+  }
 }
 .accordion{
   border-bottom: dotted 1px $accordion-border-color;

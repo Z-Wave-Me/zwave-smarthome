@@ -11574,13 +11574,23 @@ img {
   color: #595959;
 }
 
-/* line 280, ../sass/base/_body.scss */
+/* line 279, ../sass/base/_body.scss */
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* line 282, ../sass/base/_body.scss */
+.lowercase {
+  text-transform: lowercase;
+}
+
+/* line 287, ../sass/base/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 285, ../sass/base/_body.scss */
+/* line 292, ../sass/base/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -11589,17 +11599,17 @@ img {
   padding-right: 5px;
 }
 
-/* line 293, ../sass/base/_body.scss */
+/* line 300, ../sass/base/_body.scss */
 .inline .help-text {
   display: inline;
 }
 
-/* line 298, ../sass/base/_body.scss */
+/* line 305, ../sass/base/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 302, ../sass/base/_body.scss */
+/* line 309, ../sass/base/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -11612,19 +11622,19 @@ img {
   border-radius: 50%;
 }
 
-/* line 314, ../sass/base/_body.scss */
+/* line 321, ../sass/base/_body.scss */
 .icon-hidden {
   visibility: hidden;
 }
 
-/* line 318, ../sass/base/_body.scss */
+/* line 325, ../sass/base/_body.scss */
 .device-available-block.assigned {
   padding: 10px 10px 5px 10px;
   border: solid 1px #cccccc;
   margin: 0 0 10px 0;
 }
 
-/* line 325, ../sass/base/_body.scss */
+/* line 332, ../sass/base/_body.scss */
 .scrollh {
   overflow-y: auto;
   white-space: nowrap;
@@ -14028,8 +14038,29 @@ fieldset section, .fieldset section {
   font-family: fontawesome;
   content: "\f077";
 }
-
 /* line 72, ../sass/base/_accordion.scss */
+.accordion-toggle.inline > button {
+  display: block;
+  width: auto;
+  font-size: 100%;
+  border-bottom: 0;
+}
+/* line 78, ../sass/base/_accordion.scss */
+.accordion-toggle.inline > button[aria-expanded="false"]::after {
+  font-family: fontawesome;
+  content: "\f0d7";
+}
+/* line 84, ../sass/base/_accordion.scss */
+.accordion-toggle.inline > button[aria-expanded="true"]::after {
+  font-family: fontawesome;
+  content: "\f0d8";
+}
+/* line 90, ../sass/base/_accordion.scss */
+.accordion-toggle.inline + .accordion {
+  border-bottom: 0;
+}
+
+/* line 95, ../sass/base/_accordion.scss */
 .accordion {
   border-bottom: dotted 1px #cccccc;
   padding-bottom: 10px;
@@ -14037,26 +14068,26 @@ fieldset section, .fieldset section {
 
 /* Old version
 -------------------------------------------------- */
-/* line 79, ../sass/base/_accordion.scss */
+/* line 102, ../sass/base/_accordion.scss */
 .accordion-entry {
   margin-bottom: 10px;
   border-bottom: dotted 1px #cccccc;
   color: #333333;
 }
-/* line 84, ../sass/base/_accordion.scss */
+/* line 107, ../sass/base/_accordion.scss */
 .accordion-entry.disabled .accordion-entry-title {
   color: #BDBDBD;
 }
-/* line 86, ../sass/base/_accordion.scss */
+/* line 109, ../sass/base/_accordion.scss */
 .accordion-entry.disabled .accordion-entry-title .fa {
   color: #BDBDBD;
 }
-/* line 88, ../sass/base/_accordion.scss */
+/* line 111, ../sass/base/_accordion.scss */
 .accordion-entry.disabled .accordion-entry-title .fa.text-warning {
   color: #8a6d3b;
 }
 
-/* line 95, ../sass/base/_accordion.scss */
+/* line 118, ../sass/base/_accordion.scss */
 .accordion-entry-title {
   font-size: 120%;
   position: relative;
@@ -14065,13 +14096,13 @@ fieldset section, .fieldset section {
   color: #737373;
   cursor: pointer;
 }
-/* line 102, ../sass/base/_accordion.scss */
+/* line 125, ../sass/base/_accordion.scss */
 .accordion-entry-title .fa {
   color: #666666;
   padding-right: 10px;
   font-size: 120%;
 }
-/* line 107, ../sass/base/_accordion.scss */
+/* line 130, ../sass/base/_accordion.scss */
 .accordion-entry-title .accordion-arrow {
   position: absolute;
   right: 1%;
@@ -14079,7 +14110,7 @@ fieldset section, .fieldset section {
   padding: 0;
 }
 
-/* line 116, ../sass/base/_accordion.scss */
+/* line 139, ../sass/base/_accordion.scss */
 .accordion-entry-ctrl p {
   margin: 5px;
   padding: 10px;

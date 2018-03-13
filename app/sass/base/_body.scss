@@ -276,6 +276,13 @@ img {
   font-style: italic;
   color: lighten($app-body-color, 30%);
 }
+.uppercase{
+  text-transform: uppercase;
+}
+.lowercase{
+  text-transform: lowercase;
+}
+
 
 .badge {
   padding: $spacing-half;
