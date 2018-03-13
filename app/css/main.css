@@ -13465,21 +13465,25 @@ fieldset.submit-entry {
 
 /* line 273, ../sass/base/_form.scss */
 .form-control-img {
+  margin-right: 10px;
   cursor: pointer;
-  border: solid 4px transparent;
 }
 
 /* line 279, ../sass/base/_form.scss */
-.control-active {
-  border: solid 4px black !important;
+.lang-active {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
 }
 
-/* line 282, ../sass/base/_form.scss */
+/* line 283, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 286, ../sass/base/_form.scss */
+/* line 287, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13488,7 +13492,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 295, ../sass/base/_form.scss */
+/* line 296, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }

@@ -271,13 +271,14 @@ fieldset.submit-entry {
 }
 
 .form-control-img {
+  margin-right: $spacing;
   cursor: pointer;
-  border: solid 4px transparent;
 
 }
 
-.control-active {
-  border: solid 4px black !important;
+.lang-active {
+  @include appOpacity();
+  @include appGrayscale();
 }
 .form-block{
     margin: $spacing 0 0 0;
