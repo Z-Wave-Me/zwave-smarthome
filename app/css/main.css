@@ -19007,18 +19007,34 @@ img.widget-promo-image {
   list-style-position: inside;
 }
 
-/* line 91, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
+/* line 90, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
+.wizard-tabs .tab .content .text .badges {
+  margin-top: 30px;
+}
+
+/* line 92, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
+.wizard-tabs .tab .content .text .badges a {
+  display: inline-block;
+  margin: 10px;
+}
+
+/* line 95, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
+.wizard-tabs .tab .content .text .badges a img {
+  height: 40px;
+}
+
+/* line 102, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
 .wizard-tabs .tab .content .image {
   order: 1;
   text-align: center;
 }
 
-/* line 94, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
+/* line 105, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
 .wizard-tabs .tab .content .image img {
   max-height: 290px;
 }
 
-/* line 100, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
+/* line 111, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
 .wizard-tabs .tab .content .text, .wizard-tabs .tab .content .image {
   display: block;
   flex-direction: column;
@@ -19029,7 +19045,7 @@ img.widget-promo-image {
 }
 
 @media only screen and (min-width: 768px) {
-  /* line 100, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
+  /* line 111, E:/GitHub/zwave-smarthome/app/sass/base/_wizard.scss */
   .wizard-tabs .tab .content .text, .wizard-tabs .tab .content .image {
     display: table-cell;
     padding: 10px 50px;

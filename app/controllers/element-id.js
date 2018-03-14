@@ -47,7 +47,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         ];
 
         if ($scope.user.role === 1) {
-            promises.push(dataFactory.getApi('instances'));
+            promises.push(dataFactory.getApi('instances', false, true));
         }
 
         $q.allSettled(promises).then(function (response) {
@@ -385,26 +385,28 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         }
 
         if(instance.active && isWhitelisted) {
-            var pos = instance.params.devices.findIndex(function(dev) {return dev.id == device.id}),
+            if(instance.params.devices) {
+                var pos = instance.params.devices.findIndex(function(dev) {return dev.id == device.id}),
                 callName = device.metrics.title,
                 alexaActivated = false;
             
-            if(pos != -1) {
-                callName = instance.params.devices[pos].callName;
-                alexaActivated = true;
-            } 
-            console.log($scope.elementId.input.callName);
-            if($scope.elementId.input.callName && $scope.elementId.input.callName !== "") {
-                angular.extend($scope.elementId.input, {
-                    alexaActivated: alexaActivated,
-                    alexaWhitelisted: isWhitelisted
-                });
-            } else { 
-                angular.extend($scope.elementId.input, {
-                    callName: callName, 
-                    alexaActivated: alexaActivated,
-                    alexaWhitelisted: isWhitelisted
-                });
+                if(pos != -1) {
+                    callName = instance.params.devices[pos].callName;
+                    alexaActivated = true;
+                } 
+                console.log($scope.elementId.input.callName);
+                if($scope.elementId.input.callName && $scope.elementId.input.callName !== "") {
+                    angular.extend($scope.elementId.input, {
+                        alexaActivated: alexaActivated,
+                        alexaWhitelisted: isWhitelisted
+                    });
+                } else { 
+                    angular.extend($scope.elementId.input, {
+                        callName: callName, 
+                        alexaActivated: alexaActivated,
+                        alexaWhitelisted: isWhitelisted
+                    });
+                }    
             }
         }
     }
@@ -429,25 +431,27 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         }
 
         if(instance.active && isWhitelisted) {
-            var pos = instance.params.devices.findIndex(function(dev) {return dev.id == device.id}),
+            if(instance.params.devices) {
+                var pos = instance.params.devices.findIndex(function(dev) {return dev.id == device.id}),
                 callName = device.metrics.title,
                 googleHomeActivated = false;
             
-            if(pos != -1) {
-                callName = instance.params.devices[pos].callName;
-                googleHomeActivated = true;
-            }
-            if($scope.elementId.input.callName && $scope.elementId.input.callName !== "") {
-                angular.extend($scope.elementId.input, { 
-                    googleHomeActivated: googleHomeActivated,
-                    googleHomeWhitelisted: isWhitelisted
-                });    
-            } else {
-                angular.extend($scope.elementId.input, {
-                    callName: callName, 
-                    googleHomeActivated: googleHomeActivated,
-                    googleHomeWhitelisted: isWhitelisted
-                });
+                if(pos != -1) {
+                    callName = instance.params.devices[pos].callName;
+                    googleHomeActivated = true;
+                }
+                if($scope.elementId.input.callName && $scope.elementId.input.callName !== "") {
+                    angular.extend($scope.elementId.input, { 
+                        googleHomeActivated: googleHomeActivated,
+                        googleHomeWhitelisted: isWhitelisted
+                    });    
+                } else {
+                    angular.extend($scope.elementId.input, {
+                        callName: callName, 
+                        googleHomeActivated: googleHomeActivated,
+                        googleHomeWhitelisted: isWhitelisted
+                    });
+                }    
             }
         }
     }

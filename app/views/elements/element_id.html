@@ -1,7 +1,6 @@
 <!-- Element view -->
 <div ng-controller="ElementIdController" class="mobile-padding">
     <bb-loader></bb-loader>
-    <pre>{{elementId.input | json}}</pre>
     <div ng-if="elementId.show">
         <h2><span ng-bind="_t('lb_cfg_view') + ':'"></span> <span ng-bind="elementId.input.metrics.title"></span></h2>
         <form name="form_element" id="form_element" class="form form-page" autocomplete="off"
@@ -153,14 +152,6 @@
                             </label>
                             <bb-help-text trans="_t('alexa_info')"></bb-help-text>
                         </div>
-                        <!--<div ng-if="elementId.input.alexaActivated" class="form-inline">
-                            <label>{{_t('lb_call_name')}}:</label>
-                            <input name="alexa_call_name" id="alexa_call_name" type="text"
-                               class="form-control" value="{{elementId.input.alexaCallName}}"
-                               placeholder="{{_t('lb_add_call_name')}}"
-                               ng-model="elementId.input.alexaCallName"/>
-                            <bb-help-text trans="_t('call_name_info')"></bb-help-text>
-                       </div>-->
                     </div>
                     <div ng-if="speechAssistants.GoogleHome.active && elementId.input.googleHomeWhitelisted">
                         <!-- Google Home -->

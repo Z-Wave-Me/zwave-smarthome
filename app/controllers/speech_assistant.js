@@ -247,7 +247,6 @@
 });
 
 
-
  myAppController.controller('AlexaSetupController', function($scope, $q, dataFactory, dataService, _) {
   $scope.currentStep = 1;
   $scope.steps = _.range(0, 8);
@@ -471,19 +470,24 @@
       message: $scope._t('loading')
     };
     var promises = [
-    dataFactory.getApi('instances', '/GoogleHome', true),
-    dataFactory.getApi('locations'),
-    dataFactory.getApi('devices')
+      dataFactory.getApi('instances', false, true),
+      dataFactory.getApi('locations'),
+      dataFactory.getApi('devices')
     ];
 
     $q.allSettled(promises).then(function (response) {
       $scope.loading = false;
 
       var instances = response[0],
-      rooms = response[1],
-      devices = response[2];
+          rooms = response[1],
+          devices = response[2];
       // Error message
       if (instances.state === 'rejected') {
+        alertify.alertError($scope._t('error_load_data'));
+        return;
+      }
+
+      if (alexa_instance.state === 'rejected') {
         alertify.alertError($scope._t('error_load_data'));
         return;
       }
@@ -505,7 +509,7 @@
 
       // Success - instance
       if (instances.state === 'fulfilled') {
-        setInstance(instances.value.data.data[0]);
+        setInstance(instances.value.data.data);
         console.log($scope.google_home.instance);
       }
 
@@ -627,8 +631,30 @@
    * Set instance
    */
    function setInstance(data) {
-    $scope.google_home.instance = data;
+    var GoogleHome = _.findWhere(data, {moduleId:'GoogleHome'});
+    if(GoogleHome) {
+      $scope.google_home.instance = GoogleHome;
+    }
    };
 
 
+});
+
+myAppController.controller('GoogleHomeSetupController', function($scope, $q, dataFactory, dataService, _) {
+  $scope.currentStep = 1;
+  $scope.steps = _.range(0, 5);
+  $scope.myImage = "";
+
+  $scope.prevNext = function(n) {
+    $scope.currentStep += n;      
+  }
+ 
+  $scope.setStep = function(step) {
+    $scope.currentStep = parseInt(step);
+  }
+
+  $scope.setImagePath = function(path) {
+    $scope.myImage = path;
+  }
+    
 });
