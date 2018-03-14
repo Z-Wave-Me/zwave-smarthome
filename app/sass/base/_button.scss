@@ -196,7 +196,7 @@
     @include mediaQueries(min-small) {
       padding: $spacing; //font-size: 120%;
     }
-    .fa {
+    .fa {  
       font-size: 130%;
       color: lighten($app-body-color, 20%);
       &.text-danger {
@@ -261,11 +261,11 @@
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  width: 72px;
-  height: 40px; // Media queries
+  width: 60px;
+  height: 32px; // Media queries
   @include mediaQueries(min-small) {
-    width: 60px;
-    height: 34px;
+    /* width: 60px;
+    height: 34px; */
   }
 }
 
@@ -301,8 +301,8 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 32px;
-  width: 32px;
+  height: 24px;
+  width: 24px;
   /* height: 26px;
    width: 26px;*/
   left: 4px;
@@ -316,8 +316,8 @@
   -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.15);
   box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.15);
   @include mediaQueries(min-small) {
-    height: 26px;
-    width: 26px;
+    /* height: 26px;
+    width: 26px; */
   }
 }
 

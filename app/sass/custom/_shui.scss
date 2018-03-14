@@ -4,7 +4,7 @@
 /* Navigation
 -------------------------------------------------- */
 
-/* #main_navigation_wrap {
+#main_navigation_wrap {
   #main_navigation {
     @include mediaQueries(max-small) {
       #navigation_right{
@@ -16,7 +16,7 @@
       }
     }
   }
-} */
+}
 
 /* Subnavigation
 -------------------------------------------------- */
@@ -25,12 +25,12 @@
     #sub_navigation_in {
       position: fixed;
       top: 0;
-      right: 0;
+      left: 0;
       bottom: 0;
       width: 75%;
       background-color: #FFFFFF;
       @include appBoxShadow($app-box-shadow);
-      border-left: 1px solid $app-border-color;
+      border-right: 1px solid $app-border-color;
       ul {
         margin: 0;
         margin: $header-h 0 0;

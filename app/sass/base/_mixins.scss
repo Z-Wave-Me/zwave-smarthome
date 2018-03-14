@@ -133,6 +133,17 @@
   -o-text-overflow: ellipsis;   /* Opera */
 
 }
+// Truncate string with ellipsis
+@mixin truncateString($width) {
+  width: $width;
+  white-space: nowrap;
+  /* force single line */
+  overflow: hidden;
+  /* don't show excess chars */
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  /* Opera */
+}
 
 // Display flex
 @mixin displayFlex() {
