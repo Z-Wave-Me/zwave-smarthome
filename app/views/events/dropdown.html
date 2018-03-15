@@ -2,6 +2,12 @@
 <div class="btn-group group-event-dropdown">
     <button type="button" class="btn btn-default" title="{{_t('lb_settings')}}" ng-click="expandNavi('evDropDown_' + $index, $event)"><i class="fa fa-caret-down"></i></button>
         <div class="app-dropdown dropdown-events" ng-if="naviExpanded['evDropDown' + '_' + $index]">
+          <div class="dropdown-header">
+              <span class="event-room" ng-if="rooms.all[v.message.location]">{{rooms.all[v.message.location]}}</span>
+              <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
+              <span class="event-message" ng-if="v.source && v.message" ng-bind-html="v.messageView|toTrusted"></span>
+              <span class="event-message" ng-bind="v.message" ng-if="!v.source && !v.message"></span>
+          </div>
             <ul>
                 <li>
                     <a ng-href="#events"> <i class="fa fa-eye fa-fw"></i> <span ng-bind="_t('lb_show_all')"></span></a>

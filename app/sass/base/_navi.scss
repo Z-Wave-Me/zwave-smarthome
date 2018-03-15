@@ -84,7 +84,7 @@
         min-height: 1px; //w: min-height: $page-navi-h;
         color: $app-a-color;
         text-align: left;
-        vertical-align: top;
+        vertical-align: top; 
         display: block;
         //margin: auto;
         @include truncateString(70%);

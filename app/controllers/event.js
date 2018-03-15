@@ -11,6 +11,9 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     $scope.page = {
         title: false
     };
+    $scope.events = {
+      state: ''
+  };
     $scope.filter = {};
     $scope.collection = [];
     $scope.eventLevels = [];
@@ -323,7 +326,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         //}
         // No data in the collection
         if (_.size($scope.collection) < 1) {
-            alertify.alertWarning($scope._t('no_events'));
+          $scope.events.state = 'blank';
+            //alertify.alertWarning($scope._t('no_events'));
             return;
         }
         $scope.pagesSum = Math.ceil($scope.collection.length/$scope.pageSize);

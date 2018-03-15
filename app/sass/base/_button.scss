@@ -125,6 +125,14 @@
     border: 0;
     background: transparent;
   }
+  &.btn-ctrl {
+    border: 0;
+    background: transparent;
+    &::after{
+      font-family: fontawesome;
+      content: "\f142";
+      }
+  }
 }
 
 .btn-tag {

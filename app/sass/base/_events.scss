@@ -11,18 +11,26 @@
   background-color: $app-bcg-danger;
 }
 
-.group-event-dropdown{
-   width: 100%;
-       .btn{
-       float: right;
-   }
-   .app-dropdown{
-       width: 100%;
-   }
+.event-message{
+  display: block;
 }
-
 .event-room {
   display: block;
   font-size: 90%;
   color: #737373;
+}
+
+@include mediaQueries(min-small) {
+  .event-message{
+    display: inline-block;
+  }
+  .group-event-dropdown{
+    width: 100%;
+        .btn{
+        float: right;
+    }
+    .app-dropdown{
+        width: 100%;
+    }
+ }
 }

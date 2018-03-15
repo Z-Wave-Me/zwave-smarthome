@@ -19,9 +19,9 @@ $accordion-focus-color: $focus-color;
  > button{
     all: inherit;
     border: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include displayFlex();
+    @include justifyContent(space-between);
+    @include alignItems(center);
     width: 100%;
     font-weight: normal;
     cursor: pointer;

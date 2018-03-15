@@ -10,14 +10,20 @@
         .accordion-entry-title {
             font-size: 100%;
             margin: 0;
-            padding: 10px 0;
+            padding: $spacing $spacing-half ;
             font-weight: bold;
             .report-img-s {
-                margin: 0 0 0 $spacing-half;
+                //margin: 0 0 0 $spacing-half;
             }
             .accordion-title-text {
-                padding: 0 0 0 13px;
+                padding: 0 0 0 $spacing;
             }
+            @include mediaQueries(max-small) {
+              .accordion-arrow {
+                right: 15px;
+            }
+          } 
+            
         }
     }
 

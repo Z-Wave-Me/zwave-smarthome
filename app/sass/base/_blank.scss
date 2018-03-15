@@ -1,64 +1,34 @@
 /* Blank
 -------------------------------------------------- */
-// blank td top, bottom spacing
-$blank-tb-spacing: $spacing;
-// blank td right, left spacing
-$blank-rl-spacing: $spacing-double;
 
-$blank-font-size: 105%;
+$blank-font-size: 130%;
 $blank-color: $app-body-color;
-$blank-border-color: $app-border-color;
-$blank-bcg-color: #eeeeee;
-$blank-img-w: 64px;
-
-.blank{
-    color: $blank-color;
-    font-size: $blank-font-size;
-    padding: $blank-tb-spacing $blank-rl-spacing;
-    background-color: $blank-bcg-color;
-    margin: $spacing 0;
-    position: relative;
-    .blank-img{
-        position: absolute;
-        text-align: center;
-        top: $blank-tb-spacing + $spacing;
-        left: $blank-tb-spacing + $spacing;
-        margin: 0;
-        padding: 0;
-        width: $blank-img-w;
-        height: $blank-img-w;
-        .fa{
-           font-size: $blank-img-w; 
-        }
+$blank-img-w: 98px;
+.blank {
+  text-align: center;
+  color: $blank-color;
+  font-size: $blank-font-size;
+  margin: $spacing 0;
+  > *{
+    margin-bottom: $spacing;
+  }
+  figure {
+    .fa {
+      font-size: $blank-img-w;
     }
-    .blank-body{
-        margin: 0 0 0 $blank-img-w + $spacing-double;
-        p{
-            padding: 0;
-            margin: 0;
-        }
-        .blank-title{
-            font-size: 120%;
-            
-        }
-        .blank-text{
-            margin: $spacing 0;
-        }
-        
+  }
+  &.is-info {
+    figure {
+      .fa {
+        color: lighten($app-brand-info,20%);
+      }
     }
-    &.is-info{
-        .blank-img{
-            .fa{
-                color: $app-brand-info;
-            }
-        }
- 
+  }
+  &.is-danger {
+    figure {
+      .fa {
+        color: lighten($app-brand-danger,20%);
+      }
     }
-    &.is-danger{
-        .blank-img{
-            .fa{
-                color: $app-brand-danger;
-            }
-        }
-    }
+  }
 }

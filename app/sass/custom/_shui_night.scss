@@ -61,6 +61,7 @@ $input-bcg-color: $app-color-dark-lightest;
   .btn-default:hover,
   .btn-default:focus,
   .btn-default:active,
+  .page-navi .page-navi-title,
   .btn-default.active {
     color: $app-color-light;
   } // Dark
@@ -135,7 +136,6 @@ $input-bcg-color: $app-color-dark-lightest;
   .appmodal-footer,
   .alert,
   .bcg-success,
-  .blank,
   .app-fatal-error,
   .infowindow
    {
