@@ -1,7 +1,7 @@
 /* Automation
 -------------------------------------------------- */
 
-//.automation {
+.automation {
   .accordion-wrap {
     position: relative;
     .label {
@@ -19,17 +19,6 @@
       display: flex;
       align-items: center;
       button {
-        .accordion-title {
-          padding: 5px 0;
-          .room-title {
-            display: block;
-            padding-bottom: 3px; 
-            font-size: 80%;
-          }
-          .device-title {
-            display: block;
-          }
-        }
         &.no-toggle {
           cursor: text !important;
           &::after {
@@ -96,4 +85,4 @@
       }
     }
   }
-//}
+}
