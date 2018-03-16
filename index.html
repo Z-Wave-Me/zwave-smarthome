@@ -123,7 +123,7 @@
 
         <!-- /build -->
     </head>
-    <body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode}}">
+    <body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}">
         <a class="skinreset" href="#skinreset">Reset skin to default</a>
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
