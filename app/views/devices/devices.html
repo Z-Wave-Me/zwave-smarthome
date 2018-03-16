@@ -52,6 +52,23 @@
                     </div>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <img class="device-type-logo" ng-src="app/img/logo-speech-assistants.png" alt="Logo" />
+                    </td>
+                     <td class="td-action">
+                          <div >
+                            <div class="btn-group">
+                                <a class="btn btn-default" href="#speech_assistants/devices" title="{{_t('add_new')}}">
+                                  <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
+                              </a>
+                               <a class="btn btn-default" href="#speech_assistants/manage" title="{{_t('manage')}}">
+                                  <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
+                              </a> 
+                            </div>
+                        </div>
+                    </td>
+                </tr>
                 <tr ng-if="enocean.installed">
                     <td>
                         <img class="device-type-logo" ng-src="app/img/logo-enocean.png" alt="Logo" />

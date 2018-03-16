@@ -636,7 +636,8 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
     $scope.dataHolder.devices.orderBy = 'order_dashboard';
     $scope.elementDashboard = {
         firstLogin: ($routeParams.firstlogin || false),
-        firstFile: ($scope.lang === 'de' ? 'first_login_de.html' : 'first_login_en.html')
+        firstFile: 'app/views/welcome/first_login.html'
+        //firstFile: ($scope.lang === 'de' ? 'first_login_de.html' : 'first_login_en.html')
     };
 
 
