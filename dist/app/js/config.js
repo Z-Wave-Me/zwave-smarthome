@@ -12,9 +12,9 @@ var config_data = {
     //Application name
     'app_name': 'SmartHome UI',
     // Application version
-    'app_version': '1.8.0-RC-37',
+    'app_version': '1.8.0-RC-40',
     // Application (DIST) built date
-    'app_built': '16-02-2018 15:19:30',
+    'app_built': '16-03-2018 13:41:03',
     // Application ID
     'app_id': 'SmartHomeUI',
     // Server base url
@@ -280,7 +280,7 @@ var config_data = {
     // Default language
     'lang': 'en', // !!!!Do not change it
     // List of supported languages
-    'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es', 'it'],
+    'lang_list': ['en', 'de', 'ru', 'cn', 'fr', 'cz', 'sk', 'sv', 'fi', 'es', 'it','pt'],
     // List of supported languages in the zwave products
     'zwaveproducts_langs': ['en', 'de'],
     // Role access
@@ -402,6 +402,33 @@ var config_data = {
     // vendor ID -> product ID
     'rgb_blacklist': {
       134: [99]
+    },
+    'speechAssistants': {
+      'Alexa': {
+        'deviceTypeWhitelist': [
+          {"sensorMultilevel":
+              ["temperature"]
+          }, 
+          {"switchBinary":[]}, 
+          {"toggleButton":[]}, 
+          {"switchMultilevel":[]}, 
+          {"thermostat":[]}, 
+          {"doorlock":[]},
+          {"switchRGBW":[]}
+        ]
+      },
+      'GoogleHome': {
+        'deviceTypeWhitelist': [
+          {"sensorMultilevel":
+              ["temperature"]
+          }, 
+          {"switchBinary":[]}, 
+          {"toggleButton":[]}, 
+          {"switchMultilevel":[]}, 
+          {"thermostat":[]},
+          {"switchRGBW":[]}
+        ]
+      }
     },
     // Order by
     orderby: {

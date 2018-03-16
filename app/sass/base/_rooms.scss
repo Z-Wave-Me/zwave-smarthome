@@ -88,10 +88,14 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-color: $card-bcg-color;
+
+        @include mediaQueries(min-small) {
+          -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
+          webkit-mask: linear-gradient( black, black 10%, transparent);
+          mask: linear-gradient( black, black 10%, transparent);
+      }
         
-        -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
-        webkit-mask: linear-gradient( black, black 10%, transparent);
-        mask: linear-gradient( black, black 10%, transparent);
+       
     }
 
 
