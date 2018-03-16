@@ -14517,7 +14517,6 @@ http://codepen.io/MattIn4D/pen/LiKFC
   display: block;
   text-decoration: none;
   right: 30px;
-  color: #ffffff;
   z-index: 2;
   cursor: pointer;
 }
@@ -14580,17 +14579,22 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 /* line 108, ../sass/base/_modal.scss */
+.appmodal.image:before {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* line 113, ../sass/base/_modal.scss */
 .appmodal-header,
 .appmodal-body,
 .appmodal-footer {
   padding: 10px 15px;
 }
 
-/* line 114, ../sass/base/_modal.scss */
+/* line 119, ../sass/base/_modal.scss */
 .appmodal-header {
   border-bottom: solid 1px #cccccc;
 }
-/* line 116, ../sass/base/_modal.scss */
+/* line 121, ../sass/base/_modal.scss */
 .appmodal-header .appmodal-close {
   font-size: 140%;
   display: block;
@@ -14604,94 +14608,94 @@ http://codepen.io/MattIn4D/pen/LiKFC
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 116, ../sass/base/_modal.scss */
+  /* line 121, ../sass/base/_modal.scss */
   .appmodal-header .appmodal-close {
     font-size: 140%;
   }
 }
-/* line 128, ../sass/base/_modal.scss */
+/* line 133, ../sass/base/_modal.scss */
 .appmodal-header .appmodal-close span {
   display: inline-block;
 }
-/* line 132, ../sass/base/_modal.scss */
+/* line 137, ../sass/base/_modal.scss */
 .appmodal-header h3 {
   font-size: 110%;
   margin: 0;
   color: #737373;
 }
 
-/* line 141, ../sass/base/_modal.scss */
+/* line 146, ../sass/base/_modal.scss */
 .appmodal-body .rss-description ul {
   list-style-position: inside;
 }
-/* line 145, ../sass/base/_modal.scss */
+/* line 150, ../sass/base/_modal.scss */
 .appmodal-body .entry-in {
   padding: 10px;
   display: table;
   margin: 0 auto;
 }
-/* line 149, ../sass/base/_modal.scss */
+/* line 154, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-media {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 149, ../sass/base/_modal.scss */
+  /* line 154, ../sass/base/_modal.scss */
   .appmodal-body .entry-in .entry-media {
     display: table-cell;
     vertical-align: middle;
   }
-  /* line 154, ../sass/base/_modal.scss */
+  /* line 159, ../sass/base/_modal.scss */
   .appmodal-body .entry-in .entry-media img {
     width: 200px;
   }
 }
-/* line 159, ../sass/base/_modal.scss */
+/* line 164, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-content {
   display: table-cell;
   padding: 10px;
   vertical-align: middle;
 }
-/* line 163, ../sass/base/_modal.scss */
+/* line 168, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-content .text {
   max-width: 400px;
 }
-/* line 165, ../sass/base/_modal.scss */
+/* line 170, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-content .text h1 {
   margin-bottom: 20px;
 }
-/* line 168, ../sass/base/_modal.scss */
+/* line 173, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-content .text p {
   width: 100%;
   text-align: center;
 }
-/* line 173, ../sass/base/_modal.scss */
+/* line 178, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-content .inner {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 173, ../sass/base/_modal.scss */
+  /* line 178, ../sass/base/_modal.scss */
   .appmodal-body .entry-in .entry-content .inner {
     margin-left: 50px;
   }
 }
-/* line 177, ../sass/base/_modal.scss */
+/* line 182, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-content .inner .badges {
   margin-top: 50px;
 }
-/* line 179, ../sass/base/_modal.scss */
+/* line 184, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-content .inner .badges a {
   display: inline-block;
   margin: 10px;
 }
-/* line 182, ../sass/base/_modal.scss */
+/* line 187, ../sass/base/_modal.scss */
 .appmodal-body .entry-in .entry-content .inner .badges a img {
   height: 50px;
 }
 
-/* line 192, ../sass/base/_modal.scss */
+/* line 197, ../sass/base/_modal.scss */
 .appmodal-footer {
   border-top: solid 1px #cccccc;
   text-align: right;
@@ -14699,26 +14703,26 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal with knob
 -------------------------------------------------- */
-/* line 200, ../sass/base/_modal.scss */
+/* line 205, ../sass/base/_modal.scss */
 .app-row-knob {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 200, ../sass/base/_modal.scss */
+  /* line 205, ../sass/base/_modal.scss */
   .app-row-knob {
     display: table;
     width: 100%;
   }
 }
-/* line 206, ../sass/base/_modal.scss */
+/* line 211, ../sass/base/_modal.scss */
 .app-row-knob .knob-col {
   padding: 10px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 206, ../sass/base/_modal.scss */
+  /* line 211, ../sass/base/_modal.scss */
   .app-row-knob .knob-col {
     display: table-cell;
     vertical-align: middle;
@@ -14726,28 +14730,28 @@ http://codepen.io/MattIn4D/pen/LiKFC
     width: 50%;
   }
 }
-/* line 215, ../sass/base/_modal.scss */
+/* line 220, ../sass/base/_modal.scss */
 .app-row-knob .knob-ctrl {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 215, ../sass/base/_modal.scss */
+  /* line 220, ../sass/base/_modal.scss */
   .app-row-knob .knob-ctrl {
     text-align: right;
   }
 }
-/* line 220, ../sass/base/_modal.scss */
+/* line 225, ../sass/base/_modal.scss */
 .app-row-knob .knob-btn {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 221, ../sass/base/_modal.scss */
+/* line 226, ../sass/base/_modal.scss */
 .app-row-knob .knob-btn p {
   margin: 0 0 10px;
 }
 @media only screen and (min-width: 768px) {
-  /* line 220, ../sass/base/_modal.scss */
+  /* line 225, ../sass/base/_modal.scss */
   .app-row-knob .knob-btn {
     text-align: left;
   }
@@ -14755,7 +14759,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Confirm content
 -------------------------------------------------- */
-/* line 233, ../sass/base/_modal.scss */
+/* line 238, ../sass/base/_modal.scss */
 .app-confirm-content {
   padding: 10px;
   border: solid 1px #cccccc;
@@ -14766,7 +14770,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal James Box
 -------------------------------------------------- */
-/* line 244, ../sass/base/_modal.scss */
+/* line 249, ../sass/base/_modal.scss */
 #jamesBoxUpdateModal #updateTimeout {
   text-align: center;
   font-weight: bold;
@@ -14774,19 +14778,19 @@ http://codepen.io/MattIn4D/pen/LiKFC
   font-size: 16px;
 }
 
-/* line 251, ../sass/base/_modal.scss */
+/* line 256, ../sass/base/_modal.scss */
 #jamesBoxUpdateModal ol {
   margin: 15px 0;
 }
 
-/* line 255, ../sass/base/_modal.scss */
+/* line 260, ../sass/base/_modal.scss */
 #jamesBoxUpdateModal li.jamesboxUpdateInfoList {
   margin: 0 0 5px 0;
 }
 
 /* Modal element event
 -------------------------------------------------- */
-/* line 263, ../sass/base/_modal.scss */
+/* line 268, ../sass/base/_modal.scss */
 #modalEvent .appmodal-body {
   height: auto;
   max-height: 500px;
@@ -14795,7 +14799,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 
 /* Modal with scroll
 -------------------------------------------------- */
-/* line 274, ../sass/base/_modal.scss */
+/* line 279, ../sass/base/_modal.scss */
 .modal-h-700 .appmodal-body {
   height: auto;
   max-height: 700px;
