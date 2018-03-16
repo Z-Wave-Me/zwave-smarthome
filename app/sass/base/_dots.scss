@@ -1,0 +1,34 @@
+/* Dots
+-------------------------------------------------- */
+.dots {
+    z-index: 15;
+    width: 100%;
+    padding-left: 0;
+    text-align: center;
+    list-style: none;
+    margin-bottom: 10px;
+
+    &:before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+    }
+
+    li {
+        display: inline-block;
+        vertical-align: middle;
+        width: 15px;
+        height: 15px;
+        margin: 1px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: lighten($app-body-color, 60%);
+        border-top: solid 1px lighten($app-body-color, 60%);
+        border-radius: 10px;
+    }
+    .active {
+        background-color: #4e794e;
+        border-top: solid 1px #4e794e;
+    }
+}

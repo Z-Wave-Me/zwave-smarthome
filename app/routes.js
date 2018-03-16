@@ -240,6 +240,36 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/camera/camera_manage.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices
+                }).// Speech Assistants manage
+                when('/speech_assistants/manage', {
+                    templateUrl: 'app/views/speech_assistants/speech_assistants_manage.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).// Speech Assistants devices
+                when('/speech_assistants/devices', {
+                    templateUrl: 'app/views/speech_assistants/speech_assistants_devices.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).// Speechassitant Alexa
+                when('/speech_assistants/Alexa', {
+                    templateUrl: 'app/views/speech_assistants/alexa.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).// Speechassitant Alexa setup
+                when('/speech_assistants/Alexa/setup', {
+                    templateUrl: 'app/views/speech_assistants/setup_alexa.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).// Speechassitant Google Home
+                when('/speech_assistants/GoogleHome', {
+                    templateUrl: 'app/views/speech_assistants/google_home.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
+                }).// Speechassitant Google Home setup
+                when('/speech_assistants/GoogleHome/setup', {
+                    templateUrl: 'app/views/speech_assistants/setup_google_home.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices
                 }).//Enocean Devices
                 when('/enocean/devices/:brandname?', {
                     templateUrl: 'app/views/enocean/devices.html',
