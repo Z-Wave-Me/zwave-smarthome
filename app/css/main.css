@@ -13198,16 +13198,17 @@ input:checked + .slider:before {
   /* line 5, ../sass/base/_form.scss */
   .form-check-inline {
     display: inline-block;
+    margin-right: 20px;
   }
 
-  /* line 8, ../sass/base/_form.scss */
+  /* line 9, ../sass/base/_form.scss */
   .form-inline .input-group {
     display: inline-table;
     vertical-align: middle;
   }
 }
 /* MAX WIDTH */
-/* line 14, ../sass/base/_form.scss */
+/* line 15, ../sass/base/_form.scss */
 .form-control {
   font-size: 95%;
   color: #595959;
@@ -13218,49 +13219,49 @@ input:checked + .slider:before {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 14, ../sass/base/_form.scss */
+  /* line 15, ../sass/base/_form.scss */
   .form-control {
     padding: 6px 12px;
   }
 }
 
-/* line 26, ../sass/base/_form.scss */
+/* line 27, ../sass/base/_form.scss */
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
   /* line-height: 34px; */
   line-height: 1.42857;
 }
 
-/* line 32, ../sass/base/_form.scss */
+/* line 33, ../sass/base/_form.scss */
 .input-group-addon {
   border: solid 1px #CCCCCC;
   background-color: #EEEEEE;
 }
 
-/* line 37, ../sass/base/_form.scss */
+/* line 38, ../sass/base/_form.scss */
 textarea {
   min-height: 150px;
 }
 
-/* line 41, ../sass/base/_form.scss */
+/* line 42, ../sass/base/_form.scss */
 label {
   font-weight: normal;
   font-size: 100%;
   margin-right: 5px;
 }
-/* line 45, ../sass/base/_form.scss */
+/* line 46, ../sass/base/_form.scss */
 label span {
   line-height: 35px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 45, ../sass/base/_form.scss */
+  /* line 46, ../sass/base/_form.scss */
   label span {
     line-height: 20px;
   }
 }
 
-/* line 53, ../sass/base/_form.scss */
+/* line 54, ../sass/base/_form.scss */
 input[type=checkbox] {
   /*@include  checkboxScale(1.8,$spacing);
   // Media queries
@@ -13277,13 +13278,13 @@ input[type=checkbox] {
   background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
-  /* line 53, ../sass/base/_form.scss */
+  /* line 54, ../sass/base/_form.scss */
   input[type=checkbox] {
     margin: 0 11px 5px 0;
     font-size: 15px;
   }
 }
-/* line 73, ../sass/base/_form.scss */
+/* line 74, ../sass/base/_form.scss */
 input[type=checkbox]:after {
   margin: -11px 5px 0 0;
   vertical-align: baseline;
@@ -13300,7 +13301,7 @@ input[type=checkbox]:after {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 73, ../sass/base/_form.scss */
+  /* line 74, ../sass/base/_form.scss */
   input[type=checkbox]:after {
     margin-top: -2px;
     width: 20px;
@@ -13308,7 +13309,7 @@ input[type=checkbox]:after {
     padding: 2px 0 2px 1px;
   }
 }
-/* line 94, ../sass/base/_form.scss */
+/* line 95, ../sass/base/_form.scss */
 input[type=checkbox]:checked:after {
   content: "\f00c";
   color: #4e794e;
@@ -13316,26 +13317,26 @@ input[type=checkbox]:checked:after {
   -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 104, ../sass/base/_form.scss */
+/* line 105, ../sass/base/_form.scss */
 input[type=checkbox]:disabled:after {
   color: #BDBDBD;
 }
 
-/* line 109, ../sass/base/_form.scss */
+/* line 110, ../sass/base/_form.scss */
 .checkbox, .radio {
   margin-right: 10px;
 }
-/* line 111, ../sass/base/_form.scss */
+/* line 112, ../sass/base/_form.scss */
 .checkbox input[type=checkbox], .radio input[type=checkbox] {
   position: static;
   margin-left: 10px;
 }
-/* line 115, ../sass/base/_form.scss */
+/* line 116, ../sass/base/_form.scss */
 .checkbox label, .radio label {
   padding-left: 10px;
 }
 
-/* line 120, ../sass/base/_form.scss */
+/* line 121, ../sass/base/_form.scss */
 input[type=radio] {
   /* 
   @include radioScale(1.6, $spacing);
@@ -13354,13 +13355,13 @@ input[type=radio] {
   background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
-  /* line 120, ../sass/base/_form.scss */
+  /* line 121, ../sass/base/_form.scss */
   input[type=radio] {
     margin: 0 10px 5px 0;
     font-size: 12px;
   }
 }
-/* line 141, ../sass/base/_form.scss */
+/* line 142, ../sass/base/_form.scss */
 input[type=radio]:after {
   margin: -11px 5px 0 0;
   vertical-align: baseline;
@@ -13377,7 +13378,7 @@ input[type=radio]:after {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 141, ../sass/base/_form.scss */
+  /* line 142, ../sass/base/_form.scss */
   input[type=radio]:after {
     margin: -2px 0 0 -2px;
     width: 20px;
@@ -13385,7 +13386,7 @@ input[type=radio]:after {
     padding: 3px 0 0 4px;
   }
 }
-/* line 162, ../sass/base/_form.scss */
+/* line 163, ../sass/base/_form.scss */
 input[type=radio]:checked:after {
   content: "\f111";
   color: #737373;
@@ -13394,37 +13395,37 @@ input[type=radio]:checked:after {
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 172, ../sass/base/_form.scss */
+/* line 173, ../sass/base/_form.scss */
 .form-page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
-/* line 177, ../sass/base/_form.scss */
+/* line 178, ../sass/base/_form.scss */
 .form-page .form-group.is-inline {
   margin-bottom: 0;
 }
-/* line 180, ../sass/base/_form.scss */
+/* line 181, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline) {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 183, ../sass/base/_form.scss */
+/* line 184, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline).first {
   padding-top: 10px;
 }
-/* line 186, ../sass/base/_form.scss */
+/* line 187, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline).last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 193, ../sass/base/_form.scss */
+/* line 194, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 198, ../sass/base/_form.scss */
+/* line 199, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -13434,67 +13435,67 @@ input[type=radio]:checked:after {
   z-index: -1;
 }
 
-/* line 208, ../sass/base/_form.scss */
+/* line 209, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 211, ../sass/base/_form.scss */
+/* line 212, ../sass/base/_form.scss */
 legend, .legend {
   font-size: 120%;
   font-weight: bold;
   padding: 0 10px 5px 10px;
   border-bottom: 0;
 }
-/* line 216, ../sass/base/_form.scss */
+/* line 217, ../sass/base/_form.scss */
 legend.has-control, .legend.has-control {
   display: flex;
   justify-content: space-between;
 }
 
-/* line 222, ../sass/base/_form.scss */
+/* line 223, ../sass/base/_form.scss */
 fieldset, .fieldset {
   padding: 10px;
 }
-/* line 224, ../sass/base/_form.scss */
+/* line 225, ../sass/base/_form.scss */
 fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 {
   margin: 0;
 }
-/* line 227, ../sass/base/_form.scss */
+/* line 228, ../sass/base/_form.scss */
 fieldset.expanded, .fieldset.expanded {
   padding: 10px;
 }
-/* line 230, ../sass/base/_form.scss */
+/* line 231, ../sass/base/_form.scss */
 fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-bottom: 0;
 }
 
-/* line 237, ../sass/base/_form.scss */
+/* line 238, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 242, ../sass/base/_form.scss */
+/* line 243, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 246, ../sass/base/_form.scss */
+/* line 247, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 250, ../sass/base/_form.scss */
+/* line 251, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 254, ../sass/base/_form.scss */
+/* line 255, ../sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 258, ../sass/base/_form.scss */
+/* line 259, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -13502,23 +13503,23 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-top: solid 1px #cccccc;
 }
 
-/* line 266, ../sass/base/_form.scss */
+/* line 267, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 270, ../sass/base/_form.scss */
+/* line 271, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 274, ../sass/base/_form.scss */
+/* line 275, ../sass/base/_form.scss */
 .form-control-img {
   margin-right: 10px;
   cursor: pointer;
 }
 
-/* line 280, ../sass/base/_form.scss */
+/* line 281, ../sass/base/_form.scss */
 .lang-active {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -13527,12 +13528,12 @@ fieldset.submit-entry {
   filter: grayscale(100%);
 }
 
-/* line 284, ../sass/base/_form.scss */
+/* line 285, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 288, ../sass/base/_form.scss */
+/* line 289, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13541,7 +13542,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 297, ../sass/base/_form.scss */
+/* line 298, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }

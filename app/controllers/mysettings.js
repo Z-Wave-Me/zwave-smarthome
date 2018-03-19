@@ -48,6 +48,16 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     };
     $scope.allSettled();
 
+      /**
+     * Cancel interval on page destroy
+     */
+  
+  $scope.$on('$destroy', function () {
+    $scope.user.night_mode =  $scope.input.night_mode;
+    //angular.extend($scope.user,{night_mode: $scope.input.night_mode});
+  });
+
+
     /**
      * Assign device to the list
      */

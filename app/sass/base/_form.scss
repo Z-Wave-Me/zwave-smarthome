@@ -4,6 +4,7 @@
 @include mediaQueries(min-small) {
   .form-check-inline {
     display: inline-block;
+    margin-right: $spacing-double;
   }
   .form-inline .input-group {
     display: inline-table;

@@ -46,6 +46,14 @@
 
         </div>
       </fieldset>
+      <fieldset>
+          <div class="form-group form-inline">
+              <label for="night_mode">
+                <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="user.night_mode = input.night_mode" />
+                <span>{{_t('night_mode')}}</span>
+              </label>
+            </div>
+           </fieldset>
       <!-- Expert view -->
       <fieldset ng-if="elementAccess(cfg.role_access.expert_view)">
         <div class="form-group form-inline">
