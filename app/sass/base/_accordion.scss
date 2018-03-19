@@ -26,6 +26,11 @@ $accordion-focus-color: $focus-color;
     font-weight: normal;
     cursor: pointer;
     border-bottom: dotted 1px $accordion-border-color;
+    
+    > span {
+      @include textOverflow();
+    }
+
     &::after{
       margin-left: $accordion-spacing;
       padding: $spacing;
