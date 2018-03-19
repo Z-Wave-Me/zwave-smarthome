@@ -86,6 +86,18 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
+                //Leakages
+                when('/leakages', {
+                  templateUrl: 'app/views/leakages/leakages.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
+                 //Leakage ID
+                 when('/leakages/:id', {
+                  templateUrl: 'app/views/leakages/leakage_id.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
                 //Admin
                 when('/admin', {
                     templateUrl: 'app/views/management/management.html',
