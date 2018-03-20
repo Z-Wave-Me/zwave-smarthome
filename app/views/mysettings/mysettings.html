@@ -28,14 +28,14 @@
               <span>
                 {{_t('lb_language')}}:
                 <img class="form-control-img profile-lang" ng-src="app/img/flags/{{input.lang}}.png"
-                  alt="{{input.lang}}" />
+                  title="{{input.lang}}" />
                 <span class="uppercase">{{input.lang}}</span>
               </span>
             </button>
           </div>
           <div class="accordion" hidden>
-            <img class="form-control-img profile-lang" ng-repeat="v in cfg.lang_list" ng-click="input.lang = v" ng-class="v == input.lang ? 'lang-active':''"
-              ng-src="app/img/flags/{{v}}.png" alt="{{ v}}" />
+            <img class="form-control-img profile-lang" title="{{v}}" ng-repeat="v in cfg.lang_list" ng-click="input.lang = v" ng-class="v == input.lang ? 'lang-active':''"
+              ng-src="app/img/flags/{{v}}.png" />
           </div>
         </div>
         <!-- interval -->
@@ -49,7 +49,7 @@
       <fieldset>
           <div class="form-group form-inline">
               <label for="night_mode">
-                <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="user.night_mode = input.night_mode" />
+                <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)" />
                 <span>{{_t('night_mode')}}</span>
               </label>
             </div>

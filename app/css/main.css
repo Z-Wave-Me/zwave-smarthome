@@ -19131,31 +19131,43 @@ body.night-false {
   background-color: #44464F;
   color: #8a8d8f;
 }
-/* line 325, ../sass/custom/_shui_night.scss */
+/* line 323, ../sass/custom/_shui_night.scss */
+.night-true .alertify-notifier .ajs-message.ajs-success {
+  color: #fff;
+}
+/* line 326, ../sass/custom/_shui_night.scss */
+.night-true .alertify-notifier .ajs-message.ajs-error {
+  color: #fff;
+}
+/* line 329, ../sass/custom/_shui_night.scss */
+.night-true .alertify-notifier .ajs-message.ajs-warning {
+  bcolor: #fff;
+}
+/* line 334, ../sass/custom/_shui_night.scss */
 .night-true .alpaca-field-object {
   border: 1px #44464F solid;
 }
-/* line 328, ../sass/custom/_shui_night.scss */
+/* line 337, ../sass/custom/_shui_night.scss */
 .night-true .table-bordered {
   border: 1px solid #44464F;
 }
-/* line 331, ../sass/custom/_shui_night.scss */
+/* line 340, ../sass/custom/_shui_night.scss */
 .night-true .table-striped > tbody > tr:nth-child(odd) > td,
 .night-true .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #44464F;
 }
-/* line 336, ../sass/custom/_shui_night.scss */
+/* line 345, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > thead > tr > th,
 .night-true #alpaca_data .table-bordered > thead > tr > td {
   border: 1px solid #44464F;
 }
-/* line 340, ../sass/custom/_shui_night.scss */
+/* line 349, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > tbody > tr > td,
 .night-true #alpaca_data .table-bordered > tfoot > tr > th,
 .night-true #alpaca_data .table-bordered > tfoot > tr > td {
   border: 0px solid #44464F;
 }
-/* line 345, ../sass/custom/_shui_night.scss */
+/* line 354, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .btn-default[disabled] {
   background: transparent;
   border-color: #44464F;
