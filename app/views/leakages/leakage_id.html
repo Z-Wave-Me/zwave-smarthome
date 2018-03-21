@@ -6,6 +6,9 @@
   <form class="form form-page" ng-submit="storeInstance(leakage.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/leakages/leakage_id_form.html'"></fieldset>
+     <!-- Available sensors -->
+     <legend>{{_t('add_flood_sensors')}}</legend>
+     <fieldset ng-include="'app/views/leakages/leakage_id_sensors_available.html'"></fieldset>
     <!-- Asigned sensors -->
     <legend>{{_t('assigned_sensors')}}</legend>
     <fieldset ng-include="'app/views/leakages/leakage_id_sensors_assigned.html'"></fieldset>
@@ -15,12 +18,9 @@
      <!-- Asigned notifiers -->
     <legend>{{_t('assigned_notifications')}}</legend>
     <fieldset ng-include="'app/views/leakages/leakage_id_notifiers_assigned.html'"></fieldset>
-    <!-- Available sensors -->
-    <legend>{{_t('add_flood_sensors')}}</legend>
-    <fieldset ng-include="'app/views/leakages/leakage_id_sensors_add.html'"></fieldset>
     <!-- Available devices -->
     <legend>{{_t('lb_available_devices')}}</legend>
-    <fieldset ng-include="'app/views/leakages/leakage_id_devices_add.html'"></fieldset>
+    <fieldset ng-include="'app/views/leakages/leakage_id_devices_available.html'"></fieldset>
     <!-- Notifications -->
     <legend>{{_t('notifications')}}</legend>
     <fieldset ng-include="'app/views/leakages/leakage_id_notifiers_add.html'"></fieldset>

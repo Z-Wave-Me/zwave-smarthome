@@ -61,7 +61,7 @@ myAppController.controller('LeakageController', function ($scope, $routeParams, 
     });
   };
 
-  
+
   /**
    * Clone 
    * @param {object} input
@@ -100,9 +100,10 @@ myAppController.controller('LeakageController', function ($scope, $routeParams, 
  */
 myAppController.controller('LeakageIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.leakage = {
-    sensors:['flood','alarm_flood','alarmSensor_flood'],
-    notifiers:['notification'],
-    interval: [60,120,300,600,900,1800,3600],
+    sensors: ['flood', 'alarm_flood', 'alarmSensor_flood'],
+    devices: ['switchBinary', 'switchMultilevel', 'toggleButton'],
+    notifiers: ['notification_email'],
+    interval: [60, 120, 300, 600, 900, 1800, 3600],
     availableSensors: {},
     availableDevices: {},
     availableNotifiers: {},
@@ -110,9 +111,9 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
     assignedSensors: [],
     assignedDevices: [],
     assignedNotifiers: [],
-    devicesInRoom:[],
+    devicesInRoom: [],
     rooms: [],
-      
+
     cfg: {
       switchBinary: {
         filter: 'switchBinary',
@@ -128,7 +129,8 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
         operator: ['=', '!=', '>', '>=', '<', '<='],
         default: {
           device: '',
-          status: 'on'
+          status: 'on',
+          level:0
         }
       },
       toggleButton: {
@@ -136,8 +138,14 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
         default: {
           device: ''
         }
+      },
+      notification: {
+        default: {
+          notifier: '',
+          message: ''
+        }
       }
-      
+
     },
     input: {
       instanceId: $routeParams.id,
@@ -154,7 +162,19 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
     }
   };
 
-   /**
+  /**
+   *  Reset Original data 
+   */
+  $scope.orig = {
+    options: {}
+  };
+  $scope.orig.options = angular.copy($scope.leakage.cfg);
+  $scope.resetOptions = function () {
+   $scope.leakage.cfg = angular.copy($scope.orig.options);
+
+  };
+
+  /**
    * Load instance
    */
   $scope.loadInstance = function (id) {
@@ -165,18 +185,25 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
         active: instance.active,
         params: instance.params
       });
-       // Set assigned sensors
-       angular.forEach(instance.params.sensors, function (v) {
-        if(v !==''){
-         $scope.leakage.assignedSensors.push(v);
+      // Set assigned sensors
+      angular.forEach(instance.params.sensors, function (v) {
+        if (v !== '') {
+          $scope.leakage.assignedSensors.push(v);
         }
       });
 
-       // Set assigned devices
-       angular.forEach(instance.params.action, function (v, k) {
-         var deviceId = $filter('hasNode')(v, v.filter + '.device');
-         if(deviceId){
+      // Set assigned devices
+      angular.forEach(instance.params.action, function (v, k) {
+        var deviceId = $filter('hasNode')(v, v.filter + '.device');
+        if (deviceId) {
           $scope.leakage.assignedDevices.push(deviceId);
+        }
+      });
+
+      // Set assigned devices
+      angular.forEach(instance.params.notification.notifiers, function (v, k) {
+        if (v.notifier) {
+          $scope.leakage.assignedNotifiers.push(v.notifier);
         }
       });
 
@@ -190,7 +217,7 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
     $scope.loadInstance($routeParams.id);
   }
 
-   /**
+  /**
    * Load rooms
    */
   $scope.loadRooms = function () {
@@ -209,7 +236,7 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
     dataFactory.getApi('devices').then(function (response) {
       var devices = dataService.getDevicesData(response.data.data.devices);
 
-      _.filter(devices.value(),function(v){
+      _.filter(devices.value(), function (v) {
         var obj = {
           deviceId: v.id,
           deviceName: v.metrics.title,
@@ -219,17 +246,17 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
           locationName: rooms[v.location].title
         };
         // Set sensors
-       if($scope.leakage.sensors.indexOf(v.probeType) > -1) {
-        $scope.leakage.availableSensors[v.id] =obj;
-       }
-         // Set devices
-         if(_.keys($scope.leakage.cfg).indexOf(v.deviceType) > -1) {
-          $scope.leakage.availableDevices[v.id] =obj;
+        if ($scope.leakage.sensors.indexOf(v.probeType) > -1) {
+          $scope.leakage.availableSensors[v.id] = obj;
         }
-         // Set notifiers
-       if($scope.leakage.notifiers.indexOf(v.probeTyp) > -1) {
-        $scope.leakage.availableNotifiers[v.id] =obj;
-      }
+        // Set devices
+        if ($scope.leakage.devices.indexOf(v.deviceType) > -1) {
+          $scope.leakage.availableDevices[v.id] = obj;
+        }
+        // Set notifiers
+        if ($scope.leakage.notifiers.indexOf(v.probeType) > -1) {
+          $scope.leakage.availableNotifiers[v.id] = obj;
+        }
       });
       // Set devices in the room
       $scope.leakage.devicesInRoom = _.countBy($scope.leakage.availableDevices, function (v) {
@@ -239,7 +266,64 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
   };
 
   /**
-   * Store schedule
+   * Assign sensor
+   * @param {int} sensorId
+   * @returns {undefined}
+   */
+  $scope.assignSensor = function (sensorId) {
+    if ($scope.leakage.input.params.sensors.indexOf(sensorId) === -1) {
+      $scope.leakage.input.params.sensors.push(sensorId);
+    }
+
+  };
+
+  /**
+   * Remove sensor id from assigned sensors
+   * @param {string} deviceId 
+   */
+  $scope.unassignSensor = function (deviceId) {
+    var deviceIndex = $scope.leakage.input.params.sensors.indexOf(deviceId);
+    if (deviceIndex > -1) {
+      $scope.leakage.input.params.sensors.splice(deviceIndex, 1);
+    }
+
+  };
+
+  /**
+   * Assign a device
+   * @param {object} device
+   * @returns {undefined}
+   */
+  $scope.assignDevice = function (device) {
+    var input = $scope.leakage.cfg[device.deviceType],obj = {};
+    if (!input || $scope.leakage.assignedDevices.indexOf(device.deviceId) > -1) {
+      return;
+    }
+    obj['filter'] = input.filter;
+    obj[input.filter] = input.default;
+    obj[input.filter].device = device.deviceId;
+
+    $scope.leakage.input.params.action.push(obj);
+    $scope.leakage.assignedDevices.push(device.deviceId);
+    $scope.resetOptions();
+  };
+
+  /**
+   * Assign notification
+   * @param {object} notification
+   * @returns {undefined}
+   */
+  $scope.assignNotification = function (notification) {
+    if (notification.notifier && $scope.leakage.assignedNotifiers.indexOf(notification.notifier) === -1) {
+      $scope.leakage.input.params.notification.notifiers.push(notification);
+      $scope.leakage.assignedNotifiers.push(notification.notifier);
+      $scope.resetOptions();
+    }
+
+  };
+
+  /**
+   * Store instance
    */
   $scope.storeInstance = function (input, redirect) {
     console.log(input)
