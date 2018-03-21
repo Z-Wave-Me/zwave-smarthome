@@ -108,7 +108,6 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
     availableDevices: {},
     availableNotifiers: {},
     devicesInRoom: [],
-    assignedSensors: [],
     assignedDevices: [],
     assignedNotifiers: [],
     devicesInRoom: [],
@@ -117,7 +116,7 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
     cfg: {
       switchBinary: {
         filter: 'switchBinary',
-        level: ['on', 'off'],
+        status: ['on', 'off'],
         default: {
           device: '',
           status: 'on'
@@ -125,7 +124,9 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
       },
       switchMultilevel: {
         filter: 'switchMultilevel',
-        level: ['on', 'off'],
+        status: ['on', 'off','lvl'],
+        min: 0,
+        max: 99,
         operator: ['=', '!=', '>', '>=', '<', '<='],
         default: {
           device: '',
@@ -185,13 +186,6 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
         active: instance.active,
         params: instance.params
       });
-      // Set assigned sensors
-      angular.forEach(instance.params.sensors, function (v) {
-        if (v !== '') {
-          $scope.leakage.assignedSensors.push(v);
-        }
-      });
-
       // Set assigned devices
       angular.forEach(instance.params.action, function (v, k) {
         var deviceId = $filter('hasNode')(v, v.filter + '.device');
@@ -309,6 +303,21 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
   };
 
   /**
+   * Remove device id from assigned device
+   * @param {int} index 
+   * @param {string} deviceId 
+   */
+  $scope.unassignDevice = function (targetIndex, deviceId) {
+
+    var deviceIndex = $scope.leakage.assignedDevices.indexOf(deviceId);
+    if (targetIndex > -1) {
+      $scope.leakage.input.params.action.splice(targetIndex, 1);
+      $scope.leakage.assignedDevices.splice(deviceIndex, 1);
+    }
+
+  };
+
+  /**
    * Assign notification
    * @param {object} notification
    * @returns {undefined}
@@ -318,6 +327,21 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
       $scope.leakage.input.params.notification.notifiers.push(notification);
       $scope.leakage.assignedNotifiers.push(notification.notifier);
       $scope.resetOptions();
+    }
+
+  };
+
+  /**
+   * Remove notification id from assigned notifications
+   * @param {int} index 
+   * @param {string} deviceId 
+   */
+  $scope.unassignNotification = function (targetIndex, deviceId) {
+
+    var deviceIndex = $scope.leakage.assignedNotifiers.indexOf(deviceId);
+    if (targetIndex > -1) {
+      $scope.leakage.input.params.notification.notifiers.splice(targetIndex, 1);
+      $scope.leakage.assignedNotifiers.splice(deviceIndex, 1);
     }
 
   };

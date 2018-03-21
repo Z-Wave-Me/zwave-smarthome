@@ -13401,31 +13401,39 @@ input[type=radio]:checked:after {
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
 }
-/* line 178, ../sass/base/_form.scss */
+/* line 177, ../sass/base/_form.scss */
+.form-page > section {
+  margin-bottom: 20px;
+}
+/* line 179, ../sass/base/_form.scss */
+.form-page > section:last-child {
+  margin-bottom: 0;
+}
+/* line 184, ../sass/base/_form.scss */
 .form-page .form-group.is-inline {
   margin-bottom: 0;
 }
-/* line 181, ../sass/base/_form.scss */
+/* line 187, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline) {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 184, ../sass/base/_form.scss */
+/* line 190, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline).first {
   padding-top: 10px;
 }
-/* line 187, ../sass/base/_form.scss */
+/* line 193, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline).last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 194, ../sass/base/_form.scss */
+/* line 200, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 199, ../sass/base/_form.scss */
+/* line 205, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -13435,67 +13443,67 @@ input[type=radio]:checked:after {
   z-index: -1;
 }
 
-/* line 209, ../sass/base/_form.scss */
+/* line 215, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 212, ../sass/base/_form.scss */
+/* line 218, ../sass/base/_form.scss */
 legend, .legend {
   font-size: 120%;
   font-weight: bold;
-  padding: 0 10px 5px 10px;
+  padding: 0 20px;
   border-bottom: 0;
 }
-/* line 217, ../sass/base/_form.scss */
+/* line 223, ../sass/base/_form.scss */
 legend.has-control, .legend.has-control {
   display: flex;
   justify-content: space-between;
 }
 
-/* line 223, ../sass/base/_form.scss */
+/* line 229, ../sass/base/_form.scss */
 fieldset, .fieldset {
-  padding: 10px;
+  padding: 10px 20px;
 }
-/* line 225, ../sass/base/_form.scss */
+/* line 231, ../sass/base/_form.scss */
 fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 {
   margin: 0;
 }
-/* line 228, ../sass/base/_form.scss */
+/* line 234, ../sass/base/_form.scss */
 fieldset.expanded, .fieldset.expanded {
   padding: 10px;
 }
-/* line 231, ../sass/base/_form.scss */
+/* line 237, ../sass/base/_form.scss */
 fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-bottom: 0;
 }
 
-/* line 238, ../sass/base/_form.scss */
+/* line 244, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 243, ../sass/base/_form.scss */
+/* line 249, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 247, ../sass/base/_form.scss */
+/* line 253, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 251, ../sass/base/_form.scss */
+/* line 257, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 255, ../sass/base/_form.scss */
+/* line 261, ../sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 259, ../sass/base/_form.scss */
+/* line 265, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -13503,23 +13511,23 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-top: solid 1px #cccccc;
 }
 
-/* line 267, ../sass/base/_form.scss */
+/* line 273, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 271, ../sass/base/_form.scss */
+/* line 277, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 275, ../sass/base/_form.scss */
+/* line 281, ../sass/base/_form.scss */
 .form-control-img {
   margin-right: 10px;
   cursor: pointer;
 }
 
-/* line 281, ../sass/base/_form.scss */
+/* line 287, ../sass/base/_form.scss */
 .lang-active {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -13528,12 +13536,12 @@ fieldset.submit-entry {
   filter: grayscale(100%);
 }
 
-/* line 285, ../sass/base/_form.scss */
+/* line 291, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 289, ../sass/base/_form.scss */
+/* line 295, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13542,7 +13550,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 298, ../sass/base/_form.scss */
+/* line 304, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -18643,37 +18651,46 @@ body.night-false {
   border: solid 4px #e7e7e7;
 }
 /* line 90, ../sass/custom/_shui.scss */
-.night-false .form-page .form-group {
+.night-false .form-page > section {
+  border-bottom: solid 4px #e7e7e7;
+}
+/* line 92, ../sass/custom/_shui.scss */
+.night-false .form-page > section:last-child {
+  border-bottom: 0;
+}
+/* line 97, ../sass/custom/_shui.scss */
+.night-false .form-page .for
+.form-group {
   border-color: #e7e7e7;
 }
-/* line 94, ../sass/custom/_shui.scss */
+/* line 102, ../sass/custom/_shui.scss */
 .night-false .submit-entry {
   background-color: #e7e7e7;
   border-top: solid 1px #e7e7e7;
 }
-/* line 100, ../sass/custom/_shui.scss */
+/* line 108, ../sass/custom/_shui.scss */
 .night-false fieldset.expanded,
 .night-false .fieldset.expanded {
   background-color: #F6F6F6;
   border-top: solid 4px #e7e7e7;
   border-bottom: solid 4px #e7e7e7;
 }
-/* line 109, ../sass/custom/_shui.scss */
+/* line 117, ../sass/custom/_shui.scss */
 .night-false .btn-goup-tabs .btn {
   background-color: #eeeeee;
 }
-/* line 111, ../sass/custom/_shui.scss */
+/* line 119, ../sass/custom/_shui.scss */
 .night-false .btn-goup-tabs .btn.active {
   background-color: #dcdcdc;
 }
-/* line 119, ../sass/custom/_shui.scss */
+/* line 127, ../sass/custom/_shui.scss */
 .night-false .widget-entry .widget-entry-in {
   border-color: #d3d3d3;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 119, ../sass/custom/_shui.scss */
+  /* line 127, ../sass/custom/_shui.scss */
   .night-false .widget-entry .widget-entry-in {
     border: solid 4px #FFFFFF;
     background: #f6f6f6;
@@ -18698,7 +18715,7 @@ body.night-false {
   }
 }
 @media only screen and (min-width: 320px) {
-  /* line 133, ../sass/custom/_shui.scss */
+  /* line 141, ../sass/custom/_shui.scss */
   .night-false .card-room .card-room-in {
     border: solid 4px #ffffff;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18706,13 +18723,13 @@ body.night-false {
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 141, ../sass/custom/_shui.scss */
+/* line 149, ../sass/custom/_shui.scss */
 .night-false .elemnts-room-bar {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 141, ../sass/custom/_shui.scss */
+  /* line 149, ../sass/custom/_shui.scss */
   .night-false .elemnts-room-bar {
     border: 0;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18736,7 +18753,7 @@ body.night-false {
     /* IE6-9 */
   }
 }
-/* line 151, ../sass/custom/_shui.scss */
+/* line 159, ../sass/custom/_shui.scss */
 .night-false .localapp-in,
 .night-false .onlineapp-in {
   border-color: #d3d3d3;
@@ -18744,7 +18761,7 @@ body.night-false {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 151, ../sass/custom/_shui.scss */
+  /* line 159, ../sass/custom/_shui.scss */
   .night-false .localapp-in,
   .night-false .onlineapp-in {
     border: solid 4px #FFFFFF;
@@ -18770,11 +18787,11 @@ body.night-false {
   }
 }
 @media only screen and (min-width: 320px) {
-  /* line 164, ../sass/custom/_shui.scss */
+  /* line 172, ../sass/custom/_shui.scss */
   .night-false .card-customize {
     border: 0;
   }
-  /* line 166, ../sass/custom/_shui.scss */
+  /* line 174, ../sass/custom/_shui.scss */
   .night-false .card-customize .card-customize-in {
     border: solid 4px #ffffff;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18782,23 +18799,23 @@ body.night-false {
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 176, ../sass/custom/_shui.scss */
+/* line 184, ../sass/custom/_shui.scss */
 .night-false .accordion-wrap .accordion {
   background-color: #F6F6F6;
 }
-/* line 181, ../sass/custom/_shui.scss */
+/* line 189, ../sass/custom/_shui.scss */
 .night-false .accordion-wrap.nested .accordion .accordion {
   background-color: #e9e9e9;
 }
 
 /* Footer
     -------------------------------------------------- */
-/* line 194, ../sass/custom/_shui.scss */
+/* line 202, ../sass/custom/_shui.scss */
 #footer .container {
   display: flex;
   justify-content: space-between;
 }
-/* line 197, ../sass/custom/_shui.scss */
+/* line 205, ../sass/custom/_shui.scss */
 #footer .container span:last-child {
   margin-left: auto;
 }
@@ -18971,13 +18988,13 @@ body.night-false {
 .night-true .infowindow {
   background: #2D3038 !important;
 }
-/* line 150, ../sass/custom/_shui_night.scss */
+/* line 149, ../sass/custom/_shui_night.scss */
 .night-true .btn-submit,
 .night-true .wizard li.active,
 .night-true .dots .active {
   background: #740047 !important;
 }
-/* line 159, ../sass/custom/_shui_night.scss */
+/* line 156, ../sass/custom/_shui_night.scss */
 .night-true .form-control,
 .night-true .slider,
 .night-true .ajs-input,
@@ -18985,11 +19002,11 @@ body.night-false {
 .night-true .label {
   background: #44464F;
 }
-/* line 166, ../sass/custom/_shui_night.scss */
+/* line 163, ../sass/custom/_shui_night.scss */
 .night-true .slider:before {
   background: #d9534f;
 }
-/* line 171, ../sass/custom/_shui_night.scss */
+/* line 168, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation_wrap,
 .night-true #sub_navigation_in ul,
 .night-true #sub_navigation_in ul li,
@@ -19026,7 +19043,7 @@ body.night-false {
 .night-true #footer {
   border-color: #44464F !important;
 }
-/* line 209, ../sass/custom/_shui_night.scss */
+/* line 206, ../sass/custom/_shui_night.scss */
 .night-true #sub_navigation_in,
 .night-true .btn-default.active,
 .night-true .btn-default:hover,
@@ -19034,7 +19051,7 @@ body.night-false {
 .night-true .btn-default:active {
   border-color: #737786 !important;
 }
-/* line 218, ../sass/custom/_shui_night.scss */
+/* line 215, ../sass/custom/_shui_night.scss */
 .night-true .form-page,
 .night-true .submit-entry,
 .night-true .app-row-imglist,
@@ -19042,65 +19059,65 @@ body.night-false {
   border: 0;
 }
 @media only screen and (max-width: 767px) {
-  /* line 230, ../sass/custom/_shui_night.scss */
+  /* line 225, ../sass/custom/_shui_night.scss */
   .night-true #sub_navigation #sub_navigation_in {
     background-color: #2D3038;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 240, ../sass/custom/_shui_night.scss */
+  /* line 233, ../sass/custom/_shui_night.scss */
   .night-true .fix-me-top {
     background: #24262D;
     border-color: #44464F;
   }
 }
-/* line 247, ../sass/custom/_shui_night.scss */
+/* line 240, ../sass/custom/_shui_night.scss */
 .night-true .alert-success {
   border-color: #f0ad4e;
 }
-/* line 250, ../sass/custom/_shui_night.scss */
+/* line 243, ../sass/custom/_shui_night.scss */
 .night-true .alert-warning {
   border-color: #f0ad4e;
 }
-/* line 253, ../sass/custom/_shui_night.scss */
+/* line 246, ../sass/custom/_shui_night.scss */
 .night-true .alert-danger {
   border-color: #d9534f;
 }
 @media only screen and (max-width: 767px) {
-  /* line 259, ../sass/custom/_shui_night.scss */
+  /* line 252, ../sass/custom/_shui_night.scss */
   .night-true .appmodal:before {
     background: #24262D !important;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 264, ../sass/custom/_shui_night.scss */
+  /* line 257, ../sass/custom/_shui_night.scss */
   .night-true .appmodal:before {
     background-color: rgba(37, 37, 37, 0.5);
   }
-  /* line 267, ../sass/custom/_shui_night.scss */
+  /* line 260, ../sass/custom/_shui_night.scss */
   .night-true .appmodal-in {
     border: solid 4px #44464F;
   }
 }
-/* line 273, ../sass/custom/_shui_night.scss */
+/* line 266, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .nav-logo,
 .night-true .device-type-logo,
 .night-true .device-logo img {
   -webkit-filter: brightness(0) invert(1);
   filter: brightness(0) invert(1);
 }
-/* line 282, ../sass/custom/_shui_night.scss */
+/* line 275, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-dialog {
   border: solid 2px #44464F;
 }
-/* line 285, ../sass/custom/_shui_night.scss */
+/* line 278, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-dialog,
 .night-true .alertify .ajs-header,
 .night-true .alertify .ajs-footer {
   color: #aeb8c3;
   background-color: #24262D;
 }
-/* line 292, ../sass/custom/_shui_night.scss */
+/* line 285, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button {
   display: inline-block;
   margin-bottom: 0;
@@ -19120,54 +19137,54 @@ body.night-false {
   color: #aeb8c3;
   border: solid 1px #737786;
 }
-/* line 310, ../sass/custom/_shui_night.scss */
+/* line 303, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button.ajs-ok {
   color: #8a8d8f;
   border: solid 1px #44464F;
   background-color: #740047;
 }
-/* line 314, ../sass/custom/_shui_night.scss */
+/* line 307, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button.ajs-ok:hover, .night-true .alertify .ajs-footer .ajs-button.ajs-ok:focus {
   background-color: #44464F;
   color: #8a8d8f;
 }
-/* line 323, ../sass/custom/_shui_night.scss */
+/* line 316, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-success {
   color: #fff;
 }
-/* line 326, ../sass/custom/_shui_night.scss */
+/* line 319, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-error {
   color: #fff;
 }
-/* line 329, ../sass/custom/_shui_night.scss */
+/* line 322, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-warning {
-  bcolor: #fff;
+  color: #fff;
 }
-/* line 334, ../sass/custom/_shui_night.scss */
+/* line 327, ../sass/custom/_shui_night.scss */
 .night-true .alpaca-field-object {
   border: 1px #44464F solid;
 }
-/* line 337, ../sass/custom/_shui_night.scss */
+/* line 330, ../sass/custom/_shui_night.scss */
 .night-true .table-bordered {
   border: 1px solid #44464F;
 }
-/* line 340, ../sass/custom/_shui_night.scss */
+/* line 333, ../sass/custom/_shui_night.scss */
 .night-true .table-striped > tbody > tr:nth-child(odd) > td,
 .night-true .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #44464F;
 }
-/* line 345, ../sass/custom/_shui_night.scss */
+/* line 338, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > thead > tr > th,
 .night-true #alpaca_data .table-bordered > thead > tr > td {
   border: 1px solid #44464F;
 }
-/* line 349, ../sass/custom/_shui_night.scss */
+/* line 342, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > tbody > tr > td,
 .night-true #alpaca_data .table-bordered > tfoot > tr > th,
 .night-true #alpaca_data .table-bordered > tfoot > tr > td {
   border: 0px solid #44464F;
 }
-/* line 354, ../sass/custom/_shui_night.scss */
+/* line 347, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .btn-default[disabled] {
   background: transparent;
   border-color: #44464F;

@@ -1,4 +1,4 @@
-<pre>{{leakage.availableDevices|json}}</pre> 
+
 <section class="accordion-wrap" ng-repeat="d in leakage.input.params.action track by $index" ng-init="model=d[d.filter]">
     <h2 class="accordion-toggle chevron">
        <!-- Deleted device -->
@@ -17,7 +17,7 @@
                {{leakage.availableDevices[model.device].deviceName}}
              </span>
          </span>
-       <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignTargetDevice($index,model.device)">
+       <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice($index,model.device)">
          <i class="fa fa-times text-danger"></i>
          </span>
      </h2>

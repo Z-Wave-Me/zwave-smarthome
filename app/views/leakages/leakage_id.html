@@ -1,41 +1,51 @@
 <!-- The schedule -->
-<div class="automation" ng-controller="LeakageIdController">
+<section class="automation" ng-controller="LeakageIdController">
 
   <h2>{{_t('schedules')}}</h2>
   <!-- Form -->
   <form class="form form-page" ng-submit="storeInstance(leakage.input,true)">
     <!-- Form-->
     <fieldset ng-include="'app/views/leakages/leakage_id_form.html'"></fieldset>
-     <!-- Available sensors -->
-     <legend>{{_t('add_flood_sensors')}}</legend>
-     <fieldset ng-include="'app/views/leakages/leakage_id_sensors_available.html'"></fieldset>
-    <!-- Asigned sensors -->
-    <legend>{{_t('assigned_sensors')}}</legend>
-    <fieldset ng-include="'app/views/leakages/leakage_id_sensors_assigned.html'"></fieldset>
-    <!-- Asigned devices -->
-    <legend>{{_t('assigned_devices')}}</legend>
-    <fieldset ng-include="'app/views/leakages/leakage_id_devices_assigned.html'"></fieldset>
-     <!-- Asigned notifiers -->
-    <legend>{{_t('assigned_notifications')}}</legend>
-    <fieldset ng-include="'app/views/leakages/leakage_id_notifiers_assigned.html'"></fieldset>
-    <!-- Available devices -->
-    <legend>{{_t('lb_available_devices')}}</legend>
-    <fieldset ng-include="'app/views/leakages/leakage_id_devices_available.html'"></fieldset>
-    <!-- Notifications -->
-    <legend>{{_t('notifications')}}</legend>
-    <fieldset ng-include="'app/views/leakages/leakage_id_notifiers_add.html'"></fieldset>
-     <!-- Submit  -->
+    <section>
+      <!-- Available sensors -->
+      <legend>{{_t('add_flood_sensors')}}</legend>
+      <fieldset ng-include="'app/views/leakages/leakage_id_sensors_available.html'"></fieldset>
+      <!-- Asigned sensors -->
+      <legend ng-if="_.size(leakage.input.params.sensors)">{{_t('assigned_sensors')}}</legend>
+      <fieldset ng-include="'app/views/leakages/leakage_id_sensors_assigned.html'"></fieldset>
+    </section>
+
+    <section ng-if="_.size(leakage.input.params.sensors)">
+      <!-- Asigned devices -->
+      <legend ng-if="_.size(leakage.input.params.action)">{{_t('assigned_devices')}}</legend>
+      <fieldset ng-include="'app/views/leakages/leakage_id_devices_assigned.html'"></fieldset>
+      <!-- Asigned notifiers -->
+      <legend ng-if="_.size(leakage.input.params.notification.notifiers)">{{_t('assigned_notifications')}}</legend>
+      <fieldset ng-include="'app/views/leakages/leakage_id_notifiers_assigned.html'"></fieldset>
+    </section>
+    <section ng-if="_.size(leakage.input.params.sensors)">
+      <!-- Available devices -->
+      <legend>{{_t('lb_available_devices')}}</legend>
+      <fieldset ng-include="'app/views/leakages/leakage_id_devices_available.html'"></fieldset>
+     
+    </section>
+    <section ng-if="_.size(leakage.input.params.sensors)">
+         <!-- Notifications -->
+      <legend>{{_t('notifications')}}</legend>
+      <fieldset ng-include="'app/views/leakages/leakage_id_notifiers_add.html'"></fieldset>
+    </section>
+    <!-- Submit  -->
     <fieldset class="submit-entry">
-        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-          <i class="fa fa-reply"></i>
-          <span class="btn-name">{{_t('lb_cancel')}}</span>
-        </button>
-        <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-          <i class="fa fa-check"></i>
-          <span class="btn-name">{{_t('lb_save')}}</span>
-        </button>
-      </fieldset>
+      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </button>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </fieldset>
   </form>
- <pre>{{leakage.input|json}}</pre> 
-</div>
-<!-- /ng-controller -->
+  <pre>{{leakage.input|json}}</pre>
+  </div>
+  <!-- /ng-controller -->

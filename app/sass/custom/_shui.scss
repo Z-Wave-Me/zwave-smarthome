@@ -87,6 +87,14 @@ body {
 -------------------------------------------------- */
   .form-page {
     border: solid 4px #e7e7e7;
+    > section{
+      border-bottom: solid 4px #e7e7e7;
+      &:last-child{
+        border-bottom: 0;
+      }
+   
+    }
+    .for
     .form-group {
       border-color: #e7e7e7;
     }
