@@ -323,11 +323,11 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
    * @returns {undefined}
    */
   $scope.assignNotification = function (notification) {
-    if (notification.notifier && $scope.leakage.assignedNotifiers.indexOf(notification.notifier) === -1) {
+    //if (notification.notifier && $scope.leakage.assignedNotifiers.indexOf(notification.notifier) === -1) {
       $scope.leakage.input.params.notification.notifiers.push(notification);
-      $scope.leakage.assignedNotifiers.push(notification.notifier);
+      //$scope.leakage.assignedNotifiers.push(notification.notifier);
       $scope.resetOptions();
-    }
+    //}
 
   };
 

@@ -5,34 +5,34 @@
   <!-- Form -->
   <form class="form form-page" ng-submit="storeInstance(leakage.input,true)">
     <!-- Form-->
-    <fieldset ng-include="'app/views/leakages/leakage_id_form.html'"></fieldset>
+    <fieldset ng-include="'app/views/automation/leakages/leakage_id_form.html'"></fieldset>
     <section>
       <!-- Available sensors -->
       <legend ng-if="_.size(leakage.availableSensors) > _.size(leakage.input.params.sensors)">{{_t('add_flood_sensors')}}</legend>
-      <fieldset ng-include="'app/views/leakages/leakage_id_sensors_available.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/leakages/leakage_id_sensors_available.html'"></fieldset>
       <!-- Asigned sensors -->
       <legend ng-if="_.size(leakage.input.params.sensors)">{{_t('assigned_sensors')}}</legend>
-      <fieldset ng-include="'app/views/leakages/leakage_id_sensors_assigned.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/leakages/leakage_id_sensors_assigned.html'"></fieldset>
     </section>
 
     <section ng-if="_.size(leakage.input.params.action) || _.size(leakage.input.params.notification.notifiers)">
       <!-- Asigned devices -->
       <legend ng-if="_.size(leakage.input.params.action)">{{_t('assigned_devices')}}</legend>
-      <fieldset ng-include="'app/views/leakages/leakage_id_devices_assigned.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/leakages/leakage_id_devices_assigned.html'"></fieldset>
       <!-- Asigned notifiers -->
       <legend ng-if="_.size(leakage.input.params.notification.notifiers)">{{_t('assigned_notifications')}}</legend>
-      <fieldset ng-include="'app/views/leakages/leakage_id_notifiers_assigned.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/leakages/leakage_id_notifiers_assigned.html'"></fieldset>
     </section>
     <section ng-if="_.size(leakage.input.params.sensors)">
       <!-- Available devices -->
       <legend>{{_t('lb_available_devices')}}</legend>
-      <fieldset ng-include="'app/views/leakages/leakage_id_devices_available.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/leakages/leakage_id_devices_available.html'"></fieldset>
      
     </section>
     <section ng-if="_.size(leakage.input.params.sensors)">
          <!-- Notifications -->
       <legend>{{_t('notifications')}}</legend>
-      <fieldset ng-include="'app/views/leakages/leakage_id_notifiers_add.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/leakages/leakage_id_notifiers_add.html'"></fieldset>
     </section>
     <!-- Submit  -->
     <fieldset class="submit-entry">

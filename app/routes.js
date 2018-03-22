@@ -88,13 +88,13 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                 }).
                 //Leakages
                 when('/leakages', {
-                  templateUrl: 'app/views/leakages/leakages.html',
+                  templateUrl: 'app/views/automation/leakages/leakages.html',
                   requireLogin: true,
                   roles: cfg.role_access.admin
               }).
                  //Leakage ID
                  when('/leakages/:id', {
-                  templateUrl: 'app/views/leakages/leakage_id.html',
+                  templateUrl: 'app/views/automation/leakages/leakage_id.html',
                   requireLogin: true,
                   roles: cfg.role_access.admin
               }).

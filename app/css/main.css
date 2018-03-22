@@ -13450,7 +13450,7 @@ input[type=radio]:checked:after {
 
 /* line 218, ../sass/base/_form.scss */
 legend, .legend {
-  font-size: 120%;
+  font-size: 105%;
   font-weight: bold;
   padding: 0 20px;
   border-bottom: 0;
@@ -18236,40 +18236,49 @@ img.widget-promo-image {
 .accordion-wrap .accordion-toggle {
   display: flex;
   align-items: center;
+  font-size: 110%;
   /*  &:last-child {
     margin-bottom: $spacing;
   } */
 }
-/* line 22, ../sass/base/_automation.scss */
+/* line 23, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title {
   padding: 5px 0;
 }
-/* line 24, ../sass/base/_automation.scss */
+/* line 25, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title .room-title {
   display: block;
   padding-bottom: 3px;
   font-size: 80%;
 }
-/* line 29, ../sass/base/_automation.scss */
+/* line 30, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title .device-title {
   display: block;
 }
-/* line 33, ../sass/base/_automation.scss */
+/* line 34, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button.no-toggle {
   cursor: text !important;
 }
-/* line 35, ../sass/base/_automation.scss */
+/* line 36, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button.no-toggle::after {
   content: "";
 }
 /* line 40, ../sass/base/_automation.scss */
+.accordion-wrap .accordion-toggle button .navi-img {
+  margin-right: 10px;
+}
+/* line 43, ../sass/base/_automation.scss */
+.accordion-wrap .accordion-toggle button em {
+  font-size: 80%;
+}
+/* line 47, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle .no-toggle {
   padding: 10px 0;
   width: 100%;
   font-weight: normal;
   border-bottom: dotted 1px #cccccc;
 }
-/* line 50, ../sass/base/_automation.scss */
+/* line 57, ../sass/base/_automation.scss */
 .accordion-wrap .accordion {
   padding: 10px;
   border-bottom: 0;
@@ -18278,46 +18287,50 @@ img.widget-promo-image {
     border: solid 1px darken(#F6F6F6, 20%)
   } */
 }
-/* line 54, ../sass/base/_automation.scss */
+/* line 61, ../sass/base/_automation.scss */
 .accordion-wrap .accordion .form-group {
   border: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 59, ../sass/base/_automation.scss */
+/* line 66, ../sass/base/_automation.scss */
 .accordion-wrap .accordion:last-child {
   margin-bottom: 0;
 }
-/* line 68, ../sass/base/_automation.scss */
+/* line 75, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle {
   opacity: 0.7;
 }
-/* line 70, ../sass/base/_automation.scss */
+/* line 77, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button {
   cursor: text;
   padding: 10px 0;
 }
-/* line 73, ../sass/base/_automation.scss */
+/* line 80, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button::after {
   content: "" !important;
 }
-/* line 76, ../sass/base/_automation.scss */
+/* line 83, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button[aria-expanded="true"] {
   border-bottom: dotted 1px #cccccc;
 }
-/* line 81, ../sass/base/_automation.scss */
+/* line 88, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion {
   display: none;
 }
-/* line 86, ../sass/base/_automation.scss */
+/* line 93, ../sass/base/_automation.scss */
 .accordion-wrap.nested legend,
 .accordion-wrap.nested .legend {
   padding: 20px 10px 5px 0;
   font-size: 110%;
 }
-/* line 93, ../sass/base/_automation.scss */
+/* line 100, ../sass/base/_automation.scss */
 .accordion-wrap.nested .accordion .accordion {
   margin-bottom: 20px;
+}
+/* line 107, ../sass/base/_automation.scss */
+.accordion-wrap.edit-me .accordion-toggle button {
+  font-weight: bold;
 }
 
 /* Label
