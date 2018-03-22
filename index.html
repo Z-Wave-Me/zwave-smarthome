@@ -86,10 +86,10 @@
         <script src="app/controllers/app-instance.js"></script>
         <script src="app/controllers/app-alpaca.js"></script>
         <script src="app/controllers/skin.js"></script>
-         <script src="app/controllers/icon.js"></script>
+        <script src="app/controllers/icon.js"></script>
         <script src="app/controllers/device.js"></script>
         <script src="app/controllers/smartstart.js"></script>
-         <script src="app/controllers/zwave-inclusion.js"></script>
+        <script src="app/controllers/zwave-inclusion.js"></script>
         <script src="app/controllers/zwave-manage.js"></script>
         <script src="app/controllers/zwave-exclude.js"></script>
         <script src="app/controllers/zwave-vendor.js"></script>
@@ -119,8 +119,7 @@
         <script src="app/controllers/auth.js"></script>
         <script src="app/controllers/zwave-configuration.js"></script>
         <script src="app/controllers/zwave-commands.js"></script>
-       
-
+        <script src="app/controllers/automations.js"></script>
         <!-- /build -->
     </head>
     <body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}">
@@ -148,7 +147,8 @@
                          <!-- automation -->
                          <span class="divider-vertical"></span>
                          <a href="#scenes" title="{{_t('automation')}}" ng-class="isActive('scenes') || isActive('rules') || isActive('schedules')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>
-                        
+                        <span class="divider-vertical"></span>
+                         <a href="#automations" title="{{_t('automation')}}" ng-class="isActive('automations')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>
                         <!-- rss -->
                         <span class="divider-vertical" ng-show="rss.unread > 0"></span>
                         <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">

@@ -430,6 +430,15 @@ var config_data = {
         ]
       }
     },
+    'automations': [
+      "Climate",
+      "FireNotification",
+      "LeakageNotification",
+      "Rules",
+      "Scenes",
+      "Schedules",
+      "Security"
+    ],
     // Order by
     orderby: {
       blacklist: ['order_dashboard', 'order_rooms'], //Do not display in the orderby list in the view
