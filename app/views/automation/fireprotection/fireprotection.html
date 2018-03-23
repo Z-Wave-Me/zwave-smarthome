@@ -1,0 +1,8 @@
+<!-- Scenes -->
+<div ng-controller="FireProtectionController">
+  <!-- The blank state -->
+  <div ng-if="fireProtections.state == 'blank'" ng-include="'app/views/automation/fireprotection/blank.html'"></div>
+  <!-- The list -->
+  <div ng-if="fireProtections.state == 'success'" ng-include="'app/views/automation/fireprotection/list.html'"></div>
+</div>
+<!-- /ng-controller -->

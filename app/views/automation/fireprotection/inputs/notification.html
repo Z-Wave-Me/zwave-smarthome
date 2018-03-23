@@ -1,8 +1,8 @@
 <!--target  -->
    <div class="form-group form-inline">
-    <select class="form-control" ng-model="d.target" ng-change="notifyTitleModel = leakage.availableNotifiers[d.target].deviceName">
+    <select class="form-control" ng-model="d.target" ng-change="notifyTitleModel = fireProtection.availableNotifiers[d.target].deviceName">
       <option value="">--- {{_t('notification_trigger')}} ---</option>
-      <option value="{{e.deviceId}}" ng-repeat="e in leakage.availableNotifiers track by $index" ng-selected="e.deviceId == d.target">
+      <option value="{{e.deviceId}}" ng-repeat="e in fireProtection.availableNotifiers track by $index" ng-selected="e.deviceId == d.target">
         {{e.deviceName}}</option>
     </select>
   </div>

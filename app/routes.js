@@ -94,10 +94,22 @@ myApp.config(['$routeProvider', function ($routeProvider) {
               }).
                  //Leakage ID
                  when('/leakages/:id', {
-                  templateUrl: 'app/views/automation/leakages/leakage_id.html',
+                  templateUrl: 'app/views/automation/leakages/id.html',
                   requireLogin: true,
                   roles: cfg.role_access.admin
               }).
+              //Fire protection
+              when('/fireprotection', {
+                templateUrl: 'app/views/automation/fireprotection/fireprotection.html',
+                requireLogin: true,
+                roles: cfg.role_access.admin
+            }).
+               //Fire protection
+               when('/fireprotection/:id', {
+                templateUrl: 'app/views/automation/fireprotection/id.html',
+                requireLogin: true,
+                roles: cfg.role_access.admin
+            }).
                 //Admin
                 when('/admin', {
                     templateUrl: 'app/views/management/management.html',

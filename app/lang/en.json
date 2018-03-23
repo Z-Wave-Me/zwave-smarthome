@@ -1,5 +1,9 @@
 {
   "-----": "New",
+  "fire_protection": "Fire protection",
+  "leakages": "Leakages",
+  "no_leakages_available": "There are no leakages available",
+  "no_fire_protections_available":"There are no fire protections available",
   "notification": "Notification",
   "notifications": "Notifications",
   "interval_60": "1 minute",
@@ -11,7 +15,7 @@
   "interval_3600": "1 hour",
   "notification_trigger": "Choose a notification trigger",
   "if_alarm_triggered": "If alarm is triggered, send notifications every",
-  "add_flood_sensors": "Add flood sensors",
+  "add_sensors": "Add sensors",
   "assigned_sensors": "Assigned sensors",
   "off": "Off",
   "on": "On",
