@@ -23,7 +23,6 @@ var myApp = angular.module('myApp', [
     'ng.deviceDetector',
     'pr.longpress',
     'angular-sortable-view'
-
 ]);
 
 // App configuration

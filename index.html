@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="BaseController">
     <head>
         <meta charset="utf-8">
@@ -10,8 +10,7 @@
         <!-- build:remove -->
         <!-- App css -->
         <!-- <link media="screen" type="text/css" rel="stylesheet" ng-href="{{css}}">-->
-         <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
-       
+        <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
         <!-- App config -->
         <script src="app/config.js"></script>
         <script src="app/icons.js"></script>
@@ -33,6 +32,7 @@
         <script src="vendor/tweenmax/TweenMax.js"></script>
         <script src="vendor/qrcode/qrious.min.js"></script>
         <script src="vendor/qrcode_reader/qr_packed.js"></script>
+        <script src="vendor/scheduler/jq.schedule.js"></script>
         <!-- Angular js -->
         <script src="vendor/angular/angular-1.2.28/angular.js"></script>
         <script src="vendor/upload/angular-file-upload.js"></script>
@@ -45,7 +45,6 @@
         <!-- Bootstrap js -->
         <script src="vendor/bootstrap/bootstrap.js"></script>
         <script src="vendor/bootstrap/plugins/bootstrap-datetimepicker.js"></script>
-
         <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
         <!-- ExpertUI configuration js -->
         <script src="vendor/zwave/pyzw.js"></script>
@@ -80,6 +79,7 @@
         <script src="app/controllers/automation-scene.js"></script>
         <script src="app/controllers/automation-rule.js"></script>
         <script src="app/controllers/automation-schedule.js"></script>
+        <script src="app/controllers/climate.js"></script>
         <script src="app/controllers/app.js"></script>
         <script src="app/controllers/app-local.js"></script>
         <script src="app/controllers/app-online.js"></script>

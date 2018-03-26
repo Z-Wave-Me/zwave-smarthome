@@ -1,0 +1,259 @@
+<style>
+	.flex-table {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
+		border: 1px solid red;
+	}
+	
+	.flex-table-row .flex-table-header {
+
+	}
+
+	.flex-table > .flex-table-row {
+		width: 100%;
+		flex-flow: row wrap;
+		display: flex;
+		flex: 1;
+		height: 35px;
+    	line-height: 35px;
+	}
+
+	.flex-table-row-item-colspan25 {
+		flex: 25 0 0;
+		display: flex;
+      	flex-flow: row nowrap;
+      	position: relative;
+	}
+
+	.flex-table-row > .flex-table-row-item {
+		display: flex;
+      	flex-flow: row nowrap;
+      	flex: 1 0 0;
+      	word-break: break-word;
+	}
+
+	.flex-table-row-item:nth-child(odd) {
+		background-color: grey;
+	}
+
+	.time-grid {
+		width: 100%;
+		display: flex;
+		flex-flow: row wrap;
+		flex: 1;
+	}
+
+	.time-grid > .time-grid-item {
+		display: flex;
+      	flex-flow: row nowrap;
+      	flex: 1 0 0;
+	}
+
+	.time-grid-item:nth-child(even) {
+		background-color: grey;	
+	}
+	.schedule-sliders {
+		position: absolute;
+		display: block;
+		height: 35px;
+		width: 100%;
+	}
+
+	.schedule-sliders > .schedule-slider {
+		position: absolute;
+	    top: 5px;
+	    bottom: 5px;
+	    white-space: nowrap;
+	    line-height: 25px;
+	    width: 70px;
+	    /* left: 10%; */
+	    background-color: green;
+	}
+
+
+
+
+
+#schedule{
+	box-sizing: content-box;
+}
+#schedule .clear{ clear:both; height: 0; line-height: 0;}
+#schedule .sc_wrapper{
+}
+#schedule .sc_menu{
+	width:100%;
+	height:26px;
+}
+#schedule .sc_menu .sc_header_cell{
+	float:left;
+}
+#schedule .sc_menu .sc_header{
+	float:left;
+	height:26px;
+	position:relative;
+	overflow:hidden;
+}
+#schedule .sc_menu .sc_header .sc_time{
+	text-align:center;
+	border-left:solid 1px #FFF;
+	background:#333;
+}
+#schedule .sc_menu .sc_header_cell,
+#schedule .sc_data{
+	float:left;
+	font-weight:bold;
+	color:#FFFFFF;
+	background:#333;
+	position:relative;
+}
+#schedule .sc_menu .sc_header_scroll,
+#schedule .sc_data .sc_data_scroll{
+	position:absolute;
+	left:0;
+	top:0;
+}
+#schedule .sc_menu .sc_header_cell,
+#schedule .sc_header .sc_time,
+#schedule .sc_main_scroll .sc_time{
+	color:#FFFFFF;
+	padding:4px 0;
+	line-height:18px;
+	height:18px;
+	display:block;
+	box-sizing: content-box;
+}
+#schedule .sc_header .sc_time,
+#schedule .sc_main_scroll .sc_time{
+	float:left;
+}
+#schedule .sc_main_box,
+#schedule .sc_data{
+	max-height:500px;
+	overflow:hidden;
+}
+#schedule .sc_main_box{
+	float:left;
+	overflow-x:auto;
+	overflow-y:auto;
+}
+#schedule .sc_main_scroll{
+}
+#schedule .sc_main{
+	position:relative;
+}
+#schedule .timeline{
+	position:relative;
+}
+#schedule .sc_Bar{
+	position:absolute;
+	color:#FFF;
+	background:#4f93d6;
+	cursor:pointer;
+	z-index:10;
+}
+
+#schedule .ui-draggable-dragging,
+#schedule .ui-resizeable{
+	z-index:20;
+}
+#schedule .sc_Bar .head{
+	display:block;
+	padding:6px 8px 0;
+	font-size:12px;
+	height:16px;
+	overflow:hidden;
+}
+#schedule .sc_Bar .text{
+	display:block;
+	padding:5px 15px 0;
+	font-weight:bold;
+	height:18px;
+	overflow:hidden;
+}
+
+#schedule .sc_Bar .ui-resizable-handle {
+	width: 10px;
+    background: #000;
+    cursor: col-resize;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    bottom: 0;	
+} 
+
+#schedule .sc_Bar .ui-resizable-w {
+	left: 0;
+}
+
+#schedule .sc_Bar .ui-resizable-e {
+	right: 0;
+}
+
+#schedule .timeline,
+#schedule .sc_main .tb{
+	border-bottom:solid 2px #666;
+}
+#schedule .sc_data .timeline{
+	overflow:hidden;
+}
+#schedule .sc_data .timeline span{
+	padding:10px;
+	display:block;
+}
+
+#schedule .sc_data .timeline span.title{
+	float:left;
+	padding:10px 0 10px 10px;
+	width:92px;
+}
+#schedule .sc_main_scroll .sc_main{
+
+}
+#schedule .sc_main_scroll .sc_main .tl{
+	float:left;
+	height:100%;
+	border-right:solid 1px #CCC;
+	box-sizing: content-box;
+}
+#schedule .sc_main_scroll .sc_main .tl:hover{
+	background:#F0F0F0;
+}
+</style>
+<div ng-controller="ClimateController">
+	<!--<pre>{{hours}}</pre>-->
+	<!--
+	<div class="flex-table">
+		<div class="flex-table-row flex-table-header">
+			<div class="flex-table-row-item"></div>
+			<div class="flex-table-row-item" ng-repeat="h in hours">{{h}}</div>
+		</div>
+		<div class="flex-table-row" ng-repeat="w in week">
+			<div class="flex-table-row-item">{{w}}</div>
+			<div class="flex-table-row-item-colspan25">
+				<div class="time-grid">
+					<div class="time-grid-item" ng-repeat="v in timeGrid"></div>
+				</div>
+				<div class="schedule-sliders">
+					<div class="schedule-slider" 
+							ng-mousemove="mousemove($event)" 
+							ng-mousedown="mousedown($event)"
+							ng-mouseup="mouseleave($event)"
+							ng-mouseleave="mouseleave($event)">TEST</div>
+				</div>
+			</div>
+		</div>			
+	</div>
+-->
+	
+	<div id="schedule"></div>
+	<div id="debug"></div>
+	<pre>{{scheduleOptions | json}}</pre>
+</div>
+ <!-- Weekdays -->
+<!--<div class="form-group form-inline">
+    <div class="checkbox" ng-repeat="d in schedule.days">
+        <input class="default" type="checkbox" id="day_{{d}}" ng-change="toggleWeekday(d)" ng-model="schedule.model.weekday[d]" ng-checked="schedule.input.params.weekdays.indexOf(d.toString())  > -1" />
+        <label for="day_{{d}}">{{_t('day_' + d)}}</label>
+      </div>
+</div>-->

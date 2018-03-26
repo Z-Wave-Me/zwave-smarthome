@@ -86,6 +86,18 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
+                 //Climate
+                when('/climate', {
+                  templateUrl: 'app/views/automation/climate/climate.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
+                 //Climate ID
+                 when('/climate/:id', {
+                    templateUrl: 'app/views/automation/climate/climate_id.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.admin
+                }).
                 //Admin
                 when('/admin', {
                     templateUrl: 'app/views/management/management.html',
