@@ -356,7 +356,6 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
    * Store instance
    */
   $scope.storeInstance = function (input, redirect) {
-    console.log(input)
     dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
       if (redirect) {
         $location.path('/' + dataService.getUrlSegment($location.path()));
