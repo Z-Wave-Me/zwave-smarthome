@@ -102,8 +102,9 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
   $scope.leakage = {
     sensors: ['flood', 'alarm_flood', 'alarmSensor_flood'],
     devices: ['switchBinary', 'switchMultilevel', 'toggleButton'],
-    notifiers: ['notification_email'],
+    notifiers: ['notification_email','notification_push'],
     interval: [60, 120, 300, 600, 900, 1800, 3600],
+    firedOn: ['on','off','alarm','revert'],
     availableSensors: {},
     availableDevices: {},
     availableNotifiers: {},
@@ -146,7 +147,8 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
       notification: {
         default: {
           target: '',
-          message: ''
+          message: '',
+          firedOn: 'alarm'
         }
       }
 

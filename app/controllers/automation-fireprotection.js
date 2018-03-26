@@ -102,8 +102,9 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
   $scope.fireProtection = {
     sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke'],
     devices: ['switchBinary', 'switchMultilevel', 'toggleButton'],
-    notifiers: ['notification_email'],
+    notifiers: ['notification_email','notification_push'],
     interval: [60, 120, 300, 600, 900, 1800, 3600],
+    firedOn: ['on','off','alarm','revert'],
     availableSensors: {},
     availableDevices: {},
     availableNotifiers: {},
@@ -146,7 +147,8 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
       notification: {
         default: {
           target: '',
-          message: ''
+          message: '',
+          firedOn: 'alarm'
         }
       }
 

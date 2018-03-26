@@ -7,12 +7,13 @@
     <!-- Form-->
     <fieldset ng-include="'app/views/automation/fireprotection/id_form.html'"></fieldset>
     <section>
-      <!-- Available sensors -->
-      <legend ng-if="_.size(fireProtection.availableSensors) > _.size(fireProtection.input.params.sensors)">{{_t('add_sensors')}}</legend>
-      <fieldset ng-include="'app/views/automation/fireprotection/id_sensors_available.html'"></fieldset>
       <!-- Asigned sensors -->
       <legend ng-if="_.size(fireProtection.input.params.sensors)">{{_t('assigned_sensors')}}</legend>
       <fieldset ng-include="'app/views/automation/fireprotection/id_sensors_assigned.html'"></fieldset>
+      <!-- Available sensors -->
+      <legend ng-if="_.size(fireProtection.availableSensors) > _.size(fireProtection.input.params.sensors)">{{_t('add_sensors')}}</legend>
+      <fieldset ng-include="'app/views/automation/fireprotection/id_sensors_available.html'"></fieldset>
+      
     </section>
 
     <section ng-if="_.size(fireProtection.input.params.triggerEvent) || _.size(fireProtection.input.params.sendNotifications)">
