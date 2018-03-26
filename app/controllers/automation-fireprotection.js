@@ -8,7 +8,7 @@
  */
 myAppController.controller('FireProtectionController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
   $scope.fireProtections = {
-    moduleId: 'FireProtection',
+    moduleId: 'FireNotification',
     state: '',
     enableTest: [],
   }
@@ -155,7 +155,7 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
     },
     input: {
       instanceId: $routeParams.id,
-      moduleId: "FireProtection",
+      moduleId: "FireNotification",
       active: true,
       title: "",
       params: {
