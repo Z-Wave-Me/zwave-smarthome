@@ -8,7 +8,7 @@
  */
 myAppController.controller('LeakageController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
   $scope.leakages = {
-    moduleId: 'LeakageProtection',
+    moduleId: 'LeakageNotification',
     state: '',
     enableTest: [],
   }
@@ -153,7 +153,7 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
     },
     input: {
       instanceId: $routeParams.id,
-      moduleId: "LeakageProtection",
+      moduleId: "LeakageNotification",
       active: true,
       title: "",
       params: {
