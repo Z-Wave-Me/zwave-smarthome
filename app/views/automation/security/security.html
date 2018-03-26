@@ -1,0 +1,7 @@
+<div ng-controller="SecurityController">
+  <!-- The blank state -->
+  <div ng-if="security.state == 'blank'" ng-include="'app/views/automation/security/blank.html'"></div>
+  <!-- The list -->
+  <div ng-if="security.state == 'success'" ng-include="'app/views/automation/security/list.html'"></div>
+</div>
+<!-- /ng-controller -->
