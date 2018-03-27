@@ -44,4 +44,11 @@ $list-panel-border-color: $app-border-color;
       
     }
   }
+  &.condensed{
+    padding: $spacing-half 0;
+    .control{
+      min-width: 1%;
+      margin-left: $spacing;
+    }
+  }
 }

@@ -1,0 +1,63 @@
+<!-- The schedule -->
+<section class="automation" ng-controller="SecurityIdController">
+
+  <h2>{{_t('title_security')}}</h2>
+  <!-- Form -->
+  <form class="form form-page" ng-submit="storeInstance(security.input,true)">
+    <!-- Form-->
+    <fieldset ng-include="'app/views/automation/security/id_form.html'"></fieldset>
+    <!-- Tabs  -->
+    <fieldset ng-include="'app/views/automation/security/tabs.html'"></fieldset>
+    <!-- //////////////////////////////////////////  Triggering  ////////////////////////////////////////// -->
+    <div ng-if="security.tab == 1">
+       <!-- Triggerings -->
+      <div class="section">
+        <!-- Asigned -->
+        <legend>{{_t('assigned_devices')}}</legend>
+        <fieldset ng-include="'app/views/automation/security/trigger/trigger_assigned.html'"></fieldset>
+        <!-- Available -->
+        <fieldset ng-include="'app/views/automation/security/trigger/trigger_available.html'"></fieldset>
+      </div>
+       <!-- Silent alarm -->
+       <div class="section">
+          <!-- Asigned -->
+          <legend>{{_t('assigned_devices')}}</legend>
+          <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm_assigned.html'"></fieldset>
+        <!-- Available -->
+        <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm_available.html'"></fieldset>
+       </div>
+
+      </div>
+      <!-- Alarm -->
+      <div class="section">
+         <!-- Asigned -->
+         <legend>{{_t('assigned_devices')}}</legend>
+         <fieldset ng-include="'app/views/automation/security/trigger/trigger_assigned.html'"></fieldset>
+       <!-- Available -->
+       <fieldset ng-include="'app/views/automation/security/trigger/trigger_available.html'"></fieldset>
+      </div>
+    </div>
+    <!-- ////////////////////////////////////////// External control  ////////////////////////////////////////// -->
+    <div ng-if="security.tab ==2">
+      External control
+    </div>
+    <!-- ////////////////////////////////////////// Advanced  ////////////////////////////////////////// -->
+    <div ng-if="security.tab == 3">
+      Advanced
+    </div>
+
+    <!-- Submit  -->
+    <fieldset class="submit-entry">
+      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </button>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </fieldset>
+  </form>
+  <pre>{{security.input|json}}</pre>
+  </div>
+  <!-- /ng-controller -->

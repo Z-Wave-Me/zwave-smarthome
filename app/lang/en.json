@@ -1,5 +1,9 @@
 {
-    "activated_devices": "Activated devices",
+  "-----":"new", 
+  "triggering": "Triggering",
+  "external_control": "External control",
+  "new":"-----",
+  "activated_devices": "Activated devices",
     "activate_module": "Activate __module__",
     "activate_reverse_event": "Activate reverse event",
     "activeASC": "Inactive",

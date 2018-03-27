@@ -12667,6 +12667,15 @@ img {
     width: 100%;
   }
 }
+/* line 47, ../sass/base/_list_panel.scss */
+.list-panel.condensed {
+  padding: 5px 0;
+}
+/* line 49, ../sass/base/_list_panel.scss */
+.list-panel.condensed .control {
+  min-width: 1%;
+  margin-left: 10px;
+}
 
 /* Table
 -------------------------------------------------- */
@@ -18271,14 +18280,18 @@ img.widget-promo-image {
 .accordion-wrap .accordion-toggle button em {
   font-size: 80%;
 }
-/* line 47, ../sass/base/_automation.scss */
+/* line 46, ../sass/base/_automation.scss */
+.accordion-wrap .accordion-toggle button .is-legend {
+  font-weight: bold;
+}
+/* line 50, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle .no-toggle {
   padding: 10px 0;
   width: 100%;
   font-weight: normal;
   border-bottom: dotted 1px #cccccc;
 }
-/* line 57, ../sass/base/_automation.scss */
+/* line 60, ../sass/base/_automation.scss */
 .accordion-wrap .accordion {
   padding: 10px;
   border-bottom: 0;
@@ -18287,48 +18300,48 @@ img.widget-promo-image {
     border: solid 1px darken(#F6F6F6, 20%)
   } */
 }
-/* line 61, ../sass/base/_automation.scss */
+/* line 64, ../sass/base/_automation.scss */
 .accordion-wrap .accordion .form-group {
   border: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 66, ../sass/base/_automation.scss */
+/* line 69, ../sass/base/_automation.scss */
 .accordion-wrap .accordion:last-child {
   margin-bottom: 0;
 }
-/* line 75, ../sass/base/_automation.scss */
+/* line 78, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle {
   opacity: 0.7;
 }
-/* line 77, ../sass/base/_automation.scss */
+/* line 80, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button {
   cursor: text;
   padding: 10px 0;
 }
-/* line 80, ../sass/base/_automation.scss */
+/* line 83, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button::after {
   content: "" !important;
 }
-/* line 83, ../sass/base/_automation.scss */
+/* line 86, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button[aria-expanded="true"] {
   border-bottom: dotted 1px #cccccc;
 }
-/* line 88, ../sass/base/_automation.scss */
+/* line 91, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion {
   display: none;
 }
-/* line 93, ../sass/base/_automation.scss */
+/* line 96, ../sass/base/_automation.scss */
 .accordion-wrap.nested legend,
 .accordion-wrap.nested .legend {
   padding: 20px 10px 5px 0;
   font-size: 110%;
 }
-/* line 100, ../sass/base/_automation.scss */
+/* line 103, ../sass/base/_automation.scss */
 .accordion-wrap.nested .accordion .accordion {
   margin-bottom: 20px;
 }
-/* line 107, ../sass/base/_automation.scss */
+/* line 110, ../sass/base/_automation.scss */
 .accordion-wrap.edit-me .accordion-toggle button {
   font-weight: bold;
 }
@@ -18672,38 +18685,46 @@ body.night-false {
   border-bottom: 0;
 }
 /* line 97, ../sass/custom/_shui.scss */
+.night-false .form-page .section {
+  border-bottom: solid 4px #e7e7e7;
+}
+/* line 99, ../sass/custom/_shui.scss */
+.night-false .form-page .section:last-child {
+  border-bottom: 0;
+}
+/* line 103, ../sass/custom/_shui.scss */
 .night-false .form-page .for
 .form-group {
   border-color: #e7e7e7;
 }
-/* line 102, ../sass/custom/_shui.scss */
+/* line 108, ../sass/custom/_shui.scss */
 .night-false .submit-entry {
   background-color: #e7e7e7;
   border-top: solid 1px #e7e7e7;
 }
-/* line 108, ../sass/custom/_shui.scss */
+/* line 114, ../sass/custom/_shui.scss */
 .night-false fieldset.expanded,
 .night-false .fieldset.expanded {
   background-color: #F6F6F6;
   border-top: solid 4px #e7e7e7;
   border-bottom: solid 4px #e7e7e7;
 }
-/* line 117, ../sass/custom/_shui.scss */
+/* line 123, ../sass/custom/_shui.scss */
 .night-false .btn-goup-tabs .btn {
   background-color: #eeeeee;
 }
-/* line 119, ../sass/custom/_shui.scss */
+/* line 125, ../sass/custom/_shui.scss */
 .night-false .btn-goup-tabs .btn.active {
   background-color: #dcdcdc;
 }
-/* line 127, ../sass/custom/_shui.scss */
+/* line 133, ../sass/custom/_shui.scss */
 .night-false .widget-entry .widget-entry-in {
   border-color: #d3d3d3;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 127, ../sass/custom/_shui.scss */
+  /* line 133, ../sass/custom/_shui.scss */
   .night-false .widget-entry .widget-entry-in {
     border: solid 4px #FFFFFF;
     background: #f6f6f6;
@@ -18728,7 +18749,7 @@ body.night-false {
   }
 }
 @media only screen and (min-width: 320px) {
-  /* line 141, ../sass/custom/_shui.scss */
+  /* line 147, ../sass/custom/_shui.scss */
   .night-false .card-room .card-room-in {
     border: solid 4px #ffffff;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18736,13 +18757,13 @@ body.night-false {
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 149, ../sass/custom/_shui.scss */
+/* line 155, ../sass/custom/_shui.scss */
 .night-false .elemnts-room-bar {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 149, ../sass/custom/_shui.scss */
+  /* line 155, ../sass/custom/_shui.scss */
   .night-false .elemnts-room-bar {
     border: 0;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18766,7 +18787,7 @@ body.night-false {
     /* IE6-9 */
   }
 }
-/* line 159, ../sass/custom/_shui.scss */
+/* line 165, ../sass/custom/_shui.scss */
 .night-false .localapp-in,
 .night-false .onlineapp-in {
   border-color: #d3d3d3;
@@ -18774,7 +18795,7 @@ body.night-false {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 159, ../sass/custom/_shui.scss */
+  /* line 165, ../sass/custom/_shui.scss */
   .night-false .localapp-in,
   .night-false .onlineapp-in {
     border: solid 4px #FFFFFF;
@@ -18800,11 +18821,11 @@ body.night-false {
   }
 }
 @media only screen and (min-width: 320px) {
-  /* line 172, ../sass/custom/_shui.scss */
+  /* line 178, ../sass/custom/_shui.scss */
   .night-false .card-customize {
     border: 0;
   }
-  /* line 174, ../sass/custom/_shui.scss */
+  /* line 180, ../sass/custom/_shui.scss */
   .night-false .card-customize .card-customize-in {
     border: solid 4px #ffffff;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18812,23 +18833,23 @@ body.night-false {
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 184, ../sass/custom/_shui.scss */
+/* line 190, ../sass/custom/_shui.scss */
 .night-false .accordion-wrap .accordion {
   background-color: #F6F6F6;
 }
-/* line 189, ../sass/custom/_shui.scss */
+/* line 195, ../sass/custom/_shui.scss */
 .night-false .accordion-wrap.nested .accordion .accordion {
   background-color: #e9e9e9;
 }
 
 /* Footer
     -------------------------------------------------- */
-/* line 202, ../sass/custom/_shui.scss */
+/* line 208, ../sass/custom/_shui.scss */
 #footer .container {
   display: flex;
   justify-content: space-between;
 }
-/* line 205, ../sass/custom/_shui.scss */
+/* line 211, ../sass/custom/_shui.scss */
 #footer .container span:last-child {
   margin-left: auto;
 }

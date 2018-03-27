@@ -1,0 +1,47 @@
+<section class="accordion-wrap">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+      <button type="button" aria-expanded="false" bb-accordion>
+        <span class="is-legend">
+         {{_t('silent_alarm')}}
+        </span>
+      </button>
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden>
+        <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in [1,2,3,4,5,6,7,8,9,10]">
+            Available device {{$index}} <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+              </a>
+    </div>
+  </section>
+
+
+
+
+
+<section class="accordion-wrap" ng-repeat="d in leakage.input.params.triggerEvent track by $index" ng-init="model=d">
+    <h2 class="accordion-toggle chevron">
+       <!-- Deleted device -->
+       <span class="no-toggle text-danger" ng-show="!leakage.availableDevices[model.deviceId]">
+         <i class="fa fa-exclamation-circle"></i> {{d.device}} {{_t('device_removed')}}
+       </span>
+       <!-- Title -->
+       <button type="button" aria-expanded="false" bb-accordion ng-if="leakage.availableDevices[model.deviceId] && (d.deviceType != 'toggleButton')" ng-hide="!leakage.availableDevices[model.deviceId]">
+         <span>
+           {{leakage.availableDevices[model.deviceId].deviceName}}  <em>{{_t(model.status)}}</em> <em ng-if="model.status == 'lvl'">{{model.level}}</em>
+          </span>
+       </button>
+       <!-- NO Toggle -->
+       <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'" ng-hide="!leakage.availableDevices[model.deviceId]">
+           <span>
+               {{leakage.availableDevices[model.deviceId].deviceName}}
+             </span>
+         </span>
+       <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice($index,model.deviceId)">
+         <i class="fa fa-times text-danger"></i>
+         </span>
+     </h2>
+      <!-- Content -->
+     <div class="accordion" ng-include="'app/views/automation/leakages/inputs/'+ model.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
+       hidden></div>
+   </section>
