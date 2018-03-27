@@ -1,0 +1,17 @@
+<!-- select -->
+<div class="form-group form-inline">
+  <!-- status -->
+  <select class="form-control" ng-model="model.status">
+    <!-- <option value="">---</option> -->
+    <option value="{{o}}" ng-repeat="o in leakage.cfg.switchMultilevel.status track by $index" ng-selected="o == model.status">
+      {{_t(o)}}</option>
+  </select>
+  <!-- level -->
+  <input type="number" class="form-control input-number" min="{{leakage.cfg.switchMultilevel.min}}" max="{{leakage.cfg.switchMultilevel.max}}"
+    ng-model="model.level" ng-if="model.status == 'lvl'" />
+</div>
+<!-- command -->
+<div class="form-group">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="model.sendAction" ng-checked="model.sendAction" />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>

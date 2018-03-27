@@ -18,6 +18,7 @@
     .accordion-toggle {
       display: flex;
       align-items: center;
+      font-size:110%;
       button {
         .accordion-title {
           padding: 5px 0;
@@ -35,6 +36,12 @@
           &::after {
             content: "";
           }
+        }
+        .navi-img{
+          margin-right: $spacing;
+        }
+        em{
+          font-size: 80%;
         }
       }
       .no-toggle {
@@ -92,6 +99,13 @@
        // background: transparent;
         .accordion {
           margin-bottom: $spacing-double;
+        }
+      }
+    }
+    &.edit-me{
+      .accordion-toggle{
+        button{
+          font-weight: bold;
         }
       }
     }

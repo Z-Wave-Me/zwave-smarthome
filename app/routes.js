@@ -86,6 +86,30 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.admin
                 }).
+                //Leakages
+                when('/leakages', {
+                  templateUrl: 'app/views/automation/leakages/leakages.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
+                 //Leakage ID
+                 when('/leakages/:id', {
+                  templateUrl: 'app/views/automation/leakages/id.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
+              //Fire protection
+              when('/fireprotection', {
+                templateUrl: 'app/views/automation/fireprotection/fireprotection.html',
+                requireLogin: true,
+                roles: cfg.role_access.admin
+            }).
+               //Fire protection
+               when('/fireprotection/:id', {
+                templateUrl: 'app/views/automation/fireprotection/id.html',
+                requireLogin: true,
+                roles: cfg.role_access.admin
+            }).
                 //Admin
                 when('/admin', {
                     templateUrl: 'app/views/management/management.html',

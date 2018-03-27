@@ -1,0 +1,8 @@
+<!-- Scenes -->
+<div ng-controller="LeakageController">
+  <!-- The blank state -->
+  <div ng-if="leakages.state == 'blank'" ng-include="'app/views/automation/leakages/blank.html'"></div>
+  <!-- The list -->
+  <div ng-if="leakages.state == 'success'" ng-include="'app/views/automation/leakages/list.html'"></div>
+</div>
+<!-- /ng-controller -->

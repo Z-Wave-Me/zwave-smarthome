@@ -1,0 +1,13 @@
+<!--target  -->
+   <div class="form-group form-inline">
+    <select class="form-control" ng-model="d.notifier" ng-change="notifyTitleModel = leakage.availableNotifiers[d.notifier].deviceName">
+      <option value="">--- {{_t('notification_trigger')}} ---</option>
+      <option value="{{e.deviceId}}" ng-repeat="e in leakage.availableNotifiers track by $index" ng-selected="e.deviceId == d.notifier">
+        {{e.deviceName}}</option>
+    </select>
+  </div>
+  <!-- mesage -->
+  <div class="form-group" ng-if="d.notifier != ''">
+    <textarea name="message" id="content" class="form-control report-content" ng-model="d.message"
+      placeholder="{{_t('message')}}"></textarea>
+  </div>
