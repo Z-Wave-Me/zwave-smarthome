@@ -18135,92 +18135,6 @@ img.widget-promo-image {
   }
 }
 
-/*
-.switcher {
-    input[type="checkbox"] { 
-        display: none;
-
-        & + label, {
-            margin: 5px 5px 5px 0;
-            position: relative;
-            display: inline-block;
-            padding-left: 60px * 1.2;
-            cursor: pointer;
-            line-height: 34px;
-
-            &.right {
-                padding-right:  60px * 1.2;
-                padding-left: 0;
-                &:before, &:after {
-                    left: auto;
-                    right: 0;
-                }
-
-                 &:before {
-                    left: auto;
-                 }
-
-                 &:after {
-                    left: auto;
-                    right: 4px;
-                 }
-            }
-
-            &:before, &:after {
-                position: absolute;
-                content: "";  
-                top: 0;
-                left: 0;
-            }
-
-            &:before {
-                width: 60px;
-                height: 34px;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                border-radius: 4px;
-                background-color: #f9f9f9;
-                border: 1px solid #CCC;
-                -webkit-transition: .4s;
-                transition: .4s;
-                -webkit-box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,.1);
-                -moz-box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,.1);
-                box-shadow: inset 2px 2px 4px 0 rgba(0,0,0,.1);    
-            }
-
-            &:after {
-                height: 26px;
-                width: 26px;
-                left: 4px;
-                top: 4px;
-                border-radius: 4px;
-                border: solid 1px #CCC;
-                background-color: #f9f9f9;
-                -webkit-transition: .4s;
-                transition: .4s;
-                -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.15);
-                -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.15);
-                box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.15);
-            }
-        }
-
-        &:checked + label:after {
-            margin-left: 26px;
-        }
-
-        &:checked + label.right:after {
-            margin-right: 26px;
-        }
-
-        &:checked + label:before {
-            background: #4e794e;
-        }
-    }
-    
-}
-*/
 /* Automation
 -------------------------------------------------- */
 /* line 5, ../sass/base/_automation.scss */
@@ -18556,6 +18470,169 @@ img.widget-promo-image {
   border-top: solid 1px #4e794e;
 }
 
+/* Flexcard
+-------------------------------------------------- */
+/* line 4, ../sass/base/_flexcard.scss */
+.flexcards {
+  display: flex;
+  flex-flow: row wrap;
+}
+/* line 7, ../sass/base/_flexcard.scss */
+.flexcards .flexcard {
+  text-align: center;
+  border: solid 1px #cccccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: 50%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* flex-grow: 1;
+  flex-basis: 1;*/
+}
+@media only screen and (min-width: 768px) {
+  /* line 7, ../sass/base/_flexcard.scss */
+  .flexcards .flexcard {
+    flex-basis: 33.3333%;
+  }
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 7, ../sass/base/_flexcard.scss */
+  .flexcards .flexcard {
+    flex-basis: 25%;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 7, ../sass/base/_flexcard.scss */
+  .flexcards .flexcard {
+    flex-basis: 20%;
+  }
+}
+/* line 28, ../sass/base/_flexcard.scss */
+.flexcards .flexcard figure {
+  margin-bottom: 10px;
+}
+/* line 30, ../sass/base/_flexcard.scss */
+.flexcards .flexcard figure img {
+  max-width: 64px;
+}
+/* line 34, ../sass/base/_flexcard.scss */
+.flexcards .flexcard .body {
+  margin-top: auto;
+}
+/* line 36, ../sass/base/_flexcard.scss */
+.flexcards .flexcard .body h2 {
+  margin-top: 0;
+  font-size: 100%;
+}
+
+/* Flexcard
+-------------------------------------------------- */
+/* line 6, ../sass/base/_security.scss */
+.flexcards.security .flexcard {
+  padding: 0;
+  flex-basis: 33.3333%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 6, ../sass/base/_security.scss */
+  .flexcards.security .flexcard {
+    flex-basis: 20%;
+  }
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 6, ../sass/base/_security.scss */
+  .flexcards.security .flexcard {
+    flex-basis: 16.6666%;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 6, ../sass/base/_security.scss */
+  .flexcards.security .flexcard {
+    flex-basis: 10%;
+  }
+}
+/* line 20, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+/* line 25, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item.h-160px {
+  height: 160px;
+}
+/* line 28, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item figure {
+  position: relative;
+  cursor: pointer;
+}
+/* line 31, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item figure button {
+  padding: 0;
+  text-align: right;
+  width: 100%;
+  position: absolute;
+  top: -5px;
+  right: 0;
+}
+/* line 40, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item .body {
+  margin-top: auto;
+}
+/* line 42, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item .body h2 {
+  margin-top: 5px;
+}
+/* line 46, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item.inactive {
+  color: #737373;
+}
+/* line 49, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item.inactive figure img {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+/* line 58, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flexcard-item.active {
+  background: #f6f6f6;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
+  /* IE6-9 */
+}
+
+/* Notification
+-------------------------------------------------- */
+/* line 72, ../sass/base/_security.scss */
+.automation .notification textarea {
+  height: 50px;
+}
+
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit
@@ -18837,19 +18914,33 @@ body.night-false {
 .night-false .accordion-wrap .accordion {
   background-color: #F6F6F6;
 }
-/* line 195, ../sass/custom/_shui.scss */
+/* line 192, ../sass/custom/_shui.scss */
+.night-false .accordion-wrap .accordion.no-bcg {
+  padding: 0;
+  background: transparent;
+}
+/* line 199, ../sass/custom/_shui.scss */
 .night-false .accordion-wrap.nested .accordion .accordion {
   background-color: #e9e9e9;
 }
 
+/* Security  Notification
+-------------------------------------------------- */
+/* line 211, ../sass/custom/_shui.scss */
+.automation .notification {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #F6F6F6;
+}
+
 /* Footer
     -------------------------------------------------- */
-/* line 208, ../sass/custom/_shui.scss */
+/* line 222, ../sass/custom/_shui.scss */
 #footer .container {
   display: flex;
   justify-content: space-between;
 }
-/* line 211, ../sass/custom/_shui.scss */
+/* line 225, ../sass/custom/_shui.scss */
 #footer .container span:last-child {
   margin-left: auto;
 }

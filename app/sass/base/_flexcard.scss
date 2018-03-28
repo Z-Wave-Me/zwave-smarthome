@@ -1,0 +1,42 @@
+/* Flexcard
+-------------------------------------------------- */
+
+.flexcards {
+  display: flex;
+  flex-flow: row wrap;
+  .flexcard {
+    text-align: center;
+    border: solid 1px $app-border-color;
+    padding: $spacing;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 50%; // Media queries
+    @include mediaQueries(min-small) {
+      flex-basis: 33.3333%;
+    } // Media queries
+    @include mediaQueries(min-medium) {
+      flex-basis: 25%;
+    }
+    @include mediaQueries(min-large) {
+      flex-basis: 20%;
+    }
+    /* flex-grow: 1;
+    flex-basis: 1;*/
+    //flex: 1 1 16%; 
+    //width: 16%;
+    figure {
+      margin-bottom: $spacing;
+      img {
+        max-width: 64px;
+      }
+    }
+    .body {
+      margin-top: auto;
+      h2{
+        margin-top: 0;
+        font-size: 100%;
+      }
+    }
+  }
+}

@@ -189,6 +189,10 @@ body {
     .accordion-wrap {
       .accordion {
         background-color: #F6F6F6;
+        &.no-bcg{
+          padding: 0;
+          background: transparent;
+        }
       }
       &.nested {
         .accordion {
@@ -200,6 +204,16 @@ body {
     }
   }
 //}
+
+/* Security  Notification
+-------------------------------------------------- */
+.automation{
+  .notification{
+    margin-top: $spacing-double;
+    padding: $spacing;
+    background-color: #F6F6F6;
+  }
+}
 
 /* Footer
     -------------------------------------------------- */

@@ -10,7 +10,7 @@
     <fieldset ng-include="'app/views/automation/security/tabs.html'"></fieldset>
     <!-- //////////////////////////////////////////  Triggering  ////////////////////////////////////////// -->
     <div ng-if="security.tab == 1">
-       <!-- Triggerings -->
+      <!-- Triggerings -->
       <div class="section">
         <!-- Asigned -->
         <legend>{{_t('assigned_devices')}}</legend>
@@ -18,24 +18,19 @@
         <!-- Available -->
         <fieldset ng-include="'app/views/automation/security/trigger/trigger_available.html'"></fieldset>
       </div>
-       <!-- Silent alarm -->
-       <div class="section">
-          <!-- Asigned -->
-          <legend>{{_t('assigned_devices')}}</legend>
-          <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm_assigned.html'"></fieldset>
+      <!-- Silent alarm -->
+      <!-- <div class="section" ng-include="'app/views/automation/security/trigger/silent_alarm.html'"> -->
+        <!-- Asigned -->
+        <!-- <legend>{{_t('assigned_devices')}}</legend> -->
+        <!-- <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm_assigned.html'"></fieldset> -->
         <!-- Available -->
-        <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm_available.html'"></fieldset>
-       </div>
+        <!-- <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm.html'"></fieldset> -->
+      <!-- </div> -->
+       <!-- Trigger -->
+      <fieldset ng-include="'app/views/automation/security/trigger/trigger.html'"></fieldset>
+       <!-- Silent alarm -->
+       <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm.html'"></fieldset>
 
-      </div>
-      <!-- Alarm -->
-      <div class="section">
-         <!-- Asigned -->
-         <legend>{{_t('assigned_devices')}}</legend>
-         <fieldset ng-include="'app/views/automation/security/trigger/trigger_assigned.html'"></fieldset>
-       <!-- Available -->
-       <fieldset ng-include="'app/views/automation/security/trigger/trigger_available.html'"></fieldset>
-      </div>
     </div>
     <!-- ////////////////////////////////////////// External control  ////////////////////////////////////////// -->
     <div ng-if="security.tab ==2">

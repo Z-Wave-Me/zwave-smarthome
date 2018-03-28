@@ -1,0 +1,76 @@
+/* Flexcard
+-------------------------------------------------- */
+.flexcards {
+  &.security{
+    //@include appGradient();
+    .flexcard {
+      padding: 0;
+     
+      
+      flex-basis: 33.3333%;
+      @include mediaQueries(min-small) {
+        flex-basis: 20%;
+      } // Media queries
+      @include mediaQueries(min-medium) {
+        flex-basis:16.6666%;
+      }
+      @include mediaQueries(min-large) {
+        flex-basis: 10%;
+      }
+      .flexcard-item{
+       
+        padding: $spacing;
+        display: flex;
+        flex-direction: column;
+        &.h-160px{
+          height: 160px;
+        }
+        figure{
+          position: relative;
+          cursor: pointer;
+          button{
+            padding: 0;
+            text-align: right;
+            width: 100%;
+            position: absolute;
+            top: -$spacing-half;
+            right: 0;
+          }
+        }
+        .body {
+          margin-top: auto;
+          h2{
+            margin-top: $spacing-half;
+          }
+        }
+        &.inactive{
+          color: $app-heading-color;
+          figure{
+            img{
+              @include appOpacity();
+              @include appGrayscale();
+            }
+            button{
+              //color: red;
+            }
+          }
+        }
+        &.active{
+          @include appGradient();
+        }
+      }
+    
+     
+    }
+  }
+  
+}
+/* Notification
+-------------------------------------------------- */
+.automation{
+  .notification{
+    textarea{
+      height: 50px;
+    }
+  }
+}
