@@ -1,75 +1,83 @@
 /* Flexcard
 -------------------------------------------------- */
+
 .flexcards {
-  &.security{
+  &.security {
     //@include appGradient();
     .flexcard {
       padding: 0;
-     
-      
+    
       flex-basis: 33.3333%;
+      &.h-160px {
+        height: 160px;
+       }
       @include mediaQueries(min-small) {
         flex-basis: 20%;
       } // Media queries
       @include mediaQueries(min-medium) {
-        flex-basis:16.6666%;
+        flex-basis: 16.6666%;
       }
       @include mediaQueries(min-large) {
         flex-basis: 10%;
       }
-      .flexcard-item{
-       
-        padding: $spacing;
-        display: flex;
-        flex-direction: column;
-        &.h-160px{
-          height: 160px;
-        }
-        figure{
-          position: relative;
-          cursor: pointer;
-          button{
-            padding: 0;
-            text-align: right;
-            width: 100%;
-            position: absolute;
-            top: -$spacing-half;
-            right: 0;
+      &.flip{
+        border: 0;
+      }
+      .flipcard {
+        >* {
+          border: solid 1px $app-border-color;
+          padding: $spacing;
+          display: flex;
+          flex-direction: column;
+          &.h-160px {
+           // height: 160px;
           }
-        }
-        .body {
-          margin-top: auto;
-          h2{
-            margin-top: $spacing-half;
-          }
-        }
-        &.inactive{
-          color: $app-heading-color;
-          figure{
-            img{
-              @include appOpacity();
-              @include appGrayscale();
-            }
-            button{
-              //color: red;
+          figure {
+            position: relative;
+            cursor: pointer;
+            .fa {
+              padding: 0;
+              //text-align: right;
+             position: absolute;
+              top: -$spacing-half;
+              right: 0;
             }
           }
-        }
-        &.active{
-          @include appGradient();
+          .body {
+            margin-top: auto;
+            h2 {
+              font-size: 90%;
+              margin-top: $spacing-half;
+            }
+          }
+          &.front {
+            color: $app-heading-color;
+            background-color: #fff;
+            figure {
+              img {
+                @include appOpacity();
+                @include appGrayscale();
+              }
+              button {
+                //color: red;
+              }
+            }
+          }
+          &.back {
+            @include appGradient();
+          }
         }
       }
-    
-     
     }
   }
-  
 }
+
 /* Notification
 -------------------------------------------------- */
-.automation{
-  .notification{
-    textarea{
+
+.automation {
+  .notification {
+    textarea {
       height: 50px;
     }
   }

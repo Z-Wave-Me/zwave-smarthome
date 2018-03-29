@@ -9,40 +9,40 @@
     </h2>
     <!-- Content -->
     <div class="accordion no-bcg" hidden>
-        <div class="flexcards security">
-            <div class="flexcard" ng-repeat="d in [1,2,3,4,5,6,7,8,9,10,11,12,13]">
-               <!--  Inactive card -->
-               <div class="flexcard-item inactive h-160px" ng-if="!security[$index]">
-                  <figure ng-click="security[$index] = true"> 
-                      <button type="button" class="btn btn-text"><i class="fa fa-plus"  title="{{_t('lb_remove')}}"></i></button>
-                      <img ng-src="{{cfg.img.icons + 'security-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                    </figure>
-                    <div class="body">
-                        <!-- <button type="button" class="btn btn-default" ng-click="security[$index] = true">
-                          <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
-                        </button> -->
-                      <h2> Available device {{$index}}</h2>
-                    </div>
-               </div>
-               <!--  Active card -->
-              <div class="flexcard-item activ h-160px" ng-if="security[$index]">
-                <figure ng-click="security[$index] = false">
-                    <button type="button" class="btn btn-text"><i class="fa fa-times text-danger"  title="{{_t('lb_remove')}}"></i></button>
+        <!-- Cards -->
+    <div class="flexcards security">
+        <div class="flexcard flip  h-160px" ng-repeat="d in [1,2,3,4,5,6,7,8,9,10,11,12,13]">
+          <div class="flipcard" ng-class="{'flipped': security.flip[$index]}">
+            <!--  Inactive card -->
+            <!--  <div class="flexcard-item inactive" ng-if="!security[$index]"> -->
+            <div class="flexcard-item front">
+                <figure ng-click="security.flip[$index] = true"> 
+                    <i class="fa fa-plus"  title="{{_t('lb_remove')}}"></i>
+                    <img ng-src="{{cfg.img.icons + 'security-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                  </figure>
+                  <div class="body">
+                     <h2> FRONT Available device {{$index}}</h2>
+                  </div>
+            </div>
+            <!--  Active card -->
+            <!-- <div class="flexcard-item activ" ng-if="security[$index]"> -->
+            <div class="flexcard-item back">
+                <figure ng-click="security.flip[$index] = false">
+                   <i class="fa fa-times text-danger"  title="{{_t('lb_remove')}}"></i>
                   <img ng-src="{{cfg.img.icons + 'security-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
                 </figure>
                 <div class="body">
-                  
                     <label class="switch">
-                      <input type="checkbox" ng-model="rule.input.params.advanced.active" ng-checked="rule.input.params.advanced.active">
-                      <span class="slider"></span>
-                    </label>
-                    <!-- <span class="switch-label">{{_t('on')}}</span> -->
-                    <h2> Available device {{$index}}</h2>
-                </div>
-              </div>
-              
+                        <input type="checkbox" ng-model="rule.input.params.advanced.active" ng-checked="rule.input.params.advanced.active">
+                        <span class="slider"></span>
+                      </label>
+                    <h2> BACK Available device {{$index}}</h2>
+                 </div>
+  
             </div>
           </div>
+        </div>
+      </div>
     </div>
   </section>
 
