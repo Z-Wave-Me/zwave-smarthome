@@ -1,0 +1,36 @@
+
+<!-- schedule activation -->
+<div class="form-group">
+  <label class="switch">
+      <input type="checkbox" ng-model="rule.input.params.reverse" ng-checked="rule.input.params.reverse">
+      <span class="slider"></span>
+    </label>
+    <span class="switch-label">{{_t('Immediate activation of time schedule')}}</span>
+    <bb-help-text trans="_t('Start the time schedule as soon as the application is activated')"></bb-help-text>
+</div>
+<!-- delay -->
+<div class="form-group form-inline">
+  <label>{{_t('Delay before arming')}}</label>
+    <div class="input-group">
+        <input class="form-control" type="number">
+    </div>
+    <bb-help-text trans="_t('Between 1 and 1800 seconds')"></bb-help-text>
+</div>
+
+<!-- Interval -->
+<div class="form-group form-inline">
+  <label>{{_t('Interval of the alarm event')}}</label>
+    <div class="input-group">
+        <input class="form-control" type="number">
+    </div>
+    <bb-help-text trans="_t('Between 1 and 30 minutes')"></bb-help-text>
+</div>
+
+<!-- delay -->
+<div class="form-group form-inline">
+  <label>{{_t('Delay before the alarm event is triggered')}}</label>
+    <div class="input-group">
+        <input class="form-control" type="number">
+    </div>
+    <bb-help-text trans="_t('between 0 and 1800 seconds')"></bb-help-text>
+</div>

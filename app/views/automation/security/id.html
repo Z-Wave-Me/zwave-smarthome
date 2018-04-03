@@ -20,33 +20,48 @@
       </div>
       <!-- Silent alarm -->
       <!-- <div class="section" ng-include="'app/views/automation/security/trigger/silent_alarm.html'"> -->
-        <!-- Asigned -->
-        <!-- <legend>{{_t('assigned_devices')}}</legend> -->
-        <!-- <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm_assigned.html'"></fieldset> -->
-        <!-- Available -->
-        <!-- <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm.html'"></fieldset> -->
+      <!-- Asigned -->
+      <!-- <legend>{{_t('assigned_devices')}}</legend> -->
+      <!-- <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm_assigned.html'"></fieldset> -->
+      <!-- Available -->
+      <!-- <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm.html'"></fieldset> -->
       <!-- </div> -->
-       <!-- Trigger -->
+      <!-- Trigger -->
       <fieldset ng-include="'app/views/automation/security/trigger/trigger.html'"></fieldset>
-       <!-- Silent alarm -->
-       <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm.html'"></fieldset>
-       <!-- Silent alarm -->
-       <fieldset ng-include="'app/views/automation/security/trigger/alarm.html'"></fieldset>
-        <!-- Arming -->
-        <fieldset ng-include="'app/views/automation/security/trigger/arming.html'"></fieldset>
-        <!-- Disarming -->
-        <fieldset ng-include="'app/views/automation/security/trigger/disarming.html'"></fieldset>
-        <!-- Reset -->
-        <fieldset ng-include="'app/views/automation/security/trigger/reset.html'"></fieldset>
+      <!-- Silent alarm -->
+      <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm.html'"></fieldset>
+      <!-- Silent alarm -->
+      <fieldset ng-include="'app/views/automation/security/trigger/alarm.html'"></fieldset>
+      <!-- Arming -->
+      <fieldset ng-include="'app/views/automation/security/trigger/arming.html'"></fieldset>
+      <!-- Disarming -->
+      <fieldset ng-include="'app/views/automation/security/trigger/disarming.html'"></fieldset>
+      <!-- Reset -->
+      <fieldset ng-include="'app/views/automation/security/trigger/reset.html'"></fieldset>
+
 
     </div>
     <!-- ////////////////////////////////////////// External control  ////////////////////////////////////////// -->
     <div ng-if="security.tab ==2">
-        <fieldset ng-include="'app/views/automation/security/control/control.html'"></fieldset>
+      <div class="section">
+        <!-- Asigned -->
+        <legend>{{_t('assigned_devices')}}</legend>
+        <fieldset ng-include="'app/views/automation/security/control/control_assigned.html'"></fieldset>
+        <!-- Available -->
+        <fieldset ng-include="'app/views/automation/security/control/control_available.html'"></fieldset>
+      </div>
+      <!-- Cards -->
+      <fieldset ng-include="'app/views/automation/security/control/control.html'"></fieldset>
     </div>
     <!-- ////////////////////////////////////////// Advanced  ////////////////////////////////////////// -->
     <div ng-if="security.tab == 3">
-        <fieldset ng-include="'app/views/automation/security/advanced/advanced.html'"></fieldset>
+      <div class="section">
+        <fieldset ng-include="'app/views/automation/security/advanced/advanced_schedule.html'"></fieldset>
+      </div>
+      <div class="section">
+        <fieldset ng-include="'app/views/automation/security/advanced/advanced_settings.html'"></fieldset>
+      </div>
+
     </div>
 
     <!-- Submit  -->

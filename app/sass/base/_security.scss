@@ -18,7 +18,21 @@
         flex-basis: 16.6666%;
       }
       @include mediaQueries(min-large) {
-        flex-basis: 10%;
+        flex-basis: 12.5%;
+      }
+      &.control{
+        flex-basis: 100%;
+        height: 260px;
+        @include mediaQueries(min-small) {
+          height: 240px;
+          flex-basis: 33.3333%;
+        } // Media queries
+        @include mediaQueries(min-medium) {
+          flex-basis: 20%;
+        }
+        @include mediaQueries(min-large) {
+          flex-basis: 16.6666%;
+        }
       }
       &.flip{
         border: 0;
@@ -29,9 +43,6 @@
           padding: $spacing;
           display: flex;
           flex-direction: column;
-          &.h-160px {
-           // height: 160px;
-          }
           figure {
             position: relative;
             cursor: pointer;
@@ -47,7 +58,7 @@
             margin-top: auto;
             h2 {
               font-size: 90%;
-              margin-top: $spacing-half;
+              margin: $spacing 0;
             }
           }
           &.front {
@@ -82,3 +93,36 @@
     }
   }
 }
+
+/* Table schedule
+-------------------------------------------------- */
+.table.security-schedule > tbody > tr > td{
+  vertical-align: middle;
+  .fa-check{
+    color: $app-heading-color;
+    cursor: pointer;
+  }
+  &.active{
+    background-color: $app-bcg-success;
+    .fa-check{
+     
+      display: inline-block;
+      padding: $spacing-half;
+      background-color: $app-brand-success;
+      color:#fff;
+      @include appBorderRadius(50%);
+    }
+  }
+}
+
+/* .table{
+  &.security-schedule{
+    tbody{
+      td{
+        .active{
+          background: transparent;
+        }
+      }
+    }
+  }
+} */

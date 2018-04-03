@@ -12903,6 +12903,11 @@ img {
 }
 
 /* line 138, ../sass/base/_button.scss */
+.btn-wrap {
+  white-space: normal;
+}
+
+/* line 142, ../sass/base/_button.scss */
 .btn-tag {
   display: block;
   position: relative;
@@ -12914,7 +12919,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 138, ../sass/base/_button.scss */
+  /* line 142, ../sass/base/_button.scss */
   .btn-tag {
     display: inline-block;
     position: static;
@@ -12923,7 +12928,7 @@ img {
     width: auto;
   }
 }
-/* line 152, ../sass/base/_button.scss */
+/* line 156, ../sass/base/_button.scss */
 .btn-tag .fa {
   position: absolute;
   top: 5px;
@@ -12933,48 +12938,48 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 152, ../sass/base/_button.scss */
+  /* line 156, ../sass/base/_button.scss */
   .btn-tag .fa {
     position: static;
     margin: 0 0 0 10px;
     font-size: 120%;
   }
 }
-/* line 163, ../sass/base/_button.scss */
+/* line 167, ../sass/base/_button.scss */
 .btn-tag.btn-group {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 163, ../sass/base/_button.scss */
+  /* line 167, ../sass/base/_button.scss */
   .btn-tag.btn-group {
     display: table !important;
     width: 100%;
   }
-  /* line 167, ../sass/base/_button.scss */
+  /* line 171, ../sass/base/_button.scss */
   .btn-tag.btn-group .btn {
     float: none;
     display: table-cell;
   }
 }
-/* line 174, ../sass/base/_button.scss */
+/* line 178, ../sass/base/_button.scss */
 .btn-tag .btn-addon .fa {
   margin: 0;
 }
-/* line 178, ../sass/base/_button.scss */
+/* line 182, ../sass/base/_button.scss */
 .btn-tag .btn {
   text-align: left;
   font-size: 100%;
   margin: 0;
 }
-/* line 183, ../sass/base/_button.scss */
+/* line 187, ../sass/base/_button.scss */
 .btn-tag label {
   text-align: center !important;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 183, ../sass/base/_button.scss */
+  /* line 187, ../sass/base/_button.scss */
   .btn-tag label {
     width: 20px;
   }
@@ -12982,29 +12987,29 @@ img {
 
 /* Button tabs
 -------------------------------------------------- */
-/* line 195, ../sass/base/_button.scss */
+/* line 199, ../sass/base/_button.scss */
 .btn-goup-tabs {
   /* display: table;
   width: 100%;*/
   margin: 0 0 10px 0;
 }
-/* line 199, ../sass/base/_button.scss */
+/* line 203, ../sass/base/_button.scss */
 .btn-goup-tabs .btn {
   background-color: #FFFFFF;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 201, ../sass/base/_button.scss */
+/* line 205, ../sass/base/_button.scss */
 .btn-goup-tabs .btn.active {
   background-color: #f2f2f2;
 }
 @media only screen and (min-width: 768px) {
-  /* line 199, ../sass/base/_button.scss */
+  /* line 203, ../sass/base/_button.scss */
   .btn-goup-tabs .btn {
     padding: 10px;
   }
 }
-/* line 207, ../sass/base/_button.scss */
+/* line 211, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa {
   font-size: 130%;
   color: #404040;
@@ -13012,15 +13017,15 @@ img {
   font-size: 130%;
 } */
 }
-/* line 210, ../sass/base/_button.scss */
+/* line 214, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa.text-danger {
   color: #d9534f;
 }
-/* line 219, ../sass/base/_button.scss */
+/* line 223, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa {
   color: #80AD80;
 }
-/* line 221, ../sass/base/_button.scss */
+/* line 225, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa.text-danger {
   color: #d9534f;
 }
@@ -13028,12 +13033,12 @@ img {
 /* MIN WIDTH */
 /* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 231, ../sass/base/_button.scss */
+  /* line 235, ../sass/base/_button.scss */
   .fix-me-top .btn-goup-tabs {
     display: inline-block;
     width: auto;
   }
-  /* line 234, ../sass/base/_button.scss */
+  /* line 238, ../sass/base/_button.scss */
   .fix-me-top .btn-goup-tabs .btn {
     border: 0;
     background: transparent;
@@ -13044,17 +13049,17 @@ img {
     width: auto;
   }
 }
-/* line 246, ../sass/base/_button.scss */
+/* line 250, ../sass/base/_button.scss */
 .btn-tabs-2 .btn {
   width: 50%;
 }
 
-/* line 252, ../sass/base/_button.scss */
+/* line 256, ../sass/base/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
 
-/* line 258, ../sass/base/_button.scss */
+/* line 262, ../sass/base/_button.scss */
 .btn-tabs-4 .btn {
   width: 25%;
 }
@@ -13062,7 +13067,7 @@ img {
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
-/* line 268, ../sass/base/_button.scss */
+/* line 272, ../sass/base/_button.scss */
 .switch {
   position: relative;
   display: inline-block;
@@ -13073,7 +13078,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 268, ../sass/base/_button.scss */
+  /* line 272, ../sass/base/_button.scss */
   .switch {
     /* width: 60px;
     height: 34px; */
@@ -13081,14 +13086,14 @@ img {
 }
 
 /* Hide default HTML checkbox */
-/* line 283, ../sass/base/_button.scss */
+/* line 287, ../sass/base/_button.scss */
 .switch input {
   display: none;
   margin: 0;
 }
 
 /* The slider */
-/* line 291, ../sass/base/_button.scss */
+/* line 295, ../sass/base/_button.scss */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -13106,7 +13111,7 @@ img {
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 309, ../sass/base/_button.scss */
+/* line 313, ../sass/base/_button.scss */
 .slider:before {
   position: absolute;
   content: "";
@@ -13128,24 +13133,24 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 309, ../sass/base/_button.scss */
+  /* line 313, ../sass/base/_button.scss */
   .slider:before {
     /* height: 26px;
     width: 26px; */
   }
 }
 
-/* line 336, ../sass/base/_button.scss */
+/* line 340, ../sass/base/_button.scss */
 input:checked + .slider:before {
   background-color: #80AD80;
 }
 
-/* line 340, ../sass/base/_button.scss */
+/* line 344, ../sass/base/_button.scss */
 input:focus + .slider {
   box-shadow: 0 0 1px #80AD80;
 }
 
-/* line 344, ../sass/base/_button.scss */
+/* line 348, ../sass/base/_button.scss */
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -13153,29 +13158,29 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-/* line 353, ../sass/base/_button.scss */
+/* line 357, ../sass/base/_button.scss */
 .slider.round {
   border-radius: 4px;
 }
 
-/* line 357, ../sass/base/_button.scss */
+/* line 361, ../sass/base/_button.scss */
 .slider.round:before {
   border-radius: 4px;
 }
 
 /* Button group hiden on small devices
 -------------------------------------------------- */
-/* line 365, ../sass/base/_button.scss */
+/* line 369, ../sass/base/_button.scss */
 .btn-wrapper {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 365, ../sass/base/_button.scss */
+  /* line 369, ../sass/base/_button.scss */
   .btn-wrapper {
     position: relative;
   }
-  /* line 368, ../sass/base/_button.scss */
+  /* line 372, ../sass/base/_button.scss */
   .btn-wrapper .btn-group {
     position: absolute;
     top: 100%;
@@ -13194,7 +13199,7 @@ input:checked + .slider:before {
     background-clip: padding-box;
     text-align: right;
   }
-  /* line 383, ../sass/base/_button.scss */
+  /* line 387, ../sass/base/_button.scss */
   .btn-wrapper .btn-group.btn-group-collapsed {
     display: none;
   }
@@ -18596,47 +18601,77 @@ img.widget-promo-image {
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
   /* line 7, ../sass/base/_security.scss */
   .flexcards.security .flexcard {
-    flex-basis: 10%;
+    flex-basis: 12.5%;
   }
 }
 /* line 23, ../sass/base/_security.scss */
+.flexcards.security .flexcard.control {
+  flex-basis: 100%;
+  height: 260px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 23, ../sass/base/_security.scss */
+  .flexcards.security .flexcard.control {
+    height: 240px;
+    flex-basis: 33.3333%;
+  }
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 23, ../sass/base/_security.scss */
+  .flexcards.security .flexcard.control {
+    flex-basis: 20%;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 23, ../sass/base/_security.scss */
+  .flexcards.security .flexcard.control {
+    flex-basis: 16.6666%;
+  }
+}
+/* line 37, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip {
   border: 0;
 }
-/* line 27, ../sass/base/_security.scss */
+/* line 41, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * {
   border: solid 1px #cccccc;
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
-/* line 35, ../sass/base/_security.scss */
+/* line 46, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * figure {
   position: relative;
   cursor: pointer;
 }
-/* line 38, ../sass/base/_security.scss */
+/* line 49, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * figure .fa {
   padding: 0;
   position: absolute;
   top: -5px;
   right: 0;
 }
-/* line 46, ../sass/base/_security.scss */
+/* line 57, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body {
   margin-top: auto;
 }
-/* line 48, ../sass/base/_security.scss */
+/* line 59, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body h2 {
   font-size: 90%;
-  margin-top: 5px;
+  margin: 10px 0;
 }
-/* line 53, ../sass/base/_security.scss */
+/* line 64, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front {
   color: #737373;
   background-color: #fff;
 }
-/* line 57, ../sass/base/_security.scss */
+/* line 68, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front figure img {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -18644,7 +18679,7 @@ img.widget-promo-image {
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-/* line 66, ../sass/base/_security.scss */
+/* line 77, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back {
   background: #f6f6f6;
   /* Old browsers */
@@ -18666,11 +18701,48 @@ img.widget-promo-image {
 
 /* Notification
 -------------------------------------------------- */
-/* line 80, ../sass/base/_security.scss */
+/* line 91, ../sass/base/_security.scss */
 .automation .notification textarea {
   height: 50px;
 }
 
+/* Table schedule
+-------------------------------------------------- */
+/* line 99, ../sass/base/_security.scss */
+.table.security-schedule > tbody > tr > td {
+  vertical-align: middle;
+}
+/* line 101, ../sass/base/_security.scss */
+.table.security-schedule > tbody > tr > td .fa-check {
+  color: #737373;
+  cursor: pointer;
+}
+/* line 105, ../sass/base/_security.scss */
+.table.security-schedule > tbody > tr > td.active {
+  background-color: #dff0d8;
+}
+/* line 107, ../sass/base/_security.scss */
+.table.security-schedule > tbody > tr > td.active .fa-check {
+  display: inline-block;
+  padding: 5px;
+  background-color: #80AD80;
+  color: #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* .table{
+  &.security-schedule{
+    tbody{
+      td{
+        .active{
+          background: transparent;
+        }
+      }
+    }
+  }
+} */
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit

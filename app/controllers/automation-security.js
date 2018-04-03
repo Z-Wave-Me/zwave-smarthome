@@ -100,7 +100,8 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
  */
 myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
-    tab: 1,
+    tab: 2,
+    days: [1, 2, 3, 4, 5, 6, 0],
     cfg: {},
     input: {
       instanceId: $routeParams.id,
