@@ -18653,6 +18653,7 @@ img.widget-promo-image {
 /* line 49, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * figure .fa {
   padding: 0;
+  text-align: right;
   position: absolute;
   top: -5px;
   right: 0;

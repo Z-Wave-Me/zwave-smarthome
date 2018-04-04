@@ -100,9 +100,23 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
  */
 myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
-    tab: 2,
+    tab: 3,
     days: [1, 2, 3, 4, 5, 6, 0],
-    cfg: {},
+    cfg: {
+      times:{
+        default:{
+          '0': false,
+          '1': false,
+          '2': false,
+          '3': false,
+          '4': false,
+          '5': false,
+          '6': false,
+          'times': '00:00',
+          'condition': 'disarm'
+        }
+      }
+    },
     input: {
       instanceId: $routeParams.id,
       moduleId: "SecurityModule",
@@ -223,8 +237,30 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       });
     }, function (error) {});
   };
+  ////////// Advanced schedule ////////// 
+  /**
+   * Assign a time scheduler
+   * @returns {undefined}
+   */
+  $scope.assignTimeScheduler = function () {
+    var input = $scope.security.cfg.times.default, obj = {};
+    $scope.security.input.params.times.table.push(input);
+    $scope.resetOptions();
+  };
+
+  /**
+   * Unassign a time scheduler
+   *  @param {int} targetIndex 
+   * @returns {undefined}
+   */
+  $scope.unassignTimeScheduler = function (targetIndex) {
+    if (targetIndex > -1) {
+      $scope.security.input.params.times.table.splice(targetIndex, 1);
+    }
+  };
 
 
+ ////////// Save complete form ////////// 
   /**
    * Store instance
    */
