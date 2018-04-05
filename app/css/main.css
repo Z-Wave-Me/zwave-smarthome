@@ -18488,7 +18488,6 @@ img.widget-promo-image {
   height: 100%;
   transform-style: preserve-3d;
   transition: 0.5s;
-  cursor: pointer;
 }
 /* line 14, ../sass/base/_flip.scss */
 .flip .flipcard > * {
@@ -18648,31 +18647,50 @@ img.widget-promo-image {
 /* line 46, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * figure {
   position: relative;
-  cursor: pointer;
 }
 /* line 49, ../sass/base/_security.scss */
-.flexcards.security .flexcard .flipcard > * figure .fa {
+.flexcards.security .flexcard .flipcard > * figure span {
   padding: 0;
   text-align: right;
   position: absolute;
   top: -5px;
   right: 0;
+  width: 32px;
+  height: 32px;
 }
-/* line 57, ../sass/base/_security.scss */
+/* line 59, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flipcard > * figure span .fa {
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+  font-size: 130%;
+  line-height: 32px;
+  background-color: #E9E9E9;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+/* line 74, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body {
   margin-top: auto;
 }
-/* line 59, ../sass/base/_security.scss */
+/* line 76, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body h2 {
   font-size: 90%;
   margin: 10px 0;
 }
-/* line 64, ../sass/base/_security.scss */
+/* line 81, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front {
   color: #737373;
   background-color: #fff;
 }
-/* line 68, ../sass/base/_security.scss */
+/* line 85, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flipcard > *.front figure .fa {
+  color: #80AD80;
+}
+/* line 88, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front figure img {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -18680,7 +18698,7 @@ img.widget-promo-image {
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-/* line 77, ../sass/base/_security.scss */
+/* line 97, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back {
   background: #f6f6f6;
   /* Old browsers */
@@ -18699,30 +18717,34 @@ img.widget-promo-image {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
   /* IE6-9 */
 }
+/* line 100, ../sass/base/_security.scss */
+.flexcards.security .flexcard .flipcard > *.back figure .fa {
+  color: #d9534f;
+}
 
 /* Notification
 -------------------------------------------------- */
-/* line 91, ../sass/base/_security.scss */
+/* line 116, ../sass/base/_security.scss */
 .automation .notification textarea {
   height: 50px;
 }
 
 /* Table schedule
 -------------------------------------------------- */
-/* line 99, ../sass/base/_security.scss */
+/* line 124, ../sass/base/_security.scss */
 .table.security-schedule > tbody > tr > td {
   vertical-align: middle;
 }
-/* line 101, ../sass/base/_security.scss */
+/* line 126, ../sass/base/_security.scss */
 .table.security-schedule > tbody > tr > td .fa-check {
   color: #737373;
   cursor: pointer;
 }
-/* line 105, ../sass/base/_security.scss */
+/* line 130, ../sass/base/_security.scss */
 .table.security-schedule > tbody > tr > td.active {
   background-color: #dff0d8;
 }
-/* line 107, ../sass/base/_security.scss */
+/* line 132, ../sass/base/_security.scss */
 .table.security-schedule > tbody > tr > td.active .fa-check {
   display: inline-block;
   padding: 5px;

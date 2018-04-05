@@ -1,17 +1,18 @@
 <table class="table security-schedule">
   <thead>
-    <th>{{}}</th>
-    <th>Disarm/Arm</th>
-    <th>SU</th>
-    <th>MO</th>
-    <th>TU</th>
-    <th>WE</th>
-    <th>TH</th>
-    <th>FR</th>
-    <th>SA</th>
+    <th>{{_t('time_period')}}</th>
+    <th>{{_t('disarm_arm')}}</th>
+    <th>{{_t('day_short_0')}}</th>
+    <th>{{_t('day_short_1')}}</th>
+    <th>{{_t('day_short_2')}}</th>
+    <th>{{_t('day_short_3')}}</th>
+    <th>{{_t('day_short_4')}}</th>
+    <th>{{_t('day_short_5')}}</th>
+    <th>{{_t('day_short_6')}}</th>
   </thead>
+ 
   <tbody>
-    <tr ng-repeat="v in security.input.params.times.table track by $index | orderBy: 'times'">
+    <tr ng-repeat="v in security.input.params.times.table track by $index">
       <!-- time -->
       <td class="form-inline">
         <span ng-hide="security.editSchedule[$index]">{{v.times}}</span>

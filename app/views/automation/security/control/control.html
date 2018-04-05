@@ -1,45 +1,50 @@
 <div class="flexcards security">
-  <div class="flexcard control flip" ng-repeat="d in [1,2,3,4,5,6,7]">
-    <div class="flipcard" ng-class="{'flipped': security.flip[$index]}">
+  <div class="flexcard control flip" ng-repeat="d in security.devices.controls track by $index">
+    <div class="flipcard" ng-class="{'flipped': security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]}">
       <!--  Inactive card -->
       <!--  <div class="flexcard-item inactive" ng-if="!security[$index]"> -->
       <div class="flexcard-item front">
-        <figure ng-click="security.flip[$index] = true">
-          <i class="fa fa-plus" title="{{_t('lb_remove')}}"></i>
-          <img ng-src="{{cfg.img.icons + 'security-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+        <figure>
+            <span>
+          <i class="fa fa-plus" title="{{_t('lb_remove')}}" ng-click="assignExternalControl(d.deviceId)"></i>
+        </span>
+          <img  ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
         </figure>
          <div class="body">
-              <h2> FRONT Available device {{$index}}</h2>
-            <button type="button" class="btn btn-success btn-block btn-wrap" ng-click="security.flip[$index] = true">
-                Click here to add this device
-            </button>
+              <h2>{{d.deviceName}}</h2>
+              <button type="button" class="btn btn-default" ng-click="assignExternalControl(d.deviceId)">
+                  <i class="fa fa-plus text-success" title="{{_t('lb_remove')}}"></i>
+              </button>
           
         </div>
       </div>
       <!--  Active card -->
       <!-- <div class="flexcard-item activ" ng-if="security[$index]"> -->
       <div class="flexcard-item back">
-        <figure ng-click="security.flip[$index] = false">
-          <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i>
-          <img ng-src="{{cfg.img.icons + 'security-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+        <figure>
+          <span>
+              <i class="fa fa-times" title="{{_t('lb_remove')}}" ng-click="unassignExternalControl(d.deviceId)"></i>
+          </span>
+          
+          <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
         </figure>
         <div class="body">
-          <h2> BACK Available device {{$index}}</h2>
-          <div class="control">
-              <select class="form-control">
+          <h2>{{d.deviceName}}</h2>
+         <div class="control">
+              <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].armCondition">
                 <option value="" ng-selected="true">--- {{_t('arm_condition')}} ---</option>
-                <option ng-repeat="a in ['Not used','On','Off'] track by $index">
-                  {{a}}</option>
+                <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].armCondition == a">
+                  {{_t(a)}}</option>
               </select>
-              <select class="form-control">
+              <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].disarmCondition">
                 <option value="" ng-selected="true">--- {{_t('disarm_condition')}} ---</option>
-                <option ng-repeat="a in ['Not used','On','Off'] track by $index">
-                  {{a}}</option>
+                <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].disarmCondition == a">
+                  {{_t(a)}}</option>
               </select>
-              <select class="form-control">
+              <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].clearCondition">
                 <option value="" ng-selected="true">--- {{_t('reset_condition')}} ---</option>
-                <option ng-repeat="a in ['Not used','On','Off'] track by $index">
-                  {{a}}</option>
+                <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].clearCondition == a">
+                  {{_t(a)}}</option>
               </select>
             </div>
         </div>
