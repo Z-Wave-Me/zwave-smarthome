@@ -1,18 +1,18 @@
 <!--target  -->
 <h2>Notification</h2>
 <div class="form-group form-inline">
-  <select class="form-control" ng-model="d.target">
+  <select class="form-control" ng-model="model.target">
     <option value="" ng-selected="true">--- {{_t('notification_trigger')}} ---</option>
-    <option value="{{user.email}}" ng-selected="d.target == user.email">{{user.email}}</option>
-    <option value="{{e.deviceId}}" ng-repeat="e in leakage.availableNotifiers track by $index" ng-selected="e.deviceId == d.target">
+    <option value="{{user.email}}" ng-selected="model.target == user.email">{{user.email}}</option>
+    <option value="{{e.deviceId}}" ng-repeat="e in security.devices.notification track by $index" ng-selected="e.deviceId == model.target">
       {{e.deviceName}}</option>
   </select>
   &nbsp;
-  <label ng-hide="leakage.availableNotifiers[d.target] || d.target == user.email">&nbsp;{{_t('or')}}&nbsp;
-    <input type="text" class="form-control" placeholder="Add email" ng-model="d.target" />
-  </label>
+ <!--  <label ng-hide="leakage.availableNotifiers[model.target] || model.target == user.email">&nbsp;{{_t('or')}}&nbsp;
+    <input type="text" class="form-control" placeholder="Add email" ng-model="model.target" />
+  </label> -->
 </div>
 <!-- mesage -->
-<div class="form-group" ng-if="d.target != ''">
-  <textarea name="message" id="content" class="form-control report-content" ng-model="d.message" placeholder="{{_t('message')}}"></textarea>
+<div class="form-group" ng-if="model.target != ''">
+  <textarea name="message" id="content" class="form-control report-content" ng-model="model.message" placeholder="{{_t('message')}}"></textarea>
 </div>

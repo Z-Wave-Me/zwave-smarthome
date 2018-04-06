@@ -7,10 +7,8 @@
     .flexcard {
       padding: 0;
     
-      flex-basis: 33.3333%;
-      &.h-160px {
-        height: 160px;
-       }
+      flex-basis: 50%;
+     
       @include mediaQueries(min-small) {
         flex-basis: 20%;
       } // Media queries
@@ -20,6 +18,9 @@
       @include mediaQueries(min-large) {
         flex-basis: 12.5%;
       }
+      &.trigger {
+        height: 180px;
+       }
       &.control{
         flex-basis: 100%;
         height: 260px;
@@ -43,34 +44,6 @@
           padding: $spacing;
           display: flex;
           flex-direction: column;
-          figure {
-            position: relative;
-           
-            span {
-             
-              padding: 0;
-              text-align: right;
-             position: absolute;
-              top: -$spacing-half;
-              right: 0;
-               width: 32px;
-                height: 32px;
-              
-              .fa{
-                display: inline-block;
-                cursor: pointer;
-                text-align: center;
-                width: 32px;
-                height: 32px;
-                font-size: 130%;
-                line-height: 32px;
-                //padding: $spacing-half;
-                background-color: #E9E9E9;
-               
-                @include appBorderRadius(50%);
-              }
-            }
-          }
           .body {
             margin-top: auto;
             h2 {
@@ -95,12 +68,26 @@
             }
           }
           &.back {
-            @include appGradient();
-            figure {
+            .close{
+              text-align: right;
+              position: relative;
+              padding: 0 15px;
               .fa{
+                position: absolute;
+                top: -5px;
+                cursor: pointer;
+                
+                font-size: 150%;
                 color:$app-brand-danger;
               }
             }
+            @include appGradient();
+            //background-color: $app-bcg-success;
+           /*  figure {
+              .fa{
+                color:$app-brand-danger;
+              }
+            } */
           }
         }
       }

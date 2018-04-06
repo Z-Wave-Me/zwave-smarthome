@@ -1,49 +1,52 @@
 <section class="accordion-wrap">
-    <!-- Title -->
-    <h2 class="accordion-toggle chevron">
-      <button type="button" aria-expanded="false" bb-accordion>
-        <span class="is-legend">
-         {{_t('triggering_devices')}}
-        </span>
-      </button>
-    </h2>
-    <!-- Content -->
-    <div class="accordion no-bcg" hidden_>
-        <!-- Cards -->
+  <!-- Title -->
+  <h2 class="accordion-toggle chevron">
+    <button type="button" aria-expanded="false" bb-accordion>
+      <span class="is-legend">
+        {{_t('triggering_devices')}}
+      </span>
+    </button>
+  </h2>
+  <!-- Content -->
+  <div class="accordion no-bcg" hidden>
     <div class="flexcards security">
-        <div class="flexcard flip  h-160px" ng-repeat="d in [1,2,3,4,5,6,7,8,9,10,11,12,13]">
-          <div class="flipcard" ng-class="{'flipped': security.flip[$index]}">
-            <!--  Inactive card -->
-            <!--  <div class="flexcard-item inactive" ng-if="!security[$index]"> -->
-            <div class="flexcard-item front">
-                <figure ng-click="security.flip[$index] = true"> 
-                    <i class="fa fa-plus"  title="{{_t('lb_remove')}}"></i>
-                    <img ng-src="{{cfg.img.icons + 'security-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                  </figure>
-                  <div class="body">
-                     <h2> FRONT Available device {{$index}}</h2>
-                  </div>
+      <div class="flexcard trigger flip" ng-repeat="d in security.devices.input track by $index">
+        <div class="flipcard" ng-class="{'flipped': security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]}">
+          <!--  Inactive card -->
+          <div class="flexcard-item front">
+            <figure>
+              <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+            </figure>
+            <div class="body">
+              <h2>{{d.deviceName}}</h2>
+              <button type="button" class="btn btn-default" ng-click="assignDevice(d.deviceId,'input')">
+                <i class="fa fa-plus text-success" title="{{_t('lb_remove')}}"></i>
+              </button>
             </div>
-            <!--  Active card -->
-            <!-- <div class="flexcard-item activ" ng-if="security[$index]"> -->
-            <div class="flexcard-item back">
-                <figure ng-click="security.flip[$index] = false">
-                   <i class="fa fa-times text-danger"  title="{{_t('lb_remove')}}"></i>
-                  <img ng-src="{{cfg.img.icons + 'security-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                </figure>
-                <div class="body">
-                    <label class="switch">
-                        <input type="checkbox" ng-model="rule.input.params.advanced.active" ng-checked="rule.input.params.advanced.active">
-                        <span class="slider"></span>
-                      </label>
-                    <h2> BACK Available device {{$index}}</h2>
-                 </div>
-  
+          </div>
+          <!--  Active card -->
+          <div class="flexcard-item back">
+            <span class="close">
+              <i class="fa fa-times" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'input')"></i>
+            </span>
+            <figure>
+              <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+            </figure>
+            <div class="body">
+              <h2>{{d.deviceName}}</h2>
+              <div class="control">
+                <label class="switch">
+                  <input type="checkbox" ng-model="security.input.params.input.table[getModelIndex(d.deviceId,'input.table')].conditions" ng-true-value="on"
+                    ng-false-value="off">
+                  <span class="slider"></span>
+                </label>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-
+  </div>
+</section>

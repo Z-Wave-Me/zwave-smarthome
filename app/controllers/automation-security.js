@@ -100,27 +100,69 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
  */
 myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
-    tab: 2,
+    tab: 1,
     days: [1, 2, 3, 4, 5, 6, 0],
-   /*  assigned: {
-      controls: []
-    }, */
-    devices:{
-      controls:[]
+    /*  assigned: {
+       controls: []
+     }, */
+    devices: {
+      input: [],
+      alarms:[],
+      armConfirm:[],
+      controls: [],
+      notification: []
     },
     cfg: {
-      controls:{
-        deviceType:['switchBinary'],
-        status: ['on', 'off','never'],
-        default:{
+      input: {
+        deviceType: ['sensorBinary'],
+        status: ['on', 'off'],
+        default: {
+          devices: '',
+          conditions: 'on'
+        }
+      },
+      silentAlarms: {
+        deviceType: ['toggleButton','switchBinary'],
+        default: {
+          devices: ''
+        }
+      },
+      alarms: {
+        deviceType: ['toggleButton','switchBinary'],
+        default: {
+          devices: ''
+        }
+      },
+      armConfirm: {
+        deviceType: ['toggleButton'],
+        default: {
+          devices: ''
+        }
+      },
+      disarmConfirm: {
+        deviceType: ['toggleButton'],
+        default: {
+          devices: ''
+        }
+      },
+      clean: {
+        deviceType: ['toggleButton'],
+        default: {
+          devices: ''
+        }
+      },
+      controls: {
+        deviceType: ['switchBinary'],
+        status: ['on', 'off', 'never'],
+        default: {
           devices: '',
           armCondition: 'never',
           disarmCondition: 'never',
           clearCondition: 'never'
         }
       },
-      times:{
-        default:{
+      times: {
+        default: {
           '0': false,
           '1': false,
           '2': false,
@@ -131,6 +173,9 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
           'times': '00:00',
           'condition': 'disarm'
         }
+      },
+      notification:{
+        probeType: 'notification_push'
       }
     },
     input: {
@@ -148,7 +193,9 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
           table: []
         },
         time: '00:00',
-        input:  [],
+        input: {
+          table: []
+        },
         silentAlarms: {
           table: [],
           notification: {}
@@ -169,7 +216,9 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
           table: [],
           notification: {}
         },
-        controls: []
+        controls: {
+          table: []
+        }
 
       },
     }
@@ -199,11 +248,11 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         params: instance.params
       });
       // Set assigned devices
-     /*  angular.forEach(instance.params.controls.table, function (v, k) {
-        if (v.devices) {
-          $scope.security.assigned.controls.push(v.devices);
-        }
-      }); */
+      /*  angular.forEach(instance.params.controls.table, function (v, k) {
+         if (v.devices) {
+           $scope.security.assigned.controls.push(v.devices);
+         }
+       }); */
 
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
@@ -243,56 +292,75 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
           locationName: rooms[v.location].title,
           iconPath: v.iconPath
         };
-         // Set controls
-      if ($scope.security.cfg.controls.deviceType.indexOf(v.deviceType) > -1) {
-        //$scope.security.devices.all[v.id] = obj;
-        $scope.security.devices.controls.push(obj);
-      }
+        // Set input
+        if ($scope.security.cfg.input.deviceType.indexOf(v.deviceType) > -1) {
+          $scope.security.devices.input.push(obj);
+        }
+        // Set alarm, silent alarm
+        if ($scope.security.cfg.alarms.deviceType.indexOf(v.deviceType) > -1) {
+          $scope.security.devices.alarms.push(obj);
+        }
+        // Set arm, disarm, clean
+        if ($scope.security.cfg.armConfirm.deviceType.indexOf(v.deviceType) > -1) {
+          $scope.security.devices.armConfirm.push(obj);
+        }
+        // Set controls
+        if ($scope.security.cfg.controls.deviceType.indexOf(v.deviceType) > -1) {
+          $scope.security.devices.controls.push(obj);
+        }
+         // Set notifications
+         if (v.probeType && $scope.security.cfg.notification.probeType.indexOf(v.probeType) > -1) {
+          $scope.security.devices.notification.push(obj);
+        }
       });
     }, function (error) {});
   };
-  
+
   /**
    * TODO: Create function for all input/models
    * Get model index by device ID
    * @param {string} deviceId
    * @returns {undefined}
    */
-  $scope.getModelIndex = function (deviceId,node) {
-    //var index = $scope.security.input.params.controls.table.indexOf(deviceId);
-    //var index = _.findIndex($scope.security.input.params.controls.table, { devices: deviceId });
-    var index = _.findIndex($filter('hasNode')($scope.security.input.params,node), { devices: deviceId });
+  $scope.getModelIndex = function (deviceId, node) {
+    var index = _.findIndex($filter('hasNode')($scope.security.input.params, node), {
+      devices: deviceId
+    });
     return index;
   };
-   //////////External control////////// 
+  ////////// Devices ////////// 
   /**
-   * Assign an external control
+   * Assign a device
    * @param {string} deviceId
+   * @param {string} param
    * @returns {undefined}
    */
-  $scope.assignExternalControl = function (deviceId) {
-    var input = $scope.security.cfg.controls.default;
-    var deviceIndex =  _.findIndex($scope.security.input.params.controls.table, { devices: deviceId });
-   if (deviceIndex > -1) {
+  $scope.assignDevice = function (deviceId, param) {
+    var input = $scope.security.cfg[param].default;
+    var deviceIndex = _.findIndex($scope.security.input.params[param].table, {
+      devices: deviceId
+    });
+    if (deviceIndex > -1) {
       return;
     }
-   input.devices = deviceId;
-    //$scope.security.assigned.controls.push(deviceId);
-    $scope.security.input.params.controls.table.push(input);
+    input.devices = deviceId;
+    $scope.security.input.params[param].table.push(input);
     $scope.resetOptions();
   };
+
   /**
-   * Unassign an external control
+   * Unassign a device
    * @param {string} deviceId
+   * @param {string} param
    * @returns {undefined}
    */
-  $scope.unassignExternalControl = function (deviceId) {
-    //var assignedIndex = $scope.security.assigned.controls.indexOf(deviceId);
-    var deviceIndex = _.findIndex($scope.security.input.params.controls.table, { devices: deviceId });
+  $scope.unassignDevice = function (deviceId, param) {
+    var deviceIndex = _.findIndex($scope.security.input.params[param].table, {
+      devices: deviceId
+    });
     if (deviceIndex > -1) {
-     // $scope.security.assigned.controls.splice(assignedIndex, 1);
-      $scope.security.input.params.controls.table.splice(deviceIndex, 1);
-     
+      $scope.security.input.params[param].table.splice(deviceIndex, 1);
+
     }
   };
   ////////// Advanced schedule ////////// 
@@ -301,7 +369,8 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
    * @returns {undefined}
    */
   $scope.assignTimeScheduler = function () {
-    var input = $scope.security.cfg.times.default, obj = {};
+    var input = $scope.security.cfg.times.default,
+      obj = {};
     $scope.security.input.params.times.table.push(input);
     $scope.resetOptions();
   };
@@ -318,7 +387,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
   };
 
 
- ////////// Save complete form ////////// 
+  ////////// Save complete form ////////// 
   /**
    * Store instance
    */
