@@ -86,7 +86,10 @@ body {
   /* Form
 -------------------------------------------------- */
   .form-page {
-    border: solid 4px #e7e7e7;
+   
+    @include mediaQueries(min-small) {
+      border: solid 4px #e7e7e7;
+    }
     > section{
       border-bottom: solid 4px #e7e7e7;
       &:last-child{
@@ -106,8 +109,11 @@ body {
     }
   }
   .submit-entry {
-    background-color: #e7e7e7;
-    border-top: solid 1px #e7e7e7;
+    @include mediaQueries(min-small) {
+      background-color: #e7e7e7;
+      border-top: solid 1px #e7e7e7;
+    }
+   
   }
   fieldset,
   .fieldset {

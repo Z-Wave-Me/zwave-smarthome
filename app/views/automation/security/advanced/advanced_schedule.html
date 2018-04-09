@@ -1,5 +1,6 @@
-<table class="table security-schedule">
+<table class="table-responsive security-schedule">
   <thead>
+      <th>&nbsp;</th>
     <th>{{_t('time_period')}}</th>
     <th>{{_t('disarm_arm')}}</th>
     <th>{{_t('day_short_0')}}</th>
@@ -9,12 +10,15 @@
     <th>{{_t('day_short_4')}}</th>
     <th>{{_t('day_short_5')}}</th>
     <th>{{_t('day_short_6')}}</th>
+    <th>&nbsp;</th>
   </thead>
  
   <tbody>
     <tr ng-repeat="v in security.input.params.times.table track by $index">
       <!-- time -->
-      <td class="form-inline">
+      <td title="{{v.times}}">&nbsp;</td>
+      <!-- time -->
+      <td title="{{_t('time_period')}}" class="form-inline">
         <span ng-hide="security.editSchedule[$index]">{{v.times}}</span>
         <input type="time" class="form-control" ng-model="v.times" ng-if="security.editSchedule[$index]">
         <button type="button" class="btn btn-text" title="Remove" ng-click="security.editSchedule[$index] = !security.editSchedule[$index]">
@@ -23,41 +27,41 @@
 
       </td>
        <!-- disarm/arm -->
-      <td>
+      <td title="{{_t('time_period')}}">
           <label class="switch">
             <input type="checkbox" ng-model="v.condition" ng-false-value="disarm" ng-true-value="arm" ng-checked="v.condition == 'arm'">
             <span class="slider"></span>
           </label>
         </td>
         <!-- day 0 -->
-        <td ng-class="{'active': v[0]}">
+        <td title="{{_t('day_short_0')}}" ng-class="{'active': v[0]}">
             <i class="fa fa-check" ng-click="v[0] = !v[0]"></i>
           </td>
             <!-- day 1 -->
-        <td ng-class="{'active': v[1]}">
+        <td title="{{_t('day_short_1')}}" ng-class="{'active': v[1]}">
             <i class="fa fa-check" ng-click="v[1] = !v[1]"></i>
           </td>
            <!-- day 2 -->
-        <td ng-class="{'active': v[2]}">
+        <td title="{{_t('day_short_2')}}" ng-class="{'active': v[2]}">
             <i class="fa fa-check" ng-click="v[2] = !v[2]"></i>
           </td>
            <!-- day 3 -->
-        <td ng-class="{'active': v[3]}">
+        <td title="{{_t('day_short_3')}}" ng-class="{'active': v[3]}">
             <i class="fa fa-check" ng-click="v[3] = !v[3]"></i>
           </td>
            <!-- day 4 -->
-        <td ng-class="{'active': v[4]}">
+        <td title="{{_t('day_short_4')}}" ng-class="{'active': v[4]}">
             <i class="fa fa-check" ng-click="v[4] = !v[4]"></i>
           </td>
            <!-- day 5 -->
-        <td ng-class="{'active': v[5]}">
+        <td title="{{_t('day_short_5')}}" ng-class="{'active': v[5]}">
             <i class="fa fa-check" ng-click="v[5] = !v[5]"></i>
           </td>
            <!-- day 6 -->
-        <td ng-class="{'active': v[6]}">
+        <td title="{{_t('day_short_6')}}" ng-class="{'active': v[6]}">
             <i class="fa fa-check" ng-click="v[6] = !v[6]"></i>
           </td>
-          <td class="td-action">
+          <td title="{{_t('lb_remove')}}" class="td-action">
               <button type="button" class="btn btn-text" title="Remove" ng-click="unassignTimeScheduler($index)">
                   <i class="fa fa-times text-danger"></i>
                   </button>
@@ -73,10 +77,10 @@
   <div class="input-group">
     <input type="time" class="form-control" ng-model="security.cfg.times.default.times">
   </div> -->
-  <div class="input-group">
-    <button type="button" title="{{_t('add_new')}}" class="btn btn-success" ng-click="assignTimeScheduler()">
-      <i class="fa fa-plus"></i>
-      <span class="btn-name">{{_t('add_new_scheduler')}}</span>
-    </button>
-  </div>
-</div>
+ 
+<div class="fieldset submit-entry">
+    <button type="button" title="{{_t('add_new')}}" class="btn btn-submit" ng-click="assignTimeScheduler()">
+        <i class="fa fa-plus"></i>
+        &nbsp;{{_t('add_new_scheduler')}}
+      </button>
+    </div>

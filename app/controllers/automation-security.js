@@ -12,25 +12,34 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
     state: '',
     enableTest: [],
   }
+   /**
+   * Load instance with security module
+   * @returns {undefined}
+   */
+  $scope.loadSecurityModule = function () {
+    dataFactory.getApi('instances', null, true).then(function (response) {
+      var security = _.findWhere(response.data.data,{
+        moduleId: $scope.security.moduleId
+      });
+      if (!security || security.id < 1) {
+        $scope.security.state = 'blank';
+        return;
+      }
+      $location.path('/security/' + security.id);
+    }, function (error) {
+      alertify.alertError($scope._t('error_load_data'));
+    });
+  };
+  $scope.loadSecurityModule();
   /**
+   * TODO: deprecated
    * Load instances
    * @returns {undefined}
    */
-  $scope.loadInstances = function () {
+ /*  $scope.loadInstances = function () {
     dataFactory.getApi('instances', null, true).then(function (response) {
       $scope.security.all = _.chain(response.data.data).flatten().where({
         moduleId: $scope.security.moduleId
-      }).filter(function (v) {
-        var size = 0;
-        for (k in v.params.devices) {
-          if (v.params.devices[k].length) {
-            size++;
-          }
-        }
-        if (size) {
-          $scope.security.enableTest.push(v.id)
-        }
-        return v;
       }).value();
       if (!_.size($scope.security.all)) {
         $scope.security.state = 'blank';
@@ -40,9 +49,9 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
     });
-  };
+  }; */
 
-  $scope.loadInstances();
+ // $scope.loadInstances();
 
   /**
    * Activate/Deactivate instance
@@ -81,7 +90,7 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
   /**
    * Delete
    */
-  $scope.deleteInstance = function (input, message) {
+ /*  $scope.deleteInstance = function (input, message) {
     alertify.confirm(message, function () {
       dataFactory.deleteApi('instances', input.id).then(function (response) {
         $scope.reloadData();
@@ -90,7 +99,7 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
       });
 
     });
-  };
+  }; */
 
 });
 
@@ -100,18 +109,16 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
  */
 myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
-    tab: 1,
+    routeId:0,
+    tab: 3,
     days: [1, 2, 3, 4, 5, 6, 0],
-    /*  assigned: {
-       controls: []
-     }, */
     devices: {
       input: [],
       alarms:[],
       armConfirm:[],
       controls: [],
       notification: []
-    },
+    },  
     cfg: {
       input: {
         deviceType: ['sensorBinary'],
@@ -241,6 +248,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
    */
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
+      $scope.security.routeId= id;
       var instance = instances.data.data;
       angular.extend($scope.security.input, {
         title: instance.title,
@@ -317,7 +325,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
   };
 
   /**
-   * TODO: Create function for all input/models
    * Get model index by device ID
    * @param {string} deviceId
    * @returns {undefined}
@@ -394,13 +401,29 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
   $scope.storeInstance = function (input, redirect) {
     dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
       if (redirect) {
-        $location.path('/' + dataService.getUrlSegment($location.path()));
+        //TODO: redirect to automation base
+        //$location.path('/' + dataService.getUrlSegment($location.path()));
+        $location.path('/automation');
       }
 
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
     });
 
+  };
+
+  /**
+   * Delete instance
+   */
+  $scope.deleteInstance = function (id, message) {
+    alertify.confirm(message, function () {
+      dataFactory.deleteApi('instances', id).then(function (response) {
+        $location.path('/' + dataService.getUrlSegment($location.path()));
+      }, function (error) {
+        alertify.alertError($scope._t('error_delete_data'));
+      });
+
+    });
   };
 
 });

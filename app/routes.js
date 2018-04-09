@@ -412,7 +412,6 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/error_403.html'
                 }).//Not found
                 otherwise({
-                    template: ' ',
-                    controller: 'Error404Controller'
+                  templateUrl: 'app/views/error_404.html'
                 });
     }]);

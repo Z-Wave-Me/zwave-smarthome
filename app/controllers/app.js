@@ -591,7 +591,16 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
       return v.moduleId;
     });
 
-    _.filter(data, function (v) {
+    _.chain(data)
+    .flatten()
+    .reject(function (v) {
+      if (cfg.custom_apps.indexOf(v.moduleId) > -1) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .filter(function (v) {
       if (!$scope.dataHolder.instances.groups[v.moduleId]) {
         $scope.dataHolder.instances.groups[v.moduleId] = {
           id: v.id,

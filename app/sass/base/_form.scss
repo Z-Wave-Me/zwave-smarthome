@@ -16,11 +16,12 @@
   font-size: 95%;
   color: lighten($app-body-color, 30%);
   border: solid 1px #CCCCCC;
-  padding: 12px 14px;
+ 
+  //padding: 6px 12px;
   height: auto;
   // Media queries
   @include mediaQueries(min-small) {
-    padding: 6px 12px;
+    //padding: 12px 14px;
   }
 }
 
@@ -172,8 +173,11 @@ input[type=radio] {
 
 .form-page {
   margin-bottom: $spacing-double;
-  background-color: #FFFFFF;
-  border: solid 1px $app-border-color;
+ 
+  @include mediaQueries(min-small) {
+    background-color: #FFFFFF;
+    border: solid 1px $app-border-color;
+}
   > section{
     margin-bottom: $spacing-double;
      &:last-child{
@@ -218,7 +222,10 @@ input[type=radio] {
 legend,.legend{
   font-size: 105%;
   font-weight: bold;
-  padding: 0 $spacing-double;
+  
+  @include mediaQueries(min-small) {
+    padding: 0 $spacing-double;
+  }
   border-bottom: 0;
   &.has-control{
     display: flex;
@@ -227,7 +234,10 @@ legend,.legend{
 }
 
 fieldset, .fieldset {
-  padding: $spacing $spacing-double;
+  
+  @include mediaQueries(min-small) {
+    padding: $spacing $spacing-double;
+  }
   h1,h2,h3{
       margin: 0;
   }
@@ -266,8 +276,12 @@ fieldset, .fieldset {
   text-align: right;
   display: block;
   //margin: 10px 0 0 0;
-  background-color: #FFFFFF;
-  border-top: solid 1px $app-border-color;
+ 
+  
+  @include mediaQueries(min-small) {
+    border-top: solid 1px $app-border-color;
+    background-color: #FFFFFF;
+  }
 }
 
 fieldset.submit-entry {

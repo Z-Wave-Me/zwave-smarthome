@@ -502,7 +502,7 @@ var config_data = {
     // Results per events page
     'page_results_events': 50,
     // Apps with custom UI (app will be hidden in Active APPs)
-    'custom_apps': ['Rules', 'Scenes', 'Schedules'],
+    'custom_apps': ['Rules', 'Scenes', 'Schedules','LeakageProtection','FireProtection','SecurityModule'],
     // Scroll offset (px) for bind-class-on-scroll directive
     'scroll_offset': 80,
     // ---------------------------------- Custom config for specifics app_type ---------------------------------- //

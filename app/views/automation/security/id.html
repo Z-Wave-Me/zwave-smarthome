@@ -44,14 +44,18 @@
 
     <!-- Submit  -->
     <fieldset class="submit-entry">
-      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+      <a ng-href="#automation" class="btn btn-default" title="{{_t('lb_cancel')}}">
         <i class="fa fa-reply"></i>
         <span class="btn-name">{{_t('lb_cancel')}}</span>
-      </button>
+      </a>
       <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
         <i class="fa fa-check"></i>
         <span class="btn-name">{{_t('lb_save')}}</span>
       </button>
+      <button type="button" title="{{_t('lb_remove')}}" class="btn btn-text" ng-if="security.routeId" ng-click="deleteInstance(security.routeId, _t('lb_delete_confirm'))">
+          <i class="fa fa-close text-danger"></i>
+          <span class="btn-name">{{_t('lb_remove')}}</span>
+        </button>
     </fieldset>
   </form>
   <!-- <pre>{{security.input|json}}</pre> -->

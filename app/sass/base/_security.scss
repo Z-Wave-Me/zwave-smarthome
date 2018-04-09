@@ -22,7 +22,7 @@
         height: 180px;
        }
       &.control{
-        flex-basis: 100%;
+        flex-basis: 50%;
         height: 260px;
         @include mediaQueries(min-small) {
           height: 240px;

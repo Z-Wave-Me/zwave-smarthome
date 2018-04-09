@@ -11893,8 +11893,8 @@ img {
     background-color: #FFFFFF;
     border-bottom: solid 1px #cccccc;
     position: fixed;
-    top: 0px;
-    left: 0;
+    top: 0;
+    right: 0;
     padding: 5px;
     height: 50px;
     /* MIN WIDTH */
@@ -11902,7 +11902,7 @@ img {
   }
 }
 @media only screen and (max-width: 767px) and (max-width: 767px) {
-  /* line 190, ../sass/base/_header.scss */
+  /* line 191, ../sass/base/_header.scss */
   .fix-me-top input[type="text"] {
     min-height: 20px;
     padding: 6px 8px;
@@ -12679,34 +12679,34 @@ img {
 
 /* Table
 -------------------------------------------------- */
-/* line 5, ../sass/base/_table.scss */
+/* line 6, ../sass/base/_table.scss */
 .table tbody tr {
   /* &:nth-child(2) {
-      td {
-          border: none; 
-      }   
-  } */
+            td {
+                border: none; 
+            }   
+        } */
 }
-/* line 6, ../sass/base/_table.scss */
+/* line 7, ../sass/base/_table.scss */
 .table tbody tr td {
   border-top: 1px solid #cccccc;
 }
 
-/* line 17, ../sass/base/_table.scss */
+/* line 19, ../sass/base/_table.scss */
 .table-report {
   background-color: #FFFFFF;
   border: 0 !important;
   margin-bottom: 0 !important;
 }
-/* line 22, ../sass/base/_table.scss */
+/* line 24, ../sass/base/_table.scss */
 .table-report tbody td {
   vertical-align: middle !important;
 }
-/* line 26, ../sass/base/_table.scss */
+/* line 27, ../sass/base/_table.scss */
 .table-report tbody .td-img {
   width: 30px;
 }
-/* line 29, ../sass/base/_table.scss */
+/* line 30, ../sass/base/_table.scss */
 .table-report tbody .td-action {
   text-align: right;
 }
@@ -12721,29 +12721,103 @@ img {
   /* Opera */
 }
 
-/* line 39, ../sass/base/_table.scss */
+/* line 40, ../sass/base/_table.scss */
 .table-products td {
   vertical-align: middle !important;
 }
 
-/* line 44, ../sass/base/_table.scss */
+/* line 45, ../sass/base/_table.scss */
 .td20 {
   width: 20%;
 }
 
-/* line 47, ../sass/base/_table.scss */
+/* line 49, ../sass/base/_table.scss */
 .td30 {
   width: 30%;
 }
 
-/* line 50, ../sass/base/_table.scss */
+/* line 53, ../sass/base/_table.scss */
 .td-action {
   text-align: right;
 }
 
-/* line 53, ../sass/base/_table.scss */
+/* line 57, ../sass/base/_table.scss */
 .td40 {
   width: 40%;
+}
+
+/* responsive table
+-------------------------------------------------- */
+/* line 64, ../sass/base/_table.scss */
+.table-responsive {
+  width: 100%;
+  border-collapse: collapse;
+  /* Zebra striping */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+/* line 68, ../sass/base/_table.scss */
+.table-responsive tr:nth-of-type(odd) {
+  background: #eee;
+}
+/* line 71, ../sass/base/_table.scss */
+.table-responsive th {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+/* line 76, ../sass/base/_table.scss */
+.table-responsive td,
+.table-responsive th {
+  padding: 6px;
+  border: 1px solid #cccccc;
+  text-align: left;
+}
+@media only screen and (min-width: 768px) {
+  /* line 64, ../sass/base/_table.scss */
+  .table-responsive {
+    display: block;
+    /* Force table to not be like tables anymore */
+    /* Hide table headers (but not display: none;, for accessibility) */
+  }
+  /* line 85, ../sass/base/_table.scss */
+  .table-responsive thead,
+  .table-responsive tbody,
+  .table-responsive th,
+  .table-responsive td,
+  .table-responsive tr {
+    display: block;
+  }
+  /* line 93, ../sass/base/_table.scss */
+  .table-responsive thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  /* line 98, ../sass/base/_table.scss */
+  .table-responsive tr {
+    border: 1px solid #ccc;
+  }
+  /* line 101, ../sass/base/_table.scss */
+  .table-responsive td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+  /* line 108, ../sass/base/_table.scss */
+  .table-responsive td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    content: attr(title);
+  }
 }
 
 /* Button
@@ -13227,55 +13301,48 @@ input:checked + .slider:before {
   font-size: 95%;
   color: #595959;
   border: solid 1px #CCCCCC;
-  padding: 12px 14px;
   height: auto;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 768px) {
-  /* line 15, ../sass/base/_form.scss */
-  .form-control {
-    padding: 6px 12px;
-  }
-}
 
-/* line 27, ../sass/base/_form.scss */
+/* line 28, ../sass/base/_form.scss */
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
   /* line-height: 34px; */
   line-height: 1.42857;
 }
 
-/* line 33, ../sass/base/_form.scss */
+/* line 34, ../sass/base/_form.scss */
 .input-group-addon {
   border: solid 1px #CCCCCC;
   background-color: #EEEEEE;
 }
 
-/* line 38, ../sass/base/_form.scss */
+/* line 39, ../sass/base/_form.scss */
 textarea {
   min-height: 150px;
 }
 
-/* line 42, ../sass/base/_form.scss */
+/* line 43, ../sass/base/_form.scss */
 label {
   font-weight: normal;
   font-size: 100%;
   margin-right: 5px;
 }
-/* line 46, ../sass/base/_form.scss */
+/* line 47, ../sass/base/_form.scss */
 label span {
   line-height: 35px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 46, ../sass/base/_form.scss */
+  /* line 47, ../sass/base/_form.scss */
   label span {
     line-height: 20px;
   }
 }
 
-/* line 54, ../sass/base/_form.scss */
+/* line 55, ../sass/base/_form.scss */
 input[type=checkbox] {
   /*@include  checkboxScale(1.8,$spacing);
   // Media queries
@@ -13292,13 +13359,13 @@ input[type=checkbox] {
   background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
-  /* line 54, ../sass/base/_form.scss */
+  /* line 55, ../sass/base/_form.scss */
   input[type=checkbox] {
     margin: 0 11px 5px 0;
     font-size: 15px;
   }
 }
-/* line 74, ../sass/base/_form.scss */
+/* line 75, ../sass/base/_form.scss */
 input[type=checkbox]:after {
   margin: -11px 5px 0 0;
   vertical-align: baseline;
@@ -13315,7 +13382,7 @@ input[type=checkbox]:after {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 74, ../sass/base/_form.scss */
+  /* line 75, ../sass/base/_form.scss */
   input[type=checkbox]:after {
     margin-top: -2px;
     width: 20px;
@@ -13323,7 +13390,7 @@ input[type=checkbox]:after {
     padding: 2px 0 2px 1px;
   }
 }
-/* line 95, ../sass/base/_form.scss */
+/* line 96, ../sass/base/_form.scss */
 input[type=checkbox]:checked:after {
   content: "\f00c";
   color: #4e794e;
@@ -13331,26 +13398,26 @@ input[type=checkbox]:checked:after {
   -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 105, ../sass/base/_form.scss */
+/* line 106, ../sass/base/_form.scss */
 input[type=checkbox]:disabled:after {
   color: #BDBDBD;
 }
 
-/* line 110, ../sass/base/_form.scss */
+/* line 111, ../sass/base/_form.scss */
 .checkbox, .radio {
   margin-right: 10px;
 }
-/* line 112, ../sass/base/_form.scss */
+/* line 113, ../sass/base/_form.scss */
 .checkbox input[type=checkbox], .radio input[type=checkbox] {
   position: static;
   margin-left: 10px;
 }
-/* line 116, ../sass/base/_form.scss */
+/* line 117, ../sass/base/_form.scss */
 .checkbox label, .radio label {
   padding-left: 10px;
 }
 
-/* line 121, ../sass/base/_form.scss */
+/* line 122, ../sass/base/_form.scss */
 input[type=radio] {
   /* 
   @include radioScale(1.6, $spacing);
@@ -13369,13 +13436,13 @@ input[type=radio] {
   background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
-  /* line 121, ../sass/base/_form.scss */
+  /* line 122, ../sass/base/_form.scss */
   input[type=radio] {
     margin: 0 10px 5px 0;
     font-size: 12px;
   }
 }
-/* line 142, ../sass/base/_form.scss */
+/* line 143, ../sass/base/_form.scss */
 input[type=radio]:after {
   margin: -11px 5px 0 0;
   vertical-align: baseline;
@@ -13392,7 +13459,7 @@ input[type=radio]:after {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 142, ../sass/base/_form.scss */
+  /* line 143, ../sass/base/_form.scss */
   input[type=radio]:after {
     margin: -2px 0 0 -2px;
     width: 20px;
@@ -13400,7 +13467,7 @@ input[type=radio]:after {
     padding: 3px 0 0 4px;
   }
 }
-/* line 163, ../sass/base/_form.scss */
+/* line 164, ../sass/base/_form.scss */
 input[type=radio]:checked:after {
   content: "\f111";
   color: #737373;
@@ -13409,45 +13476,52 @@ input[type=radio]:checked:after {
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 173, ../sass/base/_form.scss */
+/* line 174, ../sass/base/_form.scss */
 .form-page {
   margin-bottom: 20px;
-  background-color: #FFFFFF;
-  border: solid 1px #cccccc;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 177, ../sass/base/_form.scss */
+@media only screen and (min-width: 768px) {
+  /* line 174, ../sass/base/_form.scss */
+  .form-page {
+    background-color: #FFFFFF;
+    border: solid 1px #cccccc;
+  }
+}
+/* line 181, ../sass/base/_form.scss */
 .form-page > section {
   margin-bottom: 20px;
 }
-/* line 179, ../sass/base/_form.scss */
+/* line 183, ../sass/base/_form.scss */
 .form-page > section:last-child {
   margin-bottom: 0;
 }
-/* line 184, ../sass/base/_form.scss */
+/* line 188, ../sass/base/_form.scss */
 .form-page .form-group.is-inline {
   margin-bottom: 0;
 }
-/* line 187, ../sass/base/_form.scss */
+/* line 191, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline) {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 190, ../sass/base/_form.scss */
+/* line 194, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline).first {
   padding-top: 10px;
 }
-/* line 193, ../sass/base/_form.scss */
+/* line 197, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline).last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 200, ../sass/base/_form.scss */
+/* line 204, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 205, ../sass/base/_form.scss */
+/* line 209, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -13457,91 +13531,112 @@ input[type=radio]:checked:after {
   z-index: -1;
 }
 
-/* line 215, ../sass/base/_form.scss */
+/* line 219, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 218, ../sass/base/_form.scss */
+/* line 222, ../sass/base/_form.scss */
 legend, .legend {
   font-size: 105%;
   font-weight: bold;
-  padding: 0 20px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
   border-bottom: 0;
 }
-/* line 223, ../sass/base/_form.scss */
+@media only screen and (min-width: 768px) {
+  /* line 222, ../sass/base/_form.scss */
+  legend, .legend {
+    padding: 0 20px;
+  }
+}
+/* line 230, ../sass/base/_form.scss */
 legend.has-control, .legend.has-control {
   display: flex;
   justify-content: space-between;
 }
 
-/* line 229, ../sass/base/_form.scss */
+/* line 236, ../sass/base/_form.scss */
 fieldset, .fieldset {
-  padding: 10px 20px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 231, ../sass/base/_form.scss */
+@media only screen and (min-width: 768px) {
+  /* line 236, ../sass/base/_form.scss */
+  fieldset, .fieldset {
+    padding: 10px 20px;
+  }
+}
+/* line 241, ../sass/base/_form.scss */
 fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 {
   margin: 0;
 }
-/* line 234, ../sass/base/_form.scss */
+/* line 244, ../sass/base/_form.scss */
 fieldset.expanded, .fieldset.expanded {
   padding: 10px;
 }
-/* line 237, ../sass/base/_form.scss */
+/* line 247, ../sass/base/_form.scss */
 fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-bottom: 0;
 }
 
-/* line 244, ../sass/base/_form.scss */
+/* line 254, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 249, ../sass/base/_form.scss */
+/* line 259, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 253, ../sass/base/_form.scss */
+/* line 263, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 257, ../sass/base/_form.scss */
+/* line 267, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 261, ../sass/base/_form.scss */
+/* line 271, ../sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 265, ../sass/base/_form.scss */
+/* line 275, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
-  background-color: #FFFFFF;
-  border-top: solid 1px #cccccc;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 275, ../sass/base/_form.scss */
+  .submit-entry {
+    border-top: solid 1px #cccccc;
+    background-color: #FFFFFF;
+  }
 }
 
-/* line 273, ../sass/base/_form.scss */
+/* line 287, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 277, ../sass/base/_form.scss */
+/* line 291, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 281, ../sass/base/_form.scss */
+/* line 295, ../sass/base/_form.scss */
 .form-control-img {
   margin-right: 10px;
   cursor: pointer;
 }
 
-/* line 287, ../sass/base/_form.scss */
+/* line 301, ../sass/base/_form.scss */
 .lang-active {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -13550,12 +13645,12 @@ fieldset.submit-entry {
   filter: grayscale(100%);
 }
 
-/* line 291, ../sass/base/_form.scss */
+/* line 305, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 295, ../sass/base/_form.scss */
+/* line 309, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13564,7 +13659,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 304, ../sass/base/_form.scss */
+/* line 318, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -18605,7 +18700,7 @@ img.widget-promo-image {
 }
 /* line 24, ../sass/base/_security.scss */
 .flexcards.security .flexcard.control {
-  flex-basis: 100%;
+  flex-basis: 50%;
   height: 260px;
   /* MIN WIDTH */
   /* MAX WIDTH */
@@ -18871,57 +18966,71 @@ body.night-false {
 }
 /* line 88, ../sass/custom/_shui.scss */
 .night-false .form-page {
-  border: solid 4px #e7e7e7;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 90, ../sass/custom/_shui.scss */
+@media only screen and (min-width: 768px) {
+  /* line 88, ../sass/custom/_shui.scss */
+  .night-false .form-page {
+    border: solid 4px #e7e7e7;
+  }
+}
+/* line 93, ../sass/custom/_shui.scss */
 .night-false .form-page > section {
   border-bottom: solid 4px #e7e7e7;
 }
-/* line 92, ../sass/custom/_shui.scss */
+/* line 95, ../sass/custom/_shui.scss */
 .night-false .form-page > section:last-child {
   border-bottom: 0;
 }
-/* line 97, ../sass/custom/_shui.scss */
+/* line 100, ../sass/custom/_shui.scss */
 .night-false .form-page .section {
   border-bottom: solid 4px #e7e7e7;
 }
-/* line 99, ../sass/custom/_shui.scss */
+/* line 102, ../sass/custom/_shui.scss */
 .night-false .form-page .section:last-child {
   border-bottom: 0;
 }
-/* line 103, ../sass/custom/_shui.scss */
+/* line 106, ../sass/custom/_shui.scss */
 .night-false .form-page .for
 .form-group {
   border-color: #e7e7e7;
 }
-/* line 108, ../sass/custom/_shui.scss */
+/* line 111, ../sass/custom/_shui.scss */
 .night-false .submit-entry {
-  background-color: #e7e7e7;
-  border-top: solid 1px #e7e7e7;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 114, ../sass/custom/_shui.scss */
+@media only screen and (min-width: 768px) {
+  /* line 111, ../sass/custom/_shui.scss */
+  .night-false .submit-entry {
+    background-color: #e7e7e7;
+    border-top: solid 1px #e7e7e7;
+  }
+}
+/* line 120, ../sass/custom/_shui.scss */
 .night-false fieldset.expanded,
 .night-false .fieldset.expanded {
   background-color: #F6F6F6;
   border-top: solid 4px #e7e7e7;
   border-bottom: solid 4px #e7e7e7;
 }
-/* line 123, ../sass/custom/_shui.scss */
+/* line 129, ../sass/custom/_shui.scss */
 .night-false .btn-goup-tabs .btn {
   background-color: #eeeeee;
 }
-/* line 125, ../sass/custom/_shui.scss */
+/* line 131, ../sass/custom/_shui.scss */
 .night-false .btn-goup-tabs .btn.active {
   background-color: #dcdcdc;
 }
-/* line 133, ../sass/custom/_shui.scss */
+/* line 139, ../sass/custom/_shui.scss */
 .night-false .widget-entry .widget-entry-in {
   border-color: #d3d3d3;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 133, ../sass/custom/_shui.scss */
+  /* line 139, ../sass/custom/_shui.scss */
   .night-false .widget-entry .widget-entry-in {
     border: solid 4px #FFFFFF;
     background: #f6f6f6;
@@ -18946,7 +19055,7 @@ body.night-false {
   }
 }
 @media only screen and (min-width: 320px) {
-  /* line 147, ../sass/custom/_shui.scss */
+  /* line 153, ../sass/custom/_shui.scss */
   .night-false .card-room .card-room-in {
     border: solid 4px #ffffff;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18954,13 +19063,13 @@ body.night-false {
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 155, ../sass/custom/_shui.scss */
+/* line 161, ../sass/custom/_shui.scss */
 .night-false .elemnts-room-bar {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 155, ../sass/custom/_shui.scss */
+  /* line 161, ../sass/custom/_shui.scss */
   .night-false .elemnts-room-bar {
     border: 0;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -18984,7 +19093,7 @@ body.night-false {
     /* IE6-9 */
   }
 }
-/* line 165, ../sass/custom/_shui.scss */
+/* line 171, ../sass/custom/_shui.scss */
 .night-false .localapp-in,
 .night-false .onlineapp-in {
   border-color: #d3d3d3;
@@ -18992,7 +19101,7 @@ body.night-false {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 165, ../sass/custom/_shui.scss */
+  /* line 171, ../sass/custom/_shui.scss */
   .night-false .localapp-in,
   .night-false .onlineapp-in {
     border: solid 4px #FFFFFF;
@@ -19018,11 +19127,11 @@ body.night-false {
   }
 }
 @media only screen and (min-width: 320px) {
-  /* line 178, ../sass/custom/_shui.scss */
+  /* line 184, ../sass/custom/_shui.scss */
   .night-false .card-customize {
     border: 0;
   }
-  /* line 180, ../sass/custom/_shui.scss */
+  /* line 186, ../sass/custom/_shui.scss */
   .night-false .card-customize .card-customize-in {
     border: solid 4px #ffffff;
     -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
@@ -19030,23 +19139,23 @@ body.night-false {
     box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
   }
 }
-/* line 190, ../sass/custom/_shui.scss */
+/* line 196, ../sass/custom/_shui.scss */
 .night-false .accordion-wrap .accordion {
   background-color: #F6F6F6;
 }
-/* line 192, ../sass/custom/_shui.scss */
+/* line 198, ../sass/custom/_shui.scss */
 .night-false .accordion-wrap .accordion.no-bcg {
   padding: 0;
   background: transparent;
 }
-/* line 199, ../sass/custom/_shui.scss */
+/* line 205, ../sass/custom/_shui.scss */
 .night-false .accordion-wrap.nested .accordion .accordion {
   background-color: #e9e9e9;
 }
 
 /* Security  Notification 
 -------------------------------------------------- */
-/* line 211, ../sass/custom/_shui.scss */
+/* line 217, ../sass/custom/_shui.scss */
 .automation .notification {
   margin-top: 20px;
   padding: 10px;
@@ -19055,12 +19164,12 @@ body.night-false {
 
 /* Footer
     -------------------------------------------------- */
-/* line 222, ../sass/custom/_shui.scss */
+/* line 228, ../sass/custom/_shui.scss */
 #footer .container {
   display: flex;
   justify-content: space-between;
 }
-/* line 225, ../sass/custom/_shui.scss */
+/* line 231, ../sass/custom/_shui.scss */
 #footer .container span:last-child {
   margin-left: auto;
 }

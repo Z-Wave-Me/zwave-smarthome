@@ -182,8 +182,9 @@
     background-color: #FFFFFF;
     border-bottom: solid 1px $app-border-color;
     position: fixed;
-    top: 0px;
-    left: 0;
+    top: 0;
+    //left: 0;
+    right: 0;
     padding: $spacing-half;
     height: $header-h;
     @include mediaQueries(max-small) {
