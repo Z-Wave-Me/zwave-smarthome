@@ -50,6 +50,12 @@ myApp.config(['$routeProvider', function ($routeProvider) {
                     templateUrl: 'app/views/events/events.html',
                     requireLogin: true
                 }).
+                 //Automation
+                 when('/automation', {
+                  templateUrl: 'app/views/automation/automation.html',
+                  requireLogin: true,
+                  roles: cfg.role_access.admin
+              }).
                  //Scenes
                 when('/scenes', {
                   templateUrl: 'app/views/automation/scenes/scenes.html',

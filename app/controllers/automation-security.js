@@ -110,7 +110,7 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
 myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
     routeId:0,
-    tab: 3,
+    tab: 1,
     days: [1, 2, 3, 4, 5, 6, 0],
     devices: {
       input: [],

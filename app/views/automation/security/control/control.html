@@ -27,18 +27,21 @@
         <div class="body">
           <h2>{{d.deviceName}}</h2>
          <div class="control">
+              <label>{{_t('arm_condition')}}</label>
               <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].armCondition">
-                <option value="" ng-selected="true">--- {{_t('arm_condition')}} ---</option>
+                <!-- <option value="" ng-selected="true">{{_t('arm_condition')}}</option> -->
                 <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].armCondition == a">
                   {{_t(a)}}</option>
               </select>
+              <label>{{_t('disarm_condition')}}</label>
               <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].disarmCondition">
-                <option value="" ng-selected="true">--- {{_t('disarm_condition')}} ---</option>
+                <!-- <option value="" ng-selected="true">{{_t('disarm_condition')}}</option> -->
                 <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].disarmCondition == a">
                   {{_t(a)}}</option>
               </select>
+              <label>{{_t('reset_condition')}}</label>
               <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].clearCondition">
-                <option value="" ng-selected="true">--- {{_t('reset_condition')}} ---</option>
+               <!--  <option value="" ng-selected="true">{{_t('reset_condition')}}</option> -->
                 <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].clearCondition == a">
                   {{_t(a)}}</option>
               </select>

@@ -1,7 +1,8 @@
 <!-- Scenes -->
 <div ng-controller="AutomationSceneController">
+    <h2>{{_t('scenes')}}</h2>
   <!-- Navigation -->
-  <div ng-include="'app/views/automation/navi.html'"></div>
+  <!-- <div ng-include="'app/views/automation/navi.html'"></div> -->
   <!-- The blank state -->
   <div ng-if="scenes.state == 'blank'" ng-include="'app/views/automation/scenes/scenes_blank.html'"></div>
   <!-- The list -->

@@ -28,6 +28,8 @@
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
   /* line-height: 34px; */
  line-height: 1.42857;
+ display: inline-block;
+ width: auto;
 }
 
 
@@ -234,7 +236,7 @@ legend,.legend{
 }
 
 fieldset, .fieldset {
-  
+  padding: $spacing;
   @include mediaQueries(min-small) {
     padding: $spacing $spacing-double;
   }

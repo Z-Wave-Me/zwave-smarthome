@@ -23,9 +23,9 @@
        }
       &.control{
         flex-basis: 50%;
-        height: 260px;
+        height: 320px;
         @include mediaQueries(min-small) {
-          height: 240px;
+          //height: 240px;
           flex-basis: 33.3333%;
         } // Media queries
         @include mediaQueries(min-medium) {
@@ -33,6 +33,12 @@
         }
         @include mediaQueries(min-large) {
           flex-basis: 16.6666%;
+        }
+        label{
+          margin: $spacing 0 0 0;
+          display: block;
+          font-size: 90%;
+          text-align: left;
         }
       }
       &.flip{
@@ -108,8 +114,8 @@
 
 /* Table schedule
 -------------------------------------------------- */
-.table.security-schedule > tbody > tr > td{
-  vertical-align: middle;
+.security-schedule > tbody > tr > td{
+  //vertical-align: middle;
   .fa-check{
     color: $app-heading-color;
     cursor: pointer;

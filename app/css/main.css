@@ -12746,41 +12746,41 @@ img {
   width: 40%;
 }
 
-/* responsive table
+/* Responsive table
 -------------------------------------------------- */
-/* line 64, ../sass/base/_table.scss */
+/* line 4, ../sass/base/_table_responsive.scss */
 .table-responsive {
   width: 100%;
   border-collapse: collapse;
+  font-size: 100%;
   /* Zebra striping */
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 68, ../sass/base/_table.scss */
-.table-responsive tr:nth-of-type(odd) {
-  background: #eee;
-}
-/* line 71, ../sass/base/_table.scss */
-.table-responsive th {
-  background: #333;
-  color: white;
-  font-weight: bold;
-}
-/* line 76, ../sass/base/_table.scss */
+/* line 17, ../sass/base/_table_responsive.scss */
 .table-responsive td,
 .table-responsive th {
-  padding: 6px;
-  border: 1px solid #cccccc;
+  padding: 10px;
+  border-bottom: 1px solid #cccccc;
   text-align: left;
 }
 @media only screen and (min-width: 768px) {
-  /* line 64, ../sass/base/_table.scss */
+  /* line 24, ../sass/base/_table_responsive.scss */
+  .table-responsive .l-hide,
+  .table-responsive .td-accordion-toggle {
+    display: none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  /* line 4, ../sass/base/_table_responsive.scss */
   .table-responsive {
     display: block;
     /* Force table to not be like tables anymore */
     /* Hide table headers (but not display: none;, for accessibility) */
   }
-  /* line 85, ../sass/base/_table.scss */
+  /* line 32, ../sass/base/_table_responsive.scss */
   .table-responsive thead,
   .table-responsive tbody,
   .table-responsive th,
@@ -12788,35 +12788,80 @@ img {
   .table-responsive tr {
     display: block;
   }
-  /* line 93, ../sass/base/_table.scss */
+  /* line 40, ../sass/base/_table_responsive.scss */
   .table-responsive thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
-  /* line 98, ../sass/base/_table.scss */
+  /* line 45, ../sass/base/_table_responsive.scss */
   .table-responsive tr {
     border: 1px solid #ccc;
   }
-  /* line 101, ../sass/base/_table.scss */
+  /* line 48, ../sass/base/_table_responsive.scss */
   .table-responsive td {
     /* Behave  like a "row" */
-    border: none;
-    border-bottom: 1px solid #eee;
+    /* border: none;
+    border-bottom: 1px solid #eee; */
     position: relative;
     padding-left: 50%;
   }
-  /* line 108, ../sass/base/_table.scss */
+  /* line 54, ../sass/base/_table_responsive.scss */
   .table-responsive td:before {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
-    top: 6px;
-    left: 6px;
+    top: 10px;
+    left: 10px;
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;
     content: attr(title);
+  }
+  /* line 67, ../sass/base/_table_responsive.scss */
+  .table-responsive [data-expanded="false"] .td-header {
+    display: none;
+  }
+  /* line 71, ../sass/base/_table_responsive.scss */
+  .table-responsive .td-accordion-toggle {
+    /* color: #fff;
+    background-color: $app-heading-color; */
+    position: static;
+    padding: 10px;
+    font-size: 110%;
+  }
+  /* line 77, ../sass/base/_table_responsive.scss */
+  .table-responsive .td-accordion-toggle:before {
+    content: none;
+  }
+  /* line 80, ../sass/base/_table_responsive.scss */
+  .table-responsive .td-accordion-toggle > *:first-child {
+    background-color: transparent;
+    border: 0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+  }
+  /* line 89, ../sass/base/_table_responsive.scss */
+  .table-responsive .td-accordion-toggle > *:first-child::after {
+    font-size: 130%;
+    font-family: fontawesome;
+    content: "\f142";
+  }
+  /* line 94, ../sass/base/_table_responsive.scss */
+  .table-responsive .td-accordion-toggle > *:first-child:focus {
+    border: 0;
+    outline: none !important;
+  }
+  /* line 98, ../sass/base/_table_responsive.scss */
+  .table-responsive .td-accordion-toggle > *:first-child:focus::after {
+    font-weight: bold;
+    color: #5bc0de;
   }
 }
 
@@ -12964,24 +13009,25 @@ img {
 .btn.btn-text {
   border: 0;
   background: transparent;
+  padding: 0;
 }
-/* line 128, ../sass/base/_button.scss */
+/* line 129, ../sass/base/_button.scss */
 .btn.btn-ctrl {
   border: 0;
   background: transparent;
 }
-/* line 131, ../sass/base/_button.scss */
+/* line 132, ../sass/base/_button.scss */
 .btn.btn-ctrl::after {
   font-family: fontawesome;
   content: "\f142";
 }
 
-/* line 138, ../sass/base/_button.scss */
+/* line 139, ../sass/base/_button.scss */
 .btn-wrap {
   white-space: normal;
 }
 
-/* line 142, ../sass/base/_button.scss */
+/* line 143, ../sass/base/_button.scss */
 .btn-tag {
   display: block;
   position: relative;
@@ -12993,7 +13039,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 142, ../sass/base/_button.scss */
+  /* line 143, ../sass/base/_button.scss */
   .btn-tag {
     display: inline-block;
     position: static;
@@ -13002,7 +13048,7 @@ img {
     width: auto;
   }
 }
-/* line 156, ../sass/base/_button.scss */
+/* line 157, ../sass/base/_button.scss */
 .btn-tag .fa {
   position: absolute;
   top: 5px;
@@ -13012,48 +13058,48 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 156, ../sass/base/_button.scss */
+  /* line 157, ../sass/base/_button.scss */
   .btn-tag .fa {
     position: static;
     margin: 0 0 0 10px;
     font-size: 120%;
   }
 }
-/* line 167, ../sass/base/_button.scss */
+/* line 168, ../sass/base/_button.scss */
 .btn-tag.btn-group {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 167, ../sass/base/_button.scss */
+  /* line 168, ../sass/base/_button.scss */
   .btn-tag.btn-group {
     display: table !important;
     width: 100%;
   }
-  /* line 171, ../sass/base/_button.scss */
+  /* line 172, ../sass/base/_button.scss */
   .btn-tag.btn-group .btn {
     float: none;
     display: table-cell;
   }
 }
-/* line 178, ../sass/base/_button.scss */
+/* line 179, ../sass/base/_button.scss */
 .btn-tag .btn-addon .fa {
   margin: 0;
 }
-/* line 182, ../sass/base/_button.scss */
+/* line 183, ../sass/base/_button.scss */
 .btn-tag .btn {
   text-align: left;
   font-size: 100%;
   margin: 0;
 }
-/* line 187, ../sass/base/_button.scss */
+/* line 188, ../sass/base/_button.scss */
 .btn-tag label {
   text-align: center !important;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 187, ../sass/base/_button.scss */
+  /* line 188, ../sass/base/_button.scss */
   .btn-tag label {
     width: 20px;
   }
@@ -13061,29 +13107,29 @@ img {
 
 /* Button tabs
 -------------------------------------------------- */
-/* line 199, ../sass/base/_button.scss */
+/* line 200, ../sass/base/_button.scss */
 .btn-goup-tabs {
   /* display: table;
   width: 100%;*/
   margin: 0 0 10px 0;
 }
-/* line 203, ../sass/base/_button.scss */
+/* line 204, ../sass/base/_button.scss */
 .btn-goup-tabs .btn {
   background-color: #FFFFFF;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 205, ../sass/base/_button.scss */
+/* line 206, ../sass/base/_button.scss */
 .btn-goup-tabs .btn.active {
   background-color: #f2f2f2;
 }
 @media only screen and (min-width: 768px) {
-  /* line 203, ../sass/base/_button.scss */
+  /* line 204, ../sass/base/_button.scss */
   .btn-goup-tabs .btn {
     padding: 10px;
   }
 }
-/* line 211, ../sass/base/_button.scss */
+/* line 212, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa {
   font-size: 130%;
   color: #404040;
@@ -13091,15 +13137,15 @@ img {
   font-size: 130%;
 } */
 }
-/* line 214, ../sass/base/_button.scss */
+/* line 215, ../sass/base/_button.scss */
 .btn-goup-tabs .btn .fa.text-danger {
   color: #d9534f;
 }
-/* line 223, ../sass/base/_button.scss */
+/* line 224, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa {
   color: #80AD80;
 }
-/* line 225, ../sass/base/_button.scss */
+/* line 226, ../sass/base/_button.scss */
 .btn-goup-tabs .active .fa.text-danger {
   color: #d9534f;
 }
@@ -13107,12 +13153,12 @@ img {
 /* MIN WIDTH */
 /* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 235, ../sass/base/_button.scss */
+  /* line 236, ../sass/base/_button.scss */
   .fix-me-top .btn-goup-tabs {
     display: inline-block;
     width: auto;
   }
-  /* line 238, ../sass/base/_button.scss */
+  /* line 239, ../sass/base/_button.scss */
   .fix-me-top .btn-goup-tabs .btn {
     border: 0;
     background: transparent;
@@ -13123,17 +13169,17 @@ img {
     width: auto;
   }
 }
-/* line 250, ../sass/base/_button.scss */
+/* line 251, ../sass/base/_button.scss */
 .btn-tabs-2 .btn {
   width: 50%;
 }
 
-/* line 256, ../sass/base/_button.scss */
+/* line 257, ../sass/base/_button.scss */
 .btn-tabs-3 .btn {
   width: 33.33333%;
 }
 
-/* line 262, ../sass/base/_button.scss */
+/* line 263, ../sass/base/_button.scss */
 .btn-tabs-4 .btn {
   width: 25%;
 }
@@ -13141,7 +13187,7 @@ img {
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
-/* line 272, ../sass/base/_button.scss */
+/* line 273, ../sass/base/_button.scss */
 .switch {
   position: relative;
   display: inline-block;
@@ -13152,7 +13198,7 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 272, ../sass/base/_button.scss */
+  /* line 273, ../sass/base/_button.scss */
   .switch {
     /* width: 60px;
     height: 34px; */
@@ -13160,14 +13206,14 @@ img {
 }
 
 /* Hide default HTML checkbox */
-/* line 287, ../sass/base/_button.scss */
+/* line 288, ../sass/base/_button.scss */
 .switch input {
   display: none;
   margin: 0;
 }
 
 /* The slider */
-/* line 295, ../sass/base/_button.scss */
+/* line 296, ../sass/base/_button.scss */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -13185,7 +13231,7 @@ img {
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 313, ../sass/base/_button.scss */
+/* line 314, ../sass/base/_button.scss */
 .slider:before {
   position: absolute;
   content: "";
@@ -13207,24 +13253,24 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 313, ../sass/base/_button.scss */
+  /* line 314, ../sass/base/_button.scss */
   .slider:before {
     /* height: 26px;
     width: 26px; */
   }
 }
 
-/* line 340, ../sass/base/_button.scss */
+/* line 341, ../sass/base/_button.scss */
 input:checked + .slider:before {
   background-color: #80AD80;
 }
 
-/* line 344, ../sass/base/_button.scss */
+/* line 345, ../sass/base/_button.scss */
 input:focus + .slider {
   box-shadow: 0 0 1px #80AD80;
 }
 
-/* line 348, ../sass/base/_button.scss */
+/* line 349, ../sass/base/_button.scss */
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
@@ -13232,29 +13278,29 @@ input:checked + .slider:before {
 }
 
 /* Rounded sliders */
-/* line 357, ../sass/base/_button.scss */
+/* line 358, ../sass/base/_button.scss */
 .slider.round {
   border-radius: 4px;
 }
 
-/* line 361, ../sass/base/_button.scss */
+/* line 362, ../sass/base/_button.scss */
 .slider.round:before {
   border-radius: 4px;
 }
 
 /* Button group hiden on small devices
 -------------------------------------------------- */
-/* line 369, ../sass/base/_button.scss */
+/* line 370, ../sass/base/_button.scss */
 .btn-wrapper {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 369, ../sass/base/_button.scss */
+  /* line 370, ../sass/base/_button.scss */
   .btn-wrapper {
     position: relative;
   }
-  /* line 372, ../sass/base/_button.scss */
+  /* line 373, ../sass/base/_button.scss */
   .btn-wrapper .btn-group {
     position: absolute;
     top: 100%;
@@ -13273,7 +13319,7 @@ input:checked + .slider:before {
     background-clip: padding-box;
     text-align: right;
   }
-  /* line 387, ../sass/base/_button.scss */
+  /* line 388, ../sass/base/_button.scss */
   .btn-wrapper .btn-group.btn-group-collapsed {
     display: none;
   }
@@ -13310,39 +13356,41 @@ input:checked + .slider:before {
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
   /* line-height: 34px; */
   line-height: 1.42857;
+  display: inline-block;
+  width: auto;
 }
 
-/* line 34, ../sass/base/_form.scss */
+/* line 36, ../sass/base/_form.scss */
 .input-group-addon {
   border: solid 1px #CCCCCC;
   background-color: #EEEEEE;
 }
 
-/* line 39, ../sass/base/_form.scss */
+/* line 41, ../sass/base/_form.scss */
 textarea {
   min-height: 150px;
 }
 
-/* line 43, ../sass/base/_form.scss */
+/* line 45, ../sass/base/_form.scss */
 label {
   font-weight: normal;
   font-size: 100%;
   margin-right: 5px;
 }
-/* line 47, ../sass/base/_form.scss */
+/* line 49, ../sass/base/_form.scss */
 label span {
   line-height: 35px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 47, ../sass/base/_form.scss */
+  /* line 49, ../sass/base/_form.scss */
   label span {
     line-height: 20px;
   }
 }
 
-/* line 55, ../sass/base/_form.scss */
+/* line 57, ../sass/base/_form.scss */
 input[type=checkbox] {
   /*@include  checkboxScale(1.8,$spacing);
   // Media queries
@@ -13359,13 +13407,13 @@ input[type=checkbox] {
   background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
-  /* line 55, ../sass/base/_form.scss */
+  /* line 57, ../sass/base/_form.scss */
   input[type=checkbox] {
     margin: 0 11px 5px 0;
     font-size: 15px;
   }
 }
-/* line 75, ../sass/base/_form.scss */
+/* line 77, ../sass/base/_form.scss */
 input[type=checkbox]:after {
   margin: -11px 5px 0 0;
   vertical-align: baseline;
@@ -13382,7 +13430,7 @@ input[type=checkbox]:after {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 75, ../sass/base/_form.scss */
+  /* line 77, ../sass/base/_form.scss */
   input[type=checkbox]:after {
     margin-top: -2px;
     width: 20px;
@@ -13390,7 +13438,7 @@ input[type=checkbox]:after {
     padding: 2px 0 2px 1px;
   }
 }
-/* line 96, ../sass/base/_form.scss */
+/* line 98, ../sass/base/_form.scss */
 input[type=checkbox]:checked:after {
   content: "\f00c";
   color: #4e794e;
@@ -13398,26 +13446,26 @@ input[type=checkbox]:checked:after {
   -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
-/* line 106, ../sass/base/_form.scss */
+/* line 108, ../sass/base/_form.scss */
 input[type=checkbox]:disabled:after {
   color: #BDBDBD;
 }
 
-/* line 111, ../sass/base/_form.scss */
+/* line 113, ../sass/base/_form.scss */
 .checkbox, .radio {
   margin-right: 10px;
 }
-/* line 113, ../sass/base/_form.scss */
+/* line 115, ../sass/base/_form.scss */
 .checkbox input[type=checkbox], .radio input[type=checkbox] {
   position: static;
   margin-left: 10px;
 }
-/* line 117, ../sass/base/_form.scss */
+/* line 119, ../sass/base/_form.scss */
 .checkbox label, .radio label {
   padding-left: 10px;
 }
 
-/* line 122, ../sass/base/_form.scss */
+/* line 124, ../sass/base/_form.scss */
 input[type=radio] {
   /* 
   @include radioScale(1.6, $spacing);
@@ -13436,13 +13484,13 @@ input[type=radio] {
   background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
-  /* line 122, ../sass/base/_form.scss */
+  /* line 124, ../sass/base/_form.scss */
   input[type=radio] {
     margin: 0 10px 5px 0;
     font-size: 12px;
   }
 }
-/* line 143, ../sass/base/_form.scss */
+/* line 145, ../sass/base/_form.scss */
 input[type=radio]:after {
   margin: -11px 5px 0 0;
   vertical-align: baseline;
@@ -13459,7 +13507,7 @@ input[type=radio]:after {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 143, ../sass/base/_form.scss */
+  /* line 145, ../sass/base/_form.scss */
   input[type=radio]:after {
     margin: -2px 0 0 -2px;
     width: 20px;
@@ -13467,7 +13515,7 @@ input[type=radio]:after {
     padding: 3px 0 0 4px;
   }
 }
-/* line 164, ../sass/base/_form.scss */
+/* line 166, ../sass/base/_form.scss */
 input[type=radio]:checked:after {
   content: "\f111";
   color: #737373;
@@ -13476,52 +13524,52 @@ input[type=radio]:checked:after {
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* line 174, ../sass/base/_form.scss */
+/* line 176, ../sass/base/_form.scss */
 .form-page {
   margin-bottom: 20px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 174, ../sass/base/_form.scss */
+  /* line 176, ../sass/base/_form.scss */
   .form-page {
     background-color: #FFFFFF;
     border: solid 1px #cccccc;
   }
 }
-/* line 181, ../sass/base/_form.scss */
+/* line 183, ../sass/base/_form.scss */
 .form-page > section {
   margin-bottom: 20px;
 }
-/* line 183, ../sass/base/_form.scss */
+/* line 185, ../sass/base/_form.scss */
 .form-page > section:last-child {
   margin-bottom: 0;
 }
-/* line 188, ../sass/base/_form.scss */
+/* line 190, ../sass/base/_form.scss */
 .form-page .form-group.is-inline {
   margin-bottom: 0;
 }
-/* line 191, ../sass/base/_form.scss */
+/* line 193, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline) {
   border-bottom: solid 1px #cccccc;
   padding-bottom: 10px;
 }
-/* line 194, ../sass/base/_form.scss */
+/* line 196, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline).first {
   padding-top: 10px;
 }
-/* line 197, ../sass/base/_form.scss */
+/* line 199, ../sass/base/_form.scss */
 .form-page .form-group:not(.is-inline).last {
   border-bottom: 0;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-/* line 204, ../sass/base/_form.scss */
+/* line 206, ../sass/base/_form.scss */
 .form-page label {
   font-weight: normal;
 }
 
-/* line 209, ../sass/base/_form.scss */
+/* line 211, ../sass/base/_form.scss */
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -13531,12 +13579,12 @@ input[type=radio]:checked:after {
   z-index: -1;
 }
 
-/* line 219, ../sass/base/_form.scss */
+/* line 221, ../sass/base/_form.scss */
 .inputfile + label {
   cursor: pointer;
 }
 
-/* line 222, ../sass/base/_form.scss */
+/* line 224, ../sass/base/_form.scss */
 legend, .legend {
   font-size: 105%;
   font-weight: bold;
@@ -13545,67 +13593,68 @@ legend, .legend {
   border-bottom: 0;
 }
 @media only screen and (min-width: 768px) {
-  /* line 222, ../sass/base/_form.scss */
+  /* line 224, ../sass/base/_form.scss */
   legend, .legend {
     padding: 0 20px;
   }
 }
-/* line 230, ../sass/base/_form.scss */
+/* line 232, ../sass/base/_form.scss */
 legend.has-control, .legend.has-control {
   display: flex;
   justify-content: space-between;
 }
 
-/* line 236, ../sass/base/_form.scss */
+/* line 238, ../sass/base/_form.scss */
 fieldset, .fieldset {
+  padding: 10px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 236, ../sass/base/_form.scss */
+  /* line 238, ../sass/base/_form.scss */
   fieldset, .fieldset {
     padding: 10px 20px;
   }
 }
-/* line 241, ../sass/base/_form.scss */
+/* line 243, ../sass/base/_form.scss */
 fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 {
   margin: 0;
 }
-/* line 244, ../sass/base/_form.scss */
+/* line 246, ../sass/base/_form.scss */
 fieldset.expanded, .fieldset.expanded {
   padding: 10px;
 }
-/* line 247, ../sass/base/_form.scss */
+/* line 249, ../sass/base/_form.scss */
 fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-bottom: 0;
 }
 
-/* line 254, ../sass/base/_form.scss */
+/* line 256, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 259, ../sass/base/_form.scss */
+/* line 261, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 263, ../sass/base/_form.scss */
+/* line 265, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 267, ../sass/base/_form.scss */
+/* line 269, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 271, ../sass/base/_form.scss */
+/* line 273, ../sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 275, ../sass/base/_form.scss */
+/* line 277, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -13613,30 +13662,30 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 275, ../sass/base/_form.scss */
+  /* line 277, ../sass/base/_form.scss */
   .submit-entry {
     border-top: solid 1px #cccccc;
     background-color: #FFFFFF;
   }
 }
 
-/* line 287, ../sass/base/_form.scss */
+/* line 289, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 291, ../sass/base/_form.scss */
+/* line 293, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 295, ../sass/base/_form.scss */
+/* line 297, ../sass/base/_form.scss */
 .form-control-img {
   margin-right: 10px;
   cursor: pointer;
 }
 
-/* line 301, ../sass/base/_form.scss */
+/* line 303, ../sass/base/_form.scss */
 .lang-active {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -13645,12 +13694,12 @@ fieldset.submit-entry {
   filter: grayscale(100%);
 }
 
-/* line 305, ../sass/base/_form.scss */
+/* line 307, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 309, ../sass/base/_form.scss */
+/* line 311, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13659,7 +13708,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 318, ../sass/base/_form.scss */
+/* line 320, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -18701,7 +18750,7 @@ img.widget-promo-image {
 /* line 24, ../sass/base/_security.scss */
 .flexcards.security .flexcard.control {
   flex-basis: 50%;
-  height: 260px;
+  height: 320px;
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
@@ -18712,7 +18761,6 @@ img.widget-promo-image {
 @media only screen and (min-width: 768px) {
   /* line 24, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control {
-    height: 240px;
     flex-basis: 33.3333%;
   }
 }
@@ -18728,36 +18776,43 @@ img.widget-promo-image {
     flex-basis: 16.6666%;
   }
 }
-/* line 38, ../sass/base/_security.scss */
+/* line 37, ../sass/base/_security.scss */
+.flexcards.security .flexcard.control label {
+  margin: 10px 0 0 0;
+  display: block;
+  font-size: 90%;
+  text-align: left;
+}
+/* line 44, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip {
   border: 0;
 }
-/* line 42, ../sass/base/_security.scss */
+/* line 48, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * {
   border: solid 1px #cccccc;
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
-/* line 47, ../sass/base/_security.scss */
+/* line 53, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body {
   margin-top: auto;
 }
-/* line 49, ../sass/base/_security.scss */
+/* line 55, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body h2 {
   font-size: 90%;
   margin: 10px 0;
 }
-/* line 54, ../sass/base/_security.scss */
+/* line 60, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front {
   color: #737373;
   background-color: #fff;
 }
-/* line 58, ../sass/base/_security.scss */
+/* line 64, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front figure .fa {
   color: #80AD80;
 }
-/* line 61, ../sass/base/_security.scss */
+/* line 67, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front figure img {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -18765,7 +18820,7 @@ img.widget-promo-image {
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-/* line 70, ../sass/base/_security.scss */
+/* line 76, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back {
   background: #f6f6f6;
   /* Old browsers */
@@ -18789,13 +18844,13 @@ img.widget-promo-image {
      }
    } */
 }
-/* line 71, ../sass/base/_security.scss */
+/* line 77, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back .close {
   text-align: right;
   position: relative;
   padding: 0 15px;
 }
-/* line 75, ../sass/base/_security.scss */
+/* line 81, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back .close .fa {
   position: absolute;
   top: -5px;
@@ -18806,28 +18861,24 @@ img.widget-promo-image {
 
 /* Notification
 -------------------------------------------------- */
-/* line 103, ../sass/base/_security.scss */
+/* line 109, ../sass/base/_security.scss */
 .automation .notification textarea {
   height: 50px;
 }
 
 /* Table schedule
 -------------------------------------------------- */
-/* line 111, ../sass/base/_security.scss */
-.table.security-schedule > tbody > tr > td {
-  vertical-align: middle;
-}
-/* line 113, ../sass/base/_security.scss */
-.table.security-schedule > tbody > tr > td .fa-check {
+/* line 119, ../sass/base/_security.scss */
+.security-schedule > tbody > tr > td .fa-check {
   color: #737373;
   cursor: pointer;
 }
-/* line 117, ../sass/base/_security.scss */
-.table.security-schedule > tbody > tr > td.active {
+/* line 123, ../sass/base/_security.scss */
+.security-schedule > tbody > tr > td.active {
   background-color: #dff0d8;
 }
-/* line 119, ../sass/base/_security.scss */
-.table.security-schedule > tbody > tr > td.active .fa-check {
+/* line 125, ../sass/base/_security.scss */
+.security-schedule > tbody > tr > td.active .fa-check {
   display: inline-block;
   padding: 5px;
   background-color: #80AD80;

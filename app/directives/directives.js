@@ -521,6 +521,29 @@ myApp.directive('bbAccordion', function () {
 });
 
 /**
+ * Toggle table accordion
+ */
+myApp.directive('bbTableAccordion', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attrs) {
+      elem.on('click', function (e) {
+        elem.attr('aria-expanded', function (_, attr) {
+          return attr == 'true' ? false : true;
+        });
+       
+        elem.closest('tr').attr('data-expanded', function (_, attr) {
+          return attr == 'true' ? false : true;
+        });
+        elem.closest('tbody').find('tr').not(elem.closest('tr')).attr('data-expanded',false);
+        elem.closest('tbody').find('.td-accordion-toggle button').not(elem).attr('aria-expanded',false);
+       return false;
+      });
+    }
+  };
+});
+
+/**
  * Remove attributte
  */
 myApp.directive('bbRemoveAttr', function () {
