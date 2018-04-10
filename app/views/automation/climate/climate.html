@@ -73,8 +73,6 @@
 
 
 
-
-
 #schedule{
 	box-sizing: content-box;
 }
@@ -96,15 +94,15 @@
 }
 #schedule .sc_menu .sc_header .sc_time{
 	text-align:center;
-	border-left:solid 1px #FFF;
-	background:#333;
+	border-left:solid 1px #DDD;
+	background: #E9E9E9;
 }
 #schedule .sc_menu .sc_header_cell,
 #schedule .sc_data{
 	float:left;
 	font-weight:bold;
-	color:#FFFFFF;
-	background:#333;
+	color:#333333;
+	background: #E9E9E9;
 	position:relative;
 }
 #schedule .sc_menu .sc_header_scroll,
@@ -116,10 +114,9 @@
 #schedule .sc_menu .sc_header_cell,
 #schedule .sc_header .sc_time,
 #schedule .sc_main_scroll .sc_time{
-	color:#FFFFFF;
+	color:#333333;
 	padding:4px 0;
 	line-height:18px;
-	height:18px;
 	display:block;
 	box-sizing: content-box;
 }
@@ -148,7 +145,7 @@
 #schedule .sc_Bar{
 	position:absolute;
 	color:#FFF;
-	background:#4f93d6;
+	background: rgb(135, 206, 235);;
 	cursor:pointer;
 	z-index:10;
 }
@@ -157,19 +154,42 @@
 #schedule .ui-resizeable{
 	z-index:20;
 }
-#schedule .sc_Bar .head{
-	display:block;
-	padding:6px 8px 0;
-	font-size:12px;
-	height:16px;
-	overflow:hidden;
+
+#schedule .sc_Bar_inner {
+	display: flex;
+	height: 100%;
+	padding: 0 15px;
 }
-#schedule .sc_Bar .text{
-	display:block;
-	padding:5px 15px 0;
+#schedule .sc_Bar_inner .head {
+	min-width: 0;
+	text-overflow: ellipsis;
+	white-space: nowrap; 
+    overflow: hidden;
+	font-size:12px;
+	padding: 0 5px 0 0;
+}
+
+#schedule .sc_Bar_inner .head:before {
+	content: "";
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+#schedule .sc_Bar_inner .text:before {
+	content: "";
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+#schedule .sc_Bar_inner .text{
+	text-overflow: ellipsis;
+	white-space: nowrap; 
+    overflow: hidden;
 	font-weight:bold;
-	height:18px;
-	overflow:hidden;
+	min-width: 0;
+	height: 100%;
 }
 
 #schedule .sc_Bar .ui-resizable-handle {
@@ -190,9 +210,53 @@
 	right: 0;
 }
 
+#schedule .sc_Bar.ghost {
+	opacity: 0.1;
+	z-index: -1;
+}
+
+#schedule .sc_Bar .remove {
+  display: none;
+  cursor: pointer;
+  float: right;
+  margin-right: -30px;
+  width: 25px;
+  background: red;
+  border-radius: 20%;
+  opacity: 0.5;
+  height: 100%;
+  transform: translateY(-100%);
+}
+
+#schedule .sc_Bar .remove .fa {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#schedule .sc_Bar .remove:before {
+  position: absolute;
+  content: "";
+  left: -5px;
+  width: 10px;
+  height: 25px;
+}
+
+#schedule .sc_Bar:hover .remove {
+  display: block;
+}
+
+#schedule .sc_Bar .remove:hover {
+  opacity: 1;
+}
+
+
+
+
 #schedule .timeline,
 #schedule .sc_main .tb{
-	border-bottom:solid 2px #666;
+	border-bottom:solid 2px #DDD;
 }
 #schedule .sc_data .timeline{
 	overflow:hidden;
@@ -213,12 +277,61 @@
 #schedule .sc_main_scroll .sc_main .tl{
 	float:left;
 	height:100%;
-	border-right:solid 1px #CCC;
+	border-right:solid 1px transparent;
 	box-sizing: content-box;
+	cursor: pointer;
+	z-index: 5;
 }
 #schedule .sc_main_scroll .sc_main .tl:hover{
 	background:#F0F0F0;
 }
+
+#schedule .tooltip {
+  display: none;
+  pointer-events: none;
+  width: 60px;
+  position: absolute;
+  background-color: #FFFFFF;
+  border: 1px solid #cccccc;
+  color: #0d0d0d;
+  padding: 12px;
+  z-index: 100;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+#schedule .top.tooltip:after {
+	content: " ";
+    position: absolute;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    bottom: 100%;
+    left: 50%;
+    border-color: transparent transparent black transparent;
+}
+
+#schedule .bottom.tooltip:after {
+	content: " ";
+    position: absolute;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    top: 100%;
+    left: 50%;
+    border-color: black transparent transparent  transparent;
+}
+
+#schedule .confirm {
+	position: absolute;
+	padding: 10px;
+	background-color: yellow;
+	left: 0;
+	top: 0;
+	z-index: 30000;
+}
+
 </style>
 <div ng-controller="ClimateController">
 	<!--<pre>{{hours}}</pre>-->
@@ -247,8 +360,7 @@
 -->
 	
 	<div id="schedule"></div>
-	<div id="debug"></div>
-	<pre>{{scheduleOptions | json}}</pre>
+	<pre>{{data | json}}</pre>
 </div>
  <!-- Weekdays -->
 <!--<div class="form-group form-inline">
@@ -257,3 +369,65 @@
         <label for="day_{{d}}">{{_t('day_' + d)}}</label>
       </div>
 </div>-->
+<!-- switchMultilevelModal -->
+<div id="temperatureModal" class="appmodal" ng-controller="ClimateTemperatureController" ng-if="modalArr.temperatureModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('temperatureModal', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{widgetSwitchMultilevel.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body text-center">
+            <bb-alert alert="widgetSwitchMultilevel.alert"></bb-alert>
+            <div class="app-row app-row-knob clearfix">
+                <div class="knob-col knob-ctrl">
+                     <!--<myknob knob-data="v.level" knob-options="knobopt"></myknob> -->
+                            <input 
+                                type="text" 
+                                value="{{widgetSwitchMultilevel.find.metrics.level|getMaxLevel:widgetSwitchMultilevel.find.minMax.max}}" 
+                                class="dial widget-level-knob" 
+                                data-width="160" 
+                                data-height="160" 
+                                knob-step="widgetSwitchMultilevel.find.minMax.step" 
+                                knob-min="widgetSwitchMultilevel.find.minMax.min" 
+                                knob-max="widgetSwitchMultilevel.find.minMax.max" 
+                                knob-id="widgetSwitchMultilevel.find.id" 
+                                knob-data="widgetSwitchMultilevel.find.metrics.level" 
+                                knob-options="knobopt" 
+                                ng-model="widgetSwitchMultilevel.find.metrics.level" myknob /> 
+                </div>
+                <div class="knob-col knob-btn">
+                    <p>
+                     <button class="btn btn-primary"
+                                    ng-click="setExactCmd(widgetSwitchMultilevel.find, '+')"
+                                    ><i class="fa fa-angle-up"></i>
+                            </button>&nbsp;
+                            <button class="btn btn-info"
+                                    ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.max)"
+                                    ><i class="fa fa-angle-double-up"></i>
+                            </button>
+                    </p>
+                     <p>
+                            <button class="btn btn-primary"
+                                    ng-click="setExactCmd(widgetSwitchMultilevel.find, '-')"
+                                    ><i class="fa fa-angle-down"></i>
+                            </button>&nbsp;
+                            <button class="btn btn-info"
+                                    ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.min)"
+                                    >
+                                <i class="fa fa-angle-double-down"></i>
+                            </button>
+                     </p>
+                      <p>
+                            <button class="btn btn-info"
+                                    ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.max)"
+                                    ng-bind="_t('lb_full')">
+                            </button>
+                     </p>
+                </div>
+            </div>
+         </div>
+        <!--<div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('switchMultilevelModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+        </div>-->
+    </div>
+</div>

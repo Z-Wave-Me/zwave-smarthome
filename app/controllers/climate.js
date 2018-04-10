@@ -10,65 +10,18 @@
  * Controller that handles list of climate
  * @class ClimateController
  */
-myAppController.controller('ClimateController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('ClimateController', function ($scope, $routeParams, $location, $timeout, $interval, cfg, dataFactory, dataService, _, myCache) {
   $scope.climates = {
     moduleId: 'Climate',
     state: '',
     enableTest: [],
-  }
-    // 0.2 % = 5min
-    $scope.hours = [];
-    $scope.timeGrid = [];
-    $scope.time = 25;
-    $scope.gridWidth = 25;
-    $scope.week = [
-      "Mo",
-      "Di",
-      "Mi",
-      "Do",
-      "Fr",
-      "Sa",
-      "So"
-    ];
-
-  $scope.dragging = false
-  $scope.clientX = 0;
-  $scope.mousemove = function(event) {
-    event.preventDefault();
-    if($scope.dragging) {
-        if($scope.clientX < event.originalEvent.clientX) {
-            console.log(event.originalEvent.clientX);
-        console.log(event.originalEvent.offsetX); 
-        var currentPos = angular.element(event.currentTarget).css("left");
-        console.log("currentPos", currentPos);
-        angular.element(event.currentTarget).css({"left": "+=5%"});
-        console.log("currentTarget.style", event.currentTarget);
-        console.log(event);  
-        } else {
-            angular.element(event.currentTarget).css({"left": "-=5%"});
-        }
-    }
-  }
-
-  $scope.mousedown = function(event) {
-    event.preventDefault();
-    $scope.dragging = true;
-    $scope.clientX = event.originalEvent.clientX;
-    console.log("down");
-  }
-
-  $scope.mouseleave = function(event) {
-    event.preventDefault();
-    $scope.dragging = false;
-    $scope.clientX = 0;
-    console.log("UP");
   }
 
   $scope.scheduleOptions = {
         startTime: "00:00", // schedule start time(HH:ii)
         endTime: "24:00",   // schedule end time(HH:ii)
         widthTime:60 * 5,  // cell timestamp  5 minutes
-        timeLineY:60,       // height(px)
+        timeLineY:30,       // height(px)
         verticalScrollbar:20,   // scrollbar (px)
         timeLineBorder:2,   // border(top and bottom)
         debug:"#debug",     // debug string output elements
@@ -147,12 +100,37 @@ myAppController.controller('ClimateController', function ($scope, $routeParams, 
           };
           console.log(newEntry);
           this.addScheduleData(newEntry);
+        },
+        append_on_click: function(timeline, startTime, endTime) {
+          console.log("timeline", timeline);
+          console.log(startTime + " - " + endTime);
+          var start = this.calcStringTime(startTime),
+              end = this.calcStringTime(endTime);
+
+          end = end == start ? end + 3600 : end;
+
+          var newEntry = {
+            timeline: parseInt(timeline),
+            start: start,
+            end: end,
+            text: "new Entry",
+            data: {}
+          };
+          console.log(newEntry);
+          this.addScheduleData(newEntry);
+        },
+        bar_Click: function(node, timelineData) {
+          console.log("timelineData", timelineData);
+          console.log("node", node);
+          $scope.handleModal('temperatureModal');
         }
     };
 
-  jQuery("#schedule").timeSchedule($scope.scheduleOptions);
+  var schedule = jQuery("#schedule").timeSchedule($scope.scheduleOptions);
 
-
+  $interval(function() {
+    $scope.data = schedule.getScheduleData();
+  }, 1000);
 
 
   // TODO: Get route segment
@@ -300,5 +278,14 @@ myAppController.controller('ClimateIdController', function ($scope, $routeParams
     });
 
   };
+
+});
+
+/**
+ * Controller that handles a cliamte schedule temperature
+ * @class ClimateTemperatureController
+ */
+myAppController.controller('ClimateTemperatureController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+
 
 });
