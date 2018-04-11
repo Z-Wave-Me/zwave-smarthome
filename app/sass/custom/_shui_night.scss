@@ -105,6 +105,10 @@ $input-bcg-color: $app-color-dark-lightest;
   .appmodal .appmodal-in,
   .smart-start .container .entry,
   #footer #footer_in,
+  .flexcards.security .flexcard .flipcard > *.front,
+  .flexcards.security .flexcard .flipcard > *.back,
+  .automation .notification,
+  .dragdrop-element .dd-placeholder,
   .btn {
     background: $app-color-darkest !important;
   }
@@ -141,6 +145,7 @@ $input-bcg-color: $app-color-dark-lightest;
   .app-fatal-error,
   .wizard li,
   .onlineapp-in .onlineapp-footer,
+  .security-schedule > tbody > tr > td.active,
   .infowindow {
     background: $app-color-dark !important;
   }
@@ -198,6 +203,9 @@ $input-bcg-color: $app-color-dark-lightest;
   #loading .loading-in,
   .label-round,
   .btn-submit,
+  .flexcard,
+  .flexcards.security .flexcard .flipcard > *,
+  .table-responsive td, .table-responsive th,
   #footer {
     border-color: $app-border-color !important;
   }
@@ -207,7 +215,8 @@ $input-bcg-color: $app-color-dark-lightest;
   .btn-default.active,
   .btn-default:hover,
   .btn-default:focus,
-  .btn-default:active {
+  .btn-default:active,
+  .dragdrop-element .dd-placeholder {
     border-color: $app-border-color-lighter !important;
   }
   /* No border
@@ -268,6 +277,10 @@ $input-bcg-color: $app-color-dark-lightest;
   .device-logo img {
     -webkit-filter: brightness(0) invert(1);
     filter: brightness(0) invert(1);
+    &:hover{
+      -webkit-filter: none;
+    filter:none;
+    }
   }
   /* Alertify
 -------------------------------------------------- */

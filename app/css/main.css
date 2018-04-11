@@ -12794,10 +12794,6 @@ img {
     top: -9999px;
     left: -9999px;
   }
-  /* line 45, ../sass/base/_table_responsive.scss */
-  .table-responsive tr {
-    border: 1px solid #ccc;
-  }
   /* line 48, ../sass/base/_table_responsive.scss */
   .table-responsive td {
     /* Behave  like a "row" */
@@ -19355,10 +19351,14 @@ body.night-false {
 .night-true .appmodal .appmodal-in,
 .night-true .smart-start .container .entry,
 .night-true #footer #footer_in,
+.night-true .flexcards.security .flexcard .flipcard > *.front,
+.night-true .flexcards.security .flexcard .flipcard > *.back,
+.night-true .automation .notification,
+.night-true .dragdrop-element .dd-placeholder,
 .night-true .btn {
   background: #24262D !important;
 }
-/* line 113, ../sass/custom/_shui_night.scss */
+/* line 117, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .active,
 .night-true #sub_navigation_in ul,
 .night-true .page-navi .page-navi-in,
@@ -19390,16 +19390,17 @@ body.night-false {
 .night-true .app-fatal-error,
 .night-true .wizard li,
 .night-true .onlineapp-in .onlineapp-footer,
+.night-true .security-schedule > tbody > tr > td.active,
 .night-true .infowindow {
   background: #2D3038 !important;
 }
-/* line 149, ../sass/custom/_shui_night.scss */
+/* line 154, ../sass/custom/_shui_night.scss */
 .night-true .btn-submit,
 .night-true .wizard li.active,
 .night-true .dots .active {
   background: #740047 !important;
 }
-/* line 156, ../sass/custom/_shui_night.scss */
+/* line 161, ../sass/custom/_shui_night.scss */
 .night-true .form-control,
 .night-true .slider,
 .night-true .ajs-input,
@@ -19407,11 +19408,11 @@ body.night-false {
 .night-true .label {
   background: #44464F;
 }
-/* line 163, ../sass/custom/_shui_night.scss */
+/* line 168, ../sass/custom/_shui_night.scss */
 .night-true .slider:before {
   background: #d9534f;
 }
-/* line 168, ../sass/custom/_shui_night.scss */
+/* line 173, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation_wrap,
 .night-true #sub_navigation_in ul,
 .night-true #sub_navigation_in ul li,
@@ -19445,18 +19446,22 @@ body.night-false {
 .night-true #loading .loading-in,
 .night-true .label-round,
 .night-true .btn-submit,
+.night-true .flexcard,
+.night-true .flexcards.security .flexcard .flipcard > *,
+.night-true .table-responsive td, .night-true .table-responsive th,
 .night-true #footer {
   border-color: #44464F !important;
 }
-/* line 206, ../sass/custom/_shui_night.scss */
+/* line 214, ../sass/custom/_shui_night.scss */
 .night-true #sub_navigation_in,
 .night-true .btn-default.active,
 .night-true .btn-default:hover,
 .night-true .btn-default:focus,
-.night-true .btn-default:active {
+.night-true .btn-default:active,
+.night-true .dragdrop-element .dd-placeholder {
   border-color: #737786 !important;
 }
-/* line 215, ../sass/custom/_shui_night.scss */
+/* line 224, ../sass/custom/_shui_night.scss */
 .night-true .form-page,
 .night-true .submit-entry,
 .night-true .app-row-imglist,
@@ -19464,65 +19469,72 @@ body.night-false {
   border: 0;
 }
 @media only screen and (max-width: 767px) {
-  /* line 225, ../sass/custom/_shui_night.scss */
+  /* line 234, ../sass/custom/_shui_night.scss */
   .night-true #sub_navigation #sub_navigation_in {
     background-color: #2D3038;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 233, ../sass/custom/_shui_night.scss */
+  /* line 242, ../sass/custom/_shui_night.scss */
   .night-true .fix-me-top {
     background: #24262D;
     border-color: #44464F;
   }
 }
-/* line 240, ../sass/custom/_shui_night.scss */
+/* line 249, ../sass/custom/_shui_night.scss */
 .night-true .alert-success {
   border-color: #f0ad4e;
 }
-/* line 243, ../sass/custom/_shui_night.scss */
+/* line 252, ../sass/custom/_shui_night.scss */
 .night-true .alert-warning {
   border-color: #f0ad4e;
 }
-/* line 246, ../sass/custom/_shui_night.scss */
+/* line 255, ../sass/custom/_shui_night.scss */
 .night-true .alert-danger {
   border-color: #d9534f;
 }
 @media only screen and (max-width: 767px) {
-  /* line 252, ../sass/custom/_shui_night.scss */
+  /* line 261, ../sass/custom/_shui_night.scss */
   .night-true .appmodal:before {
     background: #24262D !important;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 257, ../sass/custom/_shui_night.scss */
+  /* line 266, ../sass/custom/_shui_night.scss */
   .night-true .appmodal:before {
     background-color: rgba(37, 37, 37, 0.5);
   }
-  /* line 260, ../sass/custom/_shui_night.scss */
+  /* line 269, ../sass/custom/_shui_night.scss */
   .night-true .appmodal-in {
     border: solid 4px #44464F;
   }
 }
-/* line 266, ../sass/custom/_shui_night.scss */
+/* line 275, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .nav-logo,
 .night-true .device-type-logo,
 .night-true .device-logo img {
   -webkit-filter: brightness(0) invert(1);
   filter: brightness(0) invert(1);
 }
-/* line 275, ../sass/custom/_shui_night.scss */
+/* line 280, ../sass/custom/_shui_night.scss */
+.night-true #main_navigation .nav-logo:hover,
+.night-true .device-type-logo:hover,
+.night-true .device-logo img:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+/* line 288, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-dialog {
   border: solid 2px #44464F;
 }
-/* line 278, ../sass/custom/_shui_night.scss */
+/* line 291, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-dialog,
 .night-true .alertify .ajs-header,
 .night-true .alertify .ajs-footer {
   color: #aeb8c3;
   background-color: #24262D;
 }
-/* line 285, ../sass/custom/_shui_night.scss */
+/* line 298, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button {
   display: inline-block;
   margin-bottom: 0;
@@ -19542,54 +19554,54 @@ body.night-false {
   color: #aeb8c3;
   border: solid 1px #737786;
 }
-/* line 303, ../sass/custom/_shui_night.scss */
+/* line 316, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button.ajs-ok {
   color: #8a8d8f;
   border: solid 1px #44464F;
   background-color: #740047;
 }
-/* line 307, ../sass/custom/_shui_night.scss */
+/* line 320, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button.ajs-ok:hover, .night-true .alertify .ajs-footer .ajs-button.ajs-ok:focus {
   background-color: #44464F;
   color: #8a8d8f;
 }
-/* line 316, ../sass/custom/_shui_night.scss */
+/* line 329, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-success {
   color: #fff;
 }
-/* line 319, ../sass/custom/_shui_night.scss */
+/* line 332, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-error {
   color: #fff;
 }
-/* line 322, ../sass/custom/_shui_night.scss */
+/* line 335, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-warning {
   color: #fff;
 }
-/* line 327, ../sass/custom/_shui_night.scss */
+/* line 340, ../sass/custom/_shui_night.scss */
 .night-true .alpaca-field-object {
   border: 1px #44464F solid;
 }
-/* line 330, ../sass/custom/_shui_night.scss */
+/* line 343, ../sass/custom/_shui_night.scss */
 .night-true .table-bordered {
   border: 1px solid #44464F;
 }
-/* line 333, ../sass/custom/_shui_night.scss */
+/* line 346, ../sass/custom/_shui_night.scss */
 .night-true .table-striped > tbody > tr:nth-child(odd) > td,
 .night-true .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #44464F;
 }
-/* line 338, ../sass/custom/_shui_night.scss */
+/* line 351, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > thead > tr > th,
 .night-true #alpaca_data .table-bordered > thead > tr > td {
   border: 1px solid #44464F;
 }
-/* line 342, ../sass/custom/_shui_night.scss */
+/* line 355, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > tbody > tr > td,
 .night-true #alpaca_data .table-bordered > tfoot > tr > th,
 .night-true #alpaca_data .table-bordered > tfoot > tr > td {
   border: 0px solid #44464F;
 }
-/* line 347, ../sass/custom/_shui_night.scss */
+/* line 360, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .btn-default[disabled] {
   background: transparent;
   border-color: #44464F;
