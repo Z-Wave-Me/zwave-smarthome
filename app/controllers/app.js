@@ -594,11 +594,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
     _.chain(data)
     .flatten()
     .reject(function (v) {
-      if (cfg.custom_apps.indexOf(v.moduleId) > -1) {
-        return true;
-      } else {
-        return false;
-      }
+      return v.category == 'system';
     })
     .filter(function (v) {
       if (!$scope.dataHolder.instances.groups[v.moduleId]) {
@@ -614,7 +610,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
     $scope.dataHolder.instances.all = _.chain(data)
       .flatten()
       .reject(function (v) {
-        if (cfg.custom_apps.indexOf(v.moduleId) > -1) {
+        if (v.category == 'system') {
           return true;
         } else if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
           if ($scope.user.role !== 1) {
