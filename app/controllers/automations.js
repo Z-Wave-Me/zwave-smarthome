@@ -20,8 +20,8 @@ myAppController.controller('AutomationsController', function ($scope, $q, $timeo
     $scope.allSettled = function() {
         $scope.loading = { status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-          dataFactory.getApi('modules', null, true),
-          dataFactory.getApi('instances', null, true)
+          dataFactory.getApi('modules'),
+          dataFactory.getApi('instances')
         ];
 
         $q.allSettled(promises).then(function (response) { 
@@ -64,36 +64,43 @@ myAppController.controller('AutomationsController', function ($scope, $q, $timeo
                     case "Climate": 
                         item.title = $scope._t('title_climate');
                         item.image = "app/img/automation/climate.png";
+                        item.href = "#climate";
                         //item.description = item.defaults.description;
                         break;
                     case "FireNotification":
                         item.title = $scope._t('title_fire_notification');
                         item.image = "app/img/automation/fire_notification.png";
+                        item.href = "#fireprotection";
                         //item.description = item.defaults.description;
                         break;
                     case "LeakageNotification":
                         item.title = $scope._t('title_leakage_notification');
                         item.image = "app/img/automation/leakage_notification.png";
+                        item.href = "#leakages";
                         //item.description = item.defaults.description;
                         break;
                     case "Rules":
                         item.title = $scope._t('title_rules');
                         item.image = "app/img/automation/rules.png";
+                        item.href = "#rules";
                         //item.description = item.defaults.description;
                         break;
                     case "Scenes": 
                         item.title = $scope._t('title_scenes');
                         item.image = "app/img/automation/scenes.png";
+                        item.href = "#scenes";
                         //item.description = item.defaults.description;
                         break;
                     case "Schedules":
                         item.title = $scope._t('title_schedules');
                         item.image = "app/img/automation/schedules.png";
+                        item.href = "#schedules";
                         //item.description = item.defaults.description; 
                         break;
                     case "Security":
                         item.title = $scope._t('title_security');
                         item.image = "app/img/automation/security.png";
+                        item.href = "#security";
                         //item.description = item.defaults.description;
                         break;
                 }
@@ -107,9 +114,7 @@ myAppController.controller('AutomationsController', function ($scope, $q, $timeo
                 item.preventInstall = (item.singleton && item.hasInstance ? true : false);
 
                 item.iconPath = $scope.moduleMediaUrl + item.id + '/' + item.icon;
-                //Tooltip description
-                //item.toolTipDescription = $filter('stripTags')(item.defaults.description);
-
+                
                 return item;
             }
           }).value();
