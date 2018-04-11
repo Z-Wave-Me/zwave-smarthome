@@ -403,7 +403,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       if (redirect) {
         //TODO: redirect to automation base
         //$location.path('/' + dataService.getUrlSegment($location.path()));
-        $location.path('/automation');
+        $location.path('/automations');
       }
 
     }, function (error) {
@@ -418,7 +418,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
   $scope.deleteInstance = function (id, message) {
     alertify.confirm(message, function () {
       dataFactory.deleteApi('instances', id).then(function (response) {
-        $location.path('/' + dataService.getUrlSegment($location.path()));
+        $location.path('/automations');
       }, function (error) {
         alertify.alertError($scope._t('error_delete_data'));
       });

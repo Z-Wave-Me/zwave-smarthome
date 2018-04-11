@@ -2,8 +2,8 @@
 <div ng-controller="LeakageController">
     <h2>{{_t('leakages')}}</h2>
   <!-- The blank state -->
-  <div ng-if="leakages.state == 'blank'" ng-include="'app/views/automation/leakages/blank.html'"></div>
+  <!-- <div ng-if="leakages.state == 'blank'" ng-include="'app/views/automation/leakages/blank.html'"></div> -->
   <!-- The list -->
-  <div ng-if="leakages.state == 'success'" ng-include="'app/views/automation/leakages/list.html'"></div>
+  <div ng-include="'app/views/automation/leakages/list.html'"></div>
 </div>
 <!-- /ng-controller -->

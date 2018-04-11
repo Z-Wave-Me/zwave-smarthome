@@ -32,8 +32,14 @@ myAppController.controller('FireProtectionController', function ($scope, $routeP
         }
         return v;
       }).value();
+      // There are no instances
       if (!_.size($scope.fireProtections.all)) {
-        $scope.fireProtections.state = 'blank';
+        // Previous page is detail - clicked on cancel or page is reloaded - after delete
+        if (cfg.route.previous.indexOf(dataService.getUrlSegment($location.path())) > -1) {
+          $location.path('/automations');
+          return;
+        }
+        $location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
         return;
       }
       $scope.fireProtections.state = 'success';
@@ -102,9 +108,9 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
   $scope.fireProtection = {
     sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke'],
     devices: ['switchBinary', 'switchMultilevel', 'toggleButton'],
-    notifiers: ['notification_email','notification_push'],
+    notifiers: ['notification_email', 'notification_push'],
     interval: [60, 120, 300, 600, 900, 1800, 3600],
-    firedOn: ['on','off','alarm','revert'],
+    firedOn: ['on', 'off', 'alarm', 'revert'],
     availableSensors: {},
     availableDevices: {},
     availableNotifiers: {},
@@ -119,28 +125,28 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
         status: ['on', 'off'],
         default: {
           deviceId: '',
-          deviceType:'switchBinary',
+          deviceType: 'switchBinary',
           status: 'on',
-          sendAction:false
+          sendAction: false
         }
       },
       switchMultilevel: {
-        status: ['on', 'off','lvl'],
+        status: ['on', 'off', 'lvl'],
         min: 0,
         max: 99,
         operator: ['=', '!=', '>', '>=', '<', '<='],
         default: {
           deviceId: '',
-          deviceType:'switchMultilevel',
+          deviceType: 'switchMultilevel',
           status: 'on',
-          level:0,
-          sendAction:false
+          level: 0,
+          sendAction: false
         }
       },
       toggleButton: {
         default: {
           deviceId: '',
-          deviceType:'toggleButton',
+          deviceType: 'toggleButton',
           status: '',
         }
       },
@@ -160,8 +166,8 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
       title: "",
       params: {
         sensors: [],
-        triggerEvent:[],
-        sendNotifications:[],
+        triggerEvent: [],
+        sendNotifications: [],
         notificationsInterval: 0
       },
     }
@@ -175,7 +181,7 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
   };
   $scope.orig.options = angular.copy($scope.fireProtection.cfg);
   $scope.resetOptions = function () {
-   $scope.fireProtection.cfg = angular.copy($scope.orig.options);
+    $scope.fireProtection.cfg = angular.copy($scope.orig.options);
 
   };
 
@@ -292,11 +298,12 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
    * @returns {undefined}
    */
   $scope.assignDevice = function (device) {
-    var input = $scope.fireProtection.cfg[device.deviceType], obj = {};
+    var input = $scope.fireProtection.cfg[device.deviceType],
+      obj = {};
     if (!input || $scope.fireProtection.assignedDevices.indexOf(device.deviceId) > -1) {
       return;
     }
-    
+
     /* obj['filter'] = input.filter;
     obj[input.filter] = input.default;
     obj[input.filter].device = device.deviceId; */
@@ -330,9 +337,9 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
    */
   $scope.assignNotification = function (notification) {
     //if (notification.notifier && $scope.fireProtection.assignedNotifiers.indexOf(notification.notifier) === -1) {
-      $scope.fireProtection.input.params.sendNotifications.push(notification);
-      //$scope.fireProtection.assignedNotifiers.push(notification.notifier);
-      $scope.resetOptions();
+    $scope.fireProtection.input.params.sendNotifications.push(notification);
+    //$scope.fireProtection.assignedNotifiers.push(notification.notifier);
+    $scope.resetOptions();
     //}
 
   };

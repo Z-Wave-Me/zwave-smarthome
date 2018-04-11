@@ -67,12 +67,14 @@ myAppController.controller('AutomationsController', function ($scope, $q, $timeo
                         item.href = "#climate";
                         //item.description = item.defaults.description;
                         break;
+                    case "FireProtection":
                     case "FireNotification":
                         item.title = $scope._t('title_fire_notification');
                         item.image = "app/img/automation/fire_notification.png";
                         item.href = "#fireprotection";
                         //item.description = item.defaults.description;
                         break;
+                        case "LeakageProtection":
                     case "LeakageNotification":
                         item.title = $scope._t('title_leakage_notification');
                         item.image = "app/img/automation/leakage_notification.png";
@@ -97,6 +99,7 @@ myAppController.controller('AutomationsController', function ($scope, $q, $timeo
                         item.href = "#schedules";
                         //item.description = item.defaults.description; 
                         break;
+                        case "SecurityModule":
                     case "Security":
                         item.title = $scope._t('title_security');
                         item.image = "app/img/automation/security.png";

@@ -1,43 +1,40 @@
 <!-- Automations view -->
 <div ng-controller="AutomationsController">
     <bb-loader></bb-loader>
-    <!-- The list -->    
-    <div class="card-room longpress-{{longPressSent}}"
+    <!-- The list -->  
+    <a href="{{v.href}}" class="card-room"
          id="card_{{v.id}}"
          ng-repeat="v in automations.modules track by $index">
         <div class="bcg-img" ng-style="{'background-image':'url(' + v.image + ')'}"></div>
-        <div class="card-room-in"
-             on-long-press="onLongPress(v.id)"
-             on-touch-end="onTouchEnd()"
-             prevent-click="true"
-             long-press-mobile="{{deviceDetector.isMobile()}}">
+        <div class="card-room-in">
             <!-- Card header -->
-            <div class="card-header">
-                <!--
+             <!--<div class="card-header">
+               
                 <a class="card-icon lg" ng-href="#module/post/{{v.id}}" title="{{_t('add_new')}}">
                     <i class="fa fa-plus"></i>
                 </a>
-                -->
-            </div>
+               
+            </div> -->
             <!-- Card content -->
             <div class="card-footer">
                 <!-- Card title -->
-                <h3 class="card-title" title="{{v.title}}">
+               <!--  <h3 class="card-title" title="{{v.title}}">
                     <a ng-href="{{v.href}}"
                        title="{{v.title}}">
                         {{v.title|cutText:true:25}}
                     </a>
-                </h3>
+                </h3> -->
                 <!-- Card sensors -->
                 <div class="card-sensors">
-                    <a href="{{v.href}}" class="btn btn-default">
+                    <span class="btn btn-default">
                         <span>
-                            <i></i>
-                            {{_t('manage')}}
+                            {{v.title|cutText:true:25}}
+                           <!--  <i></i>
+                            {{_t('manage')}} -->
                         </span>
-                    </a>
+                    </span>
                 </div>
             </div>
         </div>
-    </div>   
+      </a>   
 </div> <!-- /ng-controller -->

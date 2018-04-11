@@ -32,8 +32,15 @@ myAppController.controller('LeakageController', function ($scope, $routeParams, 
         }
         return v;
       }).value();
+
+       // There are no instances
       if (!_.size($scope.leakages.all)) {
-        $scope.leakages.state = 'blank';
+        // Previous page is detail - clicked on cancel or page is reloaded - after delete
+        if (cfg.route.previous.indexOf(dataService.getUrlSegment($location.path())) > -1) {
+          $location.path('/automations');
+          return;
+        }
+        $location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
         return;
       }
       $scope.leakages.state = 'success';

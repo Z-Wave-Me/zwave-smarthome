@@ -34,11 +34,16 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
         }
         return v;
       }).value();
+      // There are no instances
       if (!_.size($scope.rules.all)) {
-        $scope.rules.state = 'blank';
+        if (cfg.route.previous.indexOf(dataService.getUrlSegment($location.path())) > -1) {
+          $location.path('/automations');
+          return;
+        }
+        $location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
         return;
       }
-      $scope.rules.state = 'success';
+     // $scope.rules.state = 'success';
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
     });
@@ -891,7 +896,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
   $scope.storeRule = function (input, redirect) {
     dataFactory.storeApi('instances', parseInt(input.id, 10), input).then(function (response) {
       if (redirect) {
-        $location.path('/rules');
+        $location.path('/' + dataService.getUrlSegment($location.path()));
       }
 
     }, function (error) {

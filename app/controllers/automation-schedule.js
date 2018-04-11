@@ -35,10 +35,15 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
         return v;
       }).value();
       if (!_.size($scope.schedules.all)) {
-        $scope.schedules.state = 'blank';
+         // Previous page is detail - clicked on cancel or page is reloaded - after delete
+         if (cfg.route.previous.indexOf(dataService.getUrlSegment($location.path())) > -1) {
+          $location.path('/automations');
+          return;
+        }
+        $location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
         return;
       }
-      $scope.schedules.state = 'success';
+      //$scope.schedules.state = 'success';
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
     });
@@ -364,7 +369,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
   $scope.storeSchedule = function (input, redirect) {
     dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
       if (redirect) {
-        $location.path('/schedules');
+        $location.path('/' + dataService.getUrlSegment($location.path()));
       }
 
     }, function (error) {
