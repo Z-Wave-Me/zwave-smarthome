@@ -1,3 +1,35 @@
+/* Security preview
+-------------------------------------------------- */
+.automations{
+  &.flexgallery {
+
+     figure {
+      position: relative;
+       @include mediaQueries(min-large) {
+        //flex-basis: 25%;
+        padding: $spacing-half;
+        img{
+          margin-bottom: 0;
+        }
+      }
+      figcaption {
+       padding: $spacing;
+       font-weight: bold;
+          position: absolute;
+          //top: 0;
+         left: 0;
+          bottom: 0;
+          background-color: rgba(255, 255, 255, 0.5);;
+          width: 100%;
+          a{
+            display: block;
+          }
+       }
+    }
+  }
+}
+
+
 /* Flexcard
 -------------------------------------------------- */
 

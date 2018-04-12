@@ -1,0 +1,32 @@
+/* Flexgallery
+-------------------------------------------------- */
+
+.flexgallery {
+  display: flex;
+  flex-flow: row wrap;
+  figure {
+    text-align: center;
+    border: solid 1px $app-border-color;
+    padding: $spacing;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 50%; // Media queries
+    @include mediaQueries(min-small) {
+      flex-basis: 33.3333%;
+    } // Media queries
+    @include mediaQueries(min-medium) {
+      flex-basis: 25%;
+    }
+    @include mediaQueries(min-large) {
+      flex-basis: 20%;
+    }
+    img{
+      margin-bottom: $spacing;
+    }
+    figcaption {
+      margin-top: auto;
+     font-size: 110%;
+    }
+  }
+}

@@ -18712,9 +18712,93 @@ img.widget-promo-image {
   font-size: 100%;
 }
 
+/* Flexgallery
+-------------------------------------------------- */
+/* line 4, ../sass/base/_flexgallery.scss */
+.flexgallery {
+  display: flex;
+  flex-flow: row wrap;
+}
+/* line 7, ../sass/base/_flexgallery.scss */
+.flexgallery figure {
+  text-align: center;
+  border: solid 1px #cccccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: 50%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 7, ../sass/base/_flexgallery.scss */
+  .flexgallery figure {
+    flex-basis: 33.3333%;
+  }
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 7, ../sass/base/_flexgallery.scss */
+  .flexgallery figure {
+    flex-basis: 25%;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 7, ../sass/base/_flexgallery.scss */
+  .flexgallery figure {
+    flex-basis: 20%;
+  }
+}
+/* line 24, ../sass/base/_flexgallery.scss */
+.flexgallery figure img {
+  margin-bottom: 10px;
+}
+/* line 27, ../sass/base/_flexgallery.scss */
+.flexgallery figure figcaption {
+  margin-top: auto;
+  font-size: 110%;
+}
+
+/* Security preview
+-------------------------------------------------- */
+/* line 6, ../sass/base/_security.scss */
+.automations.flexgallery figure {
+  position: relative;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 6, ../sass/base/_security.scss */
+  .automations.flexgallery figure {
+    padding: 5px;
+  }
+  /* line 11, ../sass/base/_security.scss */
+  .automations.flexgallery figure img {
+    margin-bottom: 0;
+  }
+}
+/* line 15, ../sass/base/_security.scss */
+.automations.flexgallery figure figcaption {
+  padding: 10px;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+}
+/* line 24, ../sass/base/_security.scss */
+.automations.flexgallery figure figcaption a {
+  display: block;
+}
+
 /* Flexcard
 -------------------------------------------------- */
-/* line 7, ../sass/base/_security.scss */
+/* line 39, ../sass/base/_security.scss */
 .flexcards.security .flexcard {
   padding: 0;
   flex-basis: 50%;
@@ -18726,24 +18810,24 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 7, ../sass/base/_security.scss */
+  /* line 39, ../sass/base/_security.scss */
   .flexcards.security .flexcard {
     flex-basis: 20%;
   }
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 7, ../sass/base/_security.scss */
+  /* line 39, ../sass/base/_security.scss */
   .flexcards.security .flexcard {
     flex-basis: 16.6666%;
   }
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 7, ../sass/base/_security.scss */
+  /* line 39, ../sass/base/_security.scss */
   .flexcards.security .flexcard {
     flex-basis: 12.5%;
   }
 }
-/* line 22, ../sass/base/_security.scss */
+/* line 54, ../sass/base/_security.scss */
 .flexcards.security .flexcard.control {
   flex-basis: 50%;
   /* MIN WIDTH */
@@ -18754,72 +18838,72 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 22, ../sass/base/_security.scss */
+  /* line 54, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control {
     flex-basis: 33.3333%;
   }
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 22, ../sass/base/_security.scss */
+  /* line 54, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control {
     flex-basis: 20%;
   }
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 22, ../sass/base/_security.scss */
+  /* line 54, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control {
     flex-basis: 16.6666%;
   }
 }
-/* line 34, ../sass/base/_security.scss */
+/* line 66, ../sass/base/_security.scss */
 .flexcards.security .flexcard.control label {
   margin: 5px 0 0 0;
   display: block;
   font-size: 90%;
   text-align: left;
 }
-/* line 40, ../sass/base/_security.scss */
+/* line 72, ../sass/base/_security.scss */
 .flexcards.security .flexcard.control .form-control {
   padding: 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 40, ../sass/base/_security.scss */
+  /* line 72, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control .form-control {
     padding: 3px 6px;
   }
 }
-/* line 47, ../sass/base/_security.scss */
+/* line 79, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard {
   height: 180px;
 }
-/* line 49, ../sass/base/_security.scss */
+/* line 81, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * {
   border: solid 1px #cccccc;
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
-/* line 54, ../sass/base/_security.scss */
+/* line 86, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body {
   margin-top: auto;
 }
-/* line 56, ../sass/base/_security.scss */
+/* line 88, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body h2 {
   font-size: 90%;
   margin: 10px 0;
 }
-/* line 61, ../sass/base/_security.scss */
+/* line 93, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front {
   color: #737373;
   background-color: #fff;
 }
-/* line 65, ../sass/base/_security.scss */
+/* line 97, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front figure .fa {
   color: #80AD80;
 }
-/* line 68, ../sass/base/_security.scss */
+/* line 100, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front figure img {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -18827,13 +18911,13 @@ img.widget-promo-image {
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-/* line 78, ../sass/base/_security.scss */
+/* line 110, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back .close {
   text-align: right;
   position: relative;
   padding: 0 15px;
 }
-/* line 82, ../sass/base/_security.scss */
+/* line 114, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back .close .fa {
   position: absolute;
   top: -5px;
@@ -18841,20 +18925,20 @@ img.widget-promo-image {
   font-size: 150%;
   color: #d9534f;
 }
-/* line 94, ../sass/base/_security.scss */
+/* line 126, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip {
   border: 0;
 }
-/* line 97, ../sass/base/_security.scss */
+/* line 129, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip.control .flipcard {
   height: 200px;
 }
-/* line 103, ../sass/base/_security.scss */
+/* line 135, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip.control .flipcard.flipped .back figure {
   text-align: left;
   margin: 0;
 }
-/* line 106, ../sass/base/_security.scss */
+/* line 138, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip.control .flipcard.flipped .back figure h2 {
   margin: 0 20px 0 0 !important;
   font-size: 90%;
@@ -18863,23 +18947,23 @@ img.widget-promo-image {
 
 /* Notification
 -------------------------------------------------- */
-/* line 126, ../sass/base/_security.scss */
+/* line 158, ../sass/base/_security.scss */
 .automation .notification textarea {
   height: 50px;
 }
 
 /* Table schedule
 -------------------------------------------------- */
-/* line 137, ../sass/base/_security.scss */
+/* line 169, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td .fa-check {
   color: #737373;
   cursor: pointer;
 }
-/* line 141, ../sass/base/_security.scss */
+/* line 173, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td.active {
   background-color: #dff0d8;
 }
-/* line 143, ../sass/base/_security.scss */
+/* line 175, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td.active .fa-check {
   display: inline-block;
   padding: 5px;
