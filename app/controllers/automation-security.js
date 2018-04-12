@@ -12,17 +12,17 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
     state: '',
     enableTest: [],
   }
-   /**
+  /**
    * Load instance with security module
    * @returns {undefined}
    */
   $scope.loadSecurityModule = function () {
     dataFactory.getApi('instances', null, true).then(function (response) {
-      var security = _.findWhere(response.data.data,{
+      var security = _.findWhere(response.data.data, {
         moduleId: $scope.security.moduleId
       });
       if (!security || security.id < 1) {
-        $scope.security.state = 'blank';
+        $location.path('/security/0');
         return;
       }
       $location.path('/security/' + security.id);
@@ -36,29 +36,29 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
    * Load instances
    * @returns {undefined}
    */
- /*  $scope.loadInstances = function () {
-    dataFactory.getApi('instances', null, true).then(function (response) {
-      $scope.security.all = _.chain(response.data.data).flatten().where({
-        moduleId: $scope.security.moduleId
-      }).value();
-      if (!_.size($scope.security.all)) {
-        $scope.security.state = 'blank';
-        return;
-      }
-      $scope.security.state = 'success';
-    }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
-    });
-  }; */
+  /*  $scope.loadInstances = function () {
+     dataFactory.getApi('instances', null, true).then(function (response) {
+       $scope.security.all = _.chain(response.data.data).flatten().where({
+         moduleId: $scope.security.moduleId
+       }).value();
+       if (!_.size($scope.security.all)) {
+         $scope.security.state = 'blank';
+         return;
+       }
+       $scope.security.state = 'success';
+     }, function (error) {
+       alertify.alertError($scope._t('error_load_data'));
+     });
+   }; */
 
- // $scope.loadInstances();
+  // $scope.loadInstances();
 
   /**
    * Activate/Deactivate instance
    * @param {object} input 
    * @param {boolean} activeStatus 
    */
-  $scope.activateInstance = function (input, state) {
+  /* $scope.activateInstance = function (input, state) {
     input.active = state;
     if (!input.id) {
       return;
@@ -68,7 +68,7 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
     });
-  };
+  }; */
 
 
   /**
@@ -77,7 +77,7 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
    * @param {string} redirect
    * @returns {undefined}
    */
-  $scope.cloneInstance = function (input, redirect) {
+  /* $scope.cloneInstance = function (input, redirect) {
     input.id = 0;
     input.title = input.title + ' - copy';
     dataFactory.postApi('instances', input).then(function (response) {
@@ -85,21 +85,21 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
     }, function (error) {
       alertify.alertError($scope._t('error_update_data'));
     });
-  };
+  }; */
 
   /**
    * Delete
    */
- /*  $scope.deleteInstance = function (input, message) {
-    alertify.confirm(message, function () {
-      dataFactory.deleteApi('instances', input.id).then(function (response) {
-        $scope.reloadData();
-      }, function (error) {
-        alertify.alertError($scope._t('error_delete_data'));
-      });
+  /*  $scope.deleteInstance = function (input, message) {
+     alertify.confirm(message, function () {
+       dataFactory.deleteApi('instances', input.id).then(function (response) {
+         $scope.reloadData();
+       }, function (error) {
+         alertify.alertError($scope._t('error_delete_data'));
+       });
 
-    });
-  }; */
+     });
+   }; */
 
 });
 
@@ -109,16 +109,16 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
  */
 myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
-    routeId:0,
+    routeId: 0,
     tab: 1,
     days: [1, 2, 3, 4, 5, 6, 0],
     devices: {
       input: [],
-      alarms:[],
-      armConfirm:[],
+      alarms: [],
+      armConfirm: [],
       controls: [],
       notification: []
-    },  
+    },
     cfg: {
       input: {
         deviceType: ['sensorBinary'],
@@ -129,13 +129,13 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         }
       },
       silentAlarms: {
-        deviceType: ['toggleButton','switchBinary'],
+        deviceType: ['toggleButton', 'switchBinary'],
         default: {
           devices: ''
         }
       },
       alarms: {
-        deviceType: ['toggleButton','switchBinary'],
+        deviceType: ['toggleButton', 'switchBinary'],
         default: {
           devices: ''
         }
@@ -181,7 +181,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
           'condition': 'disarm'
         }
       },
-      notification:{
+      notification: {
         probeType: 'notification_push'
       }
     },
@@ -248,7 +248,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
    */
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
-      $scope.security.routeId= id;
+      $scope.security.routeId = id;
       var instance = instances.data.data;
       angular.extend($scope.security.input, {
         title: instance.title,
@@ -290,16 +290,28 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
   $scope.loadDevices = function (rooms) {
     dataFactory.getApi('devices').then(function (response) {
       var devices = dataService.getDevicesData(response.data.data.devices);
+
       _.filter(devices.value(), function (v) {
+        var getZwayId = function (deviceId) {
+          var zwaveId = false;
+          if (deviceId.indexOf("ZWayVDev_zway_") > -1) {
+            zwaveId = deviceId.split("ZWayVDev_zway_")[1].split('-')[0];
+            return zwaveId.replace(/[^0-9]/g, '');
+          }
+          return zwaveId;
+        }
         var obj = {
           deviceId: v.id,
+          zwaveId: getZwayId(v.id),
           deviceName: v.metrics.title,
+          deviceNameShort: $filter('cutText')(v.metrics.title,true,30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
           deviceType: v.deviceType,
           probeType: v.probeType,
           location: v.location,
           locationName: rooms[v.location].title,
           iconPath: v.iconPath
         };
+        console.log(obj.deviceNameShort)
         // Set input
         if ($scope.security.cfg.input.deviceType.indexOf(v.deviceType) > -1) {
           $scope.security.devices.input.push(obj);
@@ -314,10 +326,11 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         }
         // Set controls
         if ($scope.security.cfg.controls.deviceType.indexOf(v.deviceType) > -1) {
+
           $scope.security.devices.controls.push(obj);
         }
-         // Set notifications
-         if (v.probeType && $scope.security.cfg.notification.probeType.indexOf(v.probeType) > -1) {
+        // Set notifications
+        if (v.probeType && $scope.security.cfg.notification.probeType.indexOf(v.probeType) > -1) {
           $scope.security.devices.notification.push(obj);
         }
       });

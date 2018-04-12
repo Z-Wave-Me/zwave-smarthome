@@ -146,6 +146,7 @@ $input-bcg-color: $app-color-dark-lightest;
   .wizard li,
   .onlineapp-in .onlineapp-footer,
   .security-schedule > tbody > tr > td.active,
+  .table-responsive [data-expanded="true"] td,
   .infowindow {
     background: $app-color-dark !important;
   }

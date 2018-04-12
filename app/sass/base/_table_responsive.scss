@@ -68,6 +68,13 @@
         display: none;
       }
     }
+    [data-expanded="true"] {
+     td {
+       &.td-accordion-toggle{
+         font-weight: bold;
+       }
+      }
+    }
     .td-accordion-toggle {
       /* color: #fff;
       background-color: $app-heading-color; */

@@ -10,7 +10,7 @@
   <!-- Content -->
   <div class="accordion no-bcg clearfix" hidden>
       <div class="flexcards security">
-          <div class="flexcard trigger flip" ng-repeat="d in security.devices.alarms track by $index">
+          <div class="flexcard trigger flip" title="{{d.deviceName}}" title="{{d.deviceName}}" ng-repeat="d in security.devices.alarms track by $index">
             <div class="flipcard" ng-class="{'flipped': security.input.params.alarms.table[getModelIndex(d.deviceId,'alarms.table')]}">
               <!--  Inactive card -->
               <div class="flexcard-item front">
@@ -18,7 +18,7 @@
                   <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
                 </figure>
                 <div class="body">
-                  <h2>{{d.deviceName}}</h2>
+                  <h2>{{d.deviceNameShort}}</h2>
                   <button type="button" class="btn btn-default" ng-click="assignDevice(d.deviceId,'alarms')">
                     <i class="fa fa-plus text-success" title="{{_t('lb_remove')}}"></i>
                   </button>
@@ -33,7 +33,7 @@
                   <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
                 </figure>
                 <div class="body">
-                  <h2>{{d.deviceName}}</h2>
+                  <h2>{{d.deviceNameShort}}</h2>
                 </div>
               </div>
             </div>

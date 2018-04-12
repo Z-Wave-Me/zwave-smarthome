@@ -123,6 +123,7 @@ body {
       border-bottom: solid 4px #e7e7e7;
     }
   }
+ 
   /* Button
 -------------------------------------------------- */
   .btn-goup-tabs {
@@ -133,6 +134,17 @@ body {
       }
     }
   }
+   /* Table responsive
+-------------------------------------------------- */
+.table-responsive {
+  @include mediaQueries(max-small) {
+    [data-expanded="true"] {
+      td {
+        background-color: #eeeeee;
+       }
+     }
+  }
+}
   /* Widget
 -------------------------------------------------- */
   .widget-entry {

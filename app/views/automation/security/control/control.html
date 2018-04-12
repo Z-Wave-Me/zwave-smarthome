@@ -1,5 +1,5 @@
 <div class="flexcards security">
-  <div class="flexcard control flip" ng-repeat="d in security.devices.controls track by $index">
+  <div class="flexcard flip control" title="{{d.deviceName}}" ng-repeat="d in security.devices.controls track by $index">
     <div class="flipcard" ng-class="{'flipped': security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]}">
       <!--  Inactive card -->
       <!--  <div class="flexcard-item inactive" ng-if="!security[$index]"> -->
@@ -8,7 +8,7 @@
           <img  ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
         </figure>
          <div class="body">
-              <h2>{{d.deviceName}}</h2>
+              <h2>{{d.deviceNameShort}}</h2>
               <button type="button" class="btn btn-default" ng-click="assignDevice(d.deviceId,'controls')">
                   <i class="fa fa-plus text-success" title="{{_t('lb_remove')}}"></i>
               </button>
@@ -22,10 +22,10 @@
               <i class="fa fa-times" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'controls')"></i>
           </span>
         <figure>
-          <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+            <h2>{{d.deviceNameShort}}</h2>
+          <!-- <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" /> -->
         </figure>
         <div class="body">
-          <h2>{{d.deviceName}}</h2>
          <div class="control">
               <label>{{_t('arm_condition')}}</label>
               <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].armCondition">
