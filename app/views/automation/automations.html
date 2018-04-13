@@ -2,15 +2,17 @@
 <div ng-controller="AutomationsController">
   <bb-loader></bb-loader>
   <div class="automations flexgallery">
-    <figure ng-repeat="v in automations.modules track by $index">
-      <a href="{{v.href}}">
-        <img ng-src="{{v.image}}" alt="img">
-      </a>
-      <figcaption>
-          <a href="{{v.href}}">
-        {{v.title|cutText:true:25}}
+    <div ng-repeat="v in automations.modules track by $index">
+      <figure>
+        <a href="{{v.href}}">
+          <img ng-src="{{v.image}}" alt="img">
         </a>
-      </figcaption>
-    </figure>
+        <figcaption>
+          <a href="{{v.href}}">
+            {{v.title|cutText:true:25}}
+          </a>
+        </figcaption>
+      </figure>
+    </div>
+
   </div>
- 

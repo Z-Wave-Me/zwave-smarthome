@@ -1,34 +1,42 @@
 /* Security preview
 -------------------------------------------------- */
-.automations{
-  &.flexgallery {
 
-     figure {
-      position: relative;
-       @include mediaQueries(min-large) {
-        //flex-basis: 25%;
-        padding: $spacing-half;
-        img{
+.automations {
+  &.flexgallery {
+    >* {
+      padding: $spacing-half;
+      @include mediaQueries(min-large) {
+        flex-basis: 25%;
+        
+      }
+      figure {
+        position: relative;
+        border: 0;
+        background-color: #fff;
+        @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+        @include mediaQueries(min-large) {
+          padding: $spacing-half;
+         
+        }
+        img {
           margin-bottom: 0;
         }
-      }
-      figcaption {
-       padding: $spacing;
-       font-weight: bold;
-          position: absolute;
-          //top: 0;
-         left: 0;
-          bottom: 0;
-          background-color: rgba(255, 255, 255, 0.5);;
+        figcaption {
+          padding: $spacing-half $spacing;
+          font-weight: bold;
+          position: absolute; //top: 0;
+          left: 0;
+          bottom:0;
+          background-color: rgba(255, 255, 255, 0.5);
           width: 100%;
-          a{
+          a {
             display: block;
           }
-       }
+        }
+      }
     }
   }
 }
-
 
 /* Flexcard
 -------------------------------------------------- */
@@ -69,7 +77,7 @@
           font-size: 90%;
           text-align: left;
         }
-        .form-control{
+        .form-control {
           padding: 0;
           @include mediaQueries(min-small) {
             padding: 3px 6px;
@@ -119,7 +127,6 @@
                 color: $app-brand-danger;
               }
             }
-           
           }
         }
       }
@@ -128,11 +135,10 @@
         &.control {
           .flipcard {
             height: 200px;
-            
             &.flipped {
               //height: 220px;
               .back {
-               figure {
+                figure {
                   text-align: left;
                   margin: 0;
                   h2 {

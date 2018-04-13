@@ -66,7 +66,8 @@ $input-bcg-color: $app-color-dark-lightest;
   .btn-default.active {
     color: $app-color-light;
   } // Dark
-  .card-customize .card-customize-in .card-footer {
+  .card-customize .card-customize-in .card-footer,
+  .automations.flexgallery > * figure figcaption a {
     color: $app-color-darkest;
   } // State
   .text-primary {
@@ -150,11 +151,17 @@ $input-bcg-color: $app-color-dark-lightest;
   .infowindow {
     background: $app-color-dark !important;
   }
+  /* Lightest background
+    -------------------------------------------------- */
+    .automations.flexgallery > * figure {
+      background:  $app-color-light !important;
+    }
+ 
   /* Additional background
     -------------------------------------------------- */
   .btn-submit,
   .wizard li.active,
-  .dots .active {
+  .dots .active{
     background: $app-color-additional !important;
   }
   /* Input background

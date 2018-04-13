@@ -18720,13 +18720,7 @@ img.widget-promo-image {
   flex-flow: row wrap;
 }
 /* line 7, ../sass/base/_flexgallery.scss */
-.flexgallery figure {
-  text-align: center;
-  border: solid 1px #cccccc;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.flexgallery > * {
   flex-basis: 50%;
   /* MIN WIDTH */
   /* MAX WIDTH */
@@ -18735,55 +18729,72 @@ img.widget-promo-image {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-@media only screen and (min-width: 768px) {
-  /* line 7, ../sass/base/_flexgallery.scss */
-  .flexgallery figure {
-    flex-basis: 33.3333%;
-  }
-}
 @media only screen and (min-width: 992px) and (orientation: landscape) {
   /* line 7, ../sass/base/_flexgallery.scss */
-  .flexgallery figure {
+  .flexgallery > * {
     flex-basis: 25%;
   }
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
   /* line 7, ../sass/base/_flexgallery.scss */
-  .flexgallery figure {
+  .flexgallery > * {
     flex-basis: 20%;
   }
 }
+/* line 20, ../sass/base/_flexgallery.scss */
+.flexgallery > * figure {
+  padding: 5px;
+  text-align: center;
+  border: solid 1px #cccccc;
+}
 /* line 24, ../sass/base/_flexgallery.scss */
-.flexgallery figure img {
+.flexgallery > * figure img {
   margin-bottom: 10px;
 }
 /* line 27, ../sass/base/_flexgallery.scss */
-.flexgallery figure figcaption {
+.flexgallery > * figure figcaption {
   margin-top: auto;
-  font-size: 110%;
+  font-size: 100%;
 }
 
 /* Security preview
 -------------------------------------------------- */
 /* line 6, ../sass/base/_security.scss */
-.automations.flexgallery figure {
-  position: relative;
+.automations.flexgallery > * {
+  padding: 5px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
   /* line 6, ../sass/base/_security.scss */
-  .automations.flexgallery figure {
-    padding: 5px;
-  }
-  /* line 11, ../sass/base/_security.scss */
-  .automations.flexgallery figure img {
-    margin-bottom: 0;
+  .automations.flexgallery > * {
+    flex-basis: 25%;
   }
 }
-/* line 15, ../sass/base/_security.scss */
-.automations.flexgallery figure figcaption {
-  padding: 10px;
+/* line 12, ../sass/base/_security.scss */
+.automations.flexgallery > * figure {
+  position: relative;
+  border: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 12, ../sass/base/_security.scss */
+  .automations.flexgallery > * figure {
+    padding: 5px;
+  }
+}
+/* line 21, ../sass/base/_security.scss */
+.automations.flexgallery > * figure img {
+  margin-bottom: 0;
+}
+/* line 24, ../sass/base/_security.scss */
+.automations.flexgallery > * figure figcaption {
+  padding: 5px 10px;
   font-weight: bold;
   position: absolute;
   left: 0;
@@ -18791,14 +18802,14 @@ img.widget-promo-image {
   background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
 }
-/* line 24, ../sass/base/_security.scss */
-.automations.flexgallery figure figcaption a {
+/* line 32, ../sass/base/_security.scss */
+.automations.flexgallery > * figure figcaption a {
   display: block;
 }
 
 /* Flexcard
 -------------------------------------------------- */
-/* line 39, ../sass/base/_security.scss */
+/* line 47, ../sass/base/_security.scss */
 .flexcards.security .flexcard {
   padding: 0;
   flex-basis: 50%;
@@ -18810,24 +18821,24 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 39, ../sass/base/_security.scss */
+  /* line 47, ../sass/base/_security.scss */
   .flexcards.security .flexcard {
     flex-basis: 20%;
   }
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 39, ../sass/base/_security.scss */
+  /* line 47, ../sass/base/_security.scss */
   .flexcards.security .flexcard {
     flex-basis: 16.6666%;
   }
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 39, ../sass/base/_security.scss */
+  /* line 47, ../sass/base/_security.scss */
   .flexcards.security .flexcard {
     flex-basis: 12.5%;
   }
 }
-/* line 54, ../sass/base/_security.scss */
+/* line 62, ../sass/base/_security.scss */
 .flexcards.security .flexcard.control {
   flex-basis: 50%;
   /* MIN WIDTH */
@@ -18838,72 +18849,72 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 54, ../sass/base/_security.scss */
+  /* line 62, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control {
     flex-basis: 33.3333%;
   }
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 54, ../sass/base/_security.scss */
+  /* line 62, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control {
     flex-basis: 20%;
   }
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 54, ../sass/base/_security.scss */
+  /* line 62, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control {
     flex-basis: 16.6666%;
   }
 }
-/* line 66, ../sass/base/_security.scss */
+/* line 74, ../sass/base/_security.scss */
 .flexcards.security .flexcard.control label {
   margin: 5px 0 0 0;
   display: block;
   font-size: 90%;
   text-align: left;
 }
-/* line 72, ../sass/base/_security.scss */
+/* line 80, ../sass/base/_security.scss */
 .flexcards.security .flexcard.control .form-control {
   padding: 0;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 72, ../sass/base/_security.scss */
+  /* line 80, ../sass/base/_security.scss */
   .flexcards.security .flexcard.control .form-control {
     padding: 3px 6px;
   }
 }
-/* line 79, ../sass/base/_security.scss */
+/* line 87, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard {
   height: 180px;
 }
-/* line 81, ../sass/base/_security.scss */
+/* line 89, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * {
   border: solid 1px #cccccc;
   padding: 10px;
   display: flex;
   flex-direction: column;
 }
-/* line 86, ../sass/base/_security.scss */
+/* line 94, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body {
   margin-top: auto;
 }
-/* line 88, ../sass/base/_security.scss */
+/* line 96, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > * .body h2 {
   font-size: 90%;
   margin: 10px 0;
 }
-/* line 93, ../sass/base/_security.scss */
+/* line 101, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front {
   color: #737373;
   background-color: #fff;
 }
-/* line 97, ../sass/base/_security.scss */
+/* line 105, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front figure .fa {
   color: #80AD80;
 }
-/* line 100, ../sass/base/_security.scss */
+/* line 108, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.front figure img {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -18911,13 +18922,13 @@ img.widget-promo-image {
   /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 }
-/* line 110, ../sass/base/_security.scss */
+/* line 118, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back .close {
   text-align: right;
   position: relative;
   padding: 0 15px;
 }
-/* line 114, ../sass/base/_security.scss */
+/* line 122, ../sass/base/_security.scss */
 .flexcards.security .flexcard .flipcard > *.back .close .fa {
   position: absolute;
   top: -5px;
@@ -18925,20 +18936,20 @@ img.widget-promo-image {
   font-size: 150%;
   color: #d9534f;
 }
-/* line 126, ../sass/base/_security.scss */
+/* line 133, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip {
   border: 0;
 }
-/* line 129, ../sass/base/_security.scss */
+/* line 136, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip.control .flipcard {
   height: 200px;
 }
-/* line 135, ../sass/base/_security.scss */
+/* line 141, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip.control .flipcard.flipped .back figure {
   text-align: left;
   margin: 0;
 }
-/* line 138, ../sass/base/_security.scss */
+/* line 144, ../sass/base/_security.scss */
 .flexcards.security .flexcard.flip.control .flipcard.flipped .back figure h2 {
   margin: 0 20px 0 0 !important;
   font-size: 90%;
@@ -18947,23 +18958,23 @@ img.widget-promo-image {
 
 /* Notification
 -------------------------------------------------- */
-/* line 158, ../sass/base/_security.scss */
+/* line 164, ../sass/base/_security.scss */
 .automation .notification textarea {
   height: 50px;
 }
 
 /* Table schedule
 -------------------------------------------------- */
-/* line 169, ../sass/base/_security.scss */
+/* line 175, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td .fa-check {
   color: #737373;
   cursor: pointer;
 }
-/* line 173, ../sass/base/_security.scss */
+/* line 179, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td.active {
   background-color: #dff0d8;
 }
-/* line 175, ../sass/base/_security.scss */
+/* line 181, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td.active .fa-check {
   display: inline-block;
   padding: 5px;
@@ -19337,6 +19348,8 @@ body.night-false {
     -------------------------------------------------- */
   /* Lighter background
     -------------------------------------------------- */
+  /* Lightest background
+    -------------------------------------------------- */
   /* Additional background
     -------------------------------------------------- */
   /* Input background
@@ -19411,30 +19424,31 @@ body.night-false {
   color: #8a8d8f;
 }
 /* line 69, ../sass/custom/_shui_night.scss */
-.night-true .card-customize .card-customize-in .card-footer {
+.night-true .card-customize .card-customize-in .card-footer,
+.night-true .automations.flexgallery > * figure figcaption a {
   color: #24262D;
 }
-/* line 72, ../sass/custom/_shui_night.scss */
+/* line 73, ../sass/custom/_shui_night.scss */
 .night-true .text-primary {
   color: #6494BC;
 }
-/* line 75, ../sass/custom/_shui_night.scss */
+/* line 76, ../sass/custom/_shui_night.scss */
 .night-true .text-success {
   color: #80AD80;
 }
-/* line 78, ../sass/custom/_shui_night.scss */
+/* line 79, ../sass/custom/_shui_night.scss */
 .night-true .text-info {
   color: #5bc0de;
 }
-/* line 81, ../sass/custom/_shui_night.scss */
+/* line 82, ../sass/custom/_shui_night.scss */
 .night-true .text-warning {
   color: #f0ad4e;
 }
-/* line 84, ../sass/custom/_shui_night.scss */
+/* line 85, ../sass/custom/_shui_night.scss */
 .night-true .text-danger {
   color: #d9534f;
 }
-/* line 89, ../sass/custom/_shui_night.scss */
+/* line 90, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation_wrap,
 .night-true #main_navigation .active,
 .night-true #main_navigation a:hover,
@@ -19461,7 +19475,7 @@ body.night-false {
 .night-true .btn {
   background: #24262D !important;
 }
-/* line 117, ../sass/custom/_shui_night.scss */
+/* line 118, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .active,
 .night-true #sub_navigation_in ul,
 .night-true .page-navi .page-navi-in,
@@ -19498,13 +19512,17 @@ body.night-false {
 .night-true .infowindow {
   background: #2D3038 !important;
 }
-/* line 155, ../sass/custom/_shui_night.scss */
+/* line 156, ../sass/custom/_shui_night.scss */
+.night-true .automations.flexgallery > * figure {
+  background: #8a8d8f !important;
+}
+/* line 162, ../sass/custom/_shui_night.scss */
 .night-true .btn-submit,
 .night-true .wizard li.active,
 .night-true .dots .active {
   background: #740047 !important;
 }
-/* line 162, ../sass/custom/_shui_night.scss */
+/* line 169, ../sass/custom/_shui_night.scss */
 .night-true .form-control,
 .night-true .slider,
 .night-true .ajs-input,
@@ -19512,11 +19530,11 @@ body.night-false {
 .night-true .label {
   background: #44464F;
 }
-/* line 169, ../sass/custom/_shui_night.scss */
+/* line 176, ../sass/custom/_shui_night.scss */
 .night-true .slider:before {
   background: #d9534f;
 }
-/* line 174, ../sass/custom/_shui_night.scss */
+/* line 181, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation_wrap,
 .night-true #sub_navigation_in ul,
 .night-true #sub_navigation_in ul li,
@@ -19556,7 +19574,7 @@ body.night-false {
 .night-true #footer {
   border-color: #44464F !important;
 }
-/* line 215, ../sass/custom/_shui_night.scss */
+/* line 222, ../sass/custom/_shui_night.scss */
 .night-true #sub_navigation_in,
 .night-true .btn-default.active,
 .night-true .btn-default:hover,
@@ -19565,7 +19583,7 @@ body.night-false {
 .night-true .dragdrop-element .dd-placeholder {
   border-color: #737786 !important;
 }
-/* line 225, ../sass/custom/_shui_night.scss */
+/* line 232, ../sass/custom/_shui_night.scss */
 .night-true .form-page,
 .night-true .submit-entry,
 .night-true .app-row-imglist,
@@ -19573,72 +19591,72 @@ body.night-false {
   border: 0;
 }
 @media only screen and (max-width: 767px) {
-  /* line 235, ../sass/custom/_shui_night.scss */
+  /* line 242, ../sass/custom/_shui_night.scss */
   .night-true #sub_navigation #sub_navigation_in {
     background-color: #2D3038;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 243, ../sass/custom/_shui_night.scss */
+  /* line 250, ../sass/custom/_shui_night.scss */
   .night-true .fix-me-top {
     background: #24262D;
     border-color: #44464F;
   }
 }
-/* line 250, ../sass/custom/_shui_night.scss */
+/* line 257, ../sass/custom/_shui_night.scss */
 .night-true .alert-success {
   border-color: #f0ad4e;
 }
-/* line 253, ../sass/custom/_shui_night.scss */
+/* line 260, ../sass/custom/_shui_night.scss */
 .night-true .alert-warning {
   border-color: #f0ad4e;
 }
-/* line 256, ../sass/custom/_shui_night.scss */
+/* line 263, ../sass/custom/_shui_night.scss */
 .night-true .alert-danger {
   border-color: #d9534f;
 }
 @media only screen and (max-width: 767px) {
-  /* line 262, ../sass/custom/_shui_night.scss */
+  /* line 269, ../sass/custom/_shui_night.scss */
   .night-true .appmodal:before {
     background: #24262D !important;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 267, ../sass/custom/_shui_night.scss */
+  /* line 274, ../sass/custom/_shui_night.scss */
   .night-true .appmodal:before {
     background-color: rgba(37, 37, 37, 0.5);
   }
-  /* line 270, ../sass/custom/_shui_night.scss */
+  /* line 277, ../sass/custom/_shui_night.scss */
   .night-true .appmodal-in {
     border: solid 4px #44464F;
   }
 }
-/* line 276, ../sass/custom/_shui_night.scss */
+/* line 283, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .nav-logo,
 .night-true .device-type-logo,
 .night-true .device-logo img {
   -webkit-filter: brightness(0) invert(1);
   filter: brightness(0) invert(1);
 }
-/* line 281, ../sass/custom/_shui_night.scss */
+/* line 288, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .nav-logo:hover,
 .night-true .device-type-logo:hover,
 .night-true .device-logo img:hover {
   -webkit-filter: none;
   filter: none;
 }
-/* line 289, ../sass/custom/_shui_night.scss */
+/* line 296, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-dialog {
   border: solid 2px #44464F;
 }
-/* line 292, ../sass/custom/_shui_night.scss */
+/* line 299, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-dialog,
 .night-true .alertify .ajs-header,
 .night-true .alertify .ajs-footer {
   color: #aeb8c3;
   background-color: #24262D;
 }
-/* line 299, ../sass/custom/_shui_night.scss */
+/* line 306, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button {
   display: inline-block;
   margin-bottom: 0;
@@ -19658,54 +19676,54 @@ body.night-false {
   color: #aeb8c3;
   border: solid 1px #737786;
 }
-/* line 317, ../sass/custom/_shui_night.scss */
+/* line 324, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button.ajs-ok {
   color: #8a8d8f;
   border: solid 1px #44464F;
   background-color: #740047;
 }
-/* line 321, ../sass/custom/_shui_night.scss */
+/* line 328, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button.ajs-ok:hover, .night-true .alertify .ajs-footer .ajs-button.ajs-ok:focus {
   background-color: #44464F;
   color: #8a8d8f;
 }
-/* line 330, ../sass/custom/_shui_night.scss */
+/* line 337, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-success {
   color: #fff;
 }
-/* line 333, ../sass/custom/_shui_night.scss */
+/* line 340, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-error {
   color: #fff;
 }
-/* line 336, ../sass/custom/_shui_night.scss */
+/* line 343, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-warning {
   color: #fff;
 }
-/* line 341, ../sass/custom/_shui_night.scss */
+/* line 348, ../sass/custom/_shui_night.scss */
 .night-true .alpaca-field-object {
   border: 1px #44464F solid;
 }
-/* line 344, ../sass/custom/_shui_night.scss */
+/* line 351, ../sass/custom/_shui_night.scss */
 .night-true .table-bordered {
   border: 1px solid #44464F;
 }
-/* line 347, ../sass/custom/_shui_night.scss */
+/* line 354, ../sass/custom/_shui_night.scss */
 .night-true .table-striped > tbody > tr:nth-child(odd) > td,
 .night-true .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #44464F;
 }
-/* line 352, ../sass/custom/_shui_night.scss */
+/* line 359, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > thead > tr > th,
 .night-true #alpaca_data .table-bordered > thead > tr > td {
   border: 1px solid #44464F;
 }
-/* line 356, ../sass/custom/_shui_night.scss */
+/* line 363, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > tbody > tr > td,
 .night-true #alpaca_data .table-bordered > tfoot > tr > th,
 .night-true #alpaca_data .table-bordered > tfoot > tr > td {
   border: 0px solid #44464F;
 }
-/* line 361, ../sass/custom/_shui_night.scss */
+/* line 368, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .btn-default[disabled] {
   background: transparent;
   border-color: #44464F;
