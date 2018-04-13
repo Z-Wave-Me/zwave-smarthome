@@ -13880,13 +13880,14 @@ fieldset section, .fieldset section {
 /* line 20, ../sass/base/_bar.scss */
 .bar-row .bar-media {
   width: 74px;
+  border-radius: 50%;
 }
 /* line 22, ../sass/base/_bar.scss */
 .bar-row .bar-media img {
   max-width: 64px;
   max-height: 64px;
 }
-/* line 29, ../sass/base/_bar.scss */
+/* line 30, ../sass/base/_bar.scss */
 .bar-row .bar-ctrl {
   min-width: 110px;
   text-align: right;
@@ -13894,27 +13895,27 @@ fieldset section, .fieldset section {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 29, ../sass/base/_bar.scss */
+  /* line 30, ../sass/base/_bar.scss */
   .bar-row .bar-ctrl {
     display: block;
   }
 }
-/* line 38, ../sass/base/_bar.scss */
+/* line 39, ../sass/base/_bar.scss */
 .bar-row .bar-icon {
   font-size: 180%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 480px) {
-  /* line 38, ../sass/base/_bar.scss */
+  /* line 39, ../sass/base/_bar.scss */
   .bar-row .bar-icon {
     font-size: 140%;
   }
 }
-/* line 44, ../sass/base/_bar.scss */
+/* line 45, ../sass/base/_bar.scss */
 .bar-row .bar-title {
-  font-size: 120%;
-  font-weight: bold;
+  font-size: 200%;
+  margin-left: 10px;
 }
 
 /* Dropdown
@@ -17410,18 +17411,25 @@ img.widget-promo-image {
   max-height: 70px !important;
 }
 
-/* line 17, ../sass/base/_devices.scss */
+/* line 18, ../sass/base/_devices.scss */
+.label_devices_description {
+  font-size: 170%;
+  color: #184a96;
+}
+
+/* line 24, ../sass/base/_devices.scss */
 .device-type-logo {
   max-width: 80px;
   max-height: 80px;
+  margin-right: 20px;
 }
 
-/* line 22, ../sass/base/_devices.scss */
+/* line 30, ../sass/base/_devices.scss */
 .device-autodetect {
   margin: 0 0 20px 0;
 }
 
-/* line 26, ../sass/base/_devices.scss */
+/* line 34, ../sass/base/_devices.scss */
 .vendor-entry {
   float: left;
   position: relative;
@@ -17431,19 +17439,19 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 26, ../sass/base/_devices.scss */
+  /* line 34, ../sass/base/_devices.scss */
   .vendor-entry {
     width: 20%;
   }
 }
 
-/* line 35, ../sass/base/_devices.scss */
+/* line 43, ../sass/base/_devices.scss */
 .col-device-vendor {
   padding-left: 10px !important;
   padding-right: 0 !important;
 }
 
-/* line 39, ../sass/base/_devices.scss */
+/* line 47, ../sass/base/_devices.scss */
 .vendor-list {
   display: block;
   margin: 5px;
@@ -17451,20 +17459,20 @@ img.widget-promo-image {
   text-align: center;
   border: solid 1px #cccccc;
 }
-/* line 46, ../sass/base/_devices.scss */
+/* line 54, ../sass/base/_devices.scss */
 .vendor-list .vendor-image {
   font-size: 80%;
   line-height: 85px;
   margin: 0 !important;
 }
-/* line 50, ../sass/base/_devices.scss */
+/* line 58, ../sass/base/_devices.scss */
 .vendor-list .vendor-image img {
   padding: 10px;
   vertical-align: middle;
   max-width: 80px;
   max-height: 80px;
 }
-/* line 56, ../sass/base/_devices.scss */
+/* line 64, ../sass/base/_devices.scss */
 .vendor-list .vendor-image span {
   display: block;
   padding: 10px;
@@ -17472,99 +17480,99 @@ img.widget-promo-image {
   height: 85px;
 }
 
-/* line 64, ../sass/base/_devices.scss */
+/* line 72, ../sass/base/_devices.scss */
 .device-perex {
   margin-bottom: 10px;
 }
 
-/* line 68, ../sass/base/_devices.scss */
+/* line 76, ../sass/base/_devices.scss */
 .include-device-img {
   margin: 0 0 10px 0;
 }
 
-/* line 72, ../sass/base/_devices.scss */
+/* line 80, ../sass/base/_devices.scss */
 .col-device {
   padding: 20px;
 }
-/* line 75, ../sass/base/_devices.scss */
+/* line 83, ../sass/base/_devices.scss */
 .col-device .device-statement {
   margin: 10px 0;
   padding: 10px 0;
   border-bottom: solid 1px #cccccc;
 }
 
-/* line 81, ../sass/base/_devices.scss */
+/* line 89, ../sass/base/_devices.scss */
 .table-inclusion td {
   vertical-align: middle !important;
 }
-/* line 83, ../sass/base/_devices.scss */
+/* line 91, ../sass/base/_devices.scss */
 .table-inclusion td .alert {
   margin-bottom: 0;
 }
 
-/* line 88, ../sass/base/_devices.scss */
+/* line 96, ../sass/base/_devices.scss */
 .td-camera-action {
   text-align: right;
 }
 
 /* ZWave
 -------------------------------------------------- */
-/* line 96, ../sass/base/_devices.scss */
+/* line 104, ../sass/base/_devices.scss */
 .network-zwave-device .network-node-name {
   font-style: italic;
 }
 
-/* line 100, ../sass/base/_devices.scss */
+/* line 108, ../sass/base/_devices.scss */
 .network-zwave-title {
   font-weight: bold;
 }
-/* line 103, ../sass/base/_devices.scss */
+/* line 111, ../sass/base/_devices.scss */
 .network-zwave-title.noelements {
   color: #404040;
   font-weight: normal;
 }
 
-/* line 109, ../sass/base/_devices.scss */
+/* line 117, ../sass/base/_devices.scss */
 .zwave-hidden-true a {
   color: #8c8c8c !important;
   cursor: text;
   text-decoration: line-through;
 }
-/* line 113, ../sass/base/_devices.scss */
+/* line 121, ../sass/base/_devices.scss */
 .zwave-hidden-true a:hover {
   text-decoration: line-through;
 }
-/* line 116, ../sass/base/_devices.scss */
+/* line 124, ../sass/base/_devices.scss */
 .zwave-hidden-true a .zwave-raquo {
   display: none;
 }
-/* line 122, ../sass/base/_devices.scss */
+/* line 130, ../sass/base/_devices.scss */
 .zwave-hidden-true input {
   color: #8c8c8c;
 }
 
-/* line 126, ../sass/base/_devices.scss */
+/* line 134, ../sass/base/_devices.scss */
 .network-zwave-element {
   padding-left: 10px;
   margin: 10px 0 0 0;
 }
 
-/* line 133, ../sass/base/_devices.scss */
+/* line 141, ../sass/base/_devices.scss */
 .network-block {
   margin-bottom: 20px;
 }
 
 /* Inclusion
 -------------------------------------------------- */
-/* line 142, ../sass/base/_devices.scss */
+/* line 150, ../sass/base/_devices.scss */
 #zwave_inclusion .report-entry .report-col {
   vertical-align: top;
 }
-/* line 147, ../sass/base/_devices.scss */
+/* line 155, ../sass/base/_devices.scss */
 #zwave_inclusion .inclusion-header h3 {
   font-weight: bold;
 }
-/* line 150, ../sass/base/_devices.scss */
+/* line 158, ../sass/base/_devices.scss */
 #zwave_inclusion .inclusion-header span.line {
   border-top: 1px solid #cccccc;
   width: 100%;
@@ -17573,17 +17581,17 @@ img.widget-promo-image {
   display: block;
 }
 
-/* line 159, ../sass/base/_devices.scss */
+/* line 167, ../sass/base/_devices.scss */
 .include-image-detail {
   max-width: 96px;
   max-height: 96px;
 }
 
-/* line 165, ../sass/base/_devices.scss */
+/* line 173, ../sass/base/_devices.scss */
 .bar-row.inclusion .bar-media {
   width: 106px;
 }
-/* line 167, ../sass/base/_devices.scss */
+/* line 175, ../sass/base/_devices.scss */
 .bar-row.inclusion .bar-media img {
   max-width: 96px;
   max-height: 96px;
@@ -17591,13 +17599,13 @@ img.widget-promo-image {
 
 /* Management
 -------------------------------------------------- */
-/* line 177, ../sass/base/_devices.scss */
+/* line 185, ../sass/base/_devices.scss */
 .report-battery-info div {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 177, ../sass/base/_devices.scss */
+  /* line 185, ../sass/base/_devices.scss */
   .report-battery-info div {
     display: inline-block;
     padding: 0 10px 0 0;
@@ -17606,53 +17614,53 @@ img.widget-promo-image {
 
 /* Configuration
 -------------------------------------------------- */
-/* line 189, ../sass/base/_devices.scss */
+/* line 197, ../sass/base/_devices.scss */
 .table-cfg-interview th {
   width: 25%;
 }
 
-/* line 192, ../sass/base/_devices.scss */
+/* line 200, ../sass/base/_devices.scss */
 .cfg-block {
   margin: 0 0 20px 0;
   padding: 0 0 20px 0;
 }
 
-/* line 197, ../sass/base/_devices.scss */
+/* line 205, ../sass/base/_devices.scss */
 .cfg-block h4 {
   font-size: 16px;
 }
 
-/* line 201, ../sass/base/_devices.scss */
+/* line 209, ../sass/base/_devices.scss */
 .cfg-control-content {
   padding: 10px;
   margin: 10px 0;
 }
 
-/* line 205, ../sass/base/_devices.scss */
+/* line 213, ../sass/base/_devices.scss */
 .cfg-info {
   margin: 10px 0 0 0;
   padding: 10px 0 0 0;
   border-top: solid 1px #cccccc;
 }
 
-/* line 210, ../sass/base/_devices.scss */
+/* line 218, ../sass/base/_devices.scss */
 .commads-is-current {
   text-decoration: underline;
 }
 
-/* line 213, ../sass/base/_devices.scss */
+/* line 221, ../sass/base/_devices.scss */
 #wakeup_cont .form-inline {
   float: left;
 }
 
-/* line 216, ../sass/base/_devices.scss */
+/* line 224, ../sass/base/_devices.scss */
 .spin-true .fa-spin {
   display: none;
 }
 
 /* Images
 -------------------------------------------------- */
-/* line 222, ../sass/base/_devices.scss */
+/* line 230, ../sass/base/_devices.scss */
 .product-img {
   max-width: 48px;
   max-height: 48px;
@@ -17660,7 +17668,7 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 222, ../sass/base/_devices.scss */
+  /* line 230, ../sass/base/_devices.scss */
   .product-img {
     max-width: 64px;
     max-height: 64px;
@@ -17669,14 +17677,14 @@ img.widget-promo-image {
 
 /* Camera
 -------------------------------------------------- */
-/* line 236, ../sass/base/_devices.scss */
+/* line 244, ../sass/base/_devices.scss */
 .app-row-cameraadd .report-media {
   width: 68px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 236, ../sass/base/_devices.scss */
+  /* line 244, ../sass/base/_devices.scss */
   .app-row-cameraadd .report-media {
     width: 84px;
   }
@@ -17684,18 +17692,18 @@ img.widget-promo-image {
 
 /* SmartStart
 -------------------------------------------------- */
-/* line 249, ../sass/base/_devices.scss */
+/* line 257, ../sass/base/_devices.scss */
 .row-smartstart .report-entry {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 479px) {
-  /* line 249, ../sass/base/_devices.scss */
+  /* line 257, ../sass/base/_devices.scss */
   .row-smartstart .report-entry {
     display: block;
   }
 }
-/* line 254, ../sass/base/_devices.scss */
+/* line 262, ../sass/base/_devices.scss */
 .row-smartstart .report-entry .report-col {
   padding: 10px;
   vertical-align: top;
@@ -17704,7 +17712,7 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 479px) {
-  /* line 254, ../sass/base/_devices.scss */
+  /* line 262, ../sass/base/_devices.scss */
   .row-smartstart .report-entry .report-col {
     display: block;
   }
@@ -17712,12 +17720,12 @@ img.widget-promo-image {
 
 /* QR code
 -------------------------------------------------- */
-/* line 270, ../sass/base/_devices.scss */
+/* line 278, ../sass/base/_devices.scss */
 .qrcode-wrap #qrcode_network {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 274, ../sass/base/_devices.scss */
+/* line 282, ../sass/base/_devices.scss */
 .qrcode-wrap #qrcode_network img {
   padding-left: 0;
   padding-right: 0;
@@ -17727,7 +17735,7 @@ img.widget-promo-image {
   width: 200px;
 }
 @media only screen and (min-width: 768px) {
-  /* line 270, ../sass/base/_devices.scss */
+  /* line 278, ../sass/base/_devices.scss */
   .qrcode-wrap #qrcode_network {
     margin: 0;
   }
@@ -17735,7 +17743,7 @@ img.widget-promo-image {
 
 /* Security 2 icons
 -------------------------------------------------- */
-/* line 291, ../sass/base/_devices.scss */
+/* line 299, ../sass/base/_devices.scss */
 .security-2.fa-stack {
   margin: 0 20px 0 0;
   width: 1em;
@@ -17744,21 +17752,21 @@ img.widget-promo-image {
   height: 1em;
   line-height: 1em;
 }
-/* line 300, ../sass/base/_devices.scss */
+/* line 308, ../sass/base/_devices.scss */
 .security-2 .fa-stack-1x, .security-2 .fa-stack-1x {
   text-align: left;
 }
-/* line 303, ../sass/base/_devices.scss */
+/* line 311, ../sass/base/_devices.scss */
 .security-2 .icon-bottom {
   color: darkgray;
 }
-/* line 306, ../sass/base/_devices.scss */
+/* line 314, ../sass/base/_devices.scss */
 .security-2 .icon-top {
   color: green;
   left: 4px;
   top: 4px;
 }
-/* line 311, ../sass/base/_devices.scss */
+/* line 319, ../sass/base/_devices.scss */
 .security-2.false .icon-top {
   color: #a94442;
 }
