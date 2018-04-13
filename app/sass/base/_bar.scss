@@ -23,6 +23,7 @@ $bar-img-w: 64px;
       max-width: $bar-img-w;
       max-height: $bar-img-w;
     }
+    border-radius: 50%;
   }
   .bar-body {
   }
@@ -42,8 +43,8 @@ $bar-img-w: 64px;
     }
   }
   .bar-title{
-    font-size: 120%;
-    font-weight: bold;
+    font-size: 200%;
+    margin-left: 10px;
   }
 }
 

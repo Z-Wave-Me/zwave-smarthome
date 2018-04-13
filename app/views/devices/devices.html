@@ -4,8 +4,8 @@
         <table class="table table-report table-products">
             <tbody>
                 <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-zwave.png" alt="Logo" />
+                    <td class="label_devices_description">
+                        <img class="device-type-logo" ng-src="app/img/logo-zwave.png" alt="Logo" /> {{_t('devices_text_zwave')}}
                     </td>
                     <td class="td-action">
                      <div class="btn-group">
@@ -23,8 +23,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-mobile.png" alt="Logo" />
+                    <td class="label_devices_description">
+                        <img class="device-type-logo" ng-src="app/img/logo-mobile.png" alt="Logo" /> {{_t('devices_text_mobile')}}
                     </td>
                    <td class="td-action">
                     <div class="btn-group">
@@ -38,8 +38,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-camera.png" alt="Logo" />
+                    <td class="label_devices_description">
+                        <img class="device-type-logo" ng-src="app/img/logo-camera.png" alt="Logo" /> {{_t('devices_text_camera')}}
                     </td>
                    <td class="td-action">
                       <div class="btn-group">
@@ -53,8 +53,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-speech-assistants.png" alt="Logo" />
+                    <td class="label_devices_description">
+                        <img class="device-type-logo" ng-src="app/img/logo-speech-assistants.png" alt="Logo" /> {{_t('devices_text_speech')}}
                     </td>
                      <td class="td-action">
                           <div >
@@ -70,8 +70,8 @@
                     </td>
                 </tr>
                 <tr ng-if="enocean.installed">
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-enocean.png" alt="Logo" />
+                    <td class="label_devices_description">
+                        <img class="device-type-logo" ng-src="app/img/logo-enocean.png" alt="Logo" /> {{_t('devices_text_enocean')}}
                     </td>
                      <td class="td-action">
                           <bb-alert-text alert="enocean.alert"></bb-alert-text>
@@ -88,8 +88,8 @@
                     </td>
                 </tr>
                 <tr ng-if="rf433.installed">
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-rf433.png" alt="Logo" />
+                    <td class="label_devices_description">
+                        <img class="device-type-logo" ng-src="app/img/logo-rf433.png" alt="Logo" /> {{_t('devices_text_433')}}
                     </td>
                     <td class="td-action">
                         <bb-alert-text alert="rf433.alert"></bb-alert-text>
@@ -106,8 +106,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-wifiplug.png" alt="Logo" />
+                    <td class="label_devices_description">
+                        <img class="device-type-logo" ng-src="app/img/logo-wifiplug.png" alt="Logo" /> {{_t('devices_text_wifi')}}
                     </td>
                    <td class="td-action">
                       <div class="btn-group">
