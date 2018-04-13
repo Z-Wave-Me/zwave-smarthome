@@ -544,7 +544,7 @@
     "remote_access_id": "ID",
     "remote_access_info": "Accéder à votre contrôleur depuis l'extérieur.",
     "remote_access_manage": "Gestion des accès distants",
-    "remote_access_not_active": "La gestion des accès distants n'est pas activée. Veuillez l'activer dans l'onglet \"Active\" des applications.",
+    "remote_access_not_active": "La gestion des accès distants n'est pas activée. Veuillez l'activer dans l'onglet ",
     "remote_access_not_installed": "La gestion des accès distants n'est pas installée. Veuillez ajouter l'application Accès distant ( Apps > locale > Accès distant > +Ajouter) dans applications locales.",
     "remote_access_password": "Mot de passe pour popp.zwave.me",
     "remote_access_support": "Activer l'accès du support distant",
