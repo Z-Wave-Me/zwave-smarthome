@@ -146,7 +146,14 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
    * Handles a pasted text into input
    */
   $scope.onPaste = function (e) {
-    console.log(e.originalEvent.clipboardData.getData('text/plain'));
+    var txt = e.originalEvent.clipboardData.getData('text/plain');
+    if(txt){
+      angular.forEach(txt.split('-'),function(v,k){
+        $scope.dsk.input['dsk_' + (v+1)] = v;
+        console.log( $scope.dsk.input['dsk_' + (v+1)]);
+      });
+    }
+   
   }
 
   /**
