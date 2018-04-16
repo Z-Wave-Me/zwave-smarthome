@@ -1,20 +1,19 @@
-
 (function($) {
-    $.fn.timeSchedule = function(options){
+    $.fn.timeSchedule = function(options) {
         var defaults = {
-            rows : {},
+            rows: {},
             startTime: "00:00",
             endTime: "24:00",
-            widthTimeX:4,		// 1cell
-            widthTime:600,		// 
-            timeLineY:30,		// timeline height(px)
-            timeLineBorder:1,	// timeline height border
-            timeBorder:1,		// border width
-            timeLinePaddingTop:0,
-            timeLinePaddingBottom:0,
-            headTimeBorder:1,	// time border width
-            dataWidth:40,		// data width
-            verticalScrollbar:0,	// vertical scrollbar width
+            widthTimeX: 4, // 1cell
+            widthTime: 600, // 
+            timeLineY: 30, // timeline height(px)
+            timeLineBorder: 1, // timeline height border
+            timeBorder: 1, // border width
+            timeLinePaddingTop: 0,
+            timeLinePaddingBottom: 0,
+            headTimeBorder: 1, // time border width
+            dataWidth: 40, // data width
+            verticalScrollbar: 0, // vertical scrollbar width
             // event
             init_data: function() {},
             change: function() {},
@@ -23,7 +22,7 @@
             time_click: function() {},
             append_on_click: function() {},
             bar_Click: function() {},
-            debug:""			// debug selecter
+            debug: "" // debug selecter
         };
 
         this.calcStringTime = function(string) {
@@ -34,13 +33,13 @@
             return min;
         };
         this.formatTime = function(min) {
-            var h = "" + (min/36000|0) + (min/3600%10|0);
-            var i = "" + (min%3600/600|0) + (min%3600/60%10|0);
+            var h = "" + (min / 36000 | 0) + (min / 3600 % 10 | 0);
+            var i = "" + (min % 3600 / 600 | 0) + (min % 3600 / 60 % 10 | 0);
             var string = h + ":" + i;
             return string;
         };
 
-        var setting = $.extend(defaults,options);
+        var setting = $.extend(defaults, options);
         this.setting = setting;
         var scheduleData = new Array();
         var timelineData = new Array();
@@ -51,42 +50,42 @@
         var currentNode = null;
         tableStartTime -= (tableStartTime % setting.widthTime);
         tableEndTime -= (tableEndTime % setting.widthTime);
-        
+
         this.dragging = false;
         this.isResizing = false;
         this.clicking = false;
         var that = this;
 
-        this.getScheduleData = function(){
+        this.getScheduleData = function() {
             return scheduleData;
         }
-        this.getTimelineData = function(){
-            return timelineData;
-        }
-        // 
-        this.getTimeLineNumber = function(top){
-            var num = 0;
-            var n = 0;
-            var tn = Math.ceil(top / (setting.timeLineY + setting.timeLinePaddingTop + setting.timeLinePaddingBottom));
-            for(var i in setting.rows){
-                var r = setting.rows[i];
-                var tr = 0;
-                if(typeof r["schedule"] == Object){
-                    tr = r["schedule"].length;
-                }
-                if(currentNode && currentNode["timeline"]){
-                    tr ++;
-                }
-                n += Math.max(tr,1);
-                if(n >= tn){
-                    break;
-                }
-                num ++;
+        this.getTimelineData = function() {
+                return timelineData;
             }
-            return num;
-        }
-        // add background data
-        this.addScheduleBgData = function(data){
+            // 
+        this.getTimeLineNumber = function(top) {
+                var num = 0;
+                var n = 0;
+                var tn = Math.ceil(top / (setting.timeLineY + setting.timeLinePaddingTop + setting.timeLinePaddingBottom));
+                for (var i in setting.rows) {
+                    var r = setting.rows[i];
+                    var tr = 0;
+                    if (typeof r["schedule"] == Object) {
+                        tr = r["schedule"].length;
+                    }
+                    if (currentNode && currentNode["timeline"]) {
+                        tr++;
+                    }
+                    n += Math.max(tr, 1);
+                    if (n >= tn) {
+                        break;
+                    }
+                    num++;
+                }
+                return num;
+            }
+            // add background data
+        this.addScheduleBgData = function(data) {
             var st = Math.ceil((data["start"] - tableStartTime) / setting.widthTime);
             var et = Math.floor((data["end"] - tableStartTime) / setting.widthTime);
             var $bar = jQuery('<div class="sc_bgBar"><span class="text"></span></div>');
@@ -94,32 +93,30 @@
             var etext = element.formatTime(data["end"]);
             var snum = element.getScheduleCount(data["timeline"]);
             $bar.css({
-                left : (st * setting.widthTimeX),
-                top : 0,
-                width : ((et - st) * setting.widthTimeX),
-                height : $element.find('.sc_main .timeline').eq(data["timeline"]).height()
+                left: (st * setting.widthTimeX),
+                top: 0,
+                width: ((et - st) * setting.widthTimeX),
+                height: $element.find('.sc_main .timeline').eq(data["timeline"]).height()
             });
-            if(data["text"]){
+            if (data["text"]) {
                 $bar.find(".text").text(data["text"]);
             }
-            if(data["class"]){
+            if (data["class"]) {
                 $bar.addClass(data["class"]);
             }
             //$element.find('.sc_main').append($bar);
             $element.find('.sc_main .timeline').eq(data["timeline"]).append($bar);
         }
 
-         this.removeEntry = function(event) {
-            console.log("event", event);
+        this.removeEntry = function(event) {
             $bar = $(event.target).closest(".sc_Bar");
             var sc_key = $bar.data("sc_key");
-            console.log("bar", $bar);
             $bar.remove();
             delete scheduleData[sc_key];
         };
 
         // add schedule
-        this.addScheduleData = function(data){
+        this.addScheduleData = function(data) {
             var st = Math.ceil((data["start"] - tableStartTime) / setting.widthTime);
             var et = Math.floor((data["end"] - tableStartTime) / setting.widthTime);
             var $bar = jQuery('<div class="sc_Bar"><div class="sc_Bar_inner"><span class="head"><span class="time"></span></span><span class="text"></span></div></div>');
@@ -130,46 +127,39 @@
             })
 
             var stext = element.formatTime(data["start"]);
-            //console.log("stext", stext);
             var etext = element.formatTime(data["end"]);
-            //console.log("etext", etext);
             var snum = element.getScheduleCount(data["timeline"]);
 
             $bar.css({
-                left : (st * setting.widthTimeX),
+                left: (st * setting.widthTimeX),
                 top: 0,
-                width : ((et - st) * setting.widthTimeX),
-                height : (setting.timeLineY)
+                width: ((et - st) * setting.widthTimeX),
+                height: (setting.timeLineY)
             });
-            $bar.find(".time").text(stext+"-"+etext);
-            if(data["text"]){
+            $bar.find(".time").text(stext + "-" + etext);
+            if (data["text"]) {
                 $bar.find(".text").text(data["text"]);
             }
-            if(data["class"]){
+            if (data["class"]) {
                 $bar.addClass(data["class"]);
             }
             $bar.append($removeButton);
             $element.find('.sc_main .timeline').eq(data["timeline"]).append($bar);
-            //console.log("$bar", $bar);
 
             scheduleData.push(data);
             // key
             var key = scheduleData.length - 1;
-            $bar.data("sc_key",key);
+            $bar.data("sc_key", key);
 
             $bar.click(function(event) {
-                console.log("event", event);
                 var $bar = $(event.target).closest(".sc_Bar");
-                console.log("$bar", $bar);
                 var sc_key = $bar.data("sc_key");
-                console.log("sc_key", sc_key);
-                console.log("scheduleData[sc_key]", scheduleData[sc_key]);
                 setting.bar_Click.call(element, $bar, scheduleData[sc_key]);
             });
 
-            $bar.bind("mouseup",function(){
-                if(setting.click){
-                    if(jQuery(this).data("dragCheck") !== true && jQuery(this).data("resizeCheck") !== true){
+            $bar.bind("mouseup", function() {
+                if (setting.click) {
+                    if (jQuery(this).data("dragCheck") !== true && jQuery(this).data("resizeCheck") !== true) {
                         var node = jQuery(this);
                         var sc_key = node.data("sc_key");
                         setting.click(node, scheduleData[sc_key]);
@@ -180,11 +170,11 @@
             var $node = $element.find(".sc_Bar"),
                 $elements = $(".sc_Bar");
             // move node.
-            
+
             $node.draggable({
-                grid: [ setting.widthTimeX, 1 ],
+                grid: [setting.widthTimeX, 1],
                 containment: ".sc_main",
-                helper : 'original',
+                helper: 'original',
                 revert: 'invalid',
                 start: function(event, ui) {
                     var node = {};
@@ -201,11 +191,11 @@
                     console.log("drag start");
                 },
                 drag: function(event, ui) {
-                    jQuery(this).data("dragCheck",true);
-                    if(!currentNode){
+                    jQuery(this).data("dragCheck", true);
+                    if (!currentNode) {
                         return false;
                     }
-                    console.log("dragging");  
+                    console.log("dragging");
                     that.dragging = true;
                     var $moveNode = jQuery(this);
                     var sc_key = $moveNode.data("sc_key");
@@ -218,23 +208,23 @@
 
                     ui.position.left = Math.floor(ui.position.left / setting.widthTimeX) * setting.widthTimeX;
 
-                    if(currentNode["nowTimeline"] != timelineNum){
+                    if (currentNode["nowTimeline"] != timelineNum) {
                         currentNode["nowTimeline"] = timelineNum;
                     }
                     currentNode["currentTop"] = ui.position.top;
                     currentNode["currentLeft"] = ui.position.left;
                     // 
-                    element.rewriteBarText($moveNode,scheduleData[sc_key]);
+                    element.rewriteBarText($moveNode, scheduleData[sc_key]);
                     return true;
                 },
                 //
                 stop: function(event, ui) {;
-                    jQuery(this).data("dragCheck",false);
-                    
+                    jQuery(this).data("dragCheck", false);
+
                     console.log("drag stop");
-                    
+
                     that.dragging = false;
-                    if(scheduleData[sc_key] !== undefined) {
+                    if (scheduleData[sc_key] !== undefined) {
                         var node = jQuery(this);
                         var $node = $(node);
                         console.log("node", node);
@@ -243,35 +233,35 @@
                         var x = node.position().left;
                         var w = node.width();
                         var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
-                        console.log("scheduleData",  scheduleData);
+                        console.log("scheduleData", scheduleData);
                         console.log("scheduleData[sc_key]", scheduleData[sc_key]);
                         console.log("sc_key", sc_key);
                         var end = start + ((scheduleData[sc_key]["end"] - scheduleData[sc_key]["start"]));
-                        
+
                         scheduleData[sc_key]["start"] = start;
                         scheduleData[sc_key]["end"] = end;
-                        if(setting.change){
+                        if (setting.change) {
                             setting.change(node, scheduleData[sc_key]);
-                        }    
+                        }
                     }
                     currentNode = null;
-                    
+
                 }
             });
-            
+
             $node.resizable({
-                handles:"e, w",
-                grid: [ setting.widthTimeX, setting.timeLineY ],
-                minWidth:setting.widthTimeX,
+                handles: "e, w",
+                grid: [setting.widthTimeX, setting.timeLineY],
+                minWidth: setting.widthTimeX,
                 containment: "parent",
-                start: function(event, ui){
+                start: function(event, ui) {
                     var node = jQuery(this);
-                    node.data("resizeCheck",true);
+                    node.data("resizeCheck", true);
                     that.isResizing = true;
                     console.log("start resize");
                 },
                 // 
-                stop: function(event, ui){
+                stop: function(event, ui) {
                     console.log("stop resize");
                     that.isResizing = false;
                     var node = jQuery(this);
@@ -292,14 +282,14 @@
                         collison = false,
                         cancel = false;
                     $bars.each(function(ele) {
-                        $bar =  $($bars[ele]);
-                        if($bar.data("sc_key") !=  $node.data("sc_key")) {
-                            if(that.isCollison($node, $bar)) { 
+                        $bar = $($bars[ele]);
+                        if ($bar.data("sc_key") != $node.data("sc_key")) {
+                            if (that.isCollison($node, $bar)) {
                                 collison = true;
                                 console.log("$bar", $bar);
                                 console.log("$node", $node);
-                                if($element.find(".confirm").length == 0) { 
-                                    if(confirm("connect?")) {
+                                if ($element.find(".confirm").length == 0) {
+                                    if (confirm("connect?")) {
                                         connect = true;
                                         var newStart = 0,
                                             newEnd = 0;
@@ -309,14 +299,14 @@
                                         console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
 
                                         var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
-                                        
-                                        if(start <= scheduleData[old_sc_key].start) {
+
+                                        if (start <= scheduleData[old_sc_key].start) {
                                             newStart = start;
                                         } else {
                                             newStart = scheduleData[old_sc_key].start;
                                         }
 
-                                        if(end <= scheduleData[old_sc_key].end) {
+                                        if (end <= scheduleData[old_sc_key].end) {
                                             newEnd = scheduleData[old_sc_key].end;
                                         } else {
                                             newEnd = end;
@@ -330,127 +320,132 @@
                                             data: {}
                                         };
                                         console.log("new Data", data);
-                                        
+
                                         $node.remove();
                                         $bar.remove();
                                         console.log("old_sc_key", old_sc_key);
                                         console.log("sc_key", sc_key);
-                                        
+
 
                                         delete scheduleData[sc_key];
                                         delete scheduleData[old_sc_key];
 
                                         console.log("scheduleData", scheduleData);
-                                        
-                                        that.addScheduleData(data); 
+
+                                        that.addScheduleData(data);
 
                                     } else {
                                         cancel = true;
                                     }
                                 }
                                 return false;
-                            }  
+                            }
                         }
-                        
+
                     });
-                    console.log("cancel", cancel);
-                    console.log("collison", collison);
-                    console.log("connect", connect);
-                    if(!connect && !collison && !cancel) {
-                        
+
+                    if (!connect && !collison && !cancel) {
+
                         // 
                         element.resetBarPosition(timelineNum);
                         // 
-                        element.rewriteBarText(node,scheduleData[sc_key]);
+                        element.rewriteBarText(node, scheduleData[sc_key]);
 
-                        node.data("resizeCheck",false);
+                        node.data("resizeCheck", false);
                         // 
-                        if(setting.change){
+                        if (setting.change) {
                             setting.change(node, scheduleData[sc_key]);
                         }
-                    } else if(cancel) {
+                    } else if (cancel) {
                         // Move the element to its original position.
                         ui.element.css(ui.originalPosition);
                         // Modify the element's width& height to the original value.
                         ui.element.css(ui.originalSize);
-                    } 
+                    }
                 }
             });
             return key;
         };
         // 
-        this.getScheduleCount = function(n){
+        this.getScheduleCount = function(n) {
             var num = 0;
-            for(var i in scheduleData){
-                if(scheduleData[i]["timeline"] == n){
-                    num ++;
+            for (var i in scheduleData) {
+                if (scheduleData[i]["timeline"] == n) {
+                    num++;
                 }
             }
             return num;
         };
         // add
-        this.addRow = function(timeline,row){
+        this.addRow = function(timeline, row) {
             var title = row["title"];
             var id = $element.find('.sc_main .timeline').length;
 
             var html;
 
             html = '';
-            html += '<div class="timeline"><span>'+title+'</span></div>';
+            html += '<div class="timeline"><span class="title" data-title="' + title + '">' + title + '</span></div>';
             var $data = jQuery(html);
             // event call
-            if(setting.init_data){
-                setting.init_data($data,row);
+            if (setting.init_data) {
+                setting.init_data($data, row);
             }
             $element.find('.sc_data_scroll').append($data);
 
             html = '';
             html += '<div class="timeline"></div>';
             var $timeline = jQuery(html);
-            for(var t = tableStartTime; t < tableEndTime; t += setting.widthTime){
+            for (var t = tableStartTime; t < tableEndTime; t += setting.widthTime) {
                 var $tl = jQuery('<div class="tl"></div>');
 
 
                 $tl.bind("mouseenter", function(event) {
                     var timeStr = element.formatTime(tableStartTime + (setting.widthTime * $(this).index())),
                         html = "<span>" + timeStr + "</span>",
-                        $time = jQuery(html);
-
-                    $(".tooltip").position({
+                        $time = jQuery(html),
+                        $sc_main_box = $element.find(".sc_main_box");
+                    console.log("$element.data(\"scheduleId\")", $element.data("scheduleId"));
+                    console.log("$sc_main_box", $sc_main_box);
+                    $element.find(".tooltip").position({
                         my: "center bottom-10",
                         at: "center top",
                         of: $(this),
                         collison: "flip",
-                        within: ".sc_main_box",
-                        using: function( position, feedback ) {
+                        within: $sc_main_box,
+                        using: function(position, feedback) {
+                            console.log("position", position);
                             $(this).removeClass("bottom center top");
+                            console.log("$(this)", $(this));
                             $(this).css(position);
-                            $(this).addClass( feedback.vertical ).addClass( feedback.horizontal )
+                            $(this).addClass(feedback.vertical).addClass(feedback.horizontal)
                         }
                     }).html($time).show();
                 }).bind("mouseleave", function() {
-                    $(".tooltip").hide().removeAttr("style");
+                    $element.find(".tooltip").hide().css({
+                        left: 0,
+                        top: 0
+                    });
                 });
 
                 $tl.width(setting.widthTimeX - setting.timeBorder);
-                $tl.data("time",element.formatTime(t));
-                $tl.data("timeline",timeline);
+                $tl.data("time", element.formatTime(t));
+                $tl.data("timeline", timeline);
                 $timeline.append($tl);
             }
 
-            
+
             var startTime = null;
             var endTime = null;
             var $clickedTl = null;
             var timelineNum = null;
-            
+
             $timeline.bind("mousedown", function(event) {
-                if($(event.target).hasClass("tl")) {
+                if ($(event.target).hasClass("tl")) {
                     that.clicking = true;
                     $clickedTl = $(event.target);
                     timelineNum = $clickedTl.data("timeline");
                     startTime = $clickedTl.data("time");
-                    endTime = null;   
+                    endTime = null;
 
 
                     $(".sc_Bar").css("z-index", -1000);
@@ -459,8 +454,8 @@
                     return true;
                 }
             }).bind("mousemove", function(event) {
-                if(that.clicking == false || $(event.target).data("timeline") !== timelineNum) { 
-                    return true;    
+                if (that.clicking == false || $(event.target).data("timeline") !== timelineNum) {
+                    return true;
                 }
                 endTime = element.formatTime(tableStartTime + (setting.widthTime * $(event.target).index()));
 
@@ -471,27 +466,27 @@
                     width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX);
 
                 var $ghost_bar_temp = $element.find(".ghost");
-                if($ghost_bar_temp.length > 0) {
+                if ($ghost_bar_temp.length > 0) {
                     $ghost_bar_temp.css({
-                        left : left,
-                        top : 0,
-                        width : width,
+                        left: left,
+                        top: 0,
+                        width: width,
                     });
                 } else {
                     $ghost_bar_temp = jQuery('<div class="sc_Bar ghost"></div>');
                     $ghost_bar_temp.css({
-                        left : left,
-                        top : 0,
-                        width : width,
-                        height : (setting.timeLineY)
+                        left: left,
+                        top: 0,
+                        width: width,
+                        height: (setting.timeLineY)
                     });
                     $element.find('.sc_main .timeline').eq(timelineNum).append($ghost_bar_temp);
                 }
-                
+
             }).bind("mouseup", function(event) {
-                if(that.clicking == false) {
+                if (that.clicking == false) {
                     return true;
-                } 
+                }
                 $(".sc_Bar").css("z-index", "auto");
                 $ghost_bar_temp = $element.find(".ghost");
                 endTime = endTime == null ? startTime : endTime;
@@ -502,16 +497,16 @@
 
                 var connect = false,
                     collison = false;
-                
+
                 $bars.each(function(ele) {
-                    $bar =  $($bars[ele]);
-                    if(!$bar.hasClass("ghost")) {
-                        if(that.isCollison($ghost_bar_temp, $bar)) { 
+                    $bar = $($bars[ele]);
+                    if (!$bar.hasClass("ghost")) {
+                        if (that.isCollison($ghost_bar_temp, $bar)) {
                             collison = true;
                             console.log("$bar", $bar);
                             console.log("$ghost_bar_temp", $ghost_bar_temp);
-                            if($element.find(".confirm").length == 0) { 
-                                if(confirm("connect?")) {
+                            if ($element.find(".confirm").length == 0) {
+                                if (confirm("connect?")) {
                                     connect = true;
                                     var newStart = 0,
                                         newEnd = 0;
@@ -522,14 +517,14 @@
                                     var w = $ghost_bar_temp.width();
                                     var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
                                     var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
-                                    
-                                    if(start <= scheduleData[old_sc_key].start) {
+
+                                    if (start <= scheduleData[old_sc_key].start) {
                                         newStart = start;
                                     } else {
                                         newStart = scheduleData[old_sc_key].start;
                                     }
 
-                                    if(end <= scheduleData[old_sc_key].end) {
+                                    if (end <= scheduleData[old_sc_key].end) {
                                         newEnd = scheduleData[old_sc_key].end;
                                     } else {
                                         newEnd = end;
@@ -543,53 +538,53 @@
                                         data: {}
                                     };
                                     console.log("new Data", data);
-                                    
+
                                     $bar.remove();
                                     console.log("old_sc_key", old_sc_key);
-                                    
+
                                     delete scheduleData[old_sc_key];
 
                                     console.log("scheduleData", scheduleData);
-                                    
-                                    that.addScheduleData(data);
-      
 
-                                } 
+                                    that.addScheduleData(data);
+
+
+                                }
                             }
                             return false;
-                        }  
+                        }
                     }
-                    
+
                 });
 
-                if(!collison && !connect) {
+                if (!collison && !connect) {
                     var st = element.calcStringTime(startTime),
-                    et = element.calcStringTime(endTime);
+                        et = element.calcStringTime(endTime);
 
-                    if(et < st) {
+                    if (et < st) {
                         var temp = startTime;
-                        startTime = endTime; 
+                        startTime = endTime;
                         endTime = temp;
                     }
-                    
+
                     setting.append_on_click.call(element, timelineNum, startTime, endTime);
-                    $ghost_bar_temp.remove();    
+                    $ghost_bar_temp.remove();
                 }
-                
+
                 that.clicking = false;
                 startTime = null;
                 endTime = null;
                 $clickedTl = null;
                 timelineNum = null;
-                
+
             }).bind("mouseleave", function(event) {
-                if(that.clicking) {
-                    console.log("timeline " + timelineNum + " leave");    
+                if (that.clicking) {
+                    console.log("timeline " + timelineNum + " leave");
                 }
             });
 
             // 
-            if(setting.time_click){
+            if (setting.time_click) {
                 var that = this;
                 /*$timeline.find(".tl").click(function(){
                     setting.time_click.call(that, this,jQuery(this).data("time"),jQuery(this).data("timeline"),timelineData[jQuery(this).data("timeline")]);
@@ -599,13 +594,13 @@
 
             timelineData[timeline] = row;
 
-            if(row["class"] && (row["class"] != "")){
+            if (row["class"] && (row["class"] != "")) {
                 $element.find('.sc_data .timeline').eq(id).addClass(row["class"]);
                 $element.find('.sc_main .timeline').eq(id).addClass(row["class"]);
             }
             // 
-            if(row["schedule"]){
-                for(var i in row["schedule"]){
+            if (row["schedule"]) {
+                for (var i in row["schedule"]) {
                     var bdata = row["schedule"][i];
                     var s = element.calcStringTime(bdata["start"]);
                     var e = element.calcStringTime(bdata["end"]);
@@ -614,11 +609,11 @@
                     data["timeline"] = id;
                     data["start"] = s;
                     data["end"] = e;
-                    if(bdata["text"]){
+                    if (bdata["text"]) {
                         data["text"] = bdata["text"];
                     }
                     data["data"] = {};
-                    if(bdata["data"]){
+                    if (bdata["data"]) {
                         data["data"] = bdata["data"];
                     }
                     element.addScheduleData(data);
@@ -644,13 +639,13 @@
                         collison = false,
                         cancel = false;
                     $bars.each(function(ele) {
-                        $bar =  $($bars[ele]);
-                        if($bar.data("sc_key") !=  $node.data("sc_key")) {
-                            if(that.isCollison($node, $bar)) { 
+                        $bar = $($bars[ele]);
+                        if ($bar.data("sc_key") != $node.data("sc_key")) {
+                            if (that.isCollison($node, $bar)) {
                                 collison = true;
                                 console.log("$bar", $bar);
                                 console.log("$node", $node);
-                                if($element.find(".confirm").length == 0) {
+                                if ($element.find(".confirm").length == 0) {
                                     // var html = "<div class='confirm'><button class='btn btn-default'>Confirm</button><button class='btn btn-default'>Cancel</button></div>";
                                     // $confirm = jQuery(html);
                                     // console.log("event", event);
@@ -658,29 +653,29 @@
                                     //     "left": $node.offset().left,
                                     //     "top": $node.offset().top + setting.timeLineY
                                     // });
-                                    
+
                                     // $element.append($confirm);   
-                                    if(confirm("connect?")) {
+                                    if (confirm("connect?")) {
                                         connect = true;
                                         var newStart = 0,
                                             newEnd = 0;
 
                                         var old_sc_key = $bar.data("sc_key");
                                         console.log("scheduleData[sc_key]", scheduleData[sc_key]);
-                                        console.log("scheduleData[old_sc_key]",scheduleData[old_sc_key]);
+                                        console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
 
                                         var x = $node.position().left;
                                         var w = $node.width();
                                         var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
                                         var end = start + (scheduleData[sc_key].end - scheduleData[sc_key].start);
-                                        
-                                        if(start <= scheduleData[old_sc_key].start) {
+
+                                        if (start <= scheduleData[old_sc_key].start) {
                                             newStart = start;
                                         } else {
                                             newStart = scheduleData[old_sc_key].start;
                                         }
 
-                                        if(end <= scheduleData[old_sc_key].end) {
+                                        if (end <= scheduleData[old_sc_key].end) {
                                             newEnd = scheduleData[old_sc_key].end;
                                         } else {
                                             newEnd = end;
@@ -694,7 +689,7 @@
                                             data: {}
                                         };
                                         console.log("new Data", data);
-                                        
+
                                         $node.remove();
                                         $bar.remove();
                                         console.log("old_sc_key", old_sc_key);
@@ -704,8 +699,8 @@
                                         delete scheduleData[old_sc_key];
 
                                         console.log("scheduleData", scheduleData);
-                                        
-                                        that.addScheduleData(data);    
+
+                                        that.addScheduleData(data);
 
                                     } else {
                                         cancel = true;
@@ -715,13 +710,13 @@
                             }
                         }
                     });
-                    
-                    if(!connect && !collison && !cancel) {
+
+                    if (!connect && !collison && !cancel) {
                         scheduleData[sc_key]["timeline"] = nowTimelineNum;
                         node.appendTo(this);
                         element.resetBarPosition(oldTimelineNum);
                         element.resetBarPosition(nowTimelineNum);
-                    } else if(cancel) {
+                    } else if (cancel) {
                         $node.draggable({
                             revert: true
                         });
@@ -737,18 +732,18 @@
                 });
             }*/
         };
-        this.getScheduleData = function(){
+        this.getScheduleData = function() {
             var data = new Array();
 
-            for(var i in timelineData){
-                if(typeof timelineData[i] == "undefined") continue;
+            for (var i in timelineData) {
+                if (typeof timelineData[i] == "undefined") continue;
                 var timeline = jQuery.extend(true, {}, timelineData[i]);
                 timeline.schedule = new Array();
                 data.push(timeline);
             }
 
-            for(var i in scheduleData){
-                if(typeof scheduleData[i] == "undefined") continue;
+            for (var i in scheduleData) {
+                if (typeof scheduleData[i] == "undefined") continue;
                 var schedule = jQuery.extend(true, {}, scheduleData[i]);
                 schedule.start = this.formatTime(schedule.start);
                 schedule.end = this.formatTime(schedule.end);
@@ -760,42 +755,45 @@
             return data;
         };
         // 
-        this.rewriteBarText = function(node,data){
+        this.rewriteBarText = function(node, data) {
             var x = node.position().left;
             var w = node.width();
             var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
             //var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
             var end = start + (data["end"] - data["start"]);
-            var html = element.formatTime(start)+"-"+element.formatTime(end);
+            var html = element.formatTime(start) + "-" + element.formatTime(end);
             jQuery(node).find(".time").html(html);
         }
-        this.resetBarPosition = function(n){
+        this.resetBarPosition = function(n) {
             // 
             var $bar_list = $element.find('.sc_main .timeline').eq(n).find(".sc_Bar");
             var codes = [];
-            for(var i=0;i<$bar_list.length;i++){
-                codes[i] = {code:i,x:jQuery($bar_list[i]).position().left};
+            for (var i = 0; i < $bar_list.length; i++) {
+                codes[i] = {
+                    code: i,
+                    x: jQuery($bar_list[i]).position().left
+                };
             };
             // 
-            codes.sort(function(a,b){
-                if(a["x"] < b["x"]){
+            codes.sort(function(a, b) {
+                if (a["x"] < b["x"]) {
                     return -1;
-                }else if(a["x"] > b["x"]){
+                } else if (a["x"] > b["x"]) {
                     return 1;
                 }
                 return 0;
             });
             var check = [];
             var h = 0;
-            var $e1,$e2;
-            var c1,c2;
-            var s1,e1,s2,e2;
-            for(var i=0;i<codes.length;i++){
+            var $e1, $e2;
+            var c1, c2;
+            var s1, e1, s2, e2;
+            for (var i = 0; i < codes.length; i++) {
                 c1 = codes[i]["code"];
                 $e1 = jQuery($bar_list[c1]);
-                for(h=0;h<check.length;h++){
+                for (h = 0; h < check.length; h++) {
                     var next = false;
-                    L: for(var j=0;j<check[h].length;j++){
+                    L: for (var j = 0; j < check[h].length; j++) {
                         c2 = check[h][j];
                         $e2 = jQuery($bar_list[c2]);
 
@@ -803,78 +801,81 @@
                         e1 = $e1.position().left + $e1.width();
                         s2 = $e2.position().left;
                         e2 = $e2.position().left + $e2.width();
-                        if(s1 < e2 && e1 > s2){
+                        if (s1 < e2 && e1 > s2) {
                             next = true;
                             continue L;
                         }
                     }
-                    if(!next){
+                    if (!next) {
                         break;
                     }
                 }
-                if(!check[h]){
+                if (!check[h]) {
                     check[h] = [];
                 }
-                $e1.css({top:((h * setting.timeLineY) + setting.timeLinePaddingTop)});
+                $e1.css({
+                    top: ((h * setting.timeLineY) + setting.timeLinePaddingTop)
+                });
                 check[h][check[h].length] = c1;
             }
             // 
-            this.resizeRow(n,check.length);
+            this.resizeRow(n, check.length);
         };
-        this.resizeRow = function(n,height){
-            //var h = Math.max(element.getScheduleCount(n),1);
-            var h = Math.max(height,1);
-            $element.find('.sc_data .timeline').eq(n).height((h * setting.timeLineY) - setting.timeLineBorder + setting.timeLinePaddingTop + setting.timeLinePaddingBottom);
-            $element.find('.sc_main .timeline').eq(n).height((h * setting.timeLineY) - setting.timeLineBorder + setting.timeLinePaddingTop + setting.timeLinePaddingBottom);
+        this.resizeRow = function(n, height) {
+                //var h = Math.max(element.getScheduleCount(n),1);
+                var h = Math.max(height, 1);
+                $element.find('.sc_data .timeline').eq(n).height((h * setting.timeLineY) - setting.timeLineBorder + setting.timeLinePaddingTop + setting.timeLinePaddingBottom);
+                $element.find('.sc_main .timeline').eq(n).height((h * setting.timeLineY) - setting.timeLineBorder + setting.timeLinePaddingTop + setting.timeLinePaddingBottom);
 
-            $element.find('.sc_main .timeline').eq(n).find(".sc_bgBar").each(function(){
-                jQuery(this).height(jQuery(this).closest(".timeline").height());
-            });
+                $element.find('.sc_main .timeline').eq(n).find(".sc_bgBar").each(function() {
+                    jQuery(this).height(jQuery(this).closest(".timeline").height());
+                });
 
-            $element.find(".sc_data").height($element.find(".sc_main_box").height());
-        }
-        // resizeWindow
-        this.resizeWindow = function(){
+                $element.find(".sc_data").height($element.find(".sc_main_box").height());
+            }
+            // resizeWindow
+        this.resizeWindow = function() {
             var sc_width = $element.width();
+            console.log("sc_width", sc_width);
             var sc_main_width = sc_width - setting.dataWidth - (setting.verticalScrollbar);
             var cell_num = Math.floor((tableEndTime - tableStartTime) / setting.widthTime);
             $element.find(".sc_header_cell").width(setting.dataWidth);
             $element.find(".sc_data,.sc_data_scroll").width(setting.dataWidth);
             $element.find(".sc_header").width(sc_main_width);
             $element.find(".sc_main_box").width(sc_main_width);
-            $element.find(".sc_header_scroll").width(setting.widthTimeX*cell_num);
-            $element.find(".sc_main_scroll").width(setting.widthTimeX*cell_num);
+            $element.find(".sc_header_scroll").width(setting.widthTimeX * cell_num);
+            $element.find(".sc_main_scroll").width(setting.widthTimeX * cell_num);
 
         };
         // init
-        this.init = function(){
+        this.init = function() {
             var html = '';
-            html += '<div class="sc_menu">'+"\n";
-            html += '<div class="sc_header_cell"><span>&nbsp;</span></div>'+"\n";
-            html += '<div class="sc_header">'+"\n";
-            html += '<div class="sc_header_scroll">'+"\n";
-            html += '</div>'+"\n";
-            html += '</div>'+"\n";
-            html += '<br class="clear" />'+"\n";
-            html += '</div>'+"\n";
-            html += '<div class="sc_wrapper">'+"\n";
-            html += '<div class="sc_data">'+"\n";
-            html += '<div class="sc_data_scroll">'+"\n";
-            html += '</div>'+"\n";
-            html += '</div>'+"\n";
-            html += '<div class="sc_main_box">'+"\n";
-            html += '<div class="sc_main_scroll">'+"\n";
-            html += '<div class="sc_main">'+"\n";
-            html += '</div>'+"\n";
-            html += '</div>'+"\n";
-            html += '</div>'+"\n";
-            html += '<br class="clear" />'+"\n";
-            html += '</div>'+"\n";
-            html += '<div class="tooltip"></div>'+"\n";
+            html += '<div class="sc_menu">' + "\n";
+            html += '<div class="sc_header_cell"><span>&nbsp;</span></div>' + "\n";
+            html += '<div class="sc_header">' + "\n";
+            html += '<div class="sc_header_scroll">' + "\n";
+            html += '</div>' + "\n";
+            html += '</div>' + "\n";
+            html += '<br class="clear" />' + "\n";
+            html += '</div>' + "\n";
+            html += '<div class="sc_wrapper">' + "\n";
+            html += '<div class="sc_data">' + "\n";
+            html += '<div class="sc_data_scroll">' + "\n";
+            html += '</div>' + "\n";
+            html += '</div>' + "\n";
+            html += '<div class="sc_main_box">' + "\n";
+            html += '<div class="sc_main_scroll">' + "\n";
+            html += '<div class="sc_main">' + "\n";
+            html += '</div>' + "\n";
+            html += '</div>' + "\n";
+            html += '</div>' + "\n";
+            html += '<br class="clear" />' + "\n";
+            html += '</div>' + "\n";
+            html += '<div class="tooltip"></div>' + "\n";
 
             $element.append(html);
 
-            $element.find(".sc_main_box").scroll(function(){
+            $element.find(".sc_main_box").scroll(function() {
                 $element.find(".sc_data_scroll").css("top", $(this).scrollTop() * -1);
                 $element.find(".sc_header_scroll").css("left", $(this).scrollLeft() * -1);
 
@@ -882,15 +883,15 @@
             // add time cell
             var cell_num = Math.floor((tableEndTime - tableStartTime) / setting.widthTime);
             var before_time = -1;
-            for(var t=tableStartTime;t<tableEndTime;t+=setting.widthTime){
+            for (var t = tableStartTime; t < tableEndTime; t += setting.widthTime) {
 
-                if(
+                if (
                     (before_time < 0) ||
-                        (Math.floor(before_time / 3600) != Math.floor(t / 3600))){
+                    (Math.floor(before_time / 3600) != Math.floor(t / 3600))) {
                     var html = '';
-                    html += '<div class="sc_time">'+element.formatTime(t)+'</div>';
+                    html += '<div class="sc_time">' + element.formatTime(t) + '</div>';
                     var $time = jQuery(html);
-                    var cell_num = Math.floor(Number(Math.min((Math.ceil((t + setting.widthTime) / 3600) * 3600),tableEndTime) - t) / setting.widthTime);
+                    var cell_num = Math.floor(Number(Math.min((Math.ceil((t + setting.widthTime) / 3600) * 3600), tableEndTime) - t) / setting.widthTime);
                     $time.width((cell_num * setting.widthTimeX) - setting.headTimeBorder);
                     $element.find(".sc_header_scroll").append($time);
 
@@ -898,28 +899,28 @@
                 }
             }
 
-            jQuery(window).resize(function(){
+            jQuery(window).resize(function() {
                 element.resizeWindow();
             }).trigger("resize");
 
             // addrow
-            for(var i in setting.rows){
-                this.addRow(i,setting.rows[i]);
+            for (var i in setting.rows) {
+                this.addRow(i, setting.rows[i]);
             }
         };
         // 
         this.init();
 
-        this.debug = function(){
+        this.debug = function() {
             var html = '';
-            for(var i in scheduleData){
+            for (var i in scheduleData) {
                 html += '<div>';
 
-                html += i+" : ";
+                html += i + " : ";
                 var d = scheduleData[i];
-                for(var n in d){
+                for (var n in d) {
                     var dd = d[n];
-                    html += n+" "+dd;
+                    html += n + " " + dd;
                 }
 
                 html += '</div>';
@@ -927,7 +928,7 @@
             jQuery(setting.debug).html(html);
         };
 
-        this.isCollison = function($div1 , $div2) {
+        this.isCollison = function($div1, $div2) {
             var x1 = $div1.offset().left;
             var y1 = $div1.offset().top;
             var h1 = $div1.outerHeight(true);
@@ -942,13 +943,13 @@
             var r2 = x2 + w2;
 
             if (b1 <= y2 || y1 >= b2 || r1 <= x2 || x1 >= r2) return false;
-            return true;              
+            return true;
         }
 
-        if(setting.debug && setting.debug != ""){
-            setInterval(function(){
+        if (setting.debug && setting.debug != "") {
+            setInterval(function() {
                 element.debug();
-            },10);
+            }, 10);
         }
 
         return (this);
