@@ -142,6 +142,13 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
   };
   // Copy original input values
   $scope.origInput = angular.copy($scope.dsk.input);
+   /**
+   * Handles a pasted text into input
+   */
+  $scope.onPaste = function (e) {
+    console.log(e.originalEvent.clipboardData.getData('text/plain'));
+  }
+
   /**
    * Check if SDK version match
    * TODO: Unncoment when finished
