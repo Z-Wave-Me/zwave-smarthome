@@ -180,7 +180,7 @@
     "enocean_not_active": "EnOcean app är inte aktiverad. Installera\/Activera den här Appen.",
     "enocean_no_settings": "Det finns inga instaällningar för denna enhet",
     "error_403": "403 Forbidden. Du har inte behörighet att se denna sida!",
-    "error_404": "We couldn't find the page you're looking for",
+    "error_404": "The page you're looking for could not be found.",
     "error_404_licence_key": "Licensnyckeln kan inte hittas.",
     "error_500": "Internt serverfel",
     "error_backup": "Backup failed!",

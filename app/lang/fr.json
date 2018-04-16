@@ -180,7 +180,7 @@
     "enocean_not_active": "L'application EnOcean n'est pas activée. Veuillez Installer\/Activer cette application.",
     "enocean_no_settings": "Il n'y a pas de configurations pour ce dispositif",
     "error_403": "403 Non authorisé. Vous n'avez pas les droits pour accèder à cette page!",
-    "error_404": "We couldn't find the page you're looking for",
+    "error_404": "The page you're looking for could not be found.",
     "error_404_licence_key": "Licence non trouvée.",
     "error_500": "Erreur interne du serveur",
     "error_backup": "Sauvegarde echouée!",

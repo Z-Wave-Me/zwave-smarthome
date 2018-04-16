@@ -180,7 +180,7 @@
     "enocean_not_active": "EnOcean模块未激活，请在软件->激活操作.",
     "enocean_no_settings": "该设备备没有配置选项",
     "error_403": "403 Forbidden. 你没有权限访问该页面!",
-    "error_404": "We couldn't find the page you're looking for",
+    "error_404": "The page you're looking for could not be found.",
     "error_404_licence_key": "License key not found.",
     "error_500": "内部服务器错误",
     "error_backup": "Backup failed!",
