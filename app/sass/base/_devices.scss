@@ -14,18 +14,58 @@ $inclusion-img-w: 96px;
 
 }
 
+.list-panel{
+  &.panel-devices{
+    > * {
+      vertical-align: middle;
+    }
+    figure{
+     img{
+       max-width: 48px;
+       max-height: 48px;
+       @include mediaQueries(min-small) {
+        max-width: 64px;
+        max-height: 64px;
+    }
+     }
+      
+    }
+    .body{
+      div:first-child{
+        margin-top: 0;
+        line-height: 48px;
+        @include mediaQueries(min-small) {
+          line-height: 64px;
+      }
+      }
+    }
+    .control{
+       @include mediaQueries(min-small) {
+          line-height: 64px;
+      }
+    }
+  }
+}
 
-.label_devices_description
+
+/* .label_devices_description
 {
   font-size:170%;
   color: #184a96;
 }
 
 .device-type-logo{
+  max-width: 48px;
+  max-height: 48px;
+  margin-right: $spacing;
+  @include mediaQueries(min-small) {
     max-width: 80px;
     max-height: 80px;
-    margin-right: 20px;
+    margin-right: $spacing-double;
 }
+   
+    
+} */
 
 .device-autodetect{
     margin: 0 0 $spacing-double 0;
