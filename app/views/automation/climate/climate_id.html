@@ -1,16 +1,13 @@
 <div ng-controller="ClimateIdController">
 	<h2>{{_t('climate')}}</h2>
 	<!-- <pre>{{climate.devices.byRo om | json}}</pre> -->
-	<!-- <fieldset>
-									<div id="schedule-test" class="schedule"></div>
-	</fieldset> -->
 	<form class="form form-page" ng-submit="storeInstance(climate.input,true)">
 		<!-- rooms -->
 		<fieldset>
 			<section class="accordion-wrap" ng-repeat="r in climate.rooms track by $index">
 				<!-- Title -->
 				<h2 class="accordion-toggle chevron">
-				<button type="button" aria-expanded="false" bb-accordion ng-click="renderSchedule('#schedule-'+{{r.id}})">
+				<button type="button" aria-expanded="false" bb-accordion ng-click="renderSchedule('#schedule-'+{{r.id}}, r.id)">
 				<span>
 					<img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
 				</span>
@@ -70,5 +67,8 @@
 		</button>
 	</fieldset>
 </form>
+<fieldset>
+	<div id="schedule-test" class="schedule"></div>
+</fieldset>
 </div>
 <div ng-include="'app/views/automation/climate/climate_id_temperatrue_modal.html'"></div>

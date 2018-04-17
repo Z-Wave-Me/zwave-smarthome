@@ -171,7 +171,7 @@ $schedule-bar-bg-color: rgb(135, 206, 235);
         }
         &.ghost {
             opacity: 0.1;
-            z-index: -1;
+            z-index: 100;
         }
         .remove {
             display: none;

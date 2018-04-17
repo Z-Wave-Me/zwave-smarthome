@@ -19497,7 +19497,7 @@ img.widget-promo-image {
 /* line 172, E:/GitHub/zwave-smarthome/app/sass/base/_schedule.scss */
 .schedule .sc_Bar.ghost {
   opacity: 0.1;
-  z-index: -1;
+  z-index: 100;
 }
 
 /* line 176, E:/GitHub/zwave-smarthome/app/sass/base/_schedule.scss */

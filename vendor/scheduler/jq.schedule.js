@@ -152,9 +152,11 @@
             $bar.data("sc_key", key);
 
             $bar.click(function(event) {
-                var $bar = $(event.target).closest(".sc_Bar");
-                var sc_key = $bar.data("sc_key");
-                setting.bar_Click.call(element, $bar, scheduleData[sc_key]);
+                if (!that.isResizing && !that.dragging && !that.clicking) {
+                    var $bar = $(event.target).closest(".sc_Bar");
+                    var sc_key = $bar.data("sc_key");
+                    setting.bar_Click.call(element, $bar, scheduleData[sc_key]);
+                }
             });
 
             $bar.bind("mouseup", function() {
@@ -404,8 +406,7 @@
                         html = "<span>" + timeStr + "</span>",
                         $time = jQuery(html),
                         $sc_main_box = $element.find(".sc_main_box");
-                    console.log("$element.data(\"scheduleId\")", $element.data("scheduleId"));
-                    console.log("$sc_main_box", $sc_main_box);
+                    console.log("mouseenter this", $(this));
                     $element.find(".tooltip").position({
                         my: "center bottom-10",
                         at: "center top",
@@ -448,7 +449,7 @@
                     endTime = null;
 
 
-                    $(".sc_Bar").css("z-index", -1000);
+                    $(".sc_Bar").css("z-index", 1);
                 } else {
                     that.clicking = false;
                     return true;
@@ -466,11 +467,12 @@
                     width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX);
 
                 var $ghost_bar_temp = $element.find(".ghost");
+                console.log("$ghost_bar_temp", $ghost_bar_temp);
                 if ($ghost_bar_temp.length > 0) {
                     $ghost_bar_temp.css({
                         left: left,
                         top: 0,
-                        width: width,
+                        width: width
                     });
                 } else {
                     $ghost_bar_temp = jQuery('<div class="sc_Bar ghost"></div>');
@@ -568,9 +570,8 @@
                     }
 
                     setting.append_on_click.call(element, timelineNum, startTime, endTime);
-                    $ghost_bar_temp.remove();
                 }
-
+                $ghost_bar_temp.remove();
                 that.clicking = false;
                 startTime = null;
                 endTime = null;

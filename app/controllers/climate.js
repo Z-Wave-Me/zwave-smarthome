@@ -109,31 +109,31 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
         timeLineBorder: 2, // border(top and bottom)
         rows: {
             '0': {
-                title: 'day_short_1',
+                title: 'day_short_0',
                 schedule: []
             },
             '1': {
-                title: 'day_short_2',
+                title: 'day_short_1',
                 schedule: []
             },
             '2': {
-                title: 'day_short_3',
+                title: 'day_short_2',
                 schedule: []
             },
             '3': {
-                title: 'day_short_4',
+                title: 'day_short_3',
                 schedule: []
             },
             '4': {
-                title: 'day_short_5',
+                title: 'day_short_4',
                 schedule: []
             },
             '5': {
-                title: 'day_short_6',
+                title: 'day_short_5',
                 schedule: []
             },
             '6': {
-                title: 'day_short_0',
+                title: 'day_short_6',
                 schedule: []
             }
         },
@@ -191,19 +191,50 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
         }
     };
     angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
-    $scope.schedules = [];
-    $scope.renderSchedule = function(id) {
-        if ($scope.schedules.indexOf(id) == -1) {
+    $scope.jQuery_schedules = [];
+
+    $scope.renderSchedule = function(scheduleId, roomId) {
+        if ($scope.jQuery_schedules.indexOf(scheduleId) == -1) {
+            // add instance data
+            var copy_scheduleOptions = {};
+            angular.copy($scope.scheduleOptions, copy_scheduleOptions);
+            var roomSettings = _.findWhere($scope.climate.input.params.roomSettings.roomTable, {
+                room: roomId
+            });
+
+            var schedule = _.findWhere($scope.climate.input.params.schedule.scheduleTable, {
+                rooms: roomId.toString()
+            });
+
+            if (roomSettings) {
+                console.log(roomSettings);
+            }
+
+            if (schedule) {
+                for (var d = 0; d <= 6; d++) {
+                    if (schedule[d] == true) {
+                        var sc = {
+                            start: schedule.stimes,
+                            end: schedule.etimes,
+                            text: "",
+                            data: {}
+                        }
+                        copy_scheduleOptions.rows[d].schedule.push(sc);
+                    }
+                };
+                //console.log(schedule);
+            }
+
+            // set weekday titles
             $timeout(function() {
-                angular.element(id).timeSchedule($scope.scheduleOptions);
+                angular.element(scheduleId).timeSchedule(copy_scheduleOptions);
                 var titles = angular.element(".title");
                 angular.forEach(titles, function(t) {
                     var title = angular.element(t).data('title');
                     angular.element(t).html($scope._t(title));
                 });
-
             }, 0);
-            $scope.schedules.push(id);
+            $scope.jQuery_schedules.push(scheduleId);
         }
     }
 
