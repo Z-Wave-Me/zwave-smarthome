@@ -16,7 +16,7 @@
       <div class="input-group">
           <input class="form-control" id="then_delay" type="number" ng-model="rule.input.params.advanced.reverseDelay">
       </div>
-      <bb-help-text trans="_t('Time in seconds when event starts after triggering event')"></bb-help-text>
+      <bb-help-text trans="_t('help_delay')"></bb-help-text>
   </div>
 <div class="list-panel" ng-repeat="d in rule.input.params.advanced.targetElements track by $index" ng-if="rule.else.deviceTypes.indexOf(d.deviceType) > -1">
     <!-- img -->
