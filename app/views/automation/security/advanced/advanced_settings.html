@@ -5,32 +5,32 @@
       <input type="checkbox" ng-model="security.input.params.times.aktive">
       <span class="slider"></span>
     </label>
-    <span class="switch-label">{{_t('Immediate activation of time schedule')}}</span>
-    <bb-help-text trans="_t('Start the time schedule as soon as the application is activated')"></bb-help-text>
+    <span class="switch-label">{{_t('security_immediate_activate_schedule')}}</span>
+    <bb-help-text trans="_t('help_security_immediate_activate_schedule')"></bb-help-text>
 </div>
 <!-- delay -->
 <div class="form-group form-inline">
-  <label>{{_t('Delay before arming')}}</label>
+  <label>{{_t('security_delay_before_arming')}}</label>
     <div class="input-group">
         <input class="form-control" type="number" ng-model="security.input.params.times.start">
     </div>
-    <bb-help-text trans="_t('Between 1 and 1800 seconds')"></bb-help-text>
+    <bb-help-text trans="_t('help_security_delay_before_arming')"></bb-help-text>
 </div>
 
 <!-- Interval -->
 <div class="form-group form-inline">
-  <label>{{_t('Interval of the alarm event')}}</label>
+  <label>{{_t('security_alarm_interval')}}</label>
     <div class="input-group">
         <input class="form-control" type="number" ng-model="security.input.params.times.interval">
     </div>
-    <bb-help-text trans="_t('Between 1 and 30 minutes')"></bb-help-text>
+    <bb-help-text trans="_t('help_security_alarm_interval')"></bb-help-text>
 </div>
 
 <!-- delay -->
 <div class="form-group form-inline">
-  <label>{{_t('Delay before the alarm event is triggered')}}</label>
+  <label>{{_t('security_delay_before_alarm')}}</label>
     <div class="input-group">
         <input class="form-control" type="number" ng-model="security.input.params.times.silent">
     </div>
-    <bb-help-text trans="_t('between 0 and 1800 seconds')"></bb-help-text>
+    <bb-help-text trans="_t('help_security_delay_before_alarm')"></bb-help-text>
 </div>
