@@ -143,14 +143,13 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
   // Copy original input values
   $scope.origInput = angular.copy($scope.dsk.input);
    /**
-   * Handles a pasted text into input
+   * Split string into 8 substrings and then fill DSK inputs
    */
-  $scope.onPaste = function (e) {
+  $scope.fillInput = function (e) {
     var txt = e.originalEvent.clipboardData.getData('text/plain');
     if(txt){
       angular.forEach(txt.split('-'),function(v,k){
-        $scope.dsk.input['dsk_' + (v+1)] = v;
-        console.log( $scope.dsk.input['dsk_' + (v+1)]);
+        $scope.dsk.input['dsk_' + (k+1)] = v.substring(0, 5);
       });
     }
    
@@ -158,7 +157,6 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
 
   /**
    * Check if SDK version match
-   * TODO: Unncoment when finished
    */
   $scope.checkSdkVersion = function () {
     dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
