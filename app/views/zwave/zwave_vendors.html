@@ -1,37 +1,30 @@
 <!-- Zwave device view -->
 <div ng-controller="ZwaveVendorController">
-    <bb-loader></bb-loader>
-    <!-- Autodetect  -->
-    <div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>
-    
-    <bb-alert alert="zwaveVendors.alert"></bb-alert>
-    <!-- Default view -->
-    <div class="clearfix" ng-if="zwaveVendors.view === 'default'">
-        <!-- Control  -->
-        <div ng-include="'app/views/zwave/zwave_vendors_ctrl.html'"></div>
-        <div class="vendor-entry clickable"
-             ng-click="setFilter({brandid: v.Name})"
-             ng-repeat="(k,v) in zwaveVendors.all| orderBy:'Name' track by $index"
-             ng-hide="!v.Name || !zwaveVendors.cnt[v.Name]"
-             ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1">
-            <a class="vendor-list" title="{{v.Name}}">
-                <p class="vendor-image" ng-show="v.Image">
-                    <img class="vendor-image" alt="altimg | {{v.Name|cutText:true:20}}" ng-src="{{cfg.img.zwavevendors + v.Image}}" err-src="{{cfg.online_vendor_icon_url + v.Image}}" />
+  <bb-loader></bb-loader>
+  <!-- Autodetect  -->
+  <div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>
 
-                </p>
-                <p class="vendor-image" title="{{v.Name|cutText:true:20}}" ng-hide="v.Image">
-                    <span>{{v.Name|cutText:true:20}}</span>
-                </p>
-            </a>
-        </div>
-    </div>
-    <!-- Error view -->
-    <div class="alert alert-warning" ng-if="zwaveVendors.view === 'update'">
-        <i class="fa fa-database"></i> {{_t('doyou_want_update_db')}}
-        <button class="btn btn-success" ng-click="updateVendorDatabase()">{{_t('yes')}}</button>  
-        <button class="btn btn-default" ng-click="disableDatabaseUpdate()">{{_t('no')}}</button>
-    </div>
-    <!-- Logo  -->
-    <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
-</div> <!-- /ng-controller --> 
+  <bb-alert alert="zwaveVendors.alert"></bb-alert>
+  <!-- Default view -->
+  <div ng-include="'app/views/zwave/zwave_vendors_ctrl.html'" ng-if="zwaveVendors.view === 'default'"></div>
 
+  <div class="vendors flexgallery" ng-if="zwaveVendors.view === 'default'">
+    <div ng-click="setFilter({brandid: v.Name})" ng-repeat="(k,v) in zwaveVendors.all| orderBy:'Name' track by $index" ng-hide="!v.Name || !zwaveVendors.cnt[v.Name]"
+      ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1">
+      <figure>
+          <img alt="{{v.Name|cutText:true:20}}" ng-src="{{cfg.img.zwavevendors + v.Image}}" err-src="{{cfg.online_vendor_icon_url + v.Image}}"  ng-show="v.Image" />
+          <span ng-hide="v.Image">{{v.Name|cutText:true:20}}</span>
+      </figure>
+    </div>
+  </div>
+  
+  <!-- Error view -->
+  <div class="alert alert-warning" ng-if="zwaveVendors.view === 'update'">
+    <i class="fa fa-database"></i> {{_t('doyou_want_update_db')}}
+    <button class="btn btn-success" ng-click="updateVendorDatabase()">{{_t('yes')}}</button>
+    <button class="btn btn-default" ng-click="disableDatabaseUpdate()">{{_t('no')}}</button>
+  </div>
+  <!-- Logo  -->
+  <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
+</div>
+<!-- /ng-controller -->

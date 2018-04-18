@@ -17,10 +17,10 @@
         <!-- dots -->
         <div class="l-hide control">
           <!-- expand/collapse -->
-          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('wifi_' + $index, $event)"></button>
+          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('camera_' + $index, $event)"></button>
         </div>
         <!-- control -->
-        <div class="control" ng-class="naviExpanded['wifi_' + $index] ? 'expand-true': 'expand-false'">
+        <div class="control" ng-class="naviExpanded['camera_' + $index] ? 'expand-true': 'expand-false'">
             <div class="btn-group">
                 <a href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
                     <i class="fa fa-cog"></i>

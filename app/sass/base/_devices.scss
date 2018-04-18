@@ -16,9 +16,6 @@ $inclusion-img-w: 96px;
 
 .list-panel{
   &.panel-devices{
-    > * {
-      vertical-align: middle;
-    }
     figure{
      img{
        max-width: 48px;
@@ -42,6 +39,46 @@ $inclusion-img-w: 96px;
     .control{
        @include mediaQueries(min-small) {
           line-height: 64px;
+      }
+    }
+  }
+}
+
+/* Vendors logo
+-------------------------------------------------- */
+
+.vendors {
+  &.flexgallery {
+    >* {
+      cursor: pointer;
+      padding: $spacing-half;
+      @include mediaQueries(min-esmall) {
+        flex-basis: 33.3333%;
+        
+      }
+      @include mediaQueries(min-small) {
+        flex-basis: 25%;
+        
+      }
+      @include mediaQueries(min-large) {
+        flex-basis: 20%;
+        
+      }
+      figure {
+        height: 120px;
+        border: 0;
+        background-color: #fff;
+        line-height: 110px;
+        @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+        @include mediaQueries(min-large) {
+          padding: $spacing-half;
+         
+        }
+        img {
+          max-width: 100px;
+          max-height:100px;
+          margin-bottom: 0;
+        }
       }
     }
   }
