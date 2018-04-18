@@ -32,7 +32,7 @@
     <!--target  -->
     <div class="form-group form-inline">
       <select class="form-control" ng-model="rule.options.notification.default.target">
-        <option value="">--- {{_t('select_target')}} ---</option>
+        <option value="">--- {{_t('notification_trigger')}} ---</option>
         <option value="{{user.email}}" ng-if="rule.target.assignedDevices.indexOf(user.email) === -1">{{user.email}}</option>
         <option value="{{e.deviceId}}" ng-if="e.probeType == 'notification_push' && rule.target.assignedDevices.indexOf(e.deviceId) === -1"
           ng-repeat="e in rule.namespaces track by $index" ng-selected="e.deviceId == model.target">
