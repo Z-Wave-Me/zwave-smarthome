@@ -17,6 +17,10 @@ $blank-img-w: 64px;
       font-size: $blank-img-w;
     }
   }
+ .blank-info{
+    font-size: 80%;
+    font-style: italic;
+  }
   &.is-info {
     figure {
       .fa {
