@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="BaseController">
     <head>
         <meta charset="utf-8">
@@ -10,8 +10,7 @@
         <!-- build:remove -->
         <!-- App css -->
         <!-- <link media="screen" type="text/css" rel="stylesheet" ng-href="{{css}}">-->
-         <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
-       
+        <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
         <!-- App config -->
         <script src="app/config.js"></script>
         <script src="app/icons.js"></script>
@@ -26,13 +25,14 @@
         <!-- Vendors js -->
         <script src="vendor/handlebars/handlebars-v3.0.3.min.js"></script>
         <script src="vendor/moment/moment-with-locales.min.js"></script>
-        <script src="vendor/underscore/underscore-1.8.3/underscore.js"></script> 
+        <script src="vendor/underscore/underscore-1.8.3/underscore.js"></script>
         <script src="vendor/chartjs/Chart.js"></script>
         <script src="vendor/knob/jquery.knob.js"></script>
         <script src="vendor/alertify/alertify.min.js"></script>
         <script src="vendor/tweenmax/TweenMax.js"></script>
         <script src="vendor/qrcode/qrious.min.js"></script>
         <script src="vendor/qrcode_reader/qr_packed.js"></script>
+        <script src="vendor/scheduler/jq.schedule.js"></script>
         <!-- Angular js -->
         <script src="vendor/angular/angular-1.2.28/angular.js"></script>
         <script src="vendor/upload/angular-file-upload.js"></script>
@@ -40,12 +40,11 @@
         <script src="vendor/angular/angular-1.2.28/angular-cookies.js"></script>
         <script src="vendor/angular/angular-1.2.28/angular-touch.js"></script>
         <script src="vendor/angular/angular-1.2.28/angular-animate.js"></script>
-       <!-- <script src="vendor/dragdrop/angular-drag-and-drop-lists.js"></script>-->
+        <!-- <script src="vendor/dragdrop/angular-drag-and-drop-lists.js"></script>-->
         <script src="vendor/dragdrop/angular-sortable-view.js"></script>
         <!-- Bootstrap js -->
         <script src="vendor/bootstrap/bootstrap.js"></script>
         <script src="vendor/bootstrap/plugins/bootstrap-datetimepicker.js"></script>
-
         <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
         <!-- ExpertUI configuration js -->
         <script src="vendor/zwave/pyzw.js"></script>
@@ -67,11 +66,11 @@
         <script src="app/directives/tc-angular-chartjs.js"></script>
         <script src="app/directives/angular-slider.js"></script>
         <script src="app/directives/angular-long-press.min.js"></script>
-        <script src="vendor/alertify/ngAlertify.js"></script> 
+        <script src="vendor/alertify/ngAlertify.js"></script>
         <script src="app/filters/filters.js"></script>
         <script src="app/jquery/postrender.js"></script>
         <script src="app/controllers/base.js"></script>
-        <script src="app/controllers/jamesbox.js"></script> 
+        <script src="app/controllers/jamesbox.js"></script>
         <script src="app/controllers/controllers.js"></script>
         <script src="app/controllers/element.js"></script>
         <script src="app/controllers/element-widget.js"></script>
@@ -83,7 +82,8 @@
         <script src="app/controllers/automation-leakage.js"></script>
         <script src="app/controllers/automation-fireprotection.js"></script>
         <script src="app/controllers/automation-security.js"></script>
-        <script src="app/controllers/app.js"></script>
+         <script src="app/controllers/climate.js"></script>
+	<script src="app/controllers/app.js"></script>
         <script src="app/controllers/app-local.js"></script>
         <script src="app/controllers/app-online.js"></script>
         <script src="app/controllers/app-instance.js"></script>
@@ -160,24 +160,23 @@
                         <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
                             <i class="fa fa-comment"></i>
                             <span class="main-nav-text">{{_t('news')}} </span><small class="s-hide">{{rss.unread}}</small>
-
                         </a>
                         <!-- time -->
-                        <span class="divider-vertical"></span> 
-                        &nbsp;<span class="timestamp clickable" 
-                                ng-click="reloadData()" 
-                                ng-if="cfg.route.time.string">
-                            <i class="fa fa-home" 
-                               ng-if="connection.local" 
-                               ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            <i class="fa fa-globe" 
-                               ng-if="connection.remote"
-                               ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                                <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string}}</span>
+                        <span class="divider-vertical"></span>
+                        &nbsp;<span class="timestamp clickable"
+                            ng-click="reloadData()"
+                            ng-if="cfg.route.time.string">
+                            <i class="fa fa-home"
+                            ng-if="connection.local"
+                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                            <i class="fa fa-globe"
+                            ng-if="connection.remote"
+                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string}}</span>
                         </span>
                     </div>
                     <div id="navigation_right">
-                        <span class="divider-vertical"></span> 
+                        <span class="divider-vertical"></span>
                         <a id="navi_settings" href="" title="{{_t('lb_configuration')}}" ng-click="expandNavi('mainNav', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''"><i class="fa fa-bars"></i></a>
                     </div>
                 </div><!-- /#navigation --> 

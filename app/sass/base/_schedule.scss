@@ -1,0 +1,258 @@
+/* Schedule
+-------------------------------------------------- */
+/* Variables */
+$schedule-heading-font-size: 120%;
+$schedule-color: $app-a-color;
+$schedule-border-color: $app-border-color;
+$accordion-heading-color: $app-heading-color;
+
+$schedule-spacing: $spacing;
+$schedule-bar-bg-color: rgb(135, 206, 235);
+
+.schedule {
+    box-sizing: content-box;
+    .clear {
+        clear: both;
+        height: 0;
+        line-height: 0;
+    }
+    .sc_wrapper {
+        .sc_main_box {
+            float: left;
+            overflow-x: auto;
+            overflow-y: auto;
+            max-height: 500px;
+            position: relative;
+            .sc_main_scroll {
+                .sc_main {
+                	position: relative;
+                    .timeline {
+                        border-bottom: solid 2px #DDD;
+                        position: relative;
+                        .tl {
+                            float: left;
+                            height: 100%;
+                            border-right: solid 1px transparent;
+                            box-sizing: content-box;
+                            cursor: pointer;
+                            z-index: 5;
+                            &:hover {
+                                background: #F0F0F0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .sc_data {
+            max-height: 500px;
+            overflow: hidden;
+            float: left;
+            font-weight: bold;
+            color: #333333;
+            background: #E9E9E9;
+            position: relative;
+            .sc_data_scroll {
+                position: absolute;
+                left: 0;
+                top: 0;
+                .timeline {
+                    overflow: hidden;
+                    border-bottom: solid 2px #DDD;
+                    .tb {
+                        border-bottom: solid 2px #DDD;
+                    }
+                    span {
+                        padding: 10px;
+                        display: block;
+                        &.title {
+                            float: left;
+                            padding: 10px 0 10px 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .sc_menu {
+        width: 100%;
+        height: 26px;
+        .sc_header_cell {
+            float: left;
+            color: #333333;
+            padding: 4px 0;
+            line-height: 18px;
+            display: block;
+            box-sizing: content-box;
+            font-weight: bold;
+            background: #E9E9E9;
+            position: relative;
+        }
+        .sc_header {
+            float: left;
+            height: 26px;
+            position: relative;
+            overflow: hidden;
+            .sc_header_scroll {
+                position: absolute;
+                left: 0;
+                top: 0;
+                .sc_time {
+                    text-align: center;
+                    border-left: solid 1px #DDD;
+                    background: #E9E9E9;
+                    color: #333333;
+                    padding: 4px 0;
+                    line-height: 18px;
+                    display: block;
+                    box-sizing: content-box;
+                    float: left;
+                }
+            }
+        }
+    }
+    .sc_Bar {
+        position: absolute;
+        color: #FFF;
+        background-color: $schedule-bar-bg-color;
+        cursor: pointer;
+        z-index: 10;
+        .sc_Bar_inner {
+            display: flex;
+            height: 100%;
+            padding: 0 15px;
+            .head {
+                min-width: 0;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                font-size: 12px;
+                padding: 0 5px 0 0;
+                &:before {
+                    content: "";
+                    display: inline-block;
+                    vertical-align: middle;
+                    height: 100%;
+                }
+            }
+            .text {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                font-weight: bold;
+                min-width: 0;
+                height: 100%;
+                &:before {
+                    content: "";
+                    display: inline-block;
+                    vertical-align: middle;
+                    height: 100%;
+                }
+            }
+        }
+        .ui-draggable-dragging,
+        .ui-resizeable {
+            z-index: 20;
+        }
+        .ui-resizable-handle {
+            width: 10px;
+            background: #000;
+            cursor: col-resize;
+            opacity: 0.1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            &.ui-resizable-w {
+                left: 0;
+            }
+            &.ui-resizable-e {
+                right: 0;
+            }
+        }
+        &.ghost {
+            opacity: 0.1;
+            z-index: 100;
+        }
+        .remove {
+            display: none;
+            cursor: pointer;
+            float: right;
+            margin-right: -30px;
+            width: 25px;
+            background: red;
+            border-radius: 20%;
+            opacity: 0.5;
+            height: 100%;
+            transform: translateY(-100%);
+            .fa {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            &:before {
+                position: absolute;
+                content: "";
+                left: -5px;
+                width: 10px;
+                height: 25px;
+            }
+            &:hover {
+                opacity: 1;
+            }
+        }
+        &:hover {
+            .remove {
+                display: block;
+            }
+        }
+    }
+    .tooltip {
+        display: none;
+        pointer-events: none;
+        width: 60px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #FFFFFF;
+        border: 1px solid #cccccc;
+        color: #0d0d0d;
+        padding: 12px;
+        z-index: 100;
+        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    }
+    .top {
+        &.tooltip:after {
+            content: " ";
+            position: absolute;
+            margin-left: -10px;
+            border-width: 10px;
+            border-style: solid;
+            bottom: 100%;
+            left: 50%;
+            border-color: transparent transparent black transparent;
+        }
+    }
+    .bottom {
+        &.tooltip:after {
+            content: " ";
+            position: absolute;
+            margin-left: -10px;
+            border-width: 10px;
+            border-style: solid;
+            top: 100%;
+            left: 50%;
+            border-color: black transparent transparent  transparent;
+        }
+    }
+    /*.confirm {
+        position: absolute;
+        padding: 10px;
+        background-color: yellow;
+        left: 0;
+        top: 0;
+        z-index: 30000;
+    }*/
+}
