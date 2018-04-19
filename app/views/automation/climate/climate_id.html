@@ -1,7 +1,7 @@
 <div ng-controller="ClimateIdController">
 	<h2>{{_t('climate')}}</h2>
 	<!-- <pre>{{climate.devices.byRo om | json}}</pre> -->
-	<form class="form form-page" ng-submit="storeInstance(climate.input,true)">
+	<form class="form form-page" ng-submit_="storeInstance(climate.input,true)">
 		<!-- rooms -->
 		<fieldset>
 			<section class="accordion-wrap" ng-repeat="r in climate.rooms track by $index">
@@ -22,7 +22,7 @@
 								<label>Temp. sensor</label>
 								<select class="form-control">
 									<option value="">---</option>
-									<option value="{{d.deviceId}}" ng-repeat="d in climate.devices.byRoom[r.id] track by $index" ng-selected_="">
+									<option value="{{d.deviceId}}" ng-repeat="d in climate.devices.byRoom[r.id] track by $index"  ng-selected_="">
 									{{d.deviceName}}</option>
 								</select>
 							</div>
@@ -31,7 +31,7 @@
 								<label>Comfort temp</label>
 								<select class="form-control">
 									<option value="">---</option>
-									<option value="{{ct}}" ng-repeat="ct in climate.cfg.comfort.temp track by $index" ng-selected_="">
+									<option value="{{ct}}" ng-repeat="ct in climate.cfg.comfort.temp track by $index" ng-modal="climate.cfg.roomSettings[r.id].comfort" ng-selected="ct == climate.cfg.roomSettings[r.id].comfort">
 									{{ct}}</option>
 								</select>
 							</div>
@@ -40,7 +40,7 @@
 								<label>Energy save temp</label>
 								<select class="form-control">
 									<option value="">---</option>
-									<option value="{{est}}" ng-repeat="est in climate.cfg.energySave.temp track by $index" ng-selected_="">
+									<option value="{{est}}" ng-repeat="est in climate.cfg.energySave.temp track by $index" ng-modal="climate.cfg.roomSettings[r.id].energySave" ng-selected="est == climate.cfg.roomSettings[r.id].energySave">
 									{{est}}</option>
 								</select>
 							</div>
@@ -67,8 +67,8 @@
 		</button>
 	</fieldset>
 </form>
-<fieldset>
-	<div id="schedule-test" class="schedule"></div>
-</fieldset>
-</div>
+<!-- <fieldset>
+							<div id="schedule-test" class="schedule"></div>
+</fieldset> -->
 <div ng-include="'app/views/automation/climate/climate_id_temperatrue_modal.html'"></div>
+</div>

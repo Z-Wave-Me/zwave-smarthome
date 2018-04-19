@@ -155,7 +155,7 @@
                 if (!that.isResizing && !that.dragging && !that.clicking) {
                     var $bar = $(event.target).closest(".sc_Bar");
                     var sc_key = $bar.data("sc_key");
-                    setting.bar_Click.call(element, $bar, scheduleData[sc_key]);
+                    setting.bar_Click.call(element, $bar, scheduleData[sc_key], sc_key);
                 }
             });
 
@@ -386,7 +386,7 @@
             var html;
 
             html = '';
-            html += '<div class="timeline"><span class="title" data-title="' + title + '">' + title + '</span></div>';
+            html += '<div class="timeline"><span class="title" data-title="' + title + '"></span></div>';
             var $data = jQuery(html);
             // event call
             if (setting.init_data) {
@@ -398,26 +398,26 @@
             html += '<div class="timeline"></div>';
             var $timeline = jQuery(html);
             for (var t = tableStartTime; t < tableEndTime; t += setting.widthTime) {
-                var $tl = jQuery('<div class="tl"></div>');
-
-
+                var $tl = jQuery('<div class="tl" title=""></div>');
                 $tl.bind("mouseenter", function(event) {
                     var timeStr = element.formatTime(tableStartTime + (setting.widthTime * $(this).index())),
                         html = "<span>" + timeStr + "</span>",
                         $time = jQuery(html),
-                        $sc_main_box = $element.find(".sc_main_box");
-                    console.log("mouseenter this", $(this));
+                        $sc_main_box = $element.find(".sc_main_box"),
+                        $target = $(event.target);
+
                     $element.find(".tooltip").position({
                         my: "center bottom-10",
                         at: "center top",
-                        of: $(this),
+                        of: $target,
                         collison: "flip",
                         within: $sc_main_box,
                         using: function(position, feedback) {
-                            console.log("position", position);
                             $(this).removeClass("bottom center top");
-                            console.log("$(this)", $(this));
-                            $(this).css(position);
+                            $(this).css({
+                                left: position.left - $element.offset().left + $element.position().left,
+                                top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
+                            });
                             $(this).addClass(feedback.vertical).addClass(feedback.horizontal)
                         }
                     }).html($time).show();
@@ -433,7 +433,6 @@
                 $tl.data("timeline", timeline);
                 $timeline.append($tl);
             }
-
 
             var startTime = null;
             var endTime = null;

@@ -14778,14 +14778,17 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 /* line 229, E:/GitHub/zwave-smarthome/app/sass/base/_loader.scss */
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -19547,6 +19550,8 @@ img.widget-promo-image {
   pointer-events: none;
   width: 60px;
   position: absolute;
+  left: 0;
+  top: 0;
   background-color: #FFFFFF;
   border: 1px solid #cccccc;
   color: #0d0d0d;
@@ -19557,7 +19562,7 @@ img.widget-promo-image {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 
-/* line 225, E:/GitHub/zwave-smarthome/app/sass/base/_schedule.scss */
+/* line 227, E:/GitHub/zwave-smarthome/app/sass/base/_schedule.scss */
 .schedule .top.tooltip:after {
   content: " ";
   position: absolute;
@@ -19569,7 +19574,7 @@ img.widget-promo-image {
   border-color: transparent transparent black transparent;
 }
 
-/* line 237, E:/GitHub/zwave-smarthome/app/sass/base/_schedule.scss */
+/* line 239, E:/GitHub/zwave-smarthome/app/sass/base/_schedule.scss */
 .schedule .bottom.tooltip:after {
   content: " ";
   position: absolute;

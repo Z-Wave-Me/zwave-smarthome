@@ -3,52 +3,50 @@
 	<div class="appmodal-in">
 		<div class="appmodal-header">
 			<span class="appmodal-close" ng-click="handleModal('temperatureModal', $event)"><i class="fa fa-times"></i></span>
-			<h3>{{widgetSwitchMultilevel.find.metrics.title}}</h3>
+			<h3>{{climate.tempModal.title}}</h3>
 		</div>
 		<div class="appmodal-body text-center">
-			<bb-alert alert="widgetSwitchMultilevel.alert"></bb-alert>
 			<div class="app-row app-row-knob clearfix">
 				<div class="knob-col knob-ctrl">
-					<!--<myknob knob-data="v.level" knob-options="knobopt"></myknob> -->
 					<input
 					type="text"
-					value="{{widgetSwitchMultilevel.find.metrics.level|getMaxLevel:widgetSwitchMultilevel.find.minMax.max}}"
+					value="{{climate.tempModal.temp.value}}"
 					class="dial widget-level-knob"
 					data-width="160"
 					data-height="160"
-					knob-step="widgetSwitchMultilevel.find.minMax.step"
-					knob-min="widgetSwitchMultilevel.find.minMax.min"
-					knob-max="widgetSwitchMultilevel.find.minMax.max"
-					knob-id="widgetSwitchMultilevel.find.id"
-					knob-data="widgetSwitchMultilevel.find.metrics.level"
+					knob-step="climate.tempModal.temp.step"
+					knob-min="climate.tempModal.temp.min"
+					knob-max="climate.tempModal.temp.max"
+					knob-id="climate.tempModal.scheduleId"
+					knob-data="climate.tempModal.temp.value"
 					knob-options="knobopt"
-					ng-model="widgetSwitchMultilevel.find.metrics.level" myknob />
+					ng-model="climate.tempModal.temp.value" myknob />
 				</div>
 				<div class="knob-col knob-btn">
 					<p>
 						<button class="btn btn-primary"
-						ng-click="setExactCmd(widgetSwitchMultilevel.find, '+')"
+						ng-click="setTemp(climate.tempModal.temp, '+')"
 						><i class="fa fa-angle-up"></i>
 						</button>&nbsp;
 						<button class="btn btn-info"
-						ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.max)"
+						ng-click="setTemp(climate.tempModal.temp, climate.tempModal.temp.max)"
 						><i class="fa fa-angle-double-up"></i>
 						</button>
 					</p>
 					<p>
 						<button class="btn btn-primary"
-						ng-click="setExactCmd(widgetSwitchMultilevel.find, '-')"
+						ng-click="setTemp(climate.tempModal.temp, '-')"
 						><i class="fa fa-angle-down"></i>
 						</button>&nbsp;
 						<button class="btn btn-info"
-						ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.min)"
+						ng-click="setTemp(climate.tempModal.temp, climate.tempModal.temp.min)"
 						>
 						<i class="fa fa-angle-double-down"></i>
 						</button>
 					</p>
 					<p>
 						<button class="btn btn-info"
-						ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.max)"
+						ng-click="setTemp(climate.tempModal.temp, climate.tempModal.temp.max)"
 						ng-bind="_t('lb_full')">
 						</button>
 					</p>
