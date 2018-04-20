@@ -11,6 +11,11 @@
     z-index: $zindex-header;
   } //margin-bottom: $spacing-double;
   color: lighten($app-color-primary, 5%);
+
+  @include mediaQueries(min-usmall) {
+    font-size: 117%;  
+  }
+  
   font-size: 120%;
   .container {
     padding: 0;

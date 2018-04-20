@@ -67,9 +67,9 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
                                 "etime": "12:30",
                                 "temp": 23.5
                             }, {
-                                "stime": "05:00",
-                                "etime": "7:30",
-                                "temp": 23.5
+                                "stime": "12:30",
+                                "etime": "19:30",
+                                "temp": 25.5
                             }],
                             1: [{ // MO 
                                 "stime": "08:00",
@@ -269,15 +269,14 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
         }
     };
     angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
-    $scope.jQuery_schedules = [];
+    $scope.jQuery_schedules = {};
 
     $scope.renderSchedule = function(scheduleId, roomId) {
-        if ($scope.jQuery_schedules.indexOf(scheduleId) == -1) {
+        if (!$scope.jQuery_schedules[scheduleId]) {
             // add instance data
             var scheduleOptions_copy = {};
             angular.copy($scope.scheduleOptions, scheduleOptions_copy);
             var roomSetting = $scope.climate.input.params.roomSettings[roomId];
-            console.log("roomSetting", roomSetting);
 
             if (roomSetting) {
                 if (roomSetting.schedule) {
@@ -302,44 +301,38 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
 
             // set weekday titles
             $timeout(function() {
-                angular.element(scheduleId).timeSchedule(scheduleOptions_copy);
+                var schedule = angular.element(scheduleId).timeSchedule(scheduleOptions_copy);
                 var titles = angular.element(".title");
                 angular.forEach(titles, function(t) {
                     var title = angular.element(t).data('title');
                     angular.element(t).html($scope._t(title));
                 });
+                $scope.jQuery_schedules[scheduleId] = schedule;
             }, 0);
-            $scope.jQuery_schedules.push(scheduleId);
         }
     }
 
     /**
      * watch modalArr to handle close temperatureModal
      */
-    $scope.$watch("modalArr", function(newVal, oldVal) {
+    $scope.$watch("modalArr", function(newVal) {
         if (newVal.hasOwnProperty("temperatureModal") && !newVal.temperatureModal) {
             console.log("modal close");
             console.log($scope.climate.tempModal);
             var arr = $scope.climate.tempModal.scheduleId.split("-"),
                 roomId = arr[1];
             if ($scope.climate.input.params.roomSettings[roomId]) {
-
-                var scIndex = _.findIndex($scope.climate.input.params.roomSettings[roomId].schedule[$scope.climate.tempModal.timeline], {
-                    stime: formatTime($scope.climate.tempModal.stime),
-                    etime: formatTime($scope.climate.tempModal.etime)
-                });
+                var jq_schedule = $scope.jQuery_schedules[$scope.climate.tempModal.scheduleId],
+                    scIndex = _.findIndex($scope.climate.input.params.roomSettings[roomId].schedule[$scope.climate.tempModal.timeline], {
+                        stime: jq_schedule.formatTime($scope.climate.tempModal.stime),
+                        etime: jq_schedule.formatTime($scope.climate.tempModal.etime)
+                    });
+                console.log("jq_schedule", jq_schedule);
                 $scope.climate.input.params.roomSettings[roomId].schedule[$scope.climate.tempModal.timeline][scIndex] = $scope.climate.tempModal.temp;
             }
 
         }
     }, true);
-
-    function formatTime(min) {
-        var h = "" + (min / 36000 | 0) + (min / 3600 % 10 | 0);
-        var i = "" + (min % 3600 / 600 | 0) + (min % 3600 / 60 % 10 | 0);
-        var string = h + ":" + i;
-        return string;
-    }
 
     $scope.init = function() {
         $scope.climate.cfg.energySave.temp = temperatureArray($scope.climate.cfg.energySave);
