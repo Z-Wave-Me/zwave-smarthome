@@ -7,7 +7,7 @@
  * The controller that renders a list of the wifi plugs.
  * @class WifiPlugAddController
  */
-myAppController.controller('WifiPlugAddController', function ($scope, dataFactory, dataService, _) {
+myAppController.controller('WifiPlugAddController', function ($scope, dataFactory, dataService, cfg,_) {
     $scope.wifiplugDevices = [];
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
@@ -34,7 +34,8 @@ myAppController.controller('WifiPlugAddController', function ($scope, dataFactor
                 }
             });
             if( _.size($scope.wifiplugDevices) < 1){
-                    alertify.alertWarning($scope._t('no_wifiplugs')); 
+                    //alertify.alertWarning($scope._t('no_wifiplugs')); 
+                    angular.extend(cfg.route.fatalError, {message: $scope._t('no_wifiplugs')});
                 }
         }, function (error) {});
     };
@@ -45,7 +46,7 @@ myAppController.controller('WifiPlugAddController', function ($scope, dataFactor
  * The controller that handles wifi plugs manage actions .
  * @class WifiPlugManageController
  */
-myAppController.controller('WifiPlugManageController', function ($scope, $q, dataFactory, dataService, myCache, _) {
+myAppController.controller('WifiPlugManageController', function ($scope, $q, dataFactory, dataService, myCache, cfg,_) {
     $scope.instances = [];
     $scope.modules = {
         mediaUrl: $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/',
@@ -83,7 +84,8 @@ myAppController.controller('WifiPlugManageController', function ($scope, $q, dat
             if (instances.state === 'fulfilled') {
                 setInstances(instances.value.data.data);
                 if( _.size($scope.instances) < 1){
-                    alertify.alertWarning($scope._t('no_wifiplugs')); 
+                    //alertify.alertWarning($scope._t('no_wifiplugs')); 
+                    angular.extend(cfg.route.fatalError, {message: $scope._t('no_wifiplugs')});
                 }
             }
         });

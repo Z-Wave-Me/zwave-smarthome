@@ -12,9 +12,9 @@ var config_data = {
     //Application name
     'app_name': 'SmartHome UI',
     // Application version
-    'app_version': '1.8.0-RC-42',
+    'app_version': '1.8.0-RC-52',
     // Application (DIST) built date
-    'app_built': '16-03-2018 14:30:16',
+    'app_built': '23-04-2018 14:32:38',
     // Application ID
     'app_id': 'SmartHomeUI',
     // Server base url
@@ -430,6 +430,17 @@ var config_data = {
         ]
       }
     },
+    /* 'automations': ['Rules', 'Scenes', 'Schedules','LeakageProtection','FireProtection','SecurityModule'], */
+    'automations': [
+      "Climate",
+      "FireNotification",
+      "LeakageNotification",
+      "Rules",
+      "Scenes",
+      "Schedules",
+      "Security"
+    ],
+    
     // Order by
     orderby: {
       blacklist: ['order_dashboard', 'order_rooms'], //Do not display in the orderby list in the view
@@ -501,8 +512,6 @@ var config_data = {
     'page_results': 12,
     // Results per events page
     'page_results_events': 50,
-    // Apps with custom UI (app will be hidden in Active APPs)
-    'custom_apps': ['Rules', 'Scenes', 'Schedules'],
     // Scroll offset (px) for bind-class-on-scroll directive
     'scroll_offset': 80,
     // ---------------------------------- Custom config for specifics app_type ---------------------------------- //

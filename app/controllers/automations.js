@@ -121,8 +121,6 @@ myAppController.controller('AutomationsController', function ($scope, $q, $timeo
                 return item;
             }
           }).value();
-          console.log($scope.automations.modules);
-          console.log($scope.automations.instances);
     }
 
     function setInstances(data) {

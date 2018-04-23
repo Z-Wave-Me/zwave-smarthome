@@ -34,7 +34,8 @@ myAppController.controller('CameraAddController', function ($scope, dataFactory,
                 }
             });
             if( _.size($scope.ipcameraDevices) < 1){
-                    alertify.alertWarning($scope._t('no_cameras')); 
+                   // alertify.alertWarning($scope._t('no_cameras')); 
+                   angular.extend(cfg.route.fatalError, {message: $scope._t('no_cameras')});
                 }
         }, function (error) {});
     };
@@ -45,7 +46,7 @@ myAppController.controller('CameraAddController', function ($scope, dataFactory,
  * The controller that handles camera manage actions .
  * @class CameraManageController
  */
-myAppController.controller('CameraManageController', function ($scope, $q, dataFactory, dataService, myCache, _) {
+myAppController.controller('CameraManageController', function ($scope, $q, dataFactory, dataService, myCache,cfg, _) {
     $scope.instances = [];
     $scope.modules = {
         mediaUrl: $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/',
@@ -71,7 +72,8 @@ myAppController.controller('CameraManageController', function ($scope, $q, dataF
             // Error message
             if (instances.state === 'rejected') {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                //alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.fatalError, {message: $scope._t('error_load_data')});
                 $scope.rooms.show = false;
                 return;
             }
@@ -83,7 +85,8 @@ myAppController.controller('CameraManageController', function ($scope, $q, dataF
             if (instances.state === 'fulfilled') {
                 setInstances(instances.value.data.data);
                 if( _.size($scope.instances) < 1){
-                    alertify.alertWarning($scope._t('no_cameras')); 
+                    //alertify.alertWarning($scope._t('no_cameras')); 
+                    angular.extend(cfg.route.fatalError, {message: $scope._t('no_cameras')});
                 }
             }
         });

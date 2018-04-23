@@ -31,75 +31,6 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
     });
   };
   $scope.loadSecurityModule();
-  /**
-   * TODO: deprecated
-   * Load instances
-   * @returns {undefined}
-   */
-  /*  $scope.loadInstances = function () {
-     dataFactory.getApi('instances', null, true).then(function (response) {
-       $scope.security.all = _.chain(response.data.data).flatten().where({
-         moduleId: $scope.security.moduleId
-       }).value();
-       if (!_.size($scope.security.all)) {
-         $scope.security.state = 'blank';
-         return;
-       }
-       $scope.security.state = 'success';
-     }, function (error) {
-       alertify.alertError($scope._t('error_load_data'));
-     });
-   }; */
-
-  // $scope.loadInstances();
-
-  /**
-   * Activate/Deactivate instance
-   * @param {object} input 
-   * @param {boolean} activeStatus 
-   */
-  /* $scope.activateInstance = function (input, state) {
-    input.active = state;
-    if (!input.id) {
-      return;
-    }
-    dataFactory.putApi('instances', input.id, input).then(function (response) {
-
-    }, function (error) {
-      alertify.alertError($scope._t('error_update_data'));
-    });
-  }; */
-
-
-  /**
-   * Clone 
-   * @param {object} input
-   * @param {string} redirect
-   * @returns {undefined}
-   */
-  /* $scope.cloneInstance = function (input, redirect) {
-    input.id = 0;
-    input.title = input.title + ' - copy';
-    dataFactory.postApi('instances', input).then(function (response) {
-      $location.path($location.path() + '/' + response.data.data.id);
-    }, function (error) {
-      alertify.alertError($scope._t('error_update_data'));
-    });
-  }; */
-
-  /**
-   * Delete
-   */
-  /*  $scope.deleteInstance = function (input, message) {
-     alertify.confirm(message, function () {
-       dataFactory.deleteApi('instances', input.id).then(function (response) {
-         $scope.reloadData();
-       }, function (error) {
-         alertify.alertError($scope._t('error_delete_data'));
-       });
-
-     });
-   }; */
 
 });
 
@@ -191,7 +122,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       active: true,
       title: "",
       params: {
-        devices: [],
         times: {
           aktive: false,
           start: 10,
@@ -199,7 +129,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
           silent: 0,
           table: []
         },
-        time: '00:00',
         input: {
           table: []
         },
@@ -255,12 +184,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         active: instance.active,
         params: instance.params
       });
-      // Set assigned devices
-      /*  angular.forEach(instance.params.controls.table, function (v, k) {
-         if (v.devices) {
-           $scope.security.assigned.controls.push(v.devices);
-         }
-       }); */
 
     }, function (error) {
       alertify.alertError($scope._t('error_load_data'));
@@ -304,14 +227,13 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
           deviceId: v.id,
           zwaveId: getZwayId(v.id),
           deviceName: v.metrics.title,
-          deviceNameShort: $filter('cutText')(v.metrics.title,true,30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
+          deviceNameShort: $filter('cutText')(v.metrics.title, true, 30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
           deviceType: v.deviceType,
           probeType: v.probeType,
           location: v.location,
           locationName: rooms[v.location].title,
           iconPath: v.iconPath
         };
-        console.log(obj.deviceNameShort)
         // Set input
         if ($scope.security.cfg.input.deviceType.indexOf(v.deviceType) > -1) {
           $scope.security.devices.input.push(obj);
@@ -414,8 +336,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
   $scope.storeInstance = function (input, redirect) {
     dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
       if (redirect) {
-        //TODO: redirect to automation base
-        //$location.path('/' + dataService.getUrlSegment($location.path()));
         $location.path('/automations');
       }
 
