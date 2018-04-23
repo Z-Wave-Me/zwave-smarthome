@@ -8,7 +8,7 @@
  */
 myAppController.controller('SecurityController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
-    moduleId: 'SecurityModule',
+    moduleId: 'Security',
     state: '',
     enableTest: [],
   }
@@ -187,7 +187,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
     },
     input: {
       instanceId: $routeParams.id,
-      moduleId: "SecurityModule",
+      moduleId: "Security",
       active: true,
       title: "",
       params: {
