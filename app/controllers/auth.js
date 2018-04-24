@@ -54,9 +54,9 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     }
     // IF IE or Edge displays an message
     if (dataService.isIeEdge()) {
-        angular.extend(cfg.route.fatalError, {
-            message: cfg.route.t['ie_edge_not_supported'],
-            info: cfg.route.t['ie_edge_not_supported_info']
+        angular.extend(cfg.route.alert, {
+            message: $scope._t('ie_edge_not_supported'),
+            info: $scope._t('ie_edge_not_supported_info')
         });
     }
 
@@ -382,7 +382,7 @@ myAppController.controller('AuthFirstAccessController', function ($scope, $q, $w
                             permanent: true,
                             hide: true
                         };
-         angular.extend(cfg.route.fatalError, fatalArray);
+         angular.extend(cfg.route.alert, fatalArray);
         dataFactory.getApi('system_reboot','?firstaccess=true').then(function (response) {}, function (error) {
             alertify.alertError($scope._t('error_system_reboot'));
         });

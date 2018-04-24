@@ -138,7 +138,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.refreshDevices = function () {
         var refresh = function () {
-            if(cfg.route.fatalError.type !== "network") {
+            if(cfg.route.alert.type !== "network") {
                 dataFactory.refreshApi('devices').then(function (response) {
                     if(!response){
                         return;

@@ -50,7 +50,7 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             // Error message
             if (icons.state === 'rejected' || devices.state === 'rejected') {
                 $scope.icons.show = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - icons
@@ -322,14 +322,14 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
                     status: false,
                     icon: 'fa-exclamation-triangle text-danger'
                 };
-                $scope.iconsOnline.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+                angular.extend(cfg.route.alert, {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}),icon: 'fa-wifi text-danger'});
 
             }else{
                 $scope.iconsOnline.connect = {
                     status: false,
                     icon: 'fa-exclamation-triangle text-danger'
                 };
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             }
         }).finally(function(){
             $scope.loading = false;

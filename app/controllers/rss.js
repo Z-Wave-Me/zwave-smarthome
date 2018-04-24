@@ -27,18 +27,18 @@ myAppController.controller('RssController', function ($scope, cfg, dataFactory, 
                 });
             // Empty rss feed
             if(_.size(rss[0]) < 1){
-                $scope.rss.alert = {message: $scope._t('no_news'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+               angular.extend(cfg.route.alert, {message: $scope._t('no_news'),icon:'fa-exclamation-circle text-primary'});
                 return;
             }
             $scope.rss.all = rss[0];
 
         }, function (error) {
             if(error.status === 0){
-
-                $scope.rss.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+              angular.extend(cfg.route.alert, {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}),icon: 'fa-wifi'});
 
             }else{
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
+                
             }
         }).finally(function() {// Always execute this on both error and success
             $scope.loading = false;
@@ -50,16 +50,6 @@ myAppController.controller('RssController', function ($scope, cfg, dataFactory, 
      * Read a rss feed
      */
     $scope.readRss = function (v,modal,$event) {
-        //This will clear unread and read - for testing purpose only
-      /* var input = {
-            rss: {
-                unread:  0,
-                read: []
-            }
-
-        };
-        dataFactory.postApi('configupdate_url', input).then(function () {});
-        return;*/
         $scope.rss.find = v;
         $scope.handleModal(modal, $event);
        if($scope.rss.read.indexOf(v.id) > -1){

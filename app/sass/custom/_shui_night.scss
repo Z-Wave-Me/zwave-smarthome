@@ -149,6 +149,7 @@ $input-bcg-color: $app-color-dark-lightest;
   .security-schedule > tbody > tr > td.active,
   .table-responsive [data-expanded="true"] td,
   .vendors.flexgallery > * figure,
+  .commands-data-control,
   .infowindow {
     background: $app-color-dark !important;
   }
@@ -215,6 +216,7 @@ $input-bcg-color: $app-color-dark-lightest;
   .flexcard,
   .flexcards.security .flexcard .flipcard > *,
   .table-responsive td, .table-responsive th,
+  .table > thead > tr > th,
   #footer {
     border-color: $app-border-color !important;
   }

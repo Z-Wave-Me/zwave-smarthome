@@ -6,7 +6,7 @@
  * The controller that renders and handles data in the Z-Wave/Manage section.
  * @class ZwaveManageController
  */
-myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $location, $q, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveManageController', function ($scope, $cookies, $filter, $location, $q, dataFactory, dataService, cfg,myCache) {
     $scope.devices = {
         zw: {},
         find: {},
@@ -31,7 +31,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             if (devices.state === 'rejected') {
                 $scope.loading = false;
                 $scope.devices.show = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - zwave devices
@@ -214,32 +214,6 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         
        
     }
-    /**
-     * todo: deprecated
-     * Get selected instances status
-     */
-    /*function getInstances(node) {
-        var instance = {
-            interviewDone: true,
-            security: false
-        };
-        for (var iId in node.instances) {
-            for (var ccId in node.instances[iId].commandClasses) {
-
-                var ccName = node.instances[iId].commandClasses[ccId].name;
-                var isDone = node.instances[iId].commandClasses[ccId].data.interviewDone.value;
-                if (ccName === 'Security') {
-                    instance.security = isDone;
-                }
-                if (isDone == false) {
-                    instance.interviewDone = false;
-                }
-            }
-        }
-        return instance;
-
-    }
-    ;*/
     // Get Awake Cont
     function awakeCont(isAwake, isListening, isFLiRS) {
         var awake_cont = false;
@@ -533,102 +507,6 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
     ;
 
     /**
-     * todo: deprecated
-     * Check interview
-     */
-    /*function checkInterview(nodeId) {
-        $scope.zwaveInterview.commandClassesCnt = 0;
-        $scope.zwaveInterview.interviewDoneCnt = 0;
-        dataFactory.loadZwaveApiData(true).then(function (ZWaveAPIData) {
-            if(!ZWaveAPIData){
-                return;
-            }
-            var node = ZWaveAPIData.devices[nodeId];
-            if (!node) {
-                return;
-            }
-            if (!ZWaveAPIData.devices[nodeId].data.nodeInfoFrame.value) {
-                return;
-            }
-
-            // Is battery operated?
-            if (angular.isDefined(ZWaveAPIData.devices[nodeId].instances)) {
-                angular.extend($scope.zwaveInterview, {hasBattery: 0x80 in ZWaveAPIData.devices[nodeId].instances[0].commandClasses});
-            }
-            for (var iId in ZWaveAPIData.devices[nodeId].instances) {
-                if (Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length < 1) {
-                    return;
-                }
-                angular.extend($scope.zwaveInterview, {commandClassesCnt: Object.keys(ZWaveAPIData.devices[nodeId].instances[iId].commandClasses).length});
-                for (var ccId in ZWaveAPIData.devices[nodeId].instances[iId].commandClasses) {
-                    var cmdClass = ZWaveAPIData.devices[nodeId].instances[iId].commandClasses[ccId];
-                    var id = node.instances[iId].commandClasses[ccId].name;
-                    var iData = 'devices[' + nodeId + '].instances[' + iId + '].commandClasses[' + ccId + '].Interview()';
-                    //Is Security available?
-                    if (ccId === '152') {
-                        $scope.zwaveInterview.security = true;
-                    }
-                    // Is interview done?
-                    if (cmdClass.data.interviewDone.value) {
-                        // Is security interview done?
-                        if (ccId === '152') {
-                            $scope.zwaveInterview.securityInterview = true;
-                        }
-                        // If an interview is done deleting from interviewNotDone
-                        delete $scope.zwaveInterview.interviewNotDone[id];
-                        // Extending an interview counter
-                        angular.extend($scope.zwaveInterview,
-                                {interviewDoneCnt: $scope.zwaveInterview.interviewDoneCnt + 1}
-                        );
-                    } else { // An interview is not done
-                        // Extending interviewNotDone
-                        $scope.zwaveInterview.interviewNotDone[id] = iData;
-                    }
-                }
-            }
-
-            var commandClassesCnt = $scope.zwaveInterview.commandClassesCnt;
-            var intervewDoneCnt = $scope.zwaveInterview.interviewDoneCnt;
-            var progress = ((intervewDoneCnt / commandClassesCnt) * 100).toFixed();
-            console.log('commandClassesCnt: ', commandClassesCnt);
-            console.log('intervewDoneCnt: ', intervewDoneCnt);
-            console.log('Percent %: ', progress);
-            $scope.zwaveInterview.progress = (progress < 101 ? progress : 99);
-
-            // Test if Security available and Security interview failed
-            if ($scope.zwaveInterview.security && !$scope.zwaveInterview.securityInterview) {
-                angular.extend($scope.zwaveInterview, {errorType: 'error_interview_secure_failed'});
-                return;
-            }
-
-            // If no Security or Security ok but Interviews are not complete
-            if (!_.isEmpty($scope.zwaveInterview.interviewNotDone)) {
-                // If command class Version is not complet, „Force Interview Version“
-                if ($scope.zwaveInterview.interviewNotDone['Version']) {
-                    angular.extend($scope.zwaveInterview, {errorType: 'error_interview_again'});
-                    return;
-                    // If Version ok but other CC are missing, force only these command classes
-                } else {
-                    angular.extend($scope.zwaveInterview, {errorType: 'error_interview_retry'});
-                    return;
-                }
-            }
-            // If interview is complete
-            if (progress >= 100) {
-                $scope.zwaveInterview.progress = 100;
-                resetConfiguration(false, true, null, false, true);
-                //setSecureInclusion(true);
-                //$scope.startManualConfiguration(nodeId);
-                return;
-                ;
-            }
-        }, function (error) {
-            return;
-        });
-    }
-    ;*/
-
-    /**
      * Set secure inclusion
      */
     function setSecureInclusion(status) {
@@ -641,7 +519,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
  * The controller that renders and handles configuration data for a single Z-Wave device.
  * @class ZwaveManageIdController
  */
-myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams, $q, $filter, $location, dataFactory, dataService, myCache) {
+myAppController.controller('ZwaveManageIdController', function ($scope, $window, $routeParams, $q, $filter, $location, dataFactory, dataService, cfg,myCache) {
     $scope.zwaveConfig = {
         nodeId: $routeParams.nodeId,
         nohistory: $routeParams.nohistory
@@ -677,9 +555,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             if (devices.state === 'rejected') {
                 $scope.loading = false;
                 $scope.formInput.show = false;
-                alertify.alertError($scope._t('error_load_data')).set('onok', function (closeEvent) {
-                    dataService.goBack();
-                });
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - devices
@@ -821,7 +697,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
 
             });
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
     }
     ;

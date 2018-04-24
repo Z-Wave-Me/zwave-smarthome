@@ -211,7 +211,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 //var oldTime = cfg.route.time.string;
                 //cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
                 //cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
-                if (cfg.route.fatalError.type === 'network') {
+                if (cfg.route.alert.type === 'network') {
                     $scope.connection.online = false;
                     //cfg.route.time.string = oldTime;
                     $scope.reloadAfterError();
@@ -227,22 +227,22 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             if (error.status === 0) {
                 var fatalArray = {
                     type: 'network',
-                    message: $scope._t('connection_refused'),
-                    info: $scope._t('connection_refused_info'),
+                    message:  $scope._t('connection_refused'),
+                    info:  $scope._t('connection_refused_info'),
                     permanent: true,
                     hide: true
                 };
                 if ($scope.routeMatch('/boxupdate')) {
-                    fatalArray.message = $scope._t('jamesbox_connection_refused');
+                    fatalArray.message =  $scope._t('jamesbox_connection_refused');
                     fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
                         __reload_begintag__: '<div>',
                         __reload_endtag__: '</div>',
                         __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
                         __attention_endtag__: '<div>'
                     });
-                    fatalArray.icon = cfg.route.fatalError.icon_jamesbox;
+                    fatalArray.icon = 'fa-spinner fa-spin text-success';
                 }
-                angular.extend(cfg.route.fatalError, fatalArray);
+                angular.extend(cfg.route.alert, fatalArray);
 
             }
 
@@ -261,13 +261,13 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         dataFactory.sessionApi().then(function (sessionRes) {
             var fatalArray = {
                 type: 'warning',
-                message: $scope._t('reloading_page'),
+                message:  $scope._t('reloading_page'),
                 info: false,
-                icon: 'fa-spinner fa-spin',
+                icon: 'fa-spinner fa-spin text-success',
                 permanent: false,
                 hide: true
             };
-            angular.extend(cfg.route.fatalError, fatalArray);
+            angular.extend(cfg.route.alert, fatalArray);
             var user = sessionRes.data.data;
             if (sessionRes.data.data) {
                 dataService.setZWAYSession(user.sid);
@@ -301,9 +301,9 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
          */
         $scope.expand = {};
         /**
-         * Reset fatal error object
+         * Reset alert object
          */
-        dataService.resetFatalError();
+        dataService.resetAlert();
         /**
          * Check if access is allowed for the page
          */
