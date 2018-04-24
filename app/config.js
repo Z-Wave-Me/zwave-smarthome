@@ -51,15 +51,14 @@ var config_data = {
       },
       // User agent operating system
       os: 'unknown',
-      // Route fatal error
-      fatalError: {
+      // Route alert
+      alert: {
         type: 'system', // system|network
         message: false,
         info: false,
         permanent: false, // Permanently displayed
         hide: false, // Hide page content
-        icon: 'fa-exclamation-triangle',
-        icon_jamesbox: 'fa-spinner fa-spin'
+        icon: 'fa-exclamation-triangle text-danger'
       },
       // App lang
       lang: 'en',

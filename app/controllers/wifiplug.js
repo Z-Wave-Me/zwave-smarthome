@@ -35,7 +35,7 @@ myAppController.controller('WifiPlugAddController', function ($scope, dataFactor
             });
             if( _.size($scope.wifiplugDevices) < 1){
                     //alertify.alertWarning($scope._t('no_wifiplugs')); 
-                    angular.extend(cfg.route.fatalError, {message: $scope._t('no_wifiplugs')});
+                    angular.extend(cfg.route.alert, {message: $scope._t('no_wifiplugs')});
                 }
         }, function (error) {});
     };
@@ -85,7 +85,7 @@ myAppController.controller('WifiPlugManageController', function ($scope, $q, dat
                 setInstances(instances.value.data.data);
                 if( _.size($scope.instances) < 1){
                     //alertify.alertWarning($scope._t('no_wifiplugs')); 
-                    angular.extend(cfg.route.fatalError, {message: $scope._t('no_wifiplugs')});
+                    angular.extend(cfg.route.alert, {message: $scope._t('no_wifiplugs')});
                 }
             }
         });

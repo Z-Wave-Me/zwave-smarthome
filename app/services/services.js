@@ -13,20 +13,19 @@ var myAppService = angular.module('myAppService', []);
 myAppService.service('dataService', function ($filter, $log, $cookies, $window, $location, cfg, cfgicons, _) {
     /// --- Public functions --- ///
     /**
-     * Resets the fatal error object
+     * Resets the alert object
      * @param {object} notifier
      * @returns {undefined}
      */
-    this.resetFatalError = function () {
-        if (cfg.route.fatalError.message && !cfg.route.fatalError.permanent) {
-            angular.extend(cfg.route.fatalError, {
+    this.resetAlert = function () {
+        if (cfg.route.alert.message && !cfg.route.alert.permanent) {
+            angular.extend(cfg.route.alert, {
                 type: 'system',// system|network
                 message: false,
                 info: false,
                 permanent: false, // Permanently displayed
                 hide: false, // Hide page content
-                icon: 'fa-exclamation-triangle',
-                icon_jamesbox: 'fa-spinner fa-spin'
+                icon: 'fa-exclamation-triangle'
             });
         }
     };

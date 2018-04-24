@@ -228,15 +228,15 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-            <div class="blank is-danger" ng-if="cfg.route.fatalError.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
+            <div class="blank" ng-if="cfg.route.alert.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
                 <figure>
-                    <i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i>
+                    <i class="fa {{cfg.route.alert.icon}} fa-lg"></i>
                 </figure>
-                    <div>{{cfg.route.fatalError.message}}</div>
-                    <div class="blank-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
+                    <div>{{cfg.route.alert.message}}</div>
+                    <div class="blank-info" ng-if="cfg.route.alert.info" ng-bind-html="cfg.route.alert.info|toTrusted"></div>
               </div>
           
-            <div id="view_content" ng-hide="cfg.route.fatalError.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view 
+            <div id="view_content" ng-hide="cfg.route.alert.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view 
             ng-swipe-left="swipe('left')" 
             ng-swipe-right="swipe('right')"></div>
         </div>

@@ -227,7 +227,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
 
         }, function (response) {// something went wrong
             if (_.isObject(fatalError)) {
-                angular.extend(cfg.route.fatalError, fatalError);
+                angular.extend(cfg.route.alert, fatalError);
                 //response.fatalError = fatalError;
             }
             return $q.reject(response);
@@ -694,9 +694,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         }, function (response) {
             // something went wrong
             if(response.status !== 403){
-                angular.extend(cfg.route.fatalError, {
-                    message: cfg.route.t['error_zwave_network'],
-                    info: cfg.route.t['how_to_resolve_zwave_errors'],
+                angular.extend(cfg.route.alert, {
+                    message: 'error_zwave_network',
+                    info: 'how_to_resolve_zwave_errors',
                     hide: false,
                     permanent: true
                 });

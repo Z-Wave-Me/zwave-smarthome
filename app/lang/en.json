@@ -1,5 +1,6 @@
 {
-    "activated_devices": "Activated devices",
+  "error_loading_lang":"An unexpected error occurred while loading the language file",  
+  "activated_devices": "Activated devices",
     "activate_module": "Activate __module__",
     "activate_reverse_event": "Activate reverse event",
     "activeASC": "Inactive",

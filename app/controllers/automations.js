@@ -30,12 +30,12 @@ myAppController.controller('AutomationsController', function ($scope, $q, $timeo
           var instances = response[1];
           // Error message
           if (modules.state === 'rejected') {
-            alertify.alertError($scope._t('error_load_data'));
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             return;
           }
 
           if (instances.state === 'rejected') {
-            alertify.alertError($scope._t('error_load_data'));
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             return;
           }
 
