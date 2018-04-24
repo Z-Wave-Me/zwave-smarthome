@@ -82,8 +82,8 @@
         <script src="app/controllers/automation-leakage.js"></script>
         <script src="app/controllers/automation-fireprotection.js"></script>
         <script src="app/controllers/automation-security.js"></script>
-         <script src="app/controllers/climate.js"></script>
-	<script src="app/controllers/app.js"></script>
+        <script src="app/controllers/automation-heating.js"></script>
+        <script src="app/controllers/app.js"></script>
         <script src="app/controllers/app-local.js"></script>
         <script src="app/controllers/app-online.js"></script>
         <script src="app/controllers/app-instance.js"></script>
@@ -151,7 +151,7 @@
                         <a href="#scenes" title="{{_t('automation')}}" ng-class="isActive('scenes') || isActive('rules') || isActive('schedules')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>-->
                         <!-- automation -->
                         <span class="divider-vertical"></span>
-                         <a href="#automations" title="{{_t('automation')}}" 
+                        <a href="#automations" title="{{_t('automation')}}"
                             ng-class="isActive('automations') || isActive('scenes') || isActive('rules') || isActive('schedules') || isActive('climate') || isActive('fireprotection') || isActive('leakages')  || isActive('security')">
                             <i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span>
                         </a>
@@ -179,89 +179,88 @@
                         <span class="divider-vertical"></span>
                         <a id="navi_settings" href="" title="{{_t('lb_configuration')}}" ng-click="expandNavi('mainNav', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''"><i class="fa fa-bars"></i></a>
                     </div>
-                </div><!-- /#navigation --> 
-            </div><!-- /#main_navigation_wrap --> 
-            <div id="sub_navigation" ng-show="naviExpanded.mainNav">
-                <div id="sub_navigation_in" ng-click="expandNavi('mainNav', $event)">
-                    <div class="container">
-                        <ul>
-                            <!-- Apps -->
-                            <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                                <a href="#apps/instance"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                            <!-- Devices -->
-                            <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
-                                <a href="#devices"><i class="fa fa-cogs fa-fw"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                             <!-- Customize -->
-                            <li class="subnavi-report" ng-class="isActive('customize')"
-                                ng-if="elementAccess(cfg.role_access.customize)">
-                                <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece fa-fw"></i> <span>{{_t('customize')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                            <!-- My access -->
-                            <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
-                                <a href="#myaccess"><i class="fa fa-user fa-fw"></i>  <span>{{_t('nav_myaccess')}}</span><i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                            <!-- Management -->
-                            <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
-                                <a href="#admin"><i class="fa fa-wrench fa-fw"></i> <span>{{_t('management')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                            <!-- Rss -->
-                            <li class="subnavi-admin" ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
-                                <a href="#rss"><i class="fa fa-comment fa-fw"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                             <!-- My Hubs -->
-                            <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
-                                <a ng-href="{{cfg.android_html_dir}}">
-                                    
-                                    <i class="fa fa-android fa-fw"></i><span>{{_t('my_hubs')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i>
-                                </a>
-                            </li>
-                            <!-- Logout -->
-                            <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
-                                <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div><!-- /#subnavigation_in --> 
-            </div><!-- /#subnavigation --> 
-        </div><!-- /#header --> 
-        <!-- Ang Content Container -->
-        <div id="main_content" class="container">
-            <div class="blank" ng-if="cfg.route.alert.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
-                <figure>
-                    <i class="fa {{cfg.route.alert.icon}} fa-lg"></i>
-                </figure>
-                    <div>{{cfg.route.alert.message}}</div>
-                    <div class="blank-info" ng-if="cfg.route.alert.info" ng-bind-html="cfg.route.alert.info|toTrusted"></div>
-              </div>
-          
-            <div id="view_content" ng-hide="cfg.route.alert.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view 
-            ng-swipe-left="swipe('left')" 
-            ng-swipe-right="swipe('right')"></div>
-        </div>
-        <div class="clearfix"></div>
-
-        <div id="footer">
-            <div id="footer_in">
-                <div class="container">
-                    <span class="timestamp clickable"
-                            ng-click="reloadData()" 
-                            ng-if="cfg.route.time.string">
-                        <i class="fa fa-home" 
-                           ng-if="connection.local" 
-                           ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                        <i class="fa fa-globe" 
-                           ng-if="connection.remote"
-                           ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
-                    </span>
-                    <span ng-hide="cfg.skin.active != 'default'">
-                        <i class="fa clickable fa-lg" aria-hidden="true" ng-click="setNightMode(user.night_mode = !user.night_mode)" ng-class="user.night_mode ? 'fa-sun-o' : 'fa-moon-o'"></i>
-                    </span>
-                  
-                </div>
-            </div>         
-        </div>
-    </body>
-</html>
+                    </div><!-- /#navigation -->
+                    </div><!-- /#main_navigation_wrap -->
+                    <div id="sub_navigation" ng-show="naviExpanded.mainNav">
+                        <div id="sub_navigation_in" ng-click="expandNavi('mainNav', $event)">
+                            <div class="container">
+                                <ul>
+                                    <!-- Apps -->
+                                    <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
+                                        <a href="#apps/instance"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                    </li>
+                                    <!-- Devices -->
+                                    <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
+                                        <a href="#devices"><i class="fa fa-cogs fa-fw"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                    </li>
+                                    <!-- Customize -->
+                                    <li class="subnavi-report" ng-class="isActive('customize')"
+                                        ng-if="elementAccess(cfg.role_access.customize)">
+                                        <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece fa-fw"></i> <span>{{_t('customize')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                    </li>
+                                    <!-- My access -->
+                                    <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
+                                        <a href="#myaccess"><i class="fa fa-user fa-fw"></i>  <span>{{_t('nav_myaccess')}}</span><i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                    </li>
+                                    <!-- Management -->
+                                    <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
+                                        <a href="#admin"><i class="fa fa-wrench fa-fw"></i> <span>{{_t('management')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                    </li>
+                                    <!-- Rss -->
+                                    <li class="subnavi-admin" ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
+                                        <a href="#rss"><i class="fa fa-comment fa-fw"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                    </li>
+                                    <!-- My Hubs -->
+                                    <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+                                        <a ng-href="{{cfg.android_html_dir}}">
+                                            
+                                            <i class="fa fa-android fa-fw"></i><span>{{_t('my_hubs')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i>
+                                        </a>
+                                    </li>
+                                    <!-- Logout -->
+                                    <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
+                                        <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            </div><!-- /#subnavigation_in -->
+                            </div><!-- /#subnavigation -->
+                            </div><!-- /#header -->
+                            <!-- Ang Content Container -->
+                            <div id="main_content" class="container">
+                                <div class="blank" ng-if="cfg.route.alert.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
+                                    <figure>
+                                        <i class="fa {{cfg.route.alert.icon}} fa-lg"></i>
+                                    </figure>
+                                    <div>{{cfg.route.alert.message}}</div>
+                                    <div class="blank-info" ng-if="cfg.route.alert.info" ng-bind-html="cfg.route.alert.info|toTrusted"></div>
+                                </div>
+                                
+                                <div id="view_content" ng-hide="cfg.route.alert.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view
+                                    ng-swipe-left="swipe('left')"
+                                ng-swipe-right="swipe('right')"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div id="footer">
+                                <div id="footer_in">
+                                    <div class="container">
+                                        <span class="timestamp clickable"
+                                            ng-click="reloadData()"
+                                            ng-if="cfg.route.time.string">
+                                            <i class="fa fa-home"
+                                            ng-if="connection.local"
+                                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                                            <i class="fa fa-globe"
+                                            ng-if="connection.remote"
+                                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                                            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
+                                        </span>
+                                        <span ng-hide="cfg.skin.active != 'default'">
+                                            <i class="fa clickable fa-lg" aria-hidden="true" ng-click="setNightMode(user.night_mode = !user.night_mode)" ng-class="user.night_mode ? 'fa-sun-o' : 'fa-moon-o'"></i>
+                                        </span>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </body>
+                    </html>
