@@ -34,10 +34,11 @@ myAppController.controller('WifiPlugAddController', function ($scope, dataFactor
                 }
             });
             if( _.size($scope.wifiplugDevices) < 1){
-                    //alertify.alertWarning($scope._t('no_wifiplugs')); 
-                    angular.extend(cfg.route.alert, {message: $scope._t('no_wifiplugs')});
+                   angular.extend(cfg.route.alert, {message: $scope._t('no_wifiplugs')});
                 }
-        }, function (error) {});
+        }, function (error) {
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
+        });
     };
     $scope.loadData();
 });
@@ -46,7 +47,7 @@ myAppController.controller('WifiPlugAddController', function ($scope, dataFactor
  * The controller that handles wifi plugs manage actions .
  * @class WifiPlugManageController
  */
-myAppController.controller('WifiPlugManageController', function ($scope, $q, dataFactory, dataService, myCache, cfg,_) {
+myAppController.controller('WifiPlugManageController', function ($scope, $q, $location,dataFactory, dataService, myCache, cfg,_) {
     $scope.instances = [];
     $scope.modules = {
         mediaUrl: $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/',
@@ -72,8 +73,7 @@ myAppController.controller('WifiPlugManageController', function ($scope, $q, dat
             // Error message
             if (instances.state === 'rejected') {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
-                $scope.rooms.show = false;
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - modules
@@ -84,8 +84,7 @@ myAppController.controller('WifiPlugManageController', function ($scope, $q, dat
             if (instances.state === 'fulfilled') {
                 setInstances(instances.value.data.data);
                 if( _.size($scope.instances) < 1){
-                    //alertify.alertWarning($scope._t('no_wifiplugs')); 
-                    angular.extend(cfg.route.alert, {message: $scope._t('no_wifiplugs')});
+                    $location.path('/wifiplug/add');
                 }
             }
         });

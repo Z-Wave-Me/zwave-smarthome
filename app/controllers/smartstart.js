@@ -162,15 +162,12 @@ myAppController.controller('SmartStartDskController', function ($scope, $timeout
     dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
       var SDKMatch = dataService.compareVersion(ZWaveAPIData.controller.data.SDK.value, cfg.smart_start.required_min_sdk, '>=');
       if (!SDKMatch) {
-        $scope.dsk.firmwareAlert = {
-          message: $scope._t('smartstart_not_supported'),
-          status: 'alert-warning',
-          icon: 'fa-exclamation-circle'
-        };
+        angular.extend(cfg.route.alert, {message: $scope._t('smartstart_not_supported')});
+        
       }
     });
   }
-  /* $scope.checkSdkVersion(); */
+  //$scope.checkSdkVersion(); 
 
   /**
    * Add DSK 
@@ -261,11 +258,7 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
         var data = response.data;
       // There are no data
       if (_.isEmpty(data)) {
-        $scope.collection.alert = {
-          message: $scope._t('empty_dsk_list'),
-          status: 'alert-warning',
-          icon: 'fa-exclamation-circle'
-        };
+        angular.extend(cfg.route.alert, {message: $scope._t('empty_dsk_list'),icon: 'fa-info-circle text-info'});
         return;
       }
 
@@ -293,7 +286,7 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
       // console.log($scope.collection.all)
 
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
   };
   $timeout(getDskCollectionDemo);

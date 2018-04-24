@@ -25,7 +25,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 info: false,
                 permanent: false, // Permanently displayed
                 hide: false, // Hide page content
-                icon: 'fa-exclamation-triangle'
+                icon: 'fa-exclamation-triangle text-danger'
             });
         }
     };

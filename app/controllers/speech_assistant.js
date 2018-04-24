@@ -8,7 +8,7 @@
  * @class SpeechAssistantsManageController
  *
  */
- myAppController.controller('SpeechAssistantsManageController', function ($scope, $q, $route, dataFactory, dataService, myCache, _) {
+ myAppController.controller('SpeechAssistantsManageController', function ($scope, $q, $route,  $location, dataFactory, dataService, myCache, cfg,_) {
   $scope.instances = [];
   $scope.modules = {
     mediaUrl: $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/',
@@ -33,10 +33,9 @@
         var instances = response[1];
         $scope.loading = false;
             // Error message
-            if (instances.state === 'rejected') {
+            if (instances.state == 'rejected') {
               $scope.loading = false;
-              alertify.alertError($scope._t('error_load_data'));
-              $scope.rooms.show = false;
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
               return;
             }
             // Success - modules
@@ -47,7 +46,7 @@
             if (instances.state === 'fulfilled') {
               setInstances(instances.value.data.data);
               if( _.size($scope.instances) < 1){
-                $scope.alert =  {message: $scope._t('no_speech_assistants'), status: 'alert-warning', icon: 'fa-exclamation-circle'}; 
+                $location.path('/speech_assistants/devices'); 
               }
             }
         });
@@ -141,7 +140,7 @@
  * @class SpeechAssistantsAddController
  *
  */
- myAppController.controller('SpeechAssistantsAddController', function($scope, $q, dataFactory, $location, dataService, _) {
+ myAppController.controller('SpeechAssistantsAddController', function($scope, $q, dataFactory, $location, dataService, cfg,_) {
   $scope.speechAssistants = {
     mediaUrl: $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/',
     Alexa: {
@@ -171,12 +170,12 @@
       var instances = response[1];
       // Error message
       if (modules.state === 'rejected' && $scope.routeMatch('/apps/local')) {
-        alertify.alertError($scope._t('error_load_data'));
+         angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
       if (instances.state === 'rejected' && $scope.routeMatch('/apps/instance')) {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
@@ -247,7 +246,7 @@
 });
 
 
- myAppController.controller('AlexaSetupController', function($scope, $q, dataFactory, dataService, _) {
+ myAppController.controller('AlexaSetupController', function($scope, $q, dataFactory, dataService, cfg,_) {
   $scope.currentStep = 1;
   $scope.steps = _.range(0, 8);
   $scope.myImage = "";
@@ -266,7 +265,7 @@
   
  });
 
- myAppController.controller('AlexaManageController', function($scope, $q, cfg, dataFactory, dataService, _) { 
+ myAppController.controller('AlexaManageController', function($scope, $q, cfg, dataFactory, dataService, cfg, _) { 
   $scope.alexa = {
     instance: {},
     devices: {
@@ -299,17 +298,17 @@
       devices = response[2];
       // Error message
       if (instances.state === 'rejected') {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
       if (devices.state === 'rejected') {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
       if (rooms.state === 'rejected') {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
@@ -450,7 +449,7 @@
 
 });
 
- myAppController.controller('GoogleHomeManageController', function($scope, $q, cfg, dataFactory, dataService, _) { 
+ myAppController.controller('GoogleHomeManageController', function($scope, $q, cfg, dataFactory, dataService, cfg,_) { 
   $scope.google_home = {
     instance: {},
     devices: {
@@ -483,22 +482,22 @@
           devices = response[2];
       // Error message
       if (instances.state === 'rejected') {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
       if (alexa_instance.state === 'rejected') {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
       if (devices.state === 'rejected') {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
       if (rooms.state === 'rejected') {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
@@ -510,7 +509,6 @@
       // Success - instance
       if (instances.state === 'fulfilled') {
         setInstance(instances.value.data.data);
-        console.log($scope.google_home.instance);
       }
 
       // Success - devices
@@ -640,7 +638,7 @@
 
 });
 
-myAppController.controller('GoogleHomeSetupController', function($scope, $q, dataFactory, dataService, _) {
+myAppController.controller('GoogleHomeSetupController', function($scope, $q, dataFactory, dataService, cfg,_) {
   $scope.currentStep = 1;
   $scope.steps = _.range(0, 5);
   $scope.myImage = "";

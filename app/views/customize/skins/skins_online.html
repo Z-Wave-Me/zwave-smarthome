@@ -4,8 +4,6 @@
     <bb-loader></bb-loader>
     <!-- Skins navigation -->
     <div ng-include="'app/views/customize/navi.html'"></div>
-    <!-- Alert -->
-    <bb-alert alert="skins.online.alert"></bb-alert>
     <!-- List -->
     <div class="clearfix" ng-if="skins.online.show">
       <div class="card-customize" title="{{v.title}}" ng-repeat="v in skins.online.all track by v.id">

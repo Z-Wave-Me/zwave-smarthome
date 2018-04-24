@@ -7,7 +7,7 @@
  * The controller that renders Z-Wave vendors and products.
  * @class ZwaveVendorController
  */
-myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $cookies, $location, $window, $timeout, dataFactory, dataService, _) {
+myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $cookies, $location, $window, $timeout, dataFactory, dataService,cfg, _) {
     $scope.zwaveVendors = {
         view: false, // default||update
         alert: false,
@@ -59,7 +59,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
             $scope.loading = false;
             // Error message
             if (zwdata.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Error message
@@ -68,7 +68,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
                 if (reason.status === 404) {
                     $scope.zwaveVendors.view = 'update';
                 } else {
-                    alertify.alertError($scope._t('error_load_data'));
+                  angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 }
                 return;
             }
