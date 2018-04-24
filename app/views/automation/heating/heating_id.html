@@ -1,10 +1,19 @@
-<div ng-controller="ClimateIdController">
-	<h2>{{_t('climate')}}</h2>
-	<!-- <pre>{{climate.devices.byRo om | json}}</pre> -->
-	<form class="form form-page" ng-submit_="storeInstance(climate.input,true)">
+<div ng-controller="HeatingIdController">
+	<h2>{{_t('heating')}}</h2>
+	<!-- <pre>{{heating.devices.byRo om | json}}</pre> -->
+	<form class="form form-page" ng-submit="storeInstance(true)">
+		<fieldset>
+			<!-- Reset time -->
+			<div class="form-inline">
+				<div class="form-group is-inline">
+					<label>{{_t('reset_time')}}</label>
+					<input name="reset_time" id="reset_time" type="text" class="form-control" ng-model="heating.input.params.resetTime" />&nbsp;
+				</div>
+			</div>
+		</fieldset>
 		<!-- rooms -->
 		<fieldset>
-			<section class="accordion-wrap" ng-repeat="r in climate.rooms track by $index">
+			<section class="accordion-wrap" ng-repeat="r in heating.rooms track by $index">
 				<!-- Title -->
 				<h2 class="accordion-toggle chevron">
 				<button type="button" aria-expanded="false" bb-accordion ng-click="renderSchedule('#schedule-'+{{r.id}}, r.id)">
@@ -22,31 +31,31 @@
 								<label>Temp. sensor</label>
 								<select class="form-control">
 									<option value="">---</option>
-									<option value="{{d.deviceId}}" ng-repeat="d in climate.devices.byRoom[r.id] track by $index"  ng-selected_="">
+									<option value="{{d.deviceId}}" ng-repeat="d in heating.devices.byRoom[r.id] track by $index"  ng-selected_="">
 									{{d.deviceName}}</option>
 								</select>
 							</div>
 							<!-- comfort temp -->
 							<div class="form-group is-inline">
-								<label>Comfort temp</label>
-								<select class="form-control">
+								<label>{{_t('comfort_temp')}}</label>
+								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].comfortTemp" convert-to-float>
 									<option value="">---</option>
-									<option value="{{ct}}" ng-repeat="ct in climate.cfg.comfort.temp track by $index" ng-modal="climate.cfg.roomSettings[r.id].comfort" ng-selected="ct == climate.cfg.roomSettings[r.id].comfort">
+									<option value="{{ct}}" ng-repeat="ct in heating.cfg.comfort.temp track by $index" ng-selected="ct == heating.input.params.roomSettings[r.id].comfortTemp" >
 									{{ct}}</option>
 								</select>
 							</div>
 							<!-- energy save temp -->
 							<div class="form-group is-inline">
-								<label>Energy save temp</label>
-								<select class="form-control">
+								<label>{{_t('energy_save_temp')}}</label>
+								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].energySaveTemp" convert-to-float>
 									<option value="">---</option>
-									<option value="{{est}}" ng-repeat="est in climate.cfg.energySave.temp track by $index" ng-modal="climate.cfg.roomSettings[r.id].energySave" ng-selected="est == climate.cfg.roomSettings[r.id].energySave">
+									<option value="{{est}}" ng-repeat="est in heating.cfg.energySave.temp track by $index" ng-selected="est == heating.input.params.roomSettings[r.id].energySaveTemp" >
 									{{est}}</option>
 								</select>
 							</div>
 							<!-- fallback temp -->
 							<div class="form-group is-inline">
-								<label>Fallback temp</label>
+								<label>{{_t('fallback_temp')}}</label>
 							<select class="form-control"></select>
 						</div>
 					</div>
@@ -67,5 +76,5 @@
 		</button>
 	</fieldset>
 </form>
-<div ng-include="'app/views/automation/climate/climate_id_temperatrue_modal.html'"></div>
+<div ng-include="'app/views/automation/heating/heating_id_temperatrue_modal.html'"></div>
 </div>

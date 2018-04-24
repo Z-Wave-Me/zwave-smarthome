@@ -3,50 +3,50 @@
 	<div class="appmodal-in">
 		<div class="appmodal-header">
 			<span class="appmodal-close" ng-click="handleModal('temperatureModal', $event)"><i class="fa fa-times"></i></span>
-			<h3>{{climate.tempModal.title}}</h3>
+			<h3>{{heating.tempModal.title}}</h3>
 		</div>
 		<div class="appmodal-body text-center">
 			<div class="app-row app-row-knob clearfix">
 				<div class="knob-col knob-ctrl">
 					<input
 					type="text"
-					value="{{climate.tempModal.temp.value}}"
+					value="{{heating.tempModal.temp.value}}"
 					class="dial widget-level-knob"
 					data-width="160"
 					data-height="160"
-					knob-step="climate.tempModal.temp.step"
-					knob-min="climate.tempModal.temp.min"
-					knob-max="climate.tempModal.temp.max"
-					knob-id="climate.tempModal.scheduleId"
-					knob-data="climate.tempModal.temp.value"
+					knob-step="heating.tempModal.temp.step"
+					knob-min="heating.tempModal.temp.min"
+					knob-max="heating.tempModal.temp.max"
+					knob-id="heating.tempModal.scheduleId"
+					knob-data="heating.tempModal.temp.value"
 					knob-options="knobopt"
-					ng-model="climate.tempModal.temp.value" myknob />
+					ng-model="heating.tempModal.temp.value" myknob />
 				</div>
 				<div class="knob-col knob-btn">
 					<p>
 						<button class="btn btn-primary"
-						ng-click="setTemp(climate.tempModal.temp, '+')"
+						ng-click="setTemp(heating.tempModal.temp, '+')"
 						><i class="fa fa-angle-up"></i>
 						</button>&nbsp;
 						<button class="btn btn-info"
-						ng-click="setTemp(climate.tempModal.temp, climate.tempModal.temp.max)"
+						ng-click="setTemp(heating.tempModal.temp, heating.tempModal.temp.max)"
 						><i class="fa fa-angle-double-up"></i>
 						</button>
 					</p>
 					<p>
 						<button class="btn btn-primary"
-						ng-click="setTemp(climate.tempModal.temp, '-')"
+						ng-click="setTemp(heating.tempModal.temp, '-')"
 						><i class="fa fa-angle-down"></i>
 						</button>&nbsp;
 						<button class="btn btn-info"
-						ng-click="setTemp(climate.tempModal.temp, climate.tempModal.temp.min)"
+						ng-click="setTemp(heating.tempModal.temp, heating.tempModal.temp.min)"
 						>
 						<i class="fa fa-angle-double-down"></i>
 						</button>
 					</p>
 					<p>
 						<button class="btn btn-info"
-						ng-click="setTemp(climate.tempModal.temp, climate.tempModal.temp.max)"
+						ng-click="setTemp(heating.tempModal.temp, heating.tempModal.temp.max)"
 						ng-bind="_t('lb_full')">
 						</button>
 					</p>

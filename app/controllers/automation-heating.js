@@ -6,43 +6,43 @@
 
 /**
  * 
- * @class ClimateController
+ * @class HeatingController
  */
-myAppController.controller('ClimateController', function($scope, $routeParams, $location, $timeout, $interval, cfg, dataFactory, dataService, _, myCache) {
-    $scope.climate = {
-        moduleId: 'Climate',
+myAppController.controller('HeatingController', function($scope, $routeParams, $location, $timeout, $interval, cfg, dataFactory, dataService, _, myCache) {
+    $scope.heating = {
+        moduleId: 'Heating',
         state: '',
         enableTest: []
     };
 
     /**
-     * Load instance with security module
+     * Load instance with heating module
      * @returns {undefined}
      */
-    $scope.loadClimateModule = function() {
+    $scope.loadHeatingModule = function() {
         dataFactory.getApi('instances', null, true).then(function(response) {
-            var climate = _.findWhere(response.data.data, {
-                moduleId: $scope.climate.moduleId
+            var heating = _.findWhere(response.data.data, {
+                moduleId: $scope.heating.moduleId
             });
-            if (!climate || climate.id < 1) {
-                $location.path('/climate/0');
+            if (!heating || heating.id < 1) {
+                $location.path('/heating/0');
                 return;
             }
-            $location.path('/climate/' + climate.id);
+            $location.path('/heating/' + heating.id);
         }, function(error) {
             alertify.alertError($scope._t('error_load_data'));
         });
     };
-    $scope.loadClimateModule();
+    $scope.loadHeatingModule();
 
 });
 
 /**
- * Controller that handles a climate detail
- * @class ClimateIdController
+ * Controller that handles a heating detail
+ * @class HeatingIdController
  */
-myAppController.controller('ClimateIdController', function($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
-    $scope.climate = {
+myAppController.controller('HeatingIdController', function($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
+    $scope.heating = {
         rooms: [],
         devices: {
             all: [],
@@ -51,7 +51,7 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
         routeId: 0,
         input: {
             instanceId: $routeParams.id,
-            moduleId: "Climate",
+            moduleId: "Heating",
             active: true,
             title: "",
             params: {
@@ -209,40 +209,38 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
                 schedule: []
             }
         },
-        change: function(node, data) {
-            //alert("change event");
-        },
+        change: function(node, data) {},
         init_data: function(node, data) {},
-        click: function(node, data) {
-            console.log("data", data);
-            console.log("node", node);
-        },
-        append: function(node, data) {
-            //alert("append");
-        },
+        click: function(node, data) {},
+        append: function(node, data) {},
         time_click: function(time, data, timeline, timelineData) {
             console.log("this", this);
             console.log("time", time);
             console.log("data", data);
             console.log("timeline", timeline);
             console.log("timelineData", timelineData);
-            var start = this.calcStringTime(data),
-                end = start + 3600;
-            var newEntry = {
-                data: {},
-                start: start,
-                end: end,
-                text: "new Entry",
-                timeline: parseInt(timeline)
-            };
-            console.log(newEntry);
+
+            var roomId = $(this).attr('id').split("-")[1],
+                temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp,
+                start = this.calcStringTime(data),
+                end = start + 3600,
+                newEntry = {
+                    data: {
+                        temp: temp
+                    },
+                    start: start,
+                    end: end,
+                    text: temp + " C°",
+                    timeline: parseInt(timeline)
+                };
             this.addScheduleData(newEntry);
+            $scope.updateData();
         },
         append_on_click: function(timeline, startTime, endTime) {
-            console.log("timeline", timeline);
-            console.log(startTime + " - " + endTime);
             var start = this.calcStringTime(startTime),
-                end = this.calcStringTime(endTime);
+                end = this.calcStringTime(endTime),
+                roomId = $(this).attr('id').split("-")[1],
+                temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp;
 
             end = end == start ? end + 3600 : end;
 
@@ -250,22 +248,33 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
                 timeline: parseInt(timeline),
                 start: start,
                 end: end,
-                text: "new Entry",
-                data: {}
+                text: temp + " C°",
+                data: {
+                    temp: temp
+                }
             };
-            console.log(newEntry);
+
             this.addScheduleData(newEntry);
+            $scope.updateData();
         },
         bar_Click: function(node, timelineData, scheduleIndex) {
             console.log("timelineData", timelineData);
-            $scope.climate.tempModal.scheduleId = "#" + $(this).attr('id');
-            $scope.climate.tempModal.timeline = timelineData.timeline;
-            $scope.climate.tempModal.stime = timelineData.start;
-            $scope.climate.tempModal.etime = timelineData.end;
-            $scope.climate.tempModal.scheduleIndex = scheduleIndex;
-            $scope.climate.tempModal.title = this.formatTime(timelineData.start) + " - " + this.formatTime(timelineData.end);
-            $scope.climate.tempModal.temp.value = timelineData.data.temp;
+            $scope.heating.tempModal.scheduleId = "#" + $(this).attr('id');
+            $scope.heating.tempModal.timeline = timelineData.timeline;
+            $scope.heating.tempModal.stime = timelineData.start;
+            $scope.heating.tempModal.etime = timelineData.end;
+            $scope.heating.tempModal.scheduleIndex = scheduleIndex;
+            $scope.heating.tempModal.title = this.formatTime(timelineData.start) + " - " + this.formatTime(timelineData.end);
+            $scope.heating.tempModal.temp.value = timelineData.data.temp;
             $scope.handleModal('temperatureModal');
+        },
+        connect: function(data) {
+            var roomId = $(this).attr('id').split("-")[1],
+                temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp;
+            data.data.temp = temp;
+            data.text = temp + " C°";
+            this.addScheduleData(data);
+            $scope.updateData();
         }
     };
     angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
@@ -276,7 +285,7 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
             // add instance data
             var scheduleOptions_copy = {};
             angular.copy($scope.scheduleOptions, scheduleOptions_copy);
-            var roomSetting = $scope.climate.input.params.roomSettings[roomId];
+            var roomSetting = $scope.heating.input.params.roomSettings[roomId];
 
             if (roomSetting) {
                 if (roomSetting.schedule) {
@@ -317,26 +326,47 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
      */
     $scope.$watch("modalArr", function(newVal) {
         if (newVal.hasOwnProperty("temperatureModal") && !newVal.temperatureModal) {
+            $scope.updateData();
             console.log("modal close");
-            console.log($scope.climate.tempModal);
-            var arr = $scope.climate.tempModal.scheduleId.split("-"),
+            console.log($scope.heating.tempModal);
+            var arr = $scope.heating.tempModal.scheduleId.split("-"),
                 roomId = arr[1];
-            if ($scope.climate.input.params.roomSettings[roomId]) {
-                var jq_schedule = $scope.jQuery_schedules[$scope.climate.tempModal.scheduleId],
-                    scIndex = _.findIndex($scope.climate.input.params.roomSettings[roomId].schedule[$scope.climate.tempModal.timeline], {
-                        stime: jq_schedule.formatTime($scope.climate.tempModal.stime),
-                        etime: jq_schedule.formatTime($scope.climate.tempModal.etime)
+            if ($scope.heating.input.params.roomSettings[roomId]) {
+                var jq_schedule = $scope.jQuery_schedules[$scope.heating.tempModal.scheduleId],
+                    scIndex = _.findIndex($scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline], {
+                        stime: jq_schedule.formatTime($scope.heating.tempModal.stime),
+                        etime: jq_schedule.formatTime($scope.heating.tempModal.etime)
                     });
-                console.log("jq_schedule", jq_schedule);
-                $scope.climate.input.params.roomSettings[roomId].schedule[$scope.climate.tempModal.timeline][scIndex] = $scope.climate.tempModal.temp;
+
+                $scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
+
+                var rows_copy = {};
+                angular.copy($scope.scheduleOptions.rows, rows_copy);
+
+                var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
+                days.forEach(function(day) {
+                    $scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+                        console.log("schdeudle ", schedule);
+                        var sc = {
+                            start: schedule.stime,
+                            end: schedule.etime,
+                            text: schedule.temp + " C°",
+                            data: {
+                                temp: schedule.temp
+                            }
+                        }
+                        rows_copy[day].schedule.push(sc);
+                    });
+                });
+                jq_schedule.update(rows_copy);
             }
 
         }
     }, true);
 
     $scope.init = function() {
-        $scope.climate.cfg.energySave.temp = temperatureArray($scope.climate.cfg.energySave);
-        $scope.climate.cfg.comfort.temp = temperatureArray($scope.climate.cfg.comfort);
+        $scope.heating.cfg.energySave.temp = temperatureArray($scope.heating.cfg.energySave);
+        $scope.heating.cfg.comfort.temp = temperatureArray($scope.heating.cfg.comfort);
     }
     $scope.init();
 
@@ -345,13 +375,13 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
      */
     $scope.loadInstance = function(id) {
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
-            $scope.climate.routeId = id;
-            // var instance = instances.data.data;
-            // angular.extend($scope.climate.input, {
-            //     title: instance.title,
-            //     active: instance.active,
-            //     params: instance.params
-            // });
+            $scope.heating.routeId = id;
+            var instance = instances.data.data;
+            angular.extend($scope.heating.input, {
+                title: instance.title,
+                active: instance.active,
+                params: instance.params
+            });
 
         }, function(error) {
             alertify.alertError($scope._t('error_load_data'));
@@ -371,8 +401,8 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
             var rooms = response.data.data.filter(function(r) {
                 return r.id !== 0; // get rooms without global room (id 0)
             });
-            $scope.climate.rooms = dataService.getRooms(rooms).indexBy('id').value();
-            $scope.loadDevices($scope.climate.rooms);
+            $scope.heating.rooms = dataService.getRooms(rooms).indexBy('id').value();
+            $scope.loadDevices($scope.heating.rooms);
         });
 
     };
@@ -407,13 +437,13 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
                             locationName: rooms[v.location].title,
                             iconPath: v.iconPath
                         };
-                        $scope.climate.devices.all.push(obj);
+                        $scope.heating.devices.all.push(obj);
 
-                        if ($scope.climate.devices.byRoom[v.location]) {
-                            $scope.climate.devices.byRoom[v.location].push(obj);
+                        if ($scope.heating.devices.byRoom[v.location]) {
+                            $scope.heating.devices.byRoom[v.location].push(obj);
                         } else {
-                            $scope.climate.devices.byRoom[v.location] = [];
-                            $scope.climate.devices.byRoom[v.location].push(obj);
+                            $scope.heating.devices.byRoom[v.location] = [];
+                            $scope.heating.devices.byRoom[v.location].push(obj);
                         }
                     }
 
@@ -453,12 +483,34 @@ myAppController.controller('ClimateIdController', function($scope, $routeParams,
         v.value = count;
     };
 
+    $scope.updateData = function() {
+        var schedule_ids = Object.keys($scope.jQuery_schedules);
+        angular.forEach(schedule_ids, function(id) {
+            var jq_sc = $scope.jQuery_schedules[id],
+                roomId = id.split("-")[1],
+                sc_data = jq_sc.getScheduleData(),
+                data = {};
+
+            angular.forEach(sc_data, function(day, k) {
+                var sorted_sc = _.sortBy(day.schedule, 'start'),
+                    new_sc = sorted_sc.map(function(sc) {
+                        return {
+                            "stime": sc.start,
+                            "etime": sc.end,
+                            "temp": sc.data.temp
+                        };
+                    });
+                $scope.heating.input.params.roomSettings[roomId].schedule[k] = new_sc;
+            });
+        });
+    };
 
     /**
-     * Store climate
+     * Store heating
      */
-    $scope.storeInstance = function(input, redirect) {
-        dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
+    $scope.storeInstance = function(redirect) {
+        $scope.updateData();
+        dataFactory.storeApi('instances', parseInt($scope.heating.input.instanceId, 10), $scope.heating.input).then(function(response) {
             if (redirect) {
                 $location.path('/automations');
             }

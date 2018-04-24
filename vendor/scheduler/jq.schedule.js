@@ -22,6 +22,7 @@
             time_click: function() {},
             append_on_click: function() {},
             bar_Click: function() {},
+            connect: function() {},
             debug: "" // debug selecter
         };
 
@@ -151,8 +152,8 @@
             var key = scheduleData.length - 1;
             $bar.data("sc_key", key);
 
-            $bar.click(function(event) {
-                if (!that.isResizing && !that.dragging && !that.clicking) {
+            $bar.bind("click", function(event) {
+                if (!$(event.target).hasClass("ui-resizable-handle") && !that.isResizing && !that.dragging && !that.clicking) {
                     var $bar = $(event.target).closest(".sc_Bar");
                     var sc_key = $bar.data("sc_key");
                     setting.bar_Click.call(element, $bar, scheduleData[sc_key], sc_key);
@@ -171,7 +172,6 @@
 
             var $node = $element.find(".sc_Bar"),
                 $elements = $(".sc_Bar");
-            // move node.
 
             $node.draggable({
                 grid: [setting.widthTimeX, 1],
@@ -201,7 +201,6 @@
                     that.dragging = true;
                     var $moveNode = jQuery(this);
                     var sc_key = $moveNode.data("sc_key");
-                    console.log("sc_key", sc_key);
                     var originalTop = ui.originalPosition.top;
                     var originalLeft = ui.originalPosition.left;
                     var positionTop = ui.position.top;
@@ -279,7 +278,6 @@
                     scheduleData[sc_key]["end"] = end;
 
                     $bars = $element.find('.sc_main .timeline').eq(scheduleData[sc_key]["timeline"]).find(".sc_Bar");
-                    console.log("$bars", $bars);
                     var connect = false,
                         collison = false,
                         cancel = false;
@@ -288,8 +286,6 @@
                         if ($bar.data("sc_key") != $node.data("sc_key")) {
                             if (that.isCollison($node, $bar)) {
                                 collison = true;
-                                console.log("$bar", $bar);
-                                console.log("$node", $node);
                                 if ($element.find(".confirm").length == 0) {
                                     if (confirm("connect?")) {
                                         connect = true;
@@ -297,8 +293,6 @@
                                             newEnd = 0;
 
                                         var old_sc_key = $bar.data("sc_key");
-                                        console.log("scheduleData[sc_key]", scheduleData[sc_key]);
-                                        console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
 
                                         var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
 
@@ -321,18 +315,12 @@
                                             text: "connect on resize",
                                             data: {}
                                         };
-                                        console.log("new Data", data);
 
                                         $node.remove();
                                         $bar.remove();
-                                        console.log("old_sc_key", old_sc_key);
-                                        console.log("sc_key", sc_key);
-
 
                                         delete scheduleData[sc_key];
                                         delete scheduleData[old_sc_key];
-
-                                        console.log("scheduleData", scheduleData);
 
                                         that.addScheduleData(data);
 
@@ -343,7 +331,6 @@
                                 return false;
                             }
                         }
-
                     });
 
                     if (!connect && !collison && !cancel) {
@@ -367,6 +354,33 @@
                 }
             });
             return key;
+        };
+
+        this.update = function(updated_data) {
+            // delete all schedules (bars)
+            $element.find(".sc_Bar").remove();
+            scheduleData = new Array();
+            setting.rows = updated_data;
+            for (var row in setting.rows) {
+                for (var i in setting.rows[row]["schedule"]) {
+                    var bdata = setting.rows[row]["schedule"][i];
+                    var s = element.calcStringTime(bdata["start"]);
+                    var e = element.calcStringTime(bdata["end"]);
+
+                    var data = {};
+                    data["timeline"] = parseInt(row);
+                    data["start"] = s;
+                    data["end"] = e;
+                    if (bdata["text"]) {
+                        data["text"] = bdata["text"];
+                    }
+                    data["data"] = {};
+                    if (bdata["data"]) {
+                        data["data"] = bdata["data"];
+                    }
+                    element.addScheduleData(data);
+                }
+            }
         };
         // 
         this.getScheduleCount = function(n) {
@@ -535,20 +549,17 @@
                                         timeline: parseInt(timelineNum),
                                         start: newStart,
                                         end: newEnd,
-                                        text: "connect on create",
+                                        text: "",
                                         data: {}
                                     };
-                                    console.log("new Data", data);
-
                                     $bar.remove();
-                                    console.log("old_sc_key", old_sc_key);
 
                                     delete scheduleData[old_sc_key];
 
-                                    console.log("scheduleData", scheduleData);
+                                    setting.connect.call(element, data);
 
-                                    that.addScheduleData(data);
 
+                                    //that.addScheduleData(data);
 
                                 }
                             }
