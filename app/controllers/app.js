@@ -156,16 +156,10 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
           status: false,
           icon: 'fa-exclamation-triangle text-danger'
         };
-        $scope.dataHolder.onlineModules.alert = {
-          message: $scope._t('no_internet_connection', {
-            __sec__: (cfg.pending_remote_limit / 1000)
-          }),
-          status: 'alert-warning',
-          icon: 'fa-wifi'
-        };
+        angular.extend(cfg.route.alert, {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}),icon: 'fa-wifi text-danger'});
 
       } else {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
       }
     }).finally(function () {
       $scope.loading = false;
@@ -198,12 +192,12 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
       var instances = response[2];
       // Error message
       if (modules.state === 'rejected' && $scope.routeMatch('/apps/local')) {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
       if (instances.state === 'rejected' && $scope.routeMatch('/apps/instance')) {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 

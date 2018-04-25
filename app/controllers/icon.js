@@ -352,7 +352,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
             var icons = response[0];
             // Error message
             if (icons.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - icons
@@ -380,7 +380,7 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
             $scope.iconsOnline.preview = response.data.data;
 
         }, function (error) {
-             alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             $scope.loading = false;
         });
 

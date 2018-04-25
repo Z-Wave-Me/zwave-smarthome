@@ -120,10 +120,10 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
             }, function (error) {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             });
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             $scope.loading = false;
         });
     };
@@ -178,11 +178,11 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                 $('#alpaca_data').alpaca(formData);
 
             }, function (error) {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 $scope.loading = false;
             });
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             $scope.loading = false;
         });
 
@@ -236,10 +236,10 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
 
             }, function (error) {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             });
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             $scope.loading = false;
         });
     }

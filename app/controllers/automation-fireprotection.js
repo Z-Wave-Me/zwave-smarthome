@@ -44,7 +44,7 @@ myAppController.controller('FireProtectionController', function ($scope, $routeP
       }
       $scope.fireProtections.state = 'success';
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
   };
 
@@ -211,7 +211,7 @@ myAppController.controller('FireProtectionIdController', function ($scope, $rout
       });
 
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
 
   };

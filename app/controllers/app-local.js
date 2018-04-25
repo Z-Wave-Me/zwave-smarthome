@@ -131,7 +131,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
  * The controller that handles local app detail actions.
  * @class AppLocalDetailController
  */
-myAppController.controller('AppLocalDetailController', function ($scope, $routeParams, $location, dataFactory, dataService, _) {
+myAppController.controller('AppLocalDetailController', function ($scope, $routeParams, $location, dataFactory, dataService, cfg,_) {
     $scope.module = [];
     $scope.categoryName = '';
     $scope.isOnline = null;
@@ -167,7 +167,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
             $scope.loading = false;
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
     };
     $scope.loadModule($routeParams.id);

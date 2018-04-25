@@ -53,7 +53,7 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
       }
       //$scope.scenes.state = 'success';
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
   };
   $scope.loadScenes();
@@ -243,7 +243,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
       });
 
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
 
   };
@@ -305,7 +305,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
     dataFactory.getApi('icons', null, true).then(function (response) {
       $scope.scene.icons = response.data.data;
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
       $scope.loading = false;
     });
 

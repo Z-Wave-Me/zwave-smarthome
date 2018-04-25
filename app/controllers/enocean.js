@@ -8,7 +8,7 @@
  * The controller that renders the list of EnOcean manufacturers and devices.
  * @class EnoceanDeviceController
  */
-myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService, _) {
+myAppController.controller('EnoceanDeviceController', function($scope, $routeParams, dataFactory, dataService,cfg, _) {
     $scope.hasEnOcean = false;
     $scope.enoceanDevices = [];
     $scope.manufacturers = [];
@@ -36,7 +36,7 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
             if (error.status == 404) {
                alertify.alertError($scope._t('enocean_nosupport'));
             } else {
-                 alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             }
 
         });
@@ -63,7 +63,7 @@ myAppController.controller('EnoceanDeviceController', function($scope, $routePar
  * The controller that teach-in a device by the profile.
  * @class EnoceanAssignController
  */
-myAppController.controller('EnoceanAssignController', function($scope, $interval, dataFactory, dataService, myCache) {
+myAppController.controller('EnoceanAssignController', function($scope, $interval, dataFactory, dataService, myCache,cfg) {
     $scope.profile = false;
     $scope.device = [];
     $scope.includedDevices = [];
@@ -334,7 +334,7 @@ myAppController.controller('EnoceanAssignController', function($scope, $interval
  * The controller that teach-in a device from the list.
  * @class EnoceanTeachinController
  */
-myAppController.controller('EnoceanTeachinController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, myCache) {
+myAppController.controller('EnoceanTeachinController', function($scope, $routeParams, $interval, $location, dataFactory, dataService, cfg,myCache) {
     $scope.device = [];
     $scope.includedDevices = [];
     $scope.lastIncludedDevice = [];
@@ -444,7 +444,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
             $scope.runCmd('controller.data.promisc=true');
 
         }, function(error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
     };
 
@@ -620,7 +620,7 @@ myAppController.controller('EnoceanTeachinController', function($scope, $routePa
  * The controller that manage EnOcean devices.
  * @class EnoceanManageController
  */
-myAppController.controller('EnoceanManageController', function($scope, $location, $window, dataFactory, dataService) {
+myAppController.controller('EnoceanManageController', function($scope, $location, $window, dataFactory, dataService,cfg) {
     $scope.goEdit = [];
     $scope.apiDevices = [];
     $scope.enoceanDevices = {};
@@ -665,7 +665,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
             $scope.loading = false;
 
         }, function(error) {
-             alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
              $scope.loading = false;
         });
     };
@@ -777,7 +777,7 @@ myAppController.controller('EnoceanManageController', function($scope, $location
  * The controller that handles actions on the EnOcean device.
  * @class EnoceanManageDetailController
  */
-myAppController.controller('EnoceanManageDetailController', function($scope, $routeParams, $filter, dataFactory, dataService, myCache) {
+myAppController.controller('EnoceanManageDetailController', function($scope, $routeParams, $filter, dataFactory, dataService, cfg,myCache) {
     $scope.nodeId = $routeParams.deviceId;
     $scope.enoceanDevice = [];
     $scope.enoceanProfiles = {};
@@ -990,7 +990,7 @@ myAppController.controller('EnoceanManageDetailController', function($scope, $ro
  * The controller that renders informations about the controller.
  * @class EnoceanControllerController
  */
-myAppController.controller('EnoceanControllerController', function($scope, $location, dataFactory, dataService) {
+myAppController.controller('EnoceanControllerController', function($scope, $location, dataFactory, dataService,cfg) {
     $scope.controller = false;
     $scope.controllerShow = ['APIVersion', 'AppDescription', 'AppVersion', 'ChipID', 'ChipVersion'];
 
@@ -1003,7 +1003,7 @@ myAppController.controller('EnoceanControllerController', function($scope, $loca
             $scope.controller = response.data.controller.data;
             $scope.loading = false;
         }, function(error) {
-             alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
              $scope.loading = false;
         });
     };

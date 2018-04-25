@@ -30,7 +30,7 @@ myAppController.controller('HeatingController', function($scope, $routeParams, $
             }
             $location.path('/heating/' + heating.id);
         }, function(error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
     };
     $scope.loadHeatingModule();
@@ -384,7 +384,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
             });
 
         }, function(error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
 
     };

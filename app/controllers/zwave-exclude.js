@@ -7,7 +7,7 @@
  * The controller that handles Reset/Remove proccess of elemnts.
  * @class ZwaveExcludeController
  */
-myAppController.controller('ZwaveExcludeController', function ($scope, $location, $routeParams, $interval, $timeout, $window, $q, dataFactory, dataService, myCache, _) {
+myAppController.controller('ZwaveExcludeController', function ($scope, $location, $routeParams, $interval, $timeout, $window, $q, dataFactory, dataService, myCache, cfg,_) {
     $scope.zWaveDevice = {
         controllerState: 0,
         lastExcludedDevice: 0,
@@ -58,7 +58,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
             $scope.loading = false;
             // Error message
             if (ZWaveAPIData.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - devices
@@ -146,7 +146,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
             $scope.zWaveExclude.resetRemove.process = true
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
 
     };

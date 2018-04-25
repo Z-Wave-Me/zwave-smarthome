@@ -81,7 +81,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
             $scope.loading = false;
             // Error message
             if (firstAccess.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             }
 
             // Success - remote ID

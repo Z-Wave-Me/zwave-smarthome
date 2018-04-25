@@ -1,5 +1,4 @@
 {
-  "error_loading_lang":"An unexpected error occurred while loading the language file",  
   "activated_devices": "Activated devices",
     "activate_module": "Activate __module__",
     "activate_reverse_event": "Activate reverse event",
@@ -199,7 +198,7 @@
     "error_license_request": "Unable to load a license key from the remote server.",
     "error_loading_lang": "An unexpected error occurred while loading the language file",
     "error_load_comments": "Unable to load comments",
-    "error_load_data": "Unable to load data",
+    "error_load_data": "An unexpected error occurred during loading data. Try to reload the page.",
     "error_load_user": "User not found. Please check your  login or password",
     "error_no_capabilities": "Unable to upgrade capabilities",
     "error_no_licence_key": "Unable to verify the License Key",

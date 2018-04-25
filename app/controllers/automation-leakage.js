@@ -45,7 +45,7 @@ myAppController.controller('LeakageController', function ($scope, $routeParams, 
       }
       $scope.leakages.state = 'success';
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
   };
 
@@ -212,7 +212,7 @@ myAppController.controller('LeakageIdController', function ($scope, $routeParams
       });
 
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
 
   };
