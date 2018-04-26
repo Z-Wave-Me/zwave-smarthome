@@ -1,431 +1,501 @@
 /* Rooms
 -------------------------------------------------- */
 
-.page-room {      
-    @include mediaQueries(max-small) {
-        width: 100%;
-        position: absolute;
-        padding-top: 60px;
-        padding-bottom: 60px; 
-        display: block;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-        overflow-x:hidden;
+.page-room {
+  @include mediaQueries(max-small) {
+    width: 100%;
+    position: absolute;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: block;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+  }
+  &.swipe-right,
+  &.swipe-left {
+    transition: transform 0.5s ease;
+    transform: translate3d(0, 0, 0);
+  }
+  &.swipe-left {
+    &.ng-enter {
+      transform: translate3d(100%, 0, 0); // Move to the right (up to 100% of width)
     }
-
-    &.swipe-right, &.swipe-left {
-        transition: transform 0.5s ease;
-        transform: translate3d(0, 0, 0);
+    &.ng-enter-active {
+      transform: translate3d(0, 0, 0);
     }
-
-    &.swipe-left {
-        &.ng-enter {
-            transform: translate3d(100%, 0, 0);  // Move to the right (up to 100% of width)
-        }
-        &.ng-enter-active {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave-active {
-            transform: translate3d(-100%, 0, 0);  
-        }
+    &.ng-leave {
+      transform: translate3d(0, 0, 0);
     }
-
-    &.swipe-right {
-        &.ng-enter {
-            transform: translate3d(-100%, 0, 0);  // Move to the right (up to 100% of width)
-        }
-        &.ng-enter-active {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave {
-            transform: translate3d(0, 0, 0);
-        }
-        &.ng-leave-active {
-            transform: translate3d(100%, 0, 0);  
-        }
-    }    
+    &.ng-leave-active {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+  &.swipe-right {
+    &.ng-enter {
+      transform: translate3d(-100%, 0, 0); // Move to the right (up to 100% of width)
+    }
+    &.ng-enter-active {
+      transform: translate3d(0, 0, 0);
+    }
+    &.ng-leave {
+      transform: translate3d(0, 0, 0);
+    }
+    &.ng-leave-active {
+      transform: translate3d(100%, 0, 0);
+    }
+  }
 }
 
 #page_config-rooms {
-    label {
-        .btn-default {
-            padding: 10px;
-        }
+  label {
+    .btn-default {
+      padding: 10px;
     }
+  }
 }
 
+/* Gallery
+-------------------------------------------------- */
+
+.rooms {
+  &.flexgallery {
+    >* {
+      padding: $spacing-half;
+      @include mediaQueries(min-esmall) {
+        flex-basis: 33.3333%;
+      }
+      @include mediaQueries(min-large) {
+        flex-basis: 25%;
+      }
+      figure {
+        .room-icon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 24px;
+          text-align: center;
+          width: 32px;
+          height: 32px;
+          line-height: 32px;
+          color: lighten($app-body-color, 40%);
+          background-color: rgba(255, 255, 255, 0.8);
+          border-radius: 50%;
+          //margin: $spacing 0 0 $spacing;
+          margin: $spacing $spacing 0 0;
+          /* @include mediaQueries(min-medium) {
+            margin: $spacing $spacing 0 0;
+          } */
+          .settings{
+            @include mediaQueries(max-small) {
+              display: none;
+            }
+            .fa{
+              color: lighten($app-body-color, 40%);
+            }
+            
+          }
+          .char{
+            @include mediaQueries(min-small) {
+              display: none;
+            }
+          }
+        }
+        .title{
+          @include mediaQueries(max-small) {
+            display: none;
+          }
+          
+        }
+      }
+    }
+    .inactive {
+      figure {
+        a:not(.room-settings) {
+          cursor: text;
+        }
+        img {
+          @include appGrayscale();
+        }
+        figcaption {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+
+ /* Room Sensors */
+ .room-sensors {
+  text-align: left;
+  margin: $spacing-half 0;
+  width: 100%;
+  @include mediaQueries(min-medium) {
+    text-align: center;
+  }
+  /* Sensor */
+  .sensor {
+    margin: 5px;
+    display: block;
+    @include mediaQueries(min-medium) {
+      display: inline-block
+    }
+    .sensor-img {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      .sensor-preview-img {
+        max-width: 20px;
+        max-height: 20px;
+      }
+    }
+    .sensor-ctrl {
+      display: inline-block;
+      margin: 0 0 0 2px;
+      .sensor-level {
+        font-weight: bold;
+      }
+      .sensor-scale {
+        font-size: 90%;
+      }
+      .sensor-level {
+        font-size: 110%;
+      }
+    }
+  }
+}
 
 /* Cards
 -------------------------------------------------- */
+
 .card-room {
-    @include appFloat(left);
-    width: 50%;
-
-    @include mediaQueries(min-esmall) {
-
-        width: 33.3333%;
+  @include appFloat(left);
+  width: 50%;
+  @include mediaQueries(min-esmall) {
+    width: 33.3333%;
+  }
+  @include mediaQueries(min-medium) {
+    width: 25%;
+  }
+  @include mediaQueries(min-large) {
+    //width: 20%;
+  }
+  .bcg-img {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    right: 9px;
+    bottom: 9px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: $card-bcg-color;
+    @include mediaQueries(min-small) {
+      -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
+      webkit-mask: linear-gradient( black, black 10%, transparent);
+      mask: linear-gradient( black, black 10%, transparent);
     }
-    @include mediaQueries(min-medium) {
-        width: 25%;
+  }
+  /* Inner element */
+  .card-room-in {
+    border: solid 1px $app-border-color;
+    position: relative;
+    height: 200px;
+    padding: 0;
+    margin: $spacing-half; // Media queries
+    @include mediaQueries(min-small) {
+      height: 268px;
     }
     @include mediaQueries(min-large) {
-        //width: 20%;
+      height: 288px;
     }
-
-
-    .bcg-img {
-        position: absolute; 
-        top:9px; 
-        left:9px; 
-        right:9px; 
-        bottom: 9px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-color: $card-bcg-color;
-
-        @include mediaQueries(min-small) {
-          -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
-          webkit-mask: linear-gradient( black, black 10%, transparent);
-          mask: linear-gradient( black, black 10%, transparent);
+    /* Card icon */
+    .card-header {
+      @include mediaQueries(min-medium) {
+        text-align: right;
       }
-        
-       
     }
-
-
-
-    /* Inner element */
-    .card-room-in {
-        border: solid 1px $app-border-color;
-        position: relative;
-        height: 200px;
+    /* Card icon */
+    .card-icon {
+      font-size: 24px;
+      text-align: center;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      display: inline-block;
+      color: lighten($app-body-color, 40%);
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      margin: $spacing 0 0 $spacing;
+      @include mediaQueries(min-medium) {
+        margin: $spacing $spacing 0 0;
+      }
+      &.lg {
+        @include mediaQueries(max-medium) {
+          display: none;
+        }
+      }
+      &.sm {
+        @include mediaQueries(min-medium) {
+          display: none;
+        }
+      }
+    }
+    /* Card content */
+    .card-footer {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      text-align: center;
+    }
+    .card-title {
+      display: none;
+      @include mediaQueries(min-medium) {
+        display: block;
+        font-size: 100%;
         padding: 0;
-        margin: $spacing-half;
-
-        // Media queries
-        @include mediaQueries(min-small) {
-           height: 268px;
+        margin: $spacing 0 0 0;
+        a {
+          color: lighten($app-body-color, 10%);
+          text-decoration: none;
         }
-        @include mediaQueries(min-large) {
-            height: 288px;
-        }
-        /* Card icon */
-        .card-header{
-
-            @include mediaQueries(min-medium) {
-                text-align: right;
-            }
-        }
-        /* Card icon */
-        .card-icon{
-            font-size: 24px;
-            text-align: center;
-            width: 32px;
-            height: 32px;
-            line-height: 32px;
-            display: inline-block;
-            color: lighten($app-body-color, 40%);
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            margin: $spacing  0 0 $spacing;
-            @include mediaQueries(min-medium) {
-                margin: $spacing  $spacing 0 0;
-            }
-            &.lg{
-
-                @include mediaQueries(max-medium) {
-                    display: none;
-                }
-            }
-            &.sm{
-
-                @include mediaQueries(min-medium) {
-                    display: none;
-                }
-            }
-        }
-        /* Card content */
-        .card-footer {
-            position:absolute; 
-            bottom:0px; 
-            left:0px; 
-            width:100%;
-            text-align: center;
-        }
-
-        .card-title {
-            display: none;
-            @include mediaQueries(min-medium) {
-                display:block;
-                font-size: 100%;
-                padding: 0;
-                margin: $spacing 0 0 0;
-                a {
-                    color: lighten($app-body-color, 10%);
-                    text-decoration: none;
-                }
-            }
-
-        }
-
-        /* Card Sensors */
-        .card-sensors {
-            text-align: left;
-            margin: $spacing-half 0;
-            width: 100%;
-
-
-            @include mediaQueries(min-medium) {
-                text-align: center;
-            }
-
-            /* Sensor */
-            .sensor {
-                margin: 5px;
-                display: block;     
-                @include mediaQueries(min-medium) {
-                    display: inline-block
-                }
-                .sensor-img {
-                    display: inline-block;
-                    width: 20px;
-                    height: 20px;
-                    .sensor-preview-img {
-                        max-width: 20px;
-                        max-height: 20px;
-                    }
-                }
-
-                .sensor-ctrl {
-                    display: inline-block;
-                    margin: 0 0 0 2px ;
-                    .sensor-level {
-                        font-weight: bold;
-                    }
-                    .sensor-scale {
-                        font-size: 90%;
-                    }
-                    .sensor-level {
-                        font-size: 110%;
-                    }
-                }
-            }
-
-        }
-
+      }
     }
-
+    /* Card Sensors */
+    .card-sensors {
+      text-align: left;
+      margin: $spacing-half 0;
+      width: 100%;
+      @include mediaQueries(min-medium) {
+        text-align: center;
+      }
+      /* Sensor */
+      .sensor {
+        margin: 5px;
+        display: block;
+        @include mediaQueries(min-medium) {
+          display: inline-block
+        }
+        .sensor-img {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          .sensor-preview-img {
+            max-width: 20px;
+            max-height: 20px;
+          }
+        }
+        .sensor-ctrl {
+          display: inline-block;
+          margin: 0 0 0 2px;
+          .sensor-level {
+            font-weight: bold;
+          }
+          .sensor-scale {
+            font-size: 90%;
+          }
+          .sensor-level {
+            font-size: 110%;
+          }
+        }
+      }
+    }
+  }
 }
+
 /* Rooms with device
 -------------------------------------------------- */
-.room-has-device {
-    cursor: pointer;
 
-    .card-title {
-        a {
-            font-weight: bold;
-            color: $app-body-color;
-            cursor: hand !important;
-        }
+.room-has-device {
+  cursor: pointer;
+  .card-title {
+    a {
+      font-weight: bold;
+      color: $app-body-color;
+      cursor: hand !important;
     }
+  }
 }
 
 /* Rooms without device
 -------------------------------------------------- */
-.room-no-device {
-    .room-link {
-        cursor: text !important;
-    }
-    .room-img {
-        opacity: 0.7;
-        filter: alpha(opacity=70);
-        @include appGrayscale();
 
-    }
+.room-no-device {
+  .room-link {
+    cursor: text !important;
+  }
+  .room-img {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    @include appGrayscale();
+  }
 }
 
 /* Elements in Rooms
 -------------------------------------------------- */
-/* Background with image */
-.full-bg-wrapper {
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-    min-height: 100%;
-    min-width: 100%;
-    z-index: -100;
 
-    .full-bg {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        filter: blur(15px);
-        transform: scale(1.1);
-    }
+/* Background with image */
+
+.full-bg-wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  min-height: 100%;
+  min-width: 100%;
+  z-index: -100;
+  .full-bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(15px);
+    transform: scale(1.1);
+  }
 }
 
 /* Bar
 -------------------------------------------------- */
-.elemnts-room-bar{
-    background-color: $card-bcg-color;
-    border: solid 1px $app-border-color;
-    margin: 0 0 $spacing-double 0;
+
+.elemnts-room-bar {
+  background-color: $card-bcg-color;
+  border: solid 1px $app-border-color;
+  margin: 0 0 $spacing-double 0;
+  position: relative;
+  .bar-row {
     position: relative;
-
-    .bar-row{
-        position:relative;
-        .bar-col {
-            display: block;
-            margin: 0 auto;
-            @include mediaQueries(min-small) {
-                display: table-cell;
-            }
-        }
-
-        .bar-media {
-            display: none;
-            @include mediaQueries(min-small) {
-                display: table-cell;
-                width: 64px;
-                height: 64px;
-                background-color: #ffffff;
-            }
-        }
-
-        .bar-body {
-            @include mediaQueries(min-small) {
-                margin-top: 5px;
-                padding-left: $spacing; 
-            }
-            .btn-group {
-                width: 100%;
-                .bar-title {
-                    &.swipe {
-                        display: table;
-                        width: 100%;
-                        
-                        .fa-arrow-left {
-                            display: table-cell;
-                            vertical-align: middle;
-                            text-align: left;
-                            color: $app-heading-color;
-                        }
-
-                        .fa-arrow-right {
-                            display: table-cell;
-                            vertical-align: middle;
-                            text-align: right;
-                            color: $app-heading-color;
-                        }
-                        
-                        .room-title {
-                            display: table-cell;
-                            vertical-align: middle;
-                            text-align: center;
-                            @include textOverflow();
-                            max-width: 200px;
-                            @include mediaQueries(min-small) {
-                                max-width: 100%;
-                            }
-                        }
-
-                        @include mediaQueries(min-small) {
-                                display: none;
-                        }
-                    }
-                    display: none;
-                    @include mediaQueries(min-small) {
-                        display: inline-block;
-                    }
-                    
-                }
-            }
-        }
-
-        .bar-ctrl {
-            display: none;
-
-            @include mediaQueries(min-small) {
-                display: table-cell;;
-            }
-
-            .btn-group{
-                .btn{
-                    @include mediaQueries(max-medium) {
-                        margin: 0;
-                        float: none;
-                        display: inline;
-                    }
-                }
-            }
-            .sensor{
-                .btn{
-                    cursor: text;
-                    border: 0 none;
-                    background: transparent;
-                    margin: 0 $spacing;
-                    padding: 0 $spacing-half 0 0;
-
-                    @include mediaQueries(max-medium) {
-                        margin: 0;
-                    }
-                }
-
-                .sensor-preview-img {
-                    display: inline-block;
-                    max-width: 24px;
-                    max-height: 24px;
-                }
-
-                .sensor-level {
-                    font-weight: bold;
-                    font-size: 90%;
-                    display: inline-block;
-                    vertical-align: middle;
-                    small{
-                        font-weight: normal;
-                        font-size: 80%;
-                    }
-                }
-                // Media queries
-                @include mediaQueries(max-small) {
-                    text-align: left;
-                    margin: $spacing 0;
-                    display: block;
-                }
-
-                // Media queries
-                @include mediaQueries(min-small) {
-                    .sensor-preview-img {
-                        max-width: 32px;
-                        max-height: 32px;
-                    }
-                    .sensor-level {
-                        font-size: 120%;
-                    }
-                }
-            }
-        }
-
+    .bar-col {
+      display: block;
+      margin: 0 auto;
+      @include mediaQueries(min-small) {
+        display: table-cell;
+      }
     }
+    .bar-media {
+      display: none;
+      @include mediaQueries(min-small) {
+        display: table-cell;
+        width: 64px;
+        height: 64px;
+        background-color: #ffffff;
+      }
+    }
+    .bar-body {
+      @include mediaQueries(min-small) {
+        margin-top: 5px;
+        padding-left: $spacing;
+      }
+      .btn-group {
+        width: 100%;
+        .bar-title {
+          &.swipe {
+            display: table;
+            width: 100%;
+            .fa-arrow-left {
+              display: table-cell;
+              vertical-align: middle;
+              text-align: left;
+              color: $app-heading-color;
+            }
+            .fa-arrow-right {
+              display: table-cell;
+              vertical-align: middle;
+              text-align: right;
+              color: $app-heading-color;
+            }
+            .room-title {
+              display: table-cell;
+              vertical-align: middle;
+              text-align: center;
+              @include textOverflow();
+              max-width: 200px;
+              @include mediaQueries(min-small) {
+                max-width: 100%;
+              }
+            }
+            @include mediaQueries(min-small) {
+              display: none;
+            }
+          }
+          display: none;
+          @include mediaQueries(min-small) {
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .bar-ctrl {
+      display: none;
+      @include mediaQueries(min-small) {
+        display: table-cell;
+        ;
+      }
+      .btn-group {
+        .btn {
+          @include mediaQueries(max-medium) {
+            margin: 0;
+            float: none;
+            display: inline;
+          }
+        }
+      }
+      .sensor {
+        .btn {
+          cursor: text;
+          border: 0 none;
+          background: transparent;
+          margin: 0 $spacing;
+          padding: 0 $spacing-half 0 0;
+          @include mediaQueries(max-medium) {
+            margin: 0;
+          }
+        }
+        .sensor-preview-img {
+          display: inline-block;
+          max-width: 24px;
+          max-height: 24px;
+        }
+        .sensor-level {
+          font-weight: bold;
+          font-size: 90%;
+          display: inline-block;
+          vertical-align: middle;
+          small {
+            font-weight: normal;
+            font-size: 80%;
+          }
+        } // Media queries
+        @include mediaQueries(max-small) {
+          text-align: left;
+          margin: $spacing 0;
+          display: block;
+        } // Media queries
+        @include mediaQueries(min-small) {
+          .sensor-preview-img {
+            max-width: 32px;
+            max-height: 32px;
+          }
+          .sensor-level {
+            font-size: 120%;
+          }
+        }
+      }
+    }
+  }
 }
 
 /* Images
 -------------------------------------------------- */
-.room-img-upload{
-    display: inline-block;
-    max-width: 70px;
-    max-height: 70px;
-    margin: $spacing-half;
+
+.room-img-upload {
+  display: inline-block;
+  max-width: 70px;
+  max-height: 70px;
+  margin: $spacing-half;
 }

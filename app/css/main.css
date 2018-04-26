@@ -16892,52 +16892,202 @@ img.widget-promo-image {
     overflow-x: hidden;
   }
 }
-/* line 18, ../sass/base/_rooms.scss */
+/* line 17, ../sass/base/_rooms.scss */
 .page-room.swipe-right, .page-room.swipe-left {
   transition: transform 0.5s ease;
   transform: translate3d(0, 0, 0);
 }
-/* line 24, ../sass/base/_rooms.scss */
+/* line 23, ../sass/base/_rooms.scss */
 .page-room.swipe-left.ng-enter {
   transform: translate3d(100%, 0, 0);
 }
-/* line 27, ../sass/base/_rooms.scss */
+/* line 26, ../sass/base/_rooms.scss */
 .page-room.swipe-left.ng-enter-active {
   transform: translate3d(0, 0, 0);
 }
-/* line 30, ../sass/base/_rooms.scss */
+/* line 29, ../sass/base/_rooms.scss */
 .page-room.swipe-left.ng-leave {
   transform: translate3d(0, 0, 0);
 }
-/* line 33, ../sass/base/_rooms.scss */
+/* line 32, ../sass/base/_rooms.scss */
 .page-room.swipe-left.ng-leave-active {
   transform: translate3d(-100%, 0, 0);
 }
-/* line 39, ../sass/base/_rooms.scss */
+/* line 37, ../sass/base/_rooms.scss */
 .page-room.swipe-right.ng-enter {
   transform: translate3d(-100%, 0, 0);
 }
-/* line 42, ../sass/base/_rooms.scss */
+/* line 40, ../sass/base/_rooms.scss */
 .page-room.swipe-right.ng-enter-active {
   transform: translate3d(0, 0, 0);
 }
-/* line 45, ../sass/base/_rooms.scss */
+/* line 43, ../sass/base/_rooms.scss */
 .page-room.swipe-right.ng-leave {
   transform: translate3d(0, 0, 0);
 }
-/* line 48, ../sass/base/_rooms.scss */
+/* line 46, ../sass/base/_rooms.scss */
 .page-room.swipe-right.ng-leave-active {
   transform: translate3d(100%, 0, 0);
 }
 
-/* line 56, ../sass/base/_rooms.scss */
+/* line 54, ../sass/base/_rooms.scss */
 #page_config-rooms label .btn-default {
   padding: 10px;
 }
 
-/* Cards
+/* Gallery
 -------------------------------------------------- */
 /* line 65, ../sass/base/_rooms.scss */
+.rooms.flexgallery > * {
+  padding: 5px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 65, ../sass/base/_rooms.scss */
+  .rooms.flexgallery > * {
+    flex-basis: 33.3333%;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 65, ../sass/base/_rooms.scss */
+  .rooms.flexgallery > * {
+    flex-basis: 25%;
+  }
+}
+/* line 74, ../sass/base/_rooms.scss */
+.rooms.flexgallery > * figure .room-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 24px;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  color: #737373;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  margin: 10px 10px 0 0;
+  /* @include mediaQueries(min-medium) {
+    margin: $spacing $spacing 0 0;
+  } */
+}
+/* line 91, ../sass/base/_rooms.scss */
+.rooms.flexgallery > * figure .room-icon .settings {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 767px) {
+  /* line 91, ../sass/base/_rooms.scss */
+  .rooms.flexgallery > * figure .room-icon .settings {
+    display: none;
+  }
+}
+/* line 95, ../sass/base/_rooms.scss */
+.rooms.flexgallery > * figure .room-icon .settings .fa {
+  color: #737373;
+}
+/* line 100, ../sass/base/_rooms.scss */
+.rooms.flexgallery > * figure .room-icon .char {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 100, ../sass/base/_rooms.scss */
+  .rooms.flexgallery > * figure .room-icon .char {
+    display: none;
+  }
+}
+/* line 106, ../sass/base/_rooms.scss */
+.rooms.flexgallery > * figure .title {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 767px) {
+  /* line 106, ../sass/base/_rooms.scss */
+  .rooms.flexgallery > * figure .title {
+    display: none;
+  }
+}
+/* line 116, ../sass/base/_rooms.scss */
+.rooms.flexgallery .inactive figure a:not(.room-settings) {
+  cursor: text;
+}
+/* line 119, ../sass/base/_rooms.scss */
+.rooms.flexgallery .inactive figure img {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+/* line 122, ../sass/base/_rooms.scss */
+.rooms.flexgallery .inactive figure figcaption {
+  font-weight: normal;
+}
+
+/* Room Sensors */
+/* line 131, ../sass/base/_rooms.scss */
+.room-sensors {
+  text-align: left;
+  margin: 5px 0;
+  width: 100%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* Sensor */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 131, ../sass/base/_rooms.scss */
+  .room-sensors {
+    text-align: center;
+  }
+}
+/* line 139, ../sass/base/_rooms.scss */
+.room-sensors .sensor {
+  margin: 5px;
+  display: block;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 139, ../sass/base/_rooms.scss */
+  .room-sensors .sensor {
+    display: inline-block;
+  }
+}
+/* line 145, ../sass/base/_rooms.scss */
+.room-sensors .sensor .sensor-img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+/* line 149, ../sass/base/_rooms.scss */
+.room-sensors .sensor .sensor-img .sensor-preview-img {
+  max-width: 20px;
+  max-height: 20px;
+}
+/* line 154, ../sass/base/_rooms.scss */
+.room-sensors .sensor .sensor-ctrl {
+  display: inline-block;
+  margin: 0 0 0 2px;
+}
+/* line 157, ../sass/base/_rooms.scss */
+.room-sensors .sensor .sensor-ctrl .sensor-level {
+  font-weight: bold;
+}
+/* line 160, ../sass/base/_rooms.scss */
+.room-sensors .sensor .sensor-ctrl .sensor-scale {
+  font-size: 90%;
+}
+/* line 163, ../sass/base/_rooms.scss */
+.room-sensors .sensor .sensor-ctrl .sensor-level {
+  font-size: 110%;
+}
+
+/* Cards
+-------------------------------------------------- */
+/* line 173, ../sass/base/_rooms.scss */
 .card-room {
   float: left;
   position: relative;
@@ -16952,18 +17102,18 @@ img.widget-promo-image {
   /* Inner element */
 }
 @media only screen and (min-width: 480px) {
-  /* line 65, ../sass/base/_rooms.scss */
+  /* line 173, ../sass/base/_rooms.scss */
   .card-room {
     width: 33.3333%;
   }
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 65, ../sass/base/_rooms.scss */
+  /* line 173, ../sass/base/_rooms.scss */
   .card-room {
     width: 25%;
   }
 }
-/* line 81, ../sass/base/_rooms.scss */
+/* line 185, ../sass/base/_rooms.scss */
 .card-room .bcg-img {
   position: absolute;
   top: 9px;
@@ -16978,14 +17128,14 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 81, ../sass/base/_rooms.scss */
+  /* line 185, ../sass/base/_rooms.scss */
   .card-room .bcg-img {
     -webkit-mask: -webkit-linear-gradient(black, black 10%, transparent);
     webkit-mask: linear-gradient(black, black 10%, transparent);
     mask: linear-gradient(black, black 10%, transparent);
   }
 }
-/* line 104, ../sass/base/_rooms.scss */
+/* line 202, ../sass/base/_rooms.scss */
 .card-room .card-room-in {
   border: solid 1px #cccccc;
   position: relative;
@@ -17002,29 +17152,29 @@ img.widget-promo-image {
   /* Card Sensors */
 }
 @media only screen and (min-width: 768px) {
-  /* line 104, ../sass/base/_rooms.scss */
+  /* line 202, ../sass/base/_rooms.scss */
   .card-room .card-room-in {
     height: 268px;
   }
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 104, ../sass/base/_rooms.scss */
+  /* line 202, ../sass/base/_rooms.scss */
   .card-room .card-room-in {
     height: 288px;
   }
 }
-/* line 119, ../sass/base/_rooms.scss */
+/* line 215, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-header {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 119, ../sass/base/_rooms.scss */
+  /* line 215, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-header {
     text-align: right;
   }
 }
-/* line 126, ../sass/base/_rooms.scss */
+/* line 221, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-icon {
   font-size: 24px;
   text-align: center;
@@ -17040,34 +17190,34 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 126, ../sass/base/_rooms.scss */
+  /* line 221, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-icon {
     margin: 10px 10px 0 0;
   }
 }
-/* line 140, ../sass/base/_rooms.scss */
+/* line 235, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-icon.lg {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 140, ../sass/base/_rooms.scss */
+  /* line 235, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-icon.lg {
     display: none;
   }
 }
-/* line 146, ../sass/base/_rooms.scss */
+/* line 240, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-icon.sm {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 146, ../sass/base/_rooms.scss */
+  /* line 240, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-icon.sm {
     display: none;
   }
 }
-/* line 154, ../sass/base/_rooms.scss */
+/* line 247, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-footer {
   position: absolute;
   bottom: 0px;
@@ -17075,27 +17225,27 @@ img.widget-promo-image {
   width: 100%;
   text-align: center;
 }
-/* line 162, ../sass/base/_rooms.scss */
+/* line 254, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-title {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 162, ../sass/base/_rooms.scss */
+  /* line 254, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-title {
     display: block;
     font-size: 100%;
     padding: 0;
     margin: 10px 0 0 0;
   }
-  /* line 169, ../sass/base/_rooms.scss */
+  /* line 261, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-title a {
     color: #262626;
     text-decoration: none;
   }
 }
-/* line 178, ../sass/base/_rooms.scss */
+/* line 268, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors {
   text-align: left;
   margin: 5px 0;
@@ -17105,12 +17255,12 @@ img.widget-promo-image {
   /* Sensor */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 178, ../sass/base/_rooms.scss */
+  /* line 268, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-sensors {
     text-align: center;
   }
 }
-/* line 189, ../sass/base/_rooms.scss */
+/* line 276, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors .sensor {
   margin: 5px;
   display: block;
@@ -17118,47 +17268,47 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 992px) and (orientation: landscape) {
-  /* line 189, ../sass/base/_rooms.scss */
+  /* line 276, ../sass/base/_rooms.scss */
   .card-room .card-room-in .card-sensors .sensor {
     display: inline-block;
   }
 }
-/* line 195, ../sass/base/_rooms.scss */
+/* line 282, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors .sensor .sensor-img {
   display: inline-block;
   width: 20px;
   height: 20px;
 }
-/* line 199, ../sass/base/_rooms.scss */
+/* line 286, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors .sensor .sensor-img .sensor-preview-img {
   max-width: 20px;
   max-height: 20px;
 }
-/* line 205, ../sass/base/_rooms.scss */
+/* line 291, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors .sensor .sensor-ctrl {
   display: inline-block;
   margin: 0 0 0 2px;
 }
-/* line 208, ../sass/base/_rooms.scss */
+/* line 294, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-level {
   font-weight: bold;
 }
-/* line 211, ../sass/base/_rooms.scss */
+/* line 297, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-scale {
   font-size: 90%;
 }
-/* line 214, ../sass/base/_rooms.scss */
+/* line 300, ../sass/base/_rooms.scss */
 .card-room .card-room-in .card-sensors .sensor .sensor-ctrl .sensor-level {
   font-size: 110%;
 }
 
 /* Rooms with device
 -------------------------------------------------- */
-/* line 227, ../sass/base/_rooms.scss */
+/* line 312, ../sass/base/_rooms.scss */
 .room-has-device {
   cursor: pointer;
 }
-/* line 231, ../sass/base/_rooms.scss */
+/* line 315, ../sass/base/_rooms.scss */
 .room-has-device .card-title a {
   font-weight: bold;
   color: #0d0d0d;
@@ -17167,11 +17317,11 @@ img.widget-promo-image {
 
 /* Rooms without device
 -------------------------------------------------- */
-/* line 242, ../sass/base/_rooms.scss */
+/* line 327, ../sass/base/_rooms.scss */
 .room-no-device .room-link {
   cursor: text !important;
 }
-/* line 245, ../sass/base/_rooms.scss */
+/* line 330, ../sass/base/_rooms.scss */
 .room-no-device .room-img {
   opacity: 0.7;
   filter: alpha(opacity=70);
@@ -17183,7 +17333,7 @@ img.widget-promo-image {
 /* Elements in Rooms
 -------------------------------------------------- */
 /* Background with image */
-/* line 256, ../sass/base/_rooms.scss */
+/* line 342, ../sass/base/_rooms.scss */
 .full-bg-wrapper {
   position: absolute;
   left: 0;
@@ -17193,7 +17343,7 @@ img.widget-promo-image {
   min-width: 100%;
   z-index: -100;
 }
-/* line 265, ../sass/base/_rooms.scss */
+/* line 350, ../sass/base/_rooms.scss */
 .full-bg-wrapper .full-bg {
   position: fixed;
   top: 0;
@@ -17208,18 +17358,18 @@ img.widget-promo-image {
 
 /* Bar
 -------------------------------------------------- */
-/* line 280, ../sass/base/_rooms.scss */
+/* line 366, ../sass/base/_rooms.scss */
 .elemnts-room-bar {
   background-color: #FFFFFF;
   border: solid 1px #cccccc;
   margin: 0 0 20px 0;
   position: relative;
 }
-/* line 286, ../sass/base/_rooms.scss */
+/* line 371, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row {
   position: relative;
 }
-/* line 288, ../sass/base/_rooms.scss */
+/* line 373, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-col {
   display: block;
   margin: 0 auto;
@@ -17227,19 +17377,19 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 288, ../sass/base/_rooms.scss */
+  /* line 373, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-col {
     display: table-cell;
   }
 }
-/* line 296, ../sass/base/_rooms.scss */
+/* line 380, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-media {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 296, ../sass/base/_rooms.scss */
+  /* line 380, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-media {
     display: table-cell;
     width: 64px;
@@ -17247,50 +17397,50 @@ img.widget-promo-image {
     background-color: #ffffff;
   }
 }
-/* line 306, ../sass/base/_rooms.scss */
+/* line 389, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 306, ../sass/base/_rooms.scss */
+  /* line 389, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-body {
     margin-top: 5px;
     padding-left: 10px;
   }
 }
-/* line 311, ../sass/base/_rooms.scss */
+/* line 394, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group {
   width: 100%;
 }
-/* line 313, ../sass/base/_rooms.scss */
+/* line 396, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 314, ../sass/base/_rooms.scss */
+/* line 397, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe {
   display: table;
   width: 100%;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 318, ../sass/base/_rooms.scss */
+/* line 400, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .fa-arrow-left {
   display: table-cell;
   vertical-align: middle;
   text-align: left;
   color: #737373;
 }
-/* line 325, ../sass/base/_rooms.scss */
+/* line 406, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .fa-arrow-right {
   display: table-cell;
   vertical-align: middle;
   text-align: right;
   color: #737373;
 }
-/* line 332, ../sass/base/_rooms.scss */
+/* line 412, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .room-title {
   display: table-cell;
   vertical-align: middle;
@@ -17307,56 +17457,56 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 332, ../sass/base/_rooms.scss */
+  /* line 412, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe .room-title {
     max-width: 100%;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 314, ../sass/base/_rooms.scss */
+  /* line 397, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title.swipe {
     display: none;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 313, ../sass/base/_rooms.scss */
+  /* line 396, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-body .btn-group .bar-title {
     display: inline-block;
   }
 }
-/* line 356, ../sass/base/_rooms.scss */
+/* line 433, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl {
   display: none;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 356, ../sass/base/_rooms.scss */
+  /* line 433, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl {
     display: table-cell;
   }
 }
-/* line 364, ../sass/base/_rooms.scss */
+/* line 440, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 364, ../sass/base/_rooms.scss */
+  /* line 440, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .btn-group .btn {
     margin: 0;
     float: none;
     display: inline;
   }
 }
-/* line 372, ../sass/base/_rooms.scss */
+/* line 448, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor {
   /* MIN WIDTH */
   /* MAX WIDTH */
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
-/* line 373, ../sass/base/_rooms.scss */
+/* line 449, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
   cursor: text;
   border: 0 none;
@@ -17367,31 +17517,31 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 991px) {
-  /* line 373, ../sass/base/_rooms.scss */
+  /* line 449, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .btn {
     margin: 0;
   }
 }
-/* line 385, ../sass/base/_rooms.scss */
+/* line 459, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
   display: inline-block;
   max-width: 24px;
   max-height: 24px;
 }
-/* line 391, ../sass/base/_rooms.scss */
+/* line 464, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
   font-weight: bold;
   font-size: 90%;
   display: inline-block;
   vertical-align: middle;
 }
-/* line 396, ../sass/base/_rooms.scss */
+/* line 469, ../sass/base/_rooms.scss */
 .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level small {
   font-weight: normal;
   font-size: 80%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 372, ../sass/base/_rooms.scss */
+  /* line 448, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor {
     text-align: left;
     margin: 10px 0;
@@ -17399,12 +17549,12 @@ img.widget-promo-image {
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 410, ../sass/base/_rooms.scss */
+  /* line 480, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-preview-img {
     max-width: 32px;
     max-height: 32px;
   }
-  /* line 414, ../sass/base/_rooms.scss */
+  /* line 484, ../sass/base/_rooms.scss */
   .elemnts-room-bar .bar-row .bar-ctrl .sensor .sensor-level {
     font-size: 120%;
   }
@@ -17412,7 +17562,7 @@ img.widget-promo-image {
 
 /* Images
 -------------------------------------------------- */
-/* line 426, ../sass/base/_rooms.scss */
+/* line 496, ../sass/base/_rooms.scss */
 .room-img-upload {
   display: inline-block;
   max-width: 70px;
@@ -18441,61 +18591,26 @@ img.widget-promo-image {
     flex-basis: 25%;
   }
 }
-/* line 18, ../sass/base/_automation.scss */
-.automations.flexgallery > * figure {
-  position: relative;
-  border: 0;
-  background-color: #fff;
-  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 18, ../sass/base/_automation.scss */
-  .automations.flexgallery > * figure {
-    padding: 5px;
-  }
-}
-/* line 27, ../sass/base/_automation.scss */
-.automations.flexgallery > * figure img {
-  margin-bottom: 0;
-}
-/* line 30, ../sass/base/_automation.scss */
-.automations.flexgallery > * figure figcaption {
-  padding: 10px;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.5);
-  width: 100%;
-}
-/* line 38, ../sass/base/_automation.scss */
-.automations.flexgallery > * figure figcaption a {
-  display: block;
-}
 
-/* line 48, ../sass/base/_automation.scss */
+/* line 21, ../sass/base/_automation.scss */
 .accordion-wrap {
   position: relative;
 }
-/* line 50, ../sass/base/_automation.scss */
+/* line 23, ../sass/base/_automation.scss */
 .accordion-wrap .label {
   position: absolute;
   top: -10px;
   left: 0;
 }
-/* line 54, ../sass/base/_automation.scss */
+/* line 27, ../sass/base/_automation.scss */
 .accordion-wrap .label.index_0 {
   display: none;
 }
-/* line 57, ../sass/base/_automation.scss */
+/* line 30, ../sass/base/_automation.scss */
 .accordion-wrap .label.nested {
   display: none;
 }
-/* line 61, ../sass/base/_automation.scss */
+/* line 34, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle {
   display: flex;
   align-items: center;
@@ -18504,48 +18619,48 @@ img.widget-promo-image {
     margin-bottom: $spacing;
   } */
 }
-/* line 66, ../sass/base/_automation.scss */
+/* line 39, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title {
   padding: 5px 0;
 }
-/* line 68, ../sass/base/_automation.scss */
+/* line 41, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title .room-title {
   display: block;
   padding-bottom: 3px;
   font-size: 80%;
 }
-/* line 73, ../sass/base/_automation.scss */
+/* line 46, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title .device-title {
   display: block;
 }
-/* line 77, ../sass/base/_automation.scss */
+/* line 50, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button.no-toggle {
   cursor: text !important;
 }
-/* line 79, ../sass/base/_automation.scss */
+/* line 52, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button.no-toggle::after {
   content: "";
 }
-/* line 83, ../sass/base/_automation.scss */
+/* line 56, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .navi-img {
   margin-right: 10px;
 }
-/* line 86, ../sass/base/_automation.scss */
+/* line 59, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button em {
   font-size: 80%;
 }
-/* line 89, ../sass/base/_automation.scss */
+/* line 62, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .is-legend {
   font-weight: bold;
 }
-/* line 93, ../sass/base/_automation.scss */
+/* line 66, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle .no-toggle {
   padding: 10px 0;
   width: 100%;
   font-weight: normal;
   border-bottom: dotted 1px #cccccc;
 }
-/* line 103, ../sass/base/_automation.scss */
+/* line 76, ../sass/base/_automation.scss */
 .accordion-wrap .accordion {
   padding: 10px;
   border-bottom: 0;
@@ -18554,48 +18669,48 @@ img.widget-promo-image {
     border: solid 1px darken(#F6F6F6, 20%)
   } */
 }
-/* line 107, ../sass/base/_automation.scss */
+/* line 80, ../sass/base/_automation.scss */
 .accordion-wrap .accordion .form-group {
   border: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 112, ../sass/base/_automation.scss */
+/* line 85, ../sass/base/_automation.scss */
 .accordion-wrap .accordion:last-child {
   margin-bottom: 0;
 }
-/* line 121, ../sass/base/_automation.scss */
+/* line 94, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle {
   opacity: 0.7;
 }
-/* line 123, ../sass/base/_automation.scss */
+/* line 96, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button {
   cursor: text;
   padding: 10px 0;
 }
-/* line 126, ../sass/base/_automation.scss */
+/* line 99, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button::after {
   content: "" !important;
 }
-/* line 129, ../sass/base/_automation.scss */
+/* line 102, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button[aria-expanded="true"] {
   border-bottom: dotted 1px #cccccc;
 }
-/* line 134, ../sass/base/_automation.scss */
+/* line 107, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion {
   display: none;
 }
-/* line 139, ../sass/base/_automation.scss */
+/* line 112, ../sass/base/_automation.scss */
 .accordion-wrap.nested legend,
 .accordion-wrap.nested .legend {
   padding: 20px 10px 5px 0;
   font-size: 110%;
 }
-/* line 146, ../sass/base/_automation.scss */
+/* line 119, ../sass/base/_automation.scss */
 .accordion-wrap.nested .accordion .accordion {
   margin-bottom: 20px;
 }
-/* line 153, ../sass/base/_automation.scss */
+/* line 126, ../sass/base/_automation.scss */
 .accordion-wrap.edit-me .accordion-toggle button {
   font-weight: bold;
 }
@@ -18936,16 +19051,57 @@ img.widget-promo-image {
 .flexgallery > * figure {
   padding: 5px;
   text-align: center;
-  border: solid 1px #cccccc;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 24, ../sass/base/_flexgallery.scss */
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 20, ../sass/base/_flexgallery.scss */
+  .flexgallery > * figure {
+    padding: 5px;
+  }
+}
+/* line 31, ../sass/base/_flexgallery.scss */
 .flexgallery > * figure img {
-  margin-bottom: 10px;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
 }
-/* line 27, ../sass/base/_flexgallery.scss */
+@media only screen and (min-width: 768px) {
+  /* line 31, ../sass/base/_flexgallery.scss */
+  .flexgallery > * figure img {
+    height: 220px;
+  }
+}
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 31, ../sass/base/_flexgallery.scss */
+  .flexgallery > * figure img {
+    height: 280px;
+  }
+}
+/* line 42, ../sass/base/_flexgallery.scss */
 .flexgallery > * figure figcaption {
   margin-top: auto;
   font-size: 100%;
+  padding: 10px;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+}
+/* line 52, ../sass/base/_flexgallery.scss */
+.flexgallery > * figure figcaption a {
+  display: block;
 }
 
 /* Flexcard
@@ -20064,12 +20220,12 @@ body.night-false {
   }
 }
 /* line 296, ../sass/custom/_shui_night.scss */
-.night-true .automations.flexgallery figure {
+.night-true .flexgallery figure {
   border: solid 1px #44464F;
   background-color: #24262D;
 }
 /* line 299, ../sass/custom/_shui_night.scss */
-.night-true .automations.flexgallery figure figcaption {
+.night-true .flexgallery figure figcaption {
   background-color: rgba(36, 38, 45, 0.7);
 }
 /* line 308, ../sass/custom/_shui_night.scss */
