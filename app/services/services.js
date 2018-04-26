@@ -10,17 +10,17 @@ var myAppService = angular.module('myAppService', []);
  * Angular module initialization
  * @class dataService
  */
-myAppService.service('dataService', function ($filter, $log, $cookies, $window, $location, cfg, cfgicons, _) {
+myAppService.service('dataService', function($filter, $log, $cookies, $window, $location, cfg, cfgicons, _) {
     /// --- Public functions --- ///
     /**
      * Resets the alert object
      * @param {object} notifier
      * @returns {undefined}
      */
-    this.resetAlert = function () {
+    this.resetAlert = function() {
         if (cfg.route.alert.message && !cfg.route.alert.permanent) {
             angular.extend(cfg.route.alert, {
-                type: 'system',// system|network
+                type: 'system', // system|network
                 message: false,
                 info: false,
                 permanent: false, // Permanently displayed
@@ -35,7 +35,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} next
      * @returns {undefined}
      */
-    this.isAccessAllowed = function (next) {
+    this.isAccessAllowed = function(next) {
         if (next.requireLogin) {
             var user = this.getUser();
             if (!user) {
@@ -56,7 +56,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} next
      * @returns {undefined}
      */
-    this.setTimeStamp = function () {
+    this.setTimeStamp = function() {
         /* dataFactory.getApi('timezone', null, true).then(function (response) {
 
          }, function (error) {});*/
@@ -69,7 +69,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} replacement
      * @returns {unresolved}
      */
-    this.getLangLine = function (key, languages, replacement) {
+    this.getLangLine = function(key, languages, replacement) {
         return getLangLine(key, languages, replacement);
     };
 
@@ -78,8 +78,13 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} notifier
      * @returns {undefined}
      */
-    this.showNotifier = function (notifier) {
-        var param = _.defaults(notifier, {position: 'top-right', message: false, type: 'success', wait: 5});
+    this.showNotifier = function(notifier) {
+        var param = _.defaults(notifier, {
+            position: 'top-right',
+            message: false,
+            type: 'success',
+            wait: 5
+        });
         if (notifier.message) {
             alertify.set('notifier', 'position', 'top-right');
             alertify.notify(param.message, param.type, param.wait);
@@ -93,7 +98,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {string} message
      * @returns {undefined}
      */
-    this.logError = function (error, message) {
+    this.logError = function(error, message) {
         message = message || 'ERROR:';
         $log.error('---------- ' + message + ' ----------', error);
     };
@@ -121,18 +126,18 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get OS (operating system)
      * @returns {String}
      */
-    this.isIeEdge = function () {
-        var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    this.isIeEdge = function() {
+        var isIE = /*@cc_on!@*/ false || !!document.documentMode;
         if (isIE) {
             return true;
         }
-         return false;
+        return false;
         // Edge 20+
         /*var isEdge = !isIE && !!window.StyleMedia;
         if (isEdge) {
             return true;
         }*/
-       
+
     };
 
 
@@ -141,7 +146,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {string} a
      * @returns {Boolean}
      */
-    this.isMobile = function (a) {
+    this.isMobile = function(a) {
         if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
             return true;
         } else {
@@ -153,7 +158,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Window history go back
      * @returns {undefined}
      */
-    this.goBack = function () {
+    this.goBack = function() {
         window.history.back();
     };
 
@@ -163,20 +168,20 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {int} index
      * @returns {unresolved}
      */
-    this.getUrlSegment = function (url,index) {
-      index = typeof index  !== 'undefined' ? index  : 1;
-      if(!url){
-        return '';
-      }
-      return url.split('/')[index];
-  };
+    this.getUrlSegment = function(url, index) {
+        index = typeof index !== 'undefined' ? index : 1;
+        if (!url) {
+            return '';
+        }
+        return url.split('/')[index];
+    };
 
 
     /**
      * Get user data from cookies
      * @returns {Array|Boolean}
      */
-    this.getUser = function () {
+    this.getUser = function() {
         var user = ($cookies.user && !!$cookies.user && $cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
         return user;
     };
@@ -186,7 +191,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} data
      * @returns {Boolean|Object}
      */
-    this.setUser = function (data) {
+    this.setUser = function(data) {
         if (data && !!data) {
             $cookies.user = angular.toJson(data);
         } else {
@@ -200,7 +205,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Unset user data - delete user cookies
      * @returns {undefined}
      */
-    this.unsetUser = function () {
+    this.unsetUser = function() {
         this.setUser(null);
         this.setZWAYSession(null);
     };
@@ -209,7 +214,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get ZWAY session
      * @returns {string}
      */
-    this.getZWAYSession = function () {
+    this.getZWAYSession = function() {
         return $cookies.ZWAYSession;
     };
     /**
@@ -217,7 +222,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {string} sid
      * @returns {Boolean|Object}
      */
-    this.setZWAYSession = function (sid) {
+    this.setZWAYSession = function(sid) {
         if (sid && !!sid) {
             $cookies.ZWAYSession = sid;
         } else {
@@ -229,7 +234,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get last login info
      * @returns {Sring|Boolean}
      */
-    this.getLastLogin = function () {
+    this.getLastLogin = function() {
         return $cookies.lastLogin && !!$cookies.lastLogin && $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
     };
 
@@ -238,7 +243,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {string} val
      * @returns {undefined}
      */
-    this.setLastLogin = function (val) {
+    this.setLastLogin = function(val) {
         $cookies.lastLogin = val;
     };
 
@@ -246,7 +251,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Get remember me
      * @returns {Object|Boolean}
      */
-    this.getRememberMe = function () {
+    this.getRememberMe = function() {
         var user = ($cookies.rememberme && !!$cookies.rememberme && $cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
         return user;
     };
@@ -256,7 +261,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} data
      * @returns {Boolean|Object}
      */
-    this.setRememberMe = function (data) {
+    this.setRememberMe = function(data) {
         if (data && !!data) {
             $cookies.rememberme = angular.toJson(data);
         } else {
@@ -271,7 +276,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Logout from the system
      * @returns {undefined}
      */
-    this.logOut = function () {
+    this.logOut = function() {
         this.setUser(null);
         this.setZWAYSession(null);
         // Check if host is in the logout redirect list
@@ -292,7 +297,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} param
      * @returns {array}
      */
-    this.autocomplete = function (data,param) {
+    this.autocomplete = function(data, param) {
         var results = [];
         var term = param.term;
         var searchInKeys = param.searchInKeys.split(',');
@@ -306,20 +311,20 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         }
 
         // Find first resultLength states that start with `term`.
-        for (var i = 0; i <data.length && results.length < resultLength; i++) {
+        for (var i = 0; i < data.length && results.length < resultLength; i++) {
             var obj = data[i];
             var found = false;
             var re = new RegExp(term, "ig");
             // Search in given cols
             for (var c = 0; c < searchInKeys.length; c++) {
-                if(obj[searchInKeys[c]] && re.test(obj[searchInKeys[c]])){
+                if (obj[searchInKeys[c]] && re.test(obj[searchInKeys[c]])) {
                     found = true;
                     // Avoid to duplicate results
                     continue;
                 }
 
             }
-            if(found){
+            if (found) {
                 results.push(_.pick(obj, returnKeys));
             }
         }
@@ -333,7 +338,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {string} fileName
      * @returns {string}
      */
-    this.uploadFileNewName = function (fileName) {
+    this.uploadFileNewName = function(fileName) {
         var name = fileName.split('.').slice(0, -1).join('.');
         return $filter('stringToSlug')(name) + '.' + $filter('fileExtension')(fileName);
 
@@ -346,10 +351,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {int} ccId
      * @returns {boolean|object}
      */
-    this.hasCommandClass = function(node,ccId) {
+    this.hasCommandClass = function(node, ccId) {
         var hasCc = false;
         angular.forEach(node.instances, function(instance, instanceId) {
-            if(instance.commandClasses[ccId]){
+            if (instance.commandClasses[ccId]) {
                 hasCc = instance.commandClasses[ccId];
                 return;
             }
@@ -357,16 +362,16 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         return hasCc;
     };
 
-     /**
-    * Compare version
-    * http://locutus.io/php/info/version_compare/
-    * @param {string} v1
-    * @param {string} v2
-    * @param {string} operator
-    * @returns {Boolean|Number}
-    */
-    this.compareVersion = function (v1, v2, operator) {
-        
+    /**
+     * Compare version
+     * http://locutus.io/php/info/version_compare/
+     * @param {string} v1
+     * @param {string} v2
+     * @param {string} operator
+     * @returns {Boolean|Number}
+     */
+    this.compareVersion = function(v1, v2, operator) {
+
 
         // Important: compare must be initialized at 0.
         var i
@@ -402,16 +407,16 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         // even less than an unexisting value in vm (-7), hence [-8].
         // It's also important to not strip spaces because of this.
         //   version_compare('', ' ') === 1
-        var _prepVersion = function (v) {
-            v = ('' + v).replace(/[_\-+]/g, '.')
-            v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
-            return (!v.length ? [-8] : v.split('.'))
-        }
-        // This converts a version component to a number.
-        // Empty component becomes 0.
-        // Non-numerical component becomes a negative number.
-        // Numerical component becomes itself as an integer.
-        var _numVersion = function (v) {
+        var _prepVersion = function(v) {
+                v = ('' + v).replace(/[_\-+]/g, '.')
+                v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
+                return (!v.length ? [-8] : v.split('.'))
+            }
+            // This converts a version component to a number.
+            // Empty component becomes 0.
+            // Non-numerical component becomes a negative number.
+            // Numerical component becomes itself as an integer.
+        var _numVersion = function(v) {
             return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10))
         }
 
@@ -472,7 +477,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} element
      * @returns {string}
      */
-    this.assignElementIcon = function (element) {
+    this.assignElementIcon = function(element) {
         return assignElementIcon(element);
 
 
@@ -486,20 +491,20 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {boolean} showBattery
      * @returns {unresolved}
      */
-    this.getDevicesData = function (data, showHidden, showAll,showBattery) {
+    this.getDevicesData = function(data, showHidden, showAll, showBattery) {
         //var user = this.getUser();
         var user = cfg.user;
         return _.chain(data)
             .flatten()
-            .uniq(false, function (v) {
+            .uniq(false, function(v) {
                 return v.id;
             })
-            .reject(function (v) {
-                if(v.deviceType === 'battery' && !showBattery){
+            .reject(function(v) {
+                if (v.deviceType === 'battery' && !showBattery) {
                     return v.deviceType === 'battery';
                 }
                 if (showAll) {
-                  return;
+                    return;
                 } else if (showHidden) {
                     return (v.permanently_hidden === true) || v.metrics.removed === true;
                 } else {
@@ -507,7 +512,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 }
 
             })
-            .filter(function (v) {
+            .filter(function(v) {
                 //Simulates failed elements
                 /*var failed = ['MailNotifier_52','ZWayVDev_zway_31-0-48-1','ZWayVDev_zway_30-0-49-1','ZWayVDev_zway_31-0-48-1'];
                 v.isFailed = (failed.indexOf(v.id) > -1);*/
@@ -518,15 +523,27 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 var showNotification = false;
                 // Create min/max value
                 if (cfg.knob_255.indexOf(v.probeType) > -1) {
-                    minMax = {min: 0, max: 255, step: 1};
+                    minMax = {
+                        min: 0,
+                        max: 255,
+                        step: 1
+                    };
                 } else if (v.deviceType === 'thermostat') {
-                    minMax = (v.metrics.scaleTitle === '°F' ? {min: 41, max: 104, step: 1} : {
+                    minMax = (v.metrics.scaleTitle === '°F' ? {
+                        min: 41,
+                        max: 104,
+                        step: 1
+                    } : {
                         min: 5,
                         max: 40,
                         step: 0.5
                     });
                 } else {
-                    minMax = {min: 0, max: 99, step: 1};
+                    minMax = {
+                        min: 0,
+                        max: 99,
+                        step: 1
+                    };
                 }
                 // Limit min/max with device metrics
                 if (typeof(v.metrics.max) !== 'undefined') {
@@ -540,34 +557,51 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 }
                 // Element on the blacklist will be displayed without the HISTORY or EVENT icon
                 // when device type is in the blacklist
-                if(cfg.element_history_blacklist.indexOf(v.deviceType) === -1){// Not in the blacklist
+                if (cfg.element_history_blacklist.indexOf(v.deviceType) === -1) { // Not in the blacklist
                     // Element will be displayed with the HISTORY icon if deviceType is in the whitelist
                     hasHistory = (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1);
                     // Otherwise will be displayed with the EVENT icon
                     showNotification = (!hasHistory);
                 }
-                angular.extend(v,
-                    {onDashboard: (user.dashboard && user.dashboard.indexOf(v.id) !== -1 ? true : false)},
-                    {creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId},
-                    {minMax: minMax},
+                angular.extend(v, {
+                        onDashboard: (user.dashboard && user.dashboard.indexOf(v.id) !== -1 ? true : false)
+                    }, {
+                        creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId
+                    }, {
+                        minMax: minMax
+                    },
                     //{hasHistory: (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1)},
                     //{showNotification: (cfg.element_history.indexOf(v.deviceType) === -1)},
-                    {hasHistory: hasHistory},
-                    {showNotification: showNotification},
-                    {progress: false},
-                    {isNew: isNew},
-                    {iconPath: assignElementIcon(v)},
-                    {title: v.metrics.title},
-                    {updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')}
+                    {
+                        hasHistory: hasHistory
+                    }, {
+                        showNotification: showNotification
+                    }, {
+                        progress: false
+                    }, {
+                        isNew: isNew
+                    }, {
+                        iconPath: assignElementIcon(v)
+                    }, {
+                        title: v.metrics.title
+                    }, {
+                        updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')
+                    }
                 );
                 if (v.metrics.color) {
-                    angular.extend(v.metrics, {rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'});
+                    angular.extend(v.metrics, {
+                        rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'
+                    });
                 }
                 if (v.metrics.level) {
-                    angular.extend(v.metrics, {level: $filter('numberFixedLen')(v.metrics.level)});
+                    angular.extend(v.metrics, {
+                        level: $filter('numberFixedLen')(v.metrics.level)
+                    });
                 }
                 if (v.metrics.scaleTitle) {
-                    angular.extend(v.metrics, {scaleTitle: getLangLine(v.metrics.scaleTitle)});
+                    angular.extend(v.metrics, {
+                        scaleTitle: getLangLine(v.metrics.scaleTitle)
+                    });
                 }
                 //v.orderBy = v.order.elemts
                 return v;
@@ -581,7 +615,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * Empty array is used in the element detail if custom icons are not allowed
      * @returns {object}
      */
-    this.getSingleElementIcons = function (element,eventIcon) {
+    this.getSingleElementIcons = function(element, eventIcon) {
         var icons = {
             default: {
                 default: 'placeholder.png'
@@ -596,17 +630,17 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         // Set default icons by metrics.icon
         if (iconKey && iconKey !== '') {
             if ((/^https?:\/\//.test(iconKey))) { // If icon is the url (weather) then custom icons are not allowed
-                if(eventIcon){
+                if (eventIcon) {
                     icons.default.default = iconKey;
-                }else{
+                } else {
                     icons = {};
                 }
             } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
-                if (iconKey.indexOf('/') > -1) {// If an icon is the sytem icon then custom icons are not allowed
+                if (iconKey.indexOf('/') > -1) { // If an icon is the sytem icon then custom icons are not allowed
 
-                    if(eventIcon){
+                    if (eventIcon) {
                         icons.default.default = iconKey;
-                    }else{
+                    } else {
                         icons = {};
                     }
                 } else {
@@ -640,8 +674,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             return obj;
 
 
-        }
-        ;
+        };
         return icons;
 
     };
@@ -651,12 +684,12 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} data
      * @returns {unresolved}
      */
-    this.getRooms = function (data) {
+    this.getRooms = function(data) {
         return _.chain(data)
             .flatten()
-            .filter(function (v) {
+            .filter(function(v) {
                 v.title = (v.id === 0 ? getLangLine(v.title) : v.title);
-                v.title_char = v.title.substring(0,1).toUpperCase();
+                v.title_char = v.title.substring(0, 1).toUpperCase();
                 v.img_src = 'storage/img/placeholder-img.png';
                 if (v.id === 0) {
                     v.img_src = 'storage/img/rooms/unassigned.png';
@@ -675,10 +708,10 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} data
      * @returns {unresolved}
      */
-    this.getLocalSkins = function (data) {
+    this.getLocalSkins = function(data) {
         return _.chain(data)
             .flatten()
-            .filter(function (v) {
+            .filter(function(v) {
                 // Set icon path
                 var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name + '/' : cfg.img.skin_screenshot;
                 v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
@@ -691,11 +724,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} data
      * @returns {unresolved}
      */
-    this.getZwaveDevices = function (data) {
+    this.getZwaveDevices = function(data) {
         return _.chain(data)
             .flatten()
-            .map(function (v) {
-               return {
+            .map(function(v) {
+                return {
                     id: v.Product_Code,
                     name: v.Name,
                     //productcode: v.Product_Code,
@@ -727,11 +760,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} data
      * @returns {unresolved}
      */
-    this.getZwaveProducts = function (data, lang) {
+    this.getZwaveProducts = function(data, lang) {
         lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
         return _.chain(data)
             .flatten()
-            .map(function (v) {
+            .map(function(v) {
                 return {
                     id: v.certification_ID,
                     name: v.Name,
@@ -761,7 +794,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} colors
      * @returns {Object|NULL}
      */
-    this.getChartData = function (data, colors) {
+    this.getChartData = function(data, colors) {
         if (!angular.isObject(data, colors)) {
             return null;
         }
@@ -777,7 +810,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             }]
         };
         var cnt = 0;
-        angular.forEach(data, function (v, k) {
+        angular.forEach(data, function(v, k) {
             cnt++;
             var time = $filter('date')(((v.id) * 1000), 'H:mm');
             //if (v.id > currTime && out.labels.indexOf(time) === -1) {
@@ -801,7 +834,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} data
      * @returns {unresolved}
      */
-    this.getModuleFormData = function (module, data) {
+    this.getModuleFormData = function(module, data) {
         return getModuleFormData(module, data);
     };
 
@@ -812,7 +845,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} namespaces
      * @returns {unresolved}
      */
-    this.getModuleConfigInputs = function (module, params, namespaces) {
+    this.getModuleConfigInputs = function(module, params, namespaces) {
         return getModuleConfigInputs(module, params, namespaces);
     };
 
@@ -823,7 +856,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {boolean} add
      * @returns {Array}
      */
-    this.setArrayValue = function (data, key, add) {
+    this.setArrayValue = function(data, key, add) {
         if (add) {
             return addArrayValue(data, key);
         } else {
@@ -837,9 +870,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {array} set
      * @returns {unresolved}
      */
-    this.getEventLevel = function (data, set) {
+    this.getEventLevel = function(data, set) {
         var collection = (set ? set : []);
-        angular.forEach(data, function (v, k) {
+        angular.forEach(data, function(v, k) {
             collection.push({
                 'key': v.level,
                 'val': v.level
@@ -854,9 +887,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {object} data
      * @returns {unresolved}
      */
-    this.setEnoProfile = function (data) {
+    this.setEnoProfile = function(data) {
         var profile = {};
-        angular.forEach(data, function (v, k) {
+        angular.forEach(data, function(v, k) {
             var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
             profile[profileId] = v;
             profile[profileId]['id'] = profileId;
@@ -873,7 +906,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {string} v2
      * @returns {Boolean}
      */
-    this.compareVersions = function (v1, v2) {
+    this.compareVersions = function(v1, v2) {
         var status = 'equal';
         if (!v1 || !v2) {
             return 'error';
@@ -896,8 +929,8 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      */
     function assignElementIcon(element) {
         // Element is marked as failed
-        if(element.metrics.isFailed){
-             return cfg.img.icons + 'caution.png';
+        if (element.metrics.isFailed) {
+            return cfg.img.icons + 'caution.png';
         }
         var icon = cfg.img.icons + 'placeholder.png';
         var iconKey = $filter('hasNode')(element, 'metrics.icon');
@@ -912,7 +945,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                 //icon = iconArray.default;
                 iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons || {});
                 return iconArray.default;
-            // default
+                // default
             default:
                 break;
         }
@@ -939,9 +972,9 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
             case 'door':
                 icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
                 break;
-            // window
+                // window
             case 'window':
-                if (typeof (element.metrics.level) === 'number') {
+                if (typeof(element.metrics.level) === 'number') {
                     if (element.metrics.level === 0) {
                         icon = iconArray.down;
                     } else if (element.metrics.level >= 99) {
@@ -953,39 +986,39 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
                 }
                 break;
-            // switch
+                // switch
             case 'switch':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            // motion
+                // motion
             case 'motion':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            // alarm
+                // alarm
             case 'alarm':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            // CO alarm
+                // CO alarm
             case 'alarm_co':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            // CO2 alarm
+                // CO2 alarm
             case 'alarm_coo':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            // flood
+                // flood
             case 'alarm_flood':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            // burglar
+                // burglar
             case 'alarm_burglar':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            // tamper
+                // tamper
             case 'tamper':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            //security
+                //security
             case 'security':
                 if (element.metrics.level === "on") {
                     icon = iconArray.on;
@@ -995,11 +1028,11 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = iconArray.alarmed;
                 } else icon = iconArray.pending;
                 break;
-            // smoke
+                // smoke
             case 'alarm_smoke':
                 icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
                 break;
-            // blinds
+                // blinds
             case 'blinds':
                 if (element.metrics.level === 0) {
                     icon = iconArray.down;
@@ -1009,7 +1042,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = iconArray.half;
                 }
                 break;
-            // multilevel / fan
+                // multilevel / fan
             case 'fan':
             case 'multilevel':
                 if (element.metrics.level === 0) {
@@ -1020,15 +1053,15 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
                     icon = iconArray.half;
                 }
                 break;
-            // gesture
+                // gesture
             case 'gesture':
                 icon = (iconArray[element.metrics.state] || iconArray['press']);
                 break;
-            // climate control
+                // climate control
             case 'climatecontrol':
                 icon = (iconArray[element.metrics.state] || iconArray['default']);
-                break;                
-            // default
+                break;
+                // default
             default:
                 icon = iconArray.default;
                 break;
@@ -1045,7 +1078,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      * @param {string} v2
      * @returns {Boolean}
      */
-    this.setIcon = function (defaultIcon, customIcon) {
+    this.setIcon = function(defaultIcon, customIcon) {
         return setIcon(defaultIcon, customIcon);
     };
 
@@ -1060,7 +1093,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
         customIcon = customIcon.level || customIcon
         if (defaultIcon) {
             // If a custom icon exists set it otherwise set a default icon
-            angular.forEach(defaultIcon.level || defaultIcon, function (v, k) {
+            angular.forEach(defaultIcon.level || defaultIcon, function(v, k) {
                 var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons);
                 obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
             });
@@ -1151,7 +1184,7 @@ myAppService.service('dataService', function ($filter, $log, $cookies, $window, 
      */
     function removeArrayValue(data, key) {
         var collection = [];
-        angular.forEach(data, function (v, k) {
+        angular.forEach(data, function(v, k) {
             if (v != key) {
                 collection.push(v);
             }

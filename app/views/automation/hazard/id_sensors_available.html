@@ -1,0 +1,12 @@
+<a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in hazardProtection.availableSensors" ng-if="hazardProtection.input.params.sensors.indexOf(d.deviceId) === -1"
+	ng-class="((hazardProtection.leakage_sensors.indexOf(d.probeType) > -1 && hazardProtection.input.params.hazardType == 'leakage') ||
+	hazardProtection.fire_sensors.indexOf(d.probeType) > -1 && hazardProtection.input.params.hazardType == 'fire') || hazardProtection.input.params.hazardType == '' ? '' : 'disabled'"
+	ng-click="assignSensor(d.deviceId)"
+	ng-class_="hazardProtection.input.params.sensors.indexOf(d.id) === -1) ? 'disabled' : ''">
+	<i class="fa fa-tint text-primary" ng-if="hazardProtection.leakage_sensors.indexOf(d.probeType) !== -1"></i>
+	<i class="fa fa-fire text-danger" ng-if="hazardProtection.fire_sensors.indexOf(d.probeType) !== -1"></i>
+	&nbsp
+	{{d.deviceName|cutText:true:20}}
+	<i class="fa fa-plus text-success" ng-if="((hazardProtection.leakage_sensors.indexOf(d.probeType) > -1 && hazardProtection.input.params.hazardType == 'leakage') ||
+	hazardProtection.fire_sensors.indexOf(d.probeType) > -1 && hazardProtection.input.params.hazardType == 'fire') || hazardProtection.input.params.hazardType == ''" title="{{_t('add_new')}}"></i>
+</a>

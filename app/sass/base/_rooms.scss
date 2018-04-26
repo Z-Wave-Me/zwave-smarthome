@@ -103,7 +103,7 @@
             }
           }
         }
-        .title{
+        .title{ 
           @include mediaQueries(max-small) {
             display: none;
           }

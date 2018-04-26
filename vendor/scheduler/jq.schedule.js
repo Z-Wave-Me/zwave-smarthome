@@ -171,11 +171,11 @@
             });
 
             var $node = $element.find(".sc_Bar"),
-                $elements = $(".sc_Bar");
-
+                $elements = $(".sc_Bar"),
+                $sc_main = $element.find(".sc_main");
             $node.draggable({
                 grid: [setting.widthTimeX, 1],
-                containment: ".sc_main",
+                containment: $sc_main,
                 helper: 'original',
                 revert: 'invalid',
                 start: function(event, ui) {
@@ -847,7 +847,6 @@
             // resizeWindow
         this.resizeWindow = function() {
             var sc_width = $element.width();
-            console.log("sc_width", sc_width);
             var sc_main_width = sc_width - setting.dataWidth - (setting.verticalScrollbar);
             var cell_num = Math.floor((tableEndTime - tableStartTime) / setting.widthTime);
             $element.find(".sc_header_cell").width(setting.dataWidth);
@@ -856,7 +855,6 @@
             $element.find(".sc_main_box").width(sc_main_width);
             $element.find(".sc_header_scroll").width(setting.widthTimeX * cell_num);
             $element.find(".sc_main_scroll").width(setting.widthTimeX * cell_num);
-
         };
         // init
         this.init = function() {

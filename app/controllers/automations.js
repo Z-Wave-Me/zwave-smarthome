@@ -61,30 +61,24 @@ myAppController.controller('AutomationsController', function($scope, $q, $timeou
     };
     $scope.allSettled();
 
+
     function setModules(data, instances) {
+
         $scope.automations.modules = _.chain(data)
             .flatten()
             .filter(function(item) {
                 if (cfg.automations.indexOf(item.moduleName) != -1) {
                     switch (item.moduleName) {
+                        case "HazardNotification":
+                            item.title = $scope._t('hazard_notification');
+                            item.image = "app/img/automation/heating.png";
+                            item.href = "#hazard";
+                            //item.description = item.defaults.description;
+                            break;
                         case "Heating":
                             item.title = $scope._t('heating');
                             item.image = "app/img/automation/heating.png";
                             item.href = "#heating";
-                            //item.description = item.defaults.description;
-                            break;
-                            //case "FireProtection":
-                        case "FireNotification":
-                            item.title = $scope._t('title_fire_notification');
-                            item.image = "app/img/automation/fire_notification.png";
-                            item.href = "#fireprotection";
-                            //item.description = item.defaults.description;
-                            break;
-                            //case "LeakageProtection":
-                        case "LeakageNotification":
-                            item.title = $scope._t('title_leakage_notification');
-                            item.image = "app/img/automation/leakage_notification.png";
-                            item.href = "#leakages";
                             //item.description = item.defaults.description;
                             break;
                         case "Rules":
@@ -126,7 +120,10 @@ myAppController.controller('AutomationsController', function($scope, $q, $timeou
 
                     return item;
                 }
-            }).value();
+            }).value().slice().sort(function(a, b) {
+                return cfg.automations.indexOf(a.moduleName) - cfg.automations.indexOf(b.moduleName);
+            });
+        console.log("$scope.automations.modules", $scope.automations.modules);
     }
 
     function setInstances(data) {

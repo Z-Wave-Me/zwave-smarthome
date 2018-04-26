@@ -92,30 +92,42 @@ myApp.config(['$routeProvider', function($routeProvider) {
             requireLogin: true,
             roles: cfg.role_access.admin
         }).
-        //Leakages
-    when('/leakages', {
-            templateUrl: 'app/views/automation/leakages/leakages.html',
+        //Hazard
+    when('/hazard', {
+            templateUrl: 'app/views/automation/hazard/hazard.html',
             requireLogin: true,
             roles: cfg.role_access.admin
         }).
-        //Leakage ID
-    when('/leakages/:id', {
-            templateUrl: 'app/views/automation/leakages/id.html',
+        //Hazard ID
+    when('/hazard/:id', {
+            templateUrl: 'app/views/automation/hazard/id.html',
             requireLogin: true,
             roles: cfg.role_access.admin
         }).
-        //Fire protection
-    when('/fireprotection', {
-            templateUrl: 'app/views/automation/fireprotection/fireprotection.html',
-            requireLogin: true,
-            roles: cfg.role_access.admin
-        }).
-        //Fire protection ID
-    when('/fireprotection/:id', {
-            templateUrl: 'app/views/automation/fireprotection/id.html',
-            requireLogin: true,
-            roles: cfg.role_access.admin
-        }).
+        //     //Leakages
+        // when('/leakages', {
+        //         templateUrl: 'app/views/automation/leakages/leakages.html',
+        //         requireLogin: true,
+        //         roles: cfg.role_access.admin
+        //     }).
+        //     //Leakage ID
+        // when('/leakages/:id', {
+        //         templateUrl: 'app/views/automation/leakages/id.html',
+        //         requireLogin: true,
+        //         roles: cfg.role_access.admin
+        //     }).
+        //     //Fire protection
+        // when('/fireprotection', {
+        //         templateUrl: 'app/views/automation/fireprotection/fireprotection.html',
+        //         requireLogin: true,
+        //         roles: cfg.role_access.admin
+        //     }).
+        //     //Fire protection ID
+        // when('/fireprotection/:id', {
+        //         templateUrl: 'app/views/automation/fireprotection/id.html',
+        //         requireLogin: true,
+        //         roles: cfg.role_access.admin
+        //     }).
         //Security
     when('/security', {
             templateUrl: 'app/views/automation/security/security.html',

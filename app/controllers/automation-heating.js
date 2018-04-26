@@ -30,7 +30,9 @@ myAppController.controller('HeatingController', function($scope, $routeParams, $
             }
             $location.path('/heating/' + heating.id);
         }, function(error) {
-          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
+            angular.extend(cfg.route.alert, {
+                message: $scope._t('error_load_data')
+            });
         });
     };
     $scope.loadHeatingModule();
@@ -54,79 +56,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
             moduleId: "Heating",
             active: true,
             title: "",
-            params: {
-                roomSettings: {
-                    1: { // roomId
-                        "comfortTemp": 25,
-                        "energySaveTemp": 14,
-                        "fallbackTemp": "",
-                        "sensorId": "",
-                        "schedule": {
-                            0: [{ // SU 
-                                "stime": "08:00",
-                                "etime": "12:30",
-                                "temp": 23.5
-                            }, {
-                                "stime": "12:30",
-                                "etime": "19:30",
-                                "temp": 25.5
-                            }],
-                            1: [{ // MO 
-                                "stime": "08:00",
-                                "etime": "12:30",
-                                "temp": 23.5
-                            }],
-                            2: [{ // DI 
-                                "stime": "08:00",
-                                "etime": "12:30",
-                                "temp": 23.5
-                            }],
-                            3: [{ // MI 
-                                "stime": "08:00",
-                                "etime": "12:30",
-                                "temp": 23.5
-                            }],
-                            4: [{ // DO 
-                                "stime": "08:00",
-                                "etime": "12:30",
-                                "temp": 23.5
-                            }],
-                            5: [{ // FR 
-                                "stime": "08:00",
-                                "etime": "12:30",
-                                "temp": 23.5
-                            }],
-                            6: [{ // SA 
-                                "stime": "08:00",
-                                "etime": "12:30",
-                                "temp": 23.5
-                            }]
-                        }
-                    },
-                    5: { // roomId
-                        "comfortTemp": 22,
-                        "energySaveTemp": 17,
-                        "fallbackTemp": "",
-                        "sensorId": "",
-                        "schedule": []
-                    },
-                    6: { // roomId
-                        "comfortTemp": 22,
-                        "energySaveTemp": 15,
-                        "fallbackTemp": "",
-                        "sensorId": "",
-                        "schedule": []
-                    },
-                    7: { // roomId
-                        "comfortTemp": 22,
-                        "energySaveTemp": 15,
-                        "fallbackTemp": "",
-                        "sensorId": "",
-                        "schedule": []
-                    }
-
-                }
-            }
+            params: {}
         },
         cfg: {
             energySave: {
@@ -141,19 +71,10 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                 step: 0.5,
                 temp: []
             },
-            fallback: [
-                "F",
-                "E",
-                "C"
-            ],
-            roomSettings: {
-
-            },
-            schedule: {
-
-            },
-            resetTime: {
-
+            fallback: {
+                "F": "frost_protection_temp",
+                "E": "energy_save_temp",
+                "C": "comfort_temp"
             }
         },
         tempModal: {
@@ -291,9 +212,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                 if (roomSetting.schedule) {
                     var days = Object.keys(roomSetting.schedule);
                     days.forEach(function(day) {
-                        console.log("roomSetting.schedule[day]", roomSetting.schedule[day]);
                         roomSetting.schedule[day].forEach(function(schedule) {
-                            console.log(schedule);
                             var sc = {
                                 start: schedule.stime,
                                 end: schedule.etime,
@@ -317,6 +236,10 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                     angular.element(t).html($scope._t(title));
                 });
                 $scope.jQuery_schedules[scheduleId] = schedule;
+            }, 0);
+        } else {
+            $timeout(function() {
+                $scope.jQuery_schedules[scheduleId].resizeWindow();
             }, 0);
         }
     }
@@ -384,7 +307,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
             });
 
         }, function(error) {
-          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
+            angular.extend(cfg.route.alert, {
+                message: $scope._t('error_load_data')
+            });
         });
 
     };
