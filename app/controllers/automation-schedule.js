@@ -45,7 +45,7 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
       }
       //$scope.schedules.state = 'success';
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
   };
   $scope.loadSchedules();
@@ -243,7 +243,7 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
       });
 
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
 
   };

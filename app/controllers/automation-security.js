@@ -27,7 +27,7 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
       }
       $location.path('/security/' + security.id);
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
   };
   $scope.loadSecurityModule();
@@ -186,7 +186,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       });
 
     }, function (error) {
-      alertify.alertError($scope._t('error_load_data'));
+      angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
     });
 
   };

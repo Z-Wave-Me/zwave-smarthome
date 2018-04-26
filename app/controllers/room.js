@@ -7,7 +7,7 @@
  * The room root controller
  * @class RoomController
  */
-myAppController.controller('RoomController', function ($scope, $q, $cookies, $filter, $timeout, dataFactory, dataService, _) {
+myAppController.controller('RoomController', function ($scope, $q, $cookies, $filter, $timeout, dataFactory, dataService, cfg,_) {
     $scope.rooms = {
         show: true,
         all: {},
@@ -39,7 +39,7 @@ myAppController.controller('RoomController', function ($scope, $q, $cookies, $fi
             // Error message
             if (locations.state === 'rejected') {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 $scope.rooms.show = false;
                 return;
             }
@@ -188,7 +188,7 @@ myAppController.controller('RoomConfigIdController', function ($scope, $routePar
         }, function (error) {
             $scope.input = false;
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
     };
     if ($scope.id > 0) {

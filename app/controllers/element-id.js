@@ -61,7 +61,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             $scope.loading = false;
             // Error message
             if (device.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - locations
@@ -87,7 +87,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
                 var arr = [];
                 arr[0] = device.value.data.data;
                 if (!dataService.getDevicesData(arr, true).value()[0]) {
-                    alertify.alertError($scope._t('error_load_data'));
+                  angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                     return;
                 }
                 setDevice(dataService.getDevicesData(arr, true).value()[0]);
@@ -544,7 +544,7 @@ myAppController.controller('ElementIconController', function ($scope, $timeout, 
         dataFactory.getApi('icons', null, true).then(function (response) {
             $scope.icons.uploaded = response.data.data;
         }, function (error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             $scope.loading = false;
         });
 

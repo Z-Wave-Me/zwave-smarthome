@@ -10,6 +10,10 @@
     }
     >* {
       padding: $spacing-half;
+      @include mediaQueries(min-esmall) {
+        flex-basis: 33.3333%;
+        
+      }
       @include mediaQueries(min-large) {
         flex-basis: 33.3333%;
         
@@ -35,7 +39,7 @@
           width: 100%;
         }
         figcaption {
-          padding: $spacing-half $spacing;
+          padding: $spacing;
           font-weight: bold;
           position: absolute; //top: 0;
           left: 0;

@@ -47,6 +47,7 @@ $input-bcg-color: $app-color-dark-lightest;
   .app-fatal-error .fatal-error-message,
   .app-fatal-error .fatal-error-info,
   .wizard li,
+  .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
   .badge-number {
     color: $app-body-color;
   } // Darker
@@ -67,7 +68,8 @@ $input-bcg-color: $app-color-dark-lightest;
     color: $app-color-light;
   } // Dark
   .card-customize .card-customize-in .card-footer,
-  .automations.flexgallery > * figure figcaption a {
+  .sc_Bar_inner .time,
+  .schedule .sc_Bar .sc_Bar_inner .text{
     color: $app-color-darkest;
   } // State
   .text-primary {
@@ -150,14 +152,17 @@ $input-bcg-color: $app-color-dark-lightest;
   .table-responsive [data-expanded="true"] td,
   .vendors.flexgallery > * figure,
   .commands-data-control,
+  .schedule .sc_wrapper .sc_data,
+  .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+  .schedule .sc_menu .sc_header_cell,
   .infowindow {
     background: $app-color-dark !important;
   }
   /* Lightest background
     -------------------------------------------------- */
-    .automations.flexgallery > * figure {
+    /* .automations.flexgallery > * figure {
       background:  $app-color-light !important;
-    }
+    } */
  
   /* Additional background
     -------------------------------------------------- */
@@ -217,6 +222,10 @@ $input-bcg-color: $app-color-dark-lightest;
   .flexcards.security .flexcard .flipcard > *,
   .table-responsive td, .table-responsive th,
   .table > thead > tr > th,
+  .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
+  .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
+  .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+  .btn-default[disabled], 
   #footer {
     border-color: $app-border-color !important;
   }
@@ -279,6 +288,19 @@ $input-bcg-color: $app-color-dark-lightest;
     }
     .appmodal-in {
       border: solid 4px $app-border-color;
+    }
+  }
+/* Automations
+  -------------------------------------------------- */
+  .automations.flexgallery {
+    figure{
+      border: solid 1px $app-border-color;
+      background-color: $app-color-darkest;
+      figcaption{
+        background-color: rgba(36, 38, 45, 0.7);;
+         //position: static;
+          //background: none;
+      }
     }
   }
   /* White images

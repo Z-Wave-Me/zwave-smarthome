@@ -7,7 +7,7 @@
  * The controller that renders and handles remote access data.
  * @class ManagementRemoteController
  */
-myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService) {
+myAppController.controller('ManagementRemoteController', function ($scope, dataFactory, dataService,cfg) {
     $scope.remoteAccess = false;
     /**
      * Load Remote access data
@@ -22,7 +22,7 @@ myAppController.controller('ManagementRemoteController', function ($scope, dataF
             $scope.loading = false;
             var remoteAccess = response.data.data[0];
             if (Object.keys(remoteAccess).length < 1) {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             }
             if (!remoteAccess.active) {
                 alertify.alertWarning($scope._t('remote_access_not_active'));

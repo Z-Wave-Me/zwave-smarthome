@@ -300,7 +300,7 @@ myAppController.controller('SmartStartListController', function ($scope, $timeou
           
           
       }, function (error) {
-          alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
       });
   };
   $scope.getDskCollection(); */

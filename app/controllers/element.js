@@ -91,7 +91,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
             // Error message
             if (devices.state === 'rejected') {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 $scope.dataHolder.devices.show = false;
                 return;
             }
