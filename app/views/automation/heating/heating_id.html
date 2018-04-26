@@ -56,25 +56,29 @@
 							<!-- fallback temp -->
 							<div class="form-group is-inline">
 								<label>{{_t('fallback_temp')}}</label>
-							<select class="form-control"></select>
+								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].fallbackTemp">
+									<option value="">---</option>
+									<option value="{{key}}" ng-repeat="(key, val) in heating.cfg.fallback track by $index" ng-selected="key == heating.input.params.roomSettings[r.id].energySaveTemp" >
+									{{_t(val)}}</option>
+								</select>
+							</div>
 						</div>
-					</div>
-					<div id="schedule-{{r.id}}" class="schedule"></div>
-				</fieldset>
-			</div>
-		</section>
-	</fieldset>
-	<!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
-	<fieldset class="submit-entry">
-		<button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-		<i class="fa fa-reply"></i>
-		<span class="btn-name">{{_t('lb_cancel')}}</span>
-		</button>
-		<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-		<i class="fa fa-check"></i>
-		<span class="btn-name">{{_t('lb_save')}}</span>
-		</button>
-	</fieldset>
-</form>
-<div ng-include="'app/views/automation/heating/heating_id_temperatrue_modal.html'"></div>
+						<div id="schedule-{{r.id}}" class="schedule"></div>
+					</fieldset>
+				</div>
+			</section>
+		</fieldset>
+		<!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
+		<fieldset class="submit-entry">
+			<button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+			<i class="fa fa-reply"></i>
+			<span class="btn-name">{{_t('lb_cancel')}}</span>
+			</button>
+			<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+			<i class="fa fa-check"></i>
+			<span class="btn-name">{{_t('lb_save')}}</span>
+			</button>
+		</fieldset>
+	</form>
+	<div ng-include="'app/views/automation/heating/heating_id_temperatrue_modal.html'"></div>
 </div>
