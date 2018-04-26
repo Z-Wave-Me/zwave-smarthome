@@ -1,0 +1,49 @@
+<!-- The schedule -->
+<section class="automation" ng-controller="HazardNotificationIdController">
+  <h2>{{_t('hazard_notification')}}</h2>
+  <!-- Form -->
+  <form class="form form-page" ng-submit="storeInstance(hazardProtection.input,true)">
+    <!-- Form-->
+  <fieldset ng-include="'app/views/automation/hazard/id_form.html'"></fieldset>
+  <section>
+    <!-- Asigned sensors -->
+    <legend ng-if="_.size(hazardProtection.input.params.sensors) && hazardProtection.input.params.hazardType == 'leakage'">{{_t('assigned_leakage_sensors')}}</legend>
+    <legend ng-if="_.size(hazardProtection.input.params.sensors) && hazardProtection.input.params.hazardType == 'fire'">{{_t('assigned_fire_sensors')}}</legend>
+  <fieldset ng-include="'app/views/automation/hazard/id_sensors_assigned.html'"></fieldset>
+  <!-- Available sensors -->
+  <legend ng-if="_.size(hazardProtection.availableSensors) > _.size(hazardProtection.input.params.sensors)">{{_t('add_sensors')}}</legend>
+<fieldset ng-include="'app/views/automation/hazard/id_sensors_available.html'"></fieldset>
+</section>
+<section ng-if="_.size(hazardProtection.input.params.triggerEvent) || _.size(hazardProtection.input.params.sendNotifications)">
+<!-- Asigned devices -->
+<legend ng-if="_.size(hazardProtection.input.params.triggerEvent)">{{_t('assigned_devices')}}</legend>
+<fieldset ng-include="'app/views/automation/hazard/id_devices_assigned.html'"></fieldset>
+<!-- Asigned notifiers -->
+<legend ng-if="_.size(hazardProtection.input.params.sendNotifications)">{{_t('assigned_notifications')}}</legend>
+<fieldset ng-include="'app/views/automation/hazard/id_notifiers_assigned.html'"></fieldset>
+</section>
+<section ng-if="_.size(hazardProtection.input.params.sensors)">
+<!-- Available devices -->
+<legend>{{_t('lb_available_devices')}}</legend>
+<fieldset ng-include="'app/views/automation/hazard/id_devices_available.html'"></fieldset>
+</section>
+<section ng-if="_.size(hazardProtection.input.params.sensors)">
+<!-- Notifications -->
+<legend>{{_t('notifications')}}</legend>
+<fieldset ng-include="'app/views/automation/hazard/id_notifiers_add.html'"></fieldset>
+</section>
+<!-- Submit  -->
+<fieldset class="submit-entry">
+<button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+<i class="fa fa-reply"></i>
+<span class="btn-name">{{_t('lb_cancel')}}</span>
+</button>
+<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+<i class="fa fa-check"></i>
+<span class="btn-name">{{_t('lb_save')}}</span>
+</button>
+</fieldset>
+</form>
+<!-- <pre>{{hazardProtection.input|json}}</pre> -->
+</section>
+<!-- /ng-controller -->

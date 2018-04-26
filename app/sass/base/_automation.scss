@@ -5,23 +5,34 @@
 
 .automations {
   &.flexgallery {
+    @include mediaQueries(min-medium) {
+      padding: 0 150px;
+    }
     >* {
       padding: $spacing-half;
       @include mediaQueries(min-large) {
-        flex-basis: 25%;
+        flex-basis: 33.3333%;
         
       }
       figure {
         position: relative;
         border: 0;
         background-color: #fff;
+        width: 100%;
         @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
         @include mediaQueries(min-large) {
           padding: $spacing-half;
          
         }
+        a {
+          display: block;
+          @include textOverflow();
+        }
         img {
           margin-bottom: 0;
+          object-fit: fill;
+          height: 100%;
+          width: 100%;
         }
         figcaption {
           padding: $spacing-half $spacing;
@@ -31,8 +42,8 @@
           bottom:0;
           background-color: rgba(255, 255, 255, 0.5);
           width: 100%;
-          a {
-            display: block;
+          @include mediaQueries(min-small) {
+            font-size: 120%;  
           }
         }
       }

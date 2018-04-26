@@ -1,14 +1,14 @@
 /**
- * @overview Controllers that handls leakages
+ * @overview Controllers that handls hazard notification
  * @author Martin Vach
  */
 /**
- * Controller that handles list of leakages
- * @class LeakageController
+ * Controller that handles list of hazard notifications
+ * @class HazarController
  */
-myAppController.controller('LeakageController', function($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
-    $scope.leakages = {
-            moduleId: 'LeakageNotification',
+myAppController.controller('HazardNotificationController', function($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+    $scope.hazardProtections = {
+            moduleId: 'HazardNotification',
             state: '',
             enableTest: [],
         }
@@ -18,23 +18,11 @@ myAppController.controller('LeakageController', function($scope, $routeParams, $
          */
     $scope.loadInstances = function() {
         dataFactory.getApi('instances', null, true).then(function(response) {
-            $scope.leakages.all = _.chain(response.data.data).flatten().where({
-                moduleId: $scope.leakages.moduleId
-            }).filter(function(v) {
-                var size = 0;
-                for (k in v.params.devices) {
-                    if (v.params.devices[k].length) {
-                        size++;
-                    }
-                }
-                if (size) {
-                    $scope.leakages.enableTest.push(v.id)
-                }
-                return v;
+            $scope.hazardProtections.all = _.chain(response.data.data).flatten().where({
+                moduleId: $scope.hazardProtections.moduleId
             }).value();
-
             // There are no instances
-            if (!_.size($scope.leakages.all)) {
+            if (!_.size($scope.hazardProtections.all)) {
                 // Previous page is detail - clicked on cancel or page is reloaded - after delete
                 if (cfg.route.previous.indexOf(dataService.getUrlSegment($location.path())) > -1) {
                     $location.path('/automations');
@@ -43,7 +31,7 @@ myAppController.controller('LeakageController', function($scope, $routeParams, $
                 $location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
                 return;
             }
-            $scope.leakages.state = 'success';
+            $scope.hazardProtections.state = 'success';
         }, function(error) {
             alertify.alertError($scope._t('error_load_data'));
         });
@@ -102,16 +90,19 @@ myAppController.controller('LeakageController', function($scope, $routeParams, $
 });
 
 /**
- * Controller that handles a leakage detail
+ * Controller that handles a fire protection detail
  * @class LeakageIdController
  */
-myAppController.controller('LeakageIdController', function($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
-    $scope.leakage = {
-        sensors: ['flood', 'alarm_flood', 'alarmSensor_flood'],
+myAppController.controller('HazardNotificationIdController', function($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
+    $scope.hazardProtection = {
+        sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke', 'flood', 'alarm_flood', 'alarmSensor_flood'],
+        fire_sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke'],
+        leakage_sensors: ['flood', 'alarm_flood', 'alarmSensor_flood'],
         devices: ['switchBinary', 'switchMultilevel', 'toggleButton'],
         notifiers: ['notification_email', 'notification_push'],
         interval: [60, 120, 300, 600, 900, 1800, 3600],
         firedOn: ['on', 'off', 'alarm', 'revert'],
+        sensorTyp: "",
         availableSensors: {},
         availableDevices: {},
         availableNotifiers: {},
@@ -162,15 +153,16 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
         },
         input: {
             instanceId: $routeParams.id,
-            moduleId: "LeakageNotification",
+            moduleId: "HazardNotification",
             active: true,
             title: "",
             params: {
                 sensors: [],
                 triggerEvent: [],
                 sendNotifications: [],
-                notificationsInterval: 0
-            },
+                notificationsInterval: 0,
+                hazardType: ""
+            }
         }
     };
 
@@ -180,10 +172,9 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
     $scope.orig = {
         options: {}
     };
-    $scope.orig.options = angular.copy($scope.leakage.cfg);
+    $scope.orig.options = angular.copy($scope.hazardProtection.cfg);
     $scope.resetOptions = function() {
-        $scope.leakage.cfg = angular.copy($scope.orig.options);
-
+        $scope.hazardProtection.cfg = angular.copy($scope.orig.options);
     };
 
     /**
@@ -192,7 +183,7 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
     $scope.loadInstance = function(id) {
         dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
             var instance = instances.data.data;
-            angular.extend($scope.leakage.input, {
+            angular.extend($scope.hazardProtection.input, {
                 title: instance.title,
                 active: instance.active,
                 params: instance.params
@@ -200,14 +191,14 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
             // Set assigned devices
             angular.forEach(instance.params.triggerEvent, function(v, k) {
                 if (v.deviceId) {
-                    $scope.leakage.assignedDevices.push(v.deviceId);
+                    $scope.hazardProtection.assignedDevices.push(v.deviceId);
                 }
             });
 
             // Set assigned devices
             angular.forEach(instance.params.sendNotifications, function(v, k) {
                 if (v.notifier) {
-                    $scope.leakage.assignedNotifiers.push(v.notifier);
+                    $scope.hazardProtection.assignedNotifiers.push(v.notifier);
                 }
             });
 
@@ -226,8 +217,8 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
      */
     $scope.loadRooms = function() {
         dataFactory.getApi('locations').then(function(response) {
-            $scope.leakage.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
-            $scope.loadDevices($scope.leakage.rooms);
+            $scope.hazardProtection.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
+            $scope.loadDevices($scope.hazardProtection.rooms);
         });
 
     };
@@ -250,20 +241,20 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
                     locationName: rooms[v.location].title
                 };
                 // Set sensors
-                if ($scope.leakage.sensors.indexOf(v.probeType) > -1) {
-                    $scope.leakage.availableSensors[v.id] = obj;
+                if ($scope.hazardProtection.sensors.indexOf(v.probeType) > -1) {
+                    $scope.hazardProtection.availableSensors[v.id] = obj;
                 }
                 // Set devices
-                if ($scope.leakage.devices.indexOf(v.deviceType) > -1) {
-                    $scope.leakage.availableDevices[v.id] = obj;
+                if ($scope.hazardProtection.devices.indexOf(v.deviceType) > -1) {
+                    $scope.hazardProtection.availableDevices[v.id] = obj;
                 }
                 // Set notifiers
-                if ($scope.leakage.notifiers.indexOf(v.probeType) > -1) {
-                    $scope.leakage.availableNotifiers[v.id] = obj;
+                if ($scope.hazardProtection.notifiers.indexOf(v.probeType) > -1) {
+                    $scope.hazardProtection.availableNotifiers[v.id] = obj;
                 }
             });
             // Set devices in the room
-            $scope.leakage.devicesInRoom = _.countBy($scope.leakage.availableDevices, function(v) {
+            $scope.hazardProtection.devicesInRoom = _.countBy($scope.hazardProtection.availableDevices, function(v) {
                 return v.location;
             });
         }, function(error) {});
@@ -275,8 +266,13 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
      * @returns {undefined}
      */
     $scope.assignSensor = function(sensorId) {
-        if ($scope.leakage.input.params.sensors.indexOf(sensorId) === -1) {
-            $scope.leakage.input.params.sensors.push(sensorId);
+        if ($scope.hazardProtection.input.params.sensors.indexOf(sensorId) === -1) {
+            if ($scope.hazardProtection.leakage_sensors.indexOf($scope.hazardProtection.availableSensors[sensorId].probeType) > -1) {
+                $scope.hazardProtection.input.params.hazardType = "leakage";
+            } else {
+                $scope.hazardProtection.input.params.hazardType = "fire";
+            }
+            $scope.hazardProtection.input.params.sensors.push(sensorId);
         }
 
     };
@@ -286,11 +282,13 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
      * @param {string} deviceId 
      */
     $scope.unassignSensor = function(deviceId) {
-        var deviceIndex = $scope.leakage.input.params.sensors.indexOf(deviceId);
+        var deviceIndex = $scope.hazardProtection.input.params.sensors.indexOf(deviceId);
         if (deviceIndex > -1) {
-            $scope.leakage.input.params.sensors.splice(deviceIndex, 1);
+            $scope.hazardProtection.input.params.sensors.splice(deviceIndex, 1);
         }
-
+        if ($scope.hazardProtection.input.params.sensors.length == 0) {
+            $scope.hazardProtection.input.params.hazardType = "";
+        }
     };
 
     /**
@@ -299,9 +297,9 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
      * @returns {undefined}
      */
     $scope.assignDevice = function(device) {
-        var input = $scope.leakage.cfg[device.deviceType],
+        var input = $scope.hazardProtection.cfg[device.deviceType],
             obj = {};
-        if (!input || $scope.leakage.assignedDevices.indexOf(device.deviceId) > -1) {
+        if (!input || $scope.hazardProtection.assignedDevices.indexOf(device.deviceId) > -1) {
             return;
         }
 
@@ -311,8 +309,8 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
         obj = input.default;
         obj.deviceId = device.deviceId;
         console.log(input.default)
-        $scope.leakage.input.params.triggerEvent.push(input.default);
-        $scope.leakage.assignedDevices.push(device.deviceId);
+        $scope.hazardProtection.input.params.triggerEvent.push(input.default);
+        $scope.hazardProtection.assignedDevices.push(device.deviceId);
         $scope.resetOptions();
     };
 
@@ -323,10 +321,10 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
      */
     $scope.unassignDevice = function(targetIndex, deviceId) {
 
-        var deviceIndex = $scope.leakage.assignedDevices.indexOf(deviceId);
+        var deviceIndex = $scope.hazardProtection.assignedDevices.indexOf(deviceId);
         if (targetIndex > -1) {
-            $scope.leakage.input.params.triggerEvent.splice(targetIndex, 1);
-            $scope.leakage.assignedDevices.splice(deviceIndex, 1);
+            $scope.hazardProtection.input.params.triggerEvent.splice(targetIndex, 1);
+            $scope.hazardProtection.assignedDevices.splice(deviceIndex, 1);
         }
 
     };
@@ -337,9 +335,9 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
      * @returns {undefined}
      */
     $scope.assignNotification = function(notification) {
-        //if (notification.notifier && $scope.leakage.assignedNotifiers.indexOf(notification.notifier) === -1) {
-        $scope.leakage.input.params.sendNotifications.push(notification);
-        //$scope.leakage.assignedNotifiers.push(notification.notifier);
+        //if (notification.notifier && $scope.hazardProtection.assignedNotifiers.indexOf(notification.notifier) === -1) {
+        $scope.hazardProtection.input.params.sendNotifications.push(notification);
+        //$scope.hazardProtection.assignedNotifiers.push(notification.notifier);
         $scope.resetOptions();
         //}
 
@@ -352,10 +350,10 @@ myAppController.controller('LeakageIdController', function($scope, $routeParams,
      */
     $scope.unassignNotification = function(targetIndex, deviceId) {
 
-        var deviceIndex = $scope.leakage.assignedNotifiers.indexOf(deviceId);
+        var deviceIndex = $scope.hazardProtection.assignedNotifiers.indexOf(deviceId);
         if (targetIndex > -1) {
-            $scope.leakage.input.params.sendNotifications.splice(targetIndex, 1);
-            $scope.leakage.assignedNotifiers.splice(deviceIndex, 1);
+            $scope.hazardProtection.input.params.sendNotifications.splice(targetIndex, 1);
+            $scope.hazardProtection.assignedNotifiers.splice(deviceIndex, 1);
         }
 
     };
