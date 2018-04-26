@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "activated_devices": "Activated devices",
-=======
     "activated_devices": "Activated devices",
->>>>>>> a0271ed0da627a351b7b7d4cd13e9cda013a0619
     "activate_module": "Activate __module__",
     "activate_reverse_event": "Activate reverse event",
     "activeASC": "Inactive",

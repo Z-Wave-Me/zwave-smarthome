@@ -18426,6 +18426,14 @@ img.widget-promo-image {
   padding: 5px;
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 480px) {
+  /* line 8, ../sass/base/_automation.scss */
+  .automations.flexgallery > * {
+    flex-basis: 33.3333%;
+  }
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
   /* line 8, ../sass/base/_automation.scss */
@@ -18433,7 +18441,7 @@ img.widget-promo-image {
     flex-basis: 25%;
   }
 }
-/* line 14, ../sass/base/_automation.scss */
+/* line 18, ../sass/base/_automation.scss */
 .automations.flexgallery > * figure {
   position: relative;
   border: 0;
@@ -18445,18 +18453,18 @@ img.widget-promo-image {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 14, ../sass/base/_automation.scss */
+  /* line 18, ../sass/base/_automation.scss */
   .automations.flexgallery > * figure {
     padding: 5px;
   }
 }
-/* line 23, ../sass/base/_automation.scss */
+/* line 27, ../sass/base/_automation.scss */
 .automations.flexgallery > * figure img {
   margin-bottom: 0;
 }
-/* line 26, ../sass/base/_automation.scss */
+/* line 30, ../sass/base/_automation.scss */
 .automations.flexgallery > * figure figcaption {
-  padding: 5px 10px;
+  padding: 10px;
   font-weight: bold;
   position: absolute;
   left: 0;
@@ -18464,30 +18472,30 @@ img.widget-promo-image {
   background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
 }
-/* line 34, ../sass/base/_automation.scss */
+/* line 38, ../sass/base/_automation.scss */
 .automations.flexgallery > * figure figcaption a {
   display: block;
 }
 
-/* line 44, ../sass/base/_automation.scss */
+/* line 48, ../sass/base/_automation.scss */
 .accordion-wrap {
   position: relative;
 }
-/* line 46, ../sass/base/_automation.scss */
+/* line 50, ../sass/base/_automation.scss */
 .accordion-wrap .label {
   position: absolute;
   top: -10px;
   left: 0;
 }
-/* line 50, ../sass/base/_automation.scss */
+/* line 54, ../sass/base/_automation.scss */
 .accordion-wrap .label.index_0 {
   display: none;
 }
-/* line 53, ../sass/base/_automation.scss */
+/* line 57, ../sass/base/_automation.scss */
 .accordion-wrap .label.nested {
   display: none;
 }
-/* line 57, ../sass/base/_automation.scss */
+/* line 61, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle {
   display: flex;
   align-items: center;
@@ -18496,48 +18504,48 @@ img.widget-promo-image {
     margin-bottom: $spacing;
   } */
 }
-/* line 62, ../sass/base/_automation.scss */
+/* line 66, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title {
   padding: 5px 0;
 }
-/* line 64, ../sass/base/_automation.scss */
+/* line 68, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title .room-title {
   display: block;
   padding-bottom: 3px;
   font-size: 80%;
 }
-/* line 69, ../sass/base/_automation.scss */
+/* line 73, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title .device-title {
   display: block;
 }
-/* line 73, ../sass/base/_automation.scss */
+/* line 77, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button.no-toggle {
   cursor: text !important;
 }
-/* line 75, ../sass/base/_automation.scss */
+/* line 79, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button.no-toggle::after {
   content: "";
 }
-/* line 79, ../sass/base/_automation.scss */
+/* line 83, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .navi-img {
   margin-right: 10px;
 }
-/* line 82, ../sass/base/_automation.scss */
+/* line 86, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button em {
   font-size: 80%;
 }
-/* line 85, ../sass/base/_automation.scss */
+/* line 89, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .is-legend {
   font-weight: bold;
 }
-/* line 89, ../sass/base/_automation.scss */
+/* line 93, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle .no-toggle {
   padding: 10px 0;
   width: 100%;
   font-weight: normal;
   border-bottom: dotted 1px #cccccc;
 }
-/* line 99, ../sass/base/_automation.scss */
+/* line 103, ../sass/base/_automation.scss */
 .accordion-wrap .accordion {
   padding: 10px;
   border-bottom: 0;
@@ -18546,48 +18554,48 @@ img.widget-promo-image {
     border: solid 1px darken(#F6F6F6, 20%)
   } */
 }
-/* line 103, ../sass/base/_automation.scss */
+/* line 107, ../sass/base/_automation.scss */
 .accordion-wrap .accordion .form-group {
   border: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 108, ../sass/base/_automation.scss */
+/* line 112, ../sass/base/_automation.scss */
 .accordion-wrap .accordion:last-child {
   margin-bottom: 0;
 }
-/* line 117, ../sass/base/_automation.scss */
+/* line 121, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle {
   opacity: 0.7;
 }
-/* line 119, ../sass/base/_automation.scss */
+/* line 123, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button {
   cursor: text;
   padding: 10px 0;
 }
-/* line 122, ../sass/base/_automation.scss */
+/* line 126, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button::after {
   content: "" !important;
 }
-/* line 125, ../sass/base/_automation.scss */
+/* line 129, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button[aria-expanded="true"] {
   border-bottom: dotted 1px #cccccc;
 }
-/* line 130, ../sass/base/_automation.scss */
+/* line 134, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion {
   display: none;
 }
-/* line 135, ../sass/base/_automation.scss */
+/* line 139, ../sass/base/_automation.scss */
 .accordion-wrap.nested legend,
 .accordion-wrap.nested .legend {
   padding: 20px 10px 5px 0;
   font-size: 110%;
 }
-/* line 142, ../sass/base/_automation.scss */
+/* line 146, ../sass/base/_automation.scss */
 .accordion-wrap.nested .accordion .accordion {
   margin-bottom: 20px;
 }
-/* line 149, ../sass/base/_automation.scss */
+/* line 153, ../sass/base/_automation.scss */
 .accordion-wrap.edit-me .accordion-toggle button {
   font-weight: bold;
 }
@@ -19761,6 +19769,9 @@ body.night-false {
     -------------------------------------------------- */
   /* Lightest background
     -------------------------------------------------- */
+  /* .automations.flexgallery > * figure {
+    background:  $app-color-light !important;
+  } */
   /* Additional background
     -------------------------------------------------- */
   /* Input background
@@ -19787,6 +19798,8 @@ body.night-false {
   /* MAX WIDTH */
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* Automations
+    -------------------------------------------------- */
   /* White images
     -------------------------------------------------- */
   /* Alertify
@@ -19814,10 +19827,11 @@ body.night-false {
 .night-true .app-fatal-error .fatal-error-message,
 .night-true .app-fatal-error .fatal-error-info,
 .night-true .wizard li,
+.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
 .night-true .badge-number {
   color: #aeb8c3;
 }
-/* line 53, ../sass/custom/_shui_night.scss */
+/* line 54, ../sass/custom/_shui_night.scss */
 .night-true .page-navi ul .fa,
 .night-true .btn-goup-tabs .btn .fa,
 .night-true .accordion-entry-title .fa,
@@ -19834,32 +19848,33 @@ body.night-false {
 .night-true .btn-default.active {
   color: #8a8d8f;
 }
-/* line 69, ../sass/custom/_shui_night.scss */
+/* line 70, ../sass/custom/_shui_night.scss */
 .night-true .card-customize .card-customize-in .card-footer,
-.night-true .automations.flexgallery > * figure figcaption a {
+.night-true .sc_Bar_inner .time,
+.night-true .schedule .sc_Bar .sc_Bar_inner .text {
   color: #24262D;
 }
-/* line 73, ../sass/custom/_shui_night.scss */
+/* line 75, ../sass/custom/_shui_night.scss */
 .night-true .text-primary {
   color: #6494BC;
 }
-/* line 76, ../sass/custom/_shui_night.scss */
+/* line 78, ../sass/custom/_shui_night.scss */
 .night-true .text-success {
   color: #80AD80;
 }
-/* line 79, ../sass/custom/_shui_night.scss */
+/* line 81, ../sass/custom/_shui_night.scss */
 .night-true .text-info {
   color: #5bc0de;
 }
-/* line 82, ../sass/custom/_shui_night.scss */
+/* line 84, ../sass/custom/_shui_night.scss */
 .night-true .text-warning {
   color: #f0ad4e;
 }
-/* line 85, ../sass/custom/_shui_night.scss */
+/* line 87, ../sass/custom/_shui_night.scss */
 .night-true .text-danger {
   color: #d9534f;
 }
-/* line 90, ../sass/custom/_shui_night.scss */
+/* line 92, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation_wrap,
 .night-true #main_navigation .active,
 .night-true #main_navigation a:hover,
@@ -19886,7 +19901,7 @@ body.night-false {
 .night-true .btn {
   background: #24262D !important;
 }
-/* line 118, ../sass/custom/_shui_night.scss */
+/* line 120, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .active,
 .night-true #sub_navigation_in ul,
 .night-true .page-navi .page-navi-in,
@@ -19922,20 +19937,19 @@ body.night-false {
 .night-true .table-responsive [data-expanded="true"] td,
 .night-true .vendors.flexgallery > * figure,
 .night-true .commands-data-control,
+.night-true .schedule .sc_wrapper .sc_data,
+.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.night-true .schedule .sc_menu .sc_header_cell,
 .night-true .infowindow {
   background: #2D3038 !important;
 }
-/* line 158, ../sass/custom/_shui_night.scss */
-.night-true .automations.flexgallery > * figure {
-  background: #8a8d8f !important;
-}
-/* line 164, ../sass/custom/_shui_night.scss */
+/* line 169, ../sass/custom/_shui_night.scss */
 .night-true .btn-submit,
 .night-true .wizard li.active,
 .night-true .dots .active {
   background: #740047 !important;
 }
-/* line 171, ../sass/custom/_shui_night.scss */
+/* line 176, ../sass/custom/_shui_night.scss */
 .night-true .form-control,
 .night-true .slider,
 .night-true .ajs-input,
@@ -19943,11 +19957,11 @@ body.night-false {
 .night-true .label {
   background: #44464F;
 }
-/* line 178, ../sass/custom/_shui_night.scss */
+/* line 183, ../sass/custom/_shui_night.scss */
 .night-true .slider:before {
   background: #d9534f;
 }
-/* line 183, ../sass/custom/_shui_night.scss */
+/* line 188, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation_wrap,
 .night-true #sub_navigation_in ul,
 .night-true #sub_navigation_in ul li,
@@ -19985,10 +19999,14 @@ body.night-false {
 .night-true .flexcards.security .flexcard .flipcard > *,
 .night-true .table-responsive td, .night-true .table-responsive th,
 .night-true .table > thead > tr > th,
+.night-true .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
+.night-true .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
+.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.night-true .btn-default[disabled],
 .night-true #footer {
   border-color: #44464F !important;
 }
-/* line 225, ../sass/custom/_shui_night.scss */
+/* line 234, ../sass/custom/_shui_night.scss */
 .night-true #sub_navigation_in,
 .night-true .btn-default.active,
 .night-true .btn-default:hover,
@@ -19997,7 +20015,7 @@ body.night-false {
 .night-true .dragdrop-element .dd-placeholder {
   border-color: #737786 !important;
 }
-/* line 235, ../sass/custom/_shui_night.scss */
+/* line 244, ../sass/custom/_shui_night.scss */
 .night-true .form-page,
 .night-true .submit-entry,
 .night-true .app-row-imglist,
@@ -20005,70 +20023,79 @@ body.night-false {
   border: 0;
 }
 @media only screen and (max-width: 767px) {
-  /* line 245, ../sass/custom/_shui_night.scss */
+  /* line 254, ../sass/custom/_shui_night.scss */
   .night-true #sub_navigation #sub_navigation_in {
     background-color: #2D3038;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 253, ../sass/custom/_shui_night.scss */
+  /* line 262, ../sass/custom/_shui_night.scss */
   .night-true .fix-me-top {
     background: #24262D;
     border-color: #44464F;
   }
 }
-/* line 260, ../sass/custom/_shui_night.scss */
+/* line 269, ../sass/custom/_shui_night.scss */
 .night-true .alert-success {
   border-color: #f0ad4e;
 }
-/* line 263, ../sass/custom/_shui_night.scss */
+/* line 272, ../sass/custom/_shui_night.scss */
 .night-true .alert-warning {
   border-color: #f0ad4e;
 }
-/* line 266, ../sass/custom/_shui_night.scss */
+/* line 275, ../sass/custom/_shui_night.scss */
 .night-true .alert-danger {
   border-color: #d9534f;
 }
 @media only screen and (max-width: 767px) {
-  /* line 272, ../sass/custom/_shui_night.scss */
+  /* line 281, ../sass/custom/_shui_night.scss */
   .night-true .appmodal:before {
     background: #24262D !important;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 277, ../sass/custom/_shui_night.scss */
+  /* line 286, ../sass/custom/_shui_night.scss */
   .night-true .appmodal:before {
     background-color: rgba(37, 37, 37, 0.5);
   }
-  /* line 280, ../sass/custom/_shui_night.scss */
+  /* line 289, ../sass/custom/_shui_night.scss */
   .night-true .appmodal-in {
     border: solid 4px #44464F;
   }
 }
-/* line 286, ../sass/custom/_shui_night.scss */
+/* line 296, ../sass/custom/_shui_night.scss */
+.night-true .automations.flexgallery figure {
+  border: solid 1px #44464F;
+  background-color: #24262D;
+}
+/* line 299, ../sass/custom/_shui_night.scss */
+.night-true .automations.flexgallery figure figcaption {
+  background-color: rgba(36, 38, 45, 0.7);
+}
+/* line 308, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .nav-logo,
 .night-true .device-logo img {
   -webkit-filter: brightness(0) invert(1);
   filter: brightness(0) invert(1);
 }
-/* line 290, ../sass/custom/_shui_night.scss */
+/* line 312, ../sass/custom/_shui_night.scss */
 .night-true #main_navigation .nav-logo:hover,
 .night-true .device-logo img:hover {
   -webkit-filter: none;
   filter: none;
 }
-/* line 298, ../sass/custom/_shui_night.scss */
+/* line 320, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-dialog {
   border: solid 2px #44464F;
 }
-/* line 301, ../sass/custom/_shui_night.scss */
+/* line 323, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-dialog,
 .night-true .alertify .ajs-header,
 .night-true .alertify .ajs-footer {
   color: #aeb8c3;
   background-color: #24262D;
 }
-/* line 308, ../sass/custom/_shui_night.scss */
+/* line 330, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button {
   display: inline-block;
   margin-bottom: 0;
@@ -20088,54 +20115,54 @@ body.night-false {
   color: #aeb8c3;
   border: solid 1px #737786;
 }
-/* line 326, ../sass/custom/_shui_night.scss */
+/* line 348, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button.ajs-ok {
   color: #8a8d8f;
   border: solid 1px #44464F;
   background-color: #740047;
 }
-/* line 330, ../sass/custom/_shui_night.scss */
+/* line 352, ../sass/custom/_shui_night.scss */
 .night-true .alertify .ajs-footer .ajs-button.ajs-ok:hover, .night-true .alertify .ajs-footer .ajs-button.ajs-ok:focus {
   background-color: #44464F;
   color: #8a8d8f;
 }
-/* line 339, ../sass/custom/_shui_night.scss */
+/* line 361, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-success {
   color: #fff;
 }
-/* line 342, ../sass/custom/_shui_night.scss */
+/* line 364, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-error {
   color: #fff;
 }
-/* line 345, ../sass/custom/_shui_night.scss */
+/* line 367, ../sass/custom/_shui_night.scss */
 .night-true .alertify-notifier .ajs-message.ajs-warning {
   color: #fff;
 }
-/* line 350, ../sass/custom/_shui_night.scss */
+/* line 372, ../sass/custom/_shui_night.scss */
 .night-true .alpaca-field-object {
   border: 1px #44464F solid;
 }
-/* line 353, ../sass/custom/_shui_night.scss */
+/* line 375, ../sass/custom/_shui_night.scss */
 .night-true .table-bordered {
   border: 1px solid #44464F;
 }
-/* line 356, ../sass/custom/_shui_night.scss */
+/* line 378, ../sass/custom/_shui_night.scss */
 .night-true .table-striped > tbody > tr:nth-child(odd) > td,
 .night-true .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #44464F;
 }
-/* line 361, ../sass/custom/_shui_night.scss */
+/* line 383, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > thead > tr > th,
 .night-true #alpaca_data .table-bordered > thead > tr > td {
   border: 1px solid #44464F;
 }
-/* line 365, ../sass/custom/_shui_night.scss */
+/* line 387, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .table-bordered > tbody > tr > td,
 .night-true #alpaca_data .table-bordered > tfoot > tr > th,
 .night-true #alpaca_data .table-bordered > tfoot > tr > td {
   border: 0px solid #44464F;
 }
-/* line 370, ../sass/custom/_shui_night.scss */
+/* line 392, ../sass/custom/_shui_night.scss */
 .night-true #alpaca_data .btn-default[disabled] {
   background: transparent;
   border-color: #44464F;
