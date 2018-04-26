@@ -238,7 +238,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                 $scope.jQuery_schedules[scheduleId] = schedule;
             }, 0);
         } else {
-            $scope.jQuery_schedules[scheduleId].resizeWindow();
+            $timeout(function() {
+                $scope.jQuery_schedules[scheduleId].resizeWindow();
+            }, 0);
         }
     }
 
