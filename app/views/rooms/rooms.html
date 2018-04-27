@@ -22,7 +22,7 @@
           <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}" ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
             <img ng-src="{{v.img_src}}" alt="img" />
           </a>
-          <div class="room-icon">
+         <div class="header">
             <span class="char" ng-show="elementAccess(cfg.role_access.config_rooms)">
               {{v.title_char}}
             </span>
@@ -30,6 +30,7 @@
               <i class="fa fa-cog"></i>
             </a>
           </div>
+         
 
           <figcaption ng-class="{'s-hide': !_.size(v.main_sensors)}">
             <div class="title">{{v.title|cutText:true:25}}

@@ -1,6 +1,52 @@
 /* Customize - skins and icons
 -------------------------------------------------- */
 
+/* Gallery
+-------------------------------------------------- */
+
+.customize {
+  &.flexgallery {
+    >* {
+      padding: $spacing-half;
+      @include mediaQueries(min-small) {
+        flex-basis: 33.3333%;
+      }
+      @include mediaQueries(min-large) {
+        flex-basis: 25%;
+      }
+      figure {
+        .header {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 24px;
+          margin: $spacing $spacing 0 0;
+          .is-icon {
+            font-size: 24px;
+            text-align: center;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            display: inline-block;
+            color: lighten($app-body-color, 40%);
+            background-color: #fff;
+            border-radius: 50%;
+            margin: $spacing 0 0 $spacing;
+            cursor: pointer;
+            @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+            @include mediaQueries(min-medium) {
+              margin: $spacing $spacing 0 0;
+            }
+          }
+        }
+        figcaption{
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
 /* Card
 -------------------------------------------------- */
 
@@ -93,11 +139,10 @@
 .customize-detail {
   padding: $spacing;
   margin: $spacing 0;
-  @include mediaQueries(min-small) { 
+  @include mediaQueries(min-small) {
     max-height: 600px;
     overflow: auto;
   }
- 
 }
 
 .customize-detail-title {
@@ -122,8 +167,7 @@
 }
 
 .customize-icon-list {
-  border-top: solid 1px $app-border-color;
-  //max-height: 600px;
+  border-top: solid 1px $app-border-color; //max-height: 600px;
   //overflow: scroll;
   .customize-icon-preview {
     display: inline-block;

@@ -4,12 +4,12 @@
   <div class="automations flexgallery">
     <div ng-repeat="v in automations.modules track by $index">
       <figure>
-        <a href="{{v.href}}">
+        <a title="{{v.title}}" href="{{v.href}}">
           <img ng-src="{{v.image}}" alt="img">
         </a>
         <figcaption>
           <a href="{{v.href}}">
-            {{v.title}}
+            <span class="title">{{v.title}}</span>
           </a>
         </figcaption>
       </figure>

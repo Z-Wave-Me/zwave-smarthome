@@ -71,7 +71,7 @@
         flex-basis: 25%;
       }
       figure {
-        .room-icon {
+        .header {
           position: absolute;
           top: 0;
           right: 0;
@@ -111,19 +111,7 @@
         }
       }
     }
-    .inactive {
-      figure {
-        a:not(.room-settings) {
-          cursor: text;
-        }
-        img {
-          @include appGrayscale();
-        }
-        figcaption {
-          font-weight: normal;
-        }
-      }
-    }
+   
   }
 }
 

@@ -12,7 +12,7 @@
     <div ng-click="setFilter({brandid: v.Name})" ng-repeat="(k,v) in zwaveVendors.all| orderBy:'Name' track by $index" ng-hide="!v.Name || !zwaveVendors.cnt[v.Name]"
       ng-if="v.Frequency.indexOf(zwaveVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1">
       <figure>
-          <img alt="{{v.Name|cutText:true:20}}" ng-src="{{cfg.img.zwavevendors + v.Image}}" err-src="{{cfg.online_vendor_icon_url + v.Image}}"  ng-show="v.Image" />
+          <img title="{{v.Name}}" alt="{{v.Name|cutText:true:20}}" ng-src="{{cfg.img.zwavevendors + v.Image}}" err-src="{{cfg.online_vendor_icon_url + v.Image}}"  ng-show="v.Image" />
           <span ng-hide="v.Image">{{v.Name|cutText:true:20}}</span>
       </figure>
     </div>

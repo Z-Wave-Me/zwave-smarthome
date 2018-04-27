@@ -5,37 +5,35 @@
     <bb-loader></bb-loader>
     <!-- Skins navigation -->
     <div ng-include="'app/views/customize/navi.html'"></div>
-    <!-- Gallery -->
-    <div class="customize flexgallery">
-      <div ng-repeat="v in skins.local.all track by $index" ng-class="{'inactive': v.name === skins.local.active}">
-        <figure>
-            <img title="{{v.title}}" ng-src="{{v.icon}}" alt="img">
-          <div class="header">
+    <div class="clearfix" ng-if="skins.local.show">
+      <div class="card-customize" title="{{v.title}}" ng-repeat="v in skins.local.all track by v.name">
+        <div class="card-customize-in" style="background-image:url('{{v.icon}}');" ng-class="{'widget-warning': v.name === skins.local.active}">
+          <div class="card-header">
             <!-- Activate -->
-            <span class="is-icon" title="{{_t('lb_activate')}}" ng-if="v.name !== skins.local.active" ng-click="activateSkin(v)">
+            <span class="card-icon" title="{{_t('lb_activate')}}" ng-if="v.name !== skins.local.active" ng-click="activateSkin(v)">
               <i class="fa fa-fire text-success"></i>
             </span>
             <!-- Is active -->
-            <span class="is-icon" title="{{_t('lb_active')}}" ng-if="v.name === skins.local.active">
+            <span class="card-icon" title="{{_t('lb_active')}}" ng-if="v.name === skins.local.active">
               <i class="fa fa-check"></i>
             </span>
             <!-- Upgrade -->
-            <span class="is-icon" title="{{_t('upgrade')}}" ng-click="updateSkin(skins.online.all[v.name])" ng-if="skins.online.all[v.name] && skins.online.all[v.name].status === 'notequal'">
+            <span class="card-icon" title="{{_t('upgrade')}}" ng-click="updateSkin(skins.online.all[v.name])" ng-if="skins.online.all[v.name] && skins.online.all[v.name].status === 'notequal'">
               <i class="fa fa-level-up"></i>
             </span>
             <!-- Delete -->
-            <span class="is-icon" title="{{_t('lb_remove')}}" ng-click="removeSkin(v, _t('lb_delete_confirm'))" ng-hide="v.name === skins.local.active"
+            <span class="card-icon" title="{{_t('lb_remove')}}" ng-click="removeSkin(v, _t('lb_delete_confirm'))" ng-hide="v.name === skins.local.active"
               ng-if="v.name !== 'default'">
               <i class="fa fa-remove text-danger"></i>
             </span>
           </div>
-         <figcaption ng-click="skins.local.find = v;handleModal('skinLocalModal', $event)">
-            <span class="title">{{v.title| cutText:true:25}}</spa>
-          </figcaption>
-        </figure>
+          <!-- Footer -->
+          <div class="card-footer" ng-click="skins.local.find = v;handleModal('skinLocalModal', $event)">
+            {{v.title| cutText:true:25}}
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Modal -->
     <div id="skinLocalModal" class="appmodal" ng-if="modalArr.skinLocalModal">
       <div class="appmodal-in">
         <div class="appmodal-header">

@@ -5,10 +5,9 @@
   display: flex;
   flex-flow: row wrap;
   >* {
-   flex-basis: 50%; 
-   // Media queries
-    @include mediaQueries(min-e
-    small) {
+    padding: $spacing-half;
+    flex-basis: 50%; // Media queries
+    @include mediaQueries(min-e small) {
       flex-basis: 33.3333%;
     } // Media queries
     @include mediaQueries(min-medium) {
@@ -21,23 +20,29 @@
       padding: $spacing-half;
       text-align: center;
       position: relative;
-      background-color: #fff;
-        //height: 200px;
-        @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
-        @include mediaQueries(min-large) {
-          padding: $spacing-half;
-         
-        }
+      background-color: #fff; //height: 200px;
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      @include mediaQueries(min-large) {
+        padding: $spacing-half;
+      }
+      height: 180px;
+      @include mediaQueries(min-small) {
+        height: 220px;
+      }
+      @include mediaQueries(min-large) {
+        height: 280px;
+      }
       img {
         width: 100%;
-        height: 180px;
-        object-fit:cover;
-        @include mediaQueries(min-small) {
+        height: 100%;
+        //height: 180px;
+        object-fit: cover;
+        /* @include mediaQueries(min-small) {
           height: 220px;
         }
         @include mediaQueries(min-large) {
           height: 280px;
-        }
+        } */
       }
       figcaption {
         margin-top: auto;
@@ -46,12 +51,29 @@
         font-weight: bold;
         position: absolute; //top: 0;
         left: 0;
-        bottom:0;
+        bottom: 0;
         background-color: rgba(255, 255, 255, 0.5);
         width: 100%;
         a {
           display: block;
         }
+        .title{
+         // @include textOverflow();
+        }
+      }
+    }
+  }
+  .inactive {
+    @include appOpacity();
+    figure {
+      a:not(.room-settings) {
+        cursor: text;
+      }
+      img {
+        @include appGrayscale();
+      }
+      figcaption {
+        font-weight: normal;
       }
     }
   }
