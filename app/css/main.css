@@ -12670,16 +12670,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -14874,6 +14871,154 @@ img.widget-promo-image {
   padding: 10px;
 }
 
+/* Gallery
+-------------------------------------------------- */
+.rooms.flexgallery > * {
+  padding: 5px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .rooms.flexgallery > * {
+    flex-basis: 33.3333%;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  .rooms.flexgallery > * {
+    flex-basis: 25%;
+  }
+}
+
+.rooms.flexgallery > * figure .room-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 24px;
+  text-align: center;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  color: #737373;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  margin: 10px 10px 0 0;
+  /* @include mediaQueries(min-medium) {
+            margin: $spacing $spacing 0 0;
+          } */
+}
+
+.rooms.flexgallery > * figure .room-icon .settings {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 767px) {
+  .rooms.flexgallery > * figure .room-icon .settings {
+    display: none;
+  }
+}
+
+.rooms.flexgallery > * figure .room-icon .settings .fa {
+  color: #737373;
+}
+
+.rooms.flexgallery > * figure .room-icon .char {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  .rooms.flexgallery > * figure .room-icon .char {
+    display: none;
+  }
+}
+
+.rooms.flexgallery > * figure .title {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 767px) {
+  .rooms.flexgallery > * figure .title {
+    display: none;
+  }
+}
+
+.rooms.flexgallery .inactive figure a:not(.room-settings) {
+  cursor: text;
+}
+
+.rooms.flexgallery .inactive figure img {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+.rooms.flexgallery .inactive figure figcaption {
+  font-weight: normal;
+}
+
+/* Room Sensors */
+.room-sensors {
+  text-align: left;
+  margin: 5px 0;
+  width: 100%;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* Sensor */
+}
+
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  .room-sensors {
+    text-align: center;
+  }
+}
+
+.room-sensors .sensor {
+  margin: 5px;
+  display: block;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  .room-sensors .sensor {
+    display: inline-block;
+  }
+}
+
+.room-sensors .sensor .sensor-img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.room-sensors .sensor .sensor-img .sensor-preview-img {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.room-sensors .sensor .sensor-ctrl {
+  display: inline-block;
+  margin: 0 0 0 2px;
+}
+
+.room-sensors .sensor .sensor-ctrl .sensor-level {
+  font-weight: bold;
+}
+
+.room-sensors .sensor .sensor-ctrl .sensor-scale {
+  font-size: 90%;
+}
+
+.room-sensors .sensor .sensor-ctrl .sensor-level {
+  font-size: 110%;
+}
+
 /* Cards
 -------------------------------------------------- */
 .card-room {
@@ -16315,7 +16460,7 @@ img.widget-promo-image {
 
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
   .automations.flexgallery > * {
-    flex-basis: 33.3333%;
+    flex-basis: 25%;
   }
 }
 
@@ -16822,16 +16967,57 @@ img.widget-promo-image {
 .flexgallery > * figure {
   padding: 5px;
   text-align: center;
-  border: solid 1px #cccccc;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  .flexgallery > * figure {
+    padding: 5px;
+  }
 }
 
 .flexgallery > * figure img {
-  margin-bottom: 10px;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  .flexgallery > * figure img {
+    height: 220px;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  .flexgallery > * figure img {
+    height: 280px;
+  }
 }
 
 .flexgallery > * figure figcaption {
   margin-top: auto;
   font-size: 100%;
+  padding: 10px;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+}
+
+.flexgallery > * figure figcaption a {
+  display: block;
 }
 
 /* Flexcard
@@ -17957,12 +18143,12 @@ body.night-false {
   }
 }
 
-.night-true .automations.flexgallery figure {
+.night-true .flexgallery figure {
   border: solid 1px #44464F;
   background-color: #24262D;
 }
 
-.night-true .automations.flexgallery figure figcaption {
+.night-true .flexgallery figure figcaption {
   background-color: rgba(36, 38, 45, 0.7);
 }
 
