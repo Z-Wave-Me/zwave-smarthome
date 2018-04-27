@@ -10,6 +10,28 @@
 myAppController.controller('RssController', function ($scope, cfg, dataFactory, dataService, _,myCache) {
 
     /**
+     * Tracking
+     */
+    $scope.trackingRSS = function () {
+
+        // UUID + FW
+        dataFactory.loadZwaveApiData().then(function (ZWaveAPIData) {
+
+            var input = {
+            firmware : ZWaveAPIData.controller.data.softwareRevisionVersion.value,
+            uuid : ZWaveAPIData.controller.data.uuid.value,
+            boxtype : $scope.getCustomCfgArr('boxtype')
+            };
+
+
+            //dataFactory.postToRemote(cfg.api_remote.rss_feed + "/?firmware="+fw+"&uuid="+uuid+"&boxtype="+$scope.getCustomCfgArr('boxtype'), null).then(function () {});
+            dataFactory.postToRemote(cfg.api_remote.rss_feed, input).then(function () {});
+        });
+
+        
+    };
+
+    /**
      * Load rss feeds
      */
     $scope.loadRss = function () {
@@ -43,6 +65,9 @@ myAppController.controller('RssController', function ($scope, cfg, dataFactory, 
         }).finally(function() {// Always execute this on both error and success
             $scope.loading = false;
         });
+
+        $scope.trackingRSS();
+
     };
     $scope.loadRss();
 
@@ -69,8 +94,9 @@ myAppController.controller('RssController', function ($scope, cfg, dataFactory, 
         dataFactory.postApi('configupdate_url', input).then(function () {
             myCache.remove('rssinfo');
         });
-
-
     };
+
+    
+
 });
 

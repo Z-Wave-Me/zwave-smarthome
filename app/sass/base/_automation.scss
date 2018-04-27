@@ -12,10 +12,9 @@
       padding: $spacing-half;
       @include mediaQueries(min-esmall) {
         flex-basis: 33.3333%;
-        
       }
       @include mediaQueries(min-large) {
-        flex-basis: 33.3333%;
+        flex-basis: 25%;
         
       }
       figure {
