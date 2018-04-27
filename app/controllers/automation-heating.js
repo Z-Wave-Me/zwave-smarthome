@@ -196,6 +196,15 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
             data.text = temp + " C°";
             this.addScheduleData(data);
             $scope.updateData();
+        },
+        confirm: function() {
+            alertify.confirm($scope._t('confirm_connect'), function(e) {
+                if (e.cancel) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
         }
     };
     angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);

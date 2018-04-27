@@ -23,6 +23,7 @@
             append_on_click: function() {},
             bar_Click: function() {},
             connect: function() {},
+            confirm: function() {},
             debug: "" // debug selecter
         };
 
@@ -286,47 +287,46 @@
                         if ($bar.data("sc_key") != $node.data("sc_key")) {
                             if (that.isCollison($node, $bar)) {
                                 collison = true;
-                                if ($element.find(".confirm").length == 0) {
-                                    if (confirm("connect?")) {
-                                        connect = true;
-                                        var newStart = 0,
-                                            newEnd = 0;
+                                if (confirm("connect?")) {
+                                    connect = true;
+                                    var newStart = 0,
+                                        newEnd = 0;
 
-                                        var old_sc_key = $bar.data("sc_key");
+                                    var old_sc_key = $bar.data("sc_key");
 
-                                        var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+                                    var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
 
-                                        if (start <= scheduleData[old_sc_key].start) {
-                                            newStart = start;
-                                        } else {
-                                            newStart = scheduleData[old_sc_key].start;
-                                        }
-
-                                        if (end <= scheduleData[old_sc_key].end) {
-                                            newEnd = scheduleData[old_sc_key].end;
-                                        } else {
-                                            newEnd = end;
-                                        }
-
-                                        var data = {
-                                            timeline: scheduleData[old_sc_key].timeline,
-                                            start: newStart,
-                                            end: newEnd,
-                                            text: "connect on resize",
-                                            data: {}
-                                        };
-
-                                        $node.remove();
-                                        $bar.remove();
-
-                                        delete scheduleData[sc_key];
-                                        delete scheduleData[old_sc_key];
-
-                                        that.addScheduleData(data);
-
+                                    if (start <= scheduleData[old_sc_key].start) {
+                                        newStart = start;
                                     } else {
-                                        cancel = true;
+                                        newStart = scheduleData[old_sc_key].start;
                                     }
+
+                                    if (end <= scheduleData[old_sc_key].end) {
+                                        newEnd = scheduleData[old_sc_key].end;
+                                    } else {
+                                        newEnd = end;
+                                    }
+
+                                    var data = {
+                                        timeline: scheduleData[old_sc_key].timeline,
+                                        start: newStart,
+                                        end: newEnd,
+                                        text: "",
+                                        data: {}
+                                    };
+
+                                    $node.remove();
+                                    $bar.remove();
+
+                                    delete scheduleData[sc_key];
+                                    delete scheduleData[old_sc_key];
+
+                                    //that.addScheduleData(data);
+                                    setting.connect.call(element, data);
+
+                                } else {
+                                    cancel = true;
                                 }
                                 return false;
                             }
@@ -363,11 +363,11 @@
             setting.rows = updated_data;
             for (var row in setting.rows) {
                 for (var i in setting.rows[row]["schedule"]) {
-                    var bdata = setting.rows[row]["schedule"][i];
-                    var s = element.calcStringTime(bdata["start"]);
-                    var e = element.calcStringTime(bdata["end"]);
+                    var bdata = setting.rows[row]["schedule"][i],
+                        s = element.calcStringTime(bdata["start"]),
+                        e = element.calcStringTime(bdata["end"]),
+                        data = {};
 
-                    var data = {};
                     data["timeline"] = parseInt(row);
                     data["start"] = s;
                     data["end"] = e;
@@ -448,10 +448,10 @@
                 $timeline.append($tl);
             }
 
-            var startTime = null;
-            var endTime = null;
-            var $clickedTl = null;
-            var timelineNum = null;
+            var startTime = null,
+                endTime = null,
+                $clickedTl = null,
+                timelineNum = null;
 
             $timeline.bind("mousedown", function(event) {
                 if ($(event.target).hasClass("tl")) {
@@ -461,8 +461,10 @@
                     startTime = $clickedTl.data("time");
                     endTime = null;
 
-
-                    $(".sc_Bar").css("z-index", 1);
+                    element.find(".sc_Bar").css({
+                        "z-index": 0,
+                        "opacity": 0.4
+                    });
                 } else {
                     that.clicking = false;
                     return true;
@@ -473,14 +475,13 @@
                 }
                 endTime = element.formatTime(tableStartTime + (setting.widthTime * $(event.target).index()));
 
-                var st = Math.ceil((element.calcStringTime(startTime) - tableStartTime) / setting.widthTime);
-                var et = Math.floor((element.calcStringTime(endTime) - tableStartTime) / setting.widthTime);
+                var st = Math.ceil((element.calcStringTime(startTime) - tableStartTime) / setting.widthTime),
+                    et = Math.floor((element.calcStringTime(endTime) - tableStartTime) / setting.widthTime),
+                    left = et < st ? (et * setting.widthTimeX) : (st * setting.widthTimeX),
+                    width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX),
+                    $ghost_bar_temp = $element.find(".ghost");
 
-                var left = et < st ? (et * setting.widthTimeX) : (st * setting.widthTimeX),
-                    width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX);
-
-                var $ghost_bar_temp = $element.find(".ghost");
-                console.log("$ghost_bar_temp", $ghost_bar_temp);
+                //console.log("$ghost_bar_temp", $ghost_bar_temp);
                 if ($ghost_bar_temp.length > 0) {
                     $ghost_bar_temp.css({
                         left: left,
@@ -495,20 +496,21 @@
                         width: width,
                         height: (setting.timeLineY)
                     });
+                    //$ghost_bar_temp.data("timeline", timelineNum);
                     $element.find('.sc_main .timeline').eq(timelineNum).append($ghost_bar_temp);
                 }
-
             }).bind("mouseup", function(event) {
                 if (that.clicking == false) {
                     return true;
                 }
-                $(".sc_Bar").css("z-index", "auto");
+                element.find(".sc_Bar").css({
+                    "z-index": "auto",
+                    "opacity": 1
+                });
                 $ghost_bar_temp = $element.find(".ghost");
                 endTime = endTime == null ? startTime : endTime;
 
                 $bars = $element.find('.sc_main .timeline').eq(timelineNum).find(".sc_Bar");
-
-                console.log("$bars", $bars);
 
                 var connect = false,
                     collison = false;
@@ -520,48 +522,47 @@
                             collison = true;
                             console.log("$bar", $bar);
                             console.log("$ghost_bar_temp", $ghost_bar_temp);
-                            if ($element.find(".confirm").length == 0) {
-                                if (confirm("connect?")) {
-                                    connect = true;
-                                    var newStart = 0,
-                                        newEnd = 0;
 
-                                    var old_sc_key = $bar.data("sc_key");
+                            //if (confirm("connect?")) {
+                            // console.log("confirm", setting.confirm.call(element));
+                            // if (setting.confirm.call(element)) {
+                            if (confirm("connect?")) {
+                                connect = true;
+                                var newStart = 0,
+                                    newEnd = 0;
 
-                                    var x = $ghost_bar_temp.position().left;
-                                    var w = $ghost_bar_temp.width();
-                                    var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
-                                    var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+                                var old_sc_key = $bar.data("sc_key");
 
-                                    if (start <= scheduleData[old_sc_key].start) {
-                                        newStart = start;
-                                    } else {
-                                        newStart = scheduleData[old_sc_key].start;
-                                    }
+                                var x = $ghost_bar_temp.position().left;
+                                var w = $ghost_bar_temp.width();
+                                var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
+                                var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
 
-                                    if (end <= scheduleData[old_sc_key].end) {
-                                        newEnd = scheduleData[old_sc_key].end;
-                                    } else {
-                                        newEnd = end;
-                                    }
-
-                                    var data = {
-                                        timeline: parseInt(timelineNum),
-                                        start: newStart,
-                                        end: newEnd,
-                                        text: "",
-                                        data: {}
-                                    };
-                                    $bar.remove();
-
-                                    delete scheduleData[old_sc_key];
-
-                                    setting.connect.call(element, data);
-
-
-                                    //that.addScheduleData(data);
-
+                                if (start <= scheduleData[old_sc_key].start) {
+                                    newStart = start;
+                                } else {
+                                    newStart = scheduleData[old_sc_key].start;
                                 }
+
+                                if (end <= scheduleData[old_sc_key].end) {
+                                    newEnd = scheduleData[old_sc_key].end;
+                                } else {
+                                    newEnd = end;
+                                }
+
+                                var data = {
+                                    timeline: parseInt(timelineNum),
+                                    start: newStart,
+                                    end: newEnd,
+                                    text: "",
+                                    data: {}
+                                };
+                                $bar.remove();
+
+                                delete scheduleData[old_sc_key];
+
+                                setting.connect.call(element, data);
+                                //that.addScheduleData(data);
                             }
                             return false;
                         }
@@ -638,12 +639,9 @@
                     console.log("Drop");
                     var node = ui.draggable;
                     $node = node;
-                    console.log("node", node);
                     var sc_key = node.data("sc_key");
                     var oldTimelineNum = scheduleData[sc_key]["timeline"];
-                    console.log("nowTimelineNum", oldTimelineNum);
                     var nowTimelineNum = $element.find('.sc_main .timeline').index(this);
-                    console.log("timelineNum", nowTimelineNum);
 
                     $bars = $(this).find(".sc_Bar")
                     var connect = false,
@@ -654,69 +652,64 @@
                         if ($bar.data("sc_key") != $node.data("sc_key")) {
                             if (that.isCollison($node, $bar)) {
                                 collison = true;
-                                console.log("$bar", $bar);
-                                console.log("$node", $node);
-                                if ($element.find(".confirm").length == 0) {
-                                    // var html = "<div class='confirm'><button class='btn btn-default'>Confirm</button><button class='btn btn-default'>Cancel</button></div>";
-                                    // $confirm = jQuery(html);
-                                    // console.log("event", event);
-                                    // $confirm.css({
-                                    //     "left": $node.offset().left,
-                                    //     "top": $node.offset().top + setting.timeLineY
-                                    // });
+                                // var html = "<div class='confirm'><button class='btn btn-default'>Confirm</button><button class='btn btn-default'>Cancel</button></div>";
+                                // $confirm = jQuery(html);
+                                // console.log("event", event);
+                                // $confirm.css({
+                                //     "left": $node.offset().left,
+                                //     "top": $node.offset().top + setting.timeLineY
+                                // });
 
-                                    // $element.append($confirm);   
-                                    if (confirm("connect?")) {
-                                        connect = true;
-                                        var newStart = 0,
-                                            newEnd = 0;
+                                // $element.append($confirm);   
+                                // console.log("confirm 2", setting.confirm.call(element));
+                                // if (setting.confirm.call(element)) {
+                                if (confirm("connect?")) {
 
-                                        var old_sc_key = $bar.data("sc_key");
-                                        console.log("scheduleData[sc_key]", scheduleData[sc_key]);
-                                        console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
+                                    connect = true;
+                                    var newStart = 0,
+                                        newEnd = 0;
 
-                                        var x = $node.position().left;
-                                        var w = $node.width();
-                                        var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
-                                        var end = start + (scheduleData[sc_key].end - scheduleData[sc_key].start);
+                                    var old_sc_key = $bar.data("sc_key");
+                                    console.log("scheduleData[sc_key]", scheduleData[sc_key]);
+                                    console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
 
-                                        if (start <= scheduleData[old_sc_key].start) {
-                                            newStart = start;
-                                        } else {
-                                            newStart = scheduleData[old_sc_key].start;
-                                        }
+                                    var x = $node.position().left;
+                                    var w = $node.width();
+                                    var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
+                                    var end = start + (scheduleData[sc_key].end - scheduleData[sc_key].start);
 
-                                        if (end <= scheduleData[old_sc_key].end) {
-                                            newEnd = scheduleData[old_sc_key].end;
-                                        } else {
-                                            newEnd = end;
-                                        }
-
-                                        var data = {
-                                            timeline: scheduleData[old_sc_key].timeline,
-                                            start: newStart,
-                                            end: newEnd,
-                                            text: "connect",
-                                            data: {}
-                                        };
-                                        console.log("new Data", data);
-
-                                        $node.remove();
-                                        $bar.remove();
-                                        console.log("old_sc_key", old_sc_key);
-                                        console.log("sc_key", sc_key);
-
-                                        delete scheduleData[sc_key];
-                                        delete scheduleData[old_sc_key];
-
-                                        console.log("scheduleData", scheduleData);
-
-                                        that.addScheduleData(data);
-
+                                    if (start <= scheduleData[old_sc_key].start) {
+                                        newStart = start;
                                     } else {
-                                        cancel = true;
+                                        newStart = scheduleData[old_sc_key].start;
                                     }
+
+                                    if (end <= scheduleData[old_sc_key].end) {
+                                        newEnd = scheduleData[old_sc_key].end;
+                                    } else {
+                                        newEnd = end;
+                                    }
+
+                                    var data = {
+                                        timeline: scheduleData[old_sc_key].timeline,
+                                        start: newStart,
+                                        end: newEnd,
+                                        text: "",
+                                        data: {}
+                                    };
+
+                                    $node.remove();
+                                    $bar.remove();
+
+                                    delete scheduleData[sc_key];
+                                    delete scheduleData[old_sc_key];
+
+                                    //that.addScheduleData(data);
+                                    setting.connect.call(element, data);
+                                } else {
+                                    cancel = true;
                                 }
+
                                 return false;
                             }
                         }
@@ -731,6 +724,11 @@
                         $node.draggable({
                             revert: true
                         });
+                        setTimeout(function() {
+                            $node.draggable({
+                                revert: false
+                            });
+                        }, 500);
                     }
                 }
             });
