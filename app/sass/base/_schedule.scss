@@ -9,12 +9,33 @@ $accordion-heading-color: $app-heading-color;
 $schedule-spacing: $spacing;
 $schedule-bar-bg-color: rgb(135, 206, 235);
 
+.schedule-wrap {
+    position: relative;
+    .schedule-overlay {
+        //background-color: rgba(255,255,255,0.7);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        resize: both;
+        overflow: auto;
+    }
+}
+
 .schedule {
     box-sizing: content-box;
     .clear {
         clear: both;
         height: 0;
         line-height: 0;
+    }
+    &.disabled {
+        opacity: 0.4;
     }
     .sc_wrapper {
         .sc_main_box {
@@ -35,7 +56,7 @@ $schedule-bar-bg-color: rgb(135, 206, 235);
                             border-right: solid 1px transparent;
                             box-sizing: content-box;
                             cursor: pointer;
-                            z-index: 5;
+                            z-index: 1;
                             &:hover {
                                 background: #F0F0F0;
                             }
@@ -183,6 +204,7 @@ $schedule-bar-bg-color: rgb(135, 206, 235);
             border-radius: 20%;
             opacity: 0.5;
             height: 100%;
+            z-index: 50;
             transform: translateY(-100%);
             .fa {
                 position: absolute;

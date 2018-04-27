@@ -12670,13 +12670,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -16300,6 +16303,14 @@ img.widget-promo-image {
   padding: 5px;
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 480px) {
+  .automations.flexgallery > * {
+    flex-basis: 33.3333%;
+  }
 }
 
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
@@ -16345,7 +16356,7 @@ img.widget-promo-image {
 }
 
 .automations.flexgallery > * figure figcaption {
-  padding: 5px 10px;
+  padding: 10px;
   font-weight: bold;
   position: absolute;
   left: 0;
@@ -17012,6 +17023,24 @@ img.widget-promo-image {
 /* Schedule
 -------------------------------------------------- */
 /* Variables */
+.schedule-wrap {
+  position: relative;
+}
+
+.schedule-wrap .schedule-overlay {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  resize: both;
+  overflow: auto;
+}
+
 .schedule {
   box-sizing: content-box;
   /*.confirm {
@@ -17028,6 +17057,10 @@ img.widget-promo-image {
   clear: both;
   height: 0;
   line-height: 0;
+}
+
+.schedule.disabled {
+  opacity: 0.4;
 }
 
 .schedule .sc_wrapper .sc_main_box {
@@ -17053,7 +17086,7 @@ img.widget-promo-image {
   border-right: solid 1px transparent;
   box-sizing: content-box;
   cursor: pointer;
-  z-index: 5;
+  z-index: 1;
 }
 
 .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline .tl:hover {
@@ -17221,6 +17254,7 @@ img.widget-promo-image {
   border-radius: 20%;
   opacity: 0.5;
   height: 100%;
+  z-index: 50;
   transform: translateY(-100%);
 }
 
@@ -17629,6 +17663,9 @@ body.night-false {
     -------------------------------------------------- */
   /* Lightest background
     -------------------------------------------------- */
+  /* .automations.flexgallery > * figure {
+      background:  $app-color-light !important;
+    } */
   /* Additional background
     -------------------------------------------------- */
   /* Input background
@@ -17655,6 +17692,8 @@ body.night-false {
   /* MAX WIDTH */
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* Automations
+  -------------------------------------------------- */
   /* White images
     -------------------------------------------------- */
   /* Alertify
@@ -17682,6 +17721,7 @@ body.night-false {
 .night-true .app-fatal-error .fatal-error-message,
 .night-true .app-fatal-error .fatal-error-info,
 .night-true .wizard li,
+.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
 .night-true .badge-number {
   color: #aeb8c3;
 }
@@ -17704,7 +17744,8 @@ body.night-false {
 }
 
 .night-true .card-customize .card-customize-in .card-footer,
-.night-true .automations.flexgallery > * figure figcaption a {
+.night-true .sc_Bar_inner .time,
+.night-true .schedule .sc_Bar .sc_Bar_inner .text {
   color: #24262D;
 }
 
@@ -17790,12 +17831,11 @@ body.night-false {
 .night-true .table-responsive [data-expanded="true"] td,
 .night-true .vendors.flexgallery > * figure,
 .night-true .commands-data-control,
+.night-true .schedule .sc_wrapper .sc_data,
+.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.night-true .schedule .sc_menu .sc_header_cell,
 .night-true .infowindow {
   background: #2D3038 !important;
-}
-
-.night-true .automations.flexgallery > * figure {
-  background: #8a8d8f !important;
 }
 
 .night-true .btn-submit,
@@ -17853,6 +17893,10 @@ body.night-false {
 .night-true .flexcards.security .flexcard .flipcard > *,
 .night-true .table-responsive td, .night-true .table-responsive th,
 .night-true .table > thead > tr > th,
+.night-true .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
+.night-true .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
+.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.night-true .btn-default[disabled],
 .night-true #footer {
   border-color: #44464F !important;
 }
@@ -17911,6 +17955,15 @@ body.night-false {
   .night-true .appmodal-in {
     border: solid 4px #44464F;
   }
+}
+
+.night-true .automations.flexgallery figure {
+  border: solid 1px #44464F;
+  background-color: #24262D;
+}
+
+.night-true .automations.flexgallery figure figcaption {
+  background-color: rgba(36, 38, 45, 0.7);
 }
 
 .night-true #main_navigation .nav-logo,

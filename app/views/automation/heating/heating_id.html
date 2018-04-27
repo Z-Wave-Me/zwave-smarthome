@@ -8,6 +8,7 @@
 				<div class="form-group is-inline">
 					<label>{{_t('reset_time')}}</label>
 					<input name="reset_time" id="reset_time" type="text" class="form-control" ng-model="heating.input.params.resetTime" />&nbsp;
+					<bb-help-text trans="_t('help_reset_time')"></bb-help-text>
 				</div>
 			</div>
 		</fieldset>
@@ -63,7 +64,13 @@
 								</select>
 							</div>
 						</div>
-						<div id="schedule-{{r.id}}" class="schedule"></div>
+						<div class="schedule-wrap">
+							<div class="schedule-overlay" ng-if="!heating.input.params.roomSettings[r.id].comfortTemp">
+								<bb-help-text trans="_t('no_comfort_temp_info')"></bb-help-text>
+							</div>
+							<div id="schedule-{{r.id}}" class="schedule" ng-class="(!heating.input.params.roomSettings[r.id].comfortTemp ? 'disabled': '')"></div>
+							<bb-help-text trans="_t('schedule_info')"></bb-help-text>
+						</div>
 					</fieldset>
 				</div>
 			</section>
