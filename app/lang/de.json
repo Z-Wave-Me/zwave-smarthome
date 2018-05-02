@@ -250,6 +250,7 @@
     "hazard_notification": "Gefahrenbenachrichtigung",
     "heating": "Heizungssteuerung",
     "help_delay": "Verzögerung zwischen dem Eintreten des Status und der Auslösung des Ereignisses in Sekunden",
+    "help_reset_time": "Heizungssteuerung kehrt nach manuellem Eingreifen nach angebener Zeit (in Stunden) in den definierten Zeitplan zurück.",
     "help_security_alarm_interval": "Zwischen 1 und 30 Minuten.",
     "help_security_delay_before_alarm": "Dauer des stillen Alarms, zwischen 1 und 1800 Sekunden.",
     "help_security_delay_before_arming": "Zwischen 1 und 1800 Sekunden.",
