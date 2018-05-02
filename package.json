@@ -63,5 +63,7 @@
     "url": "https://github.com/Z-Wave-Me/zwave-smarthome/issues"
   },
   "homepage": "https://github.com/Z-Wave-Me/zwave-smarthome",
-  "dependencies": {}
+  "dependencies": {
+    "grunt-cache-breaker": "^2.0.1"
+  }
 }

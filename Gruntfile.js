@@ -296,6 +296,19 @@ module.exports = function (grunt) {
 
             }
         },
+        cachebreaker: {
+            dist: {
+                options: {
+                    match: ['config.js', 'build.js', 'icons.js', 'main.css'],
+                    replacement: function() {
+                        return app_version;
+                    }    
+                },
+                files: {
+                    src: ['dist/index.html']
+                }
+            }
+        },
         replace: {
             dist: {
                 options: {
@@ -414,8 +427,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-jsdox');
     grunt.loadNpmTasks('grunt-release-it');
     grunt.loadNpmTasks('grunt-contrib-compress');
+    grunt.loadNpmTasks('grunt-cache-breaker');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild','replace','modify_json']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild', 'cachebreaker', 'replace','modify_json']);
 
 };
