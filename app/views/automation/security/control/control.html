@@ -1,3 +1,21 @@
+ <!-- Assigned -->
+ <div class="panel-wrap">
+    <div class="list-panel" ng-repeat="d in security.devices.controls track by $index" ng-if="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]">
+      <!-- img -->
+      <figure class="img wh-32x32">
+        <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+      </figure>
+      <div class="body">
+        <div>{{d.deviceName}}</div>
+      </div>
+      <div class="control">
+        <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'controls')">
+          <i class="fa fa-times text-danger"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
 <div class="flexcards security">
   <div class="flexcard flip control" title="{{d.deviceName}}" ng-repeat="d in security.devices.controls track by $index">
     <div class="flipcard" ng-class="{'flipped': security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]}">
@@ -50,4 +68,13 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Available devices -->
+<h3>{{_t('lb_available_devices')}}</h3>
+<div>
+  <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.controls track by $index"
+    ng-if="!security.input.params.input.table[getModelIndex(d.deviceId,'controls.table')]" ng-click="assignDevice(d.deviceId,'controls')">{{d.deviceName|cutText:true:20}}
+    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+  </a>
 </div>

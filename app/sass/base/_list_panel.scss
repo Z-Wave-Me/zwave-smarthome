@@ -5,6 +5,10 @@ $list-panel-spacing: $spacing;
 $list-panel-img-w: 64px;
 $list-panel-bcg-color: #fff;
 $list-panel-border-color: $app-border-color;
+.panel-wrap{
+  margin-bottom: $spacing-double;
+}
+
 .list-panel{
  @include appClearFix();
 
@@ -52,3 +56,5 @@ $list-panel-border-color: $app-border-color;
     }
   }
 }
+
+

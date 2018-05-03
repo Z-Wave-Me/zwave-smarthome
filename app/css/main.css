@@ -12622,6 +12622,11 @@ img {
 /* List panel
 -------------------------------------------------- */
 /* line 8, ../sass/base/_list_panel.scss */
+.panel-wrap {
+  margin-bottom: 20px;
+}
+
+/* line 12, ../sass/base/_list_panel.scss */
 .list-panel {
   background-color: #fff;
   border-bottom: 1px solid #cccccc;
@@ -12636,24 +12641,24 @@ img {
 .list-panel:after {
   clear: both;
 }
-/* line 14, ../sass/base/_list_panel.scss */
+/* line 18, ../sass/base/_list_panel.scss */
 .list-panel > * {
   float: left;
 }
-/* line 17, ../sass/base/_list_panel.scss */
+/* line 21, ../sass/base/_list_panel.scss */
 .list-panel figure {
   margin-right: 10px;
   min-width: 32px;
 }
-/* line 22, ../sass/base/_list_panel.scss */
+/* line 26, ../sass/base/_list_panel.scss */
 .list-panel .body {
   max-width: 70%;
 }
-/* line 24, ../sass/base/_list_panel.scss */
+/* line 28, ../sass/base/_list_panel.scss */
 .list-panel .body > div {
   margin-top: 5px;
 }
-/* line 28, ../sass/base/_list_panel.scss */
+/* line 32, ../sass/base/_list_panel.scss */
 .list-panel .control {
   float: right;
   text-align: right;
@@ -12663,11 +12668,11 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 35, ../sass/base/_list_panel.scss */
+  /* line 39, ../sass/base/_list_panel.scss */
   .list-panel .control.expand-false {
     display: none;
   }
-  /* line 38, ../sass/base/_list_panel.scss */
+  /* line 42, ../sass/base/_list_panel.scss */
   .list-panel .control.expand-true {
     margin-top: 10px;
     display: block;
@@ -12675,11 +12680,11 @@ img {
     width: 100%;
   }
 }
-/* line 47, ../sass/base/_list_panel.scss */
+/* line 51, ../sass/base/_list_panel.scss */
 .list-panel.condensed {
   padding: 5px 0;
 }
-/* line 49, ../sass/base/_list_panel.scss */
+/* line 53, ../sass/base/_list_panel.scss */
 .list-panel.condensed .control {
   min-width: 1%;
   margin-left: 10px;
@@ -13629,40 +13634,46 @@ fieldset h1, fieldset h2, fieldset h3, .fieldset h1, .fieldset h2, .fieldset h3 
   margin: 0;
 }
 /* line 248, ../sass/base/_form.scss */
+fieldset h3, .fieldset h3 {
+  font-weight: bold;
+  font-size: 105%;
+  margin-bottom: 10px;
+}
+/* line 253, ../sass/base/_form.scss */
 fieldset.expanded, .fieldset.expanded {
   padding: 10px;
 }
-/* line 251, ../sass/base/_form.scss */
+/* line 256, ../sass/base/_form.scss */
 fieldset.expanded .form-group, .fieldset.expanded .form-group {
   border-bottom: 0;
 }
 
-/* line 258, ../sass/base/_form.scss */
+/* line 263, ../sass/base/_form.scss */
 .isrequired {
   font-weight: bold !important;
 }
 
-/* line 263, ../sass/base/_form.scss */
+/* line 268, ../sass/base/_form.scss */
 .isrequired::before {
   content: "*";
 }
 
-/* line 267, ../sass/base/_form.scss */
+/* line 272, ../sass/base/_form.scss */
 .form-control-sm {
   width: 30% !important;
 }
 
-/* line 271, ../sass/base/_form.scss */
+/* line 276, ../sass/base/_form.scss */
 .form-control-md {
   width: 50% !important;
 }
 
-/* line 275, ../sass/base/_form.scss */
+/* line 280, ../sass/base/_form.scss */
 .input-valid-false {
   border: solid 1px red;
 }
 
-/* line 279, ../sass/base/_form.scss */
+/* line 284, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
   display: block;
@@ -13670,30 +13681,30 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
   /* MAX WIDTH */
 }
 @media only screen and (min-width: 768px) {
-  /* line 279, ../sass/base/_form.scss */
+  /* line 284, ../sass/base/_form.scss */
   .submit-entry {
     border-top: solid 1px #cccccc;
     background-color: #FFFFFF;
   }
 }
 
-/* line 291, ../sass/base/_form.scss */
+/* line 296, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 295, ../sass/base/_form.scss */
+/* line 300, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 299, ../sass/base/_form.scss */
+/* line 304, ../sass/base/_form.scss */
 .form-control-img {
   margin-right: 10px;
   cursor: pointer;
 }
 
-/* line 305, ../sass/base/_form.scss */
+/* line 310, ../sass/base/_form.scss */
 .lang-active {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -13702,12 +13713,12 @@ fieldset.submit-entry {
   filter: grayscale(100%);
 }
 
-/* line 309, ../sass/base/_form.scss */
+/* line 314, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 313, ../sass/base/_form.scss */
+/* line 318, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13716,7 +13727,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 322, ../sass/base/_form.scss */
+/* line 327, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }
@@ -19979,7 +19990,7 @@ body.night-false {
 -------------------------------------------------- */
 /* line 229, ../sass/custom/_shui.scss */
 .automation .notification {
-  margin-top: 20px;
+  margin: 20px 0;
   padding: 10px;
   background-color: #F6F6F6;
 }
