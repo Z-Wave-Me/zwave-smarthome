@@ -17,7 +17,7 @@
         <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       </figure>
       <div class="body">
-        <div>{{d.deviceName}}</div>
+        <div>{{d.deviceName}} - <em class="item-cnt">{{d.locationName}}</em></div>
       </div>
       <div class="control">
         <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'disarmConfirm')">
@@ -26,10 +26,25 @@
       </div>
 
     </div>
-  </div>
-    
     <!-- Notification -->
-    <div class="notification" ng-if="_.size(security.input.params.disarmConfirm.table)" ng-include="'app/views/automation/security/trigger/notification.html'" ng-init="model = security.input.params.disarmConfirm.notification"></div>
+    <div class="list-panel" ng-if="_.size(security.input.params.disarmConfirm.table)" >
+        <!-- img -->
+        <figure class="img wh-32x32 clickable" ng-click="expandElement('disarmConfirm')">
+          <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
+        </figure>
+        <div class="body clickable" ng-click="expandElement('disarmConfirm')">
+          <div>{{_t('notification')}}</div>
+        </div>
+        <div class="control">
+          <!-- expand/collapse -->
+          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['disarmConfirm']||false}}" ng-click="expandElement('disarmConfirm')">
+          </button>
+        </div>
+        <div class="control-collapsable" ng-include="'app/views/automation/security/trigger/notification.html'"
+        ng-init="model = security.input.params.disarmConfirm.notification"
+        ng-class="expand['disarmConfirm'] ? 'expand-true': 'expand-false'"></div>
+      </div>
+  </div>
     <!-- Available devices -->
     <h3>{{_t('lb_available_devices')}}</h3>
     <div>

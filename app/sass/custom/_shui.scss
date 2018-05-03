@@ -134,6 +134,14 @@ body {
       }
     }
   }
+/* List panel
+-------------------------------------------------- */
+.list-panel{
+  .control-collapsable{
+    padding: $spacing;
+    background-color: #eeeeee;
+  }
+}
    /* Table responsive
 -------------------------------------------------- */
 .table-responsive {
@@ -218,6 +226,15 @@ body {
             background-color: darken(#F6F6F6, 5%);
           }
         }
+      }
+      &.active{
+        @include mediaQueries(min-small) {
+          padding: $spacing;
+          //margin: $spacing-double 0;
+          border:solid 2px $app-bcg-success;
+          @include appBoxShadow($app-box-shadow);
+        }
+       
       }
     }
   }

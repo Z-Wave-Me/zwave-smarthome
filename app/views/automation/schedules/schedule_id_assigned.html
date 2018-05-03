@@ -1,7 +1,7 @@
 <!--  ////////////////////////////////////////// switchBinary  ////////////////////////////////////////// -->
 <section class="accordion-wrap" ng-repeat="v in schedule.input.params.devices.switches track by $index">
     <!-- Title -->
-    <h2 class="accordion-toggle chevron">
+    <h2 class="accordion-toggle ellipsis">
       <!-- Deleted device -->
       <span class="no-toggle text-danger" ng-if="!schedule.availableDevices[v.device]">
           <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
@@ -24,7 +24,7 @@
   <!--  ////////////////////////////////////////// switchMultilevel  ////////////////////////////////////////// -->
 <section class="accordion-wrap" ng-repeat="v in schedule.input.params.devices.dimmers track by $index">
     <!-- Title -->
-    <h2 class="accordion-toggle chevron">
+    <h2 class="accordion-toggle ellipsis">
       <!-- Deleted device -->
       <span class="no-toggle text-danger" ng-if="!schedule.availableDevices[v.device]">
           <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
@@ -47,7 +47,7 @@
   <!--  ////////////////////////////////////////// thermostat  ////////////////////////////////////////// -->
 <section class="accordion-wrap" ng-repeat="v in schedule.input.params.devices.thermostats track by $index">
     <!-- Title -->
-    <h2 class="accordion-toggle chevron">
+    <h2 class="accordion-toggle ellipsis">
       <!-- Deleted device -->
       <span class="no-toggle text-danger" ng-if="!schedule.availableDevices[v.device]">
           <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
@@ -70,7 +70,7 @@
   <!--  ////////////////////////////////////////// doorlock  ////////////////////////////////////////// -->
 <section class="accordion-wrap" ng-repeat="v in schedule.input.params.devices.locks track by $index">
     <!-- Title -->
-    <h2 class="accordion-toggle chevron">
+    <h2 class="accordion-toggle ellipsis">
       <!-- Deleted device -->
       <span class="no-toggle text-danger" ng-if="!schedule.availableDevices[v.device]">
           <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
@@ -93,7 +93,7 @@
     <!--  ////////////////////////////////////////// toggleButton  ////////////////////////////////////////// -->
 <section class="accordion-wrap" ng-repeat="v in schedule.input.params.devices.scenes track by $index">
     <!-- Title -->
-    <h2 class="accordion-toggle chevron">
+    <h2 class="accordion-toggle ellipsis">
       <!-- Deleted device -->
       <span class="no-toggle text-danger" ng-if="!schedule.availableDevices[v]">
           <i class="fa fa-exclamation-circle"></i> {{v}} {{_t('device_removed')}}

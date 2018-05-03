@@ -3,7 +3,8 @@
   <h2 class="accordion-toggle chevron">
     <button type="button" aria-expanded="false" bb-accordion>
       <span class="is-legend">
-        {{_t('silent_alarm')}} <span class="item-cnt"> ({{_.size(security.input.params.silentAlarms.table)}})</span>
+        {{_t('silent_alarm')}}
+        <span class="item-cnt"> ({{_.size(security.input.params.silentAlarms.table)}})</span>
       </span>
     </button>
   </h2>
@@ -17,7 +18,9 @@
           <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
         </figure>
         <div class="body">
-          <div>{{d.deviceName}}</div>
+          <div>{{d.deviceName}} -
+            <em class="item-cnt">{{d.locationName}}</em>
+          </div>
         </div>
         <div class="control">
           <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'silentAlarms')">
@@ -26,11 +29,25 @@
         </div>
 
       </div>
+      <!-- Notification -->
+      <div class="list-panel" ng-if="_.size(security.input.params.silentAlarms.table)" >
+        <!-- img -->
+        <figure class="img wh-32x32 clickable" ng-click="expandElement('silentAlarms')">
+          <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
+        </figure>
+        <div class="body clickable" ng-click="expandElement('silentAlarms')">
+          <div>{{_t('notification')}}</div>
+        </div>
+        <div class="control">
+          <!-- expand/collapse -->
+          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['silentAlarms']||false}}" ng-click="expandElement('silentAlarms')">
+          </button>
+        </div>
+        <div class="control-collapsable" ng-include="'app/views/automation/security/trigger/notification.html'"
+        ng-init="model = security.input.params.silentAlarms.notification"
+        ng-class="expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>
+      </div>
     </div>
-
-    <!-- Notification -->
-    <div class="notification" ng-if="_.size(security.input.params.silentAlarms.table)" ng-include="'app/views/automation/security/trigger/notification.html'" ng-init="model = security.input.params.silentAlarms.notification"></div>
-    <!-- Available devices -->
     <h3>{{_t('lb_available_devices')}}</h3>
     <div>
       <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.alarms track by $index"

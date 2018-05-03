@@ -619,7 +619,13 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         }
         // Also hide previous expanded elements
         if (hidePrevious) {
-            $scope.expand = [];
+         angular.forEach($scope.expand,function(v,k){
+              if(k != key){
+                $scope.expand[k] = false;
+                
+              }
+             
+            });
         }
         $scope.expand[key] = !($scope.expand[key]);
     };

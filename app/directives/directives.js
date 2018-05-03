@@ -511,6 +511,8 @@ myApp.directive('bbAccordion', function() {
                 elem.attr('aria-expanded', function(_, attr) {
                     return attr == 'true' ? false : true;
                 });
+                console.log(elem.closest('.accordion-wrap'));
+                elem.closest('.accordion-wrap').toggleClass('active');
                 elem.parent().next().attr('hidden', function(_, attr) {
                     return !attr
                 });
