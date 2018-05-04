@@ -150,13 +150,13 @@ var config_data = {
         // List of remote api URLs
         'api_remote': {
             // JamesBox request
-            'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
+            'jamesbox_request': 'https://storage.z-wave.me/zbu_ui_handling.php?action=request',
             // JamesBox update
-            'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
+            'jamesbox_update': 'https://storage.z-wave.me/zbu_ui_handling.php?action=update',
             // JamesBox update info
-            'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo',
+            'jamesbox_updateinfo': 'https://storage.z-wave.me/zbu_ui_handling.php?action=updateinfo',
             // JamesBox cancel update
-            'jamesbox_cancel_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=cancelupdate',
+            'jamesbox_cancel_update': 'https://storage.z-wave.me/zbu_ui_handling.php?action=cancelupdate',
             // RSS feed
             'rss_feed': 'https://service.z-wave.me/rssFeed/index.php'
         },
@@ -253,7 +253,7 @@ var config_data = {
         // Url to get a license key
         'license_url': 'https://service.z-wave.me/license/upgrade.php',
         // Raz latest version
-        'raz_latest_version_url': 'https://razberry.z-wave.me/z-way/razberry/latest/VERSION',
+        'raz_latest_version_url': 'https://storage.z-wave.me/z-way/razberry/latest/VERSION',
         // Find z-wave me box
         'find_zwaveme_zbox': 'https://find.z-wave.me/',
         // Url to zddx xml files
