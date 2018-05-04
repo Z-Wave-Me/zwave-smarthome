@@ -134,6 +134,14 @@ body {
       }
     }
   }
+/* List panel
+-------------------------------------------------- */
+.list-panel{
+  .control-collapsable{
+    padding: $spacing;
+    background-color: #eeeeee;
+  }
+}
    /* Table responsive
 -------------------------------------------------- */
 .table-responsive {
@@ -219,6 +227,15 @@ body {
           }
         }
       }
+      &.active{
+        @include mediaQueries(min-small) {
+          padding: $spacing;
+          //margin: $spacing-double 0;
+          border:solid 2px $app-bcg-success;
+          @include appBoxShadow($app-box-shadow);
+        }
+       
+      }
     }
   }
 //}
@@ -227,7 +244,7 @@ body {
 -------------------------------------------------- */
 .automation{
   .notification{
-    margin-top: $spacing-double;
+    margin: $spacing-double 0;
     padding: $spacing;
     background-color: #F6F6F6;
   }

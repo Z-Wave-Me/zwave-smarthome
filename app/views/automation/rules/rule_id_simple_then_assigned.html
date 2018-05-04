@@ -1,6 +1,6 @@
  <!-- ////////////////////////////////////////// targetElements  ////////////////////////////////////////// -->
 <section class="accordion-wrap" ng-repeat="d in rule.input.params.simple.targetElements track by $index" ng-init="model=d;inputType='simple'">
-   <h2 class="accordion-toggle chevron">
+   <h2 class="accordion-toggle ellipsis">
       <!-- Deleted device -->
       <span class="no-toggle text-danger" ng-show="!rule.namespaces[d.deviceId]">
         <i class="fa fa-exclamation-circle"></i> {{d.deviceId}} {{_t('device_removed')}}

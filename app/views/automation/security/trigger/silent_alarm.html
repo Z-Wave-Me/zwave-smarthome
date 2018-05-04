@@ -4,43 +4,56 @@
     <button type="button" aria-expanded="false" bb-accordion>
       <span class="is-legend">
         {{_t('silent_alarm')}}
+        <span class="item-cnt"> ({{_.size(security.input.params.silentAlarms.table)}})</span>
       </span>
     </button>
   </h2>
   <!-- Content -->
-  <div class="accordion no-bcg clearfix" hidden>
-      <div class="flexcards security">
-          <div class="flexcard trigger flip" ng-repeat="d in security.devices.alarms track by $index">
-            <div class="flipcard" title="{{d.deviceName}}" ng-class="{'flipped': security.input.params.silentAlarms.table[getModelIndex(d.deviceId,'silentAlarms.table')]}">
-              <!--  Inactive card -->
-              <div class="flexcard-item front">
-                <figure>
-                  <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                </figure>
-                <div class="body">
-                  <h2>{{d.deviceNameShort}}</h2>
-                  <button type="button" class="btn btn-default" ng-click="assignDevice(d.deviceId,'silentAlarms')">
-                    <i class="fa fa-plus text-success" title="{{_t('lb_remove')}}"></i>
-                  </button>
-                </div>
-              </div>
-              <!--  Active card -->
-              <div class="flexcard-item back">
-                <span class="close">
-                  <i class="fa fa-times" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'silentAlarms')"></i>
-                </span>
-                <figure>
-                  <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                </figure>
-                <div class="body">
-                  <h2>{{d.deviceNameShort}}</h2>
-                </div>
-              </div>
-            </div>
+  <div class="accordion no-bcg" hidden>
+    <!-- Assigned -->
+    <div class="panel-wrap">
+      <div class="list-panel" ng-repeat="d in security.devices.alarms track by $index" ng-if="security.input.params.silentAlarms.table[getModelIndex(d.deviceId,'silentAlarms.table')]">
+        <!-- img -->
+        <figure class="img wh-32x32">
+          <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+        </figure>
+        <div class="body">
+          <div>{{d.deviceName}} -
+            <em class="item-cnt">{{d.locationName}}</em>
           </div>
         </div>
-    
-    <!-- Notification -->
-    <div class="notification" ng-include="'app/views/automation/security/trigger/notification.html'" ng-init="model = security.input.params.silentAlarms.notification"></div>
+        <div class="control">
+          <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'silentAlarms')">
+            <i class="fa fa-times text-danger"></i>
+          </button>
+        </div>
+
+      </div>
+      <!-- Notification -->
+      <div class="list-panel" ng-if="_.size(security.input.params.silentAlarms.table)" >
+        <!-- img -->
+        <figure class="img wh-32x32 clickable" ng-click="expandElement('silentAlarms')">
+          <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
+        </figure>
+        <div class="body clickable" ng-click="expandElement('silentAlarms')">
+          <div>{{_t('notification')}}</div>
+        </div>
+        <div class="control">
+          <!-- expand/collapse -->
+          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['silentAlarms']||false}}" ng-click="expandElement('silentAlarms')">
+          </button>
+        </div>
+        <div class="control-collapsable" ng-include="'app/views/automation/security/trigger/notification.html'"
+        ng-init="model = security.input.params.silentAlarms.notification"
+        ng-class="expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>
+      </div>
+    </div>
+    <h3>{{_t('lb_available_devices')}}</h3>
+    <div>
+      <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.alarms track by $index"
+        ng-if="!security.input.params.input.table[getModelIndex(d.deviceId,'silentAlarms.table')]" ng-click="assignDevice(d.deviceId,'silentAlarms')">{{d.deviceName|cutText:true:20}}
+        <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      </a>
+    </div>
   </div>
 </section>

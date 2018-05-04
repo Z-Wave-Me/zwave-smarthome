@@ -1,5 +1,5 @@
 <section class="accordion-wrap" ng-repeat="d in hazardProtection.input.params.triggerEvent track by $index" ng-init="model=d">
-  <h2 class="accordion-toggle chevron">
+  <h2 class="accordion-toggle ellipsis">
   <!-- Deleted device -->
   <span class="no-toggle text-danger" ng-show="!hazardProtection.availableDevices[model.deviceId]">
     <i class="fa fa-exclamation-circle"></i> {{d.device}} {{_t('device_removed')}}
