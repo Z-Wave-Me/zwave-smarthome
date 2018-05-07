@@ -117,8 +117,6 @@ module.exports = function (grunt) {
                     'app/controllers/automation-scene.js',
                     'app/controllers/automation-rule.js',
                     'app/controllers/automation-schedule.js',
-                    'app/controllers/automation-leakage.js',
-                    'app/controllers/automation-fireprotection.js',
                     'app/controllers/automation-security.js',
                     'app/controllers/app.js',
                     'app/controllers/app-local.js',

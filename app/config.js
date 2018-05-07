@@ -436,7 +436,6 @@ var config_data = {
                 }]
             }
         },
-        /* 'automations': ['Rules', 'Scenes', 'Schedules','LeakageProtection','FireProtection','SecurityModule'], */
         'automations': [
             "Scenes",
             "Rules",
