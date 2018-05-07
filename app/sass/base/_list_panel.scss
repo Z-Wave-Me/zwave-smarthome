@@ -18,7 +18,8 @@ $list-panel-border-color: $app-border-color;
   >* {
     float: left;
   }
-  figure {
+  figure,.figure {
+    display: block;
     margin-right: $list-panel-spacing;
     min-width: 32px;
   }

@@ -12646,19 +12646,20 @@ img {
   float: left;
 }
 /* line 21, ../sass/base/_list_panel.scss */
-.list-panel figure {
+.list-panel figure, .list-panel .figure {
+  display: block;
   margin-right: 10px;
   min-width: 32px;
 }
-/* line 25, ../sass/base/_list_panel.scss */
+/* line 26, ../sass/base/_list_panel.scss */
 .list-panel .body {
   max-width: 70%;
 }
-/* line 27, ../sass/base/_list_panel.scss */
+/* line 28, ../sass/base/_list_panel.scss */
 .list-panel .body > div {
   margin-top: 5px;
 }
-/* line 31, ../sass/base/_list_panel.scss */
+/* line 32, ../sass/base/_list_panel.scss */
 .list-panel .control {
   float: right;
   text-align: right;
@@ -12668,11 +12669,11 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 37, ../sass/base/_list_panel.scss */
+  /* line 38, ../sass/base/_list_panel.scss */
   .list-panel .control.expand-false {
     display: none;
   }
-  /* line 40, ../sass/base/_list_panel.scss */
+  /* line 41, ../sass/base/_list_panel.scss */
   .list-panel .control.expand-true {
     margin-top: 10px;
     display: block;
@@ -12680,20 +12681,20 @@ img {
     width: 100%;
   }
 }
-/* line 48, ../sass/base/_list_panel.scss */
+/* line 49, ../sass/base/_list_panel.scss */
 .list-panel.condensed {
   padding: 5px 0;
 }
-/* line 50, ../sass/base/_list_panel.scss */
+/* line 51, ../sass/base/_list_panel.scss */
 .list-panel.condensed .control {
   min-width: 1%;
   margin-left: 10px;
 }
-/* line 56, ../sass/base/_list_panel.scss */
+/* line 57, ../sass/base/_list_panel.scss */
 .list-panel .control-collapsable.expand-false {
   display: none;
 }
-/* line 59, ../sass/base/_list_panel.scss */
+/* line 60, ../sass/base/_list_panel.scss */
 .list-panel .control-collapsable.expand-true {
   margin-top: 10px;
   display: block;
