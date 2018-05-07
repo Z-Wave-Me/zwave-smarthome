@@ -12621,14 +12621,14 @@ img {
 
 /* List panel
 -------------------------------------------------- */
-/* line 9, ../sass/base/_list_panel.scss */
+/* line 3, ../sass/base/_list_panel.scss */
 .panel-wrap {
   margin-bottom: 20px;
 }
 
-/* line 13, ../sass/base/_list_panel.scss */
+/* line 7, ../sass/base/_list_panel.scss */
 .list-panel {
-  background-color: #fff;
+  background-color: #FFFFFF;
   border-bottom: 1px solid #cccccc;
   padding: 10px;
 }
@@ -12641,25 +12641,25 @@ img {
 .list-panel:after {
   clear: both;
 }
-/* line 18, ../sass/base/_list_panel.scss */
+/* line 12, ../sass/base/_list_panel.scss */
 .list-panel > * {
   float: left;
 }
-/* line 21, ../sass/base/_list_panel.scss */
+/* line 15, ../sass/base/_list_panel.scss */
 .list-panel figure, .list-panel .figure {
   display: block;
   margin-right: 10px;
   min-width: 32px;
 }
-/* line 26, ../sass/base/_list_panel.scss */
+/* line 20, ../sass/base/_list_panel.scss */
 .list-panel .body {
   max-width: 70%;
 }
-/* line 28, ../sass/base/_list_panel.scss */
+/* line 22, ../sass/base/_list_panel.scss */
 .list-panel .body > div {
   margin-top: 5px;
 }
-/* line 32, ../sass/base/_list_panel.scss */
+/* line 26, ../sass/base/_list_panel.scss */
 .list-panel .control {
   float: right;
   text-align: right;
@@ -12669,11 +12669,11 @@ img {
   /* MAX WIDTH */
 }
 @media only screen and (max-width: 767px) {
-  /* line 38, ../sass/base/_list_panel.scss */
+  /* line 32, ../sass/base/_list_panel.scss */
   .list-panel .control.expand-false {
     display: none;
   }
-  /* line 41, ../sass/base/_list_panel.scss */
+  /* line 35, ../sass/base/_list_panel.scss */
   .list-panel .control.expand-true {
     margin-top: 10px;
     display: block;
@@ -12681,20 +12681,20 @@ img {
     width: 100%;
   }
 }
-/* line 49, ../sass/base/_list_panel.scss */
+/* line 43, ../sass/base/_list_panel.scss */
 .list-panel.condensed {
-  padding: 5px 0;
+  padding: 5px;
 }
-/* line 51, ../sass/base/_list_panel.scss */
+/* line 45, ../sass/base/_list_panel.scss */
 .list-panel.condensed .control {
   min-width: 1%;
   margin-left: 10px;
 }
-/* line 57, ../sass/base/_list_panel.scss */
+/* line 51, ../sass/base/_list_panel.scss */
 .list-panel .control-collapsable.expand-false {
   display: none;
 }
-/* line 60, ../sass/base/_list_panel.scss */
+/* line 54, ../sass/base/_list_panel.scss */
 .list-panel .control-collapsable.expand-true {
   margin-top: 10px;
   display: block;
@@ -15962,49 +15962,54 @@ img.widget-promo-image {
 
 /* Events
 -------------------------------------------------- */
-/* line 3, ../sass/base/_events.scss */
+/* line 5, ../sass/base/_events.scss */
+.events .list-panel .body {
+  padding: 5px 0;
+}
+
+/* line 10, ../sass/base/_events.scss */
 .event-level-warning {
   background-color: #fcf8e3;
 }
 
-/* line 7, ../sass/base/_events.scss */
+/* line 14, ../sass/base/_events.scss */
 .event-level-error {
   background-color: #f2dede;
 }
 
-/* line 10, ../sass/base/_events.scss */
+/* line 17, ../sass/base/_events.scss */
 .event-level-critical {
   background-color: #f2dede;
 }
 
-/* line 14, ../sass/base/_events.scss */
-.event-message {
-  display: block;
-}
-
-/* line 17, ../sass/base/_events.scss */
+/* line 24, ../sass/base/_events.scss */
 .event-room {
-  display: block;
   font-size: 90%;
   color: #737373;
+  font-style: italic;
+}
+/* line 29, ../sass/base/_events.scss */
+.event-room::before {
+  margin: 0 5px;
+  content: "-";
 }
 
 /* MIN WIDTH */
 @media only screen and (min-width: 768px) {
-  /* line 24, ../sass/base/_events.scss */
+  /* line 37, ../sass/base/_events.scss */
   .event-message {
     display: inline-block;
   }
 
-  /* line 27, ../sass/base/_events.scss */
+  /* line 40, ../sass/base/_events.scss */
   .group-event-dropdown {
     width: 100%;
   }
-  /* line 29, ../sass/base/_events.scss */
+  /* line 42, ../sass/base/_events.scss */
   .group-event-dropdown .btn {
     float: right;
   }
-  /* line 32, ../sass/base/_events.scss */
+  /* line 45, ../sass/base/_events.scss */
   .group-event-dropdown .app-dropdown {
     width: 100%;
   }

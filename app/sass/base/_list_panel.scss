@@ -1,26 +1,20 @@
 /* List panel
 -------------------------------------------------- */
-
-// input top, bottom spacing
-$list-panel-spacing: $spacing;
-$list-panel-img-w: 64px;
-$list-panel-bcg-color: #fff;
-$list-panel-border-color: $app-border-color;
 .panel-wrap {
   margin-bottom: $spacing-double;
 }
 
 .list-panel {
   @include appClearFix();
-  background-color: $list-panel-bcg-color;
-  border-bottom: 1px solid $list-panel-border-color;
-  padding: $list-panel-spacing;
+  background-color: $app-bcg-color;
+  border-bottom: 1px solid $app-border-color;
+  padding: $spacing;
   >* {
     float: left;
   }
   figure,.figure {
     display: block;
-    margin-right: $list-panel-spacing;
+    margin-right: $spacing;
     min-width: 32px;
   }
   .body {
@@ -32,7 +26,7 @@ $list-panel-border-color: $app-border-color;
   .control {
     float: right;
     text-align: right;
-    margin-left: $list-panel-spacing;
+    margin-left: $spacing;
     min-width: 20%;
     @include mediaQueries(max-small) {
       &.expand-false {
@@ -47,7 +41,7 @@ $list-panel-border-color: $app-border-color;
     }
   }
   &.condensed {
-    padding: $spacing-half 0;
+    padding: $spacing-half;
     .control {
       min-width: 1%;
       margin-left: $spacing;

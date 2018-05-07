@@ -1,57 +1,53 @@
 <!-- Rss view -->
 <div ng-controller="RssController">
-    <bb-loader></bb-loader>
-    <!--<pre>{{rss|json}}</pre>-->
-    <h1>{{_t('news')}}</h1>
-    <!--<pre>{{rss|json}}</pre>-->
-    <div class="app-row app-row-report clearfix" ng-if=" _.size(rss.all) > 0">
-        <div class="report-entry rss-entry clickable"
-             ng-repeat="v in rss.all | orderBy: '-pubDate' track by $index" id="row_{{v.id}}"
-             ng-class="rss.read.indexOf(v.id) > -1 ? 'read-true':'read-false'"
-             ng-click="readRss(v,'rssModal', $event)">
-            <!-- Control -->
-            <div class="report-col report-body">
-                <span class="text-supp event-date">{{v.pubDate}}</span>
-                    <h2 class="rss-title">{{v.title}}</h2>
-                <div class="rss-description">
-                    {{v.description | stripTags| cutText:true:256}}
-                </div>
-            </div>
-            <!-- Control -->
-            <div class="report-col report-ctrl">
-                <button class="btn btn-success" ng-show="rss.read.indexOf(v.id) === -1" ng-click="readRss(v,'rssModal', $event)">
-                    {{_t('read_more')}} <i class="fa fa-chevron-right"></i>
-                </button>
-                <button class="btn btn-default" ng-show="rss.read.indexOf(v.id) > -1" ng-click="readRss(v,'rssModal', $event)">
-                    {{_t('read')}} <i class="fa fa-angle-right"></i>
-                </button>
-            </div>
-        </div>
+  <bb-loader></bb-loader>
+  <!--<pre>{{rss|json}}</pre>-->
+  <h1>{{_t('news')}}</h1>
+  <div class="list-panel" ng-repeat="v in rss.all | orderBy: '-pubDate' track by $index" ng-class="rss.read.indexOf(v.id) > -1 ? 'read-true':'read-false'"
+    ng-click="readRss(v,'rssModal', $event)">
+     <!-- body -->
+     <div class="body">
+      <span class="text-supp event-date">{{v.pubDate}}</span>
+      <h2 class="rss-title">{{v.title}}</h2>
+      <div class="rss-description">
+        {{v.description | stripTags| cutText:true:256}}
+      </div>
     </div>
+     <!-- control -->
+     <div class="control">
+      <button class="btn btn-success" ng-class="rss.read.indexOf(v.id) > -1 ? 'btn-default':'btn-success'" ng-click="readRss(v,'rssModal', $event)">
+        {{_t('read_more')}}
+        <i class="fa fa-angle-right"></i>
+      </button>
+    </div>
+  </div>
 
-    <div id="rssModal" class="appmodal" ng-if="modalArr.rssModal">
-        <div class="appmodal-in">
-            <div class="appmodal-header">
-                <span class="appmodal-close" ng-click="handleModal('rssModal', $event)"><i
-                        class="fa fa-times"></i></span>
-                <h3>{{_t('news')}}</h3>
-            </div>
-            <div class="appmodal-body">
-               <!-- <pre>{{rss.find|json}}</pre>-->
-                <div class="rss-title">
-                    <span class="text-supp event-date">{{v.pubDate}}</span>
-                    <h2>{{rss.find.title}}</h2>
-                </div>
-                <p class="rss-description" ng-if="rss.find.description">
-                    <span ng-bind-html="rss.find.description | toTrusted"></span>
-                </p>
-                <div class="rss-body" ng-if="rss.find.content">
-                    <span ng-bind-html="rss.find.content | toTrusted"></span>
-                </div>
-            </div>
-            <div class="appmodal-footer">
-                <button type="button" class="btn btn-default" ng-click="handleModal('rssModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
-            </div>
+  <div id="rssModal" class="appmodal" ng-if="modalArr.rssModal">
+    <div class="appmodal-in">
+      <div class="appmodal-header">
+        <span class="appmodal-close" ng-click="handleModal('rssModal', $event)">
+          <i class="fa fa-times"></i>
+        </span>
+        <h3>{{_t('news')}}</h3>
+      </div>
+      <div class="appmodal-body">
+        <!-- <pre>{{rss.find|json}}</pre>-->
+        <div class="rss-title">
+          <span class="text-supp event-date">{{v.pubDate}}</span>
+          <h2>{{rss.find.title}}</h2>
         </div>
+        <p class="rss-description" ng-if="rss.find.description">
+          <span ng-bind-html="rss.find.description | toTrusted"></span>
+        </p>
+        <div class="rss-body" ng-if="rss.find.content">
+          <span ng-bind-html="rss.find.content | toTrusted"></span>
+        </div>
+      </div>
+      <div class="appmodal-footer">
+        <button type="button" class="btn btn-default" ng-click="handleModal('rssModal', $event)">
+          <i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+      </div>
     </div>
-</div> <!-- /ng-controller -->
+  </div>
+</div>
+<!-- /ng-controller -->
