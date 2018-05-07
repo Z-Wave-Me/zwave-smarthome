@@ -71,7 +71,7 @@ myAppController.controller('AutomationsController', function($scope, $q, $timeou
                     switch (item.moduleName) {
                         case "HazardNotification":
                             item.title = $scope._t('hazard_notification');
-                            item.image = "app/img/automation/heating.png";
+                            item.image = "app/img/automation/hazard.png";
                             item.href = "#hazard";
                             //item.description = item.defaults.description;
                             break;
