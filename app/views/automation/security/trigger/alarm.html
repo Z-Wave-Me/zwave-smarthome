@@ -48,7 +48,7 @@
     <h3>{{_t('lb_available_devices')}}</h3>
     <div>
       <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.alarms track by $index"
-        ng-if="!security.input.params.input.table[getModelIndex(d.deviceId,'alarms.table')]" ng-click="assignDevice(d.deviceId,'alarms')">{{d.deviceName|cutText:true:20}}
+        ng-if="!security.input.params.alarms.table[getModelIndex(d.deviceId,'alarms.table')]" ng-click="assignDevice(d.deviceId,'alarms')">{{d.deviceName|cutText:true:20}}
         <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
       </a>
     </div>
