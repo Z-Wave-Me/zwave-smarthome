@@ -434,7 +434,14 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                             "temp": sc.data.temp
                         };
                     });
+                console.log("roomId", roomId);
+                console.log("$scope.heating.input.params.roomSettings", $scope.heating.input.params.roomSettings);
+                if (!$scope.heating.input.params.roomSettings[roomId].hasOwnProperty("schedule")) {
+                    $scope.heating.input.params.roomSettings[roomId].schedule = {};
+                }
+
                 $scope.heating.input.params.roomSettings[roomId].schedule[k] = new_sc;
+
             });
         });
     };

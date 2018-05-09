@@ -12,7 +12,6 @@ $schedule-bar-bg-color: rgb(135, 206, 235);
 .schedule-wrap {
     position: relative;
     .schedule-overlay {
-        //background-color: rgba(255,255,255,0.7);
         position: absolute;
         bottom: 0;
         top: 0;
@@ -22,8 +21,6 @@ $schedule-bar-bg-color: rgb(135, 206, 235);
         display: flex;
         justify-content: center;
         align-items: center;
-        resize: both;
-        overflow: auto;
     }
 }
 

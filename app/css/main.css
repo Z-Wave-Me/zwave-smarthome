@@ -18651,45 +18651,52 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* Gallery
 -------------------------------------------------- */
-/* line 8, ../sass/base/_automation.scss */
-.automations.flexgallery > * {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
+/* line 7, ../sass/base/_automation.scss */
+.automations.flexgallery {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
+@media only screen and (min-width: 1024px) and (orientation: landscape) {
+  /* line 7, ../sass/base/_automation.scss */
+  .automations.flexgallery {
+    margin: 0px 100px;
+  }
+}
+/* line 12, ../sass/base/_automation.scss */
+.automations.flexgallery > * {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /*@include mediaQueries(min-large) {
+    flex-basis: 25%;
+    
+  }*/
+}
 @media only screen and (min-width: 480px) {
-  /* line 8, ../sass/base/_automation.scss */
+  /* line 12, ../sass/base/_automation.scss */
   .automations.flexgallery > * {
     flex-basis: 33.3333%;
   }
 }
-@media only screen and (min-width: 1024px) and (orientation: landscape) {
-  /* line 8, ../sass/base/_automation.scss */
-  .automations.flexgallery > * {
-    flex-basis: 25%;
-  }
-}
 
-/* line 21, ../sass/base/_automation.scss */
+/* line 25, ../sass/base/_automation.scss */
 .accordion-wrap {
   position: relative;
 }
-/* line 23, ../sass/base/_automation.scss */
+/* line 27, ../sass/base/_automation.scss */
 .accordion-wrap .label {
   position: absolute;
   top: -10px;
   left: 0;
 }
-/* line 27, ../sass/base/_automation.scss */
+/* line 31, ../sass/base/_automation.scss */
 .accordion-wrap .label.index_0 {
   display: none;
 }
-/* line 30, ../sass/base/_automation.scss */
+/* line 34, ../sass/base/_automation.scss */
 .accordion-wrap .label.nested {
   display: none;
 }
-/* line 34, ../sass/base/_automation.scss */
+/* line 38, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle {
   display: flex;
   align-items: center;
@@ -18698,48 +18705,48 @@ img.widget-promo-image {
     margin-bottom: $spacing;
   } */
 }
-/* line 39, ../sass/base/_automation.scss */
+/* line 43, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title {
   padding: 5px 0;
 }
-/* line 41, ../sass/base/_automation.scss */
+/* line 45, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title .room-title {
   display: block;
   padding-bottom: 3px;
   font-size: 80%;
 }
-/* line 46, ../sass/base/_automation.scss */
+/* line 50, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .accordion-title .device-title {
   display: block;
 }
-/* line 50, ../sass/base/_automation.scss */
+/* line 54, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button.no-toggle {
   cursor: text !important;
 }
-/* line 52, ../sass/base/_automation.scss */
+/* line 56, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button.no-toggle::after {
   content: "";
 }
-/* line 56, ../sass/base/_automation.scss */
+/* line 60, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .navi-img {
   margin-right: 10px;
 }
-/* line 59, ../sass/base/_automation.scss */
+/* line 63, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button em {
   font-size: 80%;
 }
-/* line 62, ../sass/base/_automation.scss */
+/* line 66, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle button .is-legend {
   font-weight: bold;
 }
-/* line 66, ../sass/base/_automation.scss */
+/* line 70, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle .no-toggle {
   padding: 10px 0;
   width: 100%;
   font-weight: normal;
   border-bottom: dotted 1px #cccccc;
 }
-/* line 76, ../sass/base/_automation.scss */
+/* line 80, ../sass/base/_automation.scss */
 .accordion-wrap .accordion {
   padding: 10px;
   border-bottom: 0;
@@ -18748,48 +18755,48 @@ img.widget-promo-image {
     border: solid 1px darken(#F6F6F6, 20%)
   } */
 }
-/* line 80, ../sass/base/_automation.scss */
+/* line 84, ../sass/base/_automation.scss */
 .accordion-wrap .accordion .form-group {
   border: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 85, ../sass/base/_automation.scss */
+/* line 89, ../sass/base/_automation.scss */
 .accordion-wrap .accordion:last-child {
   margin-bottom: 0;
 }
-/* line 94, ../sass/base/_automation.scss */
+/* line 98, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle {
   opacity: 0.7;
 }
-/* line 96, ../sass/base/_automation.scss */
+/* line 100, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button {
   cursor: text;
   padding: 10px 0;
 }
-/* line 99, ../sass/base/_automation.scss */
+/* line 103, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button::after {
   content: "" !important;
 }
-/* line 102, ../sass/base/_automation.scss */
+/* line 106, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button[aria-expanded="true"] {
   border-bottom: dotted 1px #cccccc;
 }
-/* line 107, ../sass/base/_automation.scss */
+/* line 111, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion {
   display: none;
 }
-/* line 112, ../sass/base/_automation.scss */
+/* line 116, ../sass/base/_automation.scss */
 .accordion-wrap.nested legend,
 .accordion-wrap.nested .legend {
   padding: 20px 10px 5px 0;
   font-size: 110%;
 }
-/* line 119, ../sass/base/_automation.scss */
+/* line 123, ../sass/base/_automation.scss */
 .accordion-wrap.nested .accordion .accordion {
   margin-bottom: 20px;
 }
-/* line 126, ../sass/base/_automation.scss */
+/* line 130, ../sass/base/_automation.scss */
 .accordion-wrap.edit-me .accordion-toggle button {
   font-weight: bold;
 }
@@ -19418,11 +19425,9 @@ img.widget-promo-image {
   display: flex;
   justify-content: center;
   align-items: center;
-  resize: both;
-  overflow: auto;
 }
 
-/* line 30, ../sass/base/_schedule.scss */
+/* line 27, ../sass/base/_schedule.scss */
 .schedule {
   box-sizing: content-box;
   /*.confirm {
@@ -19434,17 +19439,17 @@ img.widget-promo-image {
       z-index: 30000;
   }*/
 }
-/* line 32, ../sass/base/_schedule.scss */
+/* line 29, ../sass/base/_schedule.scss */
 .schedule .clear {
   clear: both;
   height: 0;
   line-height: 0;
 }
-/* line 37, ../sass/base/_schedule.scss */
+/* line 34, ../sass/base/_schedule.scss */
 .schedule.disabled {
   opacity: 0.4;
 }
-/* line 41, ../sass/base/_schedule.scss */
+/* line 38, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_main_box {
   float: left;
   overflow-x: auto;
@@ -19452,16 +19457,16 @@ img.widget-promo-image {
   max-height: 500px;
   position: relative;
 }
-/* line 48, ../sass/base/_schedule.scss */
+/* line 45, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main {
   position: relative;
 }
-/* line 50, ../sass/base/_schedule.scss */
+/* line 47, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline {
   border-bottom: solid 2px #DDD;
   position: relative;
 }
-/* line 53, ../sass/base/_schedule.scss */
+/* line 50, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline .tl {
   float: left;
   height: 100%;
@@ -19470,11 +19475,11 @@ img.widget-promo-image {
   cursor: pointer;
   z-index: 1;
 }
-/* line 60, ../sass/base/_schedule.scss */
+/* line 57, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline .tl:hover {
   background: #F0F0F0;
 }
-/* line 68, ../sass/base/_schedule.scss */
+/* line 65, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_data {
   max-height: 500px;
   overflow: hidden;
@@ -19484,37 +19489,37 @@ img.widget-promo-image {
   background: #E9E9E9;
   position: relative;
 }
-/* line 76, ../sass/base/_schedule.scss */
+/* line 73, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_data .sc_data_scroll {
   position: absolute;
   left: 0;
   top: 0;
 }
-/* line 80, ../sass/base/_schedule.scss */
+/* line 77, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline {
   overflow: hidden;
   border-bottom: solid 2px #DDD;
 }
-/* line 83, ../sass/base/_schedule.scss */
+/* line 80, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline .tb {
   border-bottom: solid 2px #DDD;
 }
-/* line 86, ../sass/base/_schedule.scss */
+/* line 83, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline span {
   padding: 10px;
   display: block;
 }
-/* line 89, ../sass/base/_schedule.scss */
+/* line 86, ../sass/base/_schedule.scss */
 .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline span.title {
   float: left;
   padding: 10px 0 10px 10px;
 }
-/* line 98, ../sass/base/_schedule.scss */
+/* line 95, ../sass/base/_schedule.scss */
 .schedule .sc_menu {
   width: 100%;
   height: 26px;
 }
-/* line 101, ../sass/base/_schedule.scss */
+/* line 98, ../sass/base/_schedule.scss */
 .schedule .sc_menu .sc_header_cell {
   float: left;
   color: #333333;
@@ -19526,20 +19531,20 @@ img.widget-promo-image {
   background: #E9E9E9;
   position: relative;
 }
-/* line 112, ../sass/base/_schedule.scss */
+/* line 109, ../sass/base/_schedule.scss */
 .schedule .sc_menu .sc_header {
   float: left;
   height: 26px;
   position: relative;
   overflow: hidden;
 }
-/* line 117, ../sass/base/_schedule.scss */
+/* line 114, ../sass/base/_schedule.scss */
 .schedule .sc_menu .sc_header .sc_header_scroll {
   position: absolute;
   left: 0;
   top: 0;
 }
-/* line 121, ../sass/base/_schedule.scss */
+/* line 118, ../sass/base/_schedule.scss */
 .schedule .sc_menu .sc_header .sc_header_scroll .sc_time {
   text-align: center;
   border-left: solid 1px #DDD;
@@ -19551,7 +19556,7 @@ img.widget-promo-image {
   box-sizing: content-box;
   float: left;
 }
-/* line 135, ../sass/base/_schedule.scss */
+/* line 132, ../sass/base/_schedule.scss */
 .schedule .sc_Bar {
   position: absolute;
   color: #FFF;
@@ -19559,13 +19564,13 @@ img.widget-promo-image {
   cursor: pointer;
   z-index: 10;
 }
-/* line 141, ../sass/base/_schedule.scss */
+/* line 138, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .sc_Bar_inner {
   display: flex;
   height: 100%;
   padding: 0 15px;
 }
-/* line 145, ../sass/base/_schedule.scss */
+/* line 142, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .sc_Bar_inner .head {
   min-width: 0;
   text-overflow: ellipsis;
@@ -19574,14 +19579,14 @@ img.widget-promo-image {
   font-size: 12px;
   padding: 0 5px 0 0;
 }
-/* line 152, ../sass/base/_schedule.scss */
+/* line 149, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .sc_Bar_inner .head:before {
   content: "";
   display: inline-block;
   vertical-align: middle;
   height: 100%;
 }
-/* line 159, ../sass/base/_schedule.scss */
+/* line 156, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .sc_Bar_inner .text {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -19590,19 +19595,19 @@ img.widget-promo-image {
   min-width: 0;
   height: 100%;
 }
-/* line 166, ../sass/base/_schedule.scss */
+/* line 163, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .sc_Bar_inner .text:before {
   content: "";
   display: inline-block;
   vertical-align: middle;
   height: 100%;
 }
-/* line 174, ../sass/base/_schedule.scss */
+/* line 171, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .ui-draggable-dragging,
 .schedule .sc_Bar .ui-resizeable {
   z-index: 20;
 }
-/* line 178, ../sass/base/_schedule.scss */
+/* line 175, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .ui-resizable-handle {
   width: 10px;
   background: #000;
@@ -19612,20 +19617,20 @@ img.widget-promo-image {
   top: 0;
   bottom: 0;
 }
-/* line 186, ../sass/base/_schedule.scss */
+/* line 183, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .ui-resizable-handle.ui-resizable-w {
   left: 0;
 }
-/* line 189, ../sass/base/_schedule.scss */
+/* line 186, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .ui-resizable-handle.ui-resizable-e {
   right: 0;
 }
-/* line 193, ../sass/base/_schedule.scss */
+/* line 190, ../sass/base/_schedule.scss */
 .schedule .sc_Bar.ghost {
   opacity: 0.1;
   z-index: 100;
 }
-/* line 197, ../sass/base/_schedule.scss */
+/* line 194, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .remove {
   display: none;
   cursor: pointer;
@@ -19639,14 +19644,14 @@ img.widget-promo-image {
   z-index: 50;
   transform: translateY(-100%);
 }
-/* line 209, ../sass/base/_schedule.scss */
+/* line 206, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .remove .fa {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* line 215, ../sass/base/_schedule.scss */
+/* line 212, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .remove:before {
   position: absolute;
   content: "";
@@ -19654,15 +19659,15 @@ img.widget-promo-image {
   width: 10px;
   height: 25px;
 }
-/* line 222, ../sass/base/_schedule.scss */
+/* line 219, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .remove:hover {
   opacity: 1;
 }
-/* line 227, ../sass/base/_schedule.scss */
+/* line 224, ../sass/base/_schedule.scss */
 .schedule .sc_Bar:hover .remove {
   display: block;
 }
-/* line 232, ../sass/base/_schedule.scss */
+/* line 229, ../sass/base/_schedule.scss */
 .schedule .tooltip {
   display: none;
   pointer-events: none;
@@ -19679,7 +19684,7 @@ img.widget-promo-image {
   -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 249, ../sass/base/_schedule.scss */
+/* line 246, ../sass/base/_schedule.scss */
 .schedule .top.tooltip:after {
   content: " ";
   position: absolute;
@@ -19690,7 +19695,7 @@ img.widget-promo-image {
   left: 50%;
   border-color: transparent transparent black transparent;
 }
-/* line 261, ../sass/base/_schedule.scss */
+/* line 258, ../sass/base/_schedule.scss */
 .schedule .bottom.tooltip:after {
   content: " ";
   position: absolute;
