@@ -16,7 +16,8 @@
     @include mediaQueries(min-large) {
       flex-basis: 20%;
     }
-    figure {
+    figure,.figure {
+      display: block;
       padding: $spacing-half;
       text-align: center;
       position: relative;

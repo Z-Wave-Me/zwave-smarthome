@@ -7,7 +7,7 @@ $inclusion-img-w: 96px;
 
 .device-logo {
   text-align: center;
-  margin: 0 0 $spacing-double 0;
+  margin: $spacing-double;
 }
 
 .device-logo img {
@@ -63,7 +63,7 @@ $inclusion-img-w: 96px;
       @include mediaQueries(min-large) {
         flex-basis: 16.6666%;
       }
-      figure {
+      figure,.figure {
         height: 120px;
         line-height: 110px;
         @include mediaQueries(min-esmall) {

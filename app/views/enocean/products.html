@@ -1,0 +1,31 @@
+<div ng-controller="EnoceanVendorController">
+  <h3>
+    <a href="#enocean/vendors" class="btn btn-default">
+      <i class="fa fa-arrow-left"></i>
+    </a> {{enocean.vendor}}
+  </h3>
+  <!-- List  -->
+  <div class="list-panel" ng-repeat="v in enocean.products | orderBy:'name' track by $index">
+    <!-- img -->
+    <figure class="img wh-64x64 clickable">
+      <a href="#enocean/teachin/{{v.id}}">
+        <img class="product-img" ng-src="storage/img/enocean/devices/{{v.image}}" alt="img" err-src="{{cfg.img.placeholder}}" alt="img"
+        />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        <a href="#enocean/teachin/{{v.id}}">
+          {{v.name}}
+        </a>
+      </div>
+    </div>
+    <!-- control -->
+    <div class="control">
+      <a href="#enocean/teachin/{{v.id}}" class="btn btn-default" title="{{_t('teach_in')}}">
+        <i class="fa fa-plug text-primary"></i>
+      </a>
+    </div>
+  </div>
+</div>
