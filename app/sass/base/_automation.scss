@@ -5,14 +5,18 @@
 
 .automations {
   &.flexgallery {
+    
+    @include mediaQueries(min-large) {
+      margin: 0px 100px;
+    }
     >* {
       @include mediaQueries(min-esmall) {
         flex-basis: 33.3333%;
       }
-      @include mediaQueries(min-large) {
+      /*@include mediaQueries(min-large) {
         flex-basis: 25%;
         
-      }
+      }*/
     }
   }
 }

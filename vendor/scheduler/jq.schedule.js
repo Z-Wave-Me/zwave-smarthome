@@ -448,12 +448,13 @@
                 $timeline.append($tl);
             }
 
-            var startTime = null,
-                endTime = null,
-                $clickedTl = null,
-                timelineNum = null;
+            // var startTime = null,
+            //     endTime = null,
+            //     $clickedTl = null,
+            //     timelineNum = null;
 
             $timeline.bind("mousedown", function(event) {
+                console.log("mousedown");
                 if ($(event.target).hasClass("tl")) {
                     that.clicking = true;
                     $clickedTl = $(event.target);
@@ -473,6 +474,7 @@
                 if (that.clicking == false || $(event.target).data("timeline") !== timelineNum) {
                     return true;
                 }
+                console.log("mousemove");
                 endTime = element.formatTime(tableStartTime + (setting.widthTime * $(event.target).index()));
 
                 var st = Math.ceil((element.calcStringTime(startTime) - tableStartTime) / setting.widthTime),
@@ -503,6 +505,7 @@
                 if (that.clicking == false) {
                     return true;
                 }
+                console.log("timeline mouseup");
                 element.find(".sc_Bar").css({
                     "z-index": "auto",
                     "opacity": 1
@@ -590,7 +593,10 @@
                 timelineNum = null;
 
             }).bind("mouseleave", function(event) {
+                console.log("startTime", startTime);
+                console.log("endTime", endTime);
                 if (that.clicking) {
+
                     console.log("timeline " + timelineNum + " leave");
                 }
             });
