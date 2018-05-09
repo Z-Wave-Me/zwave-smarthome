@@ -593,8 +593,8 @@
                 timelineNum = null;
 
             }).bind("mouseleave", function(event) {
-                console.log("startTime", startTime);
-                console.log("endTime", endTime);
+                // console.log("startTime", startTime);
+                // console.log("endTime", endTime);
                 if (that.clicking) {
 
                     console.log("timeline " + timelineNum + " leave");
