@@ -1,5 +1,12 @@
 /* Events
 -------------------------------------------------- */
+.events{
+  .list-panel{
+    .body{
+      padding: $spacing-half 0;
+    }
+  }
+}
 .event-level-warning{
     background-color: $app-bcg-warning;
 }
@@ -12,12 +19,18 @@
 }
 
 .event-message{
-  display: block;
+  //display: block;
 }
 .event-room {
-  display: block;
+  //display: block;
   font-size: 90%;
   color: #737373;
+  font-style: italic;
+  &::before{
+    margin: 0 $spacing-half;
+    //padding: $spacing;
+    content: "-";
+  }
 }
 
 @include mediaQueries(min-small) {

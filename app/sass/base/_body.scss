@@ -37,7 +37,7 @@ body {
   font-size: $app-body-font-size;
   line-height: $app-line-height-base;
   color: $app-body-color;
-  background-color: #FFFFFF;
+  background-color: $app-bcg-color;
   background-image: url('wallpaper.png');
   // Media queries
   @include mediaQueries(min-small) {
