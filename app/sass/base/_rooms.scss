@@ -483,7 +483,31 @@
 
 .room-img-upload {
   display: inline-block;
+  width: 70px;
+  height: 70px;
   max-width: 70px;
   max-height: 70px;
   margin: $spacing-half;
+  object-fit: cover;
 }
+
+.room-image-delete-wrap {
+  display: inline-block;
+  position: relative;
+  .room-icon-delete {
+    display: none;
+    position: absolute;
+    top: 7px;
+    right: 12px;
+    font-size: 120%;
+    cursor: pointer  
+  }
+  &:hover {
+    .room-img-upload {
+      opacity: 0.5;    
+    }
+    .room-icon-delete {
+      display: block;
+    }
+  }
+} 
