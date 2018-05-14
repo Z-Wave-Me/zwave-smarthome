@@ -1,69 +1,68 @@
 <!-- Admin user list view -->
-<h2 class="accordion-entry-title" ng-click="expandElement('user')">
-  <i class="fa fa-users fa-fw"></i>
-  <span ng-bind="_t('nav_admin')"></span>
-  <i class="fa accordion-arrow" ng-class="expand.user ? 'fa-chevron-up':'fa-chevron-down'"></i>
+<!-- Title -->
+<h2 class="accordion-toggle chevron">
+  <!-- Toggle -->
+  <button type="button" aria-expanded="false" bb-accordion  ng-click="expandElement('user',true)">
+    <span> 
+      <i class="fa fa-users fa-fw"></i> {{_t('nav_admin')}}
+    </span> 
+  </button>
+
 </h2>
-<div class="accordion-entry-ctrl" ng-class="" ng-if="expand.user" ng-controller="ManagementUserController">
-  <bb-loader></bb-loader>
-  <div class="page-control form-inline">
-    <div class="btn-group">
-      <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
-        <i class="fa fa-sort-alpha-asc"></i>
-        <span class="btn-name">{{_t(userProfiles.orderBy) | cutText:true:15}}</span>
-      </button>
-      <a class="btn btn-success" ng-href="#admin/user/0" title="{{_t('lb_add_user')}}">
-        <i class="fa fa-plus"></i>
-        <span class="btn-name">{{_t('lb_add_user')}} </span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Page subnavi  sort by -->
-  <div class="page-navi" ng-if="naviExpanded.roomsOrderBy">
-    <div class="page-navi-in">
-      <div class="page-navi-content">
-        <p class="page-navi-title"> {{_t('sortby')}}</p>
-        <a class="btn btn-default btn-tag" href="" ng-repeat="(k,v) in cfg.orderby.users" ng-click="setOrderBy(k)" ng-class="userProfiles.orderBy == k ? 'active': ''">
-          {{_t(k) | cutText:true:30}}
+<!-- Content -->
+<div class="accordion" hidden ng-if="expand.user" ng-controller="ManagementUserController">
+      <div class="page-control form-inline">
+        <div class="btn-group">
+          <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
+            <i class="fa fa-sort-alpha-asc"></i>
+            <span class="btn-name">{{_t(userProfiles.orderBy) | cutText:true:15}}</span>
+          </button>
+          <a class="btn btn-success" ng-href="#admin/user/0" title="{{_t('lb_add_user')}}">
+            <i class="fa fa-plus"></i>
+            <span class="btn-name">{{_t('lb_add_user')}} </span>
+          </a>
+        </div>
+      </div>
+    
+      <!-- Page subnavi  sort by -->
+      <div class="page-navi" ng-if="naviExpanded.roomsOrderBy">
+        <div class="page-navi-in">
+          <div class="page-navi-content">
+            <p class="page-navi-title"> {{_t('sortby')}}</p>
+            <a class="btn btn-default btn-tag" href="" ng-repeat="(k,v) in cfg.orderby.users" ng-click="setOrderBy(k)" ng-class="userProfiles.orderBy == k ? 'active': ''">
+              {{_t(k) | cutText:true:30}}
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="list-panel" ng-repeat="v in userProfiles.all|orderBy:cfg.orderby.users[userProfiles.orderBy]| filter:q  track by v.id">
+        <!-- img -->
+        <a class="figure img wh-32x32" ng-href="#admin/user/{{v.id}}">
+          <img ng-src="storage/img/icons/user.png" alt="{{v.name}}" />
         </a>
+        <!-- body -->
+        <div class="body">
+          <div>
+            <a ng-href="#admin/user/{{v.id}}">{{v.name|cutText:true:25}}</a>
+          </div>
+        </div>
+        <!-- arrow -->
+        <div class="l-hide control">
+          <!-- expand/collapse -->
+          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('manageUser_' + $index, $event)">
+          </button>
+        </div>
+        <!-- control -->
+        <div class="control" ng-class="naviExpanded['manageUser_' + $index] ? 'expand-true': 'expand-false'">
+          <div class="btn-group">
+            <a class="btn btn-default" ng-href="#admin/user/{{v.id}}" title="{{_t('lb_update')}}">
+              <i class="fa fa-pencil text-info"></i>
+            </a>
+            <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="v.id == 1" ng-click="deleteProfile(v, _t('lb_delete_confirm'), 1)">
+              <i class="fa fa-times text-danger"></i>
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="list-panel" ng-repeat="v in userProfiles.all|orderBy:cfg.orderby.users[userProfiles.orderBy]| filter:q  track by v.id">
-    <!-- img -->
-    <a class="figure img wh-32x32" ng-href="#admin/user/{{v.id}}">
-      <img ng-src="storage/img/icons/user.png" alt="{{v.name}}" />
-    </a>
-    <!-- body -->
-    <div class="body">
-      <div>
-        <a ng-href="#admin/user/{{v.id}}">{{v.name|cutText:true:25}}</a>
-      </div>
-    </div>
-    <!-- arrow -->
-    <div class="l-hide control">
-      <!-- expand/collapse -->
-      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('manageUser_' + $index, $event)">
-      </button>
-    </div>
-    <!-- control -->
-    <div class="control" ng-class="naviExpanded['manageUser_' + $index] ? 'expand-true': 'expand-false'">
-      <div class="btn-group">
-        <a class="btn btn-default" ng-href="#admin/user/{{v.id}}" title="{{_t('lb_update')}}">
-          <i class="fa fa-pencil text-info"></i>
-        </a>
-        <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="v.id == 1" ng-click="deleteProfile(v, _t('lb_delete_confirm'), 1)">
-          <i class="fa fa-times text-danger"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-  <!-- <div class="fieldset submit-entry">
-    <a class="btn btn-submit" ng-href="#admin/user/0" title="{{_t('lb_add_user')}}">
-      <i class="fa fa-plus"></i>
-      <span class="btn-name">{{_t('lb_add_user')}} </span>
-    </a>
-  </div> -->
 </div>

@@ -1,19 +1,4 @@
 <!-- Admin info view -->
-<!-- Title -->
-<h2 class="accordion-toggle chevron">
-    <!-- Toggle -->
-    <button type="button" aria-expanded="false" bb-accordion  ng-click="expandElement('_')">
-      <span> 
-        <i class="fa fa-_ fa-fw"></i> {{_t('_')}}
-      </span> 
-    </button>
-  
-  </h2>
-  <!-- Content -->
-  <div class="accordion" hidden ng-if="expand._">
-        Info
-  </div>
-
 <h2 class="accordion-entry-title" ng-click="expandElement('appinfo')">
     <i class="fa fa-info-circle fa-fw"></i> <span ng-bind="_t('info')"></span>
     <i class="fa accordion-arrow" ng-class="expand.appinfo ? 'fa-chevron-up' : 'fa-chevron-down'"></i>

@@ -29,12 +29,15 @@ $accordion-focus-color: $focus-color;
     
     > span {
       @include textOverflow();
+      .fa:first-of-type {
+        font-size: 120%;
+      }
     }
 
     &::after{
       margin-left: $accordion-spacing;
       padding: $spacing;
-      font-size: 130%;
+      font-size: 120%;
     }
     &[aria-expanded="false"]{
      

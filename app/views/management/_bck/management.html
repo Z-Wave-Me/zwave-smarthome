@@ -1,0 +1,52 @@
+<!-- Home view -->
+<div ng-controller="ManagementController">
+    <!-- ///////////////////////////// User management ///////////////////////////// -->
+    <div class="accordion-entry" ng-include="'app/views/management/management_user.html'"></div>
+
+    <!-- ///////////////////////////// Remote access ///////////////////////////// -->
+    <div class="accordion-entry" ng-include="'app/views/management/management_remote.html'"></div>
+    
+    <!-- ///////////////////////////// License key ///////////////////////////// -->
+    <div class="accordion-entry" 
+         ng-if="handleLicense.show"
+         ng-include="'app/views/management/management_licence.html'"></div>
+    
+     <!-- ///////////////////////////// Local Access ///////////////////////////// -->
+     <div class="accordion-entry"
+          ng-include="'app/views/management/management_local.html'"
+          ng-if="cfg.app_type === 'jb'"></div>
+    <!-- ///////////////////////////// Timezone ///////////////////////////// -->
+    <div class="accordion-entry"
+         ng-if="cfg.app_type == 'default' || cfg.app_type === 'popp'"
+         ng-include="'app/views/management/management_timezone.html'"></div>
+      <!-- ///////////////////////////// Timezone for JB ///////////////////////////// -->
+     <div class="accordion-entry"
+
+          ng-include="'app/views/management/management_timezone_jb.html'"
+          ng-if="cfg.app_type === 'jb'"></div>
+
+    <!-- ///////////////////////////// Backup & Restore ///////////////////////////// -->
+    <div class="accordion-entry" ng-include="'app/views/management/management_backup_restore.html'" ng-if="!isMobile"></div>
+     
+     <!-- ///////////////////////////// Factory default  ///////////////////////////// -->
+     <div class="accordion-entry" ng-class="((cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)) ? 'disabled' : ''" ng-include="'app/views/management/management_factory.html'"></div>
+    <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
+    <div class="accordion-entry" 
+            ng-if="!isInArray(['wd','jb'],cfg.app_type)"
+            ng-class="((cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)) ? 'disabled' : ''"
+         ng-include="'app/views/management/management_firmware.html'"></div>
+    <div class="accordion-entry" 
+            ng-if="cfg.app_type === 'jb' && cfg.route.os !== 'PoppApp_Z_Way'"
+           ng-include="'app/views/management/management_firmware_jb.html'"></div>
+
+    <!-- ///////////////////////////// App Store access ///////////////////////////// -->
+    <div class="accordion-entry" ng-include="'app/views/management/management_appstore.html'"></div>
+    
+    <!-- ///////////////////////////// Report ///////////////////////////// -->
+    <div class="accordion-entry" ng-include="'app/views/management/management_report.html'"></div>
+
+    <!-- ///////////////////////////// Info ///////////////////////////// -->
+    <div class="accordion-entry" ng-include="'app/views/management/management_info.html'"></div>
+
+   
+</div> <!-- /ng-controller --> 

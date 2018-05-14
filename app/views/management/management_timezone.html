@@ -1,34 +1,36 @@
 <!-- Admin timezone view -->
-<h2 class="accordion-entry-title" ng-click="expandElement('timezone')">
-    <i class="fa fa-clock-o fa-fw"></i> <span ng-bind="_t('timezone')"></span>
-    <i class="fa accordion-arrow" ng-class="expand.timezone ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+<!-- Title -->
+<h2 class="accordion-toggle chevron">
+  <!-- Toggle -->
+  <button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('timezone',true)">
+    <span>
+      <i class="fa fa-clock-o fa-fw"></i> {{_t('timezone')}}
+    </span>
+  </button>
+
 </h2>
-<div class="accordion-entry-ctrl" ng-class="" ng-if="expand.timezone" ng-controller="ManagementTimezoneController">
-    <bb-loader></bb-loader>
-    <!--<pre>{{managementTimezone|json}}</pre>-->
-    <form name="form_timezone" id="form_timezone" class="form form-page" ng-submit="setTimezone(managementTimezone.input,$event)"
-          novalidate>
-        <!-- Time zone select -->
-        <fieldset class="form-inline">
-            <label>{{_t('timezone')}}: </label>
-            <select name="time_zone" name="time_zone" class="form-control"
-                    ng-model="managementTimezone.input.time_zone">
-                <option ng-repeat="v in cfg.time_zone_list" value="{{v}}"
-                        ng-selected="v === managementTimezone.input.time_zone">{{v}}
-                </option>
-            </select>
-        </fieldset>
-        <!-- Submit -->
-        <fieldset class="submit-entry">
-            <button type="submit" class="btn btn-submit" title="{{_t('set_timezone')}}"
-            ng-disabled="managementTimezone.input.time_zone == managementTimezone.lastTZ">
-                <i class="fa fa-check"></i> <span class="btn-name">{{_t('set_timezone')}}</span>
-            </button>
-        </fieldset>
+<!-- Content -->
+<div class="accordion" hidden ng-if="expand.timezone" ng-controller="ManagementTimezoneController">
+  <form name="form_timezone" id="form_timezone" class="form form-page" ng-submit="setTimezone(managementTimezone.input,$event)"
+    novalidate>
+    <!-- Time zone select -->
+    <fieldset class="form-inline">
+      <label>{{_t('timezone')}}: </label>
+      <select name="time_zone" name="time_zone" class="form-control" ng-model="managementTimezone.input.time_zone">
+        <option ng-repeat="v in cfg.time_zone_list" value="{{v}}" ng-selected="v === managementTimezone.input.time_zone">{{v}}
+        </option>
+      </select>
+    </fieldset>
+    <!-- Submit -->
+    <fieldset class="submit-entry">
+      <button type="submit" class="btn btn-submit" title="{{_t('set_timezone')}}" ng-disabled="managementTimezone.input.time_zone == managementTimezone.lastTZ">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('set_timezone')}}</span>
+      </button>
+    </fieldset>
 
-    </form>
+  </form>
 
-    <!-- assocAddModal -->
-    <div ng-include="'app/views/management/modal_timezone.html'"></div>
-
+  <!-- assocAddModal -->
+  <div ng-include="'app/views/management/modal_timezone.html'"></div>
 </div>

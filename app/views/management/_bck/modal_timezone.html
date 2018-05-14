@@ -1,0 +1,20 @@
+<!-- interviewModal -->
+<div id="timezoneModal" class="appmodal" ng-show="modalArr.timezoneModal">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+                <span class="appmodal-close" ng-click="handleModal('timezoneModal', $event)"><i
+                        class="fa fa-times"></i></span>
+            <h3><i class="fa fa-exclamation-circle"></i> {{cfg.app_name}}</h3>
+        </div>
+        <div class="appmodal-body">
+            <div class="alert alert-warning">
+            <i class="fa fa-spinner fa-spin fa-lg"></i> {{ _t('z_way_restart', {__val__: managementTimezone.countdown,__level__: _t('seconds')})}}
+            </div>
+        </div>
+        <div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('timezoneModa', $event)">
+                <i class="fa fa-times text-danger"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+            </button>
+        </div>
+    </div>
+</div><!-- /#modal interviewModal -->
