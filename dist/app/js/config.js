@@ -12,9 +12,9 @@ var config_data = {
     //Application name
     'app_name': 'SmartHome UI',
     // Application version
-    'app_version': '1.8.0-RC-38',
+    'app_version': '1.8.0-RC-39',
     // Application (DIST) built date
-    'app_built': '16-03-2018 09:37:18',
+    'app_built': '15-05-2018 14:25:22',
     // Application ID
     'app_id': 'SmartHomeUI',
     // Server base url
@@ -151,13 +151,13 @@ var config_data = {
     // List of remote api URLs
     'api_remote': {
       // JamesBox request
-      'jamesbox_request': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=request',
+      'jamesbox_request': 'https://storage.z-wave.me/zbu_ui_handling.php?action=request',
       // JamesBox update
-      'jamesbox_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=update',
+      'jamesbox_update': 'https://storage.z-wave.me/zbu_ui_handling.php?action=update',
       // JamesBox update info
-      'jamesbox_updateinfo': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=updateinfo',
+      'jamesbox_updateinfo': 'https://storage.z-wave.me/zbu_ui_handling.php?action=updateinfo',
       // JamesBox cancel update
-      'jamesbox_cancel_update': 'http://razberry.z-wave.me/zbu_ui_handling.php?action=cancelupdate',
+      'jamesbox_cancel_update': 'https://storage.z-wave.me/zbu_ui_handling.php?action=cancelupdate',
       // RSS feed
       'rss_feed': 'https://service.z-wave.me/rssFeed/index.php'
     },
