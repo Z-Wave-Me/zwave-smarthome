@@ -14279,7 +14279,11 @@ fieldset section, .fieldset section {
 /* Variables */
 /* NEW version
 -------------------------------------------------- */
-/* line 19, ../sass/base/_accordion.scss */
+/* line 17, ../sass/base/_accordion.scss */
+.accordion-toggle {
+  margin: 0;
+}
+/* line 20, ../sass/base/_accordion.scss */
 .accordion-toggle > button {
   all: inherit;
   border: 0;
@@ -14294,7 +14298,7 @@ fieldset section, .fieldset section {
   cursor: pointer;
   border-bottom: dotted 1px #cccccc;
 }
-/* line 30, ../sass/base/_accordion.scss */
+/* line 31, ../sass/base/_accordion.scss */
 .accordion-toggle > button > span {
   white-space: nowrap;
   /* force single line */
@@ -14304,76 +14308,76 @@ fieldset section, .fieldset section {
   -o-text-overflow: ellipsis;
   /* Opera */
 }
-/* line 32, ../sass/base/_accordion.scss */
+/* line 33, ../sass/base/_accordion.scss */
 .accordion-toggle > button > span .fa:first-of-type {
   font-size: 120%;
 }
-/* line 37, ../sass/base/_accordion.scss */
+/* line 38, ../sass/base/_accordion.scss */
 .accordion-toggle > button::after {
   margin-left: 10px;
   padding: 10px;
   font-size: 120%;
 }
-/* line 44, ../sass/base/_accordion.scss */
+/* line 45, ../sass/base/_accordion.scss */
 .accordion-toggle > button[aria-expanded="false"]::after {
   content: "+";
 }
-/* line 48, ../sass/base/_accordion.scss */
+/* line 49, ../sass/base/_accordion.scss */
 .accordion-toggle > button[aria-expanded="true"] {
   border-bottom: 0;
 }
-/* line 50, ../sass/base/_accordion.scss */
+/* line 51, ../sass/base/_accordion.scss */
 .accordion-toggle > button[aria-expanded="true"]::after {
   content: "-";
 }
-/* line 56, ../sass/base/_accordion.scss */
+/* line 57, ../sass/base/_accordion.scss */
 .accordion-toggle > button:focus::after {
   font-weight: bold;
   color: #5bc0de;
 }
-/* line 66, ../sass/base/_accordion.scss */
+/* line 67, ../sass/base/_accordion.scss */
 .accordion-toggle.chevron > button[aria-expanded="false"]::after {
   font-family: fontawesome;
   content: "\f078";
 }
-/* line 72, ../sass/base/_accordion.scss */
+/* line 73, ../sass/base/_accordion.scss */
 .accordion-toggle.chevron > button[aria-expanded="true"]::after {
   font-family: fontawesome;
   content: "\f077";
 }
-/* line 82, ../sass/base/_accordion.scss */
+/* line 83, ../sass/base/_accordion.scss */
 .accordion-toggle.ellipsis > button[aria-expanded="false"]::after {
   font-family: fontawesome;
   content: "\f142";
 }
-/* line 88, ../sass/base/_accordion.scss */
+/* line 89, ../sass/base/_accordion.scss */
 .accordion-toggle.ellipsis > button[aria-expanded="true"]::after {
   font-family: fontawesome;
   content: "\f141";
 }
-/* line 96, ../sass/base/_accordion.scss */
+/* line 97, ../sass/base/_accordion.scss */
 .accordion-toggle.inline > button {
   display: block;
   width: auto;
   font-size: 100%;
   border-bottom: 0;
 }
-/* line 102, ../sass/base/_accordion.scss */
+/* line 103, ../sass/base/_accordion.scss */
 .accordion-toggle.inline > button[aria-expanded="false"]::after {
   font-family: fontawesome;
   content: "\f0d7";
 }
-/* line 108, ../sass/base/_accordion.scss */
+/* line 109, ../sass/base/_accordion.scss */
 .accordion-toggle.inline > button[aria-expanded="true"]::after {
   font-family: fontawesome;
   content: "\f0d8";
 }
-/* line 114, ../sass/base/_accordion.scss */
+/* line 115, ../sass/base/_accordion.scss */
 .accordion-toggle.inline + .accordion {
   border-bottom: 0;
 }
 
-/* line 119, ../sass/base/_accordion.scss */
+/* line 120, ../sass/base/_accordion.scss */
 .accordion {
   border-bottom: dotted 1px #cccccc;
   padding-bottom: 10px;
@@ -14381,26 +14385,26 @@ fieldset section, .fieldset section {
 
 /* Old version
 -------------------------------------------------- */
-/* line 126, ../sass/base/_accordion.scss */
+/* line 127, ../sass/base/_accordion.scss */
 .accordion-entry {
   margin-bottom: 10px;
   border-bottom: dotted 1px #cccccc;
   color: #333333;
 }
-/* line 131, ../sass/base/_accordion.scss */
+/* line 132, ../sass/base/_accordion.scss */
 .accordion-entry.disabled .accordion-entry-title {
   color: #BDBDBD;
 }
-/* line 133, ../sass/base/_accordion.scss */
+/* line 134, ../sass/base/_accordion.scss */
 .accordion-entry.disabled .accordion-entry-title .fa {
   color: #BDBDBD;
 }
-/* line 135, ../sass/base/_accordion.scss */
+/* line 136, ../sass/base/_accordion.scss */
 .accordion-entry.disabled .accordion-entry-title .fa.text-warning {
   color: #8a6d3b;
 }
 
-/* line 142, ../sass/base/_accordion.scss */
+/* line 143, ../sass/base/_accordion.scss */
 .accordion-entry-title {
   font-size: 120%;
   position: relative;
@@ -14409,13 +14413,13 @@ fieldset section, .fieldset section {
   color: #737373;
   cursor: pointer;
 }
-/* line 149, ../sass/base/_accordion.scss */
+/* line 150, ../sass/base/_accordion.scss */
 .accordion-entry-title .fa {
   color: #666666;
   padding-right: 10px;
   font-size: 120%;
 }
-/* line 154, ../sass/base/_accordion.scss */
+/* line 155, ../sass/base/_accordion.scss */
 .accordion-entry-title .accordion-arrow {
   position: absolute;
   right: 1%;
@@ -14423,7 +14427,7 @@ fieldset section, .fieldset section {
   padding: 0;
 }
 
-/* line 163, ../sass/base/_accordion.scss */
+/* line 164, ../sass/base/_accordion.scss */
 .accordion-entry-ctrl p {
   margin: 5px;
   padding: 10px;
