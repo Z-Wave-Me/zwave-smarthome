@@ -7,7 +7,7 @@
 .list-panel {
   @include appClearFix();
   background-color: $app-bcg-color;
-  border-bottom: 1px solid $app-border-color;
+  border-bottom: 1px dotted $app-border-color;
   padding: $spacing;
   >* {
     float: left;
