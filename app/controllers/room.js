@@ -446,7 +446,7 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
 
     /**
      * Delete cutom room image
-     * @param {int} image
+     * @param {string} image
      * @param {string} message
      * @returns {undefined}
      */
@@ -457,9 +457,10 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
                 icon: 'fa-spinner fa-spin',
                 message: $scope._t('deleting')
             };
-            dataFactory.deleteApi('image', image).then(function(response) {
-
+            dataFactory.deleteApi('locations_image', $scope.id, "?user_img=" + image).then(function(response) {
                 $scope.loading = false;
+                // update data
+                angular.extend($scope.input, response.data.data);
                 dataService.showNotifier({
                     message: $scope._t('delete_successful')
                 });
