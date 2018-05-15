@@ -3,7 +3,7 @@
     <i class="fa fa-clock-o fa-fw"></i> <span ng-bind="_t('timezone')"></span>
     <i class="fa accordion-arrow" ng-class="expand.timezoneJB ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
-<div class="accordion-entry-ctrl" ng-class="" ng-if_="expand.timezoneJB" ng-controller="ManagementTimezoneJBController">
+<div class="accordion-entry-ctrl" ng-class="" ng-if="expand.timezoneJB" ng-controller="ManagementTimezoneJBController">
     <bb-loader></bb-loader>
     <form name="form_timezone" id="form_password" class="form form-page"
           ng-if="handleTimezone.show"
