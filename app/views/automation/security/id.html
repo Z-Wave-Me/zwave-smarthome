@@ -2,15 +2,13 @@
 <section class="automation" ng-controller="SecurityIdController">
 
   <h2>{{_t('title_security')}}</h2>
+  <!-- Tabs  -->
+  <div ng-include="'app/views/automation/security/tabs.html'"></div>
   <!-- Form -->
   <form class="form form-page" ng-submit="storeInstance(security.input,true)">
-    <!-- Form-->
-    <fieldset ng-include="'app/views/automation/security/id_form.html'"></fieldset>
-    <!-- Tabs  -->
-    <fieldset ng-include="'app/views/automation/security/tabs.html'"></fieldset>
+
     <!-- //////////////////////////////////////////  Triggering  ////////////////////////////////////////// -->
     <div ng-if="security.tab == 1">
-      
       <!-- Trigger -->
       <fieldset ng-include="'app/views/automation/security/trigger/trigger.html'"></fieldset>
       <!-- Silent alarm -->
@@ -43,20 +41,26 @@
     </div>
 
     <!-- Submit  -->
-    <fieldset class="submit-entry">
-      <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
-        <i class="fa fa-reply"></i>
-        <span class="btn-name">{{_t('lb_cancel')}}</span>
-      </a>
-      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-        <i class="fa fa-check"></i>
-        <span class="btn-name">{{_t('lb_save')}}</span>
-      </button>
-      <button type="button" title="{{_t('lb_remove')}}" class="btn btn-text" ng-if="security.routeId" ng-click="deleteInstance(security.routeId, _t('lb_delete_confirm'))">
-          <i class="fa fa-close text-danger"></i>
-          <span class="btn-name">{{_t('lb_remove')}}</span>
+    <div class="fieldset submit-entry is-grid">
+      <span>
+        <label class="switch">
+          <input type="checkbox" ng-model="security.input.active">
+          <span class="slider"></span>
+        </label>
+        <span class="switch-label">{{security.input.active ? _t('lb_active'): _t('activeASC')}}</span>
+      </span>
+      <span>
+        <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
+          <i class="fa fa-reply"></i>
+          <span class="btn-name">{{_t('lb_cancel')}}</span>
+        </a>
+        <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+          <i class="fa fa-check"></i>
+          <span class="btn-name">{{_t('lb_save')}}</span>
         </button>
-    </fieldset>
+      </span>
+
+    </div>
   </form>
   <!-- <pre>{{security.input|json}}</pre> -->
   </div>

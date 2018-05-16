@@ -13,7 +13,7 @@
       <!-- Toggle -->
       <button type="button" aria-expanded="{{dataHolder.instances.expanded}}" bb-accordion ng-disabled="dataHolder.instances.expanded">
         <span>
-          <img ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" /> {{dataHolder.modules.ids[g.moduleId].title}}&nbsp; 
+          <img ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" /> {{dataHolder.modules.ids[g.moduleId].title}}&nbsp;
           <span class="item-cnt"> ({{dataHolder.instances.cnt.modules[g.moduleId]}})</span>
         </span>
       </button>
@@ -57,7 +57,7 @@
     </div>
   </section>
 
-  <!-- ----------------------------------- ROW ----------------------------------- -->
+  <!-- //////////////////////////////// ROW //////////////////////////////// -->
   <div class="instance-entry-single " ng-if="instanveModuleCnt < 2">
     <!--<p>ROW: {{g.title}} ({{instanveModuleCnt}})</p>-->
     <div class="list-panel bcg-active" ng-repeat="(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR"

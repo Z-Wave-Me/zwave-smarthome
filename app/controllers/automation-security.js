@@ -120,7 +120,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       instanceId: $routeParams.id,
       moduleId: "Security",
       active: true,
-      title: "",
+      title: "Security",
       params: {
         times: {
           aktive: false,
@@ -346,9 +346,10 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
   };
 
   /**
+   * TODO: deprecated
    * Delete instance
    */
-  $scope.deleteInstance = function (id, message) {
+  /* $scope.deleteInstance = function (id, message) {
     alertify.confirm(message, function () {
       dataFactory.deleteApi('instances', id).then(function (response) {
         $location.path('/automations');
@@ -357,6 +358,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       });
 
     });
-  };
+  }; */
 
 });

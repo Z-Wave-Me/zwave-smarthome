@@ -13699,7 +13699,6 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
 /* line 284, ../sass/base/_form.scss */
 .submit-entry {
   text-align: right;
-  display: block;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
@@ -13710,24 +13709,33 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
     background-color: #FFFFFF;
   }
 }
+/* line 290, ../sass/base/_form.scss */
+.submit-entry.is-grid {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
 
-/* line 296, ../sass/base/_form.scss */
+/* line 298, ../sass/base/_form.scss */
 fieldset.submit-entry {
   margin: 0 !important;
 }
 
-/* line 300, ../sass/base/_form.scss */
+/* line 302, ../sass/base/_form.scss */
 .form-control-hidden {
   display: none !important;
 }
 
-/* line 304, ../sass/base/_form.scss */
+/* line 306, ../sass/base/_form.scss */
 .form-control-img {
   margin-right: 10px;
   cursor: pointer;
 }
 
-/* line 310, ../sass/base/_form.scss */
+/* line 312, ../sass/base/_form.scss */
 .lang-active {
   opacity: 0.5;
   filter: alpha(opacity=50);
@@ -13736,12 +13744,12 @@ fieldset.submit-entry {
   filter: grayscale(100%);
 }
 
-/* line 314, ../sass/base/_form.scss */
+/* line 316, ../sass/base/_form.scss */
 .form-block {
   margin: 10px 0 0 0;
 }
 
-/* line 318, ../sass/base/_form.scss */
+/* line 320, ../sass/base/_form.scss */
 .input-number {
   display: inline-block;
   padding: 5px;
@@ -13750,7 +13758,7 @@ fieldset.submit-entry {
 
 /* Config form
 -------------------------------------------------- */
-/* line 327, ../sass/base/_form.scss */
+/* line 329, ../sass/base/_form.scss */
 #form_wakeup select, #form_wakeup .label-node {
   visibility: hidden;
 }

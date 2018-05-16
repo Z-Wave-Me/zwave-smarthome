@@ -1,265 +1,306 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="BaseController">
-    <head>
-        <meta charset="utf-8">
-        <title>Z-Wave Smart Home</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        <!-- build:section dist_head --><!-- /build -->
-        <!-- build:remove -->
-        <!-- App css -->
-        <!-- <link media="screen" type="text/css" rel="stylesheet" ng-href="{{css}}">-->
-        <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
-        <!-- App config -->
-        <script src="app/config.js"></script>
-        <script src="app/icons.js"></script>
-        <!-- jQuery js -->
-        <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
-        <script src="vendor/jquery/jquery-ui.min.js"></script>
-        <script src="vendor/jquery/plugins/jquery.ui.widget.js"></script>
-        <script src="vendor/jquery/plugins/jquery.iframe-transport.js"></script>
-        <script src="vendor/jquery/plugins/jquery.fileupload.js"></script>
-        <script src="vendor/jquery/plugins/jquery.fileupload-process.js"></script>
-        <script src="vendor/jquery/plugins/jquery.fileupload-ui.js"></script>
-        <!-- Vendors js -->
-        <script src="vendor/handlebars/handlebars-v3.0.3.min.js"></script>
-        <script src="vendor/moment/moment-with-locales.min.js"></script>
-        <script src="vendor/underscore/underscore-1.8.3/underscore.js"></script>
-        <script src="vendor/chartjs/Chart.js"></script>
-        <script src="vendor/knob/jquery.knob.js"></script>
-        <script src="vendor/alertify/alertify.min.js"></script>
-        <script src="vendor/tweenmax/TweenMax.js"></script>
-        <script src="vendor/qrcode/qrious.min.js"></script>
-        <script src="vendor/qrcode_reader/qr_packed.js"></script>
-        <script src="vendor/scheduler/jq.schedule.js"></script>
-        <!-- Angular js -->
-        <script src="vendor/angular/angular-1.2.28/angular.js"></script>
-        <script src="vendor/upload/angular-file-upload.js"></script>
-        <script src="vendor/angular/angular-1.2.28/angular-route.js"></script>
-        <script src="vendor/angular/angular-1.2.28/angular-cookies.js"></script>
-        <script src="vendor/angular/angular-1.2.28/angular-touch.js"></script>
-        <script src="vendor/angular/angular-1.2.28/angular-animate.js"></script>
-        <!-- <script src="vendor/dragdrop/angular-drag-and-drop-lists.js"></script>-->
-        <script src="vendor/dragdrop/angular-sortable-view.js"></script>
-        <!-- Bootstrap js -->
-        <script src="vendor/bootstrap/bootstrap.js"></script>
-        <script src="vendor/bootstrap/plugins/bootstrap-datetimepicker.js"></script>
-        <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
-        <!-- ExpertUI configuration js -->
-        <script src="vendor/zwave/pyzw.js"></script>
-        <script src="vendor/zwave/pyzw_zwave_ui.js"></script>
-        <script src="vendor/xml/xml2json.min.js"></script>
-        <!-- App js -->
-        <script src="app/app.js"></script>
-        <script src="app/routes.js"></script>
-        <script src="app/templates.js"></script>
-        <script src="app/modules/qAllSettled.js"></script>
-        <script src="app/modules/ngDeviceDetector.min.js"></script>
-        <script src="app/modules/httpLatency.js"></script>
-        <script src="app/factories/factories.js"></script>
-        <script src="app/services/services.js"></script>
-        <script src="app/services/services-expert.js"></script>
-        <script src="app/directives/directives.js"></script>
-        <script src="app/directives/directives-expert.js"></script>
-        <script src="app/directives/dir-pagination.js"></script>
-        <script src="app/directives/tc-angular-chartjs.js"></script>
-        <script src="app/directives/angular-slider.js"></script>
-        <script src="app/directives/angular-long-press.min.js"></script>
-        <script src="vendor/alertify/ngAlertify.js"></script>
-        <script src="app/filters/filters.js"></script>
-        <script src="app/jquery/postrender.js"></script>
-        <script src="app/controllers/base.js"></script>
-        <script src="app/controllers/jamesbox.js"></script>
-        <script src="app/controllers/controllers.js"></script>
-        <script src="app/controllers/element.js"></script>
-        <script src="app/controllers/element-widget.js"></script>
-        <script src="app/controllers/element-id.js"></script>
-        <script src="app/controllers/event.js"></script>
-        <script src="app/controllers/automation-scene.js"></script>
-        <script src="app/controllers/automation-rule.js"></script>
-        <script src="app/controllers/automation-schedule.js"></script>
-        <script src="app/controllers/automation-security.js"></script>
-        <script src="app/controllers/automation-hazard.js"></script>
-        <script src="app/controllers/automation-heating.js"></script>
-        <script src="app/controllers/app.js"></script>
-        <script src="app/controllers/app-local.js"></script>
-        <script src="app/controllers/app-online.js"></script>
-        <script src="app/controllers/app-instance.js"></script>
-        <script src="app/controllers/app-alpaca.js"></script>
-        <script src="app/controllers/skin.js"></script>
-        <script src="app/controllers/icon.js"></script>
-        <script src="app/controllers/device.js"></script>
-        <script src="app/controllers/smartstart.js"></script>
-        <script src="app/controllers/zwave-inclusion.js"></script>
-        <script src="app/controllers/zwave-manage.js"></script>
-        <script src="app/controllers/zwave-exclude.js"></script>
-        <script src="app/controllers/zwave-vendor.js"></script>
-        <script src="app/controllers/camera.js"></script>
-        <script src="app/controllers/speech_assistant.js"></script>
-        <script src="app/controllers/welcome.js"></script>
-        <script src="app/controllers/mobile.js"></script>
-        <script src="app/controllers/wifiplug.js"></script>
-        <script src="app/controllers/enocean.js"></script>
-        <script src="app/controllers/rf433.js"></script>
-        <script src="app/controllers/room.js"></script>
-        <script src="app/controllers/management.js"></script>
-        <script src="app/controllers/management-appstore.js"></script>
-        <script src="app/controllers/management-factory.js"></script>
-        <script src="app/controllers/management-firmware.js"></script>
-        <script src="app/controllers/management-licence.js"></script>
-        <script src="app/controllers/management-local.js"></script>
-        <script src="app/controllers/management-remote.js"></script>
-        <script src="app/controllers/management-report.js"></script>
-        <script src="app/controllers/management-restore.js"></script>
-        <script src="app/controllers/management-cloud-backup.js"></script>
-        <script src="app/controllers/management-timezone.js"></script>
-        <script src="app/controllers/management-timezone-jb.js"></script>
-        <script src="app/controllers/management-user.js"></script>
-        <script src="app/controllers/mysettings.js"></script>
-        <script src="app/controllers/rss.js"></script>
-        <script src="app/controllers/auth.js"></script>
-        <script src="app/controllers/zwave-configuration.js"></script>
-        <script src="app/controllers/zwave-commands.js"></script>
-        <script src="app/controllers/automations.js"></script>
-        <!-- /build -->
-    </head>
-    <body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}">
-        <a class="skinreset" href="#skinreset">Reset skin to default</a>
-        <div id="header" ng-if="user">
-            <div id="main_navigation_wrap">
-                <div id="main_navigation" class="container">
-                    <div id="navigation_left">
-                        <!-- logo -->
-                        <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
-                            <img ng-src="{{getAppLogo()}}" id="header_logo" alt="App logo" />
-                        </a>
-                        <!-- dashboard -->
-                        <span class="divider-vertical"></span>
-                        <a class="nav-home" href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i> <span class="main-nav-text">{{_t('nav_home')}}</span></a>
-                        <!-- rooms -->
-                        <span class="divider-vertical"></span>
-                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i> <span class="main-nav-text">{{_t('nav_rooms')}}</span></a>
-                        <!-- elements -->
-                        <span class="divider-vertical"></span>
-                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i> <span class="main-nav-text">{{_t('nav_elements')}}</span></a>
-                        <!-- events -->
-                        <span class="divider-vertical"></span>
-                        <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i> <span class="main-nav-text">{{_t('nav_events')}}</span></a>
-                        <!--<span class="divider-vertical"></span>
+
+<head>
+  <meta charset="utf-8">
+  <title>Z-Wave Smart Home</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <!-- build:section dist_head -->
+  <!-- /build -->
+  <!-- build:remove -->
+  <!-- App css -->
+  <!-- <link media="screen" type="text/css" rel="stylesheet" ng-href="{{css}}">-->
+  <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
+  <!-- App config -->
+  <script src="app/config.js"></script>
+  <script src="app/icons.js"></script>
+  <!-- jQuery js -->
+  <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
+  <script src="vendor/jquery/jquery-ui.min.js"></script>
+  <script src="vendor/jquery/plugins/jquery.ui.widget.js"></script>
+  <script src="vendor/jquery/plugins/jquery.iframe-transport.js"></script>
+  <script src="vendor/jquery/plugins/jquery.fileupload.js"></script>
+  <script src="vendor/jquery/plugins/jquery.fileupload-process.js"></script>
+  <script src="vendor/jquery/plugins/jquery.fileupload-ui.js"></script>
+  <!-- Vendors js -->
+  <script src="vendor/handlebars/handlebars-v3.0.3.min.js"></script>
+  <script src="vendor/moment/moment-with-locales.min.js"></script>
+  <script src="vendor/underscore/underscore-1.8.3/underscore.js"></script>
+  <script src="vendor/chartjs/Chart.js"></script>
+  <script src="vendor/knob/jquery.knob.js"></script>
+  <script src="vendor/alertify/alertify.min.js"></script>
+  <script src="vendor/tweenmax/TweenMax.js"></script>
+  <script src="vendor/qrcode/qrious.min.js"></script>
+  <script src="vendor/qrcode_reader/qr_packed.js"></script>
+  <script src="vendor/scheduler/jq.schedule.js"></script>
+  <!-- Angular js -->
+  <script src="vendor/angular/angular-1.2.28/angular.js"></script>
+  <script src="vendor/upload/angular-file-upload.js"></script>
+  <script src="vendor/angular/angular-1.2.28/angular-route.js"></script>
+  <script src="vendor/angular/angular-1.2.28/angular-cookies.js"></script>
+  <script src="vendor/angular/angular-1.2.28/angular-touch.js"></script>
+  <script src="vendor/angular/angular-1.2.28/angular-animate.js"></script>
+  <!-- <script src="vendor/dragdrop/angular-drag-and-drop-lists.js"></script>-->
+  <script src="vendor/dragdrop/angular-sortable-view.js"></script>
+  <!-- Bootstrap js -->
+  <script src="vendor/bootstrap/bootstrap.js"></script>
+  <script src="vendor/bootstrap/plugins/bootstrap-datetimepicker.js"></script>
+  <script src="vendor/alpaca/1.5.14/bootstrap/alpaca.min.js"></script>
+  <!-- ExpertUI configuration js -->
+  <script src="vendor/zwave/pyzw.js"></script>
+  <script src="vendor/zwave/pyzw_zwave_ui.js"></script>
+  <script src="vendor/xml/xml2json.min.js"></script>
+  <!-- App js -->
+  <script src="app/app.js"></script>
+  <script src="app/routes.js"></script>
+  <script src="app/templates.js"></script>
+  <script src="app/modules/qAllSettled.js"></script>
+  <script src="app/modules/ngDeviceDetector.min.js"></script>
+  <script src="app/modules/httpLatency.js"></script>
+  <script src="app/factories/factories.js"></script>
+  <script src="app/services/services.js"></script>
+  <script src="app/services/services-expert.js"></script>
+  <script src="app/directives/directives.js"></script>
+  <script src="app/directives/directives-expert.js"></script>
+  <script src="app/directives/dir-pagination.js"></script>
+  <script src="app/directives/tc-angular-chartjs.js"></script>
+  <script src="app/directives/angular-slider.js"></script>
+  <script src="app/directives/angular-long-press.min.js"></script>
+  <script src="vendor/alertify/ngAlertify.js"></script>
+  <script src="app/filters/filters.js"></script>
+  <script src="app/jquery/postrender.js"></script>
+  <script src="app/controllers/base.js"></script>
+  <script src="app/controllers/jamesbox.js"></script>
+  <script src="app/controllers/controllers.js"></script>
+  <script src="app/controllers/element.js"></script>
+  <script src="app/controllers/element-widget.js"></script>
+  <script src="app/controllers/element-id.js"></script>
+  <script src="app/controllers/event.js"></script>
+  <script src="app/controllers/automation-scene.js"></script>
+  <script src="app/controllers/automation-rule.js"></script>
+  <script src="app/controllers/automation-schedule.js"></script>
+  <script src="app/controllers/automation-security.js"></script>
+  <script src="app/controllers/automation-hazard.js"></script>
+  <script src="app/controllers/automation-heating.js"></script>
+  <script src="app/controllers/app.js"></script>
+  <script src="app/controllers/app-local.js"></script>
+  <script src="app/controllers/app-online.js"></script>
+  <script src="app/controllers/app-instance.js"></script>
+  <script src="app/controllers/app-alpaca.js"></script>
+  <script src="app/controllers/skin.js"></script>
+  <script src="app/controllers/icon.js"></script>
+  <script src="app/controllers/device.js"></script>
+  <script src="app/controllers/smartstart.js"></script>
+  <script src="app/controllers/zwave-inclusion.js"></script>
+  <script src="app/controllers/zwave-manage.js"></script>
+  <script src="app/controllers/zwave-exclude.js"></script>
+  <script src="app/controllers/zwave-vendor.js"></script>
+  <script src="app/controllers/camera.js"></script>
+  <script src="app/controllers/speech_assistant.js"></script>
+  <script src="app/controllers/welcome.js"></script>
+  <script src="app/controllers/mobile.js"></script>
+  <script src="app/controllers/wifiplug.js"></script>
+  <script src="app/controllers/enocean.js"></script>
+  <script src="app/controllers/rf433.js"></script>
+  <script src="app/controllers/room.js"></script>
+  <script src="app/controllers/management.js"></script>
+  <script src="app/controllers/management-appstore.js"></script>
+  <script src="app/controllers/management-factory.js"></script>
+  <script src="app/controllers/management-firmware.js"></script>
+  <script src="app/controllers/management-licence.js"></script>
+  <script src="app/controllers/management-local.js"></script>
+  <script src="app/controllers/management-remote.js"></script>
+  <script src="app/controllers/management-report.js"></script>
+  <script src="app/controllers/management-restore.js"></script>
+  <script src="app/controllers/management-cloud-backup.js"></script>
+  <script src="app/controllers/management-timezone.js"></script>
+  <script src="app/controllers/management-timezone-jb.js"></script>
+  <script src="app/controllers/management-user.js"></script>
+  <script src="app/controllers/mysettings.js"></script>
+  <script src="app/controllers/rss.js"></script>
+  <script src="app/controllers/auth.js"></script>
+  <script src="app/controllers/zwave-configuration.js"></script>
+  <script src="app/controllers/zwave-commands.js"></script>
+  <script src="app/controllers/automations.js"></script>
+  <!-- /build -->
+</head>
+
+<body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}">
+  <a class="skinreset" href="#skinreset">Reset skin to default</a>
+  <div id="header" ng-if="user">
+    <div id="main_navigation_wrap">
+      <div id="main_navigation" class="container">
+        <div id="navigation_left">
+          <!-- logo -->
+          <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
+            <img ng-src="{{getAppLogo()}}" id="header_logo" alt="App logo" />
+          </a>
+          <!-- dashboard -->
+          <span class="divider-vertical"></span>
+          <a class="nav-home" href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')">
+            <i class="fa fa-home"></i>
+            <span class="main-nav-text">{{_t('nav_home')}}</span>
+          </a>
+          <!-- rooms -->
+          <span class="divider-vertical"></span>
+          <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)">
+            <i class="fa fa-building-o"></i>
+            <span class="main-nav-text">{{_t('nav_rooms')}}</span>
+          </a>
+          <!-- elements -->
+          <span class="divider-vertical"></span>
+          <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')">
+            <i class="fa fa-clone"></i>
+            <span class="main-nav-text">{{_t('nav_elements')}}</span>
+          </a>
+          <!-- events -->
+          <span class="divider-vertical"></span>
+          <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')">
+            <i class="fa fa-calendar"></i>
+            <span class="main-nav-text">{{_t('nav_events')}}</span>
+          </a>
+          <!--<span class="divider-vertical"></span>
                         <a href="#scenes" title="{{_t('automation')}}" ng-class="isActive('scenes') || isActive('rules') || isActive('schedules')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>-->
-                        <!-- automation -->
-                        <span class="divider-vertical"></span>
-                        <a href="#automations" title="{{_t('automation')}}"
-                            ng-class="isActive('automations') || isActive('scenes') || isActive('rules') || isActive('schedules') || isActive('climate') || isActive('fireprotection') || isActive('leakages')  || isActive('security')">
-                            <i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span>
-                        </a>
-                        <!-- rss -->
-                        <span class="divider-vertical" ng-show="rss.unread > 0"></span>
-                        <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
-                            <i class="fa fa-comment"></i>
-                            <span class="main-nav-text">{{_t('news')}} </span><small class="s-hide">{{rss.unread}}</small>
-                        </a>
-                        <!-- time -->
-                        <span class="divider-vertical"></span>
-                        &nbsp;<span class="timestamp clickable"
-                            ng-click="reloadData()"
-                            ng-if="cfg.route.time.string">
-                            <i class="fa fa-home"
-                            ng-if="connection.local"
-                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            <i class="fa fa-globe"
-                            ng-if="connection.remote"
-                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string}}</span>
-                        </span>
-                    </div>
-                    <div id="navigation_right">
-                        <span class="divider-vertical"></span>
-                        <a id="navi_settings" href="" title="{{_t('lb_configuration')}}" ng-click="expandNavi('mainNav', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''"><i class="fa fa-bars"></i></a>
-                    </div>
-                    </div><!-- /#navigation -->
-                    </div><!-- /#main_navigation_wrap -->
-                    <div id="sub_navigation" ng-show="naviExpanded.mainNav">
-                        <div id="sub_navigation_in" ng-click="expandNavi('mainNav', $event)">
-                            <div class="container">
-                                <ul>
-                                    <!-- Apps -->
-                                    <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                                        <a href="#apps/instance"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                                    </li>
-                                    <!-- Devices -->
-                                    <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
-                                        <a href="#devices"><i class="fa fa-cogs fa-fw"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                                    </li>
-                                    <!-- Customize -->
-                                    <li class="subnavi-report" ng-class="isActive('customize')"
-                                        ng-if="elementAccess(cfg.role_access.customize)">
-                                        <a href="#customize/skinslocal"><i class="fa fa-puzzle-piece fa-fw"></i> <span>{{_t('customize')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                                    </li>
-                                    <!-- My access -->
-                                    <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
-                                        <a href="#myaccess"><i class="fa fa-user fa-fw"></i>  <span>{{_t('nav_myaccess')}}</span><i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                                    </li>
-                                    <!-- Management -->
-                                    <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
-                                        <a href="#admin"><i class="fa fa-wrench fa-fw"></i> <span>{{_t('management')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                                    </li>
-                                    <!-- Rss -->
-                                    <li class="subnavi-admin" ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
-                                        <a href="#rss"><i class="fa fa-comment fa-fw"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                                    </li>
-                                    <!-- My Hubs -->
-                                    <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
-                                        <a ng-href="{{cfg.android_html_dir}}">
-                                            
-                                            <i class="fa fa-android fa-fw"></i><span>{{_t('my_hubs')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i>
-                                        </a>
-                                    </li>
-                                    <!-- Logout -->
-                                    <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
-                                        <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            </div><!-- /#subnavigation_in -->
-                            </div><!-- /#subnavigation -->
-                            </div><!-- /#header -->
-                            <!-- Ang Content Container -->
-                            <div id="main_content" class="container">
-                                <div class="blank" ng-if="cfg.route.alert.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
-                                    <figure>
-                                        <i class="fa {{cfg.route.alert.icon}} fa-lg"></i>
-                                    </figure>
-                                    <div>{{cfg.route.alert.message}}</div>
-                                    <div class="blank-info" ng-if="cfg.route.alert.info" ng-bind-html="cfg.route.alert.info|toTrusted"></div>
-                                </div>
-                                
-                                <div id="view_content" ng-hide="cfg.route.alert.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view
-                                    ng-swipe-left="swipe('left')"
-                                ng-swipe-right="swipe('right')"></div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div id="footer">
-                                <div id="footer_in">
-                                    <div class="container">
-                                        <span class="timestamp clickable"
-                                            ng-click="reloadData()"
-                                            ng-if="cfg.route.time.string">
-                                            <i class="fa fa-home"
-                                            ng-if="connection.local"
-                                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                                            <i class="fa fa-globe"
-                                            ng-if="connection.remote"
-                                            ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
-                                            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
-                                        </span>
-                                        <span ng-hide="cfg.skin.active != 'default'">
-                                            <i class="fa clickable fa-lg" aria-hidden="true" ng-click="setNightMode(user.night_mode = !user.night_mode)" ng-class="user.night_mode ? 'fa-sun-o' : 'fa-moon-o'"></i>
-                                        </span>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </body>
-                    </html>
+          <!-- automation -->
+          <span class="divider-vertical"></span>
+          <a href="#automations" title="{{_t('automation')}}" ng-class="isActive('automations') || isActive('scenes') || isActive('rules') || isActive('schedules') || isActive('climate') || isActive('fireprotection') || isActive('leakages')  || isActive('security')">
+            <i class="fa fa-gear"></i>
+            <span class="main-nav-text">{{_t('automation')}}</span>
+          </a>
+          <!-- rss -->
+          <span class="divider-vertical" ng-show="rss.unread > 0"></span>
+          <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
+            <i class="fa fa-comment"></i>
+            <span class="main-nav-text">{{_t('news')}} </span>
+            <small class="s-hide">{{rss.unread}}</small>
+          </a>
+          <!-- time -->
+          <span class="divider-vertical"></span>
+          &nbsp;
+          <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
+            <i class="fa fa-home" ng-if="connection.local" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+            <i class="fa fa-globe" ng-if="connection.remote" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string}}</span>
+          </span>
+        </div>
+        <div id="navigation_right">
+          <span class="divider-vertical"></span>
+          <a id="navi_settings" href="" title="{{_t('lb_configuration')}}" ng-click="expandNavi('mainNav', $event)" ng-class="naviExpanded.mainNav ? 'active' : ''">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+      </div>
+      <!-- /#navigation -->
+    </div>
+    <!-- /#main_navigation_wrap -->
+    <div id="sub_navigation" ng-show="naviExpanded.mainNav">
+      <div id="sub_navigation_in" ng-click="expandNavi('mainNav', $event)">
+        <div class="container">
+          <ul>
+            <!-- Apps -->
+            <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
+              <a href="#apps/instance">
+                <i class="fa fa-cubes fa-fw"></i>
+                <span>{{_t('nav_apps')}}</span>
+                <i class="fa fa-chevron-right subnavi-arrow"></i>
+              </a>
+            </li>
+            <!-- Devices -->
+            <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
+              <a href="#devices">
+                <i class="fa fa-cogs fa-fw"></i>
+                <span>{{_t('nav_devices')}} </span>
+                <i class="fa fa-chevron-right subnavi-arrow"></i>
+              </a>
+            </li>
+            <!-- Customize -->
+            <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.customize)">
+              <a href="#customize/skinslocal">
+                <i class="fa fa-puzzle-piece fa-fw"></i>
+                <span>{{_t('customize')}}</span>
+                <i class="fa fa-chevron-right subnavi-arrow"></i>
+              </a>
+            </li>
+            <!-- My access -->
+            <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
+              <a href="#myaccess">
+                <i class="fa fa-user fa-fw"></i>
+                <span>{{_t('nav_myaccess')}}</span>
+                <i class="fa fa-chevron-right subnavi-arrow"></i>
+              </a>
+            </li>
+            <!-- Management -->
+            <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
+              <a href="#admin">
+                <i class="fa fa-wrench fa-fw"></i>
+                <span>{{_t('management')}}</span>
+                <i class="fa fa-chevron-right subnavi-arrow"></i>
+              </a>
+            </li>
+            <!-- Rss -->
+            <li class="subnavi-admin" ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
+              <a href="#rss">
+                <i class="fa fa-comment fa-fw"></i>
+                <span>{{_t('news')}}</span>
+                <i class="fa fa-chevron-right subnavi-arrow"></i>
+              </a>
+            </li>
+            <!-- My Hubs -->
+            <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+              <a ng-href="{{cfg.android_html_dir}}">
+
+                <i class="fa fa-android fa-fw"></i>
+                <span>{{_t('my_hubs')}}</span>
+                <i class="fa fa-chevron-right subnavi-arrow"></i>
+              </a>
+            </li>
+            <!-- Logout -->
+            <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
+              <a href="#logout">
+                <i class="fa fa-sign-out fa-fw"></i>
+                <span>{{_t('nav_logout')}}</span>
+                <i class="fa fa-chevron-right subnavi-arrow"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /#subnavigation_in -->
+    </div>
+    <!-- /#subnavigation -->
+  </div>
+  <!-- /#header -->
+  <!-- Ang Content Container -->
+  <div id="main_content" class="container">
+    <div class="blank" ng-if="cfg.route.alert.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
+      <figure>
+        <i class="fa {{cfg.route.alert.icon}} fa-lg"></i>
+      </figure>
+      <div>{{cfg.route.alert.message}}</div>
+      <div class="blank-info" ng-if="cfg.route.alert.info" ng-bind-html="cfg.route.alert.info|toTrusted"></div>
+    </div>
+
+    <div id="view_content" ng-hide="cfg.route.alert.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view
+      ng-swipe-left="swipe('left')" ng-swipe-right="swipe('right')"></div>
+  </div>
+  <div class="clearfix"></div>
+  <div id="footer">
+    <div id="footer_in">
+      <div class="container">
+        <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string">
+          <i class="fa fa-home" ng-if="connection.local" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+          <i class="fa fa-globe" ng-if="connection.remote" ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+          <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
+        </span>
+        <span ng-hide="cfg.skin.active != 'default'">
+          <i class="fa clickable fa-lg" aria-hidden="true" ng-click="setNightMode(user.night_mode = !user.night_mode)" ng-class="user.night_mode ? 'fa-sun-o' : 'fa-moon-o'"></i>
+        </span>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
