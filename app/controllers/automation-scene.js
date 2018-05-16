@@ -130,6 +130,7 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
  */
 myAppController.controller('AutomationSceneIdController', function ($scope, $routeParams, $location, $route, $filter, $timeout,cfg, dataFactory, dataService, _, myCache) {
   $scope.scene = {
+    show: true,
     rooms: [],
     devicesInRoom: [],
     availableDevices: [],
@@ -288,6 +289,10 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
         })
         .indexBy('deviceId')
         .value();
+        if(!_.size($scope.scene.availableDevices)){
+          $scope.scene.show = false;
+          return;
+        }
       // Set devices in the room
       $scope.scene.devicesInRoom = _.countBy($scope.scene.availableDevices, function (v) {
         return v.location;

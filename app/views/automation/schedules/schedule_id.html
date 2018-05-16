@@ -1,31 +1,35 @@
 <!-- The schedule -->
 <div class="automation" ng-controller="AutomationScheduleIdController">
-
-  <h2>{{_t('schedules')}}</h2>
-  <!-- Form -->
-  <form class="form form-page" ng-submit="storeSchedule(schedule.input,true)">
-    <!-- Form-->
-    <fieldset ng-include="'app/views/automation/schedules/schedule_id_form.html'"></fieldset>
-     <!-- Used -->
-     <div ng-if="schedule.assignedDevices.length">
-        <legend>{{_t('assigned_devices')}}</legend>
-        <fieldset ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
-     </div>
-    <!-- Available -->
-    <legend>{{_t('lb_available_devices')}}</legend>
-    <fieldset bb-child-elem="schedule.assignedDevices" ng-include="'app/views/automation/schedules/schedule_id_available.html'"></fieldset>
-    <!-- Submit  -->
-    <fieldset class="submit-entry">
-      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-        <i class="fa fa-reply"></i>
-        <span class="btn-name">{{_t('lb_cancel')}}</span>
-      </button>
-      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-        <i class="fa fa-check"></i>
-        <span class="btn-name">{{_t('lb_save')}}</span>
-      </button>
-    </fieldset>
-  </form>
+ <!-- No device -->
+ <div ng-if="!schedule.show" ng-include="'app/views/automation/no_device.html'"></div>
+ <!-- Form -->
+ <div ng-if="schedule.show">
+    <h2>{{_t('schedules')}}</h2>
+    <!-- Form -->
+    <form class="form form-page" ng-submit="storeSchedule(schedule.input,true)">
+      <!-- Form-->
+      <fieldset ng-include="'app/views/automation/schedules/schedule_id_form.html'"></fieldset>
+       <!-- Used -->
+       <div ng-if="schedule.assignedDevices.length">
+          <legend>{{_t('assigned_devices')}}</legend>
+          <fieldset ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
+       </div>
+      <!-- Available -->
+      <legend>{{_t('lb_available_devices')}}</legend>
+      <fieldset bb-child-elem="schedule.assignedDevices" ng-include="'app/views/automation/schedules/schedule_id_available.html'"></fieldset>
+      <!-- Submit  -->
+      <fieldset class="submit-entry">
+        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+          <i class="fa fa-reply"></i>
+          <span class="btn-name">{{_t('lb_cancel')}}</span>
+        </button>
+        <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+          <i class="fa fa-check"></i>
+          <span class="btn-name">{{_t('lb_save')}}</span>
+        </button>
+      </fieldset>
+    </form>
+ </div>
  <!--  <pre>{{schedule.model|json}}</pre>-->
  <!--  <pre>{{schedule.input|json}}</pre>  -->
 </div>

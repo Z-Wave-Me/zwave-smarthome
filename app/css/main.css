@@ -12214,6 +12214,20 @@ img {
   border-radius: 50%;
 }
 
+/* Page topbar
+-------------------------------------------------- */
+/* line 3, ../sass/base/_page_topbar.scss */
+.page-topbar {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: dotted 1px #cccccc;
+}
+
 /* Widget
 -------------------------------------------------- */
 /* line 3, ../sass/base/_widget.scss */

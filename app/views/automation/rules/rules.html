@@ -1,6 +1,21 @@
 <!-- Scenes -->
 <div ng-controller="AutomationRuleController">
-  <h2>{{_t('rules')}}</h2>
+  <!-- Topbar -->
+  <section class="page-topbar">
+    <h1>{{_t('rules')}}</h1>
+    <div class="btn-group">
+      <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </a>
+      <a class="btn btn-default" href="#rules/0">
+        <i class="fa fa-plus text-success"></i>
+        <span class="btn-name">{{_t('add_new')}}</span>
+      </a>
+    </div>
+  </section>
+  <!-- The list -->
+
   <div class="list-panel" ng-repeat="v in rules.all track by $index" ng-class="{'bcg-danger':!v.active}">
     <!-- img -->
     <figure class="img wh-32x32 clickable" ng-click="activateRule(v, v.active ? false : true)">
@@ -45,18 +60,6 @@
       </div>
     </div>
 
-  </div>
-
-  <!-- Add new -->
-  <div class="block text-right">
-    <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
-      <i class="fa fa-reply"></i>
-      <span class="btn-name">{{_t('lb_cancel')}}</span>
-    </a>
-    <a class="btn btn-default" href="#rules/0">
-      <i class="fa fa-plus text-success"></i>
-      <span class="btn-name">{{_t('add_new')}}</span>
-    </a>
   </div>
 </div>
 <!-- /ng-controller -->

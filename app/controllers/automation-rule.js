@@ -122,6 +122,7 @@ myAppController.controller('AutomationRuleController', function ($scope, $routeP
  */
 myAppController.controller('AutomationRuleIdController', function ($scope, $routeParams, $location, $route, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.rule = {
+    show: true,
     tab: 'if',
     namespaces: [],
     rooms: [],
@@ -459,6 +460,10 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         })
         .indexBy('deviceId')
         .value();
+        if(!_.size($scope.rule.target.availableDevices) || !_.size($scope.rule.source.devices)){
+          $scope.rule.show = false;
+          return;
+        }
       // Set target sum of devices in the room
       $scope.rule.target.devicesInRoom = _.countBy($scope.rule.target.availableDevices, function (v) {
         return v.location;
