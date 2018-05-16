@@ -528,6 +528,7 @@
     "no_schedules_available": "There are no schedules available",
     "no_search_results": "Lo sentimos, su búsqueda de __term__ no ha arrojado ningún resultado.",
     "no_security_available": "There are is no security available",
+    "no_sensors_available": "There are no sensors available yet",
     "no_update_available": "No existen actualizaciones disponibles",
     "no_wifiplugs": "No WiFi-Plugs available",
     "no_zddx_file": "El dispositivo no tiene (otros) parámetros configurables",
