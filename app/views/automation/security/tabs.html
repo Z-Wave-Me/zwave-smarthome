@@ -1,13 +1,24 @@
 <div class="tabs-wrap form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
   <div class="btn-group btn-group-justified btn-goup-tabs">
-    <a class="btn btn-default" title="{{_t('triggering')}}" ng-class="{'active':security.tab == 1}" ng-click="security.tab = 1">
-        <i class="fa fa-plug"></i> <span class="btn-name">{{_t('triggering')}}</span>
+   <!--  Triggering -->
+    <a class="btn btn-default" title="{{_t('alarm_conditions')}}" ng-class="{'active':security.tab == 1}" ng-click="security.tab = 1">
+      <i class="fa fa-bell-o"></i>
+      <span class="btn-name">{{_t('alarm_conditions')}}</span>
     </a>
-    <a class="btn btn-default" title="{{_t('external_control')}}" ng-class="{'active':security.tab == 2}" ng-click="security.tab = 2">
-        <i class="fa fa-gamepad"></i> <span class="btn-name">{{_t('external_control')}}</span>
+    <!--  Actions -->
+    <a class="btn btn-default" title="{{_t('actions_on')}}" ng-class="{'active':security.tab == 2}" ng-click="security.tab = 2">
+      <i class="fa fa-play"></i>
+      <span class="btn-name">{{_t('actions_on')}}</span>
     </a>
-    <a class="btn btn-default" title="{{_t('advanced_settings')}}" ng-class="{'active':security.tab == 3}" ng-click="security.tab = 3">
-        <i class="fa fa-wrench"></i> <span class="btn-name">{{_t('advanced_settings')}}</span>
+    <!--  Time Triggering -->
+    <a class="btn btn-default" title="{{_t('time_triggering')}}" ng-class="{'active':security.tab == 3}" ng-click="security.tab = 3">
+      <i class="fa fa-clock-o"></i>
+      <span class="btn-name">{{_t('time_triggering')}}</span>
+    </a>
+    <!--  Control -->
+    <a class="btn btn-default" title="{{_t('control')}}" ng-class="{'active':security.tab == 4}" ng-click="security.tab = 4">
+      <i class="fa fa-gamepad"></i>
+      <span class="btn-name">{{_t('control')}}</span>
     </a>
   </div>
 </div>

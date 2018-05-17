@@ -3,7 +3,7 @@
   <h2 class="accordion-toggle chevron">
     <button type="button" aria-expanded="false" bb-accordion>
       <span class="is-legend">
-        {{_t('silent_alarm')}}
+        {{_t('delete_alarm')}}
         <span class="item-cnt"> ({{_.size(security.input.params.silentAlarms.table)}})</span>
       </span>
     </button>
@@ -40,12 +40,12 @@
         </div>
         <div class="control">
           <!-- expand/collapse -->
-          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['silentAlarms']||false}}" ng-click="expandElement('silentAlarms')">
+          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['silentAlarms']||false}}" ng-click="expandElement('silentAlarms')">
           </button>
         </div>
         <div class="control-collapsable" ng-include="'app/views/automation/security/trigger/notification.html'"
         ng-init="model = security.input.params.silentAlarms.notification"
-        ng-class="expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>
+        ng-class="!expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>
       </div>
     </div>
     <h3>{{_t('lb_available_devices')}}</h3>

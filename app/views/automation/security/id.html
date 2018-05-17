@@ -7,37 +7,35 @@
   <!-- Form -->
   <form class="form form-page" ng-submit="storeInstance(security.input,true)">
 
-    <!-- //////////////////////////////////////////  Triggering  ////////////////////////////////////////// -->
+    <!-- //////////////////////////////////////////  Conditions ////////////////////////////////////////// -->
     <div ng-if="security.tab == 1">
-      <!-- Trigger -->
-      <fieldset ng-include="'app/views/automation/security/trigger/trigger.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/security/conditions/conditions.html'"></fieldset>
+      
+    </div>
+    <!-- ////////////////////////////////////////// Actions  ////////////////////////////////////////// -->
+    <div ng-if="security.tab ==2">
       <!-- Silent alarm -->
-      <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/security/actions/silent_alarm.html'"></fieldset>
       <!-- Silent alarm -->
-      <fieldset ng-include="'app/views/automation/security/trigger/alarm.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
       <!-- Arming -->
-      <fieldset ng-include="'app/views/automation/security/trigger/arming.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/security/actions/arming.html'"></fieldset>
       <!-- Disarming -->
-      <fieldset ng-include="'app/views/automation/security/trigger/disarming.html'"></fieldset>
+      <fieldset ng-include="'app/views/automation/security/actions/disarming.html'"></fieldset>
       <!-- Reset -->
-      <fieldset ng-include="'app/views/automation/security/trigger/reset.html'"></fieldset>
-
+      <fieldset ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
+    </div>
+    <!-- ////////////////////////////////////////// Time triggering  ////////////////////////////////////////// -->
+    <div ng-if="security.tab == 3">
+      <fieldset ng-include="'app/views/automation/security/time/time_schedule.html'"></fieldset>
+      <!-- <div class="section">
+        <fieldset ng-include="'app/views/automation/security/time/time_settings.html'"></fieldset>
+      </div> -->
 
     </div>
     <!-- ////////////////////////////////////////// External control  ////////////////////////////////////////// -->
-    <div ng-if="security.tab ==2">
-      <!-- Cards -->
+    <div ng-if="security.tab ==4">
       <fieldset ng-include="'app/views/automation/security/control/control.html'"></fieldset>
-    </div>
-    <!-- ////////////////////////////////////////// Advanced  ////////////////////////////////////////// -->
-    <div ng-if="security.tab == 3">
-      <div class="section">
-        <fieldset ng-include="'app/views/automation/security/advanced/advanced_schedule.html'"></fieldset>
-      </div>
-      <div class="section">
-        <fieldset ng-include="'app/views/automation/security/advanced/advanced_settings.html'"></fieldset>
-      </div>
-
     </div>
 
     <!-- Submit  -->

@@ -2,22 +2,22 @@
  <div class="panel-wrap">
     <div class="list-panel" ng-repeat="d in security.devices.controls track by $index" ng-if="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]">
       <!-- img -->
-      <figure class="img wh-32x32 clickable" ng-click="expandElement('securityControl_' + $index)" >
+      <figure class="img wh-32x32 clickable" ng-click="expandElement('securityControl_' + d.deviceId)" >
         <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       </figure>
-      <div class="body clickable" ng-click="expandElement('securityControl_' + $index)">
+      <div class="body clickable" ng-click="expandElement('securityControl_' + d.deviceId)">
         <div>{{d.deviceName}}  - <em class="item-cnt">{{d.locationName}}</em></div>
       </div>
       <div class="control">
         <!-- expand/collapse -->
-    <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['securityControl_' + $index]||false}}" ng-click="expandElement('securityControl_' + $index,true)">
+    <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['securityControl_' + d.deviceId]||false}}" ng-click="expandElement('securityControl_' + d.deviceId)">
       </button>
         <!-- delete -->
         <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'controls')">
           <i class="fa fa-times text-danger"></i>
         </button>
       </div>
-      <div class="control-collapsable form-inline" ng-class="expand['securityControl_' + $index] ? 'expand-true': 'expand-false'">
+      <div class="control-collapsable form-inline" ng-class="expand['securityControl_' + d.deviceId] ? 'expand-true': 'expand-false'">
           <label>{{_t('arm_condition')}}</label>
           <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].armCondition">
             <!-- <option value="" ng-selected="true">{{_t('arm_condition')}}</option> -->
@@ -45,7 +45,7 @@
 <h3>{{_t('lb_available_devices')}}</h3>
 <div>
   <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.controls track by $index"
-    ng-if="!security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]" ng-click="assignDevice(d.deviceId,'controls')">{{d.deviceName|cutText:true:20}}
+    ng-if="!security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]" ng-click="assignDevice(d.deviceId,'controls');expandElement('securityControl_' + d.deviceId)">{{d.deviceName|cutText:true:20}}
     <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
   </a>
 </div>

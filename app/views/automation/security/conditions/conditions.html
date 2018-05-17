@@ -1,0 +1,48 @@
+<!-- delay -->
+
+<div class="form-group form-inline">
+  <label>{{_t('security_delay_before_alarm')}}</label>
+  <div class="input-group">
+    <input class="form-control" type="number" ng-model="security.input.params.times.silent">
+  </div>
+  <bb-help-text trans="_t('help_security_delay_before_alarm')"></bb-help-text>
+</div>
+
+<!-- list -->
+<div class="panel-wrap">
+  <div class="list-panel" ng-repeat="d in security.devices.input track by $index" ng-if="security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]">
+    <!-- img -->
+    <figure class="img wh-32x32">
+      <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+    </figure>
+    <div class="body">
+      <div>
+        {{d.deviceName}} -
+        <em class="item-cnt">{{d.locationName}}</em>
+
+      </div>
+    </div>
+    <div class="control">
+      <label class="switch">
+        <input type="checkbox" ng-model="security.input.params.input.table[getModelIndex(d.deviceId,'input.table')].conditions" ng-true-value="on"
+          ng-false-value="off">
+        <span class="slider"></span>
+      </label>
+      <!-- <span class="switch-label ng-binding">{{security.input.params.input.table[getModelIndex(d.deviceId,'input.table')].conditions}}</span> -->
+      &nbsp;
+      <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'input')">
+        <i class="fa fa-times text-danger"></i>
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+<h3>{{_t('lb_available_devices')}}</h3>
+<div>
+  <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.input track by $index"
+    ng-if="!security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]" ng-click="assignDevice(d.deviceId,'input')">{{d.deviceName|cutText:true:20}}
+    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+  </a>
+</div>
