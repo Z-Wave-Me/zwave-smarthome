@@ -45,7 +45,7 @@ myAppController.controller('HeatingController', function($scope, $routeParams, $
  */
 myAppController.controller('HeatingIdController', function($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
     $scope.heating = {
-        rooms: [],
+        rooms: {},
         devices: {
             all: [],
             byRoom: {}
@@ -56,25 +56,34 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
             moduleId: "Heating",
             active: true,
             title: "",
-            params: {}
+            params: {
+                roomSettings: {}
+            }
         },
         cfg: {
             energySave: {
                 min: 14,
                 max: 27,
                 step: 0.5,
-                temp: []
+                temp: {}
             },
             comfort: {
                 min: 14,
                 max: 27,
                 step: 0.5,
-                temp: []
+                temp: {}
             },
             fallback: {
                 "F": "frost_protection_temp",
                 "E": "energy_save_temp",
                 "C": "comfort_temp"
+            },
+            default: { // room template
+                comfortTemp: 21, // default value
+                energySaveTemp: "",
+                fallbackTemp: "",
+                sensorId: null,
+                schedule: {}
             }
         },
         tempModal: {
@@ -205,11 +214,19 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                     return true;
                 }
             });
+        },
+        delete_bar: function() {
+            $scope.updateData();
         }
     };
     angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
     $scope.jQuery_schedules = {};
-
+    /**
+     * [renderSchedule description]
+     * @param  {[type]} scheduleId [description]
+     * @param  {[type]} roomId     [description]
+     * @return {[type]}            [description]
+     */
     $scope.renderSchedule = function(scheduleId, roomId) {
         if (!$scope.jQuery_schedules[scheduleId]) {
             // add instance data
@@ -251,7 +268,127 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                 $scope.jQuery_schedules[scheduleId].resizeWindow();
             }, 0);
         }
+    };
+
+    $scope.updateSchedule = function(scheduleId, roomId) {
+        if ($scope.jQuery_schedules[scheduleId]) {
+            var jq_schedule = $scope.jQuery_schedules[scheduleId];
+
+            var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule),
+                data = {};
+            angular.copy($scope.scheduleOptions.rows, data);
+            days.forEach(function(day) {
+                $scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+                    var sc = {
+                        start: schedule.stime,
+                        end: schedule.etime,
+                        text: schedule.temp + " C°",
+                        data: {
+                            temp: schedule.temp
+                        }
+                    }
+                    data[day].schedule.push(sc);
+                });
+            });
+            jq_schedule.update(data);
+        }
     }
+
+    /**
+     * [init description]
+     * @return {[type]} [description]
+     */
+    $scope.init = function() {
+        $scope.heating.cfg.energySave.temp = temperatureArray($scope.heating.cfg.energySave, "°C");
+        $scope.heating.cfg.comfort.temp = temperatureArray($scope.heating.cfg.comfort, "°C");
+    };
+    $scope.init();
+
+    /**
+     * [loadRooms description]
+     * @return {[type]} [description]
+     */
+    $scope.loadRooms = function() {
+        dataFactory.getApi('locations').then(function(response) {
+            var rooms = response.data.data.filter(function(r) {
+                return r.id !== 0; // get rooms without global room (id 0)
+            });
+            $scope.heating.rooms = dataService.getRooms(rooms).indexBy('id').value();
+            // add temp copy option
+            angular.forEach($scope.heating.rooms, function(room) {
+                angular.extend($scope.heating.rooms[room.id], {
+                    copyOption: null
+                });
+            })
+            $scope.loadDevices($scope.heating.rooms);
+        });
+    };
+    $scope.loadRooms();
+
+    /**
+     * [loadInstance description]
+     * @param  {[type]} id [description]
+     * @return {[type]}    [description]
+     */
+    $scope.loadInstance = function(id) {
+        console.log("$scope.heating.input", $scope.heating.input);
+        dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
+            $scope.heating.routeId = id;
+            var instance = instances.data.data;
+            console.log("instance", instance);
+            angular.extend($scope.heating.input, {
+                title: instance.title,
+                active: instance.active,
+                params: instance.params
+            });
+            console.log("$scope.heating.input", $scope.heating.input);
+        }, function(error) {
+            angular.extend(cfg.route.alert, {
+                message: $scope._t('error_load_data')
+            });
+        });
+
+    };
+
+    if ($routeParams.id > 0) {
+        $scope.loadInstance($routeParams.id);
+    }
+
+    /**
+     * [hasSchedules description]
+     * @param  {[type]}  roomId [description]
+     * @return {Boolean}        [description]
+     */
+    $scope.hasSchedules = function(roomId) {
+        var hasSC = false;
+        if ($scope.heating.input.params.roomSettings && $scope.heating.input.params.roomSettings[roomId]) {
+            var schedule = $scope.heating.input.params.roomSettings[roomId].schedule;
+            for (sc in schedule) {
+                if (schedule[sc].length > 0) {
+                    hasSC = true;
+                    break;
+                }
+            }
+        }
+        return hasSC;
+    };
+
+    /**
+     * [copySchedule description]
+     * @param  {[type]} roomId [description]
+     * @return {[type]}        [description]
+     */
+    $scope.copySchedule = function(srcRoomId, destRoomId, message) {
+        alertify.confirm(message, function() {
+            $scope.loading = {
+                status: 'loading-spin',
+                icon: 'fa-spinner fa-spin',
+                message: $scope._t('deleting')
+            };
+            angular.extend($scope.heating.input.params.roomSettings[destRoomId], $scope.heating.input.params.roomSettings[srcRoomId]);
+            $scope.updateSchedule("#schedule-" + destRoomId, destRoomId)
+        });
+    };
 
     /**
      * watch modalArr to handle close temperatureModal
@@ -296,94 +433,61 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
         }
     }, true);
 
-    $scope.init = function() {
-        $scope.heating.cfg.energySave.temp = temperatureArray($scope.heating.cfg.energySave);
-        $scope.heating.cfg.comfort.temp = temperatureArray($scope.heating.cfg.comfort);
-    }
-    $scope.init();
-
-    /**
-     * Load instance
-     */
-    $scope.loadInstance = function(id) {
-        dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
-            $scope.heating.routeId = id;
-            var instance = instances.data.data;
-            angular.extend($scope.heating.input, {
-                title: instance.title,
-                active: instance.active,
-                params: instance.params
-            });
-
-        }, function(error) {
-            angular.extend(cfg.route.alert, {
-                message: $scope._t('error_load_data')
-            });
-        });
-
-    };
-
-    if ($routeParams.id > 0) {
-        $scope.loadInstance($routeParams.id);
-    }
-
-    /**
-     * Load rooms
-     */
-    $scope.loadRooms = function() {
-        dataFactory.getApi('locations').then(function(response) {
-            var rooms = response.data.data.filter(function(r) {
-                return r.id !== 0; // get rooms without global room (id 0)
-            });
-            $scope.heating.rooms = dataService.getRooms(rooms).indexBy('id').value();
-            $scope.loadDevices($scope.heating.rooms);
-        });
-
-    };
-    $scope.loadRooms();
-
     /**
      * Load devices
      */
     $scope.loadDevices = function(rooms) {
         dataFactory.getApi('devices').then(function(response) {
-            var devices = dataService.getDevicesData(response.data.data.devices);
-            var roomKeys = Object.keys(rooms);
-            _.filter(devices.value(), function(v) {
-                if (roomKeys.indexOf(v.location.toString()) != -1) {
-                    if (v.deviceType == "sensorMultilevel" && v.probeType == "temperature") {
-                        var getZwayId = function(deviceId) {
-                            var zwaveId = false;
-                            if (deviceId.indexOf("ZWayVDev_zway_") > -1) {
-                                zwaveId = deviceId.split("ZWayVDev_zway_")[1].split('-')[0];
-                                return zwaveId.replace(/[^0-9]/g, '');
+                var devices = dataService.getDevicesData(response.data.data.devices);
+                var roomKeys = Object.keys(rooms);
+                _.filter(devices.value(), function(v) {
+                    if (roomKeys.indexOf(v.location.toString()) != -1) {
+                        if (v.deviceType == "sensorMultilevel" && v.probeType == "temperature") {
+                            var getZwayId = function(deviceId) {
+                                var zwaveId = false;
+                                if (deviceId.indexOf("ZWayVDev_zway_") > -1) {
+                                    zwaveId = deviceId.split("ZWayVDev_zway_")[1].split('-')[0];
+                                    return zwaveId.replace(/[^0-9]/g, '');
+                                }
+                                return zwaveId;
                             }
-                            return zwaveId;
+                            var obj = {
+                                deviceId: v.id,
+                                zwaveId: getZwayId(v.id),
+                                deviceName: v.metrics.title,
+                                deviceNameShort: $filter('cutText')(v.metrics.title, true, 30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
+                                deviceType: v.deviceType,
+                                probeType: v.probeType,
+                                location: v.location,
+                                locationName: rooms[v.location].title,
+                                iconPath: v.iconPath
+                            };
+                            $scope.heating.devices.all.push(obj);
+                            if ($scope.heating.devices.byRoom[v.location]) {
+                                $scope.heating.devices.byRoom[v.location].push(obj);
+                            } else {
+                                $scope.heating.devices.byRoom[v.location] = [];
+                                $scope.heating.devices.byRoom[v.location].push(obj);
+                            }
                         }
-                        var obj = {
-                            deviceId: v.id,
-                            zwaveId: getZwayId(v.id),
-                            deviceName: v.metrics.title,
-                            deviceNameShort: $filter('cutText')(v.metrics.title, true, 30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
-                            deviceType: v.deviceType,
-                            probeType: v.probeType,
-                            location: v.location,
-                            locationName: rooms[v.location].title,
-                            iconPath: v.iconPath
-                        };
-                        $scope.heating.devices.all.push(obj);
 
-                        if ($scope.heating.devices.byRoom[v.location]) {
-                            $scope.heating.devices.byRoom[v.location].push(obj);
-                        } else {
-                            $scope.heating.devices.byRoom[v.location] = [];
-                            $scope.heating.devices.byRoom[v.location].push(obj);
-                        }
                     }
+                });
+                $scope.loadPreset();
+            },
+            function(error) {});
+    };
 
-                }
-            });
-        }, function(error) {});
+    $scope.loadPreset = function() {
+        var rooms = {};
+        angular.forEach($scope.heating.rooms, function(room) {
+            rooms[room.id] = {};
+            angular.extend(rooms[room.id], $scope.heating.cfg.default);
+            if ($scope.heating.devices.byRoom[room.id] && $scope.heating.devices.byRoom[room.id].length == 1) {
+                rooms[room.id].sensorId = $scope.heating.devices.byRoom[room.id][0].deviceId
+            }
+        });
+        angular.extend($scope.heating.input.params.roomSettings, rooms)
     };
 
     /**
@@ -434,8 +538,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                             "temp": sc.data.temp
                         };
                     });
-                console.log("roomId", roomId);
-                console.log("$scope.heating.input.params.roomSettings", $scope.heating.input.params.roomSettings);
                 if (!$scope.heating.input.params.roomSettings[roomId].hasOwnProperty("schedule")) {
                     $scope.heating.input.params.roomSettings[roomId].schedule = {};
                 }
@@ -462,16 +564,21 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
     };
     /**
-     * Return a array with temperatures base on temp
-     * @param  {object} temp {min: 12, max: 15, step: 0.5}
-     * @return {Array}  Array with temperatures ["12","12.5","13","13.5","14","14.5","15"]
+     * [temperatureArray description]
+     * @param  {[type]} temp  [description]
+     * @param  {[type]} scale [description]
+     * @return {[objet]}       [description]
      */
-    function temperatureArray(temp) {
-        var arr = [];
+    function temperatureArray(temp, scale) {
+        var obj = {
+            temp: [],
+            label: []
+        };
         for (var i = temp.min; i <= temp.max; i += temp.step) {
-            arr.push(i.toString());
+            obj.temp.push(i.toString());
+            obj.label.push(i.toString() + " " + scale);
         }
-        return arr;
+        return obj;
     }
 
 });

@@ -7,10 +7,14 @@
  * The controller that handles a device chart.
  * @class ElementChartController
  */
-myAppController.controller('ElementChartController', function ($scope, $sce, dataFactory, $interval) {
+myAppController.controller('ElementChartController', function($scope, $sce, dataFactory, $interval) {
     $scope.widgetChart = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false},
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        },
         hasURL: false,
         intchartUrl: '',
         url: {},
@@ -24,8 +28,8 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
     /**
      * Reload chart url
      */
-    $scope.reloadUrl = function () {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+    $scope.reloadUrl = function() {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
             var device = response.data.data;
 
             if ($scope.widgetChart.time < device.metrics.intchartTime) {
@@ -40,10 +44,14 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
     /**
      * Load device
      */
-    $scope.loadDeviceUrl = function () {
-        $scope.widgetChart.alert = {message: $scope._t('loading'), status: 'alert-warning', icon: 'fa-spinner fa-spin'};
+    $scope.loadDeviceUrl = function() {
+        $scope.widgetChart.alert = {
+            message: $scope._t('loading'),
+            status: 'alert-warning',
+            icon: 'fa-spinner fa-spin'
+        };
 
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
             var device = response.data.data;
             if (!device) {
                 $scope.widgetChart.alert = {
@@ -71,9 +79,11 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
 
             $scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
 
-            $scope.widgetChart.alert = {message: false};
+            $scope.widgetChart.alert = {
+                message: false
+            };
 
-        }, function (error) {
+        }, function(error) {
             $scope.widgetChart.alert = {
                 message: $scope._t('error_load_data'),
                 status: 'alert-danger',
@@ -89,10 +99,14 @@ myAppController.controller('ElementChartController', function ($scope, $sce, dat
  * The controller that handles a device history.
  * @class ElementHistoryController
  */
-myAppController.controller('ElementHistoryController', function ($scope, dataFactory, dataService, _) {
+myAppController.controller('ElementHistoryController', function($scope, dataFactory, dataService, _) {
     $scope.widgetHistory = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false},
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        },
         chartData: {},
         chartOptions: {
             // Chart.js options can go here.
@@ -103,7 +117,7 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
     /**
      * Load device history
      */
-    $scope.loadDeviceHistory = function () {
+    $scope.loadDeviceHistory = function() {
         var device = !_.isEmpty($scope.dataHolder.devices.byId) ? $scope.dataHolder.devices.byId : $scope.dataHolder.devices.find;
         if (!device) {
             $scope.widgetHistory.alert = {
@@ -119,8 +133,10 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
             status: 'alert-warning',
             icon: 'fa-spinner fa-spin'
         };
-        dataFactory.getApi('history', '/' + device.id + '?show=24', true).then(function (response) {
-            $scope.widgetHistory.alert = {message: false};
+        dataFactory.getApi('history', '/' + device.id + '?show=24', true).then(function(response) {
+            $scope.widgetHistory.alert = {
+                message: false
+            };
             if (!response.data.data.deviceHistory) {
                 $scope.widgetHistory.alert = {
                     message: $scope._t('no_data'),
@@ -129,9 +145,11 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
                 };
                 return;
             }
-            $scope.widgetHistory.alert = {message: false};
+            $scope.widgetHistory.alert = {
+                message: false
+            };
             $scope.widgetHistory.chartData = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors);
-        }, function (error) {
+        }, function(error) {
             $scope.widgetHistory.alert = {
                 message: $scope._t('error_load_data'),
                 status: 'alert-danger',
@@ -148,18 +166,24 @@ myAppController.controller('ElementHistoryController', function ($scope, dataFac
  * The controller that handles a device events.
  * @class ElementEventController
  */
-myAppController.controller('ElementEventController', function ($scope, $filter,$cookies, cfg,dataFactory, dataService, _) {
+myAppController.controller('ElementEventController', function($scope, $filter, $cookies, cfg, dataFactory, dataService, _) {
     $scope.widgetEvent = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false},
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        },
         collection: []
     };
 
     /**
      * Load device events
      */
-    $scope.loadDeviceEvents = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
+    $scope.loadDeviceEvents = function() {
+        var device = _.where($scope.dataHolder.devices.collection, {
+            id: $scope.dataHolder.devices.find.id
+        });
         if (_.isEmpty(device)) {
             $scope.widgetEvent.alert = {
                 message: $scope._t('error_load_data'),
@@ -169,25 +193,27 @@ myAppController.controller('ElementEventController', function ($scope, $filter,$
             return;
         }
         // Get device icons
-        var deviceIcons = dataService.getSingleElementIcons(device[0],true);
+        var deviceIcons = dataService.getSingleElementIcons(device[0], true);
         // Set default or custom icons
         var icons = dataService.setIcon(deviceIcons['default'], deviceIcons['custom']);
         $scope.widgetEvent.find = device[0];
         var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
-        dataFactory.getApi('notifications', since, true).then(function (response) {
+        dataFactory.getApi('notifications', since, true).then(function(response) {
             $scope.widgetEvent.collection = _.chain(response.data.data.notifications)
                 .flatten()
-                .where({source: $scope.widgetEvent.find.id})
-                .filter(function(v){
+                .where({
+                    source: $scope.widgetEvent.find.id
+                })
+                .filter(function(v) {
                     var hasL;
                     // Default event icon
                     //v.iconPath = $filter('getEventIcon')(v.type,v.message);
-                    v.iconPath = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
+                    v.iconPath = !v.message.customIcon ? $filter('getEventIcon')(v.type, v.message) : cfg.img.custom_icons + v.message.customIcon;
                     // Has an event level?
                     hasL = $filter('hasNode')(v, 'message.l');
 
                     // Has device a level icon?
-                    if(icons[hasL]){
+                    if (icons[hasL]) {
                         v.iconPath = icons[hasL];
                         return v;
                     }
@@ -210,7 +236,7 @@ myAppController.controller('ElementEventController', function ($scope, $filter,$
                 };
                 return;
             }
-        }, function (error) {
+        }, function(error) {
             $scope.widgetEvent.alert = {
                 message: $scope._t('error_load_data'),
                 status: 'alert-danger',
@@ -225,7 +251,7 @@ myAppController.controller('ElementEventController', function ($scope, $filter,$
      * Redirect to events
      * @param {string} url
      */
-    $scope.redirectToEvents = function (url) {
+    $scope.redirectToEvents = function(url) {
         // Setting time filter to 7 days
         var timeFilter = {
             since: $filter('unixStartOfDay')('-', (86400 * 6)),
@@ -243,10 +269,14 @@ myAppController.controller('ElementEventController', function ($scope, $filter,$
  * The controller that handles SwitchMultilevel element.
  * @class ElementSwitchMultilevelController
  */
-myAppController.controller('ElementSwitchMultilevelController', function ($scope) {
+myAppController.controller('ElementSwitchMultilevelController', function($scope) {
     $scope.widgetSwitchMultilevel = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false}
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        }
     };
     $scope.knobopt = {
         width: 160
@@ -254,8 +284,10 @@ myAppController.controller('ElementSwitchMultilevelController', function ($scope
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
+    $scope.loadDeviceId = function() {
+        var device = _.where($scope.dataHolder.devices.collection, {
+            id: $scope.dataHolder.devices.find.id
+        });
         if (!device) {
             $scope.widgetSwitchMultilevel.alert = {
                 message: $scope._t('error_load_data'),
@@ -276,10 +308,14 @@ myAppController.controller('ElementSwitchMultilevelController', function ($scope
  * The controller that handles Thermostat element.
  * @class ElementThermostatController
  */
-myAppController.controller('ElementThermostatController', function ($scope) {
+myAppController.controller('ElementThermostatController', function($scope) {
     $scope.widgetThermostat = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false}
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        }
     };
     $scope.knobopt = {
         width: 160
@@ -287,8 +323,10 @@ myAppController.controller('ElementThermostatController', function ($scope) {
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
+    $scope.loadDeviceId = function() {
+        var device = _.where($scope.dataHolder.devices.collection, {
+            id: $scope.dataHolder.devices.find.id
+        });
         if (!device) {
             $scope.widgetSwitchMultilevel.alert = {
                 message: $scope._t('error_load_data'),
@@ -308,11 +346,15 @@ myAppController.controller('ElementThermostatController', function ($scope) {
  * The controller that handles SwitchRGBW element.
  * @class ElementSwitchRGBWController
  */
-myAppController.controller('ElementSwitchRGBWController', function ($scope, dataFactory, $interval, cfg) {
+myAppController.controller('ElementSwitchRGBWController', function($scope, dataFactory, $interval, cfg) {
     $scope.widgetSwitchRGBW = {
         find: {},
         all: [],
-        alert: {message: false, status: 'is-hidden', icon: false},
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        },
         process: false,
         previewColor: 'rgb(255, 255, 255)',
         selectedColor: 'rgb(255, 255, 255)',
@@ -337,7 +379,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     /**
      * Show RGB modal window
      */
-    $scope.loadRgbWheel = function (input) {
+    $scope.loadRgbWheel = function(input) {
         $scope.input = input;
         var bCanPreview = true; // can preview
 
@@ -347,7 +389,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         var ctx = canvas.getContext('2d');
         // drawing active image
         var image = new Image();
-        image.onload = function () {
+        image.onload = function() {
             ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height); // draw the image on the canvas
         };
         image.src = 'app/img/colorwheel.png';
@@ -356,7 +398,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         //$('#wheel_picker_preview').css('backgroundColor', defaultColor);
         $scope.widgetSwitchRGBW.selectedColor = defaultColor;
         $scope.widgetSwitchRGBW.previewColor = defaultColor;
-        $('#wheel_picker').mousemove(function (e) { // mouse move handler
+        $('#wheel_picker').mousemove(function(e) { // mouse move handler
             if (bCanPreview) {
                 // get coordinates of current position
                 var canvasOffset = $(canvas).offset();
@@ -377,7 +419,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
             }
         });
 
-        $('#wheel_picker').click(function (e) { // click event handler
+        $('#wheel_picker').click(function(e) { // click event handler
             // bCanPreview = true;//!bCanPreview;
             if (bCanPreview) {
                 var cmdColor = $('#rgbVal').val().split(',');
@@ -389,15 +431,17 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
                     b: cmdColor[2]
                 };
                 $scope.widgetSwitchRGBW.process = true;
-                dataFactory.runApiCmd(cmd).then(function (response) {
-                    var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
+                dataFactory.runApiCmd(cmd).then(function(response) {
+                    var findIndex = _.findIndex($scope.dataHolder.devices.collection, {
+                        id: input.id
+                    });
                     //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
                     angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
                     angular.extend(input.metrics.color, rgbColorsObj);
                     $scope.widgetSwitchRGBW.colorHex = rgbToHex(rgbColorsObj.r, rgbColorsObj.g, rgbColorsObj.b);
                     $scope.widgetSwitchRGBW.process = false;
                     $scope.widgetSwitchRGBW.selectedColor = rgbColors;
-                }, function (error) {
+                }, function(error) {
                     $scope.widgetSwitchRGBW.process = false;
                     $scope.widgetSwitchRGBW.alert = {
                         message: $scope._t('error_update_data'),
@@ -414,7 +458,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         if (typeof colorHex !== 'undefined' && colorHex.lenght > 0) {
             var rgb = hexToRgb(colorHex);
             $scope.widgetSwitchRGBW.find.metrics.color = rgb;
-            updatePreviewColor(rgb.r,rgb.g,rgb.b);
+            updatePreviewColor(rgb.r, rgb.g, rgb.b);
         }
     };
 
@@ -436,7 +480,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     $scope.sliderOnHandleUpRGB = function(input) {
         $scope.setRGBColor(input);
         $interval.cancel(sliderInterval);
-    }; 
+    };
 
     /**
      * Calls function when slider handle is released
@@ -453,8 +497,10 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.all, {id: $scope.dataHolder.devices.find.id});
+    $scope.loadDeviceId = function() {
+        var device = _.where($scope.dataHolder.devices.all, {
+            id: $scope.dataHolder.devices.find.id
+        });
         if (_.isEmpty(device)) {
             $scope.widgetSwitchRGBW.alert = {
                 message: $scope._t('error_load_data'),
@@ -465,26 +511,25 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
         }
         angular.extend($scope.widgetSwitchRGBW.find, device[0]);
         var str = "ZWayVDev_zway";
-        if($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2,3,4])) { //TODO next release change
+        if ($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2, 3, 4])) { //TODO next release change
             var color = $scope.widgetSwitchRGBW.find.metrics.color;
             $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
             $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
         } else {
             var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
-            var zwayId = automationId.substr(automationId.lastIndexOf('_')+1);
-            dataFactory.runExpertCmd('devices['+zwayId+']').then(function (response) {
+            var zwayId = automationId.substr(automationId.lastIndexOf('_') + 1);
+            dataFactory.runExpertCmd('devices[' + zwayId + ']').then(function(response) {
                 if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
                     $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
                     var color = $scope.widgetSwitchRGBW.find.metrics.color;
                     $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
                     $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
-                }
-                else {
-                    dataFactory.getApi('devices', '', true).then(function (response) {
+                } else {
+                    dataFactory.getApi('devices', '', true).then(function(response) {
                         var devices = response.data.data;
 
                         var devs = _.filter(devices.devices, function(dev) {
-                            if(dev.id.indexOf(automationId) > -1) {
+                            if (dev.id.indexOf(automationId) > -1) {
                                 return dev;
                             }
                         });
@@ -497,12 +542,12 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
                         var color = find.metrics.color;
                         $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
                         $scope.loadRgbWheel(find);
-                        return;                            
-                    }, function (error) {
-                            console.log(error);
+                        return;
+                    }, function(error) {
+                        console.log(error);
                     });
                 }
-            }, function (error) {
+            }, function(error) {
                 $scope.widgetSwitchRGBW.alert = {
                     message: $scope._t('error_load_data'),
                     status: 'alert-danger',
@@ -513,21 +558,23 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     };
     $scope.loadDeviceId();
 
-    $scope.setRGBColor = function (input) {
+    $scope.setRGBColor = function(input) {
         var cmd = input.id + '/command/exact?red=' + input.metrics.color.r + '&green=' + input.metrics.color.g + '&blue=' + input.metrics.color.b + '',
             rgbColors = 'rgb(' + input.metrics.color.r + ',' + input.metrics.color.g + ',' + input.metrics.color.b + ')',
             rgbColorsObj = input.metrics.color;
 
         $scope.widgetSwitchRGBW.process = true;
-        dataFactory.runApiCmd(cmd).then(function (response) {
-            var findIndex = _.findIndex($scope.dataHolder.devices.collection, {id: input.id});
+        dataFactory.runApiCmd(cmd).then(function(response) {
+            var findIndex = _.findIndex($scope.dataHolder.devices.collection, {
+                id: input.id
+            });
             //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
             angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
             angular.extend($scope.widgetSwitchRGBW.find.metrics.color, rgbColorsObj);
             $scope.widgetSwitchRGBW.colorHex = rgbToHex(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
             $scope.widgetSwitchRGBW.process = false;
             $scope.widgetSwitchRGBW.selectedColor = rgbColors;
-        }, function (error) {
+        }, function(error) {
             $scope.widgetSwitchRGBW.process = false;
             $scope.widgetSwitchRGBW.alert = {
                 message: $scope._t('error_update_data'),
@@ -539,7 +586,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
 
     /// --- Private functions --- ///
 
-    function updatePreviewColor(r,g,b) {
+    function updatePreviewColor(r, g, b) {
         // update preview color
         var pixelColor = "rgb(" + r + ", " + g + ", " + b + ")";
         pixelColor = (pixelColor == 'rgb(0, 0, 0)' ? $scope.widgetSwitchRGBW.selectedColor : pixelColor);
@@ -556,7 +603,7 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
     }
 
     function rgbToHex(r, g, b) {
-         return "#" + ((1 << 24) + (parseInt(r, 10) << 16) + (parseInt(g, 10) << 8) + parseInt(b, 10)).toString(16).slice(1);
+        return "#" + ((1 << 24) + (parseInt(r, 10) << 16) + (parseInt(g, 10) << 8) + parseInt(b, 10)).toString(16).slice(1);
     }
 
 });
@@ -566,17 +613,21 @@ myAppController.controller('ElementSwitchRGBWController', function ($scope, data
  * The controller that handles SensorMultiline element.
  * @class ElementSensorMultilineController
  */
-myAppController.controller('ElementSensorMultilineController', function ($scope, $timeout, dataFactory, dataService) {
+myAppController.controller('ElementSensorMultilineController', function($scope, $timeout, dataFactory, dataService) {
     $scope.widgetSensorMultiline = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false}
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        }
     };
 
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+    $scope.loadDeviceId = function() {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
             var arr = [];
             arr[0] = response.data.data;
             $scope.widgetSensorMultiline.find = dataService.getDevicesData(arr).value()[0];
@@ -589,7 +640,7 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
                 return;
             }
             $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
-        }, function (error) {
+        }, function(error) {
             $scope.widgetSensorMultiline.alert = {
                 message: $scope._t('error_load_data'),
                 status: 'alert-danger',
@@ -601,10 +652,10 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
     /**
      * Run a command request
      */
-    $scope.runMultilineCmd = function (cmd, id) {
+    $scope.runMultilineCmd = function(cmd, id) {
         $scope.runCmd(cmd, id);
         $scope.loadDeviceId();
-        $timeout(function () {
+        $timeout(function() {
             $scope.loadDeviceId();
         }, 2000);
     };
@@ -615,10 +666,14 @@ myAppController.controller('ElementSensorMultilineController', function ($scope,
  * The controller that handles Camera element.
  * @class ElementCameraController
  */
-myAppController.controller('ElementCameraController', function ($scope, $interval) {
+myAppController.controller('ElementCameraController', function($scope, $interval) {
     $scope.widgetCamera = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false}
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        }
     };
 
     $scope.url = undefined;
@@ -626,7 +681,7 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
     /**
      * Set camera url
      */
-    $scope.setUrl = function () {
+    $scope.setUrl = function() {
         var url = $scope.widgetCamera.find.metrics.url;
         if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
             var now = new Date().getTime();
@@ -642,8 +697,10 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
+    $scope.loadDeviceId = function() {
+        var device = _.where($scope.dataHolder.devices.collection, {
+            id: $scope.dataHolder.devices.find.id
+        });
         if (_.isEmpty(device)) {
             $scope.widgetCamera.alert = {
                 message: $scope._t('error_load_data'),
@@ -666,17 +723,23 @@ myAppController.controller('ElementCameraController', function ($scope, $interva
  * The controller that handles Text element.
  * @class ElementTextController
  */
-myAppController.controller('ElementTextController', function ($scope) {
+myAppController.controller('ElementTextController', function($scope) {
     $scope.widgetText = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false}
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        }
     };
 
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
+    $scope.loadDeviceId = function() {
+        var device = _.where($scope.dataHolder.devices.collection, {
+            id: $scope.dataHolder.devices.find.id
+        });
         if (_.isEmpty(device)) {
             $scope.widgetText.alert = {
                 message: $scope._t('error_load_data'),
@@ -696,17 +759,23 @@ myAppController.controller('ElementTextController', function ($scope) {
  * The controller that handles OpenWeather element.
  * @class ElementOpenWeatherController
  */
-myAppController.controller('ElementOpenWeatherController', function ($scope) {
+myAppController.controller('ElementOpenWeatherController', function($scope) {
     $scope.widgetOpenWeather = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false}
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        }
     };
 
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        var device = _.where($scope.dataHolder.devices.collection, {id: $scope.dataHolder.devices.find.id});
+    $scope.loadDeviceId = function() {
+        var device = _.where($scope.dataHolder.devices.collection, {
+            id: $scope.dataHolder.devices.find.id
+        });
         if (_.isEmpty(device)) {
             $scope.widgetOpenWeather.alert = {
                 message: $scope._t('error_load_data'),
@@ -726,20 +795,25 @@ myAppController.controller('ElementOpenWeatherController', function ($scope) {
  * The controller that handles ClimateControl element.
  * @class ElementClimateControlController
  */
-myAppController.controller('ElementClimateControlController', function ($scope, $filter, dataFactory) {
+myAppController.controller('ElementClimateControlController', function($scope, $filter, dataFactory) {
     $scope.widgetClimateControl = {
         find: {},
         rooms: {},
-        alert: {message: false, status: 'is-hidden', icon: false},
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        },
         devicesId: _.indexBy($scope.dataHolder.devices.all, 'id')
     };
 
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+    $scope.loadDeviceId = function() {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
             var device = response.data.data;
+            console.log("device", device);
             if (_.isEmpty(device)) {
                 $scope.widgetSensorMultiline.alert = {
                     message: $scope._t('no_data'),
@@ -751,19 +825,22 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
             $scope.widgetClimateControl.find = device;
             $scope.widgetClimateControl.rooms = _.chain(device.metrics.rooms)
                 .flatten()
-                .filter(function (v) {
-                    angular.extend(v,
-                        {roomTitle: $scope.dataHolder.devices.rooms[v.room].title},
-                        {roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src},
-                        {sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null},
-                        {scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null}
-                    );
+                .filter(function(v) {
+                    angular.extend(v, {
+                        roomTitle: $scope.dataHolder.devices.rooms[v.room].title
+                    }, {
+                        roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src
+                    }, {
+                        sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null
+                    }, {
+                        scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null
+                    });
                     return v;
                 })
                 .value();
 
 
-        }, function (error) {
+        }, function(error) {
             $scope.widgetClimateControl.alert = {
                 message: $scope._t('error_load_data'),
                 status: 'alert-danger',
@@ -776,12 +853,18 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
     /**
      * Change climate element mode
      */
-    $scope.changeClimateControlMode = function (input) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.runApiCmd(input.cmd).then(function (response) {
-            $scope.widgetClimateControl.alert = {message: false};
+    $scope.changeClimateControlMode = function(input) {
+        $scope.loading = {
+            status: 'loading-spin',
+            icon: 'fa-spinner fa-spin',
+            message: $scope._t('updating')
+        };
+        dataFactory.runApiCmd(input.cmd).then(function(response) {
+            $scope.widgetClimateControl.alert = {
+                message: false
+            };
             $scope.loadDeviceId();
-        }, function (error) {
+        }, function(error) {
             $scope.widgetClimateControl.alert = {
                 message: $scope._t('error_update_data'),
                 status: 'alert-danger',
@@ -797,17 +880,21 @@ myAppController.controller('ElementClimateControlController', function ($scope, 
  * The controller that handles Security Control  module.
  * @class ElementSecurityControlController
  */
-myAppController.controller('ElementSecurityControlController', function ($scope, $filter, dataFactory) {
+myAppController.controller('ElementSecurityControlController', function($scope, $filter, dataFactory) {
     $scope.widgetSecurityControl = {
         find: {},
-        alert: {message: false, status: 'is-hidden', icon: false}
+        alert: {
+            message: false,
+            status: 'is-hidden',
+            icon: false
+        }
     };
 
     /**
      * Load single device
      */
-    $scope.loadDeviceId = function () {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function (response) {
+    $scope.loadDeviceId = function() {
+        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
             var device = response.data.data;
             if (_.isEmpty(device.metrics.lastTriggerList)) {
                 $scope.widgetSecurityControl.alert = {
@@ -819,7 +906,7 @@ myAppController.controller('ElementSecurityControlController', function ($scope,
 
             $scope.widgetSecurityControl.find = device;
 
-        }, function (error) {
+        }, function(error) {
             $scope.widgetSecurityControl.alert = {
                 message: $scope._t('error_load_data'),
                 status: 'alert-danger',
