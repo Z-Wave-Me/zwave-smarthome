@@ -14423,7 +14423,7 @@ fieldset section, .fieldset section {
 }
 
 /* line 140, ../sass/base/_accordion.scss */
-.accordion-wrap.active .accordion-toggle > button {
+.accordion-wrap.active > .accordion-toggle > button {
   font-weight: bold;
 }
 

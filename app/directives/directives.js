@@ -511,15 +511,13 @@ myApp.directive('bbAccordion', function () {
         var isCollapsed = (elem.attr('aria-expanded') === 'false');
         var wrap = elem.closest('.accordion-wrap');
         // Collapse and reset all children accordions
-        wrap.parents("[data-collapse-all]").children().each(function () {
+        wrap.closest("[data-collapse-all]").children().each(function () {
           $(this).removeClass('active');
           $(this).find('.accordion-toggle:first').find('button:first').attr('aria-expanded', false);
           $(this).find('.accordion:first').attr('hidden', true);
         });
-        console.log('isCollapsed',isCollapsed)
-        console.log( wrap.parents("[data-collapse-all]").length)
         // Expand current ellement when collapsed
-        if (isCollapsed || !wrap.parents("[data-collapse-all]").length) {
+        if (isCollapsed || !wrap.closest("[data-collapse-all]").length) {
           elem.attr('aria-expanded', function (_, attr) {
             return attr == 'true' ? false : true;
           });

@@ -136,7 +136,7 @@ $accordion-focus-color: $focus-color;
 
 .accordion-wrap {
   &.active{
-    .accordion-toggle{
+    > .accordion-toggle{
       > button{
         font-weight: bold;
       }

@@ -20,29 +20,31 @@
 </div>
 <!-- assigned -->
 <legend>{{_t('assigned_conditions')}}</legend>
-<section class="accordion-wrap" ng-repeat="n in d.tests track by $index" ng-init="model=n">
-    <span class="label label-default index_{{$index}}">{{rule.input.params.advanced.tests[testIndex].logicalOperator| uppercase}}</span>
-    <h2 class="accordion-toggle ellipsis">
-       <!-- Title -->
-       <button type="button" aria-expanded="false" bb-accordion ng-class="{'no-toggle': n.type == 'toggleButton'}" ng-switch="n.type">
-          <span ng-switch-when="nested">{{n.type}}</span>
-          <span ng-switch-when="time">{{n.level}}</span>
-         <span ng-switch-default>{{rule.namespaces[n.deviceId].deviceName || _t('device_removed') + ': ' + n.deviceId}}</span>
-         
-       </button>
-       <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTestNested($index,n.deviceId,testIndex)">
-         <i class="fa fa-times text-danger"></i>
-         </span>
-     </h2>
-      <!-- Content -->
-      <div class="accordion" ng-include="'app/views/automation/rules/inputs/'+ n.type +'.html'" ng-if="n.type != 'toggleButton'"
-       hidden></div>
-     <!-- <div class="accordion" bb-remove-attr="{{expand['test_nested_' + testIndex + $index] ? 'hidden': ''}}" ng-include="'app/views/automation/rules/inputs/'+ n.type +'.html'" ng-if="n.type != 'toggleButton'"
-       hidden></div> -->
-   </section>
+<div data-collapse-all="true">
+  <section class="accordion-wrap" ng-repeat="n in d.tests track by $index" ng-init="model=n">
+      <span class="label label-default index_{{$index}}">{{rule.input.params.advanced.tests[testIndex].logicalOperator| uppercase}}</span>
+      <h2 class="accordion-toggle ellipsis">
+         <!-- Title -->
+         <button type="button" aria-expanded="false" bb-accordion ng-class="{'no-toggle': n.type == 'toggleButton'}" ng-switch="n.type">
+            <span ng-switch-when="nested">{{n.type}}</span>
+            <span ng-switch-when="time">{{n.level}}</span>
+           <span ng-switch-default>{{rule.namespaces[n.deviceId].deviceName || _t('device_removed') + ': ' + n.deviceId}}</span>
+           
+         </button>
+         <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTestNested($index,n.deviceId,testIndex)">
+           <i class="fa fa-times text-danger"></i>
+           </span>
+       </h2>
+        <!-- Content -->
+        <div class="accordion" ng-include="'app/views/automation/rules/inputs/'+ n.type +'.html'" ng-if="n.type != 'toggleButton'"
+         hidden></div>
+       <!-- <div class="accordion" bb-remove-attr="{{expand['test_nested_' + testIndex + $index] ? 'hidden': ''}}" ng-include="'app/views/automation/rules/inputs/'+ n.type +'.html'" ng-if="n.type != 'toggleButton'"
+         hidden></div> -->
+     </section>
+</div>
     <!-- devices -->
     <legend>{{_t('available_conditions')}}</legend>
-    <div bb-child-elem_="rule.advanced.tests.assignedDevices">
+    <div data-collapse-all="true" bb-child-elem_="rule.advanced.tests.assignedDevices">
    <section class="accordion-wrap _available-devices" ng-repeat="r in rule.rooms track by $index" ng-if="rule.advanced.tests.devicesInRoom[r.id]">
       <!-- Title -->
       <h2 class="accordion-toggle chevron">
