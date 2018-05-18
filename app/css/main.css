@@ -14343,7 +14343,7 @@ fieldset section, .fieldset section {
 .accordion-toggle > button::after {
   margin-left: 10px;
   padding: 10px;
-  font-size: 120%;
+  font-size: 105%;
 }
 /* line 46, ../sass/base/_accordion.scss */
 .accordion-toggle > button[aria-expanded="false"]::after {
@@ -14420,6 +14420,11 @@ fieldset section, .fieldset section {
 .accordion {
   border-bottom: dotted 1px #cccccc;
   padding-bottom: 10px;
+}
+
+/* line 140, ../sass/base/_accordion.scss */
+.accordion-wrap.active .accordion-toggle > button {
+  font-weight: bold;
 }
 
 /* TODO: deprecated
@@ -18843,18 +18848,14 @@ img.widget-promo-image {
 .accordion-wrap .accordion-toggle button em {
   font-size: 80%;
 }
-/* line 66, ../sass/base/_automation.scss */
-.accordion-wrap .accordion-toggle button .is-legend {
-  font-weight: bold;
-}
-/* line 70, ../sass/base/_automation.scss */
+/* line 67, ../sass/base/_automation.scss */
 .accordion-wrap .accordion-toggle .no-toggle {
   padding: 10px 0;
   width: 100%;
   font-weight: normal;
   border-bottom: dotted 1px #cccccc;
 }
-/* line 80, ../sass/base/_automation.scss */
+/* line 77, ../sass/base/_automation.scss */
 .accordion-wrap .accordion {
   padding: 10px;
   border-bottom: 0;
@@ -18863,48 +18864,48 @@ img.widget-promo-image {
     border: solid 1px darken(#F6F6F6, 20%)
   } */
 }
-/* line 84, ../sass/base/_automation.scss */
+/* line 81, ../sass/base/_automation.scss */
 .accordion-wrap .accordion .form-group {
   border: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 89, ../sass/base/_automation.scss */
+/* line 86, ../sass/base/_automation.scss */
 .accordion-wrap .accordion:last-child {
   margin-bottom: 0;
 }
-/* line 98, ../sass/base/_automation.scss */
+/* line 95, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle {
   opacity: 0.7;
 }
-/* line 100, ../sass/base/_automation.scss */
+/* line 97, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button {
   cursor: text;
   padding: 10px 0;
 }
-/* line 103, ../sass/base/_automation.scss */
+/* line 100, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button::after {
   content: "" !important;
 }
-/* line 106, ../sass/base/_automation.scss */
+/* line 103, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion-toggle > button[aria-expanded="true"] {
   border-bottom: dotted 1px #cccccc;
 }
-/* line 111, ../sass/base/_automation.scss */
+/* line 108, ../sass/base/_automation.scss */
 .accordion-wrap.no-items .accordion {
   display: none;
 }
-/* line 116, ../sass/base/_automation.scss */
+/* line 113, ../sass/base/_automation.scss */
 .accordion-wrap.nested legend,
 .accordion-wrap.nested .legend {
   padding: 20px 10px 5px 0;
   font-size: 110%;
 }
-/* line 123, ../sass/base/_automation.scss */
+/* line 120, ../sass/base/_automation.scss */
 .accordion-wrap.nested .accordion .accordion {
   margin-bottom: 20px;
 }
-/* line 130, ../sass/base/_automation.scss */
+/* line 127, ../sass/base/_automation.scss */
 .accordion-wrap.edit-me .accordion-toggle button {
   font-weight: bold;
 }
@@ -20152,16 +20153,21 @@ body.night-false {
   /* line 233, ../sass/custom/_shui.scss */
   .night-false .accordion-wrap.active {
     padding: 10px;
+    margin: 10px;
     border: solid 2px #dff0d8;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   }
 }
+/* line 246, ../sass/custom/_shui.scss */
+.night-false fieldset .accordion-wrap.active {
+  margin: 10px 0;
+}
 
 /* Security  Notification 
 -------------------------------------------------- */
-/* line 249, ../sass/custom/_shui.scss */
+/* line 258, ../sass/custom/_shui.scss */
 .automation .notification {
   margin: 20px 0;
   padding: 10px;
@@ -20170,12 +20176,12 @@ body.night-false {
 
 /* Footer
     -------------------------------------------------- */
-/* line 260, ../sass/custom/_shui.scss */
+/* line 269, ../sass/custom/_shui.scss */
 #footer .container {
   display: flex;
   justify-content: space-between;
 }
-/* line 263, ../sass/custom/_shui.scss */
+/* line 272, ../sass/custom/_shui.scss */
 #footer .container span:last-child {
   margin-left: auto;
 }

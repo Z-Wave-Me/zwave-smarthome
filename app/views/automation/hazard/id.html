@@ -20,15 +20,15 @@
       <section ng-if="_.size(hazardProtection.input.params.triggerEvent) || _.size(hazardProtection.input.params.sendNotifications)">
         <!-- Asigned devices -->
         <legend ng-if="_.size(hazardProtection.input.params.triggerEvent)">{{_t('assigned_devices')}}</legend>
-        <fieldset ng-include="'app/views/automation/hazard/id_devices_assigned.html'"></fieldset>
+        <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/id_devices_assigned.html'"></fieldset>
         <!-- Asigned notifiers -->
         <legend ng-if="_.size(hazardProtection.input.params.sendNotifications)">{{_t('assigned_notifications')}}</legend>
-        <fieldset ng-include="'app/views/automation/hazard/id_notifiers_assigned.html'"></fieldset>
+        <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/id_notifiers_assigned.html'"></fieldset>
       </section>
       <section ng-if="_.size(hazardProtection.input.params.sensors)">
         <!-- Available devices -->
         <legend>{{_t('lb_available_devices')}}</legend>
-        <fieldset ng-include="'app/views/automation/hazard/id_devices_available.html'"></fieldset>
+        <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/id_devices_available.html'"></fieldset>
       </section>
       <section ng-if="_.size(hazardProtection.input.params.sensors)">
         <!-- Notifications -->

@@ -1,13 +1,3 @@
-<!-- delay -->
-
-<div class="form-group form-inline">
-  <label>{{_t('security_delay_before_alarm')}}</label>
-  <div class="input-group">
-    <input class="form-control" type="number" ng-model="security.input.params.times.silent">
-  </div>
-  <bb-help-text trans="_t('help_security_delay_before_alarm')"></bb-help-text>
-</div>
-
 <!-- list -->
 <div class="panel-wrap">
   <div class="list-panel" ng-repeat="d in security.devices.input track by $index" ng-if="security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]">

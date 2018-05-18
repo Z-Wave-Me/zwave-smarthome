@@ -39,7 +39,7 @@ $accordion-focus-color: $focus-color;
     &::after{
       margin-left: $accordion-spacing;
       padding: $spacing;
-      font-size: 120%;
+      font-size: 105%;
     }
     &[aria-expanded="false"]{
      
@@ -132,6 +132,17 @@ $accordion-focus-color: $focus-color;
 .accordion{
   border-bottom: dotted 1px $accordion-border-color;
   padding-bottom: $accordion-spacing;
+}
+
+.accordion-wrap {
+  &.active{
+    .accordion-toggle{
+      > button{
+        font-weight: bold;
+      }
+    }
+   
+  }
 }
 
 /* TODO: deprecated

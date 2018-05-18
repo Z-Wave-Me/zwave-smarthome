@@ -13,17 +13,17 @@
       
     </div>
     <!-- ////////////////////////////////////////// Actions  ////////////////////////////////////////// -->
-    <div ng-if="security.tab ==2">
+    <div ng-if="security.tab ==2" data-collapse-all="true">
+      <!-- Alarm -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
       <!-- Silent alarm -->
-      <fieldset ng-include="'app/views/automation/security/actions/silent_alarm.html'"></fieldset>
-      <!-- Silent alarm -->
-      <fieldset ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/silent_alarm.html'"></fieldset>
       <!-- Arming -->
-      <fieldset ng-include="'app/views/automation/security/actions/arming.html'"></fieldset>
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/arming.html'"></fieldset>
       <!-- Disarming -->
-      <fieldset ng-include="'app/views/automation/security/actions/disarming.html'"></fieldset>
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/disarming.html'"></fieldset>
       <!-- Reset -->
-      <fieldset ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
     </div>
     <!-- ////////////////////////////////////////// Time triggering  ////////////////////////////////////////// -->
     <div ng-if="security.tab == 3">

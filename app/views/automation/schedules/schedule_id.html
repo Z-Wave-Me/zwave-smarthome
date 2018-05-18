@@ -12,11 +12,11 @@
        <!-- Used -->
        <div ng-if="schedule.assignedDevices.length">
           <legend>{{_t('assigned_devices')}}</legend>
-          <fieldset ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
+          <fieldset data-collapse-all="true" ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
        </div>
       <!-- Available -->
       <legend>{{_t('lb_available_devices')}}</legend>
-      <fieldset bb-child-elem="schedule.assignedDevices" ng-include="'app/views/automation/schedules/schedule_id_available.html'"></fieldset>
+      <fieldset data-collapse-all="true" bb-child-elem="schedule.assignedDevices" ng-include="'app/views/automation/schedules/schedule_id_available.html'"></fieldset>
       <!-- Submit  -->
       <fieldset class="submit-entry">
         <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>

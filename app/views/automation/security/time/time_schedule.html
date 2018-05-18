@@ -16,6 +16,7 @@
       <bb-help-text trans="_t('help_security_alarm_interval')"></bb-help-text>
   </div> -->
 <!-- Table -->
+
 <table class="table-responsive security-schedule">
   <thead>
     <th class="l-hide">&nbsp;</th>
@@ -90,15 +91,12 @@
   </tbody>
 </table>
 
-<!--Time -->
-<div class="form-inline">
-
   <!-- <label>Time (HH:MM)</label>
   <div class="input-group">
     <input type="time" class="form-control" ng-model="security.cfg.times.default.times">
   </div> -->
 
-  <div class="fieldset submit-entry">
+  <div class="section text-right">
     <button type="button" title="{{_t('add_new')}}" class="btn btn-submit" ng-click="assignTimeScheduler()">
       <i class="fa fa-plus"></i>
       &nbsp;{{_t('add_new_scheduler')}}

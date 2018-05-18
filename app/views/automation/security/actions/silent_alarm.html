@@ -1,9 +1,9 @@
-<section class="accordion-wrap">
+
   <!-- Title -->
   <h2 class="accordion-toggle chevron">
     <button type="button" aria-expanded="false" bb-accordion>
       <span class="is-legend">
-        {{_t('delete_alarm')}}
+        {{_t('alarm_delay')}}
         <span class="item-cnt"> ({{_.size(security.input.params.silentAlarms.table)}})</span>
       </span>
     </button>
@@ -12,6 +12,18 @@
   <div class="accordion no-bcg" hidden>
     <!-- Assigned -->
     <div class="panel-wrap">
+      <!-- Delay -->
+      <div class="list-panel">
+          <div class="body form-inline">
+              <label>{{_t('security_delay_before_alarm')}}</label>
+              <div class="input-group">
+                <input class="form-control" type="number" ng-model="security.input.params.times.silent">
+              </div>
+              <bb-help-text trans="_t('help_security_delay_before_alarm')"></bb-help-text>
+              
+           </div>
+         </div>
+           <!-- List -->
       <div class="list-panel" ng-repeat="d in security.devices.alarms track by $index" ng-if="security.input.params.silentAlarms.table[getModelIndex(d.deviceId,'silentAlarms.table')]">
         <!-- img -->
         <figure class="img wh-32x32">
@@ -56,4 +68,3 @@
       </a>
     </div>
   </div>
-</section>

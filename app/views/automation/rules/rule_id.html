@@ -48,7 +48,7 @@
           </div>
           <!-- Available -->
           <legend>{{_t('lb_available_devices')}}</legend>
-          <fieldset bb-child-elem="rule.target.assignedDevices" ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_simple_if_available.html'"></fieldset>
+          <fieldset data-collapse-all="true" bb-child-elem="rule.target.assignedDevices" ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_simple_if_available.html'"></fieldset>
         </div>
         <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
         <div ng-if="rule.tab == 'then'">
@@ -57,16 +57,16 @@
           <!-- Assigned devices -->
           <div ng-if="_.size(rule.input.params.simple.targetElements)">
             <legend>{{_t('assigned_devices')}}</legend>
-            <fieldset ng-include="'app/views/automation/rules/rule_id_simple_then_assigned.html'"></fieldset>
+            <fieldset data-collapse-all="true" ng-include="'app/views/automation/rules/rule_id_simple_then_assigned.html'"></fieldset>
           </div>
           <!-- Assigned notifications -->
           <div ng-if="_.size(rule.input.params.simple.sendNotifications)">
             <legend>{{_t('assigned_notifications')}}</legend>
-            <fieldset ng-include="'app/views/automation/rules/rule_id_simple_then_assigned_notifications.html'"></fieldset>
+            <fieldset data-collapse-all="true" ng-include="'app/views/automation/rules/rule_id_simple_then_assigned_notifications.html'"></fieldset>
           </div>
           <!-- Available -->
           <legend>{{_t('lb_available_devices')}}</legend>
-          <fieldset bb-child-elem="rule.target.assignedDevices" ng-include="'app/views/automation/rules/rule_id_simple_then_available.html'"></fieldset>
+          <fieldset data-collapse-all="true" bb-child-elem="rule.target.assignedDevices" ng-include="'app/views/automation/rules/rule_id_simple_then_available.html'"></fieldset>
         </div>
         <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
         <fieldset ng-if="rule.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_simple_else.html'"></fieldset>
@@ -81,11 +81,11 @@
           <!-- Assigned -->
           <div ng-if="_.size(rule.input.params.advanced.tests)">
             <legend>{{_t('assigned_conditions')}}</legend>
-            <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_assigned.html'"></fieldset>
+            <fieldset data-collapse-all="true" ng-include="'app/views/automation/rules/rule_id_advanced_if_assigned.html'"></fieldset>
           </div>
           <!-- Available -->
           <legend>{{_t('available_conditions')}}</legend>
-          <fieldset bb-child-elem="rule.advanced.tests.assignedDevices" ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
+          <fieldset data-collapse-all="true" bb-child-elem="rule.advanced.tests.assignedDevices" ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
         </div>
         <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
         <div ng-if="rule.advanced.tab == 'then'">
