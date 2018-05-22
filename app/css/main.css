@@ -19327,6 +19327,66 @@ img.widget-promo-image {
   font-weight: normal;
 }
 
+/* Flextag
+-------------------------------------------------- */
+/* line 4, ../sass/base/_flextag.scss */
+.flextag {
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-align-items: center;
+  align-items: center;
+}
+/* line 10, ../sass/base/_flextag.scss */
+.flextag > * {
+  flex: 1 auto;
+  padding: 5px 10px;
+  border: 1px solid #cccccc;
+  color: #0d0d0d;
+  background-color: #FFFFFF;
+  border-color: #CCCCCC;
+  margin: 5px 2px;
+  position: relative;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  /* @include appBorderRadius($app-border-radius);
+  @include displayFlex();
+  @include justifyContent(space-between); */
+   /*  &::before,::after{
+      content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-color: transparent;
+    border-style: solid;
+    }
+     &::before {
+    border-width: 7px;
+    border-right-color: $app-brand-success;
+    border-top-color:$app-brand-success;
+}
+
+ &::after {
+    border-radius: 0.4em;
+    border-width: 1.35em;
+    border-right-color: #0c0;
+    border-top-color: #0c0;
+} */
+}
+/* line 26, ../sass/base/_flextag.scss */
+.flextag > *::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  height: 20px;
+  width: 20px;
+  background: green;
+  transform: rotate(45deg);
+}
+
 /* Flexcard
 -------------------------------------------------- */
 /* line 7, ../sass/base/_security.scss */
