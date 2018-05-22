@@ -164,6 +164,7 @@
     "devices_text_wifi": "WiFi",
     "devices_text_zwave": "Z-Wave",
     "devices_to_room": "Alle Elemente zu Raum hinzufügen",
+    "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Hier erhalten Sie die aktuellsten Geräte- und Herstellerinformationen.",
     "device_exists": "Das Gerät existiert bereits. Bitte erneut installieren.",
     "device_no_event": "Dieses Gerät hat keine Events",
