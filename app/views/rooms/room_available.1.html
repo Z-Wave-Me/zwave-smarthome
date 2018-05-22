@@ -1,6 +1,6 @@
-<div class="device-available-block">
-  <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) === -1 || d.location === 0"
+<div class="flextag">
+  <button class="btn_ btn-default_" title="{{d.metrics.title}}" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) === -1 || d.location === 0"
     ng-click="assignDevice(d)">{{d.metrics.title|cutText:true:20}}
-    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
-  </a>
+    <!-- <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i> -->
+</button>
 </div>

@@ -60,11 +60,11 @@
       </div>
     </div>
     <!-- Available devices -->
-    <h3>{{_t('devices_trigger_alarm')}}</h3>
+    <h3>{{_t('devices_triggered_arming')}}</h3>
     <div>
       <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.armConfirm track by $index"
-        ng-if="!security.input.params.armConfirm.table[getModelIndex(d.deviceId,'armConfirm.table')]" ng-click="assignDevice(d.deviceId,'armConfirm')">{{d.deviceName|cutText:true:20}}
-        <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+        ng-if="!security.input.params.armConfirm.table[getModelIndex(d.deviceId,'armConfirm.table')]" ng-click="assignDevice(d.deviceId,'armConfirm')"> <em class="item-cnt">{{d.locationName}}</em>
+        <div>{{d.deviceName|cutText:true:20}} <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i></div>
       </a>
     </div>
   </div>
