@@ -164,6 +164,7 @@
     "devices_text_wifi": "WiFi",
     "devices_text_zwave": "Z-Wave",
     "devices_to_room": "分配所有设备到房间",
+    "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Update the device database.",
     "device_exists": "设备已经存在，卸载然后重新安装.",
     "device_no_event": "设备没有任何事件 ",

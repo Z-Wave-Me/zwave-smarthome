@@ -164,6 +164,7 @@
     "devices_text_wifi": "WiFi",
     "devices_text_zwave": "Z-Wave",
     "devices_to_room": "Tilldela alla enheter till rum",
+    "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Update the device database.",
     "device_exists": "Enheten existerar redan. Avinstallera enheten och installera den igen.",
     "device_no_event": "Denna enhet har inte någon händelse",
