@@ -40,7 +40,7 @@
           <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['clean']||false}}" ng-click="expandElement('clean')">
           </button>
         </div>
-        <div class="control-collapsable" ng-include="'app/views/automation/security/trigger/notification.html'"
+        <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification.html'"
         ng-init="model = security.input.params.clean.notification"
         ng-class="!expand['clean'] ? 'expand-true': 'expand-false'"></div>
       </div>

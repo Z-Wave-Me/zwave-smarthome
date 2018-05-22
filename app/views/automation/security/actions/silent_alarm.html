@@ -15,9 +15,10 @@
       <!-- Delay -->
       <div class="list-panel">
           <div class="body form-inline">
-              <label>{{_t('security_delay_before_alarm')}}</label>
-              <div class="input-group">
+             <div class="flex-input-group number-control">
+                <label>{{_t('security_delay_before_alarm')}}</label>
                 <input class="form-control" type="number" ng-model="security.input.params.times.silent">
+                <span>{{_t('seconds')}}</span>
               </div>
               <bb-help-text trans="_t('help_security_delay_before_alarm')"></bb-help-text>
               
@@ -55,7 +56,7 @@
           <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['silentAlarms']||false}}" ng-click="expandElement('silentAlarms')">
           </button>
         </div>
-        <div class="control-collapsable" ng-include="'app/views/automation/security/trigger/notification.html'"
+        <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification.html'"
         ng-init="model = security.input.params.silentAlarms.notification"
         ng-class="!expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>
       </div>
