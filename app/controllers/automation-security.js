@@ -41,7 +41,7 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
 myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
     routeId: 0,
-    tab: 1,
+    tab: 3,
     days: [1, 2, 3, 4, 5, 6, 0],
     devices: {
       input: [],
@@ -159,6 +159,133 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       },
     }
   };
+/**
+   *  Schedule
+   */
+  $scope.scheduleOptions = {
+    startTime: "00:00", // schedule start time(HH:ii)
+    endTime: "24:00", // schedule end time(HH:ii)
+    widthTime: 60 * 5, // cell timestamp  5 minutes
+    timeLineY: 30, // height(px)
+    verticalScrollbar: 20, // scrollbar (px)
+    timeLineBorder: 2, // border(top and bottom)
+    rows: {
+        '0': {
+            title: 'day_short_0',
+            schedule: []
+        },
+        '1': {
+            title: 'day_short_1',
+            schedule: []
+        },
+        '2': {
+            title: 'day_short_2',
+            schedule: []
+        },
+        '3': {
+            title: 'day_short_3',
+            schedule: []
+        },
+        '4': {
+            title: 'day_short_4',
+            schedule: []
+        },
+        '5': {
+            title: 'day_short_5',
+            schedule: []
+        },
+        '6': {
+            title: 'day_short_6',
+            schedule: []
+        }
+    },
+    change: function(node, data) {},
+    init_data: function(node, data) {},
+    click: function(node, data) {},
+    append: function(node, data) {},
+    time_click: function(time, data, timeline, timelineData) {
+        console.log("this", this);
+        console.log("time", time);
+        console.log("data", data);
+        console.log("timeline", timeline);
+        console.log("timelineData", timelineData);
+
+        var roomId = $(this).attr('id').split("-")[1],
+            temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp,
+            start = this.calcStringTime(data),
+            end = start + 3600,
+            newEntry = {
+                data: {
+                    temp: temp
+                },
+                start: start,
+                end: end,
+                text: temp + " C°",
+                timeline: parseInt(timeline)
+            };
+        this.addScheduleData(newEntry);
+        $scope.updateData();
+    },
+    append_on_click: function(timeline, startTime, endTime) {
+        var start = this.calcStringTime(startTime),
+            end = this.calcStringTime(endTime),
+            roomId = $(this).attr('id').split("-")[1],
+            temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp;
+
+        end = end == start ? end + 3600 : end;
+
+        var newEntry = {
+            timeline: parseInt(timeline),
+            start: start,
+            end: end,
+            text: temp + " C°",
+            data: {
+                temp: temp
+            }
+        };
+
+        this.addScheduleData(newEntry);
+        $scope.updateData();
+    },
+    bar_Click: function(node, timelineData, scheduleIndex) {
+        console.log("timelineData", timelineData);
+        $scope.heating.tempModal.scheduleId = "#" + $(this).attr('id');
+        $scope.heating.tempModal.timeline = timelineData.timeline;
+        $scope.heating.tempModal.stime = timelineData.start;
+        $scope.heating.tempModal.etime = timelineData.end;
+        $scope.heating.tempModal.scheduleIndex = scheduleIndex;
+        $scope.heating.tempModal.title = this.formatTime(timelineData.start) + " - " + this.formatTime(timelineData.end);
+        $scope.heating.tempModal.temp.value = timelineData.data.temp;
+        $scope.handleModal('temperatureModal');
+    },
+    connect: function(data) {
+        var roomId = $(this).attr('id').split("-")[1],
+            temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp;
+        data.data.temp = temp;
+        data.text = temp + " C°";
+        this.addScheduleData(data);
+        $scope.updateData();
+    },
+    confirm: function() {
+        alertify.confirm($scope._t('confirm_connect'), function(e) {
+            if (e.cancel) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+    },
+    delete_bar: function() {
+        $scope.updateData();
+    }
+};
+$timeout(function() {
+  var elem = angular.element("#schedule-test");
+  //angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
+  console.log(elem)
+  elem.timeSchedule();
+},10);
+
 
   /**
    *  Reset Original data 
