@@ -29,7 +29,7 @@
 
 </div>
 
-<h3>{{_t('lb_available_devices')}}</h3>
+<h3>{{_t('devices_trigger_alarm')}}</h3>
 <div>
   <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.input track by $index"
     ng-if="!security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]" ng-click="assignDevice(d.deviceId,'input')">{{d.deviceName|cutText:true:20}}
