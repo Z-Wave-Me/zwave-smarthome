@@ -12,9 +12,9 @@ var config_data = {
         //Application name
         'app_name': 'SmartHome UI',
         // Application version
-        'app_version': '1.8.0-RC-54',
+        'app_version': '1.8.0-RC-55',
         // Application (DIST) built date
-        'app_built': '09-05-2018 15:45:38',
+        'app_built': '22-05-2018 10:39:49',
         // Application ID
         'app_id': 'SmartHomeUI',
         // Server base url
@@ -146,6 +146,7 @@ var config_data = {
             'add_dsk_provisioning_list': 'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST 
             'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
             'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
+            'locations_image': 'ZAutomation/api/v1/locations/image' // delete cutom room image // TODO: add backend
         },
         // List of remote api URLs
         'api_remote': {
