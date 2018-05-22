@@ -633,6 +633,7 @@
     "schedule": "Time-driven",
     "schedules": "Schedules",
     "schedule_info": "Add new entries with a click. Move entries with drag and drop.",
+    "seconds": "seconds",
     "secure_login": "J'ai confiance en mon réseau local",
     "security_alarm_interval": "Interval of alarm event repetition",
     "security_delay_before_alarm": "Delay before the alarm event is triggered",

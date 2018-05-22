@@ -633,6 +633,7 @@
     "schedule": "定时",
     "schedules": "Schedules",
     "schedule_info": "Add new entries with a click. Move entries with drag and drop.",
+    "seconds": "seconds",
     "secure_login": "I trust my local network",
     "security_alarm_interval": "Interval of alarm event repetition",
     "security_delay_before_alarm": "Delay before the alarm event is triggered",

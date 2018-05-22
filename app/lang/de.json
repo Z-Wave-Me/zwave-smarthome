@@ -633,6 +633,7 @@
     "schedule": "Zeitgesteuert",
     "schedules": "Zeitpläne",
     "schedule_info": "Hinzufügen von neuen Einträgen mit Klick. Verschieben von Einträgen mit drag and drop.",
+    "seconds": "sekunden",
     "secure_login": "Ich vertraue meinem lokalen Ethernet\/WLAN",
     "security_alarm_interval": "Intervall der Wiederholung des Alarmereignisses",
     "security_delay_before_alarm": "Verzögerung vor Auslösen des Alarmereignisses",
