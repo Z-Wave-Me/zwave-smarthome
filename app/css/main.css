@@ -11521,6 +11521,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 
 textarea {
   min-height: 150px;
+  width: 100%;
 }
 
 label {
@@ -11800,7 +11801,6 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
 
 .submit-entry {
   text-align: right;
-  display: block;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
@@ -11810,6 +11810,15 @@ fieldset.expanded .form-group, .fieldset.expanded .form-group {
     border-top: solid 1px #cccccc;
     background-color: #FFFFFF;
   }
+}
+
+.submit-entry.is-grid {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
 }
 
 fieldset.submit-entry {
@@ -12708,16 +12717,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert

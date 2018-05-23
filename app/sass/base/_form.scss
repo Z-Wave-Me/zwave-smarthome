@@ -40,6 +40,7 @@ input[type="date"], input[type="time"], input[type="datetime-local"], input[type
 
 textarea {
   min-height: 150px;
+  width: 100%;
 }
 
 label {
@@ -283,14 +284,16 @@ fieldset, .fieldset {
 
 .submit-entry {
   text-align: right;
-  display: block;
-  //margin: 10px 0 0 0;
- 
-  
   @include mediaQueries(min-small) {
     border-top: solid 1px $app-border-color;
     background-color: #FFFFFF;
   }
+  &.is-grid{
+    @include displayFlex();
+    @include justifyContent(space-between);
+    @include alignItems(center);
+  }
+
 }
 
 fieldset.submit-entry {

@@ -1,4 +1,5 @@
 {
+    "history_show_average_steps":"Zeige Durchschnittswerte von ",
     "activated_devices": "Aktivierte Geräte",
     "activate_module": "Aktiviere __module__",
     "activate_reverse_event": "Reverse-Ereignis aktivieren",
@@ -281,6 +282,8 @@
     "interval_1800": "halbe Stunde",
     "interval_300": "5 Minuten",
     "interval_3600": "1 Stunde",
+    "interval_7200": "2 Stunden",
+    "interval_14400": "4 Stunden",
     "interval_60": "1 Minute",
     "interval_600": "10 Minuten",
     "interval_900": "15 Minuten",
