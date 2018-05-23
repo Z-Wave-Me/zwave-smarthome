@@ -119,6 +119,7 @@
     "controller_info": "Kontrollerinformation ",
     "copy": "Copy",
     "copy_schedule": "Would you like to copy over the schedule from __src_room__ to __dest_room__? The schedule of __dest_room__ will be overwritten!",
+    "copy_schedule_info": "Please select the room from which you want to take over the schedule.",
     "creationTimeASC": "Oldest",
     "creationTimeDESC": "Newest",
     "ctrl_info_caps_cap_title": "Funktionaliteter:",
