@@ -301,7 +301,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
     $scope.init = function() {
         var obj = {
             temp: [6],
-            label: ["Frost Protection"]
+            label: [$scope._t('frostProtection')]
         };
         $scope.heating.cfg.energySave.temp = temperatureArray(obj, $scope.heating.cfg.energySave, "°C");
         $scope.heating.cfg.comfort.temp = temperatureArray(false, $scope.heating.cfg.comfort, "°C");
