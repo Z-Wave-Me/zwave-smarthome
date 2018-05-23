@@ -76,7 +76,7 @@
 										{{i.title}}
 									</option>
 								</select>
-								<button class="btn btn-default" type="button" ng-click="copySchedule(r.copyOption, r.id, _t('copy_schedule', {__src_room__: r.title, __dest_room__: heating.rooms[r.copyOption].title}))" ng-disabled="(r.copyOption == null || r.copyOption == 'null')">
+								<button class="btn btn-default" type="button" ng-click="copySchedule(r.copyOption, r.id, _t('copy_schedule', {__dest_room__: r.title, __src_room__: heating.rooms[r.copyOption].title}))" ng-disabled="(r.copyOption == null || r.copyOption == 'null')">
 								<i class="fa fa-copy"></i> {{_t('copy')}}
 								</button>
 								<bb-help-text trans="_t('copy_schedule_info')"></bb-help-text>

@@ -299,8 +299,12 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
      * @return {[type]} [description]
      */
     $scope.init = function() {
-        $scope.heating.cfg.energySave.temp = temperatureArray($scope.heating.cfg.energySave, "°C");
-        $scope.heating.cfg.comfort.temp = temperatureArray($scope.heating.cfg.comfort, "°C");
+        var obj = {
+            temp: [6],
+            label: [$scope._t('frostProtection')]
+        };
+        $scope.heating.cfg.energySave.temp = temperatureArray(obj, $scope.heating.cfg.energySave, "°C");
+        $scope.heating.cfg.comfort.temp = temperatureArray(false, $scope.heating.cfg.comfort, "°C");
     };
     $scope.init();
 
@@ -569,11 +573,13 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
      * @param  {[type]} scale [description]
      * @return {[objet]}       [description]
      */
-    function temperatureArray(temp, scale) {
-        var obj = {
-            temp: [],
-            label: []
-        };
+    function temperatureArray(obj, temp, scale) {
+        if (!obj) {
+            var obj = {
+                temp: [],
+                label: []
+            };
+        }
         for (var i = temp.min; i <= temp.max; i += temp.step) {
             obj.temp.push(i.toString());
             obj.label.push(i.toString() + " " + scale);
