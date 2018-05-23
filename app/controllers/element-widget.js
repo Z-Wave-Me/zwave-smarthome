@@ -96,7 +96,14 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
         chartData: {},
         chartOptions: {
             // Chart.js options can go here.
-            pointDot: false,
+            /*axisX: {
+                interval: 60,
+                intervalType : 'minute'
+            },*/
+            ticks: {
+                autoSkip: true,
+                maxTicksLimit: 20
+            },
             responsive: true
         },
         history_steps: 24,
@@ -206,7 +213,6 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
         angular.extend($scope.widgetHistory.chartData,{});
         $scope.widgetHistory.history_steps = steps;
         $scope.loadDeviceHistory();
-        document.getElementById('history_chart').update();
     };
 });
 
