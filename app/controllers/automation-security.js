@@ -41,7 +41,7 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
 myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
   $scope.security = {
     routeId: 0,
-    tab: 3,
+    tab: 1,
     days: [1, 2, 3, 4, 5, 6, 0],
     devices: {
       input: [],
@@ -279,12 +279,24 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         $scope.updateData();
     }
 };
-$timeout(function() {
+
+/* $timeout(function() {
   var elem = angular.element("#schedule-test");
   //angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
   console.log(elem)
-  elem.timeSchedule();
-},10);
+  $("#schedule-test").html('This is a test');
+  //elem.timeSchedule();
+},3); */
+
+$scope.loadSchedule = function () {
+  var elem = angular.element("#schedule-test");
+  //angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
+  console.log(elem)
+  elem.timeSchedule($scope.scheduleOptions);
+  //$("#schedule-test").html('This is a test');
+}
+
+
 
 
   /**
