@@ -98,7 +98,8 @@ var config_data = {
             'online_reset': 'ZAutomation/api/v1/modules/reset',
             'instances': 'ZAutomation/api/v1/instances',
             'namespaces': 'ZAutomation/api/v1/namespaces',
-            'history': 'ZAutomation/api/v1/history',
+            'history_get': 'HistoryAPI/Get',
+            'history_delete': 'HistoryAPI/Delete',
             'login': 'ZAutomation/api/v1/login',
             'logout': 'ZAutomation/api/v1/logout',
             'session': 'ZAutomation/api/v1/session',
@@ -359,9 +360,7 @@ var config_data = {
         // These elements will be displayed with the HISTORY icon
         // Other elements will be displayed with the EVENT icon
         'element_history': [
-            'switchMultilevel',
-            'sensorMultilevel',
-            'thermostat'
+            'sensorMultilevel'
         ],
         // Blacklist of the deviceTypes without icon
         // These elements will be displayed without the HISTORY or EVENT icon
