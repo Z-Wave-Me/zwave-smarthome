@@ -11,11 +11,10 @@
 <!-- ////////////////////////////////////////// targetElements  ////////////////////////////////////////// -->
 <section ng-if="rule.input.params.reverse">
   <!-- delay -->
-  <div class="form-group form-inline">
+  <div class="flex-input-group number-control">
     <label>{{_t('delay')}}</label>
-    <div class="input-group">
       <input class="form-control" id="then_delay" type="number" ng-model="rule.input.params.simple.reverseDelay">
-    </div>
+      <span>{{_t('seconds')}}</span>
     <bb-help-text trans="_t('help_delay')"></bb-help-text>
   </div>
   <div class="list-panel" ng-repeat="d in rule.input.params.simple.targetElements track by $index" ng-if="rule.else.deviceTypes.indexOf(d.deviceType) > -1">
