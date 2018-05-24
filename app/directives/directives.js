@@ -556,6 +556,30 @@ myApp.directive('bbTableAccordion', function () {
 });
 
 /**
+ * Toggle tab
+ */
+myApp.directive('bbTab', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attrs) {
+      elem.on('click', function (e) {
+        var tabId = elem.attr('data-href');
+        var wrap = elem.closest('.tab-wrap');
+        // Set all tabs to aria-selected="false" 
+        wrap.find('[role="tab"]').removeAttr('aria-selected');
+        // Adding  hidden attr to all tab panels
+        wrap.find('[role="tabpanel"]').attr('hidden', true);
+        // Set current tab to aria-selected="true"
+        elem.attr('aria-selected', true);
+        // Removing hidden attr from current tab panel
+        $(tabId).removeAttr('hidden').focus();
+        e.preventDefault();
+      });
+    }
+  };
+});
+
+/**
  * Remove attributte
  */
 myApp.directive('bbRemoveAttr', function () {

@@ -194,7 +194,6 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
             icon: 'fa-spinner fa-spin'
         };
         dataFactory.getApi('history_get', '?id=' + device.id + '&show='+$scope.widgetHistory.history_steps, true).then(function (response) {
-            $scope.widgetHistory.alert = {
             if (!response.data.history) {
                 $scope.widgetHistory.alert = {
                     message: $scope._t('no_data'),
@@ -203,9 +202,7 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
                 };
                 return;
             }
-            $scope.widgetHistory.alert = {
             $scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors);
-            };
         }, function(error) {
             $scope.widgetHistory.alert = {
                 message: $scope._t('error_load_data'),

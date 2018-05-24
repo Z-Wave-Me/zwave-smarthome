@@ -2,18 +2,20 @@
 <section class="automation" ng-controller="SecurityIdController">
 
   <h2>{{_t('title_security')}}</h2>
-  <!-- Tabs  -->
-  <div ng-include="'app/views/automation/security/tabs.html'"></div>
-  <!-- Form -->
+  <div class="tab-wrap" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
+    <!-- Tabs  -->
+    <div class="btn-group btn-group-justified btn-goup-tabs" role="tablist" ng-include="'app/views/automation/security/tabs.html'"></div>
+    <div id="schedule-disarm" class="schedule"></div>
+   <!-- Form -->
   <form class="form form-page" ng-submit="storeInstance(security.input,true)">
 
     <!-- //////////////////////////////////////////  Conditions ////////////////////////////////////////// -->
-    <div ng-if="security.tab == 1">
+    <div id="tabpanel1" role="tabpanel">
       <fieldset ng-include="'app/views/automation/security/conditions/conditions.html'"></fieldset>
       
     </div>
     <!-- ////////////////////////////////////////// Actions  ////////////////////////////////////////// -->
-    <div ng-if="security.tab ==2" data-collapse-all="true">
+    <div id="tabpanel2" role="tabpanel" hidden>
       <!-- Alarm -->
       <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
       <!-- Silent alarm -->
@@ -26,7 +28,7 @@
       <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
     </div>
     <!-- ////////////////////////////////////////// Time triggering  ////////////////////////////////////////// -->
-    <div ng-if="security.tab == 3">
+    <div id="tabpanel3" role="tabpanel" hidden>
       <fieldset ng-include="'app/views/automation/security/time/time_schedule.html'"></fieldset>
       <!-- <div class="section">
         <fieldset ng-include="'app/views/automation/security/time/time_settings.html'"></fieldset>
@@ -34,7 +36,7 @@
 
     </div>
     <!-- ////////////////////////////////////////// Dis-Arm by device  ////////////////////////////////////////// -->
-    <div ng-if="security.tab ==4">
+    <div id="tabpanel4" role="tabpanel" hidden>
       <fieldset ng-include="'app/views/automation/security/bydevice/bydevice.html'"></fieldset>
     </div>
 
@@ -60,6 +62,11 @@
 
     </div>
   </form>
+  </div>
+    
+  <!-- Tabs  -->
+  <!-- <div ng-include="'app/views/automation/security/tabs.html'"></div> -->
+  
   <!-- <pre>{{security.input|json}}</pre> -->
   </div>
   <!-- /ng-controller -->
