@@ -500,7 +500,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
      */
     $scope.deleteHistory = function(input, message, event) {
         alertify.confirm(message, function() {
-            dataFactory.deleteApi('history', input.id).then(function(response) {
+            dataFactory.deleteApi('history_delete', '?id='+input.id).then(function(response) {
                 dataService.showNotifier({
                     message: $scope._t('delete_successful')
                 });

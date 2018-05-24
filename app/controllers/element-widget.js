@@ -99,7 +99,7 @@ myAppController.controller('ElementChartController', function($scope, $sce, data
  * The controller that handles a device history.
  * @class ElementHistoryController
  */
-myAppController.controller('ElementHistoryController', function($scope, dataFactory, dataService, _) {
+myAppController.controller('ElementHistoryController', function ($scope, $window, $timeout, dataFactory, dataService, _) {
     $scope.widgetHistory = {
         find: {},
         alert: {
@@ -110,8 +110,68 @@ myAppController.controller('ElementHistoryController', function($scope, dataFact
         chartData: {},
         chartOptions: {
             // Chart.js options can go here.
-            //responsive: true
+            pointDot: false,
+            responsive: true
+        },
+        history_steps: 24,
+        history_steps_list: [
+            { 
+                key: $scope._t('interval_14400'),
+                value: 6
+            },
+            { 
+                key: $scope._t('interval_7200'),
+                value: 12
+            },
+            { 
+                key: $scope._t('interval_3600'),
+                value: 24
+            },
+            { 
+                key: $scope._t('interval_1800'),
+                value: 48
+            },
+            { 
+                key: $scope._t('interval_900'),
+                value: 96
+            },
+            {
+                key: $scope._t('interval_600'),
+                value: 144
+            },
+            { 
+                key: $scope._t('interval_300'),
+                value: 288
+            },
+            { 
+                key: $scope._t('interval_60'),
+                value: 1440
+            }
+        ]
+    };
+
+    $timeout(function(){
+        $scope.drawChart();
+    },0);
+
+    $scope.drawChart = function () {
+        var canvas = document.getElementById('history_chart'),
+            context = canvas.getContext('2d');
+
+        // resize the canvas to fill browser window dynamically
+        $window.addEventListener('resize', resizeCanvas, false);
+
+        function resizeCanvas() {
+                canvas.width = $window.innerWidth;
+                canvas.height = $window.innerHeight;
+
+                /**
+                 * Your drawings need to be inside this function otherwise they will be reset when 
+                 * you resize the browser window and the canvas goes will be cleared.
+                 */
+                $scope.loadDeviceHistory(); 
         }
+        resizeCanvas();
     };
 
     /**
@@ -133,11 +193,9 @@ myAppController.controller('ElementHistoryController', function($scope, dataFact
             status: 'alert-warning',
             icon: 'fa-spinner fa-spin'
         };
-        dataFactory.getApi('history', '/' + device.id + '?show=24', true).then(function(response) {
+        dataFactory.getApi('history_get', '?id=' + device.id + '&show='+$scope.widgetHistory.history_steps, true).then(function (response) {
             $scope.widgetHistory.alert = {
-                message: false
-            };
-            if (!response.data.data.deviceHistory) {
+            if (!response.data.history) {
                 $scope.widgetHistory.alert = {
                     message: $scope._t('no_data'),
                     status: 'alert-danger',
@@ -146,9 +204,8 @@ myAppController.controller('ElementHistoryController', function($scope, dataFact
                 return;
             }
             $scope.widgetHistory.alert = {
-                message: false
+            $scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors);
             };
-            $scope.widgetHistory.chartData = dataService.getChartData(response.data.data.deviceHistory, $scope.cfg.chart_colors);
         }, function(error) {
             $scope.widgetHistory.alert = {
                 message: $scope._t('error_load_data'),
@@ -156,10 +213,15 @@ myAppController.controller('ElementHistoryController', function($scope, dataFact
                 icon: 'fa-exclamation-triangle'
             };
         });
-
     };
-    $scope.loadDeviceHistory();
+    //$scope.loadDeviceHistory();
 
+    $scope.reloadChart = function (steps) {
+        angular.extend($scope.widgetHistory.chartData,{});
+        $scope.widgetHistory.history_steps = steps;
+        $scope.loadDeviceHistory();
+        document.getElementById('history_chart').update();
+    };
 });
 
 /**
