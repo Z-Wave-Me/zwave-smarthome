@@ -262,6 +262,10 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      * prepare notification data
      */
     function prepareNotification(v) {
+        if (!v.message) {
+            v.message = 'No Message';
+        }
+        
         v.icon = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
         if (v.message['l'] !== null && v.message['l'] !== undefined) {
             v.messageView = '<span><span>'+v.message.dev+' : ' +
