@@ -24,6 +24,7 @@
             bar_Click: function() {},
             connect: function() {},
             confirm: function() {},
+            delete_bar: function() {},
             debug: "" // debug selecter
         };
 
@@ -115,6 +116,7 @@
             var sc_key = $bar.data("sc_key");
             $bar.remove();
             delete scheduleData[sc_key];
+            setting.delete_bar();
         };
 
         // add schedule
@@ -123,6 +125,26 @@
             var et = Math.floor((data["end"] - tableStartTime) / setting.widthTime);
             var $bar = jQuery('<div class="sc_Bar"><div class="sc_Bar_inner"><span class="head"><span class="time"></span></span><span class="text"></span></div></div>');
             var $removeButton = jQuery('<div class="remove"><i class="fa fa-times"></i></div>');
+
+            var $timeline = $element.find('.sc_main .timeline').eq(data["timeline"]);
+
+            $removeButton.position({
+                my: "left top",
+                at: "right top",
+                of: $element.find('.sc_main'),
+                collison: "flip",
+                within: $timeline,
+                using: function(position, feedback) {
+                    console.log("position", position);
+                    console.log("feedback", feedback);
+                    // $(this).removeClass("bottom center top");
+                    // $(this).css({
+                    //     left: position.left - $element.offset().left + $element.position().left,
+                    //     top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
+                    // });
+                    // $(this).addClass(feedback.vertical).addClass(feedback.horizontal)
+                }
+            });
 
             $removeButton.bind("click", function(event) {
                 that.removeEntry(event);
@@ -146,7 +168,7 @@
                 $bar.addClass(data["class"]);
             }
             $bar.append($removeButton);
-            $element.find('.sc_main .timeline').eq(data["timeline"]).append($bar);
+            $timeline.append($bar);
 
             scheduleData.push(data);
             // key
@@ -200,13 +222,13 @@
                     }
                     console.log("dragging");
                     that.dragging = true;
-                    var $moveNode = jQuery(this);
-                    var sc_key = $moveNode.data("sc_key");
-                    var originalTop = ui.originalPosition.top;
-                    var originalLeft = ui.originalPosition.left;
-                    var positionTop = ui.position.top;
-                    var positionLeft = ui.position.left;
-                    var timelineNum = element.getTimeLineNumber(ui.position.top);
+                    var $moveNode = jQuery(this),
+                        sc_key = $moveNode.data("sc_key"),
+                        originalTop = ui.originalPosition.top,
+                        originalLeft = ui.originalPosition.left,
+                        positionTop = ui.position.top,
+                        positionLeft = ui.position.left,
+                        timelineNum = element.getTimeLineNumber(ui.position.top);
 
                     ui.position.left = Math.floor(ui.position.left / setting.widthTimeX) * setting.widthTimeX;
 
@@ -247,7 +269,6 @@
                         }
                     }
                     currentNode = null;
-
                 }
             });
 

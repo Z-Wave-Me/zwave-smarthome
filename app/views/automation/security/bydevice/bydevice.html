@@ -1,0 +1,52 @@
+ <!-- Assigned -->
+ <div class="panel-wrap">
+    <div class="list-panel" ng-repeat="d in security.devices.controls track by $index" ng-if="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]">
+      <!-- img -->
+      <figure class="img wh-32x32 clickable" ng-click="expandElement('securityControl_' + d.deviceId)" >
+        <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+      </figure>
+      <div class="body clickable" ng-click="expandElement('securityControl_' + d.deviceId)">
+        <div>{{d.deviceName}}  - <em class="item-cnt">{{d.locationName}}</em></div>
+      </div>
+      <div class="control">
+        <!-- expand/collapse -->
+    <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['securityControl_' + d.deviceId]||false}}" ng-click="expandElement('securityControl_' + d.deviceId)">
+      </button>
+        <!-- delete -->
+        <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'controls')">
+          <i class="fa fa-times text-danger"></i>
+        </button>
+      </div>
+      <div class="control-collapsable form-inline" ng-class="expand['securityControl_' + d.deviceId] ? 'expand-true': 'expand-false'">
+          <label>{{_t('arm_condition')}}</label>
+          <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].armCondition">
+            <!-- <option value="" ng-selected="true">{{_t('arm_condition')}}</option> -->
+            <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].armCondition == a">
+              {{_t(a)}}</option>
+          </select>
+          <label>{{_t('disarm_condition')}}</label>
+          <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].disarmCondition">
+            <!-- <option value="" ng-selected="true">{{_t('disarm_condition')}}</option> -->
+            <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].disarmCondition == a">
+              {{_t(a)}}</option>
+          </select>
+          <label>{{_t('reset_condition')}}</label>
+          <select class="form-control" ng-model="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].clearCondition">
+           <!--  <option value="" ng-selected="true">{{_t('reset_condition')}}</option> -->
+            <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')].clearCondition == a">
+              {{_t(a)}}</option>
+          </select>
+      </div>
+
+    </div>
+  </div>
+
+<!-- Available devices -->
+<h3>{{_t('devices_disarm_security')}}</h3>
+<div>
+  <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.controls track by $index"
+    ng-if="!security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]" ng-click="assignDevice(d.deviceId,'controls');expandElement('securityControl_' + d.deviceId)">
+    <em class="item-cnt">{{d.locationName}}</em>
+    <div>{{d.deviceName|cutText:true:20}} <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i></div>
+  </a>
+</div>

@@ -128,6 +128,7 @@ myAppController.controller('AutomationScheduleController', function ($scope, $ro
  */
 myAppController.controller('AutomationScheduleIdController', function ($scope, $routeParams, $location, $route, cfg, dataFactory, dataService, _, myCache) {
   $scope.schedule = {
+    show: true,
     days: [1, 2, 3, 4, 5, 6, 0],
     rooms: [],
     devicesInRoom: [],
@@ -288,6 +289,11 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
     })
     .indexBy('deviceId')
     .value();
+
+    if(!_.size($scope.schedule.availableDevices)){
+      $scope.schedule.show = false;
+      return;
+    }
 
       $scope.schedule.devicesInRoom = _.countBy($scope.schedule.availableDevices, function (v) {
         return v.location;

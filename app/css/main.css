@@ -9858,6 +9858,10 @@ img {
   white-space: nowrap;
 }
 
+.ng-show {
+  display: block !important;
+}
+
 /* Header
 -------------------------------------------------- */
 #header {
@@ -10407,6 +10411,19 @@ img {
   border-radius: 50%;
 }
 
+/* Page topbar
+-------------------------------------------------- */
+.page-topbar {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: dotted 1px #cccccc;
+}
+
 /* Widget
 -------------------------------------------------- */
 .app-row-widget {
@@ -10813,7 +10830,7 @@ img {
 
 .list-panel {
   background-color: #FFFFFF;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px dotted #cccccc;
   padding: 10px;
 }
 
@@ -11858,6 +11875,13 @@ fieldset.submit-entry {
   visibility: hidden;
 }
 
+/* Input
+-------------------------------------------------- */
+.flex-input-group.number-control input[type="number"] {
+  max-width: 100px;
+  display: inline-block;
+}
+
 /* Images
 -------------------------------------------------- */
 .img.wh-16x16 {
@@ -12356,6 +12380,10 @@ fieldset section, .fieldset section {
 /* Variables */
 /* NEW version
 -------------------------------------------------- */
+.accordion-toggle {
+  margin: 0;
+}
+
 .accordion-toggle > button {
   all: inherit;
   border: 0;
@@ -12381,10 +12409,14 @@ fieldset section, .fieldset section {
   /* Opera */
 }
 
+.accordion-toggle > button > span .fa:first-of-type {
+  font-size: 120%;
+}
+
 .accordion-toggle > button::after {
   margin-left: 10px;
   padding: 10px;
-  font-size: 130%;
+  font-size: 105%;
 }
 
 .accordion-toggle > button[aria-expanded="false"]::after {
@@ -12404,6 +12436,14 @@ fieldset section, .fieldset section {
   color: #5bc0de;
 }
 
+.accordion-toggle > button[disabled] {
+  cursor: text;
+}
+
+.accordion-toggle > button[disabled]::after {
+  content: "";
+}
+
 .accordion-toggle.chevron > button[aria-expanded="false"]::after {
   font-family: fontawesome;
   content: "\f078";
@@ -12412,6 +12452,10 @@ fieldset section, .fieldset section {
 .accordion-toggle.chevron > button[aria-expanded="true"]::after {
   font-family: fontawesome;
   content: "\f077";
+}
+
+.accordion-toggle.chevron > button[disabled]::after {
+  content: "";
 }
 
 .accordion-toggle.ellipsis > button[aria-expanded="false"]::after {
@@ -12450,53 +12494,55 @@ fieldset section, .fieldset section {
   padding-bottom: 10px;
 }
 
+.accordion-wrap.active > .accordion-toggle > button {
+  font-weight: bold;
+}
+
+/* TODO: deprecated
 /* Old version
 -------------------------------------------------- */
-.accordion-entry {
-  margin-bottom: 10px;
-  border-bottom: dotted 1px #cccccc;
-  color: #333333;
+/* .accordion-entry{
+    margin-bottom: $spacing;
+    border-bottom: dotted 1px $accordion-border-color;
+    color: $accordion-color;
+    &.disabled {
+      .accordion-entry-title {
+        color: #BDBDBD;
+        .fa {
+          color: #BDBDBD;
+          &.text-warning {
+              color: #8a6d3b;     
+          }
+        }
+      }  
+    }
+}
+.accordion-entry-title{
+    font-size: $accordion-heading-font-size; 
+    position: relative;
+    vertical-align: middle;
+    margin: $spacing 0;
+    color: $accordion-heading-color;
+    cursor: pointer;
+    .fa{
+        color: $accordion-icon-color;    
+        padding-right: $spacing;
+             font-size: $accordion-icon-size;  
+        }
+    .accordion-arrow{
+        position: absolute;
+        right: 1%;
+        display: inline-block;
+        padding:0;
+    }
 }
 
-.accordion-entry.disabled .accordion-entry-title {
-  color: #BDBDBD;
-}
-
-.accordion-entry.disabled .accordion-entry-title .fa {
-  color: #BDBDBD;
-}
-
-.accordion-entry.disabled .accordion-entry-title .fa.text-warning {
-  color: #8a6d3b;
-}
-
-.accordion-entry-title {
-  font-size: 120%;
-  position: relative;
-  vertical-align: middle;
-  margin: 10px 0;
-  color: #737373;
-  cursor: pointer;
-}
-
-.accordion-entry-title .fa {
-  color: #666666;
-  padding-right: 10px;
-  font-size: 120%;
-}
-
-.accordion-entry-title .accordion-arrow {
-  position: absolute;
-  right: 1%;
-  display: inline-block;
-  padding: 0;
-}
-
-.accordion-entry-ctrl p {
-  margin: 5px;
-  padding: 10px;
-}
-
+.accordion-entry-ctrl {
+    p {
+        margin: $spacing-half;
+        padding: $spacing;      
+    }
+} */
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
@@ -14331,6 +14377,46 @@ img.widget-promo-image {
 -------------------------------------------------- */
 /* Apps instances
 -------------------------------------------------- */
+#apps_instances .accordion-instances {
+  background-color: #FFFFFF;
+}
+
+#apps_instances .accordion-instances .accordion-toggle {
+  font-size: 100%;
+}
+
+#apps_instances .accordion-instances .accordion-toggle button {
+  padding: 5px;
+}
+
+#apps_instances .accordion-instances .accordion-toggle button > span {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+#apps_instances .accordion-instances .accordion-toggle button > span img {
+  max-width: 32px;
+  max-height: 32px;
+  display: inline;
+  margin-right: 14px;
+}
+
+#apps_instances .accordion-instances .accordion {
+  border-bottom: 0;
+  padding-bottom: 0;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  #apps_instances .accordion-instances .accordion {
+    padding-left: 40px;
+  }
+}
+
 #apps_instances .accordion-entry {
   background-color: #FFFFFF;
   margin: 0;
@@ -16628,10 +16714,6 @@ img.widget-promo-image {
   font-size: 80%;
 }
 
-.accordion-wrap .accordion-toggle button .is-legend {
-  font-weight: bold;
-}
-
 .accordion-wrap .accordion-toggle .no-toggle {
   padding: 10px 0;
   width: 100%;
@@ -17099,6 +17181,65 @@ img.widget-promo-image {
 
 .flexgallery .inactive figure figcaption {
   font-weight: normal;
+}
+
+/* Flextag
+-------------------------------------------------- */
+.flextag {
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.flextag > * {
+  flex: 1 auto;
+  padding: 5px 10px;
+  border: 1px solid #cccccc;
+  color: #0d0d0d;
+  background-color: #FFFFFF;
+  border-color: #CCCCCC;
+  margin: 5px 2px;
+  position: relative;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  /* @include appBorderRadius($app-border-radius);
+    @include displayFlex();
+    @include justifyContent(space-between); */
+  /*  &::before,::after{
+      content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-color: transparent;
+    border-style: solid;
+    }
+     &::before {
+    border-width: 7px;
+    border-right-color: $app-brand-success;
+    border-top-color:$app-brand-success;
+}
+
+ &::after {
+    border-radius: 0.4em;
+    border-width: 1.35em;
+    border-right-color: #0c0;
+    border-top-color: #0c0;
+} */
+}
+
+.flextag > *::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  height: 20px;
+  width: 20px;
+  background: green;
+  transform: rotate(45deg);
 }
 
 /* Flexcard
@@ -17914,11 +18055,16 @@ body.night-false {
 @media only screen and (min-width: 768px) {
   .night-false .accordion-wrap.active {
     padding: 10px;
+    margin: 10px;
     border: solid 2px #dff0d8;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   }
+}
+
+.night-false fieldset .accordion-wrap.active {
+  margin: 10px 0;
 }
 
 /* Security  Notification 
@@ -18083,6 +18229,7 @@ body.night-false {
 .night-true .flexcards.security .flexcard .flipcard > *.back,
 .night-true .automation .notification,
 .night-true .dragdrop-element .dd-placeholder,
+.night-true .accordion-instances,
 .night-true .btn {
   background: #24262D !important;
 }

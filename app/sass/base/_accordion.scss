@@ -16,6 +16,7 @@ $accordion-focus-color: $focus-color;
 
 .accordion-toggle{
   //color: $accordion-color;
+  margin: 0;
  > button{
     all: inherit;
     border: 0;
@@ -29,12 +30,16 @@ $accordion-focus-color: $focus-color;
     
     > span {
       @include textOverflow();
+     
+      .fa:first-of-type {
+        font-size: 120%;
+      }
     }
 
     &::after{
       margin-left: $accordion-spacing;
       padding: $spacing;
-      font-size: 130%;
+      font-size: 105%;
     }
     &[aria-expanded="false"]{
      
@@ -56,6 +61,12 @@ $accordion-focus-color: $focus-color;
       }
       
     }
+    &[disabled]{
+      cursor: text;
+      &::after{
+        content: "";
+      }
+    }
   }
   &.chevron{
     > button{
@@ -69,6 +80,11 @@ $accordion-focus-color: $focus-color;
         &::after{
           font-family: fontawesome;
           content: "\f077";
+        }
+      }
+      &[disabled]{
+        &::after{
+          content: "";
         }
       }
     }
@@ -118,9 +134,21 @@ $accordion-focus-color: $focus-color;
   padding-bottom: $accordion-spacing;
 }
 
+.accordion-wrap {
+  &.active{
+    > .accordion-toggle{
+      > button{
+        font-weight: bold;
+      }
+    }
+   
+  }
+}
+
+/* TODO: deprecated
 /* Old version
 -------------------------------------------------- */
-.accordion-entry{
+/* .accordion-entry{
     margin-bottom: $spacing;
     border-bottom: dotted 1px $accordion-border-color;
     color: $accordion-color;
@@ -161,4 +189,4 @@ $accordion-focus-color: $focus-color;
         margin: $spacing-half;
         padding: $spacing;      
     }
-}
+} */

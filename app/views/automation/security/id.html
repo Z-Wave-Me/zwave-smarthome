@@ -2,61 +2,63 @@
 <section class="automation" ng-controller="SecurityIdController">
 
   <h2>{{_t('title_security')}}</h2>
+  <!-- Tabs  -->
+  <div ng-include="'app/views/automation/security/tabs.html'"></div>
   <!-- Form -->
   <form class="form form-page" ng-submit="storeInstance(security.input,true)">
-    <!-- Form-->
-    <fieldset ng-include="'app/views/automation/security/id_form.html'"></fieldset>
-    <!-- Tabs  -->
-    <fieldset ng-include="'app/views/automation/security/tabs.html'"></fieldset>
-    <!-- //////////////////////////////////////////  Triggering  ////////////////////////////////////////// -->
+
+    <!-- //////////////////////////////////////////  Conditions ////////////////////////////////////////// -->
     <div ng-if="security.tab == 1">
+      <fieldset ng-include="'app/views/automation/security/conditions/conditions.html'"></fieldset>
       
-      <!-- Trigger -->
-      <fieldset ng-include="'app/views/automation/security/trigger/trigger.html'"></fieldset>
+    </div>
+    <!-- ////////////////////////////////////////// Actions  ////////////////////////////////////////// -->
+    <div ng-if="security.tab ==2" data-collapse-all="true">
+      <!-- Alarm -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
       <!-- Silent alarm -->
-      <fieldset ng-include="'app/views/automation/security/trigger/silent_alarm.html'"></fieldset>
-      <!-- Silent alarm -->
-      <fieldset ng-include="'app/views/automation/security/trigger/alarm.html'"></fieldset>
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/silent_alarm.html'"></fieldset>
       <!-- Arming -->
-      <fieldset ng-include="'app/views/automation/security/trigger/arming.html'"></fieldset>
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/arming.html'"></fieldset>
       <!-- Disarming -->
-      <fieldset ng-include="'app/views/automation/security/trigger/disarming.html'"></fieldset>
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/disarming.html'"></fieldset>
       <!-- Reset -->
-      <fieldset ng-include="'app/views/automation/security/trigger/reset.html'"></fieldset>
-
-
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
     </div>
-    <!-- ////////////////////////////////////////// External control  ////////////////////////////////////////// -->
-    <div ng-if="security.tab ==2">
-      <!-- Cards -->
-      <fieldset ng-include="'app/views/automation/security/control/control.html'"></fieldset>
-    </div>
-    <!-- ////////////////////////////////////////// Advanced  ////////////////////////////////////////// -->
+    <!-- ////////////////////////////////////////// Time triggering  ////////////////////////////////////////// -->
     <div ng-if="security.tab == 3">
-      <div class="section">
-        <fieldset ng-include="'app/views/automation/security/advanced/advanced_schedule.html'"></fieldset>
-      </div>
-      <div class="section">
-        <fieldset ng-include="'app/views/automation/security/advanced/advanced_settings.html'"></fieldset>
-      </div>
+      <fieldset ng-include="'app/views/automation/security/time/time_schedule.html'"></fieldset>
+      <!-- <div class="section">
+        <fieldset ng-include="'app/views/automation/security/time/time_settings.html'"></fieldset>
+      </div> -->
 
+    </div>
+    <!-- ////////////////////////////////////////// Dis-Arm by device  ////////////////////////////////////////// -->
+    <div ng-if="security.tab ==4">
+      <fieldset ng-include="'app/views/automation/security/bydevice/bydevice.html'"></fieldset>
     </div>
 
     <!-- Submit  -->
-    <fieldset class="submit-entry">
-      <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
-        <i class="fa fa-reply"></i>
-        <span class="btn-name">{{_t('lb_cancel')}}</span>
-      </a>
-      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-        <i class="fa fa-check"></i>
-        <span class="btn-name">{{_t('lb_save')}}</span>
-      </button>
-      <button type="button" title="{{_t('lb_remove')}}" class="btn btn-text" ng-if="security.routeId" ng-click="deleteInstance(security.routeId, _t('lb_delete_confirm'))">
-          <i class="fa fa-close text-danger"></i>
-          <span class="btn-name">{{_t('lb_remove')}}</span>
+    <div class="fieldset submit-entry is-grid">
+      <span>
+        <label class="switch">
+          <input type="checkbox" ng-model="security.input.active">
+          <span class="slider"></span>
+        </label>
+        <span class="switch-label">{{security.input.active ? _t('lb_active'): _t('activeASC')}}</span>
+      </span>
+      <span>
+        <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
+          <i class="fa fa-reply"></i>
+          <span class="btn-name">{{_t('lb_cancel')}}</span>
+        </a>
+        <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+          <i class="fa fa-check"></i>
+          <span class="btn-name">{{_t('lb_save')}}</span>
         </button>
-    </fieldset>
+      </span>
+
+    </div>
   </form>
   <!-- <pre>{{security.input|json}}</pre> -->
   </div>

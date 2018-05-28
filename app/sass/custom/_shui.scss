@@ -233,11 +233,20 @@ body {
       &.active{
         @include mediaQueries(min-small) {
           padding: $spacing;
+          margin: $spacing;
           //margin: $spacing-double 0;
           border:solid 2px $app-bcg-success;
           @include appBoxShadow($app-box-shadow);
         }
        
+      }
+    }
+    fieldset{
+      .accordion-wrap{
+        &.active{
+          margin: $spacing 0;
+        }
+        
       }
     }
   }
