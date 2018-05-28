@@ -711,6 +711,7 @@
     "text": "Testo",
     "then": "Then",
     "thermostat": "Termostato",
+    "thermostate_in_room": "Thermostate in room",
     "timezone": "Fuso Orario",
     "timezone_alert": "Il riavvio è necessari per applicare i cambiamenti. Vuoi riavviare adesso?",
     "timezone_info": "Devi RIAVVIARE il tuo POPP hub per applicare i cambiamenti.",

@@ -711,6 +711,7 @@
     "text": "Текст",
     "then": "Then",
     "thermostat": "Термостаты",
+    "thermostate_in_room": "Thermostate in room",
     "timezone": "Временная зона",
     "timezone_alert": "Для применения изменений требуется перезагрузка. Перезагрузить сейчас?",
     "timezone_info": "Для применения изменений требуется перезагрузка",

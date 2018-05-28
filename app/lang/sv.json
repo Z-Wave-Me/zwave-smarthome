@@ -711,6 +711,7 @@
     "text": "Text",
     "then": "Then",
     "thermostat": "Termostat",
+    "thermostate_in_room": "Thermostate in room",
     "timezone": "Time Zone",
     "timezone_alert": "Reboot is necessary to apply your changes. Do you want to reboot now?",
     "timezone_info": "You will need to REBOOT your POPP hub to apply the setting.",

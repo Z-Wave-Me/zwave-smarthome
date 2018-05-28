@@ -711,6 +711,7 @@
     "text": "Texte",
     "then": "Then",
     "thermostat": "Thermostat",
+    "thermostate_in_room": "Thermostate in room",
     "timezone": "fuseau horaire",
     "timezone_alert": "Redémarrage nécesaaire pour appliquer vos paramètres. Voulez-vous redémarrer maintenant?",
     "timezone_info": "Redémarrez votre POPP hub pour appliquer vos paramètres.",

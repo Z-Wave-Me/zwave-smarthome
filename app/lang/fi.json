@@ -711,6 +711,7 @@
     "text": "Teksti",
     "then": "Then",
     "thermostat": "Termostaatti",
+    "thermostate_in_room": "Thermostate in room",
     "timezone": "Aikavyöhyke",
     "timezone_alert": "Asetusten voimaansaattamiseksi tarvitaan uudelleenkäynnistys. Haluatko että se tehdään nyt?",
     "timezone_info": "Sinun täytyy käynnistää POPP hubisi jotta asetukset tulevat voimaan.",

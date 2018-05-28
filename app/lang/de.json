@@ -711,6 +711,7 @@
     "text": "Text",
     "then": "Dann",
     "thermostat": "Thermostat",
+    "thermostate_in_room": "Thermostate im Raum",
     "timezone": "Zeitzone",
     "timezone_alert": "Um die Änderungen zu übernehmen ist ein Neustart notwendig. Möchten Sie das POPP Hub jetzt neustarten?",
     "timezone_info": "Um die Änderungen zu übernehmen ist ein Neustart des POPP Hub notwendig.",
