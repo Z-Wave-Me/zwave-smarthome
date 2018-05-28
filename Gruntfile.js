@@ -126,7 +126,6 @@ module.exports = function (grunt) {
                     'app/controllers/skin.js',
                     'app/controllers/icon.js',
                     'app/controllers/device.js',
-                    'app/controllers/smartstart.js',
                     'app/controllers/zwave-inclusion.js',
                     'app/controllers/zwave-manage.js',
                     'app/controllers/zwave-exclude.js',
