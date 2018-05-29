@@ -223,6 +223,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         if(k == data.timeline){
           var index = _.findIndex(v.schedule, {text: data.text});
           if(v.schedule[index]){
+            v.schedule[index].text = condition.substring(0, 1).toUpperCase();;
             v.schedule[index].data.condition = condition;
           }
         }
@@ -255,7 +256,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       this.addScheduleData(data);
       $scope.updateData();
     },
-    bar_Click: function (node, timelineData, scheduleIndex) {},
+    //bar_Click: function (node, timelineData, scheduleIndex) {},
     connect: function (data) {},
     confirm: function () {},
     delete_bar: function () {
@@ -316,7 +317,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             $scope.scheduleOptions.rows[k]['schedule'].push({
               start: t.time,
               end: addHour(t.time),
-              text: t.time,
+              text:  condition.substring(0, 1).toUpperCase(),
               data: {
                 condition: condition
               }

@@ -11569,28 +11569,40 @@ img {
 }
 
 /* line 275, ../sass/base/_body.scss */
+.btn-static {
+  background-color: #ffffff;
+  border: 1px solid lightgrey;
+  cursor: default;
+}
+/* line 279, ../sass/base/_body.scss */
+.btn-static:active, .btn-static:hover, .btn-static:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 284, ../sass/base/_body.scss */
 .text-supp {
   font-style: italic;
   color: #595959;
 }
 
-/* line 279, ../sass/base/_body.scss */
+/* line 288, ../sass/base/_body.scss */
 .uppercase {
   text-transform: uppercase;
 }
 
-/* line 282, ../sass/base/_body.scss */
+/* line 291, ../sass/base/_body.scss */
 .lowercase {
   text-transform: lowercase;
 }
 
-/* line 287, ../sass/base/_body.scss */
+/* line 296, ../sass/base/_body.scss */
 .badge {
   padding: 5px;
   margin-right: 5px;
 }
 
-/* line 292, ../sass/base/_body.scss */
+/* line 301, ../sass/base/_body.scss */
 .help-text {
   display: block;
   font-size: 95%;
@@ -11599,17 +11611,17 @@ img {
   padding-right: 5px;
 }
 
-/* line 300, ../sass/base/_body.scss */
+/* line 309, ../sass/base/_body.scss */
 .inline .help-text {
   display: inline;
 }
 
-/* line 305, ../sass/base/_body.scss */
+/* line 314, ../sass/base/_body.scss */
 .display-block {
   display: block;
 }
 
-/* line 309, ../sass/base/_body.scss */
+/* line 318, ../sass/base/_body.scss */
 .badge-number {
   background-color: #a6a6a6;
   color: #FFFFFF;
@@ -11622,25 +11634,25 @@ img {
   border-radius: 50%;
 }
 
-/* line 321, ../sass/base/_body.scss */
+/* line 330, ../sass/base/_body.scss */
 .icon-hidden {
   visibility: hidden;
 }
 
-/* line 325, ../sass/base/_body.scss */
+/* line 334, ../sass/base/_body.scss */
 .device-available-block.assigned {
   padding: 10px 10px 5px 10px;
   border: solid 1px #cccccc;
   margin: 0 0 10px 0;
 }
 
-/* line 332, ../sass/base/_body.scss */
+/* line 341, ../sass/base/_body.scss */
 .scrollh {
   overflow-y: auto;
   white-space: nowrap;
 }
 
-/* line 338, ../sass/base/_body.scss */
+/* line 347, ../sass/base/_body.scss */
 .ng-show {
   display: block !important;
 }
@@ -19559,18 +19571,29 @@ img.widget-promo-image {
   height: 50px;
 }
 
+/* Scheduler
+-------------------------------------------------- */
+/* line 132, ../sass/base/_security.scss */
+#schedule-disarm .ui-resizable-handle {
+  display: none !important;
+}
+/* line 136, ../sass/base/_security.scss */
+#schedule-disarm .sc_Bar_inner .time {
+  display: none;
+}
+
 /* Table schedule
 -------------------------------------------------- */
-/* line 135, ../sass/base/_security.scss */
+/* line 147, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td .fa-check {
   color: #737373;
   cursor: pointer;
 }
-/* line 139, ../sass/base/_security.scss */
+/* line 151, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td.active {
   background-color: #dff0d8;
 }
-/* line 141, ../sass/base/_security.scss */
+/* line 153, ../sass/base/_security.scss */
 .security-schedule > tbody > tr > td.active .fa-check {
   display: inline-block;
   padding: 5px;
@@ -19829,14 +19852,26 @@ img.widget-promo-image {
   z-index: 50;
   transform: translateY(-100%);
 }
-/* line 206, ../sass/base/_schedule.scss */
+/* line 195, ../sass/base/_schedule.scss */
+.schedule .sc_Bar .remove.left {
+  float: left;
+  margin: 0 0 0 -30px;
+}
+/* line 199, ../sass/base/_schedule.scss */
+.schedule .sc_Bar .remove.left:before {
+  right: -5px;
+  left: auto;
+  width: 10px;
+  height: 25px;
+}
+/* line 217, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .remove .fa {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* line 212, ../sass/base/_schedule.scss */
+/* line 223, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .remove:before {
   position: absolute;
   content: "";
@@ -19844,15 +19879,15 @@ img.widget-promo-image {
   width: 10px;
   height: 25px;
 }
-/* line 219, ../sass/base/_schedule.scss */
+/* line 230, ../sass/base/_schedule.scss */
 .schedule .sc_Bar .remove:hover {
   opacity: 1;
 }
-/* line 224, ../sass/base/_schedule.scss */
+/* line 235, ../sass/base/_schedule.scss */
 .schedule .sc_Bar:hover .remove {
   display: block;
 }
-/* line 229, ../sass/base/_schedule.scss */
+/* line 240, ../sass/base/_schedule.scss */
 .schedule .tooltip {
   display: none;
   pointer-events: none;
@@ -19869,7 +19904,7 @@ img.widget-promo-image {
   -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-/* line 246, ../sass/base/_schedule.scss */
+/* line 257, ../sass/base/_schedule.scss */
 .schedule .top.tooltip:after {
   content: " ";
   position: absolute;
@@ -19880,7 +19915,7 @@ img.widget-promo-image {
   left: 50%;
   border-color: transparent transparent black transparent;
 }
-/* line 258, ../sass/base/_schedule.scss */
+/* line 269, ../sass/base/_schedule.scss */
 .schedule .bottom.tooltip:after {
   content: " ";
   position: absolute;

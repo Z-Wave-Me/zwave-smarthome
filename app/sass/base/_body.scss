@@ -272,6 +272,15 @@ img {
   cursor: pointer;
 }
 
+.btn-static {
+  background-color: #ffffff;
+  border: 1px solid lightgrey;
+  cursor: default;
+  &:active, &:hover, &:focus {
+    @include box-shadow(none);
+  }
+}
+
 .text-supp {
   font-style: italic;
   color: lighten($app-body-color, 30%);
