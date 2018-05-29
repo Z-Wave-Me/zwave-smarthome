@@ -548,6 +548,7 @@
     "no_search_results": "Es wurden leider keine Suchergebnisse zu '__term__' gefunden.",
     "no_security_available": "Keine Alarmanlage konfiguriert",
     "no_sensors_available": "Keine Sensoren verfügbar",
+    "no_thermostate_in_room": "Keine Thermostate im Raum",
     "no_update_available": "Es sind keine Aktualisierungen verfügbar.",
     "no_wifiplugs": "Keine WiFi-Steckdosen verfügbar",
     "no_zddx_file": "Keine Konfigurationsdatei vorhanden.",
