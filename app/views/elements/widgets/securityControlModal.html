@@ -7,10 +7,10 @@
         </div>
         <div class="appmodal-body text-center">
             <bb-alert alert="widgetSecurityControl.alert"></bb-alert>
-            <div class="multiline-entry" ng-if="!_.isEmpty(widgetSecurityControl.find.lastTriggerList)">
+            <div class="multiline-entry" ng-if="!_.isEmpty(widgetSecurityControl.find.metrics.lastTriggerList)">
                 <table class="table table-report table-condensed">
                     <tbody>
-                    <tr class="bcg-success" ng-repeat="n in widgetSecurityControl.find.lastTriggerList">
+                    <tr class="bcg-success" ng-repeat="n in widgetSecurityControl.find.metrics.lastTriggerList">
                         <!--<td class="td-img">
                             <img class="report-img img-circle" ng-src="{{n.roomIcon}}" />
                         </td>-->
