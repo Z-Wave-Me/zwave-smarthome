@@ -21,7 +21,7 @@
           <i class="fa fa-times text-danger"></i>
         </a>
       </div>
-      <bb-help-text trans="_t('image_delete_info')" display='inline'></bb-help-text>
+      <bb-help-text ng-if="input.user_img" trans="_t('image_delete_info')" display='inline'></bb-help-text>
     </div>
   </div>
   <div class="form-group">
@@ -34,12 +34,13 @@
 </div>
 <!-- image upload -->
 <div class="mobile-hide form-group">
-  <input class="inputfile" type="file" name="file" id="file{{v.id}}" ng-click="icons.find = v" onchange="angular.element(this).scope().uploadFile(this.files)"
+  <input class="inputfile" type="file" name="file" id="file{{v.id}}" ng-disabled="input.user_img" ng-click="icons.find = v" onchange="angular.element(this).scope().uploadFile(this.files)"
   />
-  <label for="file{{v.id}}" class="btn btn-default" title="{{_t('lb_upload_image')}}" ng-click="icons.find = v">
+  <label for="file{{v.id}}" class="btn btn-default" ng-disabled="input.user_img" title="{{_t('lb_upload_image')}}" ng-click="icons.find = v">
     <i class="fa fa-upload text-success"></i> {{_t('lb_upload_image')}}
   </label>
   <div ng-if="file.upload">{{file.upload|cutText:true:30}}</div>
+  <bb-help-text ng-if="input.user_img" trans="_t('upload_file_info_disabled')"></bb-help-text>
   <bb-help-text trans="_t('upload_file_info',{'__size__':file.info.maxSize,'__extensions__': file.info.extensions})"></bb-help-text>
   <bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.room.dimension})"></bb-help-text>
 </div>
