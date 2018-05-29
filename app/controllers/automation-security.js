@@ -212,11 +212,31 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
     },
     change: function (node, data) {},
     init_data: function (node, data) {},
-    click: function (node, data) {},
+    click: function (node, data) {
+     // node.addClass('ssssssssssssssssss')
+       //console.log(node)
+      var schedules = {};
+      var condition = data.data.condition == 'arm' ? 'disarm':'arm';
+      angular.forEach($scope.jQuerySchedule.getScheduleData(), function (v, k) {
+        schedules[k] = {};
+        schedules[k]['schedule'] = v.schedule;
+        if(k == data.timeline){
+          var index = _.findIndex(v.schedule, {text: data.text});
+          if(v.schedule[index]){
+            v.schedule[index].data.condition = condition;
+          }
+        }
+       
+      });
+     
+      $scope.jQuerySchedule.update(schedules);
+      $scope.updateData();
+    },
     append: function (node, data) {},
-    time_click: function (time, data, timeline, timelineData) {},
+    time_click: function (time, data, timeline, timelineData) {
+     
+    },
     append_on_click: function (timeline, startTime, endTime) {
-      console.log('append_on_click:', timeline, startTime, endTime);
       var start = this.calcStringTime(startTime),
         end = this.calcStringTime(endTime)
 
@@ -230,30 +250,18 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       };
 
       this.addScheduleData(data);
-      /* console.log(data)
-      return; */
-      $scope.assignSchedule({
-        day: timeline,
-        time: startTime
-      });
+      $scope.updateData();
     },
     bar_Click: function (node, timelineData, scheduleIndex) {},
     connect: function (data) {},
     confirm: function () {},
-    delete_bar: function (time) {
-      console.log("time", time);
-      //console.log('delete_bar:', node, data);
-      //$scope.assignSchedule();
+    delete_bar: function () {
+      console.log('from delete')
+      $scope.updateData();
     }
   };
 
-  /* $timeout(function() {
-    var elem = angular.element("#schedule-test");
-    //angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
-    console.log(elem)
-    $("#schedule-test").html('This is a test');
-    //elem.timeSchedule();
-  },3); */
+  $scope.jQuerySchedule = {};
 
 
   /**
@@ -268,32 +276,47 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
 
   };
 
+
+
   /**
    * Load instance
    */
   $scope.loadInstance = function (id) {
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
+      // Add one hour to time
+      var addHour = function (hm) {
+        var a = hm.split(':'); // split it at the colons
+        // minutes are worth 60 seconds. Hours are worth 60 minutes.
+        //var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+        var seconds = ((+a[0]) * 60 * 60 + (+a[1]) * 60) + 3600;
+
+        var hh = Math.floor(seconds / 3600),
+          mm = Math.floor(seconds / 60) % 60,
+          ss = Math.floor(seconds) % 60;
+        return (hh ? (hh < 10 ? "0" : "") + hh + ":" : "") + ((mm < 10) && hh ? "0" : "") + mm;
+        //return (hh ? (hh < 10 ? "0" : "") + hh + ":" : "") + ((mm < 10) && hh ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss
+      }
+
       $scope.security.routeId = id;
+      // Adding params from instatnce
       var instance = instances.data.data;
-      //console.log(instances.data.data)
-      // var schedules = $scope.security.input.params.schedules;
       angular.extend($scope.security.input, {
         title: instance.title,
         active: instance.active,
         params: instance.params
       });
-      //$scope.security.input.params.schedules = schedules;
-      //$scope.scheduleOptions.rows['1']['schedule']
+      // Adding rows to scheduleOptions
       angular.forEach($scope.security.input.params.schedules, function (v, k) {
         if (_.size(v)) {
-          console.log(k);
           angular.forEach(v, function (t) {
-            console.log(t);
+            console.log(t.time, addHour(t.time));
             $scope.scheduleOptions.rows[k]['schedule'].push({
               start: t.time,
-              end: t.time,
+              end: addHour(t.time),
               text: t.time,
-              data: {}
+              data: {
+                condition: ($filter('hasNode')(v,'data.condition') == 'arm' ? 'disarm':'arm')
+              }
             })
           });
         }
@@ -431,18 +454,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
     var schedule = angular.element(elementId);
 
     schedule.empty();
-    //angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
-    /* $scope.scheduleOptions.rows['1']['schedule'] = [{
-      start:'09:00',
-      end:'10:00',
-      text:'09:00',
-      data:{}
-    },{
-      start:'11:00',
-      end:'12:00',
-      text:'11:00',
-      data:{}
-    }]; */
     schedule.timeSchedule($scope.scheduleOptions);
     $timeout(function () {
 
@@ -451,23 +462,37 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
 
         var title = angular.element(t).data('title');
         angular.element(t).html($scope._t(title));
+        $scope.jQuerySchedule = schedule;
       });
     }, 10)
   }
+  /**
+   * Update input data
+   */
+  $scope.updateData = function () {
+    angular.forEach($scope.jQuerySchedule.getScheduleData(), function (v, k) {
+      $scope.security.input.params.schedules[k] = _.map(v.schedule, function (sc) {
+        return {
+          time: sc.start,
+          data: sc.data
+        };
+      });
+    });
+  };
 
   /**
    * Assign dis-arm schedule
    * @param {object} data 
    */
-  $scope.assignSchedule = function (data) {
-    console.log('updateTimeScheduler', data)
+  /* $scope.assignSchedule = function (data) {
+
     if ($scope.security.input.params.schedules[data.day]) {
       $scope.security.input.params.schedules[data.day].push({
         time: data.time
       })
     }
     //$scope.security.input.params.schedules
-  }
+  } */
 
   ////////// Advanced schedule ////////// 
   /**
