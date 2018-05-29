@@ -681,13 +681,6 @@
                         if ($bar.data("sc_key") != $node.data("sc_key")) {
                             if (that.isCollison($node, $bar)) {
                                 collison = true;
-                                // var html = "<div class='confirm'><button class='btn btn-default'>Confirm</button><button class='btn btn-default'>Cancel</button></div>";
-                                // $confirm = jQuery(html);
-                                // console.log("event", event);
-                                // $confirm.css({
-                                //     "left": $node.offset().left,
-                                //     "top": $node.offset().top + setting.timeLineY
-                                // });
 
                                 // $element.append($confirm);   
                                 // console.log("confirm 2", setting.confirm.call(element));
