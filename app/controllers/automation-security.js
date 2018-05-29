@@ -213,7 +213,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
     change: function (node, data) {},
     init_data: function (node, data) {},
     click: function (node, data) {
-     // node.addClass('ssssssssssssssssss')
+     // node.addClass('arm')
        //console.log(node)
       var schedules = {};
       var condition = data.data.condition == 'arm' ? 'disarm':'arm';
@@ -246,7 +246,10 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         timeline: parseInt(timeline),
         start: start,
         end: end,
-        text: start,
+        text: 'A',
+        data: {
+          condition: 'arm'
+        }
       };
 
       this.addScheduleData(data);
@@ -309,13 +312,13 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
       angular.forEach($scope.security.input.params.schedules, function (v, k) {
         if (_.size(v)) {
           angular.forEach(v, function (t) {
-            console.log(t.time, addHour(t.time));
+            var condition = ($filter('hasNode')(v,'data.condition') == 'arm' ? 'disarm':'arm');
             $scope.scheduleOptions.rows[k]['schedule'].push({
               start: t.time,
               end: addHour(t.time),
               text: t.time,
               data: {
-                condition: ($filter('hasNode')(v,'data.condition') == 'arm' ? 'disarm':'arm')
+                condition: condition
               }
             })
           });
@@ -453,10 +456,9 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
   $scope.renderSchedule = function (elementId) {
     var schedule = angular.element(elementId);
 
-    schedule.empty();
-    schedule.timeSchedule($scope.scheduleOptions);
+   schedule.empty();
     $timeout(function () {
-
+      schedule.timeSchedule($scope.scheduleOptions);
       var titles = angular.element(".title");
       angular.forEach(titles, function (t) {
 
