@@ -48,7 +48,8 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
         rooms: {},
         devices: {
             all: [],
-            byRoom: {}
+            SensorsByRoom: {},
+            ThermostateByRoom: {}
         },
         routeId: 0,
         input: {
@@ -139,7 +140,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                 schedule: []
             }
         },
-        change: function(node, data) {},
+        change: function(node, data) {
+            $scope.updateData();
+        },
         init_data: function(node, data) {},
         click: function(node, data) {},
         append: function(node, data) {},
@@ -270,6 +273,12 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
         }
     };
 
+    /**
+     * [updateSchedule description]
+     * @param  {[type]} scheduleId [description]
+     * @param  {[type]} roomId     [description]
+     * @return {[type]}            [description]
+     */
     $scope.updateSchedule = function(scheduleId, roomId) {
         if ($scope.jQuery_schedules[scheduleId]) {
             var jq_schedule = $scope.jQuery_schedules[scheduleId];
@@ -438,7 +447,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
     }, true);
 
     /**
-     * Load devices
+     * [loadDevices description]
+     * @param  {[type]} rooms [description]
+     * @return {[type]}       [description]
      */
     $scope.loadDevices = function(rooms) {
         dataFactory.getApi('devices').then(function(response) {
@@ -446,15 +457,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                 var roomKeys = Object.keys(rooms);
                 _.filter(devices.value(), function(v) {
                     if (roomKeys.indexOf(v.location.toString()) != -1) {
-                        if (v.deviceType == "sensorMultilevel" && v.probeType == "temperature") {
-                            var getZwayId = function(deviceId) {
-                                var zwaveId = false;
-                                if (deviceId.indexOf("ZWayVDev_zway_") > -1) {
-                                    zwaveId = deviceId.split("ZWayVDev_zway_")[1].split('-')[0];
-                                    return zwaveId.replace(/[^0-9]/g, '');
-                                }
-                                return zwaveId;
-                            }
+                        if (v.deviceType == "sensorMultilevel" && v.probeType == "temperature" || v.deviceType == "thermostat") {
                             var obj = {
                                 deviceId: v.id,
                                 zwaveId: getZwayId(v.id),
@@ -464,17 +467,28 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
                                 probeType: v.probeType,
                                 location: v.location,
                                 locationName: rooms[v.location].title,
-                                iconPath: v.iconPath
+                                iconPath: v.iconPath,
+                                level: v.metrics.level,
+                                scale: v.metrics.scale ? v.metrics.scale : ""
                             };
                             $scope.heating.devices.all.push(obj);
-                            if ($scope.heating.devices.byRoom[v.location]) {
-                                $scope.heating.devices.byRoom[v.location].push(obj);
+                            // add room sensors
+                            if ($scope.heating.devices.SensorsByRoom[v.location]) {
+                                $scope.heating.devices.SensorsByRoom[v.location].push(obj);
                             } else {
-                                $scope.heating.devices.byRoom[v.location] = [];
-                                $scope.heating.devices.byRoom[v.location].push(obj);
+                                $scope.heating.devices.SensorsByRoom[v.location] = [];
+                                $scope.heating.devices.SensorsByRoom[v.location].push(obj);
+                            }
+                            // add room termostate
+                            if (v.deviceType == "thermostat") {
+                                if ($scope.heating.devices.ThermostateByRoom[v.location]) {
+                                    $scope.heating.devices.ThermostateByRoom[v.location].push(obj);
+                                } else {
+                                    $scope.heating.devices.ThermostateByRoom[v.location] = [];
+                                    $scope.heating.devices.ThermostateByRoom[v.location].push(obj);
+                                }
                             }
                         }
-
                     }
                 });
                 $scope.loadPreset();
@@ -484,14 +498,22 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
     $scope.loadPreset = function() {
         var rooms = {};
+        console.log("$scope.heating.input.params.roomSettings", $scope.heating.input.params.roomSettings);
+
         angular.forEach($scope.heating.rooms, function(room) {
-            rooms[room.id] = {};
-            angular.extend(rooms[room.id], $scope.heating.cfg.default);
-            if ($scope.heating.devices.byRoom[room.id] && $scope.heating.devices.byRoom[room.id].length == 1) {
-                rooms[room.id].sensorId = $scope.heating.devices.byRoom[room.id][0].deviceId
+            if (!$scope.heating.input.params.roomSettings[room.id]) {
+                $scope.heating.input.params.roomSettings[room.id] = {};
+                $scope.heating.input.params.roomSettings[room.id] = $scope.heating.cfg.default;
+            }
+            // set default comfort Temp
+            if ($scope.heating.input.params.roomSettings[room.id].comfortTemp == "" || $scope.heating.input.params.roomSettings[room.id].comfortTemp == null) {
+                $scope.heating.input.params.roomSettings[room.id].comfortTemp = $scope.heating.cfg.default.comfortTemp;
+            }
+            // set temp senor is only one available
+            if ($scope.heating.devices.SensorsByRoom[room.id] && $scope.heating.devices.SensorsByRoom[room.id].length == 1 && $scope.heating.input.params.roomSettings[room.id].sensorId == null) {
+                $scope.heating.input.params.roomSettings[room.id].sensorId = $scope.heating.devices.SensorsByRoom[room.id][0].deviceId
             }
         });
-        angular.extend($scope.heating.input.params.roomSettings, rooms)
     };
 
     /**
@@ -567,6 +589,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
         });
 
     };
+
     /**
      * [temperatureArray description]
      * @param  {[type]} temp  [description]
@@ -585,6 +608,20 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
             obj.label.push(i.toString() + " " + scale);
         }
         return obj;
+    }
+
+    /**
+     * [getZwayId description]
+     * @param  {[type]} deviceId [description]
+     * @return {[type]}          [description]
+     */
+    function getZwayId(deviceId) {
+        var zwaveId = false;
+        if (deviceId.indexOf("ZWayVDev_zway_") > -1) {
+            zwaveId = deviceId.split("ZWayVDev_zway_")[1].split('-')[0];
+            return zwaveId.replace(/[^0-9]/g, '');
+        }
+        return zwaveId;
     }
 
 });

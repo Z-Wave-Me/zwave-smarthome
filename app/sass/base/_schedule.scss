@@ -192,6 +192,17 @@ $schedule-bar-bg-color: rgb(135, 206, 235);
             z-index: 100;
         }
         .remove {
+            &.left {
+                float: left;
+                margin:  0 0 0 -30px;
+
+                &:before {
+                right: -5px;
+                left: auto;
+                width: 10px;
+                height: 25px;    
+                }
+            }
             display: none;
             cursor: pointer;
             float: right;

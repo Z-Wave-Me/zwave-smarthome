@@ -14,6 +14,7 @@
             headTimeBorder: 1, // time border width
             dataWidth: 40, // data width
             verticalScrollbar: 0, // vertical scrollbar width
+            removeButtonWidth: 30,
             // event
             init_data: function() {},
             change: function() {},
@@ -128,24 +129,6 @@
 
             var $timeline = $element.find('.sc_main .timeline').eq(data["timeline"]);
 
-            $removeButton.position({
-                my: "left top",
-                at: "right top",
-                of: $element.find('.sc_main'),
-                collison: "flip",
-                within: $timeline,
-                using: function(position, feedback) {
-                    console.log("position", position);
-                    console.log("feedback", feedback);
-                    // $(this).removeClass("bottom center top");
-                    // $(this).css({
-                    //     left: position.left - $element.offset().left + $element.position().left,
-                    //     top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
-                    // });
-                    // $(this).addClass(feedback.vertical).addClass(feedback.horizontal)
-                }
-            });
-
             $removeButton.bind("click", function(event) {
                 that.removeEntry(event);
             })
@@ -230,6 +213,12 @@
                         positionLeft = ui.position.left,
                         timelineNum = element.getTimeLineNumber(ui.position.top);
 
+                    if (positionLeft + $moveNode.width() + setting.removeButtonWidth >= $sc_main.width()) {
+                        $moveNode.find(".remove").addClass("left");
+                    } else {
+                        $moveNode.find(".remove").removeClass("left");
+                    }
+
                     ui.position.left = Math.floor(ui.position.left / setting.widthTimeX) * setting.widthTimeX;
 
                     if (currentNode["nowTimeline"] != timelineNum) {
@@ -241,26 +230,20 @@
                     element.rewriteBarText($moveNode, scheduleData[sc_key]);
                     return true;
                 },
-                //
                 stop: function(event, ui) {;
                     jQuery(this).data("dragCheck", false);
 
                     console.log("drag stop");
+                    var sc_key = currentNode["sc_key"];
 
                     that.dragging = false;
                     if (scheduleData[sc_key] !== undefined) {
-                        var node = jQuery(this);
-                        var $node = $(node);
-                        console.log("node", node);
-                        var sc_key = currentNode["sc_key"];
-
-                        var x = node.position().left;
-                        var w = node.width();
-                        var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
-                        console.log("scheduleData", scheduleData);
-                        console.log("scheduleData[sc_key]", scheduleData[sc_key]);
-                        console.log("sc_key", sc_key);
-                        var end = start + ((scheduleData[sc_key]["end"] - scheduleData[sc_key]["start"]));
+                        var node = jQuery(this),
+                            $node = $(node),
+                            x = node.position().left,
+                            w = node.width(),
+                            start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime),
+                            end = start + ((scheduleData[sc_key]["end"] - scheduleData[sc_key]["start"]));
 
                         scheduleData[sc_key]["start"] = start;
                         scheduleData[sc_key]["end"] = end;
@@ -374,6 +357,23 @@
                     }
                 }
             });
+
+            // flip remove icon is draggable on right side
+            $node.on("mouseenter", function() {
+                var $node = $(this),
+                    parentWidth = $sc_main.width(),
+                    positionLeft = $node.position().left,
+                    draggableRight = positionLeft + $node.width(),
+                    nodeRight = draggableRight + setting.removeButtonWidth;
+                if (nodeRight >= parentWidth) {
+                    $node.find(".remove").addClass("left");
+                }
+
+            }).on("mouseleave", function() {
+                var $node = $(this);
+                $node.find(".remove").removeClass("left");
+            });
+
             return key;
         };
 
@@ -474,14 +474,23 @@
             //     $clickedTl = null,
             //     timelineNum = null;
 
-            $timeline.bind("mousedown", function(event) {
+            $timeline.on("mousedown", function(event) {
                 console.log("mousedown");
                 if ($(event.target).hasClass("tl")) {
                     that.clicking = true;
                     $clickedTl = $(event.target);
                     timelineNum = $clickedTl.data("timeline");
                     startTime = $clickedTl.data("time");
-                    endTime = null;
+                    endTime = null,
+                        $ghost_bar_temp = jQuery('<div class="sc_Bar ghost"></div>');
+
+                    $ghost_bar_temp.css({
+                        top: 0,
+                        height: (setting.timeLineY),
+                        display: "none"
+                    });
+
+                    $element.find('.sc_main .timeline').eq(timelineNum).append($ghost_bar_temp);
 
                     element.find(".sc_Bar").css({
                         "z-index": 0,
@@ -491,7 +500,7 @@
                     that.clicking = false;
                     return true;
                 }
-            }).bind("mousemove", function(event) {
+            }).on("mousemove", function(event) {
                 if (that.clicking == false || $(event.target).data("timeline") !== timelineNum) {
                     return true;
                 }
@@ -502,27 +511,17 @@
                     et = Math.floor((element.calcStringTime(endTime) - tableStartTime) / setting.widthTime),
                     left = et < st ? (et * setting.widthTimeX) : (st * setting.widthTimeX),
                     width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX),
-                    $ghost_bar_temp = $element.find(".ghost");
+                    $ghost_bar = $element.find(".ghost");
 
-                //console.log("$ghost_bar_temp", $ghost_bar_temp);
-                if ($ghost_bar_temp.length > 0) {
-                    $ghost_bar_temp.css({
-                        left: left,
-                        top: 0,
-                        width: width
-                    });
-                } else {
-                    $ghost_bar_temp = jQuery('<div class="sc_Bar ghost"></div>');
-                    $ghost_bar_temp.css({
+                if ($ghost_bar.length > 0) {
+                    $ghost_bar.css({
                         left: left,
                         top: 0,
                         width: width,
-                        height: (setting.timeLineY)
+                        display: "block"
                     });
-                    //$ghost_bar_temp.data("timeline", timelineNum);
-                    $element.find('.sc_main .timeline').eq(timelineNum).append($ghost_bar_temp);
                 }
-            }).bind("mouseup", function(event) {
+            }).on("mouseup", function(event) {
                 if (that.clicking == false) {
                     return true;
                 }
@@ -531,10 +530,11 @@
                     "z-index": "auto",
                     "opacity": 1
                 });
-                $ghost_bar_temp = $element.find(".ghost");
+                $ghost_bar_temp = $element.find('.sc_main .timeline').eq(timelineNum).find(".sc_Bar.ghost");
                 endTime = endTime == null ? startTime : endTime;
 
                 $bars = $element.find('.sc_main .timeline').eq(timelineNum).find(".sc_Bar");
+                console.log("bars", $bars);
 
                 var connect = false,
                     collison = false;
@@ -542,6 +542,8 @@
                 $bars.each(function(ele) {
                     $bar = $($bars[ele]);
                     if (!$bar.hasClass("ghost")) {
+                        console.log("$bar", $bar);
+                        console.log("$ghost_bar_temp", $ghost_bar_temp);
                         if (that.isCollison($ghost_bar_temp, $bar)) {
                             collison = true;
                             console.log("$bar", $bar);

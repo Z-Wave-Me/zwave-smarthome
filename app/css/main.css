@@ -9797,6 +9797,17 @@ img {
   cursor: pointer;
 }
 
+.btn-static {
+  background-color: #ffffff;
+  border: 1px solid lightgrey;
+  cursor: default;
+}
+
+.btn-static:active, .btn-static:hover, .btn-static:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 .text-supp {
   font-style: italic;
   color: #595959;
@@ -12763,13 +12774,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -17662,6 +17676,18 @@ img.widget-promo-image {
   height: 100%;
   z-index: 50;
   transform: translateY(-100%);
+}
+
+.schedule .sc_Bar .remove.left {
+  float: left;
+  margin: 0 0 0 -30px;
+}
+
+.schedule .sc_Bar .remove.left:before {
+  right: -5px;
+  left: auto;
+  width: 10px;
+  height: 25px;
 }
 
 .schedule .sc_Bar .remove .fa {

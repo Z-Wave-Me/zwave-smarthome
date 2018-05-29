@@ -1,124 +1,133 @@
 <div ng-controller="HeatingIdController">
-  <h2>{{_t('heating')}}</h2>
-  <!-- <pre>{{heating.rooms | json}}</pre> -->
-  <form class="form form-page" ng-submit="storeInstance(true)">
-    <!-- rooms -->
-    <fieldset>
-      <section class="accordion-wrap" ng-repeat="r in heating.rooms track by $index">
-        <!-- Title -->
-        <h2 class="accordion-toggle chevron">
-          <button type="button" aria-expanded="false" bb-accordion ng-click="renderSchedule('#schedule-'+{{r.id}}, r.id)">
-            <span>
-              <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
-            </span>
-          </button>
-        </h2>
-        <!-- Content -->
-        <div class="accordion" hidden>
-          <fieldset>
-            <div class="form-inline">
-              <!-- comfort temp -->
-              <div class="form-group is-inline">
-                <label>{{_t('comfort_temp')}}</label>
-                <select class="form-control" ng-model="heating.input.params.roomSettings[r.id].comfortTemp" convert-to-float>
-                  <option value="">---</option>
-                  <option value="{{ct}}" ng-repeat="ct in heating.cfg.comfort.temp.temp track by $index" ng-selected="ct == heating.input.params.roomSettings[r.id].comfortTemp">
-                    {{heating.cfg.comfort.temp.label[$index]}}</option>
-                </select>
-              </div>
-              <!-- energy save temp -->
-              <div class="form-group is-inline">
-                <label>{{_t('energy_save_temp')}}</label>
-                <select class="form-control" ng-model="heating.input.params.roomSettings[r.id].energySaveTemp" convert-to-float>
-                  <option value="">---</option>
-                  <option value="{{est}}" ng-repeat="est in heating.cfg.energySave.temp.temp track by $index" ng-selected="est == heating.input.params.roomSettings[r.id].energySaveTemp">
-                    {{heating.cfg.energySave.temp.label[$index]}}</option>
-                </select>
-              </div>
-              <!-- main sensor -->
-              <div class="form-group is-inline">
-                <!-- no device -->
-                <!-- one device -->
-                <!-- multiple device -->
-                <label ng-if="heating.devices.byRoom[r.id].length >= 1">{{_t('temp_sensor')}}</label>
-                <select class="form-control" ng-if="heating.devices.byRoom[r.id].length > 1" ng-modal="heatin.input.params.roomSettings[r.id].sensorId">
-                  <option value="">---</option>
-                  <option value="{{d.deviceId}}" ng-repeat="d in heating.devices.byRoom[r.id] track by $index">
-                    {{d.deviceName}}</option>
-                </select>
-                <span class="form-control" ng-if="heating.devices.byRoom[r.id].length == 1">{{heating.devices.byRoom[r.id][0].deviceName}}</span>
-              </div>
-            </div>
-            <div class="schedule-wrap">
-              <div class="schedule-overlay" ng-if="!heating.input.params.roomSettings[r.id].comfortTemp">
-                <bb-help-text trans="_t('no_comfort_temp_info')"></bb-help-text>
-              </div>
-              <div id="schedule-{{r.id}}" class="schedule" ng-class="(!heating.input.params.roomSettings[r.id].comfortTemp ? 'disabled': '')"></div>
-              <bb-help-text trans="_t('schedule_info')"></bb-help-text>
-            </div>
-            <div class="form-inline">
-              <div class="form-group is-inline">
-                <select class="form-control" ng-model="r.copyOption">
-                  <option value="null">---</option>
-                  <option value="{{i.id}}" ng-repeat="i in heating.rooms" ng-if="hasSchedules(i.id) && i.id !== r.id">
-                    {{i.title}}
-                  </option>
-                </select>
-                <button class="btn btn-default" type="button" ng-click="copySchedule(r.copyOption, r.id, _t('copy_schedule', {__dest_room__: r.title, __src_room__: heating.rooms[r.copyOption].title}))"
-                  ng-disabled="(r.copyOption == null || r.copyOption == 'null')">
-                  <i class="fa fa-copy"></i> {{_t('copy')}}
-                </button>
-                <bb-help-text trans="_t('copy_schedule_info')"></bb-help-text>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      </section>
-    </fieldset>
-    <!-- global Settings -->
-    <fieldset>
-      <section class="accordion-wrap">
-        <!-- Title -->
-        <h2 class="accordion-toggle chevron">
-          <button type="button" aria-expanded="false" bb-accordion>
-            <span>
-              {{_t('advanced_settings')}}
-            </span>
-          </button>
-        </h2>
-        <!-- Content -->
-        <div class="accordion" hidden>
-          <fieldset>
-            <!-- Reset time -->
-            <div class="form-group is-inline">
-              <label>{{_t('reset_time')}}</label>
-              <input name="reset_time" id="reset_time" type="text" class="form-control" ng-model="heating.input.params.resetTime" />&nbsp;
-              <bb-help-text trans="_t('help_reset_time')"></bb-help-text>
-            </div>
-          </fieldset>
-        </div>
-      </section>
-    </fieldset>
-    <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
-    <div class="fieldset submit-entry is-grid">
-      <span>
-        <label class="switch">
-          <input type="checkbox" ng-model="heating.input.active" ng-checked="heating.input.active">
-          <span class="slider"></span>
-        </label>
-        <span class="switch-label">{{_t('activate_module',{__module__:_t('heating')})}}</span>
-      </span>
-      <span>
-        <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
-          <i class="fa fa-reply"></i>
-          <span class="btn-name">{{_t('lb_cancel')}}</span>
-        </a>
-        <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-          <i class="fa fa-check"></i>
-          <span class="btn-name">{{_t('lb_save')}}</span>
-        </button>
-      </span>
-    </div>
-  </form>
-  <div ng-include="'app/views/automation/heating/heating_id_temperatrue_modal.html'"></div>
+	<h2>{{_t('heating')}}</h2>
+	<!-- <pre>{{heating.rooms | json}}</pre> -->
+	<form class="form form-page" ng-submit="storeInstance(true)">
+		<!-- rooms -->
+		<fieldset>
+			<section class="accordion-wrap" ng-repeat="r in heating.rooms track by $index">
+				<!-- Title -->
+				<h2 class="accordion-toggle chevron">
+				<button type="button" aria-expanded="false" bb-accordion ng-click="renderSchedule('#schedule-'+{{r.id}}, r.id)">
+				<span>
+					<img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+				</span>
+				</button>
+				</h2>
+				<!-- Content -->
+				<div class="accordion" hidden>
+					<fieldset>
+						<!-- <pre>{{heating.input.params.roomSettings[r.id].schedule | json}}</pre> -->
+						<div class="form-inline">
+							<!-- comfort temp -->
+							<div class="form-group is-inline">
+								<label>{{_t('comfort_temp')}}</label>
+								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].comfortTemp" convert-to-float>
+									<option value="">---</option>
+									<option value="{{ct}}" ng-repeat="ct in heating.cfg.comfort.temp.temp track by $index" ng-selected="ct == heating.input.params.roomSettings[r.id].comfortTemp">
+									{{heating.cfg.comfort.temp.label[$index]}}</option>
+								</select>
+							</div>
+							<!-- energy save temp -->
+							<div class="form-group is-inline">
+								<label>{{_t('energy_save_temp')}}</label>
+								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].energySaveTemp" convert-to-float>
+									<option value="">---</option>
+									<option value="{{est}}" ng-repeat="est in heating.cfg.energySave.temp.temp track by $index" ng-selected="est == heating.input.params.roomSettings[r.id].energySaveTemp">
+									{{heating.cfg.energySave.temp.label[$index]}}</option>
+								</select>
+							</div>
+							<!-- main sensor -->
+							<div class="form-group is-inline">
+								<label ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">{{_t('temp_sensor')}}</label>
+								<select class="form-control" ng-if="heating.devices.SensorsByRoom[r.id].length > 1" ng-modal="heatin.input.params.roomSettings[r.id].sensorId">
+									<option value="">---</option>
+									<option value="{{d.deviceId}}" ng-repeat="d in heating.devices.SensorsByRoom[r.id] track by $index">
+									{{d.deviceName}}</option>
+								</select>
+								<span class="form-control" ng-if="heating.devices.SensorsByRoom[r.id].length == 1">{{heating.devices.SensorsByRoom[r.id][0].deviceName}}</span>
+							</div>
+						</div>
+						<div class="schedule-wrap">
+							<div class="schedule-overlay" ng-if="!heating.input.params.roomSettings[r.id].comfortTemp">
+								<bb-help-text trans="_t('no_comfort_temp_info')"></bb-help-text>
+							</div>
+							<div id="schedule-{{r.id}}" class="schedule" ng-class="(!heating.input.params.roomSettings[r.id].comfortTemp ? 'disabled': '')"></div>
+							<bb-help-text trans="_t('schedule_info')"></bb-help-text>
+						</div>
+						<div class="form-inline">
+							<div class="form-group is-inline">
+								<select class="form-control" ng-model="r.copyOption">
+									<option value="null">---</option>
+									<option value="{{i.id}}" ng-repeat="i in heating.rooms" ng-if="hasSchedules(i.id) && i.id !== r.id">
+										{{i.title}}
+									</option>
+								</select>
+								<button class="btn btn-default" type="button" ng-click="copySchedule(r.copyOption, r.id, _t('copy_schedule', {__dest_room__: r.title, __src_room__: heating.rooms[r.copyOption].title}))"
+								ng-disabled="(r.copyOption == null || r.copyOption == 'null')">
+								<i class="fa fa-copy"></i> {{_t('copy')}}
+								</button>
+								<bb-help-text trans="_t('copy_schedule_info')"></bb-help-text>
+							</div>
+						</div>
+						<div>
+							<h3>{{_t('thermostate_in_room')}}</h3>
+							<span class="btn btn-static btn-tag" title="{{v.deviceName}}" ng-repeat="v in heating.devices.ThermostateByRoom[r.id] track by $index" ng-if="_.size(heating.devices.ThermostateByRoom[r.id]) > 0">
+								{{v.deviceName|cutText:true:20}}
+							</span>
+							<div class="alert alert-warning" ng-if="_.size(heating.devices.ThermostateByRoom[r.id]) == 0">
+								<div class="form-group">
+									{{_t('no_thermostate_in_room')}}
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</section>
+		</fieldset>
+		<!-- global Settings -->
+		<fieldset>
+			<section class="accordion-wrap">
+				<!-- Title -->
+				<h2 class="accordion-toggle chevron">
+				<button type="button" aria-expanded="false" bb-accordion>
+				<span>
+					{{_t('advanced_settings')}}
+				</span>
+				</button>
+				</h2>
+				<!-- Content -->
+				<div class="accordion" hidden>
+					<fieldset>
+						<!-- Reset time -->
+						<div class="form-group is-inline">
+							<label>{{_t('reset_time')}}</label>
+							<input name="reset_time" id="reset_time" type="text" class="form-control" ng-model="heating.input.params.resetTime" />&nbsp;
+							<bb-help-text trans="_t('help_reset_time')"></bb-help-text>
+						</div>
+					</fieldset>
+				</div>
+			</section>
+		</fieldset>
+		<!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
+		<div class="fieldset submit-entry is-grid">
+			<span>
+				<label class="switch">
+					<input type="checkbox" ng-model="heating.input.active" ng-checked="heating.input.active">
+					<span class="slider"></span>
+				</label>
+				<span class="switch-label">{{_t('activate_module',{__module__:_t('heating')})}}</span>
+			</span>
+			<span>
+				<a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
+					<i class="fa fa-reply"></i>
+					<span class="btn-name">{{_t('lb_cancel')}}</span>
+				</a>
+				<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+				<i class="fa fa-check"></i>
+				<span class="btn-name">{{_t('lb_save')}}</span>
+				</button>
+			</span>
+		</div>
+	</form>
+	<div ng-include="'app/views/automation/heating/heating_id_temperatrue_modal.html'"></div>
 </div>
