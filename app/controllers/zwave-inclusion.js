@@ -12,8 +12,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         cancelModal: false,
         cfg: {
             checkInterviewTimeout: 3000, // miliseconds
-            checkInterviewRepeat: 7, // times
-            inexTimeout: 30000 // Inclusion/Exclusion timeout - miliseconds
+            checkInterviewRepeat: 40, // times
+            inexTimeout: 120000 // Inclusion/Exclusion timeout - miliseconds
         },
         device: {
             hasBattery: false,

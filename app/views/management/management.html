@@ -1,5 +1,5 @@
 <!-- Home view -->
-<div ng-controller="ManagementController">
+<section ng-controller="ManagementController">
     <!-- ///////////////////////////// User management ///////////////////////////// -->
     <section ng-include="'app/views/management/management_user.html'"></section>
 
@@ -8,7 +8,7 @@
     
     <!-- ///////////////////////////// License key ///////////////////////////// -->
     <section ng-if="handleLicense.show"
-         ng-include="'app/views/management/management_licence.html'"></div>
+         ng-include="'app/views/management/management_licence.html'"></section>
     
      <!-- ///////////////////////////// Local Access ///////////////////////////// -->
      <section ng-include="'app/views/management/management_local.html'"
