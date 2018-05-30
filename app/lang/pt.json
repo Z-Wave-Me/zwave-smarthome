@@ -145,6 +145,8 @@
     "day_short_5": "SEX",
     "day_short_6": "SAB",
     "deactivate_element_info": "Ele será removido da exibição de elementos e só pode ser reativado em Menu> Dispositivos> Gerenciamento> Dispositivos de Z-Wave> Device #ID. (veja o link acima 'Gerado por')",
+    "default_fire_message": "Fire or smoke detected!",
+    "default_leakage_message": "Leakage or flood detected!",
     "default_value_is": "O valor por defeito é",
     "delay": "Demora",
     "delete": "Eliminar",

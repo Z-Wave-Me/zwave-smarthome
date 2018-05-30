@@ -145,6 +145,8 @@
     "day_short_5": "FR",
     "day_short_6": "SA",
     "deactivate_element_info": "Questo elemento non può essere usato per scene o applicazioni quando è disattivo. Sarà rimosso dalla vista degli elementi e può essere riattivato da Menu > Dispositivo > Gestione > Z-Wave Dispositivi > Dispositivo #ID. (vedi il link sopra 'Generato da')",
+    "default_fire_message": "Fire or smoke detected!",
+    "default_leakage_message": "Leakage or flood detected!",
     "default_value_is": "Il Valore predefinito è",
     "delay": "Delay",
     "delete": "Cancella",
