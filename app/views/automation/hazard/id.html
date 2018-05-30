@@ -1,53 +1,49 @@
-<!-- The schedule -->
-<section class="automation" ng-controller="HazardNotificationIdController">
- <!-- No device -->
+<div class="automation" ng-controller="HazardNotificationIdController">
+  <bb-loader></bb-loader>
+  <!-- No device -->
   <div ng-if="!hazardProtection.show" ng-include="'app/views/automation/no_device.html'"></div>
   <!-- Form -->
   <div ng-if="hazardProtection.show">
     <h2>{{_t('hazard_notification')}}</h2>
-    <form class="form form-page" ng-submit="storeInstance(hazardProtection.input,true)">
-      <!-- Form-->
-      <fieldset ng-include="'app/views/automation/hazard/id_form.html'"></fieldset>
-      <section>
-        <!-- Asigned sensors -->
-        <legend ng-if="_.size(hazardProtection.input.params.sensors) && hazardProtection.input.params.hazardType == 'leakage'">{{_t('assigned_leakage_sensors')}}</legend>
-        <legend ng-if="_.size(hazardProtection.input.params.sensors) && hazardProtection.input.params.hazardType == 'fire'">{{_t('assigned_fire_sensors')}}</legend>
-        <fieldset ng-include="'app/views/automation/hazard/id_sensors_assigned.html'"></fieldset>
-        <!-- Available sensors -->
-        <legend ng-if="_.size(hazardProtection.availableSensors) > _.size(hazardProtection.input.params.sensors)">{{_t('add_sensors')}}</legend>
-        <fieldset ng-include="'app/views/automation/hazard/id_sensors_available.html'"></fieldset>
-      </section>
-      <section ng-if="_.size(hazardProtection.input.params.triggerEvent) || _.size(hazardProtection.input.params.sendNotifications)">
-        <!-- Asigned devices -->
-        <legend ng-if="_.size(hazardProtection.input.params.triggerEvent)">{{_t('assigned_devices')}}</legend>
-        <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/id_devices_assigned.html'"></fieldset>
-        <!-- Asigned notifiers -->
-        <legend ng-if="_.size(hazardProtection.input.params.sendNotifications)">{{_t('assigned_notifications')}}</legend>
-        <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/id_notifiers_assigned.html'"></fieldset>
-      </section>
-      <section ng-if="_.size(hazardProtection.input.params.sensors)">
-        <!-- Available devices -->
-        <legend>{{_t('lb_available_devices')}}</legend>
-        <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/id_devices_available.html'"></fieldset>
-      </section>
-      <section ng-if="_.size(hazardProtection.input.params.sensors)">
-        <!-- Notifications -->
-        <legend>{{_t('notifications')}}</legend>
-        <fieldset ng-include="'app/views/automation/hazard/id_notifiers_add.html'"></fieldset>
-      </section>
-      <!-- Submit  -->
-      <fieldset class="submit-entry">
-        <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-          <i class="fa fa-reply"></i>
-          <span class="btn-name">{{_t('lb_cancel')}}</span>
-        </button>
-        <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-          <i class="fa fa-check"></i>
-          <span class="btn-name">{{_t('lb_save')}}</span>
-        </button>
-      </fieldset>
-    </form>
+    <div class="tabs-wrap form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
+      <!-- Default -->
+      <div class="btn-group btn-group-justified btn-goup-tabs" ng-if="!rule.input.params.advanced.active">
+        <a class="btn btn-default" title="{{_t('fire')}}" ng-class="{'active':hazardProtection.tab == 'fire'}" ng-click="hazardProtection.tab = 'fire'">
+          {{_t('title_fire_notification')}}
+        </a>
+        <a class="btn btn-default" title="{{_t('leakages')}}" ng-class="{'active':hazardProtection.tab == 'leakage'}" ng-click="hazardProtection.tab = 'leakage'">
+          {{_t('title_leakage_notification')}}
+        </a>
+      </div>
+    </div>
+    <form class="form form-page" ng-submit="storeInstances(hazardProtection.fire.input, hazardProtection.leakage.input,true)">
+      <div class="fieldset">
+        <!-- Fire -->
+      <section ng-if="hazardProtection.tab == 'fire'" ng-include="'app/views/automation/hazard/fire/fire.html'"></section>
+      <!-- Leakage -->
+    <section ng-if="hazardProtection.tab == 'leakage'" ng-include="'app/views/automation/hazard/leakage/leakage.html'"></section>
   </div>
-  <!-- <pre>{{hazardProtection.input|json}}</pre> -->
-</section>
+  <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
+  <div class="fieldset submit-entry is-grid">
+    <span>
+      <label class="switch">
+        <input type="checkbox" ng-model="hazardProtection.active" ng-click="activateInstances()" ng-checked="hazardProtection.active">
+        <span class="slider"></span>
+      </label>
+      <span class="switch-label">{{_t('activate_module',{__module__:_t('hazard_notification')})}}</span>
+    </span>
+    <span>
+      <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </a>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+      <i class="fa fa-check"></i>
+      <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </span>
+  </div>
+</form>
+</div>
+</div>
 <!-- /ng-controller -->

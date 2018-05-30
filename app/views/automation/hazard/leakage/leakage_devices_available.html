@@ -10,8 +10,8 @@
   </h2>
   <!-- Content -->
   <div class="accordion" hidden>
-    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in hazardProtection.availableDevices" ng-if="d.location == r.id &&  hazardProtection.assignedDevices.indexOf(d.deviceId) === -1"
-      ng-click="assignDevice(d)">
+    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in hazardProtection.availableDevices" ng-if="d.location == r.id &&  hazardProtection.leakage.assignedDevices.indexOf(d.deviceId) === -1"
+      ng-click="assignDevice(d, 'leakage')">
       {{d.deviceName|cutText:true:20}}
       <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
