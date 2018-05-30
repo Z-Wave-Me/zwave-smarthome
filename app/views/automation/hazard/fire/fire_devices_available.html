@@ -1,0 +1,19 @@
+<!-- {{hazardProtection.availableDevices|json}} -->
+<section class="accordion-wrap" ng-repeat="r in hazardProtection.rooms track by $index" ng-class="hazardProtection.devicesInRoom[r.id] ? 'available-devices' : 'ng-hide'">
+  <!-- Title -->
+  <h2 class="accordion-toggle chevron">
+  <button type="button" aria-expanded="false" bb-accordion>
+  <span>
+    <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+  </span>
+  </button>
+  </h2>
+  <!-- Content -->
+  <div class="accordion" hidden>
+    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in hazardProtection.availableDevices" ng-if="d.location == r.id &&  hazardProtection.fire.assignedDevices.indexOf(d.deviceId) === -1"
+      ng-click="assignDevice(d, 'fire')">
+      {{d.deviceName|cutText:true:20}}
+      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+    </a>
+  </div>
+</section>
