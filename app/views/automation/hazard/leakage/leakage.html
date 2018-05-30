@@ -1,25 +1,36 @@
-<!-- Asigned sensors -->
-<div ng-if="_.size(hazardProtection.fire.input.params.sensors) > 0">
-	<legend>{{_t('assigned_leakage_sensors')}}</legend>
-<fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/leakage/leakage_sensors_assigned.html'"></fieldset>
+<!-- Sensors -->
+<section>
+	<h3>{{_t('leakage_sensors')}}</h3>
+	<!-- Asigned sensors -->
+	<div ng-if="_.size(hazardProtection.leakage.input.params.sensors) > 0">
+		<legend>{{_t('assigned_leakage_sensors')}}</legend>
+	<fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/leakage/leakage_sensors_assigned.html'"></fieldset>
 </div>
 <!-- Available -->
 <legend>{{_t('lb_available_sensors')}}</legend>
 <fieldset ng-include="'app/views/automation/hazard/leakage/leakage_sensors_available.html'"></fieldset>
-<section ng-if="_.size(hazardProtection.fire.input.params.sensors)">
+</section>
 <!-- Notifications -->
-<legend>{{_t('notifications')}}</legend>
+<section>
+<h3>{{_t('alarm_notifications')}}</h3>
+<!-- Assigned notifications -->
+<div ng-if="_.size(hazardProtection.leakage.input.params.sendNotifications) > 0">
+<fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/leakage/leakage_notifiers_assigned.html'"></fieldset>
+</div>
+<!-- Add notifications -->
 <fieldset ng-include="'app/views/automation/hazard/leakage/leakage_notifiers_add.html'"></fieldset>
 </section>
-<section ng-if="_.size(hazardProtection.fire.input.params.triggerEvent) || _.size(hazardProtection.fire.input.params.sendNotifications)">
+<!-- Devices -->
+<section>
+<h3>{{_t('devices_for_action')}}</h3>
+<div ng-if="_.size(hazardProtection.leakage.input.params.triggerEvent)">
 <!-- Asigned devices -->
-<legend ng-if="_.size(hazardProtection.fire.input.params.triggerEvent)">{{_t('assigned_devices')}}</legend>
+<legend>{{_t('assigned_devices')}}</legend>
 <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/leakage/leakage_devices_assigned.html'"></fieldset>
-<!-- Asigned notifiers -->
-<fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/leakage/leakage_notifiers_assigned.html'"></fieldset>
-</section>
-<section ng-if="_.size(hazardProtection.fire.input.params.sensors)">
+</div>
+<div ng-if="_.size(hazardProtection.leakage.input.params.sensors)">
 <!-- Available devices -->
 <legend>{{_t('lb_available_devices')}}</legend>
 <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/leakage/leakage_devices_available.html'"></fieldset>
+</div>
 </section>
