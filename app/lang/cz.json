@@ -346,6 +346,7 @@
     "lb_assign_room": "Přiřadit k místnosti",
     "lb_available_devices": "Dostupná zařízení",
     "lb_available_rooms": "Dostupné místnosti",
+    "lb_available_sensors": "Available sensors",
     "lb_battery_status": "Stav baterie",
     "lb_button_remote_control": "Remote control button",
     "lb_call_name": "Call name",

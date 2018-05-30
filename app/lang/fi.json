@@ -346,6 +346,7 @@
     "lb_assign_room": "Liitä huoneeseen",
     "lb_available_devices": "Käytettävissä olevat laitteet",
     "lb_available_rooms": "Käytettävissä olevat huoneet",
+    "lb_available_sensors": "Available sensors",
     "lb_battery_status": "Akun\/pariston tila",
     "lb_button_remote_control": "Remote control button",
     "lb_call_name": "Call name",

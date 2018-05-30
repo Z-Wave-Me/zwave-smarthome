@@ -346,6 +346,7 @@
     "lb_assign_room": "Assigner à une pièce",
     "lb_available_devices": "Dispositifs disponibles",
     "lb_available_rooms": "Pièces disponibles",
+    "lb_available_sensors": "Available sensors",
     "lb_battery_status": "Etat de la batterie",
     "lb_button_remote_control": "Button de télécommande",
     "lb_call_name": "Call name",

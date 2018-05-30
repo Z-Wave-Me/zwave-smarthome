@@ -346,6 +346,7 @@
     "lb_assign_room": "分配到房间",
     "lb_available_devices": "可用设备",
     "lb_available_rooms": "可用的房间",
+    "lb_available_sensors": "Available sensors",
     "lb_battery_status": "电池状态",
     "lb_button_remote_control": "Remote control button",
     "lb_call_name": "Call name",

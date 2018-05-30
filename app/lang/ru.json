@@ -346,6 +346,7 @@
     "lb_assign_room": "Назначить в комнату",
     "lb_available_devices": "Доступные устройства",
     "lb_available_rooms": "Доступные комнаты",
+    "lb_available_sensors": "Available sensors",
     "lb_battery_status": "Статус батареи",
     "lb_button_remote_control": "Remote control button",
     "lb_call_name": "Call name",

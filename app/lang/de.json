@@ -346,6 +346,7 @@
     "lb_assign_room": "Einen Raum zuweisen",
     "lb_available_devices": "Verfügbare Geräte",
     "lb_available_rooms": "Verfügbare Räume",
+    "lb_available_sensors": "Available sensors",
     "lb_battery_status": "Batteriestatus",
     "lb_button_remote_control": "Fernbedienungstaste",
     "lb_call_name": "Rufname",

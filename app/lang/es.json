@@ -346,6 +346,7 @@
     "lb_assign_room": "Asignar a la habitación",
     "lb_available_devices": "Dispositivos disponibles",
     "lb_available_rooms": "Habitaciones disponibles",
+    "lb_available_sensors": "Available sensors",
     "lb_battery_status": "Estado de la batería",
     "lb_button_remote_control": "Botón de control a distancia",
     "lb_call_name": "Call name",
