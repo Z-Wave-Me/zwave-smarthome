@@ -1,14 +1,14 @@
-<section class="accordion-wrap" ng-repeat="d in hazardProtection.input.params.sendNotifications track by $index" ng-class="{'edit-me_': !d.target}"
+<section class="accordion-wrap" ng-repeat="d in hazardProtection.leakage.input.params.sendNotifications track by $index" ng-class="{'edit-me_': !d.target}"
   ng-init="notifyTitleModel = d.target">
   <h2 class="accordion-toggle ellipsis">
   <!-- Title -->
   <button type="button" aria-expanded="false" bb-accordion>
   <span>
+    <img class="navi-img" ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
     {{_t('notification')}} {{$index+1}}
-    <!-- <em>{{(hazardProtection.availableNotifiers[d.target].deviceName || notifyTitleModel)}}</em> -->
   </span>
   </button>
-  <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignNotification($index,d.target)">
+  <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignNotification($index,d.target, 'leakage')">
     <i class="fa fa-times text-danger"></i>
   </span>
   </h2>

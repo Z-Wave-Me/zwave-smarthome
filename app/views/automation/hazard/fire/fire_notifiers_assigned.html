@@ -1,0 +1,17 @@
+<section class="accordion-wrap" ng-repeat="d in hazardProtection.fire.input.params.sendNotifications track by $index" ng-class="{'edit-me_': !d.target}"
+  ng-init="notifyTitleModel = d.target">
+  <h2 class="accordion-toggle ellipsis">
+  <!-- Title -->
+  <button type="button" aria-expanded="false" bb-accordion>
+  <span>
+    <img class="navi-img" ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
+    {{_t('notification')}} {{$index+1}}
+  </span>
+  </button>
+  <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignNotification($index,d.target, 'fire')">
+    <i class="fa fa-times text-danger"></i>
+  </span>
+  </h2>
+  <!-- Content -->
+  <div class="accordion" ng-include="'app/views/automation/hazard/inputs/notification.html'" hidden></div>
+</section>
