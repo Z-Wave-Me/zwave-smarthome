@@ -1,7 +1,7 @@
 <!-- select -->
 <div class="form-group form-inline">
   <!-- select level -->
-   <select class="form-control" ng-model="model.level" ng-change="model.level = (model.level == 'rgb' ? {red:0,green:0,blue:0} : model.level)">
+   <select class="form-control" ng-model="model.level" ng-change="model.level = (model.level == 'rgb' ? {r:0,g:0,b:0} : model.level)">
       <!-- <option value="">---</option> -->
       <option value="{{o}}" ng-repeat="o in rule.options.switchRGBW.level track by $index" ng-selected="o == model.level">
         {{o}}</option>
@@ -12,15 +12,15 @@
    <span class="form-inline" ng-hide="rule.options.switchRGBW.level.indexOf(model.level) > -1">
       <!-- red -->
      <label>
-         {{_t('red')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.red" />
+         {{_t('red')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.r" />
        </label>
         <!-- green -->
      <label>
-         {{_t('green')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.green" />
+         {{_t('green')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.g" />
        </label>
         <!-- blue -->
      <label>
-         {{_t('blue')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.blue" />
+         {{_t('blue')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.b" />
        </label>
        <bb-help-text trans="_t('Choose a value from 0 - 255')"></bb-help-text>
    </div>
