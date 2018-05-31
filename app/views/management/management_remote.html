@@ -1,13 +1,12 @@
 <!-- Admin remote view -->
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
-  <!-- Toggle -->
-  <button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('remote',true)">
-    <span>
-      <i class="fa fa-wifi fa-fw"></i> {{_t('remote_access_manage')}}
-    </span>
-  </button>
-
+<!-- Toggle -->
+<button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('remote',true)">
+<span>
+  <i class="fa fa-wifi fa-fw"></i> {{_t('remote_access_manage')}}
+</span>
+</button>
 </h2>
 <!-- Content -->
 <div class="accordion" hidden ng-if="expand.remote" ng-controller="ManagementRemoteController">
@@ -27,7 +26,7 @@
           <div>
             <label for="remote_access">
               <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus"
-                ng-disabled="(cfg.route.os == 'PoppApp_Z_Way' && connection.remote) || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)"
+              ng-disabled="(cfg.route.os == 'PoppApp_Z_Way' && connection.remote) || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)"
               />
               <span>{{_t('remote_access')}}</span>
               <span class="help-text" ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.remote) || (cfg.route.os == 'PoppApp_Z_Way' && connection.remote)">
@@ -35,7 +34,7 @@
                 {{_t('disable_only_on_local_possible')}}
               </span>
             </label>
-            <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
+            <div class="alert alert-warning" ng-bind="_t('remote_access_warning', {__url__:findUrl})" ng-if="!remoteAccess.params.zbwStatus"></div>
           </div>
           <div>
             <label for="remote_support">
@@ -49,8 +48,8 @@
     </fieldset>
     <fieldset class="submit-entry">
       <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
-        <i class="fa fa-check"></i>
-        <span class="btn-name">{{_t('lb_save')}}</span>
+      <i class="fa fa-check"></i>
+      <span class="btn-name">{{_t('lb_save')}}</span>
       </button>
     </fieldset>
   </form>
