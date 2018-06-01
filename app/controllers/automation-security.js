@@ -180,11 +180,132 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				},
 				controls: {
 					table: []
+				},
+				schedules: {
+					'0': [],
+					'1': [],
+					'2': [],
+					'3': [],
+					'4': [],
+					'5': [],
+					'6': []
 				}
 
-			},
+			}
 		}
 	};
+	/**
+	 *  Schedule
+	 */
+	$scope.scheduleOptions = {
+		startTime: "00:00", // schedule start time(HH:ii)
+		endTime: "24:00", // schedule end time(HH:ii)
+		widthTime: 60 * 5, // cell timestamp  5 minutes
+		timeLineY: 30, // height(px)
+		verticalScrollbar: 20, // scrollbar (px)
+		timeLineBorder: 2, // border(top and bottom)
+		rows: {
+			'0': {
+				title: 'day_short_0',
+				schedule: []
+			},
+			'1': {
+				title: 'day_short_1',
+				schedule: []
+			},
+			'2': {
+				title: 'day_short_2',
+				schedule: []
+			},
+			'3': {
+				title: 'day_short_3',
+				schedule: []
+			},
+			'4': {
+				title: 'day_short_4',
+				schedule: []
+			},
+			'5': {
+				title: 'day_short_5',
+				schedule: []
+			},
+			'6': {
+				title: 'day_short_6',
+				schedule: []
+			}
+		},
+		change: function(node, data) {
+			console.log("change");
+			$scope.updateData();
+		},
+		init_data: function(node, data) {},
+		click: function(node, data) {},
+		append: function(node, data) {},
+		time_click: function(time, data, timeline, timelineData) {
+			var start = this.calcStringTime(data),
+				end = start + 3600,
+				data = {
+					timeline: parseInt(timeline),
+					start: start,
+					end: end,
+					text: 'Arm'
+						/*, //TODO add label
+											data: {
+												condition: 'arm'
+											}*/
+				};
+			this.addScheduleData(data);
+			$scope.updateData();
+		},
+		append_on_click: function(timeline, startTime, endTime) {
+			var start = this.calcStringTime(startTime),
+				end = this.calcStringTime(endTime)
+
+			end = end == start ? end + 3600 : end;
+
+			var data = {
+				timeline: parseInt(timeline),
+				start: start,
+				end: end,
+				text: 'Arm'
+			};
+
+			this.addScheduleData(data);
+			$scope.updateData();
+		},
+		bar_Click: function(node, timelineData, scheduleIndex) {
+			/*
+			console.log("timelineData", timelineData);
+			var schedules = {};
+			var condition = timelineData.data.condition == 'arm' ? 'disarm' : 'arm';
+			angular.forEach($scope.jQuerySchedule.getScheduleData(), function(v, k) {
+				schedules[k] = {};
+				schedules[k]['schedule'] = v.schedule;
+				if (k == timelineData.timeline) {
+					var index = _.findIndex(v.schedule, {
+						text: timelineData.text
+					});
+					if (v.schedule[index]) {
+						v.schedule[index].text = condition.substring(0, 1).toUpperCase();;
+						v.schedule[index].data.condition = condition;
+					}
+				}
+			});
+
+			$scope.jQuerySchedule.update(schedules);
+			$scope.updateData();
+			*/
+		},
+		connect: function(data) {},
+		confirm: function() {},
+		delete_bar: function() {
+			console.log('from delete')
+			$scope.updateData();
+		}
+	};
+
+	$scope.jQuerySchedule = {};
+
 
 	/**
 	 *  Reset Original data 
@@ -204,11 +325,29 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	$scope.loadInstance = function(id) {
 		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
 			$scope.security.routeId = id;
+			// Adding params from instatnce
 			var instance = instances.data.data;
 			angular.extend($scope.security.input, {
 				title: instance.title,
 				active: instance.active,
 				params: instance.params
+			});
+			// Adding rows to scheduleOptions
+			angular.forEach($scope.security.input.params.schedules, function(v, k) {
+				if (_.size(v)) {
+					angular.forEach(v, function(t) {
+						//var condition = ($filter('hasNode')(v, 'data.condition') == 'arm' ? 'disarm' : 'arm');
+						$scope.scheduleOptions.rows[k]['schedule'].push({
+							start: t.arm,
+							end: t.disarm,
+							text: "Arm" // TODO add label
+								/*data: {
+									condition: condition
+								}*/
+						})
+					});
+				}
+
 			});
 
 		}, function(error) {
@@ -235,12 +374,12 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	};
 	$scope.loadRooms();
 
-	/**
-	 * Load devices
-	 */
-	$scope.loadDevices = function(rooms) {
-		dataFactory.getApi('devices').then(function(response) {
-				var devices = dataService.getDevicesData(response.data.data.devices);
+  /**
+   * Load devices
+   */
+  $scope.loadDevices = function (rooms) {
+    dataFactory.getApi('devices').then(function (response) {
+      var devices = dataService.getDevicesData(response.data.data.devices);
 
 				_.filter(devices.value(), function(v) {
 					var getZwayId = function(deviceId) {
@@ -348,11 +487,63 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		});
 		if (deviceIndex > -1) {
 			$scope.security.input.params[param].table.splice(deviceIndex, 1);
-
 		}
 	};
+	////////// Dis-arm by time ////////// 
+	/**
+	 * Renders dis-arm schedule
+	 * @param {string} elementId 
+	 */
+	$scope.renderSchedule = function(elementId) {
+			var schedule = angular.element(elementId),
+				scheduleOptions_copy = {};
+
+			angular.copy($scope.scheduleOptions, scheduleOptions_copy);
+
+			schedule.empty();
+			$timeout(function() {
+				schedule.timeSchedule(scheduleOptions_copy);
+				var titles = angular.element(".title");
+				angular.forEach(titles, function(t) {
+
+					var title = angular.element(t).data('title');
+					angular.element(t).html($scope._t(title));
+					$scope.jQuerySchedule = schedule;
+				});
+			}, 10);
+		}
+		/**
+		 * Update input data
+		 */
+	$scope.updateData = function() {
+		angular.forEach($scope.jQuerySchedule.getScheduleData(), function(v, k) {
+			$scope.security.input.params.schedules[k] = _.map(v.schedule, function(sc) {
+				console.log(sc)
+				return {
+					arm: sc.start,
+					disarm: sc.end,
+				};
+			});
+		});
+	};
+
+	/**
+	 * Assign dis-arm schedule
+	 * @param {object} data 
+	 */
+	/* $scope.assignSchedule = function (data) {
+
+	  if ($scope.security.input.params.schedules[data.day]) {
+	    $scope.security.input.params.schedules[data.day].push({
+	      time: data.time
+	    })
+	  }
+	  //$scope.security.input.params.schedules
+	} */
+
 	////////// Advanced schedule ////////// 
 	/**
+	 * TODO: deprecated
 	 * Assign a time scheduler
 	 * @returns {undefined}
 	 */
@@ -364,6 +555,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	};
 
 	/**
+	 * TODO: deprecated
 	 * Unassign a time scheduler
 	 *  @param {int} targetIndex 
 	 * @returns {undefined}
@@ -373,7 +565,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			$scope.security.input.params.times.table.splice(targetIndex, 1);
 		}
 	};
-
 
 	////////// Save complete form ////////// 
 	/**
