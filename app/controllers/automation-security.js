@@ -43,7 +43,7 @@ myAppController.controller('SecurityController', function($scope, $routeParams, 
 myAppController.controller('SecurityIdController', function($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
 	$scope.security = {
 		routeId: 0,
-		tab: 1,
+		tab: 3,
 		days: [1, 2, 3, 4, 5, 6, 0],
 		devices: {
 			input: [],
@@ -53,20 +53,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			notification: []
 		},
 		cfg: {
-			options: {
-				switchMultilevel: {
-					min: 0,
-					max: 99
-				},
-				switchRGBW: {
-					min: 0,
-					max: 255
-				},
-				thermostat: {
-					min: 0,
-					max: 99
-				}
-			},
 			input: {
 				deviceType: ['sensorBinary'],
 				status: ['on', 'off'],
@@ -76,43 +62,33 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			},
 			silentAlarms: {
-				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
+				deviceType: ['toggleButton', 'switchBinary'],
 				default: {
-					devices: '',
-					level: 'on',
-					sendAction: false
+					devices: ''
 				}
 			},
 			alarms: {
-				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
+				deviceType: ['toggleButton', 'switchBinary'],
 				default: {
-					devices: '',
-					level: 'on',
-					sendAction: false
+					devices: ''
 				}
 			},
 			armConfirm: {
-				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
+				deviceType: ['toggleButton'],
 				default: {
-					devices: '',
-					level: '',
-					sendAction: false
+					devices: ''
 				}
 			},
 			disarmConfirm: {
-				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
+				deviceType: ['toggleButton'],
 				default: {
-					devices: '',
-					level: '',
-					sendAction: false
+					devices: ''
 				}
 			},
 			clean: {
-				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
+				deviceType: ['toggleButton'],
 				default: {
-					devices: '',
-					level: '',
-					sendAction: false
+					devices: ''
 				}
 			},
 			controls: {
@@ -324,6 +300,20 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 */
 	$scope.loadInstance = function(id) {
 		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
+			// Add one hour to time
+			var addHour = function(hm) {
+				var a = hm.split(':'); // split it at the colons
+				// minutes are worth 60 seconds. Hours are worth 60 minutes.
+				//var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+				var seconds = ((+a[0]) * 60 * 60 + (+a[1]) * 60) + 3600;
+
+				var hh = Math.floor(seconds / 3600),
+					mm = Math.floor(seconds / 60) % 60,
+					ss = Math.floor(seconds) % 60;
+				return (hh ? (hh < 10 ? "0" : "") + hh + ":" : "") + ((mm < 10) && hh ? "0" : "") + mm;
+				//return (hh ? (hh < 10 ? "0" : "") + hh + ":" : "") + ((mm < 10) && hh ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss
+			}
+
 			$scope.security.routeId = id;
 			// Adding params from instatnce
 			var instance = instances.data.data;
@@ -374,60 +364,56 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	};
 	$scope.loadRooms();
 
-  /**
-   * Load devices
-   */
-  $scope.loadDevices = function (rooms) {
-    dataFactory.getApi('devices').then(function (response) {
-      var devices = dataService.getDevicesData(response.data.data.devices);
+	/**
+	 * Load devices
+	 */
+	$scope.loadDevices = function(rooms) {
+		dataFactory.getApi('devices').then(function(response) {
+			var devices = dataService.getDevicesData(response.data.data.devices);
 
-				_.filter(devices.value(), function(v) {
-					var getZwayId = function(deviceId) {
-						var zwaveId = false;
-						if (deviceId.indexOf("ZWayVDev_zway_") > -1) {
-							zwaveId = deviceId.split("ZWayVDev_zway_")[1].split('-')[0];
-							return zwaveId.replace(/[^0-9]/g, '');
-						}
-						return zwaveId;
+			_.filter(devices.value(), function(v) {
+				var getZwayId = function(deviceId) {
+					var zwaveId = false;
+					if (deviceId.indexOf("ZWayVDev_zway_") > -1) {
+						zwaveId = deviceId.split("ZWayVDev_zway_")[1].split('-')[0];
+						return zwaveId.replace(/[^0-9]/g, '');
 					}
+					return zwaveId;
+				}
+				var obj = {
+					deviceId: v.id,
+					zwaveId: getZwayId(v.id),
+					deviceName: v.metrics.title,
+					deviceNameShort: $filter('cutText')(v.metrics.title, true, 30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
+					deviceType: v.deviceType,
+					probeType: v.probeType,
+					location: v.location,
+					locationName: rooms[v.location].title,
+					iconPath: v.iconPath
+				};
+				// Set input
+				if ($scope.security.cfg.input.deviceType.indexOf(v.deviceType) > -1) {
+					$scope.security.devices.input.push(obj);
+				}
+				// Set alarm, silent alarm
+				if ($scope.security.cfg.alarms.deviceType.indexOf(v.deviceType) > -1) {
+					$scope.security.devices.alarms.push(obj);
+				}
+				// Set arm, disarm, clean
+				if ($scope.security.cfg.armConfirm.deviceType.indexOf(v.deviceType) > -1) {
+					$scope.security.devices.armConfirm.push(obj);
+				}
+				// Set controls
+				if ($scope.security.cfg.controls.deviceType.indexOf(v.deviceType) > -1) {
 
-					var obj = {
-						deviceId: v.id,
-						zwaveId: getZwayId(v.id),
-						deviceName: v.metrics.title,
-						deviceNameShort: $filter('cutText')(v.metrics.title, true, 30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
-						level: _.isNumber(v.metrics.level) ? parseInt(v.metrics.level) : v.metrics.level,
-						deviceType: v.deviceType,
-						probeType: v.probeType,
-						location: v.location,
-						locationName: rooms[v.location].title,
-						iconPath: v.iconPath
-					};
-
-					// Set input
-					if ($scope.security.cfg.input.deviceType.indexOf(v.deviceType) > -1) {
-						$scope.security.devices.input.push(obj);
-					}
-					// Set alarm, silent alarm
-					if ($scope.security.cfg.alarms.deviceType.indexOf(v.deviceType) > -1) {
-						$scope.security.devices.alarms.push(obj);
-					}
-					// Set arm, disarm, clean
-					if ($scope.security.cfg.armConfirm.deviceType.indexOf(v.deviceType) > -1) {
-						$scope.security.devices.armConfirm.push(obj);
-					}
-					// Set controls
-					if ($scope.security.cfg.controls.deviceType.indexOf(v.deviceType) > -1) {
-
-						$scope.security.devices.controls.push(obj);
-					}
-					// Set notifications
-					if (v.probeType && $scope.security.cfg.notification.probeType.indexOf(v.probeType) > -1) {
-						$scope.security.devices.notification.push(obj);
-					}
-				});
-			},
-			function(error) {});
+					$scope.security.devices.controls.push(obj);
+				}
+				// Set notifications
+				if (v.probeType && $scope.security.cfg.notification.probeType.indexOf(v.probeType) > -1) {
+					$scope.security.devices.notification.push(obj);
+				}
+			});
+		}, function(error) {});
 	};
 
 	/**
@@ -442,20 +428,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		return index;
 	};
 	////////// Devices ////////// 
-	/**
-	 * Get device entry by deviceId
-	 * @param  {string} deviceId 
-	 * @return {object} device          
-	 */
-	$scope.getDevice = function(deviceId) {
-		console.log("deviceId", deviceId);
-		var device = _.findWhere($scope.security.devices.alarms, {
-			deviceId: deviceId
-		});
-		console.log("device", device);
-		return device;
-	}
-
 	/**
 	 * Assign a device
 	 * @param {string} deviceId
