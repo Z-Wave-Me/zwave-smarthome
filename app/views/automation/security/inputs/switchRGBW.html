@@ -3,24 +3,24 @@
   <!-- select level -->
   <select class="form-control" ng-model="model.level" ng-change="model.level = (model.level == 'rgb' ? {r:0,g:0,b:0} : model.level)">
     <!-- <option value="">---</option> -->
-    <option value="{{o}}" ng-repeat="o in rule.options.switchRGBW.level track by $index" ng-selected="o == model.level">
+    <option value="{{o}}" ng-repeat="o in security.cfg.options.switchRGBW.level track by $index" ng-selected="o == model.level">
     {{o}}</option>
     <option value="rgb" ng-selected="_.isObject(model.level)">{{_t('colors')}}</option>
   </select>
   
   <!-- level rgb -->
-  <span class="form-inline" ng-hide="rule.options.switchRGBW.level.indexOf(model.level) > -1">
+  <span class="form-inline" ng-hide="security.cfg.options.switchRGBW.level.indexOf(model.level) > -1">
     <!-- red -->
     <label>
-      {{_t('red')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.r" />
+      {{_t('red')}} <input type="number" class="form-control input-number" min="{{security.cfg.options.switchRGBW.min}}" max="{{security.cfg.options.switchRGBW.max}}"  ng-model="model.level.r" />
     </label>
     <!-- green -->
     <label>
-      {{_t('green')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.g" />
+      {{_t('green')}} <input type="number" class="form-control input-number" min="{{security.cfg.options.switchRGBW.min}}" max="{{security.cfg.options.switchRGBW.max}}"  ng-model="model.level.g" />
     </label>
     <!-- blue -->
     <label>
-      {{_t('blue')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.b" />
+      {{_t('blue')}} <input type="number" class="form-control input-number" min="{{security.cfg.options.switchRGBW.min}}" max="{{security.cfg.options.switchRGBW.max}}"  ng-model="model.level.b" />
     </label>
     <bb-help-text trans="_t('help_rgbw_value')"></bb-help-text>
   </div>

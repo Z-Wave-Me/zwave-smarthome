@@ -24,7 +24,8 @@
     <section ng-if="hazardProtection.tab == 'leakage'" ng-include="'app/views/automation/hazard/leakage/leakage.html'"></section>
   </div>
   <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
-  <div class="fieldset submit-entry is-grid">
+  <div class="fieldset submit-entry">
+    <!-- Activate/deactivate fire/leakage instances
     <span>
       <label class="switch">
         <input type="checkbox" ng-model="hazardProtection.active" ng-click="activateInstances()" ng-checked="hazardProtection.active">
@@ -32,6 +33,7 @@
       </label>
       <span class="switch-label">{{_t('activate_module',{__module__:_t('hazard_notification')})}}</span>
     </span>
+    -->
     <span>
       <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
         <i class="fa fa-reply"></i>
