@@ -9,13 +9,14 @@
 </div>
 <!-- Interval -->
 <!-- <div class="form-group form-inline">
-    <label>{{_t('security_alarm_interval')}}</label>
-      <div class="input-group">
-          <input class="form-control" type="number" ng-model="security.input.params.times.interval">
-      </div>
-      <bb-help-text trans="_t('help_security_alarm_interval')"></bb-help-text>
-  </div> -->
+  <label>{{_t('security_alarm_interval')}}</label>
+  <div class="input-group">
+    <input class="form-control" type="number" ng-model="security.input.params.times.interval">
+  </div>
+  <bb-help-text trans="_t('help_security_alarm_interval')"></bb-help-text>
+</div> -->
 <!-- Table -->
 <!-- <div>Schedule test</div> -->
 <div id="schedule-disarm" class="schedule"></div>
-<pre>{{security.input.params.schedules|json}}</pre>
+<bb-help-text trans="_t('help_security_schedule')"></bb-help-text>
+<!-- <pre>{{security.input.params.schedules|json}}</pre> -->
