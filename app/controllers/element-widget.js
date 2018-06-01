@@ -202,6 +202,7 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
                 };
                 return;
             }
+            $scope.widgetHistory.alert = {};
             $scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors);
         }, function(error) {
             $scope.widgetHistory.alert = {
