@@ -11211,6 +11211,13 @@ img {
   font-size: 95%;
 }
 
+.btn.active, .btn[aria-selected] {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
 .btn.btn-text {
   border: 0;
   background: transparent;
@@ -11311,80 +11318,6 @@ img {
   .btn-tag label {
     width: 20px;
   }
-}
-
-/* Button tabs
--------------------------------------------------- */
-.btn-goup-tabs {
-  /* display: table;
-  width: 100%;*/
-  margin: 0 0 10px 0;
-}
-
-.btn-goup-tabs .btn {
-  background-color: #FFFFFF;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-.btn-goup-tabs .btn.active {
-  background-color: #f2f2f2;
-}
-
-@media only screen and (min-width: 768px) {
-  .btn-goup-tabs .btn {
-    padding: 10px;
-  }
-}
-
-.btn-goup-tabs .btn .fa {
-  font-size: 130%;
-  color: #404040;
-  /* @include mediaQueries(min-small) {
-      font-size: 130%;
-    } */
-}
-
-.btn-goup-tabs .btn .fa.text-danger {
-  color: #d9534f;
-}
-
-.btn-goup-tabs .active .fa {
-  color: #80AD80;
-}
-
-.btn-goup-tabs .active .fa.text-danger {
-  color: #d9534f;
-}
-
-/* MIN WIDTH */
-/* MAX WIDTH */
-@media only screen and (max-width: 767px) {
-  .fix-me-top .btn-goup-tabs {
-    display: inline-block;
-    width: auto;
-  }
-  .fix-me-top .btn-goup-tabs .btn {
-    border: 0;
-    background: transparent;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    display: inline-block;
-    width: auto;
-  }
-}
-
-.btn-tabs-2 .btn {
-  width: 50%;
-}
-
-.btn-tabs-3 .btn {
-  width: 33.33333%;
-}
-
-.btn-tabs-4 .btn {
-  width: 25%;
 }
 
 /* Switch button
@@ -11896,6 +11829,80 @@ fieldset.submit-entry {
 .flex-input-group.number-control input[type="number"] {
   max-width: 100px;
   display: inline-block;
+}
+
+/* Button tabs
+-------------------------------------------------- */
+.btn-goup-tabs {
+  /* display: table;
+  width: 100%;*/
+  margin: 0 0 10px 0;
+}
+
+.btn-goup-tabs .btn {
+  background-color: #FFFFFF;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+.btn-goup-tabs .btn.active {
+  background-color: #f2f2f2;
+}
+
+@media only screen and (min-width: 768px) {
+  .btn-goup-tabs .btn {
+    padding: 10px;
+  }
+}
+
+.btn-goup-tabs .btn .fa {
+  font-size: 130%;
+  color: #404040;
+  /* @include mediaQueries(min-small) {
+      font-size: 130%;
+    } */
+}
+
+.btn-goup-tabs .btn .fa.text-danger {
+  color: #d9534f;
+}
+
+.btn-goup-tabs .active .fa, .btn-goup-tabs [aria-selected] .fa {
+  color: #80AD80;
+}
+
+.btn-goup-tabs .active .fa.text-danger, .btn-goup-tabs [aria-selected] .fa.text-danger {
+  color: #d9534f;
+}
+
+/* MIN WIDTH */
+/* MAX WIDTH */
+@media only screen and (max-width: 767px) {
+  .fix-me-top .btn-goup-tabs {
+    display: inline-block;
+    width: auto;
+  }
+  .fix-me-top .btn-goup-tabs .btn {
+    border: 0;
+    background: transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    width: auto;
+  }
+}
+
+.btn-tabs-2 .btn {
+  width: 50%;
+}
+
+.btn-tabs-3 .btn {
+  width: 33.33333%;
+}
+
+.btn-tabs-4 .btn {
+  width: 25%;
 }
 
 /* Images
@@ -12779,16 +12786,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -17415,6 +17419,12 @@ img.widget-promo-image {
   height: 50px;
 }
 
+/* Scheduler
+-------------------------------------------------- */
+#schedule-disarm .sc_Bar_inner .time {
+  display: none;
+}
+
 /* Table schedule
 -------------------------------------------------- */
 .security-schedule > tbody > tr > td .fa-check {
@@ -17930,7 +17940,7 @@ body.night-false {
   background-color: #eeeeee;
 }
 
-.night-false .btn-goup-tabs .btn.active {
+.night-false .btn-goup-tabs .btn.active, .night-false .btn-goup-tabs .btn[aria-selected] {
   background-color: #dcdcdc;
 }
 
