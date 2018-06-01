@@ -268,7 +268,7 @@
     "goahead": "Poursuivre",
     "google_home_info": "Switch it on if you want to use the device with Google Home.",
     "hardware_konfiguration": "Configuration matérielle",
-    "hazard_notification": "Fire Alarm and Leackage Alarm ",
+    "hazard_notification": "Fire\/Leackage-Alarm ",
     "heating": "Heating control",
     "help_delay": "Delay between the appearance of the state and triggering of the event in seconds.",
     "help_reset_time": "After manual intervention, the heating control returns to the defined schedule after a specified time (in hours).",

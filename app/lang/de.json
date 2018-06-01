@@ -268,7 +268,7 @@
     "goahead": "Fortfahren",
     "google_home_info": "Einschalten wenn das Geräte mit Google Home verwendet werden  soll.",
     "hardware_konfiguration": "Hardwarekonfiguration",
-    "hazard_notification": "Feueralarm und Überschwemmungs-Alarm",
+    "hazard_notification": "Feuer\/Überschwemmungs-Alarm",
     "heating": "Heizungssteuerung",
     "help_delay": "Verzögerung zwischen dem Eintreten des Status und der Auslösung des Ereignisses in Sekunden",
     "help_reset_time": "Heizungssteuerung kehrt nach manuellem Eingreifen nach angebener Zeit (in Stunden) in den definierten Zeitplan zurück.",
