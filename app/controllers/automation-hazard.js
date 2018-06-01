@@ -354,6 +354,9 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				notification.target = $scope.user.email;
 				notification.message = $scope._t($scope.hazardProtection[type].message);
 				$scope.hazardProtection[type].input.params.sendNotifications.push(notification);
+
+				// expand notification
+				$scope.expandElement('hazardProtection_' + type + '_0');
 			}
 		});
 	}
