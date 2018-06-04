@@ -43,7 +43,7 @@ myAppController.controller('SecurityController', function($scope, $routeParams, 
 myAppController.controller('SecurityIdController', function($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
 	$scope.security = {
 		routeId: 0,
-		tab: 3,
+		tab: 1,
 		days: [1, 2, 3, 4, 5, 6, 0],
 		devices: {
 			input: [],
@@ -53,6 +53,20 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			notification: []
 		},
 		cfg: {
+			options: {
+				switchMultilevel: {
+					min: 0,
+					max: 99
+				},
+				switchRGBW: {
+					min: 0,
+					max: 255
+				},
+				thermostat: {
+					min: 0,
+					max: 99
+				}
+			},
 			input: {
 				deviceType: ['sensorBinary'],
 				status: ['on', 'off'],
@@ -62,31 +76,31 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			},
 			silentAlarms: {
-				deviceType: ['toggleButton', 'switchBinary'],
+				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
 				default: {
 					devices: ''
 				}
 			},
 			alarms: {
-				deviceType: ['toggleButton', 'switchBinary'],
+				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
 				default: {
 					devices: ''
 				}
 			},
 			armConfirm: {
-				deviceType: ['toggleButton'],
+				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
 				default: {
 					devices: ''
 				}
 			},
 			disarmConfirm: {
-				deviceType: ['toggleButton'],
+				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
 				default: {
 					devices: ''
 				}
 			},
 			clean: {
-				deviceType: ['toggleButton'],
+				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
 				default: {
 					devices: ''
 				}
@@ -211,7 +225,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			}
 		},
 		change: function(node, data) {
-			console.log("change");
 			$scope.updateData();
 		},
 		init_data: function(node, data) {},
@@ -224,11 +237,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					timeline: parseInt(timeline),
 					start: start,
 					end: end,
-					text: 'Arm'
-						/*, //TODO add label
-											data: {
-												condition: 'arm'
-											}*/
+					text: $scope._t('lb_arm')
 				};
 			this.addScheduleData(data);
 			$scope.updateData();
@@ -243,45 +252,21 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				timeline: parseInt(timeline),
 				start: start,
 				end: end,
-				text: 'Arm'
+				text: $scope._t('lb_arm')
 			};
 
 			this.addScheduleData(data);
 			$scope.updateData();
 		},
-		bar_Click: function(node, timelineData, scheduleIndex) {
-			/*
-			console.log("timelineData", timelineData);
-			var schedules = {};
-			var condition = timelineData.data.condition == 'arm' ? 'disarm' : 'arm';
-			angular.forEach($scope.jQuerySchedule.getScheduleData(), function(v, k) {
-				schedules[k] = {};
-				schedules[k]['schedule'] = v.schedule;
-				if (k == timelineData.timeline) {
-					var index = _.findIndex(v.schedule, {
-						text: timelineData.text
-					});
-					if (v.schedule[index]) {
-						v.schedule[index].text = condition.substring(0, 1).toUpperCase();;
-						v.schedule[index].data.condition = condition;
-					}
-				}
-			});
-
-			$scope.jQuerySchedule.update(schedules);
-			$scope.updateData();
-			*/
-		},
+		bar_Click: function(node, timelineData, scheduleIndex) {},
 		connect: function(data) {},
 		confirm: function() {},
 		delete_bar: function() {
-			console.log('from delete')
 			$scope.updateData();
 		}
 	};
 
 	$scope.jQuerySchedule = {};
-
 
 	/**
 	 *  Reset Original data 
@@ -300,20 +285,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 */
 	$scope.loadInstance = function(id) {
 		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
-			// Add one hour to time
-			var addHour = function(hm) {
-				var a = hm.split(':'); // split it at the colons
-				// minutes are worth 60 seconds. Hours are worth 60 minutes.
-				//var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
-				var seconds = ((+a[0]) * 60 * 60 + (+a[1]) * 60) + 3600;
-
-				var hh = Math.floor(seconds / 3600),
-					mm = Math.floor(seconds / 60) % 60,
-					ss = Math.floor(seconds) % 60;
-				return (hh ? (hh < 10 ? "0" : "") + hh + ":" : "") + ((mm < 10) && hh ? "0" : "") + mm;
-				//return (hh ? (hh < 10 ? "0" : "") + hh + ":" : "") + ((mm < 10) && hh ? "0" : "") + mm + ":" + (ss < 10 ? "0" : "") + ss
-			}
-
 			$scope.security.routeId = id;
 			// Adding params from instatnce
 			var instance = instances.data.data;
@@ -326,14 +297,10 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			angular.forEach($scope.security.input.params.schedules, function(v, k) {
 				if (_.size(v)) {
 					angular.forEach(v, function(t) {
-						//var condition = ($filter('hasNode')(v, 'data.condition') == 'arm' ? 'disarm' : 'arm');
 						$scope.scheduleOptions.rows[k]['schedule'].push({
 							start: t.arm,
 							end: t.disarm,
-							text: "Arm" // TODO add label
-								/*data: {
-									condition: condition
-								}*/
+							text: $scope._t('lb_arm')
 						})
 					});
 				}
@@ -385,6 +352,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					zwaveId: getZwayId(v.id),
 					deviceName: v.metrics.title,
 					deviceNameShort: $filter('cutText')(v.metrics.title, true, 30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
+					level: _.isNumber(v.metrics.level) ? parseInt(v.metrics.level) : v.metrics.level,
 					deviceType: v.deviceType,
 					probeType: v.probeType,
 					location: v.location,
@@ -428,6 +396,19 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		return index;
 	};
 	////////// Devices ////////// 
+
+	/**
+	 * Get device entry by deviceId
+	 * @param  {string} deviceId 
+	 * @return {object} device          
+	 */
+	$scope.getDevice = function(deviceId) {
+		var device = _.findWhere($scope.security.devices.alarms, {
+			deviceId: deviceId
+		});
+		return device;
+	}
+
 	/**
 	 * Assign a device
 	 * @param {string} deviceId
@@ -461,12 +442,14 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			$scope.security.input.params[param].table.splice(deviceIndex, 1);
 		}
 	};
+
 	////////// Dis-arm by time ////////// 
 	/**
 	 * Renders dis-arm schedule
 	 * @param {string} elementId 
 	 */
 	$scope.renderSchedule = function(elementId) {
+		if (_.isEmpty($scope.jQuerySchedule)) {
 			var schedule = angular.element(elementId),
 				scheduleOptions_copy = {};
 
@@ -477,20 +460,20 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				schedule.timeSchedule(scheduleOptions_copy);
 				var titles = angular.element(".title");
 				angular.forEach(titles, function(t) {
-
 					var title = angular.element(t).data('title');
 					angular.element(t).html($scope._t(title));
-					$scope.jQuerySchedule = schedule;
 				});
+				$scope.jQuerySchedule = schedule;
 			}, 10);
 		}
-		/**
-		 * Update input data
-		 */
+	};
+
+	/**
+	 * Update input data
+	 */
 	$scope.updateData = function() {
 		angular.forEach($scope.jQuerySchedule.getScheduleData(), function(v, k) {
 			$scope.security.input.params.schedules[k] = _.map(v.schedule, function(sc) {
-				console.log(sc)
 				return {
 					arm: sc.start,
 					disarm: sc.end,

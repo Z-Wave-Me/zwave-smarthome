@@ -1,20 +1,24 @@
-<!--  Triggering -->
-<a class="btn btn-default" title="{{_t('alarm_conditions')}}" role="tab" data-href="#tabpanel1" aria-selected="true" bb-tab>
-  <i class="fa fa-bell-o"></i>
-  <span class="btn-name">{{_t('alarm_conditions')}}</span>
-</a>
-<!--  Actions -->
-<a class="btn btn-default" title="{{_t('actions_on')}}" role="tab" data-href="#tabpanel2" bb-tab>
-  <i class="fa fa-play"></i>
-  <span class="btn-name">{{_t('actions_on')}}</span>
-</a>
-<!--  Time Triggering -->
-<a class="btn btn-default" title="{{_t('disarm_time')}}" role="tab" data-href="#tabpanel3" ng-click="renderSchedule('#schedule-disarm')" bb-tab>
-  <i class="fa fa-clock-o"></i>
-  <span class="btn-name">{{_t('disarm_time')}}</span>
-</a>
-<!--  Control -->
-<a class="btn btn-default" title="{{_t('disarm_device')}}" role="tab" data-href="#tabpanel4" bb-tab>
-  <i class="fa fa-gamepad"></i>
-  <span class="btn-name">{{_t('disarm_device')}}</span>
-</a>
+<div class="tabs-wrap form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
+	<div class="btn-group btn-group-justified btn-goup-tabs">
+		<!--  Triggering -->
+		<a class="btn btn-default" title="{{_t('alarm_conditions')}}" role="tab" data-href="#tabpanel1" aria-selected="true" bb-tab>
+			<i class="fa fa-bell-o"></i>
+			<span class="btn-name">{{_t('alarm_conditions')}}</span>
+		</a>
+		<!--  Actions -->
+		<a class="btn btn-default" title="{{_t('actions_on')}}" role="tab" data-href="#tabpanel2" bb-tab>
+			<i class="fa fa-play"></i>
+			<span class="btn-name">{{_t('actions_on')}}</span>
+		</a>
+		<!--  Time Triggering -->
+		<a class="btn btn-default" title="{{_t('disarm_time')}}" role="tab" data-href="#tabpanel3" ng-click="renderSchedule('#schedule-disarm')" bb-tab>
+			<i class="fa fa-clock-o"></i>
+			<span class="btn-name">{{_t('disarm_time')}}</span>
+		</a>
+		<!--  Control -->
+		<a class="btn btn-default" title="{{_t('disarm_device')}}" ngrole="tab" data-href="#tabpanel4" bb-tab>
+			<i class="fa fa-gamepad"></i>
+			<span class="btn-name">{{_t('disarm_device')}}</span>
+		</a>
+	</div>
+</div>
