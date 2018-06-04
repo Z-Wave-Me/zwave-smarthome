@@ -7,7 +7,7 @@
 <div class="form-inline">
   <label for="interval">{{_t('if_alarm_triggered')}}</label>
   <select class="form-control" ng-model="hazardProtection.leakage.input.params.notificationsInterval">
-    <option value="">--- {{_t('no')}} ---</option>
+    <option value="0">--- {{_t('never')}} ---</option>
     <option value="{{i}}" ng-repeat="i in hazardProtection.interval track by $index" ng-selected="i == hazardProtection.leakage.input.params.notificationsInterval">
     {{_t('interval_' + i)}}</option>
   </select>

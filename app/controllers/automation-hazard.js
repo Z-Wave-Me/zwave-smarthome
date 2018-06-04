@@ -125,7 +125,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		hazardsTypes: ['fire', 'leakage'],
 		sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke', 'flood', 'alarm_flood', 'alarmSensor_flood'],
 		devices: ['switchBinary', 'switchMultilevel', 'toggleButton'],
-		notifiers: ['notification_email', 'notification_push'],
+		notifiers: ['notification_push'],
 		interval: [60, 120, 300, 600, 900, 1800, 3600],
 		firedOn: ['on', 'off', 'alarm', 'revert'],
 		sensorTyp: "",
