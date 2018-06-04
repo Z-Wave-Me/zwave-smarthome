@@ -188,8 +188,7 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 
 		$scope.dataHolder.state = 'registering';
 		$scope.toggleRowSpinner(cfg.api.add_dsk);
-		console.log("dsk", dsk);
-		dataFactory.postApi('add_dsk_provisioning_list', dsk).then(function(response) {
+		dataFactory.postApi('add_dsk', dsk).then(function(response) {
 
 			// Set state
 			$scope.dsk.state = 'success-register';

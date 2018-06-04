@@ -85,9 +85,9 @@
             </td>
             <!-- action -->
             <td class="td-action" data-title="">
-              <div class="btn-group" ng-show="v.isSmartStart">
+              <div class="btn-group">
                 <!-- update  -->
-                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="collection.find = v;handleModal('dskModal', $event)">
+                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-show="v.isSmartStart" ng-click="collection.find = v;handleModal('dskModal', $event)">
                 <i class="fa fa-info-circle text-primary"></i>
                 </button>
                 <!-- delete -->
