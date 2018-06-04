@@ -85,9 +85,9 @@
         ng-class="managementCloud.instance.active ? 'active' : ''" ng-if="managementCloud.service_status === '' || managementCloud.service_status === true"
         ng-disabled="managementCloud.email === ''? true : false">
         <i class="fa fa-cloud" ng-class="managementCloud.instance.active ? 'text-success' : 'text-danger'"></i>
-        <span class="btn-name" ng-if="managementCloud.instance.active === true">{{_t('cloudbackup_active')}}</span>
+        <span class="btn-name" ng-if="managementCloud.instance.active === true && managementCloud.instance.params.user_active === true">{{_t('cloudbackup_active')}}</span>
         <span class="btn-name" ng-if="managementCloud.instance.active === false">{{_t('cloudbackup_inactive')}}</span>
-        <span class="btn-name" ng-if="!managementCloud.instance.active && managementCloud.instance.active != false">{{_t('cloudbackup_install')}}</span>
+        <span class="btn-name" ng-if="managementCloud.instance.active === true && managementCloud.instance.params.user_active === false">{{_t('cloudbackup_install')}}</span>
       </button>
     </fieldset>
     <!-- Cloud backup -->
