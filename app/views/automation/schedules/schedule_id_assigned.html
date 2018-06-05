@@ -7,8 +7,10 @@
       </span>
       <!-- Toggle -->
       <button type="button" aria-expanded="false" bb-accordion ng-if="v.deviceType!='toggleButton'" ng-hide="!schedule.availableDevices[v.deviceId]">
-        <span>{{schedule.availableDevices[v.deviceId].deviceName}} <em>[{{_t(v.level)}}<em ng-if="v.level == 'lvl'">&nbsp;{{v.exact}}</em>]</em> -
-          <em>{{schedule.availableDevices[v.deviceId].locationName}}</em>
+        <span>{{schedule.availableDevices[v.deviceId].deviceName}} 
+          <span ng-if="v.deviceType=='switchRGBW' && _.isObject(v.level)" class="color-picker-show" style="background-color: {{v.level|setRgbColors}};">&nbsp;</span>
+          <span ng-if="v.deviceType!='switchRGBW' || !_.isObject(v.level)"><em>[{{_t(v.level)}}<em ng-if="v.level == 'lvl'">&nbsp;{{v.exact}}</em>]</em></span>
+          - <em>{{schedule.availableDevices[v.deviceId].locationName}}</em>
         </span>
       </button>
       <!-- No Toggle -->
