@@ -1,9 +1,9 @@
 <div class="automation" ng-controller="HazardNotificationIdController">
   <bb-loader></bb-loader>
   <!-- No device -->
-  <div ng-if="!hazardProtection.show" ng-include="'app/views/automation/no_device.html'"></div>
-  <!-- Form -->
-  <div ng-if="hazardProtection.show">
+  <!-- <pre>{{hazardProtection | json}}</pre> -->
+  <!-- <div ng-if_="!hazardProtection.show" ng-include="'app/views/automation/no_device.html'"></div> -->
+  <div ng-if_="hazardProtection.show">
     <h2>{{_t('hazard_notification')}}</h2>
     <div class="tabs-wrap form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
       <!-- Default -->
