@@ -1,13 +1,13 @@
-<!-- status -->
+<!-- level -->
 <div class="form-group">
   <label class="switch">
-      <input type="checkbox" ng-model="model.status" ng-true-value="on" ng-false-value="off">
+      <input type="checkbox" ng-model="v.level" ng-true-value="on" ng-false-value="off">
     <span class="slider"></span>
   </label>
-  <span class="switch-label">{{model.status}}</span>
+  <span class="switch-label">{{v.level}}</span>
 </div>
 <!-- command -->
 <div class="form-group">
-  <input type="checkbox" name="send_command" id="send_command" ng-model="model.sendAction" ng-checked="model.sendAction" />
+  <input type="checkbox" name="send_command" id="send_command" ng-model="v.sendAction" ng-checked="v.sendAction" />
   <label for="send_command">{{_t('dont_send_on_command')}}</label>
 </div>

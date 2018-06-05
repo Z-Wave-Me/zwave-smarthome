@@ -140,6 +140,18 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 					sendAction: false
 				}
 			},
+			switchRGBW: {
+			  level: ['on', 'off'],
+			  min: 0,
+			  max: 255,
+			  default: {
+			    deviceId: '',
+			    deviceType: 'switchRGBW',
+			    level: 'on',
+			    sendAction: false,
+			    reverseLevel: null
+			  }
+			},			
 			thermostat: {
 				min: 0,
 				max: 99,
@@ -243,7 +255,8 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 					deviceType: v.deviceType,
 					probeType: v.probeType,
 					location: v.location,
-					locationName: rooms[v.location].title
+					locationName: rooms[v.location].title,
+					iconPath: v.iconPath
 				};
 				return obj;
 			}).filter(function(v) {

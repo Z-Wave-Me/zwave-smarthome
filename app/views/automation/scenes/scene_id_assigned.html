@@ -7,13 +7,17 @@
 			</span>
 			<!-- Toggle -->
 			<button type="button" aria-expanded="false" bb-accordion ng-if="v.deviceType!='toggleButton'" ng-hide="!scene.availableDevices[v.deviceId]">
-				<span>{{scene.availableDevices[v.deviceId].deviceName}} <em>[{{_t(v.level)}}<em ng-if="v.level == 'lvl'">&nbsp;{{v.exact}}</em>]</em> -
-					<em>{{scene.availableDevices[v.deviceId].locationName}}</em>
+				<span><img class="navi-img" ng-src="{{scene.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+					{{scene.availableDevices[v.deviceId].deviceName}} 
+					<span ng-if="v.deviceType=='switchRGBW' && _.isObject(v.level)" class="color-picker-show" style="background-color: {{v.level|setRgbColors}};">&nbsp;</span>
+					<span ng-if="v.deviceType!='switchRGBW' || !_.isObject(v.level)"><em>[{{_t(v.level)}}<em ng-if="v.level == 'lvl'">&nbsp;{{v.exact}}</em>]</em></span>
+					- <em>{{scene.availableDevices[v.deviceId].locationName}}</em>
 				</span>
 			</button>
 			<!-- No Toggle -->
 			<span class="no-toggle" ng-if="v.deviceType=='toggleButton'" ng-hide="!scene.availableDevices[v.deviceId]">
-				<span>{{scene.availableDevices[v.deviceId].deviceName}} -
+				<span><img class="navi-img" ng-src="{{scene.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+					{{scene.availableDevices[v.deviceId].deviceName}} -
 					<em>{{scene.availableDevices[v.deviceId].locationName}}</em>
 				</span>
 			</span>			

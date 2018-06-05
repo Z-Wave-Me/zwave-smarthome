@@ -138,45 +138,55 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 		assignedDevices: [],
 		cfg: {
 			switchBinary: {
-				paramsDevices: 'switches',
-				enum: ['off', 'on'],
+				level: ['off', 'on'],
 				default: {
 					device: '',
-					status: 'on',
+					level: 'on',
 					sendAction: false
 				}
 			},
 			switchMultilevel: {
-				paramsDevices: 'dimmers',
+				level: ['off', 'on', 'lvl'],
 				min: 0,
 				max: 99,
 				default: {
 					device: '',
-					status: 0,
+					level: 'on',
+					exact: 0,
 					sendAction: false
 				}
 			},
+			switchRGBW: {
+				level: ['on', 'off'],
+				min: 0,
+				max: 255,
+				default: {
+					deviceId: '',
+					deviceType: 'switchRGBW',
+					level: 'on',
+					sendAction: false,
+					reverseLevel: null
+				}
+			},
 			thermostat: {
-				paramsDevices: 'thermostats',
 				min: 0,
 				max: 99,
 				default: {
 					device: '',
-					status: 0,
+					level: 0,
 					sendAction: false
 				}
 			},
 			doorlock: {
-				paramsDevices: 'locks',
-				enum: ['close', 'open'],
+				level: ['close', 'open'],
 				default: {
 					device: '',
-					status: 'open',
+					level: 'open',
 					sendAction: false
 				}
 			},
 			toggleButton: {
-				paramsDevices: 'scenes'
+				default: {}
 			}
 
 		},
@@ -188,13 +198,7 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			params: {
 				weekdays: [],
 				times: ['00:00'],
-				devices: {
-					switches: [],
-					dimmers: [],
-					thermostats: [],
-					locks: [],
-					scenes: []
-				}
+				devices: []
 			}
 		}
 	};
@@ -224,24 +228,21 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 				active: instance.active,
 				params: instance.params
 			});
-			angular.forEach(instance.params.devices, function(v, k) {
-				switch (k) {
-					case 'scenes':
-						_.filter(v, function(s) {
-							if (assignedDevices.indexOf(s) === -1) {
-								$scope.schedule.assignedDevices.push(s);
-							}
 
-						})
-						break;
-					default:
-						_.filter(v, function(d) {
-							if (assignedDevices.indexOf(d.device) === -1) {
-								$scope.schedule.assignedDevices.push(d.device);
-							}
+			instance.params.devices = instance.params.devices.map(function(d) {
+				return {
+					deviceId: d.deviceId,
+					deviceType: d.deviceType,
+					level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl') : d.level,
+					exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0) : undefined,
+					sendAction: d.sendAction
+				};
+			});
 
-						})
-						break;
+
+			angular.forEach(instance.params.devices, function(d) {
+				if (assignedDevices.indexOf(d.deviceId) === -1) {
+					$scope.schedule.assignedDevices.push(d.deviceId);
 				}
 			});
 
@@ -284,7 +285,8 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 						deviceType: v.deviceType,
 						probeType: v.probeType,
 						location: v.location,
-						locationName: rooms[v.location].title
+						locationName: rooms[v.location].title,
+						iconPath: v.iconPath
 					};
 					return obj;
 				})
@@ -337,23 +339,15 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 	 * @returns {undefined}
 	 */
 	$scope.assignDevice = function(device) {
-		var obj, data;
-		switch (device.deviceType) {
-			// scenes
-			case 'toggleButton':
-				$scope.schedule.input.params.devices.scenes.push(device.deviceId);
-				break;
-				// switches|dimmers|thermostats|locks
-			default:
-				obj = $scope.schedule.cfg[device.deviceType];
-				var data = {
-					device: device.deviceId,
-					status: obj.default.status,
-					sendAction: obj.default.sendAction
-				};
-				$scope.schedule.input.params.devices[obj.paramsDevices].push(data);
-				break;
-		}
+		var obj = $scope.schedule.cfg[device.deviceType];
+		var data = {
+			deviceId: device.deviceId,
+			deviceType: device.deviceType,
+			level: obj.default.level,
+			exact: obj.default.exact,
+			sendAction: obj.default.sendAction
+		};
+		$scope.schedule.input.params.devices.push(data);
 		$scope.schedule.assignedDevices.push(device.deviceId);
 		return;
 	};
@@ -364,13 +358,12 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 	 * @param {int} targetIndex 
 	 * @param {string} deviceId 
 	 */
-	$scope.unassignDevice = function(targetType, targetIndex, deviceId) {
+	$scope.unassignDevice = function(targetIndex, deviceId) {
 		var deviceIndex = $scope.schedule.assignedDevices.indexOf(deviceId);
-		$scope.schedule.input.params.devices[targetType].splice(targetIndex, 1);
+		$scope.schedule.input.params.devices.splice(targetIndex, 1);
 		if (deviceIndex > -1) {
 			$scope.schedule.assignedDevices.splice(deviceIndex, 1);
 		}
-
 	};
 
 	/**
@@ -382,6 +375,15 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			icon: 'fa-spinner fa-spin',
 			message: $scope._t('loading')
 		};
+		input.params.devices = input.params.devices.map(function(dev) {
+			return {
+				deviceId: dev.deviceId,
+				deviceType: dev.deviceType,
+				level: dev.level == 'lvl' ? dev.exact : dev.level,
+				sendAction: dev.sendAction
+			};
+		});
+
 		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
 			$scope.loading = false;
 			if (redirect) {

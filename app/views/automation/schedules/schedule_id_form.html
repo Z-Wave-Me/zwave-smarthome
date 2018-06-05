@@ -1,24 +1,19 @@
-
- <!-- Name -->
- <div class="form-group form-inline">
+<!-- Name -->
+<div class="form-group form-inline">
   <label>{{_t('lb_name')}}</label>
   <input name="title" id="title" type="text" class="form-control" ng-model="schedule.input.title" />
 </div>
-
- <!-- Weekdays -->
+<!-- Weekdays -->
 <div class="form-group form-inline">
-    <div class="checkbox" ng-repeat="d in schedule.days">
-        <input class="default" type="checkbox" id="day_{{d}}" ng-change="toggleWeekday(d)" ng-model="schedule.model.weekday[d]" ng-checked="schedule.input.params.weekdays.indexOf(d.toString())  > -1" />
-        <label for="day_{{d}}">{{_t('day_' + d)}}</label>
-      </div>
+  <div class="checkbox" ng-repeat="d in schedule.days">
+    <input class="default" type="checkbox" id="day_{{d}}" ng-change="toggleWeekday(d)" ng-model="schedule.model.weekday[d]" ng-checked="schedule.input.params.weekdays.indexOf(d.toString())  > -1" />
+    <label for="day_{{d}}">{{_t('day_' + d)}}</label>
+  </div>
 </div>
-
 <!--Time -->
 <div class="form-group form-inline">
-  
-    <label>{{_t('lb_time')}}</label>
-    <div class="input-group">
-      <input type="time" class="form-control" placeholder="HH:MM" ng-model="schedule.input.params.times[0]">
-    </div>
+  <label>{{_t('lb_time')}}</label>
+  <div class="input-group">
+    <input type="time" class="form-control" placeholder="HH:MM" ng-model="schedule.input.params.times[0]">
+  </div>
 </div>
-
