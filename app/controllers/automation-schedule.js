@@ -355,10 +355,10 @@ myAppController.controller('AutomationScheduleIdController', function ($scope, $
    * @param {string} deviceId 
    */
    $scope.unassignDevice = function (targetIndex, deviceId) {
-    var deviceIndex = $scope.scene.assignedDevices.indexOf(deviceId);
-    $scope.scene.input.params.devices.splice(targetIndex, 1);
+    var deviceIndex = $scope.schedule.assignedDevices.indexOf(deviceId);
+    $scope.schedule.input.params.devices.splice(targetIndex, 1);
     if (deviceIndex > -1) {
-      $scope.scene.assignedDevices.splice(deviceIndex, 1);
+      $scope.schedule.assignedDevices.splice(deviceIndex, 1);
     }
    };
 
