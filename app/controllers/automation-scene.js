@@ -255,7 +255,8 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 					deviceType: v.deviceType,
 					probeType: v.probeType,
 					location: v.location,
-					locationName: rooms[v.location].title
+					locationName: rooms[v.location].title,
+					iconPath: v.iconPath
 				};
 				return obj;
 			}).filter(function (v) {
