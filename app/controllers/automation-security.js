@@ -45,6 +45,12 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		routeId: 0,
 		tab: 1,
 		days: [1, 2, 3, 4, 5, 6, 0],
+		devicesAvailable: true,
+		alert: {
+			message: '',
+			status: 'alert-warning',
+			icon: 'fa-exclamation-circle'
+		},
 		devices: {
 			input: [],
 			alarms: [],
@@ -381,6 +387,11 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					$scope.security.devices.notification.push(obj);
 				}
 			});
+
+			if (!_.size($scope.security.devices.input)) {
+				$scope.security.devicesAvailable = false;
+				$scope.security.alert.message = $scope._t('no_device_installed');
+			}
 		}, function(error) {});
 	};
 
@@ -526,12 +537,18 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * Store instance
 	 */
 	$scope.storeInstance = function(input, redirect) {
+		$scope.loading = {
+			status: 'loading-spin',
+			icon: 'fa-spinner fa-spin',
+			message: $scope._t('loading')
+		};
 		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
+			$scope.loading = false;
 			if (redirect) {
 				$location.path('/automations');
 			}
-
 		}, function(error) {
+			$scope.loading = false;
 			alertify.alertError($scope._t('error_update_data'));
 		});
 

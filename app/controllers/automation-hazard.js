@@ -120,7 +120,12 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	$scope.hazardProtection = {
 		moduleId: 'HazardNotification',
 		active: true,
-		show: true,
+		sensorsAvailable: true,
+		alert: {
+			message: '',
+			status: 'alert-warning',
+			icon: 'fa-exclamation-circle'
+		},
 		tab: 'fire',
 		hazardsTypes: ['fire', 'leakage'],
 		sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke', 'flood', 'alarm_flood', 'alarmSensor_flood'],
@@ -290,6 +295,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	 * @param  {mixed} rooms [description]
 	 */
 	$scope.loadDevices = function(rooms) {
+		console.log("load devices");
 		dataFactory.getApi('devices').then(function(response) {
 				var devices = dataService.getDevicesData(response.data.data.devices);
 
@@ -316,18 +322,19 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 						$scope.hazardProtection.availableNotifiers[v.id] = obj;
 					}
 				});
+
+				// load preset for instance
+				$scope.loadPreset();
+
 				if (!_.size($scope.hazardProtection.availableSensors)) {
-					$scope.hazardProtection.show = false;
+					$scope.hazardProtection.sensorsAvailable = false;
+					$scope.hazardProtection.alert.message = $scope._t('no_device_installed');
 					return;
 				}
 				// Set devices in the room
 				$scope.hazardProtection.devicesInRoom = _.countBy($scope.hazardProtection.availableDevices, function(v) {
 					return v.location;
 				});
-
-				// load preset for instance
-				$scope.loadPreset();
-
 			},
 			function(error) {});
 	};
@@ -336,16 +343,16 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	 * loadPreset configuration
 	 */
 	$scope.loadPreset = function() {
-
 		$scope.hazardProtection.hazardsTypes.forEach(function(type) {
-
 			if (!$scope.hazardProtection[type].instance) {
 				// assign all device if no instances exists (only on start)
-				angular.forEach($scope.hazardProtection.availableSensors, function(sensor) {
-					if ($scope.hazardProtection[type].sensors.indexOf(sensor.probeType) !== -1) {
-						$scope.assignSensor(sensor.deviceId, type);
-					}
-				});
+				if (_.size($scope.hazardProtection.availableSensors)) {
+					angular.forEach($scope.hazardProtection.availableSensors, function(sensor) {
+						if ($scope.hazardProtection[type].sensors.indexOf(sensor.probeType) !== -1) {
+							$scope.assignSensor(sensor.deviceId, type);
+						}
+					});
+				}
 
 				// set default notification
 				var notification = {};
@@ -353,7 +360,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				notification.target = $scope.user.email;
 				notification.message = $scope._t($scope.hazardProtection[type].message);
 				$scope.hazardProtection[type].input.params.sendNotifications.push(notification);
-
+				console.log("$scope.hazardProtection[type].input.params", $scope.hazardProtection[type].input.params);
 				// expand notification
 				$scope.expandElement('hazardProtection_' + type + '_0');
 			}

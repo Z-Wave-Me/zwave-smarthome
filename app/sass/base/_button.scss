@@ -216,7 +216,8 @@
   display: inline-block;
   vertical-align: middle;
   width: 60px;
-  height: 32px; // Media queries
+  height: 32px; 
+  // Media queries
   @include mediaQueries(min-small) {
     /* width: 60px;
     height: 34px; */
@@ -277,6 +278,15 @@
     /* height: 26px;
     width: 26px; */
   }
+}
+
+// disabled
+input[type="checkbox"][disabled]+.slider {
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 input:checked+.slider {

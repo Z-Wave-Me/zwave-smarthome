@@ -66,6 +66,9 @@
         width: 100%;
         font-weight: normal;
         border-bottom: dotted 1px $accordion-border-color;
+        em {
+          font-size: 80%;
+        }
       }
       /*  &:last-child {
         margin-bottom: $spacing;

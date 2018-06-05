@@ -6,7 +6,7 @@
  * Controller that handles list of scenes
  * @class AutomationSceneController
  */
-myAppController.controller('AutomationSceneController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('AutomationSceneController', function($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
 	$scope.scenes = {
 		state: '',
 		enableTest: [],
@@ -15,11 +15,11 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
 	 * Load schedules
 	 * @returns {undefined}
 	 */
-	$scope.loadScenes = function () {
-		dataFactory.getApi('instances', null, true).then(function (response) {
+	$scope.loadScenes = function() {
+		dataFactory.getApi('instances', null, true).then(function(response) {
 			$scope.scenes.all = _.chain(response.data.data).flatten().where({
 				moduleId: 'Scenes'
-			}).filter(function (v) {
+			}).filter(function(v) {
 				var size = 0;
 				for (k in v.params.devices) {
 					if (v.params.devices[k].length) {
@@ -49,7 +49,7 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
 				return; */
 			}
 			//$scope.scenes.state = 'success';
-		}, function (error) {
+		}, function(error) {
 			angular.extend(cfg.route.alert, {
 				message: $scope._t('error_load_data')
 			});
@@ -60,13 +60,13 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
 	 * Run test
 	 * @param {object} instance
 	 */
-	$scope.runSceneTest = function (instance) {
+	$scope.runSceneTest = function(instance) {
 		$scope.toggleRowSpinner(instance.id);
 		$timeout($scope.toggleRowSpinner, 1000);
 		var params = '/Scenes_' + instance.id + '/command/on';
-		dataFactory.getApi('devices', params, true).then(function (response) {
+		dataFactory.getApi('devices', params, true).then(function(response) {
 			$timeout($scope.toggleRowSpinner, 2000);
-		}, function (error) {
+		}, function(error) {
 			$timeout($scope.toggleRowSpinner, 2000);
 		});
 	};
@@ -75,12 +75,12 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
 	 * @param {object} input
 	 * @param {boolean} activeStatus
 	 */
-	$scope.activateScene = function (input, state) {
+	$scope.activateScene = function(input, state) {
 		input.active = state;
 		if (!input.id) {
 			return;
 		}
-		dataFactory.putApi('instances', input.id, input).then(function (response) {}, function (error) {
+		dataFactory.putApi('instances', input.id, input).then(function(response) {}, function(error) {
 			alertify.alertError($scope._t('error_update_data'));
 		});
 	};
@@ -89,23 +89,23 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
 	 * @param {object} input
 	 * @returns {undefined}
 	 */
-	$scope.cloneScene = function (input) {
+	$scope.cloneScene = function(input) {
 		input.id = 0;
 		input.title = input.title + ' - copy';
-		dataFactory.postApi('instances', input).then(function (response) {
+		dataFactory.postApi('instances', input).then(function(response) {
 			$location.path('/scenes/' + response.data.data.id);
-		}, function (error) {
+		}, function(error) {
 			alertify.alertError($scope._t('error_update_data'));
 		});
 	};
 	/**
 	 * Delete
 	 */
-	$scope.deleteScene = function (input, message) {
-		alertify.confirm(message, function () {
-			dataFactory.deleteApi('instances', input.id).then(function (response) {
+	$scope.deleteScene = function(input, message) {
+		alertify.confirm(message, function() {
+			dataFactory.deleteApi('instances', input.id).then(function(response) {
 				$scope.reloadData();
-			}, function (error) {
+			}, function(error) {
 				alertify.alertError($scope._t('error_delete_data'));
 			});
 		});
@@ -115,7 +115,7 @@ myAppController.controller('AutomationSceneController', function ($scope, $route
  * Controller that handles scene detail
  * @class AutomationSceneIdController
  */
-myAppController.controller('AutomationSceneIdController', function ($scope, $routeParams, $location, $route, $filter, $timeout, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('AutomationSceneIdController', function($scope, $routeParams, $location, $route, $filter, $timeout, cfg, dataFactory, dataService, _, myCache) {
 	$scope.scene = {
 		show: true,
 		rooms: [],
@@ -183,8 +183,8 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	/**
 	 * Load instances
 	 */
-	$scope.loadInstance = function (id) {
-		dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
+	$scope.loadInstance = function(id) {
+		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
 			var instance = instances.data.data;
 			var assignedDevices = $scope.scene.assignedDevices;
 			angular.extend($scope.scene.input, {
@@ -193,23 +193,23 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 				params: instance.params
 			});
 
-			instance.params.devices = instance.params.devices.map(function(d){
+			instance.params.devices = instance.params.devices.map(function(d) {
 				return {
 					deviceId: d.deviceId,
 					deviceType: d.deviceType,
-					level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl'): d.level,
-					exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0): undefined,
-					sendAction: d.sendAction					
+					level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl') : d.level,
+					exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0) : undefined,
+					sendAction: d.sendAction
 				};
 			});
 
-			angular.forEach(instance.params.devices, function (d) {
+			angular.forEach(instance.params.devices, function(d) {
 				if (assignedDevices.indexOf(d.deviceId) === -1) {
 					$scope.scene.assignedDevices.push(d.deviceId);
 				}
 			});
 
-		}, function (error) {
+		}, function(error) {
 			angular.extend(cfg.route.alert, {
 				message: $scope._t('error_load_data')
 			});
@@ -221,8 +221,8 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	/**
 	 * Load rooms
 	 */
-	$scope.loadRooms = function () {
-		dataFactory.getApi('locations').then(function (response) {
+	$scope.loadRooms = function() {
+		dataFactory.getApi('locations').then(function(response) {
 			$scope.scene.rooms = dataService.getRooms(response.data.data).indexBy('id').value();
 			$scope.loadDevices($scope.scene.rooms);
 		});
@@ -231,12 +231,12 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	/**
 	 * Load devices
 	 */
-	$scope.loadDevices = function (rooms) {
-		dataFactory.getApi('devices').then(function (response) {
+	$scope.loadDevices = function(rooms) {
+		dataFactory.getApi('devices').then(function(response) {
 			var whiteList = _.keys($scope.scene.cfg);
 			var devices = dataService.getDevicesData(response.data.data.devices);
 			// Set available devices
-			$scope.scene.availableDevices = devices.map(function (v) {
+			$scope.scene.availableDevices = devices.map(function(v) {
 				var obj = {
 					deviceId: v.id,
 					deviceName: v.metrics.title,
@@ -246,7 +246,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 					locationName: rooms[v.location].title
 				};
 				return obj;
-			}).filter(function (v) {
+			}).filter(function(v) {
 				return whiteList.indexOf(v.deviceType) > -1;
 			}).indexBy('deviceId').value();
 			if (!_.size($scope.scene.availableDevices)) {
@@ -254,20 +254,20 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 				return;
 			}
 			// Set devices in the room
-			$scope.scene.devicesInRoom = _.countBy($scope.scene.availableDevices, function (v) {
+			$scope.scene.devicesInRoom = _.countBy($scope.scene.availableDevices, function(v) {
 				return v.location;
 			});
-		}, function (error) {});
+		}, function(error) {});
 	};
 	/**
 	 * Load already uploaded icons
 	 * @returns {undefined}
 	 */
-	$scope.loadUploadedIcons = function () {
+	$scope.loadUploadedIcons = function() {
 		// Atempt to load data
-		dataFactory.getApi('icons', null, true).then(function (response) {
+		dataFactory.getApi('icons', null, true).then(function(response) {
 			$scope.scene.icons = response.data.data;
-		}, function (error) {
+		}, function(error) {
 			angular.extend(cfg.route.alert, {
 				message: $scope._t('error_load_data')
 			});
@@ -281,7 +281,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	 * @param {object} info
 	 * @returns {undefined}
 	 */
-	$scope.uploadCustomIcon = function (files, info) {
+	$scope.uploadCustomIcon = function(files, info) {
 		var ext = $filter('fileExtension')(files[0].name);
 		// Extends files object with a new property
 		files[0].newName = dataService.uploadFileNewName('scene_' + $routeParams.id + '.' + ext);
@@ -310,10 +310,10 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 		var fd = new FormData();
 		fd.append('files_files', files[0]);
 		// Atempt to upload a file
-		dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function (response) {
+		dataFactory.uploadApiFile(cfg.api.icons_upload, fd).then(function(response) {
 			$scope.scene.input.params.customIcon.table['0'].icon = response.data.data;
 			$scope.loadUploadedIcons();
-		}, function (error) {
+		}, function(error) {
 			alertify.alertError($scope._t('error_upload'));
 		});
 	};
@@ -322,7 +322,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	 * @param {string} icon
 	 * @returns {undefined}
 	 */
-	$scope.setCustomIcon = function (icon) {
+	$scope.setCustomIcon = function(icon) {
 		if (!icon) {
 			return;
 		}
@@ -333,7 +333,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	 * @param {string} string
 	 * @returns {undefined}
 	 */
-	$scope.removeCustomIcon = function (icon) {
+	$scope.removeCustomIcon = function(icon) {
 		if (!icon) {
 			return;
 		}
@@ -344,7 +344,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	 * @param {object} device
 	 * @returns {undefined}
 	 */
-	$scope.assignDevice = function (device) {
+	$scope.assignDevice = function(device) {
 		var obj, data;
 
 		obj = $scope.scene.cfg[device.deviceType];
@@ -366,7 +366,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	 * @param {int} targetIndex
 	 * @param {string} deviceId
 	 */
-	$scope.unassignDevice = function (targetIndex, deviceId) {
+	$scope.unassignDevice = function(targetIndex, deviceId) {
 		var deviceIndex = $scope.scene.assignedDevices.indexOf(deviceId);
 		$scope.scene.input.params.devices.splice(targetIndex, 1);
 		if (deviceIndex > -1) {
@@ -376,8 +376,8 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	/**
 	 * Store
 	 */
-	$scope.storeScene = function (input, redirect) {
-		input.params.devices = input.params.devices.map(function(dev){
+	$scope.storeScene = function(input, redirect) {
+		input.params.devices = input.params.devices.map(function(dev) {
 			return {
 				deviceId: dev.deviceId,
 				deviceType: dev.deviceType,
@@ -385,12 +385,20 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 				sendAction: dev.sendAction
 			};
 		});
-		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
+
+		$scope.loading = {
+			status: 'loading-spin',
+			icon: 'fa-spinner fa-spin',
+			message: $scope._t('loading')
+		};
+		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
+			$scope.loading = false;
 			if (redirect) {
 				$location.path('/' + dataService.getUrlSegment($location.path()));
 				return;
 			}
-		}, function (error) {
+		}, function(error) {
+			$scope.loading = false;
 			alertify.alertError($scope._t('error_update_data'));
 		});
 	};

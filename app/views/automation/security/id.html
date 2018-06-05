@@ -1,6 +1,8 @@
 <!-- The schedule -->
 <section class="automation" ng-controller="SecurityIdController">
+  <bb-loader></bb-loader>
   <h2>{{_t('title_security')}}</h2>
+  <bb-alert alert="security.alert"></bb-alert>
   <div class="tab-wrap" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
     <!-- Tabs  -->
     <div class="btn-group btn-group-justified btn-goup-tabs" role="tablist" ng-include="'app/views/automation/security/tabs.html'"></div>
@@ -35,7 +37,7 @@
 <div class="fieldset submit-entry is-grid">
 <span>
 <label class="switch">
-<input type="checkbox" ng-model="security.input.active">
+<input type="checkbox" ng-model="security.input.active" ng-disabled="!security.devicesAvailable">
 <span class="slider"></span>
 </label>
 <span class="switch-label">{{security.input.active ? _t('lb_active'): _t('activeASC')}}</span>
@@ -45,7 +47,7 @@
 <i class="fa fa-reply"></i>
 <span class="btn-name">{{_t('lb_cancel')}}</span>
 </a>
-<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit" ng-disabled="!security.devicesAvailable">
 <i class="fa fa-check"></i>
 <span class="btn-name">{{_t('lb_save')}}</span>
 </button>
