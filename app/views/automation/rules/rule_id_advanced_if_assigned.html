@@ -1,11 +1,19 @@
 <section class="accordion-wrap {{d.type}}" ng-repeat="d in rule.input.params.advanced.tests track by $index" ng-init="model=d;testIndex = $index;hideAction=true">
-    <span class="label label-default index_{{$index}} {{d.type}}">{{rule.input.params.advanced.logicalOperator| uppercase}}</span>
+    <span class="label label-default index_{{$index}} {{d.type}}">{{_t('lb_'+ rule.input.params.advanced.logicalOperator)}}</span>
   <h2 class="accordion-toggle ellipsis">
      <!-- Title -->
      <button type="button" aria-expanded="false" bb-accordion ng-class="{'no-toggle': d.type == 'toggleButton'}" ng-switch="d.type">
         <span ng-switch-when="nested">{{_t('nested')}}</span>
-        <span ng-switch-when="time">{{d.level}}</span>
-       <span ng-switch-default>{{rule.namespaces[d.deviceId].deviceName || _t('device_removed') + ': ' + d.deviceId}}</span>
+        <span ng-switch-when="time">{{_t('lb_time')}}&nbsp;<em>[{{d.operator}}&nbsp;{{d.level}}]</em></span>
+       <span ng-switch-default>
+        <span ng-if="!rule.namespaces[d.deviceId].deviceName">{{_t('device_removed') + ': ' + d.deviceId}}</span>
+        <span ng-if="rule.namespaces[d.deviceId].deviceName">{{rule.namespaces[d.deviceId].deviceName}}&nbsp;
+        <em ng-if="d.operator">[{{d.operator}}&nbsp;{{d.level}}]</em>
+        <em ng-if="!d.operator && _.isNumber(d.level)">[{{d.level}}]</em>
+        <em ng-if="!d.operator && !_.isNumber(d.level)">[{{_t(d.level)}}]</em>
+        &nbsp;-&nbsp;<em>{{rule.namespaces[d.deviceId].locationName}}</em>
+        </span>
+      </span>
        
      </button>
      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTest($index,d.deviceId)">

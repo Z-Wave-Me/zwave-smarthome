@@ -8,7 +8,7 @@
         </span>
         <!-- Toggle -->
         <button type="button" aria-expanded="false" bb-accordion ng-hide="!scene.availableDevices[v.device]">
-        <span>{{scene.availableDevices[v.device].deviceName}} <strong>({{v.status}}) </strong> -
+        <span>{{scene.availableDevices[v.device].deviceName}} [<em>{{_t(v.status)}}]</em>] -
           <em>{{scene.availableDevices[v.device].locationName}}</em>
         </span>
       </button>
@@ -31,7 +31,7 @@
         </span>
         <!-- Toggle -->
         <button type="button" aria-expanded="false" bb-accordion ng-hide="!scene.availableDevices[v.device]">
-        <span>{{scene.availableDevices[v.device].deviceName}} <strong>({{v.status}}) </strong> - 
+        <span>{{scene.availableDevices[v.device].deviceName}} [<em>{{_t(v.status)}}</em><em ng-if="v.status == 'lvl'"> {{v.level}}</em>] - 
           <em>{{scene.availableDevices[v.device].locationName}}</em>
         </span>
       </button>
@@ -54,7 +54,7 @@
         </span>
         <!-- Toggle -->
         <button type="button" aria-expanded="false" bb-accordion ng-hide="!scene.availableDevices[v.device]">
-        <span>{{scene.availableDevices[v.device].deviceName}} <strong>({{v.status}}) </strong> -
+        <span>{{scene.availableDevices[v.device].deviceName}} [<em>{{_t(v.status)}}</em>] -
           <em>{{scene.availableDevices[v.device].locationName}}</em>
         </span>
       </button>
@@ -77,7 +77,7 @@
         </span>
         <!-- Toggle -->
         <button type="button" aria-expanded="false" bb-accordion ng-hide="!scene.availableDevices[v.device]">
-        <span>{{scene.availableDevices[v.device].deviceName}} <strong>({{v.status}}) </strong> -
+        <span>{{scene.availableDevices[v.device].deviceName}} [<em>{{_t(v.status)}}</em>] -
           <em>{{scene.availableDevices[v.device].locationName}}</em>
         </span>
       </button>

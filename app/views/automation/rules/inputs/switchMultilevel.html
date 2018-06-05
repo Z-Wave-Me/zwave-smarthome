@@ -1,15 +1,15 @@
 <!-- select -->
 <div class="form-group form-inline">
   <span ng-show="!model.operator">
-  <label class="switch">
-    <input type="checkbox" ng-model="model.level" ng-checked="model.level == 'on'" ng-true-value="on" ng-false-value="off" ng-change="setReverseLevel(model.deviceType,inputType,$index)">
-    <span class="slider"></span>
-  </label>
-  <span class="switch-label" ng-hide="_.isNumber(model.level)">{{model.level}}</span>
-</span>
-  <!-- level -->
+    <!-- level -->
+    <select class="form-control" ng-model="model.level" ng-change="setReverseLevel(model.deviceType,inputType,$index)">
+      <option value="{{o}}" ng-repeat="o in rule.options.switchMultilevel.level track by $index" ng-selected="o == model.level">
+      {{_t(o)}}</option>
+    </select>
+  </span>
+  <!-- exact -->
   <input type="number" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
-    ng-model="model.level" ng-change="setReverseLevel(model.deviceType,inputType,$index)" />
+    ng-model="model.exact" ng-if="model.level == 'lvl'" ng-change="setReverseLevel(model.deviceType,inputType,$index)" />
 </div>
 <!-- command -->
 <div class="form-group" ng-if="!hideAction">

@@ -146,12 +146,14 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
         }
       },
       switchMultilevel: {
+        status: ['on', 'off', 'lvl'],
         paramsDevices: 'dimmers',
         min: 0,
         max: 99,
         default: {
           device: '',
-          status: 0,
+          status: 'on',
+          level: 0,
           sendAction: false
         }
       },
@@ -412,6 +414,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
         var data = {
           device: device.deviceId,
           status: obj.default.status,
+          level: obj.default.level,
           sendAction: obj.default.sendAction
         };
         $scope.scene.input.params.devices[obj.paramsDevices].push(data);

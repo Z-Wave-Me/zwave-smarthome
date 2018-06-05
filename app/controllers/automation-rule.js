@@ -189,20 +189,20 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         }
       },
       sensorMultilevel: {
-        level: ['on', 'off'],
         operator: ['=', '!=', '>', '>=', '<', '<='],
         min: 0,
         max: 99,
         default: {
           deviceId: '',
           deviceType: 'sensorMultilevel',
-          level: 'on',
+          level: 0,
+          operator: '=',
           sendAction: false,
           reverseLevel: null
         }
       },
       switchMultilevel: {
-        level: ['on', 'off'],
+        level: ['on', 'off', 'lvl'],
         operator: ['=', '!=', '>', '>=', '<', '<='],
         min: 0,
         max: 99,
@@ -210,12 +210,14 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'switchMultilevel',
           level: 'on',
+          exact: 0,
+          operator: '=',
           sendAction: false,
           reverseLevel: 'off'
         }
       },
       thermostat: {
-        level: ['on', 'off'],
+        level: ['on', 'off', 'lvl'],
         operator: ['=', '!=', '>', '>=', '<', '<='],
         min: 0,
         max: 99,
@@ -223,6 +225,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
           deviceId: '',
           deviceType: 'thermostat',
           level: 'on',
+          exact: 0,
+          operator: '=',
           sendAction: false,
           reverseLevel: null
         }
@@ -546,6 +550,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
         var element = {
           deviceId: device.deviceId,
           deviceType: device.deviceType,
+          exact: input.exact,
           level: input.level,
           sendAction: input.sendAction,
           reverseLevel: input.reverseLevel
@@ -644,6 +649,7 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       deviceId: device.deviceId,
       type: device.deviceType,
       level: input.level,
+      operator: input.operator,
       sendAction: input.sendAction
     };
     $scope.rule.advanced.tests.assignedDevices.push(device.deviceId);
@@ -731,6 +737,8 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
       deviceId: device.deviceId,
       type: device.deviceType,
       level: input.level,
+      operator: input.operator,
+      exact: input.exact,
       sendAction: input.sendAction
     };
     $scope.rule.advanced.tests.assignedDevices.push(device.deviceId);

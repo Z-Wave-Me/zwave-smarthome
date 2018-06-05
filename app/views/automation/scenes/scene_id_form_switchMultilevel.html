@@ -1,7 +1,11 @@
 <!-- status -->
-<div class="form-group">
+<div class="form-group form-inline">
+	<select class="form-control" ng-model="v.status">
+      <option value="{{o}}" ng-repeat="o in scene.cfg.switchMultilevel.status track by $index" ng-selected="o == v.status">
+      {{_t(o)}}</option>
+    </select>
    <input type="number" class="form-control input-number" min="{{scene.cfg.switchMultilevel.min}}" max="{{scene.cfg.switchMultilevel.max}}"
-    ng-model="v.status" />
+    ng-model="v.level" ng-if="v.status == 'lvl'"/>
 </div>
 <!-- command -->
 <div class="form-group">

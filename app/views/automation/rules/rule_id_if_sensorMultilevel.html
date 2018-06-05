@@ -9,7 +9,6 @@
 </span>
   <!-- operator -->
   <select class="form-control" ng-model="rule.input.params.simple.triggerEvent.operator">
-    <option value="">---</option>
     <option value="{{o}}" ng-repeat="o in rule.options.switchMultilevel.operator track by $index" ng-selected="o == rule.input.params.simple.triggerEvent.operator">
       {{o}}</option>
   </select>

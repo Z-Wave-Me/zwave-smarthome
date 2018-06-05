@@ -1,9 +1,6 @@
 <!-- operator -->
 <div class="form-group">
-  Add a new nested condition - like in logical notation: A AND B AND (C OR D). The additional nested condition is (C OR D).
-  An action is only triggered if the conditions A and B and either the condition C or D are met together. Example: If outside
-  the light sensor A &gt; 80% and the temperature sensor B &gt; 26°C and (time
-  &lt; 12:00 am or time &gt; 02:00 pm) then the jalousie in the living room is set to 50%.
+  {{_t('help_nested_condition')}}
 </div>
 <!-- operator -->
 <div class="form-group">
@@ -12,25 +9,32 @@
     <span class="slider"></span>
   </label>
   <span class="switch-label">
-    {{model.logicalOperator| uppercase}}
-    <em ng-if="model.logicalOperator == 'and'">({{_t('All conditions must be met')}})</em>
-    <em ng-if="model.logicalOperator == 'or'">({{_t('At least one condition is fulfilled')}})</em>
+    {{_t('lb_'+ model.logicalOperator)}}
+    <em ng-if="model.logicalOperator == 'and'">({{_t('operator_and_info')}})</em>
+    <em ng-if="model.logicalOperator == 'or'">({{_t('operator_or_info')}})</em>
   </span>
-  <bb-help-text trans="_t('This option links all conditions in the list to a logical OR or ANn. With OR, the action is executed if at least one condition applies. With AND, the action is only executed if all conditions apply.')"></bb-help-text>
+  <bb-help-text trans="_t('help_advanced_rule')"></bb-help-text>
 </div>
 <!-- assigned -->
 <legend>{{_t('assigned_conditions')}}</legend>
 <div data-collapse-all="true">
   <section class="accordion-wrap" ng-repeat="n in d.tests track by $index" ng-init="model=n">
-      <span class="label label-default index_{{$index}}">{{rule.input.params.advanced.tests[testIndex].logicalOperator| uppercase}}</span>
+      <span class="label label-default index_{{$index}}">{{_t('lb_'+ rule.input.params.advanced.tests[testIndex].logicalOperator)}}</span>
       <h2 class="accordion-toggle ellipsis">
          <!-- Title -->
-         <button type="button" aria-expanded="false" bb-accordion ng-class="{'no-toggle': n.type == 'toggleButton'}" ng-switch="n.type">
-            <span ng-switch-when="nested">{{n.type}}</span>
-            <span ng-switch-when="time">{{n.level}}</span>
-           <span ng-switch-default>{{rule.namespaces[n.deviceId].deviceName || _t('device_removed') + ': ' + n.deviceId}}</span>
-           
-         </button>
+        <button type="button" aria-expanded="false" bb-accordion ng-class="{'no-toggle': n.type == 'toggleButton'}" ng-switch="n.type">
+          <span ng-switch-when="nested">{{_t('nested')}}</span>
+          <span ng-switch-when="time">{{_t('lb_time')}}&nbsp;<em>[{{n.operator}}&nbsp;{{n.level}}]</em></span>
+          <span ng-switch-default>
+            <span ng-if="!rule.namespaces[n.deviceId].deviceName">{{_t('device_removed') + ': ' + n.deviceId}}</span>
+            <span ng-if="rule.namespaces[n.deviceId].deviceName">{{rule.namespaces[n.deviceId].deviceName}}&nbsp;
+              <em ng-if="n.operator">[{{n.operator}}&nbsp;{{n.level}}]</em>
+              <em ng-if="!n.operator && _.isNumber(n.level)">[{{n.level}}]</em>
+              <em ng-if="!n.operator && !_.isNumber(n.level)">[{{_t(n.level)}}]</em>
+              &nbsp;-&nbsp;<em>{{rule.namespaces[n.deviceId].locationName}}</em>
+            </span>
+          </span>
+        </button>         
          <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTestNested($index,n.deviceId,testIndex)">
            <i class="fa fa-times text-danger"></i>
            </span>

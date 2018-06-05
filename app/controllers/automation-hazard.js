@@ -149,7 +149,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				status: ['on', 'off', 'lvl'],
 				min: 0,
 				max: 99,
-				operator: ['=', '!=', '>', '>=', '<', '<='],
 				default: {
 					deviceId: '',
 					deviceType: 'switchMultilevel',
