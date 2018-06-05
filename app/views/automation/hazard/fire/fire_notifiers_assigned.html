@@ -1,6 +1,6 @@
 <!-- Assigned -->
 <div class="panel-wrap">
-  <div class="list-panel" ng-repeat="d in hazardProtection.fire.input.params.sendNotifications track by $index" ng-init="notifyTitleModel = d.target">
+  <div class="list-panel" ng-repeat="d in hazardProtection.fire.input.params.sendNotifications track by $index">
     <!-- img -->
     <figure class="img wh-32x32 clickable" ng-click="expandElement('hazardProtection_fire_' + $index)" >
       <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
