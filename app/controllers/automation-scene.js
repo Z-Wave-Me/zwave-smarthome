@@ -140,6 +140,18 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 					sendAction: false
 				}
 			},
+			switchRGBW: {
+			  level: ['on', 'off'],
+			  min: 0,
+			  max: 255,
+			  default: {
+			    deviceId: '',
+			    deviceType: 'switchRGBW',
+			    level: 'on',
+			    sendAction: false,
+			    reverseLevel: null
+			  }
+			},			
 			thermostat: {
 				min: 0,
 				max: 99,
