@@ -24,6 +24,6 @@
          </span>
      </h2>
       <!-- Content -->
-advanced
+     <div class="accordion" ng-init="if=false" ng-include="'app/views/automation/rules/inputs/advanced/'+ d.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
        hidden></div>
    </section>

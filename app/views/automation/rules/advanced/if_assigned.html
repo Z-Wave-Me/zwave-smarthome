@@ -21,7 +21,7 @@
   </span>
   </h2>
   <!-- Content -->
-  <div class="accordion" ng-include="'app/views/automation/rules/inputs/advanced/'+ d.type +'.html'" ng-if="d.type != 'toggleButton'"
+  <div class="accordion" ng-init="if=true" ng-include="'app/views/automation/rules/inputs/advanced/'+ d.type +'.html'" ng-if="d.type != 'toggleButton'"
   hidden></div>
   <!-- <div class="accordion" bb-remove-attr="{{expand['test_' + $index] ? 'hidden': ''}}" ng-include="'app/views/automation/rules/inputs/'+ d.type +'.html'" ng-if="d.type != 'toggleButton'"
   hidden></div> -->

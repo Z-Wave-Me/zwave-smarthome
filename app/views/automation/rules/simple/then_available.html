@@ -39,7 +39,7 @@
           {{e.deviceName}}</option>
       </select>
       &nbsp;
-      <label ng-hide="rule.namespaces[rule.options.notification.default.target]">{{_t('or')}} <input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="rule.options.notification.default.target" /></label>
+      <label ng-hide="rule.options.notification.default.target">{{_t('or')}} <input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="rule.options.notification.default.target" /></label>
     </div>
     <!-- mesage -->
     <div class="form-group">

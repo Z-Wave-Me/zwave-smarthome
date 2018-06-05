@@ -209,7 +209,6 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 				}
 			});
 
-			console.log($scope.scene.assignedDevices);
 		}, function (error) {
 			angular.extend(cfg.route.alert, {
 				message: $scope._t('error_load_data')

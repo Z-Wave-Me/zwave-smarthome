@@ -24,7 +24,7 @@
   </span>
   </h2>
   <!-- Content -->
-  <div class="accordion" ng-include="'app/views/automation/rules/inputs/simple/'+ d.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
+  <div class="accordion" ng-init="if=false" ng-include="'app/views/automation/rules/inputs/simple/'+ d.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
   hidden></div>
 </section>
 <!-- <pre>{{rule.input.params.targets.elements|json}}</pre> -->

@@ -1,13 +1,13 @@
 <!-- select -->
 <div class="form-group form-inline">
-    <select class="form-control" ng-model="rule.input.params.simple.triggerEvent.level">
+    <select class="form-control" ng-model="model.level">
         <option value="">---</option>
-        <option value="{{o}}" ng-repeat="o in rule.options.switchControl.level track by $index" ng-selected="o == rule.input.params.simple.triggerEvent.level">
+        <option value="{{o}}" ng-repeat="o in rule.options.switchControl.level track by $index" ng-selected="o == model.level">
           {{o}}</option>
       </select>
   </div>
   <!-- command -->
   <div class="form-group" ng-if="!hideAction">
-    <input type="checkbox" name="send_command" id="send_command" ng-model="rule.input.params.simple.triggerEvent.sendAction" ng-checked="rule.input.params.simple.triggerEvent.sendAction" />
+    <input type="checkbox" name="send_command" id="send_command" ng-model="model.sendAction" ng-checked="model.sendAction" />
     <label for="send_command">{{_t('dont_send_on_command')}}</label>
   </div>

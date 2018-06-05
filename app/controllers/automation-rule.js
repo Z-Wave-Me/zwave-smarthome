@@ -349,6 +349,34 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
     dataFactory.getApi('instances', '/' + id, true).then(function (instances) {
       var instance = instances.data.data;
       var assignedTargetDevices = $scope.rule.target.assignedDevices;
+
+      instance.params.simple.targetElements = instance.params.simple.targetElements.map(function(d){
+        return {
+          deviceId: d.deviceId,
+          deviceType: d.deviceType,
+          level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl'): d.level,
+          exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0): undefined,
+          sendAction: d.sendAction          
+        };
+      });
+
+      instance.params.advanced.targetElements = instance.params.advanced.targetElements.map(function(d){
+        return {
+          deviceId: d.deviceId,
+          deviceType: d.deviceType,
+          level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl'): d.level,
+          exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0): undefined,
+          sendAction: d.sendAction          
+        };
+      });
+
+      // angular.forEach(instance.params.devices, function (d) {
+      //   if (assignedDevices.indexOf(d.deviceId) === -1) {
+      //     $scope.scene.assignedDevices.push(d.deviceId);
+      //   }
+      // });
+
+
       // Set input data
       //instance.params.advanced.tests = _.sortBy(instance.params.advanced.tests, 'testType');
       angular.extend($scope.rule.input, instance);
@@ -907,6 +935,28 @@ myAppController.controller('AutomationRuleIdController', function ($scope, $rout
    * Store 
    */
   $scope.storeRule = function (input, redirect) {
+    input.params.advanced.targetElements = input.params.advanced.targetElements.map(function(dev){
+      return {
+        deviceId: dev.deviceId,
+        deviceType: dev.deviceType,
+        level: dev.level == 'lvl' ? dev.exact : dev.level,
+        sendAction: dev.sendAction,
+        reverseLevel: dev.reverseLevel
+      };
+    });
+
+    input.params.simple.targetElements = input.params.simple.targetElements.map(function(dev){
+      return {
+        deviceId: dev.deviceId,
+        deviceType: dev.deviceType,
+        level: dev.level == 'lvl' ? dev.exact : dev.level,
+        sendAction: dev.sendAction,
+        reverseLevel: dev.reverseLevel
+      };
+    });
+
+    console.log(input);
+
     dataFactory.storeApi('instances', parseInt(input.id, 10), input).then(function (response) {
       if (redirect) {
         $location.path('/' + dataService.getUrlSegment($location.path()));

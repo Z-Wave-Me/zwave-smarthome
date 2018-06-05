@@ -1,23 +1,30 @@
-<!-- select -->
-<div class="form-group form-inline">
-    <span ng-show="model.operator == ''">
-    <label class="switch">
-      <input type="checkbox" ng-model="model.level" ng-checked="model.level == 'on'" ng-true-value="on" ng-false-value="off">
-      <span class="slider"></span>
-    </label>
-    <span class="switch-label" ng-hide="_.isNumber(model.level)">{{model.level}}</span>
-  </span>
+<div ng-show="if" class="form-group form-inline">
+  <span>
     <!-- operator -->
-    <select class="form-control" ng-model="model.operator">
+    <select class="form-control" ng-model="model.operator"">
       <option value="{{o}}" ng-repeat="o in rule.options.thermostat.operator track by $index" ng-selected="o == model.operator">
-        {{o}}</option>
+      {{_t(o)}}</option>
     </select>
+  </span>
+  <!-- exact -->
+  <input type="number" class="form-control input-number" min="{{rule.options.thermostat.min}}" max="{{rule.options.thermostat.max}}"
+    ng-model="model.level"/>
+</div>
+
+<div ng-show="!if" class="form-group form-inline">
+  <span>
     <!-- level -->
-    <input type="number" class="form-control input-number" min="{{rule.options.thermostat.min}}" max="{{rule.options.thermostat.max}}"
-      ng-model="model.level" ng-if="model.operator != ''" />
-  </div>
-  <!-- command -->
-  <div class="form-group" ng-if="!hideAction">
-    <input type="checkbox" name="send_command" id="send_command" ng-model="model.sendAction" ng-checked="model.sendAction" />
-    <label for="send_command">{{_t('dont_send_on_command')}}</label>
-  </div>
+    <select class="form-control" ng-model="model.level">
+      <option value="{{o}}" ng-repeat="o in rule.options.thermostat.level track by $index" ng-selected="o == model.level">
+      {{_t(o)}}</option>
+    </select>
+  </span>
+  <!-- exact -->
+  <input type="number" class="form-control input-number" min="{{rule.options.thermostat.min}}" max="{{rule.options.thermostat.max}}"
+    ng-model="model.exact" ng-if="model.level == 'lvl'" />
+</div>
+<!-- command -->
+<div class="form-group" ng-if="!if">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="model.sendAction" ng-checked="model.sendAction" />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>    
