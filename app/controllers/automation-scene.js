@@ -378,7 +378,6 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 	 * Store
 	 */
 	$scope.storeScene = function (input, redirect) {
-		console.log(input.params.devices);
 		input.params.devices = input.params.devices.map(function(dev){
 			return {
 				deviceId: dev.deviceId,
@@ -386,8 +385,7 @@ myAppController.controller('AutomationSceneIdController', function ($scope, $rou
 				level: dev.level == 'lvl' ? dev.exact : dev.level,
 				sendAction: dev.sendAction
 			};
-		})
-		console.log(input.params.devices);
+		});
 		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function (response) {
 			if (redirect) {
 				$location.path('/' + dataService.getUrlSegment($location.path()));
