@@ -5,91 +5,91 @@
   <div class="app-row app-row-report clearfix">
     <!-- Widgets -->
     <div class="clearfix">
-        <!-- Alexa -->
-        <div class="onlineapp">
-             <!-- Onlineapp entry -->
-             <div class="onlineapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(speechAssistants.Alexa.module.id)" on-touch-end="onTouchEnd()" prevent-click="true">
-              <!-- Online app header -->
-              <a class="onlineapp-header" href="#speech_assistants/Alexa/setup">
-                  <img class="onlineapp-img" alt="{{speechAssistants.Alexa.module.defaults.title}}" title="{{v.toolTipDescription}}" 
-                      ng-src="{{speechAssistants.Alexa.module.icon ? speechAssistants.Alexa.module.iconPath : 'storage/img/placeholder-img.png'}}" />
-              </a>
-              <!-- Online app body-->
-              <div class="onlineapp-body">
-                  <!-- Online app title -->
-                  <a class="onlineapp-title" 
-                    ng-href="#speech_assistants/Alexa/setup" 
-                    title="{{speechAssistants.Alexa.module.defaults.title}}">
-                      {{speechAssistants.Alexa.module.defaults.title}}
-                  </a>
-                  <!-- Online app footer -->
-                  <div class="onlineapp-footer" 
-                      ng-class="speechAssistants.Alexa.module.id == hasLongPress ? 'has-longpress' : ''" 
-                      on-long-press="onLongPress()" 
-                      prevent-click="true">
-                      <div class="rating-group">
-                        <a href="#speech_assistants/Alexa/setup" title="_t('')">
-                          <i class="fa fa-chevron-right"></i>
-                          <span>
-                            Quick Setup Guide{{_t('')}}
-                          </span>
-                        </a>
-                      </div>
-                      <div class="btn-group group-apps">
-                        <button class="btn btn-default" title="_t('lb_add_app')"
-                            ng-disabled="speechAssistants.Alexa.instance.active"
-                            ng-click="createInstance(speechAssistants.Alexa.module)">
-                            <i class="fa fa-plus text-success"></i>
-                            <span class="btn-name" ng-bind="_t('lb_add_app')">Add App</span>
-                        </button>
-                      </div>
-                  </div>
+      <!-- Alexa -->
+      <div class="onlineapp">
+        <!-- Onlineapp entry -->
+        <div class="onlineapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(speechAssistants.Alexa.module.id)" on-touch-end="onTouchEnd()" prevent-click="true">
+          <!-- Online app header -->
+          <a class="onlineapp-header" href="#speech_assistants/Alexa/setup">
+            <img class="onlineapp-img" alt="{{speechAssistants.Alexa.module.defaults.title}}" title="{{v.toolTipDescription}}"
+            ng-src="{{speechAssistants.Alexa.module.icon ? speechAssistants.Alexa.module.iconPath : 'storage/img/placeholder-img.png'}}" />
+          </a>
+          <!-- Online app body-->
+          <div class="onlineapp-body">
+            <!-- Online app title -->
+            <a class="onlineapp-title"
+              ng-href="#speech_assistants/Alexa/setup"
+              title="{{speechAssistants.Alexa.module.defaults.title}}">
+              {{speechAssistants.Alexa.module.defaults.title}}
+            </a>
+            <!-- Online app footer -->
+            <div class="onlineapp-footer"
+              ng-class="speechAssistants.Alexa.module.id == hasLongPress ? 'has-longpress' : ''"
+              on-long-press="onLongPress()"
+              prevent-click="true">
+              <div class="rating-group">
+                <a href="#speech_assistants/Alexa/setup" title="{{_t('Quick Setup Guide')}}">
+                  <i class="fa fa-chevron-right"></i>
+                  <span>
+                    {{_t('Quick Setup Guide')}}
+                  </span>
+                </a>
               </div>
+              <div class="btn-group group-apps">
+                <button class="btn btn-default" title="_t('lb_add_app')"
+                ng-disabled="speechAssistants.Alexa.instance.active"
+                ng-click="createInstance(speechAssistants.Alexa.module)">
+                <i class="fa fa-plus text-success"></i>
+                <span class="btn-name" ng-bind="_t('lb_add_app')">{{_t('lb_add_app')}}</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- Google Home -->
-        <div class="onlineapp">
-             <!-- Onlineapp entry -->
-             <div class="onlineapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(speechAssistants.GoogleHome.module.id)" on-touch-end="onTouchEnd()" prevent-click="true">
-              <!-- Online app header -->
-              <a class="onlineapp-header" href="#speech_assistants/GoogleHome/setup">
-                  <img class="onlineapp-img" alt="{{speechAssistants.GoogleHome.module.defaults.title}}" title="{{v.toolTipDescription}}" 
-                      ng-src="{{speechAssistants.GoogleHome.module.icon ? speechAssistants.GoogleHome.module.iconPath : 'storage/img/placeholder-img.png'}}" />
-              </a>
-              <!-- Online app body-->
-              <div class="onlineapp-body">
-                  <!-- Online app title -->
-                  <a class="onlineapp-title" 
-                    ng-href="#speech_assistants/GoogleHome/setup" 
-                    title="{{speechAssistants.GoogleHome.module.defaults.title}}">
-                      {{speechAssistants.GoogleHome.module.defaults.title}}
-                  </a>
-                  <!-- Online app footer -->
-                  <div class="onlineapp-footer" 
-                      ng-class="speechAssistants.GoogleHome.module.id == hasLongPress ? 'has-longpress' : ''" 
-                      on-long-press="onLongPress()" 
-                      prevent-click="true">
-                      <div class="rating-group">
-                        <a href="#speech_assistants/GoogleHome/setup" title="_t('')">
-                          <i class="fa fa-chevron-right"></i>
-                          <span>
-                            Quick Setup Guide{{_t('')}}
-                          </span>
-                        </a>
-                      </div>
-                      <div class="btn-group group-apps">
-                        <button class="btn btn-default" title="_t('lb_add_app')"
-                            ng-disabled="speechAssistants.GoogleHome.instance.active"
-                            ng-click="createInstance(speechAssistants.GoogleHome.module)">
-                            <i class="fa fa-plus text-success"></i>
-                            <span class="btn-name" ng-bind="_t('lb_add_app')">Add App</span>
-                        </button>
-                      </div>
-                  </div>
+      </div>
+      <!-- Google Home -->
+      <div class="onlineapp">
+        <!-- Onlineapp entry -->
+        <div class="onlineapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(speechAssistants.GoogleHome.module.id)" on-touch-end="onTouchEnd()" prevent-click="true">
+          <!-- Online app header -->
+          <a class="onlineapp-header" href="#speech_assistants/GoogleHome/setup">
+            <img class="onlineapp-img" alt="{{speechAssistants.GoogleHome.module.defaults.title}}" title="{{v.toolTipDescription}}"
+            ng-src="{{speechAssistants.GoogleHome.module.icon ? speechAssistants.GoogleHome.module.iconPath : 'storage/img/placeholder-img.png'}}" />
+          </a>
+          <!-- Online app body-->
+          <div class="onlineapp-body">
+            <!-- Online app title -->
+            <a class="onlineapp-title"
+              ng-href="#speech_assistants/GoogleHome/setup"
+              title="{{speechAssistants.GoogleHome.module.defaults.title}}">
+              {{speechAssistants.GoogleHome.module.defaults.title}}
+            </a>
+            <!-- Online app footer -->
+            <div class="onlineapp-footer"
+              ng-class="speechAssistants.GoogleHome.module.id == hasLongPress ? 'has-longpress' : ''"
+              on-long-press="onLongPress()"
+              prevent-click="true">
+              <div class="rating-group">
+                <a href="#speech_assistants/GoogleHome/setup" title="_t('')">
+                  <i class="fa fa-chevron-right"></i>
+                  <span>
+                    Quick Setup Guide{{_t('')}}
+                  </span>
+                </a>
               </div>
+              <div class="btn-group group-apps">
+                <button class="btn btn-default" title="_t('lb_add_app')"
+                ng-disabled="speechAssistants.GoogleHome.instance.active"
+                ng-click="createInstance(speechAssistants.GoogleHome.module)">
+                <i class="fa fa-plus text-success"></i>
+                <span class="btn-name" ng-bind="_t('lb_add_app')">Add App</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
   <div class="device-logo" ng-include="'app/views/speech_assistants/nav.html'"></div>
-</div> <!-- /ng-controller --> 
+  </div> <!-- /ng-controller -->

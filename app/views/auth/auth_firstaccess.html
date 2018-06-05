@@ -11,92 +11,120 @@
             <label>{{_t('select_language')}}: </label>
             <div class="btn-group group-login-lang">
                 <button type="button" class="btn btn-default" title="{{_t('lb_language')}}"
-                        ng-click="expandNavi('loginLang', $event)">
-                    <img class="lang-img" ng-src="app/img/flags/{{loginLang}}.png" alt="{{loginLang}}" />
-                    <i class="fa fa-caret-down"></i>
+                ng-click="expandNavi('loginLang', $event)">
+                <img class="lang-img" ng-src="app/img/flags/{{loginLang}}.png" alt="{{loginLang}}" />
+                <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="app-dropdown dropdown-lang app-dropdown-left" ng-if="naviExpanded.loginLang">
                     <ul>
                         <li class="clickable" ng-repeat="v in cfg.lang_list" ng-click="setLoginLang(v)">
                             <img class="form-control-img profile-lang"
-                                 ng-src="app/img/flags/{{v}}.png" alt="{{v}}"
-                                 ng-class="v == loginLang ? 'control-active':''" />
+                            ng-src="app/img/flags/{{v}}.png" alt="{{v}}"
+                            ng-class="v == loginLang ? 'control-active':''" />
                         </li>
                     </ul>
-
                 </div>
             </div>
-
         </fieldset>
         <!-- login  -->
-         <fieldset>
+        <fieldset>
             <p class="form-control-static">
                 <span ng-bind="_t('lb_login')"></span>: <strong ng-bind="cfg.default_credentials.login"></strong>
             </p>
-         </fieldset>
-        <!-- password -->    
+        </fieldset>
+        <!-- password -->
         <fieldset>
             <label class="isrequired">{{_t('lb_new_password')}}: </label>
             <input name="password" id="password" type="password" class="form-control" value="" ng-model="input.password" ng-blur="passwordBlur = true" ng-required="true" ng-minlength="6" />
-            <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")' has-blur='passwordBlur'></bb-validator> 
+            <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")' has-blur='passwordBlur'></bb-validator>
             <bb-validator input-name='form_password.password.$error.minlength' trans='_t("password_valid")' has-blur='passwordBlur'></bb-validator>
-
         </fieldset>
-        <!-- confirm password -->  
+        <!-- confirm password -->
         <fieldset>
             <label class="isrequired">{{_t('confirm_password')}}: </label>
-             <input name="password_confirm" id="password_confirm" type="password" class="form-control" value="" ng-blur="passwordConfirmBlur = true" ng-model="input.passwordConfirm" bb-compare-to="password" />
-             <bb-validator input-name='form_password.password_confirm.$error.compareto' trans='_t("passwords_must_match")' has-blur='passwordConfirmBlur'></bb-validator>
+            <input name="password_confirm" id="password_confirm" type="password" class="form-control" value="" ng-blur="passwordConfirmBlur = true" ng-model="input.passwordConfirm" bb-compare-to="password" />
+            <bb-validator input-name='form_password.password_confirm.$error.compareto' trans='_t("passwords_must_match")' has-blur='passwordConfirmBlur'></bb-validator>
         </fieldset>
-
         <!-- Set email -->
         <fieldset>
-             <div class="form-group">
-                 <label>{{_t('lb_email')}}: </label>
-                 <input name="email" id="email" type="email" class="form-control" value="" ng-model="input.email" ng-blur="emailBlur = true" />
-                 <bb-validator input-name='form_password.email.$error.required' trans='_t("field_required")' has-blur='emailBlur'></bb-validator> 
-                 <bb-validator input-name='form_password.email.$error.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator> 
-                 </div>
-             <bb-help-text trans="_t('password_email_info')"></bb-help-text>
+            <div class="form-group">
+                <label>{{_t('lb_email')}}: </label>
+                <input name="email" id="email" type="email" class="form-control" value="" ng-model="input.email" ng-blur="emailBlur = true" />
+                <bb-validator input-name='form_password.email.$error.required' trans='_t("field_required")' has-blur='emailBlur'></bb-validator>
+                <bb-validator input-name='form_password.email.$error.email' trans='_t("email_invalid")' has-blur='emailBlur'></bb-validator>
+            </div>
+            <bb-help-text trans="_t('password_email_info')"></bb-help-text>
         </fieldset>
         
         <fieldset ng-if="cfg.app_type === 'jb' && handleTimezone.show">
             <!-- Set timezone-->
             <div class="form-group">
-            <label>{{_t('timezone_select')}}</label>
-            <select class="form-control" ng-model="handleTimezone.instance.params.timezone" ng-change="handleTimezone.changed = true">
-                <option value="{{v}}" 
+                <label>{{_t('timezone_select')}}</label>
+                <select class="form-control" ng-model="handleTimezone.instance.params.timezone" ng-change="handleTimezone.changed = true">
+                    <option value="{{v}}"
                         ng-repeat="v in managementTimezone.enums track by $index"
                         ng-selected="v === handleTimezone.instance.params.timezone">
-                    {{managementTimezone.labels[$index]}}
-                </option>
-            </select>
-            <bb-help-text trans="_t('timezone_info')"></bb-help-text>
+                        {{managementTimezone.labels[$index]}}
+                    </option>
+                </select>
+                <bb-help-text trans="_t('timezone_info')"></bb-help-text>
             </div>
-
             <!-- Activate WAN access -->
             <div class="form-group">
                 <div>
                     <input type="checkbox" name="wan_port_access" id="wan_port_access" value="true"
-                           ng-model="handleTimezone.instance.params.wan_port_access"
-                           ng-checked="handleTimezone.instance.params.wan_port_access"
-                           ng-change="handleTimezone.changed = true"/>
+                    ng-model="handleTimezone.instance.params.wan_port_access"
+                    ng-checked="handleTimezone.instance.params.wan_port_access"
+                    ng-change="handleTimezone.changed = true"/>
                     <label for="wan_port_access" ng-bind="_t('local_access_activate')"></label>
-                     <bb-help-text trans="_t('timezone_info')"></bb-help-text>
+                    <bb-help-text trans="_t('timezone_info')"></bb-help-text>
                 </div>
             </div>
         </fieldset>
-        <!--<fieldset>
-        <div class="form-group">
-                <input type="checkbox" name="trust_my_network" id="trust_my_network" 
-                       ng-model="input.trust_my_network" /> 
-                <label ng-bind="_t('secure_login')"></label> <bb-help file="secure_login" lang="{{loginLang}}"></bb-help>
+        <!-- Set speech assitant -->
+        <fieldset>
+            <div class="form-group">
+                <label>{{_t('devices_text_speech')}}: </label>
+                <div>
+                    <!-- Alexa -->
+                    <label class="switch">
+                        <input type="checkbox" ng-model="speechAssistans.alexa.input.active">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="switch-label"><figure class="img wh-32x32">
+                        <img ng-src="{{speechAssistans.alexa.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                    </figure>
+                    {{_t('lb_alexa')}}
+                </span>
             </div>
-        </fieldset>-->  
-        <fieldset class="submit-entry">
-            <button type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}" ng-disabled="form_password.$invalid">
-                <i class="fa fa-check"></i> <span ng-bind="_t('lb_submit')"></span>
-            </button>
-        </fieldset>
-    </form>
+            <div>
+                <!-- Google Home -->
+                <label class="switch">
+                    <input type="checkbox" ng-model="speechAssistans.google_home.input.active">
+                    <span class="slider"></span>
+                </label>
+                <span class="switch-label"><figure class="img wh-32x32">
+                    <img ng-src="{{speechAssistans.google_home.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                </figure>
+                {{_t('lb_google_home')}}
+            </span>
+        </div>
+    </div>
+    <bb-help-text trans="_t('speech_assistant_info')"></bb-help-text>
+<!--<pre>{{speechAssistans.alexa | json}}</pre>
+<pre>{{speechAssistans.google_home | json}}</pre>-->
+</fieldset>
+<!--<fieldset>
+<div class="form-group">
+<input type="checkbox" name="trust_my_network" id="trust_my_network"
+ng-model="input.trust_my_network" />
+<label ng-bind="_t('secure_login')"></label> <bb-help file="secure_login" lang="{{loginLang}}"></bb-help>
+</div>
+</fieldset>-->
+<fieldset class="submit-entry">
+<button type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}" ng-disabled="form_password.$invalid">
+<i class="fa fa-check"></i> <span ng-bind="_t('lb_submit')"></span>
+</button>
+</fieldset>
+</form>
 </div>
