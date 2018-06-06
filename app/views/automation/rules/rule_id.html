@@ -118,14 +118,23 @@
 <fieldset ng-if="rule.advanced.tab == 'else'" ng-include="'app/views/automation/rules/advanced/else.html'"></fieldset>
 </div>
 <!-- /end advanced -->
-<!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
-<div class="fieldset submit-entry is-grid">
-<span>
+<!--  //////////////////////////////////// Advanced settings //////////////////////////////////// -->
+<legend>{{_t('advanced_settings')}}</legend>
+<fieldset>
 <label class="switch">
 <input type="checkbox" ng-model="rule.input.params.advanced.active" ng-checked="rule.input.params.advanced.active">
 <span class="slider"></span>
 </label>
-<span class="switch-label">{{_t('advanced_settings')}}</span>
+<span class="switch-label">{{rule.input.params.advanced.active ? _t('lb_active'): _t('activeASC')}}</span>
+</fieldset>
+<!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
+<div class="fieldset submit-entry is-grid">
+<span>
+<label class="switch">
+<input type="checkbox" ng-model="rule.input.active" ng-checked="rule.input.active">
+<span class="slider"></span>
+</label>
+<span class="switch-label">{{rule.input.active ? _t('lb_active'): _t('activeASC')}}</span>
 </span>
 <span>
 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>

@@ -117,7 +117,7 @@
 					<input type="checkbox" ng-model="heating.input.active" ng-checked="heating.input.active" ng-disabled="!heating.roomsAvailable">
 					<span class="slider"></span>
 				</label>
-				<span class="switch-label">{{_t('activate_module',{__module__:_t('heating')})}}</span>
+				<span class="switch-label">{{heating.input.active ? _t('lb_active'): _t('activeASC')}}</span>
 			</span>
 			<span>
 				<a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">

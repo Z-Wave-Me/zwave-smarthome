@@ -1,35 +1,34 @@
-  <!-- Devices -->
+<!-- Devices -->
 <section class="accordion-wrap available-devices" ng-repeat="r in rule.rooms track by $index" ng-if="rule.advanced.tests.devicesInRoom[r.id]">
-    <!-- Title -->
-    <h2 class="accordion-toggle chevron">
-      <button type="button" aria-expanded="false" bb-accordion>
-        <span>
-          <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
-        </span>
-      </button>
-    </h2>
-    <!-- Content -->
-    <div class="accordion" hidden>
-      <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in rule.advanced.tests.availableDevices track by $index"
-        ng-if="d.location == r.id && rule.advanced.tests.assignedDevices.indexOf(d.deviceId) === -1" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
-        ng-click="assignAdvancedTestDevice(d)">
-        <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-        {{d.deviceName|cutText:true:20}}
-        <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
-      </a>
-    </div>
-  </section>
-    <!-- Time, nested -->
-    <section class="section">
-      <a href="" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('time')">
-          <i class="fa fa-clock"></i>
-          {{_t('test_time')}}
-          <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
-      </a>
-      <a href="" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('nested')">
-          <i class="fa fa-code-branch fa-flip-horizontal"></i>
-          {{_t('nested')}}
-          <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
-      </a>
-    </section>
-  
+  <!-- Title -->
+  <h2 class="accordion-toggle chevron">
+  <button type="button" aria-expanded="false" bb-accordion>
+  <span>
+    <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+  </span>
+  </button>
+  </h2>
+  <!-- Content -->
+  <div class="accordion" hidden>
+    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in rule.advanced.tests.availableDevices track by $index"
+      ng-if="d.location == r.id && rule.advanced.tests.assignedDevices.indexOf(d.deviceId) === -1" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
+      ng-click="assignAdvancedTestDevice(d)">
+      <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+      {{d.deviceName|cutText:true:20}}
+      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+    </a>
+  </div>
+</section>
+<!-- Time, nested -->
+<section class="section">
+  <a href="" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('time')">
+    <i class="fa fa-clock-o"></i>
+    {{_t('test_time')}}
+    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+  </a>
+  <a href="" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('nested')">
+    <i class="fa fa-code-fork fa-flip-vertical"></i>
+    {{_t('nested')}}
+    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+  </a>
+</section>

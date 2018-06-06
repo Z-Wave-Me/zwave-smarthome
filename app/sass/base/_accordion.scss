@@ -30,10 +30,13 @@ $accordion-focus-color: $focus-color;
     
     > span {
       @include textOverflow();
-     
-      .fa:first-of-type {
+      align-items: center;
+      display: inline-flex;
+      /*
+       fa:first-of-type {
         font-size: 120%;
       }
+      */
     }
 
     &::after{

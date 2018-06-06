@@ -36,7 +36,14 @@
       display: flex;
       align-items: center;
       font-size:110%;
-      button {
+      border-bottom: dotted 1px $accordion-border-color;
+
+      .is-legend {
+        display: block;
+      }
+      > button {
+        padding: $spacing;
+        border: none;
         .accordion-title {
           padding: 5px 0;
           .room-title {
@@ -50,22 +57,33 @@
         }
         &.no-toggle {
           cursor: text !important;
+          .navi-img{
+            margin-right: $spacing;
+            width: 32px;
+            height: 32px;
+          }
           &::after {
             content: "";
           }
         }
         .navi-img{
           margin-right: $spacing;
+          width: 32px;
+          height: 32px;
         }
-        em{
+        em {
           font-size: 80%;
         }
       }
       .no-toggle {
-        padding: $spacing 0;
+        padding: $spacing;
         width: 100%;
         font-weight: normal;
-        border-bottom: dotted 1px $accordion-border-color;
+        .navi-img{
+            margin-right: $spacing;
+            width: 32px;
+            height: 32px;
+          }
         em {
           font-size: 80%;
         }

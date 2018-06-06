@@ -12442,10 +12442,13 @@ fieldset section, .fieldset section {
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   /* Opera */
-}
-
-.accordion-toggle > button > span .fa:first-of-type {
-  font-size: 120%;
+  align-items: center;
+  display: inline-flex;
+  /*
+       fa:first-of-type {
+        font-size: 120%;
+      }
+      */
 }
 
 .accordion-toggle > button::after {
@@ -12798,13 +12801,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -16710,46 +16716,69 @@ img.widget-promo-image {
   display: flex;
   align-items: center;
   font-size: 110%;
+  border-bottom: dotted 1px #cccccc;
   /*  &:last-child {
         margin-bottom: $spacing;
       } */
 }
 
-.accordion-wrap .accordion-toggle button .accordion-title {
+.accordion-wrap .accordion-toggle .is-legend {
+  display: block;
+}
+
+.accordion-wrap .accordion-toggle > button {
+  padding: 10px;
+  border: none;
+}
+
+.accordion-wrap .accordion-toggle > button .accordion-title {
   padding: 5px 0;
 }
 
-.accordion-wrap .accordion-toggle button .accordion-title .room-title {
+.accordion-wrap .accordion-toggle > button .accordion-title .room-title {
   display: block;
   padding-bottom: 3px;
   font-size: 80%;
 }
 
-.accordion-wrap .accordion-toggle button .accordion-title .device-title {
+.accordion-wrap .accordion-toggle > button .accordion-title .device-title {
   display: block;
 }
 
-.accordion-wrap .accordion-toggle button.no-toggle {
+.accordion-wrap .accordion-toggle > button.no-toggle {
   cursor: text !important;
 }
 
-.accordion-wrap .accordion-toggle button.no-toggle::after {
+.accordion-wrap .accordion-toggle > button.no-toggle .navi-img {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+.accordion-wrap .accordion-toggle > button.no-toggle::after {
   content: "";
 }
 
-.accordion-wrap .accordion-toggle button .navi-img {
+.accordion-wrap .accordion-toggle > button .navi-img {
   margin-right: 10px;
+  width: 32px;
+  height: 32px;
 }
 
-.accordion-wrap .accordion-toggle button em {
+.accordion-wrap .accordion-toggle > button em {
   font-size: 80%;
 }
 
 .accordion-wrap .accordion-toggle .no-toggle {
-  padding: 10px 0;
+  padding: 10px;
   width: 100%;
   font-weight: normal;
-  border-bottom: dotted 1px #cccccc;
+}
+
+.accordion-wrap .accordion-toggle .no-toggle .navi-img {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
 }
 
 .accordion-wrap .accordion-toggle .no-toggle em {
