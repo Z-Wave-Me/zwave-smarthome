@@ -462,7 +462,8 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 					level: !_.isNaN(v.metrics.level) ? parseInt(v.metrics.level) : v.metrics.level,
 					//level:v.metrics.level,
 					location: v.location,
-					locationName: rooms[v.location].title
+					locationName: rooms[v.location].title,
+					iconPath: v.iconPath
 				};
 				return obj;
 			});
