@@ -3,6 +3,7 @@
   <h2 class="accordion-toggle ellipsis">
   
   <span class="no-toggle" ng-if="rule.source.devices[rule.input.params.simple.triggerEvent.deviceId]">
+    <img class="navi-img" ng-src="{{rule.source.devices[rule.input.params.simple.triggerEvent.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
     {{rule.source.devices[rule.input.params.simple.triggerEvent.deviceId].deviceName}}&nbsp;
     <em ng-if="rule.input.params.simple.triggerEvent.operator">[{{rule.input.params.simple.triggerEvent.operator}}&nbsp;{{rule.input.params.simple.triggerEvent.level}}]</em>
     <em ng-if="!rule.input.params.simple.triggerEvent.operator && _.isNumber(rule.input.params.simple.triggerEvent.level)">[{{rule.input.params.simple.triggerEvent.level}}]</em>

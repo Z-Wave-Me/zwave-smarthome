@@ -8,11 +8,15 @@
   <!-- <pre>{{targetModel|json}}</pre> -->
   <!-- Title -->
   <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'" ng-hide="!rule.namespaces[d.deviceId]">
-  <span ng-if="rule.namespaces[d.deviceId].deviceName && !_.isObject(d.level)">{{rule.namespaces[d.deviceId].deviceName}}&nbsp;
+  <span ng-if="rule.namespaces[d.deviceId].deviceName && !_.isObject(d.level)">
+    <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+    {{rule.namespaces[d.deviceId].deviceName}}&nbsp;
     [<em>{{_t(d.level)}}</em><em ng-if="d.level == 'lvl'"> {{d.exact}}</em>]&nbsp;-&nbsp;
     <em>{{rule.namespaces[d.deviceId].locationName}}</em>
   </span>
-  <span ng-if="rule.namespaces[d.deviceId].deviceName && _.isObject(d.level)">{{rule.namespaces[d.deviceId].deviceName}}&nbsp;
+  <span ng-if="rule.namespaces[d.deviceId].deviceName && _.isObject(d.level)">
+    <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+    {{rule.namespaces[d.deviceId].deviceName}}&nbsp;
     <span class="color-picker-show" style="background-color: {{d.level|setRgbColors}};">&nbsp;</span>&nbsp;-&nbsp;
     <em>{{rule.namespaces[d.deviceId].locationName}}</em>
   </span>
@@ -20,6 +24,7 @@
   <!-- NO Toggle -->
   <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'" ng-hide="!rule.namespaces[d.deviceId]">
     <span>
+      <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       {{rule.namespaces[d.deviceId].deviceName}}
     </span>
   </span>

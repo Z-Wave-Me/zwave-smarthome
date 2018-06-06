@@ -7,7 +7,7 @@
   <span ng-switch-when="time">{{_t('lb_time')}}&nbsp;<em>[{{d.operator}}&nbsp;{{d.level}}]</em></span>
   <span ng-switch-default>
     <span ng-if="!rule.namespaces[d.deviceId].deviceName">{{_t('device_removed') + ': ' + d.deviceId}}</span>
-    <span ng-if="rule.namespaces[d.deviceId].deviceName">{{rule.namespaces[d.deviceId].deviceName}}&nbsp;
+    <span ng-if="rule.namespaces[d.deviceId].deviceName"><img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />{{rule.namespaces[d.deviceId].deviceName}}&nbsp;
       <em ng-if="d.operator">[{{d.operator}}&nbsp;{{d.level}}]</em>
       <em ng-if="!d.operator && _.isNumber(d.level)">[{{d.level}}]</em>
       <em ng-if="!d.operator && !_.isNumber(d.level) && !_.isObject(d.level)">[{{_t(d.level)}}]</em>
