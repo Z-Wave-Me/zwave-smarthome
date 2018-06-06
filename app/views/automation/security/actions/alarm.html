@@ -57,10 +57,22 @@
   </div>
   <!-- Available devices -->
   <h3>{{_t('devices_triggered_alarm')}}</h3>
-  <div>
-    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in security.devices.alarms track by $index"
-      ng-if="!security.input.params.alarms.table[getModelIndex(d.deviceId,'alarms.table')]" ng-click="assignDevice(d.deviceId,'alarms')"> <em class="item-cnt">{{d.locationName}}</em>
-      <div>{{d.deviceName|cutText:true:20}} <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i></div>
-    </a>
-  </div>
+  <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+      <button type="button" aria-expanded="false" bb-accordion>
+        <span>
+          <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+        </span>
+      </button>
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden>
+      <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.alarms" ng-if="d.location == r.id &&  !security.input.params.alarms.table[getModelIndex(d.deviceId,'alarms.table')]" ng-click="assignDevice(d.deviceId,'alarms')">
+        <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+        {{d.deviceName|cutText:true:20}}
+        <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      </a>
+    </div>
+  </section>
 </div>

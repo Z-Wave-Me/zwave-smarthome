@@ -45,6 +45,13 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		routeId: 0,
 		tab: 1,
 		days: [1, 2, 3, 4, 5, 6, 0],
+		devicesInRoom: {
+			input: [],
+			alarms: [],
+			armConfirm: [],
+			controls: [],
+			notification: []
+		},
 		devicesAvailable: true,
 		alert: {
 			message: '',
@@ -388,10 +395,28 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			});
 
+			// Set devices in the rooms
+			$scope.security.devicesInRoom.input = _.countBy($scope.security.devices.input, function(v) {
+				return v.location;
+			});
+			$scope.security.devicesInRoom.alarms = _.countBy($scope.security.devices.alarms, function(v) {
+				return v.location;
+			});			
+			$scope.security.devicesInRoom.armConfirm = _.countBy($scope.security.devices.armConfirm, function(v) {
+				return v.location;
+			});
+			$scope.security.devicesInRoom.controls = _.countBy($scope.security.devices.controls, function(v) {
+				return v.location;
+			});
+			$scope.security.devicesInRoom.notification = _.countBy($scope.security.devices.notification, function(v) {
+				return v.location;
+			});						
+
 			if (!_.size($scope.security.devices.input)) {
 				$scope.security.devicesAvailable = false;
 				$scope.security.alert.message = $scope._t('no_device_installed');
 			}
+			
 		}, function(error) {});
 	};
 
