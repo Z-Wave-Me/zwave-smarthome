@@ -23,11 +23,6 @@
 @include mediaQueries(max-small) {
   #sub_navigation {
     #sub_navigation_in {
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: 75%;
       background-color: #FFFFFF;
       @include appBoxShadow($app-box-shadow);
       border-right: 1px solid $app-border-color;
