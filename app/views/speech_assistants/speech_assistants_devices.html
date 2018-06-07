@@ -48,23 +48,19 @@
         </div>
       </div>
       <!-- Google Home -->
+      <!--
       <div class="onlineapp">
-        <!-- Onlineapp entry -->
         <div class="onlineapp-in longpress-{{longPressSent}}" on-long-press="onLongPress(speechAssistants.GoogleHome.module.id)" on-touch-end="onTouchEnd()" prevent-click="true">
-          <!-- Online app header -->
           <a class="onlineapp-header" href="#speech_assistants/GoogleHome/setup">
             <img class="onlineapp-img" alt="{{speechAssistants.GoogleHome.module.defaults.title}}" title="{{v.toolTipDescription}}"
             ng-src="{{speechAssistants.GoogleHome.module.icon ? speechAssistants.GoogleHome.module.iconPath : 'storage/img/placeholder-img.png'}}" />
           </a>
-          <!-- Online app body-->
           <div class="onlineapp-body">
-            <!-- Online app title -->
             <a class="onlineapp-title"
               ng-href="#speech_assistants/GoogleHome/setup"
               title="{{speechAssistants.GoogleHome.module.defaults.title}}">
               {{speechAssistants.GoogleHome.module.defaults.title}}
             </a>
-            <!-- Online app footer -->
             <div class="onlineapp-footer"
               ng-class="speechAssistants.GoogleHome.module.id == hasLongPress ? 'has-longpress' : ''"
               on-long-press="onLongPress()"
@@ -89,6 +85,7 @@
           </div>
         </div>
       </div>
+      -->
     </div>
   </div>
   <div class="device-logo" ng-include="'app/views/speech_assistants/nav.html'"></div>

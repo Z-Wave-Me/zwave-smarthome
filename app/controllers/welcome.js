@@ -5,7 +5,7 @@
 
 /**
  * The welcome controller
- * @class ElementBaseController
+ * @class WelcomeController
  */
 myAppController.controller('WelcomeController', function($scope) {
 	$scope.currentStep = 1;

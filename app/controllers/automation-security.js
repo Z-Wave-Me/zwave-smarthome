@@ -401,7 +401,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			});
 			$scope.security.devicesInRoom.alarms = _.countBy($scope.security.devices.alarms, function(v) {
 				return v.location;
-			});			
+			});
 			$scope.security.devicesInRoom.armConfirm = _.countBy($scope.security.devices.armConfirm, function(v) {
 				return v.location;
 			});
@@ -410,13 +410,13 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			});
 			$scope.security.devicesInRoom.notification = _.countBy($scope.security.devices.notification, function(v) {
 				return v.location;
-			});						
+			});
 
 			if (!_.size($scope.security.devices.input)) {
 				$scope.security.devicesAvailable = false;
 				$scope.security.alert.message = $scope._t('no_device_installed');
 			}
-			
+
 		}, function(error) {});
 	};
 
