@@ -33,4 +33,12 @@
 <legend>{{_t('lb_available_devices')}}</legend>
 <fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/leakage/leakage_devices_available.html'"></fieldset>
 </div>
+<h3>{{_t('activate_module',{__module__:_t('leakage_sensors')})}}</h3>
+<fieldset>
+<label class="switch">
+<input type="checkbox" ng-model="hazardProtection.leakage.input.active" ng-checked="hazardProtection.leakage.input.active">
+<span class="slider"></span>
+</label>
+<span class="switch-label">{{hazardProtection.leakage.input.active ? _t('lb_active'): _t('activeASC')}}</span>
+</fieldset>
 </section>

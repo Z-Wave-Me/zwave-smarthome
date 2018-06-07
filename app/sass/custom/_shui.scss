@@ -132,7 +132,7 @@ body {
   .btn-goup-tabs {
     .btn {
       background-color: #eeeeee;
-      &.active {
+      &.active,&[aria-selected] {
         background-color: #dcdcdc;
       }
     }

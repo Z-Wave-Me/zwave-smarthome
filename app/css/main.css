@@ -11211,6 +11211,13 @@ img {
   font-size: 95%;
 }
 
+.btn.active, .btn[aria-selected] {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
 .btn.btn-text {
   border: 0;
   background: transparent;
@@ -11313,80 +11320,6 @@ img {
   }
 }
 
-/* Button tabs
--------------------------------------------------- */
-.btn-goup-tabs {
-  /* display: table;
-  width: 100%;*/
-  margin: 0 0 10px 0;
-}
-
-.btn-goup-tabs .btn {
-  background-color: #FFFFFF;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-.btn-goup-tabs .btn.active {
-  background-color: #f2f2f2;
-}
-
-@media only screen and (min-width: 768px) {
-  .btn-goup-tabs .btn {
-    padding: 10px;
-  }
-}
-
-.btn-goup-tabs .btn .fa {
-  font-size: 130%;
-  color: #404040;
-  /* @include mediaQueries(min-small) {
-      font-size: 130%;
-    } */
-}
-
-.btn-goup-tabs .btn .fa.text-danger {
-  color: #d9534f;
-}
-
-.btn-goup-tabs .active .fa {
-  color: #80AD80;
-}
-
-.btn-goup-tabs .active .fa.text-danger {
-  color: #d9534f;
-}
-
-/* MIN WIDTH */
-/* MAX WIDTH */
-@media only screen and (max-width: 767px) {
-  .fix-me-top .btn-goup-tabs {
-    display: inline-block;
-    width: auto;
-  }
-  .fix-me-top .btn-goup-tabs .btn {
-    border: 0;
-    background: transparent;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    display: inline-block;
-    width: auto;
-  }
-}
-
-.btn-tabs-2 .btn {
-  width: 50%;
-}
-
-.btn-tabs-3 .btn {
-  width: 33.33333%;
-}
-
-.btn-tabs-4 .btn {
-  width: 25%;
-}
-
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
@@ -11405,6 +11338,10 @@ img {
     /* width: 60px;
     height: 34px; */
   }
+}
+
+.switch-label .img {
+  display: inline-block;
 }
 
 /* Hide default HTML checkbox */
@@ -11457,6 +11394,14 @@ img {
     /* height: 26px;
     width: 26px; */
   }
+}
+
+input[type="checkbox"][disabled] + .slider {
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 input:checked + .slider:before {
@@ -11896,6 +11841,80 @@ fieldset.submit-entry {
 .flex-input-group.number-control input[type="number"] {
   max-width: 100px;
   display: inline-block;
+}
+
+/* Button tabs
+-------------------------------------------------- */
+.btn-goup-tabs {
+  /* display: table;
+  width: 100%;*/
+  margin: 0 0 10px 0;
+}
+
+.btn-goup-tabs .btn {
+  background-color: #FFFFFF;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+.btn-goup-tabs .btn.active {
+  background-color: #f2f2f2;
+}
+
+@media only screen and (min-width: 768px) {
+  .btn-goup-tabs .btn {
+    padding: 10px;
+  }
+}
+
+.btn-goup-tabs .btn .fa {
+  font-size: 130%;
+  color: #404040;
+  /* @include mediaQueries(min-small) {
+      font-size: 130%;
+    } */
+}
+
+.btn-goup-tabs .btn .fa.text-danger {
+  color: #d9534f;
+}
+
+.btn-goup-tabs .active .fa, .btn-goup-tabs [aria-selected] .fa {
+  color: #80AD80;
+}
+
+.btn-goup-tabs .active .fa.text-danger, .btn-goup-tabs [aria-selected] .fa.text-danger {
+  color: #d9534f;
+}
+
+/* MIN WIDTH */
+/* MAX WIDTH */
+@media only screen and (max-width: 767px) {
+  .fix-me-top .btn-goup-tabs {
+    display: inline-block;
+    width: auto;
+  }
+  .fix-me-top .btn-goup-tabs .btn {
+    border: 0;
+    background: transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    width: auto;
+  }
+}
+
+.btn-tabs-2 .btn {
+  width: 50%;
+}
+
+.btn-tabs-3 .btn {
+  width: 33.33333%;
+}
+
+.btn-tabs-4 .btn {
+  width: 25%;
 }
 
 /* Images
@@ -12423,10 +12442,13 @@ fieldset section, .fieldset section {
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   /* Opera */
-}
-
-.accordion-toggle > button > span .fa:first-of-type {
-  font-size: 120%;
+  align-items: center;
+  display: inline-flex;
+  /*
+       fa:first-of-type {
+        font-size: 120%;
+      }
+      */
 }
 
 .accordion-toggle > button::after {
@@ -16690,54 +16712,77 @@ img.widget-promo-image {
   display: none;
 }
 
-.accordion-wrap .label.nested {
-  display: none;
-}
-
 .accordion-wrap .accordion-toggle {
   display: flex;
   align-items: center;
   font-size: 110%;
+  border-bottom: dotted 1px #cccccc;
   /*  &:last-child {
         margin-bottom: $spacing;
       } */
 }
 
-.accordion-wrap .accordion-toggle button .accordion-title {
+.accordion-wrap .accordion-toggle .is-legend {
+  display: block;
+}
+
+.accordion-wrap .accordion-toggle > button {
+  padding: 10px;
+  border: none;
+}
+
+.accordion-wrap .accordion-toggle > button .accordion-title {
   padding: 5px 0;
 }
 
-.accordion-wrap .accordion-toggle button .accordion-title .room-title {
+.accordion-wrap .accordion-toggle > button .accordion-title .room-title {
   display: block;
   padding-bottom: 3px;
   font-size: 80%;
 }
 
-.accordion-wrap .accordion-toggle button .accordion-title .device-title {
+.accordion-wrap .accordion-toggle > button .accordion-title .device-title {
   display: block;
 }
 
-.accordion-wrap .accordion-toggle button.no-toggle {
+.accordion-wrap .accordion-toggle > button.no-toggle {
   cursor: text !important;
 }
 
-.accordion-wrap .accordion-toggle button.no-toggle::after {
+.accordion-wrap .accordion-toggle > button.no-toggle .navi-img {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+.accordion-wrap .accordion-toggle > button.no-toggle::after {
   content: "";
 }
 
-.accordion-wrap .accordion-toggle button .navi-img {
+.accordion-wrap .accordion-toggle > button .navi-img {
   margin-right: 10px;
+  width: 32px;
+  height: 32px;
 }
 
-.accordion-wrap .accordion-toggle button em {
+.accordion-wrap .accordion-toggle > button em {
   font-size: 80%;
 }
 
 .accordion-wrap .accordion-toggle .no-toggle {
-  padding: 10px 0;
+  padding: 10px;
   width: 100%;
   font-weight: normal;
-  border-bottom: dotted 1px #cccccc;
+}
+
+.accordion-wrap .accordion-toggle .no-toggle .navi-img {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+.accordion-wrap .accordion-toggle .no-toggle em {
+  font-size: 80%;
 }
 
 .accordion-wrap .accordion {
@@ -17415,6 +17460,12 @@ img.widget-promo-image {
   height: 50px;
 }
 
+/* Scheduler
+-------------------------------------------------- */
+#schedule-disarm .sc_Bar_inner .time {
+  display: none;
+}
+
 /* Table schedule
 -------------------------------------------------- */
 .security-schedule > tbody > tr > td .fa-check {
@@ -17930,7 +17981,7 @@ body.night-false {
   background-color: #eeeeee;
 }
 
-.night-false .btn-goup-tabs .btn.active {
+.night-false .btn-goup-tabs .btn.active, .night-false .btn-goup-tabs .btn[aria-selected] {
   background-color: #dcdcdc;
 }
 

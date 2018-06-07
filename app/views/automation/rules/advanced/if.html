@@ -1,0 +1,13 @@
+<!-- operator -->
+<div class="form-group">
+  <label class="switch">
+    <input type="checkbox" ng-model="rule.input.params.advanced.logicalOperator" ng-true-value="or" ng-false-value="and">
+    <span class="slider"></span>
+  </label>
+  <span class="switch-label">
+    {{_t('lb_'+ rule.input.params.advanced.logicalOperator)}}
+    <em ng-if="rule.input.params.advanced.logicalOperator == 'and'">({{_t('operator_and_info')}})</em>
+    <em ng-if="rule.input.params.advanced.logicalOperator == 'or'">({{_t('operator_or_info')}})</em>
+  </span>
+  <bb-help-text trans="_t('help_advanced_rule')"></bb-help-text>
+</div>

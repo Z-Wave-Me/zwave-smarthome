@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     var pkg = grunt.file.readJSON('package.json');
     var app_type = pkg.app_type;
     var app_cfg = pkg.type_cfg[pkg.app_type];
@@ -6,9 +6,9 @@ module.exports = function (grunt) {
     var git_message = pkg.v;
     var app_rc = (pkg.rc ? pkg.rc + 1 : 0);
 
-    if(app_rc){
-        app_version += '-RC-'+app_rc;
-        git_message += '-RC-'+pkg.rc;
+    if (app_rc) {
+        app_version += '-RC-' + app_rc;
+        git_message += '-RC-' + pkg.rc;
     }
 
     // Project configuration.
@@ -18,7 +18,9 @@ module.exports = function (grunt) {
         banner: 'Copyright:  Z-Wave Europe GmbH, Created: <%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
         // Clean dir
         clean: {
-            options: {force: true},
+            options: {
+                force: true
+            },
             build: ["dist/", "docs/"]
         },
         ngtemplates: {
@@ -126,6 +128,7 @@ module.exports = function (grunt) {
                     'app/controllers/skin.js',
                     'app/controllers/icon.js',
                     'app/controllers/device.js',
+                    'app/controllers/smartstart.js',
                     'app/controllers/zwave-inclusion.js',
                     'app/controllers/zwave-manage.js',
                     'app/controllers/zwave-exclude.js',
@@ -174,7 +177,7 @@ module.exports = function (grunt) {
                 }
             },
             skin: {
-                dest: pkg.skin_path + pkg.skin+'/info.json',
+                dest: pkg.skin_path + pkg.skin + '/info.json',
                 options: {
                     name: app_cfg.name,
                     version: app_version,
@@ -187,8 +190,7 @@ module.exports = function (grunt) {
         // Copy
         copy: {
             main: {
-                files: [
-                    {
+                files: [{
                         src: [
                             '!app/views/_test/**',
                             'app/img/**',
@@ -196,51 +198,87 @@ module.exports = function (grunt) {
                             //'app/views/**',
                             'app/lang/**',
                             'favicon.ico'
-                        ], dest: 'dist/'
+                        ],
+                        dest: 'dist/'
                     },
                     //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
-                    {expand: true, src: ['app/config.js'], dest: 'dist/app/js/', flatten: true},
-                    {expand: true, src: ['app/icons.js'], dest: 'dist/app/js/', flatten: true},
-                    {expand: true, src: ['app/css/screenshot.png'], dest: 'dist/app/css/', flatten: true},
-                    {src: ['storage/img/**'], dest: 'dist/'},
-                    {src: ['storage/demo/**'], dest: 'dist/'},
-                    {src: ['storage/data/**'], dest: 'dist/'}
+                    {
+                        expand: true,
+                        src: ['app/config.js'],
+                        dest: 'dist/app/js/',
+                        flatten: true
+                    }, {
+                        expand: true,
+                        src: ['app/icons.js'],
+                        dest: 'dist/app/js/',
+                        flatten: true
+                    }, {
+                        expand: true,
+                        src: ['app/css/screenshot.png'],
+                        dest: 'dist/app/css/',
+                        flatten: true
+                    }, {
+                        src: ['storage/img/**'],
+                        dest: 'dist/'
+                    }, {
+                        src: ['storage/demo/**'],
+                        dest: 'dist/'
+                    }, {
+                        src: ['storage/data/**'],
+                        dest: 'dist/'
+                    }
                 ]
             },
             cssorig: {
-                files: [
-                    {src: ['app/css/main.css'], dest: 'app/css/main.css.orig'}
-                ]
+                files: [{
+                    src: ['app/css/main.css'],
+                    dest: 'app/css/main.css.orig'
+                }]
             },
             info: {
-                files: [
-                    {src: ['app/info.json'], dest: 'dist/app/info.json'}
-                ]
+                files: [{
+                    src: ['app/info.json'],
+                    dest: 'dist/app/info.json'
+                }]
             },
             images: {
-                files: [
-                    {src: ['app/css/wallpaper.png'], dest: 'dist/app/css/wallpaper.png'}
-                ]
+                files: [{
+                    src: ['app/css/wallpaper.png'],
+                    dest: 'dist/app/css/wallpaper.png'
+                }]
             },
             fonts: {
-                files: [
-                    {src: ['app/fonts/**'], dest: 'dist/'}
+                files: [{
+                        src: ['app/fonts/**'],
+                        dest: 'dist/'
+                    }
                     //{expand: true, src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/', flatten: true}
                 ]
             },
             angmap: {
-                files: [
-                    {expand: true, src: ['vendor/angular/angular-1.2.16/angular-cookies.min.js.map'], dest: 'dist/app/js/', flatten: true},
+                files: [{
+                        expand: true,
+                        src: ['vendor/angular/angular-1.2.16/angular-cookies.min.js.map'],
+                        dest: 'dist/app/js/',
+                        flatten: true
+                    },
                     //{expand:true,src: ['vendor/angular/angular-1.2.16/angular.min.js.map'], dest: 'dist/app/js/',flatten: true},
                     //{expand:true,src: ['vendor/angular/angular-1.2.16/angular-route.min.js.map'], dest: 'dist/app/js/',flatten: true}
                 ]
             },
             skin: {
-                files: [
-                    {src: ['app/css/main.css'], dest: pkg.skin_path + pkg.skin + '/main.css'},
-                    {src: ['app/css/main.css'], dest: pkg.skin_path + pkg.skin + '/main.css.orig'},
-                    {expand: true,src: ['storage/img/icons/*'], dest: pkg.skin_path + pkg.skin + '/img/icons/', flatten: true}
-                ]
+                files: [{
+                    src: ['app/css/main.css'],
+                    dest: pkg.skin_path + pkg.skin + '/main.css'
+                }, {
+                    src: ['app/css/main.css'],
+                    dest: pkg.skin_path + pkg.skin + '/main.css.orig'
+                }, {
+                    expand: true,
+                    src: ['storage/img/icons/*'],
+                    dest: pkg.skin_path + pkg.skin + '/img/icons/',
+                    flatten: true
+                }]
             },
         },
         //CSSS min
@@ -250,15 +288,13 @@ module.exports = function (grunt) {
                     banner: '/* <%= banner %> */',
                     keepSpecialComments: 0
                 },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'dist/app/css/',
-                        src: ['*.css', '!*.min.css'],
-                        dest: 'dist/app/css/',
-                        ext: '.css'
-                    }
-                ]
+                files: [{
+                    expand: true,
+                    cwd: 'dist/app/css/',
+                    src: ['*.css', '!*.min.css'],
+                    dest: 'dist/app/css/',
+                    ext: '.css'
+                }]
             }
         },
         usebanner: {
@@ -268,7 +304,7 @@ module.exports = function (grunt) {
                     banner: '/* <%= banner %> */'
                 },
                 files: {
-                    src: [ 'dist/app/js/templates.js','dist/app/js/config.js','dist/app/js/build.js','dist/app/js/icons.js']
+                    src: ['dist/app/js/templates.js', 'dist/app/js/config.js', 'dist/app/js/build.js', 'dist/app/js/icons.js']
                 }
             },
             html: {
@@ -277,7 +313,7 @@ module.exports = function (grunt) {
                     banner: '<!-- <%= banner %> -->'
                 },
                 files: {
-                    src: [ 'dist/index.html']
+                    src: ['dist/index.html']
                 }
             }
         },
@@ -299,7 +335,7 @@ module.exports = function (grunt) {
                     match: ['config.js', 'build.js', 'icons.js', 'main.css'],
                     replacement: function() {
                         return app_version;
-                    }    
+                    }
                 },
                 files: {
                     src: ['dist/index.html']
@@ -309,40 +345,44 @@ module.exports = function (grunt) {
         replace: {
             dist: {
                 options: {
-                    patterns: [
-                        {
-                            match: 'app_name',
-                            replacement: app_cfg.name
-                        },
-                        {
-                            match: 'app_version',
-                            replacement: app_version
-                        },
-                        {
-                            match: 'app_built',
-                            replacement: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>'
-                        }
-                    ]
+                    patterns: [{
+                        match: 'app_name',
+                        replacement: app_cfg.name
+                    }, {
+                        match: 'app_version',
+                        replacement: app_version
+                    }, {
+                        match: 'app_built',
+                        replacement: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>'
+                    }]
                 },
-                files: [
-                    {expand: true, flatten: true, src: ['app/config.js'], dest: app_cfg.dir + '/app/js/'}
-                ]
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: ['app/config.js'],
+                    dest: app_cfg.dir + '/app/js/'
+                }]
             },
             skin: {
                 options: {
-                    patterns: [
-                        {
-                            match: /..\/fonts\//g,
-                            replacement: function () {
-                                return '..\/..\/..\/app\/fonts\/';
-                            }
+                    patterns: [{
+                        match: /..\/fonts\//g,
+                        replacement: function() {
+                            return '..\/..\/..\/app\/fonts\/';
                         }
-                    ]
+                    }]
                 },
-                files: [
-                    {expand: true, flatten: true, src: [pkg.skin_path + pkg.skin + '/main.css'], dest: pkg.skin_path + pkg.skin + '/'},
-                    {expand: true, flatten: true, src: [pkg.skin_path + pkg.skin + '/main.css.orig'], dest: pkg.skin_path + pkg.skin + '/'}
-                ]
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: [pkg.skin_path + pkg.skin + '/main.css'],
+                    dest: pkg.skin_path + pkg.skin + '/'
+                }, {
+                    expand: true,
+                    flatten: true,
+                    src: [pkg.skin_path + pkg.skin + '/main.css.orig'],
+                    dest: pkg.skin_path + pkg.skin + '/'
+                }]
             }
         },
         modify_json: {
@@ -389,17 +429,17 @@ module.exports = function (grunt) {
                     archive: '_project/skins/blank.zip',
                     mode: 'zip'
                 },
-                files: [
-                    { src: '_project/skins/blank/**' }
-                ]
+                files: [{
+                    src: '_project/skins/blank/**'
+                }]
             }
         }
 
     });
-    grunt.registerTask('skinFolder', 'Creates an empty .keep file in skins dir', function () {
+    grunt.registerTask('skinFolder', 'Creates an empty .keep file in skins dir', function() {
         grunt.file.write('dist/user/skins/.keep', '');
     });
-     grunt.registerTask('iconFolder', 'Creates an empty .keep file in icons dir', function () {
+    grunt.registerTask('iconFolder', 'Creates an empty .keep file in icons dir', function() {
         grunt.file.write('dist/user/icons/.keep', '');
     });
 
@@ -427,6 +467,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-cache-breaker');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild', 'cachebreaker', 'replace','modify_json']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'json_generator', 'copy', 'cssmin', 'skinFolder', 'iconFolder', 'usebanner', 'htmlbuild', 'cachebreaker', 'replace', 'modify_json']);
 
 };

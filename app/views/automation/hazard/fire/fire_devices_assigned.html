@@ -1,28 +1,31 @@
-<section class="accordion-wrap" ng-repeat="d in hazardProtection.fire.input.params.triggerEvent track by $index" ng-init="model=d">
-  <h2 class="accordion-toggle ellipsis">
-  <!-- Deleted device -->
-  <span class="no-toggle text-danger" ng-show="!hazardProtection.availableDevices[model.deviceId]">
-    <i class="fa fa-exclamation-circle"></i> {{d.device}} {{_t('device_removed')}}
-  </span>
+<section class="accordion-wrap" ng-repeat="v in hazardProtection.fire.input.params.triggerEvent track by $index">
   <!-- Title -->
-  <button type="button" aria-expanded="false" bb-accordion ng-if="hazardProtection.availableDevices[model.deviceId] && (d.deviceType != 'toggleButton')" ng-hide="!hazardProtection.availableDevices[model.deviceId]">
-  <span>
-    <img class="navi-img" ng-src="{{hazardProtection.availableDevices[model.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-    {{hazardProtection.availableDevices[model.deviceId].deviceName}}  <em>{{_t(model.status)}}</em> <em ng-if="model.status == 'lvl'">{{model.level}}</em>
-  </span>
-  </button>
-  <!-- NO Toggle -->
-  <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'" ng-hide="!hazardProtection.availableDevices[model.deviceId]">
-    <span>
-      <img class="navi-img" ng-src="{{hazardProtection.availableDevices[model.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-      {{hazardProtection.availableDevices[model.deviceId].deviceName}}
-    </span>
-  </span>
-  <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice($index,model.deviceId, 'fire')">
-    <i class="fa fa-times text-danger"></i>
-  </span>
-  </h2>
+  <h2 class="accordion-toggle ellipsis">
+      <!-- Deleted device -->
+      <span class="no-toggle text-danger" ng-if="!hazardProtection.availableDevices[v.deviceId]">
+          <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
+      </span>
+      <!-- Toggle -->
+      <button type="button" aria-expanded="false" bb-accordion ng-if="v.deviceType!='toggleButton'" ng-hide="!hazardProtection.availableDevices[v.deviceId]">
+        <span><img class="navi-img" ng-src="{{hazardProtection.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+          {{hazardProtection.availableDevices[v.deviceId].deviceName}} 
+          <span ng-if="v.deviceType=='switchRGBW' && _.isObject(v.level)" class="color-picker-show" style="background-color: {{v.level|setRgbColors}};">&nbsp;</span>
+          <span ng-if="v.deviceType!='switchRGBW' || !_.isObject(v.level)"><em>[{{_t(v.level)}}<em ng-if="v.level == 'lvl'">&nbsp;{{v.exact}}</em>]</em></span>
+          - <em>{{hazardProtection.availableDevices[v.deviceId].locationName}}</em>
+        </span>
+      </button>
+      <!-- No Toggle -->
+      <span class="no-toggle" ng-if="v.deviceType=='toggleButton'" ng-hide="!hazardProtection.availableDevices[v.deviceId]">
+        <span><img class="navi-img" ng-src="{{hazardProtection.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+          {{hazardProtection.availableDevices[v.deviceId].deviceName}} -
+          <em>{{hazardProtection.availableDevices[v.deviceId].locationName}}</em>
+        </span>
+      </span>     
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice($index,v.deviceId,'fire')">
+        <i class="fa fa-times text-danger"></i>
+      </span>
+  
+    </h2>
   <!-- Content -->
-  <div class="accordion" ng-include="'app/views/automation/hazard/inputs/'+ model.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
-  hidden></div>
+  <div class="accordion" ng-if="v.deviceType!='toggleButton'" hidden ng-include="'app/views/automation/hazard/inputs/'+v.deviceType+'.html'"></div>
 </section>

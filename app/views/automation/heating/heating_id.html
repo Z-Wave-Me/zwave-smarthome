@@ -1,5 +1,7 @@
 <div ng-controller="HeatingIdController">
+	<bb-loader></bb-loader>
 	<h2>{{_t('heating')}}</h2>
+	<bb-alert alert="heating.alert"></bb-alert>
 	<!-- <pre>{{heating.rooms | json}}</pre> -->
 	<form class="form form-page" ng-submit="storeInstance(true)">
 		<!-- rooms -->
@@ -112,17 +114,17 @@
 		<div class="fieldset submit-entry is-grid">
 			<span>
 				<label class="switch">
-					<input type="checkbox" ng-model="heating.input.active" ng-checked="heating.input.active">
+					<input type="checkbox" ng-model="heating.input.active" ng-checked="heating.input.active" ng-disabled="!heating.roomsAvailable">
 					<span class="slider"></span>
 				</label>
-				<span class="switch-label">{{_t('activate_module',{__module__:_t('heating')})}}</span>
+				<span class="switch-label">{{heating.input.active ? _t('lb_active'): _t('activeASC')}}</span>
 			</span>
 			<span>
 				<a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
 					<i class="fa fa-reply"></i>
 					<span class="btn-name">{{_t('lb_cancel')}}</span>
 				</a>
-				<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+				<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit" ng-disabled="!heating.roomsAvailable">
 				<i class="fa fa-check"></i>
 				<span class="btn-name">{{_t('lb_save')}}</span>
 				</button>
