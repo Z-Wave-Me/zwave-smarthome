@@ -209,27 +209,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/devices/devices.html',
 			requireLogin: true,
 			roles: cfg.role_access.devices
-		}). //SmartStart  
-	when('/smartstart', {
-			templateUrl: 'app/views/smartstart/smartstart.html',
-			requireLogin: true,
-			roles: cfg.role_access.admin
-		}). //SmartStart with QR code 
-	when('/smartstartqr', {
-			templateUrl: 'app/views/smartstart/smartstart_qr.html',
-			requireLogin: true,
-			roles: cfg.role_access.admin
-		}).
-		//SmartStart with dsk 
-	when('/smartstartdsk', {
-			templateUrl: 'app/views/smartstart/smartstart_dsk.html',
-			requireLogin: true,
-			roles: cfg.role_access.admin
-		}). //SmartStart with dsk 
-	when('/smartstartlist', {
-			templateUrl: 'app/views/smartstart/smartstart_list.html',
-			requireLogin: true,
-			roles: cfg.role_access.admin
 		}).
 		//Zwave select vendors
 	when('/zwave/vendors', {
