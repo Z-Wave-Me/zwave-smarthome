@@ -1,18 +1,18 @@
 <div class="tabs-wrap form-inline" ng-if_="devices.show">
-    <div class="btn-group btn-group-justified btn-goup-tabs">
-        <a class="btn btn-default" href="#zwave/devices" title="{{_t('lb_zwave_devices')}}"  
-           ng-class="routeMatch('/zwave/devices') ? 'active' : ''">
-            <i class="fa fa-wifi"></i> <span class="btn-name">{{_t('lb_zwave_devices')}}</span>
-        </a>
-        <a class="btn btn-default" href="#zwave/batteries" title="{{_t('lb_battery_status')}}" 
-           ng-class="routeMatch('/zwave/batteries') ? 'active' : ''"
-           ng-if="elementAccess(cfg.role_access.network)">
-            <i class="fa fa-battery-three-quarters"></i> <span class="btn-name">{{_t('lb_battery_status')}}</span>
-        </a>
-        <a class="btn btn-default" href="#zwave/network" title="{{_t('lb_network_status')}}" 
-           ng-class="routeMatch('/zwave/network') ? 'active' : ''"
-           ng-if="elementAccess(cfg.role_access.network)">
-            <i class="fa fa-sitemap"></i> <span class="btn-name">{{_t('lb_network_status')}}</span>
-        </a>
-    </div>
+  <div class="btn-group btn-group-justified btn-goup-tabs">
+    <a class="btn btn-default" href="#zwave/devices" title="{{_t('lb_zwave_devices')}}"
+      ng-class="routeMatch('/zwave/devices') ? 'active' : ''">
+      <i class="fa fa-wifi"></i> <span class="btn-name">{{_t('lb_zwave_devices')}}</span>
+    </a>
+    <a class="btn btn-default" href="#zwave/batteries" title="{{_t('lb_battery_status')}}"
+      ng-class="routeMatch('/zwave/batteries') ? 'active' : ''"
+      ng-if="elementAccess(cfg.role_access.network)">
+      <i class="fa fa-battery-three-quarters"></i> <span class="btn-name">{{_t('lb_battery_status')}}</span>
+    </a>
+    <a class="btn btn-default" href="#zwave/network" title="{{_t('lb_network_status')}}"
+      ng-class="routeMatch('/zwave/network') ? 'active' : ''"
+      ng-if="elementAccess(cfg.role_access.network)">
+      <i class="fa fa-sitemap"></i> <span class="btn-name">{{_t('lb_network_status')}}</span>
+    </a>
+  </div>
 </div>

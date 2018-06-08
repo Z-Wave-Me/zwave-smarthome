@@ -1,35 +1,42 @@
 <!-- The scene -->
 <div class="automation" ng-controller="AutomationSceneIdController">
-  <!-- No device -->
-  <div ng-if="!scene.show" ng-include="'app/views/automation/no_device.html'"></div>
-   <!-- Form -->
-  <div ng-if="scene.show">
-    <h2>{{_t('scenes')}}</h2>
-   <form class="form form-page" ng-submit="storeScene(scene.input,true)">
-      <fieldset ng-include="'app/views/automation/scenes/scene_id_form.html'"></fieldset>
-      <!-- Used -->
-      <div ng-if="scene.assignedDevices.length">
-        <legend>{{_t('assigned_devices')}}</legend>
-        <fieldset data-collapse-all="true" ng-include="'app/views/automation/scenes/scene_id_assigned.html'"></fieldset>
-      </div>
-      <!-- Available -->
-      <legend>{{_t('lb_available_devices')}}</legend>
-      <fieldset data-collapse-all="true" bb-child-elem="scene.assignedDevices" ng-include="'app/views/automation/scenes/scene_id_available.html'"></fieldset>
-      <!-- Icons -->
-      <div ng-include="'app/views/automation/scenes/scene_id_icons.html'"></div>
-
-      <!-- Submit  -->
-      <fieldset class="submit-entry">
-        <a href="#scenes" class="btn btn-default" title="{{_t('lb_cancel')}}">
-          <i class="fa fa-reply"></i>
-          <span class="btn-name">{{_t('lb_cancel')}}</span>
-        </a>
-        <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-          <i class="fa fa-check"></i>
-          <span class="btn-name">{{_t('lb_save')}}</span>
-        </button>
-      </fieldset>
-    </form>
-  </div>
+	<bb-loader></bb-loader>
+	<!-- No device -->
+	<div ng-if="!scene.show" ng-include="'app/views/automation/no_device.html'"></div>
+	<!-- Form -->
+	<div ng-if="scene.show">
+		<h2>{{_t('scenes')}}</h2>
+		<form class="form form-page" ng-submit="storeScene(scene.input,true)">
+		<fieldset ng-include="'app/views/automation/scenes/scene_id_form.html'"></fieldset>
+		<!-- Used -->
+		<div ng-if="scene.assignedDevices.length">
+			<legend>{{_t('assigned_devices')}}</legend>
+		<fieldset data-collapse-all="true" ng-include="'app/views/automation/scenes/scene_id_assigned.html'"></fieldset>
+	</div>
+	<!-- Available -->
+	<legend>{{_t('lb_available_devices')}}</legend>
+<fieldset data-collapse-all="true" bb-child-elem="scene.assignedDevices" ng-include="'app/views/automation/scenes/scene_id_available.html'"></fieldset>
+<!-- Icons -->
+<div ng-include="'app/views/automation/scenes/scene_id_icons.html'"></div>
+<!-- Submit  -->
+<div class="fieldset submit-entry is-grid">
+	<span>
+		<label class="switch">
+			<input type="checkbox" ng-model="scene.input.active">
+			<span class="slider"></span>
+		</label>
+		<span class="switch-label">{{scene.input.active ? _t('lb_active'): _t('activeASC')}}</span>
+	</span>
+	<span>
+		<a href="#scenes" class="btn btn-default" title="{{_t('lb_cancel')}}"> <i class="fa fa-reply"></i>
+			<span class="btn-name">{{_t('lb_cancel')}}</span>
+		</a>
+		<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit"> <i class="fa fa-check"></i>
+		<span class="btn-name">{{_t('lb_save')}}</span>
+		</button>
+	</span>
+</div>
+</form>
+</div>
 </div>
 <!-- /ng-controller -->

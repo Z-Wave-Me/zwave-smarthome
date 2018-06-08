@@ -120,6 +120,12 @@
 }
 
 .btn {
+  &.active,&[aria-selected]{
+    outline: 0;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
   &.btn-text {
     border: 0;
     background: transparent;
@@ -199,76 +205,7 @@
   }
 }
 
-/* Button tabs
--------------------------------------------------- */
 
-.btn-goup-tabs {
-  /* display: table;
-  width: 100%;*/
-  margin: 0 0 $spacing 0;
-  .btn {
-    background-color: #FFFFFF;
-    &.active {
-      background-color: darken(#FFFFFF, 5%);
-    } // Media queries
-    @include mediaQueries(min-small) {
-      padding: $spacing; //font-size: 120%;
-    }
-    .fa {
-      font-size: 130%;
-      color: lighten($app-body-color, 20%);
-      &.text-danger {
-        color: $app-brand-danger;
-      } // Media queries
-      /* @include mediaQueries(min-small) {
-      font-size: 130%;
-    } */
-    }
-  }
-  .active {
-    .fa {
-      color: $app-brand-success;
-      &.text-danger {
-        color: $app-brand-danger;
-      }
-    }
-  }
-}
-
-// Media queries
-@include mediaQueries(max-small) {
-  .fix-me-top {
-    .btn-goup-tabs {
-      display: inline-block;
-      width: auto;
-      .btn {
-        border: 0;
-        background: transparent;
-        @include appBorderRadius(0);
-        display: inline-block;
-        width: auto;
-      }
-    }
-  }
-}
-
-.btn-tabs-2 {
-  .btn {
-    width: 50%;
-  }
-}
-
-.btn-tabs-3 {
-  .btn {
-    width: 33.33333%;
-  }
-}
-
-.btn-tabs-4 {
-  .btn {
-    width: 25%;
-  }
-}
 
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
@@ -279,10 +216,17 @@
   display: inline-block;
   vertical-align: middle;
   width: 60px;
-  height: 32px; // Media queries
+  height: 32px; 
+  // Media queries
   @include mediaQueries(min-small) {
     /* width: 60px;
     height: 34px; */
+  }
+}
+
+.switch-label {
+  .img {
+    display: inline-block;
   }
 }
 
@@ -334,6 +278,15 @@
     /* height: 26px;
     width: 26px; */
   }
+}
+
+// disabled
+input[type="checkbox"][disabled]+.slider {
+    cursor: not-allowed;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 input:checked+.slider {

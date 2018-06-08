@@ -4,7 +4,7 @@
         <input type="checkbox" ng-model="rule.input.params.reverse" ng-checked="rule.input.params.reverse">
         <span class="slider"></span>
       </label>
-      <span class="switch-label">{{_t('Activate reverse event')}}</span>
+      <span class="switch-label">{{_t('activate_reverse_event')}}</span>
   </div>
   
 
@@ -30,7 +30,7 @@
 
     <!-- control -->
     <div class="control" ng-switch="d.deviceType">
-      <span>{{d.level}}</span>&nbsp;->&nbsp;
+      <span ng-if="d.level=='lvl'">{{d.exact}}</span><span ng-if="d.level!='lvl'">{{d.level}}</span>&nbsp;->&nbsp;
       <!-- switchBinary -->
       <span ng-switch-when="switchBinary" ng-init="d.reverseLevel = (d.level == 'off' ? 'on' : 'off')">
         <strong>{{d.reverseLevel}}</strong>
@@ -42,9 +42,9 @@
        <!--switchMultilevel -->
       <span ng-switch-when="switchMultilevel" ng-init="d.reverseLevel = (d.reverseLevel == null ? rule.namespaces[d.deviceId].level : d.reverseLevel)">
        <!-- on/off -->
-        <strong ng-if="rule.options.switchMultilevel.level.indexOf(d.level) > -1">{{d.level == 'off' ? 'on' : 'off'}}</strong>
+        <strong ng-if="d.level!='lvl' && rule.options.switchMultilevel.level.indexOf(d.level) > -1">{{d.level == 'off' ? 'on' : 'off'}}</strong>
         <!-- level -->
-        <span ng-if="rule.options.switchMultilevel.level.indexOf(d.level) === -1">
+        <span ng-if="d.level=='lvl' || rule.options.switchMultilevel.level.indexOf(d.level) === -1">
         <input type="text" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
           ng-model="d.reverseLevel" />
         </span>

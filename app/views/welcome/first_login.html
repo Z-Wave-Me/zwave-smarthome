@@ -5,10 +5,10 @@
                 <div class="content" ng-include="'app/views/welcome/tab_welcome.html'"></div>
             </div>
             <div class="fieldset tab" ng-switch-when="2">
-                <div class="content" ng-include="'app/views/welcome/tab_elements.html'"></div> 
+                <div class="content" ng-include="'app/views/welcome/tab_elements.html'"></div>
             </div>
             <div class="fieldset tab" ng-switch-when="3">
-                <div class="content" ng-include="'app/views/welcome/tab_element_detail_view.html'"></div>     
+                <div class="content" ng-include="'app/views/welcome/tab_element_detail_view.html'"></div>
             </div>
             <div class="fieldset tab" ng-switch-when="4">
                 <div class="content" ng-include="'app/views/welcome/tab_events.html'"></div>
@@ -21,25 +21,25 @@
             </div>
         </div>
         <ol class="dots">
-           <li  class="clickable"
+            <li  class="clickable"
                 ng-repeat="v in steps"
                 ng-class="{'active' : ($index + 1) == currentStep}"
                 ng-model="currentStep"
-                ng-click="setStep(($index + 1))">    
+                ng-click="setStep(($index + 1))">
             </li>
         </ol>
         <div class="fieldset wizard-controls">
             <button class="btn btn-submit prev" ng-hide="currentStep == 1" ng-click="prevNext(-1)">
-                <i class="fa fa-chevron-left"></i>
-                {{_t('lb_prev')}} 
+            <i class="fa fa-chevron-left"></i>
+            {{_t('lb_prev')}}
             </button>
-            <button class="btn btn-default cancel" title="_t('lb_skip')"  ng-click="">
-                {{_t('lb_skip')}}
-                <i class="fa fa-chevron-double-right"></i>
+            <button class="btn btn-default cancel" title="_t('lb_skip')" ng-hide="currentStep == steps.length"  ng-click="skip()">
+            {{_t('lb_skip')}}
+            <i class="fa fa-chevron-double-right"></i>
             </button>
             <button class="btn btn-submit next" ng-hide="currentStep == steps.length"  ng-click="prevNext(1)">
-                {{_t('lb_next')}}
-                <i class="fa fa-chevron-right"></i>
+            {{_t('lb_next')}}
+            <i class="fa fa-chevron-right"></i>
             </button>
         </div>
     </div>
