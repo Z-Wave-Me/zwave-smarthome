@@ -685,4 +685,23 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             };
         }, true, 'alert');
     }
+
+
+    $scope.openSideNav = function($event) {
+        console.log("open");
+        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0) {    
+            $scope.expandNavi('mainNav', $event, true)
+        }
+    };
+
+    $scope.closeSideNav = function($event) {
+        console.log("close");
+        if($location.path().indexOf("rooms") == 1 && $event.type == "click" && $scope.deviceDetector.isMobile()) {
+            $scope.expandNavi('mainNav', $event, false)  
+        }
+
+        if($location.path().indexOf("rooms") != 1 && $scope.deviceDetector.isMobile()) {
+            $scope.expandNavi('mainNav', $event, false);
+        }
+    };
 });
