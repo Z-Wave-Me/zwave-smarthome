@@ -56,6 +56,9 @@
   .main-nav-text {
     display: none;
   }
+  small {
+    line-height: $app-line-height-base;
+  }
   a {
     display: inline-block;
     padding: 0 $spacing;
@@ -116,94 +119,134 @@
 
 /* Subnavigation
 -------------------------------------------------- */
-
-#sub_navigation {
+#sub_navigation_wrap {
   position: relative;
-  //Animate menu slide-in/out
   @include mediaQueries(max-small) {
-    position: fixed;
+    &.active {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $app-overlay-bcg-color;  
+    }
+  }
+  #sub_navigation {
+    position: relative;
+    @include mediaQueries(max-small) {
+      position: fixed;
       top: 0;
       left: 0;
       bottom: 0;
       width: 75%;
-    &.ng-hide-remove {
-      @include animation(0.3s slideIn ease);   
-    }
 
-    &.ng-hide-add {
-      @include animation(0.3s slideOut ease);
-      display:block!important;
-    }
-    @keyframes slideIn {
-      0% {left: -75%;}
-      100% {left: 0px;}
-    }
-
-    @keyframes slideOut {
-      0% {left: 0px;}
-      100% {left: -75%;}
-    }
-  }
-  #sub_navigation_in {
-    @include mediaQueries(max-small) {
-      height: 100%;
-    }
-    ul {
-      padding: 0;
-      list-style: none; //w: margin: 0 0 0 66%;
-      margin: 0 $spacing;
-      background-color: #FFFFFF;
-      @include appBoxShadow($app-box-shadow);
-      border: 1px solid $app-border-color; // Media queries
-      @include mediaQueries(min-small) {
-        margin: 0 0 0 50%
-      } // Media queries
-      @include mediaQueries(min-large) {
-        margin: 0 0 0 66%;
+      &.ng-hide-remove {
+        @include animation(0.3s slideIn ease);     
       }
-      li {
+
+      &.ng-hide-add {
+        @include animation(0.3s slideOut ease);
+        display: block !important;  
+      }
+      // animation
+      @keyframes slideIn {
+        0% {left: -100%;}
+        100% {left: 0px;}
+      }
+
+      @keyframes slideOut {
+        0% {left: 0px;}
+        100% {left: -100%;}
+      }
+    }
+
+    @include mediaQueries(min-small) {
+      &.ng-hide-remove {
+          transform-origin: 100% 0%;
+          @include animation(0.3s scaleRTCin ease);  
+        
+      }
+
+      &.ng-hide-add {
+          transform-origin: 100% 0%;
+          @include animation(0.3s scaleRTCout ease);
+      }
+
+      @keyframes scaleRTCin {
+        0% { transform: scale(0,0);}
+        50% { transform: scale(0.5,0.5);}
+        100% { transform: scale(1,1);}
+      }  
+
+      @keyframes scaleRTCout {
+        0% { transform: scale(1,1);}
+        50% { transform: scale(0.5,0.5);}
+        100% { transform: scale(0,0);}
+      }
+    }
+    #sub_navigation_in {
+      @include mediaQueries(max-small) {
+        height: 100%;
+      }
+      ul, .items {
+        padding: 0;
+        list-style: none; //w: margin: 0 0 0 66%;
+        margin: 0 $spacing;
+        background-color: #FFFFFF;
+        @include appBoxShadow($app-box-shadow);
+        border: 1px solid $app-border-color; // Media queries
         @include mediaQueries(min-small) {
-          padding: $spacing 0;
+          margin: 0 0 0 50%
+        } // Media queries
+        @include mediaQueries(min-large) {
+          margin: 0 0 0 66%;
         }
-        border-bottom: solid 1px $app-border-color;
-        a {
-          display: block;
-          position: relative;
-          padding: $spacing;
-          vertical-align: middle;
-          color: $app-a-color; // Media queries
+        li {
           @include mediaQueries(min-small) {
-            padding: 0 $spacing;
+            padding: $spacing 0;
           }
-          span {
-            display: inline-block;
+          border-bottom: solid 1px $app-border-color;
+          a {
+            display: block;
+            position: relative;
+            padding: $spacing;
+            vertical-align: middle;
+            color: $app-a-color; // Media queries
+            @include mediaQueries(min-small) {
+              padding: 0 $spacing;
+            }
+            span {
+              display: inline-block;
+              position: absolute;
+              @include textOverflow();
+              left: 50px;
+            }
+          }
+          .subnavi-arrow {
             position: absolute;
-            @include textOverflow();
-            left: 50px;
+            right: 1%;
+            display: inline-block;
           }
         }
-        .subnavi-arrow {
-          position: absolute;
-          right: 1%;
-          display: inline-block;
-        }
-      }
-      .active {
-        a {
-          color: lighten($app-a-color, 50%);
-          font-weight: bold;
-          text-decoration: underline;
+        .active {
+          a {
+            color: lighten($app-a-color, 50%);
+            font-weight: bold;
+            text-decoration: underline;
+          }
+          .fa {
+            color: lighten($app-a-color, 50%);
+          }
         }
         .fa {
-          color: lighten($app-a-color, 50%);
+          color: lighten($app-a-color, 20%); //padding-right: 7px;
         }
-      }
-      .fa {
-        color: lighten($app-a-color, 20%); //padding-right: 7px;
       }
     }
   }
 }
+
 
 
 /* Top fixed elements for mobile devices

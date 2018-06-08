@@ -21,20 +21,22 @@
 /* Subnavigation
 -------------------------------------------------- */
 @include mediaQueries(max-small) {
-  #sub_navigation {
-    #sub_navigation_in {
-      background-color: #FFFFFF;
-      @include appBoxShadow($app-box-shadow);
-      border-right: 1px solid $app-border-color;
-      ul {
-        margin: 0;
-        margin: $header-h 0 0;
-        background: transparent;
-        @include appBoxShadow(none);
-        border: 0;
-        li {
-          .subnavi-arrow {
-            display: none;
+  #sub_navigation_wrap {
+    #sub_navigation {
+      #sub_navigation_in {
+        background-color: #FFFFFF;
+        @include appBoxShadow($app-box-shadow);
+        border-right: 1px solid $app-border-color;
+        ul {
+          margin: 0;
+          margin: $header-h 0 0;
+          background: transparent;
+          @include appBoxShadow(none);
+          border: 0;
+          li {
+            .subnavi-arrow {
+              display: none;
+            }
           }
         }
       }
