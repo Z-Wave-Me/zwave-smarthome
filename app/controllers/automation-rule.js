@@ -182,9 +182,11 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 				}
 			},
 			sensorDiscrete: {
+				//TODO
+				//level: ['press', 'hold', 'release', 'tap', 'swipe_up', 'swipe_down', 'swipe_left', 'swipe_right', 'swipe_top_left_to_bottom_right', 'swipe_top_right_to_bottom_left', 'swipe_bottom_left_to_top_right', 'swipe_bottom_right_to_top_left'],
 				default: {
 					deviceId: '',
-					deviceType: 'switchControl',
+					deviceType: 'sensorDiscrete',
 					level: '',
 					sendAction: false,
 					reverseLevel: null
