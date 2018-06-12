@@ -1,7 +1,7 @@
 <!--target  -->
 <div class="form-group form-inline">
   <select class="form-control" ng-model="model.target">
-    <option value="" ng-selected="true">--- {{_t('notification_trigger')}} ---</option>
+    <option value="" ng-selected="!model.target">--- {{_t('notification_trigger')}} ---</option>
     <option value="{{user.email}}" ng-selected="model.target == user.email">{{user.email}}</option>
     <option value="{{e.deviceId}}" ng-repeat="e in security.devices.notification track by $index" ng-selected="e.deviceId == model.target">
       {{e.deviceName}}</option>

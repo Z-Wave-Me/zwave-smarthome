@@ -123,7 +123,6 @@ myAppController.controller('AutomationsController', function($scope, $q, $timeou
             }).value().slice().sort(function(a, b) {
                 return cfg.automations.indexOf(a.moduleName) - cfg.automations.indexOf(b.moduleName);
             });
-        console.log("$scope.automations.modules", $scope.automations.modules);
     }
 
     function setInstances(data) {
