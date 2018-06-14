@@ -308,7 +308,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	 * @param  {mixed} rooms [description]
 	 */
 	$scope.loadDevices = function(rooms) {
-		console.log("load devices");
 		dataFactory.getApi('devices').then(function(response) {
 				var devices = dataService.getDevicesData(response.data.data.devices);
 
@@ -373,7 +372,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				notification.target = $scope.user.email;
 				notification.message = $scope._t($scope.hazardProtection[type].message);
 				$scope.hazardProtection[type].input.params.sendNotifications.push(notification);
-				console.log("$scope.hazardProtection[type].input.params", $scope.hazardProtection[type].input.params);
 				// expand notification
 				$scope.expandElement('hazardProtection_' + type + '_0');
 			}
@@ -435,7 +433,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	 * @param {string} deviceId 
 	 */
 	$scope.unassignDevice = function (targetIndex, deviceId, type) {
-		console.log(targetIndex);
 		var deviceIndex = $scope.hazardProtection[type].assignedDevices.indexOf(deviceId);
 		$scope.hazardProtection[type].input.params.triggerEvent.splice(targetIndex, 1);
 		if (deviceIndex > -1) {
@@ -501,7 +498,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		fire.instanceId = fire.id !== null ? fire.id : fire.instanceId;
 		leakage.instanceId = leakage.id !== null ? leakage.id : leakage.instanceId;
 
-		fire.input.params.triggerEvent = fire.input.params.triggerEvent.map(function(dev){
+		fire.params.triggerEvent = fire.params.triggerEvent.map(function(dev){
 			return {
 				deviceId: dev.deviceId,
 				deviceType: dev.deviceType,
@@ -510,7 +507,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			};
 		});
 
-		leakage.input.params.triggerEvent = leakage.input.params.triggerEvent.map(function(dev){
+		leakage.params.triggerEvent = leakage.params.triggerEvent.map(function(dev){
 			return {
 				deviceId: dev.deviceId,
 				deviceType: dev.deviceType,
@@ -549,7 +546,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 					alertify.alertError($scope._t('error_update_data'));
 				} else {
 					if (redirect) {
-						$location.path('/' + dataService.getUrlSegment($location.path()));
+						$location.path('/automations');
 					}
 				}
 			}

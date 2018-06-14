@@ -14,9 +14,6 @@
                 <div class="content" ng-include="'app/views/welcome/tab_events.html'"></div>
             </div>
             <div class="fieldset tab" ng-switch-when="5">
-                <div class="content" ng-include="'app/views/welcome/tab_events.html'"></div>
-            </div>
-            <div class="fieldset tab" ng-switch-when="6">
                 <div class="content" ng-include="'app/views/welcome/tab_lets_start.html'"></div>
             </div>
         </div>
@@ -37,6 +34,7 @@
             {{_t('lb_skip')}}
             <i class="fa fa-chevron-double-right"></i>
             </button>
+            <a class="btn btn-submit cancel" ng-show="currentStep == steps.length" href="#elements">{{_t('lets_start')}} <i class="fa fa-chevron-right"></i></a>
             <button class="btn btn-submit next" ng-hide="currentStep == steps.length"  ng-click="prevNext(1)">
             {{_t('lb_next')}}
             <i class="fa fa-chevron-right"></i>

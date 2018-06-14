@@ -128,21 +128,19 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					clearCondition: 'never'
 				}
 			},
-			times: {
-				default: {
-					'0': false,
-					'1': false,
-					'2': false,
-					'3': false,
-					'4': false,
-					'5': false,
-					'6': false,
-					'times': '00:00',
-					'condition': 'disarm'
-				}
-			},
 			notification: {
 				probeType: 'notification_push'
+			},
+			mobileSchedule_entry: {
+				'0': false,
+				'1': false,
+				'2': false,
+				'3': false,
+				'4': false,
+				'5': false,
+				'6': false,
+				arm: '00:00',
+				disarm: '00:00'
 			}
 		},
 		input: {
@@ -193,10 +191,20 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					'5': [],
 					'6': []
 				}
-
 			}
-		}
+		},
+		securityModal: {
+			title: "",
+			scheduleId: "",
+			delete: false,
+			timeline: null,
+			scheduleIndex: null,
+			arm: null,
+			disarm: null
+		},
+		mobileSchedule: []
 	};
+
 	/**
 	 *  Schedule
 	 */
@@ -271,7 +279,15 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			this.addScheduleData(data);
 			$scope.updateData();
 		},
-		bar_Click: function(node, timelineData, scheduleIndex) {},
+		bar_Click: function(node, timelineData, scheduleIndex) {
+			$scope.security.securityModal.scheduleId = "#" + $(this).attr('id');
+			$scope.security.securityModal.timeline = timelineData.timeline;
+			$scope.security.securityModal.arm = timelineData.start;
+			$scope.security.securityModal.disarm = timelineData.end;
+			$scope.security.securityModal.scheduleIndex = scheduleIndex;
+			$scope.security.securityModal.title = this.formatTime(timelineData.start) + " - " + this.formatTime(timelineData.end);
+			$scope.handleModal('securityModal');
+		},
 		connect: function(data) {},
 		confirm: function() {},
 		delete_bar: function() {
@@ -306,19 +322,9 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				active: instance.active,
 				params: instance.params
 			});
-			// Adding rows to scheduleOptions
-			angular.forEach($scope.security.input.params.schedules, function(v, k) {
-				if (_.size(v)) {
-					angular.forEach(v, function(t) {
-						$scope.scheduleOptions.rows[k]['schedule'].push({
-							start: t.arm,
-							end: t.disarm,
-							text: $scope._t('lb_arm')
-						})
-					});
-				}
 
-			});
+			// transform to mobile
+			$scope.transformFromInstToMobile();
 
 		}, function(error) {
 			angular.extend(cfg.route.alert, {
@@ -431,6 +437,29 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		});
 		return index;
 	};
+
+	/**
+	 * delete schedule Bar
+	 * @param  {obj} input  schedule data
+	 * @param  {obj} $event dom event
+	 */
+	$scope.deleteBar = function(input, $event) {
+		var arm = $scope.jQuerySchedule.formatTime(input.arm),
+			disarm = $scope.jQuerySchedule.formatTime(input.disarm),
+			index = _.findIndex($scope.security.input.params.schedules[input.timeline], {
+				arm: arm,
+				disarm: disarm,
+			});
+
+		if (index !== -1) {
+			$scope.security.input.params.schedules[input.timeline].splice(index, 1);
+			$scope.updateSchedule();
+			input.delete = true;
+			$scope.handleModal('securityModal', $event);
+			$scope.transformFromInstToMobile();
+		}
+	};
+
 	////////// Devices ////////// 
 
 	/**
@@ -480,6 +509,29 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	};
 
 	////////// Dis-arm by time ////////// 
+
+	/**
+	 * Update schedule
+	 */
+	$scope.updateSchedule = function() {
+		if (!_.isEmpty($scope.jQuerySchedule)) {
+			var days = Object.keys($scope.security.input.params.schedules),
+				data = {};
+			angular.copy($scope.scheduleOptions.rows, data);
+			days.forEach(function(day) {
+				$scope.security.input.params.schedules[day].forEach(function(schedule) {
+					var sc = {
+						start: schedule.arm,
+						end: schedule.disarm,
+						text: $scope._t('lb_arm')
+					}
+					data[day].schedule.push(sc);
+				});
+			});
+			$scope.jQuerySchedule.update(data);
+		}
+	}
+
 	/**
 	 * Renders dis-arm schedule
 	 * @param {string} elementId 
@@ -491,6 +543,20 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 			angular.copy($scope.scheduleOptions, scheduleOptions_copy);
 
+			// set data
+			angular.forEach($scope.security.input.params.schedules, function(v, day) {
+				if (_.size(v)) {
+					angular.forEach(v, function(t) {
+						scheduleOptions_copy.rows[day]['schedule'].push({
+							start: t.arm,
+							end: t.disarm,
+							text: $scope._t('lb_arm')
+						})
+					});
+				}
+			});
+
+			// set weekday titles
 			schedule.empty();
 			$timeout(function() {
 				schedule.timeSchedule(scheduleOptions_copy);
@@ -501,6 +567,10 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				});
 				$scope.jQuerySchedule = schedule;
 			}, 10);
+		} else {
+			$timeout(function() {
+				$scope.jQuerySchedule.resizeWindow();
+			}, 0);
 		}
 	};
 
@@ -508,52 +578,146 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * Update input data
 	 */
 	$scope.updateData = function() {
-		angular.forEach($scope.jQuerySchedule.getScheduleData(), function(v, k) {
-			$scope.security.input.params.schedules[k] = _.map(v.schedule, function(sc) {
-				return {
-					arm: sc.start,
-					disarm: sc.end,
-				};
-			});
+		angular.forEach($scope.jQuerySchedule.getScheduleData(), function(row, day) {
+			var sorted_sc = _.sortBy(row.schedule, 'start'),
+				new_sc = sorted_sc.map(function(sc) {
+					return {
+						arm: sc.start,
+						disarm: sc.end,
+					};
+				});
+			$scope.security.input.params.schedules[day] = new_sc;
+		});
+		$scope.transformFromInstToMobile();
+	};
+
+	/**
+	 * Time changed
+	 * @param  {int} roomId      roomId
+	 * @param  {int} targetIndex entry index
+	 * @param  {string} oldValue    prev time
+	 * @param  {string} type        arm/disarm
+	 */
+	$scope.timeChanged = function(targetIndex, oldValue, type) {
+
+		var arm = stringToTime($scope.security.mobileSchedule[targetIndex].arm),
+			disarm = stringToTime($scope.security.mobileSchedule[targetIndex].disarm);
+
+		for (var i = 0; i <= 6; i++) { // days
+			if ($scope.security.mobileSchedule[targetIndex][i]) { // day true
+				overlaps = timeOverlaps($scope.security.mobileSchedule, arm, disarm, i); // check for day
+				if (overlaps.length > 0) {
+					$scope.security.mobileSchedule[targetIndex][type] = oldValue;
+					alertify.alertWarning($scope._t('data_overlaps'));
+					i = 6;
+				}
+			}
+		}
+	}
+
+	/**
+	 * activate/deactivate time for day
+	 * @param  {obj} data        
+	 * @param  {int} day         day nubmer [0 - 6] [SU - SA] 
+	 * @param  {int} roomId      roomId
+	 * @param  {int} targetIndex entry index
+	 * @return {string}          arm/disarm
+	 */
+	$scope.toggleTime = function(data, day, targetIndex) {
+		$scope.security.mobileSchedule[targetIndex][day] = !$scope.security.mobileSchedule[targetIndex][day];
+
+		if ($scope.security.mobileSchedule[targetIndex][day]) {
+			var arm = stringToTime(data.arm),
+				disarm = stringToTime(data.disarm);
+
+			var overlaps = timeOverlaps($scope.security.mobileSchedule, arm, disarm, day);
+
+			if (overlaps.length > 0) {
+				$scope.security.mobileSchedule[targetIndex][day] = false;
+				alertify.alertWarning($scope._t('data_overlaps'));
+			}
+		}
+	}
+
+	/**
+	 * Transform mobile vire back to instance data
+	 */
+	$scope.transformFromMobileToInst = function() {
+		// transform data for Instance 
+		$scope.security.input.params.schedules = {};
+		_.each($scope.security.mobileSchedule, function(data) {
+			for (var i = 0; i <= 6; i++) {
+				if (!$scope.security.input.params.schedules[i]) {
+					$scope.security.input.params.schedules[i] = [];
+				}
+				if (data[i]) {
+					var e = {
+						arm: data.arm,
+						disarm: data.disarm
+					};
+					$scope.security.input.params.schedules[i].push(e);
+				}
+			}
 		});
 	};
 
 	/**
-	 * Assign dis-arm schedule
-	 * @param {object} data 
+	 * Transform Instance data to use in mobile view
 	 */
-	/* $scope.assignSchedule = function (data) {
+	$scope.transformFromInstToMobile = function() {
+		// transform data for mobile view 
+		$scope.security.mobileSchedule = [];
+		_.each($scope.security.input.params.schedules, function(sc, day) {
+			if (sc.length > 0) {
+				_.each(sc, function(e) {
+					var index = _.findIndex($scope.security.mobileSchedule, {
+						arm: e.arm,
+						disarm: e.disarm
+					});
+					if (index == -1) {
+						var entry = {};
+						angular.copy($scope.security.cfg.mobileSchedule_entry, entry);
 
-	  if ($scope.security.input.params.schedules[data.day]) {
-	    $scope.security.input.params.schedules[data.day].push({
-	      time: data.time
-	    })
-	  }
-	  //$scope.security.input.params.schedules
-	} */
-
-	////////// Advanced schedule ////////// 
-	/**
-	 * TODO: deprecated
-	 * Assign a time scheduler
-	 * @returns {undefined}
-	 */
-	$scope.assignTimeScheduler = function() {
-		var input = $scope.security.cfg.times.default,
-			obj = {};
-		$scope.security.input.params.times.table.push(input);
-		$scope.resetOptions();
+						entry[day] = true
+						entry.arm = e.arm;
+						entry.disarm = e.disarm;
+						$scope.security.mobileSchedule.push(entry);
+					} else {
+						$scope.security.mobileSchedule[index][day] = true
+					}
+				});
+			}
+		});
 	};
 
 	/**
-	 * TODO: deprecated
+	 * watch $scope.security.mobileSchedule to handle data changes
+	 */
+	$scope.$watch("security.mobileSchedule", function(newVal) {
+		// transform mobile schdule data back to instance schedule data structure
+		$scope.transformFromMobileToInst();
+		$scope.updateSchedule();
+	}, true);
+
+	////////// Advanced schedule ////////// 
+
+	/**
+	 * Assign a time scheduler
+	 */
+	$scope.assignTimeSchedule = function() {
+		var input = {},
+			obj = {};
+		angular.copy($scope.security.cfg.mobileSchedule_entry, input);
+		$scope.security.mobileSchedule.push(input);
+	};
+
+	/**
 	 * Unassign a time scheduler
 	 *  @param {int} targetIndex 
-	 * @returns {undefined}
 	 */
-	$scope.unassignTimeScheduler = function(targetIndex) {
+	$scope.unassignTimeSchedule = function(targetIndex) {
 		if (targetIndex > -1) {
-			$scope.security.input.params.times.table.splice(targetIndex, 1);
+			$scope.security.mobileSchedule.splice(targetIndex, 1);
 		}
 	};
 
@@ -593,5 +757,40 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 	  });
 	}; */
+
+	/**
+	 * Function return a array with times or empty
+	 * @param  {[type]} mobileSchedule array with times
+	 * @param  {[type]} stime          start time
+	 * @param  {[type]} etime          end time
+	 * @param  {[type]} day            day to check
+	 */
+	function timeOverlaps(mobileSchedule, stime, etime, day) {
+		var overlaps = _.filter(mobileSchedule, function(e) {
+			var st = stringToTime(e.arm),
+				et = stringToTime(e.disarm);
+
+			if (st < stime && et > stime && e[day]) {
+				return e;
+			}
+			if (st > stime && st < etime && e[day]) {
+				return e;
+			}
+		});
+		return overlaps;
+	}
+
+	/**
+	 * conervet time string 12:40 into mins
+	 * @param  {string} time string
+	 * @return {int}    time in mins
+	 */
+	function stringToTime(string) {
+		var slice = string.split(':');
+		var h = Number(slice[0]) * 60 * 60;
+		var i = Number(slice[1]) * 60;
+		var min = h + i;
+		return min;
+	}
 
 });
