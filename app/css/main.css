@@ -10145,7 +10145,7 @@ img {
   }
 }
 
-#sub_navigation_wrap #sub_navigation #sub_navigation_in ul, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items {
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul {
   padding: 0;
   list-style: none;
   margin: 0 10px;
@@ -10161,30 +10161,30 @@ img {
 }
 
 @media only screen and (min-width: 768px) {
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items {
+  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul {
     margin: 0 0 0 50%;
   }
 }
 
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items {
+  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul {
     margin: 0 0 0 66%;
   }
 }
 
-#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li {
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li {
   /* MIN WIDTH */
   /* MAX WIDTH */
   border-bottom: solid 1px #cccccc;
 }
 
 @media only screen and (min-width: 768px) {
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul li, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li {
+  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul li {
     padding: 10px 0;
   }
 }
 
-#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li a, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li a {
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li a {
   display: block;
   position: relative;
   padding: 10px;
@@ -10195,12 +10195,12 @@ img {
 }
 
 @media only screen and (min-width: 768px) {
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul li a, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li a {
+  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul li a {
     padding: 0 10px;
   }
 }
 
-#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li a span, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li a span {
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li a span {
   display: inline-block;
   position: absolute;
   white-space: nowrap;
@@ -10213,23 +10213,23 @@ img {
   left: 50px;
 }
 
-#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li .subnavi-arrow, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li .subnavi-arrow {
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li .subnavi-arrow {
   position: absolute;
   right: 1%;
   display: inline-block;
 }
 
-#sub_navigation_wrap #sub_navigation #sub_navigation_in ul .active a, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items .active a {
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul .active a {
   color: #b3b3b3;
   font-weight: bold;
   text-decoration: underline;
 }
 
-#sub_navigation_wrap #sub_navigation #sub_navigation_in ul .active .fa, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items .active .fa {
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul .active .fa {
   color: #b3b3b3;
 }
 
-#sub_navigation_wrap #sub_navigation #sub_navigation_in ul .fa, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items .fa {
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul .fa {
   color: #666666;
 }
 
@@ -12950,13 +12950,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert

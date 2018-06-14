@@ -189,7 +189,7 @@
       @include mediaQueries(max-small) {
         height: 100%;
       }
-      ul, .items {
+      ul {
         padding: 0;
         list-style: none; //w: margin: 0 0 0 66%;
         margin: 0 $spacing;
