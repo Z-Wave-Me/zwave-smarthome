@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 07-06-2018 12:31:37 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 14-06-2018 16:00:23 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -7488,990 +7488,1062 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 
 //# sourceMappingURL=qrious.min.js.map
 (function($) {
-    $.fn.timeSchedule = function(options) {
-        var defaults = {
-            rows: {},
-            startTime: "00:00",
-            endTime: "24:00",
-            widthTimeX: 4, // 1cell
-            widthTime: 600, // 
-            timeLineY: 30, // timeline height(px)
-            timeLineBorder: 1, // timeline height border
-            timeBorder: 1, // border width
-            timeLinePaddingTop: 0,
-            timeLinePaddingBottom: 0,
-            headTimeBorder: 1, // time border width
-            dataWidth: 40, // data width
-            verticalScrollbar: 0, // vertical scrollbar width
-            removeButtonWidth: 30,
-            // event
-            init_data: function() {},
-            change: function() {},
-            click: function() {},
-            append: function() {},
-            time_click: function() {},
-            append_on_click: function() {},
-            bar_Click: function() {},
-            connect: function() {},
-            confirm: function() {},
-            delete_bar: function() {},
-            debug: "" // debug selecter
-        };
-
-        this.calcStringTime = function(string) {
-            var slice = string.split(':');
-            var h = Number(slice[0]) * 60 * 60;
-            var i = Number(slice[1]) * 60;
-            var min = h + i;
-            return min;
-        };
-        this.formatTime = function(min) {
-            var h = "" + (min / 36000 | 0) + (min / 3600 % 10 | 0);
-            var i = "" + (min % 3600 / 600 | 0) + (min % 3600 / 60 % 10 | 0);
-            var string = h + ":" + i;
-            return string;
-        };
-
-        var setting = $.extend(defaults, options);
-        this.setting = setting;
-        var scheduleData = new Array();
-        var timelineData = new Array();
-        var $element = $(this);
-        var element = (this);
-        var tableStartTime = element.calcStringTime(setting.startTime);
-        var tableEndTime = element.calcStringTime(setting.endTime);
-        var currentNode = null;
-        tableStartTime -= (tableStartTime % setting.widthTime);
-        tableEndTime -= (tableEndTime % setting.widthTime);
-
-        this.dragging = false;
-        this.isResizing = false;
-        this.clicking = false;
-        var that = this;
-
-        this.getScheduleData = function() {
-            return scheduleData;
-        }
-        this.getTimelineData = function() {
-                return timelineData;
-            }
-            // 
-        this.getTimeLineNumber = function(top) {
-                var num = 0;
-                var n = 0;
-                var tn = Math.ceil(top / (setting.timeLineY + setting.timeLinePaddingTop + setting.timeLinePaddingBottom));
-                for (var i in setting.rows) {
-                    var r = setting.rows[i];
-                    var tr = 0;
-                    if (typeof r["schedule"] == Object) {
-                        tr = r["schedule"].length;
-                    }
-                    if (currentNode && currentNode["timeline"]) {
-                        tr++;
-                    }
-                    n += Math.max(tr, 1);
-                    if (n >= tn) {
-                        break;
-                    }
-                    num++;
-                }
-                return num;
-            }
-            // add background data
-        this.addScheduleBgData = function(data) {
-            var st = Math.ceil((data["start"] - tableStartTime) / setting.widthTime);
-            var et = Math.floor((data["end"] - tableStartTime) / setting.widthTime);
-            var $bar = jQuery('<div class="sc_bgBar"><span class="text"></span></div>');
-            var stext = element.formatTime(data["start"]);
-            var etext = element.formatTime(data["end"]);
-            var snum = element.getScheduleCount(data["timeline"]);
-            $bar.css({
-                left: (st * setting.widthTimeX),
-                top: 0,
-                width: ((et - st) * setting.widthTimeX),
-                height: $element.find('.sc_main .timeline').eq(data["timeline"]).height()
-            });
-            if (data["text"]) {
-                $bar.find(".text").text(data["text"]);
-            }
-            if (data["class"]) {
-                $bar.addClass(data["class"]);
-            }
-            //$element.find('.sc_main').append($bar);
-            $element.find('.sc_main .timeline').eq(data["timeline"]).append($bar);
-        }
-
-        this.removeEntry = function(event) {
-            $bar = $(event.target).closest(".sc_Bar");
-            var sc_key = $bar.data("sc_key");
-            $bar.remove();
-            delete scheduleData[sc_key];
-            setting.delete_bar();
-        };
-
-        // add schedule
-        this.addScheduleData = function(data) {
-            var st = Math.ceil((data["start"] - tableStartTime) / setting.widthTime);
-            var et = Math.floor((data["end"] - tableStartTime) / setting.widthTime);
-            var $bar = jQuery('<div class="sc_Bar"><div class="sc_Bar_inner"><span class="head"><span class="time"></span></span><span class="text"></span></div></div>');
-            var $removeButton = jQuery('<div class="remove"><i class="fa fa-times"></i></div>');
-
-            var $timeline = $element.find('.sc_main .timeline').eq(data["timeline"]);
-
-            $removeButton.bind("click", function(event) {
-                that.removeEntry(event);
-            })
-
-            var stext = element.formatTime(data["start"]);
-            var etext = element.formatTime(data["end"]);
-            var snum = element.getScheduleCount(data["timeline"]);
-
-            $bar.css({
-                left: (st * setting.widthTimeX),
-                top: 0,
-                width: ((et - st) * setting.widthTimeX),
-                height: (setting.timeLineY)
-            });
-            $bar.find(".time").text(stext + "-" + etext);
-            if (data["text"]) {
-                $bar.find(".text").text(data["text"]);
-            }
-            if (data["class"]) {
-                $bar.addClass(data["class"]);
-            }
-            $bar.append($removeButton);
-            $timeline.append($bar);
-
-            scheduleData.push(data);
-            // key
-            var key = scheduleData.length - 1;
-            $bar.data("sc_key", key);
-
-            $bar.bind("click", function(event) {
-                if (!$(event.target).hasClass("ui-resizable-handle") && !that.isResizing && !that.dragging && !that.clicking) {
-                    var $bar = $(event.target).closest(".sc_Bar");
-                    var sc_key = $bar.data("sc_key");
-                    setting.bar_Click.call(element, $bar, scheduleData[sc_key], sc_key);
-                }
-            });
-
-            $bar.bind("mouseup", function() {
-                if (setting.click) {
-                    if (jQuery(this).data("dragCheck") !== true && jQuery(this).data("resizeCheck") !== true) {
-                        var node = jQuery(this);
-                        var sc_key = node.data("sc_key");
-                        setting.click(node, scheduleData[sc_key]);
-                    }
-                }
-            });
-
-            var $node = $element.find(".sc_Bar"),
-                $elements = $(".sc_Bar"),
-                $sc_main = $element.find(".sc_main");
-            $node.draggable({
-                grid: [setting.widthTimeX, 1],
-                containment: $sc_main,
-                helper: 'original',
-                revert: 'invalid',
-                start: function(event, ui) {
-                    var node = {};
-                    node["node"] = this;
-                    node["offsetTop"] = ui.position.top;
-                    node["offsetLeft"] = ui.position.left;
-                    node["currentTop"] = ui.position.top;
-                    node["currentLeft"] = ui.position.left;
-                    node["timeline"] = element.getTimeLineNumber(ui.position.top);
-                    node["nowTimeline"] = node["timeline"];
-                    node["sc_key"] = $(this).data("sc_key");
-                    currentNode = node;
-                    that.dragging = true;
-                    console.log("drag start");
-                },
-                drag: function(event, ui) {
-                    jQuery(this).data("dragCheck", true);
-                    if (!currentNode) {
-                        return false;
-                    }
-                    console.log("dragging");
-                    that.dragging = true;
-                    var $moveNode = jQuery(this),
-                        sc_key = $moveNode.data("sc_key"),
-                        originalTop = ui.originalPosition.top,
-                        originalLeft = ui.originalPosition.left,
-                        positionTop = ui.position.top,
-                        positionLeft = ui.position.left,
-                        timelineNum = element.getTimeLineNumber(ui.position.top);
-
-                    if (positionLeft + $moveNode.width() + setting.removeButtonWidth >= $sc_main.width()) {
-                        $moveNode.find(".remove").addClass("left");
-                    } else {
-                        $moveNode.find(".remove").removeClass("left");
-                    }
-
-                    ui.position.left = Math.floor(ui.position.left / setting.widthTimeX) * setting.widthTimeX;
-
-                    if (currentNode["nowTimeline"] != timelineNum) {
-                        currentNode["nowTimeline"] = timelineNum;
-                    }
-                    currentNode["currentTop"] = ui.position.top;
-                    currentNode["currentLeft"] = ui.position.left;
-                    // 
-                    element.rewriteBarText($moveNode, scheduleData[sc_key]);
-                    return true;
-                },
-                stop: function(event, ui) {;
-                    jQuery(this).data("dragCheck", false);
-
-                    console.log("drag stop");
-                    var sc_key = currentNode["sc_key"];
-
-                    that.dragging = false;
-                    if (scheduleData[sc_key] !== undefined) {
-                        var node = jQuery(this),
-                            $node = $(node),
-                            x = node.position().left,
-                            w = node.width(),
-                            start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime),
-                            end = start + ((scheduleData[sc_key]["end"] - scheduleData[sc_key]["start"]));
-
-                        scheduleData[sc_key]["start"] = start;
-                        scheduleData[sc_key]["end"] = end;
-                        if (setting.change) {
-                            setting.change(node, scheduleData[sc_key]);
-                        }
-                    }
-                    currentNode = null;
-                }
-            });
-
-            $node.resizable({
-                handles: "e, w",
-                grid: [setting.widthTimeX, setting.timeLineY],
-                minWidth: setting.widthTimeX,
-                containment: "parent",
-                start: function(event, ui) {
-                    var node = jQuery(this);
-                    node.data("resizeCheck", true);
-                    that.isResizing = true;
-                    console.log("start resize");
-                },
-                // 
-                stop: function(event, ui) {
-                    console.log("stop resize");
-                    that.isResizing = false;
-                    var node = jQuery(this);
-                    $node = node;
-                    var sc_key = node.data("sc_key");
-                    var x = node.position().left;
-                    var w = node.width();
-                    var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
-                    var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
-                    var timelineNum = scheduleData[sc_key]["timeline"];
-
-                    scheduleData[sc_key]["start"] = start;
-                    scheduleData[sc_key]["end"] = end;
-
-                    $bars = $element.find('.sc_main .timeline').eq(scheduleData[sc_key]["timeline"]).find(".sc_Bar");
-                    var connect = false,
-                        collison = false,
-                        cancel = false;
-                    $bars.each(function(ele) {
-                        $bar = $($bars[ele]);
-                        if ($bar.data("sc_key") != $node.data("sc_key")) {
-                            if (that.isCollison($node, $bar)) {
-                                collison = true;
-                                if (confirm("connect?")) {
-                                    connect = true;
-                                    var newStart = 0,
-                                        newEnd = 0;
-
-                                    var old_sc_key = $bar.data("sc_key");
-
-                                    var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
-
-                                    if (start <= scheduleData[old_sc_key].start) {
-                                        newStart = start;
-                                    } else {
-                                        newStart = scheduleData[old_sc_key].start;
-                                    }
-
-                                    if (end <= scheduleData[old_sc_key].end) {
-                                        newEnd = scheduleData[old_sc_key].end;
-                                    } else {
-                                        newEnd = end;
-                                    }
-
-                                    var data = {
-                                        timeline: scheduleData[old_sc_key].timeline,
-                                        start: newStart,
-                                        end: newEnd,
-                                        text: "",
-                                        data: {}
-                                    };
-
-                                    $node.remove();
-                                    $bar.remove();
-
-                                    delete scheduleData[sc_key];
-                                    delete scheduleData[old_sc_key];
-
-                                    //that.addScheduleData(data);
-                                    setting.connect.call(element, data);
-
-                                } else {
-                                    cancel = true;
-                                }
-                                return false;
-                            }
-                        }
-                    });
-
-                    if (!connect && !collison && !cancel) {
-
-                        // 
-                        element.resetBarPosition(timelineNum);
-                        // 
-                        element.rewriteBarText(node, scheduleData[sc_key]);
-
-                        node.data("resizeCheck", false);
-                        // 
-                        if (setting.change) {
-                            setting.change(node, scheduleData[sc_key]);
-                        }
-                    } else if (cancel) {
-                        // Move the element to its original position.
-                        ui.element.css(ui.originalPosition);
-                        // Modify the element's width& height to the original value.
-                        ui.element.css(ui.originalSize);
-                    }
-                }
-            });
-
-            // flip remove icon is draggable on right side
-            $node.on("mouseenter", function() {
-                var $node = $(this),
-                    parentWidth = $sc_main.width(),
-                    positionLeft = $node.position().left,
-                    draggableRight = positionLeft + $node.width(),
-                    nodeRight = draggableRight + setting.removeButtonWidth;
-                if (nodeRight >= parentWidth) {
-                    $node.find(".remove").addClass("left");
-                }
-
-            }).on("mouseleave", function() {
-                var $node = $(this);
-                $node.find(".remove").removeClass("left");
-            });
-
-            return key;
-        };
-
-        this.update = function(updated_data) {
-            // delete all schedules (bars)
-            $element.find(".sc_Bar").remove();
-            scheduleData = new Array();
-            setting.rows = updated_data;
-            for (var row in setting.rows) {
-                for (var i in setting.rows[row]["schedule"]) {
-                    var bdata = setting.rows[row]["schedule"][i],
-                        s = element.calcStringTime(bdata["start"]),
-                        e = element.calcStringTime(bdata["end"]),
-                        data = {};
-
-                    data["timeline"] = parseInt(row);
-                    data["start"] = s;
-                    data["end"] = e;
-                    if (bdata["text"]) {
-                        data["text"] = bdata["text"];
-                    }
-                    data["data"] = {};
-                    if (bdata["data"]) {
-                        data["data"] = bdata["data"];
-                    }
-                    element.addScheduleData(data);
-                }
-            }
-        };
-        // 
-        this.getScheduleCount = function(n) {
-            var num = 0;
-            for (var i in scheduleData) {
-                if (scheduleData[i]["timeline"] == n) {
-                    num++;
-                }
-            }
-            return num;
-        };
-        // add
-        this.addRow = function(timeline, row) {
-            var title = row["title"];
-            var id = $element.find('.sc_main .timeline').length;
-
-            var html;
-
-            html = '';
-            html += '<div class="timeline"><span class="title" data-title="' + title + '"></span></div>';
-            var $data = jQuery(html);
-            // event call
-            if (setting.init_data) {
-                setting.init_data($data, row);
-            }
-            $element.find('.sc_data_scroll').append($data);
-
-            html = '';
-            html += '<div class="timeline"></div>';
-            var $timeline = jQuery(html);
-            for (var t = tableStartTime; t < tableEndTime; t += setting.widthTime) {
-                var $tl = jQuery('<div class="tl" title=""></div>');
-                $tl.bind("mouseenter", function(event) {
-                    var timeStr = element.formatTime(tableStartTime + (setting.widthTime * $(this).index())),
-                        html = "<span>" + timeStr + "</span>",
-                        $time = jQuery(html),
-                        $sc_main_box = $element.find(".sc_main_box"),
-                        $target = $(event.target);
-
-                    $element.find(".tooltip").position({
-                        my: "center bottom-10",
-                        at: "center top",
-                        of: $target,
-                        collison: "flip",
-                        within: $sc_main_box,
-                        using: function(position, feedback) {
-                            $(this).removeClass("bottom center top");
-                            $(this).css({
-                                left: position.left - $element.offset().left + $element.position().left,
-                                top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
-                            });
-                            $(this).addClass(feedback.vertical).addClass(feedback.horizontal)
-                        }
-                    }).html($time).show();
-                }).bind("mouseleave", function() {
-                    $element.find(".tooltip").hide().css({
-                        left: 0,
-                        top: 0
-                    });
-                });
-
-                $tl.width(setting.widthTimeX - setting.timeBorder);
-                $tl.data("time", element.formatTime(t));
-                $tl.data("timeline", timeline);
-                $timeline.append($tl);
-            }
-
-            // var startTime = null,
-            //     endTime = null,
-            //     $clickedTl = null,
-            //     timelineNum = null;
-
-            $timeline.on("mousedown", function(event) {
-                console.log("mousedown");
-                if ($(event.target).hasClass("tl")) {
-                    that.clicking = true;
-                    $clickedTl = $(event.target);
-                    timelineNum = $clickedTl.data("timeline");
-                    startTime = $clickedTl.data("time");
-                    endTime = null,
-                        $ghost_bar_temp = jQuery('<div class="sc_Bar ghost"></div>');
-
-                    $ghost_bar_temp.css({
-                        top: 0,
-                        height: (setting.timeLineY),
-                        display: "none"
-                    });
-
-                    $element.find('.sc_main .timeline').eq(timelineNum).append($ghost_bar_temp);
-
-                    element.find(".sc_Bar").css({
-                        "z-index": 0,
-                        "opacity": 0.4
-                    });
-                } else {
-                    that.clicking = false;
-                    return true;
-                }
-            }).on("mousemove", function(event) {
-                if (that.clicking == false || $(event.target).data("timeline") !== timelineNum) {
-                    return true;
-                }
-                console.log("mousemove");
-                endTime = element.formatTime(tableStartTime + (setting.widthTime * $(event.target).index()));
-
-                var st = Math.ceil((element.calcStringTime(startTime) - tableStartTime) / setting.widthTime),
-                    et = Math.floor((element.calcStringTime(endTime) - tableStartTime) / setting.widthTime),
-                    left = et < st ? (et * setting.widthTimeX) : (st * setting.widthTimeX),
-                    width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX),
-                    $ghost_bar = $element.find(".ghost");
-
-                if ($ghost_bar.length > 0) {
-                    $ghost_bar.css({
-                        left: left,
-                        top: 0,
-                        width: width,
-                        display: "block"
-                    });
-                }
-            }).on("mouseup", function(event) {
-                if (that.clicking == false) {
-                    return true;
-                }
-                console.log("timeline mouseup");
-                element.find(".sc_Bar").css({
-                    "z-index": "auto",
-                    "opacity": 1
-                });
-                $ghost_bar_temp = $element.find('.sc_main .timeline').eq(timelineNum).find(".sc_Bar.ghost");
-                endTime = endTime == null ? startTime : endTime;
-
-                $bars = $element.find('.sc_main .timeline').eq(timelineNum).find(".sc_Bar");
-                console.log("bars", $bars);
-
-                var connect = false,
-                    collison = false;
-
-                $bars.each(function(ele) {
-                    $bar = $($bars[ele]);
-                    if (!$bar.hasClass("ghost")) {
-                        console.log("$bar", $bar);
-                        console.log("$ghost_bar_temp", $ghost_bar_temp);
-                        if (that.isCollison($ghost_bar_temp, $bar)) {
-                            collison = true;
-                            console.log("$bar", $bar);
-                            console.log("$ghost_bar_temp", $ghost_bar_temp);
-
-                            //if (confirm("connect?")) {
-                            // console.log("confirm", setting.confirm.call(element));
-                            // if (setting.confirm.call(element)) {
-                            if (confirm("connect?")) {
-                                connect = true;
-                                var newStart = 0,
-                                    newEnd = 0;
-
-                                var old_sc_key = $bar.data("sc_key");
-
-                                var x = $ghost_bar_temp.position().left;
-                                var w = $ghost_bar_temp.width();
-                                var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
-                                var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
-
-                                if (start <= scheduleData[old_sc_key].start) {
-                                    newStart = start;
-                                } else {
-                                    newStart = scheduleData[old_sc_key].start;
-                                }
-
-                                if (end <= scheduleData[old_sc_key].end) {
-                                    newEnd = scheduleData[old_sc_key].end;
-                                } else {
-                                    newEnd = end;
-                                }
-
-                                var data = {
-                                    timeline: parseInt(timelineNum),
-                                    start: newStart,
-                                    end: newEnd,
-                                    text: "",
-                                    data: {}
-                                };
-                                $bar.remove();
-
-                                delete scheduleData[old_sc_key];
-
-                                setting.connect.call(element, data);
-                                //that.addScheduleData(data);
-                            }
-                            return false;
-                        }
-                    }
-
-                });
-
-                if (!collison && !connect) {
-                    var st = element.calcStringTime(startTime),
-                        et = element.calcStringTime(endTime);
-
-                    if (et < st) {
-                        var temp = startTime;
-                        startTime = endTime;
-                        endTime = temp;
-                    }
-
-                    setting.append_on_click.call(element, timelineNum, startTime, endTime);
-                }
-                $ghost_bar_temp.remove();
-                that.clicking = false;
-                startTime = null;
-                endTime = null;
-                $clickedTl = null;
-                timelineNum = null;
-
-            }).bind("mouseleave", function(event) {
-                // console.log("startTime", startTime);
-                // console.log("endTime", endTime);
-                if (that.clicking) {
-
-                    console.log("timeline " + timelineNum + " leave");
-                }
-            });
-
-            // 
-            if (setting.time_click) {
-                var that = this;
-                /*$timeline.find(".tl").click(function(){
-                    setting.time_click.call(that, this,jQuery(this).data("time"),jQuery(this).data("timeline"),timelineData[jQuery(this).data("timeline")]);
-                });*/
-            }
-            $element.find('.sc_main').append($timeline);
-
-            timelineData[timeline] = row;
-
-            if (row["class"] && (row["class"] != "")) {
-                $element.find('.sc_data .timeline').eq(id).addClass(row["class"]);
-                $element.find('.sc_main .timeline').eq(id).addClass(row["class"]);
-            }
-            // 
-            if (row["schedule"]) {
-                for (var i in row["schedule"]) {
-                    var bdata = row["schedule"][i];
-                    var s = element.calcStringTime(bdata["start"]);
-                    var e = element.calcStringTime(bdata["end"]);
-
-                    var data = {};
-                    data["timeline"] = id;
-                    data["start"] = s;
-                    data["end"] = e;
-                    if (bdata["text"]) {
-                        data["text"] = bdata["text"];
-                    }
-                    data["data"] = {};
-                    if (bdata["data"]) {
-                        data["data"] = bdata["data"];
-                    }
-                    element.addScheduleData(data);
-                }
-            }
-            //     // remove this
-            element.resetBarPosition(id);
-            $element.find('.sc_main .timeline').eq(id).droppable({
-                accept: ".sc_Bar",
-                drop: function(ev, ui) {
-                    console.log("Drop");
-                    var node = ui.draggable;
-                    $node = node;
-                    var sc_key = node.data("sc_key");
-                    var oldTimelineNum = scheduleData[sc_key]["timeline"];
-                    var nowTimelineNum = $element.find('.sc_main .timeline').index(this);
-
-                    $bars = $(this).find(".sc_Bar")
-                    var connect = false,
-                        collison = false,
-                        cancel = false;
-                    $bars.each(function(ele) {
-                        $bar = $($bars[ele]);
-                        if ($bar.data("sc_key") != $node.data("sc_key")) {
-                            if (that.isCollison($node, $bar)) {
-                                collison = true;
-
-                                // $element.append($confirm);   
-                                // console.log("confirm 2", setting.confirm.call(element));
-                                // if (setting.confirm.call(element)) {
-                                if (confirm("connect?")) {
-
-                                    connect = true;
-                                    var newStart = 0,
-                                        newEnd = 0;
-
-                                    var old_sc_key = $bar.data("sc_key");
-                                    console.log("scheduleData[sc_key]", scheduleData[sc_key]);
-                                    console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
-
-                                    var x = $node.position().left;
-                                    var w = $node.width();
-                                    var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
-                                    var end = start + (scheduleData[sc_key].end - scheduleData[sc_key].start);
-
-                                    if (start <= scheduleData[old_sc_key].start) {
-                                        newStart = start;
-                                    } else {
-                                        newStart = scheduleData[old_sc_key].start;
-                                    }
-
-                                    if (end <= scheduleData[old_sc_key].end) {
-                                        newEnd = scheduleData[old_sc_key].end;
-                                    } else {
-                                        newEnd = end;
-                                    }
-
-                                    var data = {
-                                        timeline: scheduleData[old_sc_key].timeline,
-                                        start: newStart,
-                                        end: newEnd,
-                                        text: "",
-                                        data: {}
-                                    };
-
-                                    $node.remove();
-                                    $bar.remove();
-
-                                    delete scheduleData[sc_key];
-                                    delete scheduleData[old_sc_key];
-
-                                    //that.addScheduleData(data);
-                                    setting.connect.call(element, data);
-                                } else {
-                                    cancel = true;
-                                }
-
-                                return false;
-                            }
-                        }
-                    });
-
-                    if (!connect && !collison && !cancel) {
-                        scheduleData[sc_key]["timeline"] = nowTimelineNum;
-                        node.appendTo(this);
-                        element.resetBarPosition(oldTimelineNum);
-                        element.resetBarPosition(nowTimelineNum);
-                    } else if (cancel) {
-                        $node.draggable({
-                            revert: true
-                        });
-                        setTimeout(function() {
-                            $node.draggable({
-                                revert: false
-                            });
-                        }, 500);
-                    }
-                }
-            });
-            // 
-            /*if(setting.append){
-                $element.find('.sc_main .timeline').eq(id).find(".sc_Bar").each(function(){
-                    var node = jQuery(this);
-                    var sc_key = node.data("sc_key");
-                    setting.append(node, scheduleData[sc_key]);
-                });
-            }*/
-        };
-        this.getScheduleData = function() {
-            var data = new Array();
-
-            for (var i in timelineData) {
-                if (typeof timelineData[i] == "undefined") continue;
-                var timeline = jQuery.extend(true, {}, timelineData[i]);
-                timeline.schedule = new Array();
-                data.push(timeline);
-            }
-
-            for (var i in scheduleData) {
-                if (typeof scheduleData[i] == "undefined") continue;
-                var schedule = jQuery.extend(true, {}, scheduleData[i]);
-                schedule.start = this.formatTime(schedule.start);
-                schedule.end = this.formatTime(schedule.end);
-                var timelineIndex = schedule.timeline;
-                delete schedule.timeline;
-                data[timelineIndex].schedule.push(schedule);
-            }
-
-            return data;
-        };
-        // 
-        this.rewriteBarText = function(node, data) {
-            var x = node.position().left;
-            var w = node.width();
-            var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
-            //var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
-            var end = start + (data["end"] - data["start"]);
-            var html = element.formatTime(start) + "-" + element.formatTime(end);
-            jQuery(node).find(".time").html(html);
-        }
-        this.resetBarPosition = function(n) {
-            // 
-            var $bar_list = $element.find('.sc_main .timeline').eq(n).find(".sc_Bar");
-            var codes = [];
-            for (var i = 0; i < $bar_list.length; i++) {
-                codes[i] = {
-                    code: i,
-                    x: jQuery($bar_list[i]).position().left
-                };
-            };
-            // 
-            codes.sort(function(a, b) {
-                if (a["x"] < b["x"]) {
-                    return -1;
-                } else if (a["x"] > b["x"]) {
-                    return 1;
-                }
-                return 0;
-            });
-            var check = [];
-            var h = 0;
-            var $e1, $e2;
-            var c1, c2;
-            var s1, e1, s2, e2;
-            for (var i = 0; i < codes.length; i++) {
-                c1 = codes[i]["code"];
-                $e1 = jQuery($bar_list[c1]);
-                for (h = 0; h < check.length; h++) {
-                    var next = false;
-                    L: for (var j = 0; j < check[h].length; j++) {
-                        c2 = check[h][j];
-                        $e2 = jQuery($bar_list[c2]);
-
-                        s1 = $e1.position().left;
-                        e1 = $e1.position().left + $e1.width();
-                        s2 = $e2.position().left;
-                        e2 = $e2.position().left + $e2.width();
-                        if (s1 < e2 && e1 > s2) {
-                            next = true;
-                            continue L;
-                        }
-                    }
-                    if (!next) {
-                        break;
-                    }
-                }
-                if (!check[h]) {
-                    check[h] = [];
-                }
-                $e1.css({
-                    top: ((h * setting.timeLineY) + setting.timeLinePaddingTop)
-                });
-                check[h][check[h].length] = c1;
-            }
-            // 
-            this.resizeRow(n, check.length);
-        };
-        this.resizeRow = function(n, height) {
-                //var h = Math.max(element.getScheduleCount(n),1);
-                var h = Math.max(height, 1);
-                $element.find('.sc_data .timeline').eq(n).height((h * setting.timeLineY) - setting.timeLineBorder + setting.timeLinePaddingTop + setting.timeLinePaddingBottom);
-                $element.find('.sc_main .timeline').eq(n).height((h * setting.timeLineY) - setting.timeLineBorder + setting.timeLinePaddingTop + setting.timeLinePaddingBottom);
-
-                $element.find('.sc_main .timeline').eq(n).find(".sc_bgBar").each(function() {
-                    jQuery(this).height(jQuery(this).closest(".timeline").height());
-                });
-
-                $element.find(".sc_data").height($element.find(".sc_main_box").height());
-            }
-            // resizeWindow
-        this.resizeWindow = function() {
-            var sc_width = $element.width();
-            var sc_main_width = sc_width - setting.dataWidth - (setting.verticalScrollbar);
-            var cell_num = Math.floor((tableEndTime - tableStartTime) / setting.widthTime);
-            $element.find(".sc_header_cell").width(setting.dataWidth);
-            $element.find(".sc_data,.sc_data_scroll").width(setting.dataWidth);
-            $element.find(".sc_header").width(sc_main_width);
-            $element.find(".sc_main_box").width(sc_main_width);
-            $element.find(".sc_header_scroll").width(setting.widthTimeX * cell_num);
-            $element.find(".sc_main_scroll").width(setting.widthTimeX * cell_num);
-        };
-        // init
-        this.init = function() {
-            var html = '';
-            html += '<div class="sc_menu">' + "\n";
-            html += '<div class="sc_header_cell"><span>&nbsp;</span></div>' + "\n";
-            html += '<div class="sc_header">' + "\n";
-            html += '<div class="sc_header_scroll">' + "\n";
-            html += '</div>' + "\n";
-            html += '</div>' + "\n";
-            html += '<br class="clear" />' + "\n";
-            html += '</div>' + "\n";
-            html += '<div class="sc_wrapper">' + "\n";
-            html += '<div class="sc_data">' + "\n";
-            html += '<div class="sc_data_scroll">' + "\n";
-            html += '</div>' + "\n";
-            html += '</div>' + "\n";
-            html += '<div class="sc_main_box">' + "\n";
-            html += '<div class="sc_main_scroll">' + "\n";
-            html += '<div class="sc_main">' + "\n";
-            html += '</div>' + "\n";
-            html += '</div>' + "\n";
-            html += '</div>' + "\n";
-            html += '<br class="clear" />' + "\n";
-            html += '</div>' + "\n";
-            html += '<div class="tooltip"></div>' + "\n";
-
-            $element.append(html);
-
-            $element.find(".sc_main_box").scroll(function() {
-                $element.find(".sc_data_scroll").css("top", $(this).scrollTop() * -1);
-                $element.find(".sc_header_scroll").css("left", $(this).scrollLeft() * -1);
-
-            });
-            // add time cell
-            var cell_num = Math.floor((tableEndTime - tableStartTime) / setting.widthTime);
-            var before_time = -1;
-            for (var t = tableStartTime; t < tableEndTime; t += setting.widthTime) {
-
-                if (
-                    (before_time < 0) ||
-                    (Math.floor(before_time / 3600) != Math.floor(t / 3600))) {
-                    var html = '';
-                    html += '<div class="sc_time">' + element.formatTime(t) + '</div>';
-                    var $time = jQuery(html);
-                    var cell_num = Math.floor(Number(Math.min((Math.ceil((t + setting.widthTime) / 3600) * 3600), tableEndTime) - t) / setting.widthTime);
-                    $time.width((cell_num * setting.widthTimeX) - setting.headTimeBorder);
-                    $element.find(".sc_header_scroll").append($time);
-
-                    before_time = t;
-                }
-            }
-
-            jQuery(window).resize(function() {
-                element.resizeWindow();
-            }).trigger("resize");
-
-            // addrow
-            for (var i in setting.rows) {
-                this.addRow(i, setting.rows[i]);
-            }
-        };
-        // 
-        this.init();
-
-        this.debug = function() {
-            var html = '';
-            for (var i in scheduleData) {
-                html += '<div>';
-
-                html += i + " : ";
-                var d = scheduleData[i];
-                for (var n in d) {
-                    var dd = d[n];
-                    html += n + " " + dd;
-                }
-
-                html += '</div>';
-            }
-            jQuery(setting.debug).html(html);
-        };
-
-        this.isCollison = function($div1, $div2) {
-            var x1 = $div1.offset().left;
-            var y1 = $div1.offset().top;
-            var h1 = $div1.outerHeight(true);
-            var w1 = $div1.outerWidth(true);
-            var b1 = y1 + h1;
-            var r1 = x1 + w1;
-            var x2 = $div2.offset().left;
-            var y2 = $div2.offset().top;
-            var h2 = $div2.outerHeight(true);
-            var w2 = $div2.outerWidth(true);
-            var b2 = y2 + h2;
-            var r2 = x2 + w2;
-
-            if (b1 <= y2 || y1 >= b2 || r1 <= x2 || x1 >= r2) return false;
-            return true;
-        }
-
-        if (setting.debug && setting.debug != "") {
-            setInterval(function() {
-                element.debug();
-            }, 10);
-        }
-
-        return (this);
-    };
+	$.fn.timeSchedule = function(options) {
+		var defaults = {
+			rows: {},
+			startTime: "00:00",
+			endTime: "24:00",
+			widthTimeX: 4, // 1cell
+			widthTime: 600, // 
+			timeLineY: 30, // timeline height(px)
+			timeLineBorder: 1, // timeline height border
+			timeBorder: 1, // border width
+			timeLinePaddingTop: 0,
+			timeLinePaddingBottom: 0,
+			headTimeBorder: 1, // time border width
+			dataWidth: 40, // data width
+			verticalScrollbar: 0, // vertical scrollbar width
+			removeButtonWidth: 30,
+			// event
+			init_data: function() {},
+			change: function() {},
+			click: function() {},
+			append: function() {},
+			time_click: function() {},
+			append_on_click: function() {},
+			bar_Click: function() {},
+			connect: function() {},
+			confirm: function() {},
+			delete_bar: function() {},
+			debug: "" // debug selecter
+		};
+
+		this.calcStringTime = function(string) {
+			var slice = string.split(':');
+			var h = Number(slice[0]) * 60 * 60;
+			var i = Number(slice[1]) * 60;
+			var min = h + i;
+			return min;
+		};
+		this.formatTime = function(min) {
+			var h = "" + (min / 36000 | 0) + (min / 3600 % 10 | 0);
+			var i = "" + (min % 3600 / 600 | 0) + (min % 3600 / 60 % 10 | 0);
+			var string = h + ":" + i;
+			return string;
+		};
+
+		var setting = $.extend(defaults, options);
+		this.setting = setting;
+		var scheduleData = new Array();
+		var timelineData = new Array();
+		var $element = $(this);
+		var element = (this);
+		var tableStartTime = element.calcStringTime(setting.startTime);
+		var tableEndTime = element.calcStringTime(setting.endTime);
+		var currentNode = null;
+		tableStartTime -= (tableStartTime % setting.widthTime);
+		tableEndTime -= (tableEndTime % setting.widthTime);
+
+		this.dragging = false;
+		this.isResizing = false;
+		this.clicking = false;
+		var that = this;
+
+		this.getScheduleData = function() {
+			return scheduleData;
+		}
+		this.getTimelineData = function() {
+				return timelineData;
+			}
+			// 
+		this.getTimeLineNumber = function(top) {
+				var num = 0;
+				var n = 0;
+				var tn = Math.ceil(top / (setting.timeLineY + setting.timeLinePaddingTop + setting.timeLinePaddingBottom));
+				for (var i in setting.rows) {
+					var r = setting.rows[i];
+					var tr = 0;
+					if (typeof r["schedule"] == Object) {
+						tr = r["schedule"].length;
+					}
+					if (currentNode && currentNode["timeline"]) {
+						tr++;
+					}
+					n += Math.max(tr, 1);
+					if (n >= tn) {
+						break;
+					}
+					num++;
+				}
+				return num;
+			}
+			// add background data
+		this.addScheduleBgData = function(data) {
+			var st = Math.ceil((data["start"] - tableStartTime) / setting.widthTime);
+			var et = Math.floor((data["end"] - tableStartTime) / setting.widthTime);
+			var $bar = jQuery('<div class="sc_bgBar"><span class="text"></span></div>');
+			var stext = element.formatTime(data["start"]);
+			var etext = element.formatTime(data["end"]);
+			var snum = element.getScheduleCount(data["timeline"]);
+			$bar.css({
+				left: (st * setting.widthTimeX),
+				top: 0,
+				width: ((et - st) * setting.widthTimeX),
+				height: $element.find('.sc_main .timeline').eq(data["timeline"]).height()
+			});
+			if (data["text"]) {
+				$bar.find(".text").text(data["text"]);
+			}
+			if (data["class"]) {
+				$bar.addClass(data["class"]);
+			}
+			//$element.find('.sc_main').append($bar);
+			$element.find('.sc_main .timeline').eq(data["timeline"]).append($bar);
+		}
+
+		this.removeEntry = function(event) {
+			$bar = $(event.target).closest(".sc_Bar");
+			console.log("$bar", $bar);
+			var sc_key = $bar.data("sc_key");
+			$bar.remove();
+			delete scheduleData[sc_key];
+			setting.delete_bar();
+		};
+
+		// add schedule
+		this.addScheduleData = function(data) {
+			var st = Math.ceil((data["start"] - tableStartTime) / setting.widthTime);
+			var et = Math.floor((data["end"] - tableStartTime) / setting.widthTime);
+			var $bar = jQuery('<div class="sc_Bar"><div class="sc_Bar_inner"><span class="head"><span class="time"></span></span><span class="text"></span></div></div>');
+			var $removeButton = jQuery('<div class="remove"><i class="fa fa-times"></i></div>');
+
+			var $timeline = $element.find('.sc_main .timeline').eq(data["timeline"]);
+
+			$removeButton.bind("click touch", function(event) {
+				console.log("delete cliked!");
+				that.removeEntry(event);
+			})
+
+			var stext = element.formatTime(data["start"]);
+			var etext = element.formatTime(data["end"]);
+			var snum = element.getScheduleCount(data["timeline"]);
+
+			$bar.css({
+				left: (st * setting.widthTimeX),
+				top: 0,
+				width: ((et - st) * setting.widthTimeX),
+				height: (setting.timeLineY)
+			});
+			$bar.find(".time").text(stext + "-" + etext);
+			if (data["text"]) {
+				$bar.find(".text").text(data["text"]);
+			}
+			if (data["class"]) {
+				$bar.addClass(data["class"]);
+			}
+			$bar.append($removeButton);
+			$timeline.append($bar);
+
+			scheduleData.push(data);
+			// key
+			var key = scheduleData.length - 1;
+			$bar.data("sc_key", key);
+
+			$bar.bind("click touch", function(event) {
+				event.preventDefault();
+				if (!$(event.target).hasClass("ui-resizable-handle") && !that.isResizing && !that.dragging && !that.clicking) {
+					var $bar = $(event.target).closest(".sc_Bar");
+					var sc_key = $bar.data("sc_key");
+					setting.bar_Click.call(element, $bar, scheduleData[sc_key], sc_key);
+				}
+			});
+
+			$bar.bind("mouseup touchend", function() {
+				if (setting.click) {
+					if (jQuery(this).data("dragCheck") !== true && jQuery(this).data("resizeCheck") !== true) {
+						var node = jQuery(this);
+						var sc_key = node.data("sc_key");
+						setting.click(node, scheduleData[sc_key]);
+					}
+				}
+			});
+
+			var $node = $element.find(".sc_Bar"),
+				$elements = $(".sc_Bar"),
+				$sc_main = $element.find(".sc_main");
+			$node.draggable({
+				grid: [setting.widthTimeX, 1],
+				containment: $sc_main,
+				helper: 'original',
+				revert: 'invalid',
+				start: function(event, ui) {
+					var node = {};
+					node["node"] = this;
+					node["offsetTop"] = ui.position.top;
+					node["offsetLeft"] = ui.position.left;
+					node["currentTop"] = ui.position.top;
+					node["currentLeft"] = ui.position.left;
+					node["timeline"] = element.getTimeLineNumber(ui.position.top);
+					node["nowTimeline"] = node["timeline"];
+					node["sc_key"] = $(this).data("sc_key");
+					currentNode = node;
+					that.dragging = true;
+					// console.log("drag start");
+				},
+				drag: function(event, ui) {
+					jQuery(this).data("dragCheck", true);
+					if (!currentNode) {
+						return false;
+					}
+					// console.log("dragging");
+					that.dragging = true;
+					var $moveNode = jQuery(this),
+						sc_key = $moveNode.data("sc_key"),
+						originalTop = ui.originalPosition.top,
+						originalLeft = ui.originalPosition.left,
+						positionTop = ui.position.top,
+						positionLeft = ui.position.left,
+						timelineNum = element.getTimeLineNumber(ui.position.top);
+
+					if (positionLeft + $moveNode.width() + setting.removeButtonWidth >= $sc_main.width()) {
+						$moveNode.find(".remove").addClass("left");
+					} else {
+						$moveNode.find(".remove").removeClass("left");
+					}
+
+					ui.position.left = Math.floor(ui.position.left / setting.widthTimeX) * setting.widthTimeX;
+
+					if (currentNode["nowTimeline"] != timelineNum) {
+						currentNode["nowTimeline"] = timelineNum;
+					}
+					currentNode["currentTop"] = ui.position.top;
+					currentNode["currentLeft"] = ui.position.left;
+					// 
+					element.rewriteBarText($moveNode, scheduleData[sc_key]);
+					return true;
+				},
+				stop: function(event, ui) {
+					event.preventDefault();
+					jQuery(this).data("dragCheck", false);
+
+					// console.log("drag stop");
+					var sc_key = currentNode["sc_key"];
+
+					that.dragging = false;
+					if (scheduleData[sc_key] !== undefined) {
+						var node = jQuery(this),
+							$node = $(node),
+							x = node.position().left,
+							w = node.width(),
+							start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime),
+							end = start + ((scheduleData[sc_key]["end"] - scheduleData[sc_key]["start"]));
+
+						scheduleData[sc_key]["start"] = start;
+						scheduleData[sc_key]["end"] = end;
+						if (setting.change) {
+							setting.change(node, scheduleData[sc_key]);
+						}
+					}
+					currentNode = null;
+				}
+			});
+
+			$node.resizable({
+				handles: "e, w",
+				grid: [setting.widthTimeX, setting.timeLineY],
+				minWidth: setting.widthTimeX,
+				containment: "parent",
+				start: function(event, ui) {
+					event.preventDefault();
+					var node = jQuery(this);
+					node.data("resizeCheck", true);
+					that.isResizing = true;
+					// console.log("start resize");
+				},
+				resize: function(event, ui) {
+					var $moveNode = $(this),
+						sc_key = $moveNode.data("sc_key"),
+						x = ui.position.left,
+						w = ui.size.width,
+						start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime),
+						end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+
+					// console.log("$moveNode", $moveNode);
+
+
+
+					// update data
+					scheduleData[sc_key]["start"] = start;
+					scheduleData[sc_key]["end"] = end;
+
+					element.rewriteBarText($moveNode, scheduleData[sc_key]);
+
+					// schow Tooltip on resize
+					// var timelineNum = scheduleData[sc_key].timeline,
+					//  $timeline = $element.find('.sc_main .timeline').eq(timelineNum),
+
+					//  $sc_main_box = $element.find(".sc_main_box"),
+					//  tlIndex = Math.floor((x + w) / setting.widthTimeX),
+					//  $tl = $timeline.find('.tl').eq(tlIndex),
+					//  timeStr = element.formatTime(tableStartTime + (setting.widthTime * tlIndex)),
+					//  html = "<span>" + timeStr + "</span>",
+					//  $time = jQuery(html);
+
+					// // console.log("$timeline", $timeline);
+
+					// $element.find(".tooltip").position({
+					//  my: "center bottom-10",
+					//  at: "center top",
+					//  of: $tl,
+					//  collison: "flip",
+					//  within: $sc_main_box,
+					//  using: function(position, feedback) {
+					//      $(this).removeClass("bottom center top");
+					//      $(this).css({
+					//          left: position.left,
+					//          top: position.top
+					//              //left: position.left - $element.offset().left + $element.position().left,
+					//              //top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
+					//      });
+					//      $(this).addClass(feedback.vertical).addClass(feedback.horizontal)
+					//  }
+					// }).html($time).show();
+				},
+				stop: function(event, ui) {
+					event.preventDefault();
+					// console.log("stop resize");
+					that.isResizing = false;
+					var node = jQuery(this);
+					$node = node;
+					var sc_key = node.data("sc_key");
+					var x = node.position().left;
+					var w = node.width();
+					var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
+					var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+					var timelineNum = scheduleData[sc_key]["timeline"];
+
+					scheduleData[sc_key]["start"] = start;
+					scheduleData[sc_key]["end"] = end;
+
+					$bars = $element.find('.sc_main .timeline').eq(scheduleData[sc_key]["timeline"]).find(".sc_Bar");
+					var connect = false,
+						collison = false,
+						cancel = false;
+					$bars.each(function(ele) {
+						$bar = $($bars[ele]);
+						if ($bar.data("sc_key") != $node.data("sc_key")) {
+							if (that.isCollison($node, $bar)) {
+								collison = true;
+								if (confirm("connect?")) {
+									connect = true;
+									var newStart = 0,
+										newEnd = 0,
+										old_sc_key = $bar.data("sc_key"),
+										end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+
+									if (start <= scheduleData[old_sc_key].start) {
+										newStart = start;
+									} else {
+										newStart = scheduleData[old_sc_key].start;
+									}
+
+									if (end <= scheduleData[old_sc_key].end) {
+										newEnd = scheduleData[old_sc_key].end;
+									} else {
+										newEnd = end;
+									}
+
+									var data = {
+										timeline: scheduleData[old_sc_key].timeline,
+										start: newStart,
+										end: newEnd,
+										text: "",
+										data: {}
+									};
+
+									$node.remove();
+									$bar.remove();
+
+									delete scheduleData[sc_key];
+									delete scheduleData[old_sc_key];
+
+									//that.addScheduleData(data);
+									setting.connect.call(element, data);
+
+								} else {
+									cancel = true;
+								}
+								return false;
+							}
+						}
+					});
+
+					if (!connect && !collison && !cancel) {
+
+						// 
+						element.resetBarPosition(timelineNum);
+						// 
+						element.rewriteBarText(node, scheduleData[sc_key]);
+
+						node.data("resizeCheck", false);
+						// 
+						if (setting.change) {
+							setting.change(node, scheduleData[sc_key]);
+						}
+					} else if (cancel) {
+						// Move the element to its original position.
+						ui.element.css(ui.originalPosition);
+						// Modify the element's width& height to the original value.
+						ui.element.css(ui.originalSize);
+					}
+				}
+			});
+
+			// flip remove icon is draggable on right side
+			$node.on("mouseenter", function() {
+				var $node = $(this),
+					parentWidth = $sc_main.width(),
+					positionLeft = $node.position().left,
+					draggableRight = positionLeft + $node.width(),
+					nodeRight = draggableRight + setting.removeButtonWidth;
+				if (nodeRight >= parentWidth) {
+					$node.find(".remove").addClass("left");
+				}
+
+			}).on("mouseleave", function() {
+				var $node = $(this);
+				$node.find(".remove").removeClass("left");
+			});
+
+			return key;
+		};
+
+		this.update = function(updated_data) {
+			// delete all schedules (bars)
+			$element.find(".sc_Bar").remove();
+			scheduleData = new Array();
+			setting.rows = updated_data;
+			for (var row in setting.rows) {
+				for (var i in setting.rows[row]["schedule"]) {
+					var bdata = setting.rows[row]["schedule"][i],
+						s = element.calcStringTime(bdata["start"]),
+						e = element.calcStringTime(bdata["end"]),
+						data = {};
+
+					data["timeline"] = parseInt(row);
+					data["start"] = s;
+					data["end"] = e;
+					if (bdata["text"]) {
+						data["text"] = bdata["text"];
+					}
+					data["data"] = {};
+					if (bdata["data"]) {
+						data["data"] = bdata["data"];
+					}
+					element.addScheduleData(data);
+				}
+			}
+		};
+		// 
+		this.getScheduleCount = function(n) {
+			var num = 0;
+			for (var i in scheduleData) {
+				if (scheduleData[i]["timeline"] == n) {
+					num++;
+				}
+			}
+			return num;
+		};
+		// add
+		this.addRow = function(timeline, row) {
+			var title = row["title"];
+			var id = $element.find('.sc_main .timeline').length;
+
+			var html;
+
+			html = '';
+			html += '<div class="timeline"><span class="title" data-title="' + title + '"></span></div>';
+			var $data = jQuery(html);
+			// event call
+			if (setting.init_data) {
+				setting.init_data($data, row);
+			}
+			$element.find('.sc_data_scroll').append($data);
+
+			html = '';
+			html += '<div class="timeline"></div>';
+			var $timeline = jQuery(html);
+			for (var t = tableStartTime; t < tableEndTime; t += setting.widthTime) {
+				var $tl = jQuery('<div class="tl" title=""></div>');
+				$tl.bind("mouseenter", function(event) {
+					if (!that.isResizing) {
+						var timeStr = element.formatTime(tableStartTime + (setting.widthTime * $(this).index())),
+							html = "<span>" + timeStr + "</span>",
+							$time = jQuery(html),
+							$sc_main_box = $element.find(".sc_main_box"),
+							$target = $(event.target);
+
+						$element.find(".tooltip").position({
+							my: "center bottom-10",
+							at: "center top",
+							of: $target,
+							collison: "flip",
+							within: $sc_main_box,
+							using: function(position, feedback) {
+								$(this).removeClass("bottom center top");
+								$(this).css({
+									left: position.left - $element.offset().left + $element.position().left,
+									top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
+								});
+								$(this).addClass(feedback.vertical).addClass(feedback.horizontal)
+							}
+						}).html($time).show();
+					}
+
+				}).bind("mouseleave", function() {
+					$element.find(".tooltip").hide().css({
+						left: 0,
+						top: 0
+					});
+				});
+
+				$tl.width(setting.widthTimeX - setting.timeBorder);
+				$tl.data("time", element.formatTime(t));
+				$tl.data("timeline", timeline);
+				$timeline.append($tl);
+			}
+
+			// var startTime = null,
+			//     endTime = null,
+			//     $clickedTl = null,
+			//     timelineNum = null;
+
+			$timeline.on("mousedown touchstart", function(event) {
+				event.preventDefault();
+				// console.log("mousedown");
+				if ($(event.target).hasClass("tl")) {
+					that.clicking = true;
+					$clickedTl = $(event.target);
+					timelineNum = $clickedTl.data("timeline");
+					startTime = $clickedTl.data("time");
+					endTime = null,
+						$ghost_bar_temp = jQuery('<div class="sc_Bar ghost"></div>');
+
+					$ghost_bar_temp.css({
+						top: 0,
+						height: (setting.timeLineY),
+						display: "none"
+					});
+
+					$element.find('.sc_main .timeline').eq(timelineNum).append($ghost_bar_temp);
+
+					element.find(".sc_Bar").css({
+						"z-index": 0,
+						"opacity": 0.4
+					});
+				} else {
+					that.clicking = false;
+					return true;
+				}
+			}).on("mousemove touchmove", function(event) {
+				event.preventDefault();
+				//// console.log("event", event);
+				if (that.clicking == false || $(event.target).data("timeline") !== timelineNum) {
+					return true;
+				}
+
+				var targetIndex = 0;
+				if (event.type == "touchmove") {
+					var myLocation = event.originalEvent.changedTouches[0],
+						realTarget = document.elementFromPoint(myLocation.clientX, myLocation.clientY);
+					if (!$(realTarget).hasClass("tl")) {
+						return true;
+					}
+					targetIndex = $(realTarget).index();
+				} else {
+					targetIndex = $(event.target).index();
+				}
+
+				endTime = element.formatTime(tableStartTime + (setting.widthTime * targetIndex));
+
+				var st = Math.ceil((element.calcStringTime(startTime) - tableStartTime) / setting.widthTime),
+					et = Math.floor((element.calcStringTime(endTime) - tableStartTime) / setting.widthTime),
+					left = et < st ? (et * setting.widthTimeX) : (st * setting.widthTimeX),
+					width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX),
+					$ghost_bar = $element.find(".ghost");
+
+				if ($ghost_bar.length > 0) {
+					$ghost_bar.css({
+						left: left,
+						top: 0,
+						width: width,
+						display: "block"
+					});
+				}
+			}).on("mouseup touchend", function(event) {
+				event.preventDefault();
+				// console.log("event", event);
+				if (that.clicking == false) {
+					return true;
+				}
+				// console.log("timeline mouseup");
+				element.find(".sc_Bar").css({
+					"z-index": "auto",
+					"opacity": 1
+				});
+				$ghost_bar_temp = $element.find('.sc_main .timeline').eq(timelineNum).find(".sc_Bar.ghost");
+				endTime = endTime == null ? startTime : endTime;
+
+				$bars = $element.find('.sc_main .timeline').eq(timelineNum).find(".sc_Bar");
+				// console.log("bars", $bars);
+
+				var connect = false,
+					collison = false;
+
+				$bars.each(function(ele) {
+					$bar = $($bars[ele]);
+					if (!$bar.hasClass("ghost")) {
+						// console.log("$bar", $bar);
+						// console.log("$ghost_bar_temp", $ghost_bar_temp);
+						if (that.isCollison($ghost_bar_temp, $bar)) {
+							collison = true;
+							// console.log("$bar", $bar);
+							// console.log("$ghost_bar_temp", $ghost_bar_temp);
+
+							//if (confirm("connect?")) {
+							// // console.log("confirm", setting.confirm.call(element));
+							// if (setting.confirm.call(element)) {
+							if (confirm("connect?")) {
+								connect = true;
+								var newStart = 0,
+									newEnd = 0;
+
+								var old_sc_key = $bar.data("sc_key");
+
+								var x = $ghost_bar_temp.position().left;
+								var w = $ghost_bar_temp.width();
+								var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
+								var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+
+								if (start <= scheduleData[old_sc_key].start) {
+									newStart = start;
+								} else {
+									newStart = scheduleData[old_sc_key].start;
+								}
+
+								if (end <= scheduleData[old_sc_key].end) {
+									newEnd = scheduleData[old_sc_key].end;
+								} else {
+									newEnd = end;
+								}
+
+								var data = {
+									timeline: parseInt(timelineNum),
+									start: newStart,
+									end: newEnd,
+									text: "",
+									data: {}
+								};
+								$bar.remove();
+
+								delete scheduleData[old_sc_key];
+
+								setting.connect.call(element, data);
+								//that.addScheduleData(data);
+							}
+							return false;
+						}
+					}
+
+				});
+
+				if (!collison && !connect) {
+					var st = element.calcStringTime(startTime),
+						et = element.calcStringTime(endTime);
+
+					if (et < st) {
+						var temp = startTime;
+						startTime = endTime;
+						endTime = temp;
+					}
+
+					setting.append_on_click.call(element, timelineNum, startTime, endTime);
+				}
+				$ghost_bar_temp.remove();
+				that.clicking = false;
+				startTime = null;
+				endTime = null;
+				$clickedTl = null;
+				timelineNum = null;
+
+			}).bind("mouseleave", function(event) {
+				// // console.log("startTime", startTime);
+				// // console.log("endTime", endTime);
+				if (that.clicking) {
+
+					// console.log("timeline " + timelineNum + " leave");
+				}
+			});
+
+			// 
+			if (setting.time_click) {
+				var that = this;
+				/*$timeline.find(".tl").click(function(){
+				    setting.time_click.call(that, this,jQuery(this).data("time"),jQuery(this).data("timeline"),timelineData[jQuery(this).data("timeline")]);
+				});*/
+			}
+			$element.find('.sc_main').append($timeline);
+
+			timelineData[timeline] = row;
+
+			if (row["class"] && (row["class"] != "")) {
+				$element.find('.sc_data .timeline').eq(id).addClass(row["class"]);
+				$element.find('.sc_main .timeline').eq(id).addClass(row["class"]);
+			}
+			// 
+			if (row["schedule"]) {
+				for (var i in row["schedule"]) {
+					var bdata = row["schedule"][i];
+					var s = element.calcStringTime(bdata["start"]);
+					var e = element.calcStringTime(bdata["end"]);
+
+					var data = {};
+					data["timeline"] = id;
+					data["start"] = s;
+					data["end"] = e;
+					if (bdata["text"]) {
+						data["text"] = bdata["text"];
+					}
+					data["data"] = {};
+					if (bdata["data"]) {
+						data["data"] = bdata["data"];
+					}
+					element.addScheduleData(data);
+				}
+			}
+			//     // remove this
+			element.resetBarPosition(id);
+			$element.find('.sc_main .timeline').eq(id).droppable({
+				accept: ".sc_Bar",
+				drop: function(ev, ui) {
+					// console.log("Drop");
+					var node = ui.draggable;
+					$node = node;
+					var sc_key = node.data("sc_key");
+					var oldTimelineNum = scheduleData[sc_key]["timeline"];
+					var nowTimelineNum = $element.find('.sc_main .timeline').index(this);
+
+					$bars = $(this).find(".sc_Bar")
+					var connect = false,
+						collison = false,
+						cancel = false;
+					$bars.each(function(ele) {
+						$bar = $($bars[ele]);
+						if ($bar.data("sc_key") != $node.data("sc_key")) {
+							if (that.isCollison($node, $bar)) {
+								collison = true;
+
+								// $element.append($confirm);   
+								// // console.log("confirm 2", setting.confirm.call(element));
+								// if (setting.confirm.call(element)) {
+								if (confirm("connect?")) {
+
+									connect = true;
+									var newStart = 0,
+										newEnd = 0;
+
+									var old_sc_key = $bar.data("sc_key");
+									// console.log("scheduleData[sc_key]", scheduleData[sc_key]);
+									// console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
+
+									var x = $node.position().left;
+									var w = $node.width();
+									var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
+									var end = start + (scheduleData[sc_key].end - scheduleData[sc_key].start);
+
+									if (start <= scheduleData[old_sc_key].start) {
+										newStart = start;
+									} else {
+										newStart = scheduleData[old_sc_key].start;
+									}
+
+									if (end <= scheduleData[old_sc_key].end) {
+										newEnd = scheduleData[old_sc_key].end;
+									} else {
+										newEnd = end;
+									}
+
+									var data = {
+										timeline: scheduleData[old_sc_key].timeline,
+										start: newStart,
+										end: newEnd,
+										text: "",
+										data: {}
+									};
+
+									$node.remove();
+									$bar.remove();
+
+									delete scheduleData[sc_key];
+									delete scheduleData[old_sc_key];
+
+									//that.addScheduleData(data);
+									setting.connect.call(element, data);
+								} else {
+									cancel = true;
+								}
+
+								return false;
+							}
+						}
+					});
+
+					if (!connect && !collison && !cancel) {
+						scheduleData[sc_key]["timeline"] = nowTimelineNum;
+						node.appendTo(this);
+						element.resetBarPosition(oldTimelineNum);
+						element.resetBarPosition(nowTimelineNum);
+					} else if (cancel) {
+						$node.draggable({
+							revert: true
+						});
+						setTimeout(function() {
+							$node.draggable({
+								revert: false
+							});
+						}, 500);
+					}
+				}
+			});
+			// 
+			/*if(setting.append){
+			    $element.find('.sc_main .timeline').eq(id).find(".sc_Bar").each(function(){
+			        var node = jQuery(this);
+			        var sc_key = node.data("sc_key");
+			        setting.append(node, scheduleData[sc_key]);
+			    });
+			}*/
+		};
+		this.getScheduleData = function() {
+			var data = new Array();
+
+			for (var i in timelineData) {
+				if (typeof timelineData[i] == "undefined") continue;
+				var timeline = jQuery.extend(true, {}, timelineData[i]);
+				timeline.schedule = new Array();
+				data.push(timeline);
+			}
+
+			for (var i in scheduleData) {
+				if (typeof scheduleData[i] == "undefined") continue;
+				var schedule = jQuery.extend(true, {}, scheduleData[i]);
+				schedule.start = this.formatTime(schedule.start);
+				schedule.end = this.formatTime(schedule.end);
+				var timelineIndex = schedule.timeline;
+				delete schedule.timeline;
+				data[timelineIndex].schedule.push(schedule);
+			}
+
+			return data;
+		};
+		// update Bar Text
+		this.rewriteBarText = function(node, data) {
+			var x = node.position().left;
+			var w = node.width();
+			var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
+			//var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+			var end = start + (data["end"] - data["start"]);
+			var html = element.formatTime(start) + "-" + element.formatTime(end);
+			jQuery(node).find(".time").html(html);
+		}
+		this.resetBarPosition = function(n) {
+			// 
+			var $bar_list = $element.find('.sc_main .timeline').eq(n).find(".sc_Bar");
+			var codes = [];
+			for (var i = 0; i < $bar_list.length; i++) {
+				codes[i] = {
+					code: i,
+					x: jQuery($bar_list[i]).position().left
+				};
+			};
+			// 
+			codes.sort(function(a, b) {
+				if (a["x"] < b["x"]) {
+					return -1;
+				} else if (a["x"] > b["x"]) {
+					return 1;
+				}
+				return 0;
+			});
+			var check = [];
+			var h = 0;
+			var $e1, $e2;
+			var c1, c2;
+			var s1, e1, s2, e2;
+			for (var i = 0; i < codes.length; i++) {
+				c1 = codes[i]["code"];
+				$e1 = jQuery($bar_list[c1]);
+				for (h = 0; h < check.length; h++) {
+					var next = false;
+					L: for (var j = 0; j < check[h].length; j++) {
+						c2 = check[h][j];
+						$e2 = jQuery($bar_list[c2]);
+
+						s1 = $e1.position().left;
+						e1 = $e1.position().left + $e1.width();
+						s2 = $e2.position().left;
+						e2 = $e2.position().left + $e2.width();
+						if (s1 < e2 && e1 > s2) {
+							next = true;
+							continue L;
+						}
+					}
+					if (!next) {
+						break;
+					}
+				}
+				if (!check[h]) {
+					check[h] = [];
+				}
+				$e1.css({
+					top: ((h * setting.timeLineY) + setting.timeLinePaddingTop)
+				});
+				check[h][check[h].length] = c1;
+			}
+			// 
+			this.resizeRow(n, check.length);
+		};
+		this.resizeRow = function(n, height) {
+				//var h = Math.max(element.getScheduleCount(n),1);
+				var h = Math.max(height, 1);
+				$element.find('.sc_data .timeline').eq(n).height((h * setting.timeLineY) - setting.timeLineBorder + setting.timeLinePaddingTop + setting.timeLinePaddingBottom);
+				$element.find('.sc_main .timeline').eq(n).height((h * setting.timeLineY) - setting.timeLineBorder + setting.timeLinePaddingTop + setting.timeLinePaddingBottom);
+
+				$element.find('.sc_main .timeline').eq(n).find(".sc_bgBar").each(function() {
+					jQuery(this).height(jQuery(this).closest(".timeline").height());
+				});
+
+				$element.find(".sc_data").height($element.find(".sc_main_box").height());
+			}
+			// resizeWindow
+		this.resizeWindow = function() {
+			var sc_width = $element.width();
+			var sc_main_width = sc_width - setting.dataWidth - (setting.verticalScrollbar);
+			var cell_num = Math.floor((tableEndTime - tableStartTime) / setting.widthTime);
+			$element.find(".sc_header_cell").width(setting.dataWidth);
+			$element.find(".sc_data,.sc_data_scroll").width(setting.dataWidth);
+			$element.find(".sc_header").width(sc_main_width);
+			$element.find(".sc_main_box").width(sc_main_width);
+			$element.find(".sc_header_scroll").width(setting.widthTimeX * cell_num);
+			$element.find(".sc_main_scroll").width(setting.widthTimeX * cell_num);
+		};
+		// init
+		this.init = function() {
+			var html = '';
+			html += '<div class="sc_menu">' + "\n";
+			html += '<div class="sc_header_cell"><span>&nbsp;</span></div>' + "\n";
+			html += '<div class="sc_header">' + "\n";
+			html += '<div class="sc_header_scroll">' + "\n";
+			html += '</div>' + "\n";
+			html += '</div>' + "\n";
+			html += '<br class="clear" />' + "\n";
+			html += '</div>' + "\n";
+			html += '<div class="sc_wrapper">' + "\n";
+			html += '<div class="sc_data">' + "\n";
+			html += '<div class="sc_data_scroll">' + "\n";
+			html += '</div>' + "\n";
+			html += '</div>' + "\n";
+			html += '<div class="sc_main_box">' + "\n";
+			html += '<div class="sc_main_scroll">' + "\n";
+			html += '<div class="sc_main">' + "\n";
+			html += '</div>' + "\n";
+			html += '</div>' + "\n";
+			html += '</div>' + "\n";
+			html += '<br class="clear" />' + "\n";
+			html += '</div>' + "\n";
+			html += '<div class="tooltip"></div>' + "\n";
+
+			$element.append(html);
+
+			$element.find(".sc_main_box").scroll(function() {
+				$element.find(".sc_data_scroll").css("top", $(this).scrollTop() * -1);
+				$element.find(".sc_header_scroll").css("left", $(this).scrollLeft() * -1);
+
+			});
+			// add time cell
+			var cell_num = Math.floor((tableEndTime - tableStartTime) / setting.widthTime);
+			var before_time = -1;
+			for (var t = tableStartTime; t < tableEndTime; t += setting.widthTime) {
+
+				if (
+					(before_time < 0) ||
+					(Math.floor(before_time / 3600) != Math.floor(t / 3600))) {
+					var html = '';
+					html += '<div class="sc_time">' + element.formatTime(t) + '</div>';
+					var $time = jQuery(html);
+					var cell_num = Math.floor(Number(Math.min((Math.ceil((t + setting.widthTime) / 3600) * 3600), tableEndTime) - t) / setting.widthTime);
+					$time.width((cell_num * setting.widthTimeX) - setting.headTimeBorder);
+					$element.find(".sc_header_scroll").append($time);
+
+					before_time = t;
+				}
+			}
+
+			jQuery(window).resize(function() {
+				element.resizeWindow();
+			}).trigger("resize");
+
+			// addrow
+			for (var i in setting.rows) {
+				this.addRow(i, setting.rows[i]);
+			}
+		};
+		// 
+		this.init();
+
+		this.debug = function() {
+			var html = '';
+			for (var i in scheduleData) {
+				html += '<div>';
+
+				html += i + " : ";
+				var d = scheduleData[i];
+				for (var n in d) {
+					var dd = d[n];
+					html += n + " " + dd;
+				}
+
+				html += '</div>';
+			}
+			jQuery(setting.debug).html(html);
+		};
+
+		this.isCollison = function($div1, $div2) {
+			var x1 = $div1.offset().left;
+			var y1 = $div1.offset().top;
+			var h1 = $div1.outerHeight(true);
+			var w1 = $div1.outerWidth(true);
+			var b1 = y1 + h1;
+			var r1 = x1 + w1;
+			var x2 = $div2.offset().left;
+			var y2 = $div2.offset().top;
+			var h2 = $div2.outerHeight(true);
+			var w2 = $div2.outerWidth(true);
+			var b2 = y2 + h2;
+			var r2 = x2 + w2;
+
+			if (b1 <= y2 || y1 >= b2 || r1 <= x2 || x1 >= r2) return false;
+			return true;
+		}
+
+		if (setting.debug && setting.debug != "") {
+			setInterval(function() {
+				element.debug();
+			}, 10);
+		}
+
+		return (this);
+	};
 })(jQuery);
 /*
  AngularJS v1.2.28
@@ -18609,7 +18681,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_instance_widget.html',
-    "<div class=\"alert alert-warning\" ng-if=dataHolder.instances.noSearch><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('no_search_results',{__term__: \"\\\"\" + dataHolder.instances.filter.q + \"\\\"\"})}}</div><div ng-repeat=\"(indexG,g) in dataHolder.instances.groups track by indexG\" ng-init=\"instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]\" ng-if=\"dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1 || g.moduleId !== 'MobileAppSupport'\"><section class=accordion-instances ng-if=\"instanveModuleCnt > 1\"><h2 class=\"accordion-toggle chevron\" ng-init=\"expand[g.moduleId] = dataHolder.instances.expanded\"><button type=button aria-expanded={{dataHolder.instances.expanded}} bb-accordion ng-disabled=dataHolder.instances.expanded><span><img ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=img> {{dataHolder.modules.ids[g.moduleId].title}}&nbsp; <span class=item-cnt>({{dataHolder.instances.cnt.modules[g.moduleId]}})</span></span></button></h2><div class=accordion hidden ng-class=\"{'ng-show':dataHolder.instances.expanded}\"><div class=\"list-panel bcg-active\" ng-repeat=\"(indexA,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexA\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1\"><div class=body><div><a href=#module/post/{{v.id}}><span ng-bind=v.title></span></a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('instanceSingleDropdown_' + indexG+indexA, $event)\"></button></div><div class=control ng-class=\"naviExpanded['instanceSingleDropdown_' + indexG+indexA] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i> </a><button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateInstance(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-pause text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i> </a><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></section><div class=instance-entry-single ng-if=\"instanveModuleCnt < 2\"><div class=\"list-panel bcg-active\" ng-repeat=\"(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1 && v.moduleId !== 'MobileAppSupport'\"><figure class=\"img wh-32x32\"><img ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=img></figure><div class=body><div><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('instanceSingleDropdown_' + indexG, $event)\"></button></div><div class=control ng-class=\"naviExpanded['instanceSingleDropdown_' + indexG] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i> </a><button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateInstance(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-pause text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i> </a><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div>"
+    "<div class=\"alert alert-warning\" ng-if=dataHolder.instances.noSearch><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('no_search_results',{__term__: \"\\\"\" + dataHolder.instances.filter.q + \"\\\"\"})}}</div><div ng-repeat=\"(indexG,g) in dataHolder.instances.groups track by indexG\" ng-init=\"instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]\" ng-if=\"dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1 || g.moduleId !== 'MobileAppSupport'\"><section class=accordion-instances ng-if=\"instanveModuleCnt > 1\"><h2 class=\"accordion-toggle chevron\" ng-init=\"expand[g.moduleId] = dataHolder.instances.expanded\"><button type=button aria-expanded={{dataHolder.instances.expanded}} bb-accordion ng-disabled=dataHolder.instances.expanded><span><img ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=img> {{dataHolder.modules.ids[g.moduleId].title}}&nbsp; <span class=item-cnt>({{dataHolder.instances.cnt.modules[g.moduleId]}})</span></span></button></h2><div class=accordion hidden ng-class=\"{'ng-show':dataHolder.instances.expanded}\"><div class=\"list-panel bcg-active\" ng-repeat=\"(indexA,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexA\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1\"><div class=body><div><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('instanceSingleDropdown_' + indexG+indexA, $event)\"></button></div><div class=control ng-class=\"naviExpanded['instanceSingleDropdown_' + indexG+indexA] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i> </a><button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateInstance(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-pause text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i> </a><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></section><div class=instance-entry-single ng-if=\"instanveModuleCnt < 2\"><div class=\"list-panel bcg-active\" ng-repeat=\"(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1 && v.moduleId !== 'MobileAppSupport'\"><figure class=\"img wh-32x32\"><img ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=img></figure><div class=body><div><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('instanceSingleDropdown_' + indexG, $event)\"></button></div><div class=control ng-class=\"naviExpanded['instanceSingleDropdown_' + indexG] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i> </a><button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateInstance(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-pause text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i> </a><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div>"
   );
 
 
@@ -18849,12 +18921,17 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/heating/heating_id.html',
-    "<div ng-controller=HeatingIdController><bb-loader></bb-loader><h2>{{_t('heating')}}</h2><bb-alert alert=heating.alert></bb-alert><form class=\"form form-page\" ng-submit=storeInstance(true)><fieldset><section class=accordion-wrap ng-repeat=\"r in heating.rooms track by $index\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion ng-click=\"renderSchedule('#schedule-'+{{r.id}}, r.id)\"><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><fieldset><div class=form-inline><div class=\"form-group is-inline\"><label>{{_t('comfort_temp')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].comfortTemp convert-to-float><option value=\"\">---</option><option value={{ct}} ng-repeat=\"ct in heating.cfg.comfort.temp.temp track by $index\" ng-selected=\"ct == heating.input.params.roomSettings[r.id].comfortTemp\">{{heating.cfg.comfort.temp.label[$index]}}</option></select></div><div class=\"form-group is-inline\"><label>{{_t('energy_save_temp')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].energySaveTemp convert-to-float><option value=\"\">---</option><option value={{est}} ng-repeat=\"est in heating.cfg.energySave.temp.temp track by $index\" ng-selected=\"est == heating.input.params.roomSettings[r.id].energySaveTemp\">{{heating.cfg.energySave.temp.label[$index]}}</option></select></div><div class=\"form-group is-inline\"><label ng-if=\"heating.devices.SensorsByRoom[r.id].length >= 1\">{{_t('temp_sensor')}}</label><select class=form-control ng-if=\"heating.devices.SensorsByRoom[r.id].length > 1\" ng-modal=heatin.input.params.roomSettings[r.id].sensorId><option value=\"\">---</option><option value={{d.deviceId}} ng-repeat=\"d in heating.devices.SensorsByRoom[r.id] track by $index\">{{d.deviceName}}</option></select><span class=form-control ng-if=\"heating.devices.SensorsByRoom[r.id].length == 1\">{{heating.devices.SensorsByRoom[r.id][0].deviceName}}</span></div></div><div class=schedule-wrap><div class=schedule-overlay ng-if=!heating.input.params.roomSettings[r.id].comfortTemp><bb-help-text trans=\"_t('no_comfort_temp_info')\"></bb-help-text></div><div id=schedule-{{r.id}} class=schedule ng-class=\"(!heating.input.params.roomSettings[r.id].comfortTemp ? 'disabled': '')\"></div><bb-help-text trans=\"_t('schedule_info')\"></bb-help-text></div><div class=form-inline><div class=\"form-group is-inline\"><select class=form-control ng-model=r.copyOption><option value=null>---</option><option value={{i.id}} ng-repeat=\"i in heating.rooms\" ng-if=\"hasSchedules(i.id) && i.id !== r.id\">{{i.title}}</option></select><button class=\"btn btn-default\" type=button ng-click=\"copySchedule(r.copyOption, r.id, _t('copy_schedule', {__dest_room__: r.title, __src_room__: heating.rooms[r.copyOption].title}))\" ng-disabled=\"(r.copyOption == null || r.copyOption == 'null')\"><i class=\"fa fa-copy\"></i> {{_t('copy')}}</button><bb-help-text trans=\"_t('copy_schedule_info')\"></bb-help-text></div></div><div><h3>{{_t('thermostate_in_room')}}</h3><span class=\"btn btn-static btn-tag\" title={{v.deviceName}} ng-repeat=\"v in heating.devices.ThermostateByRoom[r.id] track by $index\" ng-if=\"_.size(heating.devices.ThermostateByRoom[r.id]) > 0\">{{v.deviceName|cutText:true:20}}</span><div class=\"alert alert-warning\" ng-if=\"_.size(heating.devices.ThermostateByRoom[r.id]) == 0\"><div class=form-group>{{_t('no_thermostate_in_room')}}</div></div></div></fieldset></div></section></fieldset><fieldset><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span>{{_t('advanced_settings')}}</span></button></h2><div class=accordion hidden><fieldset><div class=\"form-group is-inline\"><label>{{_t('reset_time')}}</label><input name=reset_time id=reset_time class=form-control ng-model=heating.input.params.resetTime>&nbsp;<bb-help-text trans=\"_t('help_reset_time')\"></bb-help-text></div></fieldset></div></section></fieldset><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=heating.input.active ng-checked=heating.input.active ng-disabled=!heating.roomsAvailable> <span class=slider></span></label><span class=switch-label>{{heating.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><a ng-href=#automations class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-disabled=!heating.roomsAvailable><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form><div ng-include=\"'app/views/automation/heating/heating_id_temperatrue_modal.html'\"></div></div>"
+    "<div ng-controller=HeatingIdController><bb-loader></bb-loader><h2>{{_t('heating')}}</h2><bb-alert alert=heating.alert></bb-alert><form class=\"form form-page\" ng-submit=storeInstance(true)><fieldset><section class=accordion-wrap ng-repeat=\"r in heating.rooms track by $index\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion ng-click=\"renderSchedule('#schedule-'+{{r.id}}, r.id)\"><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><fieldset><div class=form-inline><div class=\"form-group is-inline\"><label>{{_t('comfort_temp')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].comfortTemp convert-to-float><option value=\"\">---</option><option value={{ct}} ng-repeat=\"ct in heating.cfg.comfort.temp.temp track by $index\" ng-selected=\"ct == heating.input.params.roomSettings[r.id].comfortTemp\">{{heating.cfg.comfort.temp.label[$index]}}</option></select></div><div class=\"form-group is-inline\"><label>{{_t('energy_save_temp')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].energySaveTemp convert-to-float><option value=\"\">---</option><option value={{est}} ng-repeat=\"est in heating.cfg.energySave.temp.temp track by $index\" ng-selected=\"est == heating.input.params.roomSettings[r.id].energySaveTemp\">{{heating.cfg.energySave.temp.label[$index]}}</option></select></div><div class=\"form-group is-inline\" ng-if=\"heating.devices.SensorsByRoom[r.id].length >= 1\"><label>{{_t('temp_sensor')}}</label><select class=form-control ng-modal=heating.input.params.roomSettings[r.id].sensorId><option value={{heating.devices.SensorsByRoom[r.id][0].deviceId}} ng-if=\"heating.devices.SensorsByRoom[r.id].length == 1\">{{heating.devices.SensorsByRoom[r.id][0].deviceName}}</option><option value=\"\" ng-if=\"heating.devices.SensorsByRoom[r.id].length > 1\">---</option><option value={{d.deviceId}} ng-if=\"heating.devices.SensorsByRoom[r.id].length > 1\" ng-repeat=\"d in heating.devices.SensorsByRoom[r.id] track by $index\" ng-selected=\"d.deviceId == heating.input.params.roomSettings[r.id].sensorId\">{{d.deviceName}}</option></select></div></div><div class=schedule-wrap ng-hide=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"><div class=schedule-overlay ng-if=!heating.input.params.roomSettings[r.id].comfortTemp><bb-help-text trans=\"_t('no_comfort_temp_info')\"></bb-help-text></div><div id=schedule-{{r.id}} class=schedule ng-class=\"(!heating.input.params.roomSettings[r.id].comfortTemp ? 'disabled': '')\"></div><bb-help-text trans=\"_t('schedule_info')\"></bb-help-text></div><div ng-include=\"'app/views/automation/heating/mobile_schedule.html'\" ng-show=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"></div><div class=form-inline ng-hide=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"><div class=\"form-group is-inline\"><select class=form-control ng-model=r.copyOption><option value=null>---</option><option value={{i.id}} ng-repeat=\"i in heating.rooms\" ng-if=\"hasSchedules(i.id) && i.id !== r.id\">{{i.title}}</option></select><button class=\"btn btn-default\" type=button ng-click=\"copySchedule(r.copyOption, r.id, _t('copy_schedule', {__dest_room__: r.title, __src_room__: heating.rooms[r.copyOption].title}))\" ng-disabled=\"(r.copyOption == null || r.copyOption == 'null')\"><i class=\"fa fa-copy\"></i> {{_t('copy')}}</button><bb-help-text trans=\"_t('copy_schedule_info')\"></bb-help-text></div></div><div><h3>{{_t('thermostate_in_room')}}</h3><span class=\"btn btn-static btn-tag\" title={{v.deviceName}} ng-repeat=\"v in heating.devices.ThermostateByRoom[r.id] track by $index\" ng-if=\"_.size(heating.devices.ThermostateByRoom[r.id]) > 0\">{{v.deviceName|cutText:true:20}}</span><div class=\"alert alert-warning\" ng-if=\"_.size(heating.devices.ThermostateByRoom[r.id]) == 0\"><div class=form-group>{{_t('no_thermostate_in_room')}}</div></div></div></fieldset></div></section></fieldset><fieldset><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span>{{_t('advanced_settings')}}</span></button></h2><div class=accordion hidden><fieldset><div class=\"form-group is-inline\"><label>{{_t('reset_time')}}</label><input name=reset_time id=reset_time class=form-control ng-model=heating.input.params.resetTime>&nbsp;<bb-help-text trans=\"_t('help_reset_time')\"></bb-help-text></div></fieldset></div></section></fieldset><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=heating.input.active ng-checked=heating.input.active ng-disabled=!heating.roomsAvailable> <span class=slider></span></label><span class=switch-label>{{heating.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><a ng-href=#automations class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-disabled=!heating.roomsAvailable><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form><div ng-include=\"'app/views/automation/heating/heating_id_temperatrue_modal.html'\"></div></div>"
   );
 
 
   $templateCache.put('app/views/automation/heating/heating_id_temperatrue_modal.html',
-    "<div id=temperatureModal class=appmodal ng-if=modalArr.temperatureModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('temperatureModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{heating.tempModal.title}}</h3></div><div class=\"appmodal-body text-center\"><div class=\"app-row app-row-knob clearfix\"><div class=\"knob-col knob-ctrl\"><input value={{heating.tempModal.temp.value}} class=\"dial widget-level-knob\" data-width=160 data-height=160 knob-step=heating.tempModal.temp.step knob-min=heating.tempModal.temp.min knob-max=heating.tempModal.temp.max knob-id=heating.tempModal.scheduleId knob-data=heating.tempModal.temp.value knob-options=knobopt ng-model=heating.tempModal.temp.value myknob></div><div class=\"knob-col knob-btn\"><p><button class=\"btn btn-primary\" ng-click=\"setTemp(heating.tempModal.temp, '+')\"><i class=\"fa fa-angle-up\"></i></button>&nbsp; <button class=\"btn btn-info\" ng-click=\"setTemp(heating.tempModal.temp, heating.tempModal.temp.max)\"><i class=\"fa fa-angle-double-up\"></i></button></p><p><button class=\"btn btn-primary\" ng-click=\"setTemp(heating.tempModal.temp, '-')\"><i class=\"fa fa-angle-down\"></i></button>&nbsp; <button class=\"btn btn-info\" ng-click=\"setTemp(heating.tempModal.temp, heating.tempModal.temp.min)\"><i class=\"fa fa-angle-double-down\"></i></button></p><p><button class=\"btn btn-info\" ng-click=\"setTemp(heating.tempModal.temp, heating.tempModal.temp.max)\" ng-bind=\"_t('lb_full')\"></button></p></div></div></div></div></div>"
+    "<div id=temperatureModal class=appmodal ng-if=modalArr.temperatureModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('temperatureModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{heating.tempModal.title}}</h3></div><div class=\"appmodal-body text-center\"><div class=\"app-row app-row-knob clearfix\"><div class=\"knob-col knob-ctrl\"><input value={{heating.tempModal.temp.value}} class=\"dial widget-level-knob\" data-width=160 data-height=160 knob-step=heating.tempModal.temp.step knob-min=heating.tempModal.temp.min knob-max=heating.tempModal.temp.max knob-id=heating.tempModal.scheduleId knob-data=heating.tempModal.temp.value knob-options=knobopt ng-model=heating.tempModal.temp.value myknob></div><div class=\"knob-col knob-btn\"><p><button type=button class=\"btn btn-primary\" ng-click=\"setTemp(heating.tempModal.temp, '+')\"><i class=\"fa fa-angle-up\"></i></button>&nbsp; <button class=\"btn btn-info\" type=button ng-click=\"setTemp(heating.tempModal.temp, heating.tempModal.temp.max)\"><i class=\"fa fa-angle-double-up\"></i></button></p><p><button class=\"btn btn-primary\" type=button ng-click=\"setTemp(heating.tempModal.temp, '-')\"><i class=\"fa fa-angle-down\"></i></button>&nbsp; <button class=\"btn btn-info\" type=button ng-click=\"setTemp(heating.tempModal.temp, heating.tempModal.temp.min)\"><i class=\"fa fa-angle-double-down\"></i></button></p><p><button class=\"btn btn-info\" type=button ng-click=\"setTemp(heating.tempModal.temp, heating.tempModal.temp.max)\" ng-bind=\"_t('lb_full')\"></button></p></div></div><div ng-if_=\"\"><button class=\"btn btn-default\" type=button ng-click=\"deleteBar(heating.tempModal, $event)\"><i class=\"fa fa-remove text-danger\"></i> {{_t('delete')}}</button></div></div></div></div>"
+  );
+
+
+  $templateCache.put('app/views/automation/heating/mobile_schedule.html',
+    "<table class=\"table-responsive security-schedule\"><thead><th class=l-hide>&nbsp;</th><th>{{_t('time_period')}}</th><th>{{_t('temperature')}}</th><th>{{_t('day_short_0')}}</th><th>{{_t('day_short_1')}}</th><th>{{_t('day_short_2')}}</th><th>{{_t('day_short_3')}}</th><th>{{_t('day_short_4')}}</th><th>{{_t('day_short_5')}}</th><th>{{_t('day_short_6')}}</th><th>&nbsp;</th></thead><tbody><tr data-expanded=false ng-repeat=\"v in heating.mobileSchedule[r.id] track by $index\"><td class=td-accordion-toggle><button type=button aria-expanded=false bb-table-accordion>{{v.stime}}&nbsp; - &nbsp;{{v.etime}}</button></td><td class=td-header title=\"{{_t('time_period')}}\" class=form-inline><input type=time class=form-control ng-model=v.stime ng-change=\"timeChanged(r.id, $index, '{{v.stime}}', 'stime')\"> &nbsp; - &nbsp; <input type=time class=form-control ng-model=v.etime ng-change=\"timeChanged(r.id, $index, '{{v.etime}}', 'etime')\"></td><td class=td-header title=\"{{_t('temperature')}}\"><select class=form-control ng-model=v.temp convert-to-float><option value=\"\">---</option><option value={{ct}} ng-repeat=\"ct in heating.cfg.comfort.temp.temp track by $index\" ng-selected=\"ct == v.temp\">{{heating.cfg.comfort.temp.label[$index]}}</option></select></td><td class=td-header title=\"{{_t('day_short_0')}}\" ng-class=\"{'active': v[0]}\" ng-click=\"toggleTime(v, 0, r.id, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_1')}}\" ng-class=\"{'active': v[1]}\" ng-click=\"toggleTime(v, 1, r.id, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_2')}}\" ng-class=\"{'active': v[2]}\" ng-click=\"toggleTime(v, 2, r.id, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_3')}}\" ng-class=\"{'active': v[3]}\" ng-click=\"toggleTime(v, 3, r.id, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_4')}}\" ng-class=\"{'active': v[4]}\" ng-click=\"toggleTime(v, 4, r.id, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_5')}}\" ng-class=\"{'active': v[5]}\" ng-click=\"toggleTime(v, 5, r.id, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_6')}}\" ng-class=\"{'active': v[6]}\" ng-click=\"toggleTime(v, 6, r.id, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('lb_remove')}}\" class=td-action><button type=button class=\"btn btn-text\" title=Remove ng-click=\"unassignTimeSchedule(r.id, $index)\"><i class=\"fa fa-times text-danger\"></i></button></td></tr></tbody></table><div class=\"section text-right\"><button type=button title=\"{{_t('add_new')}}\" class=\"btn btn-submit\" ng-click=assignTimeSchedule(r.id)><i class=\"fa fa-plus\"></i> &nbsp;{{_t('add_new_scheduler')}}</button></div>"
   );
 
 
@@ -18904,7 +18981,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/rules/advanced/then_available.html',
-    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-hide=!rule.target.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.target.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.advanced.target.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignAdvancedTargetDevice(d)><img class=navi-img ng-src={{rule.namespaces[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img> {{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=rule.options.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"user.email && rule.advanced.target.assignedDevices.indexOf(user.email) === -1\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && rule.advanced.target.assignedDevices.indexOf(e.deviceId) === -1\" ng-repeat=\"e in rule.namespaces track by $index\" ng-selected=\"e.deviceId == model.target\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=rule.options.notification.default.target>{{_t('or')}} <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=rule.options.notification.default.target></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=rule.options.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignAdvancedTargetNotification(rule.options.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
+    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-hide=!rule.target.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.target.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.advanced.target.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignAdvancedTargetDevice(d)><img class=navi-img ng-src={{rule.namespaces[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img> {{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=rule.options.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"user.email && rule.advanced.target.assignedDevices.indexOf(user.email) === -1\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && rule.advanced.target.assignedDevices.indexOf(e.deviceId) === -1\" ng-repeat=\"e in rule.namespaces track by $index\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=rule.options.notification.default.target>{{_t('or')}} <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=rule.options.notification.default.target></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=rule.options.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignAdvancedTargetNotification(rule.options.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
   );
 
 
@@ -19059,7 +19136,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/rules/simple/then_available.html',
-    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-hide=!rule.target.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.target.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignTargetDevice(d)><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img> {{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=rule.options.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"rule.target.assignedDevices.indexOf(user.email) === -1 && user.email != ''\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && rule.target.assignedDevices.indexOf(e.deviceId) === -1\" ng-repeat=\"e in rule.namespaces track by $index\" ng-selected=\"e.deviceId == model.target\">{{e.deviceName}}</option></select>&nbsp; {{rule.options.notification.default.target}}<label ng-hide=rule.options.notification.default.target>{{_t('or')}} <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=rule.options.notification.default.target></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=rule.options.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignTargetNotification(rule.options.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
+    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-hide=!rule.target.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.target.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignTargetDevice(d)><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img> {{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=rule.options.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"rule.target.assignedDevices.indexOf(user.email) === -1 && user.email != ''\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && rule.target.assignedDevices.indexOf(e.deviceId) === -1\" ng-repeat=\"e in rule.namespaces track by $index\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=rule.options.notification.default.target>{{_t('or')}} <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=rule.options.notification.default.target></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=rule.options.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignTargetNotification(rule.options.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
   );
 
 
@@ -19199,7 +19276,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/security/actions/notification.html',
-    "<div class=\"form-group form-inline\"><select class=form-control ng-model=model.target><option value=\"\" ng-selected=true>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"model.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == model.target\">{{e.deviceName}}</option></select>&nbsp;</div><div class=form-group ng-if=\"model.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=model.message placeholder=\"{{_t('message')}}\"></textarea></div>"
+    "<div class=\"form-group form-inline\"><select class=form-control ng-model=model.target><option value=\"\" ng-selected=!model.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"model.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == model.target\">{{e.deviceName}}</option></select>&nbsp;</div><div class=form-group ng-if=\"model.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=model.message placeholder=\"{{_t('message')}}\"></textarea></div>"
   );
 
 
@@ -19278,13 +19355,23 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/automation/security/time/mobile_schedule.html',
+    "<table class=\"table-responsive security-schedule\"><thead><th class=l-hide>&nbsp;</th><th>{{_t('time_period')}}</th><th>{{_t('day_short_0')}}</th><th>{{_t('day_short_1')}}</th><th>{{_t('day_short_2')}}</th><th>{{_t('day_short_3')}}</th><th>{{_t('day_short_4')}}</th><th>{{_t('day_short_5')}}</th><th>{{_t('day_short_6')}}</th><th>&nbsp;</th></thead><tbody><tr data-expanded=false ng-repeat=\"v in security.mobileSchedule track by $index\"><td class=td-accordion-toggle><button type=button aria-expanded=false bb-table-accordion>{{v.arm}}&nbsp; - &nbsp;{{v.disarm}}</button></td><td class=td-header title=\"{{_t('time_period')}}\" class=form-inline><input type=time class=form-control ng-model=v.arm ng-change=\"timeChanged($index, '{{v.arm}}', 'arm')\"> &nbsp; - &nbsp; <input type=time class=form-control ng-model=v.disarm ng-change=\"timeChanged($index, '{{v.disarm}}', 'disarm')\"></td><td class=td-header title=\"{{_t('day_short_0')}}\" ng-class=\"{'active': v[0]}\" ng-click=\"toggleTime(v, 0, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_1')}}\" ng-class=\"{'active': v[1]}\" ng-click=\"toggleTime(v, 1, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_2')}}\" ng-class=\"{'active': v[2]}\" ng-click=\"toggleTime(v, 2, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_3')}}\" ng-class=\"{'active': v[3]}\" ng-click=\"toggleTime(v, 3, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_4')}}\" ng-class=\"{'active': v[4]}\" ng-click=\"toggleTime(v, 4, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_5')}}\" ng-class=\"{'active': v[5]}\" ng-click=\"toggleTime(v, 5, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_6')}}\" ng-class=\"{'active': v[6]}\" ng-click=\"toggleTime(v, 6, $index)\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('lb_remove')}}\" class=td-action><button type=button class=\"btn btn-text\" title=Remove ng-click=unassignTimeSchedule($index)><i class=\"fa fa-times text-danger\"></i></button></td></tr></tbody></table><div class=\"section text-right\"><button type=button title=\"{{_t('add_new')}}\" class=\"btn btn-submit\" ng-click=assignTimeSchedule()><i class=\"fa fa-plus\"></i> &nbsp;{{_t('add_new_scheduler')}}</button></div>"
+  );
+
+
+  $templateCache.put('app/views/automation/security/time/security_modal.html',
+    "<div id=securityModal class=appmodal ng-if=modalArr.securityModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('securityModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{security.securityModal.title}}</h3></div><div class=\"appmodal-body text-center\"><div><button class=\"btn btn-default\" type=button ng-click=\"deleteBar(security.securityModal, $event)\"><i class=\"fa fa-remove text-danger\"></i> {{_t('delete')}}</button></div></div></div></div>"
+  );
+
+
   $templateCache.put('app/views/automation/security/time/time_schedule.1.html',
     "<div class=form-group><label class=switch><input type=checkbox ng-model=security.input.params.times.aktive> <span class=slider></span></label><span class=switch-label>{{_t('security_immediate_activate_schedule')}}</span><bb-help-text trans=\"_t('help_security_immediate_activate_schedule')\"></bb-help-text></div><table class=\"table-responsive security-schedule\"><thead><th class=l-hide>&nbsp;</th><th>{{_t('time_period')}}</th><th>{{_t('disarm_arm')}}</th><th>{{_t('day_short_0')}}</th><th>{{_t('day_short_1')}}</th><th>{{_t('day_short_2')}}</th><th>{{_t('day_short_3')}}</th><th>{{_t('day_short_4')}}</th><th>{{_t('day_short_5')}}</th><th>{{_t('day_short_6')}}</th><th>&nbsp;</th></thead><tbody><tr data-expanded=false ng-repeat=\"v in security.input.params.times.table track by $index\"><td class=td-accordion-toggle><button type=button aria-expanded=false bb-table-accordion>{{v.times}}</button></td><td class=td-header title=\"{{_t('time_period')}}\" class=form-inline><span ng-hide=security.editSchedule[$index]>{{v.times}}</span> <input type=time class=form-control ng-model=v.times ng-if=security.editSchedule[$index]> <button type=button class=\"btn btn-text\" title=Remove ng-click=\"security.editSchedule[$index] = !security.editSchedule[$index]\"><i class=\"fa text-info\" ng-class=\"{'fa-check': security.editSchedule[$index],'fa-pencil': !security.editSchedule[$index]}\"></i></button></td><td class=td-header title=\"{{_t('disarm_arm')}}\"><label class=switch><input type=checkbox ng-model=v.condition ng-false-value=disarm ng-true-value=arm ng-checked=\"v.condition == 'arm'\"> <span class=slider></span></label></td><td class=td-header title=\"{{_t('day_short_0')}}\" ng-class=\"{'active': v[0]}\" ng-click=\"v[0] = !v[0]\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_1')}}\" ng-class=\"{'active': v[1]}\" ng-click=\"v[1] = !v[1]\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_2')}}\" ng-class=\"{'active': v[2]}\" ng-click=\"v[2] = !v[2]\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_3')}}\" ng-class=\"{'active': v[3]}\" ng-click=\"v[3] = !v[3]\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_4')}}\" ng-class=\"{'active': v[4]}\" ng-click=\"v[4] = !v[4]\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_5')}}\" ng-class=\"{'active': v[5]}\" ng-click=\"v[5] = !v[5]\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('day_short_6')}}\" ng-class=\"{'active': v[6]}\" ng-click=\"v[6] = !v[6]\"><i class=\"fa fa-check\"></i></td><td class=td-header title=\"{{_t('lb_remove')}}\" class=td-action><button type=button class=\"btn btn-text\" title=Remove ng-click=unassignTimeScheduler($index)><i class=\"fa fa-times text-danger\"></i></button></td></tr></tbody></table><div class=\"section text-right\"><button type=button title=\"{{_t('add_new')}}\" class=\"btn btn-submit\" ng-click=assignTimeScheduler()><i class=\"fa fa-plus\"></i> &nbsp;{{_t('add_new_scheduler')}}</button></div>"
   );
 
 
   $templateCache.put('app/views/automation/security/time/time_schedule.html',
-    "<div class=form-group><label class=switch><input type=checkbox ng-model=security.input.params.times.aktive> <span class=slider></span></label><span class=switch-label>{{_t('security_immediate_activate_schedule')}}</span><bb-help-text trans=\"_t('help_security_immediate_activate_schedule')\"></bb-help-text></div><div id=schedule-disarm class=schedule></div><bb-help-text trans=\"_t('help_security_schedule')\"></bb-help-text>"
+    "<div class=form-group><label class=switch><input type=checkbox ng-model=security.input.params.times.aktive> <span class=slider></span></label><span class=switch-label>{{_t('security_immediate_activate_schedule')}}</span><bb-help-text trans=\"_t('help_security_immediate_activate_schedule')\"></bb-help-text></div><div ng-hide=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"><div id=schedule-disarm class=schedule></div><bb-help-text trans=\"_t('help_security_schedule')\"></bb-help-text></div><div ng-show=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\" ng-include=\"'app/views/automation/security/time/mobile_schedule.html'\"></div><div ng-include=\"'app/views/automation/security/time/security_modal.html'\"></div>"
   );
 
 
@@ -19920,7 +20007,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/rooms/room_assigned.html',
-    "<p><span class=inline><bb-help-text trans=\"_t('room_main_sensors',{'__cnt__': input.main_sensors.length})\" display=inline></bb-help-text></span><button type=button class=\"btn btn-default btn-small\" ng-show=input.main_sensors.length ng-click=clearSensors(input)><i class=\"fa fa-refresh\"></i> {{_t('clear_sensors')}}</button></p><div class=\"device-available-block assigned\"><div class=\"btn-group btn-tag\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) > -1 && d.location !== 0\"><a href=\"\" class=\"btn btn-default\" title={{d.metrics.title}} ng-click=removeDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-times text-danger\" title=\"{{_t('lb_remove')}}\"></i></a><label class=\"btn btn-default\" for=assign_sensor ng-if=\"['sensorBinary', 'sensorMultilevel'].indexOf(d.deviceType) !== -1\" ng-class=\"(input.main_sensors.length === 3 && input.main_sensors.indexOf(d.id) === -1) ? 'disabled' : ''\"><input type=checkbox value={{d.id}} name=assign_sensor id=assign_sensor ng-click=\"assignSensor($event, d)\" ng-checked=\"input.main_sensors.indexOf(d.id) > -1\"></label></div></div>"
+    "<p><span class=inline><bb-help-text trans=\"_t('room_main_sensors',{'__cnt__': input.main_sensors.length})\" display=inline></bb-help-text></span><button type=button class=\"btn btn-default btn-small\" ng-show=input.main_sensors.length ng-click=clearSensors(input)><i class=\"fa fa-refresh\"></i> {{_t('clear_sensors')}}</button></p><div class=\"device-available-block assigned\"><div class=\"btn-group btn-tag\" ng-repeat=\"d in devices\" ng-if=\"devicesAssigned.indexOf(d.id) > -1 && d.location !== 0\"><a href=\"\" class=\"btn btn-default\" title={{d.metrics.title}} ng-click=removeDevice(d)>{{d.metrics.title|cutText:true:20}} <i class=\"fa fa-times text-danger\" title=\"{{_t('lb_remove')}}\"></i></a><label class=\"btn btn-default\" for=assign_sensor_{{d.id}} ng-if=\"['sensorBinary', 'sensorMultilevel'].indexOf(d.deviceType) !== -1\" ng-class=\"(input.main_sensors.length === 3 && input.main_sensors.indexOf(d.id) === -1) ? 'disabled' : ''\"><input type=checkbox value={{d.id}} name=assign_sensor id=assign_sensor_{{d.id}} ng-click=\"assignSensor($event, d)\" ng-checked=\"input.main_sensors.indexOf(d.id) > -1\"></label></div></div>"
   );
 
 
@@ -20000,7 +20087,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/welcome/first_login.html',
-    "<div ng-controller=WelcomeController><div class=form-page><div ng-switch=currentStep class=wizard-tabs><div class=\"fieldset tab\" ng-switch-when=1><div class=content ng-include=\"'app/views/welcome/tab_welcome.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=2><div class=content ng-include=\"'app/views/welcome/tab_elements.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=3><div class=content ng-include=\"'app/views/welcome/tab_element_detail_view.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=4><div class=content ng-include=\"'app/views/welcome/tab_events.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=5><div class=content ng-include=\"'app/views/welcome/tab_events.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=6><div class=content ng-include=\"'app/views/welcome/tab_lets_start.html'\"></div></div></div><ol class=dots><li class=clickable ng-repeat=\"v in steps\" ng-class=\"{'active' : ($index + 1) == currentStep}\" ng-model=currentStep ng-click=\"setStep(($index + 1))\"></li></ol><div class=\"fieldset wizard-controls\"><button class=\"btn btn-submit prev\" ng-hide=\"currentStep == 1\" ng-click=prevNext(-1)><i class=\"fa fa-chevron-left\"></i> {{_t('lb_prev')}}</button> <button class=\"btn btn-default cancel\" title=\"_t('lb_skip')\" ng-hide=\"currentStep == steps.length\" ng-click=skip()>{{_t('lb_skip')}} <i class=\"fa fa-chevron-double-right\"></i></button> <button class=\"btn btn-submit next\" ng-hide=\"currentStep == steps.length\" ng-click=prevNext(1)>{{_t('lb_next')}} <i class=\"fa fa-chevron-right\"></i></button></div></div></div>"
+    "<div ng-controller=WelcomeController><div class=form-page><div ng-switch=currentStep class=wizard-tabs><div class=\"fieldset tab\" ng-switch-when=1><div class=content ng-include=\"'app/views/welcome/tab_welcome.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=2><div class=content ng-include=\"'app/views/welcome/tab_elements.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=3><div class=content ng-include=\"'app/views/welcome/tab_element_detail_view.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=4><div class=content ng-include=\"'app/views/welcome/tab_events.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=5><div class=content ng-include=\"'app/views/welcome/tab_lets_start.html'\"></div></div></div><ol class=dots><li class=clickable ng-repeat=\"v in steps\" ng-class=\"{'active' : ($index + 1) == currentStep}\" ng-model=currentStep ng-click=\"setStep(($index + 1))\"></li></ol><div class=\"fieldset wizard-controls\"><button class=\"btn btn-submit prev\" ng-hide=\"currentStep == 1\" ng-click=prevNext(-1)><i class=\"fa fa-chevron-left\"></i> {{_t('lb_prev')}}</button> <button class=\"btn btn-default cancel\" title=\"_t('lb_skip')\" ng-hide=\"currentStep == steps.length\" ng-click=skip()>{{_t('lb_skip')}} <i class=\"fa fa-chevron-double-right\"></i></button> <a class=\"btn btn-submit cancel\" ng-show=\"currentStep == steps.length\" href=#elements>{{_t('lets_start')}} <i class=\"fa fa-chevron-right\"></i></a> <button class=\"btn btn-submit next\" ng-hide=\"currentStep == steps.length\" ng-click=prevNext(1)>{{_t('lb_next')}} <i class=\"fa fa-chevron-right\"></i></button></div></div></div>"
   );
 
 
@@ -20020,7 +20107,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/welcome/tab_lets_start.html',
-    "<h1>{{_t('lets_start')}}</h1><div class=text><p>To Add a new device please follow the instruction under <a href=#devices class=\"btn btn-default\"><i class=\"fa fa-cogs\"></i> {{_t('nav_devices')}}</a>.<br>The following devices currently supported:<ul><li>Z-Wave</li><li>Mobile Phones (for push notifications)</li><li>Camera</li><li>Speech Assistants Alexa or GoogleHome</li><li>Wifi plugs</li></ul></p><div ng-if=elementAccess(cfg.role_access.admin)>All other functions such as time triggered actions, the use of information from the Internet, scenes plugin of other technologies and service are realized in <strong>Apps</strong>. These apps can create none, one or multiple new elements and events. The menu <a href=#apps/local class=\"btn btn-default\"><i class=\"fa fa-cubes\"></i> {{_t('nav_apps')}}</a> allows downloading, activating and configuring your Apps.<br><br></div><p></p></div>"
+    "<h1>{{_t('lets_start')}}</h1><div class=text><p>To Add a new device please follow the instruction under <a href=#devices class=\"btn btn-default\"><i class=\"fa fa-cogs\"></i> {{_t('nav_devices')}}</a>.<br>The following devices a currently supported:<ul><li>Z-Wave</li><li>Mobile Phones (for push notifications)</li><li>Camera</li><li>Speech Assistants Alexa or GoogleHome</li><li>Wifi plugs</li></ul></p><div ng-if=elementAccess(cfg.role_access.admin)>All other functions such as time triggered actions, the use of information from the Internet, scenes plugin of other technologies and service are realized in <strong>Apps</strong>. These apps can create none, one or multiple new elements and events. The menu <a href=#apps/local class=\"btn btn-default\"><i class=\"fa fa-cubes\"></i> {{_t('nav_apps')}}</a> allows downloading, activating and configuring your Apps.<br><br></div><p></p></div>"
   );
 
 
@@ -30060,7 +30147,6 @@ myAppController.controller('AutomationsController', function($scope, $q, $timeou
             }).value().slice().sort(function(a, b) {
                 return cfg.automations.indexOf(a.moduleName) - cfg.automations.indexOf(b.moduleName);
             });
-        console.log("$scope.automations.modules", $scope.automations.modules);
     }
 
     function setInstances(data) {
@@ -30084,6 +30170,8 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 		state: '',
 		enableTest: [],
 	};
+	$scope.oldScenes = [];
+
 	/**
 	 * Load schedules
 	 * @returns {undefined}
@@ -30128,7 +30216,62 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 			});
 		});
 	};
-	$scope.loadScenes();
+
+	/**
+	 * Load schedules
+	 * @returns {undefined}
+	 */
+	$scope.loadOldScenes = function() {
+		dataFactory.getApi('instances', '/LightScene', true).then(function(response) {
+			$scope.oldScenes = _.filter(response.data.data, function(v) {
+				return !v.params.transformed;
+			});
+
+			if ($scope.oldScenes.length) {
+				var postData = {
+					source: 'LightScene',
+					target: 'Scenes'
+				}
+
+				alertify.confirm($scope._t('ligthscenes_exists'))
+					.setting('labels', {
+						'ok': $scope._t('ok_import')
+					})
+					.set('onok', function(closeEvent) { //after clicking OK
+						dataFactory.postApi('modules_transform', postData).then(function(response) {
+							if (response.data && response.data.data) {
+								var newScenes = response.data.data.map(function(entry) {
+									return entry.title
+								});
+								dataService.showNotifier({
+									message: $scope._t('successfully_transformed') + '<br>' + newScenes.join(',<br>')
+								});
+								$scope.loadScenes();
+							}
+
+							$scope.oldScenes = [];
+						}, function(error) {
+							dataService.showNotifier({
+								message: $scope._t('error_transformed'),
+								type: 'error'
+							});
+							$scope.oldScenes = [];
+							$scope.loadScenes();
+						});
+					})
+					.set('oncancel', function(closeEvent) { //after clicking Cancel
+						$scope.oldScenes = [];
+						$scope.loadScenes();
+					});
+			} else {
+				$scope.loadScenes();
+			}
+		}, function(error) {
+			$scope.loadScenes();
+		});
+	};
+	$scope.loadOldScenes();
+
 	/**
 	 * Run test
 	 * @param {object} instance
@@ -30214,17 +30357,17 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 				}
 			},
 			switchRGBW: {
-			  level: ['on', 'off'],
-			  min: 0,
-			  max: 255,
-			  default: {
-			    deviceId: '',
-			    deviceType: 'switchRGBW',
-			    level: 'on',
-			    sendAction: false,
-			    reverseLevel: null
-			  }
-			},			
+				level: ['on', 'off'],
+				min: 0,
+				max: 255,
+				default: {
+					deviceId: '',
+					deviceType: 'switchRGBW',
+					level: 'on',
+					sendAction: false,
+					reverseLevel: null
+				}
+			},
 			thermostat: {
 				min: 0,
 				max: 99,
@@ -30497,13 +30640,12 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
  * Controller that handles list of rules
  * @class AutomationRuleController
  */
-myAppController.controller('AutomationRuleController', function($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('AutomationRuleController', function($scope, $routeParams, $location, $timeout, $q, cfg, dataFactory, dataService, _, myCache) {
 	$scope.rules = {
 		state: '',
-		enableTest: [],
-
+		enableTest: []
 	};
-
+	$scope.oldLogics = [];
 
 	/**
 	 * Load 
@@ -30541,7 +30683,115 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 			});
 		});
 	};
-	$scope.loadRules();
+
+	/**
+	 * Load old LogicalRules and IfThen
+	 * @returns {undefined}
+	 */
+	$scope.loadOldLogics = function() {
+
+		var promises = [
+				dataFactory.getApi('instances', '/IfThen', true),
+				dataFactory.getApi('instances', '/LogicalRules', true)
+			],
+			ifThenList = [],
+			logicalRulesList = [];
+
+		$q.allSettled(promises).then(function(response) {
+			var ifThen = response[0];
+			var logicalRules = response[1];
+			// Error message
+			if (ifThen.state === 'rejected' || logicalRules.state === 'rejected') {
+				$scope.loadRules();
+				return;
+			}
+			// Success - modules
+			if (ifThen.state === 'fulfilled') {
+				ifThenList = _.filter(ifThen.value.data.data, function(v) {
+					return !v.params.transformed;
+				});
+			}
+
+			// Success - instances
+			if (logicalRules.state === 'fulfilled') {
+				logicalRulesList = _.filter(logicalRules.value.data.data, function(v) {
+					return !v.params.transformed;
+				});
+			}
+
+			$scope.oldLogics = $scope.oldLogics.concat(ifThenList, logicalRulesList);
+
+			if ($scope.oldLogics.length) {
+				var ifThenPostData = {
+						source: 'IfThen',
+						target: 'Rules'
+					},
+					logicalRulesPostData = {
+						source: 'LogicalRules',
+						target: 'Rules'
+					};
+
+				alertify.confirm($scope._t('logics_exists'))
+					.setting('labels', {
+						'ok': $scope._t('ok_import')
+					})
+					.set('onok', function(closeEvent) { //after clicking OK
+						var confirmProm = [
+							dataFactory.postApi('modules_transform', ifThenPostData),
+							dataFactory.postApi('modules_transform', logicalRulesPostData)
+						]
+
+						$q.allSettled(confirmProm).then(function(res) {
+							var ifThenRes = res[0],
+								logicalRulesRes = res[1],
+								resTitles = [];
+
+							// Error message
+							if (ifThenRes.state === 'rejected' || logicalRulesRes.state === 'rejected') {
+								dataService.showNotifier({
+									message: $scope._t('error_transformed'),
+									type: 'error'
+								});
+								$scope.oldLogics = [];
+								$scope.loadRules();
+								return;
+							}
+							// Success - modules
+							if (ifThenRes.state === 'fulfilled') {
+								resTitles = resTitles.concat(ifThenRes.value.data.data.map(function(entry) {
+									return entry.title
+								}));
+							}
+
+							// Success - instances
+							if (logicalRulesRes.state === 'fulfilled') {
+								resTitles = resTitles.concat(logicalRulesRes.value.data.data.map(function(entry) {
+									return entry.title
+								}));
+							}
+
+							if (resTitles.length) {
+								dataService.showNotifier({
+									message: $scope._t('successfully_transformed') + '<br>' + resTitles.join(',<br>')
+								});
+								$scope.loadRules();
+							}
+
+							$scope.oldLogics = [];
+
+						});
+					})
+					.set('oncancel', function(closeEvent) { //after clicking Cancel
+						$scope.oldLogics = [];
+						$scope.loadRules();
+					});
+			} else {
+				$scope.oldLogics = [];
+				$scope.loadRules();
+			}
+		});
+	};
+	$scope.loadOldLogics();
 
 	/**
 	 * Run test
@@ -30673,9 +30923,11 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 				}
 			},
 			sensorDiscrete: {
+				//TODO
+				//level: ['press', 'hold', 'release', 'tap', 'swipe_up', 'swipe_down', 'swipe_left', 'swipe_right', 'swipe_top_left_to_bottom_right', 'swipe_top_right_to_bottom_left', 'swipe_bottom_left_to_top_right', 'swipe_bottom_right_to_top_left'],
 				default: {
 					deviceId: '',
-					deviceType: 'switchControl',
+					deviceType: 'sensorDiscrete',
 					level: '',
 					sendAction: false,
 					reverseLevel: null
@@ -31482,9 +31734,9 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 myAppController.controller('AutomationScheduleController', function($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
 	$scope.schedules = {
 		state: '',
-		enableTest: [],
-
+		enableTest: []
 	};
+	$scope.oldSchedules = [];
 
 
 	/**
@@ -31523,7 +31775,61 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 			});
 		});
 	};
-	$scope.loadSchedules();
+
+	/**
+	 * Load old schedules
+	 * @returns {undefined}
+	 */
+	$scope.loadOldSchedules = function() {
+		dataFactory.getApi('instances', '/ScheduledScene', true).then(function(response) {
+			$scope.oldSchedules = _.filter(response.data.data, function(v) {
+				return !v.params.transformed;
+			});
+
+			if ($scope.oldSchedules.length) {
+				var postData = {
+					source: 'ScheduledScene',
+					target: 'Schedules'
+				}
+
+				alertify.confirm($scope._t('scheduledscenes_exists'))
+					.setting('labels', {
+						'ok': $scope._t('ok_import')
+					})
+					.set('onok', function(closeEvent) { //after clicking OK
+						dataFactory.postApi('modules_transform', postData).then(function(response) {
+							if (response.data && response.data.data) {
+								var newSchedules = response.data.data.map(function(entry) {
+									return entry.title
+								});
+								dataService.showNotifier({
+									message: $scope._t('successfully_transformed') + '<br>' + newSchedules.join(',<br>')
+								});
+								$scope.loadSchedules();
+							}
+
+							$scope.oldSchedules = [];
+						}, function(error) {
+							dataService.showNotifier({
+								message: $scope._t('error_transformed'),
+								type: 'error'
+							});
+							$scope.oldSchedules = [];
+							$scope.loadSchedules();
+						});
+					})
+					.set('oncancel', function(closeEvent) { //after clicking Cancel
+						$scope.oldSchedules = [];
+						$scope.loadSchedules();
+					});
+			} else {
+				$scope.loadSchedules();
+			}
+		}, function(error) {
+			$scope.loadSchedules();
+		});
+	};
+	$scope.loadOldSchedules();
 
 	/**
 	 * Run schedule test
@@ -32001,21 +32307,19 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					clearCondition: 'never'
 				}
 			},
-			times: {
-				default: {
-					'0': false,
-					'1': false,
-					'2': false,
-					'3': false,
-					'4': false,
-					'5': false,
-					'6': false,
-					'times': '00:00',
-					'condition': 'disarm'
-				}
-			},
 			notification: {
 				probeType: 'notification_push'
+			},
+			mobileSchedule_entry: {
+				'0': false,
+				'1': false,
+				'2': false,
+				'3': false,
+				'4': false,
+				'5': false,
+				'6': false,
+				arm: '00:00',
+				disarm: '00:00'
 			}
 		},
 		input: {
@@ -32066,10 +32370,20 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					'5': [],
 					'6': []
 				}
-
 			}
-		}
+		},
+		securityModal: {
+			title: "",
+			scheduleId: "",
+			delete: false,
+			timeline: null,
+			scheduleIndex: null,
+			arm: null,
+			disarm: null
+		},
+		mobileSchedule: []
 	};
+
 	/**
 	 *  Schedule
 	 */
@@ -32144,7 +32458,15 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			this.addScheduleData(data);
 			$scope.updateData();
 		},
-		bar_Click: function(node, timelineData, scheduleIndex) {},
+		bar_Click: function(node, timelineData, scheduleIndex) {
+			$scope.security.securityModal.scheduleId = "#" + $(this).attr('id');
+			$scope.security.securityModal.timeline = timelineData.timeline;
+			$scope.security.securityModal.arm = timelineData.start;
+			$scope.security.securityModal.disarm = timelineData.end;
+			$scope.security.securityModal.scheduleIndex = scheduleIndex;
+			$scope.security.securityModal.title = this.formatTime(timelineData.start) + " - " + this.formatTime(timelineData.end);
+			$scope.handleModal('securityModal');
+		},
 		connect: function(data) {},
 		confirm: function() {},
 		delete_bar: function() {
@@ -32179,19 +32501,9 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				active: instance.active,
 				params: instance.params
 			});
-			// Adding rows to scheduleOptions
-			angular.forEach($scope.security.input.params.schedules, function(v, k) {
-				if (_.size(v)) {
-					angular.forEach(v, function(t) {
-						$scope.scheduleOptions.rows[k]['schedule'].push({
-							start: t.arm,
-							end: t.disarm,
-							text: $scope._t('lb_arm')
-						})
-					});
-				}
 
-			});
+			// transform to mobile
+			$scope.transformFromInstToMobile();
 
 		}, function(error) {
 			angular.extend(cfg.route.alert, {
@@ -32304,6 +32616,29 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		});
 		return index;
 	};
+
+	/**
+	 * delete schedule Bar
+	 * @param  {obj} input  schedule data
+	 * @param  {obj} $event dom event
+	 */
+	$scope.deleteBar = function(input, $event) {
+		var arm = $scope.jQuerySchedule.formatTime(input.arm),
+			disarm = $scope.jQuerySchedule.formatTime(input.disarm),
+			index = _.findIndex($scope.security.input.params.schedules[input.timeline], {
+				arm: arm,
+				disarm: disarm,
+			});
+
+		if (index !== -1) {
+			$scope.security.input.params.schedules[input.timeline].splice(index, 1);
+			$scope.updateSchedule();
+			input.delete = true;
+			$scope.handleModal('securityModal', $event);
+			$scope.transformFromInstToMobile();
+		}
+	};
+
 	////////// Devices ////////// 
 
 	/**
@@ -32353,6 +32688,29 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	};
 
 	////////// Dis-arm by time ////////// 
+
+	/**
+	 * Update schedule
+	 */
+	$scope.updateSchedule = function() {
+		if (!_.isEmpty($scope.jQuerySchedule)) {
+			var days = Object.keys($scope.security.input.params.schedules),
+				data = {};
+			angular.copy($scope.scheduleOptions.rows, data);
+			days.forEach(function(day) {
+				$scope.security.input.params.schedules[day].forEach(function(schedule) {
+					var sc = {
+						start: schedule.arm,
+						end: schedule.disarm,
+						text: $scope._t('lb_arm')
+					}
+					data[day].schedule.push(sc);
+				});
+			});
+			$scope.jQuerySchedule.update(data);
+		}
+	}
+
 	/**
 	 * Renders dis-arm schedule
 	 * @param {string} elementId 
@@ -32364,6 +32722,20 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 			angular.copy($scope.scheduleOptions, scheduleOptions_copy);
 
+			// set data
+			angular.forEach($scope.security.input.params.schedules, function(v, day) {
+				if (_.size(v)) {
+					angular.forEach(v, function(t) {
+						scheduleOptions_copy.rows[day]['schedule'].push({
+							start: t.arm,
+							end: t.disarm,
+							text: $scope._t('lb_arm')
+						})
+					});
+				}
+			});
+
+			// set weekday titles
 			schedule.empty();
 			$timeout(function() {
 				schedule.timeSchedule(scheduleOptions_copy);
@@ -32374,6 +32746,10 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				});
 				$scope.jQuerySchedule = schedule;
 			}, 10);
+		} else {
+			$timeout(function() {
+				$scope.jQuerySchedule.resizeWindow();
+			}, 0);
 		}
 	};
 
@@ -32381,52 +32757,146 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * Update input data
 	 */
 	$scope.updateData = function() {
-		angular.forEach($scope.jQuerySchedule.getScheduleData(), function(v, k) {
-			$scope.security.input.params.schedules[k] = _.map(v.schedule, function(sc) {
-				return {
-					arm: sc.start,
-					disarm: sc.end,
-				};
-			});
+		angular.forEach($scope.jQuerySchedule.getScheduleData(), function(row, day) {
+			var sorted_sc = _.sortBy(row.schedule, 'start'),
+				new_sc = sorted_sc.map(function(sc) {
+					return {
+						arm: sc.start,
+						disarm: sc.end,
+					};
+				});
+			$scope.security.input.params.schedules[day] = new_sc;
+		});
+		$scope.transformFromInstToMobile();
+	};
+
+	/**
+	 * Time changed
+	 * @param  {int} roomId      roomId
+	 * @param  {int} targetIndex entry index
+	 * @param  {string} oldValue    prev time
+	 * @param  {string} type        arm/disarm
+	 */
+	$scope.timeChanged = function(targetIndex, oldValue, type) {
+
+		var arm = stringToTime($scope.security.mobileSchedule[targetIndex].arm),
+			disarm = stringToTime($scope.security.mobileSchedule[targetIndex].disarm);
+
+		for (var i = 0; i <= 6; i++) { // days
+			if ($scope.security.mobileSchedule[targetIndex][i]) { // day true
+				overlaps = timeOverlaps($scope.security.mobileSchedule, arm, disarm, i); // check for day
+				if (overlaps.length > 0) {
+					$scope.security.mobileSchedule[targetIndex][type] = oldValue;
+					alertify.alertWarning($scope._t('data_overlaps'));
+					i = 6;
+				}
+			}
+		}
+	}
+
+	/**
+	 * activate/deactivate time for day
+	 * @param  {obj} data        
+	 * @param  {int} day         day nubmer [0 - 6] [SU - SA] 
+	 * @param  {int} roomId      roomId
+	 * @param  {int} targetIndex entry index
+	 * @return {string}          arm/disarm
+	 */
+	$scope.toggleTime = function(data, day, targetIndex) {
+		$scope.security.mobileSchedule[targetIndex][day] = !$scope.security.mobileSchedule[targetIndex][day];
+
+		if ($scope.security.mobileSchedule[targetIndex][day]) {
+			var arm = stringToTime(data.arm),
+				disarm = stringToTime(data.disarm);
+
+			var overlaps = timeOverlaps($scope.security.mobileSchedule, arm, disarm, day);
+
+			if (overlaps.length > 0) {
+				$scope.security.mobileSchedule[targetIndex][day] = false;
+				alertify.alertWarning($scope._t('data_overlaps'));
+			}
+		}
+	}
+
+	/**
+	 * Transform mobile vire back to instance data
+	 */
+	$scope.transformFromMobileToInst = function() {
+		// transform data for Instance 
+		$scope.security.input.params.schedules = {};
+		_.each($scope.security.mobileSchedule, function(data) {
+			for (var i = 0; i <= 6; i++) {
+				if (!$scope.security.input.params.schedules[i]) {
+					$scope.security.input.params.schedules[i] = [];
+				}
+				if (data[i]) {
+					var e = {
+						arm: data.arm,
+						disarm: data.disarm
+					};
+					$scope.security.input.params.schedules[i].push(e);
+				}
+			}
 		});
 	};
 
 	/**
-	 * Assign dis-arm schedule
-	 * @param {object} data 
+	 * Transform Instance data to use in mobile view
 	 */
-	/* $scope.assignSchedule = function (data) {
+	$scope.transformFromInstToMobile = function() {
+		// transform data for mobile view 
+		$scope.security.mobileSchedule = [];
+		_.each($scope.security.input.params.schedules, function(sc, day) {
+			if (sc.length > 0) {
+				_.each(sc, function(e) {
+					var index = _.findIndex($scope.security.mobileSchedule, {
+						arm: e.arm,
+						disarm: e.disarm
+					});
+					if (index == -1) {
+						var entry = {};
+						angular.copy($scope.security.cfg.mobileSchedule_entry, entry);
 
-	  if ($scope.security.input.params.schedules[data.day]) {
-	    $scope.security.input.params.schedules[data.day].push({
-	      time: data.time
-	    })
-	  }
-	  //$scope.security.input.params.schedules
-	} */
-
-	////////// Advanced schedule ////////// 
-	/**
-	 * TODO: deprecated
-	 * Assign a time scheduler
-	 * @returns {undefined}
-	 */
-	$scope.assignTimeScheduler = function() {
-		var input = $scope.security.cfg.times.default,
-			obj = {};
-		$scope.security.input.params.times.table.push(input);
-		$scope.resetOptions();
+						entry[day] = true
+						entry.arm = e.arm;
+						entry.disarm = e.disarm;
+						$scope.security.mobileSchedule.push(entry);
+					} else {
+						$scope.security.mobileSchedule[index][day] = true
+					}
+				});
+			}
+		});
 	};
 
 	/**
-	 * TODO: deprecated
+	 * watch $scope.security.mobileSchedule to handle data changes
+	 */
+	$scope.$watch("security.mobileSchedule", function(newVal) {
+		// transform mobile schdule data back to instance schedule data structure
+		$scope.transformFromMobileToInst();
+		$scope.updateSchedule();
+	}, true);
+
+	////////// Advanced schedule ////////// 
+
+	/**
+	 * Assign a time scheduler
+	 */
+	$scope.assignTimeSchedule = function() {
+		var input = {},
+			obj = {};
+		angular.copy($scope.security.cfg.mobileSchedule_entry, input);
+		$scope.security.mobileSchedule.push(input);
+	};
+
+	/**
 	 * Unassign a time scheduler
 	 *  @param {int} targetIndex 
-	 * @returns {undefined}
 	 */
-	$scope.unassignTimeScheduler = function(targetIndex) {
+	$scope.unassignTimeSchedule = function(targetIndex) {
 		if (targetIndex > -1) {
-			$scope.security.input.params.times.table.splice(targetIndex, 1);
+			$scope.security.mobileSchedule.splice(targetIndex, 1);
 		}
 	};
 
@@ -32467,7 +32937,43 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	  });
 	}; */
 
+	/**
+	 * Function return a array with times or empty
+	 * @param  {[type]} mobileSchedule array with times
+	 * @param  {[type]} stime          start time
+	 * @param  {[type]} etime          end time
+	 * @param  {[type]} day            day to check
+	 */
+	function timeOverlaps(mobileSchedule, stime, etime, day) {
+		var overlaps = _.filter(mobileSchedule, function(e) {
+			var st = stringToTime(e.arm),
+				et = stringToTime(e.disarm);
+
+			if (st < stime && et > stime && e[day]) {
+				return e;
+			}
+			if (st > stime && st < etime && e[day]) {
+				return e;
+			}
+		});
+		return overlaps;
+	}
+
+	/**
+	 * conervet time string 12:40 into mins
+	 * @param  {string} time string
+	 * @return {int}    time in mins
+	 */
+	function stringToTime(string) {
+		var slice = string.split(':');
+		var h = Number(slice[0]) * 60 * 60;
+		var i = Number(slice[1]) * 60;
+		var min = h + i;
+		return min;
+	}
+
 });
+
 /**
  * @overview Controllers that handls hazard notification
  * @author Martin Vach
@@ -32778,7 +33284,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	 * @param  {mixed} rooms [description]
 	 */
 	$scope.loadDevices = function(rooms) {
-		console.log("load devices");
 		dataFactory.getApi('devices').then(function(response) {
 				var devices = dataService.getDevicesData(response.data.data.devices);
 
@@ -32843,7 +33348,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				notification.target = $scope.user.email;
 				notification.message = $scope._t($scope.hazardProtection[type].message);
 				$scope.hazardProtection[type].input.params.sendNotifications.push(notification);
-				console.log("$scope.hazardProtection[type].input.params", $scope.hazardProtection[type].input.params);
 				// expand notification
 				$scope.expandElement('hazardProtection_' + type + '_0');
 			}
@@ -32905,7 +33409,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	 * @param {string} deviceId 
 	 */
 	$scope.unassignDevice = function (targetIndex, deviceId, type) {
-		console.log(targetIndex);
 		var deviceIndex = $scope.hazardProtection[type].assignedDevices.indexOf(deviceId);
 		$scope.hazardProtection[type].input.params.triggerEvent.splice(targetIndex, 1);
 		if (deviceIndex > -1) {
@@ -32971,7 +33474,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		fire.instanceId = fire.id !== null ? fire.id : fire.instanceId;
 		leakage.instanceId = leakage.id !== null ? leakage.id : leakage.instanceId;
 
-		fire.input.params.triggerEvent = fire.input.params.triggerEvent.map(function(dev){
+		fire.params.triggerEvent = fire.params.triggerEvent.map(function(dev){
 			return {
 				deviceId: dev.deviceId,
 				deviceType: dev.deviceType,
@@ -32980,7 +33483,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			};
 		});
 
-		leakage.input.params.triggerEvent = leakage.input.params.triggerEvent.map(function(dev){
+		leakage.params.triggerEvent = leakage.params.triggerEvent.map(function(dev){
 			return {
 				deviceId: dev.deviceId,
 				deviceType: dev.deviceType,
@@ -33019,7 +33522,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 					alertify.alertError($scope._t('error_update_data'));
 				} else {
 					if (redirect) {
-						$location.path('/' + dataService.getUrlSegment($location.path()));
+						$location.path('/automations');
 					}
 				}
 			}
@@ -33120,11 +33623,24 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				fallbackTemp: "",
 				sensorId: null,
 				schedule: {}
+			},
+			mobileSchedule_entry: {
+				'0': false,
+				'1': false,
+				'2': false,
+				'3': false,
+				'4': false,
+				'5': false,
+				'6': false,
+				stime: '00:00',
+				etime: '00:00',
+				temp: null
 			}
 		},
 		tempModal: {
 			title: "",
 			scheduleId: "",
+			delete: false,
 			timeline: null,
 			scheduleIndex: null,
 			stime: null,
@@ -33135,7 +33651,8 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				step: 0.5,
 				value: 0
 			}
-		}
+		},
+		mobileSchedule: {}
 	};
 
 	$scope.scheduleOptions = {
@@ -33182,12 +33699,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		click: function(node, data) {},
 		append: function(node, data) {},
 		time_click: function(time, data, timeline, timelineData) {
-			console.log("this", this);
-			console.log("time", time);
-			console.log("data", data);
-			console.log("timeline", timeline);
-			console.log("timelineData", timelineData);
-
 			var roomId = $(this).attr('id').split("-")[1],
 				temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp,
 				start = this.calcStringTime(data),
@@ -33257,8 +33768,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			$scope.updateData();
 		}
 	};
-	angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
+
 	$scope.jQuery_schedules = {};
+
 	/**
 	 * [renderSchedule description]
 	 * @param  {[type]} scheduleId [description]
@@ -33309,10 +33821,39 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	};
 
 	/**
-	 * [updateSchedule description]
-	 * @param  {[type]} scheduleId [description]
-	 * @param  {[type]} roomId     [description]
-	 * @return {[type]}            [description]
+	 * delete schedule Bar
+	 * @param  {obj} input  schedule data
+	 * @param  {obj} $event dom event
+	 */
+	$scope.deleteBar = function(input, $event) {
+		if ($scope.jQuery_schedules[input.scheduleId]) {
+			var jq_schedule = $scope.jQuery_schedules[input.scheduleId],
+				arr = input.scheduleId.split("-"),
+				roomId = arr[1];
+
+			var start = jq_schedule.formatTime(input.stime),
+				end = jq_schedule.formatTime(input.etime);
+
+			var index = _.findIndex($scope.heating.input.params.roomSettings[roomId].schedule[input.timeline], {
+				stime: start,
+				etime: end,
+				temp: input.temp.value
+			});
+
+			if (index !== -1) {
+				$scope.heating.input.params.roomSettings[roomId].schedule[input.timeline].splice(index, 1);
+				$scope.updateSchedule(input.scheduleId, roomId);
+				input.delete = true;
+				$scope.handleModal('temperatureModal', $event);
+				$scope.transformFromInstToMobile();
+			}
+		}
+	};
+
+	/**
+	 * Update the schedule
+	 * @param  {int} scheduleId element ID
+	 * @param  {int} roomId     z-way roomId 
 	 */
 	$scope.updateSchedule = function(scheduleId, roomId) {
 		if ($scope.jQuery_schedules[scheduleId]) {
@@ -33338,8 +33879,36 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		}
 	}
 
+
 	/**
-	 * [init description]
+	 * Update all schedules
+	 */
+	$scope.updateAllSchedules = function() {
+		_.each($scope.jQuery_schedules, function(jq_schedule, scheduleId) {
+			var roomId = scheduleId.split("-")[1]
+
+			var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule),
+				data = {};
+			angular.copy($scope.scheduleOptions.rows, data);
+			days.forEach(function(day) {
+				$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+					var sc = {
+						start: schedule.stime,
+						end: schedule.etime,
+						text: schedule.temp + " C°",
+						data: {
+							temp: schedule.temp
+						}
+					}
+					data[day].schedule.push(sc);
+				});
+			});
+			jq_schedule.update(data);
+		});
+	}
+
+	/**
+	 * init 
 	 * @return {[type]} [description]
 	 */
 	$scope.init = function() {
@@ -33381,7 +33950,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	$scope.loadRooms();
 
 	/**
-	 * [loadInstance description]
+	 * Load Heating instance
 	 * @param  {[type]} id [description]
 	 * @return {[type]}    [description]
 	 */
@@ -33396,7 +33965,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				active: instance.active,
 				params: instance.params
 			});
-			console.log("$scope.heating.input", $scope.heating.input);
+			// transform to mobile
+			$scope.transformFromInstToMobile();
+
 		}, function(error) {
 			angular.extend(cfg.route.alert, {
 				message: $scope._t('error_load_data')
@@ -33435,11 +34006,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.copySchedule = function(srcRoomId, destRoomId, message) {
 		alertify.confirm(message, function() {
-			$scope.loading = {
-				status: 'loading-spin',
-				icon: 'fa-spinner fa-spin',
-				message: $scope._t('deleting')
-			};
 			angular.extend($scope.heating.input.params.roomSettings[destRoomId], $scope.heating.input.params.roomSettings[srcRoomId]);
 			$scope.updateSchedule("#schedule-" + destRoomId, destRoomId)
 		});
@@ -33450,41 +34016,40 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.$watch("modalArr", function(newVal) {
 		if (newVal.hasOwnProperty("temperatureModal") && !newVal.temperatureModal) {
-			$scope.updateData();
-			console.log("modal close");
-			console.log($scope.heating.tempModal);
-			var arr = $scope.heating.tempModal.scheduleId.split("-"),
-				roomId = arr[1];
-			if ($scope.heating.input.params.roomSettings[roomId]) {
-				var jq_schedule = $scope.jQuery_schedules[$scope.heating.tempModal.scheduleId],
-					scIndex = _.findIndex($scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline], {
-						stime: jq_schedule.formatTime($scope.heating.tempModal.stime),
-						etime: jq_schedule.formatTime($scope.heating.tempModal.etime)
-					});
+			if (!$scope.heating.tempModal.delete) {
+				$scope.updateData();
+				var arr = $scope.heating.tempModal.scheduleId.split("-"),
+					roomId = arr[1];
+				if ($scope.heating.input.params.roomSettings[roomId]) {
+					var jq_schedule = $scope.jQuery_schedules[$scope.heating.tempModal.scheduleId],
+						scIndex = _.findIndex($scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline], {
+							stime: jq_schedule.formatTime($scope.heating.tempModal.stime),
+							etime: jq_schedule.formatTime($scope.heating.tempModal.etime)
+						});
 
-				$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
+					$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
 
-				var rows_copy = {};
-				angular.copy($scope.scheduleOptions.rows, rows_copy);
+					var rows_copy = {};
+					angular.copy($scope.scheduleOptions.rows, rows_copy);
 
-				var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
-				days.forEach(function(day) {
-					$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
-						console.log("schdeudle ", schedule);
-						var sc = {
-							start: schedule.stime,
-							end: schedule.etime,
-							text: schedule.temp + " C°",
-							data: {
-								temp: schedule.temp
+					var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
+					days.forEach(function(day) {
+						$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+							console.log("schdeudle ", schedule);
+							var sc = {
+								start: schedule.stime,
+								end: schedule.etime,
+								text: schedule.temp + " C°",
+								data: {
+									temp: schedule.temp
+								}
 							}
-						}
-						rows_copy[day].schedule.push(sc);
+							rows_copy[day].schedule.push(sc);
+						});
 					});
-				});
-				jq_schedule.update(rows_copy);
+					jq_schedule.update(rows_copy);
+				}
 			}
-
 		}
 	}, true);
 
@@ -33538,9 +34103,11 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			function(error) {});
 	};
 
+	/**
+	 * load preset/default data to instance data
+	 */
 	$scope.loadPreset = function() {
 		var rooms = {};
-		console.log("$scope.heating.input.params.roomSettings", $scope.heating.input.params.roomSettings);
 
 		angular.forEach($scope.heating.rooms, function(room) {
 			if (!$scope.heating.input.params.roomSettings[room.id]) {
@@ -33557,6 +34124,55 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			}
 		});
 	};
+
+
+	/**
+	 * Time changed
+	 * @param  {int} roomId      roomId
+	 * @param  {int} targetIndex entry index
+	 * @param  {string} oldValue    prev time
+	 * @param  {string} type        stime/etime
+	 */
+	$scope.timeChanged = function(roomId, targetIndex, oldValue, type) {
+
+		var stime = stringToTime($scope.heating.mobileSchedule[roomId][targetIndex].stime),
+			etime = stringToTime($scope.heating.mobileSchedule[roomId][targetIndex].etime);
+
+		for (var i = 0; i <= 6; i++) { // days
+			if ($scope.heating.mobileSchedule[roomId][targetIndex][i]) { // day true
+				overlaps = timeOverlaps($scope.heating.mobileSchedule[roomId], stime, etime, i); // check for day
+				if (overlaps.length > 0) {
+					$scope.heating.mobileSchedule[roomId][targetIndex][type] = oldValue;
+					alertify.alertWarning($scope._t('data_overlaps'));
+					i = 6;
+				}
+			}
+		}
+	}
+
+	/**
+	 * activate/deactivate time for day
+	 * @param  {obj} data        
+	 * @param  {int} day         day nubmer [0 - 6] [SU - SA] 
+	 * @param  {int} roomId      roomId
+	 * @param  {int} targetIndex entry index
+	 * @return {string}          stime/etime
+	 */
+	$scope.toggleTime = function(data, day, roomId, targetIndex) {
+		$scope.heating.mobileSchedule[roomId][targetIndex][day] = !$scope.heating.mobileSchedule[roomId][targetIndex][day];
+
+		if ($scope.heating.mobileSchedule[roomId][targetIndex][day]) {
+			var stime = stringToTime(data.stime),
+				etime = stringToTime(data.etime);
+
+			var overlaps = timeOverlaps($scope.heating.mobileSchedule[roomId], stime, etime, day);
+
+			if (overlaps.length > 0) {
+				$scope.heating.mobileSchedule[roomId][targetIndex][day] = false;
+				alertify.alertWarning($scope._t('data_overlaps'));
+			}
+		}
+	}
 
 	/**
 	 * Set temperature
@@ -33589,16 +34205,18 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		v.value = count;
 	};
 
+	/**
+	 * Update instance data from room schedule data
+	 */
 	$scope.updateData = function() {
 		var schedule_ids = Object.keys($scope.jQuery_schedules);
 		angular.forEach(schedule_ids, function(id) {
 			var jq_sc = $scope.jQuery_schedules[id],
 				roomId = id.split("-")[1],
-				sc_data = jq_sc.getScheduleData(),
-				data = {};
+				sc_data = jq_sc.getScheduleData();
 
-			angular.forEach(sc_data, function(day, k) {
-				var sorted_sc = _.sortBy(day.schedule, 'start'),
+			angular.forEach(sc_data, function(row, day) {
+				var sorted_sc = _.sortBy(row.schedule, 'start'),
 					new_sc = sorted_sc.map(function(sc) {
 						return {
 							"stime": sc.start,
@@ -33610,10 +34228,11 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 					$scope.heating.input.params.roomSettings[roomId].schedule = {};
 				}
 
-				$scope.heating.input.params.roomSettings[roomId].schedule[k] = new_sc;
+				$scope.heating.input.params.roomSettings[roomId].schedule[day] = new_sc;
 
 			});
 		});
+		$scope.transformFromInstToMobile();
 	};
 
 	/**
@@ -33640,7 +34259,102 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	};
 
 	/**
-	 * [temperatureArray description]
+	 * Transform mobile vire back to instance data
+	 */
+	$scope.transformFromMobileToInst = function() {
+		// transform data for Instance 
+		_.each($scope.heating.mobileSchedule, function(data, roomId) {
+			$scope.heating.input.params.roomSettings[roomId].schedule = {};
+			_.each(data, function(d) {
+				for (var i = 0; i <= 6; i++) {
+					if (!$scope.heating.input.params.roomSettings[roomId].schedule[i]) {
+						$scope.heating.input.params.roomSettings[roomId].schedule[i] = [];
+					}
+					if (d[i]) {
+						var e = {
+							stime: d.stime,
+							etime: d.etime,
+							temp: d.temp
+						};
+						$scope.heating.input.params.roomSettings[roomId].schedule[i].push(e);
+					}
+				}
+			});
+		});
+	};
+
+	/**
+	 * Transform Instance data to use in mobile view
+	 */
+	$scope.transformFromInstToMobile = function() {
+		// transform data for mobile view 
+		_.each($scope.heating.input.params.roomSettings, function(data, roomId) {
+			var schedule = data.schedule;
+
+			$scope.heating.mobileSchedule[roomId] = [];
+			_.each(schedule, function(sc, day) {
+				if (sc.length > 0) {
+					_.each(sc, function(e) {
+						var index = _.findIndex($scope.heating.mobileSchedule[roomId], {
+							stime: e.stime,
+							etime: e.etime,
+							temp: e.temp
+						});
+						if (index == -1) {
+							var entry = {};
+							angular.copy($scope.heating.cfg.mobileSchedule_entry, entry);
+
+							entry[day] = true
+							entry.stime = e.stime;
+							entry.etime = e.etime;
+							entry.temp = e.temp;
+							$scope.heating.mobileSchedule[roomId].push(entry);
+						} else {
+							$scope.heating.mobileSchedule[roomId][index][day] = true
+						}
+					});
+				}
+			});
+		});
+	};
+
+
+	/**
+	 * watch $scope.heating.mobileSchedule to handle data changes
+	 */
+	$scope.$watch("heating.mobileSchedule", function(newVal) {
+		// transform mobile schdule data back to instance schedule data structure
+		$scope.transformFromMobileToInst();
+		$scope.updateAllSchedules();
+	}, true);
+
+	/**
+	 * Assign a time scheduler
+	 */
+	$scope.assignTimeSchedule = function(roomId) {
+		var input = {},
+			obj = {};
+		angular.copy($scope.heating.cfg.mobileSchedule_entry, input);
+		if (!$scope.heating.mobileSchedule[roomId]) {
+			$scope.heating.mobileSchedule[roomId] = [];
+		}
+		input.temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp;
+		$scope.heating.mobileSchedule[roomId].push(input);
+	};
+
+	/**
+	 * Unassign a time scheduler
+	 * @param {int} targetIndex 
+	 */
+	$scope.unassignTimeSchedule = function(roomId, targetIndex) {
+		if (targetIndex > -1 && $scope.heating.mobileSchedule[roomId]) {
+			$scope.heating.mobileSchedule[roomId].splice(targetIndex, 1);
+		}
+	};
+
+
+	/**
+	 * create temperatureArray for select 
 	 * @param  {[type]} temp  [description]
 	 * @param  {[type]} scale [description]
 	 * @return {[objet]}       [description]
@@ -33660,9 +34374,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	}
 
 	/**
-	 * [getZwayId description]
-	 * @param  {[type]} deviceId [description]
-	 * @return {[type]}          [description]
+	 * getZwayId
+	 * @param  {string} deviceId 
+	 * @return {string} zwaveId
 	 */
 	function getZwayId(deviceId) {
 		var zwaveId = false;
@@ -33671,6 +34385,41 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			return zwaveId.replace(/[^0-9]/g, '');
 		}
 		return zwaveId;
+	}
+
+	/**
+	 * Function return a array with times or empty
+	 * @param  {[type]} mobileSchedule array with times
+	 * @param  {[type]} stime          start time
+	 * @param  {[type]} etime          end time
+	 * @param  {[type]} day            day to check
+	 */
+	function timeOverlaps(mobileSchedule, stime, etime, day) {
+		var overlaps = _.filter(mobileSchedule, function(e) {
+			var st = stringToTime(e.stime),
+				et = stringToTime(e.etime);
+
+			if (st < stime && et > stime && e[day]) {
+				return e;
+			}
+			if (st > stime && st < etime && e[day]) {
+				return e;
+			}
+		});
+		return overlaps;
+	}
+
+	/**
+	 * conervet time string 12:40 into mins
+	 * @param  {string} time string
+	 * @return {int}    time in mins
+	 */
+	function stringToTime(string) {
+		var slice = string.split(':');
+		var h = Number(slice[0]) * 60 * 60;
+		var i = Number(slice[1]) * 60;
+		var min = h + i;
+		return min;
 	}
 
 });
@@ -44239,7 +44988,7 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
  */
 myAppController.controller('WelcomeController', function($scope) {
 	$scope.currentStep = 1;
-	$scope.pages = 6;
+	$scope.pages = 5;
 	$scope.steps = _.range(0, $scope.pages);
 
 	$scope.prevNext = function(n) {
