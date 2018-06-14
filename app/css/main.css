@@ -11728,7 +11728,7 @@ legend.has-control, .legend.has-control {
 }
 
 fieldset, .fieldset {
-  padding: 10px;
+  padding: 5px;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
@@ -16786,7 +16786,6 @@ img.widget-promo-image {
 }
 
 .accordion-wrap .accordion {
-  padding: 10px;
   border-bottom: 0;
   /* .accordion {
         // background-color: lighten(#F6F6F6,10%);

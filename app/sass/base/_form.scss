@@ -239,7 +239,7 @@ legend,.legend{
 }
 
 fieldset, .fieldset {
-  padding: $spacing;
+  padding: $spacing-half;
   @include mediaQueries(min-small) {
     padding: $spacing $spacing-double;
   }

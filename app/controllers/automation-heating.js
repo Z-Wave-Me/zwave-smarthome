@@ -92,11 +92,24 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				fallbackTemp: "",
 				sensorId: null,
 				schedule: {}
+			},
+			mobileSchedule_entry: {
+				'0': false,
+				'1': false,
+				'2': false,
+				'3': false,
+				'4': false,
+				'5': false,
+				'6': false,
+				stime: '00:00',
+				etime: '00:00',
+				temp: null
 			}
 		},
 		tempModal: {
 			title: "",
 			scheduleId: "",
+			delete: false,
 			timeline: null,
 			scheduleIndex: null,
 			stime: null,
@@ -107,7 +120,8 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				step: 0.5,
 				value: 0
 			}
-		}
+		},
+		mobileSchedule: {}
 	};
 
 	$scope.scheduleOptions = {
@@ -154,12 +168,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		click: function(node, data) {},
 		append: function(node, data) {},
 		time_click: function(time, data, timeline, timelineData) {
-			console.log("this", this);
-			console.log("time", time);
-			console.log("data", data);
-			console.log("timeline", timeline);
-			console.log("timelineData", timelineData);
-
 			var roomId = $(this).attr('id').split("-")[1],
 				temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp,
 				start = this.calcStringTime(data),
@@ -229,8 +237,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			$scope.updateData();
 		}
 	};
-	angular.element("#schedule-test").timeSchedule($scope.scheduleOptions);
+
 	$scope.jQuery_schedules = {};
+
 	/**
 	 * [renderSchedule description]
 	 * @param  {[type]} scheduleId [description]
@@ -281,10 +290,39 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	};
 
 	/**
-	 * [updateSchedule description]
-	 * @param  {[type]} scheduleId [description]
-	 * @param  {[type]} roomId     [description]
-	 * @return {[type]}            [description]
+	 * delete schedule Bar
+	 * @param  {obj} input  schedule data
+	 * @param  {obj} $event dom event
+	 */
+	$scope.deleteBar = function(input, $event) {
+		if ($scope.jQuery_schedules[input.scheduleId]) {
+			var jq_schedule = $scope.jQuery_schedules[input.scheduleId],
+				arr = input.scheduleId.split("-"),
+				roomId = arr[1];
+
+			var start = jq_schedule.formatTime(input.stime),
+				end = jq_schedule.formatTime(input.etime);
+
+			var index = _.findIndex($scope.heating.input.params.roomSettings[roomId].schedule[input.timeline], {
+				stime: start,
+				etime: end,
+				temp: input.temp.value
+			});
+
+			if (index !== -1) {
+				$scope.heating.input.params.roomSettings[roomId].schedule[input.timeline].splice(index, 1);
+				$scope.updateSchedule(input.scheduleId, roomId);
+				input.delete = true;
+				$scope.handleModal('temperatureModal', $event);
+				$scope.transformFromInstToMobile();
+			}
+		}
+	};
+
+	/**
+	 * Update the schedule
+	 * @param  {int} scheduleId element ID
+	 * @param  {int} roomId     z-way roomId 
 	 */
 	$scope.updateSchedule = function(scheduleId, roomId) {
 		if ($scope.jQuery_schedules[scheduleId]) {
@@ -310,8 +348,36 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		}
 	}
 
+
 	/**
-	 * [init description]
+	 * Update all schedules
+	 */
+	$scope.updateAllSchedules = function() {
+		_.each($scope.jQuery_schedules, function(jq_schedule, scheduleId) {
+			var roomId = scheduleId.split("-")[1]
+
+			var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule),
+				data = {};
+			angular.copy($scope.scheduleOptions.rows, data);
+			days.forEach(function(day) {
+				$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+					var sc = {
+						start: schedule.stime,
+						end: schedule.etime,
+						text: schedule.temp + " C°",
+						data: {
+							temp: schedule.temp
+						}
+					}
+					data[day].schedule.push(sc);
+				});
+			});
+			jq_schedule.update(data);
+		});
+	}
+
+	/**
+	 * init 
 	 * @return {[type]} [description]
 	 */
 	$scope.init = function() {
@@ -353,7 +419,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	$scope.loadRooms();
 
 	/**
-	 * [loadInstance description]
+	 * Load Heating instance
 	 * @param  {[type]} id [description]
 	 * @return {[type]}    [description]
 	 */
@@ -368,7 +434,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				active: instance.active,
 				params: instance.params
 			});
-			console.log("$scope.heating.input", $scope.heating.input);
+			// transform to mobile
+			$scope.transformFromInstToMobile();
+
 		}, function(error) {
 			angular.extend(cfg.route.alert, {
 				message: $scope._t('error_load_data')
@@ -407,11 +475,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.copySchedule = function(srcRoomId, destRoomId, message) {
 		alertify.confirm(message, function() {
-			$scope.loading = {
-				status: 'loading-spin',
-				icon: 'fa-spinner fa-spin',
-				message: $scope._t('deleting')
-			};
 			angular.extend($scope.heating.input.params.roomSettings[destRoomId], $scope.heating.input.params.roomSettings[srcRoomId]);
 			$scope.updateSchedule("#schedule-" + destRoomId, destRoomId)
 		});
@@ -422,41 +485,40 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.$watch("modalArr", function(newVal) {
 		if (newVal.hasOwnProperty("temperatureModal") && !newVal.temperatureModal) {
-			$scope.updateData();
-			console.log("modal close");
-			console.log($scope.heating.tempModal);
-			var arr = $scope.heating.tempModal.scheduleId.split("-"),
-				roomId = arr[1];
-			if ($scope.heating.input.params.roomSettings[roomId]) {
-				var jq_schedule = $scope.jQuery_schedules[$scope.heating.tempModal.scheduleId],
-					scIndex = _.findIndex($scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline], {
-						stime: jq_schedule.formatTime($scope.heating.tempModal.stime),
-						etime: jq_schedule.formatTime($scope.heating.tempModal.etime)
-					});
+			if (!$scope.heating.tempModal.delete) {
+				$scope.updateData();
+				var arr = $scope.heating.tempModal.scheduleId.split("-"),
+					roomId = arr[1];
+				if ($scope.heating.input.params.roomSettings[roomId]) {
+					var jq_schedule = $scope.jQuery_schedules[$scope.heating.tempModal.scheduleId],
+						scIndex = _.findIndex($scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline], {
+							stime: jq_schedule.formatTime($scope.heating.tempModal.stime),
+							etime: jq_schedule.formatTime($scope.heating.tempModal.etime)
+						});
 
-				$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
+					$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
 
-				var rows_copy = {};
-				angular.copy($scope.scheduleOptions.rows, rows_copy);
+					var rows_copy = {};
+					angular.copy($scope.scheduleOptions.rows, rows_copy);
 
-				var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
-				days.forEach(function(day) {
-					$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
-						console.log("schdeudle ", schedule);
-						var sc = {
-							start: schedule.stime,
-							end: schedule.etime,
-							text: schedule.temp + " C°",
-							data: {
-								temp: schedule.temp
+					var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
+					days.forEach(function(day) {
+						$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+							console.log("schdeudle ", schedule);
+							var sc = {
+								start: schedule.stime,
+								end: schedule.etime,
+								text: schedule.temp + " C°",
+								data: {
+									temp: schedule.temp
+								}
 							}
-						}
-						rows_copy[day].schedule.push(sc);
+							rows_copy[day].schedule.push(sc);
+						});
 					});
-				});
-				jq_schedule.update(rows_copy);
+					jq_schedule.update(rows_copy);
+				}
 			}
-
 		}
 	}, true);
 
@@ -510,9 +572,11 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			function(error) {});
 	};
 
+	/**
+	 * load preset/default data to instance data
+	 */
 	$scope.loadPreset = function() {
 		var rooms = {};
-		console.log("$scope.heating.input.params.roomSettings", $scope.heating.input.params.roomSettings);
 
 		angular.forEach($scope.heating.rooms, function(room) {
 			if (!$scope.heating.input.params.roomSettings[room.id]) {
@@ -529,6 +593,55 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			}
 		});
 	};
+
+
+	/**
+	 * Time changed
+	 * @param  {int} roomId      roomId
+	 * @param  {int} targetIndex entry index
+	 * @param  {string} oldValue    prev time
+	 * @param  {string} type        stime/etime
+	 */
+	$scope.timeChanged = function(roomId, targetIndex, oldValue, type) {
+
+		var stime = stringToTime($scope.heating.mobileSchedule[roomId][targetIndex].stime),
+			etime = stringToTime($scope.heating.mobileSchedule[roomId][targetIndex].etime);
+
+		for (var i = 0; i <= 6; i++) { // days
+			if ($scope.heating.mobileSchedule[roomId][targetIndex][i]) { // day true
+				overlaps = timeOverlaps($scope.heating.mobileSchedule[roomId], stime, etime, i); // check for day
+				if (overlaps.length > 0) {
+					$scope.heating.mobileSchedule[roomId][targetIndex][type] = oldValue;
+					alertify.alertWarning($scope._t('data_overlaps'));
+					i = 6;
+				}
+			}
+		}
+	}
+
+	/**
+	 * activate/deactivate time for day
+	 * @param  {obj} data        
+	 * @param  {int} day         day nubmer [0 - 6] [SU - SA] 
+	 * @param  {int} roomId      roomId
+	 * @param  {int} targetIndex entry index
+	 * @return {string}          stime/etime
+	 */
+	$scope.toggleTime = function(data, day, roomId, targetIndex) {
+		$scope.heating.mobileSchedule[roomId][targetIndex][day] = !$scope.heating.mobileSchedule[roomId][targetIndex][day];
+
+		if ($scope.heating.mobileSchedule[roomId][targetIndex][day]) {
+			var stime = stringToTime(data.stime),
+				etime = stringToTime(data.etime);
+
+			var overlaps = timeOverlaps($scope.heating.mobileSchedule[roomId], stime, etime, day);
+
+			if (overlaps.length > 0) {
+				$scope.heating.mobileSchedule[roomId][targetIndex][day] = false;
+				alertify.alertWarning($scope._t('data_overlaps'));
+			}
+		}
+	}
 
 	/**
 	 * Set temperature
@@ -561,16 +674,18 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		v.value = count;
 	};
 
+	/**
+	 * Update instance data from room schedule data
+	 */
 	$scope.updateData = function() {
 		var schedule_ids = Object.keys($scope.jQuery_schedules);
 		angular.forEach(schedule_ids, function(id) {
 			var jq_sc = $scope.jQuery_schedules[id],
 				roomId = id.split("-")[1],
-				sc_data = jq_sc.getScheduleData(),
-				data = {};
+				sc_data = jq_sc.getScheduleData();
 
-			angular.forEach(sc_data, function(day, k) {
-				var sorted_sc = _.sortBy(day.schedule, 'start'),
+			angular.forEach(sc_data, function(row, day) {
+				var sorted_sc = _.sortBy(row.schedule, 'start'),
 					new_sc = sorted_sc.map(function(sc) {
 						return {
 							"stime": sc.start,
@@ -582,10 +697,11 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 					$scope.heating.input.params.roomSettings[roomId].schedule = {};
 				}
 
-				$scope.heating.input.params.roomSettings[roomId].schedule[k] = new_sc;
+				$scope.heating.input.params.roomSettings[roomId].schedule[day] = new_sc;
 
 			});
 		});
+		$scope.transformFromInstToMobile();
 	};
 
 	/**
@@ -612,7 +728,102 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	};
 
 	/**
-	 * [temperatureArray description]
+	 * Transform mobile vire back to instance data
+	 */
+	$scope.transformFromMobileToInst = function() {
+		// transform data for Instance 
+		_.each($scope.heating.mobileSchedule, function(data, roomId) {
+			$scope.heating.input.params.roomSettings[roomId].schedule = {};
+			_.each(data, function(d) {
+				for (var i = 0; i <= 6; i++) {
+					if (!$scope.heating.input.params.roomSettings[roomId].schedule[i]) {
+						$scope.heating.input.params.roomSettings[roomId].schedule[i] = [];
+					}
+					if (d[i]) {
+						var e = {
+							stime: d.stime,
+							etime: d.etime,
+							temp: d.temp
+						};
+						$scope.heating.input.params.roomSettings[roomId].schedule[i].push(e);
+					}
+				}
+			});
+		});
+	};
+
+	/**
+	 * Transform Instance data to use in mobile view
+	 */
+	$scope.transformFromInstToMobile = function() {
+		// transform data for mobile view 
+		_.each($scope.heating.input.params.roomSettings, function(data, roomId) {
+			var schedule = data.schedule;
+
+			$scope.heating.mobileSchedule[roomId] = [];
+			_.each(schedule, function(sc, day) {
+				if (sc.length > 0) {
+					_.each(sc, function(e) {
+						var index = _.findIndex($scope.heating.mobileSchedule[roomId], {
+							stime: e.stime,
+							etime: e.etime,
+							temp: e.temp
+						});
+						if (index == -1) {
+							var entry = {};
+							angular.copy($scope.heating.cfg.mobileSchedule_entry, entry);
+
+							entry[day] = true
+							entry.stime = e.stime;
+							entry.etime = e.etime;
+							entry.temp = e.temp;
+							$scope.heating.mobileSchedule[roomId].push(entry);
+						} else {
+							$scope.heating.mobileSchedule[roomId][index][day] = true
+						}
+					});
+				}
+			});
+		});
+	};
+
+
+	/**
+	 * watch $scope.heating.mobileSchedule to handle data changes
+	 */
+	$scope.$watch("heating.mobileSchedule", function(newVal) {
+		// transform mobile schdule data back to instance schedule data structure
+		$scope.transformFromMobileToInst();
+		$scope.updateAllSchedules();
+	}, true);
+
+	/**
+	 * Assign a time scheduler
+	 */
+	$scope.assignTimeSchedule = function(roomId) {
+		var input = {},
+			obj = {};
+		angular.copy($scope.heating.cfg.mobileSchedule_entry, input);
+		if (!$scope.heating.mobileSchedule[roomId]) {
+			$scope.heating.mobileSchedule[roomId] = [];
+		}
+		input.temp = $scope.heating.input.params.roomSettings[roomId].comfortTemp;
+		$scope.heating.mobileSchedule[roomId].push(input);
+	};
+
+	/**
+	 * Unassign a time scheduler
+	 * @param {int} targetIndex 
+	 */
+	$scope.unassignTimeSchedule = function(roomId, targetIndex) {
+		if (targetIndex > -1 && $scope.heating.mobileSchedule[roomId]) {
+			$scope.heating.mobileSchedule[roomId].splice(targetIndex, 1);
+		}
+	};
+
+
+	/**
+	 * create temperatureArray for select 
 	 * @param  {[type]} temp  [description]
 	 * @param  {[type]} scale [description]
 	 * @return {[objet]}       [description]
@@ -632,9 +843,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	}
 
 	/**
-	 * [getZwayId description]
-	 * @param  {[type]} deviceId [description]
-	 * @return {[type]}          [description]
+	 * getZwayId
+	 * @param  {string} deviceId 
+	 * @return {string} zwaveId
 	 */
 	function getZwayId(deviceId) {
 		var zwaveId = false;
@@ -643,6 +854,41 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			return zwaveId.replace(/[^0-9]/g, '');
 		}
 		return zwaveId;
+	}
+
+	/**
+	 * Function return a array with times or empty
+	 * @param  {[type]} mobileSchedule array with times
+	 * @param  {[type]} stime          start time
+	 * @param  {[type]} etime          end time
+	 * @param  {[type]} day            day to check
+	 */
+	function timeOverlaps(mobileSchedule, stime, etime, day) {
+		var overlaps = _.filter(mobileSchedule, function(e) {
+			var st = stringToTime(e.stime),
+				et = stringToTime(e.etime);
+
+			if (st < stime && et > stime && e[day]) {
+				return e;
+			}
+			if (st > stime && st < etime && e[day]) {
+				return e;
+			}
+		});
+		return overlaps;
+	}
+
+	/**
+	 * conervet time string 12:40 into mins
+	 * @param  {string} time string
+	 * @return {int}    time in mins
+	 */
+	function stringToTime(string) {
+		var slice = string.split(':');
+		var h = Number(slice[0]) * 60 * 60;
+		var i = Number(slice[1]) * 60;
+		var min = h + i;
+		return min;
 	}
 
 });
