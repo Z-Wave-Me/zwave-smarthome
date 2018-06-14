@@ -114,6 +114,7 @@
 
 		this.removeEntry = function(event) {
 			$bar = $(event.target).closest(".sc_Bar");
+			console.log("$bar", $bar);
 			var sc_key = $bar.data("sc_key");
 			$bar.remove();
 			delete scheduleData[sc_key];
@@ -130,7 +131,7 @@
 			var $timeline = $element.find('.sc_main .timeline').eq(data["timeline"]);
 
 			$removeButton.bind("click touch", function(event) {
-				event.preventDefault();
+				console.log("delete cliked!");
 				that.removeEntry(event);
 			})
 
@@ -187,7 +188,6 @@
 				helper: 'original',
 				revert: 'invalid',
 				start: function(event, ui) {
-					event.preventDefault();
 					var node = {};
 					node["node"] = this;
 					node["offsetTop"] = ui.position.top;
@@ -199,15 +199,14 @@
 					node["sc_key"] = $(this).data("sc_key");
 					currentNode = node;
 					that.dragging = true;
-					console.log("drag start");
+					// console.log("drag start");
 				},
 				drag: function(event, ui) {
-					event.preventDefault();
 					jQuery(this).data("dragCheck", true);
 					if (!currentNode) {
 						return false;
 					}
-					console.log("dragging");
+					// console.log("dragging");
 					that.dragging = true;
 					var $moveNode = jQuery(this),
 						sc_key = $moveNode.data("sc_key"),
@@ -238,7 +237,7 @@
 					event.preventDefault();
 					jQuery(this).data("dragCheck", false);
 
-					console.log("drag stop");
+					// console.log("drag stop");
 					var sc_key = currentNode["sc_key"];
 
 					that.dragging = false;
@@ -270,12 +269,60 @@
 					var node = jQuery(this);
 					node.data("resizeCheck", true);
 					that.isResizing = true;
-					console.log("start resize");
+					// console.log("start resize");
 				},
-				// 
+				resize: function(event, ui) {
+					var $moveNode = $(this),
+						sc_key = $moveNode.data("sc_key"),
+						x = ui.position.left,
+						w = ui.size.width,
+						start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime),
+						end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+
+					// console.log("$moveNode", $moveNode);
+
+
+
+					// update data
+					scheduleData[sc_key]["start"] = start;
+					scheduleData[sc_key]["end"] = end;
+
+					element.rewriteBarText($moveNode, scheduleData[sc_key]);
+
+					// schow Tooltip on resize
+					// var timelineNum = scheduleData[sc_key].timeline,
+					//  $timeline = $element.find('.sc_main .timeline').eq(timelineNum),
+
+					//  $sc_main_box = $element.find(".sc_main_box"),
+					//  tlIndex = Math.floor((x + w) / setting.widthTimeX),
+					//  $tl = $timeline.find('.tl').eq(tlIndex),
+					//  timeStr = element.formatTime(tableStartTime + (setting.widthTime * tlIndex)),
+					//  html = "<span>" + timeStr + "</span>",
+					//  $time = jQuery(html);
+
+					// // console.log("$timeline", $timeline);
+
+					// $element.find(".tooltip").position({
+					//  my: "center bottom-10",
+					//  at: "center top",
+					//  of: $tl,
+					//  collison: "flip",
+					//  within: $sc_main_box,
+					//  using: function(position, feedback) {
+					//      $(this).removeClass("bottom center top");
+					//      $(this).css({
+					//          left: position.left,
+					//          top: position.top
+					//              //left: position.left - $element.offset().left + $element.position().left,
+					//              //top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
+					//      });
+					//      $(this).addClass(feedback.vertical).addClass(feedback.horizontal)
+					//  }
+					// }).html($time).show();
+				},
 				stop: function(event, ui) {
 					event.preventDefault();
-					console.log("stop resize");
+					// console.log("stop resize");
 					that.isResizing = false;
 					var node = jQuery(this);
 					$node = node;
@@ -301,11 +348,9 @@
 								if (confirm("connect?")) {
 									connect = true;
 									var newStart = 0,
-										newEnd = 0;
-
-									var old_sc_key = $bar.data("sc_key");
-
-									var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+										newEnd = 0,
+										old_sc_key = $bar.data("sc_key"),
+										end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
 
 									if (start <= scheduleData[old_sc_key].start) {
 										newStart = start;
@@ -442,27 +487,30 @@
 			for (var t = tableStartTime; t < tableEndTime; t += setting.widthTime) {
 				var $tl = jQuery('<div class="tl" title=""></div>');
 				$tl.bind("mouseenter", function(event) {
-					var timeStr = element.formatTime(tableStartTime + (setting.widthTime * $(this).index())),
-						html = "<span>" + timeStr + "</span>",
-						$time = jQuery(html),
-						$sc_main_box = $element.find(".sc_main_box"),
-						$target = $(event.target);
+					if (!that.isResizing) {
+						var timeStr = element.formatTime(tableStartTime + (setting.widthTime * $(this).index())),
+							html = "<span>" + timeStr + "</span>",
+							$time = jQuery(html),
+							$sc_main_box = $element.find(".sc_main_box"),
+							$target = $(event.target);
 
-					$element.find(".tooltip").position({
-						my: "center bottom-10",
-						at: "center top",
-						of: $target,
-						collison: "flip",
-						within: $sc_main_box,
-						using: function(position, feedback) {
-							$(this).removeClass("bottom center top");
-							$(this).css({
-								left: position.left - $element.offset().left + $element.position().left,
-								top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
-							});
-							$(this).addClass(feedback.vertical).addClass(feedback.horizontal)
-						}
-					}).html($time).show();
+						$element.find(".tooltip").position({
+							my: "center bottom-10",
+							at: "center top",
+							of: $target,
+							collison: "flip",
+							within: $sc_main_box,
+							using: function(position, feedback) {
+								$(this).removeClass("bottom center top");
+								$(this).css({
+									left: position.left - $element.offset().left + $element.position().left,
+									top: position.top - $element.offset().top + $element.position().top + jQuery(document).scrollTop()
+								});
+								$(this).addClass(feedback.vertical).addClass(feedback.horizontal)
+							}
+						}).html($time).show();
+					}
+
 				}).bind("mouseleave", function() {
 					$element.find(".tooltip").hide().css({
 						left: 0,
@@ -483,7 +531,7 @@
 
 			$timeline.on("mousedown touchstart", function(event) {
 				event.preventDefault();
-				console.log("mousedown");
+				// console.log("mousedown");
 				if ($(event.target).hasClass("tl")) {
 					that.clicking = true;
 					$clickedTl = $(event.target);
@@ -510,12 +558,11 @@
 				}
 			}).on("mousemove touchmove", function(event) {
 				event.preventDefault();
-				//console.log("event", event);
+				//// console.log("event", event);
 				if (that.clicking == false || $(event.target).data("timeline") !== timelineNum) {
 					return true;
 				}
-				console.log("mousemove");
-				console.log("$(event.target)", $(event.target).index());
+
 				var targetIndex = 0;
 				if (event.type == "touchmove") {
 					var myLocation = event.originalEvent.changedTouches[0],
@@ -546,11 +593,11 @@
 				}
 			}).on("mouseup touchend", function(event) {
 				event.preventDefault();
-				console.log("event", event);
+				// console.log("event", event);
 				if (that.clicking == false) {
 					return true;
 				}
-				console.log("timeline mouseup");
+				// console.log("timeline mouseup");
 				element.find(".sc_Bar").css({
 					"z-index": "auto",
 					"opacity": 1
@@ -559,7 +606,7 @@
 				endTime = endTime == null ? startTime : endTime;
 
 				$bars = $element.find('.sc_main .timeline').eq(timelineNum).find(".sc_Bar");
-				console.log("bars", $bars);
+				// console.log("bars", $bars);
 
 				var connect = false,
 					collison = false;
@@ -567,15 +614,15 @@
 				$bars.each(function(ele) {
 					$bar = $($bars[ele]);
 					if (!$bar.hasClass("ghost")) {
-						console.log("$bar", $bar);
-						console.log("$ghost_bar_temp", $ghost_bar_temp);
+						// console.log("$bar", $bar);
+						// console.log("$ghost_bar_temp", $ghost_bar_temp);
 						if (that.isCollison($ghost_bar_temp, $bar)) {
 							collison = true;
-							console.log("$bar", $bar);
-							console.log("$ghost_bar_temp", $ghost_bar_temp);
+							// console.log("$bar", $bar);
+							// console.log("$ghost_bar_temp", $ghost_bar_temp);
 
 							//if (confirm("connect?")) {
-							// console.log("confirm", setting.confirm.call(element));
+							// // console.log("confirm", setting.confirm.call(element));
 							// if (setting.confirm.call(element)) {
 							if (confirm("connect?")) {
 								connect = true;
@@ -641,11 +688,11 @@
 				timelineNum = null;
 
 			}).bind("mouseleave", function(event) {
-				// console.log("startTime", startTime);
-				// console.log("endTime", endTime);
+				// // console.log("startTime", startTime);
+				// // console.log("endTime", endTime);
 				if (that.clicking) {
 
-					console.log("timeline " + timelineNum + " leave");
+					// console.log("timeline " + timelineNum + " leave");
 				}
 			});
 
@@ -690,7 +737,7 @@
 			$element.find('.sc_main .timeline').eq(id).droppable({
 				accept: ".sc_Bar",
 				drop: function(ev, ui) {
-					console.log("Drop");
+					// console.log("Drop");
 					var node = ui.draggable;
 					$node = node;
 					var sc_key = node.data("sc_key");
@@ -708,7 +755,7 @@
 								collison = true;
 
 								// $element.append($confirm);   
-								// console.log("confirm 2", setting.confirm.call(element));
+								// // console.log("confirm 2", setting.confirm.call(element));
 								// if (setting.confirm.call(element)) {
 								if (confirm("connect?")) {
 
@@ -717,8 +764,8 @@
 										newEnd = 0;
 
 									var old_sc_key = $bar.data("sc_key");
-									console.log("scheduleData[sc_key]", scheduleData[sc_key]);
-									console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
+									// console.log("scheduleData[sc_key]", scheduleData[sc_key]);
+									// console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
 
 									var x = $node.position().left;
 									var w = $node.width();
@@ -810,7 +857,7 @@
 
 			return data;
 		};
-		// 
+		// update Bar Text
 		this.rewriteBarText = function(node, data) {
 			var x = node.position().left;
 			var w = node.width();
