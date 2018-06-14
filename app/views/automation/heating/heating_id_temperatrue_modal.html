@@ -24,33 +24,39 @@
 				</div>
 				<div class="knob-col knob-btn">
 					<p>
-						<button class="btn btn-primary"
+						<button type="button" class="btn btn-primary"
 						ng-click="setTemp(heating.tempModal.temp, '+')"
 						><i class="fa fa-angle-up"></i>
 						</button>&nbsp;
-						<button class="btn btn-info"
+						<button class="btn btn-info" type="button"
 						ng-click="setTemp(heating.tempModal.temp, heating.tempModal.temp.max)"
 						><i class="fa fa-angle-double-up"></i>
 						</button>
 					</p>
 					<p>
-						<button class="btn btn-primary"
+						<button class="btn btn-primary" type="button"
 						ng-click="setTemp(heating.tempModal.temp, '-')"
 						><i class="fa fa-angle-down"></i>
 						</button>&nbsp;
-						<button class="btn btn-info"
+						<button class="btn btn-info" type="button"
 						ng-click="setTemp(heating.tempModal.temp, heating.tempModal.temp.min)"
 						>
 						<i class="fa fa-angle-double-down"></i>
 						</button>
 					</p>
 					<p>
-						<button class="btn btn-info"
+						<button class="btn btn-info" type="button"
 						ng-click="setTemp(heating.tempModal.temp, heating.tempModal.temp.max)"
 						ng-bind="_t('lb_full')">
 						</button>
 					</p>
 				</div>
+			</div>
+			<div ng-if_="">
+				<button class="btn btn-default" type="button" ng-click="deleteBar(heating.tempModal, $event)">
+				<i class="fa fa-remove text-danger"></i>
+				{{_t('delete')}}
+				</button>
 			</div>
 		</div>
 	</div>

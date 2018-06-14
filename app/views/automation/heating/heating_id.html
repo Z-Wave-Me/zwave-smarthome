@@ -19,6 +19,7 @@
 				<div class="accordion" hidden>
 					<fieldset>
 						<!-- <pre>{{heating.input.params.roomSettings[r.id].schedule | json}}</pre> -->
+						<!-- room settings -->
 						<div class="form-inline">
 							<!-- comfort temp -->
 							<div class="form-group is-inline">
@@ -39,24 +40,30 @@
 								</select>
 							</div>
 							<!-- main sensor -->
-							<div class="form-group is-inline">
-								<label ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">{{_t('temp_sensor')}}</label>
-								<select class="form-control" ng-if="heating.devices.SensorsByRoom[r.id].length > 1" ng-modal="heatin.input.params.roomSettings[r.id].sensorId">
-									<option value="">---</option>
-									<option value="{{d.deviceId}}" ng-repeat="d in heating.devices.SensorsByRoom[r.id] track by $index">
+							<div class="form-group is-inline" ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">
+								<label>{{_t('temp_sensor')}}</label>
+								<select class="form-control" ng-modal="heating.input.params.roomSettings[r.id].sensorId">
+									<option value="{{heating.devices.SensorsByRoom[r.id][0].deviceId}}" ng-if="heating.devices.SensorsByRoom[r.id].length == 1">
+										{{heating.devices.SensorsByRoom[r.id][0].deviceName}}
+									</option>
+									<option value="" ng-if="heating.devices.SensorsByRoom[r.id].length > 1">---</option>
+									<option value="{{d.deviceId}}" ng-if="heating.devices.SensorsByRoom[r.id].length > 1" ng-repeat="d in heating.devices.SensorsByRoom[r.id] track by $index" ng-selected="d.deviceId == heating.input.params.roomSettings[r.id].sensorId">
 									{{d.deviceName}}</option>
 								</select>
-								<span class="form-control" ng-if="heating.devices.SensorsByRoom[r.id].length == 1">{{heating.devices.SensorsByRoom[r.id][0].deviceName}}</span>
 							</div>
 						</div>
-						<div class="schedule-wrap">
+						<!-- schedule -->
+						<div class="schedule-wrap" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'">
 							<div class="schedule-overlay" ng-if="!heating.input.params.roomSettings[r.id].comfortTemp">
 								<bb-help-text trans="_t('no_comfort_temp_info')"></bb-help-text>
 							</div>
 							<div id="schedule-{{r.id}}" class="schedule" ng-class="(!heating.input.params.roomSettings[r.id].comfortTemp ? 'disabled': '')"></div>
 							<bb-help-text trans="_t('schedule_info')"></bb-help-text>
 						</div>
-						<div class="form-inline">
+						<!-- mobile view -->
+						<div ng-include="'app/views/automation/heating/mobile_schedule.html'" ng-show="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'"></div>
+						<!-- copy room settings -->
+						<div class="form-inline" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'">
 							<div class="form-group is-inline">
 								<select class="form-control" ng-model="r.copyOption">
 									<option value="null">---</option>
@@ -71,6 +78,7 @@
 								<bb-help-text trans="_t('copy_schedule_info')"></bb-help-text>
 							</div>
 						</div>
+						<!-- thermostate overview -->
 						<div>
 							<h3>{{_t('thermostate_in_room')}}</h3>
 							<span class="btn btn-static btn-tag" title="{{v.deviceName}}" ng-repeat="v in heating.devices.ThermostateByRoom[r.id] track by $index" ng-if="_.size(heating.devices.ThermostateByRoom[r.id]) > 0">
