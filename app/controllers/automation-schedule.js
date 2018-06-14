@@ -9,9 +9,9 @@
 myAppController.controller('AutomationScheduleController', function($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
 	$scope.schedules = {
 		state: '',
-		enableTest: [],
-
+		enableTest: []
 	};
+	$scope.oldSchedules = [];
 
 
 	/**
@@ -50,7 +50,61 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 			});
 		});
 	};
-	$scope.loadSchedules();
+
+	/**
+	 * Load old schedules
+	 * @returns {undefined}
+	 */
+	$scope.loadOldSchedules = function() {
+		dataFactory.getApi('instances', '/ScheduledScene', true).then(function(response) {
+			$scope.oldSchedules = _.filter(response.data.data, function(v) {
+				return !v.params.transformed;
+			});
+
+			if ($scope.oldSchedules.length) {
+				var postData = {
+					source: 'ScheduledScene',
+					target: 'Schedules'
+				}
+
+				alertify.confirm($scope._t('scheduledscenes_exists'))
+					.setting('labels', {
+						'ok': $scope._t('ok_import')
+					})
+					.set('onok', function(closeEvent) { //after clicking OK
+						dataFactory.postApi('modules_transform', postData).then(function(response) {
+							if (response.data && response.data.data) {
+								var newSchedules = response.data.data.map(function(entry) {
+									return entry.title
+								});
+								dataService.showNotifier({
+									message: $scope._t('successfully_transformed') + '<br>' + newSchedules.join(',<br>')
+								});
+								$scope.loadSchedules();
+							}
+
+							$scope.oldSchedules = [];
+						}, function(error) {
+							dataService.showNotifier({
+								message: $scope._t('error_transformed'),
+								type: 'error'
+							});
+							$scope.oldSchedules = [];
+							$scope.loadSchedules();
+						});
+					})
+					.set('oncancel', function(closeEvent) { //after clicking Cancel
+						$scope.oldSchedules = [];
+						$scope.loadSchedules();
+					});
+			} else {
+				$scope.loadSchedules();
+			}
+		}, function(error) {
+			$scope.loadSchedules();
+		});
+	};
+	$scope.loadOldSchedules();
 
 	/**
 	 * Run schedule test

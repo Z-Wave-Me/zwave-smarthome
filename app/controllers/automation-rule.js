@@ -6,13 +6,12 @@
  * Controller that handles list of rules
  * @class AutomationRuleController
  */
-myAppController.controller('AutomationRuleController', function($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('AutomationRuleController', function($scope, $routeParams, $location, $timeout, $q, cfg, dataFactory, dataService, _, myCache) {
 	$scope.rules = {
 		state: '',
-		enableTest: [],
-
+		enableTest: []
 	};
-
+	$scope.oldLogics = [];
 
 	/**
 	 * Load 
@@ -50,7 +49,115 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 			});
 		});
 	};
-	$scope.loadRules();
+
+	/**
+	 * Load old LogicalRules and IfThen
+	 * @returns {undefined}
+	 */
+	$scope.loadOldLogics = function() {
+
+		var promises = [
+				dataFactory.getApi('instances', '/IfThen', true),
+				dataFactory.getApi('instances', '/LogicalRules', true)
+			],
+			ifThenList = [],
+			logicalRulesList = [];
+
+		$q.allSettled(promises).then(function(response) {
+			var ifThen = response[0];
+			var logicalRules = response[1];
+			// Error message
+			if (ifThen.state === 'rejected' || logicalRules.state === 'rejected') {
+				$scope.loadRules();
+				return;
+			}
+			// Success - modules
+			if (ifThen.state === 'fulfilled') {
+				ifThenList = _.filter(ifThen.value.data.data, function(v) {
+					return !v.params.transformed;
+				});
+			}
+
+			// Success - instances
+			if (logicalRules.state === 'fulfilled') {
+				logicalRulesList = _.filter(logicalRules.value.data.data, function(v) {
+					return !v.params.transformed;
+				});
+			}
+
+			$scope.oldLogics = $scope.oldLogics.concat(ifThenList, logicalRulesList);
+
+			if ($scope.oldLogics.length) {
+				var ifThenPostData = {
+						source: 'IfThen',
+						target: 'Rules'
+					},
+					logicalRulesPostData = {
+						source: 'LogicalRules',
+						target: 'Rules'
+					};
+
+				alertify.confirm($scope._t('logics_exists'))
+					.setting('labels', {
+						'ok': $scope._t('ok_import')
+					})
+					.set('onok', function(closeEvent) { //after clicking OK
+						var confirmProm = [
+							dataFactory.postApi('modules_transform', ifThenPostData),
+							dataFactory.postApi('modules_transform', logicalRulesPostData)
+						]
+
+						$q.allSettled(confirmProm).then(function(res) {
+							var ifThenRes = res[0],
+								logicalRulesRes = res[1],
+								resTitles = [];
+
+							// Error message
+							if (ifThenRes.state === 'rejected' || logicalRulesRes.state === 'rejected') {
+								dataService.showNotifier({
+									message: $scope._t('error_transformed'),
+									type: 'error'
+								});
+								$scope.oldLogics = [];
+								$scope.loadRules();
+								return;
+							}
+							// Success - modules
+							if (ifThenRes.state === 'fulfilled') {
+								resTitles = resTitles.concat(ifThenRes.value.data.data.map(function(entry) {
+									return entry.title
+								}));
+							}
+
+							// Success - instances
+							if (logicalRulesRes.state === 'fulfilled') {
+								resTitles = resTitles.concat(logicalRulesRes.value.data.data.map(function(entry) {
+									return entry.title
+								}));
+							}
+
+							if (resTitles.length) {
+								dataService.showNotifier({
+									message: $scope._t('successfully_transformed') + '<br>' + resTitles.join(',<br>')
+								});
+								$scope.loadRules();
+							}
+
+							$scope.oldLogics = [];
+
+						});
+					})
+					.set('oncancel', function(closeEvent) { //after clicking Cancel
+						$scope.oldLogics = [];
+						$scope.loadRules();
+					});
+			} else {
+				$scope.oldLogics = [];
+				$scope.loadRules();
+			}
+		});
+	};
+	$scope.loadOldLogics();
 
 	/**
 	 * Run test

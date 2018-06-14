@@ -11,6 +11,8 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 		state: '',
 		enableTest: [],
 	};
+	$scope.oldScenes = [];
+
 	/**
 	 * Load schedules
 	 * @returns {undefined}
@@ -55,7 +57,62 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 			});
 		});
 	};
-	$scope.loadScenes();
+
+	/**
+	 * Load schedules
+	 * @returns {undefined}
+	 */
+	$scope.loadOldScenes = function() {
+		dataFactory.getApi('instances', '/LightScene', true).then(function(response) {
+			$scope.oldScenes = _.filter(response.data.data, function(v) {
+				return !v.params.transformed;
+			});
+
+			if ($scope.oldScenes.length) {
+				var postData = {
+					source: 'LightScene',
+					target: 'Scenes'
+				}
+
+				alertify.confirm($scope._t('ligthscenes_exists'))
+					.setting('labels', {
+						'ok': $scope._t('ok_import')
+					})
+					.set('onok', function(closeEvent) { //after clicking OK
+						dataFactory.postApi('modules_transform', postData).then(function(response) {
+							if (response.data && response.data.data) {
+								var newScenes = response.data.data.map(function(entry) {
+									return entry.title
+								});
+								dataService.showNotifier({
+									message: $scope._t('successfully_transformed') + '<br>' + newScenes.join(',<br>')
+								});
+								$scope.loadScenes();
+							}
+
+							$scope.oldScenes = [];
+						}, function(error) {
+							dataService.showNotifier({
+								message: $scope._t('error_transformed'),
+								type: 'error'
+							});
+							$scope.oldScenes = [];
+							$scope.loadScenes();
+						});
+					})
+					.set('oncancel', function(closeEvent) { //after clicking Cancel
+						$scope.oldScenes = [];
+						$scope.loadScenes();
+					});
+			} else {
+				$scope.loadScenes();
+			}
+		}, function(error) {
+			$scope.loadScenes();
+		});
+	};
+	$scope.loadOldScenes();
+
 	/**
 	 * Run test
 	 * @param {object} instance
@@ -141,17 +198,17 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 				}
 			},
 			switchRGBW: {
-			  level: ['on', 'off'],
-			  min: 0,
-			  max: 255,
-			  default: {
-			    deviceId: '',
-			    deviceType: 'switchRGBW',
-			    level: 'on',
-			    sendAction: false,
-			    reverseLevel: null
-			  }
-			},			
+				level: ['on', 'off'],
+				min: 0,
+				max: 255,
+				default: {
+					deviceId: '',
+					deviceType: 'switchRGBW',
+					level: 'on',
+					sendAction: false,
+					reverseLevel: null
+				}
+			},
 			thermostat: {
 				min: 0,
 				max: 99,
