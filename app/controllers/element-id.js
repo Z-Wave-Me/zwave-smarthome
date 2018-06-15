@@ -46,11 +46,11 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		var promises = [
 			dataFactory.getApi('devices', '/' + $routeParams.id, true),
 			dataFactory.getApi('locations'),
-			dataFactory.getApi('devices'),
-			dataFactory.getApi('modules')
+			dataFactory.getApi('devices')
 		];
 
 		if ($scope.user.role === 1) {
+			promises.push(dataFactory.getApi('modules', false, true));
 			promises.push(dataFactory.getApi('instances', false, true));
 		}
 
@@ -311,8 +311,8 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				$scope.loading = false;
 			});
 		}).setting('labels', {
-            'ok': $scope._t('ok')
-        });
+			'ok': $scope._t('ok')
+		});
 	};
 
 	/// --- Private functions --- ///
@@ -325,21 +325,23 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		var zwaveId = false;
 		$scope.elementId.input = device;
 
-		var instance = _.findWhere($scope.elementId.instances, {
-			id: $filter('toInt')(device.creatorId)
-		});
-		var modul = _.findWhere($scope.elementId.modules, {
-			moduleName: instance.moduleId
-		});
+		if ($scope.user.role === 1) {
+			var instance = _.findWhere($scope.elementId.instances, {
+				id: $filter('toInt')(device.creatorId)
+			});
+			var modul = _.findWhere($scope.elementId.modules, {
+				moduleName: instance.moduleId
+			});
 
-		$scope.elementId.appType['instance'] = instance;
-		$scope.elementId.appType['modul'] = modul;
+			$scope.elementId.appType['instance'] = instance;
+			$scope.elementId.appType['modul'] = modul;
 
-		if (device.id.indexOf(findZwaveStr) > -1) {
-			zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
-			$scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
-		} else if (device.id.indexOf(findZenoStr) > -1) {
-			$scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
+			if (device.id.indexOf(findZwaveStr) > -1) {
+				zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
+				$scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
+			} else if (device.id.indexOf(findZenoStr) > -1) {
+				$scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
+			}
 		}
 
 		if (cfg.route.os == 'PoppApp_Z_Way') {
