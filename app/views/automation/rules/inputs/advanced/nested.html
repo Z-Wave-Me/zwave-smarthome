@@ -26,7 +26,7 @@
     <span ng-switch-when="nested">{{_t('nested')}}</span>
     <span ng-switch-when="time">{{_t('lb_time')}}&nbsp;<em>[{{n.operator}}&nbsp;{{n.level}}]</em></span>
     <span ng-switch-default>
-      <span ng-if="!rule.namespaces[n.deviceId].deviceName">{{_t('device_removed') + ': ' + n.deviceId}}</span>
+      <span ng-if="!rule.namespaces[n.deviceId].deviceName"><i class="fa fa-exclamation-circle"></i> {{_t('device_removed')}} ({{v.deviceId}})</span>
       <span ng-if="rule.namespaces[n.deviceId].deviceName">{{rule.namespaces[n.deviceId].deviceName}}&nbsp;
         <em ng-if="n.operator">[{{n.operator}}&nbsp;{{n.level}}]</em>
         <em ng-if="!n.operator && _.isNumber(n.level)">[{{n.level}}]</em>

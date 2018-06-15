@@ -3,7 +3,7 @@
   <h2 class="accordion-toggle ellipsis">
       <!-- Deleted device -->
       <span class="no-toggle text-danger" ng-if="!hazardProtection.availableDevices[v.deviceId]">
-          <i class="fa fa-exclamation-circle"></i> {{v.device}} {{_t('device_removed')}}
+          <i class="fa fa-exclamation-circle"></i> {{_t('device_removed')}} ({{v.deviceId}})
       </span>
       <!-- Toggle -->
       <button type="button" aria-expanded="false" bb-accordion ng-if="v.deviceType!='toggleButton'" ng-hide="!hazardProtection.availableDevices[v.deviceId]">
