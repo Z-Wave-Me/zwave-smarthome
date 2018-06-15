@@ -195,6 +195,8 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $co
                 var langkey = (error.data.error ? error.data.error : 'error_delete_data');
                 alertify.alertError($scope._t(langkey));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 });

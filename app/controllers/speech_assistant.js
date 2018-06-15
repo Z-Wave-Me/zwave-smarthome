@@ -103,7 +103,9 @@ myAppController.controller('SpeechAssistantsManageController', function($scope, 
 				$scope.loading = false;
 				alertify.alertError($scope._t('error_delete_data'));
 			});
-		});
+		}).setting('labels', {
+            'ok': $scope._t('ok')
+        });
 	};
 
 	/// --- Private functions --- ///

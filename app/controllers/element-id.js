@@ -310,8 +310,9 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				alertify.alertError($scope._t('error_delete_data'));
 				$scope.loading = false;
 			});
-		});
-
+		}).setting('labels', {
+            'ok': $scope._t('ok')
+        });
 	};
 
 	/// --- Private functions --- ///

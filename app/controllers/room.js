@@ -441,6 +441,8 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 
@@ -468,6 +470,8 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 

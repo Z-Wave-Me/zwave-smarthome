@@ -110,6 +110,8 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
             // Displays a confirm dialog and on OK atempt to upload file
             alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
                 uploadFile(files);
+            }).setting('labels', {
+                'ok': $scope._t('ok')
             });
         } else {
             uploadFile(files);
@@ -155,8 +157,9 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
-
     };
 
     /**
@@ -194,8 +197,9 @@ myAppController.controller('LocalIconController', function ($scope, $filter, $ti
                 $scope.toggleAll(false);
             }
 
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
-
     };
 
     /// --- Private functions --- ///

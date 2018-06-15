@@ -125,7 +125,8 @@ myAppController.controller('CameraManageController', function ($scope, $q, $loca
             }, function (error) {
                 alertify.alertError($scope._t('error_delete_data'));
             });
-
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 

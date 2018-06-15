@@ -477,7 +477,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		alertify.confirm(message, function() {
 			angular.extend($scope.heating.input.params.roomSettings[destRoomId], $scope.heating.input.params.roomSettings[srcRoomId]);
 			$scope.updateSchedule("#schedule-" + destRoomId, destRoomId)
-		});
+		}).setting('labels', {
+            'ok': $scope._t('ok')
+        });
 	};
 
 	/**

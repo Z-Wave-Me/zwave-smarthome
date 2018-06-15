@@ -262,7 +262,8 @@ myAppController.controller('RF433ManageController', function($scope, $location, 
             } else {
                 alertify.alertError($scope._t('error_delete_data'));
             }
-
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 

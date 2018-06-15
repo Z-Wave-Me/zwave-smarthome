@@ -218,7 +218,8 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 			}, function(error) {
 				alertify.alertError($scope._t('error_delete_data'));
 			});
-
+		}).setting('labels', {
+			'ok': $scope._t('ok')
 		});
 	};
 

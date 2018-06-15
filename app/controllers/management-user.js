@@ -53,10 +53,10 @@ myAppController.controller('ManagementUserController', function ($scope, $cookie
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
-
-
 });
 
 /**

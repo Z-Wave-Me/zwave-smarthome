@@ -512,7 +512,8 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
                 $scope.loading = false;
                 alertify.alertError(message);
             });
-
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 

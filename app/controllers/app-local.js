@@ -78,6 +78,8 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
                 $scope.loading = false;
                 alertify.alertError(message);
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 
@@ -99,6 +101,8 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
                 $scope.loading = false;
                 alertify.alertError(message);
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 

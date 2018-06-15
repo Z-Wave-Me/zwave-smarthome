@@ -313,7 +313,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                         // Cc Version interview is not complete
                     case 'error_interview_again':
                         alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
-                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion'), 'ok': $scope._t('ok')})
                                 .set('onok', function (closeEvent) {//after clicking OK
                                     $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
                                     $scope.startConfiguration({
@@ -330,19 +330,20 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                         // Cc Version interview is complete but other interviews are not complete
                     case 'error_interview_retry':
                         alertify.confirm($scope._t('configuration_complete_only') + ' ' + $scope.zwaveInterview.progress + '%' + batteryInfo + resetInfo)
-                                .setting('labels', {'cancel': $scope._t('redo_inclusion')})
+                                .setting('labels', {'cancel': $scope._t('redo_inclusion'), 'ok': $scope._t('ok')})
                                 .set('onok', function (closeEvent) {//after clicking OK
                                     $scope.forceInterview($scope.zwaveInterview.interviewNotDone);
                                     $scope.startConfiguration({
                                         nodeId: $scope.devices.find.id,
                                         interviewDoneCnt: 0,
-                                        interviewRepeatCnt: 0,
+                                        interviewRepeatCnt: 0,s
                                         errorType: ''});
                                 })
                                 .set('oncancel', function (closeEvent) {//after clicking Cancel
                                     alertify.dismissAll();
                                     $location.path('/zwave/inclusion');
                                 });
+
                         break;
                         // Unexpected error
                     default:

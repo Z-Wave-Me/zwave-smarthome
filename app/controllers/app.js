@@ -272,9 +272,9 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
         alertify.alertError(message);
       });
+    }).setting('labels', {
+        'ok': $scope._t('ok')
     });
-
-
   };
 
   /// --- Private functions --- ///

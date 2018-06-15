@@ -73,7 +73,6 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 					source: 'LightScene',
 					target: 'Scenes'
 				}
-
 				alertify.confirm($scope._t('ligthscenes_exists'))
 					.setting('labels', {
 						'ok': $scope._t('ok_import')
@@ -165,6 +164,8 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 			}, function(error) {
 				alertify.alertError($scope._t('error_delete_data'));
 			});
+		}).setting('labels', {
+			'ok': $scope._t('ok')
 		});
 	};
 });
