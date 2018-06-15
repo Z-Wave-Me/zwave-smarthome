@@ -45,7 +45,6 @@ $accordion-focus-color: $focus-color;
       font-size: 105%;
     }
     &[aria-expanded="false"]{
-     
      &::after{
       content: "+";
       }
@@ -132,9 +131,32 @@ $accordion-focus-color: $focus-color;
     }
   }
 }
-.accordion{
+
+.accordion {
   border-bottom: dotted 1px $accordion-border-color;
   padding-bottom: $accordion-spacing;
+  height:auto;
+  //animation
+  //background:red !important;
+  &:not([hidden]) {
+    transform-origin: top;
+    @include animation(0.3s scaleYIn ease);
+  }
+  &[hidden] {
+    transform-origin: top;
+    @include animation(0.3s scaleYOut ease);
+  }
+
+  // animation
+  @keyframes scaleYIn {
+    0% {transform: scaleY(0);}
+    100% {transform: scaleY(1);}
+  }
+
+  @keyframes scaleYOut {
+    0% {transform: scaleY(1);}
+    100% {transform: scaleY(0);}
+  }
 }
 
 .accordion-wrap {

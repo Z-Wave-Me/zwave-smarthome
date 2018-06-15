@@ -10101,21 +10101,21 @@ img {
   #sub_navigation_wrap #sub_navigation.ng-hide-add, #sub_navigation_wrap #sub_navigation.ng-hide-remove {
     transition: 300ms;
   }
-  #sub_navigation_wrap #sub_navigation.ng-hide-remove .container {
+  #sub_navigation_wrap #sub_navigation.ng-hide-add ul, #sub_navigation_wrap #sub_navigation.ng-hide-remove ul {
     will-change: transform;
     contain: content;
-    transform-origin: 100% 0%;
-    -webkit-animation: 0.3s scaleRTCin ease;
-    -o-animation: 0.3s scaleRTCin ease;
-    animation: 0.3s scaleRTCin ease;
+    transform-origin: top right;
+    animation-fill-mode: both;
   }
-  #sub_navigation_wrap #sub_navigation.ng-hide-add .container {
-    will-change: transform;
-    contain: content;
-    transform-origin: 100% 0%;
-    -webkit-animation: 0.3s scaleRTCout ease;
-    -o-animation: 0.3s scaleRTCout ease;
-    animation: 0.3s scaleRTCout ease;
+  #sub_navigation_wrap #sub_navigation.ng-hide-remove ul {
+    -webkit-animation: 0.3s scaleRTCin ease-in-out;
+    -o-animation: 0.3s scaleRTCin ease-in-out;
+    animation: 0.3s scaleRTCin ease-in-out;
+  }
+  #sub_navigation_wrap #sub_navigation.ng-hide-add ul {
+    -webkit-animation: 0.3s scaleRTCout ease-in-out;
+    -o-animation: 0.3s scaleRTCout ease-in-out;
+    animation: 0.3s scaleRTCout ease-in-out;
   }
   @keyframes scaleRTCin {
     0% {
@@ -12686,6 +12686,39 @@ fieldset section, .fieldset section {
 .accordion {
   border-bottom: dotted 1px #cccccc;
   padding-bottom: 10px;
+  height: auto;
+}
+
+.accordion:not([hidden]) {
+  transform-origin: top;
+  -webkit-animation: 0.3s scaleYIn ease;
+  -o-animation: 0.3s scaleYIn ease;
+  animation: 0.3s scaleYIn ease;
+}
+
+.accordion[hidden] {
+  transform-origin: top;
+  -webkit-animation: 0.3s scaleYOut ease;
+  -o-animation: 0.3s scaleYOut ease;
+  animation: 0.3s scaleYOut ease;
+}
+
+@keyframes scaleYIn {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes scaleYOut {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
 }
 
 .accordion-wrap.active > .accordion-toggle > button {

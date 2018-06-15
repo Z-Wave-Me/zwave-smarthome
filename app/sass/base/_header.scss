@@ -164,25 +164,25 @@
     @include mediaQueries(min-small) {
       &.ng-hide-add, &.ng-hide-remove {
         transition: 300ms;
-      }
-      &.ng-hide-remove {
-        .container {
+        ul {
           will-change: transform;
           contain: content;
-          transform-origin: 100% 0%;
-          @include animation(0.3s scaleRTCin ease);  
+          transform-origin: top right;
+          animation-fill-mode: both;
+        }
+      }
+      &.ng-hide-remove {
+        ul {
+          @include animation(0.3s scaleRTCin ease-in-out);  
         }  
       }
 
       &.ng-hide-add {
-        .container {
-          will-change: transform;
-          contain: content;
-          transform-origin: 100% 0%;
-          @include animation(0.3s scaleRTCout ease);  
+        ul {
+          @include animation(0.3s scaleRTCout ease-in-out);  
         }
       }
-
+      
       @keyframes scaleRTCin {
         0% { transform: scale(0,0);}
         50% { transform: scale(0.5,0.5);}
