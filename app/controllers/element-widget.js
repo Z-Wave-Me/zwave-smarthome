@@ -193,7 +193,7 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
             status: 'alert-warning',
             icon: 'fa-spinner fa-spin'
         };
-        dataFactory.getApi('history_get', '?id=' + device.id + '&show='+$scope.widgetHistory.history_steps, true).then(function (response) {
+        dataFactory.getApi('history_get', '?id=' + device.id + '&show=' + $scope.widgetHistory.history_steps, true).then(function(response) {
             if (!response.data.history) {
                 $scope.widgetHistory.alert = {
                     message: $scope._t('no_data'),
@@ -203,7 +203,7 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
                 return;
             }
             $scope.widgetHistory.alert = {};
-            $scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors);
+            $scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors, $scope.widgetHistory.history_steps);
         }, function(error) {
             $scope.widgetHistory.alert = {
                 message: $scope._t('error_load_data'),
@@ -214,9 +214,9 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
     };
     //$scope.loadDeviceHistory();
 
-    $scope.reloadChart = function (steps) {
-        angular.extend($scope.widgetHistory.chartData,{});
-        $scope.widgetHistory.history_steps = steps;
+    $scope.reloadChart = function(steps) {
+        angular.extend($scope.widgetHistory.chartData, {});
+        $scope.widgetHistory.history_steps = parseInt(steps, 10);
         $scope.loadDeviceHistory();
         document.getElementById('history_chart').update();
     };

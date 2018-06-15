@@ -794,7 +794,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
      * @param {object} colors
      * @returns {Object|NULL}
      */
-    this.getChartData = function(data, colors) {
+    this.getChartData = function(data, colors, steps) {
         if (!angular.isObject(data, colors)) {
             return null;
         }
@@ -810,13 +810,39 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
             }]
         };
         var cnt = 0;
+        var mod = 1;
+
+        switch (steps) {
+            case 48:
+                mod = 2;
+                break;
+            case 96:
+                mod = 4;
+                break;
+            case 144:
+                mod = 6;
+                break;
+            case 288:
+                mod = 12;
+                break;
+            case 1440:
+                mod = 48;
+                break;
+        }
+
         angular.forEach(data, function(v, k) {
             cnt++;
             var time = $filter('date')(((v.id) * 1000), 'H:mm');
             //if (v.id > currTime && out.labels.indexOf(time) === -1) {
             //if (v.id > currTime && (cnt % 2)) {
-            if (v.id > currTime && (cnt % 2) === 0) {
-                out.labels.push(time);
+            if (v.id > currTime) {
+                //if (v.id > currTime) {
+                if ((cnt % mod) === 0) {
+                    out.labels.push(time);
+                } else {
+                    out.labels.push('');
+                }
+
                 //out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
                 out.datasets[0].data.push(v.l);
             }
