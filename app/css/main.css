@@ -10098,13 +10098,20 @@ img {
 }
 
 @media only screen and (min-width: 768px) {
-  #sub_navigation_wrap #sub_navigation.ng-hide-remove {
+  #sub_navigation_wrap #sub_navigation.ng-hide-add, #sub_navigation_wrap #sub_navigation.ng-hide-remove {
+    transition: 300ms;
+  }
+  #sub_navigation_wrap #sub_navigation.ng-hide-remove .container {
+    will-change: transform;
+    contain: content;
     transform-origin: 100% 0%;
     -webkit-animation: 0.3s scaleRTCin ease;
     -o-animation: 0.3s scaleRTCin ease;
     animation: 0.3s scaleRTCin ease;
   }
-  #sub_navigation_wrap #sub_navigation.ng-hide-add {
+  #sub_navigation_wrap #sub_navigation.ng-hide-add .container {
+    will-change: transform;
+    contain: content;
     transform-origin: 100% 0%;
     -webkit-animation: 0.3s scaleRTCout ease;
     -o-animation: 0.3s scaleRTCout ease;
@@ -12950,16 +12957,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert
