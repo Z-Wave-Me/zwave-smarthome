@@ -50,9 +50,7 @@
         <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['alarms']||false}}" ng-click="expandElement('alarms')">
         </button>
       </div>
-      <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification.html'"
-        ng-init="model = security.input.params.alarms.notification"
-      ng-class="!expand['alarms'] ? 'expand-true': 'expand-false'"></div>
+      <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_alarm.html'" ng-class="!expand['alarms'] ? 'expand-true': 'expand-false'"></div>
     </div>
   </div>
   <!-- Available devices -->
@@ -60,11 +58,11 @@
   <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'">
     <!-- Title -->
     <h2 class="accordion-toggle chevron">
-      <button type="button" aria-expanded="false" bb-accordion>
-        <span>
-          <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
-        </span>
-      </button>
+    <button type="button" aria-expanded="false" bb-accordion>
+    <span>
+      <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+    </span>
+    </button>
     </h2>
     <!-- Content -->
     <div class="accordion" hidden>
