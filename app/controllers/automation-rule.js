@@ -66,11 +66,7 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 		$q.allSettled(promises).then(function(response) {
 			var ifThen = response[0];
 			var logicalRules = response[1];
-			// Error message
-			if (ifThen.state === 'rejected' || logicalRules.state === 'rejected') {
-				$scope.loadRules();
-				return;
-			}
+
 			// Success - modules
 			if (ifThen.state === 'fulfilled') {
 				ifThenList = _.filter(ifThen.value.data.data, function(v) {
@@ -84,6 +80,14 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 					return !v.params.transformed;
 				});
 			}
+
+			// Error message
+			if (ifThen.state === 'rejected' && logicalRules.state === 'rejected') {
+				$scope.loadRules();
+				return;
+			}
+
+			console.log('### logicalRulesList:', logicalRulesList);
 
 			$scope.oldLogics = $scope.oldLogics.concat(ifThenList, logicalRulesList);
 
@@ -102,50 +106,64 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 						'ok': $scope._t('ok_import')
 					})
 					.set('onok', function(closeEvent) { //after clicking OK
-						var confirmProm = [
-							dataFactory.postApi('modules_transform', ifThenPostData),
-							dataFactory.postApi('modules_transform', logicalRulesPostData)
-						]
+						var confirmProm = [],
+							hasLogicalRules = logicalRulesList.length ? true : false,
+							hasIfThen = ifThenList.length ? true : false;
 
-						$q.allSettled(confirmProm).then(function(res) {
-							var ifThenRes = res[0],
-								logicalRulesRes = res[1],
-								resTitles = [];
+						if (hasLogicalRules) {
+							confirmProm.push(dataFactory.postApi('modules_transform', logicalRulesPostData));
+						}
 
-							// Error message
-							if (ifThenRes.state === 'rejected' || logicalRulesRes.state === 'rejected') {
-								dataService.showNotifier({
-									message: $scope._t('error_transformed'),
-									type: 'error'
-								});
+						if (hasIfThen) {
+							confirmProm.push(dataFactory.postApi('modules_transform', ifThenPostData));
+						}
+
+						if (confirmProm.length) {
+							$q.allSettled(confirmProm).then(function(res) {
+								var ifThenRes = hasIfThen && hasLogicalRules ? res[1] : (hasIfThen && !hasLogicalRules ? res[0] : undefined),
+									logicalRulesRes = (hasIfThen && hasLogicalRules) || (!hasIfThen && hasLogicalRules) ? res[0] : undefined,
+									resTitles = [];
+
+								console.log('ifThenRes:', ifThenRes);
+								console.log('logicalRulesRes:', logicalRulesRes);
+
+								// Error message
+								if (ifThenRes && ifThenRes.state === 'rejected' && logicalRulesRes && logicalRulesRes.state === 'rejected') {
+									dataService.showNotifier({
+										message: $scope._t('error_transformed'),
+										type: 'error'
+									});
+									$scope.oldLogics = [];
+									$scope.loadRules();
+									return;
+								}
+								// Success - modules
+								if (ifThenRes && ifThenRes.state === 'fulfilled') {
+									resTitles = resTitles.concat(ifThenRes.value.data.data.map(function(entry) {
+										return entry.title
+									}));
+								}
+
+								// Success - instances
+								if (logicalRulesRes && logicalRulesRes.state === 'fulfilled') {
+									resTitles = resTitles.concat(logicalRulesRes.value.data.data.map(function(entry) {
+										return entry.title
+									}));
+								}
+
+								console.log('resTitles:', resTitles);
+
+								if (resTitles.length) {
+									dataService.showNotifier({
+										message: $scope._t('successfully_transformed') + '<br>' + resTitles.join(',<br>')
+									});
+									$scope.loadRules();
+								}
+
 								$scope.oldLogics = [];
-								$scope.loadRules();
-								return;
-							}
-							// Success - modules
-							if (ifThenRes.state === 'fulfilled') {
-								resTitles = resTitles.concat(ifThenRes.value.data.data.map(function(entry) {
-									return entry.title
-								}));
-							}
 
-							// Success - instances
-							if (logicalRulesRes.state === 'fulfilled') {
-								resTitles = resTitles.concat(logicalRulesRes.value.data.data.map(function(entry) {
-									return entry.title
-								}));
-							}
-
-							if (resTitles.length) {
-								dataService.showNotifier({
-									message: $scope._t('successfully_transformed') + '<br>' + resTitles.join(',<br>')
-								});
-								$scope.loadRules();
-							}
-
-							$scope.oldLogics = [];
-
-						});
+							});
+						}
 					})
 					.set('oncancel', function(closeEvent) { //after clicking Cancel
 						$scope.oldLogics = [];
