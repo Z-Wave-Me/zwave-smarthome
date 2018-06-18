@@ -64,9 +64,7 @@
         <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['silentAlarms']||false}}" ng-click="expandElement('silentAlarms')">
         </button>
       </div>
-      <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification.html'"
-        ng-init="model = security.input.params.silentAlarms.notification"
-      ng-class="!expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>
+      <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_silent_alarm.html'" ng-class="!expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>
     </div>
   </div>
   <h3>{{_t('devices_triggered_delayed_alarm')}}</h3>

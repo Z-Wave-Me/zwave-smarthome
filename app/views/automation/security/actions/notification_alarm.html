@@ -1,0 +1,17 @@
+<!--target  -->
+<div class="form-group form-inline">
+  <select class="form-control" ng-model="security.input.params.alarms.notification.target">
+    <option value="" ng-selected="!model.target">--- {{_t('notification_trigger')}} ---</option>
+    <option value="{{user.email}}" ng-selected="security.input.params.alarms.notification.target == user.email">{{user.email}}</option>
+    <option value="{{e.deviceId}}" ng-repeat="e in security.devices.notification track by $index" ng-selected="e.deviceId == security.input.params.alarms.notification.target">
+      {{e.deviceName}}</option>
+  </select>
+  &nbsp;
+ <!--  <label ng-hide="leakage.availableNotifiers[model.target] || model.target == user.email">&nbsp;{{_t('or')}}&nbsp;
+    <input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="model.target" />
+  </label> -->
+</div>
+<!-- mesage -->
+<div class="form-group" ng-if="security.input.params.alarms.notification.target != ''">
+  <textarea name="message" id="content" class="form-control report-content" ng-model="security.input.params.alarms.notification.message" placeholder="{{_t('message')}}"></textarea>
+</div>

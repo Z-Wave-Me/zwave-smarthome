@@ -336,7 +336,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
                                     $scope.startConfiguration({
                                         nodeId: $scope.devices.find.id,
                                         interviewDoneCnt: 0,
-                                        interviewRepeatCnt: 0,s
+                                        interviewRepeatCnt: 0,
                                         errorType: ''});
                                 })
                                 .set('oncancel', function (closeEvent) {//after clicking Cancel

@@ -50,9 +50,7 @@
         <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['disarmConfirm']||false}}" ng-click="expandElement('disarmConfirm')">
         </button>
       </div>
-      <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification.html'"
-        ng-init="model = security.input.params.disarmConfirm.notification"
-      ng-class="!expand['disarmConfirm'] ? 'expand-true': 'expand-false'"></div>
+      <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_disarming.html'" ng-class="!expand['disarmConfirm'] ? 'expand-true': 'expand-false'"></div>
     </div>
   </div>
   <!-- Available devices -->
