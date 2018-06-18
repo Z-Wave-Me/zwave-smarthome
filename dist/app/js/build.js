@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 18-06-2018 08:54:12 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 18-06-2018 09:18:58 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -21399,1186 +21399,1212 @@ var myAppService = angular.module('myAppService', []);
  * @class dataService
  */
 myAppService.service('dataService', function($filter, $log, $cookies, $window, $location, cfg, cfgicons, _) {
-    /// --- Public functions --- ///
-    /**
-     * Resets the alert object
-     * @param {object} notifier
-     * @returns {undefined}
-     */
-    this.resetAlert = function() {
-        if (cfg.route.alert.message && !cfg.route.alert.permanent) {
-            angular.extend(cfg.route.alert, {
-                type: 'system', // system|network
-                message: false,
-                info: false,
-                permanent: false, // Permanently displayed
-                hide: false, // Hide page content
-                icon: 'fa-exclamation-triangle text-danger'
-            });
-        }
-    };
-
-    /**
-     * Check if access is allowed for the page
-     * @param {object} next
-     * @returns {undefined}
-     */
-    this.isAccessAllowed = function(next) {
-        if (next.requireLogin) {
-            var user = this.getUser();
-            if (!user) {
-                $location.path('/');
-                return;
-            }
-            if (next.roles && angular.isArray(next.roles)) {
-                if (next.roles.indexOf(user.role) === -1) {
-                    $location.path('/error403');
-                    return;
-                }
-            }
-        }
-    };
-
-    /**
-     * Set timestamp and ping server if request fails
-     * @param {object} next
-     * @returns {undefined}
-     */
-    this.setTimeStamp = function() {
-        /* dataFactory.getApi('timezone', null, true).then(function (response) {
-
-         }, function (error) {});*/
-    };
-
-    /**
-     * Get a language string by key
-     * @param {string} key
-     * @param {object} languages
-     * @param {object} replacement
-     * @returns {unresolved}
-     */
-    this.getLangLine = function(key, languages, replacement) {
-        return getLangLine(key, languages, replacement);
-    };
-
-    /**
-     * Render alertify notifier
-     * @param {object} notifier
-     * @returns {undefined}
-     */
-    this.showNotifier = function(notifier) {
-        var param = _.defaults(notifier, {
-            position: 'top-right',
-            message: false,
-            type: 'success',
-            wait: 5
-        });
-        if (notifier.message) {
-            alertify.set('notifier', 'position', 'top-right');
-            alertify.notify(param.message, param.type, param.wait);
-        }
-    };
-
-
-    /**
-     * Log error in the console
-     * @param {string} error
-     * @param {string} message
-     * @returns {undefined}
-     */
-    this.logError = function(error, message) {
-        message = message || 'ERROR:';
-        $log.error('---------- ' + message + ' ----------', error);
-    };
-
-    /**
-     * todo: Deprecated
-     * Get OS (operating system)
-     * @returns {String}
-     */
-    /*this.getOs = function () {
-        if (navigator && navigator.userAgent && navigator.userAgent != null) {
-            var agents = ['android', 'iemobile', 'iphone', 'ipad', 'ipod', 'opera mini', 'blackberry'];
-            var ua = navigator.userAgent.toLowerCase();
-            for (var i in agents) {
-                if (ua.match('/' + agents[i] + '/i')) {
-                    return agents[i];
-                }
-            }
-            return 'any';
-        }
-        return 'any';
-    };*/
-
-    /**
-     * Get OS (operating system)
-     * @returns {String}
-     */
-    this.isIeEdge = function() {
-        var isIE = /*@cc_on!@*/ false || !!document.documentMode;
-        if (isIE) {
-            return true;
-        }
-        return false;
-        // Edge 20+
-        /*var isEdge = !isIE && !!window.StyleMedia;
-        if (isEdge) {
-            return true;
-        }*/
-
-    };
-
-
-    /**
-     * Detect a mobile device
-     * @param {string} a
-     * @returns {Boolean}
-     */
-    this.isMobile = function(a) {
-        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    /**
-     * Window history go back
-     * @returns {undefined}
-     */
-    this.goBack = function() {
-        window.history.back();
-    };
-
-    /**
-     * Get x segment from url string
-     * @param {string} url
-     * @param {int} index
-     * @returns {unresolved}
-     */
-    this.getUrlSegment = function(url, index) {
-        index = typeof index !== 'undefined' ? index : 1;
-        if (!url) {
-            return '';
-        }
-        return url.split('/')[index];
-    };
-
-
-    /**
-     * Get user data from cookies
-     * @returns {Array|Boolean}
-     */
-    this.getUser = function() {
-        var user = ($cookies.user && !!$cookies.user && $cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
-        return user;
-    };
-
-    /**
-     * Set user data
-     * @param {object} data
-     * @returns {Boolean|Object}
-     */
-    this.setUser = function(data) {
-        if (data && !!data) {
-            $cookies.user = angular.toJson(data);
-        } else {
-            delete $cookies['user'];
-            return false;
-        }
-        return data;
-    };
-
-    /**
-     * Unset user data - delete user cookies
-     * @returns {undefined}
-     */
-    this.unsetUser = function() {
-        this.setUser(null);
-        this.setZWAYSession(null);
-    };
-
-    /**
-     * Get ZWAY session
-     * @returns {string}
-     */
-    this.getZWAYSession = function() {
-        return $cookies.ZWAYSession;
-    };
-    /**
-     * Set ZWAY session
-     * @param {string} sid
-     * @returns {Boolean|Object}
-     */
-    this.setZWAYSession = function(sid) {
-        if (sid && !!sid) {
-            $cookies.ZWAYSession = sid;
-        } else {
-            delete $cookies['ZWAYSession'];
-            return false;
-        }
-    };
-    /**
-     * Get last login info
-     * @returns {Sring|Boolean}
-     */
-    this.getLastLogin = function() {
-        return $cookies.lastLogin && !!$cookies.lastLogin && $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
-    };
-
-    /**
-     * Set last login
-     * @param {string} val
-     * @returns {undefined}
-     */
-    this.setLastLogin = function(val) {
-        $cookies.lastLogin = val;
-    };
-
-    /**
-     * Get remember me
-     * @returns {Object|Boolean}
-     */
-    this.getRememberMe = function() {
-        var user = ($cookies.rememberme && !!$cookies.rememberme && $cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
-        return user;
-    };
-
-    /**
-     * Set remember me
-     * @param {object} data
-     * @returns {Boolean|Object}
-     */
-    this.setRememberMe = function(data) {
-        if (data && !!data) {
-            $cookies.rememberme = angular.toJson(data);
-        } else {
-            delete $cookies['rememberme'];
-            return false;
-        }
-
-        return data;
-    };
-
-    /**
-     * Logout from the system
-     * @returns {undefined}
-     */
-    this.logOut = function() {
-        this.setUser(null);
-        this.setZWAYSession(null);
-        // Check if host is in the logout redirect list
-        var redirect = cfg.logout_redirect[$location.host()];
-        // Redirect to an url from list
-        if (redirect) {
-            $window.location.href = redirect;
-            return;
-        }
-        // Redirect to SHUI login page
-        $window.location.href = '#/?logout';
-        $window.location.reload();
-
-    };
-
-    /**
-     * Set dat for autocomplete
-     * @param {object} param
-     * @returns {array}
-     */
-    this.autocomplete = function(data, param) {
-        var results = [];
-        var term = param.term;
-        var searchInKeys = param.searchInKeys.split(',');
-        var returnKeys = param.returnKeys.split(',');
-        var strLength = param.strLength;
-        var resultLength = param.resultLength;
-        // Start search when min strLength entered
-        term = term.toLowerCase();
-        if (term.length < strLength) {
-            return;
-        }
-
-        // Find first resultLength states that start with `term`.
-        for (var i = 0; i < data.length && results.length < resultLength; i++) {
-            var obj = data[i];
-            var found = false;
-            var re = new RegExp(term, "ig");
-            // Search in given cols
-            for (var c = 0; c < searchInKeys.length; c++) {
-                if (obj[searchInKeys[c]] && re.test(obj[searchInKeys[c]])) {
-                    found = true;
-                    // Avoid to duplicate results
-                    continue;
-                }
-
-            }
-            if (found) {
-                results.push(_.pick(obj, returnKeys));
-            }
-        }
-        return results;
-
-
-    };
-
-    /**
-     * Build a new file name without invalid chars
-     * @param {string} fileName
-     * @returns {string}
-     */
-    this.uploadFileNewName = function(fileName) {
-        var name = fileName.split('.').slice(0, -1).join('.');
-        return $filter('stringToSlug')(name) + '.' + $filter('fileExtension')(fileName);
-
-
-    };
-
-    /**
-     * Check if device has a given command class
-     * @param {object} node
-     * @param {int} ccId
-     * @returns {boolean|object}
-     */
-    this.hasCommandClass = function(node, ccId) {
-        var hasCc = false;
-        angular.forEach(node.instances, function(instance, instanceId) {
-            if (instance.commandClasses[ccId]) {
-                hasCc = instance.commandClasses[ccId];
-                return;
-            }
-        });
-        return hasCc;
-    };
-
-    /**
-     * Compare version
-     * http://locutus.io/php/info/version_compare/
-     * @param {string} v1
-     * @param {string} v2
-     * @param {string} operator
-     * @returns {Boolean|Number}
-     */
-    this.compareVersion = function(v1, v2, operator) {
-
-
-        // Important: compare must be initialized at 0.
-        var i
-        var x
-        var compare = 0
-
-        // vm maps textual PHP versions to negatives so they're less than 0.
-        // PHP currently defines these as CASE-SENSITIVE. It is important to
-        // leave these as negatives so that they can come before numerical versions
-        // and as if no letters were there to begin with.
-        // (1alpha is < 1 and < 1.1 but > 1dev1)
-        // If a non-numerical value can't be mapped to this table, it receives
-        // -7 as its value.
-        var vm = {
-            'dev': -6,
-            'alpha': -5,
-            'a': -5,
-            'beta': -4,
-            'b': -4,
-            'RC': -3,
-            'rc': -3,
-            '#': -2,
-            'p': 1,
-            'pl': 1
-        }
-
-        // This function will be called to prepare each version argument.
-        // It replaces every _, -, and + with a dot.
-        // It surrounds any nonsequence of numbers/dots with dots.
-        // It replaces sequences of dots with a single dot.
-        //    version_compare('4..0', '4.0') === 0
-        // Important: A string of 0 length needs to be converted into a value
-        // even less than an unexisting value in vm (-7), hence [-8].
-        // It's also important to not strip spaces because of this.
-        //   version_compare('', ' ') === 1
-        var _prepVersion = function(v) {
-                v = ('' + v).replace(/[_\-+]/g, '.')
-                v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
-                return (!v.length ? [-8] : v.split('.'))
-            }
-            // This converts a version component to a number.
-            // Empty component becomes 0.
-            // Non-numerical component becomes a negative number.
-            // Numerical component becomes itself as an integer.
-        var _numVersion = function(v) {
-            return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10))
-        }
-
-        v1 = _prepVersion(v1)
-        v2 = _prepVersion(v2)
-        x = Math.max(v1.length, v2.length)
-        for (i = 0; i < x; i++) {
-            if (v1[i] === v2[i]) {
-                continue
-            }
-            v1[i] = _numVersion(v1[i])
-            v2[i] = _numVersion(v2[i])
-            if (v1[i] < v2[i]) {
-                compare = -1
-                break
-            } else if (v1[i] > v2[i]) {
-                compare = 1
-                break
-            }
-        }
-        if (!operator) {
-            return compare
-        }
-
-        // Important: operator is CASE-SENSITIVE.
-        // "No operator" seems to be treated as "<."
-        // Any other values seem to make the function return null.
-        switch (operator) {
-            case '>':
-            case 'gt':
-                return (compare > 0)
-            case '>=':
-            case 'ge':
-                return (compare >= 0)
-            case '<=':
-            case 'le':
-                return (compare <= 0)
-            case '===':
-            case '=':
-            case 'eq':
-                return (compare === 0)
-            case '<>':
-            case '!==':
-            case 'ne':
-                return (compare !== 0)
-            case '':
-            case '<':
-            case 'lt':
-                return (compare < 0)
-            default:
-                return null
-        }
-
-    };
-
-    /**
-     * Assign an icon to the element
-     * @param {object} element
-     * @returns {string}
-     */
-    this.assignElementIcon = function(element) {
-        return assignElementIcon(element);
-
-
-    };
-
-    /**
-     * Get devices -  filtered data from devices dataholder
-     * @param {object} data
-     * @param {boolean} showHidden
-     * @param {boolean} showAll
-     * @param {boolean} showBattery
-     * @returns {unresolved}
-     */
-    this.getDevicesData = function(data, showHidden, showAll, showBattery) {
-        //var user = this.getUser();
-        var user = cfg.user;
-        return _.chain(data)
-            .flatten()
-            .uniq(false, function(v) {
-                return v.id;
-            })
-            .reject(function(v) {
-                if (v.deviceType === 'battery' && !showBattery) {
-                    return v.deviceType === 'battery';
-                }
-                if (showAll) {
-                    return;
-                } else if (showHidden) {
-                    return (v.permanently_hidden === true) || v.metrics.removed === true;
-                } else {
-                    return (v.permanently_hidden === true) || v.metrics.removed === true || (v.visibility === false);
-                }
-
-            })
-            .filter(function(v) {
-                //Simulates failed elements
-                /*var failed = ['MailNotifier_52','ZWayVDev_zway_31-0-48-1','ZWayVDev_zway_30-0-49-1','ZWayVDev_zway_31-0-48-1'];
-                v.isFailed = (failed.indexOf(v.id) > -1);*/
-                var minMax;
-                var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
-                var isNew = v.creationTime > yesterday ? true : false;
-                var hasHistory = false;
-                var showNotification = false;
-                // Create min/max value
-                if (cfg.knob_255.indexOf(v.probeType) > -1) {
-                    minMax = {
-                        min: 0,
-                        max: 255,
-                        step: 1
-                    };
-                } else if (v.deviceType === 'thermostat') {
-                    minMax = (v.metrics.scaleTitle === '°F' ? {
-                        min: 41,
-                        max: 104,
-                        step: 1
-                    } : {
-                        min: 5,
-                        max: 40,
-                        step: 0.5
-                    });
-                } else {
-                    minMax = {
-                        min: 0,
-                        max: 99,
-                        step: 1
-                    };
-                }
-                // Limit min/max with device metrics
-                if (typeof(v.metrics.max) !== 'undefined') {
-                    minMax.max = v.metrics.max;
-                }
-                if (typeof(v.metrics.min) !== 'undefined') {
-                    minMax.min = v.metrics.min;
-                }
-                if (typeof(v.metrics.step) !== 'undefined') {
-                    minMax.step = v.metrics.step;
-                }
-                // Element on the blacklist will be displayed without the HISTORY or EVENT icon
-                // when device type is in the blacklist
-                if (cfg.element_history_blacklist.indexOf(v.deviceType) === -1) { // Not in the blacklist
-                    // Element will be displayed with the HISTORY icon if deviceType is in the whitelist
-                    hasHistory = (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1);
-                    // Otherwise will be displayed with the EVENT icon
-                    showNotification = (!hasHistory);
-                }
-                angular.extend(v, {
-                        onDashboard: (user.dashboard && user.dashboard.indexOf(v.id) !== -1 ? true : false)
-                    }, {
-                        creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId
-                    }, {
-                        minMax: minMax
-                    },
-                    //{hasHistory: (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1)},
-                    //{showNotification: (cfg.element_history.indexOf(v.deviceType) === -1)},
-                    {
-                        hasHistory: hasHistory
-                    }, {
-                        showNotification: showNotification
-                    }, {
-                        progress: false
-                    }, {
-                        isNew: isNew
-                    }, {
-                        iconPath: assignElementIcon(v)
-                    }, {
-                        title: v.metrics.title
-                    }, {
-                        updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')
-                    }
-                );
-                if (v.metrics.color) {
-                    angular.extend(v.metrics, {
-                        rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'
-                    });
-                }
-                if (v.metrics.level) {
-                    angular.extend(v.metrics, {
-                        level: $filter('numberFixedLen')(v.metrics.level)
-                    });
-                }
-                if (v.metrics.scaleTitle) {
-                    angular.extend(v.metrics, {
-                        scaleTitle: getLangLine(v.metrics.scaleTitle)
-                    });
-                }
-                //v.orderBy = v.order.elemts
-                return v;
-            });
-    };
-
-    /**
-     * Get an object with element icons
-     * @param {object} element
-     * @param {bool} eventIcon - if true return an array with icon path (used in element events icons)
-     * Empty array is used in the element detail if custom icons are not allowed
-     * @returns {object}
-     */
-    this.getSingleElementIcons = function(element, eventIcon) {
-        var icons = {
-            default: {
-                default: 'placeholder.png'
-            },
-            custom: {}
-        };
-        var iconKey = $filter('hasNode')(element, 'metrics.icon');
-        // Set custom icons
-        if (_.size(element.customIcons) > 0) {
-            icons.custom = (element.customIcons.level ? element.customIcons.level : element.customIcons);
-        }
-        // Set default icons by metrics.icon
-        if (iconKey && iconKey !== '') {
-            if ((/^https?:\/\//.test(iconKey))) { // If icon is the url (weather) then custom icons are not allowed
-                if (eventIcon) {
-                    icons.default.default = iconKey;
-                } else {
-                    icons = {};
-                }
-            } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
-                if (iconKey.indexOf('/') > -1) { // If an icon is the sytem icon then custom icons are not allowed
-
-                    if (eventIcon) {
-                        icons.default.default = iconKey;
-                    } else {
-                        icons = {};
-                    }
-                } else {
-                    icons.default.default = iconKey;
-                }
-            } else {
-                if (cfgicons.element.icon[iconKey]) {
-                    icons.default = setDefaultIcon(cfgicons.element.icon[iconKey]);
-                    //console.log(icons.default)
-                }
-
-            }
-
-        }
-        // Set default icons by deviceType
-        else {
-            if (cfgicons.element.deviceType[element.deviceType]) {
-                icons.default = setDefaultIcon(cfgicons.element.deviceType[element.deviceType]);
-            }
-        }
-
-        // Build an object with default icons
-        function setDefaultIcon(obj) {
-            var ret = {};
-            // Has level icons?
-            if (obj.level) {
-                return obj.level;
-                /*ret['level'] = obj.level;
-                 return ret;*/
-            }
-            return obj;
-
-
-        };
-        return icons;
-
-    };
-
-    /**
-     * Get rooms - filtered data from locations dataholder
-     * @param {object} data
-     * @returns {unresolved}
-     */
-    this.getRooms = function(data) {
-        return _.chain(data)
-            .flatten()
-            .filter(function(v) {
-                v.title = (v.id === 0 ? getLangLine(v.title) : v.title);
-                v.title_char = v.title.substring(0, 1).toUpperCase();
-                v.img_src = 'storage/img/placeholder-img.png';
-                if (v.id === 0) {
-                    v.img_src = 'storage/img/rooms/unassigned.png';
-                } else if (v.img_type === 'default' && v.default_img) {
-                    v.img_src = 'storage/img/rooms/' + v.default_img;
-                } else if (v.img_type === 'user' && v.user_img) {
-                    v.img_src = cfg.server_url + cfg.api_url + 'load/image/' + v.user_img;
-                }
-                return v;
-            });
-
-    };
-
-    /**
-     * Get local skins - filtered data from skin dataholder
-     * @param {object} data
-     * @returns {unresolved}
-     */
-    this.getLocalSkins = function(data) {
-        return _.chain(data)
-            .flatten()
-            .filter(function(v) {
-                // Set icon path
-                var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name + '/' : cfg.img.skin_screenshot;
-                v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
-                return v;
-            });
-    };
-
-    /**
-     * Get zwave devices - filtered data from zwave_devices API
-     * @param {object} data
-     * @returns {unresolved}
-     */
-    this.getZwaveDevices = function(data) {
-        return _.chain(data)
-            .flatten()
-            .map(function(v) {
-                return {
-                    id: v.Product_Code,
-                    name: v.Name,
-                    //productcode: v.Product_Code,
-                    certification_id: v.Certification_ID,
-                    wake: v.WakeUp_Description,
-                    inc: v.Inclusion_Description,
-                    exc: v.Exclusion_Description,
-                    brandname: v.BrandName,
-                    brandid: v.BrandName,
-                    //brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
-                    product_image: v.Product_Image.split('/').pop(),
-                    remote_image: v.Product_Image,
-                    product_image_base64: v.Product_Image_Base64,
-                    prep: v.Preperation_Description,
-                    secure: (v.Secure === '1'),
-                    zwplus: (v.ZWPLus === '1'),
-                    //frequencyid: v.frequencyid,
-                    frequency: v.Frequency,
-                    //ignore_ui: v.ignore_ui,
-                    reset: v.Reset_Description
-
-                };
-            });
-    };
-
-    /**
-     * todo: Will be deprecated
-     * Get zwave products - filtered data from devices dataholder
-     * @param {object} data
-     * @returns {unresolved}
-     */
-    this.getZwaveProducts = function(data, lang) {
-        lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
-        return _.chain(data)
-            .flatten()
-            .map(function(v) {
-                return {
-                    id: v.certification_ID,
-                    name: v.Name,
-                    productcode: v.product_code,
-                    wake: v['wake_' + lang] || v['wake_EN'],
-                    inc: v['inc_' + lang] || v['inc_EN'],
-                    exc: v['exc_' + lang] || v['exc_EN'],
-                    brandname: v.brandname,
-                    brandid: v.brandid,
-                    brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
-                    product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
-                    prep: v['prep_' + lang] || v['prep_EN'],
-                    inclusion_type: (v.inc_type === 'secure' ? v.inc_type : 'unsecure'),
-                    zwplus: v.zwplus,
-                    frequencyid: v.frequencyid,
-                    frequency: v.frequency,
-                    ignore_ui: v.ignore_ui,
-                    reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
-
-                };
-            });
-    };
-
-    /**
-     * Renders the chart data
-     * @param {object} data
-     * @param {object} colors
-     * @returns {Object|NULL}
-     */
-    this.getChartData = function(data, colors) {
-        if (!angular.isObject(data, colors)) {
-            return null;
-        }
-        var currTime = (Math.round(+new Date() / 1000) - 86400);
-        var out = {
-            labels: [],
-            datasets: [{
-                fillColor: colors.fillColor,
-                strokeColor: colors.strokeColor,
-                pointColor: colors.pointColor,
-                pointStrokeColor: colors.pointStrokeColor,
-                data: []
-            }]
-        };
-        var cnt = 0;
-        angular.forEach(data, function(v, k) {
-            cnt++;
-            var time = $filter('date')(((v.id) * 1000), 'H:mm');
-            //if (v.id > currTime && out.labels.indexOf(time) === -1) {
-            //if (v.id > currTime && (cnt % 2)) {
-            if (v.id > currTime && (cnt % 2) === 0) {
-                out.labels.push(time);
-                //out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
-                out.datasets[0].data.push(v.l);
-            }
-
-        });
-        if (out.datasets[0].data.length > 0) {
-            return out;
-        }
-        return null;
-    };
-
-    /**
-     * Renders Alpaca module data
-     * @param {object} module
-     * @param {object} data
-     * @returns {unresolved}
-     */
-    this.getModuleFormData = function(module, data) {
-        return getModuleFormData(module, data);
-    };
-
-    /**
-     * Renders module config data
-     * @param {object} module
-     * @param {string} params
-     * @param {object} namespaces
-     * @returns {unresolved}
-     */
-    this.getModuleConfigInputs = function(module, params, namespaces) {
-        return getModuleConfigInputs(module, params, namespaces);
-    };
-
-    /**
-     *
-     * @param {object} data
-     * @param {string} key
-     * @param {boolean} add
-     * @returns {Array}
-     */
-    this.setArrayValue = function(data, key, add) {
-        if (add) {
-            return addArrayValue(data, key);
-        } else {
-            return removeArrayValue(data, key);
-        }
-    };
-
-    /**
-     * Get event level
-     * @param {object} data
-     * @param {array} set
-     * @returns {unresolved}
-     */
-    this.getEventLevel = function(data, set) {
-        var collection = (set ? set : []);
-        angular.forEach(data, function(v, k) {
-            collection.push({
-                'key': v.level,
-                'val': v.level
-            });
-        });
-
-        return $filter('unique')(collection, 'key');
-    };
-
-    /**
-     * Renders EnOcean profile
-     * @param {object} data
-     * @returns {unresolved}
-     */
-    this.setEnoProfile = function(data) {
-        var profile = {};
-        angular.forEach(data, function(v, k) {
-            var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
-            profile[profileId] = v;
-            profile[profileId]['id'] = profileId;
-            profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
-            profile[profileId]['funcInt'] = parseInt(v._func, 16);
-            profile[profileId]['typeInt'] = parseInt(v._type, 16);
-        });
-        return profile;
-    };
-
-    /**
-     * Compare whether two versions of a resource are the same
-     * @param {string} v1
-     * @param {string} v2
-     * @returns {Boolean}
-     */
-    this.compareVersions = function(v1, v2) {
-        var status = 'equal';
-        if (!v1 || !v2) {
-            return 'error';
-        }
-        v1 = v1.toString().split('.'),
-            v2 = v2.toString().split('.');
-
-        for (var i = 0; i < v1.length; i++) {
-            if ((parseInt(v1[i], 10) < parseInt(v2[i], 10)) || ((parseInt(v1[i], 10) <= parseInt(v2[i], 10)) && (!v1[i + 1] && v2[i + 1] && parseInt(v2[i + 1], 10) > 0))) {
-                status = 'notequal';
-                break;
-            }
-        }
-        return status;
-    };
-
-    /// --- Private functions --- ///
-    /**
-     * Assign an icon to the element
-     */
-    function assignElementIcon(element) {
-        // Element is marked as failed
-        if (element.metrics.isFailed) {
-            return cfg.img.icons + 'caution.png';
-        }
-        var icon = cfg.img.icons + 'placeholder.png';
-        var iconKey = $filter('hasNode')(element, 'metrics.icon');
-        // Assign icon by metrics.icon
-        var iconArray = setIcon(cfgicons.element.icon[iconKey], element.customIcons || {});
-        /**
-         * Set icons by deviceType
-         */
-        switch (element.deviceType) {
-            // switchControl
-            case 'switchControl':
-                //icon = iconArray.default;
-                iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons || {});
-                return iconArray.default;
-                // default
-            default:
-                break;
-        }
-        /**
-         * Set icons by metrics.icon
-         */
-        // The icon has a full path
-        if ((/^https?:\/\//.test(iconKey))) {
-            return iconKey;
-        } else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
-            if (iconKey.indexOf('/') > -1) {
-                return iconKey;
-            } else {
-                return cfg.img.icons + iconKey;
-            }
-        }
-
-        if (!iconArray) {
-            // set default
-            return icon;
-        }
-        switch (iconKey) {
-            // door
-            case 'door':
-                icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
-                break;
-                // window
-            case 'window':
-                if (typeof(element.metrics.level) === 'number') {
-                    if (element.metrics.level === 0) {
-                        icon = iconArray.down;
-                    } else if (element.metrics.level >= 99) {
-                        icon = iconArray.up;
-                    } else {
-                        icon = iconArray.half;
-                    }
-                } else {
-                    icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
-                }
-                break;
-                // switch
-            case 'switch':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                // motion
-            case 'motion':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                // alarm
-            case 'alarm':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                // CO alarm
-            case 'alarm_co':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                // CO2 alarm
-            case 'alarm_coo':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                // flood
-            case 'alarm_flood':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                // burglar
-            case 'alarm_burglar':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                // tamper
-            case 'tamper':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                //security
-            case 'security':
-                if (element.metrics.level === "on") {
-                    icon = iconArray.on;
-                } else if (element.metrics.level == "off") {
-                    icon = iconArray.off;
-                } else if (element.metrics.level == "alarmed") {
-                    icon = iconArray.alarmed;
-                } else icon = iconArray.pending;
-                break;
-                // smoke
-            case 'alarm_smoke':
-                icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
-                break;
-                // blinds
-            case 'blinds':
-                if (element.metrics.level === 0) {
-                    icon = iconArray.down;
-                } else if (element.metrics.level >= 99) {
-                    icon = iconArray.up;
-                } else {
-                    icon = iconArray.half;
-                }
-                break;
-                // multilevel / fan
-            case 'fan':
-            case 'multilevel':
-                if (element.metrics.level === 0) {
-                    icon = iconArray.off;
-                } else if (element.metrics.level >= 99) {
-                    icon = iconArray.on;
-                } else {
-                    icon = iconArray.half;
-                }
-                break;
-                // gesture
-            case 'gesture':
-                icon = (iconArray[element.metrics.state] || iconArray['press']);
-                break;
-                // climate control
-            case 'climatecontrol':
-                icon = (iconArray[element.metrics.state] || iconArray['default']);
-                break;
-                // default
-            default:
-                icon = iconArray.default;
-                break;
-        }
-
-
-        return icon;
-
-    }
-
-    /**
-     * Compare whether two versions of a resource are the same
-     * @param {string} v1
-     * @param {string} v2
-     * @returns {Boolean}
-     */
-    this.setIcon = function(defaultIcon, customIcon) {
-        return setIcon(defaultIcon, customIcon);
-    };
-
-    /**
-     * Build an object with icons
-     * @param {object} defaultIcon
-     * @param {object} customIcon
-     * @returns {*}
-     */
-    function setIcon(defaultIcon, customIcon) {
-        var obj = {};
-        customIcon = customIcon.level || customIcon
-        if (defaultIcon) {
-            // If a custom icon exists set it otherwise set a default icon
-            angular.forEach(defaultIcon.level || defaultIcon, function(v, k) {
-                var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons);
-                obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
-            });
-            return obj;
-        } else {
-            // If a custom icon exists set it otherwise set false
-            if (!_.isEmpty(customIcon.default)) {
-                obj['default'] = cfg.img.custom_icons + customIcon['default'];
-                return obj;
-            }
-            return false;
-        }
-
-    }
-
-    /**
-     * Get a language string by key
-     */
-    function getLangLine(key, languages, replacement) {
-        var line = key;
-        if (angular.isObject(languages)) {
-            if (angular.isDefined(languages[key])) {
-                line = (languages[key] !== '' ? languages[key] : key);
-            }
-        } else {
-            line = (cfg.route.t[key] || key);
-        }
-        return setLangLine(line, replacement);
-    }
-
-    /**
-     * Set lang line params
-     */
-    function setLangLine(line, replacement) {
-        for (var val in replacement) {
-            line = line.split(val).join(replacement[val]);
-        }
-        return line;
-    }
-
-    /**
-     * Renders Alpaca module data
-     */
-    function getModuleFormData(module, data) {
-        var collection = {
-            'options': replaceModuleFormData(module.options, ['click', 'onFieldChange']),
-            'schema': module.schema,
-            'data': data,
-            'postRender': postRenderAlpaca
-        };
-        return collection;
-    }
-
-    /**
-     * Replace module object
-     */
-    function replaceModuleFormData(obj, keys) {
-        var objects = [];
-        for (var i in obj) {
-            if (!obj.hasOwnProperty(i))
-                continue;
-            if (typeof obj[i] == 'object') {
-                objects = objects.concat(replaceModuleFormData(obj[i], keys));
-            } else if (~keys.indexOf(i) && !angular.isArray(obj[i]) &&
-                typeof obj[i] === 'string' &&
-                obj[i].indexOf("function") === 0) {
-                // overwrite old string with function                
-                // we can only pass a function as string in JSON ==> doing a real function
-                obj[i] = new Function('return ' + obj[i])();
-            }
-        }
-        return obj;
-    }
-
-    /**
-     * Add array value
-     */
-    function addArrayValue(data, key) {
-        var collection = data;
-        if (collection.indexOf(key) === -1) {
-            collection.push(key);
-        }
-        return collection;
-    }
-
-    /**
-     * Remove array value
-     */
-    function removeArrayValue(data, key) {
-        var collection = [];
-        angular.forEach(data, function(v, k) {
-            if (v != key) {
-                collection.push(v);
-            }
-        });
-        return collection;
-    }
+	/// --- Public functions --- ///
+	/**
+	 * Resets the alert object
+	 * @param {object} notifier
+	 * @returns {undefined}
+	 */
+	this.resetAlert = function() {
+		if (cfg.route.alert.message && !cfg.route.alert.permanent) {
+			angular.extend(cfg.route.alert, {
+				type: 'system', // system|network
+				message: false,
+				info: false,
+				permanent: false, // Permanently displayed
+				hide: false, // Hide page content
+				icon: 'fa-exclamation-triangle text-danger'
+			});
+		}
+	};
+
+	/**
+	 * Check if access is allowed for the page
+	 * @param {object} next
+	 * @returns {undefined}
+	 */
+	this.isAccessAllowed = function(next) {
+		if (next.requireLogin) {
+			var user = this.getUser();
+			if (!user) {
+				$location.path('/');
+				return;
+			}
+			if (next.roles && angular.isArray(next.roles)) {
+				if (next.roles.indexOf(user.role) === -1) {
+					$location.path('/error403');
+					return;
+				}
+			}
+		}
+	};
+
+	/**
+	 * Set timestamp and ping server if request fails
+	 * @param {object} next
+	 * @returns {undefined}
+	 */
+	this.setTimeStamp = function() {
+		/* dataFactory.getApi('timezone', null, true).then(function (response) {
+
+		 }, function (error) {});*/
+	};
+
+	/**
+	 * Get a language string by key
+	 * @param {string} key
+	 * @param {object} languages
+	 * @param {object} replacement
+	 * @returns {unresolved}
+	 */
+	this.getLangLine = function(key, languages, replacement) {
+		return getLangLine(key, languages, replacement);
+	};
+
+	/**
+	 * Render alertify notifier
+	 * @param {object} notifier
+	 * @returns {undefined}
+	 */
+	this.showNotifier = function(notifier) {
+		var param = _.defaults(notifier, {
+			position: 'top-right',
+			message: false,
+			type: 'success',
+			wait: 5
+		});
+		if (notifier.message) {
+			alertify.set('notifier', 'position', 'top-right');
+			alertify.notify(param.message, param.type, param.wait);
+		}
+	};
+
+
+	/**
+	 * Log error in the console
+	 * @param {string} error
+	 * @param {string} message
+	 * @returns {undefined}
+	 */
+	this.logError = function(error, message) {
+		message = message || 'ERROR:';
+		$log.error('---------- ' + message + ' ----------', error);
+	};
+
+	/**
+	 * todo: Deprecated
+	 * Get OS (operating system)
+	 * @returns {String}
+	 */
+	/*this.getOs = function () {
+	    if (navigator && navigator.userAgent && navigator.userAgent != null) {
+	        var agents = ['android', 'iemobile', 'iphone', 'ipad', 'ipod', 'opera mini', 'blackberry'];
+	        var ua = navigator.userAgent.toLowerCase();
+	        for (var i in agents) {
+	            if (ua.match('/' + agents[i] + '/i')) {
+	                return agents[i];
+	            }
+	        }
+	        return 'any';
+	    }
+	    return 'any';
+	};*/
+
+	/**
+	 * Get OS (operating system)
+	 * @returns {String}
+	 */
+	this.isIeEdge = function() {
+		var isIE = /*@cc_on!@*/ false || !!document.documentMode;
+		if (isIE) {
+			return true;
+		}
+		return false;
+		// Edge 20+
+		/*var isEdge = !isIE && !!window.StyleMedia;
+		if (isEdge) {
+		    return true;
+		}*/
+
+	};
+
+
+	/**
+	 * Detect a mobile device
+	 * @param {string} a
+	 * @returns {Boolean}
+	 */
+	this.isMobile = function(a) {
+		if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	/**
+	 * Window history go back
+	 * @returns {undefined}
+	 */
+	this.goBack = function() {
+		window.history.back();
+	};
+
+	/**
+	 * Get x segment from url string
+	 * @param {string} url
+	 * @param {int} index
+	 * @returns {unresolved}
+	 */
+	this.getUrlSegment = function(url, index) {
+		index = typeof index !== 'undefined' ? index : 1;
+		if (!url) {
+			return '';
+		}
+		return url.split('/')[index];
+	};
+
+
+	/**
+	 * Get user data from cookies
+	 * @returns {Array|Boolean}
+	 */
+	this.getUser = function() {
+		var user = ($cookies.user && !!$cookies.user && $cookies.user !== 'undefined' ? angular.fromJson($cookies.user) : false);
+		return user;
+	};
+
+	/**
+	 * Set user data
+	 * @param {object} data
+	 * @returns {Boolean|Object}
+	 */
+	this.setUser = function(data) {
+		if (data && !!data) {
+			$cookies.user = angular.toJson(data);
+		} else {
+			delete $cookies['user'];
+			return false;
+		}
+		return data;
+	};
+
+	/**
+	 * Unset user data - delete user cookies
+	 * @returns {undefined}
+	 */
+	this.unsetUser = function() {
+		this.setUser(null);
+		this.setZWAYSession(null);
+	};
+
+	/**
+	 * Get ZWAY session
+	 * @returns {string}
+	 */
+	this.getZWAYSession = function() {
+		return $cookies.ZWAYSession;
+	};
+	/**
+	 * Set ZWAY session
+	 * @param {string} sid
+	 * @returns {Boolean|Object}
+	 */
+	this.setZWAYSession = function(sid) {
+		if (sid && !!sid) {
+			$cookies.ZWAYSession = sid;
+		} else {
+			delete $cookies['ZWAYSession'];
+			return false;
+		}
+	};
+	/**
+	 * Get last login info
+	 * @returns {Sring|Boolean}
+	 */
+	this.getLastLogin = function() {
+		return $cookies.lastLogin && !!$cookies.lastLogin && $cookies.lastLogin !== 'undefined' ? $cookies.lastLogin : false;
+	};
+
+	/**
+	 * Set last login
+	 * @param {string} val
+	 * @returns {undefined}
+	 */
+	this.setLastLogin = function(val) {
+		$cookies.lastLogin = val;
+	};
+
+	/**
+	 * Get remember me
+	 * @returns {Object|Boolean}
+	 */
+	this.getRememberMe = function() {
+		var user = ($cookies.rememberme && !!$cookies.rememberme && $cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
+		return user;
+	};
+
+	/**
+	 * Set remember me
+	 * @param {object} data
+	 * @returns {Boolean|Object}
+	 */
+	this.setRememberMe = function(data) {
+		if (data && !!data) {
+			$cookies.rememberme = angular.toJson(data);
+		} else {
+			delete $cookies['rememberme'];
+			return false;
+		}
+
+		return data;
+	};
+
+	/**
+	 * Logout from the system
+	 * @returns {undefined}
+	 */
+	this.logOut = function() {
+		this.setUser(null);
+		this.setZWAYSession(null);
+		// Check if host is in the logout redirect list
+		var redirect = cfg.logout_redirect[$location.host()];
+		// Redirect to an url from list
+		if (redirect) {
+			$window.location.href = redirect;
+			return;
+		}
+		// Redirect to SHUI login page
+		$window.location.href = '#/?logout';
+		$window.location.reload();
+
+	};
+
+	/**
+	 * Set dat for autocomplete
+	 * @param {object} param
+	 * @returns {array}
+	 */
+	this.autocomplete = function(data, param) {
+		var results = [];
+		var term = param.term;
+		var searchInKeys = param.searchInKeys.split(',');
+		var returnKeys = param.returnKeys.split(',');
+		var strLength = param.strLength;
+		var resultLength = param.resultLength;
+		// Start search when min strLength entered
+		term = term.toLowerCase();
+		if (term.length < strLength) {
+			return;
+		}
+
+		// Find first resultLength states that start with `term`.
+		for (var i = 0; i < data.length && results.length < resultLength; i++) {
+			var obj = data[i];
+			var found = false;
+			var re = new RegExp(term, "ig");
+			// Search in given cols
+			for (var c = 0; c < searchInKeys.length; c++) {
+				if (obj[searchInKeys[c]] && re.test(obj[searchInKeys[c]])) {
+					found = true;
+					// Avoid to duplicate results
+					continue;
+				}
+
+			}
+			if (found) {
+				results.push(_.pick(obj, returnKeys));
+			}
+		}
+		return results;
+
+
+	};
+
+	/**
+	 * Build a new file name without invalid chars
+	 * @param {string} fileName
+	 * @returns {string}
+	 */
+	this.uploadFileNewName = function(fileName) {
+		var name = fileName.split('.').slice(0, -1).join('.');
+		return $filter('stringToSlug')(name) + '.' + $filter('fileExtension')(fileName);
+
+
+	};
+
+	/**
+	 * Check if device has a given command class
+	 * @param {object} node
+	 * @param {int} ccId
+	 * @returns {boolean|object}
+	 */
+	this.hasCommandClass = function(node, ccId) {
+		var hasCc = false;
+		angular.forEach(node.instances, function(instance, instanceId) {
+			if (instance.commandClasses[ccId]) {
+				hasCc = instance.commandClasses[ccId];
+				return;
+			}
+		});
+		return hasCc;
+	};
+
+	/**
+	 * Compare version
+	 * http://locutus.io/php/info/version_compare/
+	 * @param {string} v1
+	 * @param {string} v2
+	 * @param {string} operator
+	 * @returns {Boolean|Number}
+	 */
+	this.compareVersion = function(v1, v2, operator) {
+
+
+		// Important: compare must be initialized at 0.
+		var i
+		var x
+		var compare = 0
+
+		// vm maps textual PHP versions to negatives so they're less than 0.
+		// PHP currently defines these as CASE-SENSITIVE. It is important to
+		// leave these as negatives so that they can come before numerical versions
+		// and as if no letters were there to begin with.
+		// (1alpha is < 1 and < 1.1 but > 1dev1)
+		// If a non-numerical value can't be mapped to this table, it receives
+		// -7 as its value.
+		var vm = {
+			'dev': -6,
+			'alpha': -5,
+			'a': -5,
+			'beta': -4,
+			'b': -4,
+			'RC': -3,
+			'rc': -3,
+			'#': -2,
+			'p': 1,
+			'pl': 1
+		}
+
+		// This function will be called to prepare each version argument.
+		// It replaces every _, -, and + with a dot.
+		// It surrounds any nonsequence of numbers/dots with dots.
+		// It replaces sequences of dots with a single dot.
+		//    version_compare('4..0', '4.0') === 0
+		// Important: A string of 0 length needs to be converted into a value
+		// even less than an unexisting value in vm (-7), hence [-8].
+		// It's also important to not strip spaces because of this.
+		//   version_compare('', ' ') === 1
+		var _prepVersion = function(v) {
+				v = ('' + v).replace(/[_\-+]/g, '.')
+				v = v.replace(/([^.\d]+)/g, '.$1.').replace(/\.{2,}/g, '.')
+				return (!v.length ? [-8] : v.split('.'))
+			}
+			// This converts a version component to a number.
+			// Empty component becomes 0.
+			// Non-numerical component becomes a negative number.
+			// Numerical component becomes itself as an integer.
+		var _numVersion = function(v) {
+			return !v ? 0 : (isNaN(v) ? vm[v] || -7 : parseInt(v, 10))
+		}
+
+		v1 = _prepVersion(v1)
+		v2 = _prepVersion(v2)
+		x = Math.max(v1.length, v2.length)
+		for (i = 0; i < x; i++) {
+			if (v1[i] === v2[i]) {
+				continue
+			}
+			v1[i] = _numVersion(v1[i])
+			v2[i] = _numVersion(v2[i])
+			if (v1[i] < v2[i]) {
+				compare = -1
+				break
+			} else if (v1[i] > v2[i]) {
+				compare = 1
+				break
+			}
+		}
+		if (!operator) {
+			return compare
+		}
+
+		// Important: operator is CASE-SENSITIVE.
+		// "No operator" seems to be treated as "<."
+		// Any other values seem to make the function return null.
+		switch (operator) {
+			case '>':
+			case 'gt':
+				return (compare > 0)
+			case '>=':
+			case 'ge':
+				return (compare >= 0)
+			case '<=':
+			case 'le':
+				return (compare <= 0)
+			case '===':
+			case '=':
+			case 'eq':
+				return (compare === 0)
+			case '<>':
+			case '!==':
+			case 'ne':
+				return (compare !== 0)
+			case '':
+			case '<':
+			case 'lt':
+				return (compare < 0)
+			default:
+				return null
+		}
+
+	};
+
+	/**
+	 * Assign an icon to the element
+	 * @param {object} element
+	 * @returns {string}
+	 */
+	this.assignElementIcon = function(element) {
+		return assignElementIcon(element);
+
+
+	};
+
+	/**
+	 * Get devices -  filtered data from devices dataholder
+	 * @param {object} data
+	 * @param {boolean} showHidden
+	 * @param {boolean} showAll
+	 * @param {boolean} showBattery
+	 * @returns {unresolved}
+	 */
+	this.getDevicesData = function(data, showHidden, showAll, showBattery) {
+		//var user = this.getUser();
+		var user = cfg.user;
+		return _.chain(data)
+			.flatten()
+			.uniq(false, function(v) {
+				return v.id;
+			})
+			.reject(function(v) {
+				if (v.deviceType === 'battery' && !showBattery) {
+					return v.deviceType === 'battery';
+				}
+				if (showAll) {
+					return;
+				} else if (showHidden) {
+					return (v.permanently_hidden === true) || v.metrics.removed === true;
+				} else {
+					return (v.permanently_hidden === true) || v.metrics.removed === true || (v.visibility === false);
+				}
+
+			})
+			.filter(function(v) {
+				//Simulates failed elements
+				/*var failed = ['MailNotifier_52','ZWayVDev_zway_31-0-48-1','ZWayVDev_zway_30-0-49-1','ZWayVDev_zway_31-0-48-1'];
+				v.isFailed = (failed.indexOf(v.id) > -1);*/
+				var minMax;
+				var yesterday = (Math.round(new Date().getTime() / 1000)) - (24 * 3600);
+				var isNew = v.creationTime > yesterday ? true : false;
+				var hasHistory = false;
+				var showNotification = false;
+				// Create min/max value
+				if (cfg.knob_255.indexOf(v.probeType) > -1) {
+					minMax = {
+						min: 0,
+						max: 255,
+						step: 1
+					};
+				} else if (v.deviceType === 'thermostat') {
+					minMax = (v.metrics.scaleTitle === '°F' ? {
+						min: 41,
+						max: 104,
+						step: 1
+					} : {
+						min: 5,
+						max: 40,
+						step: 0.5
+					});
+				} else {
+					minMax = {
+						min: 0,
+						max: 99,
+						step: 1
+					};
+				}
+				// Limit min/max with device metrics
+				if (typeof(v.metrics.max) !== 'undefined') {
+					minMax.max = v.metrics.max;
+				}
+				if (typeof(v.metrics.min) !== 'undefined') {
+					minMax.min = v.metrics.min;
+				}
+				if (typeof(v.metrics.step) !== 'undefined') {
+					minMax.step = v.metrics.step;
+				}
+				// Element on the blacklist will be displayed without the HISTORY or EVENT icon
+				// when device type is in the blacklist
+				if (cfg.element_history_blacklist.indexOf(v.deviceType) === -1) { // Not in the blacklist
+					// Element will be displayed with the HISTORY icon if deviceType is in the whitelist
+					hasHistory = (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1);
+					// Otherwise will be displayed with the EVENT icon
+					showNotification = (!hasHistory);
+				}
+				angular.extend(v, {
+						onDashboard: (user.dashboard && user.dashboard.indexOf(v.id) !== -1 ? true : false)
+					}, {
+						creatorId: _.isString(v.creatorId) ? v.creatorId.replace(/[^0-9]/g, '') : v.creatorId
+					}, {
+						minMax: minMax
+					},
+					//{hasHistory: (v.hasHistory && cfg.element_history.indexOf(v.deviceType) > -1)},
+					//{showNotification: (cfg.element_history.indexOf(v.deviceType) === -1)},
+					{
+						hasHistory: hasHistory
+					}, {
+						showNotification: showNotification
+					}, {
+						progress: false
+					}, {
+						isNew: isNew
+					}, {
+						iconPath: assignElementIcon(v)
+					}, {
+						title: v.metrics.title
+					}, {
+						updateCmd: (v.deviceType === 'switchControl' ? 'on' : 'update')
+					}
+				);
+				if (v.metrics.color) {
+					angular.extend(v.metrics, {
+						rgbColors: 'rgb(' + v.metrics.color.r + ',' + v.metrics.color.g + ',' + v.metrics.color.b + ')'
+					});
+				}
+				if (v.metrics.level) {
+					angular.extend(v.metrics, {
+						level: $filter('numberFixedLen')(v.metrics.level)
+					});
+				}
+				if (v.metrics.scaleTitle) {
+					angular.extend(v.metrics, {
+						scaleTitle: getLangLine(v.metrics.scaleTitle)
+					});
+				}
+				//v.orderBy = v.order.elemts
+				return v;
+			});
+	};
+
+	/**
+	 * Get an object with element icons
+	 * @param {object} element
+	 * @param {bool} eventIcon - if true return an array with icon path (used in element events icons)
+	 * Empty array is used in the element detail if custom icons are not allowed
+	 * @returns {object}
+	 */
+	this.getSingleElementIcons = function(element, eventIcon) {
+		var icons = {
+			default: {
+				default: 'placeholder.png'
+			},
+			custom: {}
+		};
+		var iconKey = $filter('hasNode')(element, 'metrics.icon');
+		// Set custom icons
+		if (_.size(element.customIcons) > 0) {
+			icons.custom = (element.customIcons.level ? element.customIcons.level : element.customIcons);
+		}
+		// Set default icons by metrics.icon
+		if (iconKey && iconKey !== '') {
+			if ((/^https?:\/\//.test(iconKey))) { // If icon is the url (weather) then custom icons are not allowed
+				if (eventIcon) {
+					icons.default.default = iconKey;
+				} else {
+					icons = {};
+				}
+			} else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
+				if (iconKey.indexOf('/') > -1) { // If an icon is the sytem icon then custom icons are not allowed
+
+					if (eventIcon) {
+						icons.default.default = iconKey;
+					} else {
+						icons = {};
+					}
+				} else {
+					icons.default.default = iconKey;
+				}
+			} else {
+				if (cfgicons.element.icon[iconKey]) {
+					icons.default = setDefaultIcon(cfgicons.element.icon[iconKey]);
+					//console.log(icons.default)
+				}
+
+			}
+
+		}
+		// Set default icons by deviceType
+		else {
+			if (cfgicons.element.deviceType[element.deviceType]) {
+				icons.default = setDefaultIcon(cfgicons.element.deviceType[element.deviceType]);
+			}
+		}
+
+		// Build an object with default icons
+		function setDefaultIcon(obj) {
+			var ret = {};
+			// Has level icons?
+			if (obj.level) {
+				return obj.level;
+				/*ret['level'] = obj.level;
+				 return ret;*/
+			}
+			return obj;
+
+
+		};
+		return icons;
+
+	};
+
+	/**
+	 * Get rooms - filtered data from locations dataholder
+	 * @param {object} data
+	 * @returns {unresolved}
+	 */
+	this.getRooms = function(data) {
+		return _.chain(data)
+			.flatten()
+			.filter(function(v) {
+				v.title = (v.id === 0 ? getLangLine(v.title) : v.title);
+				v.title_char = v.title.substring(0, 1).toUpperCase();
+				v.img_src = 'storage/img/placeholder-img.png';
+				if (v.id === 0) {
+					v.img_src = 'storage/img/rooms/unassigned.png';
+				} else if (v.img_type === 'default' && v.default_img) {
+					v.img_src = 'storage/img/rooms/' + v.default_img;
+				} else if (v.img_type === 'user' && v.user_img) {
+					v.img_src = cfg.server_url + cfg.api_url + 'load/image/' + v.user_img;
+				}
+				return v;
+			});
+
+	};
+
+	/**
+	 * Get local skins - filtered data from skin dataholder
+	 * @param {object} data
+	 * @returns {unresolved}
+	 */
+	this.getLocalSkins = function(data) {
+		return _.chain(data)
+			.flatten()
+			.filter(function(v) {
+				// Set icon path
+				var screenshotPath = v.name !== 'default' ? cfg.skin.path + v.name + '/' : cfg.img.skin_screenshot;
+				v.icon = (!v.icon ? 'storage/img/placeholder-img.png' : screenshotPath + 'screenshot.png');
+				return v;
+			});
+	};
+
+	/**
+	 * Get zwave devices - filtered data from zwave_devices API
+	 * @param {object} data
+	 * @returns {unresolved}
+	 */
+	this.getZwaveDevices = function(data) {
+		return _.chain(data)
+			.flatten()
+			.map(function(v) {
+				return {
+					id: v.Product_Code,
+					name: v.Name,
+					//productcode: v.Product_Code,
+					certification_id: v.Certification_ID,
+					wake: v.WakeUp_Description,
+					inc: v.Inclusion_Description,
+					exc: v.Exclusion_Description,
+					brandname: v.BrandName,
+					brandid: v.BrandName,
+					//brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+					product_image: v.Product_Image.split('/').pop(),
+					remote_image: v.Product_Image,
+					product_image_base64: v.Product_Image_Base64,
+					prep: v.Preperation_Description,
+					secure: (v.Secure === '1'),
+					zwplus: (v.ZWPLus === '1'),
+					//frequencyid: v.frequencyid,
+					frequency: v.Frequency,
+					//ignore_ui: v.ignore_ui,
+					reset: v.Reset_Description
+
+				};
+			});
+	};
+
+	/**
+	 * todo: Will be deprecated
+	 * Get zwave products - filtered data from devices dataholder
+	 * @param {object} data
+	 * @returns {unresolved}
+	 */
+	this.getZwaveProducts = function(data, lang) {
+		lang = cfg.zwaveproducts_langs.indexOf(lang) > -1 ? lang.toUpperCase() : cfg.lang.toUpperCase();
+		return _.chain(data)
+			.flatten()
+			.map(function(v) {
+				return {
+					id: v.certification_ID,
+					name: v.Name,
+					productcode: v.product_code,
+					wake: v['wake_' + lang] || v['wake_EN'],
+					inc: v['inc_' + lang] || v['inc_EN'],
+					exc: v['exc_' + lang] || v['exc_EN'],
+					brandname: v.brandname,
+					brandid: v.brandid,
+					brand_image: (v.brandname_image ? cfg.img.zwavevendors + v.brandname_image : false),
+					product_image: (v.certification_ID ? cfg.img.zwavedevices + v.certification_ID + '.png' : false),
+					prep: v['prep_' + lang] || v['prep_EN'],
+					inclusion_type: (v.inc_type === 'secure' ? v.inc_type : 'unsecure'),
+					zwplus: v.zwplus,
+					frequencyid: v.frequencyid,
+					frequency: v.frequency,
+					ignore_ui: v.ignore_ui,
+					reset: v['ResetDescription_' + lang] || v['ResetDescription_EN']
+
+				};
+			});
+	};
+
+	/**
+	 * Renders the chart data
+	 * @param {object} data
+	 * @param {object} colors
+	 * @returns {Object|NULL}
+	 */
+	this.getChartData = function(data, colors, steps) {
+		if (!angular.isObject(data, colors)) {
+			return null;
+		}
+		var currTime = (Math.round(+new Date() / 1000) - 86400);
+		var out = {
+			labels: [],
+			datasets: [{
+				fillColor: colors.fillColor,
+				strokeColor: colors.strokeColor,
+				pointColor: colors.pointColor,
+				pointStrokeColor: colors.pointStrokeColor,
+				data: []
+			}]
+		};
+		var cnt = 0;
+		var mod = 1;
+
+		switch (steps) {
+			case 48:
+				mod = 2;
+				break;
+			case 96:
+				mod = 4;
+				break;
+			case 144:
+				mod = 6;
+				break;
+			case 288:
+				mod = 12;
+				break;
+			case 1440:
+				mod = 48;
+				break;
+		}
+
+		angular.forEach(data, function(v, k) {
+			cnt++;
+			var time = $filter('date')(((v.id) * 1000), 'H:mm');
+			//if (v.id > currTime && out.labels.indexOf(time) === -1) {
+			//if (v.id > currTime && (cnt % 2)) {
+			if (v.id > currTime) {
+				//if (v.id > currTime) {
+				if ((cnt % mod) === 0) {
+					out.labels.push(time);
+				} else {
+					out.labels.push('');
+				}
+
+				//out.labels.push($filter('date')(v.timestamp,'dd.MM.yyyy H:mm'));
+				out.datasets[0].data.push(v.l);
+			}
+
+		});
+		if (out.datasets[0].data.length > 0) {
+			return out;
+		}
+		return null;
+	};
+
+	/**
+	 * Renders Alpaca module data
+	 * @param {object} module
+	 * @param {object} data
+	 * @returns {unresolved}
+	 */
+	this.getModuleFormData = function(module, data) {
+		return getModuleFormData(module, data);
+	};
+
+	/**
+	 * Renders module config data
+	 * @param {object} module
+	 * @param {string} params
+	 * @param {object} namespaces
+	 * @returns {unresolved}
+	 */
+	this.getModuleConfigInputs = function(module, params, namespaces) {
+		return getModuleConfigInputs(module, params, namespaces);
+	};
+
+	/**
+	 *
+	 * @param {object} data
+	 * @param {string} key
+	 * @param {boolean} add
+	 * @returns {Array}
+	 */
+	this.setArrayValue = function(data, key, add) {
+		if (add) {
+			return addArrayValue(data, key);
+		} else {
+			return removeArrayValue(data, key);
+		}
+	};
+
+	/**
+	 * Get event level
+	 * @param {object} data
+	 * @param {array} set
+	 * @returns {unresolved}
+	 */
+	this.getEventLevel = function(data, set) {
+		var collection = (set ? set : []);
+		angular.forEach(data, function(v, k) {
+			collection.push({
+				'key': v.level,
+				'val': v.level
+			});
+		});
+
+		return $filter('unique')(collection, 'key');
+	};
+
+	/**
+	 * Renders EnOcean profile
+	 * @param {object} data
+	 * @returns {unresolved}
+	 */
+	this.setEnoProfile = function(data) {
+		var profile = {};
+		angular.forEach(data, function(v, k) {
+			var profileId = parseInt(v._rorg, 16) + '_' + parseInt(v._func, 16) + '_' + parseInt(v._type, 16);
+			profile[profileId] = v;
+			profile[profileId]['id'] = profileId;
+			profile[profileId]['rorgInt'] = parseInt(v._rorg, 16);
+			profile[profileId]['funcInt'] = parseInt(v._func, 16);
+			profile[profileId]['typeInt'] = parseInt(v._type, 16);
+		});
+		return profile;
+	};
+
+	/**
+	 * Compare whether two versions of a resource are the same
+	 * @param {string} v1
+	 * @param {string} v2
+	 * @returns {Boolean}
+	 */
+	this.compareVersions = function(v1, v2) {
+		var status = 'equal';
+		if (!v1 || !v2) {
+			return 'error';
+		}
+		v1 = v1.toString().split('.'),
+			v2 = v2.toString().split('.');
+
+		for (var i = 0; i < v1.length; i++) {
+			if ((parseInt(v1[i], 10) < parseInt(v2[i], 10)) || ((parseInt(v1[i], 10) <= parseInt(v2[i], 10)) && (!v1[i + 1] && v2[i + 1] && parseInt(v2[i + 1], 10) > 0))) {
+				status = 'notequal';
+				break;
+			}
+		}
+		return status;
+	};
+
+	/// --- Private functions --- ///
+	/**
+	 * Assign an icon to the element
+	 */
+	function assignElementIcon(element) {
+		// Element is marked as failed
+		if (element.metrics.isFailed) {
+			return cfg.img.icons + 'caution.png';
+		}
+		var icon = cfg.img.icons + 'placeholder.png';
+		var iconKey = $filter('hasNode')(element, 'metrics.icon');
+		// Assign icon by metrics.icon
+		var iconArray = setIcon(cfgicons.element.icon[iconKey], element.customIcons || {});
+		/**
+		 * Set icons by deviceType
+		 */
+		switch (element.deviceType) {
+			// switchControl
+			case 'switchControl':
+				//icon = iconArray.default;
+				iconArray = setIcon(cfgicons.element.deviceType['switchControl'], element.customIcons || {});
+				return iconArray.default;
+				// default
+			default:
+				break;
+		}
+		/**
+		 * Set icons by metrics.icon
+		 */
+		// The icon has a full path
+		if ((/^https?:\/\//.test(iconKey))) {
+			return iconKey;
+		} else if ((/\.(png|gif|jpe?g)$/).test(iconKey)) {
+			if (iconKey.indexOf('/') > -1) {
+				return iconKey;
+			} else {
+				return cfg.img.icons + iconKey;
+			}
+		}
+
+		if (!iconArray) {
+			// set default
+			return icon;
+		}
+		switch (iconKey) {
+			// door
+			case 'door':
+				icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+				break;
+				// window
+			case 'window':
+				if (typeof(element.metrics.level) === 'number') {
+					if (element.metrics.level === 0) {
+						icon = iconArray.down;
+					} else if (element.metrics.level >= 99) {
+						icon = iconArray.up;
+					} else {
+						icon = iconArray.half;
+					}
+				} else {
+					icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+				}
+				break;
+				// switch
+			case 'switch':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				// motion
+			case 'motion':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				// alarm
+			case 'alarm':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				// CO alarm
+			case 'alarm_co':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				// CO2 alarm
+			case 'alarm_coo':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				// flood
+			case 'alarm_flood':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				// burglar
+			case 'alarm_burglar':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				// tamper
+			case 'tamper':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				//security
+			case 'security':
+				if (element.metrics.level === "on") {
+					icon = iconArray.on;
+				} else if (element.metrics.level == "off") {
+					icon = iconArray.off;
+				} else if (element.metrics.level == "alarmed") {
+					icon = iconArray.alarmed;
+				} else icon = iconArray.pending;
+				break;
+				// smoke
+			case 'alarm_smoke':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
+				// blinds
+			case 'blinds':
+				if (element.metrics.level === 0) {
+					icon = iconArray.down;
+				} else if (element.metrics.level >= 99) {
+					icon = iconArray.up;
+				} else {
+					icon = iconArray.half;
+				}
+				break;
+				// multilevel / fan
+			case 'fan':
+			case 'multilevel':
+				if (element.metrics.level === 0) {
+					icon = iconArray.off;
+				} else if (element.metrics.level >= 99) {
+					icon = iconArray.on;
+				} else {
+					icon = iconArray.half;
+				}
+				break;
+				// gesture
+			case 'gesture':
+				icon = (iconArray[element.metrics.state] || iconArray['press']);
+				break;
+				// climate control
+			case 'climatecontrol':
+				icon = (iconArray[element.metrics.state] || iconArray['default']);
+				break;
+				// default
+			default:
+				icon = iconArray.default;
+				break;
+		}
+
+
+		return icon;
+
+	}
+
+	/**
+	 * Compare whether two versions of a resource are the same
+	 * @param {string} v1
+	 * @param {string} v2
+	 * @returns {Boolean}
+	 */
+	this.setIcon = function(defaultIcon, customIcon) {
+		return setIcon(defaultIcon, customIcon);
+	};
+
+	/**
+	 * Build an object with icons
+	 * @param {object} defaultIcon
+	 * @param {object} customIcon
+	 * @returns {*}
+	 */
+	function setIcon(defaultIcon, customIcon) {
+		var obj = {};
+		customIcon = customIcon.level || customIcon
+		if (defaultIcon) {
+			// If a custom icon exists set it otherwise set a default icon
+			angular.forEach(defaultIcon.level || defaultIcon, function(v, k) {
+				var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons);
+				obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
+			});
+			return obj;
+		} else {
+			// If a custom icon exists set it otherwise set false
+			if (!_.isEmpty(customIcon.default)) {
+				obj['default'] = cfg.img.custom_icons + customIcon['default'];
+				return obj;
+			}
+			return false;
+		}
+
+	}
+
+	/**
+	 * Get a language string by key
+	 */
+	function getLangLine(key, languages, replacement) {
+		var line = key;
+		if (angular.isObject(languages)) {
+			if (angular.isDefined(languages[key])) {
+				line = (languages[key] !== '' ? languages[key] : key);
+			}
+		} else {
+			line = (cfg.route.t[key] || key);
+		}
+		return setLangLine(line, replacement);
+	}
+
+	/**
+	 * Set lang line params
+	 */
+	function setLangLine(line, replacement) {
+		for (var val in replacement) {
+			line = line.split(val).join(replacement[val]);
+		}
+		return line;
+	}
+
+	/**
+	 * Renders Alpaca module data
+	 */
+	function getModuleFormData(module, data) {
+		var collection = {
+			'options': replaceModuleFormData(module.options, ['click', 'onFieldChange']),
+			'schema': module.schema,
+			'data': data,
+			'postRender': postRenderAlpaca
+		};
+		return collection;
+	}
+
+	/**
+	 * Replace module object
+	 */
+	function replaceModuleFormData(obj, keys) {
+		var objects = [];
+		for (var i in obj) {
+			if (!obj.hasOwnProperty(i))
+				continue;
+			if (typeof obj[i] == 'object') {
+				objects = objects.concat(replaceModuleFormData(obj[i], keys));
+			} else if (~keys.indexOf(i) && !angular.isArray(obj[i]) &&
+				typeof obj[i] === 'string' &&
+				obj[i].indexOf("function") === 0) {
+				// overwrite old string with function                
+				// we can only pass a function as string in JSON ==> doing a real function
+				obj[i] = new Function('return ' + obj[i])();
+			}
+		}
+		return obj;
+	}
+
+	/**
+	 * Add array value
+	 */
+	function addArrayValue(data, key) {
+		var collection = data;
+		if (collection.indexOf(key) === -1) {
+			collection.push(key);
+		}
+		return collection;
+	}
+
+	/**
+	 * Remove array value
+	 */
+	function removeArrayValue(data, key) {
+		var collection = [];
+		angular.forEach(data, function(v, k) {
+			if (v != key) {
+				collection.push(v);
+			}
+		});
+		return collection;
+	}
 });
 /**
  * @overview Common functions that are used within device hardware configuration
@@ -27979,218 +28005,209 @@ myAppController.controller('ElementRoomController', function($scope, $q, $routeP
  * @class ElementChartController
  */
 myAppController.controller('ElementChartController', function($scope, $sce, dataFactory, $interval) {
-    $scope.widgetChart = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        },
-        hasURL: false,
-        intchartUrl: '',
-        url: {},
-        time: 0,
-        chartOptions: {
-            // Chart.js options can go here.
-            //responsive: true
-        }
-    };
+	$scope.widgetChart = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		},
+		hasURL: false,
+		intchartUrl: '',
+		url: {},
+		time: 0,
+		chartOptions: {
+			// Chart.js options can go here.
+			//responsive: true
+		}
+	};
 
-    /**
-     * Reload chart url
-     */
-    $scope.reloadUrl = function() {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
-            var device = response.data.data;
+	/**
+	 * Reload chart url
+	 */
+	$scope.reloadUrl = function() {
+		dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
+			var device = response.data.data;
 
-            if ($scope.widgetChart.time < device.metrics.intchartTime) {
-                $scope.widgetChart.find = device;
-                $scope.widgetChart.intchartUrl = device.metrics.intchartUrl + '&' + new Date().getTime();
-                $scope.widgetChart.time = device.metrics.intchartTime;
-                $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
-            }
-        });
-    };
+			if ($scope.widgetChart.time < device.metrics.intchartTime) {
+				$scope.widgetChart.find = device;
+				$scope.widgetChart.intchartUrl = device.metrics.intchartUrl + '&' + new Date().getTime();
+				$scope.widgetChart.time = device.metrics.intchartTime;
+				$scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
+			}
+		});
+	};
 
-    /**
-     * Load device
-     */
-    $scope.loadDeviceUrl = function() {
-        $scope.widgetChart.alert = {
-            message: $scope._t('loading'),
-            status: 'alert-warning',
-            icon: 'fa-spinner fa-spin'
-        };
+	/**
+	 * Load device
+	 */
+	$scope.loadDeviceUrl = function() {
+		$scope.widgetChart.alert = {
+			message: $scope._t('loading'),
+			status: 'alert-warning',
+			icon: 'fa-spinner fa-spin'
+		};
 
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
-            var device = response.data.data;
-            if (!device) {
-                $scope.widgetChart.alert = {
-                    message: $scope._t('error_load_data'),
-                    status: 'alert-danger',
-                    icon: 'fa-exclamation-triangle'
-                };
-                return;
-            }
-            $scope.widgetChart.find = device;
+		dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
+			var device = response.data.data;
+			if (!device) {
+				$scope.widgetChart.alert = {
+					message: $scope._t('error_load_data'),
+					status: 'alert-danger',
+					icon: 'fa-exclamation-triangle'
+				};
+				return;
+			}
+			$scope.widgetChart.find = device;
 
-            if (!device.metrics.intchartUrl) {
-                $scope.widgetChart.alert = {
-                    message: $scope._t('error_load_data'),
-                    status: 'alert-danger',
-                    icon: 'fa-exclamation-triangle'
-                };
-                return;
-            }
+			if (!device.metrics.intchartUrl) {
+				$scope.widgetChart.alert = {
+					message: $scope._t('error_load_data'),
+					status: 'alert-danger',
+					icon: 'fa-exclamation-triangle'
+				};
+				return;
+			}
 
-            $scope.widgetChart.hasURL = true;
-            $scope.widgetChart.intchartUrl = device.metrics.intchartUrl;
-            $scope.widgetChart.time = device.metrics.intchartTime;
-            $scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
+			$scope.widgetChart.hasURL = true;
+			$scope.widgetChart.intchartUrl = device.metrics.intchartUrl;
+			$scope.widgetChart.time = device.metrics.intchartTime;
+			$scope.widgetChart.url = $sce.trustAsResourceUrl($scope.widgetChart.intchartUrl);
 
-            $scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
+			$scope.refreshInterval = $interval($scope.reloadUrl, $scope.cfg.interval);
 
-            $scope.widgetChart.alert = {
-                message: false
-            };
+			$scope.widgetChart.alert = {
+				message: false
+			};
 
-        }, function(error) {
-            $scope.widgetChart.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
-    };
+		}, function(error) {
+			$scope.widgetChart.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+		});
+	};
 
-    $scope.loadDeviceUrl();
+	$scope.loadDeviceUrl();
 });
 
 /**
  * The controller that handles a device history.
  * @class ElementHistoryController
  */
-myAppController.controller('ElementHistoryController', function ($scope, $window, $timeout, dataFactory, dataService, _) {
-    $scope.widgetHistory = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        },
-        chartData: {},
-        chartOptions: {
-            // Chart.js options can go here.
-            pointDot: false,
-            responsive: true
-        },
-        history_steps: 24,
-        history_steps_list: [
-            { 
-                key: $scope._t('interval_14400'),
-                value: 6
-            },
-            { 
-                key: $scope._t('interval_7200'),
-                value: 12
-            },
-            { 
-                key: $scope._t('interval_3600'),
-                value: 24
-            },
-            { 
-                key: $scope._t('interval_1800'),
-                value: 48
-            },
-            { 
-                key: $scope._t('interval_900'),
-                value: 96
-            },
-            {
-                key: $scope._t('interval_600'),
-                value: 144
-            },
-            { 
-                key: $scope._t('interval_300'),
-                value: 288
-            },
-            { 
-                key: $scope._t('interval_60'),
-                value: 1440
-            }
-        ]
-    };
+myAppController.controller('ElementHistoryController', function($scope, $window, $timeout, dataFactory, dataService, _) {
+	$scope.widgetHistory = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		},
+		chartData: {},
+		chartOptions: {
+			// Chart.js options can go here.
+			pointDot: false,
+			responsive: true
+		},
+		history_steps: 24,
+		history_steps_list: [{
+			key: $scope._t('interval_14400'),
+			value: 6
+		}, {
+			key: $scope._t('interval_7200'),
+			value: 12
+		}, {
+			key: $scope._t('interval_3600'),
+			value: 24
+		}, {
+			key: $scope._t('interval_1800'),
+			value: 48
+		}, {
+			key: $scope._t('interval_900'),
+			value: 96
+		}, {
+			key: $scope._t('interval_600'),
+			value: 144
+		}, {
+			key: $scope._t('interval_300'),
+			value: 288
+		}, {
+			key: $scope._t('interval_60'),
+			value: 1440
+		}]
+	};
 
-    $timeout(function(){
-        $scope.drawChart();
-    },0);
+	$timeout(function() {
+		$scope.drawChart();
+	}, 0);
 
-    $scope.drawChart = function () {
-        var canvas = document.getElementById('history_chart'),
-            context = canvas.getContext('2d');
+	$scope.drawChart = function() {
+		var canvas = document.getElementById('history_chart'),
+			context = canvas.getContext('2d');
 
-        // resize the canvas to fill browser window dynamically
-        $window.addEventListener('resize', resizeCanvas, false);
+		// resize the canvas to fill browser window dynamically
+		$window.addEventListener('resize', resizeCanvas, false);
 
-        function resizeCanvas() {
-                canvas.width = $window.innerWidth;
-                canvas.height = $window.innerHeight;
+		function resizeCanvas() {
+			canvas.width = $window.innerWidth;
+			canvas.height = $window.innerHeight;
 
-                /**
-                 * Your drawings need to be inside this function otherwise they will be reset when 
-                 * you resize the browser window and the canvas goes will be cleared.
-                 */
-                $scope.loadDeviceHistory(); 
-        }
-        resizeCanvas();
-    };
+			/**
+			 * Your drawings need to be inside this function otherwise they will be reset when 
+			 * you resize the browser window and the canvas goes will be cleared.
+			 */
+			$scope.loadDeviceHistory();
+		}
+		resizeCanvas();
+	};
 
-    /**
-     * Load device history
-     */
-    $scope.loadDeviceHistory = function() {
-        var device = !_.isEmpty($scope.dataHolder.devices.byId) ? $scope.dataHolder.devices.byId : $scope.dataHolder.devices.find;
-        if (!device) {
-            $scope.widgetHistory.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        $scope.widgetHistory.find = device;
-        $scope.widgetHistory.alert = {
-            message: $scope._t('loading'),
-            status: 'alert-warning',
-            icon: 'fa-spinner fa-spin'
-        };
-        dataFactory.getApi('history_get', '?id=' + device.id + '&show='+$scope.widgetHistory.history_steps, true).then(function (response) {
-            if (!response.data.history) {
-                $scope.widgetHistory.alert = {
-                    message: $scope._t('no_data'),
-                    status: 'alert-danger',
-                    icon: 'fa-exclamation-triangle'
-                };
-                return;
-            }
-            $scope.widgetHistory.alert = {};
-            $scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors);
-        }, function(error) {
-            $scope.widgetHistory.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
-    };
-    //$scope.loadDeviceHistory();
+	/**
+	 * Load device history
+	 */
+	$scope.loadDeviceHistory = function() {
+		var device = !_.isEmpty($scope.dataHolder.devices.byId) ? $scope.dataHolder.devices.byId : $scope.dataHolder.devices.find;
+		if (!device) {
+			$scope.widgetHistory.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			return;
+		}
+		$scope.widgetHistory.find = device;
+		$scope.widgetHistory.alert = {
+			message: $scope._t('loading'),
+			status: 'alert-warning',
+			icon: 'fa-spinner fa-spin'
+		};
+		dataFactory.getApi('history_get', '?id=' + device.id + '&show=' + $scope.widgetHistory.history_steps, true).then(function(response) {
+			if (!response.data.history) {
+				$scope.widgetHistory.alert = {
+					message: $scope._t('no_data'),
+					status: 'alert-danger',
+					icon: 'fa-exclamation-triangle'
+				};
+				return;
+			}
+			$scope.widgetHistory.alert = {};
+			$scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors, $scope.widgetHistory.history_steps);
+		}, function(error) {
+			$scope.widgetHistory.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+		});
+	};
+	//$scope.loadDeviceHistory();
 
-    $scope.reloadChart = function (steps) {
-        angular.extend($scope.widgetHistory.chartData,{});
-        $scope.widgetHistory.history_steps = steps;
-        $scope.loadDeviceHistory();
-        document.getElementById('history_chart').update();
-    };
+	$scope.reloadChart = function(steps) {
+		angular.extend($scope.widgetHistory.chartData, {});
+		$scope.widgetHistory.history_steps = parseInt(steps, 10);
+		$scope.loadDeviceHistory();
+		document.getElementById('history_chart').update();
+	};
 });
 
 /**
@@ -28198,101 +28215,101 @@ myAppController.controller('ElementHistoryController', function ($scope, $window
  * @class ElementEventController
  */
 myAppController.controller('ElementEventController', function($scope, $filter, $cookies, cfg, dataFactory, dataService, _) {
-    $scope.widgetEvent = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        },
-        collection: []
-    };
+	$scope.widgetEvent = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		},
+		collection: []
+	};
 
-    /**
-     * Load device events
-     */
-    $scope.loadDeviceEvents = function() {
-        var device = _.where($scope.dataHolder.devices.collection, {
-            id: $scope.dataHolder.devices.find.id
-        });
-        if (_.isEmpty(device)) {
-            $scope.widgetEvent.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        // Get device icons
-        var deviceIcons = dataService.getSingleElementIcons(device[0], true);
-        // Set default or custom icons
-        var icons = dataService.setIcon(deviceIcons['default'], deviceIcons['custom']);
-        $scope.widgetEvent.find = device[0];
-        var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
-        dataFactory.getApi('notifications', since, true).then(function(response) {
-            $scope.widgetEvent.collection = _.chain(response.data.data.notifications)
-                .flatten()
-                .where({
-                    source: $scope.widgetEvent.find.id
-                })
-                .filter(function(v) {
-                    var hasL;
-                    // Default event icon
-                    //v.iconPath = $filter('getEventIcon')(v.type,v.message);
-                    v.iconPath = !v.message.customIcon ? $filter('getEventIcon')(v.type, v.message) : cfg.img.custom_icons + v.message.customIcon;
-                    // Has an event level?
-                    hasL = $filter('hasNode')(v, 'message.l');
+	/**
+	 * Load device events
+	 */
+	$scope.loadDeviceEvents = function() {
+		var device = _.where($scope.dataHolder.devices.collection, {
+			id: $scope.dataHolder.devices.find.id
+		});
+		if (_.isEmpty(device)) {
+			$scope.widgetEvent.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			return;
+		}
+		// Get device icons
+		var deviceIcons = dataService.getSingleElementIcons(device[0], true);
+		// Set default or custom icons
+		var icons = dataService.setIcon(deviceIcons['default'], deviceIcons['custom']);
+		$scope.widgetEvent.find = device[0];
+		var since = '?since=' + $scope.dataHolder.devices.notificationsSince;
+		dataFactory.getApi('notifications', since, true).then(function(response) {
+			$scope.widgetEvent.collection = _.chain(response.data.data.notifications)
+				.flatten()
+				.where({
+					source: $scope.widgetEvent.find.id
+				})
+				.filter(function(v) {
+					var hasL;
+					// Default event icon
+					//v.iconPath = $filter('getEventIcon')(v.type,v.message);
+					v.iconPath = !v.message.customIcon ? $filter('getEventIcon')(v.type, v.message) : cfg.img.custom_icons + v.message.customIcon;
+					// Has an event level?
+					hasL = $filter('hasNode')(v, 'message.l');
 
-                    // Has device a level icon?
-                    if (icons[hasL]) {
-                        v.iconPath = icons[hasL];
-                        return v;
-                    }
-                    /*
-                    // Has device a default icon?
-                    if(icons['default']){
-                        v.iconPath = icons['default'];
-                        return v;
-                    }
-                    */
-                    return v;
+					// Has device a level icon?
+					if (icons[hasL]) {
+						v.iconPath = icons[hasL];
+						return v;
+					}
+					/*
+					// Has device a default icon?
+					if(icons['default']){
+					    v.iconPath = icons['default'];
+					    return v;
+					}
+					*/
+					return v;
 
-                })
-                .value();
-            if (_.isEmpty($scope.widgetEvent.collection)) {
-                $scope.widgetEvent.alert = {
-                    message: $scope._t('no_events'),
-                    status: 'alert-warning',
-                    icon: 'fa-exclamation-circle'
-                };
-                return;
-            }
-        }, function(error) {
-            $scope.widgetEvent.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
+				})
+				.value();
+			if (_.isEmpty($scope.widgetEvent.collection)) {
+				$scope.widgetEvent.alert = {
+					message: $scope._t('no_events'),
+					status: 'alert-warning',
+					icon: 'fa-exclamation-circle'
+				};
+				return;
+			}
+		}, function(error) {
+			$scope.widgetEvent.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+		});
 
-    };
-    $scope.loadDeviceEvents();
+	};
+	$scope.loadDeviceEvents();
 
-    /**
-     * Redirect to events
-     * @param {string} url
-     */
-    $scope.redirectToEvents = function(url) {
-        // Setting time filter to 7 days
-        var timeFilter = {
-            since: $filter('unixStartOfDay')('-', (86400 * 6)),
-            to: $filter('unixStartOfDay')('-', (86400 * 5)),
-            day: 7
-        };
-        $cookies.events_timeFilter = angular.toJson(timeFilter);
-        // Redirecting to events
-        $scope.redirectToRoute(url);
-    };
+	/**
+	 * Redirect to events
+	 * @param {string} url
+	 */
+	$scope.redirectToEvents = function(url) {
+		// Setting time filter to 7 days
+		var timeFilter = {
+			since: $filter('unixStartOfDay')('-', (86400 * 6)),
+			to: $filter('unixStartOfDay')('-', (86400 * 5)),
+			day: 7
+		};
+		$cookies.events_timeFilter = angular.toJson(timeFilter);
+		// Redirecting to events
+		$scope.redirectToRoute(url);
+	};
 
 });
 
@@ -28301,37 +28318,37 @@ myAppController.controller('ElementEventController', function($scope, $filter, $
  * @class ElementSwitchMultilevelController
  */
 myAppController.controller('ElementSwitchMultilevelController', function($scope) {
-    $scope.widgetSwitchMultilevel = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        }
-    };
-    $scope.knobopt = {
-        width: 160
-    };
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        var device = _.where($scope.dataHolder.devices.collection, {
-            id: $scope.dataHolder.devices.find.id
-        });
-        if (!device) {
-            $scope.widgetSwitchMultilevel.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        $scope.widgetSwitchMultilevel.find = device[0];
-        return;
-    };
+	$scope.widgetSwitchMultilevel = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		}
+	};
+	$scope.knobopt = {
+		width: 160
+	};
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		var device = _.where($scope.dataHolder.devices.collection, {
+			id: $scope.dataHolder.devices.find.id
+		});
+		if (!device) {
+			$scope.widgetSwitchMultilevel.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			return;
+		}
+		$scope.widgetSwitchMultilevel.find = device[0];
+		return;
+	};
 
-    $scope.loadDeviceId();
+	$scope.loadDeviceId();
 
 });
 
@@ -28340,36 +28357,36 @@ myAppController.controller('ElementSwitchMultilevelController', function($scope)
  * @class ElementThermostatController
  */
 myAppController.controller('ElementThermostatController', function($scope) {
-    $scope.widgetThermostat = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        }
-    };
-    $scope.knobopt = {
-        width: 160
-    };
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        var device = _.where($scope.dataHolder.devices.collection, {
-            id: $scope.dataHolder.devices.find.id
-        });
-        if (!device) {
-            $scope.widgetSwitchMultilevel.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        $scope.widgetThermostat.find = device[0];
-        return;
-    };
-    $scope.loadDeviceId();
+	$scope.widgetThermostat = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		}
+	};
+	$scope.knobopt = {
+		width: 160
+	};
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		var device = _.where($scope.dataHolder.devices.collection, {
+			id: $scope.dataHolder.devices.find.id
+		});
+		if (!device) {
+			$scope.widgetSwitchMultilevel.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			return;
+		}
+		$scope.widgetThermostat.find = device[0];
+		return;
+	};
+	$scope.loadDeviceId();
 
 });
 
@@ -28378,264 +28395,264 @@ myAppController.controller('ElementThermostatController', function($scope) {
  * @class ElementSwitchRGBWController
  */
 myAppController.controller('ElementSwitchRGBWController', function($scope, dataFactory, $interval, cfg) {
-    $scope.widgetSwitchRGBW = {
-        find: {},
-        all: [],
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        },
-        process: false,
-        previewColor: 'rgb(255, 255, 255)',
-        selectedColor: 'rgb(255, 255, 255)',
-        colorHex: '',
-        minMax: {
-            max: 99,
-            min: 0,
-            step: 1
-        },
-        color: {
-            r: 'text-danger',
-            g: 'text-success',
-            b: 'text-info'
-        },
-        sliderInterval: null
-    };
+	$scope.widgetSwitchRGBW = {
+		find: {},
+		all: [],
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		},
+		process: false,
+		previewColor: 'rgb(255, 255, 255)',
+		selectedColor: 'rgb(255, 255, 255)',
+		colorHex: '',
+		minMax: {
+			max: 99,
+			min: 0,
+			step: 1
+		},
+		color: {
+			r: 'text-danger',
+			g: 'text-success',
+			b: 'text-info'
+		},
+		sliderInterval: null
+	};
 
-    $scope.knobopt = {
-        width: 160
-    };
+	$scope.knobopt = {
+		width: 160
+	};
 
-    /**
-     * Show RGB modal window
-     */
-    $scope.loadRgbWheel = function(input) {
-        $scope.input = input;
-        var bCanPreview = true; // can preview
+	/**
+	 * Show RGB modal window
+	 */
+	$scope.loadRgbWheel = function(input) {
+		$scope.input = input;
+		var bCanPreview = true; // can preview
 
-        // create canvas and context objects
-        var canvas = document.getElementById('wheel_picker');
+		// create canvas and context objects
+		var canvas = document.getElementById('wheel_picker');
 
-        var ctx = canvas.getContext('2d');
-        // drawing active image
-        var image = new Image();
-        image.onload = function() {
-            ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height); // draw the image on the canvas
-        };
-        image.src = 'app/img/colorwheel.png';
+		var ctx = canvas.getContext('2d');
+		// drawing active image
+		var image = new Image();
+		image.onload = function() {
+			ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height); // draw the image on the canvas
+		};
+		image.src = 'app/img/colorwheel.png';
 
-        var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
-        //$('#wheel_picker_preview').css('backgroundColor', defaultColor);
-        $scope.widgetSwitchRGBW.selectedColor = defaultColor;
-        $scope.widgetSwitchRGBW.previewColor = defaultColor;
-        $('#wheel_picker').mousemove(function(e) { // mouse move handler
-            if (bCanPreview) {
-                // get coordinates of current position
-                var canvasOffset = $(canvas).offset();
-                var canvasX = Math.floor(e.pageX - canvasOffset.left);
-                var canvasY = Math.floor(e.pageY - canvasOffset.top);
+		var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
+		//$('#wheel_picker_preview').css('backgroundColor', defaultColor);
+		$scope.widgetSwitchRGBW.selectedColor = defaultColor;
+		$scope.widgetSwitchRGBW.previewColor = defaultColor;
+		$('#wheel_picker').mousemove(function(e) { // mouse move handler
+			if (bCanPreview) {
+				// get coordinates of current position
+				var canvasOffset = $(canvas).offset();
+				var canvasX = Math.floor(e.pageX - canvasOffset.left);
+				var canvasY = Math.floor(e.pageY - canvasOffset.top);
 
-                // get current pixel
-                var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
-                var pixel = imageData.data;
+				// get current pixel
+				var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
+				var pixel = imageData.data;
 
-                updatePreviewColor(pixel[0], pixel[1], pixel[2]);
+				updatePreviewColor(pixel[0], pixel[1], pixel[2]);
 
-                // update controls
-                $('#rVal').val('R: ' + pixel[0]);
-                $('#gVal').val('G: ' + pixel[1]);
-                $('#bVal').val('B: ' + pixel[2]);
-                $('#rgbVal').val(pixel[0] + ',' + pixel[1] + ',' + pixel[2]);
-            }
-        });
+				// update controls
+				$('#rVal').val('R: ' + pixel[0]);
+				$('#gVal').val('G: ' + pixel[1]);
+				$('#bVal').val('B: ' + pixel[2]);
+				$('#rgbVal').val(pixel[0] + ',' + pixel[1] + ',' + pixel[2]);
+			}
+		});
 
-        $('#wheel_picker').click(function(e) { // click event handler
-            // bCanPreview = true;//!bCanPreview;
-            if (bCanPreview) {
-                var cmdColor = $('#rgbVal').val().split(',');
-                var cmd = input.id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
-                var rgbColors = 'rgb(' + cmdColor[0] + ',' + cmdColor[1] + ',' + cmdColor[2] + ')';
-                var rgbColorsObj = {
-                    r: cmdColor[0],
-                    g: cmdColor[1],
-                    b: cmdColor[2]
-                };
-                $scope.widgetSwitchRGBW.process = true;
-                dataFactory.runApiCmd(cmd).then(function(response) {
-                    var findIndex = _.findIndex($scope.dataHolder.devices.collection, {
-                        id: input.id
-                    });
-                    //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
-                    angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
-                    angular.extend(input.metrics.color, rgbColorsObj);
-                    $scope.widgetSwitchRGBW.colorHex = rgbToHex(rgbColorsObj.r, rgbColorsObj.g, rgbColorsObj.b);
-                    $scope.widgetSwitchRGBW.process = false;
-                    $scope.widgetSwitchRGBW.selectedColor = rgbColors;
-                }, function(error) {
-                    $scope.widgetSwitchRGBW.process = false;
-                    $scope.widgetSwitchRGBW.alert = {
-                        message: $scope._t('error_update_data'),
-                        status: 'alert-danger',
-                        icon: 'fa-exclamation-triangle'
-                    };
-                });
-            }
-        });
-    };
+		$('#wheel_picker').click(function(e) { // click event handler
+			// bCanPreview = true;//!bCanPreview;
+			if (bCanPreview) {
+				var cmdColor = $('#rgbVal').val().split(',');
+				var cmd = input.id + '/command/exact?red=' + cmdColor[0] + '&green=' + cmdColor[1] + '&blue=' + cmdColor[2] + '';
+				var rgbColors = 'rgb(' + cmdColor[0] + ',' + cmdColor[1] + ',' + cmdColor[2] + ')';
+				var rgbColorsObj = {
+					r: cmdColor[0],
+					g: cmdColor[1],
+					b: cmdColor[2]
+				};
+				$scope.widgetSwitchRGBW.process = true;
+				dataFactory.runApiCmd(cmd).then(function(response) {
+					var findIndex = _.findIndex($scope.dataHolder.devices.collection, {
+						id: input.id
+					});
+					//angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
+					angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
+					angular.extend(input.metrics.color, rgbColorsObj);
+					$scope.widgetSwitchRGBW.colorHex = rgbToHex(rgbColorsObj.r, rgbColorsObj.g, rgbColorsObj.b);
+					$scope.widgetSwitchRGBW.process = false;
+					$scope.widgetSwitchRGBW.selectedColor = rgbColors;
+				}, function(error) {
+					$scope.widgetSwitchRGBW.process = false;
+					$scope.widgetSwitchRGBW.alert = {
+						message: $scope._t('error_update_data'),
+						status: 'alert-danger',
+						icon: 'fa-exclamation-triangle'
+					};
+				});
+			}
+		});
+	};
 
-    $scope.colorHexChange = function(input) {
-        var colorHex = $scope.widgetSwitchRGBW.colorHex;
-        if (typeof colorHex !== 'undefined' && colorHex.lenght > 0) {
-            var rgb = hexToRgb(colorHex);
-            $scope.widgetSwitchRGBW.find.metrics.color = rgb;
-            updatePreviewColor(rgb.r, rgb.g, rgb.b);
-        }
-    };
+	$scope.colorHexChange = function(input) {
+		var colorHex = $scope.widgetSwitchRGBW.colorHex;
+		if (typeof colorHex !== 'undefined' && colorHex.lenght > 0) {
+			var rgb = hexToRgb(colorHex);
+			$scope.widgetSwitchRGBW.find.metrics.color = rgb;
+			updatePreviewColor(rgb.r, rgb.g, rgb.b);
+		}
+	};
 
-    /**
-     * Calls function when slider handle is grabbed
-     */
-    $scope.sliderOnHandleDown = function(input) {
-        sliderInterval = $interval(function() {
-            if (typeof input.metrics.color !== 'undefined') {
-                updatePreviewColor(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
-            }
-        }, 500);
-    };
+	/**
+	 * Calls function when slider handle is grabbed
+	 */
+	$scope.sliderOnHandleDown = function(input) {
+		sliderInterval = $interval(function() {
+			if (typeof input.metrics.color !== 'undefined') {
+				updatePreviewColor(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
+			}
+		}, 500);
+	};
 
 
-    /**
-     * Calls function when slider handle for RGB is released
-     */
-    $scope.sliderOnHandleUpRGB = function(input) {
-        $scope.setRGBColor(input);
-        $interval.cancel(sliderInterval);
-    };
+	/**
+	 * Calls function when slider handle for RGB is released
+	 */
+	$scope.sliderOnHandleUpRGB = function(input) {
+		$scope.setRGBColor(input);
+		$interval.cancel(sliderInterval);
+	};
 
-    /**
-     * Calls function when slider handle is released
-     */
-    $scope.sliderOnHandleUp = function(input) {
-        var val = parseFloat(input.metrics.level);
+	/**
+	 * Calls function when slider handle is released
+	 */
+	$scope.sliderOnHandleUp = function(input) {
+		var val = parseFloat(input.metrics.level);
 
-        var cmd = input.id + '/command/exact?level=' + val;
-        input.metrics.level = val;
+		var cmd = input.id + '/command/exact?level=' + val;
+		input.metrics.level = val;
 
-        $scope.runCmd(cmd);
-    };
+		$scope.runCmd(cmd);
+	};
 
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        var device = _.where($scope.dataHolder.devices.all, {
-            id: $scope.dataHolder.devices.find.id
-        });
-        if (_.isEmpty(device)) {
-            $scope.widgetSwitchRGBW.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        angular.extend($scope.widgetSwitchRGBW.find, device[0]);
-        var str = "ZWayVDev_zway";
-        if ($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2, 3, 4])) { //TODO next release change
-            var color = $scope.widgetSwitchRGBW.find.metrics.color;
-            $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-            $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
-        } else {
-            var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
-            var zwayId = automationId.substr(automationId.lastIndexOf('_') + 1);
-            dataFactory.runExpertCmd('devices[' + zwayId + ']').then(function(response) {
-                if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
-                    $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
-                    var color = $scope.widgetSwitchRGBW.find.metrics.color;
-                    $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-                    $scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
-                } else {
-                    dataFactory.getApi('devices', '', true).then(function(response) {
-                        var devices = response.data.data;
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		var device = _.where($scope.dataHolder.devices.all, {
+			id: $scope.dataHolder.devices.find.id
+		});
+		if (_.isEmpty(device)) {
+			$scope.widgetSwitchRGBW.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			return;
+		}
+		angular.extend($scope.widgetSwitchRGBW.find, device[0]);
+		var str = "ZWayVDev_zway";
+		if ($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2, 3, 4])) { //TODO next release change
+			var color = $scope.widgetSwitchRGBW.find.metrics.color;
+			$scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+			$scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
+		} else {
+			var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
+			var zwayId = automationId.substr(automationId.lastIndexOf('_') + 1);
+			dataFactory.runExpertCmd('devices[' + zwayId + ']').then(function(response) {
+				if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
+					$scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
+					var color = $scope.widgetSwitchRGBW.find.metrics.color;
+					$scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+					$scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
+				} else {
+					dataFactory.getApi('devices', '', true).then(function(response) {
+						var devices = response.data.data;
 
-                        var devs = _.filter(devices.devices, function(dev) {
-                            if (dev.id.indexOf(automationId) > -1) {
-                                return dev;
-                            }
-                        });
+						var devs = _.filter(devices.devices, function(dev) {
+							if (dev.id.indexOf(automationId) > -1) {
+								return dev;
+							}
+						});
 
-                        $scope.widgetSwitchRGBW.all = devs;
-                        var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
-                            return dev.deviceType == 'switchRGBW';
-                        });
+						$scope.widgetSwitchRGBW.all = devs;
+						var find = _.find($scope.widgetSwitchRGBW.all, function(dev) {
+							return dev.deviceType == 'switchRGBW';
+						});
 
-                        var color = find.metrics.color;
-                        $scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
-                        $scope.loadRgbWheel(find);
-                        return;
-                    }, function(error) {
-                        console.log(error);
-                    });
-                }
-            }, function(error) {
-                $scope.widgetSwitchRGBW.alert = {
-                    message: $scope._t('error_load_data'),
-                    status: 'alert-danger',
-                    icon: 'fa-exclamation-triangle'
-                };
-            });
-        }
-    };
-    $scope.loadDeviceId();
+						var color = find.metrics.color;
+						$scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
+						$scope.loadRgbWheel(find);
+						return;
+					}, function(error) {
+						console.log(error);
+					});
+				}
+			}, function(error) {
+				$scope.widgetSwitchRGBW.alert = {
+					message: $scope._t('error_load_data'),
+					status: 'alert-danger',
+					icon: 'fa-exclamation-triangle'
+				};
+			});
+		}
+	};
+	$scope.loadDeviceId();
 
-    $scope.setRGBColor = function(input) {
-        var cmd = input.id + '/command/exact?red=' + input.metrics.color.r + '&green=' + input.metrics.color.g + '&blue=' + input.metrics.color.b + '',
-            rgbColors = 'rgb(' + input.metrics.color.r + ',' + input.metrics.color.g + ',' + input.metrics.color.b + ')',
-            rgbColorsObj = input.metrics.color;
+	$scope.setRGBColor = function(input) {
+		var cmd = input.id + '/command/exact?red=' + input.metrics.color.r + '&green=' + input.metrics.color.g + '&blue=' + input.metrics.color.b + '',
+			rgbColors = 'rgb(' + input.metrics.color.r + ',' + input.metrics.color.g + ',' + input.metrics.color.b + ')',
+			rgbColorsObj = input.metrics.color;
 
-        $scope.widgetSwitchRGBW.process = true;
-        dataFactory.runApiCmd(cmd).then(function(response) {
-            var findIndex = _.findIndex($scope.dataHolder.devices.collection, {
-                id: input.id
-            });
-            //angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
-            angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
-            angular.extend($scope.widgetSwitchRGBW.find.metrics.color, rgbColorsObj);
-            $scope.widgetSwitchRGBW.colorHex = rgbToHex(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
-            $scope.widgetSwitchRGBW.process = false;
-            $scope.widgetSwitchRGBW.selectedColor = rgbColors;
-        }, function(error) {
-            $scope.widgetSwitchRGBW.process = false;
-            $scope.widgetSwitchRGBW.alert = {
-                message: $scope._t('error_update_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
-    }
+		$scope.widgetSwitchRGBW.process = true;
+		dataFactory.runApiCmd(cmd).then(function(response) {
+			var findIndex = _.findIndex($scope.dataHolder.devices.collection, {
+				id: input.id
+			});
+			//angular.extend($scope.dataHolder.devices.collection[findIndex ].metrics,{rgbColors: rgbColors});
+			angular.extend($scope.dataHolder.devices.collection[findIndex].metrics.color, rgbColorsObj);
+			angular.extend($scope.widgetSwitchRGBW.find.metrics.color, rgbColorsObj);
+			$scope.widgetSwitchRGBW.colorHex = rgbToHex(input.metrics.color.r, input.metrics.color.g, input.metrics.color.b);
+			$scope.widgetSwitchRGBW.process = false;
+			$scope.widgetSwitchRGBW.selectedColor = rgbColors;
+		}, function(error) {
+			$scope.widgetSwitchRGBW.process = false;
+			$scope.widgetSwitchRGBW.alert = {
+				message: $scope._t('error_update_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+		});
+	}
 
-    /// --- Private functions --- ///
+	/// --- Private functions --- ///
 
-    function updatePreviewColor(r, g, b) {
-        // update preview color
-        var pixelColor = "rgb(" + r + ", " + g + ", " + b + ")";
-        pixelColor = (pixelColor == 'rgb(0, 0, 0)' ? $scope.widgetSwitchRGBW.selectedColor : pixelColor);
-        $scope.widgetSwitchRGBW.previewColor = pixelColor;
-    }
+	function updatePreviewColor(r, g, b) {
+		// update preview color
+		var pixelColor = "rgb(" + r + ", " + g + ", " + b + ")";
+		pixelColor = (pixelColor == 'rgb(0, 0, 0)' ? $scope.widgetSwitchRGBW.selectedColor : pixelColor);
+		$scope.widgetSwitchRGBW.previewColor = pixelColor;
+	}
 
-    function hexToRgb(hex) {
-        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
-        } : null;
-    }
+	function hexToRgb(hex) {
+		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		return result ? {
+			r: parseInt(result[1], 16),
+			g: parseInt(result[2], 16),
+			b: parseInt(result[3], 16)
+		} : null;
+	}
 
-    function rgbToHex(r, g, b) {
-        return "#" + ((1 << 24) + (parseInt(r, 10) << 16) + (parseInt(g, 10) << 8) + parseInt(b, 10)).toString(16).slice(1);
-    }
+	function rgbToHex(r, g, b) {
+		return "#" + ((1 << 24) + (parseInt(r, 10) << 16) + (parseInt(g, 10) << 8) + parseInt(b, 10)).toString(16).slice(1);
+	}
 
 });
 
@@ -28645,51 +28662,51 @@ myAppController.controller('ElementSwitchRGBWController', function($scope, dataF
  * @class ElementSensorMultilineController
  */
 myAppController.controller('ElementSensorMultilineController', function($scope, $timeout, dataFactory, dataService) {
-    $scope.widgetSensorMultiline = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        }
-    };
+	$scope.widgetSensorMultiline = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		}
+	};
 
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
-            var arr = [];
-            arr[0] = response.data.data;
-            $scope.widgetSensorMultiline.find = dataService.getDevicesData(arr).value()[0];
-            if (_.isEmpty(response.data.data.metrics.sensors)) {
-                $scope.widgetSensorMultiline.alert = {
-                    message: $scope._t('no_data'),
-                    status: 'alert-warning',
-                    icon: 'fa-exclamation-circle'
-                };
-                return;
-            }
-            $scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
-        }, function(error) {
-            $scope.widgetSensorMultiline.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
-    };
-    $scope.loadDeviceId();
-    /**
-     * Run a command request
-     */
-    $scope.runMultilineCmd = function(cmd, id) {
-        $scope.runCmd(cmd, id);
-        $scope.loadDeviceId();
-        $timeout(function() {
-            $scope.loadDeviceId();
-        }, 2000);
-    };
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
+			var arr = [];
+			arr[0] = response.data.data;
+			$scope.widgetSensorMultiline.find = dataService.getDevicesData(arr).value()[0];
+			if (_.isEmpty(response.data.data.metrics.sensors)) {
+				$scope.widgetSensorMultiline.alert = {
+					message: $scope._t('no_data'),
+					status: 'alert-warning',
+					icon: 'fa-exclamation-circle'
+				};
+				return;
+			}
+			$scope.widgetSensorMultiline.find.metrics.sensors = dataService.getDevicesData(response.data.data.metrics.sensors).value();
+		}, function(error) {
+			$scope.widgetSensorMultiline.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+		});
+	};
+	$scope.loadDeviceId();
+	/**
+	 * Run a command request
+	 */
+	$scope.runMultilineCmd = function(cmd, id) {
+		$scope.runCmd(cmd, id);
+		$scope.loadDeviceId();
+		$timeout(function() {
+			$scope.loadDeviceId();
+		}, 2000);
+	};
 
 });
 
@@ -28698,56 +28715,56 @@ myAppController.controller('ElementSensorMultilineController', function($scope, 
  * @class ElementCameraController
  */
 myAppController.controller('ElementCameraController', function($scope, $interval) {
-    $scope.widgetCamera = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        }
-    };
+	$scope.widgetCamera = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		}
+	};
 
-    $scope.url = undefined;
-    $scope.refreshInterval = undefined;
-    /**
-     * Set camera url
-     */
-    $scope.setUrl = function() {
-        var url = $scope.widgetCamera.find.metrics.url;
-        if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
-            var now = new Date().getTime();
-            if (url.indexOf('?') === -1) {
-                url = url + '?' + now;
-            } else {
-                url = url + '&' + now;
-            }
-        }
-        $scope.url = url;
-    };
+	$scope.url = undefined;
+	$scope.refreshInterval = undefined;
+	/**
+	 * Set camera url
+	 */
+	$scope.setUrl = function() {
+		var url = $scope.widgetCamera.find.metrics.url;
+		if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
+			var now = new Date().getTime();
+			if (url.indexOf('?') === -1) {
+				url = url + '?' + now;
+			} else {
+				url = url + '&' + now;
+			}
+		}
+		$scope.url = url;
+	};
 
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        var device = _.where($scope.dataHolder.devices.collection, {
-            id: $scope.dataHolder.devices.find.id
-        });
-        if (_.isEmpty(device)) {
-            $scope.widgetCamera.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        $scope.widgetCamera.find = device[0];
-        $scope.setUrl();
-        if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
-            $scope.refreshInterval = $interval($scope.setUrl, 1000 * 15);
-        }
-        return;
-    };
-    $scope.loadDeviceId();
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		var device = _.where($scope.dataHolder.devices.collection, {
+			id: $scope.dataHolder.devices.find.id
+		});
+		if (_.isEmpty(device)) {
+			$scope.widgetCamera.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			return;
+		}
+		$scope.widgetCamera.find = device[0];
+		$scope.setUrl();
+		if ($scope.widgetCamera.find.metrics.autoRefresh === true) {
+			$scope.refreshInterval = $interval($scope.setUrl, 1000 * 15);
+		}
+		return;
+	};
+	$scope.loadDeviceId();
 });
 
 /**
@@ -28755,34 +28772,34 @@ myAppController.controller('ElementCameraController', function($scope, $interval
  * @class ElementTextController
  */
 myAppController.controller('ElementTextController', function($scope) {
-    $scope.widgetText = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        }
-    };
+	$scope.widgetText = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		}
+	};
 
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        var device = _.where($scope.dataHolder.devices.collection, {
-            id: $scope.dataHolder.devices.find.id
-        });
-        if (_.isEmpty(device)) {
-            $scope.widgetText.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        $scope.widgetText.find = device[0];
-        return;
-    };
-    $scope.loadDeviceId();
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		var device = _.where($scope.dataHolder.devices.collection, {
+			id: $scope.dataHolder.devices.find.id
+		});
+		if (_.isEmpty(device)) {
+			$scope.widgetText.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			return;
+		}
+		$scope.widgetText.find = device[0];
+		return;
+	};
+	$scope.loadDeviceId();
 
 });
 
@@ -28791,34 +28808,34 @@ myAppController.controller('ElementTextController', function($scope) {
  * @class ElementOpenWeatherController
  */
 myAppController.controller('ElementOpenWeatherController', function($scope) {
-    $scope.widgetOpenWeather = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        }
-    };
+	$scope.widgetOpenWeather = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		}
+	};
 
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        var device = _.where($scope.dataHolder.devices.collection, {
-            id: $scope.dataHolder.devices.find.id
-        });
-        if (_.isEmpty(device)) {
-            $scope.widgetOpenWeather.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            return;
-        }
-        $scope.widgetOpenWeather.find = device[0];
-        return;
-    };
-    $scope.loadDeviceId();
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		var device = _.where($scope.dataHolder.devices.collection, {
+			id: $scope.dataHolder.devices.find.id
+		});
+		if (_.isEmpty(device)) {
+			$scope.widgetOpenWeather.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			return;
+		}
+		$scope.widgetOpenWeather.find = device[0];
+		return;
+	};
+	$scope.loadDeviceId();
 
 });
 
@@ -28827,84 +28844,84 @@ myAppController.controller('ElementOpenWeatherController', function($scope) {
  * @class ElementClimateControlController
  */
 myAppController.controller('ElementClimateControlController', function($scope, $filter, dataFactory) {
-    $scope.widgetClimateControl = {
-        find: {},
-        rooms: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        },
-        devicesId: _.indexBy($scope.dataHolder.devices.all, 'id')
-    };
+	$scope.widgetClimateControl = {
+		find: {},
+		rooms: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		},
+		devicesId: _.indexBy($scope.dataHolder.devices.all, 'id')
+	};
 
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
-            var device = response.data.data;
-            console.log("device", device);
-            if (_.isEmpty(device)) {
-                $scope.widgetSensorMultiline.alert = {
-                    message: $scope._t('no_data'),
-                    status: 'alert-warning',
-                    icon: 'fa-exclamation-circle'
-                };
-                return;
-            }
-            $scope.widgetClimateControl.find = device;
-            $scope.widgetClimateControl.rooms = _.chain(device.metrics.rooms)
-                .flatten()
-                .filter(function(v) {
-                    angular.extend(v, {
-                        roomTitle: $scope.dataHolder.devices.rooms[v.room].title
-                    }, {
-                        roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src
-                    }, {
-                        sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null
-                    }, {
-                        scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null
-                    });
-                    return v;
-                })
-                .value();
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
+			var device = response.data.data;
+			console.log("device", device);
+			if (_.isEmpty(device)) {
+				$scope.widgetSensorMultiline.alert = {
+					message: $scope._t('no_data'),
+					status: 'alert-warning',
+					icon: 'fa-exclamation-circle'
+				};
+				return;
+			}
+			$scope.widgetClimateControl.find = device;
+			$scope.widgetClimateControl.rooms = _.chain(device.metrics.rooms)
+				.flatten()
+				.filter(function(v) {
+					angular.extend(v, {
+						roomTitle: $scope.dataHolder.devices.rooms[v.room].title
+					}, {
+						roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src
+					}, {
+						sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null
+					}, {
+						scaleTitle: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.scaleTitle : null
+					});
+					return v;
+				})
+				.value();
 
 
-        }, function(error) {
-            $scope.widgetClimateControl.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
-    };
-    $scope.loadDeviceId();
+		}, function(error) {
+			$scope.widgetClimateControl.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+		});
+	};
+	$scope.loadDeviceId();
 
-    /**
-     * Change climate element mode
-     */
-    $scope.changeClimateControlMode = function(input) {
-        $scope.loading = {
-            status: 'loading-spin',
-            icon: 'fa-spinner fa-spin',
-            message: $scope._t('updating')
-        };
-        dataFactory.runApiCmd(input.cmd).then(function(response) {
-            $scope.widgetClimateControl.alert = {
-                message: false
-            };
-            $scope.loadDeviceId();
-        }, function(error) {
-            $scope.widgetClimateControl.alert = {
-                message: $scope._t('error_update_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-            $scope.loading = false;
-        });
+	/**
+	 * Change climate element mode
+	 */
+	$scope.changeClimateControlMode = function(input) {
+		$scope.loading = {
+			status: 'loading-spin',
+			icon: 'fa-spinner fa-spin',
+			message: $scope._t('updating')
+		};
+		dataFactory.runApiCmd(input.cmd).then(function(response) {
+			$scope.widgetClimateControl.alert = {
+				message: false
+			};
+			$scope.loadDeviceId();
+		}, function(error) {
+			$scope.widgetClimateControl.alert = {
+				message: $scope._t('error_update_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+			$scope.loading = false;
+		});
 
-    };
+	};
 });
 
 /**
@@ -28912,40 +28929,40 @@ myAppController.controller('ElementClimateControlController', function($scope, $
  * @class ElementSecurityControlController
  */
 myAppController.controller('ElementSecurityControlController', function($scope, $filter, dataFactory) {
-    $scope.widgetSecurityControl = {
-        find: {},
-        alert: {
-            message: false,
-            status: 'is-hidden',
-            icon: false
-        }
-    };
+	$scope.widgetSecurityControl = {
+		find: {},
+		alert: {
+			message: false,
+			status: 'is-hidden',
+			icon: false
+		}
+	};
 
-    /**
-     * Load single device
-     */
-    $scope.loadDeviceId = function() {
-        dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
-            var device = response.data.data;
-            if (_.isEmpty(device.metrics.lastTriggerList)) {
-                $scope.widgetSecurityControl.alert = {
-                    message: $scope._t('no_data'),
-                    status: 'alert-warning',
-                    icon: 'fa-exclamation-circle'
-                };
-            }
+	/**
+	 * Load single device
+	 */
+	$scope.loadDeviceId = function() {
+		dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
+			var device = response.data.data;
+			if (_.isEmpty(device.metrics.lastTriggerList)) {
+				$scope.widgetSecurityControl.alert = {
+					message: $scope._t('no_data'),
+					status: 'alert-warning',
+					icon: 'fa-exclamation-circle'
+				};
+			}
 
-            $scope.widgetSecurityControl.find = device;
+			$scope.widgetSecurityControl.find = device;
 
-        }, function(error) {
-            $scope.widgetSecurityControl.alert = {
-                message: $scope._t('error_load_data'),
-                status: 'alert-danger',
-                icon: 'fa-exclamation-triangle'
-            };
-        });
-    };
-    $scope.loadDeviceId();
+		}, function(error) {
+			$scope.widgetSecurityControl.alert = {
+				message: $scope._t('error_load_data'),
+				status: 'alert-danger',
+				icon: 'fa-exclamation-triangle'
+			};
+		});
+	};
+	$scope.loadDeviceId();
 });
 /**
  * @overview Controllers that handle element detail actions, as well as custom icon actions.
@@ -30727,11 +30744,7 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 		$q.allSettled(promises).then(function(response) {
 			var ifThen = response[0];
 			var logicalRules = response[1];
-			// Error message
-			if (ifThen.state === 'rejected' || logicalRules.state === 'rejected') {
-				$scope.loadRules();
-				return;
-			}
+
 			// Success - modules
 			if (ifThen.state === 'fulfilled') {
 				ifThenList = _.filter(ifThen.value.data.data, function(v) {
@@ -30745,6 +30758,14 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 					return !v.params.transformed;
 				});
 			}
+
+			// Error message
+			if (ifThen.state === 'rejected' && logicalRules.state === 'rejected') {
+				$scope.loadRules();
+				return;
+			}
+
+			console.log('### logicalRulesList:', logicalRulesList);
 
 			$scope.oldLogics = $scope.oldLogics.concat(ifThenList, logicalRulesList);
 
@@ -30763,50 +30784,64 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 						'ok': $scope._t('ok_import')
 					})
 					.set('onok', function(closeEvent) { //after clicking OK
-						var confirmProm = [
-							dataFactory.postApi('modules_transform', ifThenPostData),
-							dataFactory.postApi('modules_transform', logicalRulesPostData)
-						]
+						var confirmProm = [],
+							hasLogicalRules = logicalRulesList.length ? true : false,
+							hasIfThen = ifThenList.length ? true : false;
 
-						$q.allSettled(confirmProm).then(function(res) {
-							var ifThenRes = res[0],
-								logicalRulesRes = res[1],
-								resTitles = [];
+						if (hasLogicalRules) {
+							confirmProm.push(dataFactory.postApi('modules_transform', logicalRulesPostData));
+						}
 
-							// Error message
-							if (ifThenRes.state === 'rejected' || logicalRulesRes.state === 'rejected') {
-								dataService.showNotifier({
-									message: $scope._t('error_transformed'),
-									type: 'error'
-								});
+						if (hasIfThen) {
+							confirmProm.push(dataFactory.postApi('modules_transform', ifThenPostData));
+						}
+
+						if (confirmProm.length) {
+							$q.allSettled(confirmProm).then(function(res) {
+								var ifThenRes = hasIfThen && hasLogicalRules ? res[1] : (hasIfThen && !hasLogicalRules ? res[0] : undefined),
+									logicalRulesRes = (hasIfThen && hasLogicalRules) || (!hasIfThen && hasLogicalRules) ? res[0] : undefined,
+									resTitles = [];
+
+								console.log('ifThenRes:', ifThenRes);
+								console.log('logicalRulesRes:', logicalRulesRes);
+
+								// Error message
+								if (ifThenRes && ifThenRes.state === 'rejected' && logicalRulesRes && logicalRulesRes.state === 'rejected') {
+									dataService.showNotifier({
+										message: $scope._t('error_transformed'),
+										type: 'error'
+									});
+									$scope.oldLogics = [];
+									$scope.loadRules();
+									return;
+								}
+								// Success - modules
+								if (ifThenRes && ifThenRes.state === 'fulfilled') {
+									resTitles = resTitles.concat(ifThenRes.value.data.data.map(function(entry) {
+										return entry.title
+									}));
+								}
+
+								// Success - instances
+								if (logicalRulesRes && logicalRulesRes.state === 'fulfilled') {
+									resTitles = resTitles.concat(logicalRulesRes.value.data.data.map(function(entry) {
+										return entry.title
+									}));
+								}
+
+								console.log('resTitles:', resTitles);
+
+								if (resTitles.length) {
+									dataService.showNotifier({
+										message: $scope._t('successfully_transformed') + '<br>' + resTitles.join(',<br>')
+									});
+									$scope.loadRules();
+								}
+
 								$scope.oldLogics = [];
-								$scope.loadRules();
-								return;
-							}
-							// Success - modules
-							if (ifThenRes.state === 'fulfilled') {
-								resTitles = resTitles.concat(ifThenRes.value.data.data.map(function(entry) {
-									return entry.title
-								}));
-							}
 
-							// Success - instances
-							if (logicalRulesRes.state === 'fulfilled') {
-								resTitles = resTitles.concat(logicalRulesRes.value.data.data.map(function(entry) {
-									return entry.title
-								}));
-							}
-
-							if (resTitles.length) {
-								dataService.showNotifier({
-									message: $scope._t('successfully_transformed') + '<br>' + resTitles.join(',<br>')
-								});
-								$scope.loadRules();
-							}
-
-							$scope.oldLogics = [];
-
-						});
+							});
+						}
 					})
 					.set('oncancel', function(closeEvent) { //after clicking Cancel
 						$scope.oldLogics = [];
