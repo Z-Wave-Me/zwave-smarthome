@@ -43,6 +43,9 @@ $accordion-focus-color: $focus-color;
       margin-left: $accordion-spacing;
       padding: $spacing;
       font-size: 105%;
+      -webkit-transition: all .35s;
+      -o-transition: all .35s;
+      transition: all .35s;
     }
     &[aria-expanded="false"]{
      &::after{
@@ -72,18 +75,27 @@ $accordion-focus-color: $focus-color;
   }
   &.chevron{
     > button{
-      &[aria-expanded="false"]{
-        &::after{
+      &::after {
         font-family: fontawesome;
         content: "\f078";
-        }
       }
       &[aria-expanded="true"]{
         &::after{
-          font-family: fontawesome;
-          content: "\f077";
+          transform: rotateX(180deg);
         }
       }
+      // &[aria-expanded="false"]{
+      //   &::after{
+      //   font-family: fontawesome;
+      //   content: "\f078";
+      //   }
+      // }
+      // &[aria-expanded="true"]{
+      //   &::after{
+      //     font-family: fontawesome;
+      //     content: "\f077";
+      //   }
+      // }
       &[disabled]{
         &::after{
           content: "";
@@ -135,17 +147,30 @@ $accordion-focus-color: $focus-color;
 .accordion {
   border-bottom: dotted 1px $accordion-border-color;
   padding-bottom: $accordion-spacing;
-  height:auto;
+  //height:auto;
+  transition:transform 0.3s ease-out;
+  transform:scaleY(1);
+  transform-origin: top;
+  &.collapsed {
+    transform:scaleY(0);
+  }
+  //transition:transform 0.3s ease-out;
+  //transform: scaleY(0);
+  // &[hidden] {
+  //  display: block;
+  // }
   //animation
   //background:red !important;
-  &:not([hidden]) {
-    transform-origin: top;
-    @include animation(0.3s scaleYIn ease);
-  }
-  &[hidden] {
-    transform-origin: top;
-    @include animation(0.3s scaleYOut ease);
-  }
+  //&:not([hidden]) {
+  //  transform: scaleY(1);
+    //@include animation(0.3s scaleYIn ease-out);
+  //}
+  //&[hidden] {
+    //transform-origin: top;
+    //transition:transform 0.3s ease-out;
+    //transition: scaleY(0);
+    //@include animation(0.3s scaleYOut ease-out);
+  //}
 
   // animation
   @keyframes scaleYIn {
@@ -170,7 +195,7 @@ $accordion-focus-color: $focus-color;
   }
 }
 
-/* TODO: deprecated
+/* TODO: deprecated */
 /* Old version
 -------------------------------------------------- */
 /* .accordion-entry{
@@ -214,4 +239,5 @@ $accordion-focus-color: $focus-color;
         margin: $spacing-half;
         padding: $spacing;      
     }
-} */
+}
+*/

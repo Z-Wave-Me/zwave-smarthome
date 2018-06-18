@@ -514,7 +514,8 @@ myApp.directive('bbAccordion', function() {
 				wrap.closest("[data-collapse-all]").children().each(function() {
 					$(this).removeClass('active');
 					$(this).find('.accordion-toggle:first').find('button:first').attr('aria-expanded', false);
-					$(this).find('.accordion:first').attr('hidden', true);
+					$(this).find('.accordion:first .collapsible').removeClass("collapsed");
+					//$(this).find('.accordion:first').attr('hidden', true);
 				});
 				// Expand current ellement when collapsed
 				if (isCollapsed || !wrap.closest("[data-collapse-all]").length) {
@@ -522,9 +523,15 @@ myApp.directive('bbAccordion', function() {
 						return attr == 'true' ? false : true;
 					});
 					wrap.toggleClass('active');
-					elem.parent().next().attr('hidden', function(_, attr) {
-						return !attr
-					});
+					//elem.parent().next().classList.toggle("collapsed");
+					if(elem.parent().next().hasClass("collapsed")) {
+						elem.parent().next().removeClass("collapsed");
+					} else {
+						elem.parent().next().addClass("collapsed");
+					}
+					//elem.parent().next().attr('hidden', function(_, attr) {
+					//	return !attr
+					//});
 				}
 				return false;
 			});

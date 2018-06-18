@@ -39,7 +39,7 @@
     </button>
   </h2>
   <!-- Content -->
-  <div class="accordion" hidden>
+  <div class="accordion collapsible collapsed">
     <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.input" ng-if="d.location == r.id &&  !security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]" ng-click="assignDevice(d.deviceId,'input')">
       <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       {{d.deviceName|cutText:true:20}}

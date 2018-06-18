@@ -12611,6 +12611,9 @@ fieldset section, .fieldset section {
   margin-left: 10px;
   padding: 10px;
   font-size: 105%;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
 }
 
 .accordion-toggle > button[aria-expanded="false"]::after {
@@ -12638,14 +12641,13 @@ fieldset section, .fieldset section {
   content: "";
 }
 
-.accordion-toggle.chevron > button[aria-expanded="false"]::after {
+.accordion-toggle.chevron > button::after {
   font-family: fontawesome;
   content: "\f078";
 }
 
 .accordion-toggle.chevron > button[aria-expanded="true"]::after {
-  font-family: fontawesome;
-  content: "\f077";
+  transform: rotateX(180deg);
 }
 
 .accordion-toggle.chevron > button[disabled]::after {
@@ -12686,21 +12688,13 @@ fieldset section, .fieldset section {
 .accordion {
   border-bottom: dotted 1px #cccccc;
   padding-bottom: 10px;
-  height: auto;
+  transition: transform 0.3s ease-out;
+  transform: scaleY(1);
+  transform-origin: top;
 }
 
-.accordion:not([hidden]) {
-  transform-origin: top;
-  -webkit-animation: 0.3s scaleYIn ease;
-  -o-animation: 0.3s scaleYIn ease;
-  animation: 0.3s scaleYIn ease;
-}
-
-.accordion[hidden] {
-  transform-origin: top;
-  -webkit-animation: 0.3s scaleYOut ease;
-  -o-animation: 0.3s scaleYOut ease;
-  animation: 0.3s scaleYOut ease;
+.accordion.collapsed {
+  transform: scaleY(0);
 }
 
 @keyframes scaleYIn {
@@ -12725,7 +12719,7 @@ fieldset section, .fieldset section {
   font-weight: bold;
 }
 
-/* TODO: deprecated
+/* TODO: deprecated */
 /* Old version
 -------------------------------------------------- */
 /* .accordion-entry{
@@ -12769,7 +12763,8 @@ fieldset section, .fieldset section {
         margin: $spacing-half;
         padding: $spacing;      
     }
-} */
+}
+*/
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
@@ -12990,13 +12985,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, 
+ height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, 
+ width 0.25s ease-out 0.5s, 
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
