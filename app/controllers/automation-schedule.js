@@ -58,7 +58,7 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 	$scope.loadOldSchedules = function() {
 		dataFactory.getApi('instances', '/ScheduledScene', true).then(function(response) {
 			$scope.oldSchedules = _.filter(response.data.data, function(v) {
-				return !v.params.transformed;
+				return !v.params.moduleAPITransformed;
 			});
 
 			if ($scope.oldSchedules.length) {

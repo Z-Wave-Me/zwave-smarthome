@@ -70,14 +70,14 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 			// Success - modules
 			if (ifThen.state === 'fulfilled') {
 				ifThenList = _.filter(ifThen.value.data.data, function(v) {
-					return !v.params.transformed;
+					return !v.params.moduleAPITransformed;
 				});
 			}
 
 			// Success - instances
 			if (logicalRules.state === 'fulfilled') {
 				logicalRulesList = _.filter(logicalRules.value.data.data, function(v) {
-					return !v.params.transformed;
+					return !v.params.moduleAPITransformed;
 				});
 			}
 
