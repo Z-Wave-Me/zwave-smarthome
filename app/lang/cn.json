@@ -43,7 +43,7 @@
     "alexa_step7_h": "List and edit devices shared with Amazon Alexa",
     "alexa_step7_t": "After Alex has been successfully linked with your Smart Home, you just have to activate your devices for Alexa. Click <a href='#speech_assistants\/Alexa'><b>here<\/b><\/a> or got to Devices <i class='fa fa-angle-right'><\/i> Speech assistants <i class='fa fa-angle-right'><\/i> Manage <i class='fa fa-angle-right'><\/i> Alexa > <i class='fa fa-cog'><\/i><br>On this page you can add devcies to Alexa and give the devices a call name, a phonetic naming for simpler voice control.",
     "alexa_step8_h": "Edit single device shared with Amazon Alexa",
-    "alexa_step8_t": "You can also activate or change the call name of a device in the device detail view.<br> Elements <i class='fa fa-angle-right'><\/i> widget configuration wheel <i class='fa fa-cog'><\/i> > Detail\/Konfiguration view",
+    "alexa_step8_t": "You can also activate or change the call name of a device in the device detail view.<br> Elements <i class='fa fa-angle-right'><\/i> widget configuration wheel <i class='fa fa-cog'><\/i> <i class='fa fa-angle-right'><\/i> Detail\/Konfiguration view",
     "all_apps": "所有软件",
     "all_elements": "所有元素",
     "already_rated": "已经评价该软件",
