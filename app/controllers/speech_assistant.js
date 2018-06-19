@@ -278,10 +278,19 @@ myAppController.controller('SpeechAssistantsAddController', function($scope, $q,
 });
 
 
-myAppController.controller('AlexaSetupController', function($scope, $q, dataFactory, dataService, cfg, _) {
+myAppController.controller('AlexaSetupController', function($scope, $q, $timeout, dataFactory, dataService, cfg, _) {
 	$scope.currentStep = 1;
 	$scope.steps = _.range(0, 8);
 	$scope.myImage = "";
+
+	$timeout(function() {
+		if (['razberry'].indexOf($scope.getCustomCfgArr('boxtype')) > -1) {
+			$scope.boxtype = $scope._t('lb_z_way');
+		} else {
+			$scope.boxtype = $scope._t('lb_popp'); 
+		}	
+	}, 0);
+	
 
 	$scope.prevNext = function(n) {
 		$scope.currentStep += n;
@@ -297,7 +306,7 @@ myAppController.controller('AlexaSetupController', function($scope, $q, dataFact
 
 });
 
-myAppController.controller('AlexaManageController', function($scope, $q, cfg, dataFactory, dataService, cfg, _) {
+myAppController.controller('AlexaManageController', function($scope, $q, $location, cfg, dataFactory, dataService, cfg, _) {
 	$scope.alexa = {
 		instance: {},
 		devices: {
@@ -416,6 +425,7 @@ myAppController.controller('AlexaManageController', function($scope, $q, cfg, da
 			dataService.showNotifier({
 				message: $scope._t('success_updated')
 			});
+			$location.path('/speech_assistants/devices');
 		}, function(error) {
 			$scope.loading = false
 			alertify.alertError($scope._t('error_update_data'));

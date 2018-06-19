@@ -12,11 +12,10 @@
         <div ng-switch="currentStep" class="wizard-tabs">
             <div class="fieldset tab" ng-switch-when="1">
                 <div class="content">
-                    <h1>Connect Alexa with your Z-Way Smart Home</h1>
+                    <h1>{{_t('alexa_step1_h')}}</h1>
                     <div class="text">
                         <p>
-                            Z-Way Smart Home can connect with Amazon Alexa devices to give you command of your home through voice controls.
-                            This guide help you to setup the Amazon Alexa "Z-Way Smart Home" skill and give you additional infomrations for configuring your devices.
+                            {{_t('alexa_step1_t')}}
                         </p>
                     </div>
                     <div class="image">
@@ -28,24 +27,23 @@
             </div>
             <div class="fieldset tab" ng-switch-when="2">
                 <div class="content">
-                    <h1>Get started</h1>
+                    <h1 >{{_t('alexa_step2_h')}}</h1>
                     <div class="text">
-                        Before we can start, please setup your Amazon Alexa device.
-                        You can get additional information here:
+                        {{_t('alexa_step2_t')}}
                         <ul>
                             <li>
                                 <a href="https://www.amazon.com/gp/help/customer/display.html/ref=hp_bc_nav?ie=UTF8&nodeId=200127470" target="_blank">
-                                    <b>Set up your Amazon Alexa device</b>
+                                    <b>{{_t('alexa_step2_info_1')}}</b>
                                 </a>
                             </li>
                             <li>
                                 <a href="http://www.amazon.com/gp/help/customer/display.html?nodeId=201602060" taget="_blank">
-                                    <b>Download the Amazon Alexa mobile app or</b>
+                                    <b>{{_t('alexa_step2_info_2')}}</b>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://alexa.amazon.com">
-                                    <b>Use the Amazon Alexa web app</b>
+                                    <b>{{_t('alexa_step2_info_3')}}</b>
                                 </a>
                             </li>
                         </div>
@@ -53,10 +51,8 @@
                 </div>
                 <div class="fieldset tab" ng-switch-when="3">
                     <div class="content">
-                        <h1>Login to Alexa</h1>
-                        <div class="text">
-                            To activate then "Z-Way Smart Home" Skill you have to login first to the <a href="https://alexa.amazon.com/"><b>Amazon Alexa</b></a> site. <br>
-                            Open the Amazon Alexa site and login.
+                        <h1>{{_t('alexa_step3_h')}}</h1>
+                        <div class="text" ng-bind-html="_t('alexa_step3_t',{__boxtype__: boxtype}) | toTrusted">
                         </div>
                         <div class="image">
                             <a href="" ng-click="setImagePath('app/img/alexa/alexa_login.png');handleModal('imageModal', $event)">
@@ -67,12 +63,12 @@
                 </div>
                 <div class="fieldset tab" ng-switch-when="4">
                     <div class="content">
-                        <h1>Found the "Z-Way Smart Home" skill</h1>
+                        <h1>{{_t('alexa_step4_h', {__boxtype__: boxtype})}}</h1>
                         <div class="text">
                             <ol>
-                                <li>Select "Skills" form the menu left.</li>
-                                <li>Search for "Z-Way Smart Home" in the search field.</li>
-                                <li>Select "Z-Way Smart Home" skill</li>
+                                <li>{{_t('alexa_step4_l1')}}</li>
+                                <li>{{_t('alexa_step4_l2', {__boxtype__: boxtype})}}</li>
+                                <li>{{_t('alexa_step4_l3', {__boxtype__: boxtype})}}</li>
                             </ol>
                         </div>
                         <div class="image">
@@ -84,9 +80,9 @@
                 </div>
                 <div class="fieldset tab" ng-switch-when="5">
                     <div class="content">
-                        <h1>Enable the "Z-Way Smart Home" skill</h1>
+                        <h1>{{_t('alexa_step5_h', {__boxtype__: boxtype})}}</h1>
                         <div class="text">
-                            Click the activate button to enable the skill. By enabling, the skill get access to all your available smart devices after authenticate them.
+                            {{_t('alexa_step5_t')}}
                         </div>
                         <div class="image">
                             <a href="" ng-click="setImagePath('app/img/alexa/activate_skill.png');handleModal('imageModal', $event)">
@@ -97,9 +93,9 @@
                 </div>
                 <div class="fieldset tab" ng-switch-when="6">
                     <div class="content">
-                        <h1>Enable the "Z-Way Smart Home" skill</h1>
+                        <h1>{{_t('alexa_step6_h', {__boxtype__: boxtype})}}</h1>
                         <div class="text">
-                            Enter your "Remote ID / Username" and your password and click sign in
+                            {{_t('alexa_step6_t')}}
                         </div>
                         <div class="image">
                             <a href="" ng-click="setImagePath('app/img/alexa/oauth_login.png');handleModal('imageModal', $event)">
@@ -110,12 +106,8 @@
                 </div>
                 <div class="fieldset tab" ng-switch-when="7">
                     <div class="content" >
-                        <h1>List and edit devices for Alexa support</h1>
-                        <div class="text">
-                            After Alex has been successfully linked with your Z-Way Smart Home, you just have to activate your devices for Alexa.
-                            Click this <a href="#speech_assistants/Alexa"><b>Mange Alexa</b></a> <br>
-                            or got to Devices > Speech assistants > Manage > Alexa > Gear wheel.<br>
-                            On this page you can add devcies to Alexa and give the devices a call name, a phonetic naming for simpler voice control.
+                        <h1>{{_t('alexa_step7_h')}}</h1>
+                        <div class="text"  ng-bind-html="_t('alexa_step7_t') | toTrusted">
                         </div>
                         <div class="image">
                             <a href="" ng-click="setImagePath('app/img/alexa/manage_alexa.png');handleModal('imageModal', $event)">
@@ -126,10 +118,8 @@
                 </div>
                 <div class="fieldset tab" ng-switch-when="8">
                     <div class="content">
-                        <h1>Edit device in device detail view</h1>
-                        <div class="text">
-                            You can also activate or change the call name of a device in the device detail view.<br>
-                            Elements > widget configuration wheel <i class="fa fa-cog"></i> > Detail/Konfiguration view
+                        <h1>{{_t('alexa_step8_h')}}</h1>
+                        <div class="text" ng-bind-html="_t('alexa_step8_t') | toTrusted">
                         </div>
                     </div>
                 </div>
