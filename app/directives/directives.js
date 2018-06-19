@@ -515,6 +515,7 @@ myApp.directive('bbAccordion', function() {
 					$(this).removeClass('active');
 					$(this).find('.accordion-toggle:first').find('button:first').attr('aria-expanded', false);
 					$(this).find('.accordion:first .collapsible').removeClass("collapsed");
+					$(this).find('.accordion:first .collapsible').css({"display":"block"});
 					//$(this).find('.accordion:first').attr('hidden', true);
 				});
 				// Expand current ellement when collapsed
@@ -526,7 +527,9 @@ myApp.directive('bbAccordion', function() {
 					//elem.parent().next().classList.toggle("collapsed");
 					if(elem.parent().next().hasClass("collapsed")) {
 						elem.parent().next().removeClass("collapsed");
+						elem.parent().next().css({"display":"block"});
 					} else {
+						elem.parent().next().css({"display":"none"});
 						elem.parent().next().addClass("collapsed");
 					}
 					//elem.parent().next().attr('hidden', function(_, attr) {
