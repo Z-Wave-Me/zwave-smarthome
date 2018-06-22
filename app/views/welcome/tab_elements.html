@@ -1,8 +1,13 @@
 <h1>{{_t('nav_elements')}}</h1>
 <div class="text">
-    <p>
-        All elements are listed in the <strong>Element View</strong> and can be filtered by function type (switch, dimmer, sensor) or other filtering criteria. 
-    </p>
+    <p ng-bind-html="_t('p_welcome_elements')|toTrusted"></p><br>
+    <ul>
+        <li ng-bind-html="_t('li_welcome_elements_filter_type')|toTrusted"</li>
+        <li ng-bind-html="_t('li_welcome_elements_filter_visibility')|toTrusted"</li>
+        <li ng-bind-html="_t('li_welcome_elements_filter_tags')|toTrusted"</li>
+        <li ng-bind-html="_t('li_welcome_elements_filter_search')|toTrusted"</li>
+    </ul><br>
+    <p ng-bind-html="_t('p_welcome_elements_order')|toTrusted"></p>
 </div>
 <div class="image">
     <img src="app/img/welcome/elements.png"/>

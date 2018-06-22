@@ -1,19 +1,17 @@
 <h1>{{_t('lets_start')}}</h1>
 <div class="text">
-    <p>
-        To Add a new device please follow the instruction under
-        <a href="#devices" class="btn btn-default"><i class="fa fa-cogs"></i> {{_t('nav_devices')}}</a>.<br>
-        The following devices a currently supported:
-        <ul>
-            <li>Z-Wave</li>
-            <li>Mobile Phones (for push notifications)</li>
-            <li>Camera</li>
-            <li>Speech Assistants Alexa or GoogleHome</li>
-            <li>Wifi plugs</li>
-        </ul>
-        <div ng-if="elementAccess(cfg.role_access.admin)">
-            All other functions such as time triggered actions, the use of information from the Internet, scenes plugin of other technologies and service are realized in <strong>Apps</strong>.
-            These apps can create none, one or multiple new elements and events. The menu <a href="#apps/local" class="btn btn-default"><i class="fa fa-cubes"></i> {{_t('nav_apps')}}</a> allows downloading, activating and configuring your Apps. <br><br>
-        </div>
-    </p>
+    <p ng-bind-html="_t('p_welcome_lets_start_instruction',{'__btn_dev__':_t('nav_devices')})|toTrusted"></p>
+    <ul>
+        <li>{{_t('devices_text_zwave')}}</li>
+        <li>{{_t('devices_text_mobile_push')}}</li>
+        <li>{{_t('devices_text_camera')}}</li>
+        <li>{{_t('devices_text_speech_assistant')}}</li>
+        <li>{{_t('devices_text_wifi_plug')}}</li>
+        <li>{{_t('devices_text_enocean')}}</li>
+        <li>{{_t('devices_text_433')}}</li>
+    </ul><br><br>
+    <div ng-if="elementAccess(cfg.role_access.admin)" ng-bind-html="_t('p_welcome_lets_start_apps', {'__btn_apps__':_t('nav_apps')})|toTrusted"></div>
+</div>
+<div class="image">
+    <img src="app/img/welcome/overview.png"/>
 </div>

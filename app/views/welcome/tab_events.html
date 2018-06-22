@@ -1,10 +1,6 @@
 <h1>{{_t('nav_events')}}</h1>
 <div class="text">
-    <p>
-        Every change of a sensor value or a switching status is called an <strong>Event</strong> 
-        and is shown in the <strong>Timeline</strong>. 
-        Filtering allows monitoring the changes of one single function or device.
-    </p>
+    <p ng-bind-html="_t('p_welcome_events')|toTrusted"></p>
 </div>
 <div class="image">
     <img src="app/img/welcome/events.png"/>
