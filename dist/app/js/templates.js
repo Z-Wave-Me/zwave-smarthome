@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 18-06-2018 09:23:29 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 22-06-2018 12:26:55 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -1424,7 +1424,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/speech_assistants/setup_alexa.html',
-    "<div ng-controller=AlexaSetupController><div class=form-page><div class=fieldset><ul class=wizard><li ng-repeat=\"v in steps\" class=clickable ng-class=\"{'active' : $index + 1 == currentStep}\" ng-model=currentStep ng-click=\"setStep($index + 1)\">{{$index + 1}}</li></ul></div><div ng-switch=currentStep class=wizard-tabs><div class=\"fieldset tab\" ng-switch-when=1><div class=content><h1>Connect Alexa with your Z-Way Smart Home</h1><div class=text><p>Z-Way Smart Home can connect with Amazon Alexa devices to give you command of your home through voice controls. This guide help you to setup the Amazon Alexa \"Z-Way Smart Home\" skill and give you additional infomrations for configuring your devices.</p></div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/amazon_echo.jpg');handleModal('imageModal', $event)\"><img src=app/img/alexa/amazon_echo.jpg></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=2><div class=content><h1>Get started</h1><div class=text>Before we can start, please setup your Amazon Alexa device. You can get additional information here:<ul><li><a href=\"https://www.amazon.com/gp/help/customer/display.html/ref=hp_bc_nav?ie=UTF8&nodeId=200127470\" target=_blank><b>Set up your Amazon Alexa device</b></a></li><li><a href=\"http://www.amazon.com/gp/help/customer/display.html?nodeId=201602060\" taget=_blank><b>Download the Amazon Alexa mobile app or</b></a></li><li><a href=https://alexa.amazon.com><b>Use the Amazon Alexa web app</b></a></li></ul></div></div></div><div class=\"fieldset tab\" ng-switch-when=3><div class=content><h1>Login to Alexa</h1><div class=text>To activate then \"Z-Way Smart Home\" Skill you have to login first to the <a href=https://alexa.amazon.com/ ><b>Amazon Alexa</b></a> site.<br>Open the Amazon Alexa site and login.</div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/alexa_login.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/alexa_login.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=4><div class=content><h1>Found the \"Z-Way Smart Home\" skill</h1><div class=text><ol><li>Select \"Skills\" form the menu left.</li><li>Search for \"Z-Way Smart Home\" in the search field.</li><li>Select \"Z-Way Smart Home\" skill</li></ol></div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/found_skill.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/found_skill.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=5><div class=content><h1>Enable the \"Z-Way Smart Home\" skill</h1><div class=text>Click the activate button to enable the skill. By enabling, the skill get access to all your available smart devices after authenticate them.</div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/activate_skill.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/activate_skill.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=6><div class=content><h1>Enable the \"Z-Way Smart Home\" skill</h1><div class=text>Enter your \"Remote ID / Username\" and your password and click sign in</div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/oauth_login.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/oauth_login.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=7><div class=content><h1>List and edit devices for Alexa support</h1><div class=text>After Alex has been successfully linked with your Z-Way Smart Home, you just have to activate your devices for Alexa. Click this <a href=#speech_assistants/Alexa><b>Mange Alexa</b></a><br>or got to Devices > Speech assistants > Manage > Alexa > Gear wheel.<br>On this page you can add devcies to Alexa and give the devices a call name, a phonetic naming for simpler voice control.</div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/manage_alexa.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/manage_alexa.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=8><div class=content><h1>Edit device in device detail view</h1><div class=text>You can also activate or change the call name of a device in the device detail view.<br>Elements > widget configuration wheel <i class=\"fa fa-cog\"></i> > Detail/Konfiguration view</div></div></div></div><div class=\"fieldset wizard-controls\"><button class=\"btn btn-submit prev\" title=\"{{_t('lb_prev')}}\" ng-hide=\"currentStep == 1\" ng-click=prevNext(-1)><i class=\"fa fa-chevron-left\"></i> {{_t('lb_prev')}}</button> <button type=button title=\"{{_t('lb_cancel')}}\" class=\"btn btn-default cancel\" ng-if=\"currentStep !== steps.length\" bb-go-back=\"\"><i class=\"fa fa-reply\"></i> {{_t('lb_cancel')}}</button> <button type=button title=\"{{_t('ok')}}\" class=\"btn btn-default cancel\" ng-if=\"currentStep == steps.length\" bb-go-back=\"\">{{_t('ok')}}</button> <button class=\"btn btn-submit next\" title=\"{{_t('lb_next')}}\" ng-hide=\"currentStep == steps.length\" ng-click=prevNext(1)>{{_t('lb_next')}} <i class=\"fa fa-chevron-right\"></i></button></div></div><div id=imageModal class=\"appmodal image\" ng-if=modalArr.imageModal><span class=appmodal-close ng-click=\"handleModal('imageModal', $event)\"><i class=\"fa fa-times\"></i></span><div class=appmodal-in><img ng-src={{myImage}} alt=Image></div></div></div>"
+    "<div ng-controller=AlexaSetupController><div class=form-page><div class=fieldset><ul class=wizard><li ng-repeat=\"v in steps\" class=clickable ng-class=\"{'active' : $index + 1 == currentStep}\" ng-model=currentStep ng-click=\"setStep($index + 1)\">{{$index + 1}}</li></ul></div><div ng-switch=currentStep class=wizard-tabs><div class=\"fieldset tab\" ng-switch-when=1><div class=content><h1>{{_t('alexa_step1_h')}}</h1><div class=text><p>{{_t('alexa_step1_t')}}</p></div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/amazon_echo.jpg');handleModal('imageModal', $event)\"><img src=app/img/alexa/amazon_echo.jpg></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=2><div class=content><h1>{{_t('alexa_step2_h')}}</h1><div class=text>{{_t('alexa_step2_t')}}<ul><li><a href=\"https://www.amazon.com/gp/help/customer/display.html/ref=hp_bc_nav?ie=UTF8&nodeId=200127470\" target=_blank><b>{{_t('alexa_step2_info_1')}}</b></a></li><li><a href=\"http://www.amazon.com/gp/help/customer/display.html?nodeId=201602060\" taget=_blank><b>{{_t('alexa_step2_info_2')}}</b></a></li><li><a href=https://alexa.amazon.com><b>{{_t('alexa_step2_info_3')}}</b></a></li></ul></div></div></div><div class=\"fieldset tab\" ng-switch-when=3><div class=content><h1>{{_t('alexa_step3_h')}}</h1><div class=text ng-bind-html=\"_t('alexa_step3_t',{__boxtype__: boxtype}) | toTrusted\"></div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/alexa_login.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/alexa_login.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=4><div class=content><h1>{{_t('alexa_step4_h', {__boxtype__: boxtype})}}</h1><div class=text><ol><li>{{_t('alexa_step4_l1')}}</li><li>{{_t('alexa_step4_l2', {__boxtype__: boxtype})}}</li><li>{{_t('alexa_step4_l3', {__boxtype__: boxtype})}}</li></ol></div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/found_skill.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/found_skill.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=5><div class=content><h1>{{_t('alexa_step5_h', {__boxtype__: boxtype})}}</h1><div class=text>{{_t('alexa_step5_t')}}</div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/activate_skill.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/activate_skill.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=6><div class=content><h1>{{_t('alexa_step6_h', {__boxtype__: boxtype})}}</h1><div class=text>{{_t('alexa_step6_t')}}</div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/oauth_login.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/oauth_login.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=7><div class=content><h1>{{_t('alexa_step7_h')}}</h1><div class=text ng-bind-html=\"_t('alexa_step7_t') | toTrusted\"></div><div class=image><a href=\"\" ng-click=\"setImagePath('app/img/alexa/manage_alexa.png');handleModal('imageModal', $event)\"><img src=app/img/alexa/manage_alexa.png></a></div></div></div><div class=\"fieldset tab\" ng-switch-when=8><div class=content><h1>{{_t('alexa_step8_h')}}</h1><div class=text ng-bind-html=\"_t('alexa_step8_t') | toTrusted\"></div></div></div></div><div class=\"fieldset wizard-controls\"><button class=\"btn btn-submit prev\" title=\"{{_t('lb_prev')}}\" ng-hide=\"currentStep == 1\" ng-click=prevNext(-1)><i class=\"fa fa-chevron-left\"></i> {{_t('lb_prev')}}</button> <button type=button title=\"{{_t('lb_cancel')}}\" class=\"btn btn-default cancel\" ng-if=\"currentStep !== steps.length\" bb-go-back=\"\"><i class=\"fa fa-reply\"></i> {{_t('lb_cancel')}}</button> <button type=button title=\"{{_t('ok')}}\" class=\"btn btn-default cancel\" ng-if=\"currentStep == steps.length\" bb-go-back=\"\">{{_t('ok')}}</button> <button class=\"btn btn-submit next\" title=\"{{_t('lb_next')}}\" ng-hide=\"currentStep == steps.length\" ng-click=prevNext(1)>{{_t('lb_next')}} <i class=\"fa fa-chevron-right\"></i></button></div></div><div id=imageModal class=\"appmodal image\" ng-if=modalArr.imageModal><span class=appmodal-close ng-click=\"handleModal('imageModal', $event)\"><i class=\"fa fa-times\"></i></span><div class=appmodal-in><img ng-src={{myImage}} alt=Image></div></div></div>"
   );
 
 
@@ -1434,7 +1434,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/speech_assistants/speech_assistants_devices.html',
-    "<div ng-controller=SpeechAssistantsAddController><bb-loader></bb-loader><div ng-include=\"'app/views/speech_assistants/navi.html'\"></div><div class=\"app-row app-row-report clearfix\"><div class=clearfix><div class=onlineapp><div class=\"onlineapp-in longpress-{{longPressSent}}\" on-long-press=onLongPress(speechAssistants.Alexa.module.id) on-touch-end=onTouchEnd() prevent-click=true><a class=onlineapp-header href=#speech_assistants/Alexa/setup><img class=onlineapp-img alt={{speechAssistants.Alexa.module.defaults.title}} title={{v.toolTipDescription}} ng-src=\"{{speechAssistants.Alexa.module.icon ? speechAssistants.Alexa.module.iconPath : 'storage/img/placeholder-img.png'}}\"></a><div class=onlineapp-body><a class=onlineapp-title ng-href=#speech_assistants/Alexa/setup title={{speechAssistants.Alexa.module.defaults.title}}>{{speechAssistants.Alexa.module.defaults.title}}</a><div class=onlineapp-footer ng-class=\"speechAssistants.Alexa.module.id == hasLongPress ? 'has-longpress' : ''\" on-long-press=onLongPress() prevent-click=true><div class=rating-group><a href=#speech_assistants/Alexa/setup title=\"{{_t('Quick Setup Guide')}}\"><i class=\"fa fa-chevron-right\"></i> <span>{{_t('Quick Setup Guide')}}</span></a></div><div class=\"btn-group group-apps\"><button class=\"btn btn-default\" title=\"_t('lb_add_app')\" ng-disabled=speechAssistants.Alexa.instance.active ng-click=createInstance(speechAssistants.Alexa.module)><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\">{{_t('lb_add_app')}}</span></button></div></div></div></div></div></div></div><div class=device-logo ng-include=\"'app/views/speech_assistants/nav.html'\"></div></div>"
+    "<div ng-controller=SpeechAssistantsAddController><bb-loader></bb-loader><div ng-include=\"'app/views/speech_assistants/navi.html'\"></div><div class=\"app-row app-row-report clearfix\"><div class=clearfix><div class=onlineapp><div class=\"onlineapp-in longpress-{{longPressSent}}\" on-long-press=onLongPress(speechAssistants.Alexa.module.id) on-touch-end=onTouchEnd() prevent-click=true><a class=onlineapp-header href=#speech_assistants/Alexa/setup><img class=onlineapp-img alt={{speechAssistants.Alexa.module.defaults.title}} title={{v.toolTipDescription}} ng-src=\"{{speechAssistants.Alexa.module.icon ? speechAssistants.Alexa.module.iconPath : 'storage/img/placeholder-img.png'}}\"></a><div class=onlineapp-body><a class=onlineapp-title ng-href=#speech_assistants/Alexa/setup title={{speechAssistants.Alexa.module.defaults.title}}>{{speechAssistants.Alexa.module.defaults.title}}</a><div class=onlineapp-footer ng-class=\"speechAssistants.Alexa.module.id == hasLongPress ? 'has-longpress' : ''\" on-long-press=onLongPress() prevent-click=true><div class=rating-group><a href=#speech_assistants/Alexa/setup title=\"{{_t('lb_quick_setup_guide')}}\"><i class=\"fa fa-chevron-right\"></i> <span>{{_t('lb_quick_setup_guide')}}</span></a></div><div class=\"btn-group group-apps\"><button class=\"btn btn-default\" title=\"_t('lb_add_app')\" ng-disabled=speechAssistants.Alexa.instance.active ng-click=createInstance(speechAssistants.Alexa.module)><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('lb_add_app')\">{{_t('lb_add_app')}}</span></button></div></div></div></div></div></div></div><div class=device-logo ng-include=\"'app/views/speech_assistants/nav.html'\"></div></div>"
   );
 
 
@@ -1449,32 +1449,132 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/welcome/first_login.html',
-    "<div ng-controller=WelcomeController><div class=form-page><div ng-switch=currentStep class=wizard-tabs><div class=\"fieldset tab\" ng-switch-when=1><div class=content ng-include=\"'app/views/welcome/tab_welcome.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=2><div class=content ng-include=\"'app/views/welcome/tab_elements.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=3><div class=content ng-include=\"'app/views/welcome/tab_element_detail_view.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=4><div class=content ng-include=\"'app/views/welcome/tab_events.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=5><div class=content ng-include=\"'app/views/welcome/tab_lets_start.html'\"></div></div></div><ol class=dots><li class=clickable ng-repeat=\"v in steps\" ng-class=\"{'active' : ($index + 1) == currentStep}\" ng-model=currentStep ng-click=\"setStep(($index + 1))\"></li></ol><div class=\"fieldset wizard-controls\"><button class=\"btn btn-submit prev\" ng-hide=\"currentStep == 1\" ng-click=prevNext(-1)><i class=\"fa fa-chevron-left\"></i> {{_t('lb_prev')}}</button> <button class=\"btn btn-default cancel\" title=\"_t('lb_skip')\" ng-hide=\"currentStep == steps.length\" ng-click=skip()>{{_t('lb_skip')}} <i class=\"fa fa-chevron-double-right\"></i></button> <a class=\"btn btn-submit cancel\" ng-show=\"currentStep == steps.length\" href=#elements>{{_t('lets_start')}} <i class=\"fa fa-chevron-right\"></i></a> <button class=\"btn btn-submit next\" ng-hide=\"currentStep == steps.length\" ng-click=prevNext(1)>{{_t('lb_next')}} <i class=\"fa fa-chevron-right\"></i></button></div></div></div>"
+    "<div ng-controller=WelcomeController><div class=form-page><div ng-switch=currentStep class=wizard-tabs><div class=\"fieldset tab\" ng-switch-when=1><div class=content ng-include=\"'app/views/welcome/tab_welcome.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=2><div class=content ng-include=\"'app/views/welcome/tab_elements.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=3><div class=content ng-include=\"'app/views/welcome/tab_element_detail_view.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=4><div class=content ng-include=\"'app/views/welcome/tab_rooms.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=5><div class=content ng-include=\"'app/views/welcome/tab_events.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=6><div class=content ng-include=\"'app/views/welcome/tab_automation.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=7><div class=content ng-include=\"'app/views/welcome/tab_menu.html'\"></div></div><div class=\"fieldset tab\" ng-switch-when=8><div class=content ng-include=\"'app/views/welcome/tab_lets_start.html'\"></div></div></div><ol class=dots><li class=clickable ng-repeat=\"v in steps\" ng-class=\"{'active' : ($index + 1) == currentStep}\" ng-model=currentStep ng-click=\"setStep(($index + 1))\"></li></ol><div class=\"fieldset wizard-controls\"><button class=\"btn btn-submit prev\" ng-hide=\"currentStep == 1\" ng-click=prevNext(-1)><i class=\"fa fa-chevron-left\"></i> {{_t('lb_prev')}}</button> <button class=\"btn btn-default cancel\" title=\"_t('lb_skip')\" ng-hide=\"currentStep == steps.length\" ng-click=skip()>{{_t('lb_skip')}} <i class=\"fa fa-chevron-double-right\"></i></button> <a class=\"btn btn-submit cancel\" ng-show=\"currentStep == steps.length\" href=#elements>{{_t('lets_start')}} <i class=\"fa fa-chevron-right\"></i></a> <button class=\"btn btn-submit next\" ng-hide=\"currentStep == steps.length\" ng-click=prevNext(1)>{{_t('lb_next')}} <i class=\"fa fa-chevron-right\"></i></button></div></div></div>"
+  );
+
+
+  $templateCache.put('app/views/welcome/tab_automation.html',
+    "<h1>{{_t('nav_automation')}}</h1>\r" +
+    "\n" +
+    "<div class=\"text\">\r" +
+    "\n" +
+    "    <p ng-bind-html=\"_t('p_welcome_automation')|toTrusted\"></p>\r" +
+    "\n" +
+    "    <ul>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_automation_scenes',{'__title_scenes__':_t('title_scenes')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_automation_rules',{'__title_rules__':_t('title_rules')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_automation_schedules',{'__title_schedules__':_t('title_schedules')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_automation_climate',{'__title_climate__':_t('title_climate')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_automation_hazard_notification',{'__title_leakage_hazard_notification__':_t('title_leakage_hazard_notification')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_automation_security',{'__title_security__':_t('title_security')})|toTrusted\"</li>\r" +
+    "\n" +
+    "    </ul><br><br>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "<div class=\"image\">\r" +
+    "\n" +
+    "    <img src=\"app/img/welcome/automation_view.png\"/>\r" +
+    "\n" +
+    "</div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_element_detail_view.html',
-    "<h1>{{_t('lb_cfg_view')}}</h1><div class=text><p>Each Element has an <strong>Element Configuration Dialog</strong> to rename it or to hide it in case was created but it is not needed. Important elements can be marked to be shown in the <strong>Dashboard</strong>. Additionally the elements can be grouped into rooms.</p></div><div class=image><img src=app/img/welcome/element_detail_view.png></div>"
+    "<h1>{{_t('nav_elements_detail')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_elements_detail')|toTrusted\"></p></div><div class=image><img src=app/img/welcome/element_detail_view.png></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_elements.html',
-    "<h1>{{_t('nav_elements')}}</h1><div class=text><p>All elements are listed in the <strong>Element View</strong> and can be filtered by function type (switch, dimmer, sensor) or other filtering criteria.</p></div><div class=image><img src=app/img/welcome/elements.png></div>"
+    "<h1>{{_t('nav_elements')}}</h1>\r" +
+    "\n" +
+    "<div class=\"text\">\r" +
+    "\n" +
+    "    <p ng-bind-html=\"_t('p_welcome_elements')|toTrusted\"></p><br>\r" +
+    "\n" +
+    "    <ul>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_elements_filter_type')|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_elements_filter_visibility')|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_elements_filter_tags')|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_elements_filter_search')|toTrusted\"</li>\r" +
+    "\n" +
+    "    </ul><br>\r" +
+    "\n" +
+    "    <p ng-bind-html=\"_t('p_welcome_elements_order')|toTrusted\"></p>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "<div class=\"image\">\r" +
+    "\n" +
+    "    <img src=\"app/img/welcome/elements.png\"/>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n"
   );
 
 
   $templateCache.put('app/views/welcome/tab_events.html',
-    "<h1>{{_t('nav_events')}}</h1><div class=text><p>Every change of a sensor value or a switching status is called an <strong>Event</strong> and is shown in the <strong>Timeline</strong>. Filtering allows monitoring the changes of one single function or device.</p></div><div class=image><img src=app/img/welcome/events.png></div>"
+    "<h1>{{_t('nav_events')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_events')|toTrusted\"></p></div><div class=image><img src=app/img/welcome/events.png></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_lets_start.html',
-    "<h1>{{_t('lets_start')}}</h1><div class=text><p>To Add a new device please follow the instruction under <a href=#devices class=\"btn btn-default\"><i class=\"fa fa-cogs\"></i> {{_t('nav_devices')}}</a>.<br>The following devices a currently supported:<ul><li>Z-Wave</li><li>Mobile Phones (for push notifications)</li><li>Camera</li><li>Speech Assistants Alexa or GoogleHome</li><li>Wifi plugs</li></ul></p><div ng-if=elementAccess(cfg.role_access.admin)>All other functions such as time triggered actions, the use of information from the Internet, scenes plugin of other technologies and service are realized in <strong>Apps</strong>. These apps can create none, one or multiple new elements and events. The menu <a href=#apps/local class=\"btn btn-default\"><i class=\"fa fa-cubes\"></i> {{_t('nav_apps')}}</a> allows downloading, activating and configuring your Apps.<br><br></div><p></p></div>"
+    "<h1>{{_t('lets_start')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_lets_start_instruction',{'__btn_dev__':_t('nav_devices')})|toTrusted\"></p><ul><li>{{_t('devices_text_zwave')}}</li><li>{{_t('devices_text_mobile_push')}}</li><li>{{_t('devices_text_camera')}}</li><li>{{_t('devices_text_speech_assistant')}}</li><li>{{_t('devices_text_wifi_plug')}}</li><li>{{_t('devices_text_enocean')}}</li><li>{{_t('devices_text_433')}}</li></ul><br><br><div ng-if=elementAccess(cfg.role_access.admin) ng-bind-html=\"_t('p_welcome_lets_start_apps', {'__btn_apps__':_t('nav_apps')})|toTrusted\"></div></div><div class=image><img src=app/img/welcome/overview.png></div>"
+  );
+
+
+  $templateCache.put('app/views/welcome/tab_menu.html',
+    "<h1>{{_t('nav_menu')}}</h1>\r" +
+    "\n" +
+    "<div class=\"text\">\r" +
+    "\n" +
+    "    <p ng-bind-html=\"_t('p_welcome_menu',{'__nav_menu__':_t('nav_menu')})|toTrusted\"></p>\r" +
+    "\n" +
+    "    <ul>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_menu_applications',{'__nav_apps__':_t('nav_apps')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_menu_devices',{'__nav_devices__':_t('nav_devices')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_menu_design',{'__customize__':_t('customize')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_menu_settings',{'__nav_myaccess__':_t('nav_myaccess')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_menu_managment',{'__management__':_t('management')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_menu_news',{'__news__':_t('news')})|toTrusted\"</li>\r" +
+    "\n" +
+    "        <li ng-bind-html=\"_t('li_welcome_menu_logout',{'__nav_logout__':_t('nav_logout')})|toTrusted\"</li>\r" +
+    "\n" +
+    "    </ul><br><br>\r" +
+    "\n" +
+    "</div>\r" +
+    "\n" +
+    "<div class=\"image\">\r" +
+    "\n" +
+    "    <img src=\"app/img/welcome/menu_view.png\"/>\r" +
+    "\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('app/views/welcome/tab_rooms.html',
+    "<h1>{{_t('nav_rooms')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_rooms')|toTrusted\"></p></div><div class=image><img src=app/img/welcome/room_view.png></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_welcome.html',
-    "<h1>{{_t('welcome_1')}}</h1><div class=text><p>This interface allows managing your Smart Home equipped with interconnected Z-Wave devices. It will show every function of the device as one single <strong>Element</strong> (In case a physical device has multiple functions like switching and metering – it will generate multiple elements).<br></p></div><div class=image><img src=app/img/welcome/overview.png></div>"
+    "<h1>{{_t('welcome_1')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_welcome')|toTrusted\"></p></div><div class=image><img src=app/img/welcome/overview.png></div>"
   );
 
 

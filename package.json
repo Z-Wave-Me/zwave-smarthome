@@ -6,7 +6,7 @@
   "description": "This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices.",
   "main": "index.html",
   "app_type": "default",
-  "built": "18-06-2018 09:23:31",
+  "built": "22-06-2018 12:26:55",
   "type_cfg": {
     "default": {
       "dir": "dist",
@@ -19,6 +19,7 @@
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^1.0.3",
     "grunt-banner": "^0.6.0",
+    "grunt-cache-breaker": "^2.0.1",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-compress": "^1.4.3",
     "grunt-contrib-concat": "^0.5.0",
@@ -63,7 +64,5 @@
     "url": "https://github.com/Z-Wave-Me/zwave-smarthome/issues"
   },
   "homepage": "https://github.com/Z-Wave-Me/zwave-smarthome",
-  "dependencies": {
-    "grunt-cache-breaker": "^2.0.1"
-  }
+  "dependencies": {}
 }
