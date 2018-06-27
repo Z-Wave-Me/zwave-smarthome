@@ -60,7 +60,7 @@
     </h2>
     <!-- Content -->
     <div class="accordion" hidden>
-      <button type="button" class="btn btn-default btn-tag" title="{{o.deviceName}}" ng-repeat="o in rule.advanced.tests.availableDevices track by $index" ng-if="o.location == r.id && rule.advanced.tests.assignedDevices.indexOf(o.deviceId) === -1" ng-hide="o.deviceId == rule.input.params.simple.triggerEvent.deviceId" ng-click="assignAdvancedTestNestedDevice(o,testIndex)">
+      <button type="button" class="btn btn-default btn-tag" title="{{o.deviceName}}" ng-repeat="o in rule.advanced.tests.availableDevices track by $index" ng-if="o.location == r.id && rule.advanced.tests.assignedDevices.indexOf(o.deviceId) === -1" ng-hide="o.deviceId == rule.input.params.simple.triggerEvent.deviceId" ng-click="assignAdvancedTestNestedDevice(o,testIndex)"><img class="navi-img" ng-src="{{rule.namespaces[o.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       {{o.deviceName|cutText:true:20}} <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
       </button>
     </div>

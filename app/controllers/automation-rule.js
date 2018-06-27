@@ -790,9 +790,32 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 				}
 				break;
 		}
+	};
 
+	/**
+	 * get reverse level from target element
+	 * @param {object} el
+	 */
+	$scope.getReverseLevel = function(el) {
+		var reverseLevel = '';
 
+		switch (el.deviceType) {
+			case 'switchBinary':
+				reverseLevel = (el.level == 'on' ? 'off' : 'on');
+				break;
+			case 'doorlock':
+				reverseLevel = (el.level == 'open' ? 'close' : 'open');
+				break;
+			case 'switchMultilevel':
+				if (['off', 'on'].indexOf(el.level) > -1) {
+					reverseLevel = (el.level == 'on' ? 'off' : 'on');
+				} else {
+					reverseLevel = el.exact;
+				}
+				break;
+		}
 
+		return reverseLevel;
 	};
 
 	/**

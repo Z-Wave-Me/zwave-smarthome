@@ -30,15 +30,15 @@
     <div class="control" ng-switch="d.deviceType">
       <span ng-if="d.level=='lvl'">{{d.exact}}</span><span ng-if="d.level!='lvl'">{{d.level}}</span>&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;
       <!-- switchBinary -->
-      <span ng-switch-when="switchBinary" ng-init="d.reverseLevel = (d.level == 'off' ? 'on' : 'off')">
+      <span ng-switch-when="switchBinary" ng-init="d.reverseLevel = getReverseLevel(d)">
         <strong>{{d.reverseLevel}}</strong>
       </span>
       <!-- doorlock -->
-      <span ng-switch-when="doorlock" ng-init="d.reverseLevel = (d.level == 'open' ? 'close' : 'open')">
+      <span ng-switch-when="doorlock" ng-init="d.reverseLevel = getReverseLevel(d)">
         <strong>{{d.reverseLevel}}</strong>
       </span>
        <!--switchMultilevel -->
-      <span ng-switch-when="switchMultilevel" ng-init="d.reverseLevel = (d.reverseLevel == null ? rule.namespaces[d.deviceId].level : d.reverseLevel)">
+      <span ng-switch-when="switchMultilevel" ng-init="d.reverseLevel = getReverseLevel(d)">
        <!-- on/off -->
         <strong ng-if="d.level!='lvl' && rule.options.switchMultilevel.level.indexOf(d.level) > -1">{{d.level == 'off' ? 'on' : 'off'}}</strong>
         <!-- level -->
