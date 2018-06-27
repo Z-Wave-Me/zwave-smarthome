@@ -18,6 +18,10 @@ $inclusion-img-w: 96px;
 .list-panel {
   &.panel-devices {
     figure {
+      min-width: 48px;
+      @include mediaQueries(min-small) {
+        min-width: 64px;
+      }
       img {
         max-width: 48px;
         max-height: 48px;
