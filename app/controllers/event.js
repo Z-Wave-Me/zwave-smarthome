@@ -273,7 +273,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             v.messageView = '<span><span>'+v.message.dev+' : ' +
                 '<strong>' + v.message.l +'</strong></span>';
         } else {
-            v.messageView = '<span>'+typeof v.message == 'string'? v.message : JSON.stringify(v.message)+'</span>';
+            v.messageView = '<span>'+ (typeof v.message == 'string'? v.message : JSON.stringify(v.message))+'</span>';
         }
 
         v.lvl = $filter('hasNode')(v.message,'l')? $filter('hasNode')(v.message,'l') : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
