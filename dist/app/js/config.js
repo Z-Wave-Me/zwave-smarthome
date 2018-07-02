@@ -14,7 +14,7 @@ var config_data = {
 		// Application version
 		'app_version': '1.9.0',
 		// Application (DIST) built date
-		'app_built': '29-06-2018 12:07:17',
+		'app_built': '02-07-2018 15:04:09',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -306,7 +306,8 @@ var config_data = {
 			config_rooms_id: [1],
 			network: [1, 3],
 			network_config_id: [1],
-			logout: [1, 2, 3, 4]
+			logout: [1, 2, 3, 4],
+			automation: [1]
 		},
 		// List of language codes
 		'lang_codes': {
