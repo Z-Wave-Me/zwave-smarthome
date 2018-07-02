@@ -310,6 +310,7 @@
     "help_security_delay_before_alarm": "Delayed alarm duration, between 1 and 1800 seconds.",
     "help_security_delay_before_arming": "Between 1 and 1800 seconds.",
     "help_security_immediate_activate_schedule": "Start the time schedule as soon as the application is activated.",
+    "help_security_schedule": "Add new entries with a click. Moving entries using drag and drop. The surveillance is armed during the selected period.",
     "help_sensor_discrete": "The action is described with a two-digit value: The first digit is the button number, the second digit points to the action of this button (0=short press, 1=release, 2=hold, 3=short press two times, 4 = short press three times, and so on. Examples: Double Click button 2 => 23, Single Click button 1 = 10)",
     "hidden_elements": "Hidden elements",
     "hide_element": "Masquer l'élément",
