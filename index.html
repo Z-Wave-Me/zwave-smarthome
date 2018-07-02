@@ -162,8 +162,8 @@
             <!--<span class="divider-vertical"></span>
             <a href="#scenes" title="{{_t('automation')}}" ng-class="isActive('scenes') || isActive('rules') || isActive('schedules')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>-->
             <!-- automation -->
-            <span class="divider-vertical"></span>
-            <a href="#automations" title="{{_t('automation')}}" ng-class="isActive('automations') || isActive('scenes') || isActive('rules') || isActive('schedules') || isActive('climate') || isActive('fireprotection') || isActive('leakages')  || isActive('security')">
+            <span class="divider-vertical" ng-if="elementAccess(cfg.role_access.automation)"></span>
+            <a href="#automations" title="{{_t('automation')}}" ng-if="elementAccess(cfg.role_access.automation)" ng-class="isActive('automations') || isActive('scenes') || isActive('rules') || isActive('schedules') || isActive('climate') || isActive('fireprotection') || isActive('leakages')  || isActive('security')">
               <i class="fa fa-gear"></i>
               <span class="main-nav-text">{{_t('automation')}}</span>
             </a>
