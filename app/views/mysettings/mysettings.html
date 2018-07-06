@@ -4,8 +4,8 @@
   <div ng-show="input">
     <h2 ng-bind="_t('nav_myaccess')"></h2>
     <form name="form_profile" id="form_profile" class="form form-page" ng-submit="store(form_profile,input)" novalidate>
-      <fieldset ng-disabled="checkForDemoUse()">
-        <div class="form-group form-inline" >
+      <fieldset>
+        <div class="form-group form-inline">
           <!-- name -->
           <label class="isrequired">{{_t('lb_name')}}: </label>
           <input name="name" id="name" type="text" class="form-control" placeholder="{{_t('lb_profile_name_insert')}}" value="{{input.name}}"
@@ -42,7 +42,7 @@
         <div class="form-group form-inline">
           <label>{{_t('lb_interval')}} ({{_t('miliseconds')}}): </label>
           <input name="interval" id="interval" type="text" class="form-control" placeholder="{{_t('lb_interval_placeholder')}}" value="{{input.interval}}"
-            ng-model="input.interval" ng-disabled="checkForDemoUse()"/>
+            ng-model="input.interval" />
 
         </div>
       </fieldset>
@@ -118,7 +118,7 @@
       <div class="accordion" hidden>
         <form name="form_password" id="form_password" class="form form-inline form-page" ng-submit="changePassword(form_password,newPassword)"
           novalidate>
-          <fieldset ng-disabled="checkForDemoUse()">
+          <fieldset>
             <!-- login  -->
             <p class="form-control-static">
               <span ng-bind="_t('lb_login')"></span>:
@@ -141,7 +141,7 @@
               <bb-validator input-name='form_password.password_confirm.$error.compareto' trans='_t("passwords_must_match")' has-blur='passwordConfirmBlur'></bb-validator>
             </div>
 
-          </fieldset ng-disabled="checkForDemoUse()">
+          </fieldset>
           <fieldset class="submit-entry">
             <button type="submit" class="btn btn-submit" title="{{_t('lb_change_password')}}" ng-disabled="form_password.$invalid">
               <i class="fa fa-check"></i>

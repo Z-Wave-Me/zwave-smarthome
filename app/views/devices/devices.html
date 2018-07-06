@@ -265,11 +265,11 @@
             <div id="qrcode">
               <img width="255" height="255" ng-src="{{qrcode}}">
             </div>
-            <button class="btn btn-default" ng-if="qrcode != ''" ng-click="addQRCode('update')" ng-disabled="rowSpinner['update'] || checkForDemoUse()" title="{{_t('lb_update_qrcode')}}">
+            <button class="btn btn-default" ng-if="qrcode != ''" ng-click="addQRCode('update')" ng-disabled="rowSpinner['update']" title="{{_t('lb_update_qrcode')}}">
               <bb-row-spinner spinner="rowSpinner['update']" label="_t('lb_update_qrcode')" icon="'fa-qrcode'">
               </bb-row-spinner>
             </button>
-            <button class="btn btn-default" ng-if="qrcode == ''" ng-click="addQRCode('create')" ng-disabled="rowSpinner['create'] || checkForDemoUse()" title="{{_t('lb_create_qrcode')}}">
+            <button class="btn btn-default" ng-if="qrcode == ''" ng-click="addQRCode('create')" ng-disabled="rowSpinner['create']" title="{{_t('lb_create_qrcode')}}">
               <bb-row-spinner spinner="rowSpinner['create']" label="_t('lb_create_qrcode')" icon="'fa-qrcode'">
               </bb-row-spinner>
             </button>

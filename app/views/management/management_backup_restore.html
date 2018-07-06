@@ -18,7 +18,7 @@
       <p ng-bind-html="_t('backup_info', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></p>
     </fieldset>
     <div class="fieldset submit-entry">
-      <button class="btn btn-submit" type="button" title="{{_t('nm_backup_download')}}" ng-click="downLoadBackup()" ng-disabled="checkForDemoUse()">
+      <button class="btn btn-submit" type="button" title="{{_t('nm_backup_download')}}" ng-click="downLoadBackup()">
         <i class="fa fa-download"></i>
         <span class="btn-name">{{_t('download_backup_computer')}}</span>
       </button>
@@ -32,7 +32,7 @@
         {{_t('restore_info')}}
         <!-- CloudBackup frontend -->
         <div class="form-group form-inline">
-          <a class="btn btn-default" href="https://service.z-wave.me/cloudbackup/" target="_blank" title="{{_t('online_cloudbackup')}}" ng-disabled="checkForDemoUse()">
+          <a class="btn btn-default" href="https://service.z-wave.me/cloudbackup/" target="_blank" title="{{_t('online_cloudbackup')}}">
             <i class="fa fa-cloud-download"></i>
             <span class="btn-name">{{_t('online_cloudbackup')}}</span>
           </a>
@@ -41,7 +41,7 @@
       <bb-alert alert="managementRestore.alert"></bb-alert>
       <div ng-hide="managementRestore.alert.message">
         <div class="alert alert-warning">
-          <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="managementRestore.confirm = !managementRestore.confirm" ng-disabled="checkForDemoUse()"
+          <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="managementRestore.confirm = !managementRestore.confirm"
           />
           <label for="restore_confirm" class="right"> {{_t('are_you_sure_restore')}}</label>
           <div class="form-group">
@@ -67,7 +67,7 @@
     </div>
 
     <div class="fieldset submit-entry">
-      <button type="button" class="btn btn-submit" title="{{_t('nm_restore_pick_up')}}" ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message || !managementRestore.fileName" ng-disabled="checkForDemoUse()">
+      <button type="button" class="btn btn-submit" title="{{_t('nm_restore_pick_up')}}" ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message || !managementRestore.fileName">
         <i class="fa fa-upload"></i>
         <span class="btn-name">{{_t('nm_restore_pick_up')}}</span>
       </button>
@@ -77,7 +77,7 @@
   <!-- Cloud backup -->
   <form name="form_cloud_backup" id="form_cloud_backup" class="form form-page" ng-submit="updateInstance(form_cloud_backup, managementCloud.instance)"
     novalidate>
-    <fieldset ng-disabled="checkForDemoUse()">
+    <fieldset>
       <h3>{{_t('cloudbackup')}}</h3>
       <p ng-bind-html="_t('cloudbackup_info', {__email__ : managementCloud.email === '' ? '<b>'+_t('not_set')+'</b>' : '<b>'+managementCloud.email+'</b>'}) | toTrusted"></p>
       <bb-alert alert="managementCloud.alert"></bb-alert>
@@ -92,7 +92,7 @@
     </fieldset>
     <!-- Cloud backup -->
     <div ng-if="managementCloud.instance.active === true && managementCloud.instance.params.user_active === true && managementCloud.service_status === true">
-      <fieldset ng-disabled="checkForDemoUse()">
+      <fieldset>
         <!-- email log -->
         <div class="form-group">
           <h4>{{managementCloud.module.options.fields.email_log.label}}</h4>
@@ -105,7 +105,7 @@
           </div>
         </div>
       </fieldset>
-      <fieldset ng-disabled="checkForDemoUse()">
+      <fieldset>
         <p class="btn-group">
           <button class="btn btn-default" title="{{_t('daily')}}" type="button" ng-repeat="v in managementCloud.module.schema.properties.scheduler.enum track by $index"
             ng-class="v === managementCloud.instance.params.scheduler ? 'active' : ''" ng-click="setSchedulerType(v)">{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}
@@ -157,7 +157,7 @@
           </div>
         </div>
       </fieldset>
-      <fieldset class="submit-entry" ng-disabled="checkForDemoUse()">
+      <fieldset class="submit-entry">
         <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_cloud_backup.$invalid">
           <i class="fa fa-check"></i>
           <span class="btn-name">{{_t('lb_save')}}</span>

@@ -683,8 +683,4 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             };
         }, true, 'alert');
     }
-
-    $scope.checkForDemoUse = function() {
-        return cfg.app_is_demo && cfg.super_users.indexOf($scope.user.id) < 0 && $scope.user.role === 1;
-    }
 });

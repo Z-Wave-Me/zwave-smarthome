@@ -17,7 +17,7 @@
             <i class="fa fa-sort-alpha-asc"></i>
             <span class="btn-name">{{_t(userProfiles.orderBy) | cutText:true:15}}</span>
           </button>
-          <a class="btn btn-success" ng-href="#admin/user/0" title="{{_t('lb_add_user')}}" ng-disabled="checkForDemoUse()">
+          <a class="btn btn-success" ng-href="#admin/user/0" title="{{_t('lb_add_user')}}">
             <i class="fa fa-plus"></i>
             <span class="btn-name">{{_t('lb_add_user')}} </span>
           </a>
@@ -38,28 +38,28 @@
     
       <div class="list-panel" ng-repeat="v in userProfiles.all|orderBy:cfg.orderby.users[userProfiles.orderBy]| filter:q  track by v.id">
         <!-- img -->
-        <a class="figure img wh-32x32" ng-href="{{checkForDemoUse()? '#admin' : ('#admin/user/'+v.id)}}">
+        <a class="figure img wh-32x32" ng-href="#admin/user/{{v.id}}">
           <img ng-src="storage/img/icons/user.png" alt="{{v.name}}" />
         </a>
         <!-- body -->
         <div class="body">
           <div>
-            <a ng-href="{{checkForDemoUse()? '#admin' : ('#admin/user/'+v.id)}}">{{v.name|cutText:true:25}}</a>
+            <a ng-href="#admin/user/{{v.id}}">{{v.name|cutText:true:25}}</a>
           </div>
         </div>
         <!-- arrow -->
         <div class="l-hide control">
           <!-- expand/collapse -->
-          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('manageUser_' + $index, $event)" ng-disabled="checkForDemoUse()">
+          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('manageUser_' + $index, $event)">
           </button>
         </div>
         <!-- control -->
         <div class="control" ng-class="naviExpanded['manageUser_' + $index] ? 'expand-true': 'expand-false'">
           <div class="btn-group">
-            <a class="btn btn-default" ng-href="#admin/user/{{v.id}}" title="{{_t('lb_update')}}" ng-disabled="checkForDemoUse()"> 
+            <a class="btn btn-default" ng-href="#admin/user/{{v.id}}" title="{{_t('lb_update')}}">
               <i class="fa fa-pencil text-info"></i>
             </a>
-            <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="v.id == 1" ng-click="deleteProfile(v, _t('lb_delete_confirm'), 1)" ng-disabled="checkForDemoUse()">
+            <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="v.id == 1" ng-click="deleteProfile(v, _t('lb_delete_confirm'), 1)">
               <i class="fa fa-times text-danger"></i>
             </button>
           </div>
