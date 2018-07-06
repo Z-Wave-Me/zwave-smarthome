@@ -14,7 +14,7 @@
   <form name="form_timezone" id="form_timezone" class="form form-page" ng-submit="setTimezone(managementTimezone.input,$event)"
     novalidate>
     <!-- Time zone select -->
-    <fieldset class="form-inline">
+    <fieldset class="form-inline" ng-disabled="checkForDemoUse()">
       <label>{{_t('timezone')}}: </label>
       <select name="time_zone" name="time_zone" class="form-control" ng-model="managementTimezone.input.time_zone">
         <option ng-repeat="v in cfg.time_zone_list" value="{{v}}" ng-selected="v === managementTimezone.input.time_zone">{{v}}
@@ -22,7 +22,7 @@
       </select>
     </fieldset>
     <!-- Submit -->
-    <fieldset class="submit-entry">
+    <fieldset class="submit-entry" ng-disabled="checkForDemoUse()">
       <button type="submit" class="btn btn-submit" title="{{_t('set_timezone')}}" ng-disabled="managementTimezone.input.time_zone == managementTimezone.lastTZ">
         <i class="fa fa-check"></i>
         <span class="btn-name">{{_t('set_timezone')}}</span>

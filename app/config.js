@@ -9,7 +9,11 @@
  */
 var config_data = {
 	'cfg': {
-		//Application name
+		// Application demo mode
+		'app_is_demo': false,
+		// list of application superusers
+		'super_users':[],
+		// Application name
 		'app_name': '@@app_name',
 		// Application version
 		'app_version': '@@app_version',

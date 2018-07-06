@@ -31,7 +31,7 @@
           <fieldset>
               <p>{{_t('factory_default_info')}}</p>
           </fieldset>
-          <fieldset class="submit-entry">
+          <fieldset class="submit-entry" ng-disabled="checkForDemoUse()">
               <button type="submit" class="btn btn-danger" title="{{_t('reset_factory_default')}}">
                   <i class="fa fa-repeat"></i>
                    <span class="btn-name">{{_t('reset_factory_default')}}</span>

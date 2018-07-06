@@ -27,7 +27,7 @@
 <!-- Content -->
 <div class="accordion" hidden ng-if="expand.firmware" ng-controller="ManagementFirmwareController">
   <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
-    <fieldset>
+    <fieldset ng-disabled="checkForDemoUse()">
       <!-- Currentt version -->
       <p class="form-control-static">
         <span ng-bind="_t('current_firmware')"></span>:
@@ -38,7 +38,7 @@
       </div>
 
     </fieldset>
-    <fieldset class="submit-entry">
+    <fieldset class="submit-entry" ng-disabled="checkForDemoUse()">
       <button type="button" class="btn btn-submit" title="{{_t('update_to_latest')}}" ng-click="setAccess('?allow_access=1',true);handleModal('firmwareUpdateModal', $event)">
         <i class="fa fa-level-up"></i>
         <span class="btn-name">{{_t('update_to_latest')}}</span>

@@ -12,7 +12,7 @@
 <div class="accordion" hidden ng-if="expand.remote" ng-controller="ManagementRemoteController">
   <form name="form_remote" id="form_remote" class="form form-page" ng-if="remoteAccess" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)"
     novalidate>
-    <fieldset>
+    <fieldset ng-disabled="checkForDemoUse()">
       <p ng-bind="_t('remote_access_info')"></p>
       <div ng-if="remoteAccess">
         <div class="form-group">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-    </fieldset>
+    </fieldset ng-disabled="checkForDemoUse()">
     <fieldset class="submit-entry">
       <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
       <i class="fa fa-check"></i>

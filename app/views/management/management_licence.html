@@ -13,7 +13,7 @@
   <div class="accordion" hidden ng-if="expand.licence" ng-controller="ManagementLicenceController">
       <bb-alert alert="handleLicense.alert"></bb-alert>
       <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="!handleLicense.error" novalidate>
-          <fieldset>
+          <fieldset ng-disabled="checkForDemoUse()">
               <!-- password -->
               <div class="alert alert-danger" ng-if="handleLicense.replug"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>
               <p>{{_t('licence_upgrade_key')}}</p>
@@ -36,7 +36,7 @@
                   </p>
               </div>
           </fieldset> 
-          <fieldset class="submit-entry">
+          <fieldset class="submit-entry" ng-disabled="checkForDemoUse()">
               <button type="submit" class="btn btn-submit" title="{{_t('btn_licence_verify')}}" ng-disabled="proccessLicence || controllerInfo.isZeroUuid">
                   <i class="fa fa-share"></i> <span class="btn-name">{{_t('btn_licence_verify')}}</span>
               </button>
