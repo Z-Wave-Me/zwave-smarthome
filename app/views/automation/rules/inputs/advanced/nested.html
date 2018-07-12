@@ -26,7 +26,7 @@
     <span ng-switch-when="nested">{{_t('nested')}}</span>
     <span ng-switch-when="time">{{_t('lb_time')}}&nbsp;<em>[{{n.operator}}&nbsp;{{n.level}}]</em></span>
     <span ng-switch-default>
-      <span ng-if="!rule.namespaces[n.deviceId].deviceName"><i class="fa fa-exclamation-circle"></i> {{_t('device_removed')}} ({{v.deviceId}})</span>
+      <span ng-if="!rule.namespaces[n.deviceId].deviceName"><i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.deviceId}})</span>
       <span ng-if="rule.namespaces[n.deviceId].deviceName">{{rule.namespaces[n.deviceId].deviceName}}&nbsp;
         <em ng-if="n.operator">[{{n.operator}}&nbsp;{{n.level}}]</em>
         <em ng-if="!n.operator && _.isNumber(n.level)">[{{n.level}}]</em>
@@ -54,14 +54,14 @@
     <h2 class="accordion-toggle chevron">
     <button type="button" aria-expanded="false" bb-accordion>
     <span>
-      <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+      <img class="navi-img" ng-src="{{r.img_src}}" alt="img" />&nbsp;{{r.title}}
     </span>
     </button>
     </h2>
     <!-- Content -->
     <div class="accordion" hidden>
       <button type="button" class="btn btn-default btn-tag" title="{{o.deviceName}}" ng-repeat="o in rule.advanced.tests.availableDevices track by $index" ng-if="o.location == r.id && rule.advanced.tests.assignedDevices.indexOf(o.deviceId) === -1" ng-hide="o.deviceId == rule.input.params.simple.triggerEvent.deviceId" ng-click="assignAdvancedTestNestedDevice(o,testIndex)"><img class="navi-img" ng-src="{{rule.namespaces[o.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-      {{o.deviceName|cutText:true:20}} <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      {{o.deviceName|cutText:true:20}}&nbsp;<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
       </button>
     </div>
   </section>
@@ -69,7 +69,7 @@
 <!-- time -->
 <section class="section">
   <button type="button" class="btn btn-default btn-tag" ng-click="assignAdvancedTestNestedCondition('time',testIndex)">
-  {{_t('testTime')}} <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+  {{_t('testTime')}}&nbsp;<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
   </button>
   </dection>
   <!-- <pre>{{d|json}}</pre> -->

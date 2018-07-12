@@ -6,7 +6,7 @@
   <span ng-switch-when="nested"><i class="fa fa-fw fa-code-fork fa-flip-vertical fa-2x"></i>&nbsp;{{_t('nested')}}</span>
   <span ng-switch-when="time"><i class="fa fa-fw fa-clock-o fa-2x"></i>&nbsp;{{_t('lb_time')}}&nbsp;<em>[{{d.operator}}&nbsp;{{d.level}}]</em></span>
   <span ng-switch-default>
-    <span ng-if="!rule.namespaces[d.deviceId].deviceName"><i class="fa fa-exclamation-circle"></i> {{_t('device_removed')}} ({{v.deviceId}})</span>
+    <span ng-if="!rule.namespaces[d.deviceId].deviceName"><i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.deviceId}})</span>
     <span ng-if="rule.namespaces[d.deviceId].deviceName"><img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />{{rule.namespaces[d.deviceId].deviceName}}&nbsp;
       <em ng-if="d.operator">[{{d.operator}}&nbsp;{{d.level}}]</em>
       <em ng-if="!d.operator && _.isNumber(d.level)">[{{d.level}}]</em>

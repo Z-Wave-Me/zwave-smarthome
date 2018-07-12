@@ -23,7 +23,7 @@
 <fieldset>
 	<!--  <pre>{{scene.input|json}}</pre> -->
 	<input class="inputfile" type="file" name="file" id="file{{v.id}}" ng-click="icons.find = v" onchange="angular.element(this).scope().uploadCustomIcon(this.files, angular.element(this).scope().cfg.upload.icon)" />
-	<label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}" ng-click="icons.find = v"> <i class="fa fa-upload"></i> {{_t('upload_icon')}}</label>
+	<label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}" ng-click="icons.find = v">&nbsp;<i class="fa fa-upload"></i>&nbsp;{{_t('upload_icon')}}</label>
 	<bb-help-text trans="_t('upload_file_info',{'__size__':scene.upload.maxSize,'__extensions__': scene.upload.extensions})"></bb-help-text>
 	<bb-help-text trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})"></bb-help-text>
 </fieldset>
