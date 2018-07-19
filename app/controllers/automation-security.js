@@ -68,6 +68,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		cfg: {
 			options: {
 				switchMultilevel: {
+					level: ['on', 'off', 'lvl'],
 					min: 0,
 					max: 99
 				},
@@ -323,6 +324,76 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				params: instance.params
 			});
 
+			// load additional device data
+
+			_.each(['silentAlarms','alarms','armConfirm','disarmConfirm','clean'], function(e){
+				$scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function(d) {
+					if (e == 'silentAlarms')
+						e = 'alarms';
+					else if (e == 'disarmConfirm' || e == 'clean')
+						e = 'armConfirm';					
+					dev = $scope.getDevice(d.devices, e);
+					if (dev)
+					{
+						return {
+							devices: d.devices,
+							zwaveId: dev.zwaveId,
+							deviceName: dev.deviceName,
+							deviceNameShort: dev.deviceNameShort,
+							level: _.isNumber(d.level) ? 'lvl' : d.level,
+							exact: _.isNumber(d.level) ? parseInt(d.level) : null,
+							deviceType: dev.deviceType,
+							probeType: dev.probeType,
+							location: dev.location,
+							locationName: dev.locationName,
+							iconPath: dev.iconPath
+						};
+					}
+				});
+			});
+
+			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {		
+				dev = $scope.getDevice(d.devices, 'input');
+				if (dev)
+				{
+					return {
+						devices: d.devices,
+						zwaveId: dev.zwaveId,
+						deviceName: dev.deviceName,
+						deviceNameShort: dev.deviceNameShort,
+						// level: _.isNumber(d.level) ? 'lvl' : d.level,
+						// exact: _.isNumber(d.level) ? parseInt(d.level) : null,
+						conditions: d.level,
+						deviceType: dev.deviceType,
+						probeType: dev.probeType,
+						location: dev.location,
+						locationName: dev.locationName,
+						iconPath: dev.iconPath
+					};
+				}
+			});
+
+			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {		
+				dev = $scope.getDevice(d.devices, 'controls');
+				if (dev)
+				{
+					return {
+						devices: d.devices,
+						zwaveId: dev.zwaveId,
+						deviceName: dev.deviceName,
+						deviceNameShort: dev.deviceNameShort,
+						armCondition: d.armCondition,
+						disarmCondition: d.disarmCondition,
+						clearCondition: d.clearCondition,						
+						deviceType: dev.deviceType,
+						probeType: dev.probeType,
+						location: dev.location,
+						locationName: dev.locationName,
+						iconPath: dev.iconPath
+					};
+				}
+			});						
+
 			// transform to mobile
 			$scope.transformFromInstToMobile();
 
@@ -371,7 +442,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					zwaveId: getZwayId(v.id),
 					deviceName: v.metrics.title,
 					deviceNameShort: $filter('cutText')(v.metrics.title, true, 30) + (getZwayId(v.id) ? '#' + getZwayId(v.id) : ''),
-					level: _.isNumber(v.metrics.level) ? parseInt(v.metrics.level) : v.metrics.level,
+					level: _.isNumber(v.metrics.level) ? 'lvl' : v.metrics.level,
+					exact: _.isNumber(v.metrics.level) ? parseInt(v.metrics.level) : null,
 					deviceType: v.deviceType,
 					probeType: v.probeType,
 					location: v.location,
@@ -423,6 +495,74 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				$scope.security.alert.message = $scope._t('no_device_installed');
 			}
 
+			_.each(['input','silentAlarms','alarms','armConfirm','disarmConfirm','clean'], function(e){
+				$scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function(d) {
+					if (e == 'silentAlarms')
+						e = 'alarms';
+					else if (e == 'disarmConfirm' || e == 'clean')
+						e = 'armConfirm';					
+					dev = $scope.getDevice(d.devices, e);
+					if (dev)
+					{
+						return {
+							devices: d.devices,
+							zwaveId: dev.zwaveId,
+							deviceName: dev.deviceName,
+							deviceNameShort: dev.deviceNameShort,
+							level: _.isNumber(d.level) ? 'lvl' : d.level,
+							exact: _.isNumber(d.level) ? parseInt(d.level) : null,
+							deviceType: dev.deviceType,
+							probeType: dev.probeType,
+							location: dev.location,
+							locationName: dev.locationName,
+							iconPath: dev.iconPath
+						};
+					}
+				});
+			});
+
+			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {		
+				dev = $scope.getDevice(d.devices, 'input');
+				if (dev)
+				{
+					return {
+						devices: d.devices,
+						zwaveId: dev.zwaveId,
+						deviceName: dev.deviceName,
+						deviceNameShort: dev.deviceNameShort,
+						// level: _.isNumber(d.level) ? 'lvl' : d.level,
+						// exact: _.isNumber(d.level) ? parseInt(d.level) : null,
+						conditions: d.level,
+						deviceType: dev.deviceType,
+						probeType: dev.probeType,
+						location: dev.location,
+						locationName: dev.locationName,
+						iconPath: dev.iconPath
+					};
+				}
+			});
+
+			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {		
+				dev = $scope.getDevice(d.devices, 'controls');
+				if (dev)
+				{
+					return {
+						devices: d.devices,
+						zwaveId: dev.zwaveId,
+						deviceName: dev.deviceName,
+						deviceNameShort: dev.deviceNameShort,
+						armCondition: d.armCondition,
+						disarmCondition: d.disarmCondition,
+						clearCondition: d.clearCondition,						
+						deviceType: dev.deviceType,
+						probeType: dev.probeType,
+						location: dev.location,
+						locationName: dev.locationName,
+						iconPath: dev.iconPath
+					};
+				}
+			});						
+
 		}, function(error) {});
 	};
 
@@ -467,8 +607,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * @param  {string} deviceId 
 	 * @return {object} device          
 	 */
-	$scope.getDevice = function(deviceId) {
-		var device = _.findWhere($scope.security.devices.alarms, {
+	$scope.getDevice = function(deviceId, param) {
+		var device = _.findWhere($scope.security.devices[param], {
 			deviceId: deviceId
 		});
 		return device;
@@ -488,9 +628,37 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		if (deviceIndex > -1) {
 			return;
 		}
-		input.devices = deviceId;
-		$scope.security.input.params[param].table.push(input);
-		$scope.resetOptions();
+
+		if (param == 'silentAlarms') {
+			p = 'alarms';
+		}
+		else if (param == 'disarmConfirm' || param == 'clean') {
+			p = 'armConfirm';
+		}
+		else {
+			p = param;
+		}
+
+		dev = $scope.getDevice(deviceId, p);
+
+		if (dev)
+		{
+			input = {
+				devices: deviceId,
+				level: dev.level,
+				conditions: dev.level,
+				exact: dev.exact,
+				sendAction: false,
+				deviceName: dev.deviceName,
+				deviceType: dev.deviceType,
+				probeType: dev.probeType,
+				location: dev.location,
+				locationName: dev.locationName,
+				iconPath: dev.iconPath		
+			};			
+			$scope.security.input.params[param].table.push(input);
+			$scope.resetOptions();
+		}
 	};
 
 	/**
@@ -731,6 +899,33 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			icon: 'fa-spinner fa-spin',
 			message: $scope._t('loading')
 		};
+
+		_.each(['silentAlarms','alarms','armConfirm','disarmConfirm','clean'], function(e){
+			input.params[e].table = input.params[e].table.map(function(dev) {
+				return {
+					devices: dev.devices,
+					level: dev.level == 'lvl' ? dev.exact : dev.level,
+					sendAction: dev.sendAction
+				};
+			});
+		});
+
+		input.params.input.table = input.params.input.table.map(function(dev) {
+			return {
+				devices: dev.devices,
+				conditions: dev.conditions
+			};
+		});
+
+		input.params.controls.table = input.params.controls.table.map(function(dev) {
+			return {
+				devices: dev.devices,
+				armCondition: dev.armCondition,
+				disarmCondition: dev.disarmCondition,
+				clearCondition: dev.clearCondition		
+			};
+		});				
+
 		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
 			$scope.loading = false;
 			if (redirect) {

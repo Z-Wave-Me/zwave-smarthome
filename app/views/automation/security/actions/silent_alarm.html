@@ -25,20 +25,23 @@
     </div>
     <!-- List -->
     <div data-collapse-all="true">
-      <section class="accordion-wrap" ng-repeat="v in security.input.params.silentAlarms.table track by $index" ng-init="model=v; d=getDevice(v.devices)">
+      <section class="accordion-wrap" ng-repeat="d in security.input.params.silentAlarms.table" ng-init="model=v">
         <h2 class="accordion-toggle ellipsis">
         <!-- Title -->
         <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'">
         <span>
           <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-          {{d.deviceName}} - <em class="item-cnt">{{d.locationName}}</em>
+          {{d.deviceName}}&nbsp;
+          <span ng-if="d.deviceType=='switchRGBW' && _.isObject(d.level)" class="color-picker-show" style="background-color: {{d.level|setRgbColors}};">&nbsp;</span>
+          <span ng-if="d.deviceType!='switchRGBW' || !_.isObject(d.level)"><em>[{{_t(d.level)}}<em ng-if="d.level == 'lvl'">&nbsp;{{d.exact}}</em>]</em></span>&nbsp;
+          -&nbsp;<em>{{d.locationName}}</em>
         </span>
         </button>
         <!-- NO Toggle -->
         <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'">
           <span>
             <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-            {{d.deviceName}}
+            {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em>
           </span>
         </span>
         <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'silentAlarms')">
