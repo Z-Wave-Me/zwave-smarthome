@@ -206,7 +206,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			$scope.updateData();
 		},
 		bar_Click: function(node, timelineData, scheduleIndex) {
-			console.log("timelineData", timelineData);
 			$scope.heating.tempModal.scheduleId = "#" + $(this).attr('id');
 			$scope.heating.tempModal.timeline = timelineData.timeline;
 			$scope.heating.tempModal.stime = timelineData.start;
@@ -424,11 +423,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 * @return {[type]}    [description]
 	 */
 	$scope.loadInstance = function(id) {
-		console.log("$scope.heating.input", $scope.heating.input);
 		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
 			$scope.heating.routeId = id;
 			var instance = instances.data.data;
-			console.log("instance", instance);
 			angular.extend($scope.heating.input, {
 				title: instance.title,
 				active: instance.active,
@@ -506,7 +503,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 					var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
 					days.forEach(function(day) {
 						$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
-							console.log("schdeudle ", schedule);
 							var sc = {
 								start: schedule.stime,
 								end: schedule.etime,
@@ -551,11 +547,13 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 							};
 							$scope.heating.devices.all.push(obj);
 							// add room sensors
-							if ($scope.heating.devices.SensorsByRoom[v.location]) {
-								$scope.heating.devices.SensorsByRoom[v.location].push(obj);
-							} else {
-								$scope.heating.devices.SensorsByRoom[v.location] = [];
-								$scope.heating.devices.SensorsByRoom[v.location].push(obj);
+							if (v.deviceType !== "thermostat") {
+								if ($scope.heating.devices.SensorsByRoom[v.location]) {
+									$scope.heating.devices.SensorsByRoom[v.location].push(obj);
+								} else {
+									$scope.heating.devices.SensorsByRoom[v.location] = [];
+									$scope.heating.devices.SensorsByRoom[v.location].push(obj);
+								}
 							}
 							// add room termostate
 							if (v.deviceType == "thermostat") {
@@ -716,6 +714,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			icon: 'fa-spinner fa-spin',
 			message: $scope._t('loading')
 		};
+		
 		dataFactory.storeApi('instances', parseInt($scope.heating.input.instanceId, 10), $scope.heating.input).then(function(response) {
 			$scope.loading = false;
 			if (redirect) {
