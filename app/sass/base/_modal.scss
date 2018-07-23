@@ -65,6 +65,11 @@
   }
 }
 
+// prevent body scrolling
+.appmodal-open {
+  overflow: hidden;
+}
+
 .appmodal-100 {
   .appmodal-in {
     width: 99% !important;

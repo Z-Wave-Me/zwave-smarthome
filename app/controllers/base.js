@@ -593,6 +593,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
      * @returns {undefined}
      */
     $scope.modalArr = {};
+    $scope.isModal = false;
     $scope.handleModal = function(key, $event, status) {
         if (typeof status === 'boolean') {
             $scope.modalArr[key] = status;
@@ -602,8 +603,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         if ($event) {
             $event.stopPropagation();
         }
+        $scope.isModal = $scope.modalArr[key];
+    };  
 
-    };
     $scope.expand = {};
     /**
      * Expand/collapse an element
