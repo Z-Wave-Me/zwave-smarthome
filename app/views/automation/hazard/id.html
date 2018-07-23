@@ -4,7 +4,7 @@
   <!--<pre>{{hazardProtection | json}}</pre>-->
   <h2>{{_t('hazard_notification')}}</h2>
   <bb-alert alert="hazardProtection.alert"></bb-alert>
-  <div class="tabs-wrap form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
+  <div class="tabs-wrap form-inline">
     <!-- Default -->
     <div class="btn-group btn-group-justified btn-goup-tabs" ng-if="!rule.input.params.advanced.active">
       <a class="btn btn-default" title="{{_t('fire')}}" ng-class="{'active':hazardProtection.tab == 'fire'}" ng-click="hazardProtection.tab = 'fire'">
