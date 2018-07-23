@@ -695,8 +695,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             // something went wrong
             if(response.status !== 403){
                 angular.extend(cfg.route.alert, {
-                    message: 'error_zwave_network',
-                    info: 'how_to_resolve_zwave_errors',
+                    message: cfg.route.t['error_zwave_network'],
+                    info: cfg.route.t['how_to_resolve_zwave_errors'],
                     hide: false,
                     permanent: true
                 });

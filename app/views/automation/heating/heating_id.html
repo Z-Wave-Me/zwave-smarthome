@@ -42,7 +42,7 @@
 							<!-- main sensor -->
 							<div class="form-group is-inline" ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">
 								<label>{{_t('temp_sensor')}}</label>
-								<select class="form-control" ng-modal="heating.input.params.roomSettings[r.id].sensorId">
+								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].sensorId">
 									<option value="{{heating.devices.SensorsByRoom[r.id][0].deviceId}}" ng-if="heating.devices.SensorsByRoom[r.id].length == 1">
 										{{heating.devices.SensorsByRoom[r.id][0].deviceName}}
 									</option>

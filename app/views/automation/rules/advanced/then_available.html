@@ -4,7 +4,7 @@
     <h2 class="accordion-toggle chevron">
       <button type="button" aria-expanded="false" bb-accordion>
         <span>
-          <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+          <img class="navi-img" ng-src="{{r.img_src}}" alt="img" />&nbsp;{{r.title}}
         </span>
       </button>
     </h2>
@@ -25,7 +25,7 @@
     <h2 class="accordion-toggle chevron">
       <button type="button" aria-expanded="false" bb-accordion>
         <span>
-            <img class="navi-img" ng-src="{{cfg.img.icons + 'alarm-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" /> {{_t('add_notification')}}
+            <img class="navi-img" ng-src="{{cfg.img.icons + 'alarm-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />&nbsp;{{_t('add_notification')}}
         </span>
       </button>
     </h2>
@@ -41,7 +41,7 @@
             {{e.deviceName}}</option>
         </select>
         &nbsp;
-        <label ng-hide="rule.options.notification.default.target">{{_t('or')}} <input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="rule.options.notification.default.target" /></label>
+        <label ng-hide="rule.options.notification.default.target">{{_t('or')}}&nbsp;<input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="rule.options.notification.default.target" /></label>
       </div>
       <!-- mesage -->
       <div class="form-group">

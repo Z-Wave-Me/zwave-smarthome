@@ -28,7 +28,7 @@ myAppController.controller('RoomController', function($scope, $q, $cookies, $fil
      */
     $scope.allSettled = function() {
         var promises = [
-            dataFactory.getApi('locations'),
+            dataFactory.getApi('locations', null, true),
             dataFactory.getApi('devices', null, true)
         ];
 
@@ -328,20 +328,8 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
      * @returns {undefined}
      */
     $scope.clearSensors = function(v) {
-        var input = {
-            id: $scope.id,
-            title: v.title,
-            main_sensors: []
-
-        };
-        dataFactory.storeApi('locations', $scope.id, input).then(function(response) {
-            $scope.reloadData();
-        }, function(error) {
-            alertify.alertError($scope._t('error_update_data'));
-
-        });
+        $scope.input.main_sensors=[];
     };
-
 
     /**
      * Create new or update an existing location

@@ -306,7 +306,8 @@ var config_data = {
 			config_rooms_id: [1],
 			network: [1, 3],
 			network_config_id: [1],
-			logout: [1, 2, 3, 4]
+			logout: [1, 2, 3, 4],
+			automation: [1]
 		},
 		// List of language codes
 		'lang_codes': {

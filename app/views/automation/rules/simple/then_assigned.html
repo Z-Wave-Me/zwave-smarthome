@@ -3,7 +3,7 @@
   <h2 class="accordion-toggle ellipsis">
   <!-- Deleted device -->
   <span class="no-toggle text-danger" ng-show="!rule.namespaces[d.deviceId]">
-    <i class="fa fa-exclamation-circle"></i> {{_t('device_removed')}} ({{d.deviceId}})
+    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{d.deviceId}})
   </span>
   <!-- <pre>{{targetModel|json}}</pre> -->
   <!-- Title -->
@@ -11,7 +11,7 @@
   <span ng-if="rule.namespaces[d.deviceId].deviceName && !_.isObject(d.level)">
     <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
     {{rule.namespaces[d.deviceId].deviceName}}&nbsp;
-    [<em>{{_t(d.level)}}</em><em ng-if="d.level == 'lvl'"> {{d.exact}}</em>]&nbsp;-&nbsp;
+    [<em>{{_t(d.level)}}</em><em ng-if="d.level == 'lvl'">&nbsp;{{d.exact}}</em>]&nbsp;-&nbsp;
     <em>{{rule.namespaces[d.deviceId].locationName}}</em>
   </span>
   <span ng-if="rule.namespaces[d.deviceId].deviceName && _.isObject(d.level)">

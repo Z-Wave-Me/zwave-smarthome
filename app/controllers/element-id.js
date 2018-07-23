@@ -329,12 +329,13 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			var instance = _.findWhere($scope.elementId.instances, {
 				id: $filter('toInt')(device.creatorId)
 			});
+
 			var modul = _.findWhere($scope.elementId.modules, {
-				moduleName: instance.moduleId
+				moduleName: instance? instance.moduleId : null
 			});
 
-			$scope.elementId.appType['instance'] = instance;
-			$scope.elementId.appType['modul'] = modul;
+			$scope.elementId.appType['instance'] = instance || null;
+			$scope.elementId.appType['modul'] = modul || null;
 
 			if (device.id.indexOf(findZwaveStr) > -1) {
 				zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];

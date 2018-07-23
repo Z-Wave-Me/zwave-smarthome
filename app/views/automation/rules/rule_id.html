@@ -10,7 +10,7 @@
     <div class="form form-page">
     <fieldset ng-include="'app/views/automation/rules/rule_id_form.html'"></fieldset>
   </div>
-  <div class="tabs-wrap form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
+  <div class="tabs-wrap form-inline">
     <!-- Default -->
     <div class="btn-group btn-group-justified btn-goup-tabs" ng-if="!rule.input.params.advanced.active">
       <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.tab == 'if'}" ng-click="rule.tab = 'if'">

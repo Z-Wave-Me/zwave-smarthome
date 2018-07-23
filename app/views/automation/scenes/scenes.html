@@ -36,16 +36,16 @@
 					<bb-row-spinner spinner="rowSpinner[v.id]" icon="'fa-play-circle-o text-success'"></bb-row-spinner>
 				</button>
 				<!--edit -->
-				<a ng-href="#scenes/{{v.id}}" class="btn btn-default" title="{{_t('lb_update')}}"> <i class="fa fa-pencil text-primary"></i>
+				<a ng-href="#scenes/{{v.id}}" class="btn btn-default" title="{{_t('lb_update')}}">&nbsp;<i class="fa fa-pencil text-primary"></i>
 				</a>
 				<!-- activate -->
-				<button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default" ng-click="activateScene(v, v.active ? false : true)"> <i class="fa " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
+				<button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default" ng-click="activateScene(v, v.active ? false : true)">&nbsp;<i class="fa " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
 				</button>
 				<!-- clone -->
-				<button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneScene(v)" ng-disabled="!v.active"> <i class="fa fa-clone"></i>
+				<button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneScene(v)" ng-disabled="!v.active">&nbsp;<i class="fa fa-clone"></i>
 				</button>
 				<!-- remove -->
-				<button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteScene({'id': v.id}, _t('lb_delete_confirm'))"> <i class="fa fa-remove text-danger"></i>
+				<button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteScene({'id': v.id}, _t('lb_delete_confirm'))">&nbsp;<i class="fa fa-remove text-danger"></i>
 				</button>
 			</div>
 		</div>

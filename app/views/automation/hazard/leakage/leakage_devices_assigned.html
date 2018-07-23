@@ -3,21 +3,21 @@
   <h2 class="accordion-toggle ellipsis">
       <!-- Deleted device -->
       <span class="no-toggle text-danger" ng-if="!hazardProtection.availableDevices[v.deviceId]">
-          <i class="fa fa-exclamation-circle"></i> {{_t('device_removed')}} ({{v.deviceId}})
+          <i class="fa fa-exclamation-circle"></i> {{_t('device_removed')}}&nbsp;({{v.deviceId}})
       </span>
       <!-- Toggle -->
       <button type="button" aria-expanded="false" bb-accordion ng-if="v.deviceType!='toggleButton'" ng-hide="!hazardProtection.availableDevices[v.deviceId]">
         <span><img class="navi-img" ng-src="{{hazardProtection.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-          {{hazardProtection.availableDevices[v.deviceId].deviceName}} 
+          {{hazardProtection.availableDevices[v.deviceId].deviceName}}&nbsp;
           <span ng-if="v.deviceType=='switchRGBW' && _.isObject(v.level)" class="color-picker-show" style="background-color: {{v.level|setRgbColors}};">&nbsp;</span>
           <span ng-if="v.deviceType!='switchRGBW' || !_.isObject(v.level)"><em>[{{_t(v.level)}}<em ng-if="v.level == 'lvl'">&nbsp;{{v.exact}}</em>]</em></span>
-          - <em>{{hazardProtection.availableDevices[v.deviceId].locationName}}</em>
+         &nbsp;-&nbsp;<em>{{hazardProtection.availableDevices[v.deviceId].locationName}}</em>
         </span>
       </button>
       <!-- No Toggle -->
       <span class="no-toggle" ng-if="v.deviceType=='toggleButton'" ng-hide="!hazardProtection.availableDevices[v.deviceId]">
         <span><img class="navi-img" ng-src="{{hazardProtection.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-          {{hazardProtection.availableDevices[v.deviceId].deviceName}} -
+          {{hazardProtection.availableDevices[v.deviceId].deviceName}}&nbsp;-&nbsp;
           <em>{{hazardProtection.availableDevices[v.deviceId].locationName}}</em>
         </span>
       </span>     

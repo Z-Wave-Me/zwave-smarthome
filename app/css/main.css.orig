@@ -15756,6 +15756,18 @@ img.widget-promo-image {
   max-height: 70px !important;
 }
 
+.list-panel.panel-devices figure {
+  min-width: 48px;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  .list-panel.panel-devices figure {
+    min-width: 64px;
+  }
+}
+
 .list-panel.panel-devices figure img {
   max-width: 48px;
   max-height: 48px;
