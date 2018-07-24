@@ -15,7 +15,7 @@
 <script src="app/js/build.js?rel=1.9.0"></script>
 
   </head>
-  <body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}">
+  <body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}" ng-class="isModal ? 'appmodal-open': ''">
     <a class="skinreset" href="#skinreset">Reset skin to default</a>
     <div id="header" ng-if="user">
       <div id="main_navigation_wrap">
