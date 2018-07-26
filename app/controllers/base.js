@@ -688,19 +688,17 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
 
 
     $scope.openSideNav = function($event) {
-        console.log("open");
-        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0) {    
+        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0 && $location.path().indexOf("rooms") == -1 && $location.path().indexOf("events") == -1) {    
             $scope.expandNavi('mainNav', $event, true)
         }
     };
 
     $scope.closeSideNav = function($event) {
-        console.log("close");
-        if($location.path().indexOf("rooms") == 1 && $event.type == "click" && $scope.deviceDetector.isMobile()) {
+        if($location.path().indexOf("rooms") == 1 || $location.path().indexOf("events") == 1 && $event.type == "click" && $scope.deviceDetector.isMobile()) {
             $scope.expandNavi('mainNav', $event, false)  
         }
 
-        if($location.path().indexOf("rooms") != 1 && $scope.deviceDetector.isMobile()) {
+        if($location.path().indexOf("rooms") != 1 || $location.path().indexOf("events") != 1 && $scope.deviceDetector.isMobile()) {
             $scope.expandNavi('mainNav', $event, false);
         }
     };
