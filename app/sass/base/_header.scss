@@ -161,6 +161,9 @@
       }
     }
     #sub_navigation_in {
+      @include mediaQueries(min-small) {
+        background-color: transparent !important;
+      }
       @include mediaQueries(max-small) {
         height: 100%;
       }

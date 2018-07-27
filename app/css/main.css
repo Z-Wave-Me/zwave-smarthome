@@ -10098,6 +10098,14 @@ img {
 #sub_navigation_wrap #sub_navigation #sub_navigation_in {
   /* MIN WIDTH */
   /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  #sub_navigation_wrap #sub_navigation #sub_navigation_in {
+    background-color: transparent !important;
+  }
 }
 
 @media only screen and (max-width: 767px) {
