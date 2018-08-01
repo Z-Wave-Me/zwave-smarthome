@@ -27,13 +27,12 @@ myAppFactory.factory('_', function () {
  * @class dataFactory
  */
 myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $interval,dataService, cfg, _) {
-    var updatedTime = Math.round(+new Date() / 1000);
+    var updatedTime = 0;
     var lang = cfg.lang;
     var ZWAYSession = dataService.getZWAYSession();
     var user = dataService.getUser();
     if (user) {
         lang = user.lang;
-
     }
     var pingInterval = null;
     return({
@@ -546,7 +545,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @param {string} params
      * @returns {unresolved}
      */
-    function refreshApi(api, params) {
+    function refreshApi(api, params, updateTime) {
+        if(updateTime !== undefined || !updateTime) {
+            updatedTime = updateTime;
+        }
         if(_.findWhere($http.pendingRequests,{failWait: api})){
             return $q.reject('Pending');
         }
@@ -554,6 +556,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
          if (api === 'notifications' && updatedTime.toString().length === 10) {
             updatedTime = updatedTime * 1000;
         }
+
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.api[api] + '?since=' + updatedTime + (params ? params : ''),

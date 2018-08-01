@@ -14,7 +14,7 @@ var config_data = {
 		// Application version
 		'app_version': '1.9.0',
 		// Application (DIST) built date
-		'app_built': '27-07-2018 08:43:48',
+		'app_built': '01-08-2018 14:48:08',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -526,7 +526,7 @@ var config_data = {
 		// Config
 		'custom_cfg': {
 			'default': {
-				'boxtype': 'razberry',
+				'boxtype': 'test',
 				'logo': 'app-logo-default.png',
 				hidden_apps: [
 					'Cron',
