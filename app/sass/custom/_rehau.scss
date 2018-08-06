@@ -1,0 +1,357 @@
+/* Default SmartHome skin
+-------------------------------------------------- */
+
+
+
+$app-color-magenta: #d13d73;
+$app-color-green: #709763;
+$app-color-grey: #6d6d6d;
+$app-color-black: #151515;
+
+$app-color-magenta-lighter: lighten($app-color-magenta, 15%);
+
+
+$app-color-red-darker: #961432;
+$app-color-red-darkest: #6E0A28;
+$app-color-red-lighter:#a51c39;
+$app-color-red-lightest:#b72847;
+$app-color-lightest: #fff;
+$app-color-lighter: #F7BEC8;
+$app-color-additional: #0A3C64;
+$app-body-color: $app-color-lighter;
+$app-a-color: lighten($app-color-lighter,5%);;
+$app-heading-color: darken($app-body-color,5%);
+$card-bcg-color: $app-color-red-lightest;
+
+/* Navigation
+-------------------------------------------------- */
+
+#main_navigation_wrap {
+
+  #main_navigation {
+    @include mediaQueries(max-small) {
+      #navigation_right{
+        float: left;
+      }
+      #navigation_left{
+        position: static;
+        float: right;
+      }
+    }
+  }
+}
+
+/* Subnavigation
+-------------------------------------------------- */
+#sub_navigation_wrap {
+  #sub_navigation { 
+    #sub_navigation_in {
+      .sub-nav-logo {
+        display: none;
+      }
+      ul {
+        li {
+          &.active {
+            background-color: $app-color-magenta-lighter;
+            color: #ffffff;
+            a {
+              color: #ffffff;
+              .fa {
+                color: #ffffff;
+              }
+            }
+          }
+        }
+      }
+    }    
+  }
+}
+
+@include mediaQueries(max-small) {
+  #sub_navigation_wrap {
+    #sub_navigation {
+      #sub_navigation_in {
+        .sub-nav-logo {
+          display: block;
+          text-align: center;
+          > img {
+            height: 150px;
+            object-fit: contain;
+          }
+        }
+        background-color: #ffffff;
+        @include appBoxShadow($app-box-shadow);
+        border-right: 1px solid $app-border-color;
+        ul {
+          margin: 0;
+          @include appBoxShadow(none);
+          border: 0;
+          li {
+            .subnavi-arrow {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Skin colors
+-------------------------------------------------- */
+
+body {
+  &.night-false {
+    background-color: #F6F6F6;
+  }
+}
+
+.night-false {
+  .device-available-block {
+    &.assigned {
+      background-color: #e7e7e7;
+      border: 0;
+    }
+  }
+
+  .timestamp{
+    @include mediaQueries(min-small) {
+      color: #ffffff;
+    }
+  }
+
+
+  /* Main navigation
+-------------------------------------------------- */
+  #main_navigation_wrap {
+    border-bottom: solid 4px $app-color-magenta;
+    background-color: $app-color-magenta;
+    #main_navigation {
+      .active {
+        background-color: $app-color-magenta-lighter;
+        color: #ffffff;
+      }
+      a {
+        color: #ffffff;
+        &:hover {
+          background-color: $app-color-magenta-lighter;
+        }
+      }
+      .nav-logo {
+        background-color: #ffffff;
+        padding: 0;
+        > img {
+          height: $header-h - 2;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  #header_logo {
+    max-height: none;
+    max-width: none;
+}
+
+  /* Top fixed elements for mobile devices
+-------------------------------------------------- */
+  @include mediaQueries(max-small) {
+    .fix-me-top {
+      background-color: #E9E9E9;
+      border-bottom: solid 4px #DDD;
+    }
+  }
+  /* Form
+-------------------------------------------------- */
+  .form-page {
+   
+    @include mediaQueries(min-small) {
+      border: solid 4px #e7e7e7;
+    }
+    > section{
+      border-bottom: solid 4px #e7e7e7;
+      &:last-child{
+        border-bottom: 0;
+      }
+   
+    }
+    .section{
+      border-bottom: solid 4px #e7e7e7;
+      &:last-child{
+        border-bottom: 0;
+      }
+    }
+    .for
+    .form-group {
+      border-color: #e7e7e7;
+    }
+  }
+  .submit-entry {
+    @include mediaQueries(min-small) {
+      background-color: #e7e7e7;
+      border-top: solid 1px #e7e7e7;
+    }
+   
+  }
+  fieldset,
+  .fieldset {
+    &.expanded {
+      background-color: #F6F6F6;
+      border-top: solid 4px #e7e7e7;
+      border-bottom: solid 4px #e7e7e7;
+    }
+  }
+  .control-active {
+    border: solid 4px $app-brand-success !important;
+  }
+ 
+  /* Button
+-------------------------------------------------- */
+  .btn-goup-tabs {
+    .btn {
+      background-color: #eeeeee;
+      &.active,&[aria-selected] {
+        background-color: #dcdcdc;
+      }
+    }
+  }
+/* List panel
+-------------------------------------------------- */
+.list-panel{
+  .control-collapsable{
+    padding: $spacing;
+    background-color: #eeeeee;
+  }
+}
+   /* Table responsive
+-------------------------------------------------- */
+.table-responsive {
+  @include mediaQueries(max-small) {
+    [data-expanded="true"] {
+      td {
+        background-color: #eeeeee;
+       }
+     }
+  }
+}
+  /* Widget
+-------------------------------------------------- */
+  .widget-entry {
+    .widget-entry-in {
+      border-color: #d3d3d3; // Media queries
+      @include mediaQueries(min-small) {
+        border: solid 4px #FFFFFF; // border-width: 4px !important;
+        @include appGradient();
+        @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
+      }
+    }
+  }
+  /* Rooms
+-------------------------------------------------- */
+  // Media queries
+  @include mediaQueries(min-usmall) {
+    .card-room {
+      .card-room-in {
+        border: solid 4px #ffffff;
+        @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      }
+    }
+  }
+  /* Elements in Room
+-------------------------------------------------- */
+  .elemnts-room-bar {
+    // Media queries
+    @include mediaQueries(min-small) {
+      border: 0;
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      @include appGradient();
+    }
+  }
+  /* Local and online apps
+-------------------------------------------------- */
+  .localapp-in,
+  .onlineapp-in {
+    border-color: #d3d3d3; // Media queries
+    @include mediaQueries(min-esmall) {
+      border: solid 4px #FFFFFF; // border-width: 4px !important;
+      @include appGradient();
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
+    }
+  }
+  /* Customize
+-------------------------------------------------- */
+  // Media queries
+  @include mediaQueries(min-usmall) {
+    .card-customize {
+      border: 0;
+      .card-customize-in {
+        border: solid 4px #ffffff;
+        @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      }
+    }
+  }
+  /* Automation
+-------------------------------------------------- */
+  //.automation {
+    .accordion-wrap {
+      .accordion {
+        background-color: #F6F6F6;
+        &.no-bcg{
+          padding: 0;
+          background: transparent;
+        }
+      }
+      &.nested {
+        .accordion {
+          .accordion {
+            background-color: darken(#F6F6F6, 5%);
+          }
+        }
+      }
+      &.active{
+        @include mediaQueries(min-small) {
+          padding: $spacing;
+          margin: $spacing;
+          //margin: $spacing-double 0;
+          border:solid 2px $app-bcg-success;
+          @include appBoxShadow($app-box-shadow);
+        }
+       
+      }
+    }
+    fieldset{
+      .accordion-wrap{
+        &.active{
+          margin: $spacing 0;
+        }
+        
+      }
+    }
+  }
+//}
+
+/* Security  Notification 
+-------------------------------------------------- */
+.automation{
+  .notification{
+    margin: $spacing-double 0;
+    padding: $spacing;
+    background-color: #F6F6F6;
+  }
+}
+
+/* Footer
+    -------------------------------------------------- */
+
+#footer {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    span:last-child {
+      margin-left: auto;
+      ;
+    }
+  }
+}
+
+@import "_shui_night"; 

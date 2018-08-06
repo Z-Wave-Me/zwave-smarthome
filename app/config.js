@@ -522,12 +522,66 @@ var config_data = {
 		'scroll_offset': 80,
 		// ---------------------------------- Custom config for specifics app_type ---------------------------------- //
 		// Application type : default/popp/jb/wd
-		'app_type': 'default',
+		'app_type': 'rehau',
 		// Config
 		'custom_cfg': {
 			'default': {
 				'boxtype': 'razberry',
 				'logo': 'app-logo-default.png',
+				hidden_apps: [
+					'Cron',
+					'CloudBackup',
+					'BatteryPolling',
+					'CustomUserCode',
+					'CustomUserCodeLoader',
+					'InbandNotifications',
+					'Notification',
+					'NotificationSMSru',
+					'RemoteAccess',
+					'SecurityMode',
+					'SensorValueLogging',
+					'SensorsPollingLogging',
+					'YandexProbki',
+					'CodeDevice',
+					'InfoWidget',
+					'SensorsPolling',
+					'SwitchControlGenerator',
+					'ZWave',
+					'PhilioHW',
+					'Rules',
+					'Scenes',
+					'Schedules'
+				],
+				featured_apps: [
+					'IfThen',
+					'OpenWeather',
+					'DeviceHistory',
+					'PeriodicalSwitchControl',
+					'ScheduledScene'
+				],
+				advanced_apps: [
+					'CodeDevice',
+					'CustomUserCode',
+					'CustomUserCodeLoader',
+					'CustomUserCodeZWay',
+					'GlobalCache',
+					'InfoWidget',
+					'Notification',
+					'NotificationSMSru',
+					'RGB',
+					'SecurityMode',
+					'SwitchControlGenerator',
+					'PhilioHW',
+					'SensorsPolling',
+					'SensorsPollingLogging',
+					'SensorsValueLogging',
+					'SwitchPolling',
+					'ZMEOpenWRT'
+				]
+			},
+			'rehau': {
+				'boxtype': 'razberry',
+				'logo': 'app-logo-rehau.png',
 				hidden_apps: [
 					'Cron',
 					'CloudBackup',

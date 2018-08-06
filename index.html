@@ -197,6 +197,9 @@
         <div id="sub_navigation" ng-show="naviExpanded.mainNav">
           <div id="sub_navigation_in" ng-click="expandNavi('mainNav', $event)">
             <div class="container">
+              <a class="sub-nav-logo" href="#home" title="{{_t('nav_home')}}">
+                <img ng-src="{{getAppLogo()}}" alt="App logo" />
+              </a>
               <ul>
                 <!-- Apps -->
                 <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
