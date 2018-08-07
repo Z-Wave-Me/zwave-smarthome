@@ -117,8 +117,6 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
             // Success - devices
             if (devices.state === 'fulfilled') {
                 $scope.dataHolder.devices.updateTime = devices.value.data.data.updateTime;
-                console.log("devices.value.data.data.updateTime", devices.value.data.data.updateTime);
-                console.log("$scope.dataHolder.devices.updateTime", $scope.dataHolder.devices.updateTime);
                 // Count hidden apps
                 $scope.dataHolder.cnt.hidden = _.chain(dataService.getDevicesData(devices.value.data.data.devices, true))
                     .flatten().where({
@@ -158,7 +156,6 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
                         return;
                     }
                     $scope.dataHolder.devices.updateTime = response.data.data.updateTime;
-                    console.log("$scope.dataHolder.devices.updateTime", $scope.dataHolder.devices.updateTime);
                     if (response.data.data.devices.length > 0) {
                         angular.forEach(response.data.data.devices, function(v, k) {
                             var index = _.findIndex($scope.dataHolder.devices.all, {
@@ -200,10 +197,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
     };
 
     $scope.initialLoadInterval = $interval(function() {
-            console.log("$scope.initialLoadFinish", $scope.initialLoadFinish);
             if($scope.initialLoadFinish) {
-                var temp = angular.copy($scope.dataHolder.devices.updateTime);
-                console.log("temp", temp);
                 $scope.refreshDevices();
                 $interval.cancel($scope.initialLoadInterval)
             }
