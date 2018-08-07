@@ -12888,16 +12888,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,  height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,  width 0.25s ease-out 0.5s,  height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -17935,20 +17932,43 @@ img.widget-promo-image {
 
 /* Subnavigation
 -------------------------------------------------- */
+#sub_navigation_wrap #sub_navigation #sub_navigation_in .sub-nav-logo {
+  display: none;
+}
+
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li.active {
+  background-color: #e07ba0;
+  color: #ffffff;
+}
+
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li.active a {
+  color: #ffffff;
+}
+
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li.active a .fa {
+  color: #ffffff;
+}
+
 /* MIN WIDTH */
 /* MAX WIDTH */
 @media only screen and (max-width: 767px) {
   #sub_navigation_wrap #sub_navigation #sub_navigation_in {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     border-right: 1px solid #cccccc;
   }
+  #sub_navigation_wrap #sub_navigation #sub_navigation_in .sub-nav-logo {
+    display: block;
+    text-align: center;
+  }
+  #sub_navigation_wrap #sub_navigation #sub_navigation_in .sub-nav-logo > img {
+    height: 150px;
+    object-fit: contain;
+  }
   #sub_navigation_wrap #sub_navigation #sub_navigation_in ul {
     margin: 0;
-    margin: 50px 0 0;
-    background: transparent;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -18003,14 +18023,48 @@ body.night-false {
   border: 0;
 }
 
+.night-false .timestamp {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (min-width: 768px) {
+  .night-false .timestamp {
+    color: #ffffff;
+  }
+}
+
 .night-false #main_navigation_wrap {
-  border-bottom: solid 4px #DDD;
-  background-color: #E9E9E9;
+  border-bottom: solid 4px #d13d73;
+  background-color: #d13d73;
 }
 
 .night-false #main_navigation_wrap #main_navigation .active {
-  background-color: #DDD;
+  background-color: #e07ba0;
   color: #ffffff;
+}
+
+.night-false #main_navigation_wrap #main_navigation a {
+  color: #ffffff;
+}
+
+.night-false #main_navigation_wrap #main_navigation a:hover {
+  background-color: #e07ba0;
+}
+
+.night-false #main_navigation_wrap #main_navigation .nav-logo {
+  background-color: #ffffff;
+  padding: 0;
+}
+
+.night-false #main_navigation_wrap #main_navigation .nav-logo > img {
+  height: 48px;
+  object-fit: contain;
+}
+
+.night-false #header_logo {
+  max-height: none;
+  max-width: none;
 }
 
 @media only screen and (max-width: 767px) {
