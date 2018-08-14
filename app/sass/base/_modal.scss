@@ -1,5 +1,6 @@
 /* Modal
 -------------------------------------------------- */
+
 .appmodal {
   position: fixed;
   top: 0;
@@ -8,8 +9,7 @@
   left: 0;
   z-index: $zindex-modal;
   overflow: auto;
-  color: $app-body-color;
-  // Animation
+  color: $app-body-color; // Animation
   &.ng-animate {
     transition: all ease 0.4s;
     position: absolute;
@@ -28,12 +28,39 @@
     opacity: 0;
   }
   .appmodal-in {
-    width: 99%;
+    width: 100%;
     position: relative;
-    margin: ($header-h + $spacing-double) auto $spacing-double auto;
     background-color: #ffffff;
     @include mediaQueries(min-small) {
+      margin: ($header-h + $spacing-double) auto $spacing-double auto;
       width: 60%;
+    }
+  }
+
+  &.image {
+    padding-top: 100px;
+    .appmodal-close {
+        position: absolute;
+        top: $spacing-double;
+        transition: 0.3s;
+        font-size: 140%;
+        display: block;
+        text-decoration: none;
+        right: $spacing-third;
+        //color: #ffffff;
+        z-index: 2;
+        cursor: pointer;
+        span {
+          display: inline-block;
+        }
+    }
+    .appmodal-in {
+        display: block;
+        background-color: transparent;
+        img {
+          margin: 0px auto;
+          display: block;
+        }
     }
   }
 }
@@ -71,10 +98,21 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $app-overlay-bcg-color;
+  background-color: #ffffff;
+  @include mediaQueries(min-small) {
+    background-color: $app-overlay-bcg-color;
+  }
+ 
+}
+.appmodal{
+  &.image:before{
+    background-color:rgba(255,255,255,0.8);
+  }
 }
 
-.appmodal-header, .appmodal-body, .appmodal-footer {
+.appmodal-header,
+.appmodal-body,
+.appmodal-footer {
   padding: 10px 15px;
 }
 
@@ -88,8 +126,7 @@
     right: $spacing;
     top: 0;
     z-index: 2;
-    cursor: pointer;
-    // Media queries for small devices
+    cursor: pointer; // Media queries for small devices
     @include mediaQueries(min-small) {
       font-size: 140%;
     }
@@ -105,14 +142,56 @@
 }
 
 .appmodal-body {
-
-
   .rss-description {
     ul {
       list-style-position: inside;
     }
   }
-
+  .entry-in {
+    padding: $spacing;
+    display: table;
+    margin: 0 auto;
+    .entry-media {
+      display: none;
+      @include mediaQueries(min-small) {
+        display: table-cell;
+        vertical-align: middle;
+        img {
+          width: 200px;
+        }
+      }
+    }
+    .entry-content {
+      display: table-cell;
+      padding: $spacing;
+      vertical-align: middle;
+      .text {
+        max-width: 400px;
+        h1 {
+          margin-bottom: 20px;
+        }
+        p {
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .inner {
+        @include mediaQueries(min-small) {
+          margin-left: 50px;
+        }
+        .badges {
+          margin-top: 50px;
+          a {
+            display: inline-block;
+            margin: 10px;
+            img {
+              height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .appmodal-footer {
@@ -122,6 +201,7 @@
 
 /* Modal with knob
 -------------------------------------------------- */
+
 .app-row-knob {
   // Media queries
   @include mediaQueries(min-small) {
@@ -129,8 +209,7 @@
     width: 100%;
   }
   .knob-col {
-    padding: $spacing;
-    // Media queries
+    padding: $spacing; // Media queries
     @include mediaQueries(min-small) {
       display: table-cell;
       vertical-align: middle;
@@ -138,7 +217,6 @@
       width: 50%;
     }
   }
-
   .knob-ctrl {
     @include mediaQueries(min-small) {
       text-align: right;
@@ -156,6 +234,7 @@
 
 /* Confirm content
 -------------------------------------------------- */
+
 .app-confirm-content {
   padding: $spacing;
   border: solid 1px $app-border-color;
@@ -166,6 +245,7 @@
 
 /* Modal James Box
 -------------------------------------------------- */
+
 #jamesBoxUpdateModal #updateTimeout {
   text-align: center;
   font-weight: bold;
@@ -183,28 +263,27 @@
 
 /* Modal element event
 -------------------------------------------------- */
+
 #modalEvent {
   .appmodal-body {
     height: auto;
     max-height: 500px;
     overflow-x: hidden;
   }
-
 }
 
 /* Modal with scroll
 -------------------------------------------------- */
+
 .modal-h-700 {
   .appmodal-body {
     height: auto;
     max-height: 700px;
     overflow-x: hidden;
   }
-
 }
 
 /* Modal with color set
 -------------------------------------------------- */
-.app-row-color-set {
 
-}
+.app-row-color-set {}

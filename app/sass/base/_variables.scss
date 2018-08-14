@@ -37,13 +37,13 @@ $header-h: 50px;
 // Z:INDEX
 $zindex-alertify: 2500;
 $zindex-loader: 2400;
-$zindex-search: 2500;
+$zindex-modal: 2300;
+$zindex-search: 2200;
 $zindex-header: 2100;
 $zindex-page-navi: 2101;
 $zindex-dropdown: 2140;
 $zindex-infowindow: 1100;
-$zindex-modal: 2300;
-$zindex-footer: 2100;
+$zindex-footer: 2000;
 $zindex-m-footer: 2130;
 
 /*-------------------------------------*/
@@ -75,11 +75,13 @@ $app-body-disabled-color:  lighten($app-body-color, 50%);
 $app-a-color:  lighten($app-color-primary, 20%);
 $app-a-hover-color:  lighten($app-color-primary, 10%);
 $app-heading-color: lighten($app-body-color, 40%);
+$app-bcg-color: #FFFFFF;
 $app-bcg-success: #dff0d8;
 $app-bcg-info: #d9edf7;
 $app-bcg-warning: #fcf8e3; 
 $app-bcg-danger: #f2dede;
 $card-bcg-color: #FFFFFF;
+$focus-color: $app-brand-info;
 
 $app-overlay-bcg-color: rgba(37, 37, 37, 0.5);
 

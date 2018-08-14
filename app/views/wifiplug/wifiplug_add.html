@@ -1,22 +1,23 @@
 <!-- Wifiplug add view -->
 <div ng-controller="WifiPlugAddController">
-    <div ng-show="wifiplugDevices">
-        <div class="app-row app-row-report app-row-wifiplugadd clearfix">
-         <div id="row_wifiplug_{{v.id}}" class="report-entry" ng-repeat="v in wifiplugDevices | orderBy:'defaults.title' track by v.moduleName">
-             <div class="report-col report-media">
-                    <img class="product-img" ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="img" />
-                        <img class="product-img" ng-src="storage/img/icons/logo-wifiplug.png" ng-if="!v.icon" alt="img" />
-                 </div>
-             <div class="report-col report-body">
-                 {{v.defaults.title}}
-            </div>
-         <div class="report-col report-ctrl">
+    <div class="list-panel bcg-active" ng-repeat="v in wifiplugDevices | orderBy:'defaults.title' track by v.moduleName">
+        <!-- img -->
+        <figure class="img wh-32x32">
+            <img ng-src="{{moduleMediaUrl + v.moduleName + '/' + v.icon}}" ng-if="v.icon" alt="img" />
+            <img ng-src="storage/img/icons/logo-wifiplug.png" ng-if="!v.icon" alt="img" />
+        </figure>
+        <!-- body -->
+        <div class="body">
+          <div>
+              <a href="#module/post/{{v.id}}">{{v.defaults.title}}</a>
+          </div>
+        </div>
+        <!-- control -->
+        <div class="control">
             <a href="#module/post/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
-                <i class="fa fa-plug text-primary"></i>
-            </a>
-         </div>
+              <i class="fa fa-plug text-primary"></i>
+          </a>
         </div>
       </div>
-    </div>
     <div class="device-logo" ng-include="'app/views/wifiplug/wifiplug_nav.html'"></div>
 </div> <!-- /ng-controller --> 

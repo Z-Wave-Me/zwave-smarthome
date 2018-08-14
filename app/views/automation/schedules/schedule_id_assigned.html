@@ -1,20 +1,31 @@
-<!-- <pre>{{schedule.assignedDevices|json}}</pre> -->
-<div class="automation-report app-row-report clearfix">
-  <!-- Report body -->
-  <div class="report-entry" ng-repeat="d in schedule.availableDevices|orderBy: 'location' track by $index" ng-if="schedule.assignedDevices.indexOf(d.id) > -1">
-    
-      <div class="report-col">
-          <div ng-if="d.deviceType == 'toggleButton'">{{d.metrics.title}} - <em>{{schedule.rooms[d.location].title}}</em> </div>
-        <div class="clickable"  ng-if="d.deviceType != 'toggleButton'" ng-click="expandParams(d.deviceType + $index,d)">{{d.metrics.title}} - <em>{{schedule.rooms[d.location].title}}</em> </div>
-        <div class="form-collapsed" ng-if="expand[d.deviceType + $index]" ng-include="'app/views/automation/schedules/schedule_id_form_'+ d.deviceType +'.html'"></div>
-      </div>
-      <div class="report-col report-ctrl form-inline">
-          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="d.deviceType == 'toggleButton'" ng-click="expandParams(d.deviceType + $index,d)">
-            <i class="fa" ng-class="expand[d.deviceType + $index] ? 'fa-reply' : 'fa-pencil text-primary'"></i>
-          </button>
-          <button type="button" class="btn btn-default" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d)">
-            <i class="fa fa-times text-danger"></i>
-          </button>
-      </div>
-  </div>
-</div>
+<section class="accordion-wrap" ng-repeat="v in schedule.input.params.devices track by $index">
+  <!-- Title -->
+  <h2 class="accordion-toggle ellipsis">
+      <!-- Deleted device -->
+      <span class="no-toggle text-danger" ng-if="!schedule.availableDevices[v.deviceId]">
+          <i class="fa fa-exclamation-circle"></i> {{_t('device_removed')}} ({{v.deviceId}})
+      </span>
+      <!-- Toggle -->
+      <button type="button" aria-expanded="false" bb-accordion ng-if="v.deviceType!='toggleButton'" ng-hide="!schedule.availableDevices[v.deviceId]">
+        <span><img class="navi-img" ng-src="{{schedule.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+          {{schedule.availableDevices[v.deviceId].deviceName}} 
+          <span ng-if="v.deviceType=='switchRGBW' && _.isObject(v.level)" class="color-picker-show" style="background-color: {{v.level|setRgbColors}};">&nbsp;</span>
+          <span ng-if="v.deviceType!='switchRGBW' || !_.isObject(v.level)"><em>[{{_t(v.level)}}<em ng-if="v.level == 'lvl'">&nbsp;{{v.exact}}</em>]</em></span>
+          - <em>{{schedule.availableDevices[v.deviceId].locationName}}</em>
+        </span>
+      </button>
+      <!-- No Toggle -->
+      <span class="no-toggle" ng-if="v.deviceType=='toggleButton'" ng-hide="!schedule.availableDevices[v.deviceId]">
+        <span><img class="navi-img" ng-src="{{schedule.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+          {{schedule.availableDevices[v.deviceId].deviceName}} -
+          <em>{{schedule.availableDevices[v.deviceId].locationName}}</em>
+        </span>
+      </span>     
+      <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice($index,v.deviceId)">
+        <i class="fa fa-times text-danger"></i>
+      </span>
+  
+    </h2>
+  <!-- Content -->
+  <div class="accordion" ng-if="v.deviceType!='toggleButton'" hidden ng-include="'app/views/automation/schedules/schedule_id_form_'+v.deviceType+'.html'"></div>
+</section>

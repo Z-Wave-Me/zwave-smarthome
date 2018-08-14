@@ -1,73 +1,155 @@
 <!-- The scene -->
-<div ng-controller="AutomationRuleIdController">
-
-  <h2>{{_t('rules')}}</h2>
+<div class="automation" ng-controller="AutomationRuleIdController">
+  <bb-loader></bb-loader>
+  <!-- No device -->
+  <div ng-if="!rule.show" ng-include="'app/views/automation/no_device.html'"></div>
   <!-- Form -->
-  <form class="form form-page" ng-submit="storeRule(rule.input,true)">
+  <div ng-if="rule.show">
+    <h2>{{_t('rules')}}</h2>
     <!-- Form-->
+    <div class="form form-page">
     <fieldset ng-include="'app/views/automation/rules/rule_id_form.html'"></fieldset>
-    <!-- ////////////////////////////////////////// tabs  ////////////////////////////////////////// -->
-    <fieldset ng-if="!rule.input.params.advanced.activate">
-      <div class="tabs-wrap form-inline" bind-class-on-scroll offset="50" scroll-class="fix-me-top">
-        <div class="btn-group btn-group-justified btn-goup-tabs">
-          <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.tab == 'if'}" ng-click="rule.tab = 'if'">
-            {{_t('if')}}
-          </a>
-          <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.tab == 'then'}" ng-click="rule.tab = 'then'">
-            {{_t('then')}}
-          </a>
-          <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.tab == 'else'}" ng-click="rule.tab = 'else'">
-            {{_t('else')}}
-          </a>
-        </div>
-      </div>
-
-    </fieldset>
-    <div ng-if="!rule.input.params.advanced.activate">
+  </div>
+  <div class="tabs-wrap form-inline">
+    <!-- Default -->
+    <div class="btn-group btn-group-justified btn-goup-tabs" ng-if="!rule.input.params.advanced.active">
+      <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.tab == 'if'}" ng-click="rule.tab = 'if'">
+        {{_t('if')}}
+      </a>
+      <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.tab == 'then'}" ng-click="rule.tab = 'then'">
+        {{_t('then')}}
+      </a>
+      <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.tab == 'else'}" ng-click="rule.tab = 'else'">
+        {{_t('else')}}
+      </a>
+    </div>
+    <!-- Advanced -->
+    <div class="btn-group btn-group-justified btn-goup-tabs" ng-if="rule.input.params.advanced.active">
+      <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.advanced.tab == 'if'}" ng-click="rule.advanced.tab = 'if'">
+        {{_t('if')}}
+      </a>
+      <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.advanced.tab == 'then'}" ng-click="rule.advanced.tab = 'then'">
+        {{_t('then')}}
+      </a>
+      <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.advanced.tab == 'else'}" ng-click="rule.advanced.tab = 'else'">
+        {{_t('else')}}
+      </a>
+    </div>
+  </div>
+  <form class="form form-page" ng-submit="storeRule(rule.input,true)">
+    <!-- ////////////////////////////////////////// simple  ////////////////////////////////////////// -->
+    <div ng-if="!rule.input.params.advanced.active">
       <!-- ////////////////////////////////////////// if  ////////////////////////////////////////// -->
       <div ng-if="rule.tab == 'if'">
-       <!-- Assigned -->
-       <div ng-if="rule.source.selected.device">
+        <!-- Assigned -->
+        <div ng-if="rule.input.params.simple.triggerEvent.deviceId">
           <legend>{{_t('assigned_devices')}}</legend>
-          <fieldset ng-include="'app/views/automation/rules/rule_id_if_assigned.html'"></fieldset>
-        </div>
+        <fieldset ng-include="'app/views/automation/rules/simple/if_assigned.html'"></fieldset>
+      </div>
       <!-- Available -->
       <legend>{{_t('lb_available_devices')}}</legend>
-      <fieldset ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_if_available.html'"></fieldset>
-      <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
-      <fieldset ng-if="rule.tab == 'then'" ng-include="'app/views/automation/rules/rule_id_then.html'"></fieldset>
-    </div>
-      <div ng-if="rule.tab == 'then'">
-        <!-- Assigned -->
-        <div ng-if="_.size(rule.input.params.targets.elements)">
-          <legend>{{_t('assigned_devices')}}</legend>
-          <fieldset ng-include="'app/views/automation/rules/rule_id_then_assigned.html'"></fieldset>
-        </div>
-        <!-- Available -->
-        <legend>{{_t('lb_available_devices')}}</legend>
-        <fieldset ng-include="'app/views/automation/rules/rule_id_then_available.html'"></fieldset>
-      </div>
-      <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
-      <fieldset ng-if="rule.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_else.html'"></fieldset>
-    </div>
-    <!--  ////////////////////////////////////////// advanced  ////////////////////////////////////////// -->
-    <!-- <legend ng-click="expandElement('ruleAdvanced')">
-        <input type="checkbox" name="advanced_activate" id="advanced_activate" ng-model="rule.input.params.advanced.activate" ng-checked="rule.input.params.advanced.activate" /> <label for="advanced_activate">{{_t('Use advanced settings')}}</label>
-        </legend>
-    <fieldset ng-if="rule.input.params.advanced.activate" ng-include="'app/views/automation/rules/rule_id_advanced.html'"></fieldset> -->
-    <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
-    <fieldset class="submit-entry">
-      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-        <i class="fa fa-reply"></i>
-        <span class="btn-name">{{_t('lb_cancel')}}</span>
-      </button>
-      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-        <i class="fa fa-check"></i>
-        <span class="btn-name">{{_t('lb_save')}}</span>
-      </button>
-    </fieldset>
-  </form>
-  <!-- <pre>{{rule.input|json}}</pre>
-  <pre>{{rule.source.selected|json}}</pre> -->
+    <fieldset data-collapse-all="true" bb-child-elem="rule.target.assignedDevices" ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/simple/if_available.html'"></fieldset>
+  </div>
+  <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
+  <div ng-if="rule.tab == 'then'">
+    <!-- Delay -->
+  <fieldset ng-if="rule.tab == 'then'" ng-include="'app/views/automation/rules/simple/then.html'"></fieldset>
+  <!-- Assigned devices -->
+  <div ng-if="_.size(rule.input.params.simple.targetElements)">
+    <legend>{{_t('assigned_devices')}}</legend>
+  <fieldset data-collapse-all="true" ng-include="'app/views/automation/rules/simple/then_assigned.html'"></fieldset>
+</div>
+<!-- Assigned notifications -->
+<div ng-if="_.size(rule.input.params.simple.sendNotifications)">
+  <legend>{{_t('assigned_notifications')}}</legend>
+<fieldset data-collapse-all="true" ng-include="'app/views/automation/rules/simple/then_assigned_notifications.html'"></fieldset>
+</div>
+<!-- Available -->
+<legend>{{_t('lb_available_devices')}}</legend>
+<fieldset data-collapse-all="true" bb-child-elem="rule.target.assignedDevices" ng-include="'app/views/automation/rules/simple/then_available.html'"></fieldset>
+</div>
+<!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
+<fieldset ng-if="rule.tab == 'else'" ng-include="'app/views/automation/rules/simple/else.html'"></fieldset>
+</div>
+<!-- /end default -->
+<!--  ////////////////////////////////////////// advanced  ////////////////////////////////////////// -->
+<div ng-if="rule.input.params.advanced.active">
+<!--  ////////////////////////////////////////// if  ////////////////////////////////////////// -->
+<div ng-if="rule.advanced.tab == 'if'">
+<!-- Operator -->
+<fieldset ng-include="'app/views/automation/rules/advanced/if.html'"></fieldset>
+<!-- Assigned -->
+<div ng-if="_.size(rule.input.params.advanced.tests)">
+<legend>{{_t('assigned_conditions')}}</legend>
+<fieldset data-collapse-all="true" ng-include="'app/views/automation/rules/advanced/if_assigned.html'"></fieldset>
+</div>
+<!-- Available -->
+<legend>{{_t('available_conditions')}}</legend>
+<fieldset data-collapse-all="true" bb-child-elem="rule.advanced.tests.assignedDevices" ng-include="'app/views/automation/rules/advanced/if_available.html'"></fieldset>
+</div>
+<!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
+<div ng-if="rule.advanced.tab == 'then'">
+<!-- Delay -->
+<fieldset ng-include="'app/views/automation/rules/advanced/then.html'"></fieldset>
+<!-- Assigned devices -->
+<div ng-if="_.size(rule.input.params.advanced.targetElements)">
+<legend>{{_t('assigned_devices')}}</legend>
+<fieldset ng-include="'app/views/automation/rules/advanced/then_assigned.html'"></fieldset>
+</div>
+<!-- Assigned notifications -->
+<div ng-if="_.size(rule.input.params.advanced.sendNotifications)">
+<legend>{{_t('assigned_notifications')}}</legend>
+<fieldset ng-include="'app/views/automation/rules/advanced/then_assigned_notifications.html'"></fieldset>
+</div>
+<!-- Available -->
+<legend>{{_t('lb_available_devices')}}</legend>
+<fieldset bb-child-elem="rule.advanced.target.assignedDevices" ng-include="'app/views/automation/rules/advanced/then_available.html'"></fieldset>
+<!-- Expert settings -->
+<legend>
+<label class="switch">
+<input type="checkbox" ng-model="rule.input.params.advanced.expertSettings" ng-checked="rule.input.params.advanced.expertSettings">
+<span class="slider"></span>
+</label>
+<span class="switch-label">{{_t('further_settings')}}</span>
+</legend>
+<div ng-if="rule.input.params.advanced.expertSettings" ng-include="'app/views/automation/rules/advanced/then_expert.html'"></div>
+</div>
+<!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
+<fieldset ng-if="rule.advanced.tab == 'else'" ng-include="'app/views/automation/rules/advanced/else.html'"></fieldset>
+</div>
+<!-- /end advanced -->
+<!--  //////////////////////////////////// Advanced settings //////////////////////////////////// -->
+<legend>{{_t('advanced_settings')}}</legend>
+<fieldset>
+<label class="switch">
+<input type="checkbox" ng-model="rule.input.params.advanced.active" ng-checked="rule.input.params.advanced.active">
+<span class="slider"></span>
+</label>
+<span class="switch-label">{{rule.input.params.advanced.active ? _t('lb_active'): _t('activeASC')}}</span>
+</fieldset>
+<!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
+<div class="fieldset submit-entry is-grid">
+<span>
+<label class="switch">
+<input type="checkbox" ng-model="rule.input.active" ng-checked="rule.input.active">
+<span class="slider"></span>
+</label>
+<span class="switch-label">{{rule.input.active ? _t('lb_active'): _t('activeASC')}}</span>
+</span>
+<span>
+<button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+<i class="fa fa-reply"></i>
+<span class="btn-name">{{_t('lb_cancel')}}</span>
+</button>
+<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+<i class="fa fa-check"></i>
+<span class="btn-name">{{_t('lb_save')}}</span>
+</button>
+</span>
+</div>
+</form>
+</div>
+<!-- <pre>{{rule.input.params|json}}</pre> -->
+<!-- <pre>{{rule.source.selected|json}}</pre> -->
 </div>
 <!-- /ng-controller -->

@@ -31,7 +31,7 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
             $scope.loading = false;
             // Error message
             if (zwave.state === 'rejected') {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             }
 
             // Success - zwave controller

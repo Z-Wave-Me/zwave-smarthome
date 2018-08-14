@@ -1,52 +1,45 @@
 <!-- Home view -->
-<div ng-controller="ManagementController">
+<section ng-controller="ManagementController">
     <!-- ///////////////////////////// User management ///////////////////////////// -->
-    <div class="accordion-entry" ng-include="'app/views/management/management_user.html'"></div>
+    <section ng-include="'app/views/management/management_user.html'"></section>
 
     <!-- ///////////////////////////// Remote access ///////////////////////////// -->
-    <div class="accordion-entry" ng-include="'app/views/management/management_remote.html'"></div>
+    <section ng-include="'app/views/management/management_remote.html'"></section>
     
     <!-- ///////////////////////////// License key ///////////////////////////// -->
-    <div class="accordion-entry" 
-         ng-if="handleLicense.show"
-         ng-include="'app/views/management/management_licence.html'"></div>
+    <section ng-if="handleLicense.show"
+         ng-include="'app/views/management/management_licence.html'"></section>
     
      <!-- ///////////////////////////// Local Access ///////////////////////////// -->
-     <div class="accordion-entry"
-          ng-include="'app/views/management/management_local.html'"
-          ng-if="cfg.app_type === 'jb'"></div>
+     <section ng-include="'app/views/management/management_local.html'"
+          ng-if="cfg.app_type === 'jb'"></section>
     <!-- ///////////////////////////// Timezone ///////////////////////////// -->
-    <div class="accordion-entry"
-         ng-if="cfg.app_type == 'default' || cfg.app_type === 'popp'"
-         ng-include="'app/views/management/management_timezone.html'"></div>
+    <section ng-if="cfg.app_type == 'default' || cfg.app_type === 'popp'"
+         ng-include="'app/views/management/management_timezone.html'"></section>
       <!-- ///////////////////////////// Timezone for JB ///////////////////////////// -->
-     <div class="accordion-entry"
-
-          ng-include="'app/views/management/management_timezone_jb.html'"
-          ng-if="cfg.app_type === 'jb'"></div>
+     <section ng-include="'app/views/management/management_timezone_jb.html'"
+          ng-if="cfg.app_type === 'jb'"></section>
 
     <!-- ///////////////////////////// Backup & Restore ///////////////////////////// -->
-    <div class="accordion-entry" ng-include="'app/views/management/management_backup_restore.html'" ng-if="!isMobile"></div>
+    <section ng-include="'app/views/management/management_backup_restore.html'" ng-if="!isMobile"></section>
      
      <!-- ///////////////////////////// Factory default  ///////////////////////////// -->
-     <div class="accordion-entry" ng-include="'app/views/management/management_factory.html'"></div>
-
+     <section ng-class="((cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)) ? 'disabled' : ''" ng-include="'app/views/management/management_factory.html'"></section>
     <!-- ///////////////////////////// Firmware update ///////////////////////////// --> 
-    <div class="accordion-entry" 
-            ng-if="!isMobile && !isInArray(['wd','jb'],cfg.app_type)"
-         ng-include="'app/views/management/management_firmware.html'"></div>
-    <div class="accordion-entry" 
-            ng-if="cfg.app_type === 'jb'"
-           ng-include="'app/views/management/management_firmware_jb.html'"></div>
+    <section ng-if="!isInArray(['wd','jb'],cfg.app_type)"
+            ng-class="((cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)) ? 'disabled' : ''"
+         ng-include="'app/views/management/management_firmware.html'"></section>
+    <section ng-if="cfg.app_type === 'jb' && cfg.route.os !== 'PoppApp_Z_Way'"
+           ng-include="'app/views/management/management_firmware_jb.html'"></section>
 
     <!-- ///////////////////////////// App Store access ///////////////////////////// -->
-    <div class="accordion-entry" ng-include="'app/views/management/management_appstore.html'"></div>
+    <section ng-include="'app/views/management/management_appstore.html'"></section>
     
     <!-- ///////////////////////////// Report ///////////////////////////// -->
-    <div class="accordion-entry" ng-include="'app/views/management/management_report.html'"></div>
+    <section ng-include="'app/views/management/management_report.html'"></section>
 
     <!-- ///////////////////////////// Info ///////////////////////////// -->
-    <div class="accordion-entry" ng-include="'app/views/management/management_info.html'"></div>
+    <section ng-include="'app/views/management/management_info.html'"></section>
 
    
 </div> <!-- /ng-controller --> 

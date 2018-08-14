@@ -7,7 +7,7 @@
  * The controller that handles firmware update process.
  * @class ManagementFirmwareController
  */
-myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory, dataService) {
+myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory, dataService,cfg) {
     $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
     $scope.firmwareUpdate = {
         show: false,
@@ -37,7 +37,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
 
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
 
         });
     };
@@ -101,52 +101,6 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
              
         });
     };
-
-    /**
-     * todo: deprecated
-     * update device database
-     */
-//    $scope.updateDeviceDatabase = function() {
-//        var success = [];
-//        var failed = [];
-//        var count = 0;
-//        dataFactory.getApi('update_device_database').then(function(response) {
-//            $scope.loading = false;
-//            res = response.data.data;
-//            if(res !== "" && !_.isEmpty(res)) {
-//                count = res.length;
-//                _.each(res, function(lang) {
-//                    if(lang[Object.keys(lang)[0]]) {
-//                        success.push(Object.keys(lang)[0]);
-//                    } else {
-//                        failed.push(Object.keys(lang)[0]);
-//                    }
-//                });
-//
-//                if(failed.length == 0) {
-//                    // update device database successfull
-//                    dataService.showNotifier({message: $scope._t('devices_success_updated')});
-//                } else {
-//                    // check if all failed
-//                    if(failed.length !== 0 && failed.length === count && success.length === 0) {
-//                        alertify.alertWarning($scope._t('update_device_database_failed'));
-//                    } else {
-//                        strSuccess = success.join(', ');
-//                        strFailed = failed.join(', ');
-//                        alertify.alertWarning($scope._t('update_device_database_failed_for', {
-//                            __success__: strSuccess,
-//                            __failed__: strFailed
-//                        }));
-//                    }
-//                }
-//            } else {
-//                alertify.alertError($scope._t('update_device_database_failed')); // error update device database
-//            }
-//        }, function(error) {
-//            $scope.loading = false;
-//            alertify.alertError($scope._t('update_device_database_failed')); // error update device database
-//        });
-//    };
 
 });
 

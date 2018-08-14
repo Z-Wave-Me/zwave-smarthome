@@ -26,12 +26,16 @@
 @import "base/_header";
 @import "base/_footer";
 @import "base/_navi";
+@import "base/_page_topbar"; 
 @import "base/_widget"; 
 @import "base/_report"; 
 @import "base/_list_panel"; 
 @import "base/_table"; 
+@import "base/_table_responsive"; 
 @import "base/_button"; 
 @import "base/_form";
+@import "base/_input";
+@import "base/_tab"; 
 @import "base/_img";
 @import "base/_imglist";
 @import "base/_definition_list";
@@ -62,9 +66,16 @@
 @import "base/_commands";
 @import "base/_slider";
 @import "base/_rss";
-@import "base/_switch";
 @import "base/_automation"; 
 @import "base/_label"; 
+@import "base/_wizard";
+@import "base/_dots";
+@import "base/_flip";
+@import "base/_flexcard";
+@import "base/_flexgallery";
+@import "base/_flextag";
+@import "base/_security";
+@import "base/_schedule";
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
@@ -78,4 +89,4 @@
 
 /* Media queries
 -------------------------------------------------- */
-@import "base/_media_queries";
+@import "base/_media_queries"; 

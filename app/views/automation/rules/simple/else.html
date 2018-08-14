@@ -1,0 +1,52 @@
+<!-- reverse -->
+<div class="form-group">
+  <label class="switch">
+    <input type="checkbox" ng-model="rule.input.params.reverse" ng-checked="rule.input.params.reverse">
+    <span class="slider"></span>
+  </label>
+  <span class="switch-label">{{_t('activate_reverse_event')}}</span>
+</div>
+
+
+<!-- ////////////////////////////////////////// targetElements  ////////////////////////////////////////// -->
+<section ng-if="rule.input.params.reverse">
+  <!-- delay -->
+  <div class="flex-input-group number-control">
+    <label>{{_t('delay')}}</label>
+      <input class="form-control" id="then_delay" type="number" ng-model="rule.input.params.simple.reverseDelay">
+      <span>{{_t('seconds')}}</span>
+    <bb-help-text trans="_t('help_delay')"></bb-help-text>
+  </div>
+  <div class="list-panel" ng-repeat="d in rule.input.params.simple.targetElements track by $index" ng-if="rule.else.deviceTypes.indexOf(d.deviceType) > -1">
+
+    <!-- body -->
+    <div class="body">
+      <div><img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />&nbsp;{{rule.namespaces[d.deviceId].deviceName}}</div>
+    </div>
+
+
+
+    <!-- control -->
+    <div class="control" ng-switch="d.deviceType">
+      <span ng-if="d.level=='lvl'">{{d.exact}}</span><span ng-if="d.level!='lvl'">{{d.level}}</span>&nbsp;<i class="fa fa-arrow-right"></i>&nbsp;
+      <!-- switchBinary -->
+      <span ng-switch-when="switchBinary" ng-init="d.reverseLevel = getReverseLevel(d)">
+        <strong>{{d.reverseLevel}}</strong>
+      </span>
+      <!-- doorlock -->
+      <span ng-switch-when="doorlock" ng-init="d.reverseLevel = getReverseLevel(d)">
+        <strong>{{d.reverseLevel}}</strong>
+      </span>
+       <!--switchMultilevel -->
+      <span ng-switch-when="switchMultilevel" ng-init="d.reverseLevel = getReverseLevel(d)">
+       <!-- on/off -->
+        <strong ng-if="d.level!='lvl' && rule.options.switchMultilevel.level.indexOf(d.level) > -1">{{d.level == 'off' ? 'on' : 'off'}}</strong>
+        <!-- level -->
+        <span ng-if="d.level=='lvl' || rule.options.switchMultilevel.level.indexOf(d.level) === -1">
+        <input type="number" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
+          ng-model="d.reverseLevel" />
+        </span>
+      </span>
+    </div>
+</div>
+  <section>

@@ -22,13 +22,12 @@
         <dd>{{collection.find.added.timeformat}}</dd>
         <dt>DSK</dt>
         <dd class="clickable" ng-click="showDskForm = !showDskForm">
-          {{collection.find.ZW_QR_DSK}}
-          <i class="fa" ng-class="showDskForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
-          
+        {{collection.find.ZW_QR_DSK}}
+        <i class="fa" ng-class="showDskForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
+        
         </dd>
       </dl>
       <form name="form_dsk_update" ng-show="showDskForm" ng-submit="handleModal('dskModal', $event);updateDsk(collection.find)">
-
         <div class="form-group dsk-input-group" bb-dsk-navigate>
           <span>
             <input id="dsk_1" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[0]"
@@ -63,20 +62,19 @@
             />
           </span>
           <button type="submit" class="btn btn-submit" title="{{_t('lb_update')}}" ng-click_="handleModal('dskModal', $event)">
-            <i class="fa fa-check"></i>
-            <span>{{_t('lb_update')}}</span>
+          <i class="fa fa-check"></i>
+          <span>{{_t('lb_update')}}</span>
           </button>
         </div>
-       
+        
       </form>
     </div>
     <div class="appmodal-footer">
       <!-- Close -->
       <button type="button" class="btn btn-default" ng-click="handleModal('dskModal', $event)">
-        <i class="fa fa-times text-danger"></i>
-        <span class="btn-name">{{_t('lb_close')}}</span>
+      <i class="fa fa-times text-danger"></i>
+      <span class="btn-name">{{_t('lb_close')}}</span>
       </button>
-
     </div>
   </div>
 </div>

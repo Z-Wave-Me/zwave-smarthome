@@ -1,48 +1,56 @@
 <!-- Admin remote view -->
-<h2 class="accordion-entry-title" ng-click="expandElement('remote')">
-    <i class="fa fa-wifi fa-fw"></i> <span ng-bind="_t('remote_access_manage')"></span>
-     <i class="fa accordion-arrow" ng-class="expand.remote  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+<!-- Title -->
+<h2 class="accordion-toggle chevron">
+<!-- Toggle -->
+<button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('remote',true)">
+<span>
+  <i class="fa fa-wifi fa-fw"></i> {{_t('remote_access_manage')}}
+</span>
+</button>
 </h2>
-<div class="accordion-entry-ctrl" ng-class="" ng-if="expand.remote" ng-controller="ManagementRemoteController">
-    <bb-loader></bb-loader>
-    <form name="form_remote" id="form_remote" class="form form-page" ng-if="remoteAccess" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)" novalidate>
-        <fieldset>
-            <p ng-bind="_t('remote_access_info')"></p>
-            <div ng-if="remoteAccess">
-                <div class="form-group">
-                    <!-- Remote access ID -->
-                    <p class="form-control-static">
-                        <span ng-bind="_t('remote_access_id')"></span>: <strong ng-bind="remoteAccess.params.userId"></strong>
-                    </p>
-                    <!-- Remote access password 
-                    <p class="form-inline">
-                        <label>{{_t('remote_access_password')}}: </label>
-                        <input name="remote_password" id="remote_password" type="password" class="form-control" value="" ng-model="remoteAccess.params.pass" />
-                    <bb-help-text trans="_t('keep_password_empty')"></bb-help-text>
-                    </p>-->
-                </div>
-
-                <div class="form-group">
-                    <div>
-                        <label for="remote_access">
-                            <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus" /> 
-                            <span>{{_t('remote_access')}}</span>
-                        </label>
-                        <div class="alert alert-warning" ng-bind="_t('remote_access_warning')" ng-if="!remoteAccess.params.zbwStatus"></div>
-                    </div>
-                    <div>
-                        <label for="remote_support">
-                            <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus" /> 
-                            <span>{{_t('remote_access_support')}}</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="submit-entry">
-            <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
-                <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
-            </button>
-        </fieldset>
-    </form>
+<!-- Content -->
+<div class="accordion" hidden ng-if="expand.remote" ng-controller="ManagementRemoteController">
+  <form name="form_remote" id="form_remote" class="form form-page" ng-if="remoteAccess" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)"
+    novalidate>
+    <fieldset>
+      <p ng-bind="_t('remote_access_info')"></p>
+      <div ng-if="remoteAccess">
+        <div class="form-group">
+          <!-- Remote access ID -->
+          <p class="form-control-static">
+            <span ng-bind="_t('remote_access_id')"></span>:
+            <strong ng-bind="remoteAccess.params.userId"></strong>
+          </p>
+        </div>
+        <div class="form-group">
+          <div>
+            <label for="remote_access">
+              <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus"
+              ng-disabled="(cfg.route.os == 'PoppApp_Z_Way' && connection.remote) || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)"
+              />
+              <span>{{_t('remote_access')}}</span>
+              <span class="help-text" ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.remote) || (cfg.route.os == 'PoppApp_Z_Way' && connection.remote)">
+                <i class="fa text-info fa-info-circle"></i>
+                {{_t('disable_only_on_local_possible')}}
+              </span>
+            </label>
+            <div class="alert alert-warning" ng-bind="_t('remote_access_warning', {__url__:findUrl})" ng-if="!remoteAccess.params.zbwStatus"></div>
+          </div>
+          <div>
+            <label for="remote_support">
+              <input type="checkbox" name="remote_support" value="true" id="remote_support" ng-model="remoteAccess.params.sshStatus" ng-checked="remoteAccess.params.sshStatus"
+              />
+              <span>{{_t('remote_access_support')}}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset class="submit-entry">
+      <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
+      <i class="fa fa-check"></i>
+      <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </fieldset>
+  </form>
 </div>

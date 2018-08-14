@@ -230,7 +230,7 @@ myAppController.controller('AppOnlineDetailController', function ($scope, $route
                 };
 
             } else {
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             }
         }).finally(function () {
             $scope.loading = false;

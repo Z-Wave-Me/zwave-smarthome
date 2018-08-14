@@ -1,0 +1,16 @@
+<!-- Settings -->
+<div class="form-group">
+	<label class="switch">
+		<input type="checkbox" ng-model="security.input.params.times.aktive">
+		<span class="slider"></span>
+	</label>
+	<span class="switch-label">{{_t('security_immediate_activate_schedule')}}</span>
+	<bb-help-text trans="_t('help_security_immediate_activate_schedule')"></bb-help-text>
+</div>
+<div ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'">
+	<!-- <pre>{{security.input.params.schedules|json}}</pre> -->
+	<div id="schedule-disarm" class="schedule"></div>
+	<bb-help-text trans="_t('help_security_schedule')"></bb-help-text>
+</div>
+<div ng-show="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'" ng-include="'app/views/automation/security/time/mobile_schedule.html'"></div>
+<div ng-include="'app/views/automation/security/time/security_modal.html'"></div>

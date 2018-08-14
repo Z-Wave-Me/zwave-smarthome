@@ -2,7 +2,6 @@
   <div class="container">
     <!-- Navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <bb-alert alert="collection.alert"></bb-alert>
     <div id="table_mobile">
       <table class="table">
         <tbody ng-repeat="v in collection.all track by $index">
@@ -16,11 +15,11 @@
               <div class="btn-group" ng-show="v.isSmartStart">
                 <!-- update  -->
                 <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="collection.find = v;handleModal('dskModal', $event)">
-                  <i class="fa fa-info-circle text-primary"></i>
+                <i class="fa fa-info-circle text-primary"></i>
                 </button>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v,_t('lb_delete_confirm'))">
-                  <i class="fa fa-trash text-danger"></i>
+                <i class="fa fa-trash text-danger"></i>
                 </button>
               </div>
             </td>
@@ -46,15 +45,15 @@
                 </div>
               </div>
               <div class="dsk" data-dsk-last-pos="{{v.ZW_QR_DSK.substring(35, 41)}}">
-                  <span>{{v.ZW_QR_DSK}}</span>
+                <span>{{v.ZW_QR_DSK}}</span>
               </div>
             </td>
           </tr>
-        </tbody>     
+        </tbody>
       </table>
     </div>
     <div id="table_desktop">
-      <table class="table">    
+      <table class="table">
         <tbody>
           <tr ng-repeat="v in collection.all track by $index">
             <!-- time -->
@@ -63,9 +62,8 @@
             </td>
             <!-- DSK -->
             <td data-title="DSK">
-              <span>{{v.ZW_QR_DSK}}</span> 
+              <span>{{v.ZW_QR_DSK}}</span>
             </td>
-
             <!-- state -->
             <td class="text-center" data-title="">
               <div ng-show="v.isSmartStart">
@@ -87,14 +85,14 @@
             </td>
             <!-- action -->
             <td class="td-action" data-title="">
-              <div class="btn-group" ng-show="v.isSmartStart">
+              <div class="btn-group">
                 <!-- update  -->
-                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="collection.find = v;handleModal('dskModal', $event)">
-                  <i class="fa fa-info-circle text-primary"></i>
+                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-show="v.isSmartStart" ng-click="collection.find = v;handleModal('dskModal', $event)">
+                <i class="fa fa-info-circle text-primary"></i>
                 </button>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="v.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
-                  <i class="fa fa-trash text-danger"></i>
+                <i class="fa fa-trash text-danger"></i>
                 </button>
               </div>
             </td>
@@ -104,6 +102,5 @@
     </div>
   </div>
   <div ng-include="'app/views/smartstart/smartstart_list_modal.html'"></div>
-
 </div>
 <!-- /ng-controller -->

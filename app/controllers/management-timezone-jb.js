@@ -7,7 +7,7 @@
  * The controller that handles a timezone for JB.
  * @class ManagementTimezoneJBController
  */
-myAppController.controller('ManagementTimezoneJBController', function ($scope, $timeout, dataFactory, dataService) {
+myAppController.controller('ManagementTimezoneJBController', function ($scope, $timeout, dataFactory, dataService,cfg) {
     $scope.managementTimezone = {
         labels: {},
         enums: {}
@@ -27,7 +27,7 @@ myAppController.controller('ManagementTimezoneJBController', function ($scope, $
             console.log($scope.managementTimezone)
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
     };
     $scope.loadModule();

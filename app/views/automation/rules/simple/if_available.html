@@ -1,0 +1,20 @@
+
+<!-- Available -->
+<section class="accordion-wrap available-devices" ng-repeat="r in rule.rooms track by $index" ng-hide="!rule.source.devicesInRoom[r.id]">
+   <!-- Title -->
+   <h2 class="accordion-toggle chevron">
+      <button type="button" aria-expanded="false" bb-accordion>
+        <span>
+          <img class="navi-img" ng-src="{{r.img_src}}" alt="img" />&nbsp;{{r.title}}
+        </span>
+      </button>
+    </h2>
+  <!-- Content -->
+ <div class="accordion" hidden>
+    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in rule.source.devices | orderBy:'deviceName' track by $index" ng-if="d.location == r.id && d.deviceId != rule.input.params.simple.triggerEvent.deviceId" ng-click="assignSourceDevice(d)">
+      <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+      {{d.deviceName|cutText:true:20}}
+      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+    </a>
+  </div>
+</section>

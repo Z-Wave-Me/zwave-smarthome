@@ -1,0 +1,9 @@
+/* Page topbar
+-------------------------------------------------- */
+.page-topbar {
+  @include displayFlex();
+  @include justifyContent(space-between);
+  @include alignItems(center);
+  padding-bottom: $spacing-half;
+  border-bottom: dotted 1px $app-border-color;
+}

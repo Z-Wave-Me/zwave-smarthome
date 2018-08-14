@@ -133,6 +133,58 @@
   -o-text-overflow: ellipsis;   /* Opera */
 
 }
+// Truncate string with ellipsis
+@mixin truncateString($width) {
+  width: $width;
+  white-space: nowrap;
+  /* force single line */
+  overflow: hidden;
+  /* don't show excess chars */
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  /* Opera */
+}
+
+// Display flex
+@mixin displayFlex() {
+  display: -webkit-flex;
+  display: flex;
+}
+
+// Flex direction
+@mixin flexDirection($direction) {
+  -webkit-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+// Flex grow
+@mixin flexGrow($grow) {
+  flex-grow: $grow;
+}
+
+// Justify content
+@mixin justifyContent($justify) {
+  -webkit-justify-content: $justify;
+  justify-content: $justify;
+}
+
+// Align content
+@mixin alignContent($align) {
+  -webkit-align-content: $align;
+  align-content: $align;
+}
+
+// Align items
+@mixin alignItems($align) {
+  -webkit-align-items: $align;
+  align-items: $align;
+}
+
+// Flex flow
+@mixin flexFlow($flow) {
+  -webkit-flex-flow: $flow;
+  flex-flow: $flow;
+}
 
 // Media queries
 @mixin mediaQueries($media) {

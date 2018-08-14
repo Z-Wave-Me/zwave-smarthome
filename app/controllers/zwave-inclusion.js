@@ -7,13 +7,13 @@
  * The controller that handles Z-Wave device inclusion process.
  * @class ZwaveInclusionController
  */
-myAppController.controller('ZwaveInclusionController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, _) {
+myAppController.controller('ZwaveInclusionController', function ($scope, $q, $routeParams, $filter, $interval, $timeout, $route, $location, dataFactory, dataService, cfg,_) {
     $scope.zwaveInclusion = {
         cancelModal: false,
         cfg: {
             checkInterviewTimeout: 3000, // miliseconds
-            checkInterviewRepeat: 7, // times
-            inexTimeout: 30000 // Inclusion/Exclusion timeout - miliseconds
+            checkInterviewRepeat: 40, // times
+            inexTimeout: 120000 // Inclusion/Exclusion timeout - miliseconds
         },
         device: {
             hasBattery: false,
@@ -101,7 +101,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             // Error message
             if (ZWaveAPIData.state === 'rejected') {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
 

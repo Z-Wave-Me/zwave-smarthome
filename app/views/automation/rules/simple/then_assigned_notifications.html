@@ -1,0 +1,16 @@
+<!-- ////////////////////////////////////////// sendNotifications ////////////////////////////////////////// -->
+<section class="accordion-wrap" ng-repeat="n in rule.input.params.simple.sendNotifications track by $index" ng-init="model=n">
+  <h2 class="accordion-toggle ellipsis">
+  <!-- Title -->
+  <button type="button" aria-expanded="false" bb-accordion>
+  <span ng-if="rule.namespaces[n.target]"><img class="navi-img" ng-src="{{rule.namespaces[n.target].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />{{rule.namespaces[n.target].deviceName}}</span>
+  <span ng-if="!rule.namespaces[n.target]"><img class="navi-img" ng-src="{{cfg.img.icons + 'alarm-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />{{n.target}}</span>
+  </button>
+  <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignTargetNotification($index,n)">
+    <i class="fa fa-times text-danger"></i>
+  </span>
+  </h2>
+  <!-- Content -->
+  <div class="accordion" ng-include="'app/views/automation/rules/inputs/notification.html'" hidden></div>
+</section>
+<!-- <pre>{{rule.input.params.targets.elements|json}}</pre> -->

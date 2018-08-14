@@ -1,0 +1,62 @@
+<!-- The schedule -->
+<section class="automation" ng-controller="SecurityIdController">
+  <bb-loader></bb-loader>
+  <h2>{{_t('title_security')}}</h2>
+  <bb-alert alert="security.alert"></bb-alert>
+  <div class="tab-wrap" >
+    <!-- Tabs  -->
+    <div class="btn-group btn-group-justified btn-goup-tabs" role="tablist" ng-include="'app/views/automation/security/tabs.html'"></div>
+    <!-- Form -->
+    <form class="form form-page" ng-submit="storeInstance(security.input,true)">
+      <!-- //////////////////////////////////////////  Conditions ////////////////////////////////////////// -->
+      <div id="tabpanel1" role="tabpanel">
+      <fieldset ng-include="'app/views/automation/security/conditions/conditions.html'"></fieldset>
+    </div>
+    <!-- ////////////////////////////////////////// Actions  ////////////////////////////////////////// -->
+    <div id="tabpanel2" role="tabpanel" hidden>
+      <!-- Alarm -->
+    <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
+    <!-- Silent alarm -->
+  <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/silent_alarm.html'"></fieldset>
+  <!-- Arming -->
+<fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/arming.html'"></fieldset>
+<!-- Disarming -->
+<fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/disarming.html'"></fieldset>
+<!-- Reset -->
+<fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
+</div>
+<!-- ////////////////////////////////////////// Time triggering  ////////////////////////////////////////// -->
+<div id="tabpanel3" role="tabpanel" hidden>
+<fieldset ng-include="'app/views/automation/security/time/time_schedule.html'"></fieldset>
+</div>
+<!-- ////////////////////////////////////////// Dis-Arm by device  ////////////////////////////////////////// -->
+<div id="tabpanel4" role="tabpanel" hidden>
+<fieldset ng-include="'app/views/automation/security/bydevice/bydevice.html'"></fieldset>
+</div>
+<!-- Submit  -->
+<div class="fieldset submit-entry is-grid">
+<span>
+<label class="switch">
+<input type="checkbox" ng-model="security.input.active" ng-disabled="!security.devicesAvailable">
+<span class="slider"></span>
+</label>
+<span class="switch-label">{{security.input.active ? _t('lb_active'): _t('activeASC')}}</span>
+</span>
+<span>
+<a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
+<i class="fa fa-reply"></i>
+<span class="btn-name">{{_t('lb_cancel')}}</span>
+</a>
+<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit" ng-disabled="!security.devicesAvailable">
+<i class="fa fa-check"></i>
+<span class="btn-name">{{_t('lb_save')}}</span>
+</button>
+</span>
+</div>
+</form>
+</div>
+<!-- Tabs  -->
+<!-- <div ng-include="'app/views/automation/security/tabs.html'"></div> -->
+<!-- <pre>{{security.input|json}}</pre> -->
+</div>
+<!-- /ng-controller -->

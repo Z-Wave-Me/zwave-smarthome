@@ -1,53 +1,152 @@
 /* Automation
 -------------------------------------------------- */
-.automation-report{
-    //margin-bottom: $spacing-double;
-    //padding: 0 $spacing-double;
-    &.app-row-report{
-        border: 0;
-        .report-entry{
-            
-            .report-col{
-               border-bottom: dotted 1px $app-border-color;
-               vertical-align: top;
-                //padding: 0;
-                //width: 33%;
-               
-            }
-            .report-ctrl{
-                min-width: 50%;
-            }
-            input[type=radio]{
-                margin: 0 $spacing-half 0;
-            }
-        }
+/* Gallery
+-------------------------------------------------- */
 
-        .form-collapsed{
-          background-color: #F6F6F6;
-          padding: $spacing;
-          margin-top: $spacing;
-          .form-group{
-            //border: 0;
-            &:last-child{
-              border: 0;
-              margin: 0;
-              padding: 0; 
+.automations {
+  &.flexgallery {
+    
+    @include mediaQueries(min-large) {
+      margin: 0px 100px;
+    }
+    >* {
+      @include mediaQueries(min-esmall) {
+        flex-basis: 33.3333%;
+      }
+      /*@include mediaQueries(min-large) {
+        flex-basis: 25%;
+        
+      }*/
+    }
+  }
+}
+
+//.automation {
+  .accordion-wrap {
+    position: relative;
+    .label {
+      position: absolute;
+      top: -$spacing;
+      left: 0;
+      &.index_0 {
+        display: none;
+      }
+    }
+    .accordion-toggle {
+      display: flex;
+      align-items: center;
+      font-size:110%;
+      border-bottom: dotted 1px $accordion-border-color;
+
+      .is-legend {
+        display: block;
+      }
+      > button {
+        padding: $spacing;
+        border: none;
+        .accordion-title {
+          padding: 5px 0;
+          .room-title {
+            display: block;
+            padding-bottom: 3px; 
+            font-size: 80%;
+          }
+          .device-title {
+            display: block;
           }
         }
-          
+        &.no-toggle {
+          cursor: text !important;
+          .navi-img{
+            margin-right: $spacing;
+            width: 32px;
+            height: 32px;
+          }
+          &::after {
+            content: "";
+          }
         }
+        .navi-img{
+          margin-right: $spacing;
+          width: 32px;
+          height: 32px;
+        }
+        em {
+          font-size: 80%;
+        }
+      }
+      .no-toggle {
+        padding: $spacing;
+        width: 100%;
+        font-weight: normal;
+        .navi-img{
+            margin-right: $spacing;
+            width: 32px;
+            height: 32px;
+          }
+        em {
+          font-size: 80%;
+        }
+      }
+      /*  &:last-child {
+        margin-bottom: $spacing;
+      } */
     }
-}
-
-/* Schedules
--------------------------------------------------- */
-.table-calendar{
-  .first-col{
-    width: 80px;
-    background-color: $app-bcg-info;
+    .accordion {
+      //padding: $spacing;
+     
+      border-bottom: 0;
+      .form-group {
+        border: 0;
+        margin-bottom: $spacing;
+        padding: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      /* .accordion {
+        // background-color: lighten(#F6F6F6,10%);
+        border: solid 1px darken(#F6F6F6, 20%)
+      } */
+    }
+    &.no-items {
+      .accordion-toggle {
+        opacity: 0.7;
+        >button {
+          cursor: text;
+          padding: $spacing 0;
+          &::after {
+            content: "" !important;
+          }
+          &[aria-expanded="true"] {
+            border-bottom: dotted 1px $accordion-border-color;
+          }
+        }
+      }
+      .accordion {
+        display: none;
+      }
+    }
+    &.nested {
+      legend,
+      .legend {
+        padding: $spacing-double $spacing $spacing-half 0;
+        font-size: 110%;
+      }
+      .accordion {
+       // background: transparent;
+        .accordion {
+          margin-bottom: $spacing-double;
+        }
+      }
+    }
+    &.edit-me{
+      .accordion-toggle{
+        button{
+          font-weight: bold;
+        }
+      }
+    }
+    
   }
- th{
-   text-align: center;
- }
-}
-
+//}

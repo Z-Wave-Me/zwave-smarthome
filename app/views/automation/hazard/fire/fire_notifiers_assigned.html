@@ -1,0 +1,24 @@
+<!-- Assigned -->
+<div class="panel-wrap">
+  <div class="list-panel" ng-repeat="d in hazardProtection.fire.input.params.sendNotifications track by $index">
+    <!-- img -->
+    <figure class="img wh-32x32 clickable" ng-click="expandElement('hazardProtection_fire_' + $index)" >
+      <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
+    </figure>
+    <div class="body clickable" ng-click="expandElement('hazardProtection_fire_' + $index)">
+      <div>{{_t('notification')}} {{$index+1}}</div>
+    </div>
+    <div class="control">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['hazardProtection_fire_' + $index]||false}}" ng-click="expandElement('hazardProtection_fire_' + $index)">
+      </button>
+      <!-- delete -->
+      <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignNotification($index,d.target, 'fire')">
+      <i class="fa fa-times text-danger"></i>
+      </button>
+    </div>
+    <div class="control-collapsable" ng-class="expand['hazardProtection_fire_' + $index] ? 'expand-true': 'expand-false'">
+      <div ng-include="'app/views/automation/hazard/inputs/notification.html'"></div>
+    </div>
+  </div>
+</div>

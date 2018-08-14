@@ -6,10 +6,10 @@
 </div>
 <!-- List -->
 <div class="app-entry-online" ng-if="_.size(dataHolder.onlineModules.collection) > 0">
-    <div class="app-entry-cat clearfix">
+    <div class="app-entry-cat">
         <div class="app-entry-title">
             <h2>
-               <a class="btn btn-default btn-sm btn-text" href="#apps/online" ><i class="fa fa-chevron-left"></i></a> &nbsp;
+               <a class="btn btn-default btn-sm btn-text" href="#apps/online"><i class="fa fa-chevron-left"></i></a> &nbsp;
                 <span ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
                 <span ng-if="dataHolder.onlineModules.filter.q">{{dataHolder.onlineModules.filter.q|cutText:true:30}}</span>
                 <span ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>

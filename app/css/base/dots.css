@@ -1,0 +1,39 @@
+/* line 2, E:/GitHub/zwave-smarthome/app/sass/base/dots.scss */
+.dots {
+  z-index: 15;
+  width: 100%;
+  padding-left: 0;
+  text-align: center;
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+/* line 10, E:/GitHub/zwave-smarthome/app/sass/base/dots.scss */
+.dots:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+/* line 17, E:/GitHub/zwave-smarthome/app/sass/base/dots.scss */
+.dots li {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  margin: 1px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: #a6a6a6;
+  border-top: solid 1px #a6a6a6;
+  border-radius: 10px;
+}
+
+/* line 29, E:/GitHub/zwave-smarthome/app/sass/base/dots.scss */
+.dots .active {
+  background-color: #4e794e;
+  border-top: solid 1px #4e794e;
+}
+
+/*# sourceMappingURL=../../css/base/dots.map */

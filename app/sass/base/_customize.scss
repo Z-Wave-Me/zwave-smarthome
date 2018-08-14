@@ -1,136 +1,249 @@
 /* Customize - skins and icons
 -------------------------------------------------- */
-/* Variables
--------------------------------------------------- */
-//$customize-img: 120px;
-//$customize-detail-img: 300px;
 
-//$customize-widget-col-h: 120px;
-//$customize-icon-preview-h: 300px;
-//$customize-modal-content-h: 600px;
-
-/* Widget
+/* Gallery
 -------------------------------------------------- */
-.widget-entry-customize{
-    .widget-entry-in{
-        min-height: 120px;
-        height: auto;
-        position: static;
+
+.customize {
+  &.flexgallery {
+    >* {
+      padding: $spacing-half;
+      @include mediaQueries(min-small) {
+        flex-basis: 33.3333%;
+      }
+      @include mediaQueries(min-large) {
+        flex-basis: 25%;
+      }
+      figure {
+        .header {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 24px;
+          margin: $spacing $spacing 0 0;
+          .is-icon {
+            font-size: 24px;
             text-align: center;
-        // Media queries
-        @include mediaQueries(min-small) {
-            height: 250px;
-            
-        }
-        .widget-img{
-            position: static;
-            .customize-preview-img{
-                width: 100%;
-                border: solid 4px $app-border-color;
-                // Media queries
-                @include mediaQueries(min-small) {
-                     max-width: 300px;
-                    max-height: 150px;
-                }
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            display: inline-block;
+            color: lighten($app-body-color, 40%);
+            background-color: #fff;
+            border-radius: 50%;
+            margin: $spacing 0 0 $spacing;
+            cursor: pointer;
+            @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+            @include mediaQueries(min-medium) {
+              margin: $spacing $spacing 0 0;
             }
-
+          }
         }
-        .widget-header{
-            display: none;
+        figcaption{
+          cursor: pointer;
         }
-        .widget-content{
-            margin: $spacing 0 0 0;
-        }
-        .bottom-aligner{
-            display: none;
-        }
-        .widget-footer{
-            margin: $spacing 0 0 0;
-            .btn-name{
-                display: none !important;
-            }
-
-        }
-        .widget-ctrl{
-            float: none;
-            width: 100%;
-            &.ctrl-left{
-                display: none;
-            }
-            &.ctrl-right{
-                float: none;
-                text-align: center;
-                .btn-group{
-                    float: none;
-                }
-            }
-        }
+      }
     }
+  }
 }
 
-.app-row-customize{
-    .widget-warning{
-        .widget-img{
-            opacity: 0.4;
-            filter: alpha(opacity=40);
+/* Card
+-------------------------------------------------- */
 
-        }
-        .widget-title{
-            h3{
-                color: lighten($app-heading-color,40%) !important;
-            }
-        }
+.card-customize {
+  width: 100%;
+  padding-top: $spacing;
+  @include mediaQueries(min-esmall) {
+    padding: $spacing-half;
+    border: solid 1px $app-border-color;
+    @include appFloat(left);
+    width: 50%;
+  }
+  @include mediaQueries(min-small) {
+    width: 33.3333%;
+  }
+  @include mediaQueries(min-large) {
+    width: 25%;
+  }
+  .card-customize-in {
+    height: 250px;
+    margin: $spacing-half;
+    position: relative;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #f2f2f2;
+    /* -webkit-mask: -webkit-linear-gradient( black, black 10%, transparent);
+    webkit-mask: linear-gradient( black, black 10%, transparent);
+    mask: linear-gradient( black, black 10%, transparent); */
+    /* Card icon */
+    .card-header {
+      @include mediaQueries(min-medium) {
+        text-align: right;
+      }
     }
+    /* Card icon */
+    .card-icon {
+      font-size: 24px;
+      text-align: center;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      display: inline-block;
+      color: lighten($app-body-color, 40%); //background-color: rgba(255, 255, 255, 0.8);
+      background-color: #fff;
+      border-radius: 50%;
+      margin: $spacing 0 0 $spacing;
+      cursor: pointer;
+      @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
+      @include mediaQueries(min-medium) {
+        margin: $spacing $spacing 0 0;
+      }
+    }
+    .card-footer {
+      //background-color:#fff;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.7);
+      padding: $spacing;
+      font-size: 110%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
+    &.widget-warning {
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+    }
+  }
+}
+
+.app-row-customize {
+  .widget-warning {
+    .widget-img {
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+    }
+    .widget-title {
+      h3 {
+        color: lighten($app-heading-color, 40%) !important;
+      }
+    }
+  }
 }
 
 /* Detail
 -------------------------------------------------- */
-.customize-detail{
-    padding: $spacing;
-    margin: $spacing 0;
+
+.customize-detail {
+  padding: $spacing;
+  margin: $spacing 0;
+  @include mediaQueries(min-small) {
     max-height: 600px;
     overflow: auto;
+  }
 }
-.customize-detail-title{
-    font-weight: bold;
-    font-size: 110%;
+
+.customize-detail-title {
+  font-weight: bold;
+  font-size: 110%;
 }
-.customize-detail-img{
-    padding: $spacing 0;
-    text-align: center;
-     border-top: solid 1px $app-border-color;
+
+.customize-detail-img {
+  padding: $spacing 0;
+  text-align: center;
+  border-top: solid 1px $app-border-color;
 }
-.customize-image-detail{
-    width: 100%;
-    //width: 400px;
-     //height: 200px;
-    border: solid 4px $app-border-color;
+
+.customize-image-detail {
+  width: 100%; //width: 400px;
+  //height: 200px;
+  border: solid 4px $app-border-color;
 }
-.customize-detail-perex{
-    margin: $spacing 0;
+
+.customize-detail-perex {
+  margin: $spacing 0;
 }
-.customize-icon-list{
-    border-top: solid 1px $app-border-color;
-    height: 300px;
-    overflow: scroll;
-    .customize-icon-preview {
-        display: inline-block;
-        margin: $spacing;
-    }
+
+.customize-icon-list {
+  border-top: solid 1px $app-border-color; //max-height: 600px;
+  //overflow: scroll;
+  .customize-icon-preview {
+    display: inline-block;
+    margin: $spacing;
+  }
 }
 
 /* Images
 -------------------------------------------------- */
-.customize-icon-preview{
-    max-width: 64px;
-    max-height: 64px;
-}
-.imglist-img{
-    max-width: 40px;
-    max-height: 40px;
-}
-.imglist-img-preview{
-    max-width: 64px;
-    max-height: 64px;
+
+.customize-icon-preview {
+  max-width: 64px;
+  max-height: 64px;
 }
 
+.imglist-img {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.imglist-img-preview {
+  max-width: 64px;
+  max-height: 64px;
+}
+
+/* DEPRECATED - Widget
+-------------------------------------------------- */
+
+.widget-entry-customize {
+  .widget-entry-in {
+    min-height: 120px;
+    height: auto;
+    position: static;
+    text-align: center; // Media queries
+    @include mediaQueries(min-small) {
+      height: 250px;
+    }
+    .widget-img {
+      position: static;
+      .customize-preview-img {
+        width: 100%;
+        border: solid 4px $app-border-color; // Media queries
+        @include mediaQueries(min-small) {
+          max-width: 300px;
+          max-height: 150px;
+        }
+      }
+    }
+    .widget-header {
+      display: none;
+    }
+    .widget-content {
+      margin: $spacing 0 0 0;
+    }
+    .bottom-aligner {
+      display: none;
+    }
+    .widget-footer {
+      margin: $spacing 0 0 0;
+      .btn-name {
+        display: none !important;
+      }
+    }
+    .widget-ctrl {
+      float: none;
+      width: 100%;
+      &.ctrl-left {
+        display: none;
+      }
+      &.ctrl-right {
+        float: none;
+        text-align: center;
+        .btn-group {
+          float: none;
+        }
+      }
+    }
+  }
+}

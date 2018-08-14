@@ -1,0 +1,75 @@
+<!-- operator -->
+<div class="form-group">
+  {{_t('help_nested_condition')}}
+</div>
+<!-- operator -->
+<div class="form-group">
+  <label class="switch">
+    <input type="checkbox" ng-model="model.logicalOperator" ng-true-value="or" ng-false-value="and">
+    <span class="slider"></span>
+  </label>
+  <span class="switch-label">
+    {{_t('lb_'+ model.logicalOperator)}}
+    <em ng-if="model.logicalOperator == 'and'">({{_t('operator_and_info')}})</em>
+    <em ng-if="model.logicalOperator == 'or'">({{_t('operator_or_info')}})</em>
+  </span>
+  <bb-help-text trans="_t('help_advanced_rule')"></bb-help-text>
+</div>
+<!-- assigned -->
+<legend>{{_t('assigned_conditions')}}</legend>
+<div data-collapse-all="true">
+  <section class="accordion-wrap" ng-repeat="n in d.tests track by $index" ng-init="model=n">
+    <span class="label label-default index_{{$index}}">{{_t('lb_'+ rule.input.params.advanced.tests[testIndex].logicalOperator)}}</span>
+    <h2 class="accordion-toggle ellipsis">
+    <!-- Title -->
+    <button type="button" aria-expanded="false" bb-accordion ng-class="{'no-toggle': n.type == 'toggleButton'}" ng-switch="n.type">
+    <span ng-switch-when="nested">{{_t('nested')}}</span>
+    <span ng-switch-when="time">{{_t('lb_time')}}&nbsp;<em>[{{n.operator}}&nbsp;{{n.level}}]</em></span>
+    <span ng-switch-default>
+      <span ng-if="!rule.namespaces[n.deviceId].deviceName"><i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.deviceId}})</span>
+      <span ng-if="rule.namespaces[n.deviceId].deviceName">{{rule.namespaces[n.deviceId].deviceName}}&nbsp;
+        <em ng-if="n.operator">[{{n.operator}}&nbsp;{{n.level}}]</em>
+        <em ng-if="!n.operator && _.isNumber(n.level)">[{{n.level}}]</em>
+        <em ng-if="!n.operator && !_.isNumber(n.level)">[{{_t(n.level)}}]</em>
+        &nbsp;-&nbsp;<em>{{rule.namespaces[n.deviceId].locationName}}</em>
+      </span>
+    </span>
+    </button>
+    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTestNested($index,n.deviceId,testIndex)">
+      <i class="fa fa-times text-danger"></i>
+    </span>
+    </h2>
+    <!-- Content -->
+    <div class="accordion" ng-include="'app/views/automation/rules/inputs/advanced/'+ n.type +'.html'" ng-if="n.type != 'toggleButton'"
+    hidden></div>
+    <!-- <div class="accordion" bb-remove-attr="{{expand['test_nested_' + testIndex + $index] ? 'hidden': ''}}" ng-include="'app/views/automation/rules/inputs/'+ n.type +'.html'" ng-if="n.type != 'toggleButton'"
+    hidden></div> -->
+  </section>
+</div>
+<!-- devices -->
+<legend>{{_t('available_conditions')}}</legend>
+<div data-collapse-all="true" bb-child-elem_="rule.advanced.tests.assignedDevices">
+  <section class="accordion-wrap _available-devices" ng-repeat="r in rule.rooms track by $index" ng-if="rule.advanced.tests.devicesInRoom[r.id]">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+    <button type="button" aria-expanded="false" bb-accordion>
+    <span>
+      <img class="navi-img" ng-src="{{r.img_src}}" alt="img" />&nbsp;{{r.title}}
+    </span>
+    </button>
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden>
+      <button type="button" class="btn btn-default btn-tag" title="{{o.deviceName}}" ng-repeat="o in rule.advanced.tests.availableDevices track by $index" ng-if="o.location == r.id && rule.advanced.tests.assignedDevices.indexOf(o.deviceId) === -1" ng-hide="o.deviceId == rule.input.params.simple.triggerEvent.deviceId" ng-click="assignAdvancedTestNestedDevice(o,testIndex)"><img class="navi-img" ng-src="{{rule.namespaces[o.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+      {{o.deviceName|cutText:true:20}}&nbsp;<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      </button>
+    </div>
+  </section>
+</div>
+<!-- time -->
+<section class="section">
+  <button type="button" class="btn btn-default btn-tag" ng-click="assignAdvancedTestNestedCondition('time',testIndex)">
+  {{_t('testTime')}}&nbsp;<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+  </button>
+  </dection>
+  <!-- <pre>{{d|json}}</pre> -->

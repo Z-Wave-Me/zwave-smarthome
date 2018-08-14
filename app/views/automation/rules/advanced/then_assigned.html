@@ -1,0 +1,37 @@
+<!-- ////////////////////////////////////////// targetElements  ////////////////////////////////////////// -->
+<section class="accordion-wrap" ng-repeat="d in rule.input.params.advanced.targetElements track by $index" ng-init="model=d;inputType='advanced'">
+  <h2 class="accordion-toggle ellipsis">
+  <!-- Deleted device -->
+  <span class="no-toggle text-danger" ng-show="!rule.namespaces[d.deviceId]">
+    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{d.deviceId}})
+  </span>
+  <!-- <pre>{{targetModel|json}}</pre> -->
+  <!-- Title -->
+  <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'" ng-hide="!rule.namespaces[d.deviceId]">
+  <span ng-if="rule.namespaces[d.deviceId].deviceName && !_.isObject(d.level)">
+    <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+    {{rule.namespaces[d.deviceId].deviceName}}&nbsp;
+    [<em>{{_t(d.level)}}</em><em ng-if="d.level == 'lvl'">&nbsp;{{d.exact}}</em>]&nbsp;-&nbsp;
+    <em>{{rule.namespaces[d.deviceId].locationName}}</em>
+  </span>
+  <!-- SwitchRGBW -->
+  <span ng-if="rule.namespaces[d.deviceId].deviceName && _.isObject(d.level)">{{rule.namespaces[d.deviceId].deviceName}}&nbsp;
+    <span  class="color-picker-show" style="background-color: {{d.level|setRgbColors}};">&nbsp;</span>&nbsp;-&nbsp;
+    <em>{{rule.namespaces[d.deviceId].locationName}}</em>
+  </span>
+  </button>
+  <!-- NO Toggle -->
+  <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'" ng-hide="!rule.namespaces[d.deviceId]">
+    <span>
+      <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+      {{rule.namespaces[d.deviceId].deviceName}}
+    </span>
+  </span>
+  <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTargetDevice($index,d.deviceId)">
+    <i class="fa fa-times text-danger"></i>
+  </span>
+  </h2>
+  <!-- Content -->
+  <div class="accordion" ng-init="if=false" ng-include="'app/views/automation/rules/inputs/advanced/'+ d.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
+  hidden></div>
+</section>

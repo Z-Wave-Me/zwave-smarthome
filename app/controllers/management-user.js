@@ -6,7 +6,7 @@
  * The controller that renders the list of users.
  * @class ManagementUserController
  */
-myAppController.controller('ManagementUserController', function ($scope, $cookies, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserController', function ($scope, $cookies, dataFactory, dataService, myCache,cfg) {
     $scope.userProfiles = {
         all: false,
         orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
@@ -21,7 +21,7 @@ myAppController.controller('ManagementUserController', function ($scope, $cookie
             $scope.loading = false;
         }, function (error) {
             $scope.loading = false;
-            alertify.alertError($scope._t('error_load_data'));
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
     };
     $scope.loadProfiles();
@@ -53,17 +53,17 @@ myAppController.controller('ManagementUserController', function ($scope, $cookie
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
-
-
 });
 
 /**
  * The controller that renders and handles user detail.
  * @class ManagementUserIdController
  */
-myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache) {
+myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache,cfg) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.show = true;
@@ -106,7 +106,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             // Error message
             if (profile.state === 'rejected') {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 $scope.show = false;
                 return;
             }

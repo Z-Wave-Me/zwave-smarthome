@@ -1,125 +1,100 @@
 <!-- Instances widget view -->
-<!-- Instances widget view -->
 <!-- No search result -->
 <div class="alert alert-warning" ng-if="dataHolder.instances.noSearch">
-    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" +
-    dataHolder.instances.filter.q + "\""})}}
+  <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + dataHolder.instances.filter.q + "\""})}}
 </div>
 <!-- List -->
-<div ng-repeat="(indexG,g) in dataHolder.instances.groups track by indexG"
-     ng-init="instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]"
-     ng-if="dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1">
-    <!-- ----------------------------------- Accordion ----------------------------------- -->
-    <div class="accordion-entry" ng-if="instanveModuleCnt > 1">
-        <!--  Accordion header -->
-        <h2 class="accordion-entry-title"
-            ng-click="expandElement(g.moduleId)"
-            ng-init="expand[g.moduleId] = dataHolder.instances.expanded">
-            <!-- image -->
-            <img class="report-img-s" ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-            <!-- Title -->
-            <span class="accordion-title-text">{{dataHolder.modules.ids[g.moduleId].title}} <span class="item-cnt">({{dataHolder.instances.cnt.modules[g.moduleId]}})</span>
-            <!-- Arrow -->
-            <i class="fa accordion-arrow" ng-class="expand[g.moduleId] ? 'fa-chevron-up':'fa-chevron-down'"></i>
-        </h2>
-        <!-- Accordion body -->
-        <div class="accordion-entry-ctrl instance-entry-multiple" ng-class="" ng-if="expand[g.moduleId]">
-            <!-- Instances -->
-            <div class="app-row app-row-report clearfix">
-                <div class="report-entry bcg-active"
-                    ng-repeat="(indexA,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexA"
-                     ng-class="v.active ? 'true': 'false'"
-                     ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1">
-                    <div class="report-col report-body">
-                        <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
-                    </div>
-                    <div class="report-col report-ctrl report-ctrl-3">
-                        <div class="btn-group options">
-                            <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
-                                <i class="fa fa-cog"></i>
-                            </a>
-                            <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
-                            ng-click="activateInstance(v, v.active ? false : true)">
-                            <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
-                          </button>
-                            <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
-                               class="btn btn-default"
-                               title="{{_t('lb_clone')}}"
-                               ng-hide="dataHolder.modules.ids[v.moduleId].singleton">
-                                <i class="fa fa-clone"></i>
-                            </a>
-                            <button title="{{_t('lb_remove')}}"
-                                    class="btn btn-default"
-                                    ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
-                                <i class="fa fa-remove text-danger"></i>
-                            </button>
-                        </div>
-                        <div class="dropdown-options">
-                            <div class="btn-group group-dropdown">
-                                <button type="button" class="btn btn-default" title="{{_t('lb_settings')}}" 
-                                    ng-click="expandNavi('opDropDown_' + indexG+indexA, $event)">
-                                    <i class="fa fa-caret-down"></i>
-                                </button>
-                                <div class="app-dropdown" 
-                                ng-if="naviExpanded['opDropDown_' + indexG+indexA]"  
-                                ng-include="'app/views/apps/dropdown.html'"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div ng-repeat="(indexG,g) in dataHolder.instances.groups track by indexG" ng-init="instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]"
+  ng-if="dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1 || g.moduleId !== 'MobileAppSupport'">
+  <!-- //////////////////////////////// Accordion //////////////////////////////// -->
+  <section class="accordion-instances" ng-if="instanveModuleCnt > 1">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron" ng-init="expand[g.moduleId] = dataHolder.instances.expanded">
+      <!-- Toggle -->
+      <button type="button" aria-expanded="{{dataHolder.instances.expanded}}" bb-accordion ng-disabled="dataHolder.instances.expanded">
+        <span>
+          <img ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" /> {{dataHolder.modules.ids[g.moduleId].title}}&nbsp;
+          <span class="item-cnt"> ({{dataHolder.instances.cnt.modules[g.moduleId]}})</span>
+        </span>
+      </button>
 
-    <!-- ----------------------------------- ROW ----------------------------------- -->
-    <div class="instance-entry-single " ng-if="instanveModuleCnt < 2">
-        <!--<p>ROW: {{g.title}} ({{instanveModuleCnt}})</p>-->
-        <div class="app-row app-row-report clearfix">
-            <div class="report-entry bcg-active"
-                 ng-repeat="(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR"
-                 ng-class="v.active ? 'true': 'false'"
-                 ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1">
-                <div class="report-col report-media">
-                    <img class="report-img-s" ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                </div>
-                <div class="report-col report-body">
-
-                    <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
-                </div>
-                <div class="report-col report-ctrl report-ctrl-3">
-                    <div class="btn-group options">
-                        <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
-                            <i class="fa fa-cog"></i>
-                        </a>
-                        <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
-                        ng-click="activateInstance(v, v.active ? false : true)">
-                        <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
-                      </button>
-                        <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}"
-                           class="btn btn-default"
-                           title="{{_t('lb_clone')}}"
-                           ng-hide="dataHolder.modules.ids[v.moduleId].singleton">
-                            <i class="fa fa-clone"></i>
-                        </a>
-                        <button title="{{_t('lb_remove')}}"
-                                class="btn btn-default"
-                                ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
-                            <i class="fa fa-remove text-danger"></i>
-                        </button>
-                    </div>
-                    <div class="dropdown-options">
-                        <div class="btn-group group-dropdown">
-                            <button type="button" class="btn btn-default" title="{{_t('lb_settings')}}" 
-                                ng-click="expandNavi('opDropDown_' + indexG, $event)">
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                            <div class="app-dropdown" 
-                            ng-if="naviExpanded['opDropDown_' + indexG]" 
-                            ng-include="'app/views/apps/dropdown.html'"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden ng-class="{'ng-show':dataHolder.instances.expanded}">
+      <!-- Instances -->
+      <div class="list-panel bcg-active" ng-repeat="(indexA,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexA"
+        ng-class="v.active ? 'true': 'false'" ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1">
+        <!-- body -->
+        <div class="body">
+          <div>
+            <a href="#module/put/{{v.id}}">
+              <span ng-bind="v.title"></span>
+            </a>
+          </div>
         </div>
+        <!-- expand/collapse -->
+        <div class="l-hide control">
+          <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('instanceSingleDropdown_' + indexG+indexA, $event)"></button>
+        </div>
+        <!-- control -->
+        <div class="control" ng-class="naviExpanded['instanceSingleDropdown_' + indexG+indexA] ? 'expand-true': 'expand-false'">
+          <div class="btn-group">
+            <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
+              <i class="fa fa-cog"></i>
+            </a>
+            <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default" ng-click="activateInstance(v, v.active ? false : true)">
+              <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
+            </button>
+            <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}" class="btn btn-default" title="{{_t('lb_clone')}}" ng-hide="dataHolder.modules.ids[v.moduleId].singleton">
+              <i class="fa fa-clone"></i>
+            </a>
+            <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
+              <i class="fa fa-remove text-danger"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- //////////////////////////////// ROW //////////////////////////////// -->
+  <div class="instance-entry-single " ng-if="instanveModuleCnt < 2">
+    <!--<p>ROW: {{g.title}} ({{instanveModuleCnt}})</p>-->
+    <div class="list-panel bcg-active" ng-repeat="(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR"
+      ng-class="v.active ? 'true': 'false'" ng-if="dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1 && v.moduleId !== 'MobileAppSupport'">
+      <!-- img -->
+      <figure class="img wh-32x32">
+        <img ng-src="{{dataHolder.modules.ids[g.moduleId].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#module/put/{{v.id}}">
+            <span ng-bind="v.title"></span>
+          </a>
+        </div>
+      </div>
+      <!-- expand/collapse -->
+      <div class="l-hide control">
+        <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('instanceSingleDropdown_' + indexG, $event)"></button>
+      </div>
+      <!-- control -->
+      <div class="control" ng-class="naviExpanded['instanceSingleDropdown_' + indexG] ? 'expand-true': 'expand-false'">
+        <div class="btn-group">
+          <a ng-href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
+            <i class="fa fa-cog"></i>
+          </a>
+          <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default" ng-click="activateInstance(v, v.active ? false : true)">
+            <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
+          </button>
+          <a ng-href="#module/clone/{{v.moduleId}}/false/{{v.id}}" class="btn btn-default" title="{{_t('lb_clone')}}" ng-hide="dataHolder.modules.ids[v.moduleId].singleton">
+            <i class="fa fa-clone"></i>
+          </a>
+          <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
+            <i class="fa fa-remove text-danger"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

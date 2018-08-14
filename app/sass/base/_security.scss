@@ -1,0 +1,170 @@
+/* Flexcard
+-------------------------------------------------- */
+
+.flexcards {
+  &.security {
+    //@include appGradient();
+    .flexcard {
+      padding: 0;
+      flex-basis: 50%;
+      @include mediaQueries(min-small) {
+        flex-basis: 20%;
+      } // Media queries
+      @include mediaQueries(min-medium) {
+        flex-basis: 16.6666%;
+      }
+      @include mediaQueries(min-large) {
+        flex-basis: 12.5%;
+      }
+      &.trigger {
+        //height: 180px;
+      }
+      &.control {
+        flex-basis: 50%; //height: 320px;
+        @include mediaQueries(min-small) {
+          //height: 240px;
+          flex-basis: 33.3333%;
+        } // Media queries
+        @include mediaQueries(min-medium) {
+          flex-basis: 20%;
+        }
+        @include mediaQueries(min-large) {
+          flex-basis: 16.6666%;
+        }
+        label {
+          margin: $spacing-half 0 0 0;
+          display: block;
+          font-size: 90%;
+          text-align: left;
+        }
+        .form-control {
+          padding: 0;
+          @include mediaQueries(min-small) {
+            padding: 3px 6px;
+          }
+        }
+      }
+      .flipcard {
+        height: 180px;
+        >* {
+          border: solid 1px $app-border-color;
+          padding: $spacing;
+          display: flex;
+          flex-direction: column;
+          .body {
+            margin-top: auto;
+            h2 {
+              font-size: 90%;
+              margin: $spacing 0;
+            }
+          }
+          &.front {
+            color: $app-heading-color;
+            background-color: #fff;
+            figure {
+              .fa {
+                color: $app-brand-success;
+              }
+              img {
+                @include appOpacity();
+                @include appGrayscale();
+              }
+              button {
+                //color: red;
+              }
+            }
+          }
+          &.back {
+            .close {
+              text-align: right;
+              position: relative;
+              padding: 0 15px;
+              .fa {
+                position: absolute;
+                top: -5px;
+                cursor: pointer;
+                font-size: 150%;
+                color: $app-brand-danger;
+              }
+            }
+          }
+        }
+      }
+      &.flip {
+        border: 0;
+        &.control {
+          .flipcard {
+            height: 200px;
+            &.flipped {
+              //height: 220px;
+              .back {
+                figure {
+                  text-align: left;
+                  margin: 0;
+                  h2 {
+                    margin: 0 20px 0 0 !important;
+                    font-size: 90%;
+                    margin: $spacing 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Notification
+-------------------------------------------------- */
+
+.automation {
+  .notification {
+    textarea {
+      height: 50px;
+    }
+  }
+}
+/* Scheduler
+-------------------------------------------------- */
+#schedule-disarm{
+  .sc_Bar_inner{
+    .time{
+      display: none;
+    }
+  }
+}
+
+/* Table schedule
+-------------------------------------------------- */
+
+.security-schedule>tbody>tr>td {
+  //vertical-align: middle;
+  .fa-check {
+    color: $app-heading-color;
+    cursor: pointer;
+  }
+  &.active {
+    background-color: $app-bcg-success;
+    .fa-check {
+      display: inline-block;
+      padding: $spacing-half;
+      background-color: $app-brand-success;
+      color: #fff;
+      @include appBorderRadius(50%);
+    }
+  }
+}
+
+/* .table{
+  &.security-schedule{
+    tbody{
+      td{
+        .active{
+          background: transparent;
+        }
+      }
+    }
+  }
+} */

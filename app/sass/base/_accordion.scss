@@ -8,11 +8,164 @@ $accordion-border-color: $app-border-color;
 $accordion-icon-color: lighten($accordion-color, 20%);
 $accordion-heading-color: $app-heading-color;
 
-/* Style */
-.accordion-entry{
+$accordion-spacing: $spacing;
+$accordion-focus-color: $focus-color; 
+
+/* NEW version
+-------------------------------------------------- */
+
+.accordion-toggle{
+  //color: $accordion-color;
+  margin: 0;
+ > button{
+    all: inherit;
+    border: 0;
+    @include displayFlex();
+    @include justifyContent(space-between);
+    @include alignItems(center);
+    width: 100%;
+    font-weight: normal;
+    cursor: pointer;
+    border-bottom: dotted 1px $accordion-border-color;
+    
+    > span {
+      @include textOverflow();
+      align-items: center;
+      display: inline-flex;
+      /*
+       fa:first-of-type {
+        font-size: 120%;
+      }
+      */
+    }
+
+    &::after{
+      margin-left: $accordion-spacing;
+      padding: $spacing;
+      font-size: 105%;
+    }
+    &[aria-expanded="false"]{
+     
+     &::after{
+      content: "+";
+      }
+    }
+    &[aria-expanded="true"]{
+      border-bottom: 0;
+      &::after{
+        content: "-";
+      }
+    }
+    &:focus{
+     
+      &::after{
+        font-weight: bold;
+        color: $accordion-focus-color;
+      }
+      
+    }
+    &[disabled]{
+      cursor: text;
+      &::after{
+        content: "";
+      }
+    }
+  }
+  &.chevron{
+    > button{
+      &[aria-expanded="false"]{
+        &::after{
+        font-family: fontawesome;
+        content: "\f078";
+        }
+      }
+      &[aria-expanded="true"]{
+        &::after{
+          font-family: fontawesome;
+          content: "\f077";
+        }
+      }
+      &[disabled]{
+        &::after{
+          content: "";
+        }
+      }
+    }
+  }
+  &.ellipsis{
+    > button{
+      &[aria-expanded="false"]{
+        &::after{
+        font-family: fontawesome;
+        content: "\f142";
+        }
+      }
+      &[aria-expanded="true"]{
+        &::after{
+          font-family: fontawesome;
+          content: "\f141";
+        }
+      }
+    }
+  }
+  &.inline{
+    > button{
+      display: block;
+      width: auto;
+      font-size: 100%;
+      border-bottom: 0;
+      &[aria-expanded="false"]{
+        &::after{
+        font-family: fontawesome;
+        content: "\f0d7";
+        }
+      }
+      &[aria-expanded="true"]{
+        &::after{
+          font-family: fontawesome;
+          content: "\f0d8";
+        }
+      }
+    }
+    + .accordion{
+      border-bottom: 0;
+    }
+  }
+}
+.accordion{
+  border-bottom: dotted 1px $accordion-border-color;
+  padding-bottom: $accordion-spacing;
+}
+
+.accordion-wrap {
+  &.active{
+    > .accordion-toggle{
+      > button{
+        font-weight: bold;
+      }
+    }
+   
+  }
+}
+
+/* TODO: deprecated
+/* Old version
+-------------------------------------------------- */
+/* .accordion-entry{
     margin-bottom: $spacing;
     border-bottom: dotted 1px $accordion-border-color;
     color: $accordion-color;
+    &.disabled {
+      .accordion-entry-title {
+        color: #BDBDBD;
+        .fa {
+          color: #BDBDBD;
+          &.text-warning {
+              color: #8a6d3b;     
+          }
+        }
+      }  
+    }
 }
 .accordion-entry-title{
     font-size: $accordion-heading-font-size; 
@@ -33,3 +186,10 @@ $accordion-heading-color: $app-heading-color;
         padding:0;
     }
 }
+
+.accordion-entry-ctrl {
+    p {
+        margin: $spacing-half;
+        padding: $spacing;      
+    }
+} */

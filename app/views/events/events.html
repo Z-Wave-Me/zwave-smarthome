@@ -1,118 +1,133 @@
 <!-- Events view -->
 <div ng-controller="EventController">
-    <bb-loader></bb-loader>
-    <div class="page-control form-inline">
-        <div class="btn-group btn-goup-block btn-goup-3">
-            <!-- Filter -->
-            <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)" ng-class="devices.find.title || currLevel ? 'active':'' ">
-                <i class="fa fa-filter"></i>
-                <span class="btn-name" ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
-                <span class="btn-name" ng-if="devices.find.title">{{devices.find.title | cutText:true:15}}</span>
-                <span class="btn-name" ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
-            </button>
+  <bb-loader></bb-loader>
+  <div class="page-control form-inline">
+    <div class="btn-group btn-goup-block btn-goup-3">
+      <!-- Filter -->
+      <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)" ng-class="devices.find.title || currLevel ? 'active':'' ">
+        <i class="fa fa-filter"></i>
+        <span class="btn-name" ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
+        <span class="btn-name" ng-if="devices.find.title">{{devices.find.title | cutText:true:15}}</span>
+        <span class="btn-name" ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
+      </button>
 
-            <!-- Days -->
-            <button class="btn btn-default" ng-click="expandNavi('evDays', $event)" ng-switch="timeFilter.day">
-                <i class="fa fa-calendar-check-o"></i>
-                <span class="btn-name" ng-switch-when="2">{{_t('lb_yesterday')}}</span>
-                <span class="btn-name" ng-switch-when="7">7 {{_t('lb_days')}}</span>
-                <span class="btn-name" ng-switch-default>{{_t('lb_today')}}</span>
-            </button>
-            <!-- Refresh -->
-            <button class="btn btn-default" title="{{_t('reload')}}" ng-click="reloadData()">
-                <i class="fa fa-repeat"></i>
-            </button>
+      <!-- Days -->
+      <button class="btn btn-default" ng-click="expandNavi('evDays', $event)" ng-switch="timeFilter.day">
+        <i class="fa fa-calendar-check-o"></i>
+        <span class="btn-name" ng-switch-when="2">{{_t('lb_yesterday')}}</span>
+        <span class="btn-name" ng-switch-when="7">7 {{_t('lb_days')}}</span>
+        <span class="btn-name" ng-switch-default>{{_t('lb_today')}}</span>
+      </button>
+      <!-- Refresh -->
+      <button class="btn btn-default" title="{{_t('reload')}}" ng-click="reloadData()">
+        <i class="fa fa-repeat"></i>
+      </button>
+    </div>
+  </div>
+  <!-- Page subnavi  filter-->
+  <div class="page-navi" ng-if="naviExpanded.evFilter">
+    <div class="page-navi-in">
+      <!--<p class="page-navi-title">{{_t('error_type')}} </p>-->
+      <div class="page-navi-content">
+        <a class="btn btn-default btn-tag" ng-href="#events/level/{{v.key}}" ng-repeat="v in eventLevels" ng-class="v.key == currLevel? 'active': ''">
+          {{_t('lb_notify_' + v.val)}}
+        </a>
+      </div>
+      <div ng-if="devices.show">
+        <!--<p class="page-navi-title">{{_t('lb_device')}} </p>-->
+        <div class="page-navi-content">
+          <a class="btn btn-default btn-tag" ng-href="#events/source/{{v.id}}" ng-repeat="v in devices.data" ng-class="v.id===devices.find.id ? 'active':''"
+            ng-if="devices.cnt.deviceEvents[v.id]">
+            <img class="navi-img" ng-src="{{v.iconPath}}" alt="img" /> {{v.metrics.title|cutText:true:25}}
+            <span class="item-cnt">({{devices.cnt.deviceEvents[v.id]}})</span>
+          </a>
         </div>
+      </div>
     </div>
-    <!-- Page subnavi  filter-->
-    <div class="page-navi" ng-if="naviExpanded.evFilter">
-        <div class="page-navi-in">
-            <!--<p class="page-navi-title">{{_t('error_type')}} </p>-->
-            <div class="page-navi-content">
-                <a class="btn btn-default btn-tag" ng-href="#events/level/{{v.key}}" ng-repeat="v in eventLevels" ng-class="v.key == currLevel? 'active': ''">
-                    {{_t('lb_notify_' + v.val)}}
-                </a>
-            </div>
-            <div ng-if="devices.show">
-                <!--<p class="page-navi-title">{{_t('lb_device')}} </p>-->
-                <div class="page-navi-content">
-                    <a class="btn btn-default btn-tag" ng-href="#events/source/{{v.id}}" ng-repeat="v in devices.data" ng-class="v.id===devices.find.id ? 'active':''"
-                        ng-if="devices.cnt.deviceEvents[v.id]">
-                        <img class="navi-img" ng-src="{{v.iconPath}}" alt="img" /> {{v.metrics.title|cutText:true:25}}
-                        <span class="item-cnt">({{devices.cnt.deviceEvents[v.id]}})</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+  </div>
+  <!--<pre>{{rooms.all|json}}</pre>-->
+  <!-- Page subnavi  days-->
+  <div class="page-navi" ng-if="naviExpanded.evDays">
+    <div class="page-navi-in">
+      <div class="page-navi-content">
+        <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 1 ? 'active': ''" ng-click="changeTime(1)">{{_t('lb_today')}}</a>
+        <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 2 ? 'active': ''" ng-click="changeTime(2)">{{_t('lb_yesterday')}}</a>
+        <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 7 ? 'active': ''" ng-click="changeTime(7)">7 {{_t('lb_days')}}</a>
+      </div>
     </div>
-    <!--<pre>{{rooms.all|json}}</pre>-->
-    <!-- Page subnavi  days-->
-    <div class="page-navi" ng-if="naviExpanded.evDays">
-        <div class="page-navi-in">
-            <div class="page-navi-content">
-                <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 1 ? 'active': ''" ng-click="changeTime(1)">{{_t('lb_today')}}</a>
-                <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 2 ? 'active': ''" ng-click="changeTime(2)">{{_t('lb_yesterday')}}</a>
-                <a class="btn btn-default btn-tag" href="" ng-class="timeFilter.day == 7 ? 'active': ''" ng-click="changeTime(7)">7 {{_t('lb_days')}}</a>
-            </div>
-        </div>
-    </div>
-    <div class="info-lert" ng-if="devices.find.id && collection.length < 1">
-        <i class="fa fa-info-circle text-info"></i> {{_t('device_no_event')}}.</div>
-    <div class="info-lert" ng-if="user.hide_all_device_events || user.hide_system_events">
-        <i class="fa fa-info-circle text-info"></i>
-        <span ng-bind="_t('events_hidden')"></span>
-    </div>
+  </div>
 
-    <div class="app-row app-row-report app-row-event clearfix" ng-swipe-left="swipeMe('left')" ng-swipe-right="swipeMe('right')">
-        <div class="report-entry event-level-{{v.level}}" dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize track by $index"
-            current-page="currentPage" id="row_{{v.id}}">
-            <div class="report-col report-media">
-                <img id="event_img_{{v.id}}" class="report-img" ng-src="{{v.icon}}" err-src="{{cfg.img.placeholder}}" alt="{{v.type}}" />
-            </div>
+  <!-- Blank - no events-->
+  <div class="blank is-info" ng-if="events.state === 'blank'">
+    <figure>
+      <i class="fa fa-info-circle"></i>
+    </figure>
+    <div>{{_t('no_events')}}</div>
+  </div>
 
-            <div class="report-col report-body">
-                <span class="event-room" ng-if="rooms.all[v.message.location]">{{rooms.all[v.message.location]}}</span>
-                <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
-                <span class="hide-on-mobile">|</span>
-                <span ng-if="v.source && v.message">
-                    <a ng-href="#element/{{v.source}}" ng-if="elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)"
-                        ng-bind-html="v.messageView|toTrusted">
-                    </a>
-                    <span ng-if="!elementAccess(cfg.role_access.element) || (cfg.events_clickable.indexOf(v.level) === -1)" ng-bind-html="v.messageView|toTrusted">
-                    </span>
-                </span>
-                <span class="report-message" ng-bind="v.message" ng-if="!v.source && !v.message"></span>
-                <!--<span ng-if="rooms.all[v.message.location]"> | <em>{{rooms.all[v.message.location]}}</em></span>-->
-            </div>
-            <div class="report-col report-ctrl" ng-include="'app/views/events/dropdown.html'"></div>
-        </div>
-    </div>
-    <div class="paginate-lg text-center" ng-if="collection.length > 0">
-        <dir-pagination-controls boundary-links="true"></dir-pagination-controls>
-    </div>
-    <div class="paginate-sm text-center" ng-if="pagesSum > 1">
-        <p>
-           {{_t('page_from',{__currentPage__:currentPage,__pagesSum__:pagesSum})}}
-        </p>
-        <div class="btn-group">
-            <!-- Previous -->
-            <button class="btn btn-default" 
-            on-long-press="goToPage(1)"
-            prevent-click="true"
-            ng-click="swipeMe('right')" 
-            ng-disabled="currentPage == 1">
-                <i class="fa fa-chevron-left"></i>
+  <!-- Blank - no source events-->
+  <div class="blank is-info" ng-if="devices.find.id && collection.length < 1">
+    <figure>
+      <i class="fa fa-info-circle"></i>
+    </figure>
+    <div>{{_t('device_no_event')}}</div>
+  </div>
 
-            </button>
-            <!-- Next -->
-            <button class="btn btn-default" 
-            on-long-press="goToPage(pagesSum)"
-            prevent-click="true"
-            ng-click="swipeMe('left')" 
-            ng-disabled ="currentPage >= pagesSum">
-                <i class="fa fa-chevron-right"></i>
-            </button>
-        </div>
+  <!-- Blank - hidden device/system events-->
+  <div class="blank is-info" ng-if="user.hide_all_device_events || user.hide_system_events">
+    <figure>
+      <i class="fa fa-info-circle"></i>
+    </figure>
+    <div>{{_t('events_hidden')}}</div>
+  </div>
+  <!-- List -->
+  <div class="events" ng-swipe-left="swipeMe('left')" ng-swipe-right="swipeMe('right')" ng-hide="events.state === 'blank'">
+    <div class="list-panel condensed event-level-{{v.level}}" dir-paginate="v in collection | orderBy: '-timestamp' | itemsPerPage: pageSize track by $index"
+      current-page="currentPage">
+      <!-- img -->
+      <figure class="img wh-32x32" ng-href="#admin/user/{{v.id}}">
+        <img ng-src="{{v.icon}}" err-src="{{cfg.img.placeholder}}" alt="{{v.type}}" />
+      </figure>
+      <!-- body -->
+      <div class="body">
+        
+        <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
+        &nbsp;
+        <span class="event-message" ng-if="v.source && v.message">
+          <a ng-href="#element/{{v.source}}" ng-if="elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)"
+            ng-bind-html="v.messageView|toTrusted">
+          </a>
+          <span ng-if="!elementAccess(cfg.role_access.element) || (cfg.events_clickable.indexOf(v.level) === -1)" ng-bind-html="v.messageView|toTrusted">
+          </span>
+        </span>
+        <span class="event-message" ng-bind="v.message" ng-if="!v.source && !v.message"></span>
+        <span class="event-room" ng-if="rooms.all[v.message.location]">{{rooms.all[v.message.location]}}</span>
+      </div>
+      <!-- control -->
+      <div class="control" ng-include="'app/views/events/dropdown.html'"></div>
+
     </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="paginate-lg text-center" ng-if="collection.length > 0">
+    <dir-pagination-controls boundary-links="true"></dir-pagination-controls>
+  </div>
+  <div class="paginate-sm text-center" ng-if="pagesSum > 1">
+    <p>
+      {{_t('page_from',{__currentPage__:currentPage,__pagesSum__:pagesSum})}}
+    </p>
+    <div class="btn-group">
+      <!-- Previous -->
+      <button class="btn btn-default" on-long-press="goToPage(1)" prevent-click="true" ng-click="swipeMe('right')" ng-disabled="currentPage == 1">
+        <i class="fa fa-chevron-left"></i>
+
+      </button>
+      <!-- Next -->
+      <button class="btn btn-default" on-long-press="goToPage(pagesSum)" prevent-click="true" ng-click="swipeMe('left')" ng-disabled="currentPage >= pagesSum">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
 </div>
 <!-- /ng-controller -->

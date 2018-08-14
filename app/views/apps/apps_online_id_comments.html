@@ -1,45 +1,58 @@
 <!-- App online comments -->
-<h2 class="accordion-entry-title" ng-click="expandElement('appcomments')">
-    <i class="fa fa-comments"></i> {{_t('comments')}} ({{comments.all.length}})
-    <i class="fa accordion-arrow" ng-class="expand.appcomments ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+<!-- Title -->
+<h2 class="accordion-toggle chevron">
+  <button type="button" aria-expanded="false" bb-accordion>
+    <span>
+      <i class="fa fa-comments"></i> {{_t('comments')}} ({{comments.all.length}})
+    </span>
+  </button>
 </h2>
-<div class="accordion-entry-ctrl" ng-if="expand.appcomments">
-    <p class="text-right clickable">
-        <button type="button" class="btn btn-default" title="{{_t('add_comment')}}" ng-click="expandElement('appcommentadd')">
-            <i class="fa fa-plus text-success"></i> <span class="btn-name">{{_t('add_comment')}}</span>
-        </button>
-    </p>
-    <form name="form_comment" id="form_profile" class="form form-page" ng-if="expand.appcommentadd" ng-submit="addComment(form_comment, comments.model)" novalidate>
-        <fieldset>
-            <!-- content -->
-            <div class="form-group_">
-                <textarea name="content" id="content" class="form-control report-content" ng-blur="contentBlur = true" ng-model="comments.model.content" ng-required="true"></textarea>
-                <bb-validator input-name='form_comment.content.$error.required' trans='_t("field_required")' has-blur='contentBlur'></bb-validator> 
-            </div>
-            <!-- name -->
-            <div class="form-group form-inline">
-                <label>{{_t('lb_name')}}: </label>
-                <input name="name" id="name" type="text" class="form-control" value="{{comments.model.name}}" ng-blur="nameBlur = true" ng-model="comments.model.name" ng-required="true" />
-                <bb-validator input-name='form_comment.name.$error.required' trans='_t("field_required")' has-blur='nameBlur'></bb-validator> 
-            </div>
-               <!-- <bb-help-text trans="_t('Info text comes here..')"></bb-help-text> -->
-        </fieldset>
-        <fieldset class="submit-entry">
-            <button type="button" class="btn btn-default" ng-click="expandElement('appcommentadd')">
-                <i class="fa fa-times  text-danger"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
-            </button>
-            <button type="submit" class="btn btn-submit" ng-disabled="form_comment.$invalid">
-                <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_submit')}}</span>
-            </button>
-        </fieldset>
-    </form>
-    <div class="form form-inline form-page" ng-if="!expand.appcommentadd">
-        <div class="fieldset">
-            <bb-help-text trans="_t('no_comments')" ng-if="!comments.show"></bb-help-text>
-            <div  class="comment-entry comment-type-{{v.type}}" ng-repeat="v in comments.all track by v.id" ng-class-odd="'odd'" ng-class-even="'even'">
-                <div class="comment-header"><i class="fa fa-clock-o"></i> {{v.created_at}}  | <i class="fa" ng-class="v.type == 1 ? 'fa-user-plus text-success' : 'fa-user'"></i> {{v.name}}</div>
-                <div class="comment-body">{{v.content}}</div>
-            </div>
-        </div>
+<!-- Content -->
+<div class="accordion" hidden>
+  <p class="text-right clickable">
+    <button type="button" class="btn btn-default" title="{{_t('add_comment')}}" ng-click="expandElement('appcommentadd')">
+      <i class="fa fa-plus text-success"></i>
+      <span class="btn-name">{{_t('add_comment')}}</span>
+    </button>
+  </p>
+  <form name="form_comment" id="form_profile" class="form form-page" ng-if="expand.appcommentadd" ng-submit="addComment(form_comment, comments.model)"
+    novalidate>
+    <fieldset>
+      <!-- content -->
+      <div class="form-group_">
+        <textarea name="content" id="content" class="form-control report-content" ng-blur="contentBlur = true" ng-model="comments.model.content"
+          ng-required="true"></textarea>
+        <bb-validator input-name='form_comment.content.$error.required' trans='_t("field_required")' has-blur='contentBlur'></bb-validator>
+      </div>
+      <!-- name -->
+      <div class="form-group form-inline">
+        <label>{{_t('lb_name')}}: </label>
+        <input name="name" id="name" type="text" class="form-control" value="{{comments.model.name}}" ng-blur="nameBlur = true" ng-model="comments.model.name"
+          ng-required="true" />
+        <bb-validator input-name='form_comment.name.$error.required' trans='_t("field_required")' has-blur='nameBlur'></bb-validator>
+      </div>
+      <!-- <bb-help-text trans="_t('Info text comes here..')"></bb-help-text> -->
+    </fieldset>
+    <fieldset class="submit-entry">
+      <button type="button" class="btn btn-default" ng-click="expandElement('appcommentadd')">
+        <i class="fa fa-times  text-danger"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </button>
+      <button type="submit" class="btn btn-submit" ng-disabled="form_comment.$invalid">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_submit')}}</span>
+      </button>
+    </fieldset>
+  </form>
+  <div class="form form-inline form-page" ng-if="!expand.appcommentadd">
+    <div class="fieldset">
+      <bb-help-text trans="_t('no_comments')" ng-if="!comments.show"></bb-help-text>
+      <div class="comment-entry comment-type-{{v.type}}" ng-repeat="v in comments.all track by v.id" ng-class-odd="'odd'" ng-class-even="'even'">
+        <div class="comment-header">
+          <i class="fa fa-clock-o"></i> {{v.created_at}} |
+          <i class="fa" ng-class="v.type == 1 ? 'fa-user-plus text-success' : 'fa-user'"></i> {{v.name}}</div>
+        <div class="comment-body">{{v.content}}</div>
+      </div>
     </div>
+  </div>
 </div>

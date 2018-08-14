@@ -11,6 +11,9 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     $scope.page = {
         title: false
     };
+    $scope.events = {
+      state: ''
+  };
     $scope.filter = {};
     $scope.collection = [];
     $scope.eventLevels = [];
@@ -88,7 +91,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             // Error message
             if (events.state === 'rejected') {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - locations
@@ -180,7 +183,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     $scope.refreshData = function () {
         var refresh = function () {
-            if(cfg.route.fatalError.type !== "network") {
+            if(cfg.route.alert.type !== "network") {
                 dataFactory.refreshApi('notifications').then(function (response) {
                     if(!response){
                         return;
@@ -221,6 +224,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 
@@ -259,12 +264,16 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      * prepare notification data
      */
     function prepareNotification(v) {
+        if (!v.message) {
+            v.message = 'No Message';
+        }
+        
         v.icon = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
         if (v.message['l'] !== null && v.message['l'] !== undefined) {
             v.messageView = '<span><span>'+v.message.dev+' : ' +
                 '<strong>' + v.message.l +'</strong></span>';
         } else {
-            v.messageView = '<span>'+typeof v.message == 'string'? v.message : JSON.stringify(v.message)+'</span>';
+            v.messageView = '<span>'+ (typeof v.message == 'string'? v.message : JSON.stringify(v.message))+'</span>';
         }
 
         v.lvl = $filter('hasNode')(v.message,'l')? $filter('hasNode')(v.message,'l') : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
@@ -323,7 +332,8 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         //}
         // No data in the collection
         if (_.size($scope.collection) < 1) {
-            alertify.alertWarning($scope._t('no_events'));
+          $scope.events.state = 'blank';
+            //alertify.alertWarning($scope._t('no_events'));
             return;
         }
         $scope.pagesSum = Math.ceil($scope.collection.length/$scope.pageSize);

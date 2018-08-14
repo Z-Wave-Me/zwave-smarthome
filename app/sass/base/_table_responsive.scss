@@ -1,0 +1,114 @@
+/* Responsive table
+-------------------------------------------------- */
+
+.table-responsive {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 100%;
+  /* Zebra striping */
+  tr:nth-of-type(odd) {
+    //background: #eee;
+  }
+  th {
+    //background-color: $app-heading-color;
+    //color: #fff;
+    //font-weight: bold;
+  }
+  td,
+  th {
+    padding: $spacing;
+    border-bottom: 1px solid $app-border-color;
+    text-align: left;
+  }
+  @include mediaQueries(min-small) {
+    .l-hide,
+    .td-accordion-toggle {
+      display: none;
+    }
+  }
+  @include mediaQueries(max-small) {
+    display: block;
+    /* Force table to not be like tables anymore */
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    tr {
+      //border: 1px solid #ccc;
+    }
+    td {
+      /* Behave  like a "row" */
+      /* border: none;
+      border-bottom: 1px solid #eee; */
+      position: relative;
+      padding-left: 50%; //text-align: center;
+      &:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: $spacing;
+        left: $spacing;
+        width: 45%;
+        padding-right: $spacing;
+        white-space: nowrap;
+        content: attr(title);
+      }
+    }
+    [data-expanded="false"] {
+      .td-header {
+        display: none;
+      }
+    }
+    [data-expanded="true"] {
+     td {
+       &.td-accordion-toggle{
+         font-weight: bold;
+       }
+      }
+    }
+    .td-accordion-toggle {
+      /* color: #fff;
+      background-color: $app-heading-color; */
+      position: static;
+      padding: $spacing;
+      font-size: 110%;
+      &:before {
+        content: none;
+      }
+      >*:first-child {
+        //all: inherit;
+        background-color: transparent;
+        border: 0;
+        @include displayFlex();
+        @include justifyContent(space-between);
+        @include alignItems(center);
+        width: 100%;
+        cursor: pointer;
+        &::after{
+         font-size: 130%;
+         font-family: fontawesome;
+            content: "\f142";
+        }
+         &:focus{
+           border: 0;
+           outline: none !important;
+          
+           &::after{
+             font-weight: bold;
+             color: $focus-color;
+           }
+           
+         }
+      }
+    }
+  }
+}

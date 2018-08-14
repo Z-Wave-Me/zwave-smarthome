@@ -1,0 +1,58 @@
+/* Flextag
+-------------------------------------------------- */
+
+.flextag {
+  @include displayFlex();
+  flex-wrap: wrap;
+   //@include justifyContent(space-between);
+   @include alignItems(center);
+   //flex-flow: row wrap;
+   > *{
+    // flex-basis: 16.6666%;
+    //text-align: left;
+    flex: 1 auto;
+    padding: $spacing-half $spacing;
+    border: 1px solid $app-border-color;
+    color: #0d0d0d;
+    background-color: #FFFFFF;
+    border-color: #CCCCCC;
+    margin: $spacing-half 2px;
+    position: relative;
+     @include appBorderRadius($app-border-radius);
+      overflow: hidden;
+    /* @include appBorderRadius($app-border-radius);
+    @include displayFlex();
+    @include justifyContent(space-between); */
+    &::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  height: 20px;
+  width: 20px;
+  background: green;
+  //border: 5px solid dimgray;
+  transform: rotate(45deg);
+}
+   /*  &::before,::after{
+      content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-color: transparent;
+    border-style: solid;
+    }
+     &::before {
+    border-width: 7px;
+    border-right-color: $app-brand-success;
+    border-top-color:$app-brand-success;
+}
+
+ &::after {
+    border-radius: 0.4em;
+    border-width: 1.35em;
+    border-right-color: #0c0;
+    border-top-color: #0c0;
+} */
+   }
+}

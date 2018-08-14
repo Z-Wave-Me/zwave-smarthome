@@ -1,0 +1,73 @@
+<!-- Online icons -->
+<div ng-controller="OnlineIconController">
+  <bb-loader></bb-loader>
+  <!-- navigation -->
+  <div ng-include="'app/views/customize/navi.html'"></div>
+  <!-- Gallery -->
+  <div class="customize flexgallery">
+    <div ng-repeat="v in iconsOnline.all track by $index" ng-class="{'inactive': v.status === 'installed'}">
+      <figure>
+        <img title="{{v.title}}" ng-src="{{v.icon_path}}" alt="img">
+        <div class="header">
+          <!-- Installed -->
+          <span class="is-icon" title="{{_t('installed')}}" disabled ng-if="v.status === 'installed'">
+            <i class="fa fa-check"></i>
+          </span>
+          <!-- Download -->
+          <span class="is-icon" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadIconSet(v)">
+            <i class="fa fa-download text-success"></i>
+          </span>
+        </div>
+        <figcaption ng-click="handleOnlineIconModal(v,'iconOnlineModal', $event)">
+          <span class="title">{{v.title| cutText:true:25}}</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="iconOnlineModal" class="appmodal" ng-if="modalArr.iconOnlineModal">
+    <div class="appmodal-in">
+      <div class="appmodal-header">
+        <span class="appmodal-close" ng-click="handleModal('iconOnlineModal', $event)">
+          <i class="fa fa-times"></i>
+        </span>
+        <h3>{{iconsOnline.find.title|cutText:true:30}}</h3>
+      </div>
+      <div class="appmodal-body customize-detail">
+        <p class="customize-detail-title">{{iconsOnline.find.title}}</p>
+        <p class="customize-detail-list" ng-if="iconsOnline.find.author">
+          <strong>{{_t('author')}}:</strong>
+          <span ng-if="!iconsOnline.find.homepage"> {{iconsOnline.find.author}}</span>
+          <a ng-href="{{iconsOnline.find.homepage}}" ng-if="iconsOnline.find.homepage"> {{iconsOnline.find.author}}</a>
+        </p>
+        <p class="customize-detail-list" ng-if="iconsOnline.find.license">
+          <strong>{{_t('license')}}:</strong> {{iconsOnline.find.license}}
+        </p>
+        <div class="customize-icon-list">
+          <img class="customize-icon-preview" ng-src="{{iconsOnline.find.preview_path + v}}" ng-repeat="v in iconsOnline.preview" />
+        </div>
+      </div>
+      <div class="appmodal-footer">
+        <!-- Installed -->
+        <button class="btn btn-disabled" title="{{_t('installed')}}" disabled ng-if="iconsOnline.find.status === 'installed'">
+          <i class="fa fa-check"></i>
+          <span class="btn-name">{{_t('installed')}}</span>
+        </button>
+        <!-- Close -->
+        <button type="button" class="btn btn-default" ng-click="handleModal('iconOnlineModal', $event)">
+          <i class="fa fa-times text-danger"></i>
+          <span class="btn-name">{{_t('lb_close')}}</span>
+        </button>
+        <!-- Download -->
+        <button href="" class="btn btn-submit" title="{{_t('lb_download')}}" ng-if="iconsOnline.status === 'download' || v.status === 'installed'"
+          ng-click="handleModal('iconOnlineModal', $event);downloadIconSet(iconsOnline.find)">
+          <i class="fa fa-download"></i>
+          <span class="btn-name">{{_t('lb_download')}}</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /ng-controller -->

@@ -159,9 +159,9 @@ a {
                 padding: 0 30px;
             }
 
-            @include mediaQueries(min-small) {
+           /*  @include mediaQueries(min-small) {
                 width: 16.666%;
-            }
+            } */
             @include mediaQueries(min-medium) {
                 padding: 0;
             }
@@ -191,6 +191,15 @@ a {
         float: none;
     }
 
+}
+/* Top fixed elements for mobile devices
+-------------------------------------------------- */
+
+@include mediaQueries(max-small) {
+  .fix-me-top {
+    background-color: $app-color-dark;
+    border-bottom: solid 1px $app-color-dark-lighter;
+  }
 }
 
 /* Subnavigation
@@ -413,6 +422,7 @@ a {
         }
     }
 }
+
 /* Devices
 -------------------------------------------------- */
 .cfg-control-content{

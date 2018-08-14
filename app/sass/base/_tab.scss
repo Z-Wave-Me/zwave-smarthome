@@ -1,0 +1,70 @@
+/* Button tabs
+-------------------------------------------------- */
+
+.btn-goup-tabs {
+  /* display: table;
+  width: 100%;*/
+  margin: 0 0 $spacing 0;
+  .btn {
+    background-color: #FFFFFF;
+    &.active {
+      background-color: darken(#FFFFFF, 5%);
+    } // Media queries
+    @include mediaQueries(min-small) {
+      padding: $spacing; //font-size: 120%;
+    }
+    .fa {
+      font-size: 130%;
+      color: lighten($app-body-color, 20%);
+      &.text-danger {
+        color: $app-brand-danger;
+      } // Media queries
+      /* @include mediaQueries(min-small) {
+      font-size: 130%;
+    } */
+    }
+  }
+  .active,[aria-selected] {
+    .fa {
+      color: $app-brand-success;
+      &.text-danger {
+        color: $app-brand-danger;
+      }
+    }
+  }
+}
+
+// Media queries
+@include mediaQueries(max-small) {
+  .fix-me-top {
+    .btn-goup-tabs {
+      display: inline-block;
+      width: auto;
+      .btn {
+        border: 0;
+        background: transparent;
+        @include appBorderRadius(0);
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+}
+
+.btn-tabs-2 {
+  .btn {
+    width: 50%;
+  }
+}
+
+.btn-tabs-3 {
+  .btn {
+    width: 33.33333%;
+  }
+}
+
+.btn-tabs-4 {
+  .btn {
+    width: 25%;
+  }
+}
