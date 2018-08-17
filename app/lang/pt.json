@@ -708,6 +708,7 @@
     "restore_info": "Todas as funções de restauração requerem um arquivo de backup disponível no seu PC. Poderá solicitar seu backup mais recente da nuvem que será enviado para o seu endereço de e-mail.",
     "restore_wait": "A restaurar a informação. Por favor aguarde...",
     "restore_zway_network": "Restaurar rede Z-Way",
+    "retry_cc_interviews": "Repeat failed interviews...",
     "retry_complete_inclusion": "Tente novamente a inclusão completa",
     "returning_factory_default": "Retornando o sistema ás definições de fábrica. Por favor, espere...",
     "rf433_device": "Dispositivo RF433",
