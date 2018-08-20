@@ -708,6 +708,7 @@
     "restore_info": "Todas las funciones de restablecimiento requieren un archivo de copia de seguridad disponible en su PC. Puede solicitar que su copia de seguridad más reciente se envíe desde la nube a su dirección de correo electrónico.",
     "restore_wait": "Restableciendo datos. Espere...",
     "restore_zway_network": "Restore Z-Way Network",
+    "retry_cc_interviews": "Repeat failed interviews...",
     "retry_complete_inclusion": "Vuelva a intentar una inclusión completa",
     "returning_factory_default": "Restableciendo los valores predeterminados de fábrica del sistema. Espere...",
     "rf433_device": "Dispositivo RF433",

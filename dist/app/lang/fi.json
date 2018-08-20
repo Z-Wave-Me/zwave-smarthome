@@ -708,6 +708,7 @@
     "restore_info": "Kaikki palautustoiminnot vaativat että varmuuskopiotiedosto on PC:lläsi. Voit pyytää uusimman varmuuskopiosi pilvestä sähköpostiosoitteeseesi..",
     "restore_wait": "Palautetaan tietoja. Ole hyvä ja odota hetki...",
     "restore_zway_network": "Restore Z-Way Network",
+    "retry_cc_interviews": "Repeat failed interviews...",
     "retry_complete_inclusion": "Yritä viedä verkkoon liittäminen (inclusion) uudelleen loppuun",
     "returning_factory_default": "Palautetaan tehdasasetuksia, ole hyvä ja odota...",
     "rf433_device": "RF433 Device",
