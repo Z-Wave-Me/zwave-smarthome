@@ -708,6 +708,7 @@
     "restore_info": "Для восстановления требуется backup-файл, хранящийся на вашем компьютере. Вы можете запросить backup-файл из облака на ваш Email адрес.",
     "restore_wait": "Восстановление данных. Ожидайте...",
     "restore_zway_network": "Restore Z-Way Network",
+    "retry_cc_interviews": "Repeat failed interviews...",
     "retry_complete_inclusion": "Попробуйте закончить включение",
     "returning_factory_default": "Идет сброс системы на заводские настройки...",
     "rf433_device": "RF433 Device",

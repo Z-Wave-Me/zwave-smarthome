@@ -593,6 +593,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
      * @returns {undefined}
      */
     $scope.modalArr = {};
+    $scope.isModal = false;
     $scope.handleModal = function(key, $event, status) {
         if (typeof status === 'boolean') {
             $scope.modalArr[key] = status;
@@ -602,8 +603,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         if ($event) {
             $event.stopPropagation();
         }
+        $scope.isModal = $scope.modalArr[key];
+    };  
 
-    };
     $scope.expand = {};
     /**
      * Expand/collapse an element
@@ -683,4 +685,21 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             };
         }, true, 'alert');
     }
+
+
+    $scope.openSideNav = function($event) {
+        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0 && $location.path().indexOf("rooms") == -1 && $location.path().indexOf("events") == -1) {    
+            $scope.expandNavi('mainNav', $event, true)
+        }
+    };
+
+    $scope.closeSideNav = function($event) {
+        if($location.path().indexOf("rooms") == 1 || $location.path().indexOf("events") == 1 && $event.type == "click" && $scope.deviceDetector.isMobile()) {
+            $scope.expandNavi('mainNav', $event, false)  
+        }
+
+        if($location.path().indexOf("rooms") != 1 || $location.path().indexOf("events") != 1 && $scope.deviceDetector.isMobile()) {
+            $scope.expandNavi('mainNav', $event, false);
+        }
+    };
 });

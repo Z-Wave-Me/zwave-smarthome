@@ -31,7 +31,7 @@ myAppController.controller('RoomController', function($scope, $q, $cookies, $fil
             dataFactory.getApi('locations', null, true),
             dataFactory.getApi('devices', null, true)
         ];
-
+        
         $q.allSettled(promises).then(function(response) {
             var locations = response[0];
             var devices = response[1];

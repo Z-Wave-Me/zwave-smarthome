@@ -708,6 +708,7 @@
     "restore_info": "Tutte le funzioni di ripristino richiedono un file di backup sul tuo PC. Puoi utilizzare l'ultimo backup spedito al tuo indirizzo e-mail dal cloud.",
     "restore_wait": "Ripristino dati. Aspetta...",
     "restore_zway_network": "Ripristina rete Z-Way",
+    "retry_cc_interviews": "Repeat failed interviews...",
     "retry_complete_inclusion": "Riprova a completare l'inclusione",
     "returning_factory_default": "Ripristino alle impostazioni di fabbrica. Aspetta...",
     "rf433_device": "Dispositivo RF433",

@@ -708,6 +708,7 @@
     "restore_info": "Die Wiederherstellungsfunktion benötigt eine Sicherungskopie auf ihrem PC. Sie können Sicherungskopien aus der Cloud über ihre Emailadresse abrufen.",
     "restore_wait": "Daten werden wieder hergestellt. Bitte warten",
     "restore_zway_network": "Wiederherstellung des Z-Way-Netzwerks",
+    "retry_cc_interviews": "Wiederhole fehlgeschlagene Interviews ...",
     "retry_complete_inclusion": "Komplette Inklusion wiederholen",
     "returning_factory_default": "System wird in Auslieferungszustand zurückgesetzt....",
     "rf433_device": "RF433 Geräte",

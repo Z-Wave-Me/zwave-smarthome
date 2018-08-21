@@ -708,6 +708,7 @@
     "restore_info": "All Restore functions require a backup file available on your PC. You can request your latest backup from the cloud delivered to your email address.",
     "restore_wait": "Obnovujem dáta. Prosím čakajte...",
     "restore_zway_network": "Restore Z-Way Network",
+    "retry_cc_interviews": "Repeat failed interviews...",
     "retry_complete_inclusion": "Retry complete inclusion",
     "returning_factory_default": "Vrátenie systéemu na Predvolené nastavenia...",
     "rf433_device": "RF433 Device",

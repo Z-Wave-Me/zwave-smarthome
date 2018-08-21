@@ -18,6 +18,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
             romms: {}
         },
         devices: {
+            updateTime: false,
             switchButton: [],
             noDashboard: false,
             noDevices: false,
@@ -42,6 +43,8 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
     };
     $scope.list = [];
     $scope.apiDataInterval = null;
+
+    $scope.initialLoadFinish = false;
 
     $scope.autocomplete = {
         source: [],
@@ -113,6 +116,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
+                $scope.dataHolder.devices.updateTime = devices.value.data.data.updateTime;
                 // Count hidden apps
                 $scope.dataHolder.cnt.hidden = _.chain(dataService.getDevicesData(devices.value.data.data.devices, true))
                     .flatten().where({
@@ -122,7 +126,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
                     .value();
                 // Set devices
                 setDevices(dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden));
-
+                $scope.initialLoadFinish = true;
             }
         });
     };
@@ -147,10 +151,11 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
     $scope.refreshDevices = function() {
         var refresh = function() {
             if (cfg.route.alert.type !== "network") {
-                dataFactory.refreshApi('devices').then(function(response) {
+                dataFactory.refreshApi('devices', false, $scope.dataHolder.devices.updateTime).then(function(response) {
                     if (!response) {
                         return;
                     }
+                    $scope.dataHolder.devices.updateTime = response.data.data.updateTime;
                     if (response.data.data.devices.length > 0) {
                         angular.forEach(response.data.data.devices, function(v, k) {
                             var index = _.findIndex($scope.dataHolder.devices.all, {
@@ -191,7 +196,12 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
 
-    $scope.refreshDevices();
+    $scope.initialLoadInterval = $interval(function() {
+            if($scope.initialLoadFinish) {
+                $scope.refreshDevices();
+                $interval.cancel($scope.initialLoadInterval)
+            }
+    }, 1000);
 
     /**
      * Renders search result in the list
