@@ -20076,27 +20076,307 @@ img.widget-promo-image {
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
-/* shui, bayernshui, blueshui, darkshui, homekit
+/* shui, bayernshui, shui_night = darkshui, blueshui, homekit
 -------------------------------------------------- */
-/* Default SmartHome skin
+/* Night mode
 -------------------------------------------------- */
-/* Navigation
--------------------------------------------------- */
-/* line 8, ../sass/custom/_shui.scss */
-#main_navigation_wrap #main_navigation {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
+/* Common
+    -------------------------------------------------- */
+/* line 29, ../sass/custom/_shui_night.scss */
+body {
+  background-color: #24262D;
 }
-@media only screen and (max-width: 767px) {
-  /* line 10, ../sass/custom/_shui.scss */
-  #main_navigation_wrap #main_navigation #navigation_right {
-    float: left;
-  }
-  /* line 13, ../sass/custom/_shui.scss */
-  #main_navigation_wrap #main_navigation #navigation_left {
-    position: static;
-    float: right;
-  }
+
+/* line 33, ../sass/custom/_shui_night.scss */
+* {
+  color: #aeb8c3;
+  border-color: #44464F;
+}
+
+/* Text
+    -------------------------------------------------- */
+/* line 41, ../sass/custom/_shui_night.scss */
+#sub_navigation_in ul .fa,
+.page-navi ul li a,
+.card-room .card-room-in .card-title a,
+.localapp-in .localapp-body .localapp-title,
+.onlineapp-in .onlineapp-body .onlineapp-title,
+.app-dropdown ul li a,
+#loading,
+.btn-widget-time,
+.txt-widget-time,
+.btn-default,
+.alert,
+.app-fatal-error,
+.app-fatal-error .fatal-error-message,
+.app-fatal-error .fatal-error-info,
+.wizard li,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.badge-number {
+  color: #aeb8c3;
+}
+
+/* line 62, ../sass/custom/_shui_night.scss */
+.page-navi ul .fa,
+.btn-goup-tabs .btn .fa,
+.accordion-entry-title .fa,
+.app-entry-local h2,
+.comment-entry .comment-header,
+.appmodal-header h3,
+a:hover,
+a:focus,
+.read-true .report-body > *,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.page-navi .page-navi-title,
+.read-true .event-date,
+.read-true .rss-title,
+.read-true .rss-description {
+  color: #8a8d8f;
+}
+
+/* line 83, ../sass/custom/_shui_night.scss */
+.card-customize .card-customize-in .card-footer,
+.sc_Bar_inner .time,
+.schedule .sc_Bar .sc_Bar_inner .text {
+  color: #24262D;
+}
+
+/* Warning color
+    -------------------------------------------------- */
+/* line 90, ../sass/custom/_shui_night.scss */
+#main_navigation .active .fa,
+#sub_navigation_in ul li.active a span,
+#sub_navigation_in ul .active a,
+#sub_navigation_in ul .active .fa,
+.btn-default.active span,
+.btn-default.active .fa {
+  color: #f0ad4e !important;
+}
+
+/* line 100, ../sass/custom/_shui_night.scss */
+.text-primary {
+  color: #6494BC;
+}
+
+/* line 104, ../sass/custom/_shui_night.scss */
+.text-success {
+  color: #80AD80;
+}
+
+/* line 108, ../sass/custom/_shui_night.scss */
+.text-info {
+  color: #5bc0de;
+}
+
+/* line 112, ../sass/custom/_shui_night.scss */
+.text-warning {
+  color: #f0ad4e;
+}
+
+/* line 116, ../sass/custom/_shui_night.scss */
+.text-danger {
+  color: #d9534f;
+}
+
+/* Dark background
+    -------------------------------------------------- */
+/* line 122, ../sass/custom/_shui_night.scss */
+#main_navigation_wrap,
+#main_navigation .active,
+#main_navigation a:hover,
+#sub_navigation_in .active,
+.card-room .card-room-in .card-icon,
+.app-row-report,
+#apps_instances .accordion-entry,
+.form-page,
+.table-report,
+.card-customize .card-customize-in .card-icon,
+.list-panel,
+.app-dropdown ul li:hover,
+.input-group-addon,
+.automation .accordion-wrap.nested .accordion .accordion,
+#loading .loading-in,
+.appmodal .appmodal-in,
+.smart-start .container .entry,
+#footer #footer_in,
+.flexcards.security .flexcard .flipcard > *.front,
+.flexcards.security .flexcard .flipcard > *.back,
+.automation .notification,
+.dragdrop-element .dd-placeholder,
+.accordion-instances,
+.btn:not(.btn-danger):not(.btn-submit) {
+  background: #24262D !important;
+}
+
+/* Lighter background
+    -------------------------------------------------- */
+/* line 151, ../sass/custom/_shui_night.scss */
+#main_navigation .active,
+#sub_navigation_in ul,
+.page-navi .page-navi-in,
+.btn-goup-tabs .btn.active,
+.widget-entry .widget-entry-in,
+.widget-ctrl .btn-group .btn-primary,
+.tbl-widget-ctrl .btn-group .btn-primary,
+.card-element-dragdrop,
+.elemnts-room-bar,
+.event-level-warning,
+.event-level-error,
+.event-level-critical,
+.localapp-in,
+.localapp-in .localapp-footer .btn-default[disabled],
+.onlineapp-in,
+.submit-entry,
+.app-dropdown,
+.bcg-active.false,
+.automation .accordion-wrap .accordion,
+.bcg-danger,
+.comment-entry,
+.vendor-list,
+.badge-number,
+.appmodal-header,
+.appmodal-footer,
+.wizard-controls,
+.alert,
+.bcg-success,
+.app-fatal-error,
+.wizard li,
+.onlineapp-in .onlineapp-footer,
+.security-schedule > tbody > tr > td.active,
+.table-responsive [data-expanded="true"] td,
+.list-panel.read-false,
+.form-page,
+.commands-data-control,
+.schedule .sc_wrapper .sc_data,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.schedule .sc_menu .sc_header_cell,
+.infowindow {
+  background: #2D3038 !important;
+}
+
+/* Lightest background
+    -------------------------------------------------- */
+/* line 196, ../sass/custom/_shui_night.scss */
+.app-row-imglist,
+.customize-icon-list {
+  background: #858996 !important;
+}
+
+/* White background
+    -------------------------------------------------- */
+/* line 203, ../sass/custom/_shui_night.scss */
+.vendors.flexgallery > * figure,
+#modalHistory .appmodal-body {
+  background: #fff;
+}
+
+/* Additional background
+    -------------------------------------------------- */
+/* line 210, ../sass/custom/_shui_night.scss */
+.btn-submit,
+.wizard li.active,
+.dots .active {
+  background: #740047 !important;
+}
+
+/* Input background
+    -------------------------------------------------- */
+/* line 218, ../sass/custom/_shui_night.scss */
+.form-control,
+.slider,
+.ajs-input,
+.label-round,
+.label {
+  background: #44464F;
+}
+
+/* line 226, ../sass/custom/_shui_night.scss */
+.slider:before {
+  background: #d9534f;
+}
+
+/* Border darker
+    -------------------------------------------------- */
+/* line 232, ../sass/custom/_shui_night.scss */
+#main_navigation_wrap,
+#sub_navigation_in ul,
+#sub_navigation_in ul li,
+#header .divider-vertical,
+.page-navi .page-navi-in,
+.page-navi ul li,
+.widget-entry .widget-entry-in,
+.widget-ctrl .btn-group .btn-primary,
+.tbl-widget-ctrl .btn-group .btn-primary,
+.card-room .card-room-in,
+.report-entry .report-col,
+.localapp-in .localapp-footer .btn-default[disabled],
+.table tbody tr td,
+.accordion-toggle > button,
+.form-page .form-group,
+.device-available-block.assigned,
+.form-control,
+.ajs-input,
+.input-group-addon,
+.slider,
+.slider:before,
+.app-dropdown,
+.app-dropdown ul li,
+.card-customize,
+.vendor-list,
+.automation .accordion-wrap .accordion-toggle .no-toggle,
+.list-panel,
+.appmodal-header,
+.appmodal-footer,
+.infowindow,
+#loading .loading-in,
+.label-round,
+.btn-default,
+.btn-submit,
+.app-row-report,
+.report-entry,
+.flexcard,
+.flexcards.security .flexcard .flipcard > *,
+.table-responsive td,
+.table-responsive th,
+.table > thead > tr > th,
+.schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
+.schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.btn-default[disabled],
+#footer {
+  border-color: #44464F !important;
+}
+
+/* Border lighter
+    -------------------------------------------------- */
+/* line 283, ../sass/custom/_shui_night.scss */
+#sub_navigation_in,
+.btn-default.active,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-success,
+.dragdrop-element .dd-placeholder {
+  border-color: #737786 !important;
+}
+
+/* Border additional
+    -------------------------------------------------- */
+/* line 295, ../sass/custom/_shui_night.scss */
+.widget-entry.widget-success .widget-entry-in {
+  border-color: #740047 !important;
+}
+
+/* No border
+    -------------------------------------------------- */
+/* line 303, ../sass/custom/_shui_night.scss */
+.form-page,
+.submit-entry,
+.app-row-imglist,
+.wizard-controls {
+  border: 0;
 }
 
 /* Subnavigation
@@ -20104,710 +20384,123 @@ img.widget-promo-image {
 /* MIN WIDTH */
 /* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 26, ../sass/custom/_shui.scss */
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in {
-    background-color: #FFFFFF;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    border-right: 1px solid #cccccc;
-  }
-  /* line 30, ../sass/custom/_shui.scss */
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul {
-    margin: 0;
-    margin: 50px 0 0;
-    background: transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    border: 0;
-  }
-  /* line 37, ../sass/custom/_shui.scss */
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul li .subnavi-arrow {
-    display: none;
-  }
-}
-/* Skin colors
--------------------------------------------------- */
-/* line 51, ../sass/custom/_shui.scss */
-body.night-false {
-  background-color: #F6F6F6;
-}
-
-/* line 56, ../sass/custom/_shui.scss */
-.night-false {
-  /* Main navigation
--------------------------------------------------- */
-  /* Top fixed elements for mobile devices
--------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Form
--------------------------------------------------- */
-  /* Button
--------------------------------------------------- */
-  /* List panel
-  -------------------------------------------------- */
-   /* Table responsive
--------------------------------------------------- */
-  /* Widget
--------------------------------------------------- */
-  /* Rooms
--------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Elements in Room
--------------------------------------------------- */
-  /* Local and online apps
--------------------------------------------------- */
-  /* Customize
--------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Automation
--------------------------------------------------- */
-}
-/* line 58, ../sass/custom/_shui.scss */
-.night-false .device-available-block.assigned {
-  background-color: #e7e7e7;
-  border: 0;
-}
-/* line 65, ../sass/custom/_shui.scss */
-.night-false #main_navigation_wrap {
-  border-bottom: solid 4px #DDD;
-  background-color: #E9E9E9;
-}
-/* line 69, ../sass/custom/_shui.scss */
-.night-false #main_navigation_wrap #main_navigation .active {
-  background-color: #DDD;
-  color: #ffffff;
-}
-@media only screen and (max-width: 767px) {
-  /* line 78, ../sass/custom/_shui.scss */
-  .night-false .fix-me-top {
-    background-color: #E9E9E9;
-    border-bottom: solid 4px #DDD;
-  }
-}
-/* line 85, ../sass/custom/_shui.scss */
-.night-false .form-page {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 85, ../sass/custom/_shui.scss */
-  .night-false .form-page {
-    border: solid 4px #e7e7e7;
-  }
-}
-/* line 90, ../sass/custom/_shui.scss */
-.night-false .form-page > section {
-  border-bottom: solid 4px #e7e7e7;
-}
-/* line 92, ../sass/custom/_shui.scss */
-.night-false .form-page > section:last-child {
-  border-bottom: 0;
-}
-/* line 97, ../sass/custom/_shui.scss */
-.night-false .form-page .section {
-  border-bottom: solid 4px #e7e7e7;
-}
-/* line 99, ../sass/custom/_shui.scss */
-.night-false .form-page .section:last-child {
-  border-bottom: 0;
-}
-/* line 103, ../sass/custom/_shui.scss */
-.night-false .form-page .for
-.form-group {
-  border-color: #e7e7e7;
-}
-/* line 108, ../sass/custom/_shui.scss */
-.night-false .submit-entry {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 108, ../sass/custom/_shui.scss */
-  .night-false .submit-entry {
-    background-color: #e7e7e7;
-    border-top: solid 1px #e7e7e7;
-  }
-}
-/* line 117, ../sass/custom/_shui.scss */
-.night-false fieldset.expanded,
-.night-false .fieldset.expanded {
-  background-color: #F6F6F6;
-  border-top: solid 4px #e7e7e7;
-  border-bottom: solid 4px #e7e7e7;
-}
-/* line 123, ../sass/custom/_shui.scss */
-.night-false .control-active {
-  border: solid 4px #80AD80 !important;
-}
-/* line 130, ../sass/custom/_shui.scss */
-.night-false .btn-goup-tabs .btn {
-  background-color: #eeeeee;
-}
-/* line 132, ../sass/custom/_shui.scss */
-.night-false .btn-goup-tabs .btn.active, .night-false .btn-goup-tabs .btn[aria-selected] {
-  background-color: #dcdcdc;
-}
-/* line 140, ../sass/custom/_shui.scss */
-.night-false .list-panel .control-collapsable {
-  padding: 10px;
-  background-color: #eeeeee;
-}
-/* line 147, ../sass/custom/_shui.scss */
-.night-false .table-responsive {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (max-width: 767px) {
-  /* line 150, ../sass/custom/_shui.scss */
-  .night-false .table-responsive [data-expanded="true"] td {
-    background-color: #eeeeee;
-  }
-}
-/* line 159, ../sass/custom/_shui.scss */
-.night-false .widget-entry .widget-entry-in {
-  border-color: #d3d3d3;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 159, ../sass/custom/_shui.scss */
-  .night-false .widget-entry .widget-entry-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-@media only screen and (min-width: 320px) {
-  /* line 173, ../sass/custom/_shui.scss */
-  .night-false .card-room .card-room-in {
-    border: solid 4px #ffffff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-/* line 181, ../sass/custom/_shui.scss */
-.night-false .elemnts-room-bar {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 181, ../sass/custom/_shui.scss */
-  .night-false .elemnts-room-bar {
-    border: 0;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-  }
-}
-/* line 191, ../sass/custom/_shui.scss */
-.night-false .localapp-in,
-.night-false .onlineapp-in {
-  border-color: #d3d3d3;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 480px) {
-  /* line 191, ../sass/custom/_shui.scss */
-  .night-false .localapp-in,
-  .night-false .onlineapp-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-@media only screen and (min-width: 320px) {
-  /* line 204, ../sass/custom/_shui.scss */
-  .night-false .card-customize {
-    border: 0;
-  }
-  /* line 206, ../sass/custom/_shui.scss */
-  .night-false .card-customize .card-customize-in {
-    border: solid 4px #ffffff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-/* line 216, ../sass/custom/_shui.scss */
-.night-false .accordion-wrap .accordion {
-  background-color: #F6F6F6;
-}
-/* line 218, ../sass/custom/_shui.scss */
-.night-false .accordion-wrap .accordion.no-bcg {
-  padding: 0;
-  background: transparent;
-}
-/* line 225, ../sass/custom/_shui.scss */
-.night-false .accordion-wrap.nested .accordion .accordion {
-  background-color: #e9e9e9;
-}
-/* line 230, ../sass/custom/_shui.scss */
-.night-false .accordion-wrap.active {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 230, ../sass/custom/_shui.scss */
-  .night-false .accordion-wrap.active {
-    padding: 10px;
-    margin: 10px;
-    border: solid 2px #dff0d8;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  }
-}
-/* line 243, ../sass/custom/_shui.scss */
-.night-false fieldset .accordion-wrap.active {
-  margin: 10px 0;
-}
-
-/* Security  Notification 
--------------------------------------------------- */
-/* line 255, ../sass/custom/_shui.scss */
-.automation .notification {
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #F6F6F6;
-}
-
-/* Footer
-    -------------------------------------------------- */
-/* line 266, ../sass/custom/_shui.scss */
-#footer .container {
-  display: flex;
-  justify-content: space-between;
-}
-/* line 269, ../sass/custom/_shui.scss */
-#footer .container span:last-child {
-  margin-left: auto;
-}
-
-/* Night mode
--------------------------------------------------- */
-/* line 26, ../sass/custom/_shui_night.scss */
-.night-true {
-  /* Common
-    -------------------------------------------------- */
-  background-color: #24262D;
-  /* Text
-    -------------------------------------------------- */
-  /* Dark background
-    -------------------------------------------------- */
-  /* Lighter background
-    -------------------------------------------------- */
-  /* Lightest background
-    -------------------------------------------------- */
-  /* White background
-    -------------------------------------------------- */
-  /* Additional background
-    -------------------------------------------------- */
-  /* Input background
-    -------------------------------------------------- */
-  /* Border darker
-    -------------------------------------------------- */
-  /* Border lighter
-    -------------------------------------------------- */
-  /* No border
-    -------------------------------------------------- */
-  /* Subnavigation
--------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Fix me
-    -------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Alert
-    -------------------------------------------------- */
-  /* Modal
-    -------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Automations
-  -------------------------------------------------- */
-  /* Active control
-  -------------------------------------------------- */
-  /* Rooms
-  -------------------------------------------------- */
-  /* White images
-    -------------------------------------------------- */
-  /* Alertify
--------------------------------------------------- */
-  /* Alpaca
-    -------------------------------------------------- */
-}
-/* line 31, ../sass/custom/_shui_night.scss */
-.night-true * {
-  color: #aeb8c3;
-  border-color: #44464F;
-}
-/* line 39, ../sass/custom/_shui_night.scss */
-.night-true #sub_navigation_in ul .fa,
-.night-true .page-navi ul li a,
-.night-true .card-room .card-room-in .card-title a,
-.night-true .localapp-in .localapp-body .localapp-title,
-.night-true .onlineapp-in .onlineapp-body .onlineapp-title,
-.night-true .app-dropdown ul li a,
-.night-true #loading,
-.night-true .btn-widget-time,
-.night-true .txt-widget-time,
-.night-true .alert,
-.night-true .app-fatal-error,
-.night-true .app-fatal-error .fatal-error-message,
-.night-true .app-fatal-error .fatal-error-info,
-.night-true .wizard li,
-.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-.night-true .badge-number {
-  color: #aeb8c3;
-}
-/* line 59, ../sass/custom/_shui_night.scss */
-.night-true .page-navi ul .fa,
-.night-true .btn-goup-tabs .btn .fa,
-.night-true .accordion-entry-title .fa,
-.night-true .app-entry-local h2,
-.night-true .comment-entry .comment-header,
-.night-true .appmodal-header h3,
-.night-true a:hover,
-.night-true a:focus,
-.night-true .read-true .report-body > *,
-.night-true .btn-default:hover,
-.night-true .btn-default:focus,
-.night-true .btn-default:active,
-.night-true .page-navi .page-navi-title,
-.night-true .btn-default.active {
-  color: #8a8d8f;
-}
-/* line 77, ../sass/custom/_shui_night.scss */
-.night-true .card-customize .card-customize-in .card-footer,
-.night-true .sc_Bar_inner .time,
-.night-true .schedule .sc_Bar .sc_Bar_inner .text {
-  color: #24262D;
-}
-/* line 84, ../sass/custom/_shui_night.scss */
-.night-true .text-primary {
-  color: #6494BC;
-}
-/* line 88, ../sass/custom/_shui_night.scss */
-.night-true .text-success {
-  color: #80AD80;
-}
-/* line 92, ../sass/custom/_shui_night.scss */
-.night-true .text-info {
-  color: #5bc0de;
-}
-/* line 96, ../sass/custom/_shui_night.scss */
-.night-true .text-warning {
-  color: #f0ad4e;
-}
-/* line 100, ../sass/custom/_shui_night.scss */
-.night-true .text-danger {
-  color: #d9534f;
-}
-/* line 106, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation_wrap,
-.night-true #main_navigation .active,
-.night-true #main_navigation a:hover,
-.night-true #sub_navigation_in .active,
-.night-true .card-room .card-room-in .card-icon,
-.night-true .app-row-report,
-.night-true #apps_instances .accordion-entry,
-.night-true .form-page,
-.night-true .table-report,
-.night-true .card-customize .card-customize-in .card-icon,
-.night-true .list-panel,
-.night-true .app-dropdown ul li:hover,
-.night-true .input-group-addon,
-.night-true .automation .accordion-wrap.nested .accordion .accordion,
-.night-true #loading .loading-in,
-.night-true .appmodal .appmodal-in,
-.night-true .smart-start .container .entry,
-.night-true #footer #footer_in,
-.night-true .flexcards.security .flexcard .flipcard > *.front,
-.night-true .flexcards.security .flexcard .flipcard > *.back,
-.night-true .automation .notification,
-.night-true .dragdrop-element .dd-placeholder,
-.night-true .accordion-instances,
-.night-true .btn:not(.btn-danger) {
-  background: #24262D !important;
-}
-/* line 135, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation .active,
-.night-true #sub_navigation_in ul,
-.night-true .page-navi .page-navi-in,
-.night-true .btn-goup-tabs .btn.active,
-.night-true .widget-entry .widget-entry-in,
-.night-true .widget-ctrl .btn-group .btn-primary,
-.night-true .tbl-widget-ctrl .btn-group .btn-primary,
-.night-true .card-element-dragdrop,
-.night-true .elemnts-room-bar,
-.night-true .event-level-warning,
-.night-true .event-level-error,
-.night-true .event-level-critical,
-.night-true .localapp-in,
-.night-true .localapp-in .localapp-footer .btn-default[disabled],
-.night-true .onlineapp-in,
-.night-true .submit-entry,
-.night-true .app-dropdown,
-.night-true .bcg-active.false,
-.night-true .automation .accordion-wrap .accordion,
-.night-true .bcg-danger,
-.night-true .comment-entry,
-.night-true .vendor-list,
-.night-true .badge-number,
-.night-true .appmodal-header,
-.night-true .appmodal-footer,
-.night-true .wizard-controls,
-.night-true .alert,
-.night-true .bcg-success,
-.night-true .app-fatal-error,
-.night-true .wizard li,
-.night-true .onlineapp-in .onlineapp-footer,
-.night-true .security-schedule > tbody > tr > td.active,
-.night-true .table-responsive [data-expanded="true"] td,
-.night-true .commands-data-control,
-.night-true .schedule .sc_wrapper .sc_data,
-.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-.night-true .schedule .sc_menu .sc_header_cell,
-.night-true .infowindow {
-  background: #2D3038 !important;
-}
-/* line 178, ../sass/custom/_shui_night.scss */
-.night-true .app-row-imglist,
-.night-true .customize-icon-list {
-  background: #858996 !important;
-}
-/* line 185, ../sass/custom/_shui_night.scss */
-.night-true .vendors.flexgallery > * figure,
-.night-true #modalHistory .appmodal-body {
-  background: #fff;
-}
-/* line 192, ../sass/custom/_shui_night.scss */
-.night-true .btn-submit,
-.night-true .wizard li.active,
-.night-true .dots .active {
-  background: #740047 !important;
-}
-/* line 200, ../sass/custom/_shui_night.scss */
-.night-true .form-control,
-.night-true .slider,
-.night-true .ajs-input,
-.night-true .label-round,
-.night-true .label {
-  background: #44464F;
-}
-/* line 208, ../sass/custom/_shui_night.scss */
-.night-true .slider:before {
-  background: #d9534f;
-}
-/* line 214, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation_wrap,
-.night-true #sub_navigation_in ul,
-.night-true #sub_navigation_in ul li,
-.night-true #header .divider-vertical,
-.night-true .page-navi .page-navi-in,
-.night-true .page-navi ul li,
-.night-true .widget-entry .widget-entry-in,
-.night-true .widget-ctrl .btn-group .btn-primary,
-.night-true .tbl-widget-ctrl .btn-group .btn-primary,
-.night-true .card-room .card-room-in,
-.night-true .report-entry .report-col,
-.night-true .localapp-in .localapp-footer .btn-default[disabled],
-.night-true .table tbody tr td,
-.night-true .accordion-toggle > button,
-.night-true .form-page .form-group,
-.night-true .device-available-block.assigned,
-.night-true .form-control,
-.night-true .ajs-input,
-.night-true .input-group-addon,
-.night-true .slider,
-.night-true .slider:before,
-.night-true .app-dropdown,
-.night-true .app-dropdown ul li,
-.night-true .card-customize,
-.night-true .vendor-list,
-.night-true .automation .accordion-wrap .accordion-toggle .no-toggle,
-.night-true .list-panel,
-.night-true .appmodal-header,
-.night-true .appmodal-footer,
-.night-true .infowindow,
-.night-true #loading .loading-in,
-.night-true .label-round,
-.night-true .btn-submit,
-.night-true .flexcard,
-.night-true .flexcards.security .flexcard .flipcard > *,
-.night-true .table-responsive td,
-.night-true .table-responsive th,
-.night-true .table > thead > tr > th,
-.night-true .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
-.night-true .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
-.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-.night-true .btn-default[disabled],
-.night-true #footer {
-  border-color: #44464F !important;
-}
-/* line 262, ../sass/custom/_shui_night.scss */
-.night-true #sub_navigation_in,
-.night-true .btn-default.active,
-.night-true .btn-default:hover,
-.night-true .btn-default:focus,
-.night-true .btn-default:active,
-.night-true .dragdrop-element .dd-placeholder {
-  border-color: #737786 !important;
-}
-/* line 273, ../sass/custom/_shui_night.scss */
-.night-true .form-page,
-.night-true .submit-entry,
-.night-true .app-row-imglist,
-.night-true .wizard-controls {
-  border: 0;
-}
-@media only screen and (max-width: 767px) {
-  /* line 284, ../sass/custom/_shui_night.scss */
-  .night-true #sub_navigation #sub_navigation_in {
+  /* line 314, ../sass/custom/_shui_night.scss */
+  #sub_navigation #sub_navigation_in {
     background-color: #2D3038;
   }
 }
+/* Fix me
+    -------------------------------------------------- */
+/* MIN WIDTH */
+/* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 293, ../sass/custom/_shui_night.scss */
-  .night-true .fix-me-top {
+  /* line 323, ../sass/custom/_shui_night.scss */
+  .fix-me-top {
     background: #24262D;
     border-color: #44464F;
   }
 }
-/* line 301, ../sass/custom/_shui_night.scss */
-.night-true .alert-success {
+/* Alert
+    -------------------------------------------------- */
+/* line 331, ../sass/custom/_shui_night.scss */
+.alert-success {
   border-color: #f0ad4e;
 }
-/* line 305, ../sass/custom/_shui_night.scss */
-.night-true .alert-warning {
+
+/* line 335, ../sass/custom/_shui_night.scss */
+.alert-warning {
   border-color: #f0ad4e;
 }
-/* line 309, ../sass/custom/_shui_night.scss */
-.night-true .alert-danger {
+
+/* line 339, ../sass/custom/_shui_night.scss */
+.alert-danger {
   border-color: #d9534f;
 }
+
+/* Modal
+    -------------------------------------------------- */
+/* MIN WIDTH */
+/* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 316, ../sass/custom/_shui_night.scss */
-  .night-true .appmodal:before {
+  /* line 346, ../sass/custom/_shui_night.scss */
+  .appmodal:before {
     background: #24262D !important;
   }
 }
+/* MIN WIDTH */
 @media only screen and (min-width: 768px) {
-  /* line 322, ../sass/custom/_shui_night.scss */
-  .night-true .appmodal:before {
+  /* line 352, ../sass/custom/_shui_night.scss */
+  .appmodal:before {
     background-color: rgba(37, 37, 37, 0.5);
   }
-  /* line 326, ../sass/custom/_shui_night.scss */
-  .night-true .appmodal-in {
+
+  /* line 356, ../sass/custom/_shui_night.scss */
+  .appmodal-in {
     border: solid 4px #44464F;
   }
 }
-/* line 334, ../sass/custom/_shui_night.scss */
-.night-true .flexgallery figure {
+/* MAX WIDTH */
+/* Automations
+  -------------------------------------------------- */
+/* line 364, ../sass/custom/_shui_night.scss */
+.flexgallery figure {
   border: solid 1px #44464F;
   background-color: #24262D;
 }
-/* line 338, ../sass/custom/_shui_night.scss */
-.night-true .flexgallery figure figcaption {
+/* line 368, ../sass/custom/_shui_night.scss */
+.flexgallery figure figcaption {
   background-color: rgba(36, 38, 45, 0.7);
 }
-/* line 349, ../sass/custom/_shui_night.scss */
-.night-true .control-active {
+
+/* Active control
+  -------------------------------------------------- */
+/* line 379, ../sass/custom/_shui_night.scss */
+.control-active {
   border-color: #740047;
 }
-/* line 355, ../sass/custom/_shui_night.scss */
-.night-true .room-img-upload:not(.control-active) {
+
+/* Rooms
+  -------------------------------------------------- */
+/* line 386, ../sass/custom/_shui_night.scss */
+.room-img-upload:not(.control-active) {
   border: solid 8px #24262D;
 }
-/* line 358, ../sass/custom/_shui_night.scss */
-.night-true .room-img-upload.control-active {
+/* line 390, ../sass/custom/_shui_night.scss */
+.room-img-upload.control-active {
   border: solid 4px #740047;
 }
-/* line 362, ../sass/custom/_shui_night.scss */
-.night-true .room-img-upload:hover {
+/* line 394, ../sass/custom/_shui_night.scss */
+.room-img-upload:hover {
   border: solid 4px #f0ad4e;
 }
-/* line 370, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation .nav-logo {
+
+/* White images
+    -------------------------------------------------- */
+/* line 402, ../sass/custom/_shui_night.scss */
+#main_navigation .nav-logo {
   -webkit-filter: brightness(0) invert(1);
   filter: brightness(0) invert(1);
   /* &:hover {
-    -webkit-filter: none;
-    filter: none;
-  } */
+      -webkit-filter: none;
+      filter: none;
+    } */
 }
-/* line 383, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-dialog {
+
+/* Alertify
+-------------------------------------------------- */
+/* line 415, ../sass/custom/_shui_night.scss */
+.alertify .ajs-dialog {
   border: solid 2px #44464F;
 }
-/* line 387, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-dialog,
-.night-true .alertify .ajs-header,
-.night-true .alertify .ajs-footer {
+/* line 419, ../sass/custom/_shui_night.scss */
+.alertify .ajs-dialog,
+.alertify .ajs-header,
+.alertify .ajs-footer {
   color: #aeb8c3;
   background-color: #24262D;
 }
-/* line 395, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-footer .ajs-button {
+/* line 427, ../sass/custom/_shui_night.scss */
+.alertify .ajs-footer .ajs-button {
   display: inline-block;
   margin-bottom: 0;
   font-weight: normal;
@@ -20826,55 +20519,64 @@ body.night-false {
   color: #aeb8c3;
   border: solid 1px #737786;
 }
-/* line 414, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-footer .ajs-button.ajs-ok {
+/* line 446, ../sass/custom/_shui_night.scss */
+.alertify .ajs-footer .ajs-button.ajs-ok {
   color: #8a8d8f;
   border: solid 1px #44464F;
   background-color: #740047;
 }
-/* line 419, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-footer .ajs-button.ajs-ok:hover, .night-true .alertify .ajs-footer .ajs-button.ajs-ok:focus {
+/* line 451, ../sass/custom/_shui_night.scss */
+.alertify .ajs-footer .ajs-button.ajs-ok:hover, .alertify .ajs-footer .ajs-button.ajs-ok:focus {
   background-color: #44464F;
   color: #8a8d8f;
 }
-/* line 429, ../sass/custom/_shui_night.scss */
-.night-true .alertify-notifier .ajs-message.ajs-success {
+
+/* line 461, ../sass/custom/_shui_night.scss */
+.alertify-notifier .ajs-message.ajs-success {
   color: #fff;
 }
-/* line 433, ../sass/custom/_shui_night.scss */
-.night-true .alertify-notifier .ajs-message.ajs-error {
+
+/* line 465, ../sass/custom/_shui_night.scss */
+.alertify-notifier .ajs-message.ajs-error {
   color: #fff;
 }
-/* line 437, ../sass/custom/_shui_night.scss */
-.night-true .alertify-notifier .ajs-message.ajs-warning {
+
+/* line 469, ../sass/custom/_shui_night.scss */
+.alertify-notifier .ajs-message.ajs-warning {
   color: #fff;
 }
-/* line 443, ../sass/custom/_shui_night.scss */
-.night-true .alpaca-field-object {
+
+/* Alpaca
+    -------------------------------------------------- */
+/* line 475, ../sass/custom/_shui_night.scss */
+.alpaca-field-object {
   border: 1px #44464F solid;
 }
-/* line 447, ../sass/custom/_shui_night.scss */
-.night-true .table-bordered {
+
+/* line 479, ../sass/custom/_shui_night.scss */
+.table-bordered {
   border: 1px solid #44464F;
 }
-/* line 451, ../sass/custom/_shui_night.scss */
-.night-true .table-striped > tbody > tr:nth-child(odd) > td,
-.night-true .table-striped > tbody > tr:nth-child(odd) > th {
+
+/* line 483, ../sass/custom/_shui_night.scss */
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #44464F;
 }
-/* line 458, ../sass/custom/_shui_night.scss */
-.night-true #alpaca_data .table-bordered > thead > tr > th,
-.night-true #alpaca_data .table-bordered > thead > tr > td {
+
+/* line 490, ../sass/custom/_shui_night.scss */
+#alpaca_data .table-bordered > thead > tr > th,
+#alpaca_data .table-bordered > thead > tr > td {
   border: 1px solid #44464F;
 }
-/* line 463, ../sass/custom/_shui_night.scss */
-.night-true #alpaca_data .table-bordered > tbody > tr > td,
-.night-true #alpaca_data .table-bordered > tfoot > tr > th,
-.night-true #alpaca_data .table-bordered > tfoot > tr > td {
+/* line 495, ../sass/custom/_shui_night.scss */
+#alpaca_data .table-bordered > tbody > tr > td,
+#alpaca_data .table-bordered > tfoot > tr > th,
+#alpaca_data .table-bordered > tfoot > tr > td {
   border: 0px solid #44464F;
 }
-/* line 469, ../sass/custom/_shui_night.scss */
-.night-true #alpaca_data .btn-default[disabled] {
+/* line 501, ../sass/custom/_shui_night.scss */
+#alpaca_data .btn-default[disabled] {
   background: transparent;
   border-color: #44464F;
 }

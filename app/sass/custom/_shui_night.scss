@@ -23,453 +23,484 @@ $input-bcg-color: $app-color-dark-lightest;
 $app-lightest-bcg-color: #858996;
 
 //.skin-default {
-.night-true {
-  /* Common
-    -------------------------------------------------- */
-  background-color: $app-color-darkest;
 
-  * {
-    color: $app-body-color;
+/* Common
+    -------------------------------------------------- */
+body {
+  background-color: $app-color-darkest;
+}
+
+* {
+  color: $app-body-color;
+  border-color: $app-border-color;
+}
+
+/* Text
+    -------------------------------------------------- */
+// Light
+#sub_navigation_in ul .fa,
+.page-navi ul li a,
+.card-room .card-room-in .card-title a,
+.localapp-in .localapp-body .localapp-title,
+.onlineapp-in .onlineapp-body .onlineapp-title,
+.app-dropdown ul li a,
+#loading,
+.btn-widget-time,
+.txt-widget-time,
+.btn-default,
+.alert,
+.app-fatal-error,
+.app-fatal-error .fatal-error-message,
+.app-fatal-error .fatal-error-info,
+.wizard li,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.badge-number {
+  color: $app-body-color;
+}
+
+// Darker
+.page-navi ul .fa,
+.btn-goup-tabs .btn .fa,
+.accordion-entry-title .fa,
+.app-entry-local h2,
+.comment-entry .comment-header,
+.appmodal-header h3,
+a:hover,
+a:focus,
+.read-true .report-body>*,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.page-navi .page-navi-title,
+.read-true .event-date, 
+.read-true .rss-title, 
+.read-true .rss-description
+ {
+  color: $app-color-light;
+}
+
+// Dark
+.card-customize .card-customize-in .card-footer,
+.sc_Bar_inner .time,
+.schedule .sc_Bar .sc_Bar_inner .text {
+  color: $app-color-darkest;
+}
+/* Warning color
+    -------------------------------------------------- */
+    #main_navigation .active .fa,
+    #sub_navigation_in ul li.active a span,
+    #sub_navigation_in ul .active a,
+    #sub_navigation_in ul .active .fa,
+    .btn-default.active span,
+    .btn-default.active .fa{
+     color: $app-brand-warning !important;
+    }
+
+// State
+.text-primary {
+  color: $app-brand-primary;
+}
+
+.text-success {
+  color: $app-brand-success;
+}
+
+.text-info {
+  color: $app-brand-info;
+}
+
+.text-warning {
+  color: $app-brand-warning;
+}
+
+.text-danger {
+  color: $app-brand-danger;
+}
+
+/* Dark background
+    -------------------------------------------------- */
+#main_navigation_wrap,
+#main_navigation .active,
+#main_navigation a:hover,
+#sub_navigation_in .active,
+.card-room .card-room-in .card-icon,
+.app-row-report,
+#apps_instances .accordion-entry,
+.form-page,
+.table-report,
+.card-customize .card-customize-in .card-icon,
+.list-panel,
+.app-dropdown ul li:hover,
+.input-group-addon,
+.automation .accordion-wrap.nested .accordion .accordion,
+#loading .loading-in,
+.appmodal .appmodal-in,
+.smart-start .container .entry,
+#footer #footer_in,
+.flexcards.security .flexcard .flipcard>*.front,
+.flexcards.security .flexcard .flipcard>*.back,
+.automation .notification,
+.dragdrop-element .dd-placeholder,
+.accordion-instances,
+.btn:not(.btn-danger):not(.btn-submit) {
+  background: $app-color-darkest !important;
+}
+
+/* Lighter background
+    -------------------------------------------------- */
+#main_navigation .active,
+#sub_navigation_in ul,
+.page-navi .page-navi-in,
+.btn-goup-tabs .btn.active,
+.widget-entry .widget-entry-in,
+.widget-ctrl .btn-group .btn-primary,
+.tbl-widget-ctrl .btn-group .btn-primary,
+.card-element-dragdrop,
+.elemnts-room-bar,
+.event-level-warning,
+.event-level-error,
+.event-level-critical,
+.localapp-in,
+.localapp-in .localapp-footer .btn-default[disabled],
+.onlineapp-in,
+.submit-entry,
+.app-dropdown,
+.bcg-active.false,
+.automation .accordion-wrap .accordion,
+.bcg-danger,
+.comment-entry,
+.vendor-list,
+.badge-number,
+.appmodal-header,
+.appmodal-footer,
+.wizard-controls,
+.alert,
+.bcg-success,
+.app-fatal-error,
+.wizard li,
+.onlineapp-in .onlineapp-footer,
+.security-schedule>tbody>tr>td.active,
+.table-responsive [data-expanded="true"] td,
+.list-panel.read-false,
+.form-page,
+.commands-data-control,
+.schedule .sc_wrapper .sc_data,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.schedule .sc_menu .sc_header_cell,
+.infowindow {
+  background: $app-color-dark !important;
+}
+
+/* Lightest background
+    -------------------------------------------------- */
+.app-row-imglist,
+.customize-icon-list {
+  background: $app-lightest-bcg-color !important;
+}
+
+/* White background
+    -------------------------------------------------- */
+.vendors.flexgallery>* figure,
+#modalHistory .appmodal-body {
+  background: #fff;
+}
+
+/* Additional background
+    -------------------------------------------------- */
+.btn-submit,
+.wizard li.active,
+.dots .active {
+  background: $app-color-additional !important;
+}
+
+/* Input background
+    -------------------------------------------------- */
+.form-control,
+.slider,
+.ajs-input,
+.label-round,
+.label {
+  background: $input-bcg-color;
+}
+
+.slider:before {
+  background: $app-brand-danger;
+}
+
+/* Border darker
+    -------------------------------------------------- */
+#main_navigation_wrap,
+#sub_navigation_in ul,
+#sub_navigation_in ul li,
+#header .divider-vertical,
+.page-navi .page-navi-in,
+.page-navi ul li,
+.widget-entry .widget-entry-in,
+.widget-ctrl .btn-group .btn-primary,
+.tbl-widget-ctrl .btn-group .btn-primary,
+.card-room .card-room-in,
+.report-entry .report-col,
+.localapp-in .localapp-footer .btn-default[disabled],
+.table tbody tr td,
+.accordion-toggle>button,
+.form-page .form-group,
+.device-available-block.assigned,
+.form-control,
+.ajs-input,
+.input-group-addon,
+.slider,
+.slider:before,
+.app-dropdown,
+.app-dropdown ul li,
+.card-customize,
+.vendor-list,
+.automation .accordion-wrap .accordion-toggle .no-toggle,
+.list-panel,
+.appmodal-header,
+.appmodal-footer,
+.infowindow,
+#loading .loading-in,
+.label-round,
+.btn-default,
+.btn-submit,
+.app-row-report,
+.report-entry,
+.flexcard,
+.flexcards.security .flexcard .flipcard>*,
+.table-responsive td,
+.table-responsive th,
+.table>thead>tr>th,
+.schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
+.schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.btn-default[disabled],
+#footer {
+  border-color: $app-border-color !important;
+}
+
+/* Border lighter
+    -------------------------------------------------- */
+#sub_navigation_in,
+.btn-default.active,
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-success,
+.dragdrop-element .dd-placeholder {
+  border-color: $app-border-color-lighter !important;
+}
+
+/* Border additional
+    -------------------------------------------------- */
+    .widget-entry.widget-success .widget-entry-in{
+      border-color: $app-color-additional !important;
+    }
+
+
+
+/* No border
+    -------------------------------------------------- */
+.form-page,
+.submit-entry,
+.app-row-imglist,
+.wizard-controls {
+  border: 0;
+}
+
+/* Subnavigation
+-------------------------------------------------- */
+@include mediaQueries(max-small) {
+  #sub_navigation {
+    #sub_navigation_in {
+      background-color: $app-color-dark;
+    }
+  }
+}
+
+/* Fix me
+    -------------------------------------------------- */
+@include mediaQueries(max-small) {
+  .fix-me-top {
+    background: $app-color-darkest;
     border-color: $app-border-color;
   }
+}
 
-  /* Text
+/* Alert
     -------------------------------------------------- */
-  // Light
-  #sub_navigation_in ul .fa,
-  .page-navi ul li a,
-  .card-room .card-room-in .card-title a,
-  .localapp-in .localapp-body .localapp-title,
-  .onlineapp-in .onlineapp-body .onlineapp-title,
-  .app-dropdown ul li a,
-  #loading,
-  .btn-widget-time,
-  .txt-widget-time,
-  .alert,
-  .app-fatal-error,
-  .app-fatal-error .fatal-error-message,
-  .app-fatal-error .fatal-error-info,
-  .wizard li,
-  .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-  .badge-number {
-    color: $app-body-color;
-  }
+.alert-success {
+  border-color: $app-brand-warning;
+}
 
-  // Darker
-  .page-navi ul .fa,
-  .btn-goup-tabs .btn .fa,
-  .accordion-entry-title .fa,
-  .app-entry-local h2,
-  .comment-entry .comment-header,
-  .appmodal-header h3,
-  a:hover,
-  a:focus,
-  .read-true .report-body>*,
-  .btn-default:hover,
-  .btn-default:focus,
-  .btn-default:active,
-  .page-navi .page-navi-title,
-  .btn-default.active {
-    color: $app-color-light;
-  }
+.alert-warning {
+  border-color: $app-brand-warning;
+}
 
-  // Dark
-  .card-customize .card-customize-in .card-footer,
-  .sc_Bar_inner .time,
-  .schedule .sc_Bar .sc_Bar_inner .text {
-    color: $app-color-darkest;
-  }
+.alert-danger {
+  border-color: $app-brand-danger;
+}
 
-  // State
-  .text-primary {
-    color: $app-brand-primary;
-  }
-
-  .text-success {
-    color: $app-brand-success;
-  }
-
-  .text-info {
-    color: $app-brand-info;
-  }
-
-  .text-warning {
-    color: $app-brand-warning;
-  }
-
-  .text-danger {
-    color: $app-brand-danger;
-  }
-
-  /* Dark background
+/* Modal
     -------------------------------------------------- */
-  #main_navigation_wrap,
-  #main_navigation .active,
-  #main_navigation a:hover,
-  #sub_navigation_in .active,
-  .card-room .card-room-in .card-icon,
-  .app-row-report,
-  #apps_instances .accordion-entry,
-  .form-page,
-  .table-report,
-  .card-customize .card-customize-in .card-icon,
-  .list-panel,
-  .app-dropdown ul li:hover,
-  .input-group-addon,
-  .automation .accordion-wrap.nested .accordion .accordion,
-  #loading .loading-in,
-  .appmodal .appmodal-in,
-  .smart-start .container .entry,
-  #footer #footer_in,
-  .flexcards.security .flexcard .flipcard>*.front,
-  .flexcards.security .flexcard .flipcard>*.back,
-  .automation .notification,
-  .dragdrop-element .dd-placeholder,
-  .accordion-instances,
-  .btn:not(.btn-danger) {
+@include mediaQueries(max-small) {
+  .appmodal:before {
     background: $app-color-darkest !important;
   }
+}
 
-  /* Lighter background
-    -------------------------------------------------- */
-  #main_navigation .active,
-  #sub_navigation_in ul,
-  .page-navi .page-navi-in,
-  .btn-goup-tabs .btn.active,
-  .widget-entry .widget-entry-in,
-  .widget-ctrl .btn-group .btn-primary,
-  .tbl-widget-ctrl .btn-group .btn-primary,
-  .card-element-dragdrop,
-  .elemnts-room-bar,
-  .event-level-warning,
-  .event-level-error,
-  .event-level-critical,
-  .localapp-in,
-  .localapp-in .localapp-footer .btn-default[disabled],
-  .onlineapp-in,
-  .submit-entry,
-  .app-dropdown,
-  .bcg-active.false,
-  .automation .accordion-wrap .accordion,
-  .bcg-danger,
-  .comment-entry,
-  .vendor-list,
-  .badge-number,
-  .appmodal-header,
-  .appmodal-footer,
-  .wizard-controls,
-  .alert,
-  .bcg-success,
-  .app-fatal-error,
-  .wizard li,
-  .onlineapp-in .onlineapp-footer,
-  .security-schedule>tbody>tr>td.active,
-  .table-responsive [data-expanded="true"] td,
-  .commands-data-control,
-  .schedule .sc_wrapper .sc_data,
-  .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-  .schedule .sc_menu .sc_header_cell,
-  .infowindow {
-    background: $app-color-dark !important;
+@include mediaQueries(min-small) {
+  .appmodal:before {
+    background-color: $app-overlay-bcg-color;
   }
 
-  /* Lightest background
-    -------------------------------------------------- */
-  .app-row-imglist,
-  .customize-icon-list{
-    background: $app-lightest-bcg-color !important;
+  .appmodal-in {
+    border: solid 4px $app-border-color;
   }
+}
 
-  /* White background
-    -------------------------------------------------- */
-    .vendors.flexgallery > * figure,
-    #modalHistory .appmodal-body{
-    background: #fff;
-  }
-
-  /* Additional background
-    -------------------------------------------------- */
-  .btn-submit,
-  .wizard li.active,
-  .dots .active {
-    background: $app-color-additional !important;
-  }
-
-  /* Input background
-    -------------------------------------------------- */
-  .form-control,
-  .slider,
-  .ajs-input,
-  .label-round,
-  .label {
-    background: $input-bcg-color;
-  }
-
-  .slider:before {
-    background: $app-brand-danger;
-  }
-
-  /* Border darker
-    -------------------------------------------------- */
-  #main_navigation_wrap,
-  #sub_navigation_in ul,
-  #sub_navigation_in ul li,
-  #header .divider-vertical,
-  .page-navi .page-navi-in,
-  .page-navi ul li,
-  .widget-entry .widget-entry-in,
-  .widget-ctrl .btn-group .btn-primary,
-  .tbl-widget-ctrl .btn-group .btn-primary,
-  .card-room .card-room-in,
-  .report-entry .report-col,
-  .localapp-in .localapp-footer .btn-default[disabled],
-  .table tbody tr td,
-  .accordion-toggle>button,
-  .form-page .form-group,
-  .device-available-block.assigned,
-  .form-control,
-  .ajs-input,
-  .input-group-addon,
-  .slider,
-  .slider:before,
-  .app-dropdown,
-  .app-dropdown ul li,
-  .card-customize,
-  .vendor-list,
-  .automation .accordion-wrap .accordion-toggle .no-toggle,
-  .list-panel,
-  .appmodal-header,
-  .appmodal-footer,
-  .infowindow,
-  #loading .loading-in,
-  .label-round,
-  .btn-submit,
-  .flexcard,
-  .flexcards.security .flexcard .flipcard>*,
-  .table-responsive td,
-  .table-responsive th,
-  .table>thead>tr>th,
-  .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
-  .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
-  .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-  .btn-default[disabled],
-  #footer {
-    border-color: $app-border-color !important;
-  }
-
-  /* Border lighter
-    -------------------------------------------------- */
-  #sub_navigation_in,
-  .btn-default.active,
-  .btn-default:hover,
-  .btn-default:focus,
-  .btn-default:active,
-  .dragdrop-element .dd-placeholder {
-    border-color: $app-border-color-lighter !important;
-  }
-
-  /* No border
-    -------------------------------------------------- */
-  .form-page,
-  .submit-entry,
-  .app-row-imglist,
-  .wizard-controls {
-    border: 0;
-  }
-
-  /* Subnavigation
--------------------------------------------------- */
-  @include mediaQueries(max-small) {
-    #sub_navigation {
-      #sub_navigation_in {
-        background-color: $app-color-dark;
-      }
-    }
-  }
-
-  /* Fix me
-    -------------------------------------------------- */
-  @include mediaQueries(max-small) {
-    .fix-me-top {
-      background: $app-color-darkest;
-      border-color: $app-border-color;
-    }
-  }
-
-  /* Alert
-    -------------------------------------------------- */
-  .alert-success {
-    border-color: $app-brand-warning;
-  }
-
-  .alert-warning {
-    border-color: $app-brand-warning;
-  }
-
-  .alert-danger {
-    border-color: $app-brand-danger;
-  }
-
-  /* Modal
-    -------------------------------------------------- */
-  @include mediaQueries(max-small) {
-    .appmodal:before {
-      background: $app-color-darkest !important;
-    }
-  }
-
-  @include mediaQueries(min-small) {
-    .appmodal:before {
-      background-color: $app-overlay-bcg-color;
-    }
-
-    .appmodal-in {
-      border: solid 4px $app-border-color;
-    }
-  }
-
-  /* Automations
+/* Automations
   -------------------------------------------------- */
-  .flexgallery {
-    figure {
-      border: solid 1px $app-border-color;
-      background-color: $app-color-darkest;
+.flexgallery {
+  figure {
+    border: solid 1px $app-border-color;
+    background-color: $app-color-darkest;
 
-      figcaption {
-        background-color: rgba(36, 38, 45, 0.7);
-        ;
-        //position: static;
-        //background: none;
-      }
+    figcaption {
+      background-color: rgba(36, 38, 45, 0.7);
+      ;
+      //position: static;
+      //background: none;
     }
   }
+}
 
-  /* Active control
+/* Active control
   -------------------------------------------------- */
-  .control-active{
-    border-color: $app-color-additional;
-  }
-  /* Rooms
+.control-active {
+  border-color: $app-color-additional;
+}
+
+/* Rooms
   -------------------------------------------------- */
-  .room-img-upload{
-    &:not(.control-active){
-      border: solid 8px $app-color-darkest;
-    }
-    &.control-active{
-      border: solid 4px $app-color-additional;
-    }
-   
-    &:hover{
-      border: solid 4px $app-brand-warning;
-    }
-   
+.room-img-upload {
+  &:not(.control-active) {
+    border: solid 8px $app-color-darkest;
   }
 
-  /* White images
+  &.control-active {
+    border: solid 4px $app-color-additional;
+  }
+
+  &:hover {
+    border: solid 4px $app-brand-warning;
+  }
+
+}
+
+/* White images
     -------------------------------------------------- */
-  #main_navigation .nav-logo{
-    -webkit-filter: brightness(0) invert(1);
-    filter: brightness(0) invert(1);
+#main_navigation .nav-logo {
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 
-    /* &:hover {
+  /* &:hover {
       -webkit-filter: none;
       filter: none;
     } */
+}
+
+/* Alertify
+-------------------------------------------------- */
+.alertify {
+  .ajs-dialog {
+    border: solid 2px $app-border-color;
   }
 
-  /* Alertify
--------------------------------------------------- */
-  .alertify {
-    .ajs-dialog {
-      border: solid 2px $app-border-color;
-    }
+  .ajs-dialog,
+  .ajs-header,
+  .ajs-footer {
+    color: $app-body-color;
+    background-color: $app-color-darkest;
+  }
 
-    .ajs-dialog,
-    .ajs-header,
-    .ajs-footer {
-      color: $app-body-color;
-      background-color: $app-color-darkest;
-    }
+  .ajs-footer {
+    .ajs-button {
+      display: inline-block;
+      margin-bottom: 0;
+      font-weight: normal;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      background-image: none;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857;
+      border-radius: 4px;
+      font-size: 110%;
+      background-color: $app-color-dark-lightest;
+      color: $app-color-lighter;
+      border: solid 1px lighten($app-color-dark-lightest, 20%);
 
-    .ajs-footer {
-      .ajs-button {
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: normal;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        background-image: none;
-        border: 1px solid transparent;
-        white-space: nowrap;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857;
-        border-radius: 4px;
-        font-size: 110%;
-        background-color: $app-color-dark-lightest;
-        color: $app-color-lighter;
-        border: solid 1px lighten($app-color-dark-lightest, 20%);
+      &.ajs-ok {
+        color: $app-color-light;
+        border: solid 1px $app-border-color;
+        background-color: $app-color-additional;
 
-        &.ajs-ok {
+        &:hover,
+        &:focus {
+          background-color: $app-border-color;
           color: $app-color-light;
-          border: solid 1px $app-border-color;
-          background-color: $app-color-additional;
-
-          &:hover,
-          &:focus {
-            background-color: $app-border-color;
-            color: $app-color-light;
-          }
         }
       }
     }
   }
+}
 
-  .alertify-notifier .ajs-message.ajs-success {
-    color: #fff;
-  }
+.alertify-notifier .ajs-message.ajs-success {
+  color: #fff;
+}
 
-  .alertify-notifier .ajs-message.ajs-error {
-    color: #fff;
-  }
+.alertify-notifier .ajs-message.ajs-error {
+  color: #fff;
+}
 
-  .alertify-notifier .ajs-message.ajs-warning {
-    color: #fff;
-  }
+.alertify-notifier .ajs-message.ajs-warning {
+  color: #fff;
+}
 
-  /* Alpaca
+/* Alpaca
     -------------------------------------------------- */
-  .alpaca-field-object {
-    border: 1px $app-border-color solid;
+.alpaca-field-object {
+  border: 1px $app-border-color solid;
+}
+
+.table-bordered {
+  border: 1px solid $app-border-color;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: $app-color-dark-lightest;
+}
+
+#alpaca_data {
+
+  .table-bordered>thead>tr>th,
+  .table-bordered>thead>tr>td {
+    border: 1px solid $app-border-color; //border-bottom: 0;
   }
 
-  .table-bordered {
-    border: 1px solid $app-border-color;
+  .table-bordered>tbody>tr>td,
+  .table-bordered>tfoot>tr>th,
+  .table-bordered>tfoot>tr>td {
+    border: 0px solid $app-border-color;
   }
 
-  .table-striped>tbody>tr:nth-child(odd)>td,
-  .table-striped>tbody>tr:nth-child(odd)>th {
-    background-color: $app-color-dark-lightest;
-  }
-
-  #alpaca_data {
-
-    .table-bordered>thead>tr>th,
-    .table-bordered>thead>tr>td {
-      border: 1px solid $app-border-color; //border-bottom: 0;
-    }
-
-    .table-bordered>tbody>tr>td,
-    .table-bordered>tfoot>tr>th,
-    .table-bordered>tfoot>tr>td {
-      border: 0px solid $app-border-color;
-    }
-
-    .btn-default[disabled] {
-      background: transparent;
-      border-color: $app-border-color;
-    }
+  .btn-default[disabled] {
+    background: transparent;
+    border-color: $app-border-color;
   }
 }
 

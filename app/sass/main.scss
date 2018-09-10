@@ -79,9 +79,10 @@
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
-/* shui, bayernshui, blueshui, darkshui, homekit
+/* shui, bayernshui, shui_night = darkshui, blueshui, homekit
 -------------------------------------------------- */
-@import "custom/_shui"; 
+//@import "custom/_shui"; 
+@import "custom/_shui_night"; 
 
 /* SmartHome UI custom POPP
 -------------------------------------------------- */
