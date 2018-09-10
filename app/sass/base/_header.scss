@@ -132,7 +132,7 @@
       background-color: $app-overlay-bcg-color;  
     }
   }
-  #sub_navigation {
+  @at-root #sub_navigation {
     position: relative;
     @include mediaQueries(max-small) {
       position: fixed;
@@ -160,7 +160,7 @@
         100% {left: -100%;}
       }
     }
-    #sub_navigation_in {
+    @at-root #sub_navigation_in {
       @include mediaQueries(min-small) {
         background-color: transparent !important;
       }

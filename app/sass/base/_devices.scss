@@ -11,8 +11,9 @@ $inclusion-img-w: 96px;
 }
 
 .device-logo img {
-  max-width: 100px !important;
-  max-height: 70px !important;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
 }
 
 .list-panel {
