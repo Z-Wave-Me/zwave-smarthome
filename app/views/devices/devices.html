@@ -15,7 +15,6 @@
         {{_t('devices_text_zwave')}}
       </div>
     </div>
-
     <!-- dots -->
     <div class="l-hide control">
       <!-- expand/collapse -->
@@ -40,6 +39,39 @@
       </div>
     </div>
   </div>
+  <!-- Zigbee -->
+  <div class="list-panel panel-devices">
+    <!-- img -->
+    <figure class="img">
+      <a href="#zigbee/devices">
+        <img ng-src="app/img/logo-zigbee.svg" alt="img" />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        {{_t('devices_text_zigbee')}}
+      </div>
+    </div>
+    <!-- dots -->
+    <div class="l-hide control">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesZigbee', $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['devicesZigbee'] ? 'expand-true': 'expand-false'">
+      <div class="btn-group">
+        <a class="btn btn-default" href="#zigbee/add" title="{{_t('add_new')}}">
+          <i class="fa fa-plus text-success"></i>
+          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        </a>
+        <a class="btn btn-default" href="#zigbee/manage" title="{{_t('manage')}}">
+          <i class="fa fa-edit text-primary"></i>
+          <span class="btn-name" ng-bind="_t('manage')"></span>
+        </a>
+      </div>
+    </div>
+  </div>
   <!-- Mobile -->
   <div class="list-panel panel-devices">
     <!-- img -->
@@ -54,7 +86,6 @@
         {{_t('devices_text_mobile')}}
       </div>
     </div>
-
     <!-- dots -->
     <div class="l-hide control">
       <!-- expand/collapse -->
@@ -64,8 +95,8 @@
     <div class="control" ng-class="naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'">
       <div class="btn-group">
         <button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
-          <i class="fa fa-plus text-success"></i>
-          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        <i class="fa fa-plus text-success"></i>
+        <span class="btn-name" ng-bind="_t('add_new')"></span>
         </button>
         <a class="btn btn-default" href="#module/put/{{mobileAppSupport.instanceId}}" title="{{_t('manage')}}">
           <i class="fa fa-edit text-primary"></i>
@@ -88,7 +119,6 @@
         {{_t('devices_text_camera')}}
       </div>
     </div>
-
     <!-- dots -->
     <div class="l-hide control">
       <!-- expand/collapse -->
@@ -122,7 +152,6 @@
         {{_t('devices_text_speech')}}
       </div>
     </div>
-
     <!-- dots -->
     <div class="l-hide control">
       <!-- expand/collapse -->
@@ -157,7 +186,6 @@
       </div>
       <bb-alert-text alert="enocean.alert"></bb-alert-text>
     </div>
-
     <!-- dots -->
     <div class="l-hide control" ng-if="enocean.active">
       <!-- expand/collapse -->
@@ -165,7 +193,6 @@
     </div>
     <!-- control -->
     <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
-
       <div class="btn-group">
         <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
           <i class="fa fa-plus text-success"></i>
@@ -193,7 +220,6 @@
       </div>
       <bb-alert-text alert="rf433.alert"></bb-alert-text>
     </div>
-
     <!-- dots -->
     <div class="l-hide control" ng-if="rf433.active">
       <!-- expand/collapse -->
@@ -227,7 +253,6 @@
         {{_t('devices_text_wifi')}}
       </div>
     </div>
-
     <!-- dots -->
     <div class="l-hide control">
       <!-- expand/collapse -->
@@ -266,12 +291,12 @@
               <img width="255" height="255" ng-src="{{qrcode}}">
             </div>
             <button class="btn btn-default" ng-if="qrcode != ''" ng-click="addQRCode('update')" ng-disabled="rowSpinner['update']" title="{{_t('lb_update_qrcode')}}">
-              <bb-row-spinner spinner="rowSpinner['update']" label="_t('lb_update_qrcode')" icon="'fa-qrcode'">
-              </bb-row-spinner>
+            <bb-row-spinner spinner="rowSpinner['update']" label="_t('lb_update_qrcode')" icon="'fa-qrcode'">
+            </bb-row-spinner>
             </button>
             <button class="btn btn-default" ng-if="qrcode == ''" ng-click="addQRCode('create')" ng-disabled="rowSpinner['create']" title="{{_t('lb_create_qrcode')}}">
-              <bb-row-spinner spinner="rowSpinner['create']" label="_t('lb_create_qrcode')" icon="'fa-qrcode'">
-              </bb-row-spinner>
+            <bb-row-spinner spinner="rowSpinner['create']" label="_t('lb_create_qrcode')" icon="'fa-qrcode'">
+            </bb-row-spinner>
             </button>
           </div>
         </div>

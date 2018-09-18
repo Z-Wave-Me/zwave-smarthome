@@ -148,7 +148,12 @@ var config_data = {
 			'add_dsk_provisioning_list': 'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST 
 			'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
 			'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
-			'locations_image': 'ZAutomation/api/v1/locations/image' // delete cutom room image // TODO: add backend
+			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend
+			'open_network': 'ZigbeeGatewayAPI/openNetwork', // Open ZigBee network for new devices
+			'remove_device': 'ZigbeeGatewayAPI/removeDevice', // Delete ZigBee devices
+			'joined_device': 'ZigbeeGatewayAPI/getJoinedDevices', // joined ZigBee devices
+			'simple_reform_network': 'ZigbeeGatewayAPI/simpleReformNetwork', // simple reform zigbee network
+			'get_network_status': 'ZigbeeGatewayAPI/getNetworkStatus' // simple reform zigbee network
 		},
 		// List of remote api URLs
 		'api_remote': {

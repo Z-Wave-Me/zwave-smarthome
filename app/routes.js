@@ -360,10 +360,30 @@ myApp.config(['$routeProvider', function($routeProvider) {
 		roles: cfg.role_access.devices
 	}).
 	when('/rf433/manage/:vDevId', {
-			templateUrl: 'app/views/rf433/manage_detail.html',
-			requireLogin: true,
-			roles: cfg.role_access.devices
-		}). //wifiplug add
+		templateUrl: 'app/views/rf433/manage_detail.html',
+		requireLogin: true,
+		roles: cfg.role_access.devices
+	}).//zigbee add	
+    when('/zigbee/add', {	
+        templateUrl: 'app/views/zigbee/add.html',	
+        requireLogin: true,	
+        roles: cfg.role_access.devices	
+    }).//zigbee manage	
+    when('/zigbee/manage', {	
+        templateUrl: 'app/views/zigbee/manage.html',	
+        requireLogin: true,	
+        roles: cfg.role_access.devices	
+    }).//zigbee manage detail	
+    when('/zigbee/manage/:eui64', {	
+        templateUrl: 'app/views/zigbee/manage_detail.html',	
+        requireLogin: true,	
+        roles: cfg.role_access.devices	
+    }).//zigbee manage detail	
+    when('/zigbee/network', {	
+        templateUrl: 'app/views/zigbee/network.html',	
+        requireLogin: true,	
+        roles: cfg.role_access.devices	
+    }). //wifiplug add
 	when('/wifiplug/add', {
 			templateUrl: 'app/views/wifiplug/wifiplug_add.html',
 			requireLogin: true,

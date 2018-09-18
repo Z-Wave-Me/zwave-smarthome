@@ -1,0 +1,45 @@
+<!-- Zwave network view -->
+<div ng-controller="ZigbeeNetworkController">
+  <bb-loader></bb-loader>
+  <div class="form form-inline form-page">
+    <div class="fieldset">
+      <h2>{{_t('zigbee_network')}}</h2>
+      <!--
+      Network Status
+      Channel
+      Pan ID
+      Power(dBm)
+      button
+      -->
+      <div class="alert" ng-class="networkStatus.networkUp ? 'alert-success' : 'alert-danger'">
+        <span>
+          {{_t('zigbee_network')}}:&nbsp
+          <strong ng-if="networkStatus.networkUp">{{_t('network_up')}}</strong>
+          <strong ng-if="!networkStatus.networkUp">{{_t('network_down')}}</strong>
+        </span>
+      </div>
+      <table class="table table-report">
+        <tbody>
+          <tr>
+            <td>{{_t('pan_id')}}</td>
+            <td class="td20">{{networkStatus.networkPanId}}</td>
+          </tr>
+          <tr>
+            <td>{{_t('channel')}}</td>
+            <td class="td20">{{networkStatus.radioChannel}}</td>
+          </tr>
+          <tr>
+            <td>{{_t('power')}}</td>
+            <td class="td20">{{networkStatus.radioTxPower}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="form-group form-inline">
+        <button class="btn btn-default" ng-click="reformNetwork()">
+        <i class="fa fa-refresh"></i>{{_t('reform_network')}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="device-logo" ng-include="'app/views/zigbee/zigbee_nav.html'"></div>
+  </div> <!-- /ng-controller -->

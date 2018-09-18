@@ -275,6 +275,7 @@ myAppController.controller('ZigbeeManageDetailController', function($scope, $rou
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
 
         // Update element
+        /*
         angular.forEach(input.elements, function (v, k) {
             if (input.room) {
                 angular.extend(v, {location: parseInt(input.room)})
@@ -293,7 +294,8 @@ myAppController.controller('ZigbeeManageDetailController', function($scope, $rou
             $location.path('/zwave/devices');
         } else {
             dataService.goBack();
-        }
+        }*/
+        $scope.loading = false;
     };
 
     /// --- Private functions --- ///
@@ -317,6 +319,52 @@ myAppController.controller('ZigbeeManageDetailController', function($scope, $rou
             $scope.ZigbeeDevice.title = "ZigbeeDevice_" + $scope.devices[0].metrics.nodeId;
             $scope.ZigbeeDevice.nodeId = $scope.devices[0].metrics.nodeId;
         } 
+    };
+
+});
+
+/**
+ * The controller that handles Zigbee Network.
+ * @class ZigbeeNetworkController
+ */
+myAppController.controller('ZigbeeNetworkController', function($scope, $routeParams, $filter, $q, $window, $timeout, $interval, dataFactory, dataService, myCache) {
+
+    $scope.networkInterval = null;
+    $scope.networkIntervalTime = 10000;
+    $scope.networkStatus = {};
+
+    // Cancel interval on page destroy
+    $scope.$on('$destroy', function () {
+        $interval.cancel($scope.networkInterval);
+    });
+ 
+
+    $scope.getNetworkStatus = function() {
+        var refresh = function() {
+            dataFactory.getApi('get_network_status', null, true).then(function(response){
+                console.log("response", response.data);
+                $scope.networkStatus = response.data;
+            }, function(error) {
+
+            });
+        };
+
+        refresh();
+        $scope.networkInterval = $interval(refresh, $scope.networkIntervalTime);
+    };
+
+    $scope.getNetworkStatus();
+
+    $scope.reformNetwork = function() {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')}; 
+        dataFactory.postApi('simple_reform_network').then(function(response) {
+            $scope.loading = false;
+            console.log("response", response.data);
+            $scope.networkStatus = response.data;
+        }, function(error) {
+            $scope.loading = false;
+            console.log("error", error);
+        });
     };
 
 });
