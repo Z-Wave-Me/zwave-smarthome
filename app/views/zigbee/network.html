@@ -1,6 +1,8 @@
 <!-- Zwave network view -->
 <div ng-controller="ZigbeeNetworkController">
   <bb-loader></bb-loader>
+  <!-- Zigbee navigation -->
+  <div ng-include="'app/views/zigbee/navi.html'"></div>
   <div class="form form-inline form-page">
     <div class="fieldset">
       <h2>{{_t('zigbee_network')}}</h2>

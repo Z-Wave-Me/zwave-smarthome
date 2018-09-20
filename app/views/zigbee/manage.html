@@ -1,6 +1,6 @@
 <div ng-controller="ZigbeeManageController">
     <bb-loader></bb-loader> 
-    <!-- RF433 navigation -->
+    <!-- Zigbee navigation -->
     <div ng-include="'app/views/zigbee/navi.html'"></div>
     <div class="app-row app-row-report app-row-zigbee clearfix">
         <div id="row_zigbee_{{v.id}}" class="report-entry" ng-repeat="v in ZigbeeDevices | orderBy:'title':false">
