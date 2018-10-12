@@ -604,6 +604,8 @@
     "nav_report": "Fehler melden",
     "nav_rooms": "Räume",
     "nested": "Verschachtelte Bedingung",
+    "network_down": "down",
+    "network_up": "up",
     "never": "Nie",
     "news": "Nachrichten",
     "night_mode": "Nachtmodus",

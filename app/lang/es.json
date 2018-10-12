@@ -604,6 +604,8 @@
     "nav_report": "Notificar problema",
     "nav_rooms": "Habitaciones",
     "nested": "Nested condition",
+    "network_down": "down",
+    "network_up": "up",
     "never": "Never",
     "news": "Noticias",
     "night_mode": "Night mode",

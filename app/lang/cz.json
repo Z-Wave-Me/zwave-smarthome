@@ -604,6 +604,8 @@
     "nav_report": "Report Problém",
     "nav_rooms": "Místnosti",
     "nested": "Nested condition",
+    "network_down": "down",
+    "network_up": "up",
     "never": "Never",
     "news": "News",
     "night_mode": "Night mode",
