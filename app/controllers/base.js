@@ -271,7 +271,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
 
     };
     /**
-     * Set user session and reload page after connection error
+     * Set user session and reload page after connection error if session change
      * @returns {undefined}
      */
     $scope.reloadAfterError = function() {
@@ -288,16 +288,27 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
                 permanent: false,
                 hide: true
             };
-            angular.extend(cfg.route.alert, fatalArray);
             var user = sessionRes.data.data;
-            if (sessionRes.data.data) {
-                dataService.setZWAYSession(user.sid);
-                dataService.setUser(user);
-                if (dataService.getUser()) {
-                    $timeout(function() {
-                        $window.location.reload();
-                    }, 5000);
-
+            if (user) {
+                if(!dataService.checkZWAYSession(user.sid)) {
+                    angular.extend(cfg.route.alert, fatalArray);
+                    dataService.setZWAYSession(user.sid);
+                    dataService.setUser(user);
+                    if (dataService.getUser()) {
+                        $timeout(function() {
+                            $window.location.reload();
+                        }, 5000);
+                    }
+                } else {
+                    // set route alert to default
+                    angular.extend(cfg.route.alert, {
+                        type: 'system',
+                        message: false,
+                        info: false,
+                        permanent: false, 
+                        hide: false,
+                        icon: 'fa-exclamation-triangle text-danger'
+                    });
                 }
             }
 

@@ -230,6 +230,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			return false;
 		}
 	};
+	
+	/**
+	 * Check ZWAY session
+	 * @param {string} sids
+	 * @returns {Boolean}
+	 */
+	this.checkZWAYSession = function(sid) {
+		if($cookies.ZWAYSession == sid) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+	
 	/**
 	 * Get last login info
 	 * @returns {Sring|Boolean}
