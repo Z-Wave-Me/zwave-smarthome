@@ -772,6 +772,7 @@
     "show_hidden": "Näytä piilotetut",
     "show_more_apps": "Näytä lisää sovelluksia",
     "silent_alarm": "Silent alarm",
+    "simple_reform_network": "Reform Network, will change PAN ID, channel, and power. Are you sure?",
     "singleton_with_instance": "Elementistä __module_title__ voi olla asennettuna ainoastaan yksi instanssi. Jos haluat uudelleenasentaa tai poistaa tämän, siirry kohtaan aktiiviset sovellukset",
     "size": "Koko",
     "skin_activate_successful": "Skinin aktivointi onnistui",

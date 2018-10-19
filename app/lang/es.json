@@ -772,6 +772,7 @@
     "show_hidden": "Mostrar ocultos",
     "show_more_apps": "Mostrar más",
     "silent_alarm": "Silent alarm",
+    "simple_reform_network": "Reform Network, will change PAN ID, channel, and power. Are you sure?",
     "singleton_with_instance": "Únicamente puede obtener una instalación de __module_title__. Si desea volver a instalar o desinstalar esta aplicación vaya a Active Apps.",
     "size": "Tamaño",
     "skin_activate_successful": "El tapiz se ha activado correctamente",

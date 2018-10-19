@@ -772,6 +772,7 @@
     "show_hidden": "Blende versteckte ein",
     "show_more_apps": "Zeige mehr Apps",
     "silent_alarm": "Stiller Alarm",
+    "simple_reform_network": "Reform Network, will change PAN ID, channel, and power. Are you sure?",
     "singleton_with_instance": "Die App __module_title__ ist bereits in Verwendung. Über das Menü 'Anwendungen > Aktiv' können Sie diese aktivieren, deaktivieren oder entfernen.",
     "size": "Größe",
     "skin_activate_successful": "Skin wurde erfolgreich aktiviert",

@@ -772,6 +772,7 @@
     "show_hidden": "Показать скрытый",
     "show_more_apps": "Показать больше приложений",
     "silent_alarm": "Silent alarm",
+    "simple_reform_network": "Reform Network, will change PAN ID, channel, and power. Are you sure?",
     "singleton_with_instance": "__module_title__ может быть запущена только одна копия. Если требуется переустановить или удалить это приложение, перейдите на вкладку Активные",
     "size": "Размер",
     "skin_activate_successful": "Скин активирован",
