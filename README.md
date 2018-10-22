@@ -9,6 +9,36 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.9.0
+#### New features
+ - Rooms:
+   - uploaded room icon is now removable
+ - My Settings:
+   - new dropdown for language selection
+   - night / dark mode added
+ - Header Menu:
+   - new Automation Menu (gear wheel)
+   - Automation Menu (gear wheel):
+     - collects basic automation functionalities (Scenes, Rules, Schedules, Heating, Hazard Notification, Security)
+     - menus are logically based on already known Apps like e.g. If>Then/LogicalRules (Rules), Leakage/Fire Protection (Hazard Notification)
+     - all apps are adjusted to use or trigger all actors which makes sence (e.g. binary switch, multilevel switch, scene, RGBW switch)
+     - the new desingned Automation menu, which is independent from Alpaca JS, should help to control your basic automations more easily
+ - Elements:
+   - 3 grid layout for mobile devices / smartphones
+   - Adjusting mobile view
+   - Add ON/OFF to mobile RGB Modal
+   - Add new 24h History graph to widget
+   - Add missing Icons
+   - Add Audioplayer support
+ - User management: If no rooms exists show info label "No rooms have yet been created" instead of empty fields
+ - Active Apps: refactoring of mobile view
+ - Online Apps: View refactoring
+ - Active apps: expand all button added
+ - New device categories: "Speech-assistant", "Wifi", "433Mhz", "Mobile phones" added
+ - Add Alexa to system apps
+ - Portugese, Italian translation added
+ - New setup dialog for factory default devices which explains the new basic features of the software including speech assistent and automation.
+
 ## v1.8.0
 #### New features
 - New automation menu with improved Scenes, Rules and Schedules.
