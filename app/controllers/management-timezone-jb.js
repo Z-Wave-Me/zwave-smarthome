@@ -23,8 +23,8 @@ myAppController.controller('ManagementTimezoneJBController', function ($scope, $
             $scope.managementTimezone.enums = response.data.data.schema.properties.timezone.enum;
             $scope.managementTimezone.labels = response.data.data.options.fields.timezone.optionLabels;
 
-            //console.log($scope.handleTimezone)
-            //console.log($scope.managementTimezone)
+            console.log($scope.handleTimezone)
+            console.log($scope.managementTimezone)
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_load_data'));
@@ -52,7 +52,7 @@ myAppController.controller('ManagementTimezoneJBController', function ($scope, $
     };
 
     /**
-     * System rebboot
+     * System reboot
      */
     $scope.systemReboot = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};

@@ -1,5 +1,5 @@
 <!-- Appp module ad  view -->
-<div class="mobile-padding" id="page_module_update" ng-controller="AppModuleAlpacaController">
+<div id="page_module_update" ng-controller="AppModuleAlpacaController">
     <bb-loader></bb-loader>
     <div  class="form-page" ng-show="showForm">
         <!-- Module info -->
@@ -25,7 +25,7 @@
                           >{{moduleId.find.maturity}}</span>
                 </p>
                 <p class="app-detail-list" ng-if="moduleId.find.dependencies.length > 0">
-                    <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in moduleId.find.dependencies">{{i}}, </span>
+                    <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in moduleId.find.dependencies">{{i}}{{$last ? '' : ', '}}</span>
                 </p>
                 <!-- Module dependencies - activate -->
                 <div class="alert alert-warning" ng-if="!_.isEmpty(moduleId.dependency.activate)">
@@ -73,7 +73,7 @@
             <input name="moduleId" id="moduleId" type="hidden" class="form-control" value="{{input.moduleId}}" />
             <fieldset>
                 <div class="form-group">
-                    <input type="checkbox" name="active" value="{{input.active}}" id="active" ng-model="input.active" ng-checked="input.active" /> <label>{{_t('lb_active')}}</label>
+                    <input type="checkbox" name="active" value="{{input.active}}" id="active" ng-model="input.active" ng-checked="input.active" /> <label for="active">{{_t('lb_active')}}</label>
                 </div>
                 <div class="form-group">
                     <label>{{_t('lb_name')}}</label>
@@ -104,7 +104,8 @@
                         id="btn_module_submit"
                         class="btn btn-submit"
                         data-sid="{{ZWAYSession}}"
-                        data-fromapp="{{moduleId.fromapp}}"
+                        data-fromapp="{{moduleId.fromapp}}",
+                        data-fromroute ="{{moduleId.fromRoute}}"
                         data-lang="{{lang}}"
                         ng-disabled="!moduleId.submit"
                         ng-if="alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>

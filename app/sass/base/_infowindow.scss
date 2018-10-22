@@ -3,6 +3,13 @@
 -------------------------------------------------- */
 .infowindow-wrap{
     position: relative;
+    display: inline-block;
+    @include mediaQueries(max-small) {
+        input[type="checkbox"] {
+            margin: 10px 22px 20px 0;
+        }
+        //margin-bottom: 10px;
+    }
 }
 
 .infowindow{
@@ -28,7 +35,7 @@
     margin-left: -10px;
     border-width: 10px;
     border-style: solid;
-    border-color: transparent;
+    border-color: transparent; 
 }
 // Right
 .infowindow.right{
@@ -55,8 +62,8 @@
 // Top
 .infowindow.top{
     width: 100%;
-    bottom: 100%;
-    left: 50%;
+    bottom: 130%;
+    left: 34%;
    margin-left: -120px;  /* Use half of the width(240/2 = 120),to center the tooltip */
 }
 // Top arrow

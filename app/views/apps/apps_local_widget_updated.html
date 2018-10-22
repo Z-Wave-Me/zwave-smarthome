@@ -1,0 +1,17 @@
+<!-- Local apps widget -->
+<!-- Apps -->
+<div class="app-entry-local">
+    <h2 ng-if="!_.isEmpty(dataHolder.modules.filter)">
+        {{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}
+    </h2>
+    <h2 ng-if="_.isEmpty(dataHolder.modules.filter)">{{_t('all_apps')}}</h2>
+    <div class="clearfix">
+        <div class="localapp"
+             ng-if="dataHolder.onlineModules.ids[v.moduleName].status == 'upgrade'"
+             ng-repeat="v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id"
+             ng-class="{'widget-danger': dataHolder.onlineModules.ids[v.id] && dataHolder.onlineModules.ids[v.id].version != v.version}">
+            <!-- Localapp entry -->
+            <div ng-include="'app/views/apps/apps_local_widget_entry.html'"></div>
+        </div><!-- /.widget-entry -->
+    </div><!-- /.app-row -->
+</div><!-- /.app-entry-local -->

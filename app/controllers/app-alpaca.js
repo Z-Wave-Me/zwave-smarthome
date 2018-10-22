@@ -23,7 +23,8 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
     };
     $scope.moduleId = {
         submit: true,
-        fromapp: $routeParams.fromapp,
+        fromapp: ($routeParams.fromapp && $routeParams.fromapp !== 'false') ? $routeParams.fromapp : false,
+        fromRoute: false,
         find: {},
         categoryName: null,
         singletonActive: false,
@@ -35,7 +36,21 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
             download: {}
         }
     };
+    // Where the route comes from
+    $scope.fromRoute = function(route){
+            switch(route){
+                case '/apps/instance':
+                case '/rules':
+                case '/wifiplug/add':
+                case '/wifiplug/manage':
+                case '/camera/add':
+                case '/camera/manage':
+                $scope.moduleId.fromRoute = route
+                break;
 
+            }
+    };
+    $scope.fromRoute(cfg.route.previous);
 
     $scope.onLoad = function () {
         myCache.remove('instances');

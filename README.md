@@ -9,6 +9,40 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leader
 Marcel Kermer
 
+## v1.8.0
+#### New features
+- New automation menu with improved Scenes, Rules and Schedules.
+- New section Wifi devices.
+- SmartStart.
+- Added ITALIAN language.
+- Online Apps: Improved mobile view.
+- Local Apps: Improved mobile view.
+- Elements: Improved mobile view.
+- Rooms: Improved mobile view.
+- Chekboxes replaced with the switcher.
+
+## v1.7.1
+#### New features
+- Local Apps: Possibility to filter by Updated apps.
+- RSS news: Added buttons READ MORE and READ.
+- Rooms: In the header are sensors values updated.
+- Improvements of the mobile view.
+
+#### Fixes
+- Sensors added to the room header dont show fullname by mouse over #245.
+- User login language overwrites profile language.
+- Elements, Apps and devices: Fixed bug in Firefox.
+- Don't poll InspectQueue and ZWaveAPI/Data/xxx if current request is still pending #262.
+
+#### Changes
+- Device management: Remove device is completely refactored.
+- Element detail: Deactivete checkbox replaced with Delete element button.
+- Element with device type sensorMultiline has not an event icon.
+- Elements: improved RGBW widgets
+- First access: Language select moved to the form.
+- Login: Removed language select.
+- Added major/minor version to the licence scratch request.
+
 ## v1.7.0
 #### New features
 - Dashboard: Drag and Drop.

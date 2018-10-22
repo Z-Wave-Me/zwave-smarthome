@@ -722,7 +722,7 @@
                         'color' : this.o.inputColor || this.o.fgColor,
                         'padding' : '0px',
                         '-webkit-appearance': 'none'
-                        }) || this.i.css({
+                        }) && this.i.attr('readonly', 'readonly') || this.i.css({
                             'width': '0px',
                             'visibility': 'hidden'
                         });

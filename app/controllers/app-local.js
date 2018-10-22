@@ -10,6 +10,7 @@
  */
 myAppController.controller('AppLocalController', function ($scope, $filter, $cookies, $timeout, $route, $routeParams, $location, dataFactory, dataService, myCache, _) {
     $scope.dataHolder.modules.filter = ($cookies.filterAppsLocal ? angular.fromJson($cookies.filterAppsLocal) : {});
+    $scope.hasLongPress = '';
 
     /**
      * Renders search result in the list
@@ -18,9 +19,9 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
         $scope.dataHolder.modules.autocomplete.results = dataService.autocomplete($scope.dataHolder.modules.all, $scope.dataHolder.modules.autocomplete);
         // Expand/Collapse the list
         if(!_.isEmpty($scope.dataHolder.modules.autocomplete.results)){
-            $scope.expandAutocomplete('searchLocalApps',event);
+            $scope.expandAutocomplete('searchLocalApps');
         }else{
-            $scope.expandAutocomplete('searchLocalApps',event,false);
+            $scope.expandAutocomplete();
         }
 
         // Reset filter q if is input empty
@@ -43,7 +44,7 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
         // Reset data
         $scope.dataHolder.modules.autocomplete.results = [];
         $scope.dataHolder.modules.noSearch = false;
-        $scope.expandAutocomplete('searchLocalApps',event,false);
+        $scope.expandAutocomplete();
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
         if (!filter || empty) {// Remove filter
@@ -101,6 +102,30 @@ myAppController.controller('AppLocalController', function ($scope, $filter, $coo
         });
     };
 
+    /**
+     * On long press
+     * @param {string} id
+     * @returns {undefined}
+     */
+    $scope.onLongPress = function (id) {
+        $scope.hasLongPress = '';
+        // We only reset hasLongPress if id is missing
+        if(!id){
+            return;
+        }
+         $scope.longPressTimeout = $timeout(function () {
+            $scope.hasLongPress = id;
+        }, 1000);
+    };
+
+    /**
+     * On long press end
+     * @returns {undefined}
+     */
+    $scope.onTouchEnd = function(id) {
+        $timeout.cancel($scope.longPressTimeout);
+    }
+
 });
 /**
  * The controller that handles local app detail actions.
@@ -110,6 +135,7 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     $scope.module = [];
     $scope.categoryName = '';
     $scope.isOnline = null;
+    $scope.hasInstance = [];
     $scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
     /**
      * Load categories
@@ -134,8 +160,9 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     $scope.loadModule = function (id) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('modules', '/' + id).then(function (response) {
-            loadOnlineModules(id);
             $scope.module = response.data.data;
+             loadOnlineModules(id);
+            loadInstances(id);
             $scope.loadCategories(response.data.data.category);
             $scope.loading = false;
         }, function (error) {
@@ -149,6 +176,17 @@ myAppController.controller('AppLocalDetailController', function ($scope, $routeP
     function loadOnlineModules(moduleName) {
         dataFactory.getRemoteData($scope.cfg.online_module_url).then(function (response) {
             $scope.isOnline = _.findWhere(response.data, {modulename: moduleName});
+        }, function (error) {
+        });
+    }
+    function loadInstances(moduleId) {
+        dataFactory.getApi('instances',null,true).then(function (response) {
+            _.filter(response.data.data,function(v){
+                if(v.moduleId == moduleId){
+                    $scope.hasInstance.push(v);
+                }
+            });
+            //console.log($scope.hasInstance)
         }, function (error) {
         });
     }

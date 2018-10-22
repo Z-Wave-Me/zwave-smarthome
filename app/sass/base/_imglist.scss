@@ -7,8 +7,12 @@
 }
 .imglist-entry{
     text-align: center;
-    width: 40px + 10px;
-    height: 40px + 20px;
+    width: 50px;
+    height: 50px;
+    /* @include mediaQueries(min-small) {
+        height: 60px;    
+    } */
+
     @include appFloat(left);
     margin: 10px;
     &.in-device{

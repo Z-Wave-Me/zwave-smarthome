@@ -14,6 +14,11 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
         loaded: false,
         url: $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi')
     };
+     $scope.databaseUpdate = {
+        updating_vendors: false,
+        updating_devices: false
+    };
+    $scope.databaseProcess = false; 
     /**
      * Set access
      */
@@ -47,76 +52,101 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
     };
     //$scope.loadRazLatest();
 
-    /**
-     * update device database
-     */
-    $scope.updateVendorDatabase = function() {
-        dataFactory.getApi('update_zwave_vendors').then(function(response) {
-            $scope.loading = false;
-            res = response.data;
-            if(res && res.code === 200) {
-                dataService.showNotifier({message: $scope._t('vendors_success_updated')});
-            } else {
-                alertify.alertError($scope._t('vendors_error_load_data')); // error update vendor database
-            }
-        }, function(error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('vendors_error_load_data')); // error update vendor database
-        });
-    };
-
-    /**
-     * update device database
-     */
-    $scope.updateDeviceDatabase = function() {
-        var success = [];
-        var failed = [];
-        var count = 0;
-        dataFactory.getApi('update_device_database').then(function(response) {
-            $scope.loading = false;
-            res = response.data.data;
-            if(res !== "" && !_.isEmpty(res)) {
-                count = res.length;
-                _.each(res, function(lang) {
-                    if(lang[Object.keys(lang)[0]]) {
-                        success.push(Object.keys(lang)[0]);
-                    } else {
-                        failed.push(Object.keys(lang)[0]);
-                    }
-                });
-
-                if(failed.length == 0) {
-                    // update device database successfull
-                    dataService.showNotifier({message: $scope._t('devices_success_updated')});
-                } else {
-                    // check if all failed
-                    if(failed.length !== 0 && failed.length === count && success.length === 0) {
-                        alertify.alertWarning($scope._t('update_device_database_failed'));
-                    } else {
-                        strSuccess = success.join(', ');
-                        strFailed = failed.join(', ');
-                        alertify.alertWarning($scope._t('update_device_database_failed_for', {
-                            __success__: strSuccess,
-                            __failed__: strFailed
-                        }));
-                    }
-                }
-            } else {
-                alertify.alertError($scope._t('update_device_database_failed')); // error update device database
-            }
-        }, function(error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('update_device_database_failed')); // error update device database
-        });
-    };
-
-    $scope.updateDatabases = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-
+    $scope.updateDatabases = function () {
+        $scope.databaseUpdate.updating_vendors = false;
+        $scope.databaseUpdate.updating_devices = false;
+        $scope.databaseProcess = true;
         $scope.updateVendorDatabase();
-        $scope.updateDeviceDatabase();
-
-        alertify.dismissAll();
     };
+
+    /**
+     * update device database
+     */
+    $scope.updateVendorDatabase = function () {
+        $scope.databaseUpdate.updating_vendors = 'fa-spinner fa-spin';
+        dataFactory.getApi('update_zwave_vendors').then(function (response) {
+            res = response.data;
+            if (res && res.code === 200) {
+                $scope.databaseUpdate.updating_vendors = 'fa-check text-success';
+            } else {
+                $scope.databaseUpdate.updating_vendors = 'fa-ban text-danger';
+                 alertify.alertError($scope._t('vendors_error_load_data'));
+            }
+        }, function (error) {
+            $scope.databaseUpdate.updating_vendors = 'fa-ban text-danger';
+             alertify.alertError($scope._t('vendors_error_load_data'));
+        }).finally(function () { // Always execute this on both error and success
+             $scope.updateDeviceDatabase();
+        });
+    };
+    /**
+     * update device database
+     */
+    $scope.updateDeviceDatabase = function () {
+        
+        $scope.databaseUpdate.updating_devices = 'fa-spinner fa-spin';
+        dataFactory.getApi('update_device_database').then(function (response) {
+             res = response.data;
+            if (res && res.code === 200) {
+                 $scope.databaseUpdate.updating_devices = 'fa-check text-success';
+            } else {
+                $scope.databaseUpdate.updating_devices = 'fa-ban text-danger';// error update device database
+                 alertify.alertError($scope._t('update_device_database_failed'));
+            }
+        }, function (response) {
+             $scope.databaseUpdate.updating_devices = 'fa-ban text-danger';// error update device database
+              alertify.alertError($scope._t('update_device_database_failed'));
+        }).finally(function () { // Always execute this on both error and success
+             $scope.databaseProcess = false;
+             
+        });
+    };
+
+    /**
+     * todo: deprecated
+     * update device database
+     */
+//    $scope.updateDeviceDatabase = function() {
+//        var success = [];
+//        var failed = [];
+//        var count = 0;
+//        dataFactory.getApi('update_device_database').then(function(response) {
+//            $scope.loading = false;
+//            res = response.data.data;
+//            if(res !== "" && !_.isEmpty(res)) {
+//                count = res.length;
+//                _.each(res, function(lang) {
+//                    if(lang[Object.keys(lang)[0]]) {
+//                        success.push(Object.keys(lang)[0]);
+//                    } else {
+//                        failed.push(Object.keys(lang)[0]);
+//                    }
+//                });
+//
+//                if(failed.length == 0) {
+//                    // update device database successfull
+//                    dataService.showNotifier({message: $scope._t('devices_success_updated')});
+//                } else {
+//                    // check if all failed
+//                    if(failed.length !== 0 && failed.length === count && success.length === 0) {
+//                        alertify.alertWarning($scope._t('update_device_database_failed'));
+//                    } else {
+//                        strSuccess = success.join(', ');
+//                        strFailed = failed.join(', ');
+//                        alertify.alertWarning($scope._t('update_device_database_failed_for', {
+//                            __success__: strSuccess,
+//                            __failed__: strFailed
+//                        }));
+//                    }
+//                }
+//            } else {
+//                alertify.alertError($scope._t('update_device_database_failed')); // error update device database
+//            }
+//        }, function(error) {
+//            $scope.loading = false;
+//            alertify.alertError($scope._t('update_device_database_failed')); // error update device database
+//        });
+//    };
+
 });
 

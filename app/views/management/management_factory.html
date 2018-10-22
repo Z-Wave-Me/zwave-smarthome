@@ -1,6 +1,23 @@
 <!-- Admin factory view -->
-<h2 class="accordion-entry-title" ng-click="expandElement('factory')">
-    <i class="fa fa-refresh"></i> <span ng-bind="_t('factory_default')"></span>
+<h2 class="accordion-entry-title" ng-click="expandElement('factory')" 
+    ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.local)">
+    <i class="fa fa-repeat fa-fw"></i> <span ng-bind="_t('factory_default')"></span>
+    <i class="fa accordion-arrow" ng-class="expand.factory ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+</h2>
+<h2 class="accordion-entry-title" 
+    ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
+    <i class="fa fa-repeat fa-fw"></i> <span ng-bind="_t('factory_default')"></span>
+    <div class="infowindow-wrap">
+        <i class="fa fa-exclamation-circle fa-lg text-warning clickable" ng-click="expandNavi('factoryInfowindow', $event)"></i>
+        <div class="infowindow top" ng-if="naviExpanded['factoryInfowindow']">
+            <div class="infowindow-in" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+                {{_t('not_supported_on_mobile')}}
+            </div>
+            <div class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
+                {{_t('not_supported_on_remote')}}
+            </div>
+        </div>
+    </div>
     <i class="fa accordion-arrow" ng-class="expand.factory ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
 <div class="accordion-entry-ctrl" ng-if="expand.factory" ng-controller="ManagementFactoryController">
@@ -34,9 +51,12 @@
             </div>-->
         </fieldset>
         <fieldset class="submit-entry">
-            <button type="submit" class="btn btn-submit" title="{{_t('reset_factory_default')}}">
-                <i class="fa fa-refresh"></i> <span class="btn-name">{{_t('reset_factory_default')}}</span>
+            <button type="submit" class="btn btn-danger" title="{{_t('reset_factory_default')}}">
+                <i class="fa fa-repeat"></i>
+                 <span class="btn-name">{{_t('reset_factory_default')}}</span>
             </button>
         </fieldset>
     </form>
 </div>
+
+

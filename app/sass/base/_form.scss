@@ -1,5 +1,16 @@
 /* Form 
 -------------------------------------------------- */
+// Media queries
+@include mediaQueries(min-small) {
+  .form-check-inline {
+    display: inline-block;
+  }
+  .form-inline .input-group {
+    display: inline-table;
+    vertical-align: middle;
+  }
+}
+
 .form-control {
   font-size: 95%;
   color: lighten($app-body-color, 30%);
@@ -12,6 +23,12 @@
   }
 }
 
+input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
+  /* line-height: 34px; */
+ line-height: 1.42857;
+}
+
+
 .input-group-addon {
   border: solid 1px #CCCCCC;
   background-color: #EEEEEE;
@@ -23,23 +40,131 @@ textarea {
 
 label {
   font-weight: normal;
-  font-size: 105%;
+  font-size: 100%;
+  margin-right: $spacing-half;
+  span {
+      line-height: 35px;
+      @include mediaQueries(min-small) {
+          line-height: 20px;
+      }
+  }
 }
 
 input[type=checkbox] {
-  @include  checkboxScale(2,$spacing);
+  /*@include  checkboxScale(1.8,$spacing);
   // Media queries
   @include mediaQueries(min-small) {
     @include checkboxScale(1.3, $spacing);
+  }*/
+  //padding: $spacing;
+  @include mediaQueries(min-small) {
+      margin: 0 6px + $spacing-half 5px 0; 
+      font-size: 15px;
   }
 
+  margin: 0px 21px + $spacing-half 11px 0;
+  font-size: 22px;
+  font-family: FontAwesome;
+  position: relative;
+  border: none;
+  background-color: transparent;
+  
+  &:after {
+      margin: -11px $spacing/2 0 0;
+      vertical-align: baseline;
+      content: ' ';
+      padding: 6px 0 0 6px;
+      position: absolute;
+      display: inline-block;
+      border-radius: 4px;
+      border: solid 1px #CCC;
+      background-color: #f9f9f9;
+      width: 35px;
+      height: 35px;
+      @include mediaQueries(min-small) {
+          margin-top: -2px;
+          width: 20px;
+          height: 20px;
+          padding: 2px 0 2px 1px;
+      }
+  }
+
+  &:checked {
+    &:after {
+      content: "\f00c";
+      color: #4e794e;
+      -webkit-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &:disabled {
+    &:after {
+      color: #BDBDBD;
+    }
+  }
+}
+.checkbox,.radio{
+  margin-right: $spacing;
+  input[type=checkbox] {
+    position: static;
+   margin-left: $spacing;
+  }
+  label{
+    padding-left: $spacing;
+  }
 }
 
 input[type=radio] {
-   @include radioScale(1.8, $spacing);
+  /* 
+  @include radioScale(1.6, $spacing);
   // Media queries
   @include mediaQueries(min-small) {
     @include radioScale(1.2, $spacing);
+  }
+  */
+ 
+  @include mediaQueries(min-small) {
+      margin: 0 10px 5px 0; 
+      font-size: 12px;
+  }
+
+  margin: 0px 22px 11px 0;
+  font-size: 22px;
+  font-family: FontAwesome;
+  position: relative;
+  border: none;
+  background-color: transparent;
+  
+  &:after {
+      margin: -11px $spacing/2 0 0;
+      vertical-align: baseline;
+      content: ' ';
+      padding: 6px 0 0 7px;
+      position: absolute;
+      display: inline-block;
+      border-radius: 50%;
+      border: solid 1px #CCC;
+      background-color: #f9f9f9;
+      width: 35px;
+      height: 35px;
+      @include mediaQueries(min-small) {
+          margin: -2px 0 0 -2px;
+          width: 20px;
+          height: 20px;
+          padding: 3px 0 0 4px;
+      }
+  }
+
+  &:checked {
+    &:after {
+      content: "\f111";
+      color: $app-heading-color;
+      -webkit-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+    }
   }
 }
 
@@ -47,11 +172,12 @@ input[type=radio] {
   margin-bottom: $spacing-double;
   background-color: #FFFFFF;
   border: solid 1px $app-border-color;
-  h3 {
-  }
   .form-group {
     border-bottom: solid 1px $app-border-color;
     padding-bottom: $spacing;
+    &.first {
+      padding-top: $spacing;
+    }
     &.last {
       border-bottom: 0;
       padding-bottom: 0;
@@ -76,9 +202,30 @@ input[type=radio] {
 .inputfile + label {
   cursor: pointer;
 }
+legend,.legend{
+  font-size: 120%;
+  font-weight: bold;
+  padding: 0 $spacing $spacing-half $spacing;
+  border-bottom: 0;
+  &.has-control{
+    display: flex;
+    justify-content: space-between; 
+  }
+}
 
 fieldset, .fieldset {
   padding: $spacing;
+  h1,h2,h3{
+      margin: 0;
+  }
+  &.expanded{
+    padding: $spacing;
+  
+    .form-group {
+      border-bottom: 0;
+      
+    }
+  }
 }
 
 .isrequired {
@@ -96,6 +243,10 @@ fieldset, .fieldset {
 
 .form-control-md {
   width: 50% !important;
+}
+
+.input-valid-false{
+  border: solid 1px red;
 }
 
 .submit-entry {
@@ -125,6 +276,12 @@ fieldset.submit-entry {
 }
 .form-block{
     margin: $spacing 0 0 0;
+}
+
+.input-number {
+  display: inline-block;
+  padding: $spacing-half;
+  width: 4em !important;
 }
 
 /* Config form

@@ -1,5 +1,6 @@
 /_project/*
 /nbproject/*
+.**/
 /upload/*
 .sass-cache*
 /app/css/.sass-cache/*
@@ -10,3 +11,5 @@ npm-debug.log
 *.iml
 /.idea
 /user
+sftp-config.json
+.DS_Store

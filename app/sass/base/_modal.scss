@@ -7,7 +7,7 @@
   bottom: 0;
   left: 0;
   z-index: $zindex-modal;
-  overflow: show;
+  overflow: auto;
   color: $app-body-color;
   // Animation
   &.ng-animate {
@@ -54,6 +54,15 @@
   z-index: $zindex-modal + 1;
 }
 
+#securityControlModal {
+  .switch-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-bottom: -8px;
+  }
+}
+
 .appmodal:before {
   content: '';
   display: block;
@@ -72,7 +81,7 @@
 .appmodal-header {
   border-bottom: solid 1px $app-border-color;
   .appmodal-close {
-    font-size: 180%;
+    font-size: 140%;
     display: block;
     text-decoration: none;
     position: absolute;
@@ -96,6 +105,64 @@
 }
 
 .appmodal-body {
+
+
+  .rss-description {
+    ul {
+      list-style-position: inside;
+    }
+  }
+
+  
+    .entry-in {
+                padding: $spacing;
+                display: table;
+                margin: 0 auto;
+                .entry-media {
+                    display: none;
+                    @include mediaQueries(min-small) {
+                        display: table-cell;
+                        vertical-align: middle;
+                        img {
+                            width: 200px;
+                        }    
+                    }
+                }
+                .entry-content {
+                    display: table-cell;
+                    padding: $spacing;
+                    vertical-align: middle;
+                    .text {
+                        max-width: 400px;
+                        h1 {
+                            margin-bottom: 20px;
+                        }
+                        p {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    }
+                    
+                    .inner {
+                        @include mediaQueries(min-small) {
+                            margin-left: 50px;
+                        }
+                        .badges {
+                            margin-top: 50px;
+                            a {
+                                display: inline-block;
+                                margin: 10px;
+                                img {
+                                    height: 50px;
+                                }
+                            }
+                        }    
+                    }
+                    
+                }
+            }
+
+
 }
 
 .appmodal-footer {
@@ -128,7 +195,9 @@
     }
   }
   .knob-btn {
-
+    p {
+      margin: 0 0 10px;
+    }
     @include mediaQueries(min-small) {
       text-align: left;
     }
@@ -168,6 +237,17 @@
   .appmodal-body {
     height: auto;
     max-height: 500px;
+    overflow-x: hidden;
+  }
+
+}
+
+/* Modal with scroll
+-------------------------------------------------- */
+.modal-h-700 {
+  .appmodal-body {
+    height: auto;
+    max-height: 700px;
     overflow-x: hidden;
   }
 

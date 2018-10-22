@@ -1,0 +1,44 @@
+<!-- Icon -->
+<legend>{{_t('custom_icons')}}</legend>
+<fieldset>
+<div ng-if="scene.input.params.customIcon.table['0'].icon">
+  <img class="imglist-img" alt="img" ng-src="{{cfg.img.custom_icons + scene.input.params.customIcon.table['0'].icon}}"  err-src="{{cfg.img.placeholder}}" /> 
+   <!-- Delete -->
+    <button type="button" class="btn btn-text is-text" ng-click="removeCustomIcon(scene.input.params.customIcon.table['0'].icon)"><i class="fa fa-remove text-danger"></i> {{_t('lb_cancel')}}</button>
+</div>
+</fieldset>
+<!-- List of icons -->
+
+<fieldset  ng-if="!_.isEmpty(scene.icons)">
+    <p>{{_t('select_icon')}}</p>
+  <div class="app-row clearfix app-row-imglist">
+        <div class="imglist-entry"
+             ng-repeat="v in scene.icons| orderBy : '-timestamp' track by $index">
+            <div class="imglist-entry-in infowindow-wrap">
+                <!-- Image-->
+                <img class="imglist-img clickable" ng-click="setCustomIcon(v.file)"
+                     ng-src="{{cfg.img.custom_icons + v.file}}"/>
+
+            </div>
+        </div>
+    </div>
+</fieldset>
+ <!-- Upload -->
+ <fieldset>
+ 
+  <!--  <pre>{{scene.input|json}}</pre> -->
+   
+  <input class="inputfile" type="file" name="file" id="file{{v.id}}"
+         ng-click="icons.find = v"
+         onchange="angular.element(this).scope().uploadCustomIcon(this.files, angular.element(this).scope().cfg.upload.icon)"/>
+  <label for="file{{v.id}}" class="btn btn-success" title="{{_t('lb_upload_image')}}"
+         ng-click="icons.find = v">
+      <i class="fa fa-upload"></i> {{_t('upload_icon')}}
+  </label>
+ 
+  <bb-help-text
+          trans="_t('upload_file_info',{'__size__':scene.upload.maxSize,'__extensions__': scene.upload.extensions})"></bb-help-text>
+  <bb-help-text
+          trans="_t('image_recommended_dimension',{'__dimension__':cfg.upload.icon.dimension})"></bb-help-text>
+</fieldset>
+ 

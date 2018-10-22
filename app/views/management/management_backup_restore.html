@@ -1,6 +1,6 @@
 <!-- Admin backup & restore view -->
 <h2 class="accordion-entry-title" ng-click="expandElement('backup_restore')">
-    <i class="fa fa-download"></i> <span ng-bind="_t('backup_restore')"></span>
+    <i class="fa fa-download fa-fw"></i> <span ng-bind="_t('backup_restore')"></span>
     <i class="fa accordion-arrow" ng-class="expand.backup_restore ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
 </h2>
 <!-- Local Backup-->
@@ -31,7 +31,8 @@
                 {{_t('restore_info')}}
                 <!-- CloudBackup frontend -->
             <div class="form-group form-inline">
-                <a class="btn btn-default" href="https://service.z-wave.me/cloudbackup/" target="_blank" title="{{_t('online_cloudbackup')}}">
+                <a class="btn btn-default" href="https://service.z-wave.me/cloudbackup/" target="_blank"
+                   title="{{_t('online_cloudbackup')}}">
                     <i class="fa fa-cloud-download"></i> <span class="btn-name">{{_t('online_cloudbackup')}}</span>
                 </a>
             </div>
@@ -39,19 +40,34 @@
             <bb-alert alert="managementRestore.alert"></bb-alert>
             <div ng-hide="managementRestore.alert.message">
                 <div class="alert alert-warning">
-                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm" ng-click="managementRestore.confirm = !managementRestore.confirm" /> <span ng-bind-html="_t('are_you_sure_restore', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></span>
+                    <input type="checkbox" name="restore_confirm" value="1" id="restore_confirm"
+                           ng-click="managementRestore.confirm = !managementRestore.confirm"/>
+                           <label for="restore_confirm" class="right"> {{_t('are_you_sure_restore')}}</label>
+                    <div class="form-group">
+                        <bb-help-text trans="_t('are_you_sure_restore_info')"></bb-help-text>
+                    </div>
                 </div>
-                <div class="form-group" ng-show="managementRestore.confirm">
+                <div ng-show="managementRestore.confirm">
+
+                    <div class="alert alert-warning">
+                        <input type="checkbox" name="overwriteNetwork" id="overwriteNetwork" value="true" ng-model="managementRestore.overwriteNetwork">
+                        <label for="overwriteNetwork" class="right"> {{_t('restore_zway_network')}}</label>
+                        <div class="alert alert-warning"  ng-if="managementRestore.overwriteNetwork"><i class="fa fa-exclamation-triangle"></i> {{_t('restore_backup_chip')}}</div>
+                    </div>
+                    <div class="form-group last">
                     <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/> -->
-                    <input type="file" class="form-control_" file-model="myFile" />
+                   <input type="file" class="inputfile_" name="file" id="file"
+                          file-model="myFile"
+                          onchange="angular.element(this).scope().checkSelectedFile(this.files,angular.element(this).scope().cfg.upload.restore_from_backup)" />
                 </div>
+            </div>
             </div>
 
         </div>
 
         <div class="fieldset submit-entry">
-            <button type="button" class="btn btn-submit"  title="{{_t('nm_restore_pick_up')}}"
-                    ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message">
+            <button type="button" class="btn btn-submit" title="{{_t('nm_restore_pick_up')}}"
+                    ng-click="uploadFile()" ng-disabled="!managementRestore.confirm || managementRestore.alert.message || !managementRestore.fileName">
                 <i class="fa fa-upload"></i> <span class="btn-name">{{_t('nm_restore_pick_up')}}</span>
             </button>
 
@@ -73,10 +89,13 @@
                     ng-class="managementCloud.instance.active ? 'active' : ''"
                     ng-if="managementCloud.service_status === '' || managementCloud.service_status === true"
                     ng-disabled="managementCloud.email === ''? true : false">
-                <i class="fa fa-cloud"  ng-class="managementCloud.instance.active ? 'text-success' : 'text-danger'"></i>
-                <span class="btn-name" ng-if="managementCloud.instance.active === true" >{{_t('cloudbackup_active')}}</span>
-                <span class="btn-name" ng-if="managementCloud.instance.active === false" >{{_t('cloudbackup_inactive')}}</span>
-                <span class="btn-name" ng-if="!managementCloud.instance.active && managementCloud.instance.active != false" >{{_t('cloudbackup_install')}}</span>
+                <i class="fa fa-cloud" ng-class="managementCloud.instance.active ? 'text-success' : 'text-danger'"></i>
+                <span class="btn-name"
+                      ng-if="managementCloud.instance.active === true">{{_t('cloudbackup_active')}}</span>
+                <span class="btn-name"
+                      ng-if="managementCloud.instance.active === false">{{_t('cloudbackup_inactive')}}</span>
+                <span class="btn-name"
+                      ng-if="!managementCloud.instance.active && managementCloud.instance.active != false">{{_t('cloudbackup_install')}}</span>
             </button>
         </fieldset>
         <!-- Cloud backup -->
@@ -86,10 +105,12 @@
                 <div class="form-group">
                     <h4>{{managementCloud.module.options.fields.email_log.label}}</h4>
                     <div ng-repeat="v in managementCloud.module.schema.properties.email_log.enum track by $index">
-                        <input type="radio" name="email_log" value="{{v}}" id="email_log_{{v}}"
+                        <label>
+                            <input type="radio" name="email_log" value="{{v}}" id="email_log_{{v}}"
                                ng-model="managementCloud.instance.params.email_log"
-                               ng-checked="managementCloud.instance.params.email_log === v" />
-                        <label>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</label>
+                               ng-checked="managementCloud.instance.params.email_log === v"/>
+                            <span>{{managementCloud.module.options.fields.email_log.optionLabels[$index]}}</span>
+                        </label>
                     </div>
                 </div>
             </fieldset>
@@ -99,7 +120,8 @@
                             ng-repeat="v in managementCloud.module.schema.properties.scheduler.enum track by $index"
                             ng-class="v === managementCloud.instance.params.scheduler ? 'active' : ''"
                             ng-click="setSchedulerType(v)"
-                    >{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}</button>
+                    >{{managementCloud.module.options.fields.scheduler.optionLabels[$index]}}
+                    </button>
                 </p>
                 <div class="form-group form-inline form-block">
                     <!-- Hours -->
@@ -138,7 +160,7 @@
                     <!--Days -->
                     <span ng-if="managementCloud.module.options.fields.days.dependencies.scheduler.indexOf(managementCloud.instance.params.scheduler) > -1">
                     <label>{{managementCloud.module.options.fields.days.label}}</label>
-                    <select class="form-control" ng-model="managementCloud.instance.params.days"  ng-required="true">
+                    <select class="form-control" ng-model="managementCloud.instance.params.days" ng-required="true">
                         <option value="{{v}}"
                                 ng-repeat="v in managementCloud.module.schema.properties.days.enum track by $index"
                                 ng-selected="v === managementCloud.instance.params.days">
@@ -157,8 +179,9 @@
                     </div>
                 </div>
             </fieldset>
-            <fieldset  class="submit-entry">
-                <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_cloud_backup.$invalid">
+            <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}"
+                        ng-disabled="form_cloud_backup.$invalid">
                     <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
                 </button>
             </fieldset>

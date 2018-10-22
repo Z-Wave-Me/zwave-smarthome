@@ -1,0 +1,16 @@
+<section class="accordion-wrap">
+ <!-- Title -->
+ <h2 class="accordion-toggle chevron">
+  
+    <span class="no-toggle" ng-if="rule.source.devices[rule.input.params.simple.triggerEvent.deviceId]">
+        {{rule.source.devices[rule.input.params.simple.triggerEvent.deviceId].deviceName}}
+      </span>
+      <!-- Delete -->
+    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignSourceDevice()">
+      <i class="fa fa-times text-danger"></i>
+    </span>
+
+  </h2>
+  <div class="accordion" ng-if="rule.input.params.simple.triggerEvent.deviceType != 'toggleButton'" ng-init="hideAction = true" ng-include="'app/views/automation/rules/rule_id_if_'+ rule.input.params.simple.triggerEvent.deviceType +'.html'"></div>
+  </section>
+  

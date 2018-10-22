@@ -1,0 +1,51 @@
+<!-- securityControlModal -->
+<div id="securityControlModal" class="appmodal" ng-controller="ElementSecurityControlController" ng-if="modalArr.securityControlModal_m">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('securityControlModal_m', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{dataHolder.devices.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body text-center">
+            <bb-alert alert="widgetSecurityControl.alert"></bb-alert>
+            <div class="switch-wrap">
+                <label class="switch">
+                    <input type="checkbox"
+                           ng-checked="widgetSecurityControl.find.metrics.Clevel === 'cOn'"
+                           ng-model="dataHolder.devices.switchButton[widgetSecurityControl.find.id]"
+                           ng-change="runCmd(widgetSecurityControl.find.id + '/command/' + (dataHolder.devices.switchButton[widgetSecurityControl.find.id] ? 'cOn':'cOff'), widgetSecurityControl.find.id)" />
+                    <div class="slider round"></div>
+                </label>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-off"
+                        ng-class="widgetSecurityControl.find.metrics.Rlevel=='on' ? 'btn-primary': 'btn-default'"
+                        ng-click="runCmd(widgetSecurityControl.find.id + '/command/cReset', widgetSecurityControl.find.id)">
+                    <i class="fa fa-refresh"></i>
+                </button>
+                <button class="btn btn-on"
+                        ng-class="widgetSecurityControl.find.metrics.Alevel =='on' ? 'btn-primary': 'btn-default'"
+                        ng-click="runCmd(widgetSecurityControl.find.id + '/command/automationToggle', widgetSecurityControl.find.id)">
+                    <i class="fa fa-clock-o"></i>
+                </button>
+            </div>
+            <div class="multiline-entry" ng-if="!_.isEmpty(widgetSecurityControl.find.metrics.lastTriggerList)">
+                <table class="table table-report table-condensed">
+                    <tbody>
+                    <tr class="bcg-success" ng-repeat="n in widgetSecurityControl.find.metrics.lastTriggerList">
+                        <!--<td class="td-img">
+                            <img class="report-img img-circle" ng-src="{{n.roomIcon}}" />
+                        </td>-->
+                        <td class="text-left">{{n.name}}</td>
+                        <td class="text-left">{{n.state}}</td>
+                        <td class="text-left">{{n.time | date:'dd.MM.yyyy H:mm'}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!--<div class="appmodal-footer">
+            <button type="button" class="btn btn-default" ng-click="handleModal('doorLockControlModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+        </div>-->
+    </div>
+</div>

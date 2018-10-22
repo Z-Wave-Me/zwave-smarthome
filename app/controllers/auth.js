@@ -7,7 +7,7 @@
  * This is the Auth root controller
  * @class AuthController
  */
-myAppController.controller('AuthController', function ($scope, $routeParams, $location, $cookies, $window, $q, cfg, dataFactory, dataService, _) {
+myAppController.controller('AuthController', function ($scope, $routeParams, $location, $cookies, $window, $q, $timeout, cfg, dataFactory, dataService, _) {
     $scope.auth = {
         remoteId: null,
         firstaccess: false,
@@ -19,9 +19,37 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         count_of_reconnects: 0
     };
 
+    /**
+     * Login with selected data from server response
+     */
+    $scope.processUser = function (user, rememberme) {
+
+        if(user.lang){// If user language exits use from profile
+            $cookies.lang = user.lang;
+        }else{// Uses from selected login language
+            user.lang = $scope.loginLang;
+        }
+        /*if ($scope.loginLang) {
+            user.lang
+             = $scope.loginLang;
+        }*/
+        dataService.setZWAYSession(user.sid);
+        dataService.setUser(user);
+        //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
+        if (rememberme) {
+            dataService.setRememberMe(rememberme);
+        }
+
+        $scope.auth.form = false;
+    };
+
     if (dataService.getUser()) {
         $scope.auth.form = false;
-        window.location = '#/dashboard';
+        if(cfg.route.os !== 'PoppApp_Z_Way') {
+            $timeout(function() {
+                window.location = '#/dashboard';
+            }, 0);
+        }
         return;
     }
     // IF IE or Edge displays an message
@@ -33,7 +61,7 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     }
 
 
-    $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : false;
+    $scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : cfg.lang;
     /**
      * Load all promises
      */
@@ -41,12 +69,15 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('remote_id'),
-            dataFactory.getApi('firstaccess')
+            dataFactory.getApi('firstaccess'),
+            dataFactory.getApi('ip_address')
         ];
 
         $q.allSettled(promises).then(function (response) {
-            var remoteId = response[0];
-            var firstAccess = response[1];
+            var remoteId = response[0],
+                firstAccess = response[1],
+                ipAddress = response[2];
+                
             $scope.loading = false;
             // Error message
             if (firstAccess.state === 'rejected') {
@@ -63,6 +94,11 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
                 $scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
                 $scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
             }
+
+            // Success - IP address
+            if (ipAddress.state === 'fulfilled') {
+                $scope.auth.ipAddress = ipAddress.value.data.data.ip_address;
+            }
         });
     };
     $scope.allSettled();
@@ -76,22 +112,6 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
         $scope.loadLang(lang);
     };
 
-    /**
-     * Login with selected data from server response
-     */
-    $scope.processUser = function (user, rememberme) {
-        if ($scope.loginLang) {
-            user.lang = $scope.loginLang;
-        }
-        dataService.setZWAYSession(user.sid);
-        dataService.setUser(user);
-        //dataFactory.putApi('profiles', user.id, user).then(function (response) {}, function (error) {});
-        if (rememberme) {
-            dataService.setRememberMe(rememberme);
-        }
-
-        $scope.auth.form = false;
-    };
     /**
      * Redirect
      */
@@ -117,6 +137,9 @@ myAppController.controller('AuthController', function ($scope, $routeParams, $lo
     function getZwaveApiData(location) {
         //var location = '#/dashboard';
         dataFactory.loadZwaveApiData().then(function (response) {
+            if(!response){
+                return;
+            }
             var input = {
                 uuid: response.controller.data.uuid.value
             };
@@ -231,24 +254,25 @@ myAppController.controller('AuthLoginController', function ($scope, $location, $
 
 /**
  * The controller that handles first access and password update.
- * @class AuthPasswordController
+ * @class AuthFirstAccessController
  */
-myAppController.controller('AuthPasswordController', function ($scope, $q, $window, cfg, dataFactory, dataService) {
+myAppController.controller('AuthFirstAccessController', function ($scope, $q, $window, cfg, dataFactory, dataService) {
     $scope.input = {
         id: 1,//$scope.auth.defaultProfile.id,
         password: '',
         passwordConfirm: '',
-        email: '',
-        trust_my_network: false
+        email: ''
     };
     $scope.handleTimezone = {
         instance: {},
-        show: false
+        show: false,
+        changed: false
     };
     $scope.managementTimezone = {
         labels: {},
         enums: {}
     };
+    $scope.reboot = false;
 
     /**
      * Load all promises
@@ -281,22 +305,24 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
     }
 
     /**
-     * Change password
+     * Update profile with data from the first access form
      */
-    $scope.changePassword = function (form, input, instance) {
-        if (form.$invalid) {
+    $scope.updateFirstAccess = function (form, input, instance) {
+        /*if (form.$invalid) {
             return;
-        }
+        }*/
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         var inputAuth = {
             id: input.id,
-            password: input.password
+            password: input.password,
+            lang:  $scope.loginLang
 
         };
         var headers = {
             'Accept-Language': $scope.auth.defaultProfile.lang,
             'ZWAYSession': $scope.auth.defaultProfile.sid
         };
+
         // Update auth
         dataFactory.putApiWithHeaders('profiles_auth_update', inputAuth.id, input, headers).then(function (response) {
             $scope.loading = false;
@@ -309,10 +335,11 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
             profile['lang'] = $scope.loginLang;
             // Update profile
             dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function (response) {
-                if (cfg.app_type === 'jb' && $scope.handleTimezone.show) {
+                //$scope.user
+                if (cfg.app_type === 'jb' && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
                     $scope.updateInstance(instance);
                 } else {
-                    $scope.redirectAfterLogin(true, $scope.auth.defaultProfile, input.password, false, '#/dashboard/firstlogin');
+                    $scope.redirectAfterLogin(true, response.data.data, input.password, false, '#/dashboard/firstlogin');
                 }
             }, function (error) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -345,7 +372,7 @@ myAppController.controller('AuthPasswordController', function ($scope, $q, $wind
     };
 
     /**
-     * System rebboot
+     * System reboot
      */
     $scope.systemReboot = function () {
         //$scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('system_rebooting')};

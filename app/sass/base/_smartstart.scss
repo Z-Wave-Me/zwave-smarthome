@@ -1,0 +1,216 @@
+/* SmartStart
+-------------------------------------------------- */
+$ss-brand-color: #eeeeee;
+$ss-dark-color: darken($ss-brand-color,50%);
+$ss-img-w: 64px;
+/* 
+-------------------------------------------------- */
+.smart-start {
+    .container{
+        padding: 0;
+        //background-color: $ss-brand-color;
+        .entry{
+            background-color: $ss-brand-color;
+            padding: $spacing-double;
+            text-align: center;
+            margin: 0 0 $spacing-double 0;
+            //border: solid 1px $app-border-color;
+            .content{
+                margin: $spacing-double; 
+            }
+            .image{
+                .fa{
+                    font-size: $ss-img-w;
+                    color: $app-brand-success;
+                    &.fa-exclamation{
+                        color: $app-brand-danger;
+                    }
+                }
+            }
+            &.list{
+                text-align: left;
+                border: solid 1px $app-border-color;
+                background-color: transparent;
+                ul{
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    li{
+                        padding:  $spacing;
+                        width: auto;
+                        &.highlighted{
+                            //border: solid 1px red;
+                            background-color: $app-bcg-success;
+                        }
+                    }
+
+
+                }
+            }
+
+            .entry-in {
+                padding: $spacing;
+                display: table;
+                margin: 0 auto;
+                .entry-media {
+                    display: none;
+                    @include mediaQueries(min-small) {
+                        display: table-cell;
+                        vertical-align: middle;
+                        img {
+                            width: 200px;
+                        }    
+                    }
+                }
+                .entry-content {
+                    display: table-cell;
+                    padding: $spacing;
+                    vertical-align: middle;
+                    .text {
+                        max-width: 400px;
+                        h1 {
+                            margin-bottom: 20px;
+                        }
+                        p {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    }
+                    
+                    .inner {
+                        @include mediaQueries(min-small) {
+                            margin-left: 50px;
+                        }
+                        .badges {
+                            margin-top: 50px;
+                            a {
+                                display: inline-block;
+                                margin: 10px;
+                                img {
+                                    height: 50px;
+                                }
+                            }
+                        }    
+                    }
+                    
+                }
+            }
+        }
+        .table{
+            tbody{
+                tr{
+                    td {
+                        vertical-align: middle;
+                        .td-action {
+                            text-align: right;    
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+.dsk-number {
+    display: inline-block;
+    padding: 5px;
+    width: 4em;
+}
+.dsk-input-group{
+    input {
+        margin-bottom: 5px;
+    }
+    // Media queries
+@include mediaQueries(min-small) {
+    span::after {
+        content: " - ";
+      }
+      span:last-child::after {
+        content: "";
+      }
+  }
+}
+
+#table_mobile {
+    display: block;
+
+    .table{
+        tbody{
+            tr{
+                &:nth-child(2) {
+                    td {
+                        border: none; 
+                    }   
+                }
+                td {
+                    .time_string {
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+   
+    @include mediaQueries(min-small) {
+        display: none;
+    }
+}
+
+#table_desktop {
+    display: none;
+    @include mediaQueries(min-small) {
+        display: block;
+    }
+}
+
+.dsk {
+    position: relative;
+    width: 200px;
+    display: inline-block;
+    vertical-align: middle;
+
+    @include mediaQueries(min-esmall) {
+        width: auto;
+    }
+
+    &:after {
+        @include mediaQueries(max-esmall) {
+            content: attr(data-dsk-last-pos);
+            position: absolute;
+            left: 100%;
+            top: 0;
+        }
+        
+    }
+
+    span {
+        @include mediaQueries(max-esmall) {
+            display: block;
+            @include textOverflow();
+        }
+    }
+}
+
+.video-wrapper {
+    video {
+        width: 100%;
+        @include mediaQueries(min-esmall) {
+            width: 300px;
+        }    
+
+        height: 300px;
+        background-color: grey;
+        margin: 10px 0;
+    }    
+}
+
+#qr-canvas {
+    //background-color: light-grey;
+    display: none;
+}
+
+.state_text {
+    display: inline-block;
+}
+

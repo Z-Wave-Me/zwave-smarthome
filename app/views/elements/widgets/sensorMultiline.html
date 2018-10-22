@@ -16,7 +16,7 @@
                 ng-click="runCmd(v.id + '/command/' + cfg.climate_state[1] + '?room=null', v.id)"
                ng-class="v.metrics.state ==cfg.climate_state[1] ? 'btn-primary': 'btn-default'"
                 title="{{_t(cfg.climate_state[1])}}">
-                <i class="fa fa-leaf"></i>
+                <i class="fa fa-moon-o"></i>
             </button>
             <button 
                 class="btn widget-btn-comfort" 
@@ -24,8 +24,16 @@
                 ng-click="runCmd(v.id + '/command/' + cfg.climate_state[2] + '?room=null', v.id)"
                 ng-class="v.metrics.state == cfg.climate_state[2] ? 'btn-primary': 'btn-default'"
                 title="{{_t(cfg.climate_state[2])}}">
-                <i class="fa fa-building"></i>
+                <i class="fa fa-sun-o"></i>
             </button>
+            <button 
+                class="btn widget-btn-schedule" 
+                id="btn_schedule_{{ v.id}}"
+                ng-click="runCmd(v.id + '/command/' + cfg.climate_state[3] + '?room=null', v.id)"
+                ng-class="v.metrics.state == cfg.climate_state[3] ? 'btn-primary': 'btn-default'"
+                title="{{_t(cfg.climate_state[3])}}">
+                <i class="fa fa-calendar"></i>
+            </button>            
         </div>
     </div>
     <div class="widget-ctrl ctrl-right widget-ctrl-click" ng-click="dataHolder.devices.find = v;handleModal('climateControlModal', $event)">

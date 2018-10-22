@@ -8,13 +8,14 @@
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function ($scope, $q, $routeParams, $filter, $location, $timeout, cfg, dataFactory, dataService, myCache) {
     $scope.elementId = {
         show: false,
         appType: {},
         input: {},
         locations: {},
-        instances: {}
+        instances: {},
+        modules: {}
     };
     $scope.tagList = [];
     $scope.search = {
@@ -28,10 +29,10 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
-            dataFactory.getApi('devices', '/' + $routeParams.id),
+            dataFactory.getApi('devices', '/' + $routeParams.id, true),
             dataFactory.getApi('locations'),
-            dataFactory.getApi('devices')
-
+            dataFactory.getApi('devices'),
+            dataFactory.getApi('modules')
         ];
 
         if ($scope.user.role === 1) {
@@ -42,7 +43,9 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             var device = response[0];
             var locations = response[1];
             var devices = response[2];
-            var instances = response[3];
+            var modules = response[3];
+            var instances = response[4];
+            
 
             $scope.loading = false;
             // Error message
@@ -61,6 +64,11 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             // Success - instances
             if (instances && instances.state === 'fulfilled') {
                 $scope.elementId.instances = instances.value.data.data;
+            }
+
+            // Success - modules
+            if (modules && modules.state === 'fulfilled') {
+                $scope.elementId.modules = modules.value.data.data;
             }
             // Success - device
             if (device.state === 'fulfilled') {
@@ -115,7 +123,15 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
     $scope.store = function (input) {
         if (input.id) {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('devices', input.id, setOutput(input)).then(function (response) {
+            var data = {
+                id: input.id,
+                location: parseInt(input.location, 10),
+                tags: input.tags,
+                metrics: input.metrics,
+                visibility: input.visibility,
+                permanently_hidden: input.permanently_hidden
+            };
+            dataFactory.putApi('devices', input.id, data).then(function (response) {
                 $scope.user.dashboard = dataService.setArrayValue($scope.user.dashboard, input.id, input.onDashboard);
                 $scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, input.id, input.hide_events);
                 $scope.updateProfile($scope.user, input.id);
@@ -149,6 +165,31 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         return;
     };
 
+    /**
+     * Delete an element from the view
+     */
+    $scope.deleteElement = function (input,message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            var data = {
+                id: input.id,
+                permanently_hidden: true
+            };
+            dataFactory.putApi('devices', input.id, data).then(function (response) {
+                $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('reloading_page')};
+                $timeout(function () {
+                    $scope.loading = false;
+                    myCache.removeAll();
+                    $location.path('/elements');
+                }, 2000);
+            }, function (error) {
+                alertify.alertError($scope._t('error_delete_data'));
+                $scope.loading = false;
+            });
+        });
+
+    };
+
     /// --- Private functions --- ///
     /**
      * Set device
@@ -159,25 +200,86 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
         var zwaveId = false;
         $scope.elementId.input = device;
         //$scope.elementId.input.custom_icons = { on: 'Modem-icon.png',off: 'Stop-icon.png'};
+        
+        var instance = _.findWhere($scope.elementId.instances, {id: $filter('toInt')(device.creatorId)});         
+        var modul = _.findWhere($scope.elementId.modules, {moduleName: instance.moduleId});
+
+        $scope.elementId.appType['instance'] = instance;
+        $scope.elementId.appType['modul'] = modul;
+
         if (device.id.indexOf(findZwaveStr) > -1) {
             zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
             $scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
         } else if (device.id.indexOf(findZenoStr) > -1) {
             $scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
-        } else {
-            var instance = _.findWhere($scope.elementId.instances, {id: $filter('toInt')(device.creatorId)});
-            if (instance && instance['moduleId'] != 'ZWave') {
-                $scope.elementId.appType['instance'] = instance;
+        } 
 
+        if(cfg.route.os == 'PoppApp_Z_Way') {
+            if(($scope.elementId.input.deviceType == 'toggleButton' && 
+               $scope.elementId.input.probeType !== 'notification_push' &&
+               $scope.elementId.input.probeType !== 'notification_email') ||
+               $scope.elementId.input.deviceType == 'switchBinary') {
+                if($scope.elementId.input.metrics.level == "on") {
+                    var device_on = angular.copy($scope.elementId.input);
+                    
+                    var device_off = angular.copy($scope.elementId.input);
+                    device_off.metrics.level = "off";
+                } else if($scope.elementId.input.metrics.level == "off") {
+                    var device_off = angular.copy($scope.elementId.input);
+                    
+                    var device_on = angular.copy($scope.elementId.input);
+                    device_on.metrics.level = "on";
+                } 
+
+                offIconPath = dataService.assignElementIcon(device_off);
+                onIconPath = dataService.assignElementIcon(device_on);
+
+                var offData = {
+                    "id":           $scope.elementId.input.id,
+                    "name":         $filter('stringToSlug')($scope.elementId.input.metrics.title),
+                    "device_type":  $scope.elementId.input.deviceType,
+                    "icon":         $scope.elementId.input.metrics.icon,
+                    "iconPath":     offIconPath,
+                    "state":        "off"  
+                };
+
+                var onData = {
+                    "id":           $scope.elementId.input.id,
+                    "name":         $filter('stringToSlug')($scope.elementId.input.metrics.title),
+                    "device_type":  $scope.elementId.input.deviceType,
+                    "icon":         $scope.elementId.input.metrics.icon,
+                    "iconPath":     onIconPath,
+                    "state":        "on"  
+                };
+
+                onParams = Object.keys(onData).map(function(key){
+                    return key + '=' + onData[key];
+                }).join('&');
+
+                offParams = Object.keys(offData).map(function(key){
+                    return key + '=' + offData[key];
+                }).join('&');
+
+                var addOffUrl = "/AndoridWidget?" + offParams;
+                var addOnUrl = "/AndoridWidget?" + onParams;
+
+                angular.extend($scope.elementId.input,
+                    {addOffUrl: addOffUrl},
+                    {addOnUrl: addOnUrl}
+                );    
             }
         }
-    }
-    ;
+
+        angular.extend($scope.elementId.input,
+            {iconPath: dataService.assignElementIcon($scope.elementId.input)},
+        );
+    };
 
     /**
+     * todo: deprecated
      * Set output
      */
-    function setOutput(input) {
+    /*function setOutput(input) {
         return {
             'id': input.id,
             'location': parseInt(input.location, 10),
@@ -187,7 +289,7 @@ myAppController.controller('ElementIdController', function ($scope, $q, $routePa
             'permanently_hidden': input.permanently_hidden
         };
     }
-    ;
+    ;*/
 
     /**
      * Set tag list

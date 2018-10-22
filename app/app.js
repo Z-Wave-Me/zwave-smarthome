@@ -12,6 +12,7 @@ var myApp = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
     'ngAnimate',
+    'ngTouch',
     'myAppConfig',
     'myAppController',
     'myAppFactory',
@@ -19,6 +20,8 @@ var myApp = angular.module('myApp', [
     'qAllSettled',
     'myAppTemplates',
     'httpLatency',
+    'ng.deviceDetector',
+    'pr.longpress',
     'angular-sortable-view'
 
 ]);
@@ -64,24 +67,17 @@ angular.forEach(icon_data, function (key, value) {
  * Angular run function
  * @function run
  */
-myApp.run(function ($rootScope, $location, dataService, dataFactory,cfg) {
+myApp.run(function ($rootScope,  $route,$location, dataService, dataFactory,cfg) {
+    
     // Run underscore js in views
     $rootScope._ = _;
-    /**
-     * todo: deprecated
-     */
-   /* $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        /!**
-         * Reset fatal error object
-         *!/
-        dataService.resetFatalError();
-
-        /!**
-         * Check if access is allowed for the page
-         *!/
-        dataService.isAccessAllowed(next);
-
-    });*/
+      $rootScope.$on("$routeChangeStart", function (event, next, current) {
+      
+        var route = {
+            previous: current ? current.$$route.originalPath : false
+        };
+        angular.extend(cfg.route,route);
+    });
 });
 
 /**
@@ -126,15 +122,25 @@ myApp.config(function ($provide, $httpProvider) {
                         angular.extend(cfg.route.fatalError, fatalArray);
                         break;*/
                     case 0:
-                        //console.log(rejection)
                         // Check if request has no timeout or location url is on the black list and pending is from a remote server
                         // then does not display an error message
-                        if(!rejection.config.timeout || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.isRemote)){
+                        if(rejection.config.headers.isZWAY) {
+                            angular.extend(cfg.route.fatalError, {
+                                type: 'network',
+                                message: 'The request failed because the server is not responding',
+                                hide: false
+                            });    
+                            break;
+                        }
+                        var test = (!rejection.config.headers.timeout || rejection.config.headers.suppressFtalError || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.headers.isRemote));
+                        //if(!rejection.config.headers.timeout || rejection.config.headers.suppressFtalError || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.headers.isRemote)){
+                        if(test) {  
                            break;
                         }
-                        //console.log(rejection);
+                        console.log("connection error 2");
                         angular.extend(cfg.route.fatalError, {
-                            message: 'The request failed because server does not responding',
+                            type: 'network',
+                            message: 'The request failed because the server is not responding',
                             hide: false
                         });
                         break;

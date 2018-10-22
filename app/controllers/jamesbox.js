@@ -36,6 +36,9 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
 
             // Success - zwave controller
             if (zwave.state === 'fulfilled') {
+                if(!zwave.value){
+                    return;
+                }
                 $scope.jamesbox.uuid = zwave.value.controller.data.uuid.value;
                 $scope.jamesbox.version = zwave.value.controller.data.softwareRevisionVersion.value;
                 $scope.jamesBoxRequest();

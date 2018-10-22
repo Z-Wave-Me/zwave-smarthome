@@ -1,0 +1,1116 @@
+/* Dark SmartHome skin
+-------------------------------------------------- */
+
+/* Variables
+-------------------------------------------------- */
+// COLORS
+$app-brand-primary:         #1685c6;
+$app-brand-success:         #00B559;
+$app-brand-info:            #096BA5;
+$app-brand-warning:         #FF8C00;
+$app-brand-danger:          #750000;
+
+$app-color-red:#DC052D;
+$app-color-red-darker: #961432;
+$app-color-red-darkest: #6E0A28;
+$app-color-red-lighter:#a51c39;
+$app-color-red-lightest:#b72847;
+$app-color-lightest: #fff;
+$app-color-lighter: #F7BEC8;
+$app-color-additional: #0A3C64;
+$app-body-color: $app-color-lighter;
+$app-a-color: lighten($app-color-lighter,5%);;
+$app-border-color: lighten($app-color-red-lightest,15%);
+$app-heading-color: darken($app-body-color,5%);
+
+/* Body
+-------------------------------------------------- */
+body {
+    color: $app-body-color;
+    background-color: $app-color-red-darker;;
+
+}
+.timestamp{
+    color: $app-body-color;
+}
+
+/* Gird
+-------------------------------------------------- */
+/* Style */
+#main_content {
+    margin-top: 70px + $spacing;
+    margin-bottom: 50px + $spacing;
+}
+
+/* Typo
+-------------------------------------------------- */
+h1, h2, h3, h4 {
+    color: $app-heading-color;
+}
+.app-entry-local h2 {
+    color: $app-heading-color;
+}
+
+.text-supp {
+    color: darken($app-body-color, 10%);
+}
+
+/* Links
+-------------------------------------------------- */
+a {
+    color: $app-a-color;
+    &:hover, &:focus {
+        color: $app-a-color;
+        text-decoration: underline;
+    }
+
+    &:focus {
+        // Default
+        outline: thin dotted;
+        // WebKit
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+
+    &.link-dotted {
+        color: $app-a-color;
+        border-bottom: 1px dotted $app-a-color;
+
+        &:hover, &:focus {
+            border-bottom: 1px solid $app-a-color;
+            text-decoration: none;
+        }
+    }
+
+    &.link-underline {
+        color: $app-a-color;
+
+        //&:hover, &:focus { }
+    }
+}
+
+/* Others
+-------------------------------------------------- */
+.bcg-success {
+    background-color: $app-bcg-success;
+    background: transparent;
+}
+
+.bcg-active.false, .bcg-danger {
+    background-color: $app-bcg-danger;
+    background: transparent;
+    .report-img-s{
+        @include appGrayscale();
+    }
+}
+
+
+
+.badge-number {
+    background-color: lighten($app-color-red, 20%);
+    color: $app-color-lighter;
+}
+
+/*.fa {
+  &.text-success{
+    color: $app-color-additional;
+  }
+}*/
+
+.device-available-block{
+    &.assigned{
+        border: 0;
+        background-color: $app-color-red-darkest;
+    }
+}
+
+/* Text colors
+-------------------------------------------------- */
+.text-primary {
+    color: $app-brand-primary;
+}
+.text-success {
+    color: $app-brand-success;
+}
+.text-info {
+    color: $app-brand-info;
+}
+.text-warning {
+    color: $app-brand-warning;
+}
+.text-danger {
+    color: $app-brand-danger;
+}
+
+/* Label colors
+-------------------------------------------------- */
+.label-primary {
+    background-color: $app-brand-primary;
+}
+.label-success {
+    background-color: $app-brand-success;
+}
+.label-info {
+    background-color: $app-brand-info;
+}
+.label-warning {
+    background-color: $app-brand-warning;
+}
+.label-danger {
+    background-color: $app-brand-danger;
+}
+
+/* Button colors
+-------------------------------------------------- */
+.btn-primary {
+    background-color: $app-brand-primary;
+}
+.btn-success {
+    background-color: $app-brand-success;
+}
+.btn-info {
+    background-color: $app-brand-info;
+}
+.btn-warning {
+    background-color: $app-brand-warning;
+}
+.btn-danger {
+    background-color: $app-brand-danger;
+}
+
+/* Alert
+-------------------------------------------------- */
+.alert{
+    background-color: $app-color-red-lighter;
+    border: 2px solid $app-color-red-lightest;
+    color: $app-color-lighter;
+    font-size: 110%;
+}
+.alert-success{
+    border-color: $app-brand-success;
+}
+.alert-info{
+    border-color: $app-brand-info;
+}
+.alert-warning{
+    border-color: $app-brand-warning;
+}
+.alert-danger{
+    border-color: $app-brand-danger;
+}
+
+/* Fatal error
+-------------------------------------------------- */
+.app-fatal-error {
+    background-color: $app-color-red-lighter;
+    border: solid 1px $app-brand-danger;
+    .fatal-error-message {
+        color: $app-brand-danger;
+    }
+    .fatal-error-info {
+        color: $app-color-lighter;
+    }
+}
+
+/* Header
+-------------------------------------------------- */
+#header{
+    color: $app-body-color;
+    .divider-vertical {
+        display: none;
+    }
+    .nav-logo{
+        //padding: 0 100px 0 0;
+        position: absolute;
+        top: 1px;
+        left: 0;
+        width: 70px;
+        height: 70px;
+    }
+    // Media queries
+    @include mediaQueries(min-small) {
+        .nav-home{
+            margin: 0 0 0 90px;
+        }
+    }
+
+
+}
+#header_logo{
+    border: solid 6px $app-color-red-darkest;
+    max-height: 70px;
+    max-width: 70px;
+    border-radius:50%;
+}
+
+/* Main navigation
+-------------------------------------------------- */
+#main_navigation_wrap{
+    background-color: $app-color-red-darkest;
+    border-bottom: solid 1px $app-color-red-lightest;
+}
+
+#main_navigation{
+    a{
+        display: inline-block;
+        padding: 0;
+        color: $app-a-color;
+        line-height: $header-h - $spacing;
+        text-align: center;
+
+
+        color: $app-color-lighter;
+        width: $header-h  - $spacing;
+        height: $header-h  - $spacing;
+        margin: 0 5px;
+        border-radius: 50%;
+        .fa{
+            line-height: $header-h  - $spacing;
+        }
+    }
+    a:hover{
+        background:transparent;
+        color: $app-color-lightest;
+    }
+    .active{
+
+        background-color:$app-color-red-lightest;
+        color: $app-color-lightest;
+        &:hover{
+            background-color:$app-color-red-lightest;
+        }
+    }
+}
+
+/* Subnavigation
+-------------------------------------------------- */
+#sub_navigation_in{
+    ul{
+        background-color: $app-color-red-darker;;
+        border: 1px solid $app-border-color;
+
+        li{
+            border-bottom: solid 1px $app-border-color;
+            a{
+                color: $app-a-color;
+                &:hover{
+                    color: $app-color-lightest;
+                }
+
+            }
+            &.active{
+                background-color: $app-color-red-lightest;
+                a{
+                    color: $app-color-additional;
+                }
+                .fa{
+                    color: $app-color-additional;
+                }
+            }
+
+        }
+        .fa{
+            color: $app-a-color;
+        }
+
+    }
+}
+/* Page navigation
+-------------------------------------------------- */
+.page-navi{
+    color: $app-a-color;
+    .page-navi-in{
+        background-color:$app-color-red-darker;;
+        border: 1px solid $app-border-color;
+    }
+    ul{
+        li{
+            border-bottom: solid 1px $app-border-color;
+            a{
+                color: $app-a-color;
+
+            }
+        }
+        .active{
+            a{
+                color: $app-color-additional;
+            }
+            .fa{
+                color: $app-color-additional;
+
+            }
+        }
+        .fa{
+            color: $app-a-color;
+
+        }
+    }
+    .page-navi-title{
+        color: $app-heading-color;
+    }
+    .page-navi-tag {
+        border: solid 1px $app-border-color;
+
+    }
+    .page-navi-tag.active{
+        background-color: $app-border-color;
+    }
+}
+
+/* Form
+-------------------------------------------------- */
+.form-control {
+    color: $app-color-lighter;
+    border: solid 1px $app-color-red-darkest;
+    background-color: $app-color-red-lightest;
+    &:focus{
+        border-color: $app-color-additional;
+    }
+    &[disabled],
+    &[readonly],
+    fieldset[disabled] & {
+        background-color: $app-color-red-lightest;
+        color: lighten($app-color-red-lightest,20%);
+    }
+}
+.help-block {
+    color:$app-color-lighter;
+}
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline {
+    color:$app-color-lighter;
+}
+
+.input-group-addon {
+    border: solid 1px $app-color-red-darkest;
+    background-color: $app-color-red-darkest;
+    .fa {
+        color: $app-color-lightest;
+    }
+}
+.form-page {
+    background-color: $app-color-red-lighter;
+    border: 0 none;
+    .form-group {
+        border-bottom: solid 1px $app-color-red-darkest;
+    }
+}
+
+.submit-entry {
+    background-color: $app-color-red-darkest;
+    border-top: 0;
+}
+
+.control-active {
+    border: solid 4px $app-color-additional !important;
+}
+
+/* Button
+-------------------------------------------------- */
+.btn-default,.btn-primary,.btn-info,.btn-success,.btn-warning,.btn-danger{
+    background-color: $app-color-red-lightest;
+    color: $app-color-lighter;
+    border: solid 1px lighten($app-color-red-lightest, 20%);
+    &:hover{
+        background-color: $app-color-red-darkest;
+        color: $app-color-lighter;
+        border-color: $app-border-color;
+    }
+    &.active{
+        /*background-color: $app-color-red-darkest;
+        color: $app-color-lighter;*/
+        background-color: $app-color-lighter !important;
+        //border-color: lighten($app-color-lighter, 20%);
+        color: $app-color-red-darkest !important;
+    }
+    &:active{
+        bbackground-color: $app-color-red-lighter;
+        color: $app-color-lighter;
+        border-color: $app-border-color;
+    }
+    &:focus{
+        background-color: $app-color-red-lighter;
+        color: $app-color-lighter;
+        border-color: $app-border-color;
+    }
+}
+
+.btn-goup-block {
+    .btn {
+        &.active .fa {
+            color: $app-color-additional;
+        }
+    }
+
+}
+
+.btn-submit{
+    color: $app-color-lighter;
+    border: solid 1px darken($app-color-additional, 20%);
+    background-color: $app-color-additional;
+    &:hover, &:focus {
+        background-color: darken($app-color-additional, 20%);
+        color: lighten($app-color-additional, 40%);
+    }
+}
+
+/* Button tabs
+-------------------------------------------------- */
+.btn-goup-tabs {
+    .btn {
+        background-color: $app-color-red-darker;
+        color: $app-color-lighter;
+        border: solid 1px lighten($app-color-red-lightest, 20%);
+        &.active {
+            /*background-color: $app-color-red-lightest;
+            color: $app-color-additional;*/
+            background-color:$app-color-red-lightest !important;
+            color: $app-color-lightest;
+        }
+        .fa {
+            color: $app-color-lighter;
+            &.text-danger{
+                color: $app-brand-danger;
+            }
+        }
+    }
+    .active {
+        .fa {
+            color: $app-color-additional;
+            &.text-danger{
+                color: $app-brand-danger;
+            }
+
+        }
+    }
+}
+
+/* Dropdown
+-------------------------------------------------- */
+.app-dropdown{
+    background-color:$app-color-red-darker;;
+    border: 1px solid $app-border-color;
+    color: $app-a-color;
+
+    .app-dropdown-title{
+        color: $app-heading-color;
+        border-bottom: solid 1px $app-border-color;
+    }
+
+    ul{
+        li{
+            border-bottom: solid 1px $app-border-color;
+            a{
+                color: $app-a-color;
+            }
+            &:hover{
+                background-color:$app-color-red;
+                color: $app-color-additional;
+            }
+
+        }
+        .active{
+            a{
+                color: $app-color-additional;
+            }
+        }
+        .btn{
+            color: $app-a-color;
+        }
+
+    }
+}
+
+/* Accordion
+-------------------------------------------------- */
+.accordion-entry{
+    border-bottom: dotted 1px  $app-border-color;
+    color: $app-color-lighter;
+}
+.accordion-entry-title{
+    color: $app-color-lighter;
+    .fa{
+        color: darken($app-color-lighter, 10%);
+    }
+}
+
+/* Modal
+-------------------------------------------------- */
+.appmodal {
+    color: $app-body-color;
+    .appmodal-in {
+        background-color: $app-color-red-darker;;
+    }
+}
+
+.appmodal-header {
+    border-bottom: solid 1px $app-color-red-lightest;
+    background-color: $app-color-red-darkest;
+    h3 {
+        color: $app-heading-color;
+    }
+}
+
+.appmodal-body {
+}
+
+.appmodal-footer {
+    border-top: solid 1px $app-color-red-lightest;
+    background-color: $app-color-red-darkest;
+}
+
+/* Report
+-------------------------------------------------- */
+.app-row-report{
+    border-top: solid 1px $app-border-color;
+    border-bottom: solid 1px $app-border-color;
+    background-color: $app-color-red-lightest;
+    color: $app-color-lighter;
+}
+.report-entry {
+    border-bottom: solid 1px $app-border-color;
+}
+
+/* Table
+-------------------------------------------------- */
+.table{
+    > thead > tr > th {
+        border-bottom: 0;
+    }
+    tbody{
+        tr{
+            td{
+                border-top: 1px solid $app-border-color;
+            }
+        }
+    }
+
+}
+.table-report{
+    background-color: $app-color-red-lightest;
+}
+
+/* Loader
+-------------------------------------------------- */
+#loading{
+    color: $app-body-color;
+    .loading-in{
+        background-color: $app-color-red-darkest;
+        border: solid 2px $app-border-color;
+    }
+}
+.progress-true {
+
+    .widget-loader {
+        color:$app-color-additional;
+
+    }
+
+}
+
+/* Pagination
+-------------------------------------------------- */
+.pagination {
+    > li {
+        > a,
+        > span {
+
+            color: $app-color-lighter;
+            background-color: $app-color-red-lightest;
+            border: solid 1px lighten($app-color-red-lightest, 20%);
+        }
+
+    }
+
+    > li > a,
+    > li > span {
+        &:hover,
+            &:focus {
+            color: $app-color-lighter;
+            background-color: $app-color-red;
+            border-color: lighten($app-color-red-lightest, 20%);
+        }
+    }
+
+    > .active > a,
+    > .active > span {
+        &,
+        &:hover,
+            &:focus {
+            color: $app-color-lighter;
+            background-color: $app-color-red;
+            border-color: lighten($app-color-red-lightest, 20%);
+        }
+    }
+
+    > .disabled {
+        > span,
+        > span:hover,
+            > span:focus,
+            > a,
+            > a:hover,
+            > a:focus {
+            color: darken($app-color-lighter,20%);
+            background-color: $app-color-red-lightest;
+            border-color: lighten($app-color-red-lightest, 20%);
+        }
+    }
+}
+
+/* Widget
+-------------------------------------------------- */
+.widget-entry{
+    .widget-entry-in{
+        border-bottom: solid 1px $app-border-color;
+        background-color: $app-color-red-lightest;
+        color: $app-body-color;
+        @include mediaQueries(min-small) {
+            //border-color: $app-border-color;
+            border: solid 2px  $app-color-red-lightest;
+            //border: 0 none;
+        }
+
+        .widget-header {
+            .widget-icon{
+                color: $app-body-color;
+
+            }
+        }
+        .widget-title{
+            color: $app-heading-color;
+            h3{
+                a{
+                    color: $app-heading-color;
+                }
+            }
+        }
+    }
+    &.widget-success{
+        .widget-entry-in{
+            border: solid 2px $app-brand-success;
+        }
+    }
+}
+
+/* Apps online
+-------------------------------------------------- */
+.app-entry-online {
+    // With categories
+    .app-entry-cat {
+        .app-entry-title {
+            color: $app-heading-color;
+
+        }
+    }
+
+}
+
+/* Rooms
+-------------------------------------------------- */
+.card-room {
+    /* Inner element */
+    .card-room-in {
+        //border: solid 1px $room-card-border-color;
+        border: 0;
+        background-color: $app-color-red-lightest;
+        .card-header{
+            background: $app-color-red-darkest;
+            /* Header icons */
+            .card-header-icon {
+                color: $app-color-lighter;
+
+            }
+
+        }
+        .card-content {
+            background-color: $app-color-red-darkest;
+            // Media queries
+            @include mediaQueries(min-small) {
+                background: transparent;
+            }
+            .card-title {
+                h3 {
+                    a {
+                        color: $app-body-color;
+                    }
+                }
+            }
+
+        }
+
+        .card-sensors {
+            background: transparent;
+            .sensor {
+                .sensor-img {
+                    background: transparent;
+                }
+            }
+
+        }
+
+    }
+
+}
+
+.room-no-device {
+    .card-title {
+        h3 {
+            a {
+                color: $app-body-color !important;
+
+            }
+        }
+    }
+}
+
+.elemnts-room-bar{
+    border: 0 none;
+    background-color: $app-color-red-lightest;
+    //color: $app-body-color;
+}
+
+/* Elements
+-------------------------------------------------- */
+.widget-entry-element {
+    .widget-entry-in {
+        .widget-img {
+            background-color: #fff;
+        }
+        .widget-title {
+            .widget-room {
+                color: $app-color-lighter;
+            }
+        }
+        .widget-level {
+            color: $app-body-color;
+        }
+
+    }
+}
+
+.widget-ctrl, .tbl-widget-ctrl {
+    .fa-caret-down {
+        color:  lighten($app-color-lighter, 10%);
+    }
+    .btn-group {
+        .btn {
+            color: $app-color-lighter;
+        }
+        .btn-primary {
+            background-color: $app-color-lighter !important;
+            border-color: lighten($app-color-lighter, 20%);
+            color: $app-color-red-darkest !important;
+            .fa {
+                color: $app-color-red-darkest !important;
+            }
+        }
+        .btn-off.btn-primary {
+            color: $app-color-red-darkest !important;
+            .fa {
+                color: $app-color-red-darkest !important;
+            }
+        }
+        .btn-label-on {
+            color: $app-color-lighter;
+        }
+        .btn-widget-time, .txt-widget-time {
+            color: $app-color-lighter;
+        }
+    }
+}
+
+.dragdrop-element{
+    .dd-placeholder{
+        border: 3px dashed $app-color-red-lightest;
+        background-color: $app-color-lighter;
+    }
+}
+.card-element-dragdrop {
+    background: none $app-color-red-lightest;
+    //background-color: $app-color-red-lightest;
+    border: solid 1px $app-color-red;
+
+}
+
+/* Apps
+-------------------------------------------------- */
+.widget-entry-app {
+    .widget-entry-in {
+
+        .widget-footer {
+            .rating-group {
+                .widget-rating {
+                    color: darken($app-body-color,10%);
+                    &.israted {
+                        color: $app-body-color;
+                    }
+                }
+            }
+
+        }
+    }
+}
+#apps_online, #apps_instances {
+    .widget-warning {
+        .widget-img {
+            img{
+                @include appGrayscale();
+            }
+
+        }
+
+        .widget-title {
+            h3 {
+                a {
+                    color: darken($app-heading-color, 20%) !important;
+                }
+            }
+        }
+        .widget-footer {
+            .rating-group {
+                .widget-rating {
+                    &.israted {
+                        color: darken($app-body-color, 20%);
+                        //color: $app-body-color;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+/* Apps online detail
+-------------------------------------------------- */
+.app-detail-list {
+    border-top: solid 1px $app-border-color;
+}
+
+.module-rating {
+    color: $app-body-color;
+    &.israted {
+        color: $app-body-color;
+    }
+}
+
+/* Apps comments
+-------------------------------------------------- */
+.comment-entry {
+    background-color: $app-color-red-lighter;
+    color: $app-body-color;
+    .comment-header {
+        color: lighten($app-body-color, 20%);
+    }
+}
+
+.comment-entry.even {
+    background-color:  $app-color-red-lightest;
+}
+
+/* Apps instances
+-------------------------------------------------- */
+#apps_instances {
+    .accordion-entry {
+        background-color: $app-color-red-lighter;
+    }
+}
+
+/* Events
+-------------------------------------------------- */
+.event-level-warning,.event-level-error,.event-level-critical{
+    background-color: $app-color-red-lighter;
+    &.report-entry {
+        border-bottom: solid 1px $app-brand-danger;
+    }
+}
+
+.event-room {
+    color: $app-color-lighter;
+}
+
+/* Customize
+-------------------------------------------------- */
+.customize-detail-img{
+    border-top: solid 1px $app-color-red-lightest;
+}
+
+.customize-image-detail{
+    border: solid 4px $app-border-color;
+}
+.widget-entry-customize{
+    .widget-entry-in{
+        .widget-img{
+            .customize-preview-img{
+                border-color: $app-border-color;
+            }
+
+        }
+    }
+}
+
+/* Image list
+-------------------------------------------------- */
+.app-row-imglist{
+    border: solid 1px $app-border-color;
+    background-color: $app-color-red-lightest;
+}
+.imglist-entry{
+    &.in-device{
+        background-color: $app-bcg-danger;
+    }
+}
+
+/* ZWave
+-------------------------------------------------- */
+.network-zwave-title{
+    &.noelements{
+        color: $app-body-color;
+    }
+}
+
+.device-type-logo,.device-logo img{
+    /* -webkit-filter: brightness(300%);
+     filter: brightness(300%);*/
+    /*-webkit-filter: saturate(800%); !* Safari *!
+    filter: saturate(800%);*/
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+}
+
+.cfg-info{
+    border-color: $app-border-color;
+}
+
+/* Expert Commands
+-------------------------------------------------- */
+.commands-data-control{
+    background-color: $app-color-red-lighter;
+}
+
+/* RSS
+-------------------------------------------------- */
+.report-entry {
+    &.read-true{
+        border: 0;
+        background-color: $app-color-red-darker;
+        .event-date,.rss-title,.rss-description{
+            color: darken($app-color-lighter, 20%);
+        }
+    }
+
+}
+
+.read-false{
+    .rss-title{
+        font-weight: bold;
+    }
+    //border: solid 4px $app-border-color;
+    // background-color: $app-border-color;
+}
+
+/* Footer
+-------------------------------------------------- */
+#footer{
+    border-top: solid 1px $app-border-color;
+    #footer_in{
+        color: $app-color-lighter;
+        background-color: $app-color-red-darkest;
+
+    }
+}
+
+/* Slider
+-------------------------------------------------- */
+.app-slider {
+    .slide {
+        .slider-label{
+            background-color: rgba(110, 10, 40, 0.5);
+
+        }
+    }
+}
+
+.slider-btn{
+    background-color: rgba(110, 10, 40, 0.4);
+    &:hover{
+        background-color: rgba(110, 10, 40, 0.8);
+    }
+}
+/* Alertify
+-------------------------------------------------- */
+.alertify{
+    .ajs-dialog{
+        border: solid 2px $app-border-color;
+    }
+    .ajs-dialog,.ajs-header,.ajs-footer {
+        color: $app-body-color;
+        background-color: $app-color-red-darkest;
+    }
+    .ajs-footer {
+        .ajs-button {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: normal;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857;
+            border-radius: 4px;
+            font-size: 110%;
+            background-color: $app-color-red-lightest;
+            color: $app-color-lighter;
+            border: solid 1px lighten($app-color-red-lightest, 20%);
+            &.ajs-ok {
+                color: lighten($app-color-additional, 30%);
+                border: solid 1px darken($app-color-additional, 20%);
+                background-color: $app-color-additional;
+                &:hover, &:focus {
+                    background-color: darken($app-color-additional, 20%);
+                    color: lighten($app-color-additional, 40%);
+                }
+            }
+        }
+    }
+}
+
+/* Alpaca
+-------------------------------------------------- */
+legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 110%;
+    line-height: inherit;
+    color: $app-body-color;
+    border: 0;
+    border-bottom: 0px solid $app-border-color;
+}
+.alpaca-field-object {
+    border: 1px $app-border-color solid;
+}
+.table-bordered {
+    border: 1px solid $app-border-color;
+}
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: $app-color-red-lightest;
+}
+
+#alpaca_data{
+    .table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+        border: 1px solid $app-border-color;
+        //border-bottom: 0;
+    }
+    .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+        border: 0px solid $app-border-color;
+    }
+    .btn-default[disabled]{
+        background: transparent;
+        border-color: $app-border-color;
+    }
+
+}

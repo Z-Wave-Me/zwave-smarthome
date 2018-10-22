@@ -7,7 +7,7 @@
  * The element root controller
  * @class ElementBaseController
  */
-myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, cfg,dataFactory, dataService, myCache) {
+myAppController.controller('ElementBaseController', function ($scope, $q, $interval, $cookies, $filter, $routeParams, $timeout, $location, $rootElement, cfg, dataFactory, dataService, myCache) {
     $scope.dataHolder = {
         mode: 'default',
         firstLogin: false,
@@ -31,7 +31,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             tags: [],
             filter: ($cookies.filterElements ? angular.fromJson($cookies.filterElements) : {}),
             rooms: {},
-            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'creationTimeDESC'),
+            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'order_elements'),
             showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
             notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
         },
@@ -40,6 +40,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             data: []
         }
     };
+    $scope.list = [];
     $scope.apiDataInterval = null;
 
     $scope.autocomplete = {
@@ -51,25 +52,34 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         resultLength: 10
     };
 
+    $scope.cmdTimeouts = [];
+    /**
+     * Room data
+     */
+    $scope.room = {};
+
     /**
      * Cancel interval on page destroy
      */
     $scope.$on('$destroy', function () {
+        cfg.route.time.timeUpdating = false;
         $interval.cancel($scope.apiDataInterval);
     });
+
 
     /**
      * Load all promises
      */
     $scope.allSettled = function (noCache) {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //if (!$scope.deviceDetector.isMobile()) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        //}
         // Notifications since
         //var since = '?since=' + $filter('unixStartOfDay')('-', (86400 * 6));
         var promises = [
             dataFactory.getApi('locations'),
             dataFactory.getApi('devices', null, noCache)
         ];
-
         $q.allSettled(promises).then(function (response) {
             var locations = response[0];
             var devices = response[1];
@@ -85,6 +95,17 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             // Success - locations
             if (locations.state === 'fulfilled') {
                 $scope.dataHolder.devices.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+                // When rooms section loads single room data
+                if ($scope.getBodyId() === 'rooms') {
+                    var room = _.find(locations.value.data.data, function(room) {
+                        return room.id == $routeParams.id;
+                    });
+                    if (typeof room != 'undefined') {
+                        $scope.room = dataService.getRooms([room]).value()[0];
+
+                    }
+                }
+
             }
             // Success - devices
             if (devices.state === 'fulfilled') {
@@ -117,32 +138,41 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      */
     $scope.refreshDevices = function () {
         var refresh = function () {
-            dataFactory.refreshApi('devices').then(function (response) {
-                if (response.data.data.devices.length > 0) {
-                    angular.forEach(response.data.data.devices, function (v, k) {
-                        if (v.metrics.level) {
-                            v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
-                        }
-                        var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
-                        if (!$scope.dataHolder.devices.all[index]) {
-                            return;
-                        }
-                        angular.extend($scope.dataHolder.devices.all[index],
-                                {metrics: v.metrics},
-                                {progress: false},
-                                {iconPath: dataService.assignElementIcon(v)},
-                                {updateTime: v.updateTime}
-                        );
-                        //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
-                    });
-                }
-                if (response.data.data.structureChanged === true) {
-                    $scope.allSettled(true);
-                }
+            if(cfg.route.fatalError.type !== "network") {
+                dataFactory.refreshApi('devices').then(function (response) {
+                    if(!response){
+                        return;
+                    }
+                    if (response.data.data.devices.length > 0) {
+                        angular.forEach(response.data.data.devices, function (v, k) {
+                             var index = _.findIndex($scope.dataHolder.devices.all, {id: v.id});
+                             if (!$scope.dataHolder.devices.all[index]) {
+                                return;
+                            }
+                            if (v.metrics.level) {
+                                v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
+                            }
+                            if($scope.cmdTimeouts[v.id]) {
+                                $timeout.cancel($scope.cmdTimeouts[v.id]);
+                                delete $scope.cmdTimeouts[v.id]
+                                $scope.cmdTimeouts.splice($scope.cmdTimeouts.indexOf(v.id), 1);    
+                            }
+                            angular.extend($scope.dataHolder.devices.all[index],
+                                    {isFailed: v.metrics.isFailed},
+                                    {metrics: v.metrics},
+                                    {progress: false},
+                                    {iconPath: dataService.assignElementIcon(v)},
+                                    {updateTime: v.updateTime}
+                            );
+                            //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
+                        });
+                    }
+                    if (response.data.data.structureChanged === true) {
+                        $scope.allSettled(true);
+                    }
 
-            }, function (error) {
-                $interval.cancel($scope.apiDataInterval);
-            });
+                });
+            }
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
@@ -156,9 +186,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $scope.autocomplete.results = dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete);
         // Expand/Collapse the list
         if(!_.isEmpty($scope.autocomplete.results)){
-            $scope.expandAutocomplete('searchElements',event);
+            $scope.expandAutocomplete('searchElements');
         }else{
-            $scope.expandAutocomplete('searchElements',event,false);
+            $scope.expandAutocomplete();
         }
         // Reset filter q if is input empty
         if ($scope.dataHolder.devices.filter.q && $scope.autocomplete.term.length < 1) {
@@ -190,7 +220,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         // Reset data
         $scope.autocomplete.results = [];
         $scope.dataHolder.devices.noSearch = false;
-        $scope.expandAutocomplete('searchElements',event,false);
+        $scope.expandAutocomplete();
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
 
@@ -198,6 +228,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             angular.extend($scope.dataHolder.devices, {filter: {}});
             $cookies.filterElements = angular.toJson({});
         } else {// Set filter
+            
             angular.extend($scope.dataHolder.devices, {filter: filter});
             $cookies.filterElements = angular.toJson(filter);
         }
@@ -205,6 +236,38 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         //$scope.reloadData();
     };
+
+    /**
+     * Set filter
+     */
+    $scope.setListFilter = function (item) {
+        var list = [];
+        // Reset data
+        $scope.autocomplete.results = [];
+        $scope.dataHolder.devices.noSearch = false;
+        $scope.expandAutocomplete();
+        
+        if($scope.dataHolder.devices.filter.list) {
+            var index = _.findIndex($scope.dataHolder.devices.filter.list, item);
+            list = $scope.dataHolder.devices.filter.list;
+            if(index > -1) {
+                list.splice(index, 1);
+            } else {
+               list.push(item);
+            }
+        } else {
+            list.push(item);
+        }
+        if(list.length > 0) {
+            angular.extend($scope.dataHolder.devices, {filter: {list: list}});    
+            $cookies.filterElements = angular.toJson({list: list});
+        } else {
+            angular.extend($scope.dataHolder.devices, {filter: {}});
+            $cookies.filterElements = angular.toJson({});
+        }
+        $scope.allSettled();
+    };
+
 
     /**
      * Show hidden elements
@@ -227,6 +290,9 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
         $scope.reloadData();
     };
 
+    $scope.elementOnLongPress = function(){};
+    $scope.elementOnTouchEnd = function(){};
+
     /**
      * Function to run when when a user starts moving an element
      * @param item -  is the item in model which started being moved
@@ -237,8 +303,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
     $scope.dragDropStart = function (item, part, index, helper) {
         angular.element('#' + helper.element.context.id).addClass('dd-on-start');
         //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
-
-
     }
     /**
      * Function to run when elements order has changed after sorting
@@ -254,8 +318,6 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             $scope.dataHolder.dragdrop.data.push(v.id);
 
         });
-
-
     }
 
     /**
@@ -282,20 +344,104 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
      * Run command
      */
     $scope.runCmd = function (cmd, id) {
+
         dataFactory.runApiCmd(cmd).then(function (response) {
             var index = _.findIndex($scope.dataHolder.devices.all, {id: id});
             if ($scope.dataHolder.devices.all[index]) {
                 angular.extend($scope.dataHolder.devices.all[index],
                     {progress: true}
                 );
-            }
 
+                var cmdTimeout = $timeout(function() {
+                    angular.extend($scope.dataHolder.devices.all[index],
+                        {progress: false}
+                    );   
+                    if($scope.cmdTimeouts[id]) {
+                        delete $scope.cmdTimeouts[id]
+                        $scope.cmdTimeouts.splice($scope.cmdTimeouts.indexOf(id), 1);                 
+                    }
+                }, cfg.pending_cmd_limit);
+
+                $scope.cmdTimeouts[id] = cmdTimeout;
+            }
         }, function (error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
         });
         return;
     };
+
+    /**
+     * get RGB state
+    */
+    $scope.getRgbState = function(rgbId) {
+        var baseId = rgbId.substr(0, rgbId.indexOf('-')),
+            rgbIndex = _.findIndex($scope.dataHolder.devices.all, {id: rgbId}),
+            dimmerIndex = _.findIndex($scope.dataHolder.devices.all, {id: baseId + '-0-38'}),
+            softIndex = _.findIndex($scope.dataHolder.devices.all, {id: baseId + '-0-51-0'}),
+            coldIndex = _.findIndex($scope.dataHolder.devices.all, {id: baseId + '-0-51-1'});
+
+        if (softIndex < 0 || coldIndex < 0)
+            return false;
+
+        if ($scope.dataHolder.devices.all[dimmerIndex] && $scope.dataHolder.devices.all[dimmerIndex].metrics && $scope.dataHolder.devices.all[dimmerIndex].metrics.level && $scope.dataHolder.devices.all[dimmerIndex].metrics.level != 'off') {
+            if (($scope.dataHolder.devices.all[softIndex] && $scope.dataHolder.devices.all[softIndex].metrics && $scope.dataHolder.devices.all[softIndex].metrics.level && $scope.dataHolder.devices.all[softIndex].metrics.level != 'off') || 
+                ($scope.dataHolder.devices.all[coldIndex] && $scope.dataHolder.devices.all[coldIndex].metrics && $scope.dataHolder.devices.all[coldIndex].metrics.level && $scope.dataHolder.devices.all[coldIndex].metrics.level != 'off')){
+                return 'w';
+            } else {
+                return 'rgb';
+            }
+        } else {
+            return 'off';
+        }
+    };
+
+
+    /**
+     * set RGB state
+    */
+    $scope.runRgbCmd = function(cmd, rgbId) {
+        var baseId = rgbId.substr(0, rgbId.indexOf('-'))
+            dimmerId = baseId + '-0-38',
+            softId = baseId + '-0-51-0',
+            coldId = baseId + '-0-51-1',
+            softIndex = _.findIndex($scope.dataHolder.devices.all, {id: softId}),
+            coldIndex = _.findIndex($scope.dataHolder.devices.all, {id: coldId});
+
+        switch (cmd) {
+            case 'off':
+                //perform off for dimmer
+                $scope.runCmd(dimmerId + '/command/off',dimmerId);
+                break;
+            case 'rgb':
+                // perform off for soft&cold if
+                $scope.runCmd(softId + '/command/off',softId);
+                $scope.runCmd(coldId + '/command/off',coldId);                
+
+                // run on cmd for dimmer & rgb
+                $scope.runCmd(rgbId + '/command/on',rgbId);
+                $scope.runCmd(dimmerId + '/command/on',dimmerId);
+                break;
+            case 'w':
+                // perform off for rgb and on for soft&warm and dimmer
+                $scope.runCmd(rgbId + '/command/off',rgbId);
+
+                oldSoft = typeof $scope.dataHolder.devices.all[softIndex].metrics.oldLevel !== 'undefined' ? $scope.dataHolder.devices.all[softIndex].metrics.oldLevel : 99; 
+                oldCold = typeof $scope.dataHolder.devices.all[coldIndex].metrics.oldLevel !== 'undefined' ? $scope.dataHolder.devices.all[coldIndex].metrics.oldLevel : 99;
+
+                if (!oldSoft && !oldCold) {
+                    oldSoft = 99;
+                    oldCold = 99;
+                }
+                // perform on 
+                $scope.runCmd(softId + '/command/exact?level='+oldSoft,softId);
+                $scope.runCmd(coldId + '/command/exact?level='+oldCold,coldId);
+                $scope.runCmd(dimmerId + '/command/on',dimmerId);
+                break;
+        }
+        return;
+    };
+
     /**
      * Reset devicse data holder
      */
@@ -366,13 +512,24 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
 
         var cmd = v.id + '/command/exact?level=' + count;
         v.metrics.level = count;
-        //console.log('ElementBaseController.setExactCmd - Sending request: ', cmd)
-        //if (run) {
-        $scope.runCmd(cmd);
-        // }
-
-        //return cmd;
+         $scope.runCmd(cmd);
     };
+ 
+    /**
+     * device on long press action
+     */
+    $scope.itemOnLongPress = function(id) {
+        $scope.longPressTimeout = $timeout(function() {
+            $location.path("element/"+id);
+        }, 1000);        
+    }
+    
+    /**
+     * device on end long press action
+     */
+    $scope.itemOnTouchEnd = function() {
+        $timeout.cancel($scope.longPressTimeout);    
+    }
 
     /// --- Private functions --- ///
     /**
@@ -389,6 +546,7 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                 });
             }
         });
+
         // Set categories
         $scope.dataHolder.devices.deviceType = devices.countBy(function (v) {
             return v.deviceType;
@@ -399,6 +557,11 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
             return v.location;
         });
 
+
+        // If page ID is  rooms removing current room from the list
+        if($scope.getBodyId() === 'rooms' && $routeParams.id){
+            delete $scope.dataHolder.cnt.rooms[$routeParams.id];
+        }
         //All devices
         $scope.dataHolder.devices.all = devices.value();
         if (_.isEmpty($scope.dataHolder.devices.all)) {
@@ -422,6 +585,17 @@ myAppController.controller('ElementBaseController', function ($scope, $q, $inter
                     return v;
                 }
             });
+        } else if ('list' in $scope.dataHolder.devices.filter) {// Filter by list 
+            var list =  {},
+                key = Object.keys($scope.dataHolder.devices.filter.list[0])[0];
+            _.each($scope.dataHolder.devices.filter.list, function(i) {
+                list[i[key]] = true;
+            });    
+
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
+                return list[v[key]];
+            }, list);
+
         } else {
             $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
         }
@@ -472,46 +646,89 @@ myAppController.controller('ElementDashboardController', function ($scope, $rout
  * The controller that handles elements in the room.
  * @class ElementRoomController
  */
-myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $window, $location, $cookies, $filter, cfg, dataFactory, dataService, myCache) {
-    $scope.room = {};
-    $scope.roomSensors = [];
-
+myAppController.controller('ElementRoomController', function ($scope, $q, $routeParams, $timeout, $location, cfg) {
     $scope.dataHolder.devices.filter = {location: parseInt($routeParams.id)};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
+    cfg.route.pageClass = "page-room";
+    $scope.swipeTimer = null;
 
-    $scope.allSettled = function () {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        var promises = [
-            dataFactory.getApi('locations', '/' + $routeParams.id),
-            dataFactory.getApi('devices',null, false)
-        ];
 
-        $q.allSettled(promises).then(function (response) {
-            var location = response[0];
-            var devices = response[1];
-            $scope.loading = false;
-            // Success - location
-            if (location.state === 'fulfilled') {
-                $scope.room = dataService.getRooms([location.value.data.data]).value()[0];
+    $scope.$on('$destroy', function() {
+        cfg.route.pageClass = false;   
+    });
+
+    /**
+     * room bar on long press action
+     */
+    $scope.roomBarOnLongPress = function(id) {
+        $scope.longPressTimeout = $timeout(function() {
+            $location.path("config-rooms/"+id);
+        }, 1000);
+    }
+    
+    /**
+     * room bar on end long press action
+     */
+    $scope.roomBarOnTouchEnd = function() {
+        $timeout.cancel($scope.longPressTimeout);    
+    }
+
+
+    /**
+     * Handle swipe event
+     */
+    $scope.$on('swipe',function(event, args) {
+        $scope.swipeMe(args);
+    });
+
+    /**
+     * Room navigation
+     */
+    $scope.swipeMe = function(dir) {  
+        if($scope.dataHolder.mode === 'default' && $scope.deviceDetector.isMobile()) {
+            if($scope.swipeTimer) {
+                $timeout.cancel($scope.swipeTimer);     
             }
 
-            if(devices.state === 'fulfilled') {
-                var devices = dataService.getDevicesData(devices.value.data.data.devices, $scope.dataHolder.devices.showHidden);
-                $scope.loadRoomSensors(devices.value());
-            }
-        });
-    };
-    $scope.allSettled();
+            $timeout(function() {
+                cfg.route.swipeDir = false;    
+            }, 1000);
 
-    $scope.loadRoomSensors = function(devices) {
-        if(!$scope.room.main_sensors) {
-            return;
+            cfg.route.swipeDir = dir;
+            if(dir == "left") {
+                if($(".appmodal").length  == 0) {
+                    var currentRoom = $scope.dataHolder.devices.filter.location,
+                        keys = Object.keys($scope.dataHolder.devices.rooms),
+                        loc = keys.indexOf(currentRoom.toString());
+
+                    if (loc > -1) {
+                        var i = 0;
+                        if (loc < keys.length - 1) {
+                            i = keys[loc + 1];
+                        }
+                        $location.path("rooms/" + i);
+                    }
+                }
+            }
+
+            if(dir == "right") {
+                if($(".appmodal").length  == 0) {
+                    var currentRoom = $scope.dataHolder.devices.filter.location,
+                        keys = Object.keys($scope.dataHolder.devices.rooms),
+                        loc = keys.indexOf(currentRoom.toString());
+
+                    if (loc > -1) {
+                        var i = 0;
+                        if (loc > 0) {
+                            i = keys[loc - 1];
+                        } else {
+                            i = keys[keys.length - 1];
+                        }
+                        $location.path("rooms/" + i);
+                    }
+                }
+            }
         }
-        $scope.roomSensors = _.filter(devices, function(device) {
-            if($scope.room.main_sensors.indexOf(device.id) > -1) {
-                return device;
-            }
-        });
-    };
+    }
 
 });

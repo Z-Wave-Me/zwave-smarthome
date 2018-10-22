@@ -7,7 +7,7 @@
  * The controller that handles all online APPs actions.
  * @class AppOnlineController
  */
-myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $location, $routeParams, dataFactory, dataService, _) {
+myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $location, $routeParams, $timeout,dataFactory, dataService, _) {
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
 
     /**
@@ -17,9 +17,9 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         $scope.dataHolder.onlineModules.autocomplete.results = dataService.autocomplete($scope.dataHolder.onlineModules.all, $scope.dataHolder.onlineModules.autocomplete);
         // Expand/collapse list
         if(!_.isEmpty($scope.dataHolder.onlineModules.autocomplete.results)){
-            $scope.expandAutocomplete('searchOnlineApps',event);
+            $scope.expandAutocomplete('searchOnlineApps');
         }else{
-            $scope.expandAutocomplete('searchOnlineApps',event,false);
+            $scope.expandAutocomplete();
         }
         // Reset filter q if is input empty
         if ($scope.dataHolder.onlineModules.filter.q && $scope.dataHolder.onlineModules.autocomplete.term.length < 1) {
@@ -62,7 +62,7 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         // Reset
         $scope.dataHolder.onlineModules.autocomplete.results = [];
         $scope.dataHolder.onlineModules.noSearch = false;
-        $scope.expandAutocomplete('searchOnlineApps',event,false);
+        $scope.expandAutocomplete();
         // Is fiter value empty?
         var empty = (_.values(filter) == '');
        if (!filter || empty) {// Remove filter
@@ -106,6 +106,30 @@ myAppController.controller('AppOnlineController', function ($scope, $filter, $co
         });
 
     };
+
+     /**
+     * On long press
+     * @param {string} id
+     * @returns {undefined}
+     */
+    $scope.onLongPress = function (id) {
+        $scope.hasLongPress = '';
+        // We only reset hasLongPress if id is missing
+        if(!id){
+            return;
+        }
+         $scope.longPressTimeout = $timeout(function () {
+            $scope.hasLongPress = id;
+        }, 1000);
+    };
+
+    /**
+     * On long press end
+     * @returns {undefined}
+     */
+    $scope.onTouchEnd = function(id) {
+        $timeout.cancel($scope.longPressTimeout);
+    }
 
 
 });

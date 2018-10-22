@@ -1,26 +1,32 @@
 <!-- Elements room header -->
-<div class="elemnts-room-bar">
+<div class="elemnts-room-bar longpress-{{longPressSent}}" 
+    on-long-press="roomBarOnLongPress(room.id)"
+    on-touch-end="roomBarOnTouchEnd()"
+    prevent-click="true"
+    long-press-mobile="{{deviceDetector.isMobile()}}"
+    >
     <!-- Bar row -->
     <div class="bar-row">
         <!-- Bar col -->
-        <div class="bar-col bar-media">
-            <img ng-src="{{room.img_src}}"/>
+        <div class="bar-col bar-media" 
+             ng-style="{'background-image':'url(' + room.img_src + ')', 'background-position': 'center center', 'background-size': 'cover'}">
         </div>
         <!-- Bar col -->
         <div class="bar-col bar-body">
             <div class="btn-group">
-                <span class="bar-title clickable"
+                <span class="bar-title swipe">
+                    <i class="fa fa-arrow-left"></i>
+                    <span class="room-title">{{room.title}}</span>
+                    <i class="fa fa-arrow-right"></i>
+                </span>
+                <span class="bar-title clickable" ng-if="_.size(dataHolder.cnt.rooms) > 0"
                       ng-click="expandNavi('roomDropDown', $event)">{{room.title}}  <i class="fa fa-caret-down"></i>
                 </span>
-               <!-- <button type="button" class="btn btn-default"
-                        ng-click="expandNavi('roomDropDown', $event)">
-                        {{room.title}}  <i class="fa fa-caret-down"></i>
-                </button>-->
-                <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.roomDropDown">
+                <span class="bar-title" ng-if="_.size(dataHolder.cnt.rooms) < 1">{{room.title}}</span>
+                <div class="app-dropdown app-dropdown-left dropdown-100" ng-if="naviExpanded.roomDropDown">
                     <ul>
                         <li class="clickable" ng-repeat="v in dataHolder.devices.rooms"
-                            ng-if="dataHolder.cnt.rooms[v.id]"
-                        ng-hide="v.id == room.id">
+                            ng-if="dataHolder.cnt.rooms[v.id]">
                             <a ng-href="#/rooms/{{v.id}}">
                                 <img class="navi-img" ng-src="{{v.img_src}}" alt="img"/>
                                 {{v.title|cutText:true:20}} <span class="item-cnt">({{dataHolder.cnt.rooms[v.id]}})</span>
@@ -29,24 +35,25 @@
                     </ul>
                 </div>
             </div>
-
-
         </div>
         <!-- Bar col - control -->
+        <!--<pre>{{room.main_sensors|json}}</pre>-->
         <div class="bar-col bar-ctrl">
-            <!-- S sensors -->
-            <div class="btn-group sensor">
-                <a class="btn btn-default" ng-repeat="v in roomSensors" title="{{v.metrics.title}}">
+            <!-- sensors -->
+            <div class="btn-group sensor" ng-if="_.size(room.main_sensors)">
+                <a class="btn btn-default"
+                   ng-show="room.main_sensors.indexOf(v.id) > -1"
+                   ng-repeat="v in dataHolder.devices.collection" title="{{v.metrics.title}}">
                     <img class="sensor-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img">
-                    <span class="sensor-level">{{v.metrics.level}}</span>
-                    <span class="sensor-scale">{{v.metrics.scaleTitle}}</span>
+                    <span class="sensor-level">{{v.metrics.level}}  <small>{{v.metrics.scaleTitle}}</small></span>
+
                 </a>
             </div>
             <!-- Elements mode ctrl -->
-            <span ng-include="'app/views/elements/elements_ctrl_mode.html'" ng-if="_.size(dataHolder.devices.collection) > 1"></span>
+            <span ng-include="'app/views/elements/elements_ctrl_mode.html'" ng-if="_.size(dataHolder.devices.collection) > 1 && elementAccess(cfg.role_access.admin)"></span>
             <!-- Settings -->
-            <a class="btn btn-default _bar-icon" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
-               ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
+            <a class="btn btn-default" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
+               ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0 && dataHolder.mode === 'default'">
                 <i class="fa fa-cog"></i>
             </a>
         </div>

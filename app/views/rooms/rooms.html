@@ -2,93 +2,91 @@
 <div ng-controller="RoomController">
     <bb-loader></bb-loader>
     <div class="page-control form-inline">
-        <div class="btn-group btn-goup-block btn-goup-2"
-             ng-if="elementAccess(cfg.role_access.config_rooms)">
-            <a class="btn btn-default" href="#config-rooms/0">
-                <i class="fa fa-plus "></i>
-                <span class="btn-name">{{_t('lb_add_room')}}</span>
-            </a>
-            <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
-                <i class="fa fa-sort-alpha-asc"></i>
-                <span class="btn-name">{{_t(rooms.orderBy) | cutText:true:15}}</span>
-            </button>
-        </div>
-        <div class="input-group input-search">
+        <a class="btn btn-default s-hide" href="#config-rooms/0" ng-if="elementAccess(cfg.role_access.config_rooms)">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name">{{_t('lb_add_room')}}</span>
+        </a>
+        <div class="input-group input-search s-hide">
             <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
         </div>
     </div>
 
-    <!-- Page subnavi  sort by -->
-    <div class="page-navi" ng-if="naviExpanded.roomsOrderBy">
-        <div class="page-navi-in">
-            <div class="page-navi-content">
-                <p class="page-navi-title"> {{_t('sortby')}}</p>
-                <a class="btn btn-default btn-tag" href=""
-                   ng-repeat="(k,v) in cfg.orderby.rooms"
-                   ng-click="setOrderBy(k)"
-                   ng-class="rooms.orderBy == k ? 'active': ''">
-                    {{_t(k) | cutText:true:30}}
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- NEW -->
+    <!-- The list -->
     <!--<pre>{{rooms.all | json }}</pre>-->
-    <div class="clearfix" ng-if="rooms.show">
-        <div class="card-room"
+    <div class="clearfix" ng-if="rooms.show" ng-controller="ElementBaseController">
+        <div class="card-room longpress-{{longPressSent}}"
+             
              id="card_{{v.id}}"
-             ng-class="rooms.cnt.devices[v.id] ? 'room-has-device': 'room-no-device'"
+             ng-click="redirectToRoute('rooms' + (rooms.cnt.devices[v.id] ? '/' + v.id : ''))"
+             ng-class="rooms.cnt.devices[v.id] ? 'room-has-device' : 'room-no-device'"
              ng-hide="v.id === 0 && !rooms.cnt.devices[v.id]"
              ng-repeat="v in rooms.all|orderBy:cfg.orderby.rooms[rooms.orderBy] | filter:q  track by $index">
-            <div class="card-room-in">
-                <!-- Card image -->
-                <a class="room-link" ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
-                   title="{{_t('lb_devices_room')}} {{v.title}}">
-                <span class="bcg-img" title="{{v.title}}" style="background-image: url('{{v.img_src}}');"></span>
-                </a>
-                <!--Card header-->
+            <div class="bcg-img" ng-style="{'background-image':'url(' + v.img_src + ')'}"></div>
+            <div class="card-room-in"
+                 on-long-press="onLongPress(v.id)"
+                 on-touch-end="onTouchEnd()"
+                 prevent-click="true"
+                 long-press-mobile="{{deviceDetector.isMobile()}}">
+                <!-- Card header -->
                 <div class="card-header">
-                    <!-- Settings -->
-                    <a class="card-header-icon" href="#config-rooms/{{v.id}}" title="{{_t('lb_update')}}"
+
+                    <a class="card-icon lg" href="#config-rooms/{{v.id}}" title="{{_t('lb_update')}}"
                        ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
                         <i class="fa fa-cog"></i>
                     </a>
-                    <!-- Remove -->
-                    <a class="card-header-icon clickable" title="{{_t('lb_remove')}}"
-                       ng-click="deleteRoom(v.id, _t('lb_delete_confirm'))"
-                       ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
-                        <i class="fa fa-times"></i>
-                    </a>
-
+                    <span class="card-icon sm" ng-show="elementAccess(cfg.role_access.config_rooms)">
+                        {{v.title_char}}
+                    </span>
                 </div>
+                <!-- Card icons -->
+
+
                 <!-- Card content -->
-                <div class="card-content">
+                <div class="card-footer">
                     <!-- Card title -->
-                    <div class="card-title">
-                        <h3 title="{{v.title}}">
-                            <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
-                               ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
-                                {{v.title|cutText:true:25}}
-                                <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span>
-                            </a>
-                        </h3>
-                    </div>
-                    <div class="card-sensors">
-                        <div class="sensor" ng-repeat="sensor in v.sensors">
+                    <h3 class="card-title" title="{{v.title}}">
+                        <a ng-href="#/rooms{{(rooms.cnt.devices[v.id] ? '/' + v.id : '')}}"
+                           ng-disabled="!rooms.cnt.devices[v.id]" title="{{_t('lb_devices_room')}} {{v.title}}">
+                            {{v.title|cutText:true:25}}
+                            <span class="item-cnt">({{rooms.cnt.devices[v.id]|| 0}})</span>
+                        </a>
+                    </h3>
+                    <!-- Card sensors -->
+                    <div class="card-sensors" ng-show="v.main_sensors.length > 0">
+                        <div class="sensor" title="{{device.metrics.title + ': ' + device.metrics.level + ' ' + device.metrics.scaleTitle}}"
+                             ng-show="v.main_sensors.indexOf(device.id) > -1"
+                             ng-repeat="device in dataHolder.devices.all">
                             <div class="sensor-img">
-                                <img class="sensor-preview-img img-circle" ng-src="{{sensor.iconPath}}" alt="img" title="{{sensor.metrics.title}}">
+                                <img class="sensor-preview-img img-circle" ng-src="{{device.iconPath}}" alt="img">
                             </div>
                             <div class="sensor-ctrl">
-                                <span class="sensor-level">{{sensor.metrics.level}}</span>
-                                <span class="sensor-scale">{{sensor.metrics.scaleTitle}}</span>
+                                <span class="sensor-level">{{device.metrics.level}}</span>
+                                <span class="sensor-scale">{{device.metrics.scaleTitle|cutText:true:7}}</span>
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-sensors" ng-show="v.main_sensors.length == 0 || !v.main_sensors">
+                        <div class="sensor">
+                            <div class="sensor-ctrl">
+                                <span class="sensor-level">&nbsp;</span>
+                                <span class="sensor-scale">&nbsp;</span>
                                 &nbsp;
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
-</div> <!-- /ng-controller --> 
+    <!-- Button for mobile devices -->
+    <div class="text-center l-hide">
+         <a class="btn btn-default btn" href="#config-rooms/0">
+        <i class="fa fa-plus text-success"></i>
+        <span class="btn-name_">{{_t('lb_add_room')}}</span>
+    </a>
+    </div>
+   
+</div> <!-- /ng-controller -->

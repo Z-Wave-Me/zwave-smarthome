@@ -1,0 +1,77 @@
+<!-- textModal -->
+<div id="climateControlModal" class="appmodal" ng-controller="ElementClimateControlController" 
+ng-if="modalArr.climateControlModal_m">
+    <div class="appmodal-in">
+        <div class="appmodal-header">
+            <span class="appmodal-close" ng-click="handleModal('climateControlModal_m', $event)"><i class="fa fa-times"></i></span>
+            <h3>{{dataHolder.devices.find.metrics.title}}</h3>
+        </div>
+        <div class="appmodal-body">
+            <bb-alert alert="widgetClimateControl.alert"></bb-alert>
+            <div class="btn-group btn-goup-block btn-goup-4">
+                <button 
+                    class="btn widget-btn-frostProtection" 
+                    id="btn_frostProtection_{{ widgetClimateControl.find.id}}"
+                    ng-click="runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[0] + '?room=null', widgetClimateControl.find.id)"
+                    ng-class="widgetClimateControl.find.metrics.state == cfg.climate_state[0] ? 'btn-primary': 'btn-default'"
+                    title="{{_t(cfg.climate_state[0])}}">
+                    <i class="fa fa-asterisk"></i>
+                </button>
+                <button 
+                    class="btn widget-btn-energySave" 
+                    id="btn_energySave_{{ widgetClimateControl.find.id}}"
+                    ng-click="runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[1] + '?room=null', widgetClimateControl.find.id)"
+                   ng-class="widgetClimateControl.find.metrics.state ==cfg.climate_state[1] ? 'btn-primary': 'btn-default'"
+                    title="{{_t(cfg.climate_state[1])}}">
+                    <i class="fa fa-moon-o"></i>
+                </button>
+                <button 
+                    class="btn widget-btn-comfort" 
+                    id="btn_comfort_{{ widgetClimateControl.find.id}}"
+                    ng-click="runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[2] + '?room=null', widgetClimateControl.find.id)"
+                    ng-class="widgetClimateControl.find.metrics.state == cfg.climate_state[2] ? 'btn-primary': 'btn-default'"
+                    title="{{_t(cfg.climate_state[2])}}">
+                    <i class="fa fa-sun-o"></i>
+                </button>
+                <button 
+                    class="btn widget-btn-schedule" 
+                    id="btn_schedule_{{ widgetClimateControl.find.id}}"
+                    ng-click="runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[3] + '?room=null', widgetClimateControl.find.id)"
+                    ng-class="widgetClimateControl.find.metrics.state == cfg.climate_state[3] ? 'btn-primary': 'btn-default'"
+                    title="{{_t(cfg.climate_state[3])}}">
+                    <i class="fa fa-calendar"></i>
+                </button>            
+            </div>
+            <div class="multiline-entry" ng-if="widgetClimateControl.rooms">
+                <table class="table table-report table-condensed">
+                    <tbody ng-repeat="n in widgetClimateControl.rooms" ng-if="n.room > 0">
+                        <tr class="bcg-success">
+                            <td class="text-left room-title" colspan="5">{{n.roomTitle}}:</td>
+                        </tr>
+                        <tr class="bcg-success" >
+                            <td>
+                                <span class="text-primary_">{{n.sensorLevel}}  {{n.scaleTitle}}</span>
+                            </td>
+                            <td class="text-right">
+                                <i class="fa fa-arrow-right"></i>
+                            </td>
+                            <td class="text-right">
+                               <span class="text-success">{{n.targetTemp}}  °C</span>
+                            </td>
+                            <td class="text-right td40">
+
+                                <select class="form-control" 
+                                        name="changeMode_{{n.room}}" 
+                                        id="changeMode_{{n.room}}"
+                                        ng-model="n.state"
+                                        ng-change="changeClimateControlMode({cmd: widgetClimateControl.find.id + '/command/' + n.state + '?room=' + n.room, room: n.room})">
+                                    <option value="{{m}}" ng-repeat="m in cfg.climate_state" ng-disabled="m == 'schedule' && !n.hasSchedule" ng-selected="n.state == m">{{_t(m)}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

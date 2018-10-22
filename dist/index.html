@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en" ng-app="myApp" ng-controller="BaseController">
+<html lang="en" ng-app="myApp" ng-controller="BaseController" class="night-{{nightMode}}">
     <head>
         <meta charset="utf-8">
         <title>Z-Wave Smart Home</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
 <!-- CSS -->
 <link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css">
  <!-- App config -->
@@ -14,7 +15,7 @@
 <script src="app/js/build.js"></script>
 
     </head>
-    <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}}">
+    <body id="page_{{getBodyId()}}" class="app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} profile-{{user.color.substring(1)}} rss-{{rss.unread}} night-{{nightMode}}">
         <a class="skinreset" href="#skinreset">Reset skin to default</a>
         <div id="header" ng-if="user">
             <div id="main_navigation_wrap">
@@ -26,25 +27,40 @@
                         </a>
                         <!-- dashboard -->
                         <span class="divider-vertical"></span>
-                        <a class="nav-home" href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i></a>
+                        <a class="nav-home" href="#home" title="{{_t('nav_home')}}" ng-class="isActive('dashboard')"><i class="fa fa-home"></i> <span class="main-nav-text">{{_t('nav_home')}}</span></a>
                         <!-- rooms -->
                         <span class="divider-vertical"></span>
-                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i></a>
+                        <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)"><i class="fa fa-building-o"></i> <span class="main-nav-text">{{_t('nav_rooms')}}</span></a>
                         <!-- elements -->
                         <span class="divider-vertical"></span>
-                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i></a>
+                        <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')"><i class="fa fa-clone"></i> <span class="main-nav-text">{{_t('nav_elements')}}</span></a>
                         <!-- events -->
                         <span class="divider-vertical"></span>
-                        <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i></a>
+                        <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')"><i class="fa fa-calendar"></i> <span class="main-nav-text">{{_t('nav_events')}}</span></a>
+                         <!-- automation -->
+                         <!--<span class="divider-vertical"></span>
+                         <a href="#scenes" title="{{_t('automation')}}" ng-class="isActive('scenes') || isActive('rules') || isActive('schedules')"><i class="fa fa-gear"></i> <span class="main-nav-text">{{_t('automation')}}</span></a>-->
+                        
                         <!-- rss -->
                         <span class="divider-vertical" ng-show="rss.unread > 0"></span>
                         <a href="#rss" title="{{_t('news')}}" ng-show="rss.unread > 0">
                             <i class="fa fa-comment"></i>
-                            <span class="item-cnt">({{rss.unread}})</span>
+                            <span class="main-nav-text">{{_t('news')}} </span><small class="s-hide">{{rss.unread}}</small>
+
                         </a>
                         <!-- time -->
                         <span class="divider-vertical"></span> 
-                        &nbsp;<span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string"><i class="fa fa-clock-o"></i> {{cfg.route.time.string}}</span>
+                        &nbsp;<span class="timestamp clickable" 
+                                ng-click="reloadData()" 
+                                ng-if="cfg.route.time.string">
+                            <i class="fa fa-home" 
+                               ng-if="connection.local" 
+                               ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                            <i class="fa fa-globe" 
+                               ng-if="connection.remote"
+                               ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                                <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string}}</span>
+                        </span>
                     </div>
                     <div id="navigation_right">
                         <span class="divider-vertical"></span> 
@@ -52,22 +68,18 @@
                     </div>
                 </div><!-- /#navigation --> 
             </div><!-- /#main_navigation_wrap --> 
-            <div id="sub_navigation" ng-if="naviExpanded.mainNav">
+            <div id="sub_navigation" ng-show="naviExpanded.mainNav">
                 <div id="sub_navigation_in">
                     <div class="container">
                         <ul>
                             <!-- Apps -->
                             <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                                <a href="#apps/local"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                                <a href="#apps/instance"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                             <!-- Devices -->
                             <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
                                 <a href="#devices"><i class="fa fa-cogs fa-fw"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
-                            <!-- Config rooms -->
-                            <!--<li class="subnavi-config-rooms" ng-class="isActive('config-rooms')" ng-if="elementAccess(cfg.role_access.config_rooms)">
-                                <a href="#config-rooms"><i class="fa fa-building-o"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                            </li>-->
                              <!-- Customize -->
                             <li class="subnavi-report" ng-class="isActive('customize')"
                                 ng-if="elementAccess(cfg.role_access.customize)">
@@ -85,8 +97,15 @@
                             <li class="subnavi-admin" ng-class="isActive('rss')" ng-if="elementAccess(cfg.role_access.admin)">
                                 <a href="#rss"><i class="fa fa-comment fa-fw"></i> <span>{{_t('news')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
+                             <!-- My Hubs -->
+                            <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+                                <a ng-href="{{cfg.android_html_dir}}">
+                                    
+                                    <i class="fa fa-android fa-fw"></i><span>{{_t('my_hubs')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i>
+                                </a>
+                            </li>
                             <!-- Logout -->
-                            <li class="subnavi-logout" ng-if="elementAccess(null, isMobile)">
+                            <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
                                 <a href="#logout"><i class="fa fa-sign-out fa-fw"></i> <span>{{_t('nav_logout')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                             </li>
                         </ul>
@@ -96,20 +115,37 @@
         </div><!-- /#header --> 
         <!-- Ang Content Container -->
         <div id="main_content" class="container">
-            <div ng-if="cfg.route.fatalError.message" ng-cloak>
+            <div ng-if="cfg.route.fatalError.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
                 <div class="app-fatal-error">
                     <div class="fatal-error-message"><i class="fa {{cfg.route.fatalError.icon}} fa-lg"></i> {{cfg.route.fatalError.message}}</div>
                     <div class="fatal-error-info" ng-if="cfg.route.fatalError.info" ng-bind-html="cfg.route.fatalError.info|toTrusted"></div>
                 </div>
             </div>
-            <div id="view_content" ng-hide="cfg.route.fatalError.hide" ng-view></div>
+          
+            <div id="view_content" ng-hide="cfg.route.fatalError.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view 
+            ng-swipe-left="swipe('left')" 
+            ng-swipe-right="swipe('right')"></div>
         </div>
         <div class="clearfix"></div>
 
         <div id="footer">
             <div id="footer_in">
-                <div class="container">
-                    <span class="timestamp clickable" ng-click="reloadData()" ng-if="cfg.route.time.string"><i class="fa fa-clock-o"></i> {{cfg.route.time.string}}</span>
+                <div class="container" ng-class_="{'has-night-mode': cfg.skin.active == 'default'}">
+                    <span class="timestamp clickable"
+                            ng-click="reloadData()" 
+                            ng-if="cfg.route.time.string">
+                        <i class="fa fa-home" 
+                           ng-if="connection.local" 
+                           ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                        <i class="fa fa-globe" 
+                           ng-if="connection.remote"
+                           ng-class="connection.online ? 'text-success' : 'text-danger'"></i>
+                            <span ng-class="!cfg.route.time.timeUpdating ? 'pause' : ''">{{cfg.route.time.string | cutText:true:5:' '}}</span>
+                    </span>
+                    <!--<span ng-hide="cfg.skin.active != 'default'">
+                        <i class="fa clickable fa-lg" aria-hidden="true" ng-click="nightMode = !nightMode" ng-class="nightMode ? 'fa-sun-o' : 'fa-moon-o'"></i>
+                    </span>-->
+                  
                 </div>
             </div>         
         </div>

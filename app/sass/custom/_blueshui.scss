@@ -1,0 +1,1161 @@
+/* Dark SmartHome skin
+-------------------------------------------------- */
+
+/* Variables
+-------------------------------------------------- */
+// COLORS
+$app-brand-primary:         #1685c6;
+$app-brand-success:         #00B559;
+$app-brand-info:            #096BA5;
+$app-brand-warning:         #FF8C00;
+$app-brand-danger:          #C50000;
+
+$app-color-dark:#1685c6;
+$app-color-darker: 	#066AA6;
+$app-color-darkest: #05517E;
+$app-color-dark-lighter: #3A96CD;
+$app-color-dark-lightest: #61ACD8;
+$app-color-lightest: #fff;
+$app-color-lighter: lighten($app-color-dark,50%);
+$app-color-additional: #0CD06C;
+$app-body-color: $app-color-darkest;
+$app-body-bcg-color: lighten($app-color-dark,50%);
+$app-a-color: $app-body-color;
+$app-border-color:$app-color-dark-lightest;
+$app-heading-color: darken($app-body-color,5%);;
+$app-navi-color:  lighten($app-color-dark,40%);
+$app-widget-bcg-color: darken($app-body-bcg-color,3%);
+$app-widget-border-color: darken($app-body-bcg-color,10%);
+
+
+/* Body
+-------------------------------------------------- */
+body {
+    color: $app-body-color;
+    background-color: $app-body-bcg-color;
+
+}
+.timestamp{
+    color: $app-navi-color;
+
+}
+
+/* Typo
+-------------------------------------------------- */
+h1, h2, h3, h4 {
+    color: $app-heading-color;
+}
+.app-entry-local h2 {
+    color: $app-heading-color;
+}
+
+.text-supp {
+    color: darken($app-body-color, 10%);
+}
+
+/* Links
+-------------------------------------------------- */
+a {
+    color: $app-a-color;
+    &:hover, &:focus {
+        color: $app-a-color;
+        text-decoration: underline;
+    }
+
+    &:focus {
+        // Default
+        outline: thin dotted;
+        // WebKit
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+
+    &.link-dotted {
+        color: $app-a-color;
+        border-bottom: 1px dotted $app-a-color;
+
+        &:hover, &:focus {
+            border-bottom: 1px solid $app-a-color;
+            text-decoration: none;
+        }
+    }
+
+    &.link-underline {
+        color: $app-a-color;
+
+        //&:hover, &:focus { }
+    }
+}
+
+/* Others
+-------------------------------------------------- */
+.bcg-success {
+    background-color: $app-bcg-success;
+    background: transparent;
+}
+
+.bcg-active.false, .bcg-danger {
+    background-color: $app-bcg-danger;
+    background: transparent;
+    .report-img-s{
+        @include appGrayscale();
+    }
+}
+
+.badge-number {
+    background-color: lighten($app-color-dark, 20%);
+    color: $app-color-lighter;
+}
+
+.device-available-block{
+    &.assigned{
+        border: 0;
+        background-color: $app-widget-bcg-color;
+    }
+}
+
+/* Text colors
+-------------------------------------------------- */
+.text-primary {
+    color: $app-brand-primary;
+}
+.text-success {
+    color: $app-brand-success;
+}
+.text-info {
+    color: $app-brand-info;
+}
+.text-warning {
+    color: $app-brand-warning;
+}
+.text-danger {
+    color: $app-brand-danger;
+}
+
+/* Label colors
+-------------------------------------------------- */
+.label-primary {
+    background-color: $app-brand-primary;
+}
+.label-success {
+    background-color: $app-brand-success;
+}
+.label-info {
+    background-color: $app-brand-info;
+}
+.label-warning {
+    background-color: $app-brand-warning;
+}
+.label-danger {
+    background-color: $app-brand-danger;
+}
+
+/* Button colors
+-------------------------------------------------- */
+.btn-primary {
+    background-color: $app-brand-primary;
+}
+.btn-success {
+    background-color: $app-brand-success;
+}
+.btn-info {
+    background-color: $app-brand-info;
+}
+.btn-warning {
+    background-color: $app-brand-warning;
+}
+.btn-danger {
+    background-color: $app-brand-danger;
+}
+
+/* Alert
+-------------------------------------------------- */
+.alert{
+    //background-color: $app-color-dark-lighter;
+    border: 2px solid $app-color-dark-lightest;
+    color: $app-body-color;
+    font-size: 110%;
+}
+.alert-success{
+    color:  darken($app-brand-success,20%);
+    border-color: $app-brand-success;
+}
+.alert-info{
+    color:  darken($app-brand-info,20%);
+    border-color: $app-brand-info;
+}
+.alert-warning{
+    color:  darken($app-brand-warning,20%);
+    border-color: $app-brand-warning;
+}
+.alert-danger{
+    color:  darken($app-brand-danger,20%);
+    border-color: $app-brand-danger;
+}
+
+/* Fatal error
+-------------------------------------------------- */
+.app-fatal-error {
+    background-color: $app-body-bcg-color;
+    border: solid 1px $app-brand-danger;
+    .fatal-error-message {
+        color: $app-brand-danger;
+    }
+    .fatal-error-info {
+        color: $app-body-color;
+    }
+}
+/* Blank
+-------------------------------------------------- */
+.blank{
+ background-color: $app-widget-bcg-color;
+}
+
+/* Header
+-------------------------------------------------- */
+#header{
+    color: $app-body-color;
+    .divider-vertical {
+        display: none;
+    }
+
+}
+
+#header_logo{
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
+}
+
+/* Main navigation
+-------------------------------------------------- */
+#main_navigation_wrap{
+    background-color: $app-color-dark;
+    border-bottom: solid 1px $app-color-dark-lightest;
+}
+
+#main_navigation{
+    a{
+        display: inline-block;
+        padding: 0;
+        line-height: $header-h - $spacing;
+        text-align: center;
+
+
+        color: $app-navi-color;
+        width: $header-h  - $spacing;
+        height: $header-h  - $spacing;
+        margin: 0 5px;
+        border-radius: 50%;
+        &.nav-logo{
+            width: 100px;
+            height: 40px;
+        }
+        .fa{
+            line-height: $header-h  - $spacing;
+        }
+    }
+    a:hover{
+        background:transparent;
+        color: $app-color-lightest;
+    }
+    .active{
+        /*background-color:$app-color-lighter;*/
+        background-color:$app-color-additional;
+        color: $app-color-dark;
+        &:hover{
+            /*background-color:$app-color-lighter;*/
+            background-color:$app-color-additional;
+            color: $app-color-dark;
+        }
+    }
+}
+
+/* Subnavigation
+-------------------------------------------------- */
+#sub_navigation_in{
+    ul{
+        background-color: $app-color-dark;
+        border: 1px solid $app-border-color;
+
+        li{
+            border-bottom: solid 1px $app-border-color;
+            a{
+                color: $app-navi-color;
+                &:hover{
+                    color: $app-color-lightest;
+                }
+
+            }
+            &.active{
+                background-color: $app-color-dark-lighter;
+                a{
+                    color: $app-color-additional;
+                }
+                .fa{
+                    color: $app-color-additional;
+                }
+            }
+
+        }
+        .fa{
+            color: $app-navi-color;
+        }
+
+    }
+}
+/* Top fixed elements for mobile devices
+-------------------------------------------------- */
+
+@include mediaQueries(max-small) {
+  .fix-me-top {
+    background-color: $app-color-dark;
+    border-bottom: solid 1px $app-color-dark-lightest;
+  }
+}
+/* Page navigation
+-------------------------------------------------- */
+.page-navi{
+    color: $app-a-color;
+    .page-navi-in{
+        background-color:$app-color-dark;
+        border: 1px solid $app-border-color;
+    }
+    ul{
+        li{
+            border-bottom: solid 1px $app-border-color;
+            a{
+                color: $app-navi-color;
+
+            }
+        }
+        .active{
+            a{
+                color: $app-color-additional;
+            }
+            .fa{
+                color: $app-color-additional;
+
+            }
+        }
+        .fa{
+            color: $app-navi-color;
+
+        }
+    }
+    .page-navi-title{
+        color: $app-heading-color;
+    }
+    .page-navi-tag {
+        border: solid 1px $app-border-color;
+
+    }
+    .page-navi-tag.active{
+        background-color: $app-border-color;
+    }
+}
+/* Label
+-------------------------------------------------- */
+.label-default {
+  background-color: $app-color-dark-lighter;
+}
+
+/* Form
+-------------------------------------------------- */
+.form-control {
+    color: $app-body-color;
+    border: solid 1px $app-border-color;
+    background-color: lighten($app-body-bcg-color,3%);
+    &:focus{
+        border-color: $app-color-additional;
+    }
+    &[disabled],
+    &[readonly],
+    fieldset[disabled] & {
+        background-color: darken($app-body-bcg-color,5%);
+    }
+}
+
+.input-group-addon {
+    background-color: darken($app-body-bcg-color,10%);
+    color: $app-body-color;
+    border-color: $app-border-color;
+}
+.form-page {
+    background-color: $app-color-lighter;
+    border-color: $app-border-color;
+    .form-group {
+        border-bottom: 0;
+        //border-bottom: solid 1px $app-widget-border-color;
+    }
+}
+
+.submit-entry {
+    background-color: $app-border-color;
+    border-top: 0;
+}
+
+.control-active {
+    border: solid 4px $app-color-additional !important;
+}
+
+.help-block {
+    color: lighten($app-body-color,5%);
+    font-style: italic;
+    font-size: 95%;
+}
+
+input[type=checkbox] {
+  &:after {
+      border: solid 1px $app-border-color;
+      background-color: lighten($app-body-bcg-color,3%);
+  }
+
+  &:checked {
+    &:after {
+      color: $app-color-additional;
+    }
+  }
+}
+
+/* Legend
+-------------------------------------------------- */
+
+legend {
+  display: block;
+  width: 100%; //padding: 0;
+  // margin-bottom: 20px;
+  font-size: 120%;
+  line-height: inherit;
+  color: $app-body-color;
+  border: 0;
+  //border-bottom: 1px dotted $app-border-color;
+}
+
+/* Button
+-------------------------------------------------- */
+.btn-default{
+    background-color: darken($app-body-bcg-color,10%);
+    color: $app-body-color;
+    border-color: $app-border-color;
+    &:hover{
+        background-color: darken($app-body-bcg-color,20%);
+        border-color: $app-border-color;
+    }
+    &.active{
+        background-color: darken($app-body-bcg-color,20%);
+        border-color: $app-border-color;
+    }
+    &:focus{
+        background-color: darken($app-body-bcg-color,40%);
+        border-color: $app-border-color;
+    }
+}
+
+.btn-goup-block {
+    .btn {
+        &.active .fa {
+            color: $app-color-additional;
+        }
+    }
+
+}
+
+.btn-submit{
+    color: lighten($app-color-additional, 50%);
+    border: solid 1px darken($app-color-additional, 10%);
+    background-color: $app-color-additional;
+    &:hover, &:focus {
+        background-color: darken($app-color-additional, 10%);
+        color: lighten($app-color-additional, 40%);
+    }
+}
+
+/* Button tabs
+-------------------------------------------------- */
+.btn-goup-tabs {
+    .btn {
+        background-color: $app-color-dark;
+        color: $app-navi-color;
+        border: solid 1px $app-border-color;
+        &.active {
+            background-color: $app-color-dark-lighter;
+            color: $app-color-additional;
+        }
+        .fa {
+            color: $app-navi-color;
+            &.text-danger{
+                color: $app-brand-danger;
+            }
+        }
+    }
+    .active {
+        .fa {
+            color: $app-color-additional;
+            &.text-danger{
+                color: $app-brand-danger;
+            }
+
+        }
+    }
+}
+
+/* Slider
+-------------------------------------------------- */
+input:checked+.slider:before {
+  background-color: $app-color-additional;
+}
+.slider {
+  //color: $app-color-lighter;
+ background-color: lighten($app-body-bcg-color,3%);
+  border-color: $app-border-color;
+}
+
+
+/* Dropdown
+-------------------------------------------------- */
+.app-dropdown{
+    background-color:$app-color-dark;
+    border: 1px solid $app-border-color;
+    color: $app-navi-color;
+
+    .app-dropdown-title{
+        color: $app-color-lightest;
+        border-bottom: solid 1px $app-border-color;
+    }
+
+    ul{
+        li{
+            border-bottom: solid 1px $app-border-color;
+            a{
+                color: $app-navi-color;
+            }
+            &:hover{
+                background: transparent;
+                color: $app-color-lightest;
+            }
+
+        }
+        .active{
+            a{
+                color: $app-color-additional;
+            }
+        }
+        .btn{
+            color: $app-a-color;
+        }
+
+    }
+}
+
+/* Accordion
+-------------------------------------------------- */
+.accordion-toggle,
+.automation .accordion-wrap .accordion-toggle {
+  .no-toggle {
+    border-color: $app-border-color;
+  }
+  color: $app-body-color;
+  >button {
+    border-color: $app-border-color;
+  }
+}
+
+.accordion,
+.automation .accordion-wrap .accordion {
+  background-color: $app-widget-bcg-color;
+  border-color: $app-border-color;
+  color: $app-body-color;
+}
+
+.automation .accordion-wrap .accordion {
+  background-color: $app-widget-bcg-color;
+  .accordion {
+    border: 0;
+    background-color: darken($app-widget-bcg-color,10%);
+  }
+}
+
+.accordion-entry{
+    border-bottom: dotted 1px  $app-border-color;
+    color: $app-body-color;
+}
+.accordion-entry-title{
+    color: $app-body-color;
+    .fa{
+        color: lighten($app-body-color, 10%);
+    }
+}
+
+/* Modal
+-------------------------------------------------- */
+.appmodal {
+    color: $app-body-color;
+    .appmodal-in {
+        background-color: $app-body-bcg-color;
+    }
+}
+
+.appmodal-header {
+    border-bottom: solid 1px $app-color-dark-lightest;
+    background-color: $app-color-dark;
+    h3 {
+        color: $app-color-lighter;
+    }
+}
+
+.appmodal-body {
+}
+
+.appmodal-footer {
+    border-top: solid 1px $app-color-dark-lightest;
+    background-color: $app-color-dark;
+}
+
+/* Report
+-------------------------------------------------- */
+.app-row-report{
+    border-top: 0;
+    border-bottom: 0;
+    background-color: $app-body-bcg-color;
+    color: $app-body-color;
+    .report-entry {
+      //border-bottom: solid 1px $app-border-color;
+      .report-col{
+        border-bottom: dotted 1px $app-border-color;
+    }
+    /* &:first-child {
+      .report-col{
+        border-top: dotted 1px $app-border-color;
+    }
+  } */
+  }
+}
+
+/* List panel
+-------------------------------------------------- */
+
+.list-panel {
+  background-color: $app-body-bcg-color;
+  border-bottom: dotted 1px $app-border-color;
+}
+
+
+/* Table
+-------------------------------------------------- */
+.table{
+    > thead > tr > th {
+        border-bottom: 0;
+    }
+    tbody{
+        tr{
+            td{
+                border-top: 1px dotted $app-border-color;
+            }
+        }
+    }
+
+}
+.table-report{
+    background-color: $app-body-bcg-color;
+}
+
+/* Loader
+-------------------------------------------------- */
+#loading{
+    color: $app-color-lighter;
+    .loading-in{
+        background-color: $app-color-dark;
+        border: solid 2px $app-border-color;
+    }
+}
+.progress-true {
+
+    .widget-loader {
+        color:$app-color-additional;
+
+    }
+
+}
+
+/* Pagination
+-------------------------------------------------- */
+.pagination {
+    > li {
+        > a,
+        > span {
+
+            color: $app-body-color;
+            background-color: $app-widget-bcg-color;
+            border: solid 1px $app-widget-border-color;
+        }
+
+    }
+
+    > li > a,
+    > li > span {
+        &:hover,
+            &:focus {
+            color: $app-color-lighter;
+            background-color: $app-color-dark;
+            border-color: lighten($app-color-dark-lightest, 20%);
+        }
+    }
+
+    > .active > a,
+    > .active > span {
+        &,
+        &:hover,
+            &:focus {
+            color: $app-color-lighter;
+            background-color: $app-color-dark;
+            border-color: lighten($app-color-dark-lightest, 20%);
+        }
+    }
+
+    > .disabled {
+        > span,
+        > span:hover,
+            > span:focus,
+            > a,
+            > a:hover,
+            > a:focus {
+            color: $app-body-color;
+            background-color: $app-widget-bcg-color;
+            border: solid 1px $app-widget-border-color;
+        }
+    }
+}
+
+/* Widget
+-------------------------------------------------- */
+.widget-entry{
+    .widget-entry-in{
+        border-bottom: solid 1px $app-border-color;
+        background: transparent;
+        color: $app-body-color;
+        @include mediaQueries(min-small) {
+            //border-color: $app-border-color;
+            background-color: $app-widget-bcg-color;
+            border: solid 2px  $app-widget-border-color;
+            //border: 0 none;
+        }
+
+        .widget-header {
+            .widget-icon{
+                color: $app-body-color;
+
+            }
+        }
+        .widget-title{
+            color: $app-heading-color;
+            h3{
+                a{
+                    color: $app-heading-color;
+                }
+            }
+        }
+    }
+    &.widget-success{
+        .widget-entry-in{
+            border: solid 2px $app-brand-success;
+        }
+    }
+}
+
+/* Rooms
+-------------------------------------------------- */
+.card-room{
+  /* Inner element */
+  .card-room-in {
+    //border: solid 1px $room-card-border-color;
+    border-color: $app-border-color;
+    .card-icon {
+      color: $app-color-darkest;
+  }
+    .card-title {
+      @include mediaQueries(min-medium) {
+           a {
+              color: $app-color-darkest;
+          }
+      }
+
+  }
+    
+  }
+}
+
+.elemnts-room-bar{
+    border: 0 none;
+    background-color: $app-widget-bcg-color;
+    //color: $app-body-color;
+}
+
+/* Elements
+-------------------------------------------------- */
+.widget-entry-element {
+    .widget-entry-in {
+        .widget-img {
+            background-color: #fff;
+        }
+        .widget-title {
+            .widget-room {
+                color: $app-body-color;
+            }
+        }
+        .widget-level {
+            color: $app-body-color;
+        }
+
+    }
+}
+
+.widget-ctrl, .tbl-widget-ctrl {
+    .fa-caret-down {
+        color: $app-body-color;
+    }
+    .btn-group {
+        .btn {
+            color: darken($app-widget-bcg-color,15%);
+            background-color: $app-widget-bcg-color;
+
+        }
+        .btn-primary {
+            background-color: $app-color-dark-lighter !important;
+            border-color: $app-border-color;
+            color: $app-color-lighter !important;
+            .fa {
+                color: $app-color-darkest !important;
+            }
+        }
+        .btn-off.btn-primary {
+            color: $app-color-darkest !important;
+            .fa {
+                color: $app-color-darkest !important;
+            }
+        }
+        .btn-label-on {
+            color: $app-color-lighter;
+        }
+        .btn-widget-time, .txt-widget-time {
+            color: $app-body-color;
+        }
+    }
+}
+
+.dragdrop-element{
+    .dd-placeholder{
+        border: 3px dashed $app-color-dark-lightest;
+        background-color: $app-color-lighter;
+    }
+}
+.card-element-dragdrop {
+    background: none $app-widget-bcg-color;
+    //background-color: $app-color-dark-lightest;
+    border: solid 1px $app-widget-border-color;
+
+}
+
+/* Local apps
+-------------------------------------------------- */
+
+.app-entry-online {
+  .app-entry-cat {
+    .app-entry-title {
+      color: $app-body-color;
+    }
+  }
+}
+
+.localapp-in {
+  border: solid 1px $app-border-color;
+  background-color: $app-widget-bcg-color;
+ .localapp-body {
+    .localapp-title {
+      color: lighten($app-body-color, 10%);
+    }
+  }
+  .localapp-footer {
+    @include mediaQueries(max-small) {
+      background-color: $app-widget-bcg-color;
+    }
+  }
+}
+
+/* Online apps
+-------------------------------------------------- */
+.onlineapp-in {
+  border: solid 1px $app-border-color;
+  background-color: $app-widget-bcg-color;
+  /* Body */
+  .onlineapp-body {
+    .onlineapp-title {
+      color: lighten($app-body-color, 10%);
+    }
+  }
+  /* Footer */
+  .onlineapp-footer {
+    .rating-group {
+      color: lighten($app-body-color, 20%);
+      ;
+      .widget-rating {
+        &.israted {
+          color: lighten($app-brand-warning, 20%);
+        }
+      }
+    }
+    @include mediaQueries(max-small) {
+      background-color: $app-widget-bcg-color;
+    }
+  }
+}
+
+.onlineapp{
+  &.widget-warning {
+    .onlineapp-in {
+      border: solid 1px lighten($app-border-color, 20%);
+  background-color: lighten($app-widget-bcg-color, 3%);
+    }
+      
+      .onlineapp-title {
+        color: lighten($app-body-color, 40%) !important;
+      }
+      .onlineapp-footer {
+          .rating-group {
+              .widget-rating {
+                  &.israted {
+                      color: lighten(#f0ad4e, 20%);
+                  }
+              }
+          }
+
+          .btn {
+             .fa{
+              color: lighten($app-heading-color, 40%) !important; 
+             }
+          }
+  
+      }
+  }
+
+}
+
+
+/* Apps online detail
+-------------------------------------------------- */
+.app-detail-list {
+    border-top: solid 1px $app-border-color;
+}
+
+.module-rating {
+    color: $app-body-color;
+    &.israted {
+        color: $app-body-color;
+    }
+}
+
+/* Apps comments
+-------------------------------------------------- */
+.comment-entry {
+    background-color: $app-widget-bcg-color;
+    color: $app-body-color;
+    .comment-header {
+        color: lighten($app-body-color, 10%);
+    }
+}
+
+.comment-entry.even {
+    background-color: darken($app-widget-bcg-color, 5%);
+}
+
+/* Apps instances
+-------------------------------------------------- */
+#apps_instances {
+    .accordion-entry {
+        background-color: $app-body-bcg-color;
+        border-bottom: 0;
+    }
+}
+
+/* Events
+-------------------------------------------------- */
+.event-level-warning,.event-level-error,.event-level-critical{
+    background-color: $app-widget-bcg-color;
+    &.report-entry {
+        border-bottom: solid 1px $app-brand-danger;
+    }
+}
+
+.event-room {
+    color: $app-body-color;
+}
+
+/* Customize
+-------------------------------------------------- */
+.customize-detail-img{
+    border-top: solid 1px $app-color-dark-lightest;
+}
+
+.customize-image-detail{
+    border: solid 4px $app-border-color;
+}
+
+.widget-entry-customize{
+    .widget-entry-in{
+        .widget-img{
+            .customize-preview-img{
+                border-color: $app-border-color;
+            }
+
+        }
+    }
+}
+
+.app-row-customize{
+    .widget-warning{
+
+        .widget-title{
+            h3{
+                color: lighten($app-heading-color,40%) !important;
+            }
+        }
+    }
+}
+
+/* Image list
+-------------------------------------------------- */
+.app-row-imglist{
+    background-color: $app-widget-bcg-color;
+    border: solid 2px  $app-widget-border-color;
+}
+.imglist-entry{
+    &.in-device{
+        background-color: $app-bcg-danger;
+    }
+}
+
+/* ZWave
+-------------------------------------------------- */
+.network-zwave-title{
+    &.noelements{
+        color: $app-body-color;
+    }
+}
+
+.cfg-info{
+    border-color: $app-border-color;
+}
+.vendor-list {
+  border-color: $app-border-color;
+}
+
+/* Expert Commands
+-------------------------------------------------- */
+.commands-data-control{
+    background-color: $app-widget-bcg-color;
+}
+
+/* RSS
+-------------------------------------------------- */
+.report-entry {
+    color: $app-body-color;
+    &.read-true{
+        border: 0;
+        background-color: $app-body-bcg-color;
+        .event-date,.rss-title,.rss-description{
+            color: lighten($app-body-color, 20%);
+        }
+    }
+
+}
+
+.read-false{
+    .rss-title{
+        font-weight: bold;
+        background-color: $app-widget-bcg-color;
+    }
+}
+
+/* Footer
+-------------------------------------------------- */
+#footer{
+    border-top: solid 1px $app-border-color;
+    #footer_in{
+        color: $app-color-lighter;
+        background-color: $app-color-darkest;
+
+    }
+}
+
+/* Slider
+-------------------------------------------------- */
+.app-slider {
+    .slide {
+        .slider-label{
+            background-color: rgba(22, 133, 198, 0.2);
+
+        }
+    }
+}
+
+.slider-btn{
+    background-color: rgba(5, 80, 125, 0.4);
+    &:hover{
+        background-color: rgba(5, 80, 125, 0.8);
+    }
+}
+
+/* Alertify
+-------------------------------------------------- */
+.alertify{
+    .ajs-dialog{
+        border: solid 2px $app-border-color;
+    }
+    .ajs-dialog,.ajs-header,.ajs-footer {
+        color: $app-body-color;
+        background-color: $app-widget-bcg-color;
+    }
+    .ajs-footer {
+        .ajs-button {
+            background-color: $app-color-dark-lightest;
+            color: $app-color-lighter;
+            border: solid 1px lighten($app-color-dark-lightest, 20%);
+            &.ajs-ok {
+                color: lighten($app-color-additional, 30%);
+                border: solid 1px darken($app-color-additional, 20%);
+                background-color: $app-color-additional;
+                &:hover, &:focus {
+                    background-color: darken($app-color-additional, 20%);
+                    color: lighten($app-color-additional, 40%);
+                }
+            }
+        }
+    }
+}
+
+/* Alpaca
+-------------------------------------------------- */
+
+.alpaca-field-object {
+    border: 1px $app-border-color solid;
+}
+.table-bordered {
+    border: 1px solid $app-border-color;
+}
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: $app-widget-bcg-color;
+}
+
+#alpaca_data{
+    .table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+        border: 1px solid $app-border-color;
+        //border-bottom: 0;
+    }
+    .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+        border: 0px solid $app-border-color;
+    }
+    .btn-default[disabled]{
+        background: transparent;
+        border-color: $app-border-color;
+    }
+
+}

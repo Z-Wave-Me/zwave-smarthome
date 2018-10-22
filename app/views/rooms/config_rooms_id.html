@@ -1,20 +1,18 @@
 <!-- Config rooms edit -->
-<div ng-controller="RoomConfigIdController" class="mobile-padding">
+<div ng-controller="RoomConfigIdController">
     <bb-loader></bb-loader>
     <div ng-show="input">
         <h2><span ng-bind="_t('lb_room')"></span>: <span ng-show="input.id > 0">(#{{input.id}})</span> <span ng-bind="input.title"></span></h2>
         <form name="form_room" id="form_room" class="form form-page" ng-submit="store(form_room,input)" novalidate>
             <fieldset>
-                <h3><span ng-bind="_t('lb_name')"></span></h3>
-                <div>
-                    <!-- name -->
-                    <div class="form-group">
-                        <input name="title" id="title" type="text" 
+                 <!-- name -->
+                    <div class="form-group form-inline">
+                        <label>{{_t('lb_name')}}:</label>
+                            <input name="title" id="title" type="text" 
                                class="form-control" placeholder="{{_t('lb_room_name')}}" value="{{input.title}}" 
                                ng-model="input.title" ng-blur="titleBlur = true" ng-required="true" />
                         <bb-validator input-name='form_room.title.$error.required' trans='_t("field_required")' has-blur='titleBlur'></bb-validator> 
                     </div>
-                </div>
             </fieldset>
 
             <fieldset class="mobile-hide">
@@ -35,22 +33,18 @@
                          </div>
                 </div>
                 <div class="form-group">
-                <label>
-                    <input type="checkbox" name="instances_expanded"
+                <input type="checkbox" name="instances_expanded"
+                           id="instances_expanded"
                            ng-model="input.show_background"
                            ng-checked="input.show_background" />
+                <label for="instances_expanded">  
                     {{_t('selected_image_background')}}
                 </label>
                     <div>
             </fieldset>
             <fieldset class="mobile-hide">
-                 <!-- <h3><span ng-bind="_t('lb_upload_image')"></span></h3>-->  
                 <div>
                   <div class="form-group">
-                      
-                         <!--<input type="file" class="form-control_" file-model="myFile" /><br />-->  
-                          <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>-->  
-                         <!--<button type="button" class="btn btn-primary" id="btn_upload_img" ng-click="uploadFile()"><i class="fa fa-upload"></i> <span ng-bind="_t('lb_upload_image')"></span></button>-->
                          <input class="inputfile" type="file" name="file" id="file{{v.id}}" 
                                 ng-click="icons.find = v" 
                                 onchange="angular.element(this).scope().uploadFile(this.files)" />
@@ -64,54 +58,72 @@
                     </div>
                 </div>
             </fieldset>
-            
-             <fieldset>
+            <fieldset>
+                <div class="form-group">
+                    <!-- Remove -->
+                    <button type="button" title="{{_t('delete_room')}}" class="btn btn-danger"
+                                ng-click="deleteRoom(input.id, _t('delete_confirm_label',{__label__:input.title}))">
+                        <i class="fa fa-times"></i> {{ _t('delete_room')}}
+                    </button>
+                </div>
+            </fieldset>
+            <fieldset>
                 <h3><span ng-bind="_t('lb_devices_in_room')"></span></h3>
-                 <bb-help-text trans="_t('room_main_sensors',{'__cnt__': input.main_sensors.length})"></bb-help-text>
+                <p>
+                <span class="inline">
+                    <bb-help-text trans="_t('room_main_sensors',{'__cnt__': input.main_sensors.length})" display='inline'></bb-help-text>
+                </span>
+                 <button type="button" class="btn btn-default btn-small" 
+                         ng-show="input.main_sensors.length"
+                         ng-click="clearSensors(input)">
+                     <i class="fa fa-refresh"></i> {{_t('clear_sensors')}}
+                 </button>
+                </p>
                  <div class="device-available-block assigned">
                         <div class="btn-group btn-tag"
                              ng-repeat="d in devices"
                              ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0">
-                            <a href="" class="btn btn-default " title="{{_t('lb_remove')}}"
+                            <a href="" class="btn btn-default" title="{{d.metrics.title}}"
                                ng-click="removeDevice(d)">
                                 {{d.metrics.title|cutText:true:20}}
-                                <i class="fa fa-times text-danger"></i>
+                                <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i>
                             </a>
                             <label class="btn btn-default"
+                                   for="assign_sensor"
                                    ng-if="['sensorBinary', 'sensorMultilevel'].indexOf(d.deviceType) !== -1"
                                    ng-class="(input.main_sensors.length === 3 && input.main_sensors.indexOf(d.id) === -1) ? 'disabled' : ''">
-                                <input type="checkbox"
+                            
+                            <input type="checkbox"
                                        value="{{d.id}}"
+                                       name="assign_sensor"
+                                       id="assign_sensor"
                                        ng-click="assignSensor($event, d)"
                                        ng-checked="input.main_sensors.indexOf(d.id) > -1">
                             </label>
                         </div>
-                        <!--<a href="" class="btn btn-default btn-tag" title="{{_t('lb_remove')}}"
-                            ng-repeat="d in devices"
-                           ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0"
-                           ng-click="removeDevice(d)">{{d.metrics.title|cutText:true:20}}
-                            <i class="fa fa-times text-danger"></i></a>-->
                     </div>
                 </fieldset>
             <fieldset>
                 <h3>{{_t('lb_available_devices')}}</h3>
                 <div class="device-available-block">
-                    <a href="" class="btn btn-default btn-tag" title="{{_t('add_new')}}" 
+                    <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}"
                        ng-repeat="d in devices" 
                        ng-if="devicesAssigned.indexOf(d.id) === -1 || d.location === 0"
-                       ng-click="assignDevice(d)">{{d.metrics.title|cutText:true:20}} <i class="fa fa-plus text-success"></i></a>
+                       ng-click="assignDevice(d)">{{d.metrics.title|cutText:true:20}}
+                        <i class="fa fa-plus text-success" title="{{_t('add_new')}}" ></i>
+                    </a>
                 </div>
             </fieldset>
             <fieldset class="submit-entry">
-                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+                <!-- Cancel -->
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
                      <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
                  </button>
+                 <!-- Save -->
                  <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_room.$invalid">
                      <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
                  </button>
             </fieldset>
         </form>
-
     </div>
-
 </div> <!-- /ng-controller --> 

@@ -1,95 +1,93 @@
 <!-- Online apps control view -->
 <!--<pre>{{dataHolder.onlineModules.filter|json}}</pre>-->
 <div class="page-control form-inline">
-    <div class="btn-group btn-goup-block btn-goup-2" ng-hide="routeMatch('/apps/online')">
-        <!--Categories and order by -->
-        <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)"
-                ng-class="!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' ">
-            <i class="fa fa-filter"></i>
-            <span class="btn-name" ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
-            <span class="btn-name" ng-if="dataHolder.onlineModules.filter.featured">{{_t('featured_apps')}}</span>
-            <span class="btn-name" ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
-            <span class="btn-name item-cnt"> ({{dataHolder.onlineModules.cnt.collection}})</span>
-        </button>
-        <button class="btn btn-default" ng-click="expandNavi('appsOnlineOrderBy', $event)">
-            <i class="fa fa-sort-alpha-asc"></i>
-            <span class="btn-name">{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span>
-        </button>
-    </div>
-
     <!-- Search and autocomplete -->
-    <form id="form_search" class="input-group" ng-submit="setFilter({q: dataHolder.onlineModules.autocomplete.term})"
-          autocomplete="off" novalidate>
+    <form id="form_search" class="input-group" ng-submit="setFilter({q: dataHolder.onlineModules.autocomplete.term})" autocomplete="off"
+        novalidate>
         <!-- Input -->
-        <input id="input_search" type="text" focus="{{dataHolder.onlineModules.filter.q}}"
-               class="form-control"
-               placeholder="{{_t('lb_search')}}"
-               ng-model="dataHolder.onlineModules.autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+        <input id="input_search" type="text" focus="{{dataHolder.onlineModules.filter.q}}" class="form-control" placeholder="{{_t('lb_search')}}"
+            ng-model="dataHolder.onlineModules.autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown" />
         <!-- Search button -->
         <span class="input-group-addon clickable" ng-click="setFilter({q: dataHolder.onlineModules.autocomplete.term})">
             <i class="fa fa-search" ng-class="{'text-success':dataHolder.onlineModules.autocomplete.term}"></i>
         </span>
 
-       <!-- <div class="app-dropdown autocomplete" ng-if="dataHolder.onlineModules.autocomplete.results.length">-->
-        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchOnlineApps">
+        <!-- <div class="app-dropdown autocomplete" ng-if="dataHolder.onlineModules.autocomplete.results.length">-->
+        <div class="app-dropdown autocomplete" ng-if="autocompleteExpanded.searchOnlineApps">
             <ul>
-                <li class="dropdown-entry" title="{{v.title}}"
-                    ng-repeat="v in dataHolder.onlineModules.autocomplete.results | orderBy:'toString()' track by $index">
+                <li class="dropdown-entry" title="{{v.title}}" ng-repeat="v in dataHolder.onlineModules.autocomplete.results | orderBy:'toString()' track by $index">
                     <!-- Title -->
-                    <span class="dropdown-col"
-                          ng-click="setFilter({q: dataHolder.onlineModules.autocomplete.term})">
-                            <img class="report-img-s" alt="{{v.title}}"
-                                 ng-src="{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}"/>
+                    <span class="dropdown-col" ng-click="setFilter({q: dataHolder.onlineModules.autocomplete.term})">
+                        <img class="report-img-s" alt="{{v.title}}" ng-src="{{v.icon ? cfg.online_module_img_url + v.icon : 'storage/img/placeholder-img.png'}}"
+                        />
                         <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>&nbsp;
-                        <span ng-if="v.hasInstance"><i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
+                        <span ng-if="v.hasInstance">
+                            <i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
                         <!--(<span class="rating-group">
-                                    <i class="fa widget-rating" title="{{r}}"
-                                       ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'"
-                                       ng-repeat="r in [1,2,3,4,5]"></i>
-                                    <span class="widget-rating"> | <i
-                                            class="fa fa-download"></i> {{v.installed}}&times;</span>
-                                </span>)-->
+                              <i class="fa widget-rating" title="{{r}}"
+                                 ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'"
+                                 ng-repeat="r in [1,2,3,4,5]"></i>
+                              <span class="widget-rating"> | <i
+                                      class="fa fa-download"></i> {{v.installed}}&times;</span>
+                          </span>)-->
 
                     </span>
 
                     <!-- Ctrl -->
                     <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
-                        <a ng-href="#apps/online/{{v.id}}"><i class="fa fa-chevron-circle-right"></i></a>
+                        <a ng-href="#apps/online/{{v.id}}">
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
                     </span>
 
                 </li>
             </ul>
         </div>
     </form>
-
+    <!-- Filters -->
+    <div class="btn-group btn-goup-block_ btn-goup-2_" ng-hide="routeMatch('/apps/online')">
+        <!--Categories and order by -->
+        <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)" ng-class="!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' ">
+            <i class="fa fa-filter"></i>
+            <span class="btn-name" ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
+            <span class="btn-name" ng-if="dataHolder.onlineModules.filter.featured">{{_t('featured_apps')}}</span>
+            <span class="btn-name" ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
+            <span class="btn-name item-cnt"> ({{dataHolder.onlineModules.cnt.collection}})</span>
+        </button>
+        <button class="btn btn-default s-hide" ng-click="expandNavi('appsOnlineOrderBy', $event)">
+            <i class="fa fa-sort-alpha-asc"></i>
+            <span class="btn-name">{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span>
+        </button>
+    </div>
 </div>
 <!-- Page subnavi  categories -->
 <div class="page-navi" ng-if="naviExpanded.appsCategories">
     <div class="page-navi-in">
         <ul>
             <li class="page-cat-0" ng-class="_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''">
-                <a href="" ng-click="setFilter()"><i class="fa fa-check-circle-o"></i> {{_t('all_apps')}}
+                <a href="" ng-click="setFilter()">
+                    <i class="fa fa-check-circle-o"></i> {{_t('all_apps')}}
                     <span class="btn-name item-cnt"> ({{dataHolder.onlineModules.cnt.apps}})</span>
-                    <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                    <span class="page-navi-icon">
+                        <i class="fa fa-chevron-right"></i>
+                    </span>
                 </a>
             </li>
-            <li class="page-cat-{{v.id}}"
-                ng-repeat="v in dataHolder.modules.categories"
-                ng-if="dataHolder.onlineModules.cnt.appsCat[v.id]"
+            <li class="page-cat-{{v.id}}" ng-repeat="v in dataHolder.modules.categories" ng-if="dataHolder.onlineModules.cnt.appsCat[v.id]"
                 ng-class="dataHolder.onlineModules.filter.category == v.id ? 'active': ''">
                 <a href="" ng-click="setFilter({category: v.id})" ng-switch="v.id">
                     <i class="fa {{v.id|getAppCategoryIcon}}"></i>
-                    {{v.name|cutText:true:30}} <span
-                        class="item-cnt">({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span>
-                    <span class="page-navi-icon"><i class="fa fa-chevron-right"></i></span>
+                    {{v.name|cutText:true:30}}
+                    <span class="item-cnt">({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span>
+                    <span class="page-navi-icon">
+                        <i class="fa fa-chevron-right"></i>
+                    </span>
                 </a>
             </li>
         </ul>
 
         <div class="page-navi-content">
-            <a class="btn btn-default btn-tag"
-               ng-click="hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))"
-               ng-class="dataHolder.onlineModules.hideInstalled ? 'active': ''">
+            <a class="btn btn-default btn-tag" ng-click="hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))" ng-class="dataHolder.onlineModules.hideInstalled ? 'active': ''">
                 <i class="fa fa-eye-slash"></i> {{_t('hide_installed_apps')}}
             </a>
 
@@ -102,10 +100,7 @@
     <div class="page-navi-in">
         <div class="page-navi-content">
             <p class="page-navi-title"> {{_t('sortby')}}</p>
-            <a class="btn btn-default btn-tag" href=""
-               ng-repeat="(k,v) in cfg.orderby.appsonline"
-               ng-click="setOrderBy(k)"
-               ng-class="dataHolder.onlineModules.orderBy == k ? 'active': ''">
+            <a class="btn btn-default btn-tag" href="" ng-repeat="(k,v) in cfg.orderby.appsonline" ng-click="setOrderBy(k)" ng-class="dataHolder.onlineModules.orderBy == k ? 'active': ''">
                 {{_t(k) | cutText:true:30}}
             </a>
         </div>

@@ -44,7 +44,15 @@
 /** Added to every container outer field element **/
 .alpaca-container
 {
-
+    .alpaca-field-checkbox {
+        .checkbox {
+            label {
+                input[type="checkbox"] {
+                    display: block;
+                }
+            }
+        }
+    }
 }
 
 /** Added to the optional label (or legend) accompanying any container **/
@@ -695,4 +703,16 @@ div.timepicker-picker > table.table-condensed {
 
 div.timepicker-picker > table.table-condensed tr td {
     text-align: center;
+}
+
+/**************************************** **/
+/**  Popp KeyPad                          **/
+/**************************************** **/
+.poppKeypad-table {
+    img {
+        display:block;
+        margin: auto;
+        max-width: 64px;
+        max-height: 64px;
+    }
 }

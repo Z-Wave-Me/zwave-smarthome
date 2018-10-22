@@ -50,6 +50,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     };
     $scope.currentPage = 1;
     $scope.pageSize = cfg.page_results_events;
+    $scope.pagesSum = 0;
     $scope.reset = function () {
         $scope.collection = angular.copy([]);
     };
@@ -59,6 +60,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     $scope.$on('$destroy', function () {
         $scope.currSource = false;
         $scope.currLevel = false;
+        cfg.route.time.timeUpdating = false;
         $interval.cancel($scope.apiDataInterval);
     });
 
@@ -178,13 +180,18 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     $scope.refreshData = function () {
         var refresh = function () {
-            dataFactory.refreshApi('notifications').then(function (response) {
-                //console.log('Run refresh',response.data.data.notifications)
-                angular.forEach(response.data.data.notifications, function (v, k) {
-                    //$scope.collection.push(v);
-                    setEvent(v);
+            if(cfg.route.fatalError.type !== "network") {
+                dataFactory.refreshApi('notifications').then(function (response) {
+                    if(!response){
+                        return;
+                    }
+                    //console.log('Run refresh',response.data.data.notifications)
+                    angular.forEach(response.data.data.notifications, function (v, k) {
+                        //$scope.collection.push(v);
+                        setEvent(v);
+                    });
                 });
-            }, function (error) {});
+            }
         };
         $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
     };
@@ -254,7 +261,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     function prepareNotification(v) {
         v.icon = !v.message.customIcon? $filter('getEventIcon')(v.type,v.message): cfg.img.custom_icons+v.message.customIcon;
         if (v.message['l'] !== null && v.message['l'] !== undefined) {
-            v.messageView = '<span><span>'+v.message.dev+' '+ $scope._t("lb_is") + ' ' +
+            v.messageView = '<span><span>'+v.message.dev+' : ' +
                 '<strong>' + v.message.l +'</strong></span>';
         } else {
             v.messageView = '<span>'+typeof v.message == 'string'? v.message : JSON.stringify(v.message)+'</span>';
@@ -311,27 +318,30 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             return v.source;
         });
         // Run refresh only when filter is empty
-        if(_.isEmpty($scope.filter)){
-            $scope.refreshData();
-        }
+        //if(_.isEmpty($scope.filter)){
+        $scope.refreshData();
+        //}
         // No data in the collection
         if (_.size($scope.collection) < 1) {
             alertify.alertWarning($scope._t('no_events'));
             return;
         }
+        $scope.pagesSum = Math.ceil($scope.collection.length/$scope.pageSize);
     };
 
     /**
      * Set data
      */
     function setEvent(obj) {
-        var findIndex = _.findIndex($scope.collection, {timestamp: obj.timestamp});
-        _obj = prepareNotification(obj);
-        if(findIndex > -1){
-            angular.extend($scope.collection[findIndex],_obj);
+        if (_.isEmpty($scope.filter) || (obj[$scope.filter.param] === $scope.filter.val)) {
+            var findIndex = _.findIndex($scope.collection, {timestamp: obj.timestamp});
+            _obj = prepareNotification(obj);
+            if(findIndex > -1){
+                angular.extend($scope.collection[findIndex],_obj);
 
-        }else{
-            $scope.collection.push(_obj);
+            }else{
+                $scope.collection.push(_obj);
+            }
         }
     }
 
@@ -356,4 +366,37 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         });
         return;
     }
+    /**
+     * Swipe left/right or click previous/next
+     */
+    $scope.swipeMe = function (direction) {
+        var items = $scope.collection.length;
+        var itemsPerPage = cfg.page_results_events;
+        if(items  <= itemsPerPage){
+            return;
+        }
+        
+        var min = 1;
+        var max = Math.ceil(items/itemsPerPage);
+        var newCurrentPage = 1;
+        
+        if(direction === 'right'){
+            $scope.currentPage--;
+            newCurrentPage = ($scope.currentPage > min ? $scope.currentPage :  min);
+         }else{
+            $scope.currentPage++;
+            newCurrentPage = ($scope.currentPage > max ?  min :  $scope.currentPage);
+         }
+         $scope.currentPage = newCurrentPage;
+        //$scope.currentPage = 16;
+        //console.log('ng-swipe: ' + direction)
+        //console.log('currentPage: ' +  $scope.currentPage)
+    };
+
+    /**
+     * Go to page
+     */
+    $scope.goToPage = function (page) {
+        $scope.currentPage = page;
+    };
 });

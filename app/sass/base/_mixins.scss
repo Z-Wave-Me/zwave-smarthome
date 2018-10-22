@@ -2,11 +2,30 @@
 // Mixins
 // --------------------------------------------------
 
+// Clearfix
+@mixin appClearFix() {
+  &:before,
+  &:after {
+    content: " "; 
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
 // Border radius
 @mixin appBorderRadius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   border-radius: $radius;
+}
+
+// Border radius with values
+@mixin appBorderRadiusVal($top-left,$top-right,$bottom-right,$bottom-left) {
+  -webkit-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  -moz-border-radius: $top-left $top-right $bottom-right $bottom-left;
+  border-radius: $top-left $top-right $bottom-right $bottom-left;
 }
 
 // Shadow
@@ -32,7 +51,7 @@
 // Opacity
 @mixin appOpacity($o: 0.5) {
   opacity: $o;
-  filter: alpha(opacity=$o*100); /* For IE8 and earlier */
+  filter: alpha(opacity=$o*100);
 }
 
 // Gradient
@@ -118,6 +137,12 @@
 // Media queries
 @mixin mediaQueries($media) {
   /* MIN WIDTH */
+  // Ultra Small devices, old Phones 320px
+  @if $media == min-usmall {
+    @media only screen and (min-width: $break-usmall) {
+      @content;
+    }
+  }
   // Extra Small Devices, Phones 480px
   @if $media == min-esmall {
     @media only screen and (min-width: $break-esmall) {
@@ -160,6 +185,13 @@
     @media only screen and (max-width: $break-medium - 1) {
       @content;
     }
+  }
+}
+
+// Media queries
+@mixin mediaQueriesMin($min) {
+  @media only screen and (min-width: $min) {
+    @content;
   }
 }
 

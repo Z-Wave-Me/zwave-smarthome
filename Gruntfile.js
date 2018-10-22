@@ -72,6 +72,7 @@ module.exports = function (grunt) {
                     'vendor/handlebars/handlebars-v3.0.3.min.js',
                     'vendor/alpaca/1.5.14/bootstrap/alpaca.min.js',
                     'vendor/alertify/alertify.min.js',
+                    'vendor/qrcode/qrious.min.js',
                     // Angular
                     'vendor/angular/angular-1.2.28/angular.min.js',
                     'vendor/upload/angular-file-upload.min.js',
@@ -93,6 +94,7 @@ module.exports = function (grunt) {
                     'dist/app/js/templates.js',
                     'app/modules/qAllSettled.js',
                     'app/modules/httpLatency.js',
+                    'app/modules/ngDeviceDetector.min.js',
                     'app/config/settings.js',
                     'app/factories/factories.js',
                     'app/services/services.js',
@@ -101,6 +103,8 @@ module.exports = function (grunt) {
                     'app/directives/directives-expert.js',
                     'app/directives/dir-pagination.js',
                     'app/directives/tc-angular-chartjs.js',
+                    'app/directives/angular-slider.js',
+                    'app/directives/angular-long-press.min.js',
                     'app/filters/filters.js',
                     'app/jquery/postrender.js',
                     'app/controllers/base.js',
@@ -110,6 +114,9 @@ module.exports = function (grunt) {
                     'app/controllers/element-widget.js',
                     'app/controllers/element-id.js',
                     'app/controllers/event.js',
+                    'app/controllers/automation-scene.js',
+                    'app/controllers/automation-rule.js',
+                    'app/controllers/automation-schedule.js',
                     'app/controllers/app.js',
                     'app/controllers/app-local.js',
                     'app/controllers/app-online.js',
@@ -118,11 +125,15 @@ module.exports = function (grunt) {
                     'app/controllers/skin.js',
                     'app/controllers/icon.js',
                     'app/controllers/device.js',
+                    'app/controllers/smartstart.js',
                     'app/controllers/zwave-inclusion.js',
                     'app/controllers/zwave-manage.js',
+                    'app/controllers/zwave-exclude.js',
                     'app/controllers/zwave-vendor.js',
                     'app/controllers/camera.js',
+                    'app/controllers/mobile.js',
                     'app/controllers/enocean.js',
+                    'app/controllers/wifiplug.js',
                     'app/controllers/rf433.js',
                     'app/controllers/room.js',
                     'app/controllers/management.js',
@@ -160,6 +171,16 @@ module.exports = function (grunt) {
                     built: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
                     timestamp: '<%= Math.floor(Date.now() / 1000) %>'
                 }
+            },
+            skin: {
+                dest: pkg.skin_path + pkg.skin+'/info.json',
+                options: {
+                    name: app_cfg.name,
+                    version: app_version,
+                    skin: pkg.skin,
+                    built: '<%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
+
+                }
             }
         },
         // Copy
@@ -172,7 +193,8 @@ module.exports = function (grunt) {
                             'app/img/**',
                             'app/img/**',
                             //'app/views/**',
-                            'app/lang/**'
+                            'app/lang/**',
+                            'favicon.ico'
                         ], dest: 'dist/'
                     },
                     //{expand:true,src: ['../zwave-api/storage/data/z_en.json'], dest: 'storage/data/',flatten: true},
@@ -211,7 +233,14 @@ module.exports = function (grunt) {
                     //{expand:true,src: ['vendor/angular/angular-1.2.16/angular.min.js.map'], dest: 'dist/app/js/',flatten: true},
                     //{expand:true,src: ['vendor/angular/angular-1.2.16/angular-route.min.js.map'], dest: 'dist/app/js/',flatten: true}
                 ]
-            }
+            },
+            skin: {
+                files: [
+                    {src: ['app/css/main.css'], dest: pkg.skin_path + pkg.skin + '/main.css'},
+                    {src: ['app/css/main.css'], dest: pkg.skin_path + pkg.skin + '/main.css.orig'},
+                    {expand: true,src: ['storage/img/icons/*'], dest: pkg.skin_path + pkg.skin + '/img/icons/', flatten: true}
+                ]
+            },
         },
         //CSSS min
         cssmin: {
@@ -284,6 +313,22 @@ module.exports = function (grunt) {
                 files: [
                     {expand: true, flatten: true, src: ['app/config.js'], dest: app_cfg.dir + '/app/js/'}
                 ]
+            },
+            skin: {
+                options: {
+                    patterns: [
+                        {
+                            match: /..\/fonts\//g,
+                            replacement: function () {
+                                return '..\/..\/..\/app\/fonts\/';
+                            }
+                        }
+                    ]
+                },
+                files: [
+                    {expand: true, flatten: true, src: [pkg.skin_path + pkg.skin + '/main.css'], dest: pkg.skin_path + pkg.skin + '/'},
+                    {expand: true, flatten: true, src: [pkg.skin_path + pkg.skin + '/main.css.orig'], dest: pkg.skin_path + pkg.skin + '/'}
+                ]
             }
         },
         modify_json: {
@@ -323,6 +368,17 @@ module.exports = function (grunt) {
                 tagAnnotation: 'Release ' + app_cfg.name + ' ' + git_message,
                 buildCommand: false
             }
+        },
+        compress: {
+            foo: {
+                options: {
+                    archive: '_project/skins/blank.zip',
+                    mode: 'zip'
+                },
+                files: [
+                    { src: '_project/skins/blank/**' }
+                ]
+            }
         }
 
     });
@@ -353,8 +409,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-modify-json');
     grunt.loadNpmTasks('grunt-jsdox');
     grunt.loadNpmTasks('grunt-release-it');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild','replace','jsdox','modify_json']);
+    grunt.registerTask('default', ['clean', 'ngtemplates', 'concat','json_generator', 'copy', 'cssmin', 'skinFolder','iconFolder','usebanner','htmlbuild','replace','modify_json']);
 
 };

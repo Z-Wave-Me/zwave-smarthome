@@ -24,6 +24,12 @@
 html {
   font-size: $app-body-font-size;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+   
+  @include mediaQueries(max-small) {
+    -webkit-touch-callout: none; /* Disables long-touch menu */
+    -webkit-user-select: none; /* Disable text selection (for Webkit) */
+    user-select: none; /* Disable text selection (standard syntax) */
+  }
 }
 
 body {
@@ -35,7 +41,7 @@ body {
   background-image: url('wallpaper.png');
   // Media queries
   @include mediaQueries(min-small) {
-    font-size: $app-body-font-size - 3px;
+    font-size: $app-body-font-size - 2px;
   }
 
 }
@@ -74,16 +80,16 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 160%;
+  font-size: 130%;
 }
 
 h2 {
-  font-size: 140%;
+  font-size: 120%;
   margin: $spacing 0 $spacing-half 0;
 }
 
 h3 {
-  font-size: 120%;
+  font-size: 115%;
 }
 
 h4 {
@@ -92,6 +98,10 @@ h4 {
 
 .item-cnt {
   font-size: 80%;
+}
+.small{
+    font-size: 90%;
+     color: lighten($app-body-color, 40%);
 }
 
 /* Colors
@@ -172,11 +182,12 @@ a {
 #main_content {
   margin-top: $header-h + $spacing;
   margin-bottom: 50px + $spacing;
+  padding: 0 5px;
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: $site-max-w;
 }
 
 .row {
@@ -192,6 +203,11 @@ a {
   }
 }
 
+.block{
+  //width: 100%;
+ margin: $spacing;
+}
+
 .block-50 {
   width: 100%;
   // Media queries
@@ -205,6 +221,14 @@ a {
 -------------------------------------------------- */
 img {
   vertical-align: middle;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+
 }
 .img-circle{
   border-radius: 50%;
@@ -217,6 +241,9 @@ img {
 
 /* Others
 -------------------------------------------------- */
+.section{
+  margin-top: $spacing;
+}
 .timestamp {
   color: lighten($app-color-primary, 20%);
   font-size: 17px;
@@ -238,7 +265,7 @@ img {
 }
 
 .bcg-active.false, .bcg-danger {
-  background-color: $app-bcg-danger;
+  background-color: $app-bcg-danger !important; 
 }
 
 .clickable {
@@ -260,9 +287,10 @@ img {
   font-size: 95%;
   font-style: italic;
   margin: $spacing-half 0;
+  padding-right: $spacing-half;
 }
 
-.help-text.inline {
+.inline .help-text {
   display: inline;
 
 }
@@ -288,8 +316,13 @@ img {
 }
 .device-available-block{
   &.assigned{
-    padding: $spacing $spacing 0 $spacing;
+    padding: $spacing $spacing $spacing-half $spacing;
     border: solid 1px $app-border-color;
     margin: 0 0 $spacing 0;
   }
+}
+// Scroll horizontal
+.scrollh{
+    overflow-y: auto;
+    white-space: nowrap;
 }

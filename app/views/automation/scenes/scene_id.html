@@ -1,0 +1,35 @@
+<!-- The scene -->
+<div class="automation" ng-controller="AutomationSceneIdController">
+
+  <h2>{{_t('scenes')}}</h2>
+  <!-- Form -->
+  <form class="form form-page" ng-submit="storeScene(scene.input,true)">
+    <!-- Form-->
+    <fieldset ng-include="'app/views/automation/scenes/scene_id_form.html'"></fieldset>
+     <!-- Used -->
+     <div ng-if="scene.assignedDevices.length">
+        <legend>{{_t('assigned_devices')}}</legend>
+        <fieldset ng-include="'app/views/automation/scenes/scene_id_assigned.html'"></fieldset>
+     </div>
+    <!-- Available -->
+    <legend>{{_t('lb_available_devices')}}</legend>
+    <fieldset  bb-child-elem="scene.assignedDevices" ng-include="'app/views/automation/scenes/scene_id_available.html'"></fieldset>
+     <!-- Icons -->
+   <div ng-include="'app/views/automation/scenes/scene_id_icons.html'"></div>
+ 
+    <!-- Submit  -->
+    <fieldset class="submit-entry">
+      <a href="#scenes" class="btn btn-default" title="{{_t('lb_cancel')}}">
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </a>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </fieldset>
+  </form>
+  <!-- <pre>{{scene.model|json}}</pre> -->
+  <!-- <pre>{{scene.input|json}}</pre> -->
+</div>
+<!-- /ng-controller -->

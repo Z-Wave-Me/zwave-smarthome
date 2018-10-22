@@ -1,0 +1,140 @@
+<!-- The scene -->
+<div class="automation" ng-controller="AutomationRuleIdController">
+
+  <h2>{{_t('rules')}}</h2>
+  
+  <!-- Form -->
+  <form class="form form-page" ng-submit="storeRule(rule.input,true)">
+    <!-- Form-->
+    <fieldset ng-include="'app/views/automation/rules/rule_id_form.html'"></fieldset>
+    <!-- ////////////////////////////////////////// simple  ////////////////////////////////////////// -->
+    <div ng-if="!rule.input.params.advanced.active">
+      <!-- ////////////////////////////////////////// tabs  ////////////////////////////////////////// -->
+      <fieldset ng-if="!rule.input.params.advanced.active">
+        <div class="tabs-wrap form-inline" bind-class-on-scroll offset="50" scroll-class="fix-me-top">
+          <div class="btn-group btn-group-justified btn-goup-tabs">
+            <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.tab == 'if'}" ng-click="rule.tab = 'if'">
+              {{_t('if')}}
+            </a>
+            <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.tab == 'then'}" ng-click="rule.tab = 'then'">
+              {{_t('then')}}
+            </a>
+            <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.tab == 'else'}" ng-click="rule.tab = 'else'">
+              {{_t('else')}}
+            </a>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <!-- ////////////////////////////////////////// if  ////////////////////////////////////////// -->
+      <div ng-if="rule.tab == 'if'">
+        <!-- Assigned -->
+        <div ng-if="rule.input.params.simple.triggerEvent.deviceId">
+          <legend>{{_t('assigned_devices')}}</legend>
+          <fieldset ng-include="'app/views/automation/rules/rule_id_simple_if_assigned.html'"></fieldset>
+        </div>
+        <!-- Available -->
+        <legend>{{_t('lb_available_devices')}}</legend>
+        <fieldset bb-child-elem="rule.target.assignedDevices" ng-if="rule.tab == 'if'" ng-include="'app/views/automation/rules/rule_id_simple_if_available.html'"></fieldset>
+      </div>
+      <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
+      <div ng-if="rule.tab == 'then'">
+        <!-- Delay -->
+        <fieldset ng-if="rule.tab == 'then'" ng-include="'app/views/automation/rules/rule_id_simple_then.html'"></fieldset>
+        <!-- Assigned devices -->
+        <div ng-if="_.size(rule.input.params.simple.targetElements)">
+          <legend>{{_t('assigned_devices')}}</legend>
+          <fieldset ng-include="'app/views/automation/rules/rule_id_simple_then_assigned.html'"></fieldset>
+        </div>
+          <!-- Assigned notifications -->
+          <div ng-if="_.size(rule.input.params.simple.sendNotifications)">
+            <legend>{{_t('assigned_notifications')}}</legend>
+            <fieldset ng-include="'app/views/automation/rules/rule_id_simple_then_assigned_notifications.html'"></fieldset>
+          </div>
+        <!-- Available -->
+        <legend>{{_t('lb_available_devices')}}</legend>
+        <fieldset bb-child-elem="rule.target.assignedDevices" ng-include="'app/views/automation/rules/rule_id_simple_then_available.html'"></fieldset>
+      </div>
+      <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
+      <fieldset ng-if="rule.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_simple_else.html'"></fieldset>
+    </div><!-- /end default -->
+    <!--  ////////////////////////////////////////// advanced  ////////////////////////////////////////// -->
+    <div ng-if="rule.input.params.advanced.active">
+      <!-- ////////////////////////////////////////// tabs  ////////////////////////////////////////// -->
+      <fieldset ng-if="rule.input.params.advanced.active">
+        <div class="tabs-wrap form-inline" bind-class-on-scroll offset="50" scroll-class="fix-me-top">
+          <div class="btn-group btn-group-justified btn-goup-tabs">
+            <a class="btn btn-default" title="{{_t('if')}}" ng-class="{'active':rule.advanced.tab == 'if'}" ng-click="rule.advanced.tab = 'if'">
+              {{_t('if')}}
+            </a>
+            <a class="btn btn-default" title="{{_t('then')}}" ng-class="{'active':rule.advanced.tab == 'then'}" ng-click="rule.advanced.tab = 'then'">
+              {{_t('then')}}
+            </a>
+            <a class="btn btn-default" title="{{_t('else')}}" ng-class="{'active':rule.advanced.tab == 'else'}" ng-click="rule.advanced.tab = 'else'">
+              {{_t('else')}}
+            </a>
+          </div>
+        </div>
+
+      </fieldset>
+      <!--  ////////////////////////////////////////// if  ////////////////////////////////////////// -->
+      <div ng-if="rule.advanced.tab == 'if'">
+        <!-- Operator -->
+        <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if.html'"></fieldset>
+        <!-- Assigned -->
+        <div ng-if="_.size(rule.input.params.advanced.tests)">
+            <legend>{{_t('assigned_conditions')}}</legend>
+            <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_if_assigned.html'"></fieldset>
+          </div>
+          <!-- Available -->
+          <legend>{{_t('available_conditions')}}</legend>
+          <fieldset bb-child-elem="rule.advanced.tests.assignedDevices" ng-include="'app/views/automation/rules/rule_id_advanced_if_available.html'"></fieldset>
+        </div>
+      <!--  ////////////////////////////////////////// then  ////////////////////////////////////////// -->
+      <div ng-if="rule.advanced.tab == 'then'">
+        <!-- Delay -->
+        <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then.html'"></fieldset>
+        <!-- Assigned devices -->
+        <div ng-if="_.size(rule.input.params.advanced.targetElements)">
+          <legend>{{_t('assigned_devices')}}</legend>
+          <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_assigned.html'"></fieldset>
+        </div>
+        <!-- Assigned notifications -->
+        <div ng-if="_.size(rule.input.params.advanced.sendNotifications)">
+            <legend>{{_t('assigned_notifications')}}</legend>
+            <fieldset ng-include="'app/views/automation/rules/rule_id_advanced_then_assigned_notifications.html'"></fieldset>
+          </div>
+        <!-- Available -->
+        <legend>{{_t('lb_available_devices')}}</legend>
+        <fieldset bb-child-elem="rule.advanced.target.assignedDevices" ng-include="'app/views/automation/rules/rule_id_advanced_then_available.html'"></fieldset>
+        <!-- Expert settings -->
+        <legend>
+          <label class="switch">
+            <input type="checkbox" ng-model="rule.input.params.advanced.expertSettings" ng-checked="rule.input.params.advanced.expertSettings">
+            <span class="slider"></span>
+          </label>
+          <span class="switch-label">{{_t('further_settings')}}</span>
+        </legend>
+        <div ng-if="rule.input.params.advanced.expertSettings" ng-include="'app/views/automation/rules/rule_id_advanced_then_expert.html'"></div>
+     
+    </div>
+     <!--  ////////////////////////////////////////// else  ////////////////////////////////////////// -->
+     <fieldset ng-if="rule.advanced.tab == 'else'" ng-include="'app/views/automation/rules/rule_id_advanced_else.html'"></fieldset>
+  </div><!-- /end advanced -->
+    <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
+    <fieldset class="submit-entry">
+      <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </button>
+      <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
+    </fieldset>
+  </form>
+  <!-- <pre>{{rule.input.params|json}}</pre> -->
+  <!-- <pre>{{rule.source.selected|json}}</pre> -->
+</div>
+<!-- /ng-controller -->

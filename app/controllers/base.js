@@ -12,12 +12,15 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, cfg, cfgicons, dataFactory, dataService, myCache, _) {
-
+myAppController.controller('BaseController', function ($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q,cfg, cfgicons, dataFactory, dataService, deviceDetector,myCache, _) {
+    
     // Global scopes
+    $scope.nightMode = false;
     $scope.$location = $location;
-    angular.extend(cfg.route, {os: dataService.getOs()});
+    $scope.deviceDetector = deviceDetector;
+    angular.extend(cfg.route, {os:  deviceDetector.os});
     $scope.cfg = cfg;
+    $scope.css = 'app/css/main.css';
     $scope.timeZoneInterval = null;
     $scope.languages = {};
     $scope.loading = false;
@@ -33,6 +36,23 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         find: {},
         alert: {message: false, status: 'is-hidden', icon: false}
     };
+    $scope.connection = {
+        online: false,
+        local: false,
+        remote: false
+    }
+    $scope.swipeDir = false;
+
+    $scope.swipe = function(dir) {
+        $scope.$broadcast('swipe',dir);
+    }
+
+    /**
+     * Disable contextmenu on mobile devices
+     */
+    if($scope.deviceDetector.isMobile()) {
+        $(document).contextmenu(function(){return false;});
+    }
 
     /**
      * Extend an user
@@ -61,6 +81,8 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             cfg.img.icons = cfg.skin.path + $cookies.skin + '/img/icons/';
             cfg.img.logo = cfg.skin.path + $cookies.skin + '/img/logo/';
             $("link[id='main_css']").attr('href', cfg.skin.path + $cookies.skin + '/main.css');
+            $scope.css = cfg.skin.path + $cookies.skin + '/main.css';
+
 
         } else {
             dataFactory.getApi('skins_active').then(function (response) {
@@ -69,8 +91,8 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                     cfg.img.icons = cfg.skin.path + response.data.data.name + '/img/icons/';
                     cfg.img.logo = cfg.skin.path + response.data.data.name + '/img/logo/';
                     $("link[id='main_css']").attr('href', cfg.skin.path + response.data.data.name + '/main.css');
+                    $scope.css = cfg.skin.path + response.data.data.name + '/main.css';
                 }
-            }, function (error) {
             });
         }
     };
@@ -126,10 +148,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 // Count all items and set as unread
                 var unread = 0;
                 var read =  response.data.rss ?  response.data.rss.read : [];
-                var channel = _.isArray(data.rss.channel.item) ? data.rss.channel.item : [data.rss.channel.item];
+                var channel = _.isArray(data.rss.channel.item) && data.rss.channel.item? data.rss.channel.item : (data.rss.channel.item? [data.rss.channel.item] : []);
 
                 _.filter(channel, function (v, k) {
-                   //$scope.rss.all.push(v);
+                    //$scope.rss.all.push(v);
                     // If item ID is  not in the array READ
                     // add 1 to unread
                     if (read.indexOf(v.id) === -1) {
@@ -138,7 +160,6 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
                 });
                 myCache.put('rssinfo', {read: read,unread: unread});
                 angular.extend($scope.rss,{read: read,unread: unread});
-
             });
             // }
         });
@@ -158,13 +179,29 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         }
         dataFactory.pingServer(cfg.server_url + cfg.api['time']).then(function (response) {
             $interval.cancel($scope.timeZoneInterval);
+            $scope.connection.online = true;
+            
+            var remote  = cfg.find_hosts.indexOf($location.host());    
+            if(remote > -1) {
+                $scope.connection.remote = true;
+            } else {
+                $scope.connection.local = true;
+            }
+
             angular.extend(cfg.route.time, {string: $filter('setTimeFromBox')(response.data.data.localTimeUT)},
-                {timestamp: response.data.data.localTimeUT});
+                {timestamp: response.data.data.localTimeUT},
+                {timeZoneOffset: response.data.data.localTimeZoneOffset});
+
             var refresh = function () {
-                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
-                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
+                //var oldTime = cfg.route.time.string;
+                //cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
+                //cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
                 if (cfg.route.fatalError.type === 'network') {
+                    $scope.connection.online = false;
+                    //cfg.route.time.string = oldTime;
                     $scope.reloadAfterError();
+                } else {
+                    $scope.connection.online = true;   
                 }
 
             };
@@ -238,6 +275,17 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      */
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         /**
+         * Cancels pending requests
+         */
+        angular.forEach($http.pendingRequests, function(request) {
+            request.cancel  = $q.defer();
+            request.timeout = request.cancel.promise;
+        });
+        /**
+         * Reset expanded elements
+         */
+        $scope.expand = {};
+        /**
          * Reset fatal error object
          */
         dataService.resetFatalError();
@@ -249,6 +297,10 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
          * Set timestamp and ping server if request fails
          */
         $scope.setTimeStamp();
+        
+        angular.copy({}, $scope.naviExpanded);
+        angular.copy({}, $scope.autocompleteExpanded);
+        angular.copy({}, $scope.expand);
     });
 
     /**
@@ -306,6 +358,7 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function (response) {
             angular.extend($scope.languages, response.data);
+            $scope.setAlertifyDefaults();
         }, function (error) {
         });
     };
@@ -358,10 +411,15 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
 
     /**
      * Causes $route service to reload the current route even if $location hasn't changed.
+     * @param {boolean} cache
      * @returns {undefined}
      */
-    $scope.reloadData = function () {
-        myCache.removeAll();
+    $scope.reloadData = function (cache) {
+        // Clear also cache?
+        if(cache){
+            myCache.removeAll();
+        }
+       
         $route.reload();
     };
 
@@ -432,29 +490,38 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
      */
     $scope.naviExpanded = {};
     $scope.expandNavi = function (key, $event, status) {
+
         if ($scope.naviExpanded[key]) {
             $scope.naviExpanded = {};
-            $event.stopPropagation();
+            $event.stopPropagation();    
             return;
         }
+
         $scope.naviExpanded = {};
         if (typeof status === 'boolean') {
             $scope.naviExpanded[key] = status;
         } else {
             $scope.naviExpanded[key] = !$scope.naviExpanded[key];
         }
-        $event.stopPropagation();
+        $event.stopPropagation();    
     };
 
     /**
      * Expand/collapse autocomplete
      * @param {string} key
-     * @param {object} $event
-     * @param {boolean} status
      * @returns {undefined}
      */
     $scope.autocompleteExpanded = {};
-    $scope.expandAutocomplete = function (key, $event, status) {
+    $scope.expandAutocomplete = function (key) {
+        $scope.autocompleteExpanded = {};
+        if (key) {
+            $scope.autocompleteExpanded[key] = true;
+        }
+    };
+    /**
+     * todo: deprecated
+     */
+    /*$scope.expandAutocomplete = function (key, $event, status) {
         if ($scope.autocompleteExpanded[key]) {
             $scope.utocompleteExpanded = {};
             $event.stopPropagation();
@@ -467,20 +534,21 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             $scope.utocompleteExpanded[key] = !$scope.utocompleteExpanded[key];
         }
         $event.stopPropagation();
-    };
+    };*/
     /**
      * Collapse navi, menu and autocomplete when clicking outside
      */
-    window.onclick = function () {
-        if ($scope.utocompleteExpanded) {
-            angular.copy({}, $scope.utocompleteExpanded);
+    window.onclick = function (event) {
+        if ($scope.autocompleteExpanded) {
+            angular.copy({}, $scope.autocompleteExpanded);
             $scope.$apply();
         }
-        if ($scope.naviExpanded) {
+        if ($scope.naviExpanded && !$scope.naviExpanded.elCategories || $('#elCategories').has($(event.target)).length == 0) {
             angular.copy({}, $scope.naviExpanded);
             $scope.$apply();
         }
     };
+
     /**
      * Open/close a modal window
      * @param {string} key
@@ -495,16 +563,28 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         } else {
             $scope.modalArr[key] = !($scope.modalArr[key]);
         }
-
-        $event.stopPropagation();
+        if($event){
+          $event.stopPropagation();
+        }
+        
     };
     $scope.expand = {};
     /**
      * Expand/collapse an element
      * @param {string} key
+     * @param {boolean} hidePrevious
      * @returns {undefined}
      */
-    $scope.expandElement = function (key) {
+    $scope.expandElement = function (key,hidePrevious) {
+        // Reset if an empty key
+        if (!key) {
+            $scope.expand = [];
+            return;
+        }
+        // Also hide previous expanded elements
+        if (hidePrevious) {
+            $scope.expand = [];
+        }
         $scope.expand[key] = !($scope.expand[key]);
     };
 
@@ -522,10 +602,16 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
         $scope.rowSpinner[key] = !$scope.rowSpinner[key];
     };
 
-    // Alertify defaults
-    alertify.defaults.glossary.title = cfg.app_name;
-    alertify.defaults.glossary.ok = 'OK';
-    alertify.defaults.glossary.cancel = 'CANCEL';
+    /**
+     * Set alertify defaults
+     */
+    $scope.setAlertifyDefaults = function () {
+        // Alertify defaults
+        alertify.defaults.glossary.title = cfg.app_name;
+        alertify.defaults.glossary.ok = 'OK';
+        alertify.defaults.glossary.cancel = $scope._t('lb_cancel');
+    };
+    $scope.setAlertifyDefaults();
 
     // Extend existing alert (ERROR) dialog
     if (!alertify.alertError) {
@@ -555,6 +641,4 @@ myAppController.controller('BaseController', function ($scope, $rootScope, $cook
             };
         }, true, 'alert');
     }
-
-
 });

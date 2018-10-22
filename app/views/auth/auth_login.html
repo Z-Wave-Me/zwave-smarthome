@@ -1,7 +1,9 @@
 <!-- Login view -->
 <div ng-controller="AuthLoginController">
     <bb-loader></bb-loader>
-     <div ng-include="'app/views/auth/auth_header.html'"></div>
+    <div class="welcome-screen">
+        <h1> {{_t('welcome_1')}} {{auth.remoteId}}</h1>
+    </div>
     <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>
         <fieldset>
             <h3><span ng-bind="_t('nav_login')"></span></h3>
@@ -16,10 +18,16 @@
 
             <!-- remember -->
             <div class="form-group">
-                <input type="checkbox" name="rememberme" value="true" id="rememberme" ng-model="input.rememberme" ng-checked="input.remember" /> <label ng-bind="_t('remember_me')"></label>
+                <input type="checkbox" name="rememberme" value="true" id="rememberme" ng-model="input.rememberme" ng-checked="input.remember" /> <label for="rememberme" ng-bind="_t('remember_me')"></label>
+            </div>
+            <div class="form-group">
+                <a href="#passwordforgot"><i class="fa fa-question-circle text-primary"></i> {{_t('password_forgot')}}</a>    
+            </div>
+            <!-- remember -->
+            <div class="form-group">
+                {{_t('local_ip_address')}}: {{auth.ipAddress}}
             </div>
 
-            <a href="#passwordforgot"><i class="fa fa-question-circle text-primary"></i> {{_t('password_forgot')}}</a>
         </fieldset>
         <fieldset class="submit-entry">
             <button type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}"><i class="fa fa-sign-in"></i> {{_t('lb_enter')}}</button>

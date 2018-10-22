@@ -14,6 +14,13 @@
 
 
 }
+
+.group-login-lang{
+    // Media queries
+    @include mediaQueries(max-esmall) {
+        display: block;
+    }
+}
 /* Images
 -------------------------------------------------- */
 .lang-img{

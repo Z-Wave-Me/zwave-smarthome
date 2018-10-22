@@ -1,0 +1,35 @@
+<!-- Wifiplug manage view -->
+<div ng-controller="WifiPlugManageController">
+    <div class="app-row app-row-report clearfix">
+             <div class="report-entry bcg-active"
+                id="instance_{{$index}}" 
+                ng-repeat="v in instances |orderBy:'title' track by v.id" 
+                ng-class="v.active ? 'true': 'false'">
+                 <div class="report-col report-media">
+                      <img class="report-img-s" ng-src="{{modules.mediaUrl + v.moduleId + '/' + modules.imgs[v.moduleId]}}" ng-if="modules.imgs[v.moduleId]" alt="img" />
+                    <img class="report-img-s" ng-src="storage/img/placeholder-img.png" ng-if="!modules.imgs[v.moduleId]" alt="img" />
+                 </div>
+                 <div class="report-col report-body">
+                      <a href="#module/put/{{v.id}}"><span ng-bind="v.title"></span></a>
+                 </div>
+                 <div class="report-col report-ctrl report-ctrl-3">
+                      <div class="btn-group">
+                    <a href="#module/put/{{v.id}}" class="btn btn-default" title="{{_t('lb_settings')}}">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
+                    ng-click="activateInstance(v, v.active ? false : true)">
+                    <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
+                  </button>
+                    <button title="{{_t('lb_remove')}}" 
+                            class="btn btn-default"
+                            ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
+                        <i class="fa fa-remove text-danger"></i>
+                    </button>
+                 </div>
+                 </div>
+              </div>
+        </div>
+    <div class="device-logo" ng-include="'app/views/wifiplug/wifiplug_nav.html'"></div>
+</div> <!-- /ng-controller --> 
+

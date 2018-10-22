@@ -7,14 +7,14 @@
         </button>
     </div>-->
     <!-- Collapsed-->
-    <div class="form-group">
-        <label>
-            <input type="checkbox" name="instances_expanded"
+    <div class="form-group" ng-if="dataHolder.instances.expandable">
+        <input type="checkbox" name="instances_expanded" id="instances_expanded"
                    ng-change="expandInstances(dataHolder.instances.expanded)"
                    ng-model="dataHolder.instances.expanded"
                    ng-checked="dataHolder.instances.expanded"/>
+        <label for="instances_expanded">
             {{_t('expand_all')}}
-        </label>
+        </label>        
     </div>
     <!-- Search and autocomplete -->
     <form id="form_search" class="input-group" ng-submit="setFilter({q: dataHolder.instances.autocomplete.term})"
@@ -30,7 +30,7 @@
         </span>
 
         <!--<div class="app-dropdown autocomplete" ng-if="dataHolder.instances.autocomplete.results.length">-->
-        <div class="app-dropdown autocomplete" ng-if="utocompleteExpanded.searchInstances">
+        <div class="app-dropdown autocomplete" ng-if="autocompleteExpanded.searchInstances">
             <ul>
                 <li class="dropdown-entry" title="{{v.title}}"
                     ng-repeat="v in dataHolder.instances.autocomplete.results | orderBy:'toString()' track by $index">

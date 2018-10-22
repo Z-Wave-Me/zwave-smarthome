@@ -1,63 +1,56 @@
 <!-- Zwave device view -->
 <div ng-controller="ZwaveVendorController">
-    <bb-loader></bb-loader>
-    <!--<div class="text-center device-autodetect" ng-include="'app/views/zwave/zwave_vendors_autodetect.html'"></div>-->
-
-    <div class="row">
-        <!-- Info  -->
-        <div class="col-sm-6">
-            <h3>
-                <a ng-href="#/zwave/vendors" class="btn btn-default"><i class="fa fa-arrow-left"></i></a>
-                <strong>{{zwaveVendors.products.pageTitle}}</strong>
-                | {{_t('products')}} <span class="badge text-primary">{{zwaveVendors.products.cnt}}</span>
-                | {{_t('frequency')}} <span class="badge">{{zwaveVendors.frequencyName}}</span>
-                <em ng-class="zwaveProducts.cnt == 0 ? 'text-danger': '' ">
-
-                </em>
-            </h3>
-        </div>
-        <!-- Control  -->
-        <div class="col-sm-6" ng-include="'app/views/zwave/zwave_vendors_ctrl.html'"></div>
-    </div>
-    <!-- No search result -->
-    <div class="alert alert-warning" ng-if="zwaveVendors.products.noSearch">
-        <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" +
-        zwaveVendors.products.noSearch + "\""})}}
-    </div>
-    <!-- List  -->
-    <table class="table table-report">
-        <tbody>
-        <tr ng-repeat="v in zwaveVendors.products.collection | orderBy:'name' track by $index">
-            <td>
-                <a ng-href="#zwave/inclusion/{{v.id}}">
-                <img class="product-img" ng-src="data:image/png;base64,{{v.product_image_base64}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                </a>
-            </td>
-            <td>
-                <a ng-href="#zwave/inclusion/{{v.id}}">
-                {{v.id}}
-                </a>
-            </td>
-            <td>
-                <a ng-href="#zwave/inclusion/{{v.id}}">
-                {{v.name}}
-                </a>
-            </td>
-            <td>
-                <span class="label label-info">{{v.frequency}}</span>
-            </td>
-            <td class="td-action">
-                <a ng-href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
-                    <i class="fa fa-plug text-primary"></i>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="fieldset submit-entry_" ng-show="_.size(zwaveVendors.products.collection) > 10">
+  <bb-loader></bb-loader>
+  <div class="row">
+    <!-- Info  -->
+    <div class="col-sm-6">
+      <h3>
         <a ng-href="#/zwave/vendors" class="btn btn-default">
-            <i class="fa fa-arrow-left"></i>
+          <i class="fa fa-arrow-left"></i>
+        </a>
+        <strong>{{zwaveVendors.products.pageTitle}}</strong>
+        | {{_t('products')}}
+        <span class="badge text-primary">{{zwaveVendors.products.cnt}}</span>
+        | {{_t('frequency')}}
+        <span class="badge">{{zwaveVendors.frequencyName}}</span>
+        <em ng-class="zwaveProducts.cnt == 0 ? 'text-danger': '' ">
+
+        </em>
+      </h3>
+    </div>
+    <!-- Control  -->
+    <div class="col-sm-6" ng-include="'app/views/zwave/zwave_vendors_ctrl.html'"></div>
+  </div>
+  <!-- No search result -->
+  <div class="alert alert-warning" ng-if="zwaveVendors.products.noSearch">
+    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + zwaveVendors.products.noSearch + "\""})}}
+  </div>
+  <!-- List  -->
+  <div class="list-panel" ng-repeat="v in zwaveVendors.products.collection | orderBy:'name' track by $index">
+    <!-- img -->
+    <figure class="img wh-64x64 clickable">
+        <a ng-href="#zwave/inclusion/{{v.id}}">
+        <img class="product-img" ng-src="{{cfg.img.zwavedevices + v.product_image}}" err-src="{{cfg.online_device_icon_url + v.remote_image}}"
+        err-src2="{{cfg.img.placeholder}}" alt="img" />
+      </a>
+    </figure>
+      <!-- body -->
+  <div class="body">
+      <div> <a ng-href="#zwave/inclusion/{{v.id}}">
+        {{v.name}}
+      </a> <p><small class="sm-hide_">{{v.id}}</small></p></div>
+  </div>
+    <!-- control -->
+    <div class="control">
+        <a ng-href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
+          <i class="fa fa-plug text-primary"></i>
         </a>
     </div>
-</div> <!-- /ng-controller --> 
-
+  </div>
+  <div class="fieldset submit-entry_" ng-show="_.size(zwaveVendors.products.collection) > 10">
+    <a ng-href="#/zwave/vendors" class="btn btn-default">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+  </div>
+</div>
+<!-- /ng-controller -->
