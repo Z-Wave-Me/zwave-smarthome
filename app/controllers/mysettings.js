@@ -32,7 +32,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             // Error message
             if (profile.state === 'rejected') {
                 $scope.loading = false;
-                alertify.alertError($scope._t('error_load_data'));
+                angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
             // Success - profile
@@ -47,7 +47,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
         });
     };
     $scope.allSettled();
-
     /**
      * Assign device to the list
      */

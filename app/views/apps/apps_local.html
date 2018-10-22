@@ -5,7 +5,7 @@
         <!-- Apps navigation -->
         <div ng-include="'app/views/apps/navi.html'"></div>
         <!-- Apps control -->
-        <div class="app-search" bind-class-on-scroll offset="50" scroll-class="fix-me-top" ng-include="'app/views/apps/apps_local_ctrl.html'"></div>
+        <div class="app-search" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top" ng-include="'app/views/apps/apps_local_ctrl.html'"></div>
         <!-- Apps widget -->
         <div ng-include="'app/views/apps/apps_local_widget.html'" ng-if="!dataHolder.modules.filter['status']"></div>
         <!-- Apps widget updated -->

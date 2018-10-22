@@ -1,0 +1,11 @@
+/* Input
+-------------------------------------------------- */
+.flex-input-group{
+  
+  &.number-control{
+    input[type="number"]{
+      max-width: 100px;
+      display: inline-block;
+    }
+  }
+}

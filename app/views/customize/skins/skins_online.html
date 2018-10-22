@@ -4,36 +4,32 @@
     <bb-loader></bb-loader>
     <!-- Skins navigation -->
     <div ng-include="'app/views/customize/navi.html'"></div>
-    <!-- Alert -->
-    <bb-alert alert="skins.online.alert"></bb-alert>
-    <!-- List -->
-    <div class="clearfix" ng-if="skins.online.show">
-      <div class="card-customize" title="{{v.title}}" ng-repeat="v in skins.online.all track by v.id">
-      <div class="card-customize-in" style="background-image:url('{{v.icon_path}}');"  
-      ng-class="{'widget-warning': skins.local.all[v.name],'widget-danger': skins.local.all[v.name] && skins.local.all[v.name].version != v.version}">
-      <div class="card-header">
-        <!-- Download -->
-        <span class="card-icon" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadSkin(v)">
-            <i class="fa fa-download text-success"></i>
-       </span>
-       <!-- Upgrade -->
-        <span class="card-icon" title="{{_t('upgrade')}}" ng-if="v.status === 'notequal'" ng-click="uupdateSkin(v)">
-            <i class="fa fa-level-up"></i>
-       </span>
-       <!-- Installed -->
-       <span class="card-icon disabled" title="{{_t('installed')}}" disabled ng-if="v.status === 'equal'">
-            <i class="fa fa-check"></i>
-       </span> 
+    <!-- Gallery -->
+    <div class="customize flexgallery">
+      <div ng-repeat="v in skins.online.all track by $index" ng-class="{'inactive': skins.local.all[v.name]}">
+        <figure>
+            <img title="{{v.title}}" ng-src="{{v.icon_path}}" alt="img">
+          <div class="header">
+            <!-- Download -->
+            <span class="is-icon" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadSkin(v)">
+              <i class="fa fa-download text-success"></i>
+            </span>
+            <!-- Upgrade -->
+            <span class="is-icon" title="{{_t('upgrade')}}" ng-if="v.status === 'notequal'" ng-click="uupdateSkin(v)">
+              <i class="fa fa-level-up"></i>
+            </span>
+            <!-- Installed -->
+            <span class="is-icon disabled" title="{{_t('installed')}}" disabled ng-if="v.status === 'equal'">
+              <i class="fa fa-check"></i>
+            </span>
+          </div>
+         <figcaption ng-click="skins.online.find = v;handleModal('skinOnlineModal', $event)">
+            <span class="title">{{v.title| cutText:true:25}}</span>
+          </figcaption>
+        </figure>
       </div>
-         <!-- Footer -->
-       <div class="card-footer" ng-click="skins.online.find = v;handleModal('skinOnlineModal', $event)">
-          {{v.title| cutText:true:25}}
-       </div>
-      </div>
-      </div>
-      
     </div>
-     <!-- Modal -->
+    <!-- Modal -->
     <div id="skinOnlineModal" class="appmodal" ng-if="modalArr.skinOnlineModal">
       <div class="appmodal-in">
         <div class="appmodal-header">

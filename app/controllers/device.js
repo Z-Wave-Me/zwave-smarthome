@@ -37,7 +37,6 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
                 $scope.enocean.installed = true;
                 if (!EnOcean_module.active) {
                     $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    return;
                 }
                 $scope.enocean.active = true;
             }
@@ -47,7 +46,6 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
                 $scope.rf433.installed = true;
                 if (!RF433_module.active) {
                     $scope.rf433.alert = {message: $scope._t('rf433_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    return;
                 }
                 $scope.rf433.active = true;
             }
@@ -57,7 +55,6 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
                 $scope.mobileAppSupport.installed = true;
                 if (!MobileAppSupport_module.active) {
                     $scope.mobileAppSupport.alert = {message: $scope._t('mobile_app_support_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    return;
                 }
                 $scope.mobileAppSupport.instanceId = MobileAppSupport_module.id;
                 $scope.mobileAppSupport.active = true;

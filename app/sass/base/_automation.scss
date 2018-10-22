@@ -1,7 +1,27 @@
 /* Automation
 -------------------------------------------------- */
+/* Gallery
+-------------------------------------------------- */
 
-.automation {
+.automations {
+  &.flexgallery {
+    
+    @include mediaQueries(min-large) {
+      margin: 0px 100px;
+    }
+    >* {
+      @include mediaQueries(min-esmall) {
+        flex-basis: 33.3333%;
+      }
+      /*@include mediaQueries(min-large) {
+        flex-basis: 25%;
+        
+      }*/
+    }
+  }
+}
+
+//.automation {
   .accordion-wrap {
     position: relative;
     .label {
@@ -11,33 +31,69 @@
       &.index_0 {
         display: none;
       }
-      &.nested {
-        display: none;
-      }
     }
     .accordion-toggle {
       display: flex;
       align-items: center;
-      button {
+      font-size:110%;
+      border-bottom: dotted 1px $accordion-border-color;
+
+      .is-legend {
+        display: block;
+      }
+      > button {
+        padding: $spacing;
+        border: none;
+        .accordion-title {
+          padding: 5px 0;
+          .room-title {
+            display: block;
+            padding-bottom: 3px; 
+            font-size: 80%;
+          }
+          .device-title {
+            display: block;
+          }
+        }
         &.no-toggle {
           cursor: text !important;
+          .navi-img{
+            margin-right: $spacing;
+            width: 32px;
+            height: 32px;
+          }
           &::after {
             content: "";
           }
         }
+        .navi-img{
+          margin-right: $spacing;
+          width: 32px;
+          height: 32px;
+        }
+        em {
+          font-size: 80%;
+        }
       }
       .no-toggle {
-        padding: $spacing 0;
+        padding: $spacing;
         width: 100%;
         font-weight: normal;
-        border-bottom: dotted 1px $accordion-border-color;
+        .navi-img{
+            margin-right: $spacing;
+            width: 32px;
+            height: 32px;
+          }
+        em {
+          font-size: 80%;
+        }
       }
       /*  &:last-child {
         margin-bottom: $spacing;
       } */
     }
     .accordion {
-      padding: $spacing;
+      //padding: $spacing;
      
       border-bottom: 0;
       .form-group {
@@ -84,5 +140,13 @@
         }
       }
     }
+    &.edit-me{
+      .accordion-toggle{
+        button{
+          font-weight: bold;
+        }
+      }
+    }
+    
   }
-}
+//}

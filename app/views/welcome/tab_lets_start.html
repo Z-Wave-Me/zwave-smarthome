@@ -1,0 +1,17 @@
+<h1>{{_t('lets_start')}}</h1>
+<div class="text">
+    <p ng-bind-html="_t('p_welcome_lets_start_instruction',{'__btn_dev__':_t('nav_devices')})|toTrusted"></p>
+    <ul>
+        <li>{{_t('devices_text_zwave')}}</li>
+        <li>{{_t('devices_text_mobile_push')}}</li>
+        <li>{{_t('devices_text_camera')}}</li>
+        <li>{{_t('devices_text_speech_assistant')}}</li>
+        <li>{{_t('devices_text_wifi_plug')}}</li>
+        <li>{{_t('devices_text_enocean')}}</li>
+        <li>{{_t('devices_text_433')}}</li>
+    </ul><br><br>
+    <div ng-if="elementAccess(cfg.role_access.admin)" ng-bind-html="_t('p_welcome_lets_start_apps', {'__btn_apps__':_t('nav_apps')})|toTrusted"></div>
+</div>
+<div class="image">
+    <img src="app/img/welcome/overview.png"/>
+</div>

@@ -156,16 +156,10 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
           status: false,
           icon: 'fa-exclamation-triangle text-danger'
         };
-        $scope.dataHolder.onlineModules.alert = {
-          message: $scope._t('no_internet_connection', {
-            __sec__: (cfg.pending_remote_limit / 1000)
-          }),
-          status: 'alert-warning',
-          icon: 'fa-wifi'
-        };
+        angular.extend(cfg.route.alert, {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}),icon: 'fa-wifi text-danger'});
 
       } else {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
       }
     }).finally(function () {
       $scope.loading = false;
@@ -198,12 +192,12 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
       var instances = response[2];
       // Error message
       if (modules.state === 'rejected' && $scope.routeMatch('/apps/local')) {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
       if (instances.state === 'rejected' && $scope.routeMatch('/apps/instance')) {
-        alertify.alertError($scope._t('error_load_data'));
+        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         return;
       }
 
@@ -278,9 +272,9 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
         var message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error.key) : $scope._t('error_no_module_download'));
         alertify.alertError(message);
       });
+    }).setting('labels', {
+        'ok': $scope._t('ok')
     });
-
-
   };
 
   /// --- Private functions --- ///
@@ -591,7 +585,12 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
       return v.moduleId;
     });
 
-    _.filter(data, function (v) {
+    _.chain(data)
+    .flatten()
+    .reject(function (v) {
+      return v.category == 'system';
+    })
+    .filter(function (v) {
       if (!$scope.dataHolder.instances.groups[v.moduleId]) {
         $scope.dataHolder.instances.groups[v.moduleId] = {
           id: v.id,
@@ -605,7 +604,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
     $scope.dataHolder.instances.all = _.chain(data)
       .flatten()
       .reject(function (v) {
-        if (cfg.custom_apps.indexOf(v.moduleId) > -1) {
+        if (v.category == 'system') {
           return true;
         } else if ($scope.getHiddenApps().indexOf(v.moduleId) > -1) {
           if ($scope.user.role !== 1) {

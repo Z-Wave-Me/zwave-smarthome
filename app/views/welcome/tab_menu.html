@@ -1,0 +1,16 @@
+<h1>{{_t('nav_menu')}}</h1>
+<div class="text">
+    <p ng-bind-html="_t('p_welcome_menu',{'__nav_menu__':_t('nav_menu')})|toTrusted"></p>
+    <ul>
+        <li ng-bind-html="_t('li_welcome_menu_applications',{'__nav_apps__':_t('nav_apps')})|toTrusted"></li>
+        <li ng-bind-html="_t('li_welcome_menu_devices',{'__nav_devices__':_t('nav_devices')})|toTrusted"></li>
+        <li ng-bind-html="_t('li_welcome_menu_design',{'__customize__':_t('customize')})|toTrusted"></li>
+        <li ng-bind-html="_t('li_welcome_menu_settings',{'__nav_myaccess__':_t('nav_myaccess')})|toTrusted"></li>
+        <li ng-bind-html="_t('li_welcome_menu_managment',{'__management__':_t('management')})|toTrusted"></li>
+        <li ng-bind-html="_t('li_welcome_menu_news',{'__news__':_t('news')})|toTrusted"></li>
+        <li ng-bind-html="_t('li_welcome_menu_logout',{'__nav_logout__':_t('nav_logout')})|toTrusted"></li>
+    </ul><br><br>
+</div>
+<div class="image">
+    <img src="app/img/welcome/menu_view.png"/>
+</div>

@@ -1,5 +1,12 @@
 /* Events
 -------------------------------------------------- */
+.events{
+  .list-panel{
+    .body{
+      padding: $spacing-half 0;
+    }
+  }
+}
 .event-level-warning{
     background-color: $app-bcg-warning;
 }
@@ -11,18 +18,32 @@
   background-color: $app-bcg-danger;
 }
 
-.group-event-dropdown{
-   width: 100%;
-       .btn{
-       float: right;
-   }
-   .app-dropdown{
-       width: 100%;
-   }
+.event-message{
+  //display: block;
 }
-
 .event-room {
-  display: block;
+  //display: block;
   font-size: 90%;
   color: #737373;
+  font-style: italic;
+  &::before{
+    margin: 0 $spacing-half;
+    //padding: $spacing;
+    content: "-";
+  }
+}
+
+@include mediaQueries(min-small) {
+  .event-message{
+    display: inline-block;
+  }
+  .group-event-dropdown{
+    width: 100%;
+        .btn{
+        float: right;
+    }
+    .app-dropdown{
+        width: 100%;
+    }
+ }
 }

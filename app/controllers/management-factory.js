@@ -41,6 +41,8 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
                 alertify.alertError($scope._t('factory_default_error'));
                 $scope.loading = false;
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 

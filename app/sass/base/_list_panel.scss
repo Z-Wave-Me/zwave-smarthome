@@ -1,47 +1,62 @@
 /* List panel
 -------------------------------------------------- */
-// input top, bottom spacing
-$list-panel-spacing: $spacing;
-$list-panel-img-w: 64px;
-$list-panel-bcg-color: #fff;
-$list-panel-border-color: $app-border-color;
-.list-panel{
- @include appClearFix();
+.panel-wrap {
+  margin-bottom: $spacing-double;
+}
 
- background-color: $list-panel-bcg-color;
-  border-bottom: 1px solid $list-panel-border-color; 
-  padding: $list-panel-spacing;
-  > * {
+.list-panel {
+  @include appClearFix();
+  background-color: $app-bcg-color;
+  border-bottom: 1px dotted $app-border-color;
+  padding: $spacing;
+  >* {
     float: left;
   }
-  figure{
-    margin-right: $list-panel-spacing;
+  figure,.figure {
+    display: block;
+    margin-right: $spacing;
     min-width: 32px;
-    
   }
-  .body{
+  .body {
     max-width: 70%;
-   & > div{
+    &>div {
       margin-top: $spacing-half;
     }
   }
-  .control{
+  .control {
     float: right;
     text-align: right;
-    margin-left: $list-panel-spacing;
+    margin-left: $spacing;
     min-width: 20%;
-
     @include mediaQueries(max-small) {
-      &.expand-false{
+      &.expand-false {
         display: none;
       }
-      &.expand-true{
+      &.expand-true {
         margin-top: $spacing;
         display: block;
         float: right;
         width: 100%;
       }
-      
+    }
+  }
+  &.condensed {
+    padding: $spacing-half;
+    .control {
+      min-width: 1%;
+      margin-left: $spacing;
+    }
+  }
+  .control-collapsable {
+    &.expand-false {
+      display: none;
+    }
+    &.expand-true {
+      //text-align: right;
+      margin-top: $spacing;
+      display: block;
+      float: right;
+      width: 100%;
     }
   }
 }

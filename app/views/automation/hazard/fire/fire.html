@@ -1,0 +1,44 @@
+<!-- Sensors -->
+<section>
+	<h3>{{_t('fire_sensors')}}</h3>
+	<!-- Asigned sensors -->
+	<div ng-if="_.size(hazardProtection.fire.input.params.sensors) > 0">
+		<legend>{{_t('assigned_fire_sensors')}}</legend>
+	<fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/fire/fire_sensors_assigned.html'"></fieldset>
+</div>
+<!-- Available -->
+<legend>{{_t('lb_available_sensors')}}</legend>
+<fieldset ng-include="'app/views/automation/hazard/fire/fire_sensors_available.html'"></fieldset>
+</section>
+<!-- Notifications -->
+<section>
+<h3>{{_t('alarm_notifications')}}</h3>
+<!-- Assigned notifications -->
+<div ng-if="_.size(hazardProtection.fire.input.params.sendNotifications) > 0">
+<fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/fire/fire_notifiers_assigned.html'"></fieldset>
+</div>
+<!-- Add notifications -->
+<fieldset ng-include="'app/views/automation/hazard/fire/fire_notifiers_add.html'"></fieldset>
+</section>
+<!-- Devices -->
+<section>
+<h3>{{_t('devices_for_action')}}</h3>
+<div ng-if="_.size(hazardProtection.fire.input.params.triggerEvent)">
+<!-- Asigned devices -->
+<legend>{{_t('assigned_devices')}}</legend>
+<fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/fire/fire_devices_assigned.html'"></fieldset>
+</div>
+<div ng-if="_.size(hazardProtection.fire.input.params.sensors)">
+<!-- Available devices -->
+<legend>{{_t('lb_available_devices')}}</legend>
+<fieldset data-collapse-all="true" ng-include="'app/views/automation/hazard/fire/fire_devices_available.html'"></fieldset>
+</div>
+<h3>{{_t('activate_module',{__module__:_t('fire_sensors')})}}</h3>
+<fieldset>
+<label class="switch">
+<input type="checkbox" ng-model="hazardProtection.fire.input.active" ng-checked="hazardProtection.fire.input.active">
+<span class="slider"></span>
+</label>
+<span class="switch-label">{{hazardProtection.fire.input.active ? _t('lb_active'): _t('activeASC')}}</span>
+</fieldset>
+</section>

@@ -1,12 +1,12 @@
 {
   "name": "SmartHome-UI",
-  "version": "1.7.53",
-  "v": "1.8.0",
+  "version": "1.7.70",
+  "v": "1.9.0",
   "rc": 0,
   "description": "This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices.",
   "main": "index.html",
   "app_type": "default",
-  "built": "15-05-2018 14:43:34",
+  "built": "24-09-2018 14:06:32",
   "type_cfg": {
     "default": {
       "dir": "dist",
@@ -19,6 +19,7 @@
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^1.0.3",
     "grunt-banner": "^0.6.0",
+    "grunt-cache-breaker": "^2.0.1",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-compress": "^1.4.3",
     "grunt-contrib-concat": "^0.5.0",
@@ -36,6 +37,7 @@
     "grunt-json-generator": "^0.1.0",
     "grunt-mkdir": "^0.1.2",
     "grunt-modify-json": "^0.1.3",
+    "grunt-processhtml": "^0.4.1",
     "grunt-release-it": "^1.0.1",
     "grunt-remove": "^0.1.0",
     "grunt-replace": "^1.0.1",

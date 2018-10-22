@@ -1,7 +1,6 @@
 <div class="widget-img-overlay" 
     ng-click="dataHolder.devices.find = v;handleModal('switchMultilevelModal_m', $event)">
-    <span class="widget-level">{{v.metrics.level}}</span> 
-    <span class="widget-scale">{{v.metrics.scaleTitle}}</span>    
+    <span class="widget-level">{{v.metrics.level}}<small>{{v.metrics.scaleTitle}}</small></span>  
 </div>
 <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
     err-src="{{cfg.img.placeholder}}"/>

@@ -8,7 +8,7 @@
  * The controller that teach-in a device.
  * @class RF433TeachinController
  */
-myAppController.controller('RF433TeachinController', function($scope, $q, $routeParams, $interval, $timeout, $location, dataFactory, dataService, myCache) {
+myAppController.controller('RF433TeachinController', function($scope, $q, $routeParams, $interval, $timeout, $location, dataFactory, dataService, myCache,cfg) {
     $scope.inclusion = {
         process: false,
         done: false
@@ -193,7 +193,7 @@ myAppController.controller('RF433TeachinController', function($scope, $q, $route
                         $scope.loading = false;
                     }, function (error) {
                         $scope.loading = false;
-                        alertify.alertError($scope._t('error_load_data'));
+                        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                         alertify.dismissAll();
                     });
                 }, 10000);
@@ -262,7 +262,8 @@ myAppController.controller('RF433ManageController', function($scope, $location, 
             } else {
                 alertify.alertError($scope._t('error_delete_data'));
             }
-
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 

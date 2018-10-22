@@ -1,0 +1,20 @@
+<p>
+  <span class="inline">
+    <bb-help-text trans="_t('room_main_sensors',{'__cnt__': input.main_sensors.length})" display='inline'></bb-help-text>
+  </span>
+  <button type="button" class="btn btn-default btn-small" ng-show="input.main_sensors.length" ng-click="clearSensors(input)">
+  <i class="fa fa-refresh"></i> {{_t('clear_sensors')}}
+  </button>
+</p>
+<div class="device-available-block assigned">
+  <div class="btn-group btn-tag" ng-repeat="d in devices" ng-if="devicesAssigned.indexOf(d.id) > -1 && d.location !== 0">
+    <a href="" class="btn btn-default" title="{{d.metrics.title}}" ng-click="removeDevice(d)">
+      {{d.metrics.title|cutText:true:20}}
+      <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i>
+    </a>
+    <label class="btn btn-default" for="assign_sensor_{{d.id}}" ng-if="['sensorBinary', 'sensorMultilevel'].indexOf(d.deviceType) !== -1"
+      ng-class="(input.main_sensors.length === 3 && input.main_sensors.indexOf(d.id) === -1) ? 'disabled' : ''">
+      <input type="checkbox" value="{{d.id}}" name="assign_sensor" id="assign_sensor_{{d.id}}" ng-click="assignSensor($event, d)" ng-checked="input.main_sensors.indexOf(d.id) > -1">
+    </label>
+  </div>
+</div>

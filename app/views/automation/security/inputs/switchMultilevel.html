@@ -1,0 +1,11 @@
+<div class="form-group form-inline">
+  <select class="form-control" ng-model="d.level">
+    <option value="{{o}}" ng-repeat="o in security.cfg.options.switchMultilevel.level track by $index" ng-selected="o == d.level">{{_t(o)}}</option>
+  </select>  
+  <input type="number" class="form-control input-number" min="{{security.cfg.options.switchMultilevel.min}}" max="{{security.cfg.options.switchMultilevel.max}}"
+  ng-model="d.exact" ng-if="d.level == 'lvl'"/>
+</div>
+<div class="form-group" ng-if="!hideAction">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="d.sendAction" ng-checked="d.sendAction" />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>

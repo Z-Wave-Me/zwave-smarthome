@@ -1,55 +1,60 @@
 /* Table
 -------------------------------------------------- */
-.table{
-    tbody {
-        tr {
-            td {
-                border-top: 1px solid $app-border-color; 
-            }
-            /* &:nth-child(2) {
+
+.table {
+  tbody {
+    tr {
+      td {
+        border-top: 1px solid $app-border-color;
+      }
+      /* &:nth-child(2) {
                 td {
                     border: none; 
                 }   
             } */
-        }
     }
-}
-.table-report{
-    background-color: #FFFFFF;
-    border: 0 !important;
-    margin-bottom: 0 !important;
-    tbody{
-        td{
-            vertical-align: middle !important;
-
-        }
-        .td-img{
-            width: 30px;
-        }
-        .td-action{
-            text-align: right;
-        }
-    }
-
-    .room-title {
-        @include textOverflow();
-    }
-}
-.table-products{
-    td{
-        vertical-align: middle !important;
-    }
+  }
 }
 
-.td20{
-    width: 20%;
+.table-report {
+  background-color: #FFFFFF;
+  border: 0 !important;
+  margin-bottom: 0 !important;
+  tbody {
+    td {
+      vertical-align: middle !important;
+    }
+    .td-img {
+      width: 30px;
+    }
+    .td-action {
+      text-align: right;
+    }
+  }
+  .room-title {
+    @include textOverflow();
+  }
 }
-.td30{
-    width: 30%;
+
+.table-products {
+  td {
+    vertical-align: middle !important;
+  }
 }
-.td-action{
-    text-align: right; 
+
+.td20 {
+  width: 20%;
 }
-.td40{
-    width: 40%;
+
+.td30 {
+  width: 30%;
 }
+
+.td-action {
+  text-align: right;
+}
+
+.td40 {
+  width: 40%;
+}
+

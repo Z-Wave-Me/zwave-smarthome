@@ -1,0 +1,95 @@
+<!-- Title -->
+<h2 class="accordion-toggle chevron">
+<button type="button" aria-expanded="false" bb-accordion>
+<span class="is-legend">
+  {{_t('arming')}}&nbsp;
+  <span class="item-cnt">({{_.size(security.input.params.armConfirm.table)}})</span>
+</span>
+</button>
+</h2>
+<!-- Content -->
+<div class="accordion no-bcg" hidden>
+  <!-- Assigned -->
+  <div class="panel-wrap">
+    <!-- Delay -->
+    <div class="list-panel">
+      <div class="body form-inline">
+        <div class="flex-input-group number-control">
+          <label>{{_t('security_delay_before_arming')}}</label>
+          <input class="form-control" type="number" ng-model="security.input.params.times.start">
+          <span>{{_t('seconds')}}</span>
+        </div>
+        <bb-help-text trans="_t('help_security_delay_before_arming')"></bb-help-text>
+        
+      </div>
+    </div>
+    <!-- List -->
+    <div data-collapse-all="true">
+      <section class="accordion-wrap" ng-repeat="d in security.input.params.armConfirm.table" ng-init="model=v">
+        <h2 class="accordion-toggle ellipsis">
+        <!-- Title -->
+        <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'">
+        <span>
+          <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+          {{d.deviceName}}&nbsp;
+          <span ng-if="d.deviceType=='switchRGBW' && _.isObject(d.level)" class="color-picker-show" style="background-color: {{d.level|setRgbColors}};">&nbsp;</span>
+          <span ng-if="d.deviceType!='switchRGBW' || !_.isObject(d.level)"><em>[{{_t(d.level)}}<em ng-if="d.level == 'lvl'">&nbsp;{{d.exact}}</em>]</em></span>&nbsp;
+          -&nbsp;<em>{{d.locationName}}</em>
+        </span>
+        </button>
+        <!-- NO Toggle -->
+        <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'">
+          <span>
+            <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+            {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em>
+          </span>
+        </span>
+        <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'armConfirm')">
+          <i class="fa fa-times text-danger"></i>
+        </span>
+        </h2>
+        <!-- Content -->
+        <div class="accordion" ng-include="'app/views/automation/security/inputs/'+ d.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
+        hidden></div>
+      </section>
+    </div>
+    <!-- Notification -->
+    <div class="list-panel">
+      <!-- img -->
+      <figure class="img wh-32x32 clickable" ng-click="expandElement('armConfirm')">
+        <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
+      </figure>
+      <div class="body clickable" ng-click="expandElement('armConfirm')">
+        <div>{{_t('notification')}}</div>
+      </div>
+      <div class="control">
+        <!-- expand/collapse -->
+        <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['armConfirm']||false}}"
+        ng-click="expandElement('armConfirm')">
+        </button>
+      </div>
+      <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_arming.html'"
+      ng-class="!expand['armConfirm'] ? 'expand-true': 'expand-false'"></div>
+    </div>
+  </div>
+  <!-- Available devices -->
+  <h3>{{_t('devices_triggered_arming')}}</h3>
+  <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.armConfirm[r.id] ? 'available-devices' : 'ng-hide'">
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+      <button type="button" aria-expanded="false" bb-accordion>
+        <span>
+          <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+        </span>
+      </button>
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden>
+      <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.armConfirm" ng-if="d.location == r.id &&  !security.input.params.armConfirm.table[getModelIndex(d.deviceId,'armConfirm.table')]" ng-click="assignDevice(d.deviceId,'armConfirm')">
+        <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+        {{d.deviceName|cutText:true:20}}
+        <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      </a>
+    </div>
+  </section>
+</div>

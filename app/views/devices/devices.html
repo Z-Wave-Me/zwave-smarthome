@@ -1,173 +1,306 @@
 <!-- Devicess view -->
 <div ng-controller="DeviceController">
-      <h2 ng-bind="_t('lb_select_device_type')"></h2>
-        <table class="table table-report table-products">
-            <tbody>
-                <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-zwave.png" alt="Logo" />
-                    </td>
-                    <td class="td-action">
-                     <div class="btn-group">
-                        <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" 
-                            ng-click="toExpert('/expert',_t('redirect_to_expert'))" ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'">
-                            <i class="fa fa-external-link"></i> <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
-                        </a>
-                        <a class="btn btn-default" href="#zwave/vendors" title="{{_t('add_new')}}">
-                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
-                        </a>
-                        <a class="btn btn-default" href="#zwave/devices" title="{{_t('manage')}}">
-                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
-                        </a>
-                     </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-mobile.png" alt="Logo" />
-                    </td>
-                   <td class="td-action">
-                    <div class="btn-group">
-                        <button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
-                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
-                        </button>
-                        <a class="btn btn-default" href="#module/put/{{mobileAppSupport.instanceId}}" title="{{_t('manage')}}">
-                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
-                        </a> 
-                    </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-camera.png" alt="Logo" />
-                    </td>
-                   <td class="td-action">
-                      <div class="btn-group">
-                        <a class="btn btn-default" href="#camera/add" title="{{_t('add_new')}}">
-                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
-                        </a>
-                       <a class="btn btn-default" href="#camera/manage" title="{{_t('manage')}}">
-                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
-                        </a> 
-                    </div>
-                    </td>
-                </tr>
-                <tr ng-if="enocean.installed">
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-enocean.png" alt="Logo" />
-                    </td>
-                     <td class="td-action">
-                          <bb-alert-text alert="enocean.alert"></bb-alert-text>
-                          <div ng-if="enocean.active">
-                            <div class="btn-group">
-                                <a class="btn btn-default" href="#enocean/devices" title="{{_t('add_new')}}">
-                                  <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
-                              </a>
-                               <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
-                                  <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
-                              </a> 
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr ng-if="rf433.installed">
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-rf433.png" alt="Logo" />
-                    </td>
-                    <td class="td-action">
-                        <bb-alert-text alert="rf433.alert"></bb-alert-text>
-                        <div ng-if="rf433.active">
-                            <div class="btn-group">
-                                <a class="btn btn-default" href="#rf433/teachin" title="{{_t('add_new')}}">
-                                    <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
-                                </a>
-                                <a class="btn btn-default" href="#rf433/manage" title="{{_t('manage')}}">
-                                    <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img class="device-type-logo" ng-src="app/img/logo-wifiplug.png" alt="Logo" />
-                    </td>
-                   <td class="td-action">
-                      <div class="btn-group">
-                        <a class="btn btn-default" href="#wifiplug/add" title="{{_t('add_new')}}">
-                            <i class="fa fa-plus text-success"></i> <span class="btn-name" ng-bind="_t('add_new')"></span>
-                        </a>
-                       <a class="btn btn-default" href="#wifiplug/manage" title="{{_t('manage')}}">
-                            <i class="fa fa-edit text-primary"></i> <span class="btn-name" ng-bind="_t('manage')"></span>
-                        </a> 
-                    </div>
-                    </td>
-                </tr>                
-            </tbody>
-        </table>
-</div> <!-- /ng-controller --> 
-
-
-<!-- switchRGBWModal -->
-<div id="qrCodeModal" class="appmodal" ng-controller="MobileAddController" ng-if="modalArr.qrCodeModal">
-    <div class="appmodal-in">
-        <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('qrCodeModal', $event)"><i class="fa fa-times"></i></span>
-            <h3>{{_t('add_mobile_device')}}</h3>
-        </div>
-        <div class="appmodal-body text-center">
-            <div class="fieldset">
-                <div class="form-group form-inline">
-                    <div class="img-wrap">
-                        <div id="qrcode">
-                            <img width="255" height="255" ng-src="{{qrcode}}">
-                        </div>
-                        <button class="btn btn-default" ng-if="qrcode != ''" 
-                            ng-click="addQRCode('update')" 
-                            ng-disabled="rowSpinner['update']"
-                            title="{{_t('lb_update_qrcode')}}">
-                            <bb-row-spinner
-                                spinner="rowSpinner['update']"
-                                label="_t('lb_update_qrcode')"
-                                icon="'fa-qrcode'">
-                            </bb-row-spinner>
-                        </button>
-                        <button class="btn btn-default" ng-if="qrcode == ''" 
-                            ng-click="addQRCode('create')"
-                            ng-disabled="rowSpinner['create']" 
-                            title="{{_t('lb_create_qrcode')}}">
-                            <bb-row-spinner
-                                spinner="rowSpinner['create']"
-                                label="_t('lb_create_qrcode')"
-                                icon="'fa-qrcode'">
-                            </bb-row-spinner>
-                        </button>
-                    </div>
-                </div>            
-            </div>
-            <div class="fieldset">
-                <div class="entry-in">    
-                    <div class="entry-media">
-                        <img ng-src="app/img/smartphone.png" alt="Image">
-                    </div>
-                    <div class="entry-content">
-                        <div class="inner">
-                            <div class="text">
-                                <h1>{{_t('app_name')}}</h1>
-                                <p>
-                                    {{_t('app_description')}}
-                                </p>
-                            </div>
-                            <div class="badges">
-                                <a class="google" href="https://play.google.com/store/apps/details?id=eu.zwave.marvin.z_waywrapper"><img ng-src="app/img/google-play-badge.png" alt="Goole Play"></a>
-                                <a class="apple" href="https://itunes.apple.com/de/app/zway-control/id1033129180?mt=8" target="_blank"><img ng-src="app/img/apple-store-badges.svg" alt="Apple Store"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <h2 ng-bind="_t('lb_select_device_type')"></h2>
+  <!-- Zwave -->
+  <div class="list-panel panel-devices">
+    <!-- img -->
+    <figure class="img">
+      <a href="#zwave/devices">
+        <img ng-src="app/img/logo-zwave.svg" alt="img" />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        {{_t('devices_text_zwave')}}
+      </div>
     </div>
-</div>
 
-                        
+    <!-- dots -->
+    <div class="l-hide control">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesZway', $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'">
+      <div class="btn-group">
+        <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/expert',_t('redirect_to_expert'))"
+          ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'">
+          <i class="fa fa-external-link"></i>
+          <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
+        </a>
+        <a class="btn btn-default" href="#zwave/vendors" title="{{_t('add_new')}}">
+          <i class="fa fa-plus text-success"></i>
+          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        </a>
+        <a class="btn btn-default" href="#zwave/devices" title="{{_t('manage')}}">
+          <i class="fa fa-edit text-primary"></i>
+          <span class="btn-name" ng-bind="_t('manage')"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile -->
+  <div class="list-panel panel-devices">
+    <!-- img -->
+    <figure class="img">
+      <a ng-href="#module/put/{{mobileAppSupport.instanceId}}">
+        <img ng-src="app/img/logo-mobile.svg" alt="img" />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        {{_t('devices_text_mobile')}}
+      </div>
+    </div>
+
+    <!-- dots -->
+    <div class="l-hide control">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesMobile', $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'">
+      <div class="btn-group">
+        <button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
+          <i class="fa fa-plus text-success"></i>
+          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        </button>
+        <a class="btn btn-default" href="#module/put/{{mobileAppSupport.instanceId}}" title="{{_t('manage')}}">
+          <i class="fa fa-edit text-primary"></i>
+          <span class="btn-name" ng-bind="_t('manage')"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Camera -->
+  <div class="list-panel panel-devices">
+    <!-- img -->
+    <figure class="img">
+      <a ng-href="#camera/manage">
+        <img ng-src="app/img/logo-camera.svg" alt="img" />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        {{_t('devices_text_camera')}}
+      </div>
+    </div>
+
+    <!-- dots -->
+    <div class="l-hide control">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesCamera', $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['devicesCamera'] ? 'expand-true': 'expand-false'">
+      <div class="btn-group">
+        <a class="btn btn-default" href="#camera/add" title="{{_t('add_new')}}">
+          <i class="fa fa-plus text-success"></i>
+          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        </a>
+        <a class="btn btn-default" href="#camera/manage" title="{{_t('manage')}}">
+          <i class="fa fa-edit text-primary"></i>
+          <span class="btn-name" ng-bind="_t('manage')"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Speech -->
+  <div class="list-panel panel-devices">
+    <!-- img -->
+    <figure class="img">
+      <a ng-href="#speech_assistants/manage">
+        <img ng-src="app/img/logo-speech-assistants.svg" alt="img" />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        {{_t('devices_text_speech')}}
+      </div>
+    </div>
+
+    <!-- dots -->
+    <div class="l-hide control">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesSpeech', $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['devicesSpeech'] ? 'expand-true': 'expand-false'">
+      <div class="btn-group">
+        <a class="btn btn-default" href="#speech_assistants/devices" title="{{_t('add_new')}}">
+          <i class="fa fa-plus text-success"></i>
+          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        </a>
+        <a class="btn btn-default" href="#speech_assistants/manage" title="{{_t('manage')}}">
+          <i class="fa fa-edit text-primary"></i>
+          <span class="btn-name" ng-bind="_t('manage')"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Enocean -->
+  <div class="list-panel panel-devices" ng-if="enocean.installed">
+    <!-- img -->
+    <figure class="img">
+      <a ng-href="#enocean/manage">
+        <img ng-src="app/img/logo-enocean.svg" alt="img" />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        {{_t('devices_text_enocean')}}
+      </div>
+      <bb-alert-text alert="enocean.alert"></bb-alert-text>
+    </div>
+
+    <!-- dots -->
+    <div class="l-hide control" ng-if="enocean.active">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesEnocean', $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
+
+      <div class="btn-group">
+        <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
+          <i class="fa fa-plus text-success"></i>
+          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        </a>
+        <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
+          <i class="fa fa-edit text-primary"></i>
+          <span class="btn-name" ng-bind="_t('manage')"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- rf433 -->
+  <div class="list-panel panel-devices" ng-if="rf433.installed">
+    <!-- img -->
+    <figure class="img">
+      <a ng-href="#rf433/manage">
+        <img ng-src="app/img/433.svg" alt="img" />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        {{_t('devices_text_433')}}
+      </div>
+      <bb-alert-text alert="rf433.alert"></bb-alert-text>
+    </div>
+
+    <!-- dots -->
+    <div class="l-hide control" ng-if="rf433.active">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesRf433', $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['devicesRf433'] ? 'expand-true': 'expand-false'" ng-if="rf433.active">
+      <div class="btn-group">
+        <a class="btn btn-default" href="#rf433/teachin" title="{{_t('add_new')}}">
+          <i class="fa fa-plus text-success"></i>
+          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        </a>
+        <a class="btn btn-default" href="#rf433/manage" title="{{_t('manage')}}">
+          <i class="fa fa-edit text-primary"></i>
+          <span class="btn-name" ng-bind="_t('manage')"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- wifi -->
+  <div class="list-panel panel-devices">
+    <!-- img -->
+    <figure class="img">
+      <a ng-href="#wifiplug/manage">
+        <img ng-src="app/img/logo-wifiplug.svg" alt="img" />
+      </a>
+    </figure>
+    <!-- body -->
+    <div class="body">
+      <div>
+        {{_t('devices_text_wifi')}}
+      </div>
+    </div>
+
+    <!-- dots -->
+    <div class="l-hide control">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesWifi', $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['devicesWifi'] ? 'expand-true': 'expand-false'">
+      <div class="btn-group">
+        <a class="btn btn-default" href="#wifiplug/add" title="{{_t('add_new')}}">
+          <i class="fa fa-plus text-success"></i>
+          <span class="btn-name" ng-bind="_t('add_new')"></span>
+        </a>
+        <a class="btn btn-default" href="#wifiplug/manage" title="{{_t('manage')}}">
+          <i class="fa fa-edit text-primary"></i>
+          <span class="btn-name" ng-bind="_t('manage')"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /ng-controller -->
+<!-- qrCodeModal -->
+<div id="qrCodeModal" class="appmodal" ng-controller="MobileAddController" ng-if="modalArr.qrCodeModal">
+  <div class="appmodal-in">
+    <div class="appmodal-header">
+      <span class="appmodal-close" ng-click="handleModal('qrCodeModal', $event)">
+        <i class="fa fa-times"></i>
+      </span>
+      <h3>{{_t('add_mobile_device')}}</h3>
+    </div>
+    <div class="appmodal-body text-center">
+      <div class="fieldset">
+        <div class="form-group form-inline">
+          <div class="img-wrap">
+            <div id="qrcode">
+              <img width="255" height="255" ng-src="{{qrcode}}">
+            </div>
+            <button class="btn btn-default" ng-if="qrcode != ''" ng-click="addQRCode('update')" ng-disabled="rowSpinner['update']" title="{{_t('lb_update_qrcode')}}">
+              <bb-row-spinner spinner="rowSpinner['update']" label="_t('lb_update_qrcode')" icon="'fa-qrcode'">
+              </bb-row-spinner>
+            </button>
+            <button class="btn btn-default" ng-if="qrcode == ''" ng-click="addQRCode('create')" ng-disabled="rowSpinner['create']" title="{{_t('lb_create_qrcode')}}">
+              <bb-row-spinner spinner="rowSpinner['create']" label="_t('lb_create_qrcode')" icon="'fa-qrcode'">
+              </bb-row-spinner>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="fieldset">
+        <div class="entry-in">
+          <div class="entry-media">
+            <img ng-src="app/img/smartphone.png" alt="Image">
+          </div>
+          <div class="entry-content">
+            <div class="inner">
+              <div class="text">
+                <h1>{{_t('app_name')}}</h1>
+                <p>
+                  {{_t('app_description')}}
+                </p>
+              </div>
+              <div class="badges">
+                <a class="google" href="https://play.google.com/store/apps/details?id=eu.zwave.marvin.z_waywrapper">
+                  <img ng-src="app/img/google-play-badge.png" alt="Goole Play">
+                </a>
+                <a class="apple" href="https://itunes.apple.com/de/app/zway-control/id1033129180?mt=8" target="_blank">
+                  <img ng-src="app/img/apple-store-badges.svg" alt="Apple Store">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

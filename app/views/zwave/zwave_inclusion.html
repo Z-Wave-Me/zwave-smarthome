@@ -115,7 +115,8 @@
                         <div class="inclusion-process" ng-if="zwaveInclusion.automatedConfiguration.process">
                             <div class="alert alert-warning" ng-hide="zwaveInclusion.automatedConfiguration.progress > 99">
                                 <i class="fa fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong> 
-                                <span>(#{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}})</span>
+                                <span>(#{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}})</span></br>
+                                <span ng-if="zwaveInclusion.automatedConfiguration.includedDevice.retryCCInterviews">{{_t('retry_cc_interviews')}}</span>
                             </div>
                              <div class="progress">
                                 <div class="progress-bar" 

@@ -6,7 +6,7 @@
  * The controller that handles outputs and inputs.
  * @class ConfigCommandsController
  */
-myAppController.controller('ConfigCommandsController', function ($scope, $routeParams, $location, $cookies, $timeout, $filter,$interval,  dataFactory,dataService, expertService, _) {
+myAppController.controller('ConfigCommandsController', function ($scope, $routeParams, $location, $cookies, $timeout, $filter,$interval,  dataFactory,dataService, expertService,cfg, _) {
     $scope.commands = [];
     $scope.interviewCommands;
     $scope.ccConfiguration = {
@@ -69,7 +69,7 @@ myAppController.controller('ConfigCommandsController', function ($scope, $routeP
                 });
             });
         }, function(error) {
-            alertify.alertError($scope._t('error_load_data'));
+          angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         });
     };
     $scope.load($routeParams.nodeId);

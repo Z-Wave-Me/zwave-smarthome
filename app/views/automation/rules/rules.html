@@ -1,10 +1,65 @@
 <!-- Scenes -->
 <div ng-controller="AutomationRuleController">
-  <!-- Navigation -->
-  <div ng-include="'app/views/automation/navi.html'"></div>
-  <!-- The blank state -->
-  <div ng-if="rules.state == 'blank'" ng-include="'app/views/automation/rules/rules_blank.html'"></div>
+  <!-- Topbar -->
+  <section class="page-topbar">
+    <h1>{{_t('rules')}}</h1>
+    <div class="btn-group">
+      <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
+      </a>
+      <a class="btn btn-default" href="#rules/0">
+        <i class="fa fa-plus text-success"></i>
+        <span class="btn-name">{{_t('add_new')}}</span>
+      </a>
+    </div>
+  </section>
   <!-- The list -->
-  <div ng-if="rules.state == 'success'" ng-include="'app/views/automation/rules/rules_list.html'"></div>
+
+  <div class="list-panel" ng-repeat="v in rules.all track by $index" ng-class="{'bcg-danger':!v.active}">
+    <!-- img -->
+    <figure class="img wh-32x32 clickable" ng-click="activateRule(v, v.active ? false : true)">
+      <img ng-src="{{cfg.img.icons + 'security-pending.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+    </figure>
+
+    <!-- body -->
+    <div class="body">
+      <div>
+        <a ng-href="#rules/{{v.id}}">{{v.title}}</a>
+      </div>
+    </div>
+    <!-- arrow -->
+    <div class="l-hide control">
+      <!-- expand/collapse -->
+      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('autoDropdown_' + $index, $event)"></button>
+    </div>
+    <!-- control -->
+    <div class="control" ng-class="naviExpanded['autoDropdown_' + $index] ? 'expand-true': 'expand-false'">
+      <div class="btn-group">
+        <!-- test -->
+        <!--  <button title="{{_t('btn_test')}}" class="btn btn-default" ng-disabled="!_.contains(rules.enableTest, v.id)" ng-click="runRuleTest(v)">
+                <bb-row-spinner spinner="rowSpinner[v.id]" icon="'fa-play-circle-o text-success'">
+                </bb-row-spinner>
+              </button> -->
+        <!--edit -->
+        <a ng-href="#rules/{{v.id}}" class="btn btn-default" title="{{_t('lb_update')}}">
+          <i class="fa fa-pencil text-primary"></i>
+        </a>
+        <!-- activate -->
+        <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default" ng-click="activateRule(v, v.active ? false : true)">
+          <i class="fa " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
+        </button>
+        <!-- clone -->
+        <button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneRule(v)" ng-disabled="!v.active">
+          <i class="fa fa-clone"></i>
+        </button>
+        <!-- remove -->
+        <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteRule({'id': v.id}, _t('lb_delete_confirm'))">
+          <i class="fa fa-remove text-danger"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
 </div>
 <!-- /ng-controller -->

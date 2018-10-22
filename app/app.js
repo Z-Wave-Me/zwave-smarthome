@@ -23,7 +23,6 @@ var myApp = angular.module('myApp', [
     'ng.deviceDetector',
     'pr.longpress',
     'angular-sortable-view'
-
 ]);
 
 // App configuration
@@ -45,8 +44,8 @@ if (appCookies.lang) {
 appHttp.get('app/lang/' + config_data.cfg.route.lang + '.json').success(function (data) {
     angular.extend(config_data.cfg.route, {t: data});
 }).error(function () {
-    angular.extend(config_data.cfg.route.fatalError, {
-        message: 'An unexpected error occurred while loading the language file.',
+    angular.extend(config_data.cfg.route.alert, {
+      message: 'An unexpected error occurred while loading the language file.',
         hide: true
     });
 
@@ -93,6 +92,10 @@ myApp.config(function ($provide, $httpProvider) {
             // On request success
             request: function (config) {
                 // Return the config or wrap it in a promise if blank.
+                if(config.url.indexOf('views') !== -1 && cfg.app_version == "@@app_version") { // only for dev
+                        config.url += "?rel=" + Date.now();
+                }
+
                 return config || $q.when(config);
             },
             // On request failure
@@ -119,13 +122,13 @@ myApp.config(function ($provide, $httpProvider) {
                             permanent: true,
                             hide: true
                         };
-                        angular.extend(cfg.route.fatalError, fatalArray);
+                        angular.extend(cfg.route.alert, fatalArray);
                         break;*/
                     case 0:
                         // Check if request has no timeout or location url is on the black list and pending is from a remote server
                         // then does not display an error message
                         if(rejection.config.headers.isZWAY) {
-                            angular.extend(cfg.route.fatalError, {
+                            angular.extend(cfg.route.alert, {
                                 type: 'network',
                                 message: 'The request failed because the server is not responding',
                                 hide: false
@@ -137,8 +140,7 @@ myApp.config(function ($provide, $httpProvider) {
                         if(test) {  
                            break;
                         }
-                        console.log("connection error 2");
-                        angular.extend(cfg.route.fatalError, {
+                        angular.extend(cfg.route.alert, {
                             type: 'network',
                             message: 'The request failed because the server is not responding',
                             hide: false

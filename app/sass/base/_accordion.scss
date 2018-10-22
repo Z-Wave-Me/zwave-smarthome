@@ -16,20 +16,33 @@ $accordion-focus-color: $focus-color;
 
 .accordion-toggle{
   //color: $accordion-color;
+  margin: 0;
  > button{
     all: inherit;
     border: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include displayFlex();
+    @include justifyContent(space-between);
+    @include alignItems(center);
     width: 100%;
     font-weight: normal;
     cursor: pointer;
     border-bottom: dotted 1px $accordion-border-color;
+    
+    > span {
+      @include textOverflow();
+      align-items: center;
+      display: inline-flex;
+      /*
+       fa:first-of-type {
+        font-size: 120%;
+      }
+      */
+    }
+
     &::after{
       margin-left: $accordion-spacing;
       padding: $spacing;
-      font-size: 130%;
+      font-size: 105%;
     }
     &[aria-expanded="false"]{
      
@@ -51,6 +64,12 @@ $accordion-focus-color: $focus-color;
       }
       
     }
+    &[disabled]{
+      cursor: text;
+      &::after{
+        content: "";
+      }
+    }
   }
   &.chevron{
     > button{
@@ -66,6 +85,50 @@ $accordion-focus-color: $focus-color;
           content: "\f077";
         }
       }
+      &[disabled]{
+        &::after{
+          content: "";
+        }
+      }
+    }
+  }
+  &.ellipsis{
+    > button{
+      &[aria-expanded="false"]{
+        &::after{
+        font-family: fontawesome;
+        content: "\f142";
+        }
+      }
+      &[aria-expanded="true"]{
+        &::after{
+          font-family: fontawesome;
+          content: "\f141";
+        }
+      }
+    }
+  }
+  &.inline{
+    > button{
+      display: block;
+      width: auto;
+      font-size: 100%;
+      border-bottom: 0;
+      &[aria-expanded="false"]{
+        &::after{
+        font-family: fontawesome;
+        content: "\f0d7";
+        }
+      }
+      &[aria-expanded="true"]{
+        &::after{
+          font-family: fontawesome;
+          content: "\f0d8";
+        }
+      }
+    }
+    + .accordion{
+      border-bottom: 0;
     }
   }
 }
@@ -74,9 +137,21 @@ $accordion-focus-color: $focus-color;
   padding-bottom: $accordion-spacing;
 }
 
+.accordion-wrap {
+  &.active{
+    > .accordion-toggle{
+      > button{
+        font-weight: bold;
+      }
+    }
+   
+  }
+}
+
+/* TODO: deprecated
 /* Old version
 -------------------------------------------------- */
-.accordion-entry{
+/* .accordion-entry{
     margin-bottom: $spacing;
     border-bottom: dotted 1px $accordion-border-color;
     color: $accordion-color;
@@ -117,4 +192,4 @@ $accordion-focus-color: $focus-color;
         margin: $spacing-half;
         padding: $spacing;      
     }
-}
+} */

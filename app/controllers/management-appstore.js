@@ -58,6 +58,8 @@ myAppController.controller('ManagementAppStoreController', function ($scope, dat
             }, function (error) {
                 alertify.alertError($scope._t('error_delete_data'));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
         return;
     };

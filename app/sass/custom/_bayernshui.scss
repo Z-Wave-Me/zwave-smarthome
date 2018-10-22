@@ -22,6 +22,7 @@ $app-body-color: $app-color-lighter;
 $app-a-color: lighten($app-color-lighter,5%);;
 $app-border-color: lighten($app-color-red-lightest,15%);
 $app-heading-color: darken($app-body-color,5%);
+$card-bcg-color: $app-color-red-lightest;
 
 /* Body
 -------------------------------------------------- */
@@ -282,6 +283,16 @@ a {
     }
 }
 
+/* Top fixed elements for mobile devices
+-------------------------------------------------- */
+
+@include mediaQueries(max-small) {
+  .fix-me-top {
+    background-color: $app-color-red-darkest;
+    border-bottom: solid 1px $app-color-red-lightest;
+  }
+}
+
 /* Subnavigation
 -------------------------------------------------- */
 #sub_navigation_in{
@@ -404,6 +415,14 @@ a {
     border: solid 4px $app-color-additional !important;
 }
 
+/* Legend
+-------------------------------------------------- */
+
+legend {
+  color: $app-body-color;
+  border: 0; 
+}
+
 /* Button
 -------------------------------------------------- */
 .btn-default,.btn-primary,.btn-info,.btn-success,.btn-warning,.btn-danger{
@@ -452,6 +471,20 @@ a {
         color: lighten($app-color-additional, 40%);
     }
 }
+
+/* Slider
+-------------------------------------------------- */
+
+.slider {
+  color: $app-color-lighter;
+  background-color:  $app-color-red-lightest;
+  border-color: $app-color-red-darkest;
+}
+
+.slider:before {
+  background-color: $app-brand-danger;
+}
+
 
 /* Button tabs
 -------------------------------------------------- */
@@ -520,7 +553,45 @@ a {
     }
 }
 
-/* Accordion
+/* Accordion - new version
+-------------------------------------------------- */
+
+.accordion-toggle,
+.automation .accordion-wrap .accordion-toggle {
+  .no-toggle {
+    border-color: $app-border-color;
+  }
+  color: $app-color-lighter;
+  >button {
+    border-color: $app-border-color;
+    &:focus{
+     
+      &::after{
+        color: $app-color-additional;
+      }
+      
+    }
+  }
+}
+
+.accordion{
+  border-color:$app-border-color;
+}
+
+.automation .accordion-wrap .accordion {
+  background-color: $app-color-red-lightest;
+ 
+  color: $app-color-lighter;
+}
+
+.automation .accordion-wrap .accordion {
+  //background-color: $app-color-dark;
+  .accordion {
+    border: 0;
+    background-color: $app-color-red-lighter;
+  }
+}
+/* Accordion - old version
 -------------------------------------------------- */
 .accordion-entry{
     border-bottom: dotted 1px  $app-border-color;
@@ -561,13 +632,26 @@ a {
 /* Report
 -------------------------------------------------- */
 .app-row-report{
-    border-top: solid 1px $app-border-color;
-    border-bottom: solid 1px $app-border-color;
+    /* border-top: solid 1px $app-border-color;
+    border-bottom: solid 1px $app-border-color; */
+    border-color: $app-border-color;
     background-color: $app-color-red-lightest;
     color: $app-color-lighter;
 }
 .report-entry {
-    border-bottom: solid 1px $app-border-color;
+    //border-bottom: solid 1px $app-border-color;
+    .report-col {
+      border-bottom: dotted 1px $app-border-color;
+    }
+}
+
+/* List panel
+-------------------------------------------------- */
+
+.list-panel {
+  background-color: $app-color-red-lightest;
+  border-color: $app-border-color;
+  color: $app-color-lighter;
 }
 
 /* Table
@@ -706,60 +790,25 @@ a {
 
 /* Rooms
 -------------------------------------------------- */
-.card-room {
-    /* Inner element */
-    .card-room-in {
-        //border: solid 1px $room-card-border-color;
-        border: 0;
-        background-color: $app-color-red-lightest;
-        .card-header{
-            background: $app-color-red-darkest;
-            /* Header icons */
-            .card-header-icon {
-                color: $app-color-lighter;
 
-            }
-
-        }
-        .card-content {
-            background-color: $app-color-red-darkest;
-            // Media queries
-            @include mediaQueries(min-small) {
-                background: transparent;
-            }
-            .card-title {
-                h3 {
-                    a {
-                        color: $app-body-color;
-                    }
-                }
-            }
-
-        }
-
-        .card-sensors {
-            background: transparent;
-            .sensor {
-                .sensor-img {
-                    background: transparent;
-                }
-            }
-
-        }
-
-    }
-
-}
-
-.room-no-device {
+.card-room{
+  /* Inner element */
+  .card-room-in {
+    //border: solid 1px $room-card-border-color;
+    border-color: $app-border-color;
+    .card-icon {
+      color: $app-color-red-darkest;;
+  }
     .card-title {
-        h3 {
-            a {
-                color: $app-body-color !important;
+      @include mediaQueries(min-medium) {
+           a {
+            color: $app-color-lighter;
+          }
+      }
 
-            }
-        }
-    }
+  }
+    
+  }
 }
 
 .elemnts-room-bar{
@@ -879,6 +928,60 @@ a {
     }
 }
 
+/* Local apps
+-------------------------------------------------- */
+
+.app-entry-online {
+  .app-entry-cat {
+    .app-entry-title {
+      color: $app-body-color;
+    }
+  }
+}
+
+.localapp-in {
+  border: solid 1px $app-border-color;
+  background-color: $card-bcg-color;
+  .localapp-body {
+    .localapp-title {
+      color: lighten($app-body-color, 10%);
+    }
+  }
+  .localapp-footer {
+    @include mediaQueries(max-small) {
+      background-color: $card-bcg-color;
+    }
+  }
+}
+
+/* Online apps
+-------------------------------------------------- */
+.onlineapp-in {
+  border: solid 1px $app-border-color;
+  background-color: $card-bcg-color;
+  /* Body */
+  .onlineapp-body {
+    .onlineapp-title {
+      color: lighten($app-body-color, 10%);
+    }
+  }
+  /* Footer */
+  .onlineapp-footer {
+    .rating-group {
+      color: darken($app-body-color, 20%);
+      ;
+      .widget-rating {
+        &.israted {
+          color: lighten($app-brand-warning, 20%);
+        }
+      }
+    }
+    @include mediaQueries(max-small) {
+      background-color: $card-bcg-color;
+    }
+  }
+}
+
 /* Apps online detail
 -------------------------------------------------- */
 .app-detail-list {
@@ -927,24 +1030,19 @@ a {
     color: $app-color-lighter;
 }
 
-/* Customize
+  /* Customize
 -------------------------------------------------- */
-.customize-detail-img{
-    border-top: solid 1px $app-color-red-lightest;
-}
-
-.customize-image-detail{
-    border: solid 4px $app-border-color;
-}
-.widget-entry-customize{
-    .widget-entry-in{
-        .widget-img{
-            .customize-preview-img{
-                border-color: $app-border-color;
-            }
-
-        }
+// Media queries
+@include mediaQueries(min-usmall) {
+  .card-customize {
+    border: 0;
+    .card-customize-in {
+      border: solid 4px $app-border-color;
+      .card-footer {
+        color: $app-color-additional;
+      }
     }
+  }
 }
 
 /* Image list
@@ -1079,17 +1177,6 @@ a {
 
 /* Alpaca
 -------------------------------------------------- */
-legend {
-    display: block;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 20px;
-    font-size: 110%;
-    line-height: inherit;
-    color: $app-body-color;
-    border: 0;
-    border-bottom: 0px solid $app-border-color;
-}
 .alpaca-field-object {
     border: 1px $app-border-color solid;
 }

@@ -1,0 +1,151 @@
+<div ng-controller="AlexaSetupController">
+    <div class="form-page">
+        <div class="fieldset">
+            <ul class="wizard">
+                <li ng-repeat="v in steps" class="clickable"
+                    ng-class="{'active' : $index + 1 == currentStep}"
+                    ng-model="currentStep"
+                    ng-click="setStep($index + 1)">{{$index + 1}}
+                </li>
+            </ul>
+        </div>
+        <div ng-switch="currentStep" class="wizard-tabs">
+            <div class="fieldset tab" ng-switch-when="1">
+                <div class="content">
+                    <h1>{{_t('alexa_step1_h')}}</h1>
+                    <div class="text">
+                        <p>
+                            {{_t('alexa_step1_t')}}
+                        </p>
+                    </div>
+                    <div class="image">
+                        <a href="" ng-click="setImagePath('app/img/alexa/amazon_echo.jpg');handleModal('imageModal', $event)">
+                            <img  src="app/img/alexa/amazon_echo.jpg"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="fieldset tab" ng-switch-when="2">
+                <div class="content">
+                    <h1 >{{_t('alexa_step2_h')}}</h1>
+                    <div class="text">
+                        {{_t('alexa_step2_t')}}
+                        <ul>
+                            <li>
+                                <a href="https://www.amazon.com/gp/help/customer/display.html/ref=hp_bc_nav?ie=UTF8&nodeId=200127470" target="_blank">
+                                    <b>{{_t('alexa_step2_info_1')}}</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.amazon.com/gp/help/customer/display.html?nodeId=201602060" taget="_blank">
+                                    <b>{{_t('alexa_step2_info_2')}}</b>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://alexa.amazon.com">
+                                    <b>{{_t('alexa_step2_info_3')}}</b>
+                                </a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                <div class="fieldset tab" ng-switch-when="3">
+                    <div class="content">
+                        <h1>{{_t('alexa_step3_h')}}</h1>
+                        <div class="text" ng-bind-html="_t('alexa_step3_t',{__boxtype__: boxtype}) | toTrusted">
+                        </div>
+                        <div class="image">
+                            <a href="" ng-click="setImagePath('app/img/alexa/alexa_login.png');handleModal('imageModal', $event)">
+                                <img src="app/img/alexa/alexa_login.png"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fieldset tab" ng-switch-when="4">
+                    <div class="content">
+                        <h1>{{_t('alexa_step4_h', {__boxtype__: boxtype})}}</h1>
+                        <div class="text">
+                            <ol>
+                                <li>{{_t('alexa_step4_l1')}}</li>
+                                <li>{{_t('alexa_step4_l2', {__boxtype__: boxtype})}}</li>
+                                <li>{{_t('alexa_step4_l3', {__boxtype__: boxtype})}}</li>
+                            </ol>
+                        </div>
+                        <div class="image">
+                            <a href="" ng-click="setImagePath('app/img/alexa/found_skill.png');handleModal('imageModal', $event)">
+                                <img src="app/img/alexa/found_skill.png"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fieldset tab" ng-switch-when="5">
+                    <div class="content">
+                        <h1>{{_t('alexa_step5_h', {__boxtype__: boxtype})}}</h1>
+                        <div class="text">
+                            {{_t('alexa_step5_t')}}
+                        </div>
+                        <div class="image">
+                            <a href="" ng-click="setImagePath('app/img/alexa/activate_skill.png');handleModal('imageModal', $event)">
+                                <img src="app/img/alexa/activate_skill.png"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fieldset tab" ng-switch-when="6">
+                    <div class="content">
+                        <h1>{{_t('alexa_step6_h', {__boxtype__: boxtype})}}</h1>
+                        <div class="text">
+                            {{_t('alexa_step6_t')}}
+                        </div>
+                        <div class="image">
+                            <a href="" ng-click="setImagePath('app/img/alexa/oauth_login.png');handleModal('imageModal', $event)">
+                                <img src="app/img/alexa/oauth_login.png"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fieldset tab" ng-switch-when="7">
+                    <div class="content" >
+                        <h1>{{_t('alexa_step7_h')}}</h1>
+                        <div class="text"  ng-bind-html="_t('alexa_step7_t') | toTrusted">
+                        </div>
+                        <div class="image">
+                            <a href="" ng-click="setImagePath('app/img/alexa/manage_alexa.png');handleModal('imageModal', $event)">
+                                <img src="app/img/alexa/manage_alexa.png"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fieldset tab" ng-switch-when="8">
+                    <div class="content">
+                        <h1>{{_t('alexa_step8_h')}}</h1>
+                        <div class="text" ng-bind-html="_t('alexa_step8_t') | toTrusted">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fieldset wizard-controls">
+                <button class="btn btn-submit prev" title="{{_t('lb_prev')}}" ng-hide="currentStep == 1" ng-click="prevNext(-1)">
+                <i class="fa fa-chevron-left"></i>
+                {{_t('lb_prev')}}
+                </button>
+                <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default cancel" ng-if="currentStep !== steps.length" bb-go-back="">
+                <i class="fa fa-reply"></i>
+                {{_t('lb_cancel')}}
+                </button>
+                <button type="button" title="{{_t('ok')}}" class="btn btn-default cancel" ng-if="currentStep == steps.length" bb-go-back="">
+                {{_t('ok')}}
+                </button>
+                <button class="btn btn-submit next" title="{{_t('lb_next')}}" ng-hide="currentStep == steps.length"  ng-click="prevNext(1)">
+                {{_t('lb_next')}}
+                <i class="fa fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+        <div id="imageModal" class="appmodal image" ng-if="modalArr.imageModal">
+            <span class="appmodal-close" ng-click="handleModal('imageModal', $event)"><i class="fa fa-times"></i></span>
+            <div class="appmodal-in">
+                <img class="" ng-src="{{myImage}}" alt="Image" />
+            </div>
+        </div>
+    </div>

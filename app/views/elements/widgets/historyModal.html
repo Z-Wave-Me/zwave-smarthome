@@ -6,16 +6,25 @@
             <h3>{{widgetHistory.find.metrics.title}}</h3>
         </div>
         <div class="appmodal-body text-center">
-             <bb-alert alert="widgetHistory.alert"></bb-alert>
-            <div ng-if="!(_.isEmpty(widgetHistory.chartData))">
-                <canvas tc-chartjs-line chart-data="widgetHistory.chartData" chart-options="widgetHistory.chartOptions" width="340" height="200"></canvas>
+            <bb-alert alert="widgetHistory.alert"></bb-alert>
+            <div ng-show="!(_.isEmpty(widgetHistory.chartData))">
+                <canvas id="history_chart" tc-chartjs-line chart-data="widgetHistory.chartData" chart-options="widgetHistory.chartOptions"></canvas>
             </div>
         </div>
-        <div class="appmodal-footer" ng-if="elementAccess(cfg.role_access.admin)">
-            <button type="button" class="btn btn-default" ng-click="deleteHistory(widgetHistory.find,_t('history_delete_confirm'),$event)">
-                <i class="fa fa-times text-danger"></i>
-                     <span class="btn-name">{{_t('delete_history')}}</span>
-            </button>
+        <div class="appmodal-footer submit-entry is-grid" ng-if="elementAccess(cfg.role_access.admin)">
+            <div>{{_t('history_show_average_steps')}}<select id="history_steps" name="history_steps" class="form-control"
+                        ng-model="widgetHistory.history_steps"
+                        ng-change="reloadChart(widgetHistory.history_steps)">
+                    <option ng-repeat="v in widgetHistory.history_steps_list" value="{{v.value}}"
+                            ng-selected="v.value === widgetHistory.history_steps">{{v.key}}</option>
+                </select>
+            </div>
+            <span>
+                <button type="button" class="btn btn-default" ng-click="deleteHistory(widgetHistory.find,_t('history_delete_confirm'),$event)">
+                    <i class="fa fa-times text-danger"></i>
+                         <span class="btn-name">{{_t('delete_history')}}</span>
+                </button>
+            </span>  
         </div>
     </div>
 </div>

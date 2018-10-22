@@ -1,0 +1,14 @@
+<div ng-controller="EnoceanVendorController">
+  <bb-loader></bb-loader>
+  <bb-alert alert="alert"></bb-alert>
+  <div class="vendors flexgallery">
+    <div ng-repeat="v in enocean.vendors">
+      <a class="figure" ng-href="#enocean/products/{{v.vendor}}" title="{{v.vendor}}">
+        <img ng-src="storage/img/enocean/vendors/{{v.vendorLogo}}" alt="img" ng-show="v.vendorLogo" />
+        <span ng-hide="v.vendorLogo">{{v.vendor|cutText:true:20}}</span>
+      </a>
+    </div>
+  </div>
+  <div class="device-logo" ng-include="'app/views/enocean/enocean_nav.html'"></div>
+</div>
+<!-- /ng-controller -->

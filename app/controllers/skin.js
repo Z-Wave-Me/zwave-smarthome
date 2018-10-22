@@ -48,8 +48,8 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
             $scope.loading = false;
             // Error message
             if (localSkins.state === 'rejected' && $scope.routeMatch('/customize/skinslocal')) {
-                alertify.alertError($scope._t('failed_to_load_skins'));
                 $scope.skins.local.show = false;
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_skins')});
                 return;
             }
             // Success - local skins
@@ -80,10 +80,10 @@ myAppController.controller('SkinBaseController', function ($scope, $q, $timeout,
                     status: false,
                     icon: 'fa-exclamation-triangle text-danger'
                 };
-                $scope.skins.online.alert = {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}), status: 'alert-warning', icon: 'fa-wifi'};
+                 angular.extend(cfg.route.alert, {message: $scope._t('no_internet_connection',{__sec__: (cfg.pending_remote_limit/1000)}),icon: 'fa-wifi text-danger'});
 
             }else{
-                alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_skins')});
             }
         }).finally(function(){
             $scope.loading = false;
@@ -195,6 +195,8 @@ myAppController.controller('SkinLocalController', function ($scope, $window, $co
                 var langkey = (error.data.error ? error.data.error : 'error_delete_data');
                 alertify.alertError($scope._t(langkey));
             });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
     };
 });

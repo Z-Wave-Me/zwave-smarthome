@@ -1,0 +1,30 @@
+<div ng-show="if" class="form-group form-inline">
+  <span>
+    <!-- operator -->
+    <select class="form-control" ng-model="model.operator"">
+      <option value="{{o}}" ng-repeat="o in rule.options.switchMultilevel.operator track by $index" ng-selected="o == model.operator">
+      {{_t(o)}}</option>
+    </select>
+  </span>
+  <!-- exact -->
+  <input type="number" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
+    ng-model="model.level"/>
+</div>
+
+<div ng-show="!if" class="form-group form-inline">
+  <span>
+    <!-- level -->
+    <select class="form-control" ng-model="model.level" ng-change="setReverseLevel(model.deviceType,inputType,$index)">
+      <option value="{{o}}" ng-repeat="o in rule.options.switchMultilevel.level track by $index" ng-selected="o == model.level">
+      {{_t(o)}}</option>
+    </select>
+  </span>
+  <!-- exact -->
+  <input type="number" class="form-control input-number" min="{{rule.options.switchMultilevel.min}}" max="{{rule.options.switchMultilevel.max}}"
+    ng-model="model.exact" ng-if="model.level == 'lvl'" ng-change="setReverseLevel(model.deviceType,inputType,$index)" />
+</div>
+<!-- command -->
+<div class="form-group" ng-if="!if">
+  <input type="checkbox" name="send_command" id="send_command" ng-model="model.sendAction" ng-checked="model.sendAction" />
+  <label for="send_command">{{_t('dont_send_on_command')}}</label>
+</div>

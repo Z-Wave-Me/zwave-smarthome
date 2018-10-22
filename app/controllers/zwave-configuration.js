@@ -281,7 +281,7 @@ myAppController.controller('ConfigConfigurationController', function($scope, $ro
             $scope.protectionCont = expertService.configProtectionCont(node, nodeId, ZWaveAPIData, cfgXml);
             $scope.switchAllCont = expertService.configSwitchAllCont(node, nodeId, ZWaveAPIData, cfgXml);
             if(!$scope.configCont && !$scope.wakeupCont && !$scope.protectionCont && !$scope.switchAllCont){
-               alertify.alertError($scope._t('error_load_data'));
+              angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
             }
         }, function(error) {
             $scope.configCont = expertService.configConfigCont(node, nodeId, zddXml, null, $scope.lang, $scope.languages);

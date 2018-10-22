@@ -1,10 +1,54 @@
 <!-- Scenes -->
 <div ng-controller="AutomationSceneController">
-  <!-- Navigation -->
-  <div ng-include="'app/views/automation/navi.html'"></div>
-  <!-- The blank state -->
-  <div ng-if="scenes.state == 'blank'" ng-include="'app/views/automation/scenes/scenes_blank.html'"></div>
-  <!-- The list -->
-  <div ng-if="scenes.state == 'success'" ng-include="'app/views/automation/scenes/scenes_list.html'"></div>
+	<!-- Topbar -->
+	<section class="page-topbar">
+		<h1>{{_t('scenes')}}</h1>
+		<div class="btn-group">
+			<a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}"> <i class="fa fa-reply"></i>
+				<span class="btn-name">{{_t('lb_cancel')}}</span>
+			</a>
+			<a class="btn btn-default" href="#scenes/0"> <i class="fa fa-plus text-success"></i>
+				<span class="btn-name">{{_t('add_new')}}</span>
+			</a>
+		</div>
+	</section>
+	<!-- The list -->
+	<div class="list-panel" ng-repeat="v in scenes.all track by $index" ng-class="{'bcg-danger':!v.active}">
+		<!-- img -->
+		<figure class="img wh-32x32 clickable" ng-click="activateScene(v, v.active ? false : true)">
+			<img ng-src="{{cfg.img.custom_icons + v.params.customIcon.table['0'].icon}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+		</figure>
+		<!-- body -->
+		<div class="body">
+			<div> <a href="#scenes/{{v.id}}">{{v.title}}</a>
+			</div>
+		</div>
+		<!-- arrow -->
+		<div class="l-hide control">
+			<!-- expand/collapse -->
+			<button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('autoDropdown_' + $index, $event)"></button>
+		</div>
+		<!-- control -->
+		<div class="control" ng-class="naviExpanded['autoDropdown_' + $index] ? 'expand-true': 'expand-false'">
+			<div class="btn-group">
+				<!-- test -->
+				<button title="{{_t('btn_test')}}" class="btn btn-default" ng-disabled_="!_.contains(scenes.enableTest, v.id)" ng-click="runSceneTest(v)">
+					<bb-row-spinner spinner="rowSpinner[v.id]" icon="'fa-play-circle-o text-success'"></bb-row-spinner>
+				</button>
+				<!--edit -->
+				<a ng-href="#scenes/{{v.id}}" class="btn btn-default" title="{{_t('lb_update')}}">&nbsp;<i class="fa fa-pencil text-primary"></i>
+				</a>
+				<!-- activate -->
+				<button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default" ng-click="activateScene(v, v.active ? false : true)">&nbsp;<i class="fa " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
+				</button>
+				<!-- clone -->
+				<button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneScene(v)" ng-disabled="!v.active">&nbsp;<i class="fa fa-clone"></i>
+				</button>
+				<!-- remove -->
+				<button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteScene({'id': v.id}, _t('lb_delete_confirm'))">&nbsp;<i class="fa fa-remove text-danger"></i>
+				</button>
+			</div>
+		</div>
+	</div>
 </div>
 <!-- /ng-controller -->

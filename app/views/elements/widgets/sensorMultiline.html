@@ -56,15 +56,16 @@
         </div>
         <div class="btn-group">
             <button class="btn btn-off"
+                    ng-disabled="!(v.metrics.level=='alarmed' && v.metrics.Rlevel=='on')"
                     ng-class="v.metrics.Rlevel=='on' ? 'btn-primary': 'btn-default'"
                     ng-click="runCmd(v.id + '/command/cReset', v.id)">
                 <i class="fa fa-refresh"></i>
             </button>
-            <button class="btn btn-on"
+            <!-- <button class="btn btn-on"
                     ng-class="v.metrics.Alevel =='on' ? 'btn-primary': 'btn-default'"
                     ng-click="runCmd(v.id + '/command/automationToggle', v.id)">
                 <i class="fa fa-clock-o"></i>
-            </button>
+            </button> -->
         </div>
     </div>
 	

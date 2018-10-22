@@ -1,0 +1,18 @@
+<!-- Automations view -->
+<div ng-controller="AutomationsController">
+  <bb-loader></bb-loader>
+  <div class="automations flexgallery">
+    <div ng-repeat="v in automations.modules track by $index">
+      <figure>
+        <a title="{{v.title}}" href="{{v.href}}">
+          <img ng-src="{{v.image}}" alt="img">
+        </a>
+        <figcaption>
+          <a href="{{v.href}}">
+            <span class="title">{{v.title}}</span>
+          </a>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>

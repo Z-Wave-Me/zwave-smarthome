@@ -37,7 +37,7 @@ body {
   font-size: $app-body-font-size;
   line-height: $app-line-height-base;
   color: $app-body-color;
-  background-color: #FFFFFF;
+  background-color: $app-bcg-color;
   background-image: url('wallpaper.png');
   // Media queries
   @include mediaQueries(min-small) {
@@ -99,6 +99,12 @@ h4 {
 .item-cnt {
   font-size: 80%;
 }
+
+.subhead-info {
+  display: block;
+  font-size: 90%;
+}
+
 .small{
     font-size: 90%;
      color: lighten($app-body-color, 40%);
@@ -272,10 +278,26 @@ img {
   cursor: pointer;
 }
 
+.btn-static {
+  background-color: #ffffff;
+  border: 1px solid lightgrey;
+  cursor: default;
+  &:active, &:hover, &:focus {
+    @include box-shadow(none);
+  }
+}
+
 .text-supp {
   font-style: italic;
   color: lighten($app-body-color, 30%);
 }
+.uppercase{
+  text-transform: uppercase;
+}
+.lowercase{
+  text-transform: lowercase;
+}
+
 
 .badge {
   padding: $spacing-half;
@@ -325,4 +347,9 @@ img {
 .scrollh{
     overflow-y: auto;
     white-space: nowrap;
+}
+
+// Show element
+.ng-show{
+  display: block !important;
 }
