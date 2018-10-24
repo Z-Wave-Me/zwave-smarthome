@@ -20078,839 +20078,1258 @@ img.widget-promo-image {
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, shui_night = darkshui, blueshui, homekit
 -------------------------------------------------- */
-/* Default SmartHome skin
+/* Dark SmartHome skin
 -------------------------------------------------- */
-/* Navigation
+/* Variables
 -------------------------------------------------- */
-/* line 8, ../sass/custom/_shui.scss */
-#main_navigation_wrap #main_navigation {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
+/* Body
+-------------------------------------------------- */
+/* line 33, ../sass/custom/_blueshui.scss */
+body {
+  color: #05517E;
+  background-color: #e0f1fc;
 }
-@media only screen and (max-width: 767px) {
-  /* line 10, ../sass/custom/_shui.scss */
-  #main_navigation_wrap #main_navigation #navigation_right {
-    float: left;
-  }
-  /* line 14, ../sass/custom/_shui.scss */
-  #main_navigation_wrap #main_navigation #navigation_left {
-    position: static;
-    float: right;
-  }
+
+/* line 38, ../sass/custom/_blueshui.scss */
+.timestamp {
+  color: #b2ddf6;
+}
+
+/* Typo
+-------------------------------------------------- */
+/* line 45, ../sass/custom/_blueshui.scss */
+h1, h2, h3, h4 {
+  color: #044165;
+}
+
+/* line 48, ../sass/custom/_blueshui.scss */
+.app-entry-local h2 {
+  color: #044165;
+}
+
+/* line 52, ../sass/custom/_blueshui.scss */
+.text-supp {
+  color: #03314d;
+}
+
+/* Links
+-------------------------------------------------- */
+/* line 58, ../sass/custom/_blueshui.scss */
+a {
+  color: #05517E;
+}
+/* line 60, ../sass/custom/_blueshui.scss */
+a:hover, a:focus {
+  color: #05517E;
+  text-decoration: underline;
+}
+/* line 65, ../sass/custom/_blueshui.scss */
+a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+/* line 73, ../sass/custom/_blueshui.scss */
+a.link-dotted {
+  color: #05517E;
+  border-bottom: 1px dotted #05517E;
+}
+/* line 77, ../sass/custom/_blueshui.scss */
+a.link-dotted:hover, a.link-dotted:focus {
+  border-bottom: 1px solid #05517E;
+  text-decoration: none;
+}
+/* line 83, ../sass/custom/_blueshui.scss */
+a.link-underline {
+  color: #05517E;
+}
+
+/* Others
+-------------------------------------------------- */
+/* line 92, ../sass/custom/_blueshui.scss */
+.bcg-success {
+  background-color: #dff0d8;
+  background: transparent;
+}
+
+/* line 97, ../sass/custom/_blueshui.scss */
+.bcg-active.false, .bcg-danger {
+  background-color: #f2dede;
+  background: transparent;
+}
+/* line 100, ../sass/custom/_blueshui.scss */
+.bcg-active.false .report-img-s, .bcg-danger .report-img-s {
+  -webkit-filter: grayscale(100%);
+  /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+/* line 105, ../sass/custom/_blueshui.scss */
+.badge-number {
+  background-color: #56b5ec;
+  color: #e0f1fc;
+}
+
+/* line 111, ../sass/custom/_blueshui.scss */
+.device-available-block.assigned {
+  border: 0;
+  background-color: #d2ebfa;
+}
+
+/* Text colors
+-------------------------------------------------- */
+/* line 119, ../sass/custom/_blueshui.scss */
+.text-primary {
+  color: #1685c6;
+}
+
+/* line 122, ../sass/custom/_blueshui.scss */
+.text-success {
+  color: #00B559;
+}
+
+/* line 125, ../sass/custom/_blueshui.scss */
+.text-info {
+  color: #096BA5;
+}
+
+/* line 128, ../sass/custom/_blueshui.scss */
+.text-warning {
+  color: #FF8C00;
+}
+
+/* line 131, ../sass/custom/_blueshui.scss */
+.text-danger {
+  color: #C50000;
+}
+
+/* Label colors
+-------------------------------------------------- */
+/* line 137, ../sass/custom/_blueshui.scss */
+.label-primary {
+  background-color: #1685c6;
+}
+
+/* line 140, ../sass/custom/_blueshui.scss */
+.label-success {
+  background-color: #00B559;
+}
+
+/* line 143, ../sass/custom/_blueshui.scss */
+.label-info {
+  background-color: #096BA5;
+}
+
+/* line 146, ../sass/custom/_blueshui.scss */
+.label-warning {
+  background-color: #FF8C00;
+}
+
+/* line 149, ../sass/custom/_blueshui.scss */
+.label-danger {
+  background-color: #C50000;
+}
+
+/* Button colors
+-------------------------------------------------- */
+/* line 155, ../sass/custom/_blueshui.scss */
+.btn-primary {
+  background-color: #1685c6;
+}
+
+/* line 158, ../sass/custom/_blueshui.scss */
+.btn-success {
+  background-color: #00B559;
+}
+
+/* line 161, ../sass/custom/_blueshui.scss */
+.btn-info {
+  background-color: #096BA5;
+}
+
+/* line 164, ../sass/custom/_blueshui.scss */
+.btn-warning {
+  background-color: #FF8C00;
+}
+
+/* line 167, ../sass/custom/_blueshui.scss */
+.btn-danger {
+  background-color: #C50000;
+}
+
+/* Alert
+-------------------------------------------------- */
+/* line 173, ../sass/custom/_blueshui.scss */
+.alert {
+  border: 2px solid #61ACD8;
+  color: #05517E;
+  font-size: 110%;
+}
+
+/* line 179, ../sass/custom/_blueshui.scss */
+.alert-success {
+  color: #004f27;
+  border-color: #00B559;
+}
+
+/* line 183, ../sass/custom/_blueshui.scss */
+.alert-info {
+  color: #042c44;
+  border-color: #096BA5;
+}
+
+/* line 187, ../sass/custom/_blueshui.scss */
+.alert-warning {
+  color: #995400;
+  border-color: #FF8C00;
+}
+
+/* line 191, ../sass/custom/_blueshui.scss */
+.alert-danger {
+  color: #5f0000;
+  border-color: #C50000;
+}
+
+/* Fatal error
+-------------------------------------------------- */
+/* line 198, ../sass/custom/_blueshui.scss */
+.app-fatal-error {
+  background-color: #e0f1fc;
+  border: solid 1px #C50000;
+}
+/* line 201, ../sass/custom/_blueshui.scss */
+.app-fatal-error .fatal-error-message {
+  color: #C50000;
+}
+/* line 204, ../sass/custom/_blueshui.scss */
+.app-fatal-error .fatal-error-info {
+  color: #05517E;
+}
+
+/* Blank
+-------------------------------------------------- */
+/* line 210, ../sass/custom/_blueshui.scss */
+.blank {
+  background-color: #d2ebfa;
+}
+
+/* Header
+-------------------------------------------------- */
+/* line 216, ../sass/custom/_blueshui.scss */
+#header {
+  color: #05517E;
+}
+/* line 218, ../sass/custom/_blueshui.scss */
+#header .divider-vertical {
+  display: none;
+}
+
+/* line 224, ../sass/custom/_blueshui.scss */
+#header_logo {
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
+
+/* Main navigation
+-------------------------------------------------- */
+/* line 231, ../sass/custom/_blueshui.scss */
+#main_navigation_wrap {
+  background-color: #1685c6;
+  border-bottom: solid 1px #61ACD8;
+}
+
+/* line 237, ../sass/custom/_blueshui.scss */
+#main_navigation a {
+  display: inline-block;
+  padding: 0;
+  line-height: 40px;
+  text-align: center;
+  color: #b2ddf6;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  border-radius: 50%;
+}
+/* line 249, ../sass/custom/_blueshui.scss */
+#main_navigation a.nav-logo {
+  width: 100px;
+  height: 40px;
+}
+/* line 253, ../sass/custom/_blueshui.scss */
+#main_navigation a .fa {
+  line-height: 40px;
+}
+/* line 257, ../sass/custom/_blueshui.scss */
+#main_navigation a:hover {
+  background: transparent;
+  color: #fff;
+}
+/* line 261, ../sass/custom/_blueshui.scss */
+#main_navigation .active {
+  /*background-color:$app-color-lighter;*/
+  background-color: #0CD06C;
+  color: #1685c6;
+}
+/* line 265, ../sass/custom/_blueshui.scss */
+#main_navigation .active:hover {
+  /*background-color:$app-color-lighter;*/
+  background-color: #0CD06C;
+  color: #1685c6;
 }
 
 /* Subnavigation
 -------------------------------------------------- */
+/* line 276, ../sass/custom/_blueshui.scss */
+#sub_navigation_in ul {
+  background-color: #1685c6;
+  border: 1px solid #61ACD8;
+}
+/* line 280, ../sass/custom/_blueshui.scss */
+#sub_navigation_in ul li {
+  border-bottom: solid 1px #61ACD8;
+}
+/* line 282, ../sass/custom/_blueshui.scss */
+#sub_navigation_in ul li a {
+  color: #b2ddf6;
+}
+/* line 284, ../sass/custom/_blueshui.scss */
+#sub_navigation_in ul li a:hover {
+  color: #fff;
+}
+/* line 289, ../sass/custom/_blueshui.scss */
+#sub_navigation_in ul li.active {
+  background-color: #3A96CD;
+}
+/* line 291, ../sass/custom/_blueshui.scss */
+#sub_navigation_in ul li.active a {
+  color: #0CD06C;
+}
+/* line 294, ../sass/custom/_blueshui.scss */
+#sub_navigation_in ul li.active .fa {
+  color: #0CD06C;
+}
+/* line 300, ../sass/custom/_blueshui.scss */
+#sub_navigation_in ul .fa {
+  color: #b2ddf6;
+}
+
+/* Top fixed elements for mobile devices
+-------------------------------------------------- */
 /* MIN WIDTH */
 /* MAX WIDTH */
 @media only screen and (max-width: 767px) {
-  /* line 27, ../sass/custom/_shui.scss */
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in {
-    background-color: #FFFFFF;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    border-right: 1px solid #cccccc;
-  }
-  /* line 32, ../sass/custom/_shui.scss */
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul {
-    margin: 0;
-    margin: 50px 0 0;
-    background: transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    border: 0;
-  }
-  /* line 40, ../sass/custom/_shui.scss */
-  #sub_navigation_wrap #sub_navigation #sub_navigation_in ul li .subnavi-arrow {
-    display: none;
+  /* line 310, ../sass/custom/_blueshui.scss */
+  .fix-me-top {
+    background-color: #1685c6;
+    border-bottom: solid 1px #61ACD8;
   }
 }
-/* Skin colors
+/* Page navigation
 -------------------------------------------------- */
-/* line 54, ../sass/custom/_shui.scss */
-body.night-false {
-  background-color: #F6F6F6;
+/* line 317, ../sass/custom/_blueshui.scss */
+.page-navi {
+  color: #05517E;
 }
-/* line 58, ../sass/custom/_shui.scss */
-body.night-true {
-  background-color: #24262D;
+/* line 319, ../sass/custom/_blueshui.scss */
+.page-navi .page-navi-in {
+  background-color: #1685c6;
+  border: 1px solid #61ACD8;
+}
+/* line 324, ../sass/custom/_blueshui.scss */
+.page-navi ul li {
+  border-bottom: solid 1px #61ACD8;
+}
+/* line 326, ../sass/custom/_blueshui.scss */
+.page-navi ul li a {
+  color: #b2ddf6;
+}
+/* line 332, ../sass/custom/_blueshui.scss */
+.page-navi ul .active a {
+  color: #0CD06C;
+}
+/* line 335, ../sass/custom/_blueshui.scss */
+.page-navi ul .active .fa {
+  color: #0CD06C;
+}
+/* line 340, ../sass/custom/_blueshui.scss */
+.page-navi ul .fa {
+  color: #b2ddf6;
+}
+/* line 345, ../sass/custom/_blueshui.scss */
+.page-navi .page-navi-title {
+  color: #044165;
+}
+/* line 348, ../sass/custom/_blueshui.scss */
+.page-navi .page-navi-tag {
+  border: solid 1px #61ACD8;
+}
+/* line 352, ../sass/custom/_blueshui.scss */
+.page-navi .page-navi-tag.active {
+  background-color: #61ACD8;
 }
 
-/* line 63, ../sass/custom/_shui.scss */
-.night-false {
-  /* Main navigation
+/* Label
 -------------------------------------------------- */
-  /* Top fixed elements for mobile devices
--------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Form
--------------------------------------------------- */
-  /* Button
--------------------------------------------------- */
-  /* List panel
--------------------------------------------------- */
-  /* Table responsive
--------------------------------------------------- */
-  /* Widget
--------------------------------------------------- */
-  /* Rooms
--------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Elements in Room
--------------------------------------------------- */
-  /* Local and online apps
--------------------------------------------------- */
-  /* Customize
--------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Automation
--------------------------------------------------- */
+/* line 358, ../sass/custom/_blueshui.scss */
+.label-default {
+  background-color: #3A96CD;
 }
-/* line 65, ../sass/custom/_shui.scss */
-.night-false .device-available-block.assigned {
-  background-color: #e7e7e7;
+
+/* Form
+-------------------------------------------------- */
+/* line 364, ../sass/custom/_blueshui.scss */
+.form-control {
+  color: #05517E;
+  border: solid 1px #61ACD8;
+  background-color: #edf7fd;
+}
+/* line 368, ../sass/custom/_blueshui.scss */
+.form-control:focus {
+  border-color: #0CD06C;
+}
+/* line 371, ../sass/custom/_blueshui.scss */
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: #c9e7f9;
+}
+
+/* line 378, ../sass/custom/_blueshui.scss */
+.input-group-addon {
+  background-color: #b2ddf6;
+  color: #05517E;
+  border-color: #61ACD8;
+}
+
+/* line 383, ../sass/custom/_blueshui.scss */
+.form-page {
+  background-color: #e0f1fc;
+  border-color: #61ACD8;
+}
+/* line 386, ../sass/custom/_blueshui.scss */
+.form-page .form-group {
+  border-bottom: 0;
+}
+
+/* line 392, ../sass/custom/_blueshui.scss */
+.submit-entry {
+  background-color: #61ACD8;
+  border-top: 0;
+}
+
+/* line 397, ../sass/custom/_blueshui.scss */
+.control-active {
+  border: solid 4px #0CD06C !important;
+}
+
+/* line 401, ../sass/custom/_blueshui.scss */
+.help-block {
+  color: #066197;
+  font-style: italic;
+  font-size: 95%;
+}
+
+/* line 408, ../sass/custom/_blueshui.scss */
+input[type=checkbox]:after {
+  border: solid 1px #61ACD8;
+  background-color: #edf7fd;
+}
+/* line 414, ../sass/custom/_blueshui.scss */
+input[type=checkbox]:checked:after {
+  color: #0CD06C;
+}
+
+/* Legend
+-------------------------------------------------- */
+/* line 423, ../sass/custom/_blueshui.scss */
+legend {
+  display: block;
+  width: 100%;
+  font-size: 120%;
+  line-height: inherit;
+  color: #05517E;
   border: 0;
 }
-/* line 73, ../sass/custom/_shui.scss */
-.night-false #main_navigation_wrap {
-  border-bottom: solid 4px #DDD;
-  background-color: #E9E9E9;
+
+/* Button
+-------------------------------------------------- */
+/* line 436, ../sass/custom/_blueshui.scss */
+.btn-default {
+  background-color: #b2ddf6;
+  color: #05517E;
+  border-color: #61ACD8;
 }
-/* line 78, ../sass/custom/_shui.scss */
-.night-false #main_navigation_wrap #main_navigation .active {
-  background-color: #DDD;
-  color: #ffffff;
+/* line 440, ../sass/custom/_blueshui.scss */
+.btn-default:hover {
+  background-color: #84c9f1;
+  border-color: #61ACD8;
 }
-@media only screen and (max-width: 767px) {
-  /* line 88, ../sass/custom/_shui.scss */
-  .night-false .fix-me-top {
-    background-color: #E9E9E9;
-    border-bottom: solid 4px #DDD;
-  }
+/* line 444, ../sass/custom/_blueshui.scss */
+.btn-default.active {
+  background-color: #84c9f1;
+  border-color: #61ACD8;
 }
-/* line 96, ../sass/custom/_shui.scss */
-.night-false .form-page {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 96, ../sass/custom/_shui.scss */
-  .night-false .form-page {
-    border: solid 4px #e7e7e7;
-  }
-}
-/* line 102, ../sass/custom/_shui.scss */
-.night-false .form-page > section {
-  border-bottom: solid 4px #e7e7e7;
-}
-/* line 105, ../sass/custom/_shui.scss */
-.night-false .form-page > section:last-child {
-  border-bottom: 0;
-}
-/* line 111, ../sass/custom/_shui.scss */
-.night-false .form-page .section {
-  border-bottom: solid 4px #e7e7e7;
-}
-/* line 114, ../sass/custom/_shui.scss */
-.night-false .form-page .section:last-child {
-  border-bottom: 0;
-}
-/* line 119, ../sass/custom/_shui.scss */
-.night-false .form-page .for .form-group {
-  border-color: #e7e7e7;
-}
-/* line 124, ../sass/custom/_shui.scss */
-.night-false .submit-entry {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 124, ../sass/custom/_shui.scss */
-  .night-false .submit-entry {
-    background-color: #e7e7e7;
-    border-top: solid 1px #e7e7e7;
-  }
-}
-/* line 134, ../sass/custom/_shui.scss */
-.night-false fieldset.expanded,
-.night-false .fieldset.expanded {
-  background-color: #F6F6F6;
-  border-top: solid 4px #e7e7e7;
-  border-bottom: solid 4px #e7e7e7;
-}
-/* line 141, ../sass/custom/_shui.scss */
-.night-false .control-active {
-  border: solid 4px #80AD80 !important;
-}
-/* line 148, ../sass/custom/_shui.scss */
-.night-false .btn-goup-tabs .btn {
-  background-color: #eeeeee;
-}
-/* line 151, ../sass/custom/_shui.scss */
-.night-false .btn-goup-tabs .btn.active, .night-false .btn-goup-tabs .btn[aria-selected] {
-  background-color: #dcdcdc;
-}
-/* line 161, ../sass/custom/_shui.scss */
-.night-false .list-panel .control-collapsable {
-  padding: 10px;
-  background-color: #eeeeee;
-}
-/* line 169, ../sass/custom/_shui.scss */
-.night-false .table-responsive {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (max-width: 767px) {
-  /* line 172, ../sass/custom/_shui.scss */
-  .night-false .table-responsive [data-expanded="true"] td {
-    background-color: #eeeeee;
-  }
-}
-/* line 182, ../sass/custom/_shui.scss */
-.night-false .widget-entry .widget-entry-in {
-  border-color: #d3d3d3;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 182, ../sass/custom/_shui.scss */
-  .night-false .widget-entry .widget-entry-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-@media only screen and (min-width: 320px) {
-  /* line 198, ../sass/custom/_shui.scss */
-  .night-false .card-room .card-room-in {
-    border: solid 4px #ffffff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-/* line 207, ../sass/custom/_shui.scss */
-.night-false .elemnts-room-bar {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 207, ../sass/custom/_shui.scss */
-  .night-false .elemnts-room-bar {
-    border: 0;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-  }
-}
-/* line 219, ../sass/custom/_shui.scss */
-.night-false .localapp-in,
-.night-false .onlineapp-in {
-  border-color: #d3d3d3;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 480px) {
-  /* line 219, ../sass/custom/_shui.scss */
-  .night-false .localapp-in,
-  .night-false .onlineapp-in {
-    border: solid 4px #FFFFFF;
-    background: #f6f6f6;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f6f6), color-stop(77%, #ffffff));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 77%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 77%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
-    /* IE6-9 */
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-@media only screen and (min-width: 320px) {
-  /* line 234, ../sass/custom/_shui.scss */
-  .night-false .card-customize {
-    border: 0;
-  }
-  /* line 237, ../sass/custom/_shui.scss */
-  .night-false .card-customize .card-customize-in {
-    border: solid 4px #ffffff;
-    -webkit-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    -moz-box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-    box-shadow: 1px 1px 5px 0px rgba(50, 50, 50, 0.29);
-  }
-}
-/* line 248, ../sass/custom/_shui.scss */
-.night-false .accordion-wrap .accordion {
-  background-color: #F6F6F6;
-}
-/* line 251, ../sass/custom/_shui.scss */
-.night-false .accordion-wrap .accordion.no-bcg {
-  padding: 0;
-  background: transparent;
-}
-/* line 259, ../sass/custom/_shui.scss */
-.night-false .accordion-wrap.nested .accordion .accordion {
-  background-color: #e9e9e9;
-}
-/* line 265, ../sass/custom/_shui.scss */
-.night-false .accordion-wrap.active {
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-@media only screen and (min-width: 768px) {
-  /* line 265, ../sass/custom/_shui.scss */
-  .night-false .accordion-wrap.active {
-    padding: 10px;
-    margin: 10px;
-    border: solid 2px #dff0d8;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  }
-}
-/* line 279, ../sass/custom/_shui.scss */
-.night-false fieldset .accordion-wrap.active {
-  margin: 10px 0;
+/* line 448, ../sass/custom/_blueshui.scss */
+.btn-default:focus {
+  background-color: #28a0e7;
+  border-color: #61ACD8;
 }
 
-/* Security  Notification 
+/* line 454, ../sass/custom/_blueshui.scss */
+button[disabled], .btn[disabled], .btn-default[disabled], html input[disabled] {
+  background-color: #c9e7f9;
+  border-color: #75b7dd;
+}
+/* line 457, ../sass/custom/_blueshui.scss */
+button[disabled] .fa, .btn[disabled] .fa, .btn-default[disabled] .fa, html input[disabled] .fa {
+  color: #75b7dd;
+}
+
+/* line 465, ../sass/custom/_blueshui.scss */
+.btn-goup-block .btn.active .fa {
+  color: #0CD06C;
+}
+
+/* line 472, ../sass/custom/_blueshui.scss */
+.btn-submit {
+  color: #defded;
+  border: solid 1px #09a053;
+  background-color: #0CD06C;
+}
+/* line 476, ../sass/custom/_blueshui.scss */
+.btn-submit:hover, .btn-submit:focus {
+  background-color: #09a053;
+  color: #aefad3;
+}
+
+/* Button tabs
 -------------------------------------------------- */
-/* line 292, ../sass/custom/_shui.scss */
-.automation .notification {
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #F6F6F6;
+/* line 485, ../sass/custom/_blueshui.scss */
+.btn-goup-tabs .btn {
+  background-color: #1685c6;
+  color: #b2ddf6;
+  border: solid 1px #61ACD8;
+}
+/* line 489, ../sass/custom/_blueshui.scss */
+.btn-goup-tabs .btn.active {
+  background-color: #3A96CD;
+  color: #0CD06C;
+}
+/* line 493, ../sass/custom/_blueshui.scss */
+.btn-goup-tabs .btn .fa {
+  color: #b2ddf6;
+}
+/* line 495, ../sass/custom/_blueshui.scss */
+.btn-goup-tabs .btn .fa.text-danger {
+  color: #C50000;
+}
+/* line 501, ../sass/custom/_blueshui.scss */
+.btn-goup-tabs .active .fa {
+  color: #0CD06C;
+}
+/* line 503, ../sass/custom/_blueshui.scss */
+.btn-goup-tabs .active .fa.text-danger {
+  color: #C50000;
+}
+
+/* Slider
+-------------------------------------------------- */
+/* line 513, ../sass/custom/_blueshui.scss */
+input:checked + .slider:before {
+  background-color: #0CD06C;
+}
+
+/* line 516, ../sass/custom/_blueshui.scss */
+.slider {
+  background-color: #edf7fd;
+  border-color: #61ACD8;
+}
+
+/* Dropdown
+-------------------------------------------------- */
+/* line 525, ../sass/custom/_blueshui.scss */
+.app-dropdown {
+  background-color: #1685c6;
+  border: 1px solid #61ACD8;
+  color: #b2ddf6;
+}
+/* line 530, ../sass/custom/_blueshui.scss */
+.app-dropdown .app-dropdown-title {
+  color: #fff;
+  border-bottom: solid 1px #61ACD8;
+}
+/* line 536, ../sass/custom/_blueshui.scss */
+.app-dropdown ul li {
+  border-bottom: solid 1px #61ACD8;
+}
+/* line 538, ../sass/custom/_blueshui.scss */
+.app-dropdown ul li a {
+  color: #b2ddf6;
+}
+/* line 541, ../sass/custom/_blueshui.scss */
+.app-dropdown ul li:hover {
+  background: transparent;
+  color: #fff;
+}
+/* line 548, ../sass/custom/_blueshui.scss */
+.app-dropdown ul .active a {
+  color: #0CD06C;
+}
+/* line 552, ../sass/custom/_blueshui.scss */
+.app-dropdown ul .btn {
+  color: #05517E;
+}
+
+/* Accordion
+-------------------------------------------------- */
+/* line 561, ../sass/custom/_blueshui.scss */
+.accordion-toggle,
+.automation .accordion-wrap .accordion-toggle {
+  color: #05517E;
+}
+/* line 563, ../sass/custom/_blueshui.scss */
+.accordion-toggle .no-toggle,
+.automation .accordion-wrap .accordion-toggle .no-toggle {
+  border-color: #61ACD8;
+}
+/* line 567, ../sass/custom/_blueshui.scss */
+.accordion-toggle > button,
+.automation .accordion-wrap .accordion-toggle > button {
+  border-color: #61ACD8;
+}
+
+/* line 572, ../sass/custom/_blueshui.scss */
+.accordion,
+.automation .accordion-wrap .accordion {
+  background-color: #d2ebfa;
+  border-color: #61ACD8;
+  color: #05517E;
+}
+
+/* line 579, ../sass/custom/_blueshui.scss */
+.automation .accordion-wrap .accordion {
+  background-color: #d2ebfa;
+}
+/* line 581, ../sass/custom/_blueshui.scss */
+.automation .accordion-wrap .accordion .accordion {
+  border: 0;
+  background-color: #a4d7f5;
+}
+
+/* line 587, ../sass/custom/_blueshui.scss */
+.accordion-entry {
+  border-bottom: dotted 1px #61ACD8;
+  color: #05517E;
+}
+
+/* line 591, ../sass/custom/_blueshui.scss */
+.accordion-entry-title {
+  color: #05517E;
+}
+/* line 593, ../sass/custom/_blueshui.scss */
+.accordion-entry-title .fa {
+  color: #0771af;
+}
+
+/* Automation
+-------------------------------------------------- */
+/* line 600, ../sass/custom/_blueshui.scss */
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.schedule .sc_menu .sc_header_cell,
+.schedule .sc_wrapper .sc_data {
+  background: #b2ddf6;
+}
+
+/* line 606, ../sass/custom/_blueshui.scss */
+.schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
+.schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time {
+  border-color: #b2ddf6;
+}
+
+/* Modal
+-------------------------------------------------- */
+/* line 614, ../sass/custom/_blueshui.scss */
+.appmodal {
+  color: #05517E;
+}
+/* line 616, ../sass/custom/_blueshui.scss */
+.appmodal .appmodal-in {
+  background-color: #e0f1fc;
+}
+
+/* line 621, ../sass/custom/_blueshui.scss */
+.appmodal-header {
+  border-bottom: solid 1px #61ACD8;
+  background-color: #1685c6;
+}
+/* line 624, ../sass/custom/_blueshui.scss */
+.appmodal-header h3 {
+  color: #e0f1fc;
+}
+
+/* line 632, ../sass/custom/_blueshui.scss */
+.appmodal-footer {
+  border-top: solid 1px #61ACD8;
+  background-color: #1685c6;
+}
+
+/* Report
+-------------------------------------------------- */
+/* line 639, ../sass/custom/_blueshui.scss */
+.app-row-report {
+  border-top: 0;
+  border-bottom: 0;
+  background-color: #e0f1fc;
+  color: #05517E;
+}
+/* line 644, ../sass/custom/_blueshui.scss */
+.app-row-report .report-entry {
+  /* &:first-child {
+    .report-col{
+      border-top: dotted 1px $app-border-color;
+  }
+} */
+}
+/* line 646, ../sass/custom/_blueshui.scss */
+.app-row-report .report-entry .report-col {
+  border-bottom: dotted 1px #61ACD8;
+}
+
+/* List panel
+-------------------------------------------------- */
+/* line 660, ../sass/custom/_blueshui.scss */
+.list-panel {
+  background-color: #e0f1fc;
+  border-bottom: dotted 1px #61ACD8;
+}
+
+/* Table
+-------------------------------------------------- */
+/* line 669, ../sass/custom/_blueshui.scss */
+.table > thead > tr > th {
+  border-bottom: 0;
+}
+/* line 674, ../sass/custom/_blueshui.scss */
+.table tbody tr td {
+  border-top: 1px dotted #61ACD8;
+}
+
+/* line 681, ../sass/custom/_blueshui.scss */
+.table-report {
+  background-color: #e0f1fc;
+}
+
+/* Loader
+-------------------------------------------------- */
+/* line 687, ../sass/custom/_blueshui.scss */
+#loading {
+  color: #e0f1fc;
+}
+/* line 689, ../sass/custom/_blueshui.scss */
+#loading .loading-in {
+  background-color: #1685c6;
+  border: solid 2px #61ACD8;
+}
+
+/* line 696, ../sass/custom/_blueshui.scss */
+.progress-true .widget-loader {
+  color: #0CD06C;
+}
+
+/* Pagination
+-------------------------------------------------- */
+/* line 707, ../sass/custom/_blueshui.scss */
+.pagination > li > a,
+.pagination > li > span {
+  color: #05517E;
+  background-color: #d2ebfa;
+  border: solid 1px #b2ddf6;
+}
+/* line 719, ../sass/custom/_blueshui.scss */
+.pagination > li > a:hover, .pagination > li > a:focus,
+.pagination > li > span:hover,
+.pagination > li > span:focus {
+  color: #e0f1fc;
+  background-color: #1685c6;
+  border-color: #b3d7ec;
+}
+/* line 729, ../sass/custom/_blueshui.scss */
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+  color: #e0f1fc;
+  background-color: #1685c6;
+  border-color: #b3d7ec;
+}
+/* line 739, ../sass/custom/_blueshui.scss */
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #05517E;
+  background-color: #d2ebfa;
+  border: solid 1px #b2ddf6;
+}
+
+/* Widget
+-------------------------------------------------- */
+/* line 755, ../sass/custom/_blueshui.scss */
+.widget-entry .widget-entry-in {
+  border-bottom: solid 1px #61ACD8;
+  background: transparent;
+  color: #05517E;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 768px) {
+  /* line 755, ../sass/custom/_blueshui.scss */
+  .widget-entry .widget-entry-in {
+    background-color: #d2ebfa;
+    border: solid 2px #b2ddf6;
+  }
+}
+/* line 767, ../sass/custom/_blueshui.scss */
+.widget-entry .widget-entry-in .widget-header .widget-icon {
+  color: #05517E;
+}
+/* line 772, ../sass/custom/_blueshui.scss */
+.widget-entry .widget-entry-in .widget-title {
+  color: #044165;
+}
+/* line 775, ../sass/custom/_blueshui.scss */
+.widget-entry .widget-entry-in .widget-title h3 a {
+  color: #044165;
+}
+/* line 782, ../sass/custom/_blueshui.scss */
+.widget-entry.widget-success .widget-entry-in {
+  border: solid 2px #00B559;
+}
+
+/* Rooms
+-------------------------------------------------- */
+/* line 790, ../sass/custom/_blueshui.scss */
+.card-room {
+  /* Inner element */
+}
+/* line 792, ../sass/custom/_blueshui.scss */
+.card-room .card-room-in {
+  border-color: #61ACD8;
+}
+/* line 795, ../sass/custom/_blueshui.scss */
+.card-room .card-room-in .card-icon {
+  color: #05517E;
+}
+/* line 798, ../sass/custom/_blueshui.scss */
+.card-room .card-room-in .card-title {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (min-width: 992px) and (orientation: landscape) {
+  /* line 800, ../sass/custom/_blueshui.scss */
+  .card-room .card-room-in .card-title a {
+    color: #05517E;
+  }
+}
+
+/* line 810, ../sass/custom/_blueshui.scss */
+.elemnts-room-bar {
+  border: 0 none;
+  background-color: #d2ebfa;
+}
+
+/* Elements
+-------------------------------------------------- */
+/* line 820, ../sass/custom/_blueshui.scss */
+.widget-entry-element .widget-entry-in .widget-img {
+  background-color: #fff;
+}
+/* line 824, ../sass/custom/_blueshui.scss */
+.widget-entry-element .widget-entry-in .widget-title .widget-room {
+  color: #05517E;
+}
+/* line 828, ../sass/custom/_blueshui.scss */
+.widget-entry-element .widget-entry-in .widget-level {
+  color: #05517E;
+}
+
+/* line 836, ../sass/custom/_blueshui.scss */
+.widget-ctrl .fa-caret-down, .tbl-widget-ctrl .fa-caret-down {
+  color: #05517E;
+}
+/* line 840, ../sass/custom/_blueshui.scss */
+.widget-ctrl .btn-group .btn, .tbl-widget-ctrl .btn-group .btn {
+  color: #8dcdf2;
+  background-color: #d2ebfa;
+}
+/* line 845, ../sass/custom/_blueshui.scss */
+.widget-ctrl .btn-group .btn-primary, .tbl-widget-ctrl .btn-group .btn-primary {
+  background-color: #3A96CD !important;
+  border-color: #61ACD8;
+  color: #e0f1fc !important;
+}
+/* line 849, ../sass/custom/_blueshui.scss */
+.widget-ctrl .btn-group .btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-primary .fa {
+  color: #05517E !important;
+}
+/* line 853, ../sass/custom/_blueshui.scss */
+.widget-ctrl .btn-group .btn-off.btn-primary, .tbl-widget-ctrl .btn-group .btn-off.btn-primary {
+  color: #05517E !important;
+}
+/* line 855, ../sass/custom/_blueshui.scss */
+.widget-ctrl .btn-group .btn-off.btn-primary .fa, .tbl-widget-ctrl .btn-group .btn-off.btn-primary .fa {
+  color: #05517E !important;
+}
+/* line 859, ../sass/custom/_blueshui.scss */
+.widget-ctrl .btn-group .btn-label-on, .tbl-widget-ctrl .btn-group .btn-label-on {
+  color: #05517E;
+}
+/* line 862, ../sass/custom/_blueshui.scss */
+.widget-ctrl .btn-group .btn-widget-time, .widget-ctrl .btn-group .txt-widget-time, .tbl-widget-ctrl .btn-group .btn-widget-time, .tbl-widget-ctrl .btn-group .txt-widget-time {
+  color: #05517E;
+}
+
+/* line 869, ../sass/custom/_blueshui.scss */
+.dragdrop-element .dd-placeholder {
+  border: 3px dashed #61ACD8;
+  background-color: #e0f1fc;
+}
+
+/* line 874, ../sass/custom/_blueshui.scss */
+.card-element-dragdrop {
+  background: none #d2ebfa;
+  border: solid 1px #b2ddf6;
+}
+
+/* Local apps
+-------------------------------------------------- */
+/* line 886, ../sass/custom/_blueshui.scss */
+.app-entry-online .app-entry-cat .app-entry-title {
+  color: #05517E;
+}
+
+/* line 892, ../sass/custom/_blueshui.scss */
+.localapp-in {
+  border: solid 1px #61ACD8;
+  background-color: #d2ebfa;
+}
+/* line 896, ../sass/custom/_blueshui.scss */
+.localapp-in .localapp-body .localapp-title {
+  color: #0771af;
+}
+/* line 900, ../sass/custom/_blueshui.scss */
+.localapp-in .localapp-footer {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+@media only screen and (max-width: 767px) {
+  /* line 900, ../sass/custom/_blueshui.scss */
+  .localapp-in .localapp-footer {
+    background-color: #d2ebfa;
+  }
+}
+
+/* Online apps
+-------------------------------------------------- */
+/* line 909, ../sass/custom/_blueshui.scss */
+.onlineapp-in {
+  border: solid 1px #61ACD8;
+  background-color: #d2ebfa;
+  /* Body */
+  /* Footer */
+}
+/* line 914, ../sass/custom/_blueshui.scss */
+.onlineapp-in .onlineapp-body .onlineapp-title {
+  color: #0771af;
+}
+/* line 919, ../sass/custom/_blueshui.scss */
+.onlineapp-in .onlineapp-footer {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+/* line 920, ../sass/custom/_blueshui.scss */
+.onlineapp-in .onlineapp-footer .rating-group {
+  color: #0990e0;
+}
+/* line 924, ../sass/custom/_blueshui.scss */
+.onlineapp-in .onlineapp-footer .rating-group .widget-rating.israted {
+  color: #ffba66;
+}
+@media only screen and (max-width: 767px) {
+  /* line 919, ../sass/custom/_blueshui.scss */
+  .onlineapp-in .onlineapp-footer {
+    background-color: #d2ebfa;
+  }
+}
+
+/* line 937, ../sass/custom/_blueshui.scss */
+.onlineapp.widget-warning .onlineapp-in {
+  border: solid 1px #b3d7ec;
+  background-color: #e0f1fc;
+}
+/* line 942, ../sass/custom/_blueshui.scss */
+.onlineapp.widget-warning .onlineapp-title {
+  color: #57bcf8 !important;
+}
+/* line 948, ../sass/custom/_blueshui.scss */
+.onlineapp.widget-warning .onlineapp-footer .rating-group .widget-rating.israted {
+  color: #f8d9ac;
+}
+/* line 955, ../sass/custom/_blueshui.scss */
+.onlineapp.widget-warning .onlineapp-footer .btn .fa {
+  color: #3eb2f7 !important;
+}
+
+/* Apps online detail
+-------------------------------------------------- */
+/* line 968, ../sass/custom/_blueshui.scss */
+.app-detail-list {
+  border-top: solid 1px #61ACD8;
+}
+
+/* line 972, ../sass/custom/_blueshui.scss */
+.module-rating {
+  color: #05517E;
+}
+/* line 974, ../sass/custom/_blueshui.scss */
+.module-rating.israted {
+  color: #05517E;
+}
+
+/* Apps comments
+-------------------------------------------------- */
+/* line 981, ../sass/custom/_blueshui.scss */
+.comment-entry {
+  background-color: #d2ebfa;
+  color: #05517E;
+}
+/* line 984, ../sass/custom/_blueshui.scss */
+.comment-entry .comment-header {
+  color: #0771af;
+}
+
+/* line 989, ../sass/custom/_blueshui.scss */
+.comment-entry.even {
+  background-color: #bbe1f7;
+}
+
+/* Apps instances
+-------------------------------------------------- */
+/* line 996, ../sass/custom/_blueshui.scss */
+#apps_instances .accordion-entry {
+  background-color: #e0f1fc;
+  border-bottom: 0;
+}
+/* line 1000, ../sass/custom/_blueshui.scss */
+#apps_instances .accordion-instances {
+  background-color: #c9e7f9;
+}
+/* line 1003, ../sass/custom/_blueshui.scss */
+#apps_instances .accordion-instances .accordion .list-panel {
+  background-color: #c9e7f9;
+  border: 0;
+}
+
+/* Events
+-------------------------------------------------- */
+/* line 1013, ../sass/custom/_blueshui.scss */
+.event-level-warning, .event-level-error, .event-level-critical {
+  background-color: #d2ebfa;
+}
+/* line 1015, ../sass/custom/_blueshui.scss */
+.event-level-warning.report-entry, .event-level-error.report-entry, .event-level-critical.report-entry {
+  border-bottom: solid 1px #C50000;
+}
+
+/* line 1020, ../sass/custom/_blueshui.scss */
+.event-room {
+  color: #05517E;
+}
+
+ /* Customize
+-------------------------------------------------- */
+/* line 1027, ../sass/custom/_blueshui.scss */
+.customize-detail-img, .customize-image-detail {
+  border: 0;
+}
+
+/* MIN WIDTH */
+@media only screen and (min-width: 320px) {
+  /* line 1032, ../sass/custom/_blueshui.scss */
+  .card-customize {
+    border: 0;
+  }
+  /* line 1034, ../sass/custom/_blueshui.scss */
+  .card-customize .card-customize-in {
+    border: solid 4px #61ACD8;
+  }
+  /* line 1036, ../sass/custom/_blueshui.scss */
+  .card-customize .card-customize-in .card-footer {
+    color: #05517E;
+  }
+}
+/* MAX WIDTH */
+/* Image list
+-------------------------------------------------- */
+/* line 1045, ../sass/custom/_blueshui.scss */
+.app-row-imglist {
+  background-color: #d2ebfa;
+  border: solid 2px #b2ddf6;
+}
+
+/* line 1050, ../sass/custom/_blueshui.scss */
+.imglist-entry.in-device {
+  background-color: #f2dede;
+}
+
+/* ZWave
+-------------------------------------------------- */
+/* line 1058, ../sass/custom/_blueshui.scss */
+.network-zwave-title.noelements {
+  color: #05517E;
+}
+
+/* line 1063, ../sass/custom/_blueshui.scss */
+.cfg-info {
+  border-color: #61ACD8;
+}
+
+/* line 1066, ../sass/custom/_blueshui.scss */
+.vendor-list {
+  border-color: #61ACD8;
+}
+
+/* Expert Commands
+-------------------------------------------------- */
+/* line 1072, ../sass/custom/_blueshui.scss */
+.commands-data-control {
+  background-color: #d2ebfa;
+}
+
+/* RSS
+-------------------------------------------------- */
+/* line 1078, ../sass/custom/_blueshui.scss */
+.list-panel {
+  color: #05517E;
+}
+/* line 1080, ../sass/custom/_blueshui.scss */
+.list-panel.read-true {
+  background-color: #e0f1fc;
+}
+/* line 1083, ../sass/custom/_blueshui.scss */
+.list-panel.read-true .event-date, .list-panel.read-true .rss-title, .list-panel.read-true .rss-description {
+  color: #57bcf8;
+}
+
+/* line 1091, ../sass/custom/_blueshui.scss */
+.read-false .rss-title {
+  font-weight: bold;
+  background-color: #d2ebfa;
+}
+
+/* Alexa
+-------------------------------------------------- */
+/* line 1100, ../sass/custom/_blueshui.scss */
+.wizard li {
+  background-color: #61ACD8;
+}
+/* line 1102, ../sass/custom/_blueshui.scss */
+.wizard li.active {
+  background-color: #0CD06C;
+}
+
+/* line 1107, ../sass/custom/_blueshui.scss */
+.wizard-controls {
+  background-color: #61ACD8;
 }
 
 /* Footer
-    -------------------------------------------------- */
-/* line 303, ../sass/custom/_shui.scss */
-#footer .container {
-  display: flex;
-  justify-content: space-between;
+-------------------------------------------------- */
+/* line 1113, ../sass/custom/_blueshui.scss */
+#footer {
+  border-top: solid 1px #61ACD8;
 }
-/* line 307, ../sass/custom/_shui.scss */
-#footer .container span:last-child {
-  margin-left: auto;
+/* line 1115, ../sass/custom/_blueshui.scss */
+#footer #footer_in {
+  color: #e0f1fc;
+  background-color: #05517E;
 }
 
-/* Night mode
-    -------------------------------------------------- */
-/* line 316, ../sass/custom/_shui.scss */
-.night-true {
-  /* Night mode
-  -------------------------------------------------- */
-  /* Common
-      -------------------------------------------------- */
-  /* Text
-      -------------------------------------------------- */
-  /* Warning color
-      -------------------------------------------------- */
-  /* Dark background
-      -------------------------------------------------- */
-  /* Lighter background
-      -------------------------------------------------- */
-  /* Lightest background
-      -------------------------------------------------- */
-  /* White background
-      -------------------------------------------------- */
-  /* Additional background
-      -------------------------------------------------- */
-  /* Input background
-      -------------------------------------------------- */
-  /* Border darker
-      -------------------------------------------------- */
-  /* Border lighter
-      -------------------------------------------------- */
-  /* Border additional
-      -------------------------------------------------- */
-  /* No border
-      -------------------------------------------------- */
-  /* Subnavigation
-  -------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Fix me
-      -------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Alert
-      -------------------------------------------------- */
-  /* Modal
-      -------------------------------------------------- */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* Automations
-    -------------------------------------------------- */
-  /* Active control
-    -------------------------------------------------- */
-  /* Rooms
-    -------------------------------------------------- */
-  /* White images
-      -------------------------------------------------- */
-  /* Alertify
-  -------------------------------------------------- */
-  /* Alpaca
-      -------------------------------------------------- */
+/* Slider
+-------------------------------------------------- */
+/* line 1126, ../sass/custom/_blueshui.scss */
+.app-slider .slide .slider-label {
+  background-color: rgba(22, 133, 198, 0.2);
 }
-/* line 29, ../sass/custom/_shui_night.scss */
-.night-true body {
-  background-color: #24262D;
+
+/* line 1133, ../sass/custom/_blueshui.scss */
+.slider-btn {
+  background-color: rgba(5, 80, 125, 0.4);
 }
-/* line 33, ../sass/custom/_shui_night.scss */
-.night-true * {
-  color: #aeb8c3;
-  border-color: #44464F;
+/* line 1135, ../sass/custom/_blueshui.scss */
+.slider-btn:hover {
+  background-color: rgba(5, 80, 125, 0.8);
 }
-/* line 41, ../sass/custom/_shui_night.scss */
-.night-true #sub_navigation_in ul .fa,
-.night-true .page-navi ul li a,
-.night-true .card-room .card-room-in .card-title a,
-.night-true .localapp-in .localapp-body .localapp-title,
-.night-true .onlineapp-in .onlineapp-body .onlineapp-title,
-.night-true .app-dropdown ul li a,
-.night-true #loading,
-.night-true .btn-widget-time,
-.night-true .txt-widget-time,
-.night-true .btn-default,
-.night-true .alert,
-.night-true .app-fatal-error,
-.night-true .app-fatal-error .fatal-error-message,
-.night-true .app-fatal-error .fatal-error-info,
-.night-true .wizard li,
-.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-.night-true .badge-number {
-  color: #aeb8c3;
+
+/* Alertify
+-------------------------------------------------- */
+/* line 1143, ../sass/custom/_blueshui.scss */
+.alertify .ajs-dialog {
+  border: solid 2px #61ACD8;
 }
-/* line 62, ../sass/custom/_shui_night.scss */
-.night-true .page-navi ul .fa,
-.night-true .btn-goup-tabs .btn .fa,
-.night-true .accordion-entry-title .fa,
-.night-true .app-entry-local h2,
-.night-true .comment-entry .comment-header,
-.night-true .appmodal-header h3,
-.night-true a:hover,
-.night-true a:focus,
-.night-true .read-true .report-body > *,
-.night-true .btn-default:hover,
-.night-true .btn-default:focus,
-.night-true .btn-default:active,
-.night-true .page-navi .page-navi-title,
-.night-true .read-true .event-date,
-.night-true .read-true .rss-title,
-.night-true .read-true .rss-description {
-  color: #8a8d8f;
+/* line 1146, ../sass/custom/_blueshui.scss */
+.alertify .ajs-dialog, .alertify .ajs-header, .alertify .ajs-footer {
+  color: #05517E;
+  background-color: #d2ebfa;
 }
-/* line 83, ../sass/custom/_shui_night.scss */
-.night-true .card-customize .card-customize-in .card-footer,
-.night-true .sc_Bar_inner .time,
-.night-true .schedule .sc_Bar .sc_Bar_inner .text {
-  color: #24262D;
+/* line 1151, ../sass/custom/_blueshui.scss */
+.alertify .ajs-footer .ajs-button {
+  background-color: #61ACD8;
+  color: #e0f1fc;
+  border: solid 1px #b3d7ec;
 }
-/* line 90, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation .active .fa,
-.night-true #sub_navigation_in ul li.active a span,
-.night-true #sub_navigation_in ul .active a,
-.night-true #sub_navigation_in ul .active .fa,
-.night-true .btn-default.active span,
-.night-true .btn-default.active .fa {
-  color: #f0ad4e !important;
+/* line 1155, ../sass/custom/_blueshui.scss */
+.alertify .ajs-footer .ajs-button.ajs-ok {
+  color: #7df8b9;
+  border: solid 1px #06703a;
+  background-color: #0CD06C;
 }
-/* line 100, ../sass/custom/_shui_night.scss */
-.night-true .text-primary {
-  color: #6494BC;
+/* line 1159, ../sass/custom/_blueshui.scss */
+.alertify .ajs-footer .ajs-button.ajs-ok:hover, .alertify .ajs-footer .ajs-button.ajs-ok:focus {
+  background-color: #06703a;
+  color: #aefad3;
 }
-/* line 104, ../sass/custom/_shui_night.scss */
-.night-true .text-success {
-  color: #80AD80;
+
+/* Alpaca
+-------------------------------------------------- */
+/* line 1171, ../sass/custom/_blueshui.scss */
+.alpaca-field-object {
+  border: 1px #61ACD8 solid;
 }
-/* line 108, ../sass/custom/_shui_night.scss */
-.night-true .text-info {
-  color: #5bc0de;
+
+/* line 1174, ../sass/custom/_blueshui.scss */
+.table-bordered {
+  border: 1px solid #61ACD8;
 }
-/* line 112, ../sass/custom/_shui_night.scss */
-.night-true .text-warning {
-  color: #f0ad4e;
+
+/* line 1177, ../sass/custom/_blueshui.scss */
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #d2ebfa;
 }
-/* line 116, ../sass/custom/_shui_night.scss */
-.night-true .text-danger {
-  color: #d9534f;
+
+/* line 1182, ../sass/custom/_blueshui.scss */
+#alpaca_data .table-bordered > thead > tr > th, #alpaca_data .table-bordered > thead > tr > td {
+  border: 1px solid #61ACD8;
 }
-/* line 122, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation_wrap,
-.night-true #main_navigation .active,
-.night-true #main_navigation a:hover,
-.night-true #sub_navigation_in .active,
-.night-true .card-room .card-room-in .card-icon,
-.night-true .app-row-report,
-.night-true #apps_instances .accordion-entry,
-.night-true .form-page,
-.night-true .table-report,
-.night-true .card-customize .card-customize-in .card-icon,
-.night-true .list-panel,
-.night-true .app-dropdown ul li:hover,
-.night-true .input-group-addon,
-.night-true .automation .accordion-wrap.nested .accordion .accordion,
-.night-true #loading .loading-in,
-.night-true .appmodal .appmodal-in,
-.night-true .smart-start .container .entry,
-.night-true #footer #footer_in,
-.night-true .flexcards.security .flexcard .flipcard > *.front,
-.night-true .flexcards.security .flexcard .flipcard > *.back,
-.night-true .automation .notification,
-.night-true .dragdrop-element .dd-placeholder,
-.night-true .accordion-instances,
-.night-true .btn:not(.btn-danger):not(.btn-submit) {
-  background: #24262D !important;
+/* line 1186, ../sass/custom/_blueshui.scss */
+#alpaca_data .table-bordered > tbody > tr > td, #alpaca_data .table-bordered > tfoot > tr > th, #alpaca_data .table-bordered > tfoot > tr > td {
+  border: 0px solid #61ACD8;
 }
-/* line 151, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation .active,
-.night-true #sub_navigation_in ul,
-.night-true .page-navi .page-navi-in,
-.night-true .btn-goup-tabs .btn.active,
-.night-true .widget-entry .widget-entry-in,
-.night-true .widget-ctrl .btn-group .btn-primary,
-.night-true .tbl-widget-ctrl .btn-group .btn-primary,
-.night-true .card-element-dragdrop,
-.night-true .elemnts-room-bar,
-.night-true .event-level-warning,
-.night-true .event-level-error,
-.night-true .event-level-critical,
-.night-true .localapp-in,
-.night-true .localapp-in .localapp-footer .btn-default[disabled],
-.night-true .onlineapp-in,
-.night-true .submit-entry,
-.night-true .app-dropdown,
-.night-true .bcg-active.false,
-.night-true .automation .accordion-wrap .accordion,
-.night-true .bcg-danger,
-.night-true .comment-entry,
-.night-true .vendor-list,
-.night-true .badge-number,
-.night-true .appmodal-header,
-.night-true .appmodal-footer,
-.night-true .wizard-controls,
-.night-true .alert,
-.night-true .bcg-success,
-.night-true .app-fatal-error,
-.night-true .wizard li,
-.night-true .onlineapp-in .onlineapp-footer,
-.night-true .security-schedule > tbody > tr > td.active,
-.night-true .table-responsive [data-expanded="true"] td,
-.night-true .list-panel.read-false,
-.night-true .form-page,
-.night-true .commands-data-control,
-.night-true .schedule .sc_wrapper .sc_data,
-.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-.night-true .schedule .sc_menu .sc_header_cell,
-.night-true .infowindow {
-  background: #2D3038 !important;
-}
-/* line 196, ../sass/custom/_shui_night.scss */
-.night-true .app-row-imglist,
-.night-true .customize-icon-list {
-  background: #858996 !important;
-}
-/* line 203, ../sass/custom/_shui_night.scss */
-.night-true .vendors.flexgallery > * figure,
-.night-true #modalHistory .appmodal-body {
-  background: #fff;
-}
-/* line 210, ../sass/custom/_shui_night.scss */
-.night-true .btn-submit,
-.night-true .wizard li.active,
-.night-true .dots .active {
-  background: #740047 !important;
-}
-/* line 218, ../sass/custom/_shui_night.scss */
-.night-true .form-control,
-.night-true .slider,
-.night-true .ajs-input,
-.night-true .label-round,
-.night-true .label {
-  background: #44464F;
-}
-/* line 226, ../sass/custom/_shui_night.scss */
-.night-true .slider:before {
-  background: #d9534f;
-}
-/* line 232, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation_wrap,
-.night-true #sub_navigation_in ul,
-.night-true #sub_navigation_in ul li,
-.night-true #header .divider-vertical,
-.night-true .page-navi .page-navi-in,
-.night-true .page-navi ul li,
-.night-true .widget-entry .widget-entry-in,
-.night-true .widget-ctrl .btn-group .btn-primary,
-.night-true .tbl-widget-ctrl .btn-group .btn-primary,
-.night-true .card-room .card-room-in,
-.night-true .report-entry .report-col,
-.night-true .localapp-in .localapp-footer .btn-default[disabled],
-.night-true .table tbody tr td,
-.night-true .accordion-toggle > button,
-.night-true .form-page .form-group,
-.night-true .device-available-block.assigned,
-.night-true .form-control,
-.night-true .ajs-input,
-.night-true .input-group-addon,
-.night-true .slider,
-.night-true .slider:before,
-.night-true .app-dropdown,
-.night-true .app-dropdown ul li,
-.night-true .card-customize,
-.night-true .vendor-list,
-.night-true .automation .accordion-wrap .accordion-toggle .no-toggle,
-.night-true .list-panel,
-.night-true .appmodal-header,
-.night-true .appmodal-footer,
-.night-true .infowindow,
-.night-true #loading .loading-in,
-.night-true .label-round,
-.night-true .btn-default,
-.night-true .btn-submit,
-.night-true .app-row-report,
-.night-true .report-entry,
-.night-true .flexcard,
-.night-true .flexcards.security .flexcard .flipcard > *,
-.night-true .table-responsive td,
-.night-true .table-responsive th,
-.night-true .table > thead > tr > th,
-.night-true .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
-.night-true .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
-.night-true .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-.night-true .btn-default[disabled],
-.night-true #footer {
-  border-color: #44464F !important;
-}
-/* line 283, ../sass/custom/_shui_night.scss */
-.night-true #sub_navigation_in,
-.night-true .btn-default.active,
-.night-true .btn-default:hover,
-.night-true .btn-default:focus,
-.night-true .btn-default:active,
-.night-true .btn-success,
-.night-true .dragdrop-element .dd-placeholder {
-  border-color: #737786 !important;
-}
-/* line 295, ../sass/custom/_shui_night.scss */
-.night-true .widget-entry.widget-success .widget-entry-in {
-  border-color: #740047 !important;
-}
-/* line 303, ../sass/custom/_shui_night.scss */
-.night-true .form-page,
-.night-true .submit-entry,
-.night-true .app-row-imglist,
-.night-true .wizard-controls {
-  border: 0;
-}
-@media only screen and (max-width: 767px) {
-  /* line 314, ../sass/custom/_shui_night.scss */
-  .night-true #sub_navigation #sub_navigation_in {
-    background-color: #2D3038;
-  }
-}
-@media only screen and (max-width: 767px) {
-  /* line 323, ../sass/custom/_shui_night.scss */
-  .night-true .fix-me-top {
-    background: #24262D;
-    border-color: #44464F;
-  }
-}
-/* line 331, ../sass/custom/_shui_night.scss */
-.night-true .alert-success {
-  border-color: #f0ad4e;
-}
-/* line 335, ../sass/custom/_shui_night.scss */
-.night-true .alert-warning {
-  border-color: #f0ad4e;
-}
-/* line 339, ../sass/custom/_shui_night.scss */
-.night-true .alert-danger {
-  border-color: #d9534f;
-}
-@media only screen and (max-width: 767px) {
-  /* line 346, ../sass/custom/_shui_night.scss */
-  .night-true .appmodal:before {
-    background: #24262D !important;
-  }
-}
-@media only screen and (min-width: 768px) {
-  /* line 352, ../sass/custom/_shui_night.scss */
-  .night-true .appmodal:before {
-    background-color: rgba(37, 37, 37, 0.5);
-  }
-  /* line 356, ../sass/custom/_shui_night.scss */
-  .night-true .appmodal-in {
-    border: solid 4px #44464F;
-  }
-}
-/* line 364, ../sass/custom/_shui_night.scss */
-.night-true .flexgallery figure {
-  border: solid 1px #44464F;
-  background-color: #24262D;
-}
-/* line 368, ../sass/custom/_shui_night.scss */
-.night-true .flexgallery figure figcaption {
-  background-color: rgba(36, 38, 45, 0.7);
-}
-/* line 379, ../sass/custom/_shui_night.scss */
-.night-true .control-active {
-  border-color: #740047;
-}
-/* line 386, ../sass/custom/_shui_night.scss */
-.night-true .room-img-upload:not(.control-active) {
-  border: solid 8px #24262D;
-}
-/* line 390, ../sass/custom/_shui_night.scss */
-.night-true .room-img-upload.control-active {
-  border: solid 4px #740047;
-}
-/* line 394, ../sass/custom/_shui_night.scss */
-.night-true .room-img-upload:hover {
-  border: solid 4px #f0ad4e;
-}
-/* line 402, ../sass/custom/_shui_night.scss */
-.night-true #main_navigation .nav-logo {
-  -webkit-filter: brightness(0) invert(1);
-  filter: brightness(0) invert(1);
-  /* &:hover {
-      -webkit-filter: none;
-      filter: none;
-    } */
-}
-/* line 415, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-dialog {
-  border: solid 2px #44464F;
-}
-/* line 419, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-dialog,
-.night-true .alertify .ajs-header,
-.night-true .alertify .ajs-footer {
-  color: #aeb8c3;
-  background-color: #24262D;
-}
-/* line 427, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-footer .ajs-button {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857;
-  border-radius: 4px;
-  font-size: 110%;
-  background-color: #44464F;
-  color: #aeb8c3;
-  border: solid 1px #737786;
-}
-/* line 446, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-footer .ajs-button.ajs-ok {
-  color: #8a8d8f;
-  border: solid 1px #44464F;
-  background-color: #740047;
-}
-/* line 451, ../sass/custom/_shui_night.scss */
-.night-true .alertify .ajs-footer .ajs-button.ajs-ok:hover, .night-true .alertify .ajs-footer .ajs-button.ajs-ok:focus {
-  background-color: #44464F;
-  color: #8a8d8f;
-}
-/* line 461, ../sass/custom/_shui_night.scss */
-.night-true .alertify-notifier .ajs-message.ajs-success {
-  color: #fff;
-}
-/* line 465, ../sass/custom/_shui_night.scss */
-.night-true .alertify-notifier .ajs-message.ajs-error {
-  color: #fff;
-}
-/* line 469, ../sass/custom/_shui_night.scss */
-.night-true .alertify-notifier .ajs-message.ajs-warning {
-  color: #fff;
-}
-/* line 475, ../sass/custom/_shui_night.scss */
-.night-true .alpaca-field-object {
-  border: 1px #44464F solid;
-}
-/* line 479, ../sass/custom/_shui_night.scss */
-.night-true .table-bordered {
-  border: 1px solid #44464F;
-}
-/* line 483, ../sass/custom/_shui_night.scss */
-.night-true .table-striped > tbody > tr:nth-child(odd) > td,
-.night-true .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #44464F;
-}
-/* line 490, ../sass/custom/_shui_night.scss */
-.night-true #alpaca_data .table-bordered > thead > tr > th,
-.night-true #alpaca_data .table-bordered > thead > tr > td {
-  border: 1px solid #44464F;
-}
-/* line 495, ../sass/custom/_shui_night.scss */
-.night-true #alpaca_data .table-bordered > tbody > tr > td,
-.night-true #alpaca_data .table-bordered > tfoot > tr > th,
-.night-true #alpaca_data .table-bordered > tfoot > tr > td {
-  border: 0px solid #44464F;
-}
-/* line 501, ../sass/custom/_shui_night.scss */
-.night-true #alpaca_data .btn-default[disabled] {
+/* line 1189, ../sass/custom/_blueshui.scss */
+#alpaca_data .btn-default[disabled] {
   background: transparent;
-  border-color: #44464F;
+  border-color: #61ACD8;
 }
 
 /* SmartHome UI custom POPP
