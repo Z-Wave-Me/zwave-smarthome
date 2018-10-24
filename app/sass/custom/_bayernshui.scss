@@ -98,8 +98,8 @@ a {
 }
 
 .bcg-active.false, .bcg-danger {
-    background-color: $app-bcg-danger;
-    background: transparent;
+    background-color: lighten($app-brand-warning,5%) !important;
+    //background: transparent;
     .report-img-s{
         @include appGrayscale();
     }
@@ -367,6 +367,13 @@ a {
         background-color: $app-border-color;
     }
 }
+#elCategories{
+  ul{
+    li{
+      color: $app-a-color;
+    }
+  }
+}
 
 /* Form
 -------------------------------------------------- */
@@ -401,7 +408,7 @@ a {
 .form-page {
     background-color: $app-color-red-lighter;
     border: 0 none;
-    .form-group {
+    .form-group:not(.is-inline) {
         border-bottom: solid 1px $app-color-red-darkest;
     }
 }
@@ -604,6 +611,28 @@ legend {
     }
 }
 
+/* Automation
+-------------------------------------------------- */
+.schedule .sc_wrapper .sc_data,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time {
+  color: $app-color-lighter;
+}
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.schedule .sc_menu .sc_header_cell,
+.schedule .sc_wrapper .sc_data {
+ 
+  background:darken($app-color-red-lightest,10%);
+}
+.schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
+.schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time{
+  border-color: darken($app-color-red-lightest,10%);
+}
+
+.schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline{
+  background:lighten($app-color-red-lightest,5%);
+}
+
 /* Modal
 -------------------------------------------------- */
 .appmodal {
@@ -627,6 +656,11 @@ legend {
 .appmodal-footer {
     border-top: solid 1px $app-color-red-lightest;
     background-color: $app-color-red-darkest;
+}
+#modalHistory{
+  .appmodal-body {
+    background: $app-color-red-lightest;
+  }
 }
 
 /* Report
@@ -671,6 +705,11 @@ legend {
 }
 .table-report{
     background-color: $app-color-red-lightest;
+}
+/* Flexgallery
+-------------------------------------------------- */
+.flexgallery > * figure figcaption >*{
+  color: $app-color-additional;
 }
 
 /* Loader
@@ -1017,6 +1056,20 @@ legend {
     }
 }
 
+/* Apps instances
+-------------------------------------------------- */
+#apps_instances {
+  .accordion-instances{
+    background-color:lighten($app-color-red-darker,5%);
+    .accordion{
+      .list-panel{
+        background-color:lighten($app-color-red-darker,5%);
+        border: 0;
+      }
+    }
+  }
+}
+
 /* Events
 -------------------------------------------------- */
 .event-level-warning,.event-level-error,.event-level-critical{
@@ -1032,6 +1085,9 @@ legend {
 
   /* Customize
 -------------------------------------------------- */
+.customize-detail-img,.customize-image-detail,.customize-icon-list {
+  border: 0;
+}
 // Media queries
 @include mediaQueries(min-usmall) {
   .card-customize {
@@ -1065,15 +1121,6 @@ legend {
     }
 }
 
-.device-type-logo,.device-logo img{
-    /* -webkit-filter: brightness(300%);
-     filter: brightness(300%);*/
-    /*-webkit-filter: saturate(800%); !* Safari *!
-    filter: saturate(800%);*/
-    -webkit-filter: brightness(0) invert(1);
-    filter: brightness(0) invert(1);
-}
-
 .cfg-info{
     border-color: $app-border-color;
 }
@@ -1103,6 +1150,21 @@ legend {
     }
     //border: solid 4px $app-border-color;
     // background-color: $app-border-color;
+}
+
+/* Alexa
+-------------------------------------------------- */
+.wizard{
+  li {
+    background-color:$app-border-color;
+    &.active{
+      background-color: $app-color-additional;
+    }
+  }
+} 
+.wizard-controls {
+  border: 0;
+  background-color: $app-border-color;
 }
 
 /* Footer
