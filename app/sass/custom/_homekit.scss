@@ -412,7 +412,7 @@ a {
         .fa{
             color: $app-color-light; 
         }
-        &.active{
+        &.active,&[aria-selected="true"]{
             cursor:text;
             background-color: lighten($app-color-dark-lighter,10%); 
             color: $app-color-additional;
