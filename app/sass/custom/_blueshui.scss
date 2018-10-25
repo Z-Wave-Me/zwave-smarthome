@@ -113,6 +113,20 @@ a {
         background-color: $app-widget-bcg-color;
     }
 }
+.label-round {
+  background-color: lighten($app-border-color,20%);
+  border-color: $app-border-color;
+}
+
+
+
+/* Border colors
+-------------------------------------------------- */
+.page-topbar,
+.accordion-wrap .accordion-toggle,
+.form-page .form-group:not(.is-inline) {
+  border-color:$app-border-color;
+}
 
 /* Text colors
 -------------------------------------------------- */
@@ -272,6 +286,8 @@ a {
 
 /* Subnavigation
 -------------------------------------------------- */
+#sub_navigation_wrap {
+  #sub_navigation{
 #sub_navigation_in{
     ul{
         background-color: $app-color-dark;
@@ -302,6 +318,8 @@ a {
         }
 
     }
+  }
+}
 }
 /* Top fixed elements for mobile devices
 -------------------------------------------------- */
@@ -314,7 +332,7 @@ a {
 }
 /* Page navigation
 -------------------------------------------------- */
-.page-navi{
+.page-navi,#elCategories{
     color: $app-a-color;
     .page-navi-in{
         background-color:$app-color-dark;
@@ -323,6 +341,7 @@ a {
     ul{
         li{
             border-bottom: solid 1px $app-border-color;
+            color: $app-navi-color;
             a{
                 color: $app-navi-color;
 
@@ -343,7 +362,7 @@ a {
         }
     }
     .page-navi-title{
-        color: $app-heading-color;
+        color: $app-navi-color;
     }
     .page-navi-tag {
         border: solid 1px $app-border-color;
@@ -451,6 +470,15 @@ legend {
     }
 }
 
+button[disabled], .btn[disabled],.btn-default[disabled],html input[disabled] {
+  background-color: darken($app-body-bcg-color,5%);
+  border-color:  lighten($app-border-color,5%);
+  .fa{
+    color: lighten($app-border-color,5%);
+  }
+  
+}
+
 .btn-goup-block {
     .btn {
         &.active .fa {
@@ -477,7 +505,7 @@ legend {
         background-color: $app-color-dark;
         color: $app-navi-color;
         border: solid 1px $app-border-color;
-        &.active {
+        &.active,&[aria-selected="true"] {
             background-color: $app-color-dark-lighter;
             color: $app-color-additional;
         }
@@ -565,6 +593,7 @@ input:checked+.slider:before {
   background-color: $app-widget-bcg-color;
   border-color: $app-border-color;
   color: $app-body-color;
+  padding: $spacing;
 }
 
 .automation .accordion-wrap .accordion {
@@ -584,6 +613,20 @@ input:checked+.slider:before {
     .fa{
         color: lighten($app-body-color, 10%);
     }
+}
+
+/* Automation
+-------------------------------------------------- */
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
+.schedule .sc_menu .sc_header_cell,
+.schedule .sc_wrapper .sc_data {
+ 
+  background:darken($app-body-bcg-color,10%);
+}
+.schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
+.schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
+.schedule .sc_menu .sc_header .sc_header_scroll .sc_time{
+  border-color: darken($app-body-bcg-color,10%);
 }
 
 /* Modal
@@ -834,7 +877,7 @@ input:checked+.slider:before {
             }
         }
         .btn-label-on {
-            color: $app-color-lighter;
+            color: $app-body-color;
         }
         .btn-widget-time, .txt-widget-time {
             color: $app-body-color;
@@ -974,6 +1017,15 @@ input:checked+.slider:before {
         background-color: $app-body-bcg-color;
         border-bottom: 0;
     }
+    .accordion-instances{
+      background-color:darken($app-body-bcg-color,5%);
+      .accordion{
+        .list-panel{
+          background-color: $app-widget-bcg-color;
+          border: 0;
+        }
+      }
+    }
 }
 
 /* Events
@@ -991,6 +1043,10 @@ input:checked+.slider:before {
 
  /* Customize
 -------------------------------------------------- */
+
+.customize-detail-img,.customize-image-detail {
+  border: 0;
+}
 // Media queries
 @include mediaQueries(min-usmall) {
   .card-customize {
@@ -1039,13 +1095,13 @@ input:checked+.slider:before {
 
 /* RSS
 -------------------------------------------------- */
-.report-entry {
+.list-panel {
     color: $app-body-color;
     &.read-true{
-        border: 0;
+        //border: 0;
         background-color: $app-body-bcg-color;
         .event-date,.rss-title,.rss-description{
-            color: lighten($app-body-color, 20%);
+            color: lighten($app-body-color, 40%);
         }
     }
 
@@ -1056,6 +1112,20 @@ input:checked+.slider:before {
         font-weight: bold;
         background-color: $app-widget-bcg-color;
     }
+}
+
+/* Alexa
+-------------------------------------------------- */
+.wizard{
+  li {
+    background-color:$app-color-dark-lightest;
+    &.active{
+      background-color: $app-color-additional;
+    }
+  }
+} 
+.wizard-controls {
+  background-color: $app-border-color;
 }
 
 /* Footer

@@ -7,10 +7,11 @@
 #main_navigation_wrap {
   #main_navigation {
     @include mediaQueries(max-small) {
-      #navigation_right{
+      #navigation_right {
         float: left;
       }
-      #navigation_left{
+
+      #navigation_left {
         position: static;
         float: right;
       }
@@ -27,12 +28,14 @@
         background-color: #FFFFFF;
         @include appBoxShadow($app-box-shadow);
         border-right: 1px solid $app-border-color;
+
         ul {
           margin: 0;
           margin: $header-h 0 0;
           background: transparent;
           @include appBoxShadow(none);
           border: 0;
+
           li {
             .subnavi-arrow {
               display: none;
@@ -51,6 +54,10 @@ body {
   &.night-false {
     background-color: #F6F6F6;
   }
+
+  &.night-true {
+    background-color: #24262D;
+  }
 }
 
 .night-false {
@@ -60,11 +67,13 @@ body {
       border: 0;
     }
   }
+
   /* Main navigation
 -------------------------------------------------- */
   #main_navigation_wrap {
     border-bottom: solid 4px #DDD;
     background-color: #E9E9E9;
+
     #main_navigation {
       .active {
         background-color: #DDD;
@@ -72,6 +81,7 @@ body {
       }
     }
   }
+
   /* Top fixed elements for mobile devices
 -------------------------------------------------- */
   @include mediaQueries(max-small) {
@@ -80,38 +90,45 @@ body {
       border-bottom: solid 4px #DDD;
     }
   }
+
   /* Form
 -------------------------------------------------- */
   .form-page {
-   
+
     @include mediaQueries(min-small) {
       border: solid 4px #e7e7e7;
     }
-    > section{
+
+    >section {
       border-bottom: solid 4px #e7e7e7;
-      &:last-child{
+
+      &:last-child {
         border-bottom: 0;
       }
-   
+
     }
-    .section{
+
+    .section {
       border-bottom: solid 4px #e7e7e7;
-      &:last-child{
+
+      &:last-child {
         border-bottom: 0;
       }
     }
-    .for
-    .form-group {
+
+    .for .form-group {
       border-color: #e7e7e7;
     }
   }
+
   .submit-entry {
     @include mediaQueries(min-small) {
       background-color: #e7e7e7;
       border-top: solid 1px #e7e7e7;
     }
-   
+
   }
+
   fieldset,
   .fieldset {
     &.expanded {
@@ -120,44 +137,51 @@ body {
       border-bottom: solid 4px #e7e7e7;
     }
   }
+
   .control-active {
     border: solid 4px $app-brand-success !important;
   }
- 
+
   /* Button
 -------------------------------------------------- */
   .btn-goup-tabs {
     .btn {
       background-color: #eeeeee;
-      &.active,&[aria-selected] {
+
+      &.active,
+      &[aria-selected] {
         background-color: #dcdcdc;
       }
     }
   }
-/* List panel
+
+  /* List panel
 -------------------------------------------------- */
-.list-panel{
-  .control-collapsable{
-    padding: $spacing;
-    background-color: #eeeeee;
+  .list-panel {
+    .control-collapsable {
+      padding: $spacing;
+      background-color: #eeeeee;
+    }
   }
-}
-   /* Table responsive
+
+  /* Table responsive
 -------------------------------------------------- */
-.table-responsive {
-  @include mediaQueries(max-small) {
-    [data-expanded="true"] {
-      td {
-        background-color: #eeeeee;
-       }
-     }
+  .table-responsive {
+    @include mediaQueries(max-small) {
+      [data-expanded="true"] {
+        td {
+          background-color: #eeeeee;
+        }
+      }
+    }
   }
-}
+
   /* Widget
 -------------------------------------------------- */
   .widget-entry {
     .widget-entry-in {
       border-color: #d3d3d3; // Media queries
+
       @include mediaQueries(min-small) {
         border: solid 4px #FFFFFF; // border-width: 4px !important;
         @include appGradient();
@@ -165,6 +189,7 @@ body {
       }
     }
   }
+
   /* Rooms
 -------------------------------------------------- */
   // Media queries
@@ -176,9 +201,11 @@ body {
       }
     }
   }
+
   /* Elements in Room
 -------------------------------------------------- */
   .elemnts-room-bar {
+
     // Media queries
     @include mediaQueries(min-small) {
       border: 0;
@@ -186,73 +213,83 @@ body {
       @include appGradient();
     }
   }
+
   /* Local and online apps
 -------------------------------------------------- */
   .localapp-in,
   .onlineapp-in {
     border-color: #d3d3d3; // Media queries
+
     @include mediaQueries(min-esmall) {
       border: solid 4px #FFFFFF; // border-width: 4px !important;
       @include appGradient();
       @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29))
     }
   }
+
   /* Customize
 -------------------------------------------------- */
   // Media queries
   @include mediaQueries(min-usmall) {
     .card-customize {
       border: 0;
+
       .card-customize-in {
         border: solid 4px #ffffff;
         @include appBoxShadow(1px 1px 5px 0px rgba(50, 50, 50, 0.29));
       }
     }
   }
+
   /* Automation
 -------------------------------------------------- */
   //.automation {
-    .accordion-wrap {
-      .accordion {
-        background-color: #F6F6F6;
-        &.no-bcg{
-          padding: 0;
-          background: transparent;
-        }
-      }
-      &.nested {
-        .accordion {
-          .accordion {
-            background-color: darken(#F6F6F6, 5%);
-          }
-        }
-      }
-      &.active{
-        @include mediaQueries(min-small) {
-          padding: $spacing;
-          margin: $spacing;
-          //margin: $spacing-double 0;
-          border:solid 2px $app-bcg-success;
-          @include appBoxShadow($app-box-shadow);
-        }
-       
+  .accordion-wrap {
+    .accordion {
+      background-color: #F6F6F6;
+
+      &.no-bcg {
+        padding: 0;
+        background: transparent;
       }
     }
-    fieldset{
-      .accordion-wrap{
-        &.active{
-          margin: $spacing 0;
+
+    &.nested {
+      .accordion {
+        .accordion {
+          background-color: darken(#F6F6F6, 5%);
         }
-        
       }
+    }
+
+    &.active {
+      @include mediaQueries(min-small) {
+        padding: $spacing;
+        margin: $spacing;
+        //margin: $spacing-double 0;
+        border: solid 2px $app-bcg-success;
+        @include appBoxShadow($app-box-shadow);
+      }
+
     }
   }
+
+  fieldset {
+    .accordion-wrap {
+      &.active {
+        margin: $spacing 0;
+      }
+
+    }
+  }
+}
+
 //}
 
 /* Security  Notification 
 -------------------------------------------------- */
-.automation{
-  .notification{
+.automation {
+  .notification {
     margin: $spacing-double 0;
     padding: $spacing;
     background-color: #F6F6F6;
@@ -266,6 +303,7 @@ body {
   .container {
     display: flex;
     justify-content: space-between;
+
     span:last-child {
       margin-left: auto;
       ;
@@ -273,4 +311,9 @@ body {
   }
 }
 
-@import "_shui_night"; 
+/* Night mode
+    -------------------------------------------------- */
+.night-true {
+  @import "_darkshui";
+
+}
