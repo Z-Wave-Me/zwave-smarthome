@@ -1,8 +1,8 @@
 <!-- Include -->
 <div ng-controller="ZwaveInclusionController" id="zwave_inclusion">
     <bb-loader></bb-loader>
-    <pre> {{ zwaveInclusion.s2 | json }} </pre>
-    <pre> {{ zwaveInclusion.controller | json }} </pre>
+    <!--<pre> {{ zwaveInclusion.s2 | json }} </pre>-->
+    <pre> {{ zwaveInclusion.s2.keysRequested | json }} </pre>
     <div class="form form-inline form-page">
         <div class="fieldset">
              <h1>{{_t('add_new_device')}}</h1>
@@ -90,8 +90,6 @@
                                 <i class="fa fa-ban"></i> <span class="btn-name">{{_t('stop')}}</span>
                             </button>
                         </div>
-                        <!-- S2 Alert  -->
-                        <bb-alert alert="zwaveInclusion.s2.alert"></bb-alert>
                     </div>
                     <div class="report-col report-ctrl">
                         <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.inclusionProcess.done"></i>
@@ -107,6 +105,8 @@
                         <div class="inclusion-header" ng-if="!zwaveInclusion.automatedConfiguration.process">
                             <h3>{{_t('automated_konfiguration')}}</h3>
                         </div>
+                        <!-- S2 Alert  -->
+                        <bb-alert alert="zwaveInclusion.s2.alert"></bb-alert>
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="zwaveInclusion.automatedConfiguration.process">
                             <div class="alert alert-warning" ng-hide="zwaveInclusion.automatedConfiguration.progress > 99">
@@ -224,7 +224,7 @@
                 </div>
                 <div class="appmodal-body form-group form-inline">
                     <!--<pre>{{zwaveInclusion.s2.input|json}}</pre>-->
-                    <!-- name -->
+                    <div class="alert alert-warning">{{zwaveInclusion.s2.verifyDSK.countDown}}s {{_t('remain')}}</div>
                     <label>{{_t('pin')}}</label>
                     <input name="dsk_pin" id="dsk_pin" type="number" size="5" class="form-control input_number input-valid-{{dskForm.dsk_pin.$valid}}" min="0" max="65533" ng-show="zwaveInclusion.s2.input.publicKeyAuthenticationRequired"
                            ng-model="zwaveInclusion.s2.input.dskPin" required />
