@@ -616,7 +616,8 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
         });
         //Update device name
         var cmd = 'devices[' + $scope.zWaveDevice.id + '].data.givenName.value=\'' + input.deviceName + '\'';
-        dataFactory.runZwaveCmd(cmd).then(function () {});
+        dataFactory.runZwaveCmd(cmd);
+        dataFactory.postApi('zwaveapi_run', null, 'devices.SaveData()');
         myCache.removeAll();
         $scope.loading = false;
         dataService.showNotifier({message: $scope._t('success_updated')});

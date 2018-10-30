@@ -139,7 +139,8 @@ var config_data = {
 			'time_zone': 'ZAutomation/api/v1/system/timezone',
 			'get_pulse_trains': 'RF433API/GetPulseTrains',
 			'send_pulse_train': 'RF433API/Send',
-			'reorder': 'ZAutomation/api/v1/devices/reorder',
+      'reorder': 'ZAutomation/api/v1/devices/reorder',
+      'zwaveapi_run':'ZWaveAPI/Run/',
 			'get_dsk': 'ZWaveAPI/GetDSKCollection', // Get DSK collection
 			'add_dsk': 'ZWaveAPI/AddDSKEntry', // Add DSK
 			'update_dsk': 'ZWaveAPI/UpdateDSKEntry', // Update DSK

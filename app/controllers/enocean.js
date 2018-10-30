@@ -272,6 +272,7 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
           $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
           $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
           $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
+          dataFactory.postApi('zwaveapi_run', null, 'devices.SaveData()');
           $interval.cancel($scope.apiDataInterval);
           $scope.inclusion = {
             done: true,
@@ -604,6 +605,7 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
           $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
           $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
           $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
+          dataFactory.postApi('zwaveapi_run', null, 'devices.SaveData()');
           $interval.cancel($scope.apiDataInterval);
           $scope.inclusion = {
             done: true,
