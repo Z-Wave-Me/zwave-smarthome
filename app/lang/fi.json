@@ -140,6 +140,7 @@
     "connection_refused_reboot": "Järjestelmä käynnistetään uudelleen ja yhteys suljetaan. Odota muutama minuutti ja avaa Smart Home -käyttöliittymä uudelleen ellei se tapahdu automaattisesti.",
     "continue": "Jatka",
     "continue_anyway": "Jatka kaikesta huolimatta",
+    "continue_nevertheless": "Continue nevertheless",
     "controller_actions": "Controller Actions",
     "controller_info": "Kontrollerin tiedot",
     "copy": "Copy",

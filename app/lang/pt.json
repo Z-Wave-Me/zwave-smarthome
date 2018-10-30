@@ -140,6 +140,7 @@
     "connection_refused_reboot": "O sistema será reiniciado e a conexão será fechada. Tente recarregar a página após alguns minutos para voltar para a UI Home, se não for acionado automaticamente.",
     "continue": "Continuar",
     "continue_anyway": "Continue de qualquer maneira",
+    "continue_nevertheless": "Continue nevertheless",
     "controller_actions": "Ações do controlador",
     "controller_info": "Informação do controlador",
     "copy": "Copy",

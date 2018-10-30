@@ -140,6 +140,7 @@
     "connection_refused_reboot": "Il sistema verrà riavviato e la connessione verrà chiusa. Ricarica la pagina fra qualche minuto e torna a Smart Home UI, se non viene ricaricata automaticamente.",
     "continue": "Continua",
     "continue_anyway": "Continue Comunque",
+    "continue_nevertheless": "Continue nevertheless",
     "controller_actions": "Controller Actions",
     "controller_info": "Informazioni sul Controllore",
     "copy": "Copy",

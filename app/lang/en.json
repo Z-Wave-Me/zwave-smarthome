@@ -140,6 +140,7 @@
     "connection_refused_reboot": "The system will be rebooted and connection will be closed. Try to reload the page after some minutes to get back to the Smart Home UI, if it doesn't will be triggered automatically.",
     "continue": "Continue",
     "continue_anyway": "Continue Anyway",
+    "continue_nevertheless": "Continue nevertheless",
     "controller_actions": "Controller Actions",
     "controller_info": "Controller info",
     "copy": "Copy",

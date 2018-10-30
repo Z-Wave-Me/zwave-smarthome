@@ -140,6 +140,7 @@
     "connection_refused_reboot": "El sistema se reiniciará y la conexión se cerrará. Trate de volver a cargar la página transcurridos unos minutos para volver a la interfaz del usuario Smart Home; si no lo hace, se activará automáticamente.",
     "continue": "Continuar",
     "continue_anyway": "Continuar de todos modos",
+    "continue_nevertheless": "Continue nevertheless",
     "controller_actions": "Controller Actions",
     "controller_info": "Información del controlador",
     "copy": "Copy",

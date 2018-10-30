@@ -140,6 +140,7 @@
     "connection_refused_reboot": "Das System wird neu gestartet und alle bestehenden Verbindungen unterbrochen. Laden sie die Seite in wenigen Minuten neu, falls dies nicht automatisch geschieht.",
     "continue": "Weiter",
     "continue_anyway": "Trotzdem weiter",
+    "continue_nevertheless": "Continue nevertheless",
     "controller_actions": "Controller-Aktionen",
     "controller_info": "Controller-Information",
     "copy": "Kopieren",
