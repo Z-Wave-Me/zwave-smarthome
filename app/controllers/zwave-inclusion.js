@@ -493,14 +493,33 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                             max = 5;
                         var refresh = function() {
                             console.log('Pending requests: '+ $http.pendingRequests.length);
-                            console.log("wait for SecurityS2.data.publicKey", cnt);
                             if($http.pendingRequests.length > 0) {
                                 return;
                             }
 
+                            console.log("wait for SecurityS2.data.publicKey", cnt);
+
                             if(cnt >= max) {
                                 $interval.cancel($scope.zwaveInclusion.s2.verifyDSK.interval2);
-                                $scope.startConfiguration({nodeId: $scope.zwaveInclusion.controller.lastIncludedDeviceId})
+                                $scope.zwaveInclusion.s2.alert = {
+                                    message: $scope._t('auth_failed'),
+                                    status: 'alert-danger',
+                                    icon: 'fa-exclamation-triangle'
+                                };
+
+                                alertify.confirm($scope._t('s2_failed'))
+                                    .setting('labels', {
+                                        'ok': $scope._t('try_again_complete'),
+                                        'cancel': $scope._t('continue_nevertheless')
+                                    })
+                                    .set('onok', function (closeEvent) {//after clicking OK
+                                        resetConfiguration(false, false, null, false, true);
+                                        $scope.startStopProcess('exclusion', true);
+                                    })
+                                    .set('oncancel', function (closeEvent) {//after clicking Cancel
+                                        console.log('interviewNotDone',$scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone)
+                                        $scope.startConfiguration({nodeId: nodeId});
+                                    });
                                 return;
                             }
 
@@ -707,7 +726,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                             });
 
                     }else{
-                            $scope.startConfiguration({nodeId: nodeId});
+                        $scope.startConfiguration({nodeId: nodeId});
                     }
                 }
                 cnt++;
