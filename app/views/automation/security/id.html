@@ -37,7 +37,7 @@
 <div class="fieldset submit-entry is-grid">
 <span>
 <label class="switch">
-<input type="checkbox" ng-model="security.input.active" ng-disabled="!security.devicesAvailable">
+<input type="checkbox" ng-model="security.input.active" ng-disabled="_.size(security.input.params.input.table) < 1">
 <span class="slider"></span>
 </label>
 <span class="switch-label">{{security.input.active ? _t('lb_active'): _t('activeASC')}}</span>
