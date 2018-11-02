@@ -314,7 +314,7 @@ myApp.directive('knob', function() {
 });
 
 /**
- * Displays a knob 
+ * Displays a knob
  * @class myknob
  */
 myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFactory, dataService) {
@@ -351,7 +351,9 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFac
 					if (old != newValue) {
 						//console.log('myKnob directive - Sending request new/old: ',newValue, old)
 						$scope.knobData = newValue;
-						runCmdExact($scope.knobId, newValue);
+						if($scope.knobId.indexOf("#") == -1) {
+							runCmdExact($scope.knobId, newValue);
+						}
 						$scope.$apply();
 					}
 				});
@@ -565,7 +567,7 @@ myApp.directive('bbTab', function () {
       elem.on('click', function (e) {
         var tabId = elem.attr('data-href');
         var wrap = elem.closest('.tab-wrap');
-        // Set all tabs to aria-selected="false" 
+        // Set all tabs to aria-selected="false"
         wrap.find('[role="tab"]').removeAttr('aria-selected');
         // Adding  hidden attr to all tab panels
         wrap.find('[role="tabpanel"]').attr('hidden', true);
