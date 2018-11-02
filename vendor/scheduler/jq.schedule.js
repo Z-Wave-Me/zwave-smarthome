@@ -530,6 +530,10 @@
 
 			$timeline.on("mousedown touchstart", function(event) {
 				event.preventDefault();
+				if(event.which == 3) { // right mouse button
+					return true;
+				}
+
 				// console.log("mousedown");
 				if ($(event.target).hasClass("tl")) {
 					that.clicking = true;
