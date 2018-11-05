@@ -363,7 +363,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceNameShort: dev.deviceNameShort,
 						// level: _.isNumber(d.level) ? 'lvl' : d.level,
 						// exact: _.isNumber(d.level) ? parseInt(d.level) : null,
-						conditions: d.level,
+						conditions: d.conditions,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
