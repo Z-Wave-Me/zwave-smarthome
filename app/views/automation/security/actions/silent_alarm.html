@@ -2,7 +2,7 @@
 <h2 class="accordion-toggle chevron">
 <button type="button" aria-expanded="false" bb-accordion>
 <span class="is-legend">
-  {{_t('alarm_delay')}}
+  {{_t('alarm')}}
   <span class="item-cnt"> ({{_.size(security.input.params.silentAlarms.table)}})</span>
 </span>
 </button>
@@ -11,18 +11,6 @@
 <div class="accordion no-bcg" hidden>
   <!-- Assigned -->
   <div class="panel-wrap">
-    <!-- Delay -->
-    <div class="list-panel">
-      <div class="body form-inline">
-        <div class="flex-input-group number-control">
-          <label>{{_t('security_delay_before_alarm')}}</label>
-          <input class="form-control" type="number" ng-model="security.input.params.times.silent">
-          <span>{{_t('seconds')}}</span>
-        </div>
-        <bb-help-text trans="_t('help_security_delay_before_alarm')"></bb-help-text>
-        
-      </div>
-    </div>
     <!-- List -->
     <div data-collapse-all="true">
       <section class="accordion-wrap" ng-repeat="d in security.input.params.silentAlarms.table" ng-init="model=v">
@@ -70,7 +58,7 @@
       <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_silent_alarm.html'" ng-class="!expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>
     </div>
   </div>
-  <h3>{{_t('devices_triggered_delayed_alarm')}}</h3>
+  <h3>{{_t('devices_triggered_alarm')}}</h3>
   <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'">
     <!-- Title -->
     <h2 class="accordion-toggle chevron">
@@ -88,5 +76,5 @@
         <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
       </a>
     </div>
-  </section>  
+  </section>
 </div>
