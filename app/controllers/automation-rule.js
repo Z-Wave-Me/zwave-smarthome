@@ -400,6 +400,7 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 			notification: {
 				default: {
 					target: '',
+					target_custom: '',
 					message: ''
 				}
 			}
@@ -756,12 +757,17 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @returns {undefined}
 	 */
 	$scope.assignTargetNotification = function(notification) {
-		if (notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1) {
-			$scope.rule.input.params.simple.sendNotifications.push(notification);
-			$scope.rule.target.assignedDevices.push(notification.target);
+		if ((notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1)||(notification.target_custom && $scope.rule.target.assignedDevices.indexOf(notification.target_custom) === -1)) {
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.rule.input.params.simple.sendNotifications.push(not);
+			$scope.rule.target.assignedDevices.push(not.target);
+
+			// reset options
 			$scope.resetOptions();
 		}
-
 	};
 
 	/**
@@ -1152,7 +1158,12 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @returns {undefined}
 	 */
 	$scope.assignAdvancedTargetNotification = function(notification) {
-		if (notification.target && $scope.rule.advanced.target.assignedDevices.indexOf(notification.target) === -1) {
+		if ((notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1)||(notification.target_custom && $scope.rule.target.assignedDevices.indexOf(notification.target_custom) === -1)) {
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+
 			$scope.rule.input.params.advanced.sendNotifications.push(notification);
 			$scope.rule.advanced.target.assignedDevices.push(notification.target);
 			$scope.resetOptions();
