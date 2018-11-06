@@ -11,7 +11,7 @@
       <!-- Form-->
     <fieldset ng-include="'app/views/automation/schedules/schedule_id_form.html'"></fieldset>
     <!-- Used -->
-    <div ng-if="schedule.assignedDevices.length">
+    <div ng-if="schedule.assignedDevices.length || schedule.assignedNotifications.length">
       <legend>{{_t('assigned_devices')}}</legend>
     <fieldset data-collapse-all="true" ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
   </div>

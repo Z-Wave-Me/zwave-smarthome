@@ -28,6 +28,9 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 						size++;
 					}
 				}
+				for (k in v.params.notifications) {
+						size++;
+				}
 				if (size) {
 					$scope.scenes.enableTest.push(v.id)
 				}
