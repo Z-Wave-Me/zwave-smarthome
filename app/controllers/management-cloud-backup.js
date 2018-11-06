@@ -25,23 +25,21 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('instances', '/CloudBackup', true),
-            dataFactory.getApi('modules', '/CloudBackup'),
-            dataFactory.getApi('profiles', '/' +  $scope.user.id, true)
+            dataFactory.getApi('modules', '/CloudBackup')
         ];
 
         $q.allSettled(promises).then(function (response) {
             $scope.loading = false;
-            var instance = response[0];
-            var module = response[1];
-            var profile = response[2];
 
-            var message = "";
+            var instance = response[0],
+                module = response[1],
+                message = "";
 
-            if(profile.value.data.data.email === '') {
+            if($scope.user.email === '') {
                 $scope.managementCloud.alert = {message: $scope._t('email_not_set'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 return;
             } else {
-                $scope.managementCloud.email = profile.value.data.data.email;
+                $scope.managementCloud.email = $scope.user.email;
             }
 
             // Error message
@@ -64,14 +62,13 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
                 $scope.managementCloud.instance = instance.value.data.data[0];
 
                 if(!$scope.managementCloud.instance.params.service_status) {
-                    $scope.managementCloud.service_status = false;
                     $scope.managementCloud.alert = {message: $scope._t('service_not_available', {__service__: "CloudBackup"}), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 } else {
-                    $scope.managementCloud.service_status = true;
                     $scope.managementCloud.alert = false;
                 }
                 $scope.managementCloud.show = true;
             }
+
             // Success - module
             if (module.state === 'fulfilled') {
                 // Module

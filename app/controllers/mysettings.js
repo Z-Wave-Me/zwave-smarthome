@@ -86,33 +86,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 return;
             }
 
-            // Email change --> update e-mail cloudbackup if instance exist
-            if($scope.user.role == 1) {
-                if($scope.lastEmail != input.email) {
-                    var promises = [
-                        dataFactory.getApi('instances', '/CloudBackup')
-                    ];
-
-                    $q.allSettled(promises).then(function (response) {
-                        var instance = response[0];
-
-                        if (instance.state === 'rejected') {
-                            return;
-                        }
-
-                        if (instance.state === 'fulfilled') {
-                            var instanceData = instance.value.data.data[0];
-                            instanceData.params.email = input.email;
-                            dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
-                                $scope.lastEmail = input.email
-                            }, function (error) {
-                                alertify.alertError($scope._t('error_update_data'));
-                            });
-                        }
-                    });
-                }
-            }
-
             $scope.loading = false;
             $cookies.lang = input.lang;
             myCache.remove('profiles');
@@ -185,12 +158,12 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 $scope.loading = false;
                 console.log(error);
                 if(error.data.error == "wrong_password") {
-                    alertify.alertError($scope._t('wrong_password'));    
+                    alertify.alertError($scope._t('wrong_password'));
                 } else {
                     alertify.alertError($scope._t('error_update_data'));
                 }
             });
-            
+
 
 
         }).set('type', 'password');

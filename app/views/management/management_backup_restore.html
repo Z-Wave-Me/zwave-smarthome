@@ -77,12 +77,13 @@
   <!-- Cloud backup -->
   <form name="form_cloud_backup" id="form_cloud_backup" class="form form-page" ng-submit="updateInstance(form_cloud_backup, managementCloud.instance)"
     novalidate>
+    <pre>{{managementCloud | json}}</pre>
     <fieldset>
       <h3>{{_t('cloudbackup')}}</h3>
       <p ng-bind-html="_t('cloudbackup_info', {__email__ : managementCloud.email === '' ? '<b>'+_t('not_set')+'</b>' : '<b>'+managementCloud.email+'</b>'}) | toTrusted"></p>
       <bb-alert alert="managementCloud.alert"></bb-alert>
       <button class="btn btn-default" type="button" title="{{_t('activate_module',{__module__ : 'CloudBackup'})}}" ng-click="activateCloudBackup(managementCloud.instance,(managementCloud.instance.active ? false : true))"
-        ng-class="managementCloud.instance.active ? 'active' : ''" ng-if="managementCloud.service_status === '' || managementCloud.service_status === true"
+        ng-class="managementCloud.instance.active ? 'active' : ''" ng-if="managementCloud.instance.params.service_status === '' || managementCloud.instance.params.service_status === true"
         ng-disabled="managementCloud.email === ''? true : false">
         <i class="fa fa-cloud" ng-class="managementCloud.instance.active ? 'text-success' : 'text-danger'"></i>
         <span class="btn-name" ng-if="managementCloud.instance.active === true && managementCloud.instance.params.user_active === true">{{_t('cloudbackup_active')}}</span>
@@ -91,7 +92,7 @@
       </button>
     </fieldset>
     <!-- Cloud backup -->
-    <div ng-if="managementCloud.instance.active === true && managementCloud.instance.params.user_active === true && managementCloud.service_status === true">
+    <div ng-if="managementCloud.instance.active == true && managementCloud.instance.params.user_active == true && managementCloud.instance.params.service_status == true">
       <fieldset>
         <!-- email log -->
         <div class="form-group">
