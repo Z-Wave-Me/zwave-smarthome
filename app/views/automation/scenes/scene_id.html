@@ -9,7 +9,7 @@
 		<form class="form form-page" ng-submit="storeScene(scene.input,true)">
 		<fieldset ng-include="'app/views/automation/scenes/scene_id_form.html'"></fieldset>
 		<!-- Used -->
-		<div ng-if="scene.assignedDevices.length">
+		<div ng-if="scene.assignedDevices.length || scene.assignedNotifications.length">
 			<legend>{{_t('assigned_devices')}}</legend>
 		<fieldset data-collapse-all="true" ng-include="'app/views/automation/scenes/scene_id_assigned.html'"></fieldset>
 	</div>

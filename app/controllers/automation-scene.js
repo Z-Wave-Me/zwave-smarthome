@@ -180,6 +180,7 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 		devicesInRoom: [],
 		availableDevices: [],
 		assignedDevices: [],
+		assignedNotifications: [],
 		cfg: {
 			switchBinary: {
 				level: ['off', 'on'],
@@ -227,6 +228,13 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			},
 			toggleButton: {
 				default: {}
+			},
+			notification: {
+				default: {
+					target: '',
+					target_custom: '',
+					message: ''
+				}
 			}
 		},
 		input: {
@@ -240,7 +248,8 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 						icon: false
 					}]
 				},
-				devices: []
+				devices: [],
+				notifications: []
 			}
 		},
 		upload: {
@@ -257,6 +266,7 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
 			var instance = instances.data.data;
 			var assignedDevices = $scope.scene.assignedDevices;
+			var assignedNotifications = $scope.scene.assignedNotifications;
 			angular.extend($scope.scene.input, {
 				title: instance.title,
 				active: instance.active,
@@ -276,6 +286,12 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			angular.forEach(instance.params.devices, function(d) {
 				if (assignedDevices.indexOf(d.deviceId) === -1) {
 					$scope.scene.assignedDevices.push(d.deviceId);
+				}
+			});
+
+			angular.forEach(instance.params.notifications, function(d) {
+				if (assignedNotifications.indexOf(d.target) === -1) {
+					$scope.scene.assignedNotifications.push(d.target);
 				}
 			});
 
@@ -318,6 +334,10 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 				};
 				return obj;
 			}).filter(function(v) {
+				// Replacing deviceType with "notification"
+				if (v.probeType == 'notification_push') {
+					v.deviceType = 'notification';
+				}
 				return whiteList.indexOf(v.deviceType) > -1;
 			}).indexBy('deviceId').value();
 			if (!_.size($scope.scene.availableDevices)) {
@@ -444,6 +464,44 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			$scope.scene.assignedDevices.splice(deviceIndex, 1);
 		}
 	};
+
+	/**
+	 * Assign notification
+	 * @param {object} notification
+	 * @returns {undefined}
+	 */
+	$scope.assignNotification = function(notification) {
+		if ((notification.target && $scope.scene.assignedNotifications.indexOf(notification.target) === -1) || (notification.target_custom && $scope.scene.assignedNotifications.indexOf(notification.target_custom) === -1)) {
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.scene.input.params.notifications.push(not);
+			$scope.scene.assignedNotifications.push(not.target);
+
+			// reset options
+			$scope.scene.cfg.notification.default.target = '';
+			$scope.scene.cfg.notification.default.target_custom = '';
+			$scope.scene.cfg.notification.default.message = '';
+		}
+
+	};
+
+	/**
+	 * Remove notification from sendNotifications
+	 * @param {int} index
+	 * @param {string} deviceId
+	 */
+	$scope.unassignNotification = function(targetIndex, target) {
+
+		var notificationIndex = $scope.scene.assignedNotifications.indexOf(target);
+		if (targetIndex > -1) {
+			$scope.scene.input.params.notifications.splice(targetIndex, 1);
+			$scope.scene.assignedNotifications.splice(notificationIndex, 1);
+		}
+
+	};
+
 	/**
 	 * Store
 	 */

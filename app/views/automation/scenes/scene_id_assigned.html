@@ -19,12 +19,27 @@
 				<span><img class="navi-img" ng-src="{{scene.availableDevices[v.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
 					{{scene.availableDevices[v.deviceId].deviceName}}&nbsp;-&nbsp;<em>{{scene.availableDevices[v.deviceId].locationName}}</em>
 				</span>
-			</span>			
+			</span>
 			<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice($index,v.deviceId)">
 				<i class="fa fa-times text-danger"></i>
 			</span>
-	
+
 		</h2>
 	<!-- Content -->
 	<div class="accordion" ng-if="v.deviceType!='toggleButton'" hidden ng-include="'app/views/automation/scenes/scene_id_form_'+v.deviceType+'.html'"></div>
+</section>
+
+<section class="accordion-wrap" ng-repeat="n in scene.input.params.notifications track by $index">
+  <h2 class="accordion-toggle ellipsis">
+  <!-- Title -->
+  <button type="button" aria-expanded="false" bb-accordion>
+  <span ng-if="scene.namespaces[n.target]"><img class="navi-img" ng-src="{{scene.namespaces[n.target].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />{{scene.namespaces[n.target].deviceName}}</span>
+  <span ng-if="!scene.namespaces[n.target]"><img class="navi-img" ng-src="{{cfg.img.icons + 'alarm-on.png'}}" err-src="{{cfg.img.placeholder}}" alt="img" />{{n.target}}</span>
+  </button>
+  <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignNotification($index,n)">
+    <i class="fa fa-times text-danger"></i>
+  </span>
+  </h2>
+  <!-- Content -->
+  <div class="accordion" ng-include="'app/views/automation/scenes/scene_id_form_notification.html'" hidden></div>
 </section>
