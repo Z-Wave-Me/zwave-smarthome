@@ -7,11 +7,11 @@
       {{e.deviceName}}</option>
   </select>
   &nbsp;
- <!--  <label ng-hide="leakage.availableNotifiers[model.target] || model.target == user.email">&nbsp;{{_t('or')}}&nbsp;
-    <input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="model.target" />
-  </label> -->
+  <label ng-hide="security.input.params.silentAlarms.notification.target">&nbsp;{{_t('or')}}&nbsp;
+    <input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="security.input.params.silentAlarms.notification.target_custom" />
+  </label>
 </div>
 <!-- mesage -->
-<div class="form-group" ng-if="security.input.params.silentAlarms.notification.target != ''">
+<div class="form-group">
   <textarea name="message" id="content" class="form-control report-content" ng-model="security.input.params.silentAlarms.notification.message" placeholder="{{_t('message')}}"></textarea>
 </div>
