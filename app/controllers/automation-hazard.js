@@ -176,6 +176,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			notification: {
 				default: {
 					target: '',
+					target_custom: '',
 					message: '',
 					firedOn: 'alarm'
 				}
@@ -452,7 +453,11 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	 */
 	$scope.assignNotification = function(notification, type) {
 		if ($scope.hazardProtection[type]) {
-			$scope.hazardProtection[type].input.params.sendNotifications.push(notification);
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.hazardProtection[type].input.params.sendNotifications.push(not);
 			$scope.resetOptions();
 		}
 	};
