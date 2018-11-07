@@ -11,10 +11,14 @@
       <!-- Form-->
     <fieldset ng-include="'app/views/automation/schedules/schedule_id_form.html'"></fieldset>
     <!-- Used -->
-    <div ng-if="schedule.assignedDevices.length || schedule.assignedNotifications.length">
+    <div ng-if="schedule.assignedDevices.length">
       <legend>{{_t('assigned_devices')}}</legend>
-    <fieldset data-collapse-all="true" ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
-  </div>
+      <fieldset data-collapse-all="true" ng-include="'app/views/automation/schedules/schedule_id_assigned.html'"></fieldset>
+    </div>
+    <div ng-if="schedule.assignedNotifications.length">
+      <legend>{{_t('assigned_notifications')}}</legend>
+      <fieldset data-collapse-all="true" ng-include="'app/views/automation/schedules/schedule_id_assigned_notification.html'"></fieldset>
+    </div>
   <!-- Available -->
   <legend>{{_t('lb_available_devices')}}</legend>
 <fieldset data-collapse-all="true" bb-child-elem="schedule.assignedDevices" ng-include="'app/views/automation/schedules/schedule_id_available.html'"></fieldset>
