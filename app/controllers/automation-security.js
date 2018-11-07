@@ -45,6 +45,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		routeId: 0,
 		tab: 1,
 		days: [1, 2, 3, 4, 5, 6, 0],
+		intervals: [0, 5, 15, 30, 60],
 		devicesInRoom: {
 			input: [],
 			alarms: [],
