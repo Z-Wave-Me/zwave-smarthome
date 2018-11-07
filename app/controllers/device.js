@@ -8,7 +8,9 @@
  * @class DeviceController
  *
  */
-myAppController.controller('DeviceController', function($scope, dataFactory) {
+myAppController.controller('DeviceController', function($scope, $location, dataFactory) {
+    $scope.loading = false;
+
     $scope.enocean = {
         installed: false,
         active: false,
@@ -24,10 +26,20 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
     $scope.mobileAppSupport = {
         installed: false,
         active: false,
-        alert: {message: false},
-        instanceId: null
+        instanceId: null,
+        instance: null,
+        module: {
+            "instanceId":"0",
+            "moduleId":"MobileAppSupport",
+            "active": true,
+            "params": {
+                "devices": [],
+                "logLevelContainer": {}
+            }
+        }
     };
-     /**
+
+    /**
      * Load ext. Peripherals modules (EnOcean, Rf433)
      */
     $scope.loadperipheralsModules = function() {
@@ -52,16 +64,85 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
 
             var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
             if(MobileAppSupport_module){
+                $scope.mobileAppSupport.instance = MobileAppSupport_module;
                 $scope.mobileAppSupport.installed = true;
-                if (!MobileAppSupport_module.active) {
-                    $scope.mobileAppSupport.alert = {message: $scope._t('mobile_app_support_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                }
                 $scope.mobileAppSupport.instanceId = MobileAppSupport_module.id;
-                $scope.mobileAppSupport.active = true;
+                $scope.mobileAppSupport.active = MobileAppSupport_module.active;
             }
 
         });
     };
 
     $scope.loadperipheralsModules();
+
+    /**
+     * Create instance
+     */
+    $scope.createInstance = function(module, callback) {
+
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.postApi('instances', module).then(function (response) {
+            $scope.loading = false
+            if(typeof callback === 'function') {
+                callback(response.data.data.id);
+            }
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            alertify.dismissAll();
+            $scope.loading = false;
+        });
+    }
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function(input,callback) {
+        if (input.id) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+            dataFactory.putApi('instances', input.id, input).then(function(response) {
+                $scope.loading = false
+                if(typeof callback === 'function') {
+                    callback();
+                }
+            }, function(error) {
+                $scope.loading = false
+                alertify.alertError($scope._t('error_update_data'));
+                alertify.dismissAll();
+            });
+        }
+    };
+
+    /***************** MobileAppSupport *****************/
+
+
+    $scope.handleMobileModal = function($event) {
+        if(!$scope.mobileAppSupport.installed) {
+            $scope.createInstance($scope.mobileAppSupport.module, function(instanceId) {
+                $scope.mobileAppSupport.active = true;
+                $scope.mobileAppSupport.installed = true;
+                $scope.mobileAppSupport.instanceId = instanceId;
+                $scope.handleModal('qrCodeModal', $event);
+            });
+        } else if($scope.mobileAppSupport.installed && !$scope.mobileAppSupport.active) {
+            $scope.updateInstance($scope.mobileAppSupport.instance, function() {
+                $scope.mobileAppSupport.active = true;
+                $scope.handleModal('qrCodeModal', $event);
+            });
+        } else if($scope.mobileAppSupport.installed && $scope.mobileAppSupport.active) {
+            $scope.handleModal('qrCodeModal', $event);
+        }
+    }
+
+    $scope.handleManage = function() {
+        if(!$scope.mobileAppSupport.installed) {
+            $scope.createInstance($scope.mobileAppSupport.module, function(instanceId) {
+                $scope.mobileAppSupport.active = true;
+                $scope.mobileAppSupport.installed = true;
+                $scope.mobileAppSupport.instanceId = instanceId;
+                $location.path("module/put/" + instanceId);
+            });
+        } else if($scope.mobileAppSupport.installed) {
+            $location.path("module/put/" + $scope.mobileAppSupport.instanceId);
+        }
+    }
 });

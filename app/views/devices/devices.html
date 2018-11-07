@@ -1,5 +1,6 @@
 <!-- Devicess view -->
 <div ng-controller="DeviceController">
+  <bb-loader></bb-loader>
   <h2 ng-bind="_t('lb_select_device_type')"></h2>
   <!-- Zwave -->
   <div class="list-panel panel-devices">
@@ -54,7 +55,6 @@
         {{_t('devices_text_mobile')}}
       </div>
     </div>
-
     <!-- dots -->
     <div class="l-hide control">
       <!-- expand/collapse -->
@@ -63,14 +63,14 @@
     <!-- control -->
     <div class="control" ng-class="naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'">
       <div class="btn-group">
-        <button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
+        <button class="btn btn-default" ng-click="handleMobileModal($event)" title="{{_t('add_new')}}">
           <i class="fa fa-plus text-success"></i>
           <span class="btn-name" ng-bind="_t('add_new')"></span>
         </button>
-        <a class="btn btn-default" href="#module/put/{{mobileAppSupport.instanceId}}" title="{{_t('manage')}}">
+        <button class="btn btn-default" ng-click="handleManage()" title="{{_t('manage')}}">
           <i class="fa fa-edit text-primary"></i>
           <span class="btn-name" ng-bind="_t('manage')"></span>
-        </a>
+        </button>
       </div>
     </div>
   </div>
