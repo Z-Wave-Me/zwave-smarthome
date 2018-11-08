@@ -139,6 +139,7 @@
     "connection_refused": "Conexión denegada por el servidor z-way",
     "connection_refused_info": "Compruebe su conexión Ethernet y la alimentación de su pasarela. Trate de volver a cargar la página transcurridos unos minutos para volver a la interfaz del usuario de Smart Home; si no lo hace, se activará automáticamente",
     "connection_refused_reboot": "El sistema se reiniciará y la conexión se cerrará. Trate de volver a cargar la página transcurridos unos minutos para volver a la interfaz del usuario Smart Home; si no lo hace, se activará automáticamente.",
+    "connect_schedules": "Would you like to combine the two periods?",
     "continue": "Continuar",
     "continue_anyway": "Continuar de todos modos",
     "continue_nevertheless": "Continue nevertheless",

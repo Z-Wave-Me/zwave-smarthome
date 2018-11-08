@@ -139,6 +139,7 @@
     "connection_refused": "Connection refusée par le serveur z-way",
     "connection_refused_info": "Vérifiez votre connexion ethernet et l'alimentation, de votre routeur. Essayez de recharger cette page dans quelques minutes pour réafficher Smart Home UI.",
     "connection_refused_reboot": "Le système va redémarrer et sera déconnecté. Rechargez cette page dans quelques minutes pour réafficher la page Smart Home UI, sinon le réaffichage sera fera automatiquement.",
+    "connect_schedules": "Would you like to combine the two periods?",
     "continue": "Continuer",
     "continue_anyway": "Continuer malgré tout",
     "continue_nevertheless": "Continue nevertheless",

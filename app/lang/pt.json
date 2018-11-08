@@ -139,6 +139,7 @@
     "connection_refused": "Conexão recusada pelo z-way-server",
     "connection_refused_info": "Verifique sua conexão à Internet e a fonte de alimentação da sua gateway. Tente recarregar a página depois de alguns minutos para voltar para a IU Home, se ela não for ativada automaticamente",
     "connection_refused_reboot": "O sistema será reiniciado e a conexão será fechada. Tente recarregar a página após alguns minutos para voltar para a UI Home, se não for acionado automaticamente.",
+    "connect_schedules": "Would you like to combine the two periods?",
     "continue": "Continuar",
     "continue_anyway": "Continue de qualquer maneira",
     "continue_nevertheless": "Continue nevertheless",
