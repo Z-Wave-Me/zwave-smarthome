@@ -162,7 +162,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			}
 		},
 		change: function(node, data) {
-			console.log("change");
 			$scope.updateData();
 		},
 		init_data: function(node, data) {},
@@ -207,7 +206,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			$scope.updateData();
 		},
 		bar_Click: function(node, timelineData, scheduleIndex) {
-			console.log("bar_Click");
 			$scope.heating.tempModal.scheduleId = "#" + $(this).attr('id');
 			$scope.heating.tempModal.timeline = timelineData.timeline;
 			$scope.heating.tempModal.stime = timelineData.start;
@@ -354,7 +352,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 * Update all schedules
 	 */
 	$scope.updateAllSchedules = function() {
-		console.log("updateAllSchedules");
 		_.each($scope.jQuery_schedules, function(jq_schedule, scheduleId) {
 			var roomId = scheduleId.split("-")[1]
 

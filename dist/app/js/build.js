@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 24-09-2018 14:06:30 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 08-11-2018 09:25:58 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -7494,7 +7494,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 			startTime: "00:00",
 			endTime: "24:00",
 			widthTimeX: 4, // 1cell
-			widthTime: 600, // 
+			widthTime: 600, //
 			timeLineY: 30, // timeline height(px)
 			timeLineBorder: 1, // timeline height border
 			timeBorder: 1, // border width
@@ -7555,7 +7555,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 		this.getTimelineData = function() {
 				return timelineData;
 			}
-			// 
+			//
 		this.getTimeLineNumber = function(top) {
 				var num = 0;
 				var n = 0;
@@ -7603,7 +7603,6 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 
 		this.removeEntry = function(event) {
 			$bar = $(event.target).closest(".sc_Bar");
-			console.log("$bar", $bar);
 			var sc_key = $bar.data("sc_key");
 			$bar.remove();
 			delete scheduleData[sc_key];
@@ -7620,7 +7619,6 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 			var $timeline = $element.find('.sc_main .timeline').eq(data["timeline"]);
 
 			$removeButton.bind("click touch", function(event) {
-				console.log("delete cliked!");
 				that.removeEntry(event);
 			})
 
@@ -7718,7 +7716,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 					}
 					currentNode["currentTop"] = ui.position.top;
 					currentNode["currentLeft"] = ui.position.left;
-					// 
+					//
 					element.rewriteBarText($moveNode, scheduleData[sc_key]);
 					return true;
 				},
@@ -7880,13 +7878,13 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 
 					if (!connect && !collison && !cancel) {
 
-						// 
+						//
 						element.resetBarPosition(timelineNum);
-						// 
+						//
 						element.rewriteBarText(node, scheduleData[sc_key]);
 
 						node.data("resizeCheck", false);
-						// 
+						//
 						if (setting.change) {
 							setting.change(node, scheduleData[sc_key]);
 						}
@@ -7944,7 +7942,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 				}
 			}
 		};
-		// 
+		//
 		this.getScheduleCount = function(n) {
 			var num = 0;
 			for (var i in scheduleData) {
@@ -8020,6 +8018,10 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 
 			$timeline.on("mousedown touchstart", function(event) {
 				event.preventDefault();
+				if(event.which == 3) { // right mouse button
+					return true;
+				}
+
 				// console.log("mousedown");
 				if ($(event.target).hasClass("tl")) {
 					that.clicking = true;
@@ -8047,13 +8049,20 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 				}
 			}).on("mousemove touchmove", function(event) {
 				event.preventDefault();
-				//// console.log("event", event);
-				if (that.clicking == false || $(event.target).data("timeline") !== timelineNum) {
+				//console.log("event", event);
+				if (that.clicking == false /*|| $(event.target).data("timeline") !== timelineNum*/) {
 					return true;
 				}
 
-				var targetIndex = 0;
+				var $ghost_bar = $element.find(".ghost"),
+					targetIndex = 0;
+
 				if (event.type == "touchmove") {
+					if($ghost_bar.length > 0) {
+						$ghost_bar.css({
+							display: "none"
+						});
+					}
 					var myLocation = event.originalEvent.changedTouches[0],
 						realTarget = document.elementFromPoint(myLocation.clientX, myLocation.clientY);
 					if (!$(realTarget).hasClass("tl")) {
@@ -8062,6 +8071,20 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 					targetIndex = $(realTarget).index();
 				} else {
 					targetIndex = $(event.target).index();
+
+					if($ghost_bar.length > 0) {
+						var x = event.clientX,
+							y = event.clientY;
+						$ghost_bar.css({
+							display: "none"
+						});
+
+						var ele = document.elementFromPoint(x, y);
+
+						if($(ele).hasClass("tl")) {
+							targetIndex = $(ele).index();
+						}
+					}
 				}
 
 				endTime = element.formatTime(tableStartTime + (setting.widthTime * targetIndex));
@@ -8069,8 +8092,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 				var st = Math.ceil((element.calcStringTime(startTime) - tableStartTime) / setting.widthTime),
 					et = Math.floor((element.calcStringTime(endTime) - tableStartTime) / setting.widthTime),
 					left = et < st ? (et * setting.widthTimeX) : (st * setting.widthTimeX),
-					width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX),
-					$ghost_bar = $element.find(".ghost");
+					width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX);
 
 				if ($ghost_bar.length > 0) {
 					$ghost_bar.css({
@@ -8185,7 +8207,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 				}
 			});
 
-			// 
+			//
 			if (setting.time_click) {
 				var that = this;
 				/*$timeline.find(".tl").click(function(){
@@ -8200,7 +8222,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 				$element.find('.sc_data .timeline').eq(id).addClass(row["class"]);
 				$element.find('.sc_main .timeline').eq(id).addClass(row["class"]);
 			}
-			// 
+			//
 			if (row["schedule"]) {
 				for (var i in row["schedule"]) {
 					var bdata = row["schedule"][i];
@@ -8243,7 +8265,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 							if (that.isCollison($node, $bar)) {
 								collison = true;
 
-								// $element.append($confirm);   
+								// $element.append($confirm);
 								// // console.log("confirm 2", setting.confirm.call(element));
 								// if (setting.confirm.call(element)) {
 								if (confirm("connect?")) {
@@ -8315,7 +8337,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 					}
 				}
 			});
-			// 
+			//
 			/*if(setting.append){
 			    $element.find('.sc_main .timeline').eq(id).find(".sc_Bar").each(function(){
 			        var node = jQuery(this);
@@ -8357,7 +8379,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 			jQuery(node).find(".time").html(html);
 		}
 		this.resetBarPosition = function(n) {
-			// 
+			//
 			var $bar_list = $element.find('.sc_main .timeline').eq(n).find(".sc_Bar");
 			var codes = [];
 			for (var i = 0; i < $bar_list.length; i++) {
@@ -8366,7 +8388,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 					x: jQuery($bar_list[i]).position().left
 				};
 			};
-			// 
+			//
 			codes.sort(function(a, b) {
 				if (a["x"] < b["x"]) {
 					return -1;
@@ -8410,7 +8432,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 				});
 				check[h][check[h].length] = c1;
 			}
-			// 
+			//
 			this.resizeRow(n, check.length);
 		};
 		this.resizeRow = function(n, height) {
@@ -8498,7 +8520,7 @@ Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License
 				this.addRow(i, setting.rows[i]);
 			}
 		};
-		// 
+		//
 		this.init();
 
 		this.debug = function() {
@@ -18661,7 +18683,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   'use strict';
 
   $templateCache.put('app/views/apps/app_module_alpaca.html',
-    "<div id=page_module_update ng-controller=AppModuleAlpacaController><bb-loader></bb-loader><div class=form-page ng-show=showForm><div class=\"fieldset clearfix\"><div class=app-detail-img><img class=app-image-detail ng-src=\"{{moduleMediaUrl + input.moduleName + '/' + input.icon}}\" ng-if=input.icon alt=img></div><div class=app-detail-body><h2 ng-bind=input.moduleTitle></h2><p class=app-detail-perex ng-bind-html=\"moduleId.find.defaults.description | toTrusted\"></p><p class=app-detail-list ng-if=moduleId.categoryName><i class=\"fa fa-list\"></i> <span ng-bind=moduleId.categoryName></span></p><p class=app-detail-list ng-if=moduleId.find.author><i class=\"fa fa-user\"></i> <span ng-show=!moduleId.find.homepage ng-bind=moduleId.find.author></span> <a ng-href={{moduleId.find.homepage}} ng-if=moduleId.find.homepage ng-bind=moduleId.find.author></a></p><p class=app-detail-list ng-if=moduleId.find.version><i class=\"fa fa-info-circle\"></i> <span class=app-version ng-bind=moduleId.find.version></span> <span class=label ng-class=\"moduleId.find.maturity == 'stable' ? 'label-success' : 'label-warning'\">{{moduleId.find.maturity}}</span></p><p class=app-detail-list ng-if=\"moduleId.find.dependencies.length > 0\"><i class=\"fa fa-link\"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat=\"i in moduleId.find.dependencies\">{{i}}{{$last ? '' : ', '}}</span></p><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.activate)><p>{{_t('war_dependency_module_activate')}}</p><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.activate\" ng-click=activateInstance(v)>{{v.moduleId}} <i class=\"fa fa-fire text-success\" title=\"{{_t('lb_activate')}}\"></i></a></div><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.add)><p>{{_t('war_dependency_module_add')}}</p><a ng-href=#module/post/{{v.modulename}}/{{input.moduleId}} class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.add\">{{v.modulename}} <i class=\"fa fa-plus text-success\" title=\"{{_t('lb_add_app')}}\"></i></a></div><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.download)><p>{{_t('war_dependency_module_install')}}</p><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.download\" ng-click=installModule(v)>{{v.modulename}} <i class=\"fa fa-download text-success\" title=\"{{_t('lb_download')}}\"></i></a></div><div class=form-group></div></div></div><div ng-if=moduleId.singletonActive><div class=\"fieldset clearfix\"><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('singleton_with_instance',{__module_title__:input.moduleTitle})}}</div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a class=\"btn btn-submit\" title=\"{{_t('lb_active')}}\" href=#apps/instance><i class=\"fa fa-fire\"></i> <span class=btn-name>{{_t('active_apps')}}</span></a></div></div><form id=form_module ng-if=!moduleId.singletonActive><input name=instanceId id=instanceId type=hidden class=form-control value={{input.instanceId}}> <input name=moduleId id=moduleId type=hidden class=form-control value={{input.moduleId}}><fieldset><div class=form-group><input type=checkbox name=active value={{input.active}} id=active ng-model=input.active ng-checked=input.active><label for=active>{{_t('lb_active')}}</label></div><div class=form-group><label>{{_t('lb_name')}}</label><input name=title id=title class=form-control value={{input.title}} ng-model=input.title></div></fieldset><div id=alpaca_data ng-show=alpacaData data-module-postrender={{input.modulePostrender}}></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" id=btn_module_submit_ang class=\"btn btn-submit\" ng-click=store(input) ng-disabled=!moduleId.submit ng-if=!alpacaData><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" id=btn_module_submit class=\"btn btn-submit\" data-sid={{ZWAYSession}} data-fromapp={{moduleId.fromapp}} , data-fromroute={{moduleId.fromRoute}} data-lang={{lang}} ng-disabled=!moduleId.submit ng-if=alpacaData><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div></div>"
+    "<div id=page_module_update ng-controller=AppModuleAlpacaController><bb-loader></bb-loader><div id=alpaca-spinner style=\"display: none\" class=loading-spin><div class=loading-in><i class=\"fa fa-lg fa-spinner fa-spin\"></i> <span>{{_t('loading')}}</span></div></div><div class=form-page ng-show=showForm><div class=\"fieldset clearfix\"><div class=app-detail-img><img class=app-image-detail ng-src=\"{{moduleMediaUrl + input.moduleName + '/' + input.icon}}\" ng-if=input.icon alt=img></div><div class=app-detail-body><h2 ng-bind=input.moduleTitle></h2><p class=app-detail-perex ng-bind-html=\"moduleId.find.defaults.description | toTrusted\"></p><p class=app-detail-list ng-if=moduleId.categoryName><i class=\"fa fa-list\"></i> <span ng-bind=moduleId.categoryName></span></p><p class=app-detail-list ng-if=moduleId.find.author><i class=\"fa fa-user\"></i> <span ng-show=!moduleId.find.homepage ng-bind=moduleId.find.author></span> <a ng-href={{moduleId.find.homepage}} ng-if=moduleId.find.homepage ng-bind=moduleId.find.author></a></p><p class=app-detail-list ng-if=moduleId.find.version><i class=\"fa fa-info-circle\"></i> <span class=app-version ng-bind=moduleId.find.version></span> <span class=label ng-class=\"moduleId.find.maturity == 'stable' ? 'label-success' : 'label-warning'\">{{moduleId.find.maturity}}</span></p><p class=app-detail-list ng-if=\"moduleId.find.dependencies.length > 0\"><i class=\"fa fa-link\"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat=\"i in moduleId.find.dependencies\">{{i}}{{$last ? '' : ', '}}</span></p><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.activate)><p>{{_t('war_dependency_module_activate')}}</p><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.activate\" ng-click=activateInstance(v)>{{v.moduleId}} <i class=\"fa fa-fire text-success\" title=\"{{_t('lb_activate')}}\"></i></a></div><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.add)><p>{{_t('war_dependency_module_add')}}</p><a ng-href=#module/post/{{v.modulename}}/{{input.moduleId}} class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.add\">{{v.modulename}} <i class=\"fa fa-plus text-success\" title=\"{{_t('lb_add_app')}}\"></i></a></div><div class=\"alert alert-warning\" ng-if=!_.isEmpty(moduleId.dependency.download)><p>{{_t('war_dependency_module_install')}}</p><a href=\"\" class=\"btn btn-default btn-tag\" ng-repeat=\"v in moduleId.dependency.download\" ng-click=installModule(v)>{{v.modulename}} <i class=\"fa fa-download text-success\" title=\"{{_t('lb_download')}}\"></i></a></div><div class=form-group></div></div></div><div ng-if=moduleId.singletonActive><div class=\"fieldset clearfix\"><div class=\"alert alert-warning\"><i class=\"fa fa-exclamation-circle\"></i> {{_t('singleton_with_instance',{__module_title__:input.moduleTitle})}}</div></div><div class=\"fieldset submit-entry\"><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <a class=\"btn btn-submit\" title=\"{{_t('lb_active')}}\" href=#apps/instance><i class=\"fa fa-fire\"></i> <span class=btn-name>{{_t('active_apps')}}</span></a></div></div><form id=form_module ng-if=!moduleId.singletonActive><input name=instanceId id=instanceId type=hidden class=form-control value={{input.instanceId}}> <input name=moduleId id=moduleId type=hidden class=form-control value={{input.moduleId}}><fieldset><div class=form-group><input type=checkbox name=active value={{input.active}} id=active ng-model=input.active ng-checked=input.active><label for=active>{{_t('lb_active')}}</label></div><div class=form-group><label>{{_t('lb_name')}}</label><input name=title id=title class=form-control value={{input.title}} ng-model=input.title></div></fieldset><div id=alpaca_data ng-show=alpacaData data-module-postrender={{input.modulePostrender}}></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" id=btn_module_submit_ang class=\"btn btn-submit\" ng-click=store(input) ng-disabled=!moduleId.submit ng-if=!alpacaData><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" id=btn_module_submit class=\"btn btn-submit\" data-sid={{ZWAYSession}} data-fromapp={{moduleId.fromapp}} , data-fromroute={{moduleId.fromRoute}} data-lang={{lang}} ng-disabled=!moduleId.submit ng-if=alpacaData><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div></div>"
   );
 
 
@@ -18681,7 +18703,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/apps/apps_instance_widget.html',
-    "<div class=\"alert alert-warning\" ng-if=dataHolder.instances.noSearch><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('no_search_results',{__term__: \"\\\"\" + dataHolder.instances.filter.q + \"\\\"\"})}}</div><div ng-repeat=\"(indexG,g) in dataHolder.instances.groups track by indexG\" ng-init=\"instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]\" ng-if=\"dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1 || g.moduleId !== 'MobileAppSupport'\"><section class=accordion-instances ng-if=\"instanveModuleCnt > 1\"><h2 class=\"accordion-toggle chevron\" ng-init=\"expand[g.moduleId] = dataHolder.instances.expanded\"><button type=button aria-expanded={{dataHolder.instances.expanded}} bb-accordion ng-disabled=dataHolder.instances.expanded><span><img ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=img> {{dataHolder.modules.ids[g.moduleId].title}}&nbsp; <span class=item-cnt>({{dataHolder.instances.cnt.modules[g.moduleId]}})</span></span></button></h2><div class=accordion hidden ng-class=\"{'ng-show':dataHolder.instances.expanded}\"><div class=\"list-panel bcg-active\" ng-repeat=\"(indexA,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexA\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1\"><div class=body><div><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('instanceSingleDropdown_' + indexG+indexA, $event)\"></button></div><div class=control ng-class=\"naviExpanded['instanceSingleDropdown_' + indexG+indexA] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i> </a><button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateInstance(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-pause text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i> </a><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></section><div class=instance-entry-single ng-if=\"instanveModuleCnt < 2\"><div class=\"list-panel bcg-active\" ng-repeat=\"(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1 && v.moduleId !== 'MobileAppSupport'\"><figure class=\"img wh-32x32\"><img ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=img></figure><div class=body><div><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('instanceSingleDropdown_' + indexG, $event)\"></button></div><div class=control ng-class=\"naviExpanded['instanceSingleDropdown_' + indexG] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i> </a><button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateInstance(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-pause text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i> </a><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div>"
+    "<div class=\"alert alert-warning\" ng-if=dataHolder.instances.noSearch><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('no_search_results',{__term__: \"\\\"\" + dataHolder.instances.filter.q + \"\\\"\"})}}</div><div ng-repeat=\"(indexG,g) in dataHolder.instances.groups track by indexG\" ng-init=\"instanveModuleCnt = dataHolder.instances.cnt.modules[g.moduleId]\" ng-if=\"dataHolder.modules.cameraIds.indexOf(g.moduleId) === -1\"><section class=accordion-instances ng-if=\"instanveModuleCnt > 1\"><h2 class=\"accordion-toggle chevron\" ng-init=\"expand[g.moduleId] = dataHolder.instances.expanded\"><button type=button aria-expanded={{dataHolder.instances.expanded}} bb-accordion ng-disabled=dataHolder.instances.expanded><span><img ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=img> {{dataHolder.modules.ids[g.moduleId].title}}&nbsp; <span class=item-cnt>({{dataHolder.instances.cnt.modules[g.moduleId]}})</span></span></button></h2><div class=accordion hidden ng-class=\"{'ng-show':dataHolder.instances.expanded}\"><div class=\"list-panel bcg-active\" ng-repeat=\"(indexA,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexA\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1\"><div class=body><div><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('instanceSingleDropdown_' + indexG+indexA, $event)\"></button></div><div class=control ng-class=\"naviExpanded['instanceSingleDropdown_' + indexG+indexA] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i> </a><button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateInstance(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-pause text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i> </a><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></section><div class=instance-entry-single ng-if=\"instanveModuleCnt < 2\"><div class=\"list-panel bcg-active\" ng-repeat=\"(indexR,v) in g.instances |orderBy:cfg.orderby.instances[dataHolder.instances.orderBy] | filter:q track by indexR\" ng-class=\"v.active ? 'true': 'false'\" ng-if=\"dataHolder.modules.cameraIds.indexOf(v.moduleId) === -1 && dataHolder.modules.wifiplugIds.indexOf(v.moduleId) === -1\"><figure class=\"img wh-32x32\"><img ng-src={{dataHolder.modules.ids[g.moduleId].icon}} err-src={{cfg.img.placeholder}} alt=img></figure><div class=body><div><a href=#module/put/{{v.id}}><span ng-bind=v.title></span></a></div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('instanceSingleDropdown_' + indexG, $event)\"></button></div><div class=control ng-class=\"naviExpanded['instanceSingleDropdown_' + indexG] ? 'expand-true': 'expand-false'\"><div class=btn-group><a ng-href=#module/put/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_settings')}}\"><i class=\"fa fa-cog\"></i> </a><button title=\"{{_t('lb_activate')}}/{{_t('lb_deactivate')}}\" class=\"btn btn-default\" ng-click=\"activateInstance(v, v.active ? false : true)\"><i class=fa ng-class=\"v.active ? 'fa-pause text-danger' : 'fa-play text-success'\"></i></button> <a ng-href=#module/clone/{{v.moduleId}}/false/{{v.id}} class=\"btn btn-default\" title=\"{{_t('lb_clone')}}\" ng-hide=dataHolder.modules.ids[v.moduleId].singleton><i class=\"fa fa-clone\"></i> </a><button title=\"{{_t('lb_remove')}}\" class=\"btn btn-default\" ng-click=\"deleteInstance({'id': v.id}, _t('lb_delete_confirm'))\"><i class=\"fa fa-remove text-danger\"></i></button></div></div></div></div></div>"
   );
 
 
@@ -18806,7 +18828,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/hazard/fire/fire.html',
-    "<section><h3>{{_t('fire_sensors')}}</h3><div ng-if=\"_.size(hazardProtection.fire.input.params.sensors) > 0\"><legend>{{_t('assigned_fire_sensors')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/fire/fire_sensors_assigned.html'\"></fieldset></div><legend>{{_t('lb_available_sensors')}}</legend><fieldset ng-include=\"'app/views/automation/hazard/fire/fire_sensors_available.html'\"></fieldset></section><section><h3>{{_t('alarm_notifications')}}</h3><div ng-if=\"_.size(hazardProtection.fire.input.params.sendNotifications) > 0\"><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/fire/fire_notifiers_assigned.html'\"></fieldset></div><fieldset ng-include=\"'app/views/automation/hazard/fire/fire_notifiers_add.html'\"></fieldset></section><section><h3>{{_t('devices_for_action')}}</h3><div ng-if=_.size(hazardProtection.fire.input.params.triggerEvent)><legend>{{_t('assigned_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/fire/fire_devices_assigned.html'\"></fieldset></div><div ng-if=_.size(hazardProtection.fire.input.params.sensors)><legend>{{_t('lb_available_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/fire/fire_devices_available.html'\"></fieldset></div><h3>{{_t('activate_module',{__module__:_t('fire_sensors')})}}</h3><fieldset><label class=switch><input type=checkbox ng-model=hazardProtection.fire.input.active ng-checked=hazardProtection.fire.input.active> <span class=slider></span></label><span class=switch-label>{{hazardProtection.fire.input.active ? _t('lb_active'): _t('activeASC')}}</span></fieldset></section>"
+    "<section><h3>{{_t('fire_sensors')}}</h3><div ng-if=\"_.size(hazardProtection.fire.input.params.sensors) > 0\"><legend>{{_t('assigned_fire_sensors')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/fire/fire_sensors_assigned.html'\"></fieldset></div><legend>{{_t('lb_available_sensors')}}</legend><fieldset ng-include=\"'app/views/automation/hazard/fire/fire_sensors_available.html'\"></fieldset></section><section><h3>{{_t('alarm_notifications')}}</h3><div ng-if=\"_.size(hazardProtection.fire.input.params.sendNotifications) > 0\"><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/fire/fire_notifiers_assigned.html'\"></fieldset></div><fieldset ng-include=\"'app/views/automation/hazard/fire/fire_notifiers_add.html'\"></fieldset></section><section><h3>{{_t('devices_for_action')}}</h3><div ng-if=_.size(hazardProtection.fire.input.params.triggerEvent)><legend>{{_t('assigned_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/fire/fire_devices_assigned.html'\"></fieldset></div><div ng-if=_.size(hazardProtection.fire.input.params.sensors)><legend>{{_t('lb_available_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/fire/fire_devices_available.html'\"></fieldset></div><h3>{{_t('activate_module',{__module__:_t('fire_sensors')})}}</h3><fieldset><label class=switch><input type=checkbox ng-model=hazardProtection.fire.input.active ng-checked=hazardProtection.fire.input.active ng-disabled=\"_.size(hazardProtection.fire.input.params.sensors) < 1\"> <span class=slider></span></label><span class=switch-label>{{hazardProtection.fire.input.active ? _t('lb_active'): _t('activeASC')}}</span></fieldset></section>"
   );
 
 
@@ -18861,7 +18883,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/hazard/inputs/notification.html',
-    "<div class=\"form-group form-inline\"><select class=form-control ng-model=d.target ng-required=true><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option ng-if=user.email value={{user.email}} ng-selected=\"d.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in hazardProtection.availableNotifiers track by $index\" ng-selected=\"e.deviceId == d.target\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=\"hazardProtection.availableNotifiers[d.target] || d.target == user.email\">&nbsp;{{_t('or')}}&nbsp;<input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=d.target></label></div><div class=form-group ng-if=\"d.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=d.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=\"form-group form-inline\" ng-if=\"d.target != ''\"><label>{{_t('notification_is_fired')}}</label><select class=form-control ng-model=d.firedOn><option value={{f}} ng-repeat=\"f in hazardProtection.firedOn track by $index\" ng-selected=\"f == d.firedOn\">{{_t('fired_' + f)}}</option></select></div>"
+    "<div class=\"form-group form-inline\"><select class=form-control ng-model=d.target ng-required=true><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option ng-if=user.email value={{user.email}} ng-selected=\"d.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in hazardProtection.availableNotifiers track by $index\" ng-selected=\"e.deviceId == d.target\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=\"hazardProtection.availableNotifiers[d.target] || d.target == user.email\">&nbsp;{{_t('or')}}&nbsp;<input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=d.target_custom></label></div><div class=form-group ng-if=\"d.target != '' || d.target_custom != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=d.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=\"form-group form-inline\" ng-if=\"d.target != ''\"><label>{{_t('notification_is_fired')}}</label><select class=form-control ng-model=d.firedOn><option value={{f}} ng-repeat=\"f in hazardProtection.firedOn track by $index\" ng-selected=\"f == d.firedOn\">{{_t('fired_' + f)}}</option></select></div>"
   );
 
 
@@ -18881,7 +18903,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/hazard/leakage/leakage.html',
-    "<section><h3>{{_t('leakage_sensors')}}</h3><div ng-if=\"_.size(hazardProtection.leakage.input.params.sensors) > 0\"><legend>{{_t('assigned_leakage_sensors')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/leakage/leakage_sensors_assigned.html'\"></fieldset></div><legend>{{_t('lb_available_sensors')}}</legend><fieldset ng-include=\"'app/views/automation/hazard/leakage/leakage_sensors_available.html'\"></fieldset></section><section><h3>{{_t('alarm_notifications')}}</h3><div ng-if=\"_.size(hazardProtection.leakage.input.params.sendNotifications) > 0\"><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/leakage/leakage_notifiers_assigned.html'\"></fieldset></div><fieldset ng-include=\"'app/views/automation/hazard/leakage/leakage_notifiers_add.html'\"></fieldset></section><section><h3>{{_t('devices_for_action')}}</h3><div ng-if=_.size(hazardProtection.leakage.input.params.triggerEvent)><legend>{{_t('assigned_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/leakage/leakage_devices_assigned.html'\"></fieldset></div><div ng-if=_.size(hazardProtection.leakage.input.params.sensors)><legend>{{_t('lb_available_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/leakage/leakage_devices_available.html'\"></fieldset></div><h3>{{_t('activate_module',{__module__:_t('leakage_sensors')})}}</h3><fieldset><label class=switch><input type=checkbox ng-model=hazardProtection.leakage.input.active ng-checked=hazardProtection.leakage.input.active> <span class=slider></span></label><span class=switch-label>{{hazardProtection.leakage.input.active ? _t('lb_active'): _t('activeASC')}}</span></fieldset></section>"
+    "<section><h3>{{_t('leakage_sensors')}}</h3><div ng-if=\"_.size(hazardProtection.leakage.input.params.sensors) > 0\"><legend>{{_t('assigned_leakage_sensors')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/leakage/leakage_sensors_assigned.html'\"></fieldset></div><legend>{{_t('lb_available_sensors')}}</legend><fieldset ng-include=\"'app/views/automation/hazard/leakage/leakage_sensors_available.html'\"></fieldset></section><section><h3>{{_t('alarm_notifications')}}</h3><div ng-if=\"_.size(hazardProtection.leakage.input.params.sendNotifications) > 0\"><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/leakage/leakage_notifiers_assigned.html'\"></fieldset></div><fieldset ng-include=\"'app/views/automation/hazard/leakage/leakage_notifiers_add.html'\"></fieldset></section><section><h3>{{_t('devices_for_action')}}</h3><div ng-if=_.size(hazardProtection.leakage.input.params.triggerEvent)><legend>{{_t('assigned_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/leakage/leakage_devices_assigned.html'\"></fieldset></div><div ng-if=_.size(hazardProtection.leakage.input.params.sensors)><legend>{{_t('lb_available_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/hazard/leakage/leakage_devices_available.html'\"></fieldset></div><h3>{{_t('activate_module',{__module__:_t('leakage_sensors')})}}</h3><fieldset><label class=switch><input type=checkbox ng-model=hazardProtection.leakage.input.active ng-checked=hazardProtection.leakage.input.active ng-disabled=\"_.size(hazardProtection.leakage.input.params.sensors) < 1\"> <span class=slider></span></label><span class=switch-label>{{hazardProtection.leakage.input.active ? _t('lb_active'): _t('activeASC')}}</span></fieldset></section>"
   );
 
 
@@ -18921,7 +18943,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/heating/heating_id.html',
-    "<div ng-controller=HeatingIdController><bb-loader></bb-loader><h2>{{_t('heating')}}</h2><bb-alert alert=heating.alert></bb-alert><form class=\"form form-page\" ng-submit=storeInstance(true)><fieldset><section class=accordion-wrap ng-repeat=\"r in heating.rooms track by $index\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion ng-click=\"renderSchedule('#schedule-'+{{r.id}}, r.id)\"><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><fieldset><div class=form-inline><div class=\"form-group is-inline\"><label>{{_t('comfort_temp')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].comfortTemp convert-to-float><option value=\"\">---</option><option value={{ct}} ng-repeat=\"ct in heating.cfg.comfort.temp.temp track by $index\" ng-selected=\"ct == heating.input.params.roomSettings[r.id].comfortTemp\">{{heating.cfg.comfort.temp.label[$index]}}</option></select></div><div class=\"form-group is-inline\"><label>{{_t('energy_save_temp')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].energySaveTemp convert-to-float><option value=\"\">---</option><option value={{est}} ng-repeat=\"est in heating.cfg.energySave.temp.temp track by $index\" ng-selected=\"est == heating.input.params.roomSettings[r.id].energySaveTemp\">{{heating.cfg.energySave.temp.label[$index]}}</option></select></div><div class=\"form-group is-inline\" ng-if=\"heating.devices.SensorsByRoom[r.id].length >= 1\"><label>{{_t('temp_sensor')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].sensorId><option value={{heating.devices.SensorsByRoom[r.id][0].deviceId}} ng-if=\"heating.devices.SensorsByRoom[r.id].length == 1\">{{heating.devices.SensorsByRoom[r.id][0].deviceName}}</option><option value=\"\" ng-if=\"heating.devices.SensorsByRoom[r.id].length > 1\">---</option><option value={{d.deviceId}} ng-if=\"heating.devices.SensorsByRoom[r.id].length > 1\" ng-repeat=\"d in heating.devices.SensorsByRoom[r.id] track by $index\" ng-selected=\"d.deviceId == heating.input.params.roomSettings[r.id].sensorId\">{{d.deviceName}}</option></select></div></div><div class=schedule-wrap ng-hide=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"><div class=schedule-overlay ng-if=!heating.input.params.roomSettings[r.id].comfortTemp><bb-help-text trans=\"_t('no_comfort_temp_info')\"></bb-help-text></div><div id=schedule-{{r.id}} class=schedule ng-class=\"(!heating.input.params.roomSettings[r.id].comfortTemp ? 'disabled': '')\"></div><bb-help-text trans=\"_t('schedule_info')\"></bb-help-text></div><div ng-include=\"'app/views/automation/heating/mobile_schedule.html'\" ng-show=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"></div><div class=form-inline ng-hide=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"><div class=\"form-group is-inline\"><select class=form-control ng-model=r.copyOption><option value=null>---</option><option value={{i.id}} ng-repeat=\"i in heating.rooms\" ng-if=\"hasSchedules(i.id) && i.id !== r.id\">{{i.title}}</option></select><button class=\"btn btn-default\" type=button ng-click=\"copySchedule(r.copyOption, r.id, _t('copy_schedule', {__dest_room__: r.title, __src_room__: heating.rooms[r.copyOption].title}))\" ng-disabled=\"(r.copyOption == null || r.copyOption == 'null')\"><i class=\"fa fa-copy\"></i> {{_t('copy')}}</button><bb-help-text trans=\"_t('copy_schedule_info')\"></bb-help-text></div></div><div><h3>{{_t('thermostate_in_room')}}</h3><span class=\"btn btn-static btn-tag\" title={{v.deviceName}} ng-repeat=\"v in heating.devices.ThermostateByRoom[r.id] track by $index\" ng-if=\"_.size(heating.devices.ThermostateByRoom[r.id]) > 0\">{{v.deviceName|cutText:true:20}}</span><div class=\"alert alert-warning\" ng-if=\"_.size(heating.devices.ThermostateByRoom[r.id]) == 0\"><div class=form-group>{{_t('no_thermostate_in_room')}}</div></div></div></fieldset></div></section></fieldset><fieldset><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span>{{_t('advanced_settings')}}</span></button></h2><div class=accordion hidden><fieldset><div class=\"form-group is-inline\"><label>{{_t('reset_time')}}</label><input name=reset_time id=reset_time class=form-control ng-model=heating.input.params.resetTime>&nbsp;<bb-help-text trans=\"_t('help_reset_time')\"></bb-help-text></div></fieldset></div></section></fieldset><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=heating.input.active ng-checked=heating.input.active ng-disabled=!heating.roomsAvailable> <span class=slider></span></label><span class=switch-label>{{heating.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><a ng-href=#automations class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-disabled=!heating.roomsAvailable><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form><div ng-include=\"'app/views/automation/heating/heating_id_temperatrue_modal.html'\"></div></div>"
+    "<div ng-controller=HeatingIdController><bb-loader></bb-loader><h2>{{_t('heating')}}</h2><bb-alert alert=heating.alert></bb-alert><form class=\"form form-page\" ng-submit=storeInstance(true)><fieldset><section class=accordion-wrap ng-repeat=\"r in heating.rooms track by $index\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion ng-click=\"renderSchedule('#schedule-'+{{r.id}}, r.id)\"><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><fieldset><div class=form-inline><div class=\"form-group is-inline\"><label>{{_t('comfort_temp')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].comfortTemp convert-to-float><option value=\"\">---</option><option value={{ct}} ng-repeat=\"ct in heating.cfg.comfort.temp.temp track by $index\" ng-selected=\"ct == heating.input.params.roomSettings[r.id].comfortTemp\">{{heating.cfg.comfort.temp.label[$index]}}</option></select></div><div class=\"form-group is-inline\"><label>{{_t('energy_save_temp')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].energySaveTemp convert-to-float><option value=\"\">---</option><option value={{est}} ng-repeat=\"est in heating.cfg.energySave.temp.temp track by $index\" ng-selected=\"est == heating.input.params.roomSettings[r.id].energySaveTemp\">{{heating.cfg.energySave.temp.label[$index]}}</option></select></div><div class=\"form-group is-inline\" ng-if=\"heating.devices.SensorsByRoom[r.id].length >= 1\"><label>{{_t('temp_sensor')}}</label><select class=form-control ng-model=heating.input.params.roomSettings[r.id].sensorId><option value={{heating.devices.SensorsByRoom[r.id][0].deviceId}} ng-if=\"heating.devices.SensorsByRoom[r.id].length == 1\">{{heating.devices.SensorsByRoom[r.id][0].deviceName}}</option><option value=\"\" ng-if=\"heating.devices.SensorsByRoom[r.id].length > 1\">---</option><option value={{d.deviceId}} ng-if=\"heating.devices.SensorsByRoom[r.id].length > 1\" ng-repeat=\"d in heating.devices.SensorsByRoom[r.id] track by $index\" ng-selected=\"d.deviceId == heating.input.params.roomSettings[r.id].sensorId\">{{d.deviceName}}</option></select></div></div><div class=schedule-wrap ng-hide=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"><div class=schedule-overlay ng-if=!heating.input.params.roomSettings[r.id].comfortTemp><bb-help-text trans=\"_t('no_comfort_temp_info')\"></bb-help-text></div><div id=schedule-{{r.id}} class=schedule ng-class=\"(!heating.input.params.roomSettings[r.id].comfortTemp ? 'disabled': '')\"></div><bb-help-text trans=\"_t('schedule_info')\"></bb-help-text></div><div ng-include=\"'app/views/automation/heating/mobile_schedule.html'\" ng-show=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"></div><div class=form-inline ng-hide=\"deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'\"><div class=\"form-group is-inline\"><select class=form-control ng-model=r.copyOption><option value=null>---</option><option value={{i.id}} ng-repeat=\"i in heating.rooms\" ng-if=\"hasSchedules(i.id) && i.id !== r.id\">{{i.title}}</option></select><button class=\"btn btn-default\" type=button ng-click=\"copySchedule(r.copyOption, r.id, _t('copy_schedule', {__dest_room__: r.title, __src_room__: heating.rooms[r.copyOption].title}))\" ng-disabled=\"(r.copyOption == null || r.copyOption == 'null')\"><i class=\"fa fa-copy\"></i> {{_t('copy')}}</button><bb-help-text trans=\"_t('copy_schedule_info')\"></bb-help-text></div></div><div><h3>{{_t('thermostate_in_room')}}</h3><span class=\"btn btn-static btn-tag\" title={{v.deviceName}} ng-repeat=\"v in heating.devices.ThermostateByRoom[r.id] track by $index\" ng-if=\"_.size(heating.devices.ThermostateByRoom[r.id]) > 0\">{{v.deviceName|cutText:true:20}}</span><div class=\"alert alert-warning\" ng-if=\"_.size(heating.devices.ThermostateByRoom[r.id]) == 0\"><div class=form-group>{{_t('no_thermostate_in_room')}}</div></div></div></fieldset></div></section></fieldset><fieldset><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span>{{_t('advanced_settings')}}</span></button></h2><div class=accordion hidden><fieldset><div class=\"form-group is-inline\"><label>{{_t('reset_time')}}</label><input name=reset_time id=reset_time type=number class=form-control ng-model=heating.input.params.resetTime>&nbsp;<bb-help-text trans=\"_t('help_reset_time')\"></bb-help-text></div></fieldset></div></section></fieldset><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=heating.input.active ng-checked=heating.input.active ng-disabled=!heating.roomsAvailable> <span class=slider></span></label><span class=switch-label>{{heating.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><a ng-href=#automations class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-disabled=!heating.roomsAvailable><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form><div ng-include=\"'app/views/automation/heating/heating_id_temperatrue_modal.html'\"></div></div>"
   );
 
 
@@ -18956,12 +18978,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/rules/advanced/if_assigned.html',
-    "<section class=\"accordion-wrap {{d.type}}\" ng-repeat=\"d in rule.input.params.advanced.tests track by $index\" ng-init=\"model=d;testIndex = $index;hideAction=true\"><span class=\"label label-default index_{{$index}} {{d.type}}\">{{_t('lb_'+ rule.input.params.advanced.logicalOperator)}}</span><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion ng-class=\"{'no-toggle': d.type == 'toggleButton'}\" ng-switch=d.type><span ng-switch-when=nested><i class=\"fa fa-fw fa-code-fork fa-flip-vertical fa-2x\"></i>&nbsp;{{_t('nested')}}</span> <span ng-switch-when=time><i class=\"fa fa-fw fa-clock-o fa-2x\"></i>&nbsp;{{_t('lb_time')}}&nbsp;<em>[{{d.operator}}&nbsp;{{d.level}}]</em></span> <span ng-switch-default><span ng-if=!rule.namespaces[d.deviceId].deviceName><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.deviceId}})</span> <span ng-if=rule.namespaces[d.deviceId].deviceName><img class=navi-img ng-src={{rule.namespaces[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img>{{rule.namespaces[d.deviceId].deviceName}}&nbsp; <em ng-if=d.operator>[{{d.operator}}&nbsp;{{d.level}}]</em> <em ng-if=\"!d.operator && _.isNumber(d.level)\">[{{d.level}}]</em> <em ng-if=\"!d.operator && !_.isNumber(d.level) && !_.isObject(d.level)\">[{{_t(d.level)}}]</em><span ng-if=\"!d.operator && !_.isNumber(d.level) && _.isObject(d.level)\" class=color-picker-show style=\"background-color: {{d.level|setRgbColors}}\">&nbsp;</span> &nbsp;-&nbsp;<em>{{rule.namespaces[d.deviceId].locationName}}</em></span></span></button> <span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=unassignAdvancedTest($index,d.deviceId)><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-init=\"if=true\" ng-include=\"'app/views/automation/rules/inputs/advanced/'+ d.type +'.html'\" ng-if=\"d.type != 'toggleButton'\" hidden></div></section>"
+    "<section class=\"accordion-wrap {{d.type}}\" ng-repeat=\"d in rule.input.params.advanced.tests track by $index\" ng-init=\"model=d;testIndex = $index;hideAction=true\"><span class=\"label label-default index_{{$index}} {{d.type}}\">{{_t('lb_'+ rule.input.params.advanced.logicalOperator)}}</span><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion ng-class=\"{'no-toggle': d.type == 'toggleButton'}\" ng-switch=d.type><span ng-switch-when=nested><i class=\"fa fa-fw fa-code-fork fa-flip-vertical fa-2x\"></i>&nbsp;{{_t('nested')}}</span> <span ng-switch-when=compare><i class=\"fa fa-fw fa-code fa-2x\"></i>&nbsp;{{_t('compare')}}</span> <span ng-switch-when=time><i class=\"fa fa-fw fa-clock-o fa-2x\"></i>&nbsp;{{_t('lb_time')}}&nbsp;<em>[{{d.operator}}&nbsp;{{d.level}}]</em></span> <span ng-switch-default><span ng-if=!rule.namespaces[d.deviceId].deviceName><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.deviceId}})</span> <span ng-if=rule.namespaces[d.deviceId].deviceName><img class=navi-img ng-src={{rule.namespaces[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img>{{rule.namespaces[d.deviceId].deviceName}}&nbsp; <em ng-if=d.operator>[{{d.operator}}&nbsp;{{d.level}}]</em> <em ng-if=\"!d.operator && _.isNumber(d.level)\">[{{d.level}}]</em> <em ng-if=\"!d.operator && !_.isNumber(d.level) && !_.isObject(d.level)\">[{{_t(d.level)}}]</em><span ng-if=\"!d.operator && !_.isNumber(d.level) && _.isObject(d.level)\" class=color-picker-show style=\"background-color: {{d.level|setRgbColors}}\">&nbsp;</span> &nbsp;-&nbsp;<em>{{rule.namespaces[d.deviceId].locationName}}</em></span></span></button> <span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=unassignAdvancedTest($index,d.deviceId)><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-init=\"if=true\" ng-include=\"'app/views/automation/rules/inputs/advanced/'+ d.type +'.html'\" ng-if=\"d.type != 'toggleButton'\" hidden></div></section>"
   );
 
 
   $templateCache.put('app/views/automation/rules/advanced/if_available.html',
-    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-if=rule.advanced.tests.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.advanced.tests.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.advanced.tests.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignAdvancedTestDevice(d)><img class=navi-img ng-src={{rule.namespaces[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=section><a href=\"\" class=\"btn btn-default btn-tag\" ng-click=\"assignAdvancedTestCondition('time')\"><i class=\"fa fa-clock-o\"></i> {{_t('test_time')}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i> </a><a href=\"\" class=\"btn btn-default btn-tag\" ng-click=\"assignAdvancedTestCondition('nested')\"><i class=\"fa fa-code-fork fa-flip-vertical\"></i> {{_t('nested')}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></section>"
+    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-if=rule.advanced.tests.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.advanced.tests.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.advanced.tests.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignAdvancedTestDevice(d)><img class=navi-img ng-src={{rule.namespaces[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=section><a href=\"\" class=\"btn btn-default btn-tag\" ng-click=\"assignAdvancedTestCondition('time')\"><i class=\"fa fa-clock-o\"></i> {{_t('test_time')}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i> </a><a href=\"\" class=\"btn btn-default btn-tag\" ng-click=\"assignAdvancedTestCondition('nested')\"><i class=\"fa fa-code-fork fa-flip-vertical\"></i> {{_t('nested')}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i> </a><a href=\"\" class=\"btn btn-default btn-tag\" ng-click=\"assignAdvancedTestCondition('compare')\"><i class=\"fa fa-code\"></i> {{_t('compare')}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></section>"
   );
 
 
@@ -18981,12 +19003,17 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/rules/advanced/then_available.html',
-    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-hide=!rule.target.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.target.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.advanced.target.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignAdvancedTargetDevice(d)><img class=navi-img ng-src={{rule.namespaces[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img>&nbsp;{{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=rule.options.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"user.email && rule.advanced.target.assignedDevices.indexOf(user.email) === -1\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && rule.advanced.target.assignedDevices.indexOf(e.deviceId) === -1\" ng-repeat=\"e in rule.namespaces track by $index\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=rule.options.notification.default.target>{{_t('or')}}&nbsp;<input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=rule.options.notification.default.target></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=rule.options.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignAdvancedTargetNotification(rule.options.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
+    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-hide=!rule.target.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.target.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.advanced.target.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignAdvancedTargetDevice(d)><img class=navi-img ng-src={{rule.namespaces[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img>&nbsp;{{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=rule.options.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"user.email && rule.advanced.target.assignedDevices.indexOf(user.email) === -1\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && rule.advanced.target.assignedDevices.indexOf(e.deviceId) === -1\" ng-repeat=\"e in rule.namespaces track by $index\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=rule.options.notification.default.target>{{_t('or')}}&nbsp;<input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=rule.options.notification.default.target_custom></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=rule.options.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignAdvancedTargetNotification(rule.options.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
   );
 
 
   $templateCache.put('app/views/automation/rules/advanced/then_expert.html',
     "<fieldset><h3>{{_t('heading_advanced_rule_then_further_settings')}}</h3><div class=\"device-available-block assigned\" ng-if=_.size(rule.input.params.advanced.triggerScenes)><a href=\"\" class=\"btn btn-default btn-tag\" title={{rule.advanced.target.eventSourceDevices[d].deviceName}} ng-repeat=\"d in rule.input.params.advanced.triggerScenes track by $index\" ng-click=unassignAdvancedEventSource(d)>{{rule.advanced.target.eventSourceDevices[d].deviceName|cutText:true:20}} <i class=\"fa fa-times text-danger\" title=\"{{_t('lb_remove')}}\"></i></a></div></fieldset><fieldset><a href=\"\" class=\"btn btn-default btn-tag\" title={{d.deviceName}} ng-repeat=\"d in rule.advanced.target.eventSourceDevices track by $index\" ng-hide=\"rule.input.params.advanced.triggerScenes.indexOf(d.deviceId) > -1\" ng-click=assignAdvancedEventSource(d.deviceId)>{{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></fieldset><fieldset><div class=\"form-group form-inline\"><label for=advanced_activate></label><input type=checkbox ng-model=rule.input.params.advanced.triggerOnDevicesChange ng-checked=rule.input.params.advanced.triggerOnDevicesChange> {{_t('lb_advanced_rule_then_further_settings')}}<bb-help-text trans=\"_t('help_advanced_rule_then_further_settings')\"></bb-help-text></div></fieldset>"
+  );
+
+
+  $templateCache.put('app/views/automation/rules/inputs/advanced/compare.html',
+    "<div class=form-group>{{_t('help_compare_condition')}}<select class=form-control ng-model=d.operator ng-disabled=\"_.size(d.devices) < 2\"><option value={{v}} ng-repeat=\"v in d.operators\" ng-selected=\"d.operator == v\">{{v}}</option></select><bb-help-text trans=\"_t('help_compare_rule')\"></bb-help-text></div><legend>{{_t('assigned_conditions')}}</legend><div data-collapse-all=true><section class=accordion-wrap ng-if=\"_.size(d.devices) > 0\"><h2 class=\"accordion-toggle ellipsis\"><button type=button><span ng-if=!rule.namespaces[d.devices[0].deviceId].deviceName><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{d.devices[0].deviceId}})</span> <span ng-if=rule.namespaces[d.devices[0].deviceId].deviceName>{{rule.namespaces[d.devices[0].deviceId].deviceName}}&nbsp; &nbsp;-&nbsp;<em>{{rule.namespaces[d.devices[0].deviceId].locationName}}</em></span></button> <span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=unassignAdvancedTestCompare(0,d.devices[0].deviceId,testIndex)><i class=\"fa fa-times text-danger\"></i></span></h2></section><section class=accordion-wrap ng-if=\"_.size(d.devices) > 1\"><span class=\"label label-default index_1\">{{d.operator}}</span><h2 class=\"accordion-toggle ellipsis\"><button type=button><span ng-if=!rule.namespaces[d.devices[1].deviceId].deviceName><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{d.devices[1].deviceId}})</span> <span ng-if=rule.namespaces[d.devices[1].deviceId].deviceName>{{rule.namespaces[d.devices[1].deviceId].deviceName}}&nbsp; &nbsp;-&nbsp;<em>{{rule.namespaces[d.devices[1].deviceId].locationName}}</em></span></button> <span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=unassignAdvancedTestCompare(1,d.devices[1].deviceId,testIndex)><i class=\"fa fa-times text-danger\"></i></span></h2></section></div><legend>{{_t('available_conditions')}}</legend><div data-collapse-all=true bb-child-elem_=rule.advanced.tests.assignedDevices><section class=\"accordion-wrap _available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-if=rule.advanced.tests.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><button type=button class=\"btn btn-default btn-tag\" title={{o.deviceName}} ng-repeat=\"o in rule.advanced.tests.availableDevices track by $index\" ng-if=\"o.location == r.id && rule.advanced.tests.assignedDevices.indexOf(o.deviceId) === -1\" ng-hide=\"o.deviceId == rule.input.params.simple.triggerEvent.deviceId || filterDeviceListCompare(o.deviceType,testIndex) \" ng-click=assignAdvancedTestCompareDevice(o,testIndex)><img class=navi-img ng-src={{rule.namespaces[o.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{o.deviceName|cutText:true:20}}&nbsp;<i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></button></div></section></div>"
   );
 
 
@@ -18996,7 +19023,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/rules/inputs/advanced/nested.html',
-    "<div class=form-group>{{_t('help_nested_condition')}}</div><div class=form-group><label class=switch><input type=checkbox ng-model=model.logicalOperator ng-true-value=or ng-false-value=and> <span class=slider></span></label><span class=switch-label>{{_t('lb_'+ model.logicalOperator)}} <em ng-if=\"model.logicalOperator == 'and'\">({{_t('operator_and_info')}})</em> <em ng-if=\"model.logicalOperator == 'or'\">({{_t('operator_or_info')}})</em></span><bb-help-text trans=\"_t('help_advanced_rule')\"></bb-help-text></div><legend>{{_t('assigned_conditions')}}</legend><div data-collapse-all=true><section class=accordion-wrap ng-repeat=\"n in d.tests track by $index\" ng-init=\"model=n\"><span class=\"label label-default index_{{$index}}\">{{_t('lb_'+ rule.input.params.advanced.tests[testIndex].logicalOperator)}}</span><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion ng-class=\"{'no-toggle': n.type == 'toggleButton'}\" ng-switch=n.type><span ng-switch-when=nested>{{_t('nested')}}</span> <span ng-switch-when=time>{{_t('lb_time')}}&nbsp;<em>[{{n.operator}}&nbsp;{{n.level}}]</em></span> <span ng-switch-default><span ng-if=!rule.namespaces[n.deviceId].deviceName><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.deviceId}})</span> <span ng-if=rule.namespaces[n.deviceId].deviceName>{{rule.namespaces[n.deviceId].deviceName}}&nbsp; <em ng-if=n.operator>[{{n.operator}}&nbsp;{{n.level}}]</em> <em ng-if=\"!n.operator && _.isNumber(n.level)\">[{{n.level}}]</em> <em ng-if=\"!n.operator && !_.isNumber(n.level)\">[{{_t(n.level)}}]</em> &nbsp;-&nbsp;<em>{{rule.namespaces[n.deviceId].locationName}}</em></span></span></button> <span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=unassignAdvancedTestNested($index,n.deviceId,testIndex)><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-include=\"'app/views/automation/rules/inputs/advanced/'+ n.type +'.html'\" ng-if=\"n.type != 'toggleButton'\" hidden></div></section></div><legend>{{_t('available_conditions')}}</legend><div data-collapse-all=true bb-child-elem_=rule.advanced.tests.assignedDevices><section class=\"accordion-wrap _available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-if=rule.advanced.tests.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><button type=button class=\"btn btn-default btn-tag\" title={{o.deviceName}} ng-repeat=\"o in rule.advanced.tests.availableDevices track by $index\" ng-if=\"o.location == r.id && rule.advanced.tests.assignedDevices.indexOf(o.deviceId) === -1\" ng-hide=\"o.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignAdvancedTestNestedDevice(o,testIndex)><img class=navi-img ng-src={{rule.namespaces[o.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{o.deviceName|cutText:true:20}}&nbsp;<i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></button></div></section></div><section class=section><button type=button class=\"btn btn-default btn-tag\" ng-click=\"assignAdvancedTestNestedCondition('time',testIndex)\">{{_t('testTime')}}&nbsp;<i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></button></section>"
+    "<div class=form-group>{{_t('help_nested_condition')}}</div><div class=form-group><label class=switch><input type=checkbox ng-model=model.logicalOperator ng-true-value=or ng-false-value=and> <span class=slider></span></label><span class=switch-label>{{_t('lb_'+ model.logicalOperator)}} <em ng-if=\"model.logicalOperator == 'and'\">({{_t('operator_and_info')}})</em> <em ng-if=\"model.logicalOperator == 'or'\">({{_t('operator_or_info')}})</em></span><bb-help-text trans=\"_t('help_advanced_rule')\"></bb-help-text></div><legend>{{_t('assigned_conditions')}}</legend><div data-collapse-all=true><section class=accordion-wrap ng-repeat=\"n in d.tests track by $index\" ng-init=\"model=n\"><span class=\"label label-default index_{{$index}}\">{{_t('lb_'+ rule.input.params.advanced.tests[testIndex].logicalOperator)}}</span><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion ng-class=\"{'no-toggle': n.type == 'toggleButton'}\" ng-switch=n.type><span ng-switch-when=nested>{{_t('nested')}}</span> <span ng-switch-when=time>{{_t('lb_time')}}&nbsp;<em>[{{n.operator}}&nbsp;{{n.level}}]</em></span> <span ng-switch-default><span ng-if=!rule.namespaces[n.deviceId].deviceName><i class=\"fa fa-exclamation-circle\"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.deviceId}})</span> <span ng-if=rule.namespaces[n.deviceId].deviceName>{{rule.namespaces[n.deviceId].deviceName}}&nbsp; <em ng-if=n.operator>[{{n.operator}}&nbsp;{{n.level}}]</em> <em ng-if=\"!n.operator && _.isNumber(n.level)\">[{{n.level}}]</em> <em ng-if=\"!n.operator && !_.isNumber(n.level)\">[{{_t(n.level)}}]</em> &nbsp;-&nbsp;<em>{{rule.namespaces[n.deviceId].locationName}}</em></span></span></button> <span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=unassignAdvancedTestNested($index,n.deviceId,testIndex)><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-include=\"'app/views/automation/rules/inputs/advanced/'+ n.type +'.html'\" ng-if=\"n.type != 'toggleButton'\" hidden></div></section></div><legend>{{_t('available_conditions')}}</legend><div data-collapse-all=true bb-child-elem_=rule.advanced.tests.assignedDevices><section class=\"accordion-wrap _available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-if=rule.advanced.tests.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><button type=button class=\"btn btn-default btn-tag\" title={{o.deviceName}} ng-repeat=\"o in rule.advanced.tests.availableDevices track by $index\" ng-if=\"o.location == r.id && rule.advanced.tests.assignedDevices.indexOf(o.deviceId) === -1\" ng-hide=\"o.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignAdvancedTestNestedDevice(o,testIndex)><img class=navi-img ng-src={{rule.namespaces[o.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{o.deviceName|cutText:true:20}}&nbsp;<i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></button></div></section></div><section class=section><button type=button class=\"btn btn-default btn-tag\" ng-click=\"assignAdvancedTestNestedCondition('time',testIndex)\">{{_t('test_time')}}&nbsp;<i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></button></section>"
   );
 
 
@@ -19136,12 +19163,12 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/rules/simple/then_available.html',
-    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-hide=!rule.target.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.target.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignTargetDevice(d)><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img>&nbsp;{{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=rule.options.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"rule.target.assignedDevices.indexOf(user.email) === -1 && user.email != ''\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && rule.target.assignedDevices.indexOf(e.deviceId) === -1\" ng-repeat=\"e in rule.namespaces track by $index\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=rule.options.notification.default.target>{{_t('or')}}&nbsp;<input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=rule.options.notification.default.target></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=rule.options.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignTargetNotification(rule.options.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
+    "<section class=\"accordion-wrap available-devices\" ng-repeat=\"r in rule.rooms track by $index\" ng-hide=!rule.target.devicesInRoom[r.id]><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in rule.target.availableDevices track by $index\" ng-if=\"d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1\" ng-hide=\"d.deviceId == rule.input.params.simple.triggerEvent.deviceId\" ng-click=assignTargetDevice(d)><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img>&nbsp;{{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=rule.options.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"rule.target.assignedDevices.indexOf(user.email) === -1 && user.email != ''\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && rule.target.assignedDevices.indexOf(e.deviceId) === -1\" ng-repeat=\"e in rule.namespaces track by $index\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=rule.options.notification.default.target>{{_t('or')}}&nbsp;<input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=rule.options.notification.default.target_custom></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=rule.options.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignTargetNotification(rule.options.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
   );
 
 
   $templateCache.put('app/views/automation/scenes/scene_id.html',
-    "<div class=automation ng-controller=AutomationSceneIdController><bb-loader></bb-loader><div ng-if=!scene.show ng-include=\"'app/views/automation/no_device.html'\"></div><div ng-if=scene.show><h2>{{_t('scenes')}}</h2><form class=\"form form-page\" ng-submit=storeScene(scene.input,true)><fieldset ng-include=\"'app/views/automation/scenes/scene_id_form.html'\"></fieldset><div ng-if=scene.assignedDevices.length><legend>{{_t('assigned_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/scenes/scene_id_assigned.html'\"></fieldset></div><legend>{{_t('lb_available_devices')}}</legend><fieldset data-collapse-all=true bb-child-elem=scene.assignedDevices ng-include=\"'app/views/automation/scenes/scene_id_available.html'\"></fieldset><div ng-include=\"'app/views/automation/scenes/scene_id_icons.html'\"></div><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=scene.input.active> <span class=slider></span></label><span class=switch-label>{{scene.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><a href=#scenes class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form></div></div>"
+    "<div class=automation ng-controller=AutomationSceneIdController><bb-loader></bb-loader><div ng-if=!scene.show ng-include=\"'app/views/automation/no_device.html'\"></div><div ng-if=scene.show><h2>{{_t('scenes')}}</h2><form class=\"form form-page\" ng-submit=storeScene(scene.input,true)><fieldset ng-include=\"'app/views/automation/scenes/scene_id_form.html'\"></fieldset><div ng-if=scene.assignedDevices.length><legend>{{_t('assigned_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/scenes/scene_id_assigned.html'\"></fieldset></div><div ng-if=scene.assignedNotifications.length><legend>{{_t('assigned_notifications')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/scenes/scene_id_assigned_notification.html'\"></fieldset></div><legend>{{_t('lb_available_devices')}}</legend><fieldset data-collapse-all=true bb-child-elem=scene.assignedDevices ng-include=\"'app/views/automation/scenes/scene_id_available.html'\"></fieldset><div ng-include=\"'app/views/automation/scenes/scene_id_icons.html'\"></div><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=scene.input.active> <span class=slider></span></label><span class=switch-label>{{scene.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><a href=#scenes class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form></div></div>"
   );
 
 
@@ -19150,8 +19177,13 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/automation/scenes/scene_id_assigned_notification.html',
+    "<section class=accordion-wrap ng-repeat=\"n in scene.input.params.notifications track by $index\"><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion><span ng-if=scene.namespaces[n.target]><img class=navi-img ng-src={{scene.namespaces[n.target].iconPath}} err-src={{cfg.img.placeholder}} alt=img>{{scene.namespaces[n.target].deviceName}}</span> <span ng-if=!scene.namespaces[n.target]><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img>{{n.target}}</span></button> <span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=unassignNotification($index,n)><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-include=\"'app/views/automation/scenes/scene_id_form_notification.html'\" hidden></div></section>"
+  );
+
+
   $templateCache.put('app/views/automation/scenes/scene_id_available.html',
-    "<section class=accordion-wrap ng-repeat=\"r in scene.rooms track by $index\" ng-class=\"scene.devicesInRoom[r.id] ? 'available-devices' : 'ng-hide'\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in scene.availableDevices\" ng-if=\"d.location == r.id &&  scene.assignedDevices.indexOf(d.deviceId) === -1\" ng-click=assignDevice(d)><img class=navi-img ng-src={{scene.availableDevices[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section>"
+    "<section class=accordion-wrap ng-repeat=\"r in scene.rooms track by $index\" ng-class=\"scene.devicesInRoom[r.id] ? 'available-devices' : 'ng-hide'\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img>&nbsp;{{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in scene.availableDevices\" ng-if=\"d.location == r.id &&  scene.assignedDevices.indexOf(d.deviceId) === -1\" ng-click=assignDevice(d)><img class=navi-img ng-src={{scene.availableDevices[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img>&nbsp;{{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=scene.cfg.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"scene.assignedNotifications.indexOf(user.email) === -1 && user.email != ''\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && scene.assignedNotifications.indexOf(e.deviceId) === -1\" ng-repeat=\"e in scene.namespaces track by $index\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=scene.cfg.notification.default.target>{{_t('or')}}&nbsp;<input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=scene.cfg.notification.default.target_custom></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=scene.cfg.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignNotification(scene.cfg.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
   );
 
 
@@ -19162,6 +19194,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/automation/scenes/scene_id_form_doorlock.html',
     "<div class=form-group><label class=switch><input type=checkbox ng-model=v.level ng-checked=\"v.level == 'open'\" ng-true-value=open ng-false-value=close> <span class=slider></span></label><span class=switch-label>{{v.level}}</span></div><div class=form-group><input type=checkbox name=send_command id=send_command ng-model=v.sendAction ng-checked=v.sendAction><label for=send_command>{{_t('dont_send_on_command')}}</label></div>"
+  );
+
+
+  $templateCache.put('app/views/automation/scenes/scene_id_form_notification.html',
+    "<div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=n.message placeholder=\"{{_t('message')}}\"></textarea></div>"
   );
 
 
@@ -19196,7 +19233,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/schedules/schedule_id.html',
-    "<div class=automation ng-controller=AutomationScheduleIdController><bb-loader></bb-loader><div ng-if=!schedule.show ng-include=\"'app/views/automation/no_device.html'\"></div><div ng-if=schedule.show><h2>{{_t('schedules')}}</h2><form class=\"form form-page\" ng-submit=storeSchedule(schedule.input,true)><fieldset ng-include=\"'app/views/automation/schedules/schedule_id_form.html'\"></fieldset><div ng-if=schedule.assignedDevices.length><legend>{{_t('assigned_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/schedules/schedule_id_assigned.html'\"></fieldset></div><legend>{{_t('lb_available_devices')}}</legend><fieldset data-collapse-all=true bb-child-elem=schedule.assignedDevices ng-include=\"'app/views/automation/schedules/schedule_id_available.html'\"></fieldset><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=schedule.input.active> <span class=slider></span></label><span class=switch-label>{{schedule.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form></div></div>"
+    "<div class=automation ng-controller=AutomationScheduleIdController><bb-loader></bb-loader><div ng-if=!schedule.show ng-include=\"'app/views/automation/no_device.html'\"></div><div ng-if=schedule.show><h2>{{_t('schedules')}}</h2><form class=\"form form-page\" ng-submit=storeSchedule(schedule.input,true)><fieldset ng-include=\"'app/views/automation/schedules/schedule_id_form.html'\"></fieldset><div ng-if=schedule.assignedDevices.length><legend>{{_t('assigned_devices')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/schedules/schedule_id_assigned.html'\"></fieldset></div><div ng-if=schedule.assignedNotifications.length><legend>{{_t('assigned_notifications')}}</legend><fieldset data-collapse-all=true ng-include=\"'app/views/automation/schedules/schedule_id_assigned_notification.html'\"></fieldset></div><legend>{{_t('lb_available_devices')}}</legend><fieldset data-collapse-all=true bb-child-elem=schedule.assignedDevices ng-include=\"'app/views/automation/schedules/schedule_id_available.html'\"></fieldset><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=schedule.input.active> <span class=slider></span></label><span class=switch-label>{{schedule.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" bb-go-back><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form></div></div>"
   );
 
 
@@ -19205,8 +19242,13 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/automation/schedules/schedule_id_assigned_notification.html',
+    "<section class=accordion-wrap ng-repeat=\"n in schedule.input.params.notifications track by $index\"><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion><span ng-if=schedule.namespaces[n.target]><img class=navi-img ng-src={{schedule.namespaces[n.target].iconPath}} err-src={{cfg.img.placeholder}} alt=img>{{schedule.namespaces[n.target].deviceName}}</span> <span ng-if=!schedule.namespaces[n.target]><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img>{{n.target}}</span></button> <span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=unassignNotification($index,n)><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-include=\"'app/views/automation/schedules/schedule_id_form_notification.html'\" hidden></div></section>"
+  );
+
+
   $templateCache.put('app/views/automation/schedules/schedule_id_available.html',
-    "<section class=accordion-wrap ng-repeat=\"r in schedule.rooms track by $index\" ng-class=\"schedule.devicesInRoom[r.id] ? 'available-devices' : 'ng-hide'\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in schedule.availableDevices\" ng-if=\"d.location == r.id &&  schedule.assignedDevices.indexOf(d.deviceId) === -1\" ng-click=assignDevice(d)><img class=navi-img ng-src={{schedule.availableDevices[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section>"
+    "<section class=accordion-wrap ng-repeat=\"r in schedule.rooms track by $index\" ng-class=\"schedule.devicesInRoom[r.id] ? 'available-devices' : 'ng-hide'\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in schedule.availableDevices\" ng-if=\"d.location == r.id &&  schedule.assignedDevices.indexOf(d.deviceId) === -1\" ng-click=assignDevice(d)><img class=navi-img ng-src={{schedule.availableDevices[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section><section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src=\"{{cfg.img.icons + 'alarm-on.png'}}\" err-src={{cfg.img.placeholder}} alt=img>&nbsp;{{_t('add_notification')}}</span></button></h2><div class=accordion hidden><div class=\"form-group form-inline\"><select class=form-control ng-model=schedule.cfg.notification.default.target><option value=\"\">--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-if=\"schedule.assignedNotifications.indexOf(user.email) === -1 && user.email != ''\">{{user.email}}</option><option value={{e.deviceId}} ng-if=\"e.probeType == 'notification_push' && schedule.assignedNotifications.indexOf(e.deviceId) === -1\" ng-repeat=\"e in schedule.namespaces track by $index\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=schedule.cfg.notification.default.target>{{_t('or')}}&nbsp;<input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=schedule.cfg.notification.default.target_custom></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=schedule.cfg.notification.default.message placeholder=\"{{_t('message')}}\"></textarea></div><div class=form-group><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{_t('add_new')}}\" ng-click=assignNotification(schedule.cfg.notification.default)>{{_t('add_new')}} <i class=\"fa fa-plus text-success\"></i></a></div></div></section>"
   );
 
 
@@ -19217,6 +19259,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/automation/schedules/schedule_id_form_doorlock.html',
     "<div class=form-group><label class=switch><input type=checkbox ng-model=v.level ng-checked=\"v.level == 'open'\" ng-true-value=open ng-false-value=close> <span class=slider></span></label><span class=switch-label>{{v.level}}</span></div><div class=form-group><input type=checkbox name=send_command id=send_command ng-model=v.sendAction ng-checked=v.sendAction><label for=send_command>{{_t('dont_send_on_command')}}</label></div>"
+  );
+
+
+  $templateCache.put('app/views/automation/schedules/schedule_id_form_notification.html',
+    "<div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=n.message placeholder=\"{{_t('message')}}\"></textarea></div>"
   );
 
 
@@ -19245,13 +19292,18 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
+  $templateCache.put('app/views/automation/security/actions/additional.html',
+    "<h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span class=is-legend>{{_t('advanced_settings')}}</span></button></h2><div class=\"accordion no-bcg\" hidden><div class=panel-wrap><div class=list-panel><div class=\"body form-inline\"><div class=\"flex-input-group number-control\"><label>{{_t('security_alarm_interval')}}</label><select class=form-control ng-model=security.input.params.times.interval><option value={{a}} ng-repeat=\"a in security.intervals track by $index\" ng-selected=\"security.input.params.times.interval == a\">{{_t(a)}}</option></select><span>{{_t('security_alarm_interval_unit')}}</span><bb-help-text trans=\"_t('help_security_alarm_interval')\"></bb-help-text></div></div></div></div></div>"
+  );
+
+
   $templateCache.put('app/views/automation/security/actions/alarm.1.html',
     "<section class=accordion-wrap><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span class=is-legend>{{_t('alarm')}}</span></button></h2><div class=\"accordion no-bcg clearfix\" hidden><div class=\"flexcards security\"><div class=\"flexcard trigger flip\" title={{d.deviceName}} title={{d.deviceName}} ng-repeat=\"d in security.devices.alarms track by $index\"><div class=flipcard ng-class=\"{'flipped': security.input.params.alarms.table[getModelIndex(d.deviceId,'alarms.table')]}\"><div class=\"flexcard-item front\"><figure><img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img></figure><div class=body><h2>{{d.deviceNameShort}}</h2><button type=button class=\"btn btn-default\" ng-click=\"assignDevice(d.deviceId,'alarms')\"><i class=\"fa fa-plus text-success\" title=\"{{_t('lb_remove')}}\"></i></button></div></div><div class=\"flexcard-item back\"><span class=close><i class=\"fa fa-times\" title=\"{{_t('lb_remove')}}\" ng-click=\"unassignDevice(d.deviceId,'alarms')\"></i></span><figure><img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img></figure><div class=body><h2>{{d.deviceNameShort}}</h2></div></div></div></div></div><div class=notification ng-include=\"'app/views/automation/actions/trigger/notification.html'\" ng-init=\"model = security.input.params.alarms.notification\"></div></div></section>"
   );
 
 
   $templateCache.put('app/views/automation/security/actions/alarm.html',
-    "<h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span class=is-legend>{{_t('alarm')}}&nbsp;<span class=item-cnt>({{_.size(security.input.params.alarms.table)}})</span></span></button></h2><div class=\"accordion no-bcg\" hidden><div class=panel-wrap><div data-collapse-all=true><section class=accordion-wrap ng-repeat=\"d in security.input.params.alarms.table\" ng-init=\"model=v\"><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion ng-if=\"d.deviceType != 'toggleButton'\"><span><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName}}&nbsp; <span ng-if=\"d.deviceType=='switchRGBW' && _.isObject(d.level)\" class=color-picker-show style=\"background-color: {{d.level|setRgbColors}}\">&nbsp;</span> <span ng-if=\"d.deviceType!='switchRGBW' || !_.isObject(d.level)\"><em>[{{_t(d.level)}}<em ng-if=\"d.level == 'lvl'\">&nbsp;{{d.exact}}</em>]</em></span>&nbsp; -&nbsp;<em>{{d.locationName}}</em></span></button> <span class=no-toggle ng-if=\"d.deviceType == 'toggleButton'\"><span><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em> </span></span><span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=\"unassignDevice(v.devices,'alarms')\"><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-include=\"'app/views/automation/security/inputs/'+ d.deviceType +'.html'\" ng-if=\"d.deviceType != 'toggleButton'\" hidden></div></section></div><div class=list-panel><figure class=\"img wh-32x32 clickable\" ng-click=\"expandElement('alarms')\"><img ng-src={{cfg.img.icons}}security-alarmed.png err-src={{cfg.img.placeholder}} alt=img></figure><div class=\"body clickable\" ng-click=\"expandElement('alarms')\"><div>{{_t('notification')}}</div></div><div class=control><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" aria-expanded=\"{{!expand['alarms']||false}}\" ng-click=\"expandElement('alarms')\"></button></div><div class=control-collapsable ng-include=\"'app/views/automation/security/actions/notification_alarm.html'\" ng-class=\"!expand['alarms'] ? 'expand-true': 'expand-false'\"></div></div></div><h3>{{_t('devices_triggered_alarm')}}</h3><section class=accordion-wrap ng-repeat=\"r in security.rooms track by $index\" ng-class=\"security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in security.devices.alarms\" ng-if=\"d.location == r.id &&  !security.input.params.alarms.table[getModelIndex(d.deviceId,'alarms.table')]\" ng-click=\"assignDevice(d.deviceId,'alarms')\"><img class=navi-img ng-src={{security.availableDevices[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section></div>"
+    "<h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span class=is-legend>{{_t('alarm_delay')}}&nbsp;<span class=item-cnt>({{_.size(security.input.params.alarms.table)}})</span></span></button></h2><div class=\"accordion no-bcg\" hidden><div class=panel-wrap><div class=list-panel><div class=\"body form-inline\"><div class=\"flex-input-group number-control\"><label>{{_t('security_delay_before_alarm')}}</label><input class=form-control type=number ng-model=security.input.params.times.silent> <span>{{_t('seconds')}}</span></div><bb-help-text trans=\"_t('help_security_delay_before_alarm')\"></bb-help-text></div></div><div data-collapse-all=true><section class=accordion-wrap ng-repeat=\"d in security.input.params.alarms.table\" ng-init=\"model=v\"><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion ng-if=\"d.deviceType != 'toggleButton'\"><span><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName}}&nbsp; <span ng-if=\"d.deviceType=='switchRGBW' && _.isObject(d.level)\" class=color-picker-show style=\"background-color: {{d.level|setRgbColors}}\">&nbsp;</span> <span ng-if=\"d.deviceType!='switchRGBW' || !_.isObject(d.level)\"><em>[{{_t(d.level)}}<em ng-if=\"d.level == 'lvl'\">&nbsp;{{d.exact}}</em>]</em></span>&nbsp; -&nbsp;<em>{{d.locationName}}</em></span></button> <span class=no-toggle ng-if=\"d.deviceType == 'toggleButton'\"><span><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em> </span></span><span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=\"unassignDevice(v.devices,'alarms')\"><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-include=\"'app/views/automation/security/inputs/'+ d.deviceType +'.html'\" ng-if=\"d.deviceType != 'toggleButton'\" hidden></div></section></div><div class=list-panel><figure class=\"img wh-32x32 clickable\" ng-click=\"expandElement('alarms')\"><img ng-src={{cfg.img.icons}}security-alarmed.png err-src={{cfg.img.placeholder}} alt=img></figure><div class=\"body clickable\" ng-click=\"expandElement('alarms')\"><div>{{_t('notification')}}</div></div><div class=control><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" aria-expanded=\"{{!expand['alarms']||false}}\" ng-click=\"expandElement('alarms')\"></button></div><div class=control-collapsable ng-include=\"'app/views/automation/security/actions/notification_alarm.html'\" ng-class=\"!expand['alarms'] ? 'expand-true': 'expand-false'\"></div></div></div><h3>{{_t('devices_triggered_delayed_alarm')}}</h3><section class=accordion-wrap ng-repeat=\"r in security.rooms track by $index\" ng-class=\"security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in security.devices.alarms\" ng-if=\"d.location == r.id &&  !security.input.params.alarms.table[getModelIndex(d.deviceId,'alarms.table')]\" ng-click=\"assignDevice(d.deviceId,'alarms')\"><img class=navi-img ng-src={{security.availableDevices[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section></div>"
   );
 
 
@@ -19276,27 +19328,27 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/security/actions/notification_alarm.html',
-    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.alarms.notification.target><option value=\"\" ng-selected=!model.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"security.input.params.alarms.notification.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.alarms.notification.target\">{{e.deviceName}}</option></select>&nbsp;</div><div class=form-group ng-if=\"security.input.params.alarms.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.alarms.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
+    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.alarms.notification.target><option value=\"\" ng-selected=!model.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"security.input.params.alarms.notification.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.alarms.notification.target\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=security.input.params.alarms.notification.target>&nbsp;{{_t('or')}}&nbsp; <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=security.input.params.alarms.notification.target_custom></label></div><div class=form-group ng-if=\"security.input.params.alarms.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.alarms.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
   );
 
 
   $templateCache.put('app/views/automation/security/actions/notification_arming.html',
-    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.armConfirm.notification.target><option value=\"\" ng-selected=!security.input.params.armConfirm.notification.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"model.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.armConfirm.notification.target\">{{e.deviceName}}</option></select>&nbsp;</div><div class=form-group ng-if=\"security.input.params.armConfirm.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.armConfirm.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
+    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.armConfirm.notification.target><option value=\"\" ng-selected=!security.input.params.armConfirm.notification.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"model.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.armConfirm.notification.target\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=security.input.params.armConfirm.notification.target>&nbsp;{{_t('or')}}&nbsp; <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=security.input.params.armConfirm.notification.target_custom></label></div><div class=form-group ng-if=\"security.input.params.armConfirm.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.armConfirm.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
   );
 
 
   $templateCache.put('app/views/automation/security/actions/notification_disarming.html',
-    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.disarmConfirm.notification.target><option value=\"\" ng-selected=!model.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"security.input.params.disarmConfirm.notification.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.disarmConfirm.notification.target\">{{e.deviceName}}</option></select>&nbsp;</div><div class=form-group ng-if=\"security.input.params.disarmConfirm.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.disarmConfirm.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
+    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.disarmConfirm.notification.target><option value=\"\" ng-selected=!model.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"security.input.params.disarmConfirm.notification.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.disarmConfirm.notification.target\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=security.input.params.disarmConfirm.notification.target>&nbsp;{{_t('or')}}&nbsp; <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=security.input.params.disarmConfirm.notification.target_custom></label></div><div class=form-group ng-if=\"security.input.params.disarmConfirm.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.disarmConfirm.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
   );
 
 
   $templateCache.put('app/views/automation/security/actions/notification_reset.html',
-    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.clean.notification.target><option value=\"\" ng-selected=!security.input.params.clean.notification.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"security.input.params.clean.notification.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.clean.notification.target\">{{e.deviceName}}</option></select>&nbsp;</div><div class=form-group ng-if=\"security.input.params.clean.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.clean.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
+    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.clean.notification.target><option value=\"\" ng-selected=!security.input.params.clean.notification.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"security.input.params.clean.notification.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.clean.notification.target\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=security.input.params.clean.notification.target>&nbsp;{{_t('or')}}&nbsp; <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=security.input.params.clean.notification.target_custom></label></div><div class=form-group ng-if=\"security.input.params.clean.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.clean.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
   );
 
 
   $templateCache.put('app/views/automation/security/actions/notification_silent_alarm.html',
-    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.silentAlarms.notification.target><option value=\"\" ng-selected=!security.input.params.silentAlarms.notification.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"security.input.params.silentAlarms.notification.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.silentAlarms.notification.target\">{{e.deviceName}}</option></select>&nbsp;</div><div class=form-group ng-if=\"security.input.params.silentAlarms.notification.target != ''\"><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.silentAlarms.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
+    "<div class=\"form-group form-inline\"><select class=form-control ng-model=security.input.params.silentAlarms.notification.target><option value=\"\" ng-selected=!security.input.params.silentAlarms.notification.target>--- {{_t('notification_trigger')}} ---</option><option value={{user.email}} ng-selected=\"security.input.params.silentAlarms.notification.target == user.email\">{{user.email}}</option><option value={{e.deviceId}} ng-repeat=\"e in security.devices.notification track by $index\" ng-selected=\"e.deviceId == security.input.params.silentAlarms.notification.target\">{{e.deviceName}}</option></select>&nbsp;<label ng-hide=security.input.params.silentAlarms.notification.target>&nbsp;{{_t('or')}}&nbsp; <input class=form-control placeholder=\"{{_t('add_email')}}\" ng-model=security.input.params.silentAlarms.notification.target_custom></label></div><div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=security.input.params.silentAlarms.notification.message placeholder=\"{{_t('message')}}\"></textarea></div>"
   );
 
 
@@ -19316,7 +19368,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/security/actions/silent_alarm.html',
-    "<h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span class=is-legend>{{_t('alarm_delay')}} <span class=item-cnt>({{_.size(security.input.params.silentAlarms.table)}})</span></span></button></h2><div class=\"accordion no-bcg\" hidden><div class=panel-wrap><div class=list-panel><div class=\"body form-inline\"><div class=\"flex-input-group number-control\"><label>{{_t('security_delay_before_alarm')}}</label><input class=form-control type=number ng-model=security.input.params.times.silent> <span>{{_t('seconds')}}</span></div><bb-help-text trans=\"_t('help_security_delay_before_alarm')\"></bb-help-text></div></div><div data-collapse-all=true><section class=accordion-wrap ng-repeat=\"d in security.input.params.silentAlarms.table\" ng-init=\"model=v\"><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion ng-if=\"d.deviceType != 'toggleButton'\"><span><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName}}&nbsp; <span ng-if=\"d.deviceType=='switchRGBW' && _.isObject(d.level)\" class=color-picker-show style=\"background-color: {{d.level|setRgbColors}}\">&nbsp;</span> <span ng-if=\"d.deviceType!='switchRGBW' || !_.isObject(d.level)\"><em>[{{_t(d.level)}}<em ng-if=\"d.level == 'lvl'\">&nbsp;{{d.exact}}</em>]</em></span>&nbsp; -&nbsp;<em>{{d.locationName}}</em></span></button> <span class=no-toggle ng-if=\"d.deviceType == 'toggleButton'\"><span><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em> </span></span><span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=\"unassignDevice(d.deviceId,'silentAlarms')\"><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-include=\"'app/views/automation/security/inputs/'+ d.deviceType +'.html'\" ng-if=\"d.deviceType != 'toggleButton'\" hidden></div></section></div><div class=list-panel><figure class=\"img wh-32x32 clickable\" ng-click=\"expandElement('silentAlarms')\"><img ng-src={{cfg.img.icons}}security-alarmed.png err-src={{cfg.img.placeholder}} alt=img></figure><div class=\"body clickable\" ng-click=\"expandElement('silentAlarms')\"><div>{{_t('notification')}}</div></div><div class=control><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" aria-expanded=\"{{!expand['silentAlarms']||false}}\" ng-click=\"expandElement('silentAlarms')\"></button></div><div class=control-collapsable ng-include=\"'app/views/automation/security/actions/notification_silent_alarm.html'\" ng-class=\"!expand['silentAlarms'] ? 'expand-true': 'expand-false'\"></div></div></div><h3>{{_t('devices_triggered_delayed_alarm')}}</h3><section class=accordion-wrap ng-repeat=\"r in security.rooms track by $index\" ng-class=\"security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in security.devices.alarms\" ng-if=\"d.location == r.id &&  !security.input.params.silentAlarms.table[getModelIndex(d.deviceId,'silentAlarms.table')]\" ng-click=\"assignDevice(d.deviceId,'silentAlarms')\"><img class=navi-img ng-src={{security.availableDevices[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section></div>"
+    "<h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span class=is-legend>{{_t('alarm')}} <span class=item-cnt>({{_.size(security.input.params.silentAlarms.table)}})</span></span></button></h2><div class=\"accordion no-bcg\" hidden><div class=panel-wrap><div data-collapse-all=true><section class=accordion-wrap ng-repeat=\"d in security.input.params.silentAlarms.table\" ng-init=\"model=v\"><h2 class=\"accordion-toggle ellipsis\"><button type=button aria-expanded=false bb-accordion ng-if=\"d.deviceType != 'toggleButton'\"><span><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName}}&nbsp; <span ng-if=\"d.deviceType=='switchRGBW' && _.isObject(d.level)\" class=color-picker-show style=\"background-color: {{d.level|setRgbColors}}\">&nbsp;</span> <span ng-if=\"d.deviceType!='switchRGBW' || !_.isObject(d.level)\"><em>[{{_t(d.level)}}<em ng-if=\"d.level == 'lvl'\">&nbsp;{{d.exact}}</em>]</em></span>&nbsp; -&nbsp;<em>{{d.locationName}}</em></span></button> <span class=no-toggle ng-if=\"d.deviceType == 'toggleButton'\"><span><img class=navi-img ng-src={{d.iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em> </span></span><span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=\"unassignDevice(d.deviceId,'silentAlarms')\"><i class=\"fa fa-times text-danger\"></i></span></h2><div class=accordion ng-include=\"'app/views/automation/security/inputs/'+ d.deviceType +'.html'\" ng-if=\"d.deviceType != 'toggleButton'\" hidden></div></section></div><div class=list-panel><figure class=\"img wh-32x32 clickable\" ng-click=\"expandElement('silentAlarms')\"><img ng-src={{cfg.img.icons}}security-alarmed.png err-src={{cfg.img.placeholder}} alt=img></figure><div class=\"body clickable\" ng-click=\"expandElement('silentAlarms')\"><div>{{_t('notification')}}</div></div><div class=control><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" aria-expanded=\"{{!expand['silentAlarms']||false}}\" ng-click=\"expandElement('silentAlarms')\"></button></div><div class=control-collapsable ng-include=\"'app/views/automation/security/actions/notification_silent_alarm.html'\" ng-class=\"!expand['silentAlarms'] ? 'expand-true': 'expand-false'\"></div></div></div><h3>{{_t('devices_triggered_alarm')}}</h3><section class=accordion-wrap ng-repeat=\"r in security.rooms track by $index\" ng-class=\"security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'\"><h2 class=\"accordion-toggle chevron\"><button type=button aria-expanded=false bb-accordion><span><img class=navi-img ng-src={{r.img_src}} alt=img> {{r.title}}</span></button></h2><div class=accordion hidden><a href=\"\" class=\"btn btn-default btn-tag\" title=\"{{d.deviceName + ' | ' + _t(d.deviceType)}}\" ng-repeat=\"d in security.devices.alarms\" ng-if=\"d.location == r.id &&  !security.input.params.silentAlarms.table[getModelIndex(d.deviceId,'silentAlarms.table')]\" ng-click=\"assignDevice(d.deviceId,'silentAlarms')\"><img class=navi-img ng-src={{security.availableDevices[d.deviceId].iconPath}} err-src={{cfg.img.placeholder}} alt=img> {{d.deviceName|cutText:true:20}} <i class=\"fa fa-plus text-success\" title=\"{{_t('add_new')}}\"></i></a></div></section></div>"
   );
 
 
@@ -19336,7 +19388,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/automation/security/id.html',
-    "<section class=automation ng-controller=SecurityIdController><bb-loader></bb-loader><h2>{{_t('title_security')}}</h2><bb-alert alert=security.alert></bb-alert><div class=tab-wrap><div class=\"btn-group btn-group-justified btn-goup-tabs\" role=tablist ng-include=\"'app/views/automation/security/tabs.html'\"></div><form class=\"form form-page\" ng-submit=storeInstance(security.input,true)><div id=tabpanel1 role=tabpanel><fieldset ng-include=\"'app/views/automation/security/conditions/conditions.html'\"></fieldset></div><div id=tabpanel2 role=tabpanel hidden><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/alarm.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/silent_alarm.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/arming.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/disarming.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/reset.html'\"></fieldset></div><div id=tabpanel3 role=tabpanel hidden><fieldset ng-include=\"'app/views/automation/security/time/time_schedule.html'\"></fieldset></div><div id=tabpanel4 role=tabpanel hidden><fieldset ng-include=\"'app/views/automation/security/bydevice/bydevice.html'\"></fieldset></div><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=security.input.active ng-disabled=!security.devicesAvailable> <span class=slider></span></label><span class=switch-label>{{security.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><a ng-href=#automations class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-disabled=!security.devicesAvailable><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form></div></section>"
+    "<section class=automation ng-controller=SecurityIdController><bb-loader></bb-loader><h2>{{_t('title_security')}}</h2><bb-alert alert=security.alert></bb-alert><div class=tab-wrap><div class=\"btn-group btn-group-justified btn-goup-tabs\" role=tablist ng-include=\"'app/views/automation/security/tabs.html'\"></div><form class=\"form form-page\" ng-submit=storeInstance(security.input,true)><div id=tabpanel1 role=tabpanel><fieldset ng-include=\"'app/views/automation/security/conditions/conditions.html'\"></fieldset></div><div id=tabpanel2 role=tabpanel hidden><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/silent_alarm.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/alarm.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/arming.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/disarming.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/reset.html'\"></fieldset><fieldset class=accordion-wrap ng-include=\"'app/views/automation/security/actions/additional.html'\"></fieldset></div><div id=tabpanel3 role=tabpanel hidden><fieldset ng-include=\"'app/views/automation/security/time/time_schedule.html'\"></fieldset></div><div id=tabpanel4 role=tabpanel hidden><fieldset ng-include=\"'app/views/automation/security/bydevice/bydevice.html'\"></fieldset></div><div class=\"fieldset submit-entry is-grid\"><span><label class=switch><input type=checkbox ng-model=security.input.active ng-disabled=\"_.size(security.input.params.input.table) < 1\"> <span class=slider></span></label><span class=switch-label>{{security.input.active ? _t('lb_active'): _t('activeASC')}}</span> </span><span><a ng-href=#automations class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\"><i class=\"fa fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span> </a><button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\" ng-disabled=!security.devicesAvailable><i class=\"fa fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></span></div></form></div></section>"
   );
 
 
@@ -19446,7 +19498,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/devices/devices.html',
-    "<div ng-controller=DeviceController><h2 ng-bind=\"_t('lb_select_device_type')\"></h2><div class=\"list-panel panel-devices\"><figure class=img><a href=#zwave/devices><img ng-src=app/img/logo-zwave.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_zwave')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesZway', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'\"><div class=btn-group><a class=\"btn btn-default\" href=\"\" title=\"{{_t('manage_with_expertui')}}\" ng-click=\"toExpert('/expert',_t('redirect_to_expert'))\" ng-if=\"elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'\"><i class=\"fa fa-external-link\"></i> <span class=btn-name ng-bind=\"_t('manage_with_expertui')\"></span> </a><a class=\"btn btn-default\" href=#zwave/vendors title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\"><figure class=img><a ng-href=#module/put/{{mobileAppSupport.instanceId}}><img ng-src=app/img/logo-mobile.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_mobile')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesMobile', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'\"><div class=btn-group><button class=\"btn btn-default\" ng-click=\"handleModal('qrCodeModal', $event)\" title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></button> <a class=\"btn btn-default\" href=#module/put/{{mobileAppSupport.instanceId}} title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\"><figure class=img><a ng-href=#camera/manage><img ng-src=app/img/logo-camera.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_camera')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesCamera', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesCamera'] ? 'expand-true': 'expand-false'\"><div class=btn-group><a class=\"btn btn-default\" href=#camera/add title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#camera/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\"><figure class=img><a ng-href=#speech_assistants/manage><img ng-src=app/img/logo-speech-assistants.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_speech')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesSpeech', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesSpeech'] ? 'expand-true': 'expand-false'\"><div class=btn-group><a class=\"btn btn-default\" href=#speech_assistants/devices title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#speech_assistants/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\" ng-if=enocean.installed><figure class=img><a ng-href=#enocean/manage><img ng-src=app/img/logo-enocean.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_enocean')}}</div><bb-alert-text alert=enocean.alert></bb-alert-text></div><div class=\"l-hide control\" ng-if=enocean.active><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesEnocean', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'\" ng-if=enocean.active><div class=btn-group><a class=\"btn btn-default\" href=#enocean/vendors title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#enocean/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\" ng-if=rf433.installed><figure class=img><a ng-href=#rf433/manage><img ng-src=app/img/433.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_433')}}</div><bb-alert-text alert=rf433.alert></bb-alert-text></div><div class=\"l-hide control\" ng-if=rf433.active><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesRf433', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesRf433'] ? 'expand-true': 'expand-false'\" ng-if=rf433.active><div class=btn-group><a class=\"btn btn-default\" href=#rf433/teachin title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#rf433/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\"><figure class=img><a ng-href=#wifiplug/manage><img ng-src=app/img/logo-wifiplug.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_wifi')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesWifi', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesWifi'] ? 'expand-true': 'expand-false'\"><div class=btn-group><a class=\"btn btn-default\" href=#wifiplug/add title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#wifiplug/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div></div><div id=qrCodeModal class=appmodal ng-controller=MobileAddController ng-if=modalArr.qrCodeModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('qrCodeModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{_t('add_mobile_device')}}</h3></div><div class=\"appmodal-body text-center\"><div class=fieldset><div class=\"form-group form-inline\"><div class=img-wrap><div id=qrcode><img width=255 height=255 ng-src={{qrcode}}></div><button class=\"btn btn-default\" ng-if=\"qrcode != ''\" ng-click=\"addQRCode('update')\" ng-disabled=\"rowSpinner['update']\" title=\"{{_t('lb_update_qrcode')}}\"><bb-row-spinner spinner=\"rowSpinner['update']\" label=\"_t('lb_update_qrcode')\" icon=\"'fa-qrcode'\"></bb-row-spinner></button> <button class=\"btn btn-default\" ng-if=\"qrcode == ''\" ng-click=\"addQRCode('create')\" ng-disabled=\"rowSpinner['create']\" title=\"{{_t('lb_create_qrcode')}}\"><bb-row-spinner spinner=\"rowSpinner['create']\" label=\"_t('lb_create_qrcode')\" icon=\"'fa-qrcode'\"></bb-row-spinner></button></div></div></div><div class=fieldset><div class=entry-in><div class=entry-media><img ng-src=app/img/smartphone.png alt=Image></div><div class=entry-content><div class=inner><div class=text><h1>{{_t('app_name')}}</h1><p>{{_t('app_description')}}</p></div><div class=badges><a class=google href=\"https://play.google.com/store/apps/details?id=eu.zwave.marvin.z_waywrapper\"><img ng-src=app/img/google-play-badge.png alt=\"Goole Play\"> </a><a class=apple href=\"https://itunes.apple.com/de/app/zway-control/id1033129180?mt=8\" target=_blank><img ng-src=app/img/apple-store-badges.svg alt=\"Apple Store\"></a></div></div></div></div></div></div></div></div>"
+    "<div ng-controller=DeviceController><bb-loader></bb-loader><h2 ng-bind=\"_t('lb_select_device_type')\"></h2><div class=\"list-panel panel-devices\"><figure class=img><a href=#zwave/devices><img ng-src=app/img/logo-zwave.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_zwave')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesZway', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'\"><div class=btn-group><a class=\"btn btn-default\" href=\"\" title=\"{{_t('manage_with_expertui')}}\" ng-click=\"toExpert('/expert',_t('redirect_to_expert'))\" ng-if=\"elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'\"><i class=\"fa fa-external-link\"></i> <span class=btn-name ng-bind=\"_t('manage_with_expertui')\"></span> </a><a class=\"btn btn-default\" href=#zwave/vendors title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#zwave/devices title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\"><figure class=img><a ng-href=#module/put/{{mobileAppSupport.instanceId}}><img ng-src=app/img/logo-mobile.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_mobile')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesMobile', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'\"><div class=btn-group><button class=\"btn btn-default\" ng-click=handleMobileModal($event) title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></button> <button class=\"btn btn-default\" ng-click=handleManage() title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></button></div></div></div><div class=\"list-panel panel-devices\"><figure class=img><a ng-href=#camera/manage><img ng-src=app/img/logo-camera.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_camera')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesCamera', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesCamera'] ? 'expand-true': 'expand-false'\"><div class=btn-group><a class=\"btn btn-default\" href=#camera/add title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#camera/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\"><figure class=img><a ng-href=#speech_assistants/manage><img ng-src=app/img/logo-speech-assistants.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_speech')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesSpeech', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesSpeech'] ? 'expand-true': 'expand-false'\"><div class=btn-group><a class=\"btn btn-default\" href=#speech_assistants/devices title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#speech_assistants/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\" ng-if=enocean.installed><figure class=img><a ng-href=#enocean/manage><img ng-src=app/img/logo-enocean.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_enocean')}}</div><bb-alert-text alert=enocean.alert></bb-alert-text></div><div class=\"l-hide control\" ng-if=enocean.active><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesEnocean', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'\" ng-if=enocean.active><div class=btn-group><a class=\"btn btn-default\" href=#enocean/vendors title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#enocean/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\" ng-if=rf433.installed><figure class=img><a ng-href=#rf433/manage><img ng-src=app/img/433.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_433')}}</div><bb-alert-text alert=rf433.alert></bb-alert-text></div><div class=\"l-hide control\" ng-if=rf433.active><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesRf433', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesRf433'] ? 'expand-true': 'expand-false'\" ng-if=rf433.active><div class=btn-group><a class=\"btn btn-default\" href=#rf433/teachin title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#rf433/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div><div class=\"list-panel panel-devices\"><figure class=img><a ng-href=#wifiplug/manage><img ng-src=app/img/logo-wifiplug.svg alt=img></a></figure><div class=body><div>{{_t('devices_text_wifi')}}</div></div><div class=\"l-hide control\"><button type=button class=\"btn btn-ctrl\" title=\"{{_t('lb_settings')}}\" ng-click=\"expandNavi('devicesWifi', $event)\"></button></div><div class=control ng-class=\"naviExpanded['devicesWifi'] ? 'expand-true': 'expand-false'\"><div class=btn-group><a class=\"btn btn-default\" href=#wifiplug/add title=\"{{_t('add_new')}}\"><i class=\"fa fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span> </a><a class=\"btn btn-default\" href=#wifiplug/manage title=\"{{_t('manage')}}\"><i class=\"fa fa-edit text-primary\"></i> <span class=btn-name ng-bind=\"_t('manage')\"></span></a></div></div></div></div><div id=qrCodeModal class=appmodal ng-controller=MobileAddController ng-if=modalArr.qrCodeModal><div class=appmodal-in><div class=appmodal-header><span class=appmodal-close ng-click=\"handleModal('qrCodeModal', $event)\"><i class=\"fa fa-times\"></i></span><h3>{{_t('add_mobile_device')}}</h3></div><div class=\"appmodal-body text-center\"><div class=fieldset><div class=\"form-group form-inline\"><div class=img-wrap><div id=qrcode><img width=255 height=255 ng-src={{qrcode}}></div><button class=\"btn btn-default\" ng-if=\"qrcode != ''\" ng-click=\"addQRCode('update')\" ng-disabled=\"rowSpinner['update']\" title=\"{{_t('lb_update_qrcode')}}\"><bb-row-spinner spinner=\"rowSpinner['update']\" label=\"_t('lb_update_qrcode')\" icon=\"'fa-qrcode'\"></bb-row-spinner></button> <button class=\"btn btn-default\" ng-if=\"qrcode == ''\" ng-click=\"addQRCode('create')\" ng-disabled=\"rowSpinner['create']\" title=\"{{_t('lb_create_qrcode')}}\"><bb-row-spinner spinner=\"rowSpinner['create']\" label=\"_t('lb_create_qrcode')\" icon=\"'fa-qrcode'\"></bb-row-spinner></button></div></div></div><div class=fieldset><div class=entry-in><div class=entry-media><img ng-src=app/img/smartphone.png alt=Image></div><div class=entry-content><div class=inner><div class=text><h1>{{_t('app_name')}}</h1><p>{{_t('app_description')}}</p></div><div class=badges><a class=google href=\"https://play.google.com/store/apps/details?id=eu.zwave.marvin.z_waywrapper\"><img ng-src=app/img/google-play-badge.png alt=\"Goole Play\"> </a><a class=apple href=\"https://itunes.apple.com/de/app/zway-control/id1033129180?mt=8\" target=_blank><img ng-src=app/img/apple-store-badges.svg alt=\"Apple Store\"></a></div></div></div></div></div></div></div></div>"
   );
 
 
@@ -23796,7 +23848,7 @@ myApp.directive('knob', function() {
 });
 
 /**
- * Displays a knob 
+ * Displays a knob
  * @class myknob
  */
 myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFactory, dataService) {
@@ -23833,7 +23885,9 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFac
 					if (old != newValue) {
 						//console.log('myKnob directive - Sending request new/old: ',newValue, old)
 						$scope.knobData = newValue;
-						runCmdExact($scope.knobId, newValue);
+						if($scope.knobId.indexOf("#") == -1) {
+							runCmdExact($scope.knobId, newValue);
+						}
 						$scope.$apply();
 					}
 				});
@@ -24047,7 +24101,7 @@ myApp.directive('bbTab', function () {
       elem.on('click', function (e) {
         var tabId = elem.attr('data-href');
         var wrap = elem.closest('.tab-wrap');
-        // Set all tabs to aria-selected="false" 
+        // Set all tabs to aria-selected="false"
         wrap.find('[role="tab"]').removeAttr('aria-selected');
         // Adding  hidden attr to all tab panels
         wrap.find('[role="tabpanel"]').attr('hidden', true);
@@ -26311,7 +26365,7 @@ myApp.filter('setRgbColors', function () {
 });
 /**
  * @overview Receives data from the Alpaca form and stores them on the server.
- * @author Martin Vach,Niels Roche 
+ * @author Martin Vach,Niels Roche
  */
 
 /**
@@ -26340,7 +26394,7 @@ var postRenderAlpaca = function (renderedForm) {
         var lang = $(this).data('lang');
         var fromapp = $(this).data('fromapp');
         var fromroute= $(this).data('fromroute');
-        
+
         // submit via ajax
         $.ajax({
             type: type,
@@ -26354,12 +26408,10 @@ var postRenderAlpaca = function (renderedForm) {
             },
             data: JSON.stringify(data),
             beforeSend: function () {
-                //console.log(data);
-                return;
-                //$('.module-spinner').show();
+                $('#alpaca-spinner').show();
             },
             success: function (response) {
-                $('.module-spinner').fadeOut();
+                $('#alpaca-spinner').fadeOut();
                 if(fromroute){
                     window.location.replace("#" + fromroute);
                 } else if (fromapp) {
@@ -26373,7 +26425,7 @@ var postRenderAlpaca = function (renderedForm) {
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                $('.module-spinner').fadeOut();
+                $('#alpaca-spinner').fadeOut();
                 if (xhr.status && xhr.status == 400) {
                     alert(xhr.responseText);
                 } else {
@@ -26397,8 +26449,8 @@ function postRenderAlpacaData(renderedForm) {
         if (defaults.indexOf(v.name) > -1) {
             inputData[v.name] = v.value;
         }
-
     });
+    inputData.active = inputData.active ? inputData.active : false;
     return $.extend(inputData, alpacaData);
 }
 ;
@@ -30303,6 +30355,9 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 						size++;
 					}
 				}
+				for (k in v.params.notifications) {
+						size++;
+				}
 				if (size) {
 					$scope.scenes.enableTest.push(v.id)
 				}
@@ -30455,6 +30510,7 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 		devicesInRoom: [],
 		availableDevices: [],
 		assignedDevices: [],
+		assignedNotifications: [],
 		cfg: {
 			switchBinary: {
 				level: ['off', 'on'],
@@ -30502,6 +30558,13 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			},
 			toggleButton: {
 				default: {}
+			},
+			notification: {
+				default: {
+					target: '',
+					target_custom: '',
+					message: ''
+				}
 			}
 		},
 		input: {
@@ -30515,7 +30578,8 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 						icon: false
 					}]
 				},
-				devices: []
+				devices: [],
+				notifications: []
 			}
 		},
 		upload: {
@@ -30532,6 +30596,7 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
 			var instance = instances.data.data;
 			var assignedDevices = $scope.scene.assignedDevices;
+			var assignedNotifications = $scope.scene.assignedNotifications;
 			angular.extend($scope.scene.input, {
 				title: instance.title,
 				active: instance.active,
@@ -30551,6 +30616,12 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			angular.forEach(instance.params.devices, function(d) {
 				if (assignedDevices.indexOf(d.deviceId) === -1) {
 					$scope.scene.assignedDevices.push(d.deviceId);
+				}
+			});
+
+			angular.forEach(instance.params.notifications, function(d) {
+				if (assignedNotifications.indexOf(d.target) === -1) {
+					$scope.scene.assignedNotifications.push(d.target);
 				}
 			});
 
@@ -30593,6 +30664,10 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 				};
 				return obj;
 			}).filter(function(v) {
+				// Replacing deviceType with "notification"
+				if (v.probeType == 'notification_push') {
+					v.deviceType = 'notification';
+				}
 				return whiteList.indexOf(v.deviceType) > -1;
 			}).indexBy('deviceId').value();
 			if (!_.size($scope.scene.availableDevices)) {
@@ -30719,6 +30794,44 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			$scope.scene.assignedDevices.splice(deviceIndex, 1);
 		}
 	};
+
+	/**
+	 * Assign notification
+	 * @param {object} notification
+	 * @returns {undefined}
+	 */
+	$scope.assignNotification = function(notification) {
+		if ((notification.target && $scope.scene.assignedNotifications.indexOf(notification.target) === -1) || (notification.target_custom && $scope.scene.assignedNotifications.indexOf(notification.target_custom) === -1)) {
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.scene.input.params.notifications.push(not);
+			$scope.scene.assignedNotifications.push(not.target);
+
+			// reset options
+			$scope.scene.cfg.notification.default.target = '';
+			$scope.scene.cfg.notification.default.target_custom = '';
+			$scope.scene.cfg.notification.default.message = '';
+		}
+
+	};
+
+	/**
+	 * Remove notification from sendNotifications
+	 * @param {int} index
+	 * @param {string} deviceId
+	 */
+	$scope.unassignNotification = function(targetIndex, target) {
+
+		var notificationIndex = $scope.scene.assignedNotifications.indexOf(target);
+		if (targetIndex > -1) {
+			$scope.scene.input.params.notifications.splice(targetIndex, 1);
+			$scope.scene.assignedNotifications.splice(notificationIndex, 1);
+		}
+
+	};
+
 	/**
 	 * Store
 	 */
@@ -30765,7 +30878,7 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 	$scope.oldLogics = [];
 
 	/**
-	 * Load 
+	 * Load
 	 * @returns {undefined}
 	 */
 	$scope.loadRules = function() {
@@ -30946,8 +31059,8 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 
 	/**
 	 * Activate
-	 * @param {object} input 
-	 * @param {boolean} activeStatus 
+	 * @param {object} input
+	 * @param {boolean} activeStatus
 	 */
 	$scope.activateRule = function(input, state) {
 		input.active = state;
@@ -30963,7 +31076,7 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 
 	};
 	/**
-	 * Clone 
+	 * Clone
 	 * @param {object} input
 	 * @returns {undefined}
 	 */
@@ -31138,9 +31251,20 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 
 				}
 			},
+			compare: {
+				binaryOperators: ['=', '!='],
+				multilevelOperators: ['=', '!=', '>', '>=', '<', '<='],
+				default: {
+					type: 'compare',
+					operator: '=',
+					operators: [],
+					devices: []
+				}
+			},
 			notification: {
 				default: {
 					target: '',
+					target_custom: '',
 					message: ''
 				}
 			}
@@ -31212,7 +31336,7 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	};
 
 	/**
-	 *  Reset Original data 
+	 *  Reset Original data
 	 */
 	$scope.orig = {
 		options: {}
@@ -31478,8 +31602,8 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 
 	/**
 	 * Remove device id from target assigned device
-	 * @param {int} index 
-	 * @param {string} deviceId 
+	 * @param {int} index
+	 * @param {string} deviceId
 	 */
 	$scope.unassignTargetDevice = function(targetIndex, deviceId) {
 
@@ -31497,18 +31621,23 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @returns {undefined}
 	 */
 	$scope.assignTargetNotification = function(notification) {
-		if (notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1) {
-			$scope.rule.input.params.simple.sendNotifications.push(notification);
-			$scope.rule.target.assignedDevices.push(notification.target);
+		if ((notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1)||(notification.target_custom && $scope.rule.target.assignedDevices.indexOf(notification.target_custom) === -1)) {
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.rule.input.params.simple.sendNotifications.push(not);
+			$scope.rule.target.assignedDevices.push(not.target);
+
+			// reset options
 			$scope.resetOptions();
 		}
-
 	};
 
 	/**
 	 * Remove notification from sendNotifications
-	 * @param {int} index 
-	 * @param {string} deviceId 
+	 * @param {int} index
+	 * @param {string} deviceId
 	 */
 	$scope.unassignTargetNotification = function(targetIndex, target) {
 
@@ -31620,19 +31749,26 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 					tests: input.tests
 				};
 				break;
+			case 'compare':
+				var test = {
+					type: input.type,
+					operator: input.operator,
+					operators: input.operators,
+					devices: []
+				};
+				break;
 				// default
 			default:
 				return;
 		}
 		$scope.rule.input.params.advanced.tests.push(test);
 		$scope.expandElement('test_' + index);
-
 	};
 
 	/**
 	 * Remove advanced test
-	 * @param {int} argetIndex 
-	 * @param {string} target 
+	 * @param {int} argetIndex
+	 * @param {string} target
 	 */
 	$scope.unassignAdvancedTest = function(targetIndex, deviceId) {
 		var test = $scope.rule.input.params.advanced.tests[targetIndex];
@@ -31654,6 +31790,54 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 				$scope.rule.advanced.tests.assignedDevices.splice(deviceId, 1);
 			}
 		}
+	};
+
+	/**
+	 * Assign advanced compare device condition
+	 * @param {object} device
+	 * @param {int} testIndex
+	 * @returns {undefined}
+	 */
+	$scope.assignAdvancedTestCompareDevice = function(device, testIndex) {
+		var input = $scope.rule.options[device.deviceType].default;
+		if (!input || $scope.rule.advanced.tests.assignedDevices.indexOf(device.deviceId) > -1) {
+			return;
+		}
+		if (_.size($scope.rule.input.params.advanced.tests[testIndex].devices) == 0) {
+			$scope.rule.input.params.advanced.tests[testIndex].devices.push({
+				deviceId: device.deviceId,
+				type: device.deviceType
+			});
+		} else if (_.size($scope.rule.input.params.advanced.tests[testIndex].devices) == 1) {
+			// only assign second device if types are almost equal
+			if ($scope.rule.input.params.advanced.tests[testIndex].devices[0].type == device.deviceType ||
+				($scope.rule.input.params.advanced.tests[testIndex].devices[0].type.indexOf('Binary') != -1 && device.deviceType.indexOf('Binary') != -1) ||
+				($scope.rule.input.params.advanced.tests[testIndex].devices[0].type.indexOf('Multilevel') != -1 && device.deviceType.indexOf('Multilevel') != -1) ||
+				($scope.rule.input.params.advanced.tests[testIndex].devices[0].type == 'thermostat' && device.deviceType.indexOf('Multilevel') != -1) ||
+				($scope.rule.input.params.advanced.tests[testIndex].devices[0].type.indexOf('Multilevel') != -1 && device.deviceType== 'thermostat')
+				) {
+
+				$scope.rule.input.params.advanced.tests[testIndex].devices.push({
+					deviceId: device.deviceId,
+					type: device.deviceType
+				});
+
+				// if two devices assigned, define possible operators
+
+				if (device.deviceType == 'sensorBinary') {
+					$scope.rule.input.params.advanced.tests[testIndex].operators = $scope.rule.options.compare.binaryOperators;
+				} else {
+					$scope.rule.input.params.advanced.tests[testIndex].operators = $scope.rule.options.compare.multilevelOperators;
+				}
+			} else {
+				return;
+			}
+		} else {
+			return;
+		}
+		$scope.rule.advanced.tests.assignedDevices.push(device.deviceId);
+		$scope.resetOptions();
+		$scope.expandElement('test_compare_' + testIndex + '1');
 	};
 
 	/**
@@ -31703,11 +31887,12 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 				};
 				break;
 				// nested
-			case 'nested':
+			case 'compare':
 				var test = {
 					type: input.type,
-					logicalOperator: input.logicalOperator,
-					tests: input.tests
+					operator: input.operator,
+					operator: input.operators,
+					devices: []
 				};
 				break;
 				// default
@@ -31720,10 +31905,55 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	};
 
 	/**
-	 * Remove advanced nested test
-	 * @param {int} targetIndex 
+	 * Show only valid devices based on current selection
+	 * @param {string} deviceType
+	 */
+	$scope.filterDeviceListCompare = function(deviceType, testIndex) {
+		if (_.size($scope.rule.input.params.advanced.tests[testIndex].devices) == 0) {
+			switch(deviceType) {
+				case 'sensorMultilevel':
+				case 'sensorBinary':
+				case 'switchMultilevel':
+				case 'switchBinary':
+				case 'thermostat':
+					return false;
+				default:
+					return true;
+			}
+		} else if (_.size($scope.rule.input.params.advanced.tests[testIndex].devices) == 1) {
+			if ($scope.rule.input.params.advanced.tests[testIndex].devices[0].type == deviceType ||
+				($scope.rule.input.params.advanced.tests[testIndex].devices[0].type.indexOf('Binary') != -1 && deviceType.indexOf('Binary') != -1) ||
+				($scope.rule.input.params.advanced.tests[testIndex].devices[0].type.indexOf('Multilevel') != -1 && deviceType.indexOf('Multilevel') != -1) ||
+				($scope.rule.input.params.advanced.tests[testIndex].devices[0].type == 'thermostat' && deviceType.indexOf('Multilevel') != -1) ||
+				($scope.rule.input.params.advanced.tests[testIndex].devices[0].type.indexOf('Multilevel') != -1 && deviceType== 'thermostat')
+				) {
+					return false;
+				}
+		}
+		return true;
+	};
+
+	/**
+	 * Remove advanced compare
+	 * @param {int} targetIndex
 	 * @param {string} deviceId
-	 * @param {int} testIndex 
+	 * @param {int} testIndex
+	 */
+	$scope.unassignAdvancedTestCompare = function(targetIndex, deviceId, testIndex) {
+		$scope.rule.input.params.advanced.tests[testIndex].devices.splice(targetIndex, 1);
+
+		if (deviceId) {
+			var deviceIndex = $scope.rule.advanced.tests.assignedDevices.indexOf(deviceId);
+			$scope.rule.advanced.tests.assignedDevices.splice(deviceId, 1);
+		}
+
+	};
+
+	/**
+	 * Remove advanced nested test
+	 * @param {int} targetIndex
+	 * @param {string} deviceId
+	 * @param {int} testIndex
 	 */
 	$scope.unassignAdvancedTestNested = function(targetIndex, deviceId, testIndex) {
 		$scope.rule.input.params.advanced.tests[testIndex].tests.splice(targetIndex, 1);
@@ -31773,8 +32003,8 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 
 	/**
 	 * Remove device id from advanced target assigned device
-	 * @param {int} index 
-	 * @param {string} deviceId 
+	 * @param {int} index
+	 * @param {string} deviceId
 	 */
 	$scope.unassignAdvancedTargetDevice = function(targetIndex, deviceId) {
 
@@ -31792,7 +32022,12 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @returns {undefined}
 	 */
 	$scope.assignAdvancedTargetNotification = function(notification) {
-		if (notification.target && $scope.rule.advanced.target.assignedDevices.indexOf(notification.target) === -1) {
+		if ((notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1)||(notification.target_custom && $scope.rule.target.assignedDevices.indexOf(notification.target_custom) === -1)) {
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+
 			$scope.rule.input.params.advanced.sendNotifications.push(notification);
 			$scope.rule.advanced.target.assignedDevices.push(notification.target);
 			$scope.resetOptions();
@@ -31802,8 +32037,8 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 
 	/**
 	 * Remove notification from sendNotifications
-	 * @param {int} index 
-	 * @param {string} deviceId 
+	 * @param {int} index
+	 * @param {string} deviceId
 	 */
 	$scope.unassignAdvancedTargetNotification = function(targetIndex, target) {
 
@@ -31839,7 +32074,7 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	};
 
 	/**
-	 * Store 
+	 * Store
 	 */
 	$scope.storeRule = function(input, redirect) {
 		input.params.advanced.targetElements = input.params.advanced.targetElements.map(function(dev) {
@@ -31912,6 +32147,9 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 					if (v.params.devices[k].length) {
 						size++;
 					}
+				}
+				for (k in v.params.notifications) {
+					size++;
 				}
 				if (size) {
 					$scope.schedules.enableTest.push(v.id)
@@ -32008,8 +32246,8 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 
 	/**
 	 * Activate schedule
-	 * @param {object} input 
-	 * @param {boolean} activeStatus 
+	 * @param {object} input
+	 * @param {boolean} activeStatus
 	 */
 	$scope.activateSchedule = function(input, state) {
 		input.active = state;
@@ -32075,6 +32313,7 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 		devicesInRoom: [],
 		availableDevices: [],
 		assignedDevices: [],
+		assignedNotifications: [],
 		cfg: {
 			switchBinary: {
 				level: ['off', 'on'],
@@ -32126,6 +32365,13 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			},
 			toggleButton: {
 				default: {}
+			},
+			notification: {
+				default: {
+					target: '',
+					target_custom: '',
+					message: ''
+				}
 			}
 
 		},
@@ -32137,7 +32383,8 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			params: {
 				weekdays: [],
 				times: ['00:00'],
-				devices: []
+				devices: [],
+				notifications: []
 			}
 		}
 	};
@@ -32162,6 +32409,7 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
 			var instance = instances.data.data;
 			var assignedDevices = $scope.schedule.assignedDevices;
+			var assignedNotifications = $scope.schedule.assignedNotifications;
 			angular.extend($scope.schedule.input, {
 				title: instance.title,
 				active: instance.active,
@@ -32182,6 +32430,12 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			angular.forEach(instance.params.devices, function(d) {
 				if (assignedDevices.indexOf(d.deviceId) === -1) {
 					$scope.schedule.assignedDevices.push(d.deviceId);
+				}
+			});
+
+			angular.forEach(instance.params.notifications, function(d) {
+				if (assignedNotifications.indexOf(d.target) === -1) {
+					$scope.schedule.assignedNotifications.push(d.target);
 				}
 			});
 
@@ -32230,6 +32484,10 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 					return obj;
 				})
 				.filter(function(v) {
+					// Replacing deviceType with "notification"
+					if (v.probeType == 'notification_push') {
+						v.deviceType = 'notification';
+					}
 					return whiteList.indexOf(v.deviceType) > -1;
 				})
 				.indexBy('deviceId')
@@ -32294,8 +32552,8 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 	/**
 	 * Remove device id from assigned device and from input
 	 *  @param {string} targetType
-	 * @param {int} targetIndex 
-	 * @param {string} deviceId 
+	 * @param {int} targetIndex
+	 * @param {string} deviceId
 	 */
 	$scope.unassignDevice = function(targetIndex, deviceId) {
 		var deviceIndex = $scope.schedule.assignedDevices.indexOf(deviceId);
@@ -32303,6 +32561,43 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 		if (deviceIndex > -1) {
 			$scope.schedule.assignedDevices.splice(deviceIndex, 1);
 		}
+	};
+
+	/**
+	 * Assign notification
+	 * @param {object} notification
+	 * @returns {undefined}
+	 */
+	$scope.assignNotification = function(notification) {
+		if ((notification.target && $scope.schedule.assignedNotifications.indexOf(notification.target) === -1) || (notification.target_custom && $scope.schedule.assignedNotifications.indexOf(notification.target_custom) === -1)) {
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.schedule.input.params.notifications.push(not);
+			$scope.schedule.assignedNotifications.push(not.target);
+
+			// reset options
+			$scope.schedule.cfg.notification.default.target = '';
+			$scope.schedule.cfg.notification.default.target_custom = '';
+			$scope.schedule.cfg.notification.default.message = '';
+		}
+
+	};
+
+	/**
+	 * Remove notification from sendNotifications
+	 * @param {int} index
+	 * @param {string} deviceId
+	 */
+	$scope.unassignNotification = function(targetIndex, target) {
+
+		var notificationIndex = $scope.schedule.assignedNotifications.indexOf(target);
+		if (targetIndex > -1) {
+			$scope.schedule.input.params.notifications.splice(targetIndex, 1);
+			$scope.schedule.assignedNotifications.splice(notificationIndex, 1);
+		}
+
 	};
 
 	/**
@@ -32384,6 +32679,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		routeId: 0,
 		tab: 1,
 		days: [1, 2, 3, 4, 5, 6, 0],
+		intervals: [0, 5, 15, 30, 60],
 		devicesInRoom: {
 			input: [],
 			alarms: [],
@@ -32486,7 +32782,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		input: {
 			instanceId: $routeParams.id,
 			moduleId: "Security",
-			active: true,
+			active: false,
 			title: "Security",
 			params: {
 				times: {
@@ -32638,7 +32934,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	$scope.jQuerySchedule = {};
 
 	/**
-	 *  Reset Original data 
+	 *  Reset Original data
 	 */
 	$scope.orig = {
 		options: {}
@@ -32670,7 +32966,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					if (e == 'silentAlarms')
 						e = 'alarms';
 					else if (e == 'disarmConfirm' || e == 'clean')
-						e = 'armConfirm';					
+						e = 'armConfirm';
 					dev = $scope.getDevice(d.devices, e);
 					if (dev)
 					{
@@ -32691,7 +32987,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				});
 			});
 
-			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {		
+			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'input');
 				if (dev)
 				{
@@ -32702,7 +32998,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceNameShort: dev.deviceNameShort,
 						// level: _.isNumber(d.level) ? 'lvl' : d.level,
 						// exact: _.isNumber(d.level) ? parseInt(d.level) : null,
-						conditions: d.level,
+						conditions: d.conditions,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
@@ -32712,7 +33008,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			});
 
-			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {		
+			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'controls');
 				if (dev)
 				{
@@ -32723,7 +33019,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceNameShort: dev.deviceNameShort,
 						armCondition: d.armCondition,
 						disarmCondition: d.disarmCondition,
-						clearCondition: d.clearCondition,						
+						clearCondition: d.clearCondition,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
@@ -32731,7 +33027,13 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						iconPath: dev.iconPath
 					};
 				}
-			});						
+			});
+
+			$scope.security.input.params.silentAlarms.notification.target = ($scope.security.input.params.silentAlarms.notification.target == $scope.security.input.params.silentAlarms.notification.target_custom) ? '' : $scope.security.input.params.silentAlarms.notification.target;
+			$scope.security.input.params.alarms.notification.target = ($scope.security.input.params.alarms.notification.target == $scope.security.input.params.alarms.notification.target_custom) ? '' : $scope.security.input.params.alarms.notification.target;
+			$scope.security.input.params.clean.notification.target = ($scope.security.input.params.clean.notification.target == $scope.security.input.params.clean.notification.target_custom) ? '' : $scope.security.input.params.clean.notification.target;
+			$scope.security.input.params.armConfirm.notification.target = ($scope.security.input.params.armConfirm.notification.target == $scope.security.input.params.armConfirm.notification.target_custom) ? '' : $scope.security.input.params.armConfirm.notification.target;
+			$scope.security.input.params.disarmConfirm.notification.target = ($scope.security.input.params.disarmConfirm.notification.target == $scope.security.input.params.disarmConfirm.notification.target_custom) ? '' : $scope.security.input.params.disarmConfirm.notification.target;
 
 			// transform to mobile
 			$scope.transformFromInstToMobile();
@@ -32839,7 +33141,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					if (e == 'silentAlarms')
 						e = 'alarms';
 					else if (e == 'disarmConfirm' || e == 'clean')
-						e = 'armConfirm';					
+						e = 'armConfirm';
 					dev = $scope.getDevice(d.devices, e);
 					if (dev)
 					{
@@ -32860,7 +33162,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				});
 			});
 
-			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {		
+			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'input');
 				if (dev)
 				{
@@ -32881,7 +33183,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			});
 
-			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {		
+			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'controls');
 				if (dev)
 				{
@@ -32892,7 +33194,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceNameShort: dev.deviceNameShort,
 						armCondition: d.armCondition,
 						disarmCondition: d.disarmCondition,
-						clearCondition: d.clearCondition,						
+						clearCondition: d.clearCondition,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
@@ -32900,7 +33202,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						iconPath: dev.iconPath
 					};
 				}
-			});						
+			});
 
 		}, function(error) {});
 	};
@@ -32939,12 +33241,12 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		}
 	};
 
-	////////// Devices ////////// 
+	////////// Devices //////////
 
 	/**
 	 * Get device entry by deviceId
-	 * @param  {string} deviceId 
-	 * @return {object} device          
+	 * @param  {string} deviceId
+	 * @return {object} device
 	 */
 	$scope.getDevice = function(deviceId, param) {
 		var device = _.findWhere($scope.security.devices[param], {
@@ -32993,8 +33295,11 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				probeType: dev.probeType,
 				location: dev.location,
 				locationName: dev.locationName,
-				iconPath: dev.iconPath		
-			};			
+				iconPath: dev.iconPath
+			};
+			if (p == 'input') {
+				$scope.security.input.active = true;
+			}
 			$scope.security.input.params[param].table.push(input);
 			$scope.resetOptions();
 		}
@@ -33013,9 +33318,13 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		if (deviceIndex > -1) {
 			$scope.security.input.params[param].table.splice(deviceIndex, 1);
 		}
+
+		if (param == 'input' && _.size($scope.security.input.params.input.table) < 1) {
+			$scope.security.input.active = false;
+		}
 	};
 
-	////////// Dis-arm by time ////////// 
+	////////// Dis-arm by time //////////
 
 	/**
 	 * Update schedule
@@ -33041,7 +33350,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 	/**
 	 * Renders dis-arm schedule
-	 * @param {string} elementId 
+	 * @param {string} elementId
 	 */
 	$scope.renderSchedule = function(elementId) {
 		if (_.isEmpty($scope.jQuerySchedule)) {
@@ -33124,8 +33433,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 	/**
 	 * activate/deactivate time for day
-	 * @param  {obj} data        
-	 * @param  {int} day         day nubmer [0 - 6] [SU - SA] 
+	 * @param  {obj} data
+	 * @param  {int} day         day nubmer [0 - 6] [SU - SA]
 	 * @param  {int} roomId      roomId
 	 * @param  {int} targetIndex entry index
 	 * @return {string}          arm/disarm
@@ -33150,7 +33459,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * Transform mobile vire back to instance data
 	 */
 	$scope.transformFromMobileToInst = function() {
-		// transform data for Instance 
+		// transform data for Instance
 		$scope.security.input.params.schedules = {};
 		_.each($scope.security.mobileSchedule, function(data) {
 			for (var i = 0; i <= 6; i++) {
@@ -33172,7 +33481,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * Transform Instance data to use in mobile view
 	 */
 	$scope.transformFromInstToMobile = function() {
-		// transform data for mobile view 
+		// transform data for mobile view
 		$scope.security.mobileSchedule = [];
 		_.each($scope.security.input.params.schedules, function(sc, day) {
 			if (sc.length > 0) {
@@ -33206,7 +33515,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		$scope.updateSchedule();
 	}, true);
 
-	////////// Advanced schedule ////////// 
+	////////// Advanced schedule //////////
 
 	/**
 	 * Assign a time scheduler
@@ -33220,7 +33529,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 	/**
 	 * Unassign a time scheduler
-	 *  @param {int} targetIndex 
+	 *  @param {int} targetIndex
 	 */
 	$scope.unassignTimeSchedule = function(targetIndex) {
 		if (targetIndex > -1) {
@@ -33228,7 +33537,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		}
 	};
 
-	////////// Save complete form ////////// 
+	////////// Save complete form //////////
 	/**
 	 * Store instance
 	 */
@@ -33261,9 +33570,17 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				devices: dev.devices,
 				armCondition: dev.armCondition,
 				disarmCondition: dev.disarmCondition,
-				clearCondition: dev.clearCondition		
+				clearCondition: dev.clearCondition
 			};
-		});				
+		});
+
+		// store custom email adresses for notifications
+		input.params.silentAlarms.notification.target = input.params.silentAlarms.notification.target ? input.params.silentAlarms.notification.target : input.params.silentAlarms.notification.target_custom;
+		input.params.alarms.notification.target = input.params.alarms.notification.target ? input.params.alarms.notification.target : input.params.alarms.notification.target_custom;
+		input.params.clean.notification.target = input.params.clean.notification.target ? input.params.clean.notification.target : input.params.clean.notification.target_custom;
+		input.params.armConfirm.notification.target = input.params.armConfirm.notification.target ? input.params.armConfirm.notification.target : input.params.armConfirm.notification.target_custom;
+		input.params.disarmConfirm.notification.target = input.params.disarmConfirm.notification.target ? input.params.disarmConfirm.notification.target : input.params.disarmConfirm.notification.target_custom;
+
 
 		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
 			$scope.loading = false;
@@ -33395,8 +33712,8 @@ myAppController.controller('HazardNotificationController', function($scope, $rou
 
 	/**
 	 * Activate/Deactivate instance
-	 * @param {object} input 
-	 * @param {boolean} activeStatus 
+	 * @param {object} input
+	 * @param {boolean} activeStatus
 	 */
 	$scope.activateInstance = function(input, state) {
 		input.active = state;
@@ -33412,7 +33729,7 @@ myAppController.controller('HazardNotificationController', function($scope, $rou
 
 
 	/**
-	 * Clone 
+	 * Clone
 	 * @param {object} input
 	 * @param {string} redirect
 	 * @returns {undefined}
@@ -33500,13 +33817,14 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			    sendAction: false,
 			    reverseLevel: null
 			  }
-			},			
+			},
 			toggleButton: {
 				default: {}
 			},
 			notification: {
 				default: {
 					target: '',
+					target_custom: '',
 					message: '',
 					firedOn: 'alarm'
 				}
@@ -33523,7 +33841,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				instanceId: $routeParams.id,
 				id: null,
 				moduleId: "HazardNotification",
-				active: true,
+				active: false,
 				title: "",
 				params: {
 					sensors: [],
@@ -33544,7 +33862,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				instanceId: $routeParams.id,
 				id: null,
 				moduleId: "HazardNotification",
-				active: true,
+				active: false,
 				title: "",
 				params: {
 					sensors: [],
@@ -33558,7 +33876,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	};
 
 	/**
-	 *  Reset Original data 
+	 *  Reset Original data
 	 */
 	$scope.orig = {
 		options: {}
@@ -33587,7 +33905,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 							deviceType: d.deviceType,
 							level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl'): d.level,
 							exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0): undefined,
-							sendAction: d.sendAction					
+							sendAction: d.sendAction
 						};
 					});
 
@@ -33693,6 +34011,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 					angular.forEach($scope.hazardProtection.availableSensors, function(sensor) {
 						if ($scope.hazardProtection[type].sensors.indexOf(sensor.probeType) !== -1) {
 							$scope.assignSensor(sensor.deviceId, type);
+							$scope.hazardProtection[type].input.active = true;
 						}
 					});
 				}
@@ -33718,13 +34037,14 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		if ($scope.hazardProtection[type]) {
 			if ($scope.hazardProtection[type].input.params.sensors.indexOf(sensorId) === -1) {
 				$scope.hazardProtection[type].input.params.sensors.push(sensorId);
+				$scope.hazardProtection[type].input.active = true;
 			}
 		}
 	};
 
 	/**
 	 * Remove sensor id from assigned sensors
-	 * @param {string} deviceId 
+	 * @param {string} deviceId
 	 * @param {string} type fire/leakage
 	 */
 	$scope.unassignSensor = function(deviceId, type) {
@@ -33732,6 +34052,9 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			var deviceIndex = $scope.hazardProtection[type].input.params.sensors.indexOf(deviceId);
 			if (deviceIndex > -1) {
 				$scope.hazardProtection[type].input.params.sensors.splice(deviceIndex, 1);
+			}
+			if (_.size($scope.hazardProtection[type].input.params.sensors) < 1) {
+				$scope.hazardProtection[type].input.active = false;
 			}
 		}
 	};
@@ -33756,12 +34079,12 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 
 		$scope.hazardProtection[type].assignedDevices.push(device.deviceId);
 		return;
-	};	
+	};
 
 	/**
 	 * Remove device id from assigned device
-	 * @param {int} index 
-	 * @param {string} deviceId 
+	 * @param {int} index
+	 * @param {string} deviceId
 	 */
 	$scope.unassignDevice = function (targetIndex, deviceId, type) {
 		var deviceIndex = $scope.hazardProtection[type].assignedDevices.indexOf(deviceId);
@@ -33769,25 +34092,29 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		if (deviceIndex > -1) {
 			$scope.hazardProtection[type].assignedDevices.splice(deviceIndex, 1);
 		}
-	};	
+	};
 
 	/**
 	 * Assign notification
-	 * @param  {object} notification 
+	 * @param  {object} notification
 	 * @param  {string} type         fire/leakage
 	 */
 	$scope.assignNotification = function(notification, type) {
 		if ($scope.hazardProtection[type]) {
-			$scope.hazardProtection[type].input.params.sendNotifications.push(notification);
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.hazardProtection[type].input.params.sendNotifications.push(not);
 			$scope.resetOptions();
 		}
 	};
 
 	/**
 	 * Remove notification id from assigned notifications
-	 * @param {int} targetIndex 
+	 * @param {int} targetIndex
 	 * @param {string} deviceId
-	 * @param {string} type fire/leakage 
+	 * @param {string} type fire/leakage
 	 */
 	$scope.unassignNotification = function(targetIndex, deviceId, type) {
 		if ($scope.hazardProtection[type]) {
@@ -33815,10 +34142,10 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	};
 
 	/**
-	 * Store instances 
+	 * Store instances
 	 * @param  {object} fire        instance data
 	 * @param  {object} leakage     instance data
-	 * @param  {boolean} redirect   if ture redirect 
+	 * @param  {boolean} redirect   if ture redirect
 	 */
 	$scope.storeInstances = function(fire, leakage, redirect) {
 		var fireError = true,
@@ -33845,7 +34172,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				level: dev.level == 'lvl' ? dev.exact : dev.level,
 				sendAction: dev.sendAction
 			};
-		});				
+		});
 
 		$scope.loading = {
 			status: 'loading-spin',
@@ -33885,13 +34212,13 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	};
 });
 /**
- * @overview 
+ * @overview
  * @author Michael Hensche
  */
 
 
 /**
- * 
+ *
  * @class HeatingController
  */
 myAppController.controller('HeatingController', function($scope, $routeParams, $location, $timeout, $interval, cfg, dataFactory, dataService, _, myCache) {
@@ -33947,7 +34274,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		input: {
 			instanceId: $routeParams.id,
 			moduleId: "Heating",
-			active: true,
+			active: false,
 			title: "",
 			params: {
 				resetTime: 2,
@@ -34207,7 +34534,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	/**
 	 * Update the schedule
 	 * @param  {int} scheduleId element ID
-	 * @param  {int} roomId     z-way roomId 
+	 * @param  {int} roomId     z-way roomId
 	 */
 	$scope.updateSchedule = function(scheduleId, roomId) {
 		if ($scope.jQuery_schedules[scheduleId]) {
@@ -34262,7 +34589,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	}
 
 	/**
-	 * init 
+	 * init
 	 * @return {[type]} [description]
 	 */
 	$scope.init = function() {
@@ -34296,7 +34623,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				$scope.heating.roomsAvailable = false;
 				$scope.heating.alert.message = $scope._t('no_rooms');
 			}
-
 
 			$scope.loadDevices($scope.heating.rooms);
 		});
@@ -34368,12 +34694,12 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	/**
 	 * watch modalArr to handle close temperatureModal
 	 */
-	$scope.$watch("modalArr", function(newVal) {
+	$scope.$watch("modalArr", function(newVal, oldVal) {
 		if (newVal.hasOwnProperty("temperatureModal") && !newVal.temperatureModal) {
 			if (!$scope.heating.tempModal.delete) {
 				$scope.updateData();
-				var arr = $scope.heating.tempModal.scheduleId.split("-"),
-					roomId = arr[1];
+				var roomId = $scope.heating.tempModal.scheduleId.split("-")[1];
+
 				if ($scope.heating.input.params.roomSettings[roomId]) {
 					var jq_schedule = $scope.jQuery_schedules[$scope.heating.tempModal.scheduleId],
 						scIndex = _.findIndex($scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline], {
@@ -34381,26 +34707,28 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 							etime: jq_schedule.formatTime($scope.heating.tempModal.etime)
 						});
 
-					$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
+					if(scIndex != -1) {
+						$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
 
-					var rows_copy = {};
-					angular.copy($scope.scheduleOptions.rows, rows_copy);
+						var rows_copy = {};
+						angular.copy($scope.scheduleOptions.rows, rows_copy);
 
-					var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
-					days.forEach(function(day) {
-						$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
-							var sc = {
-								start: schedule.stime,
-								end: schedule.etime,
-								text: schedule.temp + " C°",
-								data: {
-									temp: schedule.temp
+						var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
+						days.forEach(function(day) {
+							$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+								var sc = {
+									start: schedule.stime,
+									end: schedule.etime,
+									text: schedule.temp + " C°",
+									data: {
+										temp: schedule.temp
+									}
 								}
-							}
-							rows_copy[day].schedule.push(sc);
+								rows_copy[day].schedule.push(sc);
+							});
 						});
-					});
-					jq_schedule.update(rows_copy);
+						jq_schedule.update(rows_copy);
+					}
 				}
 			}
 		}
@@ -34453,6 +34781,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 						}
 					}
 				});
+				if(_.size($scope.heating.devices.ThermostateByRoom) > 0) {
+					$scope.heating.input.active = true;
+				}
 				$scope.loadPreset();
 			},
 			function(error) {});
@@ -34467,7 +34798,9 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		angular.forEach($scope.heating.rooms, function(room) {
 			if (!$scope.heating.input.params.roomSettings[room.id]) {
 				$scope.heating.input.params.roomSettings[room.id] = {};
-				$scope.heating.input.params.roomSettings[room.id] = $scope.heating.cfg.default;
+				var copy_default = {};
+				angular.copy($scope.heating.cfg.default, copy_default);
+				$scope.heating.input.params.roomSettings[room.id] = copy_default;
 			}
 			// set default comfort Temp
 			if ($scope.heating.input.params.roomSettings[room.id].comfortTemp == "" || $scope.heating.input.params.roomSettings[room.id].comfortTemp == null) {
@@ -34507,8 +34840,8 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
 	/**
 	 * activate/deactivate time for day
-	 * @param  {obj} data        
-	 * @param  {int} day         day nubmer [0 - 6] [SU - SA] 
+	 * @param  {obj} data
+	 * @param  {int} day         day nubmer [0 - 6] [SU - SA]
 	 * @param  {int} roomId      roomId
 	 * @param  {int} targetIndex entry index
 	 * @return {string}          stime/etime
@@ -34565,6 +34898,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.updateData = function() {
 		var schedule_ids = Object.keys($scope.jQuery_schedules);
+
 		angular.forEach(schedule_ids, function(id) {
 			var jq_sc = $scope.jQuery_schedules[id],
 				roomId = id.split("-")[1],
@@ -34584,7 +34918,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				}
 
 				$scope.heating.input.params.roomSettings[roomId].schedule[day] = new_sc;
-
 			});
 		});
 		$scope.transformFromInstToMobile();
@@ -34600,7 +34933,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			icon: 'fa-spinner fa-spin',
 			message: $scope._t('loading')
 		};
-		
+
 		dataFactory.storeApi('instances', parseInt($scope.heating.input.instanceId, 10), $scope.heating.input).then(function(response) {
 			$scope.loading = false;
 			if (redirect) {
@@ -34618,70 +34951,75 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 * Transform mobile vire back to instance data
 	 */
 	$scope.transformFromMobileToInst = function() {
-		// transform data for Instance 
-		_.each($scope.heating.mobileSchedule, function(data, roomId) {
-			$scope.heating.input.params.roomSettings[roomId].schedule = {};
-			_.each(data, function(d) {
-				for (var i = 0; i <= 6; i++) {
-					if (!$scope.heating.input.params.roomSettings[roomId].schedule[i]) {
-						$scope.heating.input.params.roomSettings[roomId].schedule[i] = [];
+		// transform data for Instance
+		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way') {
+			_.each($scope.heating.mobileSchedule, function(data, roomId) {
+				$scope.heating.input.params.roomSettings[roomId].schedule = {};
+				_.each(data, function(d) {
+					for (var i = 0; i <= 6; i++) {
+						if (!$scope.heating.input.params.roomSettings[roomId].schedule[i]) {
+							$scope.heating.input.params.roomSettings[roomId].schedule[i] = [];
+						}
+						if (d[i]) {
+							var e = {
+								stime: d.stime,
+								etime: d.etime,
+								temp: d.temp
+							};
+							$scope.heating.input.params.roomSettings[roomId].schedule[i].push(e);
+						}
 					}
-					if (d[i]) {
-						var e = {
-							stime: d.stime,
-							etime: d.etime,
-							temp: d.temp
-						};
-						$scope.heating.input.params.roomSettings[roomId].schedule[i].push(e);
-					}
-				}
+				});
 			});
-		});
+		}
 	};
 
 	/**
 	 * Transform Instance data to use in mobile view
 	 */
 	$scope.transformFromInstToMobile = function() {
-		// transform data for mobile view 
-		_.each($scope.heating.input.params.roomSettings, function(data, roomId) {
-			var schedule = data.schedule;
+		// transform data for mobile view
+		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way') {
+			_.each($scope.heating.input.params.roomSettings, function(data, roomId) {
+				var schedule = data.schedule;
 
-			$scope.heating.mobileSchedule[roomId] = [];
-			_.each(schedule, function(sc, day) {
-				if (sc.length > 0) {
-					_.each(sc, function(e) {
-						var index = _.findIndex($scope.heating.mobileSchedule[roomId], {
-							stime: e.stime,
-							etime: e.etime,
-							temp: e.temp
+				$scope.heating.mobileSchedule[roomId] = [];
+				_.each(schedule, function(sc, day) {
+					if (sc.length > 0) {
+						_.each(sc, function(e) {
+							var index = _.findIndex($scope.heating.mobileSchedule[roomId], {
+								stime: e.stime,
+								etime: e.etime,
+								temp: e.temp
+							});
+							if (index == -1) {
+								var entry = {};
+								angular.copy($scope.heating.cfg.mobileSchedule_entry, entry);
+
+								entry[day] = true
+								entry.stime = e.stime;
+								entry.etime = e.etime;
+								entry.temp = e.temp;
+								$scope.heating.mobileSchedule[roomId].push(entry);
+							} else {
+								$scope.heating.mobileSchedule[roomId][index][day] = true
+							}
 						});
-						if (index == -1) {
-							var entry = {};
-							angular.copy($scope.heating.cfg.mobileSchedule_entry, entry);
-
-							entry[day] = true
-							entry.stime = e.stime;
-							entry.etime = e.etime;
-							entry.temp = e.temp;
-							$scope.heating.mobileSchedule[roomId].push(entry);
-						} else {
-							$scope.heating.mobileSchedule[roomId][index][day] = true
-						}
-					});
-				}
+					}
+				});
 			});
-		});
+		}
 	};
 
 
 	/**
 	 * watch $scope.heating.mobileSchedule to handle data changes
 	 */
-	$scope.$watch("heating.mobileSchedule", function(newVal) {
-		// transform mobile schdule data back to instance schedule data structure
+	$scope.$watch("heating.mobileSchedule", function(newVal, oldVal) {
+		// transform mobile schedule data back to instance schedule data structure
 		$scope.transformFromMobileToInst();
 		$scope.updateAllSchedules();
+
 	}, true);
 
 	/**
@@ -34700,7 +35038,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
 	/**
 	 * Unassign a time scheduler
-	 * @param {int} targetIndex 
+	 * @param {int} targetIndex
 	 */
 	$scope.unassignTimeSchedule = function(roomId, targetIndex) {
 		if (targetIndex > -1 && $scope.heating.mobileSchedule[roomId]) {
@@ -34710,7 +35048,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
 
 	/**
-	 * create temperatureArray for select 
+	 * create temperatureArray for select
 	 * @param  {[type]} temp  [description]
 	 * @param  {[type]} scale [description]
 	 * @return {[objet]}       [description]
@@ -34731,7 +35069,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
 	/**
 	 * getZwayId
-	 * @param  {string} deviceId 
+	 * @param  {string} deviceId
 	 * @return {string} zwaveId
 	 */
 	function getZwayId(deviceId) {
@@ -37268,7 +37606,9 @@ myAppController.controller('OnlineIconController', function ($scope, $filter, $t
  * @class DeviceController
  *
  */
-myAppController.controller('DeviceController', function($scope, dataFactory) {
+myAppController.controller('DeviceController', function($scope, $location, dataFactory) {
+    $scope.loading = false;
+
     $scope.enocean = {
         installed: false,
         active: false,
@@ -37284,10 +37624,20 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
     $scope.mobileAppSupport = {
         installed: false,
         active: false,
-        alert: {message: false},
-        instanceId: null
+        instanceId: null,
+        instance: null,
+        module: {
+            "instanceId":"0",
+            "moduleId":"MobileAppSupport",
+            "active": true,
+            "params": {
+                "devices": [],
+                "logLevelContainer": {}
+            }
+        }
     };
-     /**
+
+    /**
      * Load ext. Peripherals modules (EnOcean, Rf433)
      */
     $scope.loadperipheralsModules = function() {
@@ -37312,18 +37662,87 @@ myAppController.controller('DeviceController', function($scope, dataFactory) {
 
             var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
             if(MobileAppSupport_module){
+                $scope.mobileAppSupport.instance = MobileAppSupport_module;
                 $scope.mobileAppSupport.installed = true;
-                if (!MobileAppSupport_module.active) {
-                    $scope.mobileAppSupport.alert = {message: $scope._t('mobile_app_support_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                }
                 $scope.mobileAppSupport.instanceId = MobileAppSupport_module.id;
-                $scope.mobileAppSupport.active = true;
+                $scope.mobileAppSupport.active = MobileAppSupport_module.active;
             }
 
         });
     };
 
     $scope.loadperipheralsModules();
+
+    /**
+     * Create instance
+     */
+    $scope.createInstance = function(module, callback) {
+
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        dataFactory.postApi('instances', module).then(function (response) {
+            $scope.loading = false
+            if(typeof callback === 'function') {
+                callback(response.data.data.id);
+            }
+        }, function (error) {
+            alertify.alertError($scope._t('error_update_data'));
+            alertify.dismissAll();
+            $scope.loading = false;
+        });
+    }
+
+    /**
+     * Update instance
+     */
+    $scope.updateInstance = function(input,callback) {
+        if (input.id) {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+            dataFactory.putApi('instances', input.id, input).then(function(response) {
+                $scope.loading = false
+                if(typeof callback === 'function') {
+                    callback();
+                }
+            }, function(error) {
+                $scope.loading = false
+                alertify.alertError($scope._t('error_update_data'));
+                alertify.dismissAll();
+            });
+        }
+    };
+
+    /***************** MobileAppSupport *****************/
+
+
+    $scope.handleMobileModal = function($event) {
+        if(!$scope.mobileAppSupport.installed) {
+            $scope.createInstance($scope.mobileAppSupport.module, function(instanceId) {
+                $scope.mobileAppSupport.active = true;
+                $scope.mobileAppSupport.installed = true;
+                $scope.mobileAppSupport.instanceId = instanceId;
+                $scope.handleModal('qrCodeModal', $event);
+            });
+        } else if($scope.mobileAppSupport.installed && !$scope.mobileAppSupport.active) {
+            $scope.updateInstance($scope.mobileAppSupport.instance, function() {
+                $scope.mobileAppSupport.active = true;
+                $scope.handleModal('qrCodeModal', $event);
+            });
+        } else if($scope.mobileAppSupport.installed && $scope.mobileAppSupport.active) {
+            $scope.handleModal('qrCodeModal', $event);
+        }
+    }
+
+    $scope.handleManage = function() {
+        if(!$scope.mobileAppSupport.installed) {
+            $scope.createInstance($scope.mobileAppSupport.module, function(instanceId) {
+                $scope.mobileAppSupport.active = true;
+                $scope.mobileAppSupport.installed = true;
+                $scope.mobileAppSupport.instanceId = instanceId;
+                $location.path("module/put/" + instanceId);
+            });
+        } else if($scope.mobileAppSupport.installed) {
+            $location.path("module/put/" + $scope.mobileAppSupport.instanceId);
+        }
+    }
 });
 /**
  * @overview Handles Z-Wave device inclusion actions.

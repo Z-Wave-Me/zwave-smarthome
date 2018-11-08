@@ -12671,7 +12671,7 @@ fieldset section, .fieldset section {
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-#loading {
+#loading, #alpaca-spinner {
   position: fixed;
   z-index: 2399;
   width: 260px;
@@ -12686,7 +12686,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #0d0d0d;
 }
 
-#loading .loading-in {
+#loading .loading-in, #alpaca-spinner .loading-in {
   position: relative;
   z-index: 2400;
   margin: auto;
@@ -12698,7 +12698,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-radius: 4px;
 }
 
-#loading a {
+#loading a, #alpaca-spinner a {
   font-weight: bold;
   text-decoration: underline;
 }
@@ -12888,16 +12888,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, 
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, 
- width 0.25s ease-out 0.5s, 
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
 }
 
 /* Alert

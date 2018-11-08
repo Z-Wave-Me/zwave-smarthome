@@ -114,7 +114,6 @@
 
 		this.removeEntry = function(event) {
 			$bar = $(event.target).closest(".sc_Bar");
-			console.log("$bar", $bar);
 			var sc_key = $bar.data("sc_key");
 			$bar.remove();
 			delete scheduleData[sc_key];
@@ -592,7 +591,7 @@
 						});
 
 						var ele = document.elementFromPoint(x, y);
-						console.log($(ele));
+
 						if($(ele).hasClass("tl")) {
 							targetIndex = $(ele).index();
 						}
