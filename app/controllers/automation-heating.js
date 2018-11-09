@@ -224,13 +224,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			$scope.updateData();
 		},
 		confirm: function() {
-			alertify.confirm($scope._t('confirm_connect'), function(e) {
-				if (e.cancel) {
-					return false;
-				} else {
-					return true;
-				}
-			});
+			return $scope._t('connect_schedules');
 		},
 		delete_bar: function() {
 			$scope.updateData();
@@ -346,7 +340,6 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			jq_schedule.update(data);
 		}
 	}
-
 
 	/**
 	 * Update all schedules

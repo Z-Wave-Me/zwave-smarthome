@@ -343,7 +343,8 @@
 						if ($bar.data("sc_key") != $node.data("sc_key")) {
 							if (that.isCollison($node, $bar)) {
 								collison = true;
-								if (confirm("connect?")) {
+								var msg = setting.confirm();
+								if (confirm(msg)) {
 									connect = true;
 									var newStart = 0,
 										newEnd = 0,
@@ -589,12 +590,15 @@
 						$ghost_bar.css({
 							display: "none"
 						});
+						$element.find('.sc_main .timeline').eq(timelineNum).find('.sc_Bar').css({display: 'none'});
 
 						var ele = document.elementFromPoint(x, y);
 
 						if($(ele).hasClass("tl")) {
 							targetIndex = $(ele).index();
 						}
+
+						$element.find('.sc_main .timeline').eq(timelineNum).find('.sc_Bar').css({display: 'block'});
 					}
 				}
 
@@ -646,7 +650,8 @@
 							//if (confirm("connect?")) {
 							// // console.log("confirm", setting.confirm.call(element));
 							// if (setting.confirm.call(element)) {
-							if (confirm("connect?")) {
+							var msg = setting.confirm();
+							if (confirm(msg)) {
 								connect = true;
 								var newStart = 0,
 									newEnd = 0;
@@ -779,7 +784,8 @@
 								// $element.append($confirm);
 								// // console.log("confirm 2", setting.confirm.call(element));
 								// if (setting.confirm.call(element)) {
-								if (confirm("connect?")) {
+								var msg = setting.confirm();
+								if (confirm(msg)) {
 
 									connect = true;
 									var newStart = 0,

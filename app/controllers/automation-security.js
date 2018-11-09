@@ -290,8 +290,14 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			$scope.security.securityModal.title = this.formatTime(timelineData.start) + " - " + this.formatTime(timelineData.end);
 			$scope.handleModal('securityModal');
 		},
-		connect: function(data) {},
-		confirm: function() {},
+		connect: function(data) {
+			data.text = $scope._t('lb_arm')
+			this.addScheduleData(data);
+			$scope.updateData();
+		},
+		confirm: function() {
+			return $scope._t('connect_schedules');
+		},
 		delete_bar: function() {
 			$scope.updateData();
 		}
