@@ -322,6 +322,7 @@
 .card-element-dragdrop {
   @include appGradient();
   cursor: move;
+  touch-action: none;
   text-align: center;
   border: solid 1px $app-border-color;
   width: 50%;
