@@ -30,6 +30,8 @@ var postRenderAlpaca = function (renderedForm) {
         var fromapp = $(this).data('fromapp');
         var fromroute= $(this).data('fromroute');
 
+        delete data.instanceId;
+
         // submit via ajax
         $.ajax({
             type: type,
@@ -52,7 +54,7 @@ var postRenderAlpaca = function (renderedForm) {
                 } else if (fromapp) {
                     window.location.replace("#module/post/" + fromapp);
                 } else {
-                    if (data.instanceId > 0) {
+                    if (type == 'PUT') {
                         window.location.replace("#apps/instance");
                     } else {
                         window.location.replace("#apps/local");
