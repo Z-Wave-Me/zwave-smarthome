@@ -9525,18 +9525,25 @@ th {
 -------------------------------------------------- */
 html {
   font-size: 16px;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 767px) {
   html {
-    -webkit-touch-callout: none;
-    /* Disables long-touch menu */
     -webkit-user-select: none;
     /* Disable text selection (for Webkit) */
     user-select: none;
+    /* Disable text selection (standard syntax) */
+    -webkit-user-select: none;
+    /* Disable text selection (standard syntax) */
+    -moz-user-select: none;
+    /* Disable text selection (standard syntax) */
+    -ms-user-select: none;
     /* Disable text selection (standard syntax) */
   }
 }
@@ -13411,7 +13418,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .dd-on-start {
-  background-color: #dff0d8;
+  background: #dff0d8 !important;
   opacity: 0.7;
   cursor: text;
 }
@@ -13881,6 +13888,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
   /* IE6-9 */
   cursor: move;
+  touch-action: none;
   text-align: center;
   border: solid 1px #cccccc;
   width: 50%;

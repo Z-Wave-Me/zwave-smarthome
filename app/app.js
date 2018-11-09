@@ -67,11 +67,11 @@ angular.forEach(icon_data, function (key, value) {
  * @function run
  */
 myApp.run(function ($rootScope,  $route,$location, dataService, dataFactory,cfg) {
-    
+
     // Run underscore js in views
     $rootScope._ = _;
       $rootScope.$on("$routeChangeStart", function (event, next, current) {
-      
+
         var route = {
             previous: current ? current.$$route.originalPath : false
         };
@@ -132,12 +132,12 @@ myApp.config(function ($provide, $httpProvider) {
                                 type: 'network',
                                 message: 'The request failed because the server is not responding',
                                 hide: false
-                            });    
+                            });
                             break;
                         }
                         var test = (!rejection.config.headers.timeout || rejection.config.headers.suppressFtalError || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.headers.isRemote));
                         //if(!rejection.config.headers.timeout || rejection.config.headers.suppressFtalError || (cfg.pending_black_list.indexOf($location.url()) > -1 && rejection.config.headers.isRemote)){
-                        if(test) {  
+                        if(test) {
                            break;
                         }
                         angular.extend(cfg.route.alert, {

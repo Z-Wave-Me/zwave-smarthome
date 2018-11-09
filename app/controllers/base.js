@@ -305,7 +305,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
                         type: 'system',
                         message: false,
                         info: false,
-                        permanent: false, 
+                        permanent: false,
                         hide: false,
                         icon: 'fa-exclamation-triangle text-danger'
                     });
@@ -615,7 +615,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             $event.stopPropagation();
         }
         $scope.isModal = $scope.modalArr[key];
-    };  
+    };
 
     $scope.expand = {};
     /**
@@ -635,9 +635,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
          angular.forEach($scope.expand,function(v,k){
               if(k != key){
                 $scope.expand[k] = false;
-                
+
               }
-             
+
             });
         }
         $scope.expand[key] = !($scope.expand[key]);
@@ -699,14 +699,14 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
 
 
     $scope.openSideNav = function($event) {
-        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0 && $location.path().indexOf("rooms") == -1 && $location.path().indexOf("events") == -1) {    
+        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0 && $location.path().indexOf("rooms") == -1 && $location.path().indexOf("events") == -1) {
             $scope.expandNavi('mainNav', $event, true)
         }
     };
 
     $scope.closeSideNav = function($event) {
         if($location.path().indexOf("rooms") == 1 || $location.path().indexOf("events") == 1 && $event.type == "click" && $scope.deviceDetector.isMobile()) {
-            $scope.expandNavi('mainNav', $event, false)  
+            $scope.expandNavi('mainNav', $event, false)
         }
 
         if($location.path().indexOf("rooms") != 1 || $location.path().indexOf("events") != 1 && $scope.deviceDetector.isMobile()) {

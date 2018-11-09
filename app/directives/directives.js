@@ -638,3 +638,47 @@ myApp.directive('convertToFloat', function() {
 		}
 	};
 });
+
+/**
+ * Handle touchstart event
+ */
+myApp.directive('touchstart', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, elm, attrs) {
+            var touchstartFn = $parse(attrs.touchstart);
+            elm.bind('touchstart', function(evt) {
+                scope.$apply(function() {
+                    touchstartFn(scope, {$event: evt});
+                });
+            });
+            elm.bind('mousedown', function(evt){
+                scope.$apply(function() {
+                    touchstartFn(scope, {$event: evt});
+                });
+            });
+        }
+    };
+});
+
+/**
+ * Handle touchend event
+ */
+myApp.directive('touchend', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, elm, attrs) {
+            var touchendFn = $parse(attrs.touchend);
+            elm.bind('touchend', function(evt) {
+                scope.$apply(function() {
+                    touchendFn(scope, {$event: evt});
+                });
+            });
+            elm.bind('mouseup', function(evt){
+                scope.$apply(function() {
+                    touchendFn(scope, {$event: evt});
+                });
+            });
+        }
+    };
+});
