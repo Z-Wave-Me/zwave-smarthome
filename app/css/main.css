@@ -11537,7 +11537,7 @@ input:checked + .slider:before {
     top: 100%;
     right: 0;
     left: auto;
-    z-index: 2140;
+    z-index: 2099;
     float: right;
     min-width: 280px;
     padding: 10px;
@@ -12218,7 +12218,7 @@ fieldset section, .fieldset section {
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown {
-  z-index: 2140;
+  z-index: 2099;
   padding: 0;
   text-align: left;
   background-color: #FFFFFF;
@@ -12228,32 +12228,14 @@ fieldset section, .fieldset section {
   border: 1px solid #cccccc;
   background-clip: padding-box;
   color: #333333;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-@media only screen and (max-width: 767px) {
-  .app-dropdown {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    float: right;
-    width: 80%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .app-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: auto;
-    float: right;
-    min-width: 300px;
-  }
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  float: right;
+  min-width: 300px;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .app-dropdown .dropdown-header {
@@ -14186,7 +14168,7 @@ img.widget-promo-image {
 }
 
 /* MAX WIDTH */
-/* Apps search 
+/* Apps search
 -------------------------------------------------- */
 /* MIN WIDTH */
 /* MAX WIDTH */

@@ -10,6 +10,13 @@
 myAppController.controller('AppOnlineController', function ($scope, $filter, $cookies, $window, $location, $routeParams, $timeout,dataFactory, dataService, _) {
     $scope.dataHolder.onlineModules.filter = ($cookies.filterAppsOnline ? angular.fromJson($cookies.filterAppsOnline) : {});
 
+    // reset clear cookie
+    $scope.$on("$routeChangeStart", function(event, next, current) {
+        if(next.$$route.originalPath != "/apps/online/filter" && next.$$route.originalPath != "/apps/online") {
+            $cookies.filterAppsOnline = angular.toJson({});
+        }
+    });
+
     /**
      * Renders search result in the list
      */
