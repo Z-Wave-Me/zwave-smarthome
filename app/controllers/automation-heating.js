@@ -223,8 +223,22 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			this.addScheduleData(data);
 			$scope.updateData();
 		},
-		confirm: function() {
-			return $scope._t('connect_schedules');
+		confirm: function(confirmTrue, confirmFalse) {
+			if(typeof confirmTrue == 'function' && typeof confirmFalse == 'function') {
+				console.log("functions passed");
+			} else {
+				console.log("typeof confirmTrue", typeof confirmTrue);
+				console.log("typeof confirmFalse", typeof confirmFalse);
+				console.log("error");
+			}
+
+			alertify.confirm($scope._t('confirm_connect'), function(e) {
+				console.log("true e", e);
+				confirmTrue();
+			}, function(e) {
+				console.log("false e", e);
+				confirmFalse();
+			});
 		},
 		delete_bar: function() {
 			$scope.updateData();
@@ -340,6 +354,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			jq_schedule.update(data);
 		}
 	}
+
 
 	/**
 	 * Update all schedules

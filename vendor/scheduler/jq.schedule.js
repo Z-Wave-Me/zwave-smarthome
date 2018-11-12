@@ -343,8 +343,8 @@
 						if ($bar.data("sc_key") != $node.data("sc_key")) {
 							if (that.isCollison($node, $bar)) {
 								collison = true;
-								var msg = setting.confirm();
-								if (confirm(msg)) {
+								setting.confirm( function() {
+									console.log("resize connect true");
 									connect = true;
 									var newStart = 0,
 										newEnd = 0,
@@ -371,19 +371,67 @@
 										data: {}
 									};
 
-									$node.remove();
-									$bar.remove();
+									$node[0].remove();
+									console.log("$node", $node[0]);
+									$bar[0].remove();
+									console.log("$bar", $bar[0]);
 
 									delete scheduleData[sc_key];
 									delete scheduleData[old_sc_key];
 
-									//that.addScheduleData(data);
 									setting.connect.call(element, data);
-
-								} else {
+								},
+								function() {
+									console.log("resize connect false");
 									cancel = true;
-								}
-								return false;
+
+									// Move the element to its original position.
+									ui.element.css(ui.originalPosition);
+									// Modify the element's width& height to the original value.
+									ui.element.css(ui.originalSize);
+
+									//return false;
+								});
+								// if (confirm("connect?")) {
+								// 	connect = true;
+								// 	var newStart = 0,
+								// 		newEnd = 0,
+								// 		old_sc_key = $bar.data("sc_key"),
+								// 		end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+
+								// 	if (start <= scheduleData[old_sc_key].start) {
+								// 		newStart = start;
+								// 	} else {
+								// 		newStart = scheduleData[old_sc_key].start;
+								// 	}
+
+								// 	if (end <= scheduleData[old_sc_key].end) {
+								// 		newEnd = scheduleData[old_sc_key].end;
+								// 	} else {
+								// 		newEnd = end;
+								// 	}
+
+								// 	var data = {
+								// 		timeline: scheduleData[old_sc_key].timeline,
+								// 		start: newStart,
+								// 		end: newEnd,
+								// 		text: "",
+								// 		data: {}
+								// 	};
+
+								// 	$node.remove();
+								// 	$bar.remove();
+
+								// 	delete scheduleData[sc_key];
+								// 	delete scheduleData[old_sc_key];
+
+								// 	//that.addScheduleData(data);
+								// 	setting.connect.call(element, data);
+
+								// } else {
+								// 	cancel = true;
+								// }
+								// return false;
 							}
 						}
 					});
@@ -400,12 +448,13 @@
 						if (setting.change) {
 							setting.change(node, scheduleData[sc_key]);
 						}
-					} else if (cancel) {
-						// Move the element to its original position.
-						ui.element.css(ui.originalPosition);
-						// Modify the element's width& height to the original value.
-						ui.element.css(ui.originalSize);
 					}
+					// else if (cancel) {
+					// 	// Move the element to its original position.
+					// 	ui.element.css(ui.originalPosition);
+					// 	// Modify the element's width& height to the original value.
+					// 	ui.element.css(ui.originalSize);
+					// }
 				}
 			});
 
@@ -590,15 +639,12 @@
 						$ghost_bar.css({
 							display: "none"
 						});
-						$element.find('.sc_main .timeline').eq(timelineNum).find('.sc_Bar').css({display: 'none'});
 
 						var ele = document.elementFromPoint(x, y);
 
 						if($(ele).hasClass("tl")) {
 							targetIndex = $(ele).index();
 						}
-
-						$element.find('.sc_main .timeline').eq(timelineNum).find('.sc_Bar').css({display: 'block'});
 					}
 				}
 
@@ -646,12 +692,8 @@
 							collison = true;
 							// console.log("$bar", $bar);
 							// console.log("$ghost_bar_temp", $ghost_bar_temp);
-
-							//if (confirm("connect?")) {
-							// // console.log("confirm", setting.confirm.call(element));
-							// if (setting.confirm.call(element)) {
-							var msg = setting.confirm();
-							if (confirm(msg)) {
+							setting.confirm( function() {
+								console.log("create connect true");
 								connect = true;
 								var newStart = 0,
 									newEnd = 0;
@@ -688,8 +730,53 @@
 
 								setting.connect.call(element, data);
 								//that.addScheduleData(data);
-							}
-							return false;
+							},
+							function() {
+								console.log("create connect false");
+								return false;
+							});
+							//if (confirm("connect?")) {
+							// // console.log("confirm", setting.confirm.call(element));
+							// if (setting.confirm.call(element)) {
+							// if (confirm("connect?")) {
+							// 	connect = true;
+							// 	var newStart = 0,
+							// 		newEnd = 0;
+
+							// 	var old_sc_key = $bar.data("sc_key");
+
+							// 	var x = $ghost_bar_temp.position().left;
+							// 	var w = $ghost_bar_temp.width();
+							// 	var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
+							// 	var end = tableStartTime + (Math.floor((x + w) / setting.widthTimeX) * setting.widthTime);
+
+							// 	if (start <= scheduleData[old_sc_key].start) {
+							// 		newStart = start;
+							// 	} else {
+							// 		newStart = scheduleData[old_sc_key].start;
+							// 	}
+
+							// 	if (end <= scheduleData[old_sc_key].end) {
+							// 		newEnd = scheduleData[old_sc_key].end;
+							// 	} else {
+							// 		newEnd = end;
+							// 	}
+
+							// 	var data = {
+							// 		timeline: parseInt(timelineNum),
+							// 		start: newStart,
+							// 		end: newEnd,
+							// 		text: "",
+							// 		data: {}
+							// 	};
+							// 	$bar.remove();
+
+							// 	delete scheduleData[old_sc_key];
+
+							// 	setting.connect.call(element, data);
+							// 	//that.addScheduleData(data);
+							// }
+							// return false;
 						}
 					}
 
@@ -780,13 +867,8 @@
 						if ($bar.data("sc_key") != $node.data("sc_key")) {
 							if (that.isCollison($node, $bar)) {
 								collison = true;
-
-								// $element.append($confirm);
-								// // console.log("confirm 2", setting.confirm.call(element));
-								// if (setting.confirm.call(element)) {
-								var msg = setting.confirm();
-								if (confirm(msg)) {
-
+								setting.confirm(function() {
+									console.log("droppable connect true");
 									connect = true;
 									var newStart = 0,
 										newEnd = 0;
@@ -828,11 +910,67 @@
 
 									//that.addScheduleData(data);
 									setting.connect.call(element, data);
-								} else {
+								},
+								function() {
+									console.log("droppable connect false");
 									cancel = true;
-								}
-
+									$node.draggable("option", "revert", true);
+									setTimeout(function() {
+										$node.draggable("option", "revert", false);
+									}, 500);
+								});
 								return false;
+								// $element.append($confirm);
+								// // console.log("confirm 2", setting.confirm.call(element));
+								// if (setting.confirm.call(element)) {
+								// if (confirm("connect?")) {
+
+								// 	connect = true;
+								// 	var newStart = 0,
+								// 		newEnd = 0;
+
+								// 	var old_sc_key = $bar.data("sc_key");
+								// 	// console.log("scheduleData[sc_key]", scheduleData[sc_key]);
+								// 	// console.log("scheduleData[old_sc_key]", scheduleData[old_sc_key]);
+
+								// 	var x = $node.position().left;
+								// 	var w = $node.width();
+								// 	var start = tableStartTime + (Math.floor(x / setting.widthTimeX) * setting.widthTime);
+								// 	var end = start + (scheduleData[sc_key].end - scheduleData[sc_key].start);
+
+								// 	if (start <= scheduleData[old_sc_key].start) {
+								// 		newStart = start;
+								// 	} else {
+								// 		newStart = scheduleData[old_sc_key].start;
+								// 	}
+
+								// 	if (end <= scheduleData[old_sc_key].end) {
+								// 		newEnd = scheduleData[old_sc_key].end;
+								// 	} else {
+								// 		newEnd = end;
+								// 	}
+
+								// 	var data = {
+								// 		timeline: scheduleData[old_sc_key].timeline,
+								// 		start: newStart,
+								// 		end: newEnd,
+								// 		text: "",
+								// 		data: {}
+								// 	};
+
+								// 	$node.remove();
+								// 	$bar.remove();
+
+								// 	delete scheduleData[sc_key];
+								// 	delete scheduleData[old_sc_key];
+
+								// 	//that.addScheduleData(data);
+								// 	setting.connect.call(element, data);
+								// } else {
+								// 	cancel = true;
+								// }
+
+								//return false;
 							}
 						}
 					});
@@ -842,16 +980,13 @@
 						node.appendTo(this);
 						element.resetBarPosition(oldTimelineNum);
 						element.resetBarPosition(nowTimelineNum);
-					} else if (cancel) {
-						$node.draggable({
-							revert: true
-						});
-						setTimeout(function() {
-							$node.draggable({
-								revert: false
-							});
-						}, 500);
 					}
+					// else if (cancel) {
+					// 	$node.draggable("option", "revert", true);
+					// 	setTimeout(function() {
+					// 		$node.draggable("option", "revert", false);
+					// 	}, 500);
+					// }
 				}
 			});
 			//
