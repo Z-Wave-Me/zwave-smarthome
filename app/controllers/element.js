@@ -405,6 +405,10 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
      * Run command
      */
     $scope.runCmd = function(cmd, id) {
+        var index = _.findIndex($scope.dataHolder.devices.all, {
+            id: id
+        });
+
         angular.extend($scope.dataHolder.devices.all[index], {
             progress: true
         });
@@ -412,6 +416,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
             var index = _.findIndex($scope.dataHolder.devices.all, {
                 id: id
             });
+
             if ($scope.dataHolder.devices.all[index]) {
 
                 var cmdTimeout = $timeout(function() {
