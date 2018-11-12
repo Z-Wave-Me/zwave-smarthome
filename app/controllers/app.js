@@ -177,7 +177,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
     };
     var promises = [
       dataFactory.getApi('modules_categories'),
-      dataFactory.getApi('modules'),
+      dataFactory.getApi('modules', null , true),
       dataFactory.getApi('instances', null, true)
     ];
 
@@ -472,7 +472,7 @@ myAppController.controller('AppBaseController', function ($scope, $rootScope, $f
               item['statusSort'] = 1;
             } else {
               var localVersion = $scope.dataHolder.modules.ids[item.modulename].version.toString().split('.'),
-                onlineVersion = item.version.toString().split('.');
+                  onlineVersion = item.version.toString().split('.');
 
               for (var i = 0; i < localVersion.length; i++) {
                 if ((parseInt(localVersion[i], 10) < parseInt(onlineVersion[i], 10)) || ((parseInt(localVersion[i], 10) <= parseInt(onlineVersion[i], 10)) && (!localVersion[i + 1] && onlineVersion[i + 1] && parseInt(onlineVersion[i + 1], 10) > 0))) {
