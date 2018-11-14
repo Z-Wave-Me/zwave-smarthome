@@ -33,6 +33,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
     };
     $scope.user = dataService.getUser();
     $scope.hostName = $location.host();
+    $scope.hostProtocol = $location.protocol();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
     $scope.rss = {
