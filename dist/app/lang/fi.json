@@ -139,6 +139,7 @@
     "connection_refused": "z-way-server -palveluun ei saada yhteyttä",
     "connection_refused_info": "Tarkista verkkoliitäntäsi ja reitittimen virtalähde. Yritä ladata sivu uudelleen muutaman minuutin kuluttua ellei se lataudu itsestään.",
     "connection_refused_reboot": "Järjestelmä käynnistetään uudelleen ja yhteys suljetaan. Odota muutama minuutti ja avaa Smart Home -käyttöliittymä uudelleen ellei se tapahdu automaattisesti.",
+    "connect_schedules": "Would you like to combine the two periods?",
     "continue": "Jatka",
     "continue_anyway": "Jatka kaikesta huolimatta",
     "continue_nevertheless": "Continue nevertheless",

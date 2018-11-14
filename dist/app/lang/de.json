@@ -139,6 +139,7 @@
     "connection_refused": "Der z-way-server ist nicht erreichbar ...",
     "connection_refused_info": "Bitte überprüfen Sie Ihre Internetverbindung sowie auch die Stromversorgung und Internetverbindung Ihres Gateways. Wenn dies nicht automatisch geschieht, versuchen Sie nach ein paar Minuten die Seite neuzuladen, um auf die Smart Home Oberfläche zurückzukommen.",
     "connection_refused_reboot": "Das System wird neu gestartet und alle bestehenden Verbindungen unterbrochen. Laden sie die Seite in wenigen Minuten neu, falls dies nicht automatisch geschieht.",
+    "connect_schedules": "Möchten Sie die beiden Zeiträume verbinden?",
     "continue": "Weiter",
     "continue_anyway": "Trotzdem weiter",
     "continue_nevertheless": "Continue nevertheless",

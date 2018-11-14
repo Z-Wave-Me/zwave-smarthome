@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 08-11-2018 09:25:58 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 14-11-2018 09:28:05 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -879,7 +879,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/list_mode_edit.html',
-    "<div class=\"clearfix dragdrop-element\" title={{v.metrics.title}} sv-root sv-part=dataHolder.devices.collection sv-on-start=\"dragDropStart($item, $part, $index, $helper)\" sv-on-sort=\"dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)\"><div sv-placeholder class=\"dd-placeholder dd-element\">&nbsp;</div><div class=card-element-dragdrop sv-element ng-repeat=\"v in dataHolder.devices.collection track by v.id\"><div class=card-element-dragdrop-in><img class=\"element-dragdrop-img dd-handle\" ng-src={{v.iconPath}} alt=img err-src={{cfg.img.placeholder}} draggable=false ondragstart=\"return false;\" a-sv-handle><h3>{{v.metrics.title|cutText:true:25}}</h3></div></div></div>"
+    "<div class=\"clearfix dragdrop-element\" title={{v.metrics.title}} sv-root sv-part=dataHolder.devices.collection sv-on-start=\"dragDropStart($item, $part, $index, $helper)\" sv-on-sort=\"dragDropSort($item, $partFrom, $partTo, $indexFrom, $indexTo)\" sv-on-stop=\"dragDropStop($item, $part, $index)\"><div sv-placeholder class=\"dd-placeholder dd-element\">&nbsp;</div><div class=card-element-dragdrop id=ele-{{v.id}} sv-element ng-repeat=\"v in dataHolder.devices.collection track by v.id\" touchstart=\"highlightElementToogle('#ele-' + v.id)\" touchend=\"highlightElementToogle('#ele-' + v.id)\"><div class=card-element-dragdrop-in><img class=\"element-dragdrop-img dd-handle\" ng-src={{v.iconPath}} alt=img err-src={{cfg.img.placeholder}} draggable=false ondragstart=\"return false;\" a-sv-handle><h3>{{v.metrics.title|cutText:true:25}}</h3></div></div></div>"
   );
 
 

@@ -7699,8 +7699,19 @@ a.badge:hover, a.badge:focus {
 
 /** Added to every field outer element **/
 /** Added to every container outer field element **/
+.alpaca-container .alpaca-field-checkbox .checkbox label {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
 .alpaca-container .alpaca-field-checkbox .checkbox label input[type="checkbox"] {
-  display: block;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 767px) {
+  .alpaca-container .alpaca-field-checkbox .checkbox label {
+    margin-bottom: 10px;
+  }
 }
 
 /** Added to the optional label (or legend) accompanying any container **/
@@ -7713,6 +7724,24 @@ a.badge:hover, a.badge:focus {
 /** Added to the dom element holding the actionbar for each array item **/
 /** Added to a button in an array item actionbar that triggers an action **/
 /** Added to every control outer field element **/
+.alpaca-control.radio label {
+  padding-left: 25px;
+  margin-bottom: 15px;
+}
+
+.alpaca-control.radio input[type="radio"] {
+  margin: 0px 10px 0px -25px;
+  position: relative;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 767px) {
+  .alpaca-control.radio input[type="radio"] {
+    margin: 0px 30px 0px -25px;
+  }
+}
+
 /** Added to the optional label accompanying any control **/
 /** ******************************************************** **/
 /**                        STATE LABELS                      **/
@@ -8105,7 +8134,7 @@ div.timepicker-picker > table.table-condensed tr td {
 /**
  * alertifyjs 1.4.1 http://alertifyjs.com
  * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.
- * Copyright 2015 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
+ * Copyright 2015 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com)
  * Licensed under MIT <http://opensource.org/licenses/mit-license.php>*/
 .alertify .ajs-dimmer {
   position: fixed;
@@ -9092,14 +9121,14 @@ div.timepicker-picker > table.table-condensed tr td {
 
 /**
  * 	Angular RangeSlider SCSS
- * 
+ *
  *	Version: 0.0.7
  *
  * 	Author: Daniel Crisp, danielcrisp.com
  *
  * 	The rangeSlider has been styled to match the default styling
  * 	of form elements styled using Twitter's Bootstrap
- * 
+ *
  * 	Originally forked from https://github.com/leongersen/noUiSlider
  *
 
@@ -9504,7 +9533,7 @@ th {
   text-align: left;
 }
 
-/* SmartHome UI base 
+/* SmartHome UI base
 -------------------------------------------------- */
 /* Body
 -------------------------------------------------- */
@@ -9525,18 +9554,25 @@ th {
 -------------------------------------------------- */
 html {
   font-size: 16px;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 767px) {
   html {
-    -webkit-touch-callout: none;
-    /* Disables long-touch menu */
     -webkit-user-select: none;
     /* Disable text selection (for Webkit) */
     user-select: none;
+    /* Disable text selection (standard syntax) */
+    -webkit-user-select: none;
+    /* Disable text selection (standard syntax) */
+    -moz-user-select: none;
+    /* Disable text selection (standard syntax) */
+    -ms-user-select: none;
     /* Disable text selection (standard syntax) */
   }
 }
@@ -11010,8 +11046,8 @@ img {
 .table tbody tr {
   /* &:nth-child(2) {
                 td {
-                    border: none; 
-                }   
+                    border: none;
+                }
             } */
 }
 
@@ -11530,7 +11566,7 @@ input:checked + .slider:before {
     top: 100%;
     right: 0;
     left: auto;
-    z-index: 2140;
+    z-index: 2099;
     float: right;
     min-width: 280px;
     padding: 10px;
@@ -11548,7 +11584,7 @@ input:checked + .slider:before {
   }
 }
 
-/* Form 
+/* Form
 -------------------------------------------------- */
 /* MIN WIDTH */
 @media only screen and (min-width: 768px) {
@@ -11613,7 +11649,7 @@ input[type=checkbox] {
   @include mediaQueries(min-small) {
     @include checkboxScale(1.3, $spacing);
   }*/
-  margin: 0px 26px 11px 0;
+  margin: 0px 26px 20px 0;
   font-size: 22px;
   /* MIN WIDTH */
   /* MAX WIDTH */
@@ -11681,7 +11717,7 @@ input[type=checkbox]:disabled:after {
 }
 
 input[type=radio] {
-  /* 
+  /*
   @include radioScale(1.6, $spacing);
   // Media queries
   @include mediaQueries(min-small) {
@@ -12047,7 +12083,7 @@ fieldset.submit-entry {
   width: 50px;
   height: 50px;
   /* @include mediaQueries(min-small) {
-        height: 60px;    
+        height: 60px;
     } */
   float: left;
   position: relative;
@@ -12211,7 +12247,7 @@ fieldset section, .fieldset section {
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown {
-  z-index: 2140;
+  z-index: 2099;
   padding: 0;
   text-align: left;
   background-color: #FFFFFF;
@@ -12221,32 +12257,14 @@ fieldset section, .fieldset section {
   border: 1px solid #cccccc;
   background-clip: padding-box;
   color: #333333;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-@media only screen and (max-width: 767px) {
-  .app-dropdown {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    float: right;
-    width: 80%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .app-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: auto;
-    float: right;
-    min-width: 300px;
-  }
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  float: right;
+  min-width: 300px;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .app-dropdown .dropdown-header {
@@ -12636,23 +12654,23 @@ fieldset section, .fieldset section {
         .fa {
           color: #BDBDBD;
           &.text-warning {
-              color: #8a6d3b;     
+              color: #8a6d3b;
           }
         }
-      }  
+      }
     }
 }
 .accordion-entry-title{
-    font-size: $accordion-heading-font-size; 
+    font-size: $accordion-heading-font-size;
     position: relative;
     vertical-align: middle;
     margin: $spacing 0;
     color: $accordion-heading-color;
     cursor: pointer;
     .fa{
-        color: $accordion-icon-color;    
+        color: $accordion-icon-color;
         padding-right: $spacing;
-             font-size: $accordion-icon-size;  
+             font-size: $accordion-icon-size;
         }
     .accordion-arrow{
         position: absolute;
@@ -12665,7 +12683,7 @@ fieldset section, .fieldset section {
 .accordion-entry-ctrl {
     p {
         margin: $spacing-half;
-        padding: $spacing;      
+        padding: $spacing;
     }
 } */
 /* Absolute Center CSS Spinner
@@ -12888,13 +12906,16 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out,
+ height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s,
+ width 0.25s ease-out 0.5s,
+ height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -13411,7 +13432,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .dd-on-start {
-  background-color: #dff0d8;
+  background: #dff0d8 !important;
   opacity: 0.7;
   cursor: text;
 }
@@ -13881,6 +13902,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
   /* IE6-9 */
   cursor: move;
+  touch-action: none;
   text-align: center;
   border: solid 1px #cccccc;
   width: 50%;
@@ -14178,7 +14200,7 @@ img.widget-promo-image {
 }
 
 /* MAX WIDTH */
-/* Apps search 
+/* Apps search
 -------------------------------------------------- */
 /* MIN WIDTH */
 /* MAX WIDTH */
@@ -14337,7 +14359,7 @@ img.widget-promo-image {
   min-height: 1px;
   width: 33.3333%;
   /* @include mediaQueries(min-esmall) {
-        
+
         width: 33.3333%;
     } */
   /* MIN WIDTH */
@@ -14650,7 +14672,7 @@ img.widget-promo-image {
   min-height: 1px;
   width: 33.3333%;
   /* @include mediaQueries(min-esmall) {
-        
+
         width: 33.3333%;
     } */
   /* MIN WIDTH */
@@ -16278,7 +16300,7 @@ img.widget-promo-image {
 
 /* SmartStart
 -------------------------------------------------- */
-/* 
+/*
 -------------------------------------------------- */
 .smart-start .container {
   padding: 0;
@@ -16788,7 +16810,7 @@ img.widget-promo-image {
   /* MAX WIDTH */
   /*@include mediaQueries(min-large) {
         flex-basis: 25%;
-        
+
       }*/
 }
 
@@ -18243,7 +18265,7 @@ body.night-false {
   margin: 10px 0;
 }
 
-/* Security  Notification 
+/* Security  Notification
 -------------------------------------------------- */
 .automation .notification {
   margin: 20px 0;
