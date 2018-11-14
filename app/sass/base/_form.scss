@@ -17,6 +17,9 @@
   color: lighten($app-body-color, 30%);
   border: solid 1px #CCCCCC;
 
+  // placeholder color
+  @include placeholder(lighten($app-body-color, 75%));
+
   //padding: 6px 12px;
   height: auto;
   // Media queries
