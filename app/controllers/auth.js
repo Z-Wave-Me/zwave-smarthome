@@ -241,7 +241,7 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 			//angular.extend(cfg, {user: response.data.data});
 			var rememberme = (input.rememberme ? input : null);
 			var location = '#/dashboard';
-			var profile = _.omit(response.data.data, 'color', 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
+			var profile = _.omit(response.data.data, 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
 			if (response.data.data.showWelcome) {
 				location = '#/dashboard/firstlogin';
 				profile = _.omit(profile, 'showWelcome');
@@ -450,7 +450,7 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			'ZWAYSession': $scope.auth.defaultProfile.sid
 		};
 
-		// create speech assistants  
+		// create speech assistants
 		$scope.createSpeechAssistantsInstances();
 
 		//Update auth

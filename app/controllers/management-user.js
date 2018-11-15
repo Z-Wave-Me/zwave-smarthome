@@ -73,7 +73,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         "login": "",
         "name": "",
         "lang": "en",
-        "color": "#dddddd",
         "dashboard": [],
         "interval": 1000,
         "rooms": [],
