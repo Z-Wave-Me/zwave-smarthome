@@ -230,7 +230,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			return false;
 		}
 	};
-	
+
 	/**
 	 * Check ZWAY session
 	 * @param {string} sids
@@ -243,7 +243,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			return false;
 		}
 	};
-	
+
 	/**
 	 * Get last login info
 	 * @returns {Sring|Boolean}
@@ -710,7 +710,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 				} else if (v.img_type === 'default' && v.default_img) {
 					v.img_src = 'storage/img/rooms/' + v.default_img;
 				} else if (v.img_type === 'user' && v.user_img) {
-					v.img_src = cfg.server_url + cfg.api_url + 'load/image/' + v.user_img;
+					v.img_src = 'user/images/' + v.user_img;
 				}
 				return v;
 			});
@@ -1200,7 +1200,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			} else if (~keys.indexOf(i) && !angular.isArray(obj[i]) &&
 				typeof obj[i] === 'string' &&
 				obj[i].indexOf("function") === 0) {
-				// overwrite old string with function                
+				// overwrite old string with function
 				// we can only pass a function as string in JSON ==> doing a real function
 				obj[i] = new Function('return ' + obj[i])();
 			}

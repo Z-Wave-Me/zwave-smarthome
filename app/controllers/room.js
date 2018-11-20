@@ -31,7 +31,7 @@ myAppController.controller('RoomController', function($scope, $q, $cookies, $fil
             dataFactory.getApi('locations', null, true),
             dataFactory.getApi('devices', null, true)
         ];
-        
+
         $q.allSettled(promises).then(function(response) {
             var locations = response[0];
             var devices = response[1];
@@ -126,7 +126,7 @@ myAppController.controller('RoomController', function($scope, $q, $cookies, $fil
      dataService.showNotifier({message: $scope._t('delete_successful')});
      $scope.reloadData();
      //$scope.allSettled();
-     
+
      }, function (error) {
      $scope.loading = false;
      alertify.alertError($scope._t('error_delete_data'));
@@ -170,7 +170,8 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
     //$scope.devicesAvailable = [];
     $scope.devicesToRemove = [];
     $scope.defaultImages = $scope.cfg.room_images;
-    $scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
+    $scope.userImages = [];
+    //$scope.userImageUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/image/';
     $scope.file = {
         upload: false,
         info: {
@@ -204,70 +205,50 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
     };
     if ($scope.id > 0) {
         $scope.loadData($scope.id);
+        loadImages();
     } else {
         loadDevices(0);
+        loadImages();
     }
 
     /**
-     * Upload an image file
+     * Check and validate an uploaded file
      * @param {object} files
+     * @param {object} info
      * @returns {undefined}
      */
-    $scope.uploadFile = function(files) {
+    $scope.checkUploadedFile = function (files, info) {
+        // Extends files object with a new property
+        files[0].newName = dataService.uploadFileNewName(files[0].name);
         // Check allowed file formats
-        //if(cfg.upload.room.type.indexOf(files[0].type) === -1){
-        if (cfg.upload.room.extension.indexOf($filter('fileExtension')(files[0].name)) === -1) {
+        if ($scope.file.info.extensions.indexOf($filter('fileExtension')(files[0].name)) === -1) {
             alertify.alertError(
-                $scope._t('upload_format_unsupported', {
-                    '__extension__': $filter('fileExtension')(files[0].name)
-                }) + ' ' +
-                $scope._t('upload_allowed_formats', {
-                    '__extensions__': $scope.file.info.extensions
-                })
-            );
+                    $scope._t('upload_format_unsupported', {'__extension__': $filter('fileExtension')(files[0].name)}) + ' ' +
+                    $scope._t('upload_allowed_formats', {'__extensions__': $scope.file.info.extensions.toString()})
+                    );
             return;
 
         }
         // Check allowed file size
-        if (files[0].size > cfg.upload.room.size) {
+        if (files[0].size > $scope.file.info.maxSize) {
             alertify.alertError(
-                $scope._t('upload_allowed_size', {
-                    '__size__': $scope.file.info.maxSize
-                }) + ' ' +
-                $scope._t('upload_size_is', {
-                    '__size__': $filter('fileSizeString')(files[0].size)
-                })
-            );
+                    $scope._t('upload_allowed_size', {'__size__': $filter('fileSizeString')($scope.file.info.maxSize)}) + ' ' +
+                    $scope._t('upload_size_is', {'__size__': $filter('fileSizeString')(files[0].size)})
+                    );
             return;
 
         }
-        $scope.loading = {
-            status: 'loading-spin',
-            icon: 'fa-spinner fa-spin',
-            message: $scope._t('uploading')
-        };
-        // Clear all alerts and file name selected
-        alertify.dismissAll();
-        $scope.file.upload = false;
-        // Set local variables
-        var cmd = $scope.cfg.api_url + 'upload/file',
-            fd = new FormData();
-        // Set selected file name
-        $scope.file.upload = files[0].name;
-        fd.append('files_files', files[0]);
-        console.log(fd);
-        // Atempt to upload a file
-        dataFactory.uploadApiFile(cmd, fd).then(function(response) {
-            $scope.loading = false;
-            $scope.input.user_img = response.data.data;
-            $scope.input.img_type = 'user';
-            dataService.showNotifier({
-                message: $scope._t('success_upload')
+        // Check if uploaded filename already exists
+        if (_.findWhere($scope.userImages, {file: files[0].name})) {
+            // Displays a confirm dialog and on OK atempt to upload file
+            alertify.confirm($scope._t('uploaded_file_exists', {__file__: files[0].name})).set('onok', function (closeEvent) {
+                uploadFile(files);
+            }).setting('labels', {
+                'ok': $scope._t('ok')
             });
-        }, function(error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_upload'));
-        });
+        } else {
+            uploadFile(files);
+        }
     };
 
     /**
@@ -380,18 +361,22 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
         if (type == 'default' && $scope.input.default_img == image) {
             $scope.input.default_img = '';
             $scope.input.img_type = '';
+            $scope.input.user_img = '';
             return;
         } else if (type == 'default' && $scope.input.default_img !== image) {
             $scope.input.default_img = image;
             $scope.input.img_type = 'default';
+            $scope.input.user_img = '';
             return;
         }
-        if (type == 'user' && $scope.input.img_type == 'user') {
+        if (type == 'user' && $scope.input.user_img == image) {
             $scope.input.img_type = '';
             $scope.input.default_img = '';
+            $scope.input.user_img = '';
             return;
         } else {
             $scope.input.img_type = 'user';
+            $scope.input.user_img = image;
             $scope.input.default_img = '';
             return;
         }
@@ -440,21 +425,21 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
      * @param {string} message
      * @returns {undefined}
      */
-    $scope.deleteImage = function(image, message) {
-        alertify.confirm(message, function() {
-            $scope.loading = {
-                status: 'loading-spin',
-                icon: 'fa-spinner fa-spin',
-                message: $scope._t('deleting')
-            };
-            dataFactory.deleteApi('locations_image', $scope.id, "?user_img=" + image).then(function(response) {
+    $scope.deleteImage = function (image, message) {
+        alertify.dismissAll();
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('images', image).then(function (response) {
                 $scope.loading = false;
-                // update data
-                angular.extend($scope.input, response.data.data);
-                dataService.showNotifier({
-                    message: $scope._t('delete_successful')
+                $scope.userImages = _.reject($scope.userImages, function (v) {
+                    return v.file === image;
                 });
-            }, function(error) {
+                if ($scope.input.user_img == image) {
+                    $scope.input.user_img = '';
+                    $scope.input.img_type = '';
+                }
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+            }, function (error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
             });
@@ -464,6 +449,35 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
     };
 
     /// --- Private functions --- ///
+
+    /**
+     * Upload a file
+     * @param {object} files
+     * @returns {undefined}
+     */
+    function uploadFile(files) {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('uploading')};
+        // Clear all alerts and file name selected
+        alertify.dismissAll();
+        // Set local variables
+        var fd = new FormData();
+        // Set selected file name
+        $scope.file.upload = files[0].name;
+        // Set form data
+        fd.append('files_files', files[0]);
+        // Atempt to upload a file
+        dataFactory.uploadApiFile($scope.cfg.api_url + 'images/upload', fd).then(function (response) {
+            $scope.loading = false;
+            dataService.showNotifier({message: $scope._t('success_upload')});
+            // add new image to the list
+            $scope.userImages.push(response.data.data);
+
+        }, function (error) {
+            // $scope.icons.find = {};
+            alertify.alertError($scope._t('error_upload'));
+            $scope.loading = false;
+        });
+    };
     /**
      * Load devices
      * @param {int} locationId
@@ -481,6 +495,17 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
                     $scope.devices[v.id] = v;
                 }
             });
+        }, function(error) {});
+    };
+
+    /**
+     * Load images
+     * @param
+     * @returns {undefined}
+     */
+    function loadImages() {
+        dataFactory.getApi('images').then(function(response) {
+            $scope.userImages = response.data.data;
         }, function(error) {});
     };
 

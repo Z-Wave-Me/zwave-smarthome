@@ -126,6 +126,8 @@ var config_data = {
 			'ping': '/ZAutomation/api/v1/system/time/get',
 			'icons': 'ZAutomation/api/v1/icons',
 			'icons_install': 'ZAutomation/api/v1/icons/install',
+			'images': 'ZAutomation/api/v1/images',
+			'images_install': 'ZAutomation/api/v1/images/install',
 			'customicon': 'ZAutomation/api/v1/devices',
 			'icons_upload': 'ZAutomation/api/v1/icons/upload',
 			'cloudbackup': 'CloudBackupAPI/Backup',
@@ -182,14 +184,14 @@ var config_data = {
 		'upload': {
 			'room': {
 				size: 512000, //Bytes
-				type: ['image/jpeg', 'image/gif'],
-				extension: ['jpg', 'jpeg', 'gif'],
+				type: ['image/jpeg', 'image/gif', 'image/png', 'image/svg+xml', 'image/tiff'],
+				extension: ['jpg', 'jpeg', 'gif', 'png', 'svg', 'tif', 'tiff'],
 				dimension: '200 x 200' //px
 			},
 			'icon': {
 				size: 30720, //Bytes
-				type: ['image/png', 'image/jpeg', 'image/gif'],
-				extension: ['png', 'jpg', 'jpeg', 'gif'],
+				type: ['image/jpeg', 'image/gif', 'image/png', 'image/svg+xml', 'image/tiff'],
+				extension: ['jpg', 'jpeg', 'gif', 'png', 'svg', 'tif', 'tiff'],
 				dimension: '64 x 64' //px
 			},
 			'icon_packed': {
