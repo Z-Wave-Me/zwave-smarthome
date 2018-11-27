@@ -378,11 +378,13 @@ var config_data = {
 		// List of the find hosts
 		'find_hosts': [
 			'find.z-wave.me',
-			'find.popp.eu'
+			'find.popp.eu',
+			'remote.popp.eu'
 		],
 		// Redirect to the url after logout
 		'logout_redirect': {
-			'find.z-wave.me': 'https://find.z-wave.me/zboxweb'
+			'find.z-wave.me': 'https://find.z-wave.me/zboxweb',
+			'remote.popp.eu': 'https://remote.popp.eu/',
 		},
 		// List of the forbidden licence app types
 		'license_forbidden': [
