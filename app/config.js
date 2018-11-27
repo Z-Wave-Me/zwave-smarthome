@@ -183,10 +183,10 @@ var config_data = {
 		// Upload settings
 		'upload': {
 			'room': {
-				size: 512000, //Bytes
+				size: 5242880, //Bytes
 				type: ['image/jpeg', 'image/gif', 'image/png', 'image/svg+xml', 'image/tiff'],
 				extension: ['jpg', 'jpeg', 'gif', 'png', 'svg', 'tif', 'tiff'],
-				dimension: '200 x 200' //px
+				dimension: '1920 x 1080' //px
 			},
 			'icon': {
 				size: 30720, //Bytes

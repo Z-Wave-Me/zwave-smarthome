@@ -21,9 +21,11 @@
       <bb-help-text ng-if="!userImages.length" trans="_t('custom_images_no_available')"></bb-help-text>
       <img class="room-img-upload form-control-img" ng-repeat="v in userImages" ng-click="selectRoomImage(v.file, 'user')" ng-class="input.img_type == 'user' && v.file == input.user_img ? 'control-active':''"
         ng-src="user/images/{{v.file}}" alt="{{v.name}}" />
+      <div class="form-group is-inline">
       <button type="button" ng-if="input.user_img" title="{{_t('custom_image_delete_info')}}" class="btn btn-danger" ng-click="deleteImage(input.user_img, _t('delete_confirm_label',{__label__:input.user_img}))">
         <i class="fa fa-times"></i> {{ _t('custom_image_delete_info')}}
       </button>
+    </div>
     </div>
   </div>
   <div class="form-group">
