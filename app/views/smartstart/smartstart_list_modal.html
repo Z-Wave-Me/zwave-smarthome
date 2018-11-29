@@ -7,26 +7,45 @@
       <h3>{{cfg.app_name}}</h3>
     </div>
     <div class="appmodal-body">
-      <dl class="inline-dl">
-        <dt>Vendor</dt>
-        <dd>{{collection.deviceInfos[collection.find.added.pId].BrandName}}</dd>
-        <dt>Product</dt>
-        <dd>{{collection.deviceInfos[collection.find.added.pId].Name}}</dd>
-        <dt>Device type</dt>
-        <dd>{{collection.deviceTypes[collection.find.added.typeId]}}</dd>
-        <dt>State</dt>
-        <dd>{{collection.find.state}}</dd>
-        <dt>Node ID</dt>
-        <dd>{{collection.find.nodeId}}</dd>
-        <dt>Created at</dt>
-        <dd>{{collection.find.added.timeformat}}</dd>
-        <dt>DSK</dt>
-        <dd class="clickable" ng-click="showDskForm = !showDskForm">
-        {{collection.find.ZW_QR_DSK}}
-        <i class="fa" ng-class="showDskForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
-        
-        </dd>
-      </dl>
+      <div class="grid">
+        <div class="col-6">
+          <dl class="inline-dl">
+            <dt>{{_t('brand_name')}}</dt>
+            <dd>{{collection.find.added.brand_name}}</dd>
+            <dt>{{_t('product_name')}}</dt>
+            <dd>{{collection.find.added.product}}</dd>
+            <dt>{{_t('device_type')}}</dt>
+            <dd>{{collection.find.added.device_type}}</dd>
+            <dt>{{_t('state')}}</dt>
+            <dd>
+              <span class="label label-primary" ng-class="collection.find.state == 'included' ? 'label-primary':'label-warning'">
+                  <i ng-class="collection.find.state == 'included' ? 'fa fa-check':'fa fa-clock-o'"></i>
+                  {{collection.find.state}}
+              </span>
+            </dd>
+            <dt>{{_t('added_at')}}</dt>
+            <dd>{{collection.find.added.timeformat}}</dd>
+            <dt>{{_t('dsk')}}</dt>
+            <dd class="clickable" ng-click="showDskForm = !showDskForm">
+              {{collection.find.DSK}}
+              <i class="fa" ng-class="showDskForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
+            </dd>
+          </dl>
+        </div>
+        <!-- Vendor or product image -->
+        <div class="col-6 product-image-wrap">
+          <div class="product-image">
+            <img ng-if="collection.find.added.product_image != ''"
+                ng-src="{{cfg.img.zwavedevices + collection.find.added.product_image}}"
+                err-src="{{cfg.online_device_icon_url + collection.find.added.product_image_remote}}"
+                err-src2="{{cfg.img.placeholder}}"
+                alt="{{collection.find.added.product}}"/>
+            <img ng-if="collection.find.added.product_image == ''"
+                ng-src="{{cfg.img.zwavevendors + collection.find.added.brand_image}}"
+                err-src="{{cfg.img.placeholder}}"
+                alt="{{collection.find.added.brand_image}}"/>
+          </div>
+      </div>
       <form name="form_dsk_update" ng-show="showDskForm" ng-submit="handleModal('dskModal', $event);updateDsk(collection.find)">
         <div class="form-group dsk-input-group" bb-dsk-navigate>
           <span>
@@ -66,7 +85,7 @@
           <span>{{_t('lb_update')}}</span>
           </button>
         </div>
-        
+
       </form>
     </div>
     <div class="appmodal-footer">

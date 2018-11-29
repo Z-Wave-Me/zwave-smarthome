@@ -1,5 +1,7 @@
 <div class="smart-start" ng-controller="SmartStartListController">
+  <bb-loader></bb-loader>
   <div class="container">
+    <!--<pre>{{ collection | json }}</pre>-->
     <!-- Navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
     <div id="table_mobile">
@@ -44,8 +46,14 @@
                   </div>
                 </div>
               </div>
-              <div class="dsk" data-dsk-last-pos="{{v.ZW_QR_DSK.substring(35, 41)}}">
-                <span>{{v.ZW_QR_DSK}}</span>
+              <div class="vendor">
+                <span>{{v.added.brand_name}}</span>
+              </div>
+              <div class="device-type">
+                <span>{{v.added.device_type}}</span>
+              </div>
+              <div class="product">
+                <span>{{v.added.product}}</span>
               </div>
             </td>
           </tr>
@@ -60,9 +68,17 @@
             <td data-title="">
               <span class="text-supp">{{v.added.timeformat}}</span>
             </td>
-            <!-- DSK -->
-            <td data-title="DSK">
-              <span>{{v.ZW_QR_DSK}}</span>
+            <!-- Brand -->
+            <td data-title="brand">
+              <span>{{v.added.brand_name}}</span>
+            </td>
+            <!-- Device type -->
+            <td data-title="device_type">
+              <span>{{v.added.device_type}}</span>
+            </td>
+            <!-- Product -->
+            <td data-title="product">
+              <span>{{v.added.product}}</span>
             </td>
             <!-- state -->
             <td class="text-center" data-title="">
@@ -77,8 +93,8 @@
                 <i class="fa fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
                 <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
                   <div class="infowindow-in text-center">
-                    <p>This device does not support SmartStart.</p>
-                    <a href="#zwave/vendors" class="btn btn-primary">Add device manually</a>
+                    <p>{{_t('device_no_smartstart')}}</p>
+                    <a href="#zwave/vendors" class="btn btn-primary">{{_('manual_add')}}</a>
                   </div>
                 </div>
               </div>

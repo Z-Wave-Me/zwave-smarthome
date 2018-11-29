@@ -9711,7 +9711,7 @@ a.link-underline {
 }
 
 .mobile-padding {
-  padding: 0 15px;
+  padding: 0 0;
 }
 
 .mobile-padding .page-header {
@@ -12098,15 +12098,16 @@ dl dt {
     overflow: hidden;
     flex: 0 0 70%;
     margin: 0 0 10px 0;
+    padding-left: 5px;
   }
 }
 
 @media only screen and (min-width: 1024px) and (orientation: landscape) {
   .inline-dl dt {
-    flex: 0 0 15%;
+    flex: 0 0 20%;
   }
   .inline-dl dd {
-    flex: 0 0 85%;
+    flex: 0 0 80%;
   }
 }
 
@@ -15850,53 +15851,105 @@ img.widget-promo-image {
   max-height: 70px !important;
 }
 
-.list-panel.panel-devices figure {
-  min-width: 48px;
+.list-panel.panel-devices {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 767px) {
+  .list-panel.panel-devices {
+    width: 33.333333%;
+    float: left;
+    min-height: 1px;
+    padding: 1%;
+    background: none;
+    border: none;
+  }
+  .list-panel.panel-devices > * {
+    float: none;
+  }
+  .list-panel.panel-devices .inner-panel {
+    background-color: #FFFFFF;
+    padding: 10px;
+  }
+  .list-panel.panel-devices .inner-panel figure {
+    margin: 5px auto;
+    min-height: 32px;
+    min-width: 32px;
+    max-height: 48px;
+    max-width: 48px;
+  }
+  .list-panel.panel-devices .inner-panel .control {
+    display: none;
+  }
+  .list-panel.panel-devices .inner-panel .body {
+    margin: 5px auto 0px;
+    text-align: center;
+  }
+  .list-panel.panel-devices .inner-panel .body div:first-child a {
+    display: block;
+    white-space: nowrap;
+    /* force single line */
+    overflow: hidden;
+    /* don't show excess chars */
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    /* Opera */
+  }
+}
+
+.list-panel.panel-devices .inner-panel {
+  width: 100%;
+}
+
+.list-panel.panel-devices .inner-panel figure {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  .list-panel.panel-devices figure {
+  .list-panel.panel-devices .inner-panel figure {
+    float: left;
     min-width: 64px;
   }
 }
 
-.list-panel.panel-devices figure img {
-  max-width: 48px;
-  max-height: 48px;
+.list-panel.panel-devices .inner-panel figure img {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  .list-panel.panel-devices figure img {
+  .list-panel.panel-devices .inner-panel figure img {
     max-width: 64px;
     max-height: 64px;
   }
 }
 
-.list-panel.panel-devices .body div:first-child {
-  margin-top: 0;
-  line-height: 48px;
+.list-panel.panel-devices .inner-panel .body {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  .list-panel.panel-devices .body div:first-child {
+  .list-panel.panel-devices .inner-panel .body {
+    float: left;
+  }
+  .list-panel.panel-devices .inner-panel .body div:first-child {
     line-height: 64px;
   }
 }
 
-.list-panel.panel-devices .control {
+.list-panel.panel-devices .inner-panel .control {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  .list-panel.panel-devices .control {
+  .list-panel.panel-devices .inner-panel .control {
     line-height: 64px;
+    float: right;
+    text-align: right;
   }
 }
 
@@ -16525,6 +16578,35 @@ img.widget-promo-image {
 
 .state_text {
   display: inline-block;
+}
+
+.vendor {
+  display: inline-block;
+}
+
+.product {
+  display: inline-block;
+}
+
+.device-type {
+  display: inline-block;
+}
+
+.product-image-wrap {
+  text-align: center;
+  padding: 10px;
+  display: table;
+  height: 200px;
+}
+
+.product-image-wrap .product-image {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.product-image-wrap .product-image img {
+  max-height: 200px;
+  width: auto;
 }
 
 /* Login
@@ -17914,6 +17996,101 @@ img.widget-promo-image {
   border-color: black transparent transparent  transparent;
 }
 
+/* Grid
+-------------------------------------------------- */
+.grid {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+.grid > * {
+  -webkit-flex-basis: 100%;
+  flex-basis: 100%;
+  margin: 0 0;
+}
+
+.grid.auto > * {
+  flex: 1 1 0;
+}
+
+.col-1 {
+  -webkit-flex-basis: 8.33333%;
+  flex-basis: 8.33333%;
+}
+
+.col-2 {
+  -webkit-flex-basis: 16.66667%;
+  flex-basis: 16.66667%;
+}
+
+.col-3 {
+  -webkit-flex-basis: 25%;
+  flex-basis: 25%;
+}
+
+.col-4 {
+  -webkit-flex-basis: 33.33333%;
+  flex-basis: 33.33333%;
+}
+
+.col-5 {
+  -webkit-flex-basis: 41.66667%;
+  flex-basis: 41.66667%;
+}
+
+.col-6 {
+  -webkit-flex-basis: 50%;
+  flex-basis: 50%;
+}
+
+.col-7 {
+  -webkit-flex-basis: 58.33333%;
+  flex-basis: 58.33333%;
+}
+
+.col-8 {
+  -webkit-flex-basis: 66.66667%;
+  flex-basis: 66.66667%;
+}
+
+.col-9 {
+  -webkit-flex-basis: 75%;
+  flex-basis: 75%;
+}
+
+.col-10 {
+  -webkit-flex-basis: 83.33333%;
+  flex-basis: 83.33333%;
+}
+
+.col-11 {
+  -webkit-flex-basis: 91.66667%;
+  flex-basis: 91.66667%;
+}
+
+.col-12 {
+  -webkit-flex-basis: 100%;
+  flex-basis: 100%;
+}
+
+/* MIN WIDTH */
+/* MAX WIDTH */
+/* MIN WIDTH */
+/* MAX WIDTH */
+/* MIN WIDTH */
+/* MAX WIDTH */
+/* MIN WIDTH */
+/* MAX WIDTH */
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit

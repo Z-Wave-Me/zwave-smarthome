@@ -29,14 +29,15 @@ dl {
       overflow: hidden;
       flex: 0 0 70%;
       margin: 0 0 $spacing 0;
+      padding-left: 5px;
     }
   }
   @include mediaQueries(min-large) {
     dt {
-      flex: 0 0 15%;
+      flex: 0 0 20%;
     }
     dd {
-      flex: 0 0 85%;
+      flex: 0 0 80%;
     }
   }
 }
