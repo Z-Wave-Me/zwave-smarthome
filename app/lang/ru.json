@@ -286,6 +286,7 @@
     "factory_default_success": "Система сброшена на Заводские настройки.",
     "factory_default_war": "Вы уверены, что хотите вернуть контроллер к заводским настройкам?",
     "failed_to_activate_skin": "Ошибка активации скина",
+    "failed_to_load_data": "Failed to load data.",
     "failed_to_load_icons": "Failed to load Icons",
     "failed_to_load_skins": "Невозможно загрузить скин",
     "failed_to_load_skin_tokens": "Failed to load skin tokens",

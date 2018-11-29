@@ -286,6 +286,7 @@
     "factory_default_success": "O sistema retornou com sucesso aos padrões de fábrica.",
     "factory_default_war": "Tem certeza de que deseja redefinir todas as configurações para os valores padrão de fábrica?",
     "failed_to_activate_skin": "Falha ao ativar Skin",
+    "failed_to_load_data": "Failed to load data.",
     "failed_to_load_icons": "Failed to load Icons",
     "failed_to_load_skins": "Falha ao carregar as Skins",
     "failed_to_load_skin_tokens": "Failed to load skin tokens",

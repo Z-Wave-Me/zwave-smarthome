@@ -286,6 +286,7 @@
     "factory_default_success": "Systém úspěšně vrátil Výchozí nastavení.",
     "factory_default_war": "Are you sure you want to reset all to default factory settings?",
     "failed_to_activate_skin": "Failed to activate Skin",
+    "failed_to_load_data": "Failed to load data.",
     "failed_to_load_icons": "Failed to load Icons",
     "failed_to_load_skins": "Failed to load Skins",
     "failed_to_load_skin_tokens": "Failed to load skin tokens",

@@ -286,6 +286,7 @@
     "factory_default_success": "System wurde erfolgreich in Auslieferungszustand zurückgesetzt.",
     "factory_default_war": "Sind Sie sich sicher, dass Sie alles auf Werkseinstellung zurücksetzen wollen?",
     "failed_to_activate_skin": "Skin konnte nicht aktiviert werden",
+    "failed_to_load_data": "Daten konnten nicht geladen werden.",
     "failed_to_load_icons": "Icons konnten nicht geladen werden",
     "failed_to_load_skins": "Skins konnten nicht geladen werden",
     "failed_to_load_skin_tokens": "Skin-Token konnten nicht geladen werden.",

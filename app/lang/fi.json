@@ -286,6 +286,7 @@
     "factory_default_success": "Järjestelmän tehdasasetukset palautettu onnistuneesti.",
     "factory_default_war": "Oletko varma että haluat palauttaa tehdasoletusasetukset?",
     "failed_to_activate_skin": "Skinin aktivointi epäonnistui",
+    "failed_to_load_data": "Failed to load data.",
     "failed_to_load_icons": "Failed to load Icons",
     "failed_to_load_skins": "Skinien lataus ei onnistu",
     "failed_to_load_skin_tokens": "Failed to load skin tokens",

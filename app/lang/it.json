@@ -286,6 +286,7 @@
     "factory_default_success": "Sistema ripristinato alle impostazioni di fabbrica.",
     "factory_default_war": "Sei sicuro di voler ripristinare tutte le impostazioni di fabbrica?",
     "failed_to_activate_skin": "Impossibile attivare lo Skin",
+    "failed_to_load_data": "Failed to load data.",
     "failed_to_load_icons": "Failed to load Icons",
     "failed_to_load_skins": "Impossibile caricare lo Skin",
     "failed_to_load_skin_tokens": "Failed to load skin tokens",

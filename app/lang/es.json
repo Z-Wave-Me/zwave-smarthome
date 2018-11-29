@@ -286,6 +286,7 @@
     "factory_default_success": "Los valores predeterminados de fábrica del sistema se han restablecido correctamente.",
     "factory_default_war": "¿Está seguro de que desea restablecer el valor predeterminado de fábrica de todos los ajustes?",
     "failed_to_activate_skin": "No se ha podido activar el tapiz",
+    "failed_to_load_data": "Failed to load data.",
     "failed_to_load_icons": "Failed to load Icons",
     "failed_to_load_skins": "No se han podido cargar los tapices",
     "failed_to_load_skin_tokens": "Failed to load skin tokens",
