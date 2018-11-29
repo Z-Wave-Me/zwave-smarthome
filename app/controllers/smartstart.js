@@ -321,14 +321,19 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 			alertify.alertError($scope._t('delete_no_smartstart_warning'));
 			return;
 		}
-
 		alertify.confirm(message, function() {
-			dataFactory.getApi('remove_dsk', input.id, true).then(function(response) {
+			dataFactory.postApi('remove_dsk', null, input.id).then(function(response) {
 				var index = _.findIndex($scope.collection.all, {
 					id: input.id
 				});
 				if (index > -1) {
 					$scope.collection.all.splice(index, 1);
+					if($scope.collection.all.length == 0) {
+						angular.extend(cfg.route.alert, {
+							message: $scope._t('empty_dsk_list'),
+							icon: 'fa-info-circle text-info'
+						});
+					}
 				}
 			}, function(error) {
 				alertify.alertError($scope._t('error_delete_data'));
