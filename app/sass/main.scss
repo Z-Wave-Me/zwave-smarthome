@@ -20,22 +20,22 @@
 @import "vendor/_angular.slider";
 @import "vendor/_minireset";
 
-/* SmartHome UI base 
+/* SmartHome UI base
 -------------------------------------------------- */
 @import "base/_body";
 @import "base/_header";
 @import "base/_footer";
 @import "base/_navi";
-@import "base/_page_topbar"; 
-@import "base/_widget"; 
-@import "base/_report"; 
-@import "base/_list_panel"; 
-@import "base/_table"; 
-@import "base/_table_responsive"; 
-@import "base/_button"; 
+@import "base/_page_topbar";
+@import "base/_widget";
+@import "base/_report";
+@import "base/_list_panel";
+@import "base/_table";
+@import "base/_table_responsive";
+@import "base/_button";
 @import "base/_form";
 @import "base/_input";
-@import "base/_tab"; 
+@import "base/_tab";
 @import "base/_img";
 @import "base/_imglist";
 @import "base/_definition_list";
@@ -43,7 +43,7 @@
 @import "base/_bar";
 @import "base/_dropdown";
 @import "base/_infowindow";
-@import "base/_accordion"; 
+@import "base/_accordion";
 @import "base/_loader";
 @import "base/_alert";
 @import "base/_blank";
@@ -66,8 +66,8 @@
 @import "base/_commands";
 @import "base/_slider";
 @import "base/_rss";
-@import "base/_automation"; 
-@import "base/_label"; 
+@import "base/_automation";
+@import "base/_label";
 @import "base/_wizard";
 @import "base/_dots";
 @import "base/_flip";
@@ -76,12 +76,13 @@
 @import "base/_flextag";
 @import "base/_security";
 @import "base/_schedule";
+@import "base/_grid";
 
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit
 -------------------------------------------------- */
-@import "custom/_shui"; 
+@import "custom/_shui";
 
 /* SmartHome UI custom POPP
 -------------------------------------------------- */
@@ -89,4 +90,4 @@
 
 /* Media queries
 -------------------------------------------------- */
-@import "base/_media_queries"; 
+@import "base/_media_queries";

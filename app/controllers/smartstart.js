@@ -245,25 +245,25 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             $scope.loading = false;
             // Error message
             if (deviceClassesXML.state === 'rejected') {
-                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_')});
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
                 return;
             }
 
             // Error message
             if (devicesInfo.state === 'rejected') {
-                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_')});
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
                 return;
             }
 
             // Error message
             if (DSKList.state === 'rejected') {
-                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_')});
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
                 return;
             }
 
             // Error message
             if (Vendors.state === 'rejected') {
-                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_')});
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
                 return;
             }
             // Success - DeviceClassesXML
