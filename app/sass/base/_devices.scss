@@ -17,32 +17,75 @@ $inclusion-img-w: 96px;
 
 .list-panel {
   &.panel-devices {
-    figure {
-      min-width: 48px;
-      @include mediaQueries(min-small) {
-        min-width: 64px;
+    @include mediaQueries(max-small) {
+      > * {
+        float: none;
       }
-      img {
-        max-width: 48px;
-        max-height: 48px;
-        @include mediaQueries(min-small) {
-          max-width: 64px;
-          max-height: 64px;
+
+      width: 33.333333%;
+      float: left;
+      min-height: 1px;
+      padding: 1%;
+      background: none;
+      border: none;
+
+      .inner-panel {
+        background-color: #FFFFFF;
+        padding: 10px;
+
+        figure {
+          margin: 5px auto;
+          min-height: 32px;
+          min-width: 32px;
+          max-height: 48px;
+          max-width: 48px;
+        }
+
+        .control {
+          display: none;
+        }
+
+        .body {
+          margin: 5px auto 0px;
+          text-align: center;
+          div:first-child {
+            a {
+              display: block;
+              @include textOverflow();
+            }
+          }
         }
       }
     }
-    .body {
-      div:first-child {
-        margin-top: 0;
-        line-height: 48px;
+
+    .inner-panel {
+      width: 100%;
+      figure {
+        @include mediaQueries(min-small) {
+          float: left;
+          min-width: 64px;
+        }
+        img {
+          @include mediaQueries(min-small) {
+            max-width: 64px;
+            max-height: 64px;
+          }
+        }
+      }
+      .body {
+        @include mediaQueries(min-small) {
+          float: left;
+          div:first-child {
+            line-height: 64px;
+          }
+        }
+      }
+      .control {
         @include mediaQueries(min-small) {
           line-height: 64px;
+          float: right;
+          text-align: right;
         }
-      }
-    }
-    .control {
-      @include mediaQueries(min-small) {
-        line-height: 64px;
       }
     }
   }

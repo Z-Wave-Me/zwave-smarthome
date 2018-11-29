@@ -15879,53 +15879,105 @@ img.widget-promo-image {
   max-height: 70px !important;
 }
 
-.list-panel.panel-devices figure {
-  min-width: 48px;
+.list-panel.panel-devices {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 767px) {
+  .list-panel.panel-devices {
+    width: 33.333333%;
+    float: left;
+    min-height: 1px;
+    padding: 1%;
+    background: none;
+    border: none;
+  }
+  .list-panel.panel-devices > * {
+    float: none;
+  }
+  .list-panel.panel-devices .inner-panel {
+    background-color: #FFFFFF;
+    padding: 10px;
+  }
+  .list-panel.panel-devices .inner-panel figure {
+    margin: 5px auto;
+    min-height: 32px;
+    min-width: 32px;
+    max-height: 48px;
+    max-width: 48px;
+  }
+  .list-panel.panel-devices .inner-panel .control {
+    display: none;
+  }
+  .list-panel.panel-devices .inner-panel .body {
+    margin: 5px auto 0px;
+    text-align: center;
+  }
+  .list-panel.panel-devices .inner-panel .body div:first-child a {
+    display: block;
+    white-space: nowrap;
+    /* force single line */
+    overflow: hidden;
+    /* don't show excess chars */
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    /* Opera */
+  }
+}
+
+.list-panel.panel-devices .inner-panel {
+  width: 100%;
+}
+
+.list-panel.panel-devices .inner-panel figure {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  .list-panel.panel-devices figure {
+  .list-panel.panel-devices .inner-panel figure {
+    float: left;
     min-width: 64px;
   }
 }
 
-.list-panel.panel-devices figure img {
-  max-width: 48px;
-  max-height: 48px;
+.list-panel.panel-devices .inner-panel figure img {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  .list-panel.panel-devices figure img {
+  .list-panel.panel-devices .inner-panel figure img {
     max-width: 64px;
     max-height: 64px;
   }
 }
 
-.list-panel.panel-devices .body div:first-child {
-  margin-top: 0;
-  line-height: 48px;
+.list-panel.panel-devices .inner-panel .body {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  .list-panel.panel-devices .body div:first-child {
+  .list-panel.panel-devices .inner-panel .body {
+    float: left;
+  }
+  .list-panel.panel-devices .inner-panel .body div:first-child {
     line-height: 64px;
   }
 }
 
-.list-panel.panel-devices .control {
+.list-panel.panel-devices .inner-panel .control {
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (min-width: 768px) {
-  .list-panel.panel-devices .control {
+  .list-panel.panel-devices .inner-panel .control {
     line-height: 64px;
+    float: right;
+    text-align: right;
   }
 }
 

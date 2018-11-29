@@ -1,249 +1,263 @@
 <!-- Devicess view -->
 <div ng-controller="DeviceController">
-  <bb-loader></bb-loader>
   <h2 ng-bind="_t('lb_select_device_type')"></h2>
   <!-- Zwave -->
   <div class="list-panel panel-devices">
-    <!-- img -->
-    <figure class="img">
-      <a href="#zwave/devices">
-        <img ng-src="app/img/logo-zwave.svg" alt="img" />
-      </a>
-    </figure>
-    <!-- body -->
-    <div class="body">
-      <div>
-        {{_t('devices_text_zwave')}}
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a href="#zwave/devices">
+          <img ng-src="app/img/logo-zwave.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#zwave/devices">{{_t('devices_text_zwave')}}</a>
+        </div>
       </div>
-    </div>
 
-    <!-- dots -->
-    <div class="l-hide control">
-      <!-- expand/collapse -->
-      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesZway', $event)"></button>
-    </div>
-    <!-- control -->
-    <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'">
-      <div class="btn-group">
-        <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/expert',_t('redirect_to_expert'))"
-          ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'">
-          <i class="fa fa-external-link"></i>
-          <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
-        </a>
-        <a class="btn btn-default" href="#zwave/vendors" title="{{_t('add_new')}}">
-          <i class="fa fa-plus text-success"></i>
-          <span class="btn-name" ng-bind="_t('add_new')"></span>
-        </a>
-        <a class="btn btn-default" href="#zwave/devices" title="{{_t('manage')}}">
-          <i class="fa fa-edit text-primary"></i>
-          <span class="btn-name" ng-bind="_t('manage')"></span>
-        </a>
+      <!-- dots -->
+      <div class="l-hide control">
+        <!-- expand/collapse -->
+        <button type="button" aria-expanded="{{naviExpanded['devicesZway'] ? true : false}}" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesZway', $event)"></button>
+      </div>
+      <!-- control -->
+      <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'">
+        <div class="btn-group">
+          <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/expert',_t('redirect_to_expert'))"
+            ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'">
+            <i class="fa fa-external-link"></i>
+            <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
+          </a>
+          <a class="btn btn-default" href="#zwave/vendors" title="{{_t('add_new')}}">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#zwave/devices" title="{{_t('manage')}}">
+            <i class="fa fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <!-- Mobile -->
   <div class="list-panel panel-devices">
-    <!-- img -->
-    <figure class="img">
-      <a ng-href="#module/put/{{mobileAppSupport.instanceId}}">
-        <img ng-src="app/img/logo-mobile.svg" alt="img" />
-      </a>
-    </figure>
-    <!-- body -->
-    <div class="body">
-      <div>
-        {{_t('devices_text_mobile')}}
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#module/put/{{mobileAppSupport.instanceId}}">
+          <img ng-src="app/img/logo-mobile.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a ng-href="#module/put/{{mobileAppSupport.instanceId}}">{{_t('devices_text_mobile')}}</a>
+        </div>
       </div>
-    </div>
-    <!-- dots -->
-    <div class="l-hide control">
-      <!-- expand/collapse -->
-      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesMobile', $event)"></button>
-    </div>
-    <!-- control -->
-    <div class="control" ng-class="naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'">
-      <div class="btn-group">
-        <button class="btn btn-default" ng-click="handleMobileModal($event)" title="{{_t('add_new')}}">
-          <i class="fa fa-plus text-success"></i>
-          <span class="btn-name" ng-bind="_t('add_new')"></span>
-        </button>
-        <button class="btn btn-default" ng-click="handleManage()" title="{{_t('manage')}}">
-          <i class="fa fa-edit text-primary"></i>
-          <span class="btn-name" ng-bind="_t('manage')"></span>
-        </button>
+
+      <!-- dots -->
+      <div class="l-hide control">
+        <!-- expand/collapse -->
+        <button type="button" aria-expanded="{{naviExpanded['devicesMobile'] ? true : false}}" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesMobile', $event)"></button>
+      </div>
+      <!-- control -->
+      <div class="control" ng-class="naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'">
+        <div class="btn-group">
+          <button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </button>
+          <a class="btn btn-default" href="#module/put/{{mobileAppSupport.instanceId}}" title="{{_t('manage')}}">
+            <i class="fa fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <!-- Camera -->
   <div class="list-panel panel-devices">
-    <!-- img -->
-    <figure class="img">
-      <a ng-href="#camera/manage">
-        <img ng-src="app/img/logo-camera.svg" alt="img" />
-      </a>
-    </figure>
-    <!-- body -->
-    <div class="body">
-      <div>
-        {{_t('devices_text_camera')}}
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#camera/manage">
+          <img ng-src="app/img/logo-camera.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a ng-href="#camera/manage">{{_t('devices_text_camera')}}</a>
+        </div>
       </div>
-    </div>
 
-    <!-- dots -->
-    <div class="l-hide control">
-      <!-- expand/collapse -->
-      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesCamera', $event)"></button>
-    </div>
-    <!-- control -->
-    <div class="control" ng-class="naviExpanded['devicesCamera'] ? 'expand-true': 'expand-false'">
-      <div class="btn-group">
-        <a class="btn btn-default" href="#camera/add" title="{{_t('add_new')}}">
-          <i class="fa fa-plus text-success"></i>
-          <span class="btn-name" ng-bind="_t('add_new')"></span>
-        </a>
-        <a class="btn btn-default" href="#camera/manage" title="{{_t('manage')}}">
-          <i class="fa fa-edit text-primary"></i>
-          <span class="btn-name" ng-bind="_t('manage')"></span>
-        </a>
+      <!-- dots -->
+      <div class="l-hide control">
+        <!-- expand/collapse -->
+        <button type="button" aria-expanded="{{naviExpanded['devicesCamera'] ? true : false}}" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesCamera', $event)"></button>
+      </div>
+      <!-- control -->
+      <div class="control" ng-class="naviExpanded['devicesCamera'] ? 'expand-true': 'expand-false'">
+        <div class="btn-group">
+          <a class="btn btn-default" href="#camera/add" title="{{_t('add_new')}}">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#camera/manage" title="{{_t('manage')}}">
+            <i class="fa fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <!-- Speech -->
   <div class="list-panel panel-devices">
-    <!-- img -->
-    <figure class="img">
-      <a ng-href="#speech_assistants/manage">
-        <img ng-src="app/img/logo-speech-assistants.svg" alt="img" />
-      </a>
-    </figure>
-    <!-- body -->
-    <div class="body">
-      <div>
-        {{_t('devices_text_speech')}}
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#speech_assistants/manage">
+          <img ng-src="app/img/logo-speech-assistants.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a ng-href="#speech_assistants/manage">{{_t('devices_text_speech')}}</a>
+        </div>
       </div>
-    </div>
 
-    <!-- dots -->
-    <div class="l-hide control">
-      <!-- expand/collapse -->
-      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesSpeech', $event)"></button>
-    </div>
-    <!-- control -->
-    <div class="control" ng-class="naviExpanded['devicesSpeech'] ? 'expand-true': 'expand-false'">
-      <div class="btn-group">
-        <a class="btn btn-default" href="#speech_assistants/devices" title="{{_t('add_new')}}">
-          <i class="fa fa-plus text-success"></i>
-          <span class="btn-name" ng-bind="_t('add_new')"></span>
-        </a>
-        <a class="btn btn-default" href="#speech_assistants/manage" title="{{_t('manage')}}">
-          <i class="fa fa-edit text-primary"></i>
-          <span class="btn-name" ng-bind="_t('manage')"></span>
-        </a>
+      <!-- dots -->
+      <div class="l-hide control">
+        <!-- expand/collapse -->
+        <button type="button" aria-expanded="{{naviExpanded['devicesSpeech'] ? true : false}}" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesSpeech', $event)"></button>
+      </div>
+      <!-- control -->
+      <div class="control" ng-class="naviExpanded['devicesSpeech'] ? 'expand-true': 'expand-false'">
+        <div class="btn-group">
+          <a class="btn btn-default" href="#speech_assistants/devices" title="{{_t('add_new')}}">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#speech_assistants/manage" title="{{_t('manage')}}">
+            <i class="fa fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <!-- Enocean -->
   <div class="list-panel panel-devices" ng-if="enocean.installed">
-    <!-- img -->
-    <figure class="img">
-      <a ng-href="#enocean/manage">
-        <img ng-src="app/img/logo-enocean.svg" alt="img" />
-      </a>
-    </figure>
-    <!-- body -->
-    <div class="body">
-      <div>
-        {{_t('devices_text_enocean')}}
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#enocean/manage">
+          <img ng-src="app/img/logo-enocean.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#enocean/manage">{{_t('devices_text_enocean')}}</a>
+        </div>
+        <bb-alert-text alert="enocean.alert"></bb-alert-text>
       </div>
-      <bb-alert-text alert="enocean.alert"></bb-alert-text>
-    </div>
 
-    <!-- dots -->
-    <div class="l-hide control" ng-if="enocean.active">
-      <!-- expand/collapse -->
-      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesEnocean', $event)"></button>
-    </div>
-    <!-- control -->
-    <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
+      <!-- dots -->
+      <div class="l-hide control" ng-if="enocean.active">
+        <!-- expand/collapse -->
+        <button type="button" aria-expanded="{{naviExpanded['devicesEnocean'] ? true : false}}" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesEnocean', $event)"></button>
+      </div>
+      <!-- control -->
+      <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
 
-      <div class="btn-group">
-        <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
-          <i class="fa fa-plus text-success"></i>
-          <span class="btn-name" ng-bind="_t('add_new')"></span>
-        </a>
-        <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
-          <i class="fa fa-edit text-primary"></i>
-          <span class="btn-name" ng-bind="_t('manage')"></span>
-        </a>
+        <div class="btn-group">
+          <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
+            <i class="fa fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <!-- rf433 -->
   <div class="list-panel panel-devices" ng-if="rf433.installed">
-    <!-- img -->
-    <figure class="img">
-      <a ng-href="#rf433/manage">
-        <img ng-src="app/img/433.svg" alt="img" />
-      </a>
-    </figure>
-    <!-- body -->
-    <div class="body">
-      <div>
-        {{_t('devices_text_433')}}
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#rf433/manage">
+          <img ng-src="app/img/433.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#rf433/manage">{{_t('devices_text_433')}}</a>
+        </div>
+        <bb-alert-text alert="rf433.alert"></bb-alert-text>
       </div>
-      <bb-alert-text alert="rf433.alert"></bb-alert-text>
-    </div>
 
-    <!-- dots -->
-    <div class="l-hide control" ng-if="rf433.active">
-      <!-- expand/collapse -->
-      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesRf433', $event)"></button>
-    </div>
-    <!-- control -->
-    <div class="control" ng-class="naviExpanded['devicesRf433'] ? 'expand-true': 'expand-false'" ng-if="rf433.active">
-      <div class="btn-group">
-        <a class="btn btn-default" href="#rf433/teachin" title="{{_t('add_new')}}">
-          <i class="fa fa-plus text-success"></i>
-          <span class="btn-name" ng-bind="_t('add_new')"></span>
-        </a>
-        <a class="btn btn-default" href="#rf433/manage" title="{{_t('manage')}}">
-          <i class="fa fa-edit text-primary"></i>
-          <span class="btn-name" ng-bind="_t('manage')"></span>
-        </a>
+      <!-- dots -->
+      <div class="l-hide control" ng-if="rf433.active">
+        <!-- expand/collapse -->
+        <button type="button" aria-expanded="{{naviExpanded['devicesRf433'] ? true : false}}" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesRf433', $event)"></button>
+      </div>
+      <!-- control -->
+      <div class="control" ng-class="naviExpanded['devicesRf433'] ? 'expand-true': 'expand-false'" ng-if="rf433.active">
+        <div class="btn-group">
+          <a class="btn btn-default" href="#rf433/teachin" title="{{_t('add_new')}}">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#rf433/manage" title="{{_t('manage')}}">
+            <i class="fa fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <!-- wifi -->
   <div class="list-panel panel-devices">
-    <!-- img -->
-    <figure class="img">
-      <a ng-href="#wifiplug/manage">
-        <img ng-src="app/img/logo-wifiplug.svg" alt="img" />
-      </a>
-    </figure>
-    <!-- body -->
-    <div class="body">
-      <div>
-        {{_t('devices_text_wifi')}}
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#wifiplug/manage">
+          <img ng-src="app/img/logo-wifiplug.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#wifiplug/manage">{{_t('devices_text_wifi')}}</a>
+        </div>
       </div>
-    </div>
 
-    <!-- dots -->
-    <div class="l-hide control">
-      <!-- expand/collapse -->
-      <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesWifi', $event)"></button>
-    </div>
-    <!-- control -->
-    <div class="control" ng-class="naviExpanded['devicesWifi'] ? 'expand-true': 'expand-false'">
-      <div class="btn-group">
-        <a class="btn btn-default" href="#wifiplug/add" title="{{_t('add_new')}}">
-          <i class="fa fa-plus text-success"></i>
-          <span class="btn-name" ng-bind="_t('add_new')"></span>
-        </a>
-        <a class="btn btn-default" href="#wifiplug/manage" title="{{_t('manage')}}">
-          <i class="fa fa-edit text-primary"></i>
-          <span class="btn-name" ng-bind="_t('manage')"></span>
-        </a>
+      <!-- dots -->
+      <div class="l-hide control">
+        <!-- expand/collapse -->
+        <button type="button" aria-expanded="{{naviExpanded['devicesWifi'] ? true : false}}" class="btn btn-ctrl" title="{{_t('lb_settings')}}" ng-click="expandNavi('devicesWifi', $event)"></button>
+      </div>
+      <!-- control -->
+      <div class="control" ng-class="naviExpanded['devicesWifi'] ? 'expand-true': 'expand-false'">
+        <div class="btn-group">
+          <a class="btn btn-default" href="#wifiplug/add" title="{{_t('add_new')}}">
+            <i class="fa fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#wifiplug/manage" title="{{_t('manage')}}">
+            <i class="fa fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
