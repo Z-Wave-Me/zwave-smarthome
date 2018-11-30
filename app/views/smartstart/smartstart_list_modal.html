@@ -38,7 +38,8 @@
             <img ng-if="collection.find.added.product_image != ''"
                 ng-src="{{cfg.img.zwavedevices + collection.find.added.product_image}}"
                 err-src="{{cfg.online_device_icon_url + collection.find.added.product_image_remote}}"
-                err-src2="{{cfg.img.placeholder}}"
+                err-src2="{{collection.find.added.product_image_remote}}"
+                err-src3="{{cfg.img.placeholder}}"
                 alt="{{collection.find.added.product}}"/>
             <img ng-if="collection.find.added.product_image == ''"
                 ng-src="{{cfg.img.zwavevendors + collection.find.added.brand_image}}"

@@ -227,6 +227,8 @@ myApp.directive('errSrc', function() {
 					attrs.$set('src', attrs.errSrc);
 				} else if (attrs.errSrc2 && attrs.src != attrs.errSrc2) {
 					attrs.$set('src', attrs.errSrc2);
+				} else if (attrs.errSrc3 && attrs.src != attrs.errSrc2 && attrs.src != attrs.errSrc3 && attrs.errSrc2 != attrs.errSrc3) {
+					attrs.$set('src', attrs.errSrc3);
 				}
 			});
 			// Displays the error image when ngSrc is blank
@@ -235,6 +237,8 @@ myApp.directive('errSrc', function() {
 					attrs.$set('src', attrs.errSrc);
 				} else if (!value && attrs.errSrc2) {
 					attrs.$set('src', attrs.errSrc2);
+				} else if (!value && attrs.errSrc3) {
+					attrs.$set('src', attrs.errSrc3);
 				}
 			});
 		}
@@ -314,7 +318,7 @@ myApp.directive('knob', function() {
 });
 
 /**
- * Displays a knob 
+ * Displays a knob
  * @class myknob
  */
 myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFactory, dataService) {
@@ -565,7 +569,7 @@ myApp.directive('bbTab', function () {
       elem.on('click', function (e) {
         var tabId = elem.attr('data-href');
         var wrap = elem.closest('.tab-wrap');
-        // Set all tabs to aria-selected="false" 
+        // Set all tabs to aria-selected="false"
         wrap.find('[role="tab"]').removeAttr('aria-selected');
         // Adding  hidden attr to all tab panels
         wrap.find('[role="tabpanel"]').attr('hidden', true);
