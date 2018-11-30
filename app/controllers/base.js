@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q, cfg, cfgicons, dataFactory, dataService, deviceDetector, myCache, _) {
+myAppController.controller('BaseController', function($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q, $websocket, cfg, cfgicons, dataFactory, dataService, deviceDetector, myCache, _) {
 
     // Global scopes
     $scope.nightMode = false;
@@ -604,7 +604,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             $event.stopPropagation();
         }
         $scope.isModal = $scope.modalArr[key];
-    };  
+    };
 
     $scope.expand = {};
     /**
@@ -624,9 +624,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
          angular.forEach($scope.expand,function(v,k){
               if(k != key){
                 $scope.expand[k] = false;
-                
+
               }
-             
+
             });
         }
         $scope.expand[key] = !($scope.expand[key]);
@@ -688,18 +688,50 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
 
 
     $scope.openSideNav = function($event) {
-        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0 && $location.path().indexOf("rooms") == -1 && $location.path().indexOf("events") == -1) {    
+        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0 && $location.path().indexOf("rooms") == -1 && $location.path().indexOf("events") == -1) {
             $scope.expandNavi('mainNav', $event, true)
         }
     };
 
     $scope.closeSideNav = function($event) {
         if($location.path().indexOf("rooms") == 1 || $location.path().indexOf("events") == 1 && $event.type == "click" && $scope.deviceDetector.isMobile()) {
-            $scope.expandNavi('mainNav', $event, false)  
+            $scope.expandNavi('mainNav', $event, false)
         }
 
         if($location.path().indexOf("rooms") != 1 || $location.path().indexOf("events") != 1 && $scope.deviceDetector.isMobile()) {
             $scope.expandNavi('mainNav', $event, false);
         }
     };
+
+
+
+    /**
+     * Test Webserver
+     */
+
+    // var ws = $websocket('ws://' + $location.$$host + ':8083/');
+    // var collection = [];
+    // console.log("cfg.server_url", $location.$$host);
+    // ws.onMessage(function(event) {
+    //   //console.log('message: ', event);
+    //   //console.log('message: ', JSON.parse(event.data));
+    //   var event_data = JSON.parse(event.data);
+    //   console.log("event data type", event_data.type);
+    //   console.log("event data data", JSON.parse(event_data.data));
+
+    // });
+
+    // ws.onError(function(event) {
+    //   console.log('connection Error', event);
+    // });
+
+    // ws.onClose(function(event) {
+    //   console.log('connection closed', event);
+    // });
+
+    // ws.onOpen(function() {
+    //   console.log('connection open');
+    // });
+
+
 });
