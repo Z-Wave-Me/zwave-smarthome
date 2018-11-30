@@ -83,6 +83,7 @@ module.exports = function(grunt) {
 					'vendor/angular/angular-1.2.28/angular-cookies.min.js',
 					'vendor/angular/angular-1.2.28/angular-touch.js',
 					'vendor/angular/angular-1.2.28/angular-animate.js',
+					'vendor/angular/angular-websocket/angular-websocket.min.js',
 					'vendor/dragdrop/angular-sortable-view.min.js',
 					// Bootstrap
 					'vendor/bootstrap/bootstrap.min.js',
