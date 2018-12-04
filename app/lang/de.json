@@ -225,6 +225,7 @@
     "disarm_condition": "Bedingung für das Entschärfen",
     "disarm_device": "(De-) - aktivieren per Gerät",
     "disarm_time": "(De-) - aktivieren per Zeitplan",
+    "discard_changes": "Änderungen verwerfen?",
     "dont_send_on_command": "Sende kein 'An' Kommando, wenn das Gerät bereits aktiviert ist. Das Gleiche gilt für 'Aus'.",
     "doorlock": "Türschloss",
     "doorLockControl": "Türschloss-Steuerung",

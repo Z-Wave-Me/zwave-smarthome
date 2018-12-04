@@ -225,6 +225,7 @@
     "disarm_condition": "Disarm condition",
     "disarm_device": "(Dis)-arm by Device",
     "disarm_time": "(Dis)-arm by Time",
+    "discard_changes": "Discard changes?",
     "dont_send_on_command": "Don't send On command, if device is already turned On, similarly for Off",
     "doorlock": "Zámek dveří",
     "doorLockControl": "Door Lock Control",

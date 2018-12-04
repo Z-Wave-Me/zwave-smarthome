@@ -225,6 +225,7 @@
     "disarm_condition": "Disarm condition",
     "disarm_device": "(Dis)-arm by Device",
     "disarm_time": "(Dis)-arm by Time",
+    "discard_changes": "Discard changes?",
     "dont_send_on_command": "Não envie o comando ON, se o dispositivo já estiver ligado, o mesmo acontece para OFF",
     "doorlock": "Fechadura",
     "doorLockControl": "Controlo da Fechadura",
