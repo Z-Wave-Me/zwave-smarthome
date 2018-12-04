@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Update the device database.",
     "device_exists": "Enheten existerar redan. Avinstallera enheten och installera den igen.",
+    "device_name": "Device name",
     "device_no_event": "Denna enhet har inte någon händelse",
     "device_no_smartstart": "This device does not support SmartStart.",
     "device_removed": "Device not available",

@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Обновить базу данных устройств.",
     "device_exists": "Устройство уже добавлено. Удалите устройство и добавьте заново.",
+    "device_name": "Device name",
     "device_no_event": "Устройство не имеет событий",
     "device_no_smartstart": "This device does not support SmartStart.",
     "device_removed": "Device not available",

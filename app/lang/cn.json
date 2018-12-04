@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Update the device database.",
     "device_exists": "设备已经存在，卸载然后重新安装.",
+    "device_name": "Device name",
     "device_no_event": "设备没有任何事件 ",
     "device_no_smartstart": "This device does not support SmartStart.",
     "device_removed": "Device not available",

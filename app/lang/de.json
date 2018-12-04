@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Geräte welche den Alarm auslösen können",
     "device_database_info": "Hier erhalten Sie die aktuellsten Geräte- und Herstellerinformationen.",
     "device_exists": "Das Gerät existiert bereits. Bitte erneut installieren.",
+    "device_name": "Gerätename",
     "device_no_event": "Dieses Gerät hat keine Events",
     "device_no_smartstart": "Dieses Gerät unterstützt kein SmartStart.",
     "device_removed": "Gerät nicht verfügbar",
