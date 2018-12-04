@@ -714,6 +714,7 @@
     "redirect_to_expert": "Sinut ohjataan erilliseen Z-Wave-asentajien ja -ammattilaisten käyttöliittymään. Jos et kuulu näihin ryhmiin eikä sinulla ole riittävää Z-Wave-teknologian osaamista, niin tämä toiminto ei ole sinua varten! ",
     "redo_inclusion": "Uudelleenliitä verkkoon",
     "reform_network": "Reform network",
+    "registered_at": "Registered at",
     "release": "vapautettu",
     "reload": "Reload",
     "reloading_page": "Ladataan sivu uudelleen...",
