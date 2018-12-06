@@ -1,6 +1,6 @@
 /**
  * @overview Receives data from the Alpaca form and stores them on the server.
- * @author Martin Vach,Niels Roche 
+ * @author Martin Vach,Niels Roche
  */
 
 /**
@@ -29,7 +29,9 @@ var postRenderAlpaca = function (renderedForm) {
         var lang = $(this).data('lang');
         var fromapp = $(this).data('fromapp');
         var fromroute= $(this).data('fromroute');
-        
+
+        delete data.instanceId;
+
         // submit via ajax
         $.ajax({
             type: type,
@@ -43,18 +45,16 @@ var postRenderAlpaca = function (renderedForm) {
             },
             data: JSON.stringify(data),
             beforeSend: function () {
-                //console.log(data);
-                return;
-                //$('.module-spinner').show();
+                $('#alpaca-spinner').show();
             },
             success: function (response) {
-                $('.module-spinner').fadeOut();
+                $('#alpaca-spinner').fadeOut();
                 if(fromroute){
                     window.location.replace("#" + fromroute);
                 } else if (fromapp) {
                     window.location.replace("#module/post/" + fromapp);
                 } else {
-                    if (data.instanceId > 0) {
+                    if (type == 'PUT') {
                         window.location.replace("#apps/instance");
                     } else {
                         window.location.replace("#apps/local");
@@ -62,7 +62,7 @@ var postRenderAlpaca = function (renderedForm) {
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                $('.module-spinner').fadeOut();
+                $('#alpaca-spinner').fadeOut();
                 if (xhr.status && xhr.status == 400) {
                     alert(xhr.responseText);
                 } else {
@@ -86,8 +86,8 @@ function postRenderAlpacaData(renderedForm) {
         if (defaults.indexOf(v.name) > -1) {
             inputData[v.name] = v.value;
         }
-
     });
+    inputData.active = inputData.active ? inputData.active : false;
     return $.extend(inputData, alpacaData);
 }
 ;

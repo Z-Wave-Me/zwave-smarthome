@@ -546,7 +546,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function refreshApi(api, params, updateTime) {
-        if(updateTime !== undefined || !updateTime) {
+        if(updateTime || typeof updateTime !== 'undefined') {
             updatedTime = updateTime;
         }
         if(_.findWhere($http.pendingRequests,{failWait: api})){

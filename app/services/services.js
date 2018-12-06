@@ -230,6 +230,20 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			return false;
 		}
 	};
+
+	/**
+	 * Check ZWAY session
+	 * @param {string} sids
+	 * @returns {Boolean}
+	 */
+	this.checkZWAYSession = function(sid) {
+		if($cookies.ZWAYSession == sid) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	/**
 	 * Get last login info
 	 * @returns {Sring|Boolean}
@@ -279,8 +293,16 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	this.logOut = function() {
 		this.setUser(null);
 		this.setZWAYSession(null);
+
+		var redirect = false;
 		// Check if host is in the logout redirect list
-		var redirect = cfg.logout_redirect[$location.host()];
+		angular.forEach(cfg.logout_redirect, function(v, k) {
+			if ($location.host().indexOf(k) != -1) {
+				redirect = v;
+				return;
+			}
+		});
+
 		// Redirect to an url from list
 		if (redirect) {
 			$window.location.href = redirect;
@@ -1186,7 +1208,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			} else if (~keys.indexOf(i) && !angular.isArray(obj[i]) &&
 				typeof obj[i] === 'string' &&
 				obj[i].indexOf("function") === 0) {
-				// overwrite old string with function                
+				// overwrite old string with function
 				// we can only pass a function as string in JSON ==> doing a real function
 				obj[i] = new Function('return ' + obj[i])();
 			}

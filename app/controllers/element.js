@@ -335,6 +335,15 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
     $scope.elementOnLongPress = function() {};
     $scope.elementOnTouchEnd = function() {};
 
+
+    /**
+     * Element highlighting toggle
+     */
+    $scope.highlightElementToogle = function(id) {
+        var ele = angular.element(id);
+        ele.hasClass('dd-on-start') ? ele.removeClass('dd-on-start') : ele.addClass('dd-on-start');
+    }
+
     /**
      * Function to run when when a user starts moving an element
      * @param item -  is the item in model which started being moved
@@ -343,23 +352,33 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
      * @param helper - is an object which contains the jqLite/jQuery object (as property element) of what is being dragged around
      */
     $scope.dragDropStart = function(item, part, index, helper) {
-            angular.element('#' + helper.element.context.id).addClass('dd-on-start');
-            //jQuery('#' +  helper.element.context.id).addClass('dd-on-start');
-        }
-        /**
-         * Function to run when elements order has changed after sorting
-         * @param item - is the item in model which has been moved
-         * @param partFrom - is the part from which the $item originated
-         * @param partTo - is the part to which the $item has been moved
-         * @param indexFrom -  is the previous index of the $item in $partFrom
-         * @param indexTo -  is the index of the $item in $partTo
-         */
+        helper.element.addClass('dd-on-start');
+    }
+
+    /**
+     * Function to run when elements order has changed after sorting
+     * @param item - is the item in model which has been moved
+     * @param partFrom - is the part from which the $item originated
+     * @param partTo - is the part to which the $item has been moved
+     * @param indexFrom -  is the previous index of the $item in $partFrom
+     * @param indexTo -  is the index of the $item in $partTo
+     */
     $scope.dragDropSort = function(item, partFrom, partTo, indexFrom, indexTo) {
+        angular.element('.card-element-dragdrop').removeClass('dd-on-start');
         $scope.dataHolder.dragdrop.data = [];
         angular.forEach(partFrom, function(v, k) {
             $scope.dataHolder.dragdrop.data.push(v.id);
-
         });
+    }
+
+    /**
+     * Function to run when when a user stops moving an element
+     * @param item - is the item in model which started being moved
+     * @param part - is the part from which the $item originates
+     * @param index - is the index of the $item in $part
+     */
+    $scope.dragDropStop = function(item, part, part) {
+        angular.element('.card-element-dragdrop').removeClass('dd-on-start');
     }
 
     /**
@@ -382,19 +401,24 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
         });
     }
 
-    /**
+/**
      * Run command
      */
     $scope.runCmd = function(cmd, id) {
+        var index = _.findIndex($scope.dataHolder.devices.all, {
+            id: id
+        });
+
+        angular.extend($scope.dataHolder.devices.all[index], {
+            progress: true
+        });
 
         dataFactory.runApiCmd(cmd).then(function(response) {
             var index = _.findIndex($scope.dataHolder.devices.all, {
                 id: id
             });
+
             if ($scope.dataHolder.devices.all[index]) {
-                angular.extend($scope.dataHolder.devices.all[index], {
-                    progress: true
-                });
 
                 var cmdTimeout = $timeout(function() {
                     angular.extend($scope.dataHolder.devices.all[index], {
@@ -411,6 +435,9 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
+            angular.extend($scope.dataHolder.devices.all[index], {
+                progress: false
+            });
         });
         return;
     };
@@ -489,7 +516,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
                     oldSoft = 99;
                     oldCold = 99;
                 }
-                // perform on 
+                // perform on
                 $scope.runCmd(softId + '/command/exact?level=' + oldSoft, softId);
                 $scope.runCmd(coldId + '/command/exact?level=' + oldCold, coldId);
                 $scope.runCmd(dimmerId + '/command/on', dimmerId);
@@ -650,7 +677,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
                     return v;
                 }
             });
-        } else if ('list' in $scope.dataHolder.devices.filter) { // Filter by list 
+        } else if ('list' in $scope.dataHolder.devices.filter) { // Filter by list
             var list = {},
                 key = Object.keys($scope.dataHolder.devices.filter.list[0])[0];
             _.each($scope.dataHolder.devices.filter.list, function(i) {

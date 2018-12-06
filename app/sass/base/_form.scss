@@ -17,6 +17,9 @@
   color: lighten($app-body-color, 30%);
   border: solid 1px #CCCCCC;
 
+  // placeholder color
+  @include placeholder(lighten($app-body-color, 75%));
+
   //padding: 6px 12px;
   height: auto;
   // Media queries
@@ -63,8 +66,7 @@ input[type=checkbox] {
   }*/
   //padding: $spacing;
 
-
-  margin: 0px 26px 11px 0;
+  margin: 0px 26px 20px 0;
   font-size: 22px;
   @include mediaQueries(min-small) {
     margin: 0 6px + $spacing-half 5px 0;

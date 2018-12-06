@@ -45,6 +45,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		routeId: 0,
 		tab: 1,
 		days: [1, 2, 3, 4, 5, 6, 0],
+		intervals: [0, 5, 15, 30, 60],
 		devicesInRoom: {
 			input: [],
 			alarms: [],
@@ -147,7 +148,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		input: {
 			instanceId: $routeParams.id,
 			moduleId: "Security",
-			active: true,
+			active: false,
 			title: "Security",
 			params: {
 				times: {
@@ -289,8 +290,14 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			$scope.security.securityModal.title = this.formatTime(timelineData.start) + " - " + this.formatTime(timelineData.end);
 			$scope.handleModal('securityModal');
 		},
-		connect: function(data) {},
-		confirm: function() {},
+		connect: function(data) {
+			data.text = $scope._t('lb_arm')
+			this.addScheduleData(data);
+			$scope.updateData();
+		},
+		confirm: function() {
+			return $scope._t('connect_schedules');
+		},
 		delete_bar: function() {
 			$scope.updateData();
 		}
@@ -299,7 +306,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	$scope.jQuerySchedule = {};
 
 	/**
-	 *  Reset Original data 
+	 *  Reset Original data
 	 */
 	$scope.orig = {
 		options: {}
@@ -331,7 +338,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					if (e == 'silentAlarms')
 						e = 'alarms';
 					else if (e == 'disarmConfirm' || e == 'clean')
-						e = 'armConfirm';					
+						e = 'armConfirm';
 					dev = $scope.getDevice(d.devices, e);
 					if (dev)
 					{
@@ -352,7 +359,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				});
 			});
 
-			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {		
+			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'input');
 				if (dev)
 				{
@@ -363,7 +370,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceNameShort: dev.deviceNameShort,
 						// level: _.isNumber(d.level) ? 'lvl' : d.level,
 						// exact: _.isNumber(d.level) ? parseInt(d.level) : null,
-						conditions: d.level,
+						conditions: d.conditions,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
@@ -373,7 +380,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			});
 
-			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {		
+			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'controls');
 				if (dev)
 				{
@@ -384,7 +391,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceNameShort: dev.deviceNameShort,
 						armCondition: d.armCondition,
 						disarmCondition: d.disarmCondition,
-						clearCondition: d.clearCondition,						
+						clearCondition: d.clearCondition,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
@@ -392,7 +399,13 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						iconPath: dev.iconPath
 					};
 				}
-			});						
+			});
+
+			$scope.security.input.params.silentAlarms.notification.target = ($scope.security.input.params.silentAlarms.notification.target == $scope.security.input.params.silentAlarms.notification.target_custom) ? '' : $scope.security.input.params.silentAlarms.notification.target;
+			$scope.security.input.params.alarms.notification.target = ($scope.security.input.params.alarms.notification.target == $scope.security.input.params.alarms.notification.target_custom) ? '' : $scope.security.input.params.alarms.notification.target;
+			$scope.security.input.params.clean.notification.target = ($scope.security.input.params.clean.notification.target == $scope.security.input.params.clean.notification.target_custom) ? '' : $scope.security.input.params.clean.notification.target;
+			$scope.security.input.params.armConfirm.notification.target = ($scope.security.input.params.armConfirm.notification.target == $scope.security.input.params.armConfirm.notification.target_custom) ? '' : $scope.security.input.params.armConfirm.notification.target;
+			$scope.security.input.params.disarmConfirm.notification.target = ($scope.security.input.params.disarmConfirm.notification.target == $scope.security.input.params.disarmConfirm.notification.target_custom) ? '' : $scope.security.input.params.disarmConfirm.notification.target;
 
 			// transform to mobile
 			$scope.transformFromInstToMobile();
@@ -500,7 +513,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					if (e == 'silentAlarms')
 						e = 'alarms';
 					else if (e == 'disarmConfirm' || e == 'clean')
-						e = 'armConfirm';					
+						e = 'armConfirm';
 					dev = $scope.getDevice(d.devices, e);
 					if (dev)
 					{
@@ -521,7 +534,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				});
 			});
 
-			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {		
+			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'input');
 				if (dev)
 				{
@@ -542,7 +555,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			});
 
-			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {		
+			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'controls');
 				if (dev)
 				{
@@ -553,7 +566,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceNameShort: dev.deviceNameShort,
 						armCondition: d.armCondition,
 						disarmCondition: d.disarmCondition,
-						clearCondition: d.clearCondition,						
+						clearCondition: d.clearCondition,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
@@ -561,7 +574,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						iconPath: dev.iconPath
 					};
 				}
-			});						
+			});
 
 		}, function(error) {});
 	};
@@ -600,12 +613,12 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		}
 	};
 
-	////////// Devices ////////// 
+	////////// Devices //////////
 
 	/**
 	 * Get device entry by deviceId
-	 * @param  {string} deviceId 
-	 * @return {object} device          
+	 * @param  {string} deviceId
+	 * @return {object} device
 	 */
 	$scope.getDevice = function(deviceId, param) {
 		var device = _.findWhere($scope.security.devices[param], {
@@ -654,8 +667,11 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				probeType: dev.probeType,
 				location: dev.location,
 				locationName: dev.locationName,
-				iconPath: dev.iconPath		
-			};			
+				iconPath: dev.iconPath
+			};
+			if (p == 'input') {
+				$scope.security.input.active = true;
+			}
 			$scope.security.input.params[param].table.push(input);
 			$scope.resetOptions();
 		}
@@ -674,9 +690,13 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		if (deviceIndex > -1) {
 			$scope.security.input.params[param].table.splice(deviceIndex, 1);
 		}
+
+		if (param == 'input' && _.size($scope.security.input.params.input.table) < 1) {
+			$scope.security.input.active = false;
+		}
 	};
 
-	////////// Dis-arm by time ////////// 
+	////////// Dis-arm by time //////////
 
 	/**
 	 * Update schedule
@@ -702,7 +722,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 	/**
 	 * Renders dis-arm schedule
-	 * @param {string} elementId 
+	 * @param {string} elementId
 	 */
 	$scope.renderSchedule = function(elementId) {
 		if (_.isEmpty($scope.jQuerySchedule)) {
@@ -785,8 +805,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 	/**
 	 * activate/deactivate time for day
-	 * @param  {obj} data        
-	 * @param  {int} day         day nubmer [0 - 6] [SU - SA] 
+	 * @param  {obj} data
+	 * @param  {int} day         day nubmer [0 - 6] [SU - SA]
 	 * @param  {int} roomId      roomId
 	 * @param  {int} targetIndex entry index
 	 * @return {string}          arm/disarm
@@ -811,7 +831,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * Transform mobile vire back to instance data
 	 */
 	$scope.transformFromMobileToInst = function() {
-		// transform data for Instance 
+		// transform data for Instance
 		$scope.security.input.params.schedules = {};
 		_.each($scope.security.mobileSchedule, function(data) {
 			for (var i = 0; i <= 6; i++) {
@@ -833,7 +853,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * Transform Instance data to use in mobile view
 	 */
 	$scope.transformFromInstToMobile = function() {
-		// transform data for mobile view 
+		// transform data for mobile view
 		$scope.security.mobileSchedule = [];
 		_.each($scope.security.input.params.schedules, function(sc, day) {
 			if (sc.length > 0) {
@@ -867,7 +887,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		$scope.updateSchedule();
 	}, true);
 
-	////////// Advanced schedule ////////// 
+	////////// Advanced schedule //////////
 
 	/**
 	 * Assign a time scheduler
@@ -881,7 +901,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 	/**
 	 * Unassign a time scheduler
-	 *  @param {int} targetIndex 
+	 *  @param {int} targetIndex
 	 */
 	$scope.unassignTimeSchedule = function(targetIndex) {
 		if (targetIndex > -1) {
@@ -889,7 +909,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		}
 	};
 
-	////////// Save complete form ////////// 
+	////////// Save complete form //////////
 	/**
 	 * Store instance
 	 */
@@ -922,9 +942,17 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				devices: dev.devices,
 				armCondition: dev.armCondition,
 				disarmCondition: dev.disarmCondition,
-				clearCondition: dev.clearCondition		
+				clearCondition: dev.clearCondition
 			};
-		});				
+		});
+
+		// store custom email adresses for notifications
+		input.params.silentAlarms.notification.target = input.params.silentAlarms.notification.target ? input.params.silentAlarms.notification.target : input.params.silentAlarms.notification.target_custom;
+		input.params.alarms.notification.target = input.params.alarms.notification.target ? input.params.alarms.notification.target : input.params.alarms.notification.target_custom;
+		input.params.clean.notification.target = input.params.clean.notification.target ? input.params.clean.notification.target : input.params.clean.notification.target_custom;
+		input.params.armConfirm.notification.target = input.params.armConfirm.notification.target ? input.params.armConfirm.notification.target : input.params.armConfirm.notification.target_custom;
+		input.params.disarmConfirm.notification.target = input.params.disarmConfirm.notification.target ? input.params.disarmConfirm.notification.target : input.params.disarmConfirm.notification.target_custom;
+
 
 		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
 			$scope.loading = false;

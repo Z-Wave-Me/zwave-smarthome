@@ -11,22 +11,24 @@
   border: 1px solid $app-border-color;
   background-clip: padding-box;
   color: $app-a-color; // Media queries
-  @include mediaQueries(max-small) {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    float: right;
-    width: 80%;
-  }
-  @include mediaQueries(min-small) {
+  // @include mediaQueries(max-small) {
+  //   position: fixed;
+  //   top: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   float: right;
+  //   width: 80%;
+  // }
+  //@include mediaQueries(min-small) {
     position: absolute;
     top: 100%;
     right: 0;
     left: auto;
     float: right;
     min-width: 300px;
-  }
+    max-height: 400px;
+    overflow: auto;
+  //}
   .dropdown-header{
     padding: $spacing-double $spacing;
     @include mediaQueries(min-small) {

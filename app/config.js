@@ -82,7 +82,7 @@ var config_data = {
 			'login': 'admin',
 			'password': 'admin'
 		},
-		// List of API URLs 
+		// List of API URLs
 		'api': {
 			'devices': 'ZAutomation/api/v1/devices',
 			'hide_devices': 'ZAutomation/api/v1/hidedevices',
@@ -145,7 +145,7 @@ var config_data = {
 			'update_dsk': 'ZWaveAPI/UpdateDSKEntry', // Update DSK
 			'remove_dsk': 'ZWaveAPI/RemoveDSKEntry?id=', // Remove DSK
 			'get_dsk_provisioning_list': 'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
-			'add_dsk_provisioning_list': 'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST 
+			'add_dsk_provisioning_list': 'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST
 			'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
 			'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
 			'locations_image': 'ZAutomation/api/v1/locations/image' // delete cutom room image // TODO: add backend
@@ -378,11 +378,13 @@ var config_data = {
 		// List of the find hosts
 		'find_hosts': [
 			'find.z-wave.me',
-			'find.popp.eu'
+			'find.popp.eu',
+			'remote.popp.eu'
 		],
 		// Redirect to the url after logout
 		'logout_redirect': {
-			'find.z-wave.me': 'https://find.z-wave.me/zboxweb'
+			'find.z-wave.me': 'https://find.z-wave.me/zboxweb',
+			'remote.popp.eu': 'https://remote.popp.eu/',
 		},
 		// List of the forbidden licence app types
 		'license_forbidden': [
@@ -535,6 +537,7 @@ var config_data = {
 					'CustomUserCode',
 					'CustomUserCodeLoader',
 					'InbandNotifications',
+					'MobileAppSupport',
 					'Notification',
 					'NotificationSMSru',
 					'RemoteAccess',
@@ -589,6 +592,7 @@ var config_data = {
 					'BatteryPolling',
 					'CustomUserCode',
 					'CustomUserCodeLoader',
+					'MobileAppSupport',
 					'InbandNotifications',
 					'Notification',
 					'NotificationSMSru',
@@ -624,6 +628,7 @@ var config_data = {
 					'CustomUserCode',
 					'CustomUserCodeLoader',
 					'InbandNotifications',
+					'MobileAppSupport',
 					'Notification',
 					'NotificationSMSru',
 					'RemoteAccess',
@@ -660,6 +665,7 @@ var config_data = {
 					'CustomUserCode',
 					'CustomUserCodeLoader',
 					'InbandNotifications',
+					'MobileAppSupport',
 					'Notification',
 					'NotificationSMSru',
 					'RemoteAccess',

@@ -1,8 +1,8 @@
-/* Apps search 
+/* Apps search
 -------------------------------------------------- */
 
 // Media queries
-@include mediaQueries(max-small) { 
+@include mediaQueries(max-small) {
     .app-search {
         .page-control {
             text-align: left;
@@ -28,7 +28,7 @@
             left: 0;
             right: auto;
         }
-        // Apps fixed search for small devices 
+        // Apps fixed search for small devices
         &.fix-me-top {
            .page-navi-in{
                 top: -$spacing;

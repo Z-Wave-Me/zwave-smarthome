@@ -7699,8 +7699,19 @@ a.badge:hover, a.badge:focus {
 
 /** Added to every field outer element **/
 /** Added to every container outer field element **/
+.alpaca-container .alpaca-field-checkbox .checkbox label {
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
 .alpaca-container .alpaca-field-checkbox .checkbox label input[type="checkbox"] {
-  display: block;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 767px) {
+  .alpaca-container .alpaca-field-checkbox .checkbox label {
+    margin-bottom: 10px;
+  }
 }
 
 /** Added to the optional label (or legend) accompanying any container **/
@@ -7713,6 +7724,24 @@ a.badge:hover, a.badge:focus {
 /** Added to the dom element holding the actionbar for each array item **/
 /** Added to a button in an array item actionbar that triggers an action **/
 /** Added to every control outer field element **/
+.alpaca-control.radio label {
+  padding-left: 25px;
+  margin-bottom: 15px;
+}
+
+.alpaca-control.radio input[type="radio"] {
+  margin: 0px 10px 0px -25px;
+  position: relative;
+  /* MIN WIDTH */
+  /* MAX WIDTH */
+}
+
+@media only screen and (max-width: 767px) {
+  .alpaca-control.radio input[type="radio"] {
+    margin: 0px 30px 0px -25px;
+  }
+}
+
 /** Added to the optional label accompanying any control **/
 /** ******************************************************** **/
 /**                        STATE LABELS                      **/
@@ -9525,18 +9554,25 @@ th {
 -------------------------------------------------- */
 html {
   font-size: 16px;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
   /* MIN WIDTH */
   /* MAX WIDTH */
 }
 
 @media only screen and (max-width: 767px) {
   html {
-    -webkit-touch-callout: none;
-    /* Disables long-touch menu */
     -webkit-user-select: none;
     /* Disable text selection (for Webkit) */
     user-select: none;
+    /* Disable text selection (standard syntax) */
+    -webkit-user-select: none;
+    /* Disable text selection (standard syntax) */
+    -moz-user-select: none;
+    /* Disable text selection (standard syntax) */
+    -ms-user-select: none;
     /* Disable text selection (standard syntax) */
   }
 }
@@ -11530,7 +11566,7 @@ input:checked + .slider:before {
     top: 100%;
     right: 0;
     left: auto;
-    z-index: 2140;
+    z-index: 2099;
     float: right;
     min-width: 280px;
     padding: 10px;
@@ -11613,7 +11649,7 @@ input[type=checkbox] {
   @include mediaQueries(min-small) {
     @include checkboxScale(1.3, $spacing);
   }*/
-  margin: 0px 26px 11px 0;
+  margin: 0px 26px 20px 0;
   font-size: 22px;
   /* MIN WIDTH */
   /* MAX WIDTH */
@@ -12212,7 +12248,7 @@ fieldset section, .fieldset section {
 /* Dropdown
 -------------------------------------------------- */
 .app-dropdown {
-  z-index: 2140;
+  z-index: 2099;
   padding: 0;
   text-align: left;
   background-color: #FFFFFF;
@@ -12222,32 +12258,14 @@ fieldset section, .fieldset section {
   border: 1px solid #cccccc;
   background-clip: padding-box;
   color: #333333;
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-  /* MIN WIDTH */
-  /* MAX WIDTH */
-}
-
-@media only screen and (max-width: 767px) {
-  .app-dropdown {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    float: right;
-    width: 80%;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .app-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: auto;
-    float: right;
-    min-width: 300px;
-  }
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  float: right;
+  min-width: 300px;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .app-dropdown .dropdown-header {
@@ -12672,7 +12690,7 @@ fieldset section, .fieldset section {
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
-#loading {
+#loading, #alpaca-spinner {
   position: fixed;
   z-index: 2399;
   width: 260px;
@@ -12687,7 +12705,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   color: #0d0d0d;
 }
 
-#loading .loading-in {
+#loading .loading-in, #alpaca-spinner .loading-in {
   position: relative;
   z-index: 2400;
   margin: auto;
@@ -12699,7 +12717,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   border-radius: 4px;
 }
 
-#loading a {
+#loading a, #alpaca-spinner a {
   font-weight: bold;
   text-decoration: underline;
 }
@@ -13415,7 +13433,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
 }
 
 .dd-on-start {
-  background-color: #dff0d8;
+  background: #dff0d8 !important;
   opacity: 0.7;
   cursor: text;
 }
@@ -13885,6 +13903,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff', GradientType=0);
   /* IE6-9 */
   cursor: move;
+  touch-action: none;
   text-align: center;
   border: solid 1px #cccccc;
   width: 50%;

@@ -29,6 +29,9 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 						size++;
 					}
 				}
+				for (k in v.params.notifications) {
+					size++;
+				}
 				if (size) {
 					$scope.schedules.enableTest.push(v.id)
 				}
@@ -124,8 +127,8 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 
 	/**
 	 * Activate schedule
-	 * @param {object} input 
-	 * @param {boolean} activeStatus 
+	 * @param {object} input
+	 * @param {boolean} activeStatus
 	 */
 	$scope.activateSchedule = function(input, state) {
 		input.active = state;
@@ -191,6 +194,7 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 		devicesInRoom: [],
 		availableDevices: [],
 		assignedDevices: [],
+		assignedNotifications: [],
 		cfg: {
 			switchBinary: {
 				level: ['off', 'on'],
@@ -242,6 +246,13 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			},
 			toggleButton: {
 				default: {}
+			},
+			notification: {
+				default: {
+					target: '',
+					target_custom: '',
+					message: ''
+				}
 			}
 
 		},
@@ -253,7 +264,8 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			params: {
 				weekdays: [],
 				times: ['00:00'],
-				devices: []
+				devices: [],
+				notifications: []
 			}
 		}
 	};
@@ -278,6 +290,7 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 		dataFactory.getApi('instances', '/' + id, true).then(function(instances) {
 			var instance = instances.data.data;
 			var assignedDevices = $scope.schedule.assignedDevices;
+			var assignedNotifications = $scope.schedule.assignedNotifications;
 			angular.extend($scope.schedule.input, {
 				title: instance.title,
 				active: instance.active,
@@ -298,6 +311,12 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			angular.forEach(instance.params.devices, function(d) {
 				if (assignedDevices.indexOf(d.deviceId) === -1) {
 					$scope.schedule.assignedDevices.push(d.deviceId);
+				}
+			});
+
+			angular.forEach(instance.params.notifications, function(d) {
+				if (assignedNotifications.indexOf(d.target) === -1) {
+					$scope.schedule.assignedNotifications.push(d.target);
 				}
 			});
 
@@ -346,6 +365,10 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 					return obj;
 				})
 				.filter(function(v) {
+					// Replacing deviceType with "notification"
+					if (v.probeType == 'notification_push') {
+						v.deviceType = 'notification';
+					}
 					return whiteList.indexOf(v.deviceType) > -1;
 				})
 				.indexBy('deviceId')
@@ -410,8 +433,8 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 	/**
 	 * Remove device id from assigned device and from input
 	 *  @param {string} targetType
-	 * @param {int} targetIndex 
-	 * @param {string} deviceId 
+	 * @param {int} targetIndex
+	 * @param {string} deviceId
 	 */
 	$scope.unassignDevice = function(targetIndex, deviceId) {
 		var deviceIndex = $scope.schedule.assignedDevices.indexOf(deviceId);
@@ -419,6 +442,43 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 		if (deviceIndex > -1) {
 			$scope.schedule.assignedDevices.splice(deviceIndex, 1);
 		}
+	};
+
+	/**
+	 * Assign notification
+	 * @param {object} notification
+	 * @returns {undefined}
+	 */
+	$scope.assignNotification = function(notification) {
+		if ((notification.target && $scope.schedule.assignedNotifications.indexOf(notification.target) === -1) || (notification.target_custom && $scope.schedule.assignedNotifications.indexOf(notification.target_custom) === -1)) {
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.schedule.input.params.notifications.push(not);
+			$scope.schedule.assignedNotifications.push(not.target);
+
+			// reset options
+			$scope.schedule.cfg.notification.default.target = '';
+			$scope.schedule.cfg.notification.default.target_custom = '';
+			$scope.schedule.cfg.notification.default.message = '';
+		}
+
+	};
+
+	/**
+	 * Remove notification from sendNotifications
+	 * @param {int} index
+	 * @param {string} deviceId
+	 */
+	$scope.unassignNotification = function(targetIndex, target) {
+
+		var notificationIndex = $scope.schedule.assignedNotifications.indexOf(target);
+		if (targetIndex > -1) {
+			$scope.schedule.input.params.notifications.splice(targetIndex, 1);
+			$scope.schedule.assignedNotifications.splice(notificationIndex, 1);
+		}
+
 	};
 
 	/**

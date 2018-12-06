@@ -4,6 +4,7 @@
   <!-- Title -->
   <button type="button" aria-expanded="false" bb-accordion ng-class="{'no-toggle': d.type == 'toggleButton'}" ng-switch="d.type">
   <span ng-switch-when="nested"><i class="fa fa-fw fa-code-fork fa-flip-vertical fa-2x"></i>&nbsp;{{_t('nested')}}</span>
+  <span ng-switch-when="compare"><i class="fa fa-fw fa-code fa-2x"></i>&nbsp;{{_t('compare')}}</span>
   <span ng-switch-when="time"><i class="fa fa-fw fa-clock-o fa-2x"></i>&nbsp;{{_t('lb_time')}}&nbsp;<em>[{{d.operator}}&nbsp;{{d.level}}]</em></span>
   <span ng-switch-default>
     <span ng-if="!rule.namespaces[d.deviceId].deviceName"><i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.deviceId}})</span>
