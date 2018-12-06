@@ -1,22 +1,28 @@
 <div class="smart-start" ng-controller="SmartStartListController">
   <bb-loader></bb-loader>
   <div class="container">
-    <!-- <pre>{{ collection.all | json }}</pre> -->
+    <!-- <pre>{{ collection.all[0] | json }}</pre>
+    <pre>{{ collection.find | json }}</pre> -->
     <!-- Navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
+    <div class="fieldset">
+      <a class="btn btn-default btn-lg " href="#smartstart" title="{{_t('scan_qrcode')}}">
+            <i class="fa fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')"></span>
+      </a>
+    </div>
     <div id="table_mobile">
       <table class="table">
         <tbody ng-repeat="v in collection.all track by $index">
           <tr>
             <!-- time -->
             <td data-title="">
-              <span class="text-supp">{{v.added.timeformat}}</span>
+              <span class="text-supp">{{v.added.registred_at}}</span>
             </td>
             <!-- action -->
             <td class="td-action" data-title="">
               <div class="btn-group" ng-show="v.isSmartStart">
                 <!-- update  -->
-                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="collection.find = v;handleModal('dskModal', $event)">
+                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="setData(v);handleModal('dskModal', $event)">
                 <i class="fa fa-info-circle text-primary"></i>
                 </button>
                 <!-- delete -->
@@ -46,6 +52,26 @@
                   </div>
                 </div>
               </div>
+              <dl class="inline-dl">
+                <dt>{{_t('device_name')}}</dt>
+                <dd>{{v.added.given_name}}</dd>
+                <dt>{{_t('lb_room')}}</dt>
+                <dd>{{locations[v.added.location].title|cutText:true:20}}</dd>
+                <dt>{{_t('brand_name')}}</dt>
+                <dd>{{v.added.brand_name}}</dd>
+                <dt>{{_t('product_name')}}</dt>
+                <dd>{{v.added.product}}</dd>
+                <dt>{{_t('device_type')}}</dt>
+                <dd>{{v.added.device_type}}</dd>
+                <dt>{{_t('added_at')}}</dt>
+                <dd>{{v.added.added_at}}</dd>
+              </dl>
+             <!--  <div class="given_name">
+                <span>{{v.added.given_name}}</span>
+              </div>
+              <div class="location">
+                <span>{{locations[v.added.location].title}}</span>
+              </div>
               <div class="vendor">
                 <span>{{v.added.brand_name}}</span>
               </div>
@@ -55,6 +81,9 @@
               <div class="product">
                 <span>{{v.added.product}}</span>
               </div>
+              <div class="added_at">
+                <span>{{v.added.added_at}}</span>
+              </div> -->
             </td>
           </tr>
         </tbody>
@@ -62,11 +91,32 @@
     </div>
     <div id="table_desktop">
       <table class="table">
+        <thead>
+          <tr>
+            <th>{{_t('registered_at')}}</th>
+            <th>{{_t('device_name')}}</th>
+            <th>{{_t('lb_room')}}</th>
+            <th>{{_t('brand_name')}}</th>
+            <th>{{_t('device_type')}}</th>
+            <th>{{_t('product_name')}}</th>
+            <th>{{_t('state')}}</th>
+            <th>{{_t('added_at')}}</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           <tr ng-repeat="v in collection.all track by $index">
             <!-- time -->
             <td data-title="">
-              <span class="text-supp">{{v.added.timeformat}}</span>
+              <span class="text-supp">{{v.added.registred_at}}</span>
+            </td>
+            <!-- Given name -->
+            <td data-title="given_name">
+              <span>{{v.added.given_name}}</span>
+            </td>
+            <!-- Location -->
+            <td data-title="given_name">
+              <span>{{locations[v.added.location].title}}</span>
             </td>
             <!-- Brand -->
             <td data-title="brand">
@@ -99,11 +149,15 @@
                 </div>
               </div>
             </td>
+            <!-- added add -->
+            <td data-title="">
+              <span class="text-supp">{{v.added.added_at}}</span>
+            </td>
             <!-- action -->
             <td class="td-action" data-title="">
               <div class="btn-group">
                 <!-- update  -->
-                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-show="v.isSmartStart" ng-click="collection.find = v;handleModal('dskModal', $event)">
+                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-show="v.isSmartStart" ng-click="setData(v);handleModal('dskModal', $event)">
                 <i class="fa fa-info-circle text-primary"></i>
                 </button>
                 <!-- delete -->

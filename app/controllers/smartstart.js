@@ -211,12 +211,14 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
  * The controller that displays DSK list.
  * @class SmartStartListController
  */
-myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, cfg, dataFactory, expertService) {
+myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, cfg, dataFactory, dataService, expertService) {
 
 	$scope.collection = {
 		alert: {},
+		update: false,
 		all: [],
 		find: {},
+		findOrg: {},
 		deviceTypes: {},
 		deviceInfos: {},
 		vendors: {}
@@ -232,7 +234,8 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'DeviceClasses.xml'),
             dataFactory.getApi('zwave_devices', '?lang=' + $scope.lang),
             dataFactory.getApi('get_dsk', null, true),
-            dataFactory.getApi('zwave_vendors')
+            dataFactory.getApi('zwave_vendors'),
+            dataFactory.getApi('locations')
         ];
 
         $q.allSettled(promises).then(function (response) {
@@ -240,7 +243,8 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             var deviceClassesXML = response[0],
             	devicesInfo = response[1],
             	DSKList = response[2],
-            	Vendors = response[3];
+            	Vendors = response[3],
+            	locations = response[4]
 
             $scope.loading = false;
             // Error message
@@ -266,6 +270,13 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
                 angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
                 return;
             }
+
+            // Error message
+            if (locations.state === 'rejected') {
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
+                return;
+            }
+
             // Success - DeviceClassesXML
             if (deviceClassesXML.state === 'fulfilled') {
                _.filter(deviceClassesXML.value.DeviceClasses.Generic, function(v) {
@@ -287,17 +298,39 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             if(DSKList.state === 'fulfilled') {
             	setDSKCollection(DSKList.value.data);
             }
+
+            // Success - locations
+            if(locations.state === 'fulfilled') {
+            	$scope.locations = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+            }
         });
 
     };
     $scope.allSettled();
+
+
+    // check for changes dskArray
+    $scope.$watchCollection("collection.find.added.dskArray", function(newVal, oldVal) {
+    	if(newVal && !_.isEqual($scope.collection.findOrg.added.dskArray, newVal)) {
+    		console.log("change");
+    		$scope.collection.find.DSK = _.map(newVal, function(v) {
+				return v;
+			}).join('-');
+    	}
+    }), true;
+
 
 	/**
 	 * Update DSK
 	 * @returns {undefined}
 	 */
 	$scope.updateDsk = function(input) {
-		input.ZW_QR_DSK = _.map(input.added.dskArray, function(v) {
+		console.log("input", input);
+		console.log("$scope.collection.find", $scope.collection.findOrg);
+		if(!_.isEqual(input, $scope.collection.findOrg)) {
+			console.log("There are changes!!!!");
+		}
+		/*input.DSK = _.map(input.added.dskArray, function(v) {
 			return v;
 		}).join('-');
 		dataFactory.postApi('update_dsk', _.omit(input, 'added')).then(function(response) {
@@ -308,6 +341,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 		}, function(error) {
 			alertify.alertError($scope._t('error_update_data'));
 		});
+		*/
 	};
 
 	/**
@@ -342,6 +376,29 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             'ok': $scope._t('ok')
         });
 	};
+
+	$scope.closeModal = function(input, modal,$event) {
+		if(!_.isEqual(input, $scope.collection.findOrg)) {
+			alertify.confirm($scope._t('discard_changes'), function() {
+				// discard changes
+				$scope.collection.find = {};
+				$scope.collection.findOrg = {};
+				// close modal
+				$scope.handleModal(modal, $event);
+			});
+		} else {
+			$scope.handleModal(modal, $event);
+		}
+	}
+
+	/**
+	 * Maked a copy of the selecte DSK collection entry
+	 * @param {object} input selected DSK collection entry
+	 */
+	$scope.setData = function(input) {
+		$scope.collection.findOrg = input;
+		$scope.collection.find = angular.copy(input);
+	}
 
 	/**
 	 * set Device Info and grep necessary data
@@ -394,12 +451,15 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 					pId: pId,
 					device_type: $scope.collection.deviceTypes[typeId] ? $scope.collection.deviceTypes[typeId] : '',
 					dskArray: v.DSK.split('-'),
-					timeformat: $filter('dateTimeFromTimestamp')(v.timestamp),
+					registred_at: $filter('dateTimeFromTimestamp')(v.timestamp),
+					added_at: '-',
 					product_image: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image : '',
 					product_image_remote: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image_remote : '',
 					brand_name: brand_name,
 					brand_image: brand_image,
-					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-'
+					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-',
+					location: 1,
+					given_name: ''
 				};
 				return v;
 			});

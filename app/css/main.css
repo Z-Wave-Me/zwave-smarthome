@@ -11782,6 +11782,25 @@ input[type=radio]:checked:after {
   font-weight: normal;
 }
 
+.form-group.is-inline {
+  margin-bottom: 0;
+}
+
+.form-group:not(.is-inline) {
+  border-bottom: solid 1px #cccccc;
+  padding-bottom: 10px;
+}
+
+.form-group:not(.is-inline).first {
+  padding-top: 10px;
+}
+
+.form-group:not(.is-inline).last {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -12095,7 +12114,6 @@ dl dt {
     margin-left: auto;
     text-align: left;
     text-overflow: ellipsis;
-    overflow: hidden;
     flex: 0 0 70%;
     margin: 0 0 10px 0;
     padding-left: 5px;
@@ -16525,6 +16543,14 @@ img.widget-promo-image {
 }
 
 .state_text {
+  display: inline-block;
+}
+
+.given_name {
+  display: inline-block;
+}
+
+.location {
   display: inline-block;
 }
 
