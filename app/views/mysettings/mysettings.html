@@ -56,6 +56,12 @@
            </fieldset>
       <!-- Expert view -->
       <fieldset ng-if="elementAccess(cfg.role_access.expert_view)">
+        <div class="form-group form-inline is-inline">
+          <label for="show_beta">
+            <input type="checkbox" name="show_beta" id="show_beta" ng-model="input.beta" ng-checked="input.beta" />
+            <span>{{_t('lb_show_beta')}}</span>
+          </label>
+        </div>
         <div class="form-group form-inline">
           <label for="expert_view">
             <input type="checkbox" name="expert_view" id="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />
