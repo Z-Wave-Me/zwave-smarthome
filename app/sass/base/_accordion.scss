@@ -9,7 +9,7 @@ $accordion-icon-color: lighten($accordion-color, 20%);
 $accordion-heading-color: $app-heading-color;
 
 $accordion-spacing: $spacing;
-$accordion-focus-color: $focus-color; 
+$accordion-focus-color: $focus-color;
 
 /* NEW version
 -------------------------------------------------- */
@@ -27,7 +27,7 @@ $accordion-focus-color: $focus-color;
     font-weight: normal;
     cursor: pointer;
     border-bottom: dotted 1px $accordion-border-color;
-    
+
     > span {
       @include textOverflow();
       align-items: center;
@@ -45,7 +45,7 @@ $accordion-focus-color: $focus-color;
       font-size: 105%;
     }
     &[aria-expanded="false"]{
-     
+
      &::after{
       content: "+";
       }
@@ -57,12 +57,12 @@ $accordion-focus-color: $focus-color;
       }
     }
     &:focus{
-     
+
       &::after{
         font-weight: bold;
         color: $accordion-focus-color;
       }
-      
+
     }
     &[disabled]{
       cursor: text;
@@ -134,7 +134,7 @@ $accordion-focus-color: $focus-color;
 }
 .accordion{
   border-bottom: dotted 1px $accordion-border-color;
-  padding-bottom: $accordion-spacing;
+  padding: $accordion-spacing;
 }
 
 .accordion-wrap {
@@ -144,7 +144,7 @@ $accordion-focus-color: $focus-color;
         font-weight: bold;
       }
     }
-   
+
   }
 }
 
@@ -161,23 +161,23 @@ $accordion-focus-color: $focus-color;
         .fa {
           color: #BDBDBD;
           &.text-warning {
-              color: #8a6d3b;     
+              color: #8a6d3b;
           }
         }
-      }  
+      }
     }
 }
 .accordion-entry-title{
-    font-size: $accordion-heading-font-size; 
+    font-size: $accordion-heading-font-size;
     position: relative;
     vertical-align: middle;
     margin: $spacing 0;
     color: $accordion-heading-color;
     cursor: pointer;
     .fa{
-        color: $accordion-icon-color;    
+        color: $accordion-icon-color;
         padding-right: $spacing;
-             font-size: $accordion-icon-size;  
+             font-size: $accordion-icon-size;
         }
     .accordion-arrow{
         position: absolute;
@@ -190,6 +190,6 @@ $accordion-focus-color: $focus-color;
 .accordion-entry-ctrl {
     p {
         margin: $spacing-half;
-        padding: $spacing;      
+        padding: $spacing;
     }
 } */
