@@ -124,6 +124,7 @@ $input-bcg-color: $app-color-dark-lightest;
   .page-navi .page-navi-in,
   .btn-goup-tabs .btn.active,
   .widget-entry .widget-entry-in,
+  //.widget-entry-element .widget-entry-in .widget-img,
   .widget-ctrl .btn-group .btn-primary,
   .tbl-widget-ctrl .btn-group .btn-primary,
   .card-element-dragdrop,
@@ -165,7 +166,7 @@ $input-bcg-color: $app-color-dark-lightest;
     /* .automations.flexgallery > * figure {
       background:  $app-color-light !important;
     } */
- 
+
   /* Additional background
     -------------------------------------------------- */
   .btn-submit,
@@ -227,7 +228,7 @@ $input-bcg-color: $app-color-dark-lightest;
   .schedule .sc_wrapper .sc_data .sc_data_scroll .timeline,
   .schedule .sc_wrapper .sc_main_box .sc_main_scroll .sc_main .timeline,
   .schedule .sc_menu .sc_header .sc_header_scroll .sc_time,
-  .btn-default[disabled], 
+  .btn-default[disabled],
   #footer {
     border-color: $app-border-color !important;
   }

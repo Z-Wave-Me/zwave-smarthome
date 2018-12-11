@@ -16,6 +16,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
 
     // Global scopes
     $scope.nightMode = false;
+    $scope.color = null;
     $scope.$location = $location;
     $scope.deviceDetector = deviceDetector;
     angular.extend(cfg.route, {
@@ -121,10 +122,23 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         $scope.user.night_mode = nightMode;
         //$cookies.nightMode = nightMode;
         dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function(response) {
-
+            if(cfg.route.os == 'IOSWRAPPER') {
+                var prevLocation = $location.path();
+                console.log("prevLocation", prevLocation);
+                $location.path($scope.user.night_mode ? 'nightmodeTrue' : 'nightmodeFalse');
+                $location.path(prevLocation);
+            }
         });
     };
 
+    /**
+     * Watch nicht_mode flag to change bowser theme (Firefox OS,Chrome for Android, Opera)
+     */
+    $scope.$watch("user.night_mode", function(newVal, oldVal) {
+        // night_mode true  #24262D
+        // night_mode false #E9E9E9
+        $scope.color = newVal ?  '#24262D' : '#E9E9E9';
+    });
 
     /**
      * Check if route match the pattern.

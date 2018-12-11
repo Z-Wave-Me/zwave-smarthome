@@ -185,12 +185,12 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 $scope.loading = false;
                 console.log(error);
                 if(error.data.error == "wrong_password") {
-                    alertify.alertError($scope._t('wrong_password'));    
+                    alertify.alertError($scope._t('wrong_password'));
                 } else {
                     alertify.alertError($scope._t('error_update_data'));
                 }
             });
-            
+
 
 
         }).set('type', 'password');
