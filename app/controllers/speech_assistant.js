@@ -636,7 +636,7 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 	 * Set devices
 	 */
 	function setDevices(data) {
-		var devices = dataService.getDevicesData(data, true, true, false).map(function(v) {
+		var devs = dataService.getDevicesData(data, true, true, false).map(function(v) {
 			var obj = {
 				deviceId: v.id,
 				deviceName: v.metrics.title,
@@ -645,11 +645,12 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 				location: v.location,
 				locationName: $scope.google_home.rooms[v.location].title,
 				callName: v.metrics.title,
-				iconPath: v.iconPath
+				iconPath: v.iconPath,
+				nodeId: v.nodeId
 			};
 			return obj;
 		});
-		devices = devices.filter(function(dev) {
+		var devices = devs.filter(function(dev) {
 			var wlDev = _.find(cfg.speechAssistants.GoogleHome.deviceTypeWhitelist, function(needle) {
 				if (Object.keys(needle) == dev.deviceType) {
 					return needle;
@@ -664,9 +665,9 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 					return dev;
 				}
 			}
-		});
+		}).indexBy("deviceId").value();
 
-		$scope.google_home.devices.available = devices.indexBy("deviceId").value();
+		$scope.google_home.devices.available = devices;
 
 		if ($scope.google_home.instance.params.devices.length > 0) {
 
