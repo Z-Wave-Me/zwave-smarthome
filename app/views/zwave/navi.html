@@ -15,7 +15,7 @@
       <i class="fa fa-sitemap"></i> <span class="btn-name">{{_t('lb_network_status')}}</span>
     </a>
     <a class="btn btn-default" title="{{_t('Device Key List')}}" href="#smartstartlist"
-      ng-class="routeMatch('/smartstartlist') ? 'active' : ''">
+      ng-class="routeMatch('/smartstartlist') ? 'active' : ''" ng-if="user.beta">
       <i class="fa fa-list"></i> <span class="btn-name">{{_t('Device Key List')}}</span>
     </a>
   </div>

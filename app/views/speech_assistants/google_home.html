@@ -1,6 +1,6 @@
 <div ng-controller="GoogleHomeManageController">
 	<bb-loader></bb-loader>
-	<!--<pre>{{google_home.devices.active | json}}</pre>-->
+	<!--<pre>{{google_home| json}}</pre>-->
 	<h2>{{_t('lb_google_home')}}</h2>
 	<!-- Form -->
 	<form class="form form-page" ng-submit="store()">
@@ -13,15 +13,15 @@
 						<!-- Title -->
 						<button type="button" aria-expanded="false" bb-accordion>
 						<span class="accordion-title">
-							<span class="room-title">{{d.locationName}}</span>
-							<span class="device-title">{{d.deviceName}}
-								<i ng-if="google_home.instance.params.assign_room && d.location != 0">
-									({{_t('lb_call_name')}}:&nbsp{{d.callName}}&nbsp{{d.locationName}})
-								</i>
-								<i ng-if="!google_home.instance.params.assign_room || (google_home.instance.params.assign_room && d.location == 0)">
-									({{_t('lb_call_name')}}:&nbsp{{d.callName}})
-								</i>
-							</span>
+							<img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img"/>
+							{{d.deviceName}}&nbsp;
+							<em>{{d.locationName}}&nbsp;</em>
+							<em ng-if="google_home.instance.params.assign_room && d.location != 0">
+								({{_t('lb_call_name')}}:&nbsp{{d.callName}}&nbsp{{d.locationName}})&nbsp;
+							</em>
+							<em ng-if="!google_home.instance.params.assign_room || (google_home.instance.params.assign_room && d.location == 0)">
+								({{_t('lb_call_name')}}:&nbsp{{d.callName}})
+							</em>
 						</span>
 						</button>
 						<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="deactivateDevice(d.deviceId)">
@@ -34,8 +34,8 @@
 							<label>
 								{{_t('lb_call_name')}}
 							</label>
-							<input type="text" class="form-control" 
-									ng-model="d.callName" 
+							<input type="text" class="form-control"
+									ng-model="d.callName"
 									placeholder="{{_t('lb_add_call_name')}}" required="" />
 							<bb-help-text trans="_t('call_name_info')"></bb-help-text>
 						</div>
@@ -46,7 +46,7 @@
 		<!-- available devices -->
 		<legend>{{_t('lb_available_devices')}}</legend>
 		<fieldset>
-			<section class="accordion-wrap available-devices" 
+			<section class="accordion-wrap available-devices"
 			ng-repeat="r in google_home.rooms track by $index">
 			<!-- Title -->
 			<h2 class="accordion-toggle chevron">
@@ -58,10 +58,11 @@
 			</h2>
 			<!-- Content -->
 			<div class="accordion" hidden>
-				<a href="" class="btn btn-default btn-tag" title_="{{d.deviceName}}" 
+				<a href="" class="btn btn-default btn-tag" title_="{{d.deviceName}}"
 				ng-repeat="d in google_home.devices.available track by $index"
-				ng-if="d.location == r.id && !google_home.devices.active[d.deviceId]" 
-				ng-click="activateDevice(d)">{{d.deviceName|cutText:true:20}}
+				ng-if="d.location == r.id && !google_home.devices.active[d.deviceId]"
+				ng-click="activateDevice(d)">
+					<img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img"/>&nbsp;{{d.deviceName|cutText:true:20}}
 				<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
 			</a>
 		</div>

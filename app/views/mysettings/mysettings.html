@@ -47,15 +47,28 @@
         </div>
       </fieldset>
       <fieldset>
-          <div class="form-group form-inline">
-              <label for="night_mode">
-                <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)" />
-                <span>{{_t('night_mode')}}</span>
-              </label>
-            </div>
-           </fieldset>
+        <div class="form-group form-inline" ng-if="cfg.route.os != 'IOSWRAPPER'">
+          <label for="night_mode">
+            <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)" />
+            <span>{{_t('night_mode')}}</span>
+          </label>
+        </div>
+        <div class="form-group form-inline" ng-if="cfg.route.os == 'IOSWRAPPER'">
+          <label class="switch">
+            <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)">
+            <span class="slider"></span>
+          </label>
+          <span class="switch-label ng-binding">{{_t('night_mode')}}</span>
+        </div>
+      </fieldset>
       <!-- Expert view -->
       <fieldset ng-if="elementAccess(cfg.role_access.expert_view)">
+        <div class="form-group form-inline is-inline">
+          <label for="show_beta">
+            <input type="checkbox" name="show_beta" id="show_beta" ng-model="input.beta" ng-checked="input.beta" />
+            <span>{{_t('lb_show_beta')}}</span>
+          </label>
+        </div>
         <div class="form-group form-inline">
           <label for="expert_view">
             <input type="checkbox" name="expert_view" id="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />

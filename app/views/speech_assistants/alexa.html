@@ -21,19 +21,17 @@
 				<h2 class="accordion-toggle chevron">
 				<!-- Title -->
 				<button type="button" aria-expanded="false" bb-accordion>
-				<span>
-					<span >
+					<span>
 						<img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" >
-						{{d.deviceName}}
-						<em>{{d.locationName}}</em>
+						{{d.deviceName}}&nbsp;
+						<em>{{d.locationName}}&nbsp;</em>
 						<em ng-if="alexa.instance.params.assign_room && d.location != 0">
-						({{_t('lb_call_name')}}:&nbsp{{d.callName}}&nbsp{{d.locationName}})
+						({{_t('lb_call_name')}}:&nbsp{{d.callName}}&nbsp{{d.locationName}})&nbsp;
 						</em>
 						<em ng-if="!alexa.instance.params.assign_room || (alexa.instance.params.assign_room && d.location == 0)">
 						({{_t('lb_call_name')}}:&nbsp{{d.callName}})
 						</em>
 					</span>
-				</span>
 				</button>
 				<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="deactivateDevice(d.deviceId)">
 					<i class="fa fa-times text-danger"></i>
