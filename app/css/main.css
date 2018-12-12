@@ -8134,7 +8134,7 @@ div.timepicker-picker > table.table-condensed tr td {
 /**
  * alertifyjs 1.4.1 http://alertifyjs.com
  * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.
- * Copyright 2015 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com)
+ * Copyright 2015 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
  * Licensed under MIT <http://opensource.org/licenses/mit-license.php>*/
 .alertify .ajs-dimmer {
   position: fixed;
@@ -9121,14 +9121,14 @@ div.timepicker-picker > table.table-condensed tr td {
 
 /**
  * 	Angular RangeSlider SCSS
- *
+ * 
  *	Version: 0.0.7
  *
  * 	Author: Daniel Crisp, danielcrisp.com
  *
  * 	The rangeSlider has been styled to match the default styling
  * 	of form elements styled using Twitter's Bootstrap
- *
+ * 
  * 	Originally forked from https://github.com/leongersen/noUiSlider
  *
 
@@ -11046,8 +11046,8 @@ img {
 .table tbody tr {
   /* &:nth-child(2) {
                 td {
-                    border: none;
-                }
+                    border: none; 
+                }   
             } */
 }
 
@@ -12115,7 +12115,7 @@ fieldset.submit-entry {
   width: 50px;
   height: 50px;
   /* @include mediaQueries(min-small) {
-        height: 60px;
+        height: 60px;    
     } */
   float: left;
   position: relative;
@@ -12938,16 +12938,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,
- width 0.25s ease-out 0.5s,
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -12997,6 +12994,12 @@ http://codepen.io/MattIn4D/pen/LiKFC
   z-index: 2300;
   overflow: auto;
   color: #0d0d0d;
+  transform: translateZ(0);
+  -moz-transform: translatez(0);
+  -ms-transform: translatez(0);
+  -o-transform: translatez(0);
+  -webkit-transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
 }
 
 .appmodal.ng-animate {
@@ -14391,7 +14394,7 @@ img.widget-promo-image {
   min-height: 1px;
   width: 33.3333%;
   /* @include mediaQueries(min-esmall) {
-
+        
         width: 33.3333%;
     } */
   /* MIN WIDTH */
@@ -14704,7 +14707,7 @@ img.widget-promo-image {
   min-height: 1px;
   width: 33.3333%;
   /* @include mediaQueries(min-esmall) {
-
+        
         width: 33.3333%;
     } */
   /* MIN WIDTH */
@@ -16879,7 +16882,7 @@ img.widget-promo-image {
   /* MAX WIDTH */
   /*@include mediaQueries(min-large) {
         flex-basis: 25%;
-
+        
       }*/
 }
 
@@ -18433,7 +18436,7 @@ body.night-false {
   margin: 10px 0;
 }
 
-/* Security  Notification
+/* Security  Notification 
 -------------------------------------------------- */
 .automation .notification {
   margin: 20px 0;

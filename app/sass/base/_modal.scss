@@ -10,6 +10,13 @@
   z-index: $zindex-modal;
   overflow: auto;
   color: $app-body-color; // Animation
+  // ios workaround
+  transform: translateZ(0);
+  -moz-transform: translatez(0);
+  -ms-transform: translatez(0);
+  -o-transform: translatez(0);
+  -webkit-transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
   &.ng-animate {
     transition: all ease 0.4s;
     position: absolute;
@@ -107,7 +114,7 @@
   @include mediaQueries(min-small) {
     background-color: $app-overlay-bcg-color;
   }
- 
+
 }
 .appmodal{
   &.image:before{
