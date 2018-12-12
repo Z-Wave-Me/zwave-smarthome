@@ -77,6 +77,14 @@
                                     <i class="fa fa-lock text-success"></i> <span class="btn-name">{{_t('btn_secure')}}</span>
                                 </span>
                             </button>
+                            <!-- Enable SmartStart  -->
+                            <button class="btn btn-default btn-lg" ng-show="!smartStartEnabled" ng-if="cfg.user.beta" ng-click="enableSmartStart()" title="{{_t('enable_smart_start')}}">
+                                    <i class="fa fa-play-circle text-success"></i><span class="btn-name">{{_t('enable_smart_start')}}</span>
+                            </button>
+                            <!-- Disable SmartStart -->
+                            <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-if="cfg.user.beta" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
+                                    <i class="fa fa-stop-circle text-warning"></i><span class="btn-name">{{_t('disable_smart_start')}}</span>
+                            </button>
                         </div>
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="zwaveInclusion.inclusionProcess.process">

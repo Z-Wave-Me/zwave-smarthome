@@ -5,10 +5,18 @@
     <pre>{{ collection.find | json }}</pre> -->
     <!-- Navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <div class="fieldset">
+    <div class="fieldset" ng-controller="ZwaveInclusionController">
       <a class="btn btn-default btn-lg " href="#smartstart" title="{{_t('scan_qrcode')}}">
             <i class="fa fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')"></span>
       </a>
+      <!-- Enable SmartStart  -->
+      <button class="btn btn-default btn-lg" ng-show="!smartStartEnabled" ng-click="enableSmartStart()" title="{{_t('enable_smart_start')}}">
+            <i class="fa fa-play-circle text-success"></i><span class="btn-name">{{_t('enable_smart_start')}}</span>
+      </button>
+      <!-- disable SmartStart -->
+      <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
+            <i class="fa fa-stop-circle text-warning"></i><span class="btn-name">{{_t('disable_smart_start')}}</span>
+      </button>
     </div>
     <div id="table_mobile">
       <table class="table">
