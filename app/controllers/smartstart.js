@@ -451,7 +451,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 					device_type: $scope.collection.deviceTypes[typeId] ? $scope.collection.deviceTypes[typeId] : '',
 					dskArray: v.DSK.split('-'),
 					registred_at: $filter('dateTimeFromTimestamp')(v.timestamp),
-					added_at: '-',
+					added_at: v.addedAt ? $filter('dateTimeFromTimestamp')(v.addedAt) : '-',
 					product_image: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image : '',
 					product_image_remote: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image_remote : '',
 					brand_name: brand_name,

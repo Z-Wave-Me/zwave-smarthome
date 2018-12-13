@@ -17,6 +17,10 @@
       <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
             <i class="fa fa-stop-circle text-warning"></i><span class="btn-name">{{_t('disable_smart_start')}}</span>
       </button>
+      <!-- TODO: reload list 
+      <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
+            <i class="fa fa-stop-circle text-warning"></i><span class="btn-name">{{_t('disable_smart_start')}}</span>
+      </button>-->
     </div>
     <div id="table_mobile">
       <table class="table">
@@ -120,7 +124,7 @@
             </td>
             <!-- Given name -->
             <td data-title="given_name">
-              <span>{{v.givenName}}</span>
+              <span>{{v.givenName? v.givenName :'-'}}</span>
             </td>
             <!-- Location -->
             <td data-title="location">
@@ -158,7 +162,7 @@
               </div>
             </td>
             <!-- added add -->
-            <td data-title="">
+            <td data-title="added_at">
               <span class="text-supp">{{v.added.added_at}}</span>
             </td>
             <!-- action -->
@@ -168,6 +172,10 @@
                 <button class="btn btn-default" title="{{_t('lb_update')}}" ng-show="v.isSmartStart" ng-click="setData(v);handleModal('dskModal', $event)">
                 <i class="fa fa-info-circle text-primary"></i>
                 </button>
+                <!-- configure node -->
+                <a class="btn btn-default" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
+                    <i class="fa fa-cog text-primary"></i>
+                </a>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="v.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
                 <i class="fa fa-trash text-danger"></i>
