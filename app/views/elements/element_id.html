@@ -63,10 +63,10 @@
             <bb-help-text trans="_t('hide_element_info')"></bb-help-text>
           </div>
         </div>
-        <!-- Add element to today bar -->
-        <div class="form-group" ng-show="cfg.route.os == 'PoppApp_Z_Way'" ng-if="elementId.input.deviceType == 'toggleButton' || 
+        <!-- Add element to Home (Android)-->
+        <div class="form-group" ng-show="cfg.route.os == 'PoppApp_Z_Way'" ng-if="elementId.input.deviceType == 'toggleButton' ||
                            elementId.input.deviceType == 'switchBinary' &&
-                           elementId.input.probeType != 'notification_email' && 
+                           elementId.input.probeType != 'notification_email' &&
                            elementId.input.probeType != 'notification_push'">
           <label>{{_t('lb_add_widget')}}:</label>
           <br>
@@ -78,6 +78,15 @@
             {{_t('lb_off')}}
           </a>
           <bb-help-text trans="_t('info_add_widget')"></bb-help-text>
+        </div>
+        <!-- Add element to Home (IOS)-->
+        <div class="form-group" ng-show="cfg.route.os == 'IOSWRAPPER'" ng-if="(elementId.input.deviceType == 'toggleButton' &&
+              elementId.input.probeType != 'notification_email' &&
+              elementId.input.probeType != 'notification_push')">
+          <a title="{{_t('lb_add_today')}}" class="btn btn-primary" href="/?id={{elementId.input.id}}&name={{elementId.input.metrics.title|stringToSlug}}&type={{elementId.input.deviceType}}&state={{elementId.input.metrics.level}}">
+            {{ _t('lb_add_today')}}
+          </a>
+          <bb-help-text trans="_t('info_add_today')"></bb-help-text>
         </div>
         <!-- Delete element -->
         <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
