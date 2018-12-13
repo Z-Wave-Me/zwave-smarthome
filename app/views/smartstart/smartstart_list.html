@@ -62,9 +62,9 @@
               </div>
               <dl class="inline-dl">
                 <dt>{{_t('device_name')}}</dt>
-                <dd>{{v.added.given_name}}</dd>
+                <dd>{{v.givenName}}</dd>
                 <dt>{{_t('lb_room')}}</dt>
-                <dd>{{locations[v.added.location].title|cutText:true:20}}</dd>
+                <dd>{{locations[v.location].title|cutText:true:20}}</dd>
                 <dt>{{_t('brand_name')}}</dt>
                 <dd>{{v.added.brand_name}}</dd>
                 <dt>{{_t('product_name')}}</dt>
@@ -74,8 +74,8 @@
                 <dt>{{_t('added_at')}}</dt>
                 <dd>{{v.added.added_at}}</dd>
               </dl>
-             <!--  <div class="given_name">
-                <span>{{v.added.given_name}}</span>
+             <!--  <div class="givenName">
+                <span>{{v.added.givenName}}</span>
               </div>
               <div class="location">
                 <span>{{locations[v.added.location].title}}</span>
@@ -120,11 +120,11 @@
             </td>
             <!-- Given name -->
             <td data-title="given_name">
-              <span>{{v.added.given_name}}</span>
+              <span>{{v.givenName}}</span>
             </td>
             <!-- Location -->
-            <td data-title="given_name">
-              <span>{{locations[v.added.location].title}}</span>
+            <td data-title="location">
+              <span>{{locations[v.location].title}}</span>
             </td>
             <!-- Brand -->
             <td data-title="brand">

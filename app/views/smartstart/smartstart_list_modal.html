@@ -14,8 +14,8 @@
             <dt>{{_t('device_name')}}</dt>
             <dd>
               <div class="form-group form-inline is-inline">
-                <span ng-hide="showGivenNameForm">{{collection.find.added.given_name}}</span>
-                <input class="form-control" ng-show="showGivenNameForm" ng-model="collection.find.added.given_name" type="text" name="given_name" />
+                <span ng-hide="showGivenNameForm">{{collection.find.givenName}}</span>
+                <input class="form-control" ng-show="showGivenNameForm" ng-model="collection.find.givenName" type="text" name="given_name" />
                 <i class="fa clickable" ng-click="showGivenNameForm = !showGivenNameForm" ng-class="showGivenNameForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
               </div>
             </dd>
@@ -24,16 +24,15 @@
               <div class="form-group form-inline is-inline" ng-if="elementAccess(cfg.role_access.admin)">
                 <div class="btn-group btn-goup-block btn-goup-1">
                   <button type="button" class="btn btn-default" ng-click="expandNavi('elidDropDown', $event)">
-                    {{locations[collection.find.added.location].title|cutText:true:20}}
+                    {{locations[collection.find.location].title|cutText:true:20}}
                     <i class="fa fa-caret-down"></i>
                   </button>
                   <div class="app-dropdown app-dropdown-left dropdown-100" ng-if="naviExpanded.elidDropDown">
                     <ul>
-                      <li class="clickable" ng-class="collection.find.added.location == v.id ? 'active' : ''" ng-click="collection.find.added.location = v.id"
-                        ng-repeat="v in locations">
+                      <li class="clickable" ng-class="collection.find.location == v.id ? 'active' : ''" ng-click="collection.find.location = v.id" ng-repeat="v in locations">
                         <a>
                           <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> {{v.title|cutText:true:20}}
-                          <i class="fa fa-check menu-arrow" ng-if="collection.find.added.location == v.id"></i>
+                          <i class="fa fa-check menu-arrow" ng-if="collection.find.location == v.id"></i>
                         </a>
                       </li>
                     </ul>

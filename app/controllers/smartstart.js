@@ -211,7 +211,7 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
  * The controller that displays DSK list.
  * @class SmartStartListController
  */
-myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, cfg, dataFactory, dataService, expertService) {
+myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, cfg, $route, dataFactory, dataService, expertService, myCache) {
 
 	$scope.collection = {
 		alert: {},
@@ -330,7 +330,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 		if(!_.isEqual(input, $scope.collection.findOrg)) {
 			console.log("There are changes!!!!");
 		}
-		/*input.DSK = _.map(input.added.dskArray, function(v) {
+		input.DSK = _.map(input.added.dskArray, function(v) {
 			return v;
 		}).join('-');
 		dataFactory.postApi('update_dsk', _.omit(input, 'added')).then(function(response) {
@@ -341,7 +341,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 		}, function(error) {
 			alertify.alertError($scope._t('error_update_data'));
 		});
-		*/
 	};
 
 	/**
@@ -457,9 +456,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 					product_image_remote: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image_remote : '',
 					brand_name: brand_name,
 					brand_image: brand_image,
-					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-',
-					location: 1,
-					given_name: ''
+					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-'
 				};
 				return v;
 			});
