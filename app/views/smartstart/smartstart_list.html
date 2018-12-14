@@ -11,16 +11,16 @@
       </a>
       <!-- Enable SmartStart  -->
       <button class="btn btn-default btn-lg" ng-show="!smartStartEnabled" ng-click="enableSmartStart()" title="{{_t('enable_smart_start')}}">
-            <i class="fa fa-play-circle text-success"></i><span class="btn-name">{{_t('enable_smart_start')}}</span>
+            <i class="fa fa-play-circle text-success"></i><span class="btn-name"> {{_t('enable_smart_start')}}</span>
       </button>
       <!-- disable SmartStart -->
       <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
-            <i class="fa fa-stop-circle text-warning"></i><span class="btn-name">{{_t('disable_smart_start')}}</span>
+            <i class="fa fa-stop-circle text-warning"></i><span class="btn-name"> {{_t('disable_smart_start')}}</span>
       </button>
-      <!-- TODO: reload list 
-      <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
-            <i class="fa fa-stop-circle text-warning"></i><span class="btn-name">{{_t('disable_smart_start')}}</span>
-      </button>-->
+      <!-- reload list -->
+      <button class="btn btn-default btn-lg" ng-click="refreshDSKList()" title="{{_t('refresh_dsk_list')}}">
+            <i class="fa fa-refresh text-warning"></i><span class="btn-name"> {{_t('refresh_dsk_list')}}</span>
+      </button>
     </div>
     <div id="table_mobile">
       <table class="table">
@@ -173,7 +173,7 @@
                 <i class="fa fa-info-circle text-primary"></i>
                 </button>
                 <!-- configure node -->
-                <a class="btn btn-default" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
+                <a class="btn btn-default" ng-if="v.state === 'included'" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
                     <i class="fa fa-cog text-primary"></i>
                 </a>
                 <!-- delete -->

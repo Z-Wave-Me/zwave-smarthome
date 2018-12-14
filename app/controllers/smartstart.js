@@ -325,19 +325,11 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 	 * @returns {undefined}
 	 */
 	$scope.updateDsk = function(input) {
-		console.log("input", input);
-		console.log("$scope.collection.find", $scope.collection.findOrg);
-		if(!_.isEqual(input, $scope.collection.findOrg)) {
-			console.log("There are changes!!!!");
-		}
 		input.DSK = _.map(input.added.dskArray, function(v) {
 			return v;
 		}).join('-');
 		dataFactory.postApi('update_dsk', _.omit(input, 'added')).then(function(response) {
-
-			myCache.removeAll();
-			$route.reload();
-
+			$scope.allSettled();
 		}, function(error) {
 			alertify.alertError($scope._t('error_update_data'));
 		});
@@ -430,6 +422,8 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 					icon: 'fa-info-circle text-info'
 				});
 				return;
+			} else {
+				cfg.route.alert.message = null;
 			}
 
 			// Data collection
@@ -460,6 +454,14 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				};
 				return v;
 			});
+	}
+
+	/**
+	 * Update DSK
+	 * @returns {undefined}
+	 */
+	$scope.refreshDSKList = function(){
+		$scope.allSettled();
 	}
 });
 
