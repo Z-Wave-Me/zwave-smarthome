@@ -9,25 +9,23 @@
             <!-- <h3><span ng-bind="_t('nav_login')"></span></h3> -->
             <!-- login -->
             <div class="form-group">
-                <input name="login" id="login" type="text" class="form-control" placeholder="{{_t('lb_login')}}" value="{{input.login}}" ng-model="input.login" />
+                <input name="login" id="login" type="text" class="form-control" placeholder="{{_t('lb_login')}}" value="{{input.login}}" ng-model="input.login" autocapitalize="off"/>
             </div>
             <!-- password -->
             <div class="form-group">
                 <input name="password" id="password" type="password" class="form-control" placeholder="{{_t('lb_password')}}" value="" ng-model="input.password" />
             </div>
-
             <!-- remember -->
             <div class="form-group">
                 <input type="checkbox" name="rememberme" value="true" id="rememberme" ng-model="input.rememberme" ng-checked="input.remember" /> <label for="rememberme" ng-bind="_t('remember_me')"></label>
             </div>
             <div class="form-group">
-                <a href="#passwordforgot"><i class="fa fa-question-circle text-primary"></i> {{_t('password_forgot')}}</a>    
+                <a href="#passwordforgot"><i class="fa fa-question-circle text-primary"></i> {{_t('password_forgot')}}</a>
             </div>
             <!-- remember -->
             <div class="form-group">
                 {{_t('local_ip_address')}}: {{auth.ipAddress}}
             </div>
-
         </fieldset>
         <fieldset class="submit-entry">
             <button type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}"><i class="fa fa-sign-in"></i> {{_t('lb_enter')}}</button>
