@@ -401,43 +401,48 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
         });
     }
 
-/**
+    /**
      * Run command
      */
     $scope.runCmd = function(cmd, id) {
-        var index = _.findIndex($scope.dataHolder.devices.all, {
-            id: id
-        });
-
-        angular.extend($scope.dataHolder.devices.all[index], {
-            progress: true
-        });
-
-        dataFactory.runApiCmd(cmd).then(function(response) {
+        if(id) {
             var index = _.findIndex($scope.dataHolder.devices.all, {
                 id: id
             });
+            angular.extend($scope.dataHolder.devices.all[index], {
+                progress: true
+            });
+        }
 
-            if ($scope.dataHolder.devices.all[index]) {
+        dataFactory.runApiCmd(cmd).then(function(response) {
+            if(id) {
+                var index = _.findIndex($scope.dataHolder.devices.all, {
+                    id: id
+                });
 
-                var cmdTimeout = $timeout(function() {
-                    angular.extend($scope.dataHolder.devices.all[index], {
-                        progress: false
-                    });
-                    if ($scope.cmdTimeouts[id]) {
-                        delete $scope.cmdTimeouts[id]
-                        $scope.cmdTimeouts.splice($scope.cmdTimeouts.indexOf(id), 1);
-                    }
-                }, cfg.pending_cmd_limit);
+                if ($scope.dataHolder.devices.all[index]) {
 
-                $scope.cmdTimeouts[id] = cmdTimeout;
+                    var cmdTimeout = $timeout(function() {
+                        angular.extend($scope.dataHolder.devices.all[index], {
+                            progress: false
+                        });
+                        if ($scope.cmdTimeouts[id]) {
+                            delete $scope.cmdTimeouts[id]
+                            $scope.cmdTimeouts.splice($scope.cmdTimeouts.indexOf(id), 1);
+                        }
+                    }, cfg.pending_cmd_limit);
+
+                    $scope.cmdTimeouts[id] = cmdTimeout;
+                }
             }
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.loading = false;
-            angular.extend($scope.dataHolder.devices.all[index], {
-                progress: false
-            });
+            if(id) {
+                angular.extend($scope.dataHolder.devices.all[index], {
+                    progress: false
+                });
+            }
         });
         return;
     };
