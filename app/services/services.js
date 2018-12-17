@@ -1143,13 +1143,37 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			// If a custom icon exists set it otherwise set a default icon
 			angular.forEach(defaultIcon.level || defaultIcon, function(v, k) {
 				var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons);
-				obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
+
+				if(cfg.route.os == 'IOSWRAPPER') {
+					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
+                    dyn_dns  = cfg.server_url.indexOf("dyndns");
+
+	                if(customIcon[k] && (remote > -1 || dyn_dns > -1)) {
+	                    obj[k] =  cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon[k];
+	                } else {
+	                    obj[k] = path + v;
+	                }
+				} else {
+					obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
+				}
 			});
 			return obj;
 		} else {
 			// If a custom icon exists set it otherwise set false
 			if (!_.isEmpty(customIcon.default)) {
-				obj['default'] = cfg.img.custom_icons + customIcon['default'];
+				if(cfg.route.os == 'IOSWRAPPER') {
+					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
+                    	dyn_dns  = cfg.server_url.indexOf("dyndns");
+
+	                if(remote > -1 || dyn_dns > -1) {
+	                    obj['default'] = cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon['default'];
+	                } else {
+	                    obj['default'] = cfg.img.custom_icons + customIcon['default'];
+	                }
+				} else {
+					obj['default'] = cfg.img.custom_icons + customIcon['default'];
+				}
+
 				return obj;
 			}
 			return false;

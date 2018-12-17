@@ -98,7 +98,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             $scope.css = cfg.skin.path + $cookies.skin + '/main.css';
 
 
-        } else {
+        } else if(cfg.route.os != 'IOSWRAPPER') {
             dataFactory.getApi('skins_active').then(function(response) {
                 if (response.data.data.name !== 'default') {
                     cfg.skin.active = response.data.data.name;
@@ -123,10 +123,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         //$cookies.nightMode = nightMode;
         dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function(response) {
             if(cfg.route.os == 'IOSWRAPPER') {
-                var prevLocation = $location.path();
-                console.log("prevLocation", prevLocation);
-                $location.path($scope.user.night_mode ? 'nightmodeTrue' : 'nightmodeFalse');
-                $location.path(prevLocation);
+                window.location = 'js-call:' + ($scope.user.night_mode ? 'nightmodeTrue' : 'nightmodeFalse');
             }
         });
     };
@@ -728,7 +725,6 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             $scope.expandNavi('mainNav', $event, false);
         }
     };
-
 
 
     /**
