@@ -836,12 +836,12 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             //console.log('lastIncludedDevice: ', deviceIncId);
             if (deviceIncId != null) {
                 $scope.zwaveInclusion.controller.lastIncludedDeviceId = deviceIncId;
-                var givenName = 'Device_' + deviceIncId;
+                //var givenName = 'Device_' + deviceIncId;
                 var cmd = false;
 
-                if (data.devices[deviceIncId].data.givenName.value === '' || data.devices[deviceIncId].data.givenName.value === null) {
+                /*if (data.devices[deviceIncId].data.givenName.value === '' || data.devices[deviceIncId].data.givenName.value === null) {
                     cmd = 'devices[' + deviceIncId + '].data.givenName.value=\'' + givenName + '\'';
-                }
+                }*/
                 resetProcess('inclusion', false, true, false, true);
                 //dataService.showNotifier({message: $scope._t('lb_new_device_found')});
                 resetConfiguration(true, false, {nodeId: deviceIncId}, cmd, true);
