@@ -311,7 +311,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		// Redirect to SHUI login page
 		$window.location.href = '#/?logout';
 		$window.location.reload();
-
 	};
 
 	/**

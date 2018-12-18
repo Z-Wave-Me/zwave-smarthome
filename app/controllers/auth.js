@@ -216,13 +216,13 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 	 */
 	$scope.getSession = function() {
 		var hasCookie = ($cookies.user) ? true : false;
-		dataFactory.sessionApi().then(function(response) {
-			$scope.processUser(response.data.data);
-			if (!hasCookie) {
+		if(hasCookie) {
+			dataFactory.sessionApi().then(function(response) {
+				$scope.processUser(response.data.data);
 				window.location = '#/dashboard';
 				$window.location.reload();
-			}
-		});
+			});
+		}
 	};
 
 	/**
@@ -465,7 +465,10 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			profile['lang'] = $scope.loginLang;
 			// Update profile
 			dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function(response) {
-				//$scope.user
+				if(cfg.route.os == 'PoppApp_Z_Way') {
+					Android.click(input.password);
+				}
+
 				if (cfg.app_type === 'jb' && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
 					$scope.updateInstance(instance);
 				} else {
