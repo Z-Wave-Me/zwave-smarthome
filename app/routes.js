@@ -209,23 +209,23 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/devices/devices.html',
 			requireLogin: true,
 			roles: cfg.role_access.devices
-		}). //SmartStart  
+		}). //SmartStart
     when('/smartstart', {
             templateUrl: 'app/views/smartstart/smartstart.html',
             requireLogin: true,
             roles: cfg.role_access.admin
-        }). //SmartStart with QR code 
+        }). //SmartStart with QR code
     when('/smartstartqr', {
             templateUrl: 'app/views/smartstart/smartstart_qr.html',
             requireLogin: true,
             roles: cfg.role_access.admin
         }).
-        //SmartStart with dsk 
+        //SmartStart with dsk
     when('/smartstartdsk', {
             templateUrl: 'app/views/smartstart/smartstart_dsk.html',
             requireLogin: true,
             roles: cfg.role_access.admin
-        }). //SmartStart with dsk 
+        }). //SmartStart with dsk
     when('/smartstartlist', {
             templateUrl: 'app/views/smartstart/smartstart_list.html',
             requireLogin: true,
@@ -373,7 +373,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/wifiplug/wifiplug_manage.html',
 			requireLogin: true,
 			roles: cfg.role_access.devices
-		}). //Rooms
+		}).// Manage mobile devices
+	when('/mobile/manage', {
+			templateUrl: 'app/views/mobile/mobile_manage.html',
+			requiredLogin: true,
+			roles: cfg.role_access.devices
+		}).//Rooms
 	when('/config-rooms', {
 			templateUrl: 'app/views/rooms/config_rooms.html',
 			requireLogin: true,

@@ -1,0 +1,78 @@
+<!-- Mobile manage -->
+<div ng-controller="MobileManageController">
+	<bb-loader></bb-loader>
+	<pre>{{mobile.input | json}}</pre>
+	<h2>{{_t('MobileAppSupport')}}</h2>
+	<form class="form form-page" ng-submit="">
+		<div class="fieldset">
+			<section>
+				<h3>{{_t('Notifications')}}</h3>
+				<div class="fieldset">
+					<div class="form-group">
+						<div>
+							<label for="">
+								<input type="checkbox" name="" id="" ng-modal="">
+								<span></span>
+							</label>
+						</div>
+						<div>
+							<label for="">
+								<input type="checkbox" name="" id="" ng-modal="">
+								<span></span>
+							</label>
+						</div>
+						<bb-help-text trans="_t('TEST')"></bb-help-text>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3>{{_t('Device List')}}</h3>
+				<div class="fieldset">
+					<section class="accordion-wrap">
+						<!-- Title -->
+						<h2 class="accordion-toggle ellipsis">
+							<!-- Toogle -->
+							<button type="button" aria-expanded="false" bb-accordion>
+								<span>
+									{{_t('TEST TEST TEST')}}
+								</span>
+							</button>
+							<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="">
+								<i class="fa fa-times text-danger"></i>
+							</span>
+						</h2>
+						<!-- Content -->
+						<div class="accordion" hidden>
+
+						</div>
+					</section>
+				</div>
+			</section>
+			<div class="fieldset">
+				<button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
+					<i class="fa fa-plus text-success"></i>
+					<span class="btn-name" ng-bind="_t('add_new')"></span>
+				</button>
+			</div>
+		</div>
+		<div class="fieldset submit-entry is-grid">
+			<span>
+				<label class="switch">
+					<input type="checkbox" ng-model="mobile.input.active">
+					<span class="slider"></span>
+				</label>
+				<span class="switch-label">{{mobile.input.active ? _t('lb_active'): _t('activeASC')}}</span>
+			</span>
+			<span>
+				<a href="#devices" class="btn btn-default" title="{{_t('lb_cancel')}}"> <i class="fa fa-reply"></i>
+					<span class="btn-name">{{_t('lb_cancel')}}</span>
+				</a>
+				<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit"> <i class="fa fa-check"></i>
+				<span class="btn-name">{{_t('lb_save')}}</span>
+				</button>
+			</span>
+		</div>
+	</form>
+</div>
+<div ng-controller="MobileAddController" ng-include="'app/views/mobile/mobile_add_modal.html'"></div>
+<!-- /ng-controller -->
