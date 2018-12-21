@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Use isso para obter as informações mais recentes sobre o dispositivo e o fornecedor.",
     "device_exists": "O dispositivo já existe. Desinstale o dispositivo e reinstale-o.",
+    "device_key_list": "Device Key List",
     "device_name": "Device name",
     "device_no_event": "Este dispositivo não possui um evento",
     "device_no_smartstart": "This device does not support SmartStart.",

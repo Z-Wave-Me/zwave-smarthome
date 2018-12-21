@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Update the device database.",
     "device_exists": "Zařízení již existuje. Odinštaluj zařízení a znovu jej install.",
+    "device_key_list": "Device Key List",
     "device_name": "Device name",
     "device_no_event": "This device does not have an event",
     "device_no_smartstart": "This device does not support SmartStart.",

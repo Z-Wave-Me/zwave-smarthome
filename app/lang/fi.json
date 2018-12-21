@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Päivittää laitetietokannan.",
     "device_exists": "Laite on jo olemassa. Poista laitteen asennus ensin ja asenna sitten uudelleen.",
+    "device_key_list": "Device Key List",
     "device_name": "Device name",
     "device_no_event": "Tällä laitteella ei ole tapahtumia",
     "device_no_smartstart": "This device does not support SmartStart.",
