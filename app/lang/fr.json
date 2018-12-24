@@ -818,6 +818,7 @@
     "speech_assistant_info": "Select a Speech Assistant System.",
     "start": "Start",
     "start_teachin": "Débuter l'apprentissage",
+    "start_teachout": "Start Teach-Out",
     "state": "State",
     "stop": "Stop",
     "stop_teachin": "Stopper l'apprentissage",

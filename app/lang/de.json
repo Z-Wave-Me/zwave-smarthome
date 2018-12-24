@@ -818,6 +818,7 @@
     "speech_assistant_info": "Wählen Sie ein Sprachassistenzsystem aus.",
     "start": "Start",
     "start_teachin": "Starte Teach-In",
+    "start_teachout": "Starte Teach-Out",
     "state": "Status",
     "stop": "Stop",
     "stop_teachin": "Stoppe Teach-In",
