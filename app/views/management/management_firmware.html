@@ -2,7 +2,7 @@
 <!-- Title -->
 <h2 class="accordion-toggle chevron" ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.local)">
   <!-- Toggle -->
-  <button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('firmware',true)">
+  <button type="button" aria-expanded="false" bb-accordion>
     <span>
       <i class="fa fa-level-up fa-fw"></i> {{_t('firmware_update')}}
     </span>
@@ -12,20 +12,21 @@
 <h2 class="accordion-toggle chevron"  ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
     <!-- Toggle -->
     <button type="button">
-      <span> 
-          <i class="fa fa-exclamation-circle fa-fw text-warning"></i> {{_t('firmware_update')}} 
+      <span>
+          <i class="fa fa-exclamation-circle fa-fw text-warning"></i> {{_t('firmware_update')}}
           <em ng-if="cfg.route.os == 'PoppApp_Z_Way'">
               , {{_t('not_supported_on_mobile')}}
           </em>
           <em class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
               , {{_t('not_supported_on_remote')}}
           </em>
-      </span> 
+      </span>
     </button>
-  
+
   </h2>
 <!-- Content -->
-<div class="accordion" hidden ng-if="expand.firmware" ng-controller="ManagementFirmwareController">
+<div class="accordion" hidden ng-controller="ManagementFirmwareController">
+  <bb-loader></bb-loader>
   <form name="form_firmware" id="form_firmware" class="form form-page" ng-submit="updateFirmware()" novalidate>
     <fieldset>
       <!-- Currentt version -->

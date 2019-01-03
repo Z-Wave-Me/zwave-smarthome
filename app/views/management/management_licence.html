@@ -2,15 +2,16 @@
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
     <!-- Toggle -->
-    <button type="button" aria-expanded="false" bb-accordion  ng-click="expandElement('licence', true)">
-      <span> 
+    <button type="button" aria-expanded="false" bb-accordion>
+      <span>
           <i class="fa fa-key fa-fw"></i> {{_t('licence_upgrade')}}
-      </span> 
+      </span>
     </button>
-  
+
   </h2>
   <!-- Content -->
-  <div class="accordion" hidden ng-if="expand.licence" ng-controller="ManagementLicenceController">
+  <div class="accordion" hidden ng-controller="ManagementLicenceController">
+      <bb-loader></bb-loader>
       <bb-alert alert="handleLicense.alert"></bb-alert>
       <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="!handleLicense.error" novalidate>
           <fieldset>
@@ -35,7 +36,7 @@
                       <i class="" ng-class="proccessUpdate.status"></i> <strong ng-bind="proccessUpdate.message"></strong>
                   </p>
               </div>
-          </fieldset> 
+          </fieldset>
           <fieldset class="submit-entry">
               <button type="submit" class="btn btn-submit" title="{{_t('btn_licence_verify')}}" ng-disabled="proccessLicence || controllerInfo.isZeroUuid">
                   <i class="fa fa-share"></i> <span class="btn-name">{{_t('btn_licence_verify')}}</span>

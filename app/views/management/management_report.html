@@ -2,7 +2,7 @@
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
   <!-- Toggle -->
-  <button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('report',true)">
+  <button type="button" aria-expanded="false" bb-accordion>
     <span>
       <i class="fa fa-bug fa-fw"></i> {{_t('nav_report')}}
     </span>
@@ -10,7 +10,8 @@
 
 </h2>
 <!-- Content -->
-<div class="accordion" hidden ng-if="expand.report" ng-controller="ManagementReportController">
+<div class="accordion" hidden ng-controller="ManagementReportController">
+  <bb-loader></bb-loader>
   <form name="form_report" id="form_profile" class="form form-page" ng-submit="sendReport(form_report,input)" novalidate>
     <fieldset>
       <div class="alert alert-warning">

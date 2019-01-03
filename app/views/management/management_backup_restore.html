@@ -2,7 +2,7 @@
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
   <!-- Toggle -->
-  <button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('backup_restore',true)">
+  <button type="button" aria-expanded="false" bb-accordion>
     <span>
       <i class="fa fa-download fa-fw"></i> {{_t('backup_restore')}}
     </span>
@@ -10,7 +10,8 @@
 
 </h2>
 <!-- Content -->
-<div class="accordion" hidden ng-if="expand.backup_restore" ng-controller="ManagementCloudBackupController">
+<div class="accordion" hidden ng-controller="ManagementCloudBackupController">
+  <bb-loader></bb-loader>
   <!-- Backup -->
   <div class="form form-page">
     <fieldset>
@@ -18,8 +19,10 @@
       <p ng-bind-html="_t('backup_info', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></p>
     </fieldset>
     <div class="fieldset submit-entry">
-      <button class="btn btn-submit" type="button" title="{{_t('nm_backup_download')}}" ng-click="downLoadBackup()">
-        <i class="fa fa-download"></i>
+      <button class="btn btn-submit" type="button" title="{{_t('nm_backup_download')}}" ng-click="downLoadBackup()" ng-disabled="rowSpinner['downLoadBackup()']">
+        <span class="btn-spin">
+          <i class="fa" ng-class="rowSpinner['downLoadBackup()'] ? 'fa-spinner fa-spin' : 'fa-download'"></i>
+        </span>
         <span class="btn-name">{{_t('download_backup_computer')}}</span>
       </button>
     </div>

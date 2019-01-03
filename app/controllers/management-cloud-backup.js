@@ -93,14 +93,14 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
      * Start backup and get backup.file
      */
     $scope.downLoadBackup = function() {
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        $scope.toggleRowSpinner('downLoadBackup()');
 
         var old = cfg.pending_remote_limit;
         var timeout  = 600000; // max 10 min
         cfg.pending_remote_limit = timeout;
 
         dataFactory.getRemoteData(cfg.server_url + cfg.api.backup).then(function(response) {
-            $scope.loading = false;
+            $scope.toggleRowSpinner();
             var headers = response.headers(),
                 filenameRegex = /.*filename=([\'\"]?)([^\"]+)\1/,
                 matches = filenameRegex.exec(headers['content-disposition']),
@@ -115,8 +115,8 @@ myAppController.controller('ManagementCloudBackupController', function ($scope, 
             cfg.pending_remote_limit = old;
             a.click();
         }, function(error) {
+            $scope.toggleRowSpinner();
             alertify.alertError($scope._t('error_backup'));
-            $scope.loading = false;
             cfg.pending_remote_limit = old;
         });
     };

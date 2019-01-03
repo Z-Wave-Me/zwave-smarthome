@@ -2,7 +2,7 @@
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
   <!-- Toggle -->
-  <button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('firmware',true)">
+  <button type="button" aria-expanded="false" bb-accordion>
     <span>
       <i class="fa fa-level-up fa-fw"></i> {{_t('firmware_update')}}
     </span>
@@ -10,7 +10,8 @@
 
 </h2>
 <!-- Content -->
-<div class="accordion" hidden ng-if="expand.firmware" ng-controller="ManagementFirmwareController">
+<div class="accordion" hidden ng-controller="ManagementFirmwareController">
+  <bb-loader></bb-loader>
   <div class="form form-page">
     <div class="fieldset">
       <p class="form-control-static">

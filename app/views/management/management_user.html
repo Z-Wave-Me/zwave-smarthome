@@ -2,15 +2,15 @@
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
   <!-- Toggle -->
-  <button type="button" aria-expanded="false" bb-accordion  ng-click="expandElement('user',true)">
-    <span> 
+  <button type="button" aria-expanded="false" bb-accordion>
+    <span>
       <i class="fa fa-users fa-fw"></i> {{_t('nav_admin')}}
-    </span> 
+    </span>
   </button>
 
 </h2>
 <!-- Content -->
-<div class="accordion" hidden ng-if="expand.user" ng-controller="ManagementUserController">
+<div class="accordion" hidden ng-controller="ManagementUserController">
       <div class="page-control form-inline">
         <div class="btn-group">
           <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
@@ -23,7 +23,7 @@
           </a>
         </div>
       </div>
-    
+
       <!-- Page subnavi  sort by -->
       <div class="page-navi" ng-if="naviExpanded.roomsOrderBy">
         <div class="page-navi-in">
@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-    
+
       <div class="list-panel" ng-repeat="v in userProfiles.all|orderBy:cfg.orderby.users[userProfiles.orderBy]| filter:q  track by v.id">
         <!-- img -->
         <a class="figure img wh-32x32" ng-href="#admin/user/{{v.id}}">
