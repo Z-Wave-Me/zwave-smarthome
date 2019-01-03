@@ -828,6 +828,7 @@
     "speech_assistant_info": "Select a Speech Assistant System.",
     "start": "Start",
     "start_teachin": "Starta Teach-In",
+    "start_teachout": "Starta Teach-Out",
     "state": "State",
     "stop": "Stop",
     "stop_teachin": "Stoppa Teach-In",

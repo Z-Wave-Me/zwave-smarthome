@@ -828,6 +828,7 @@
     "speech_assistant_info": "Select a Speech Assistant System.",
     "start": "Inizia",
     "start_teachin": "Inizia Teach-In",
+    "start_teachout": "Inizia Teach-Out\r\n",
     "state": "State",
     "stop": "Ferma",
     "stop_teachin": "Ferma Teach-In",
