@@ -19,7 +19,7 @@ myAppController.controller('MobileAddController', function ($scope, $timeout, $w
                 "password": pass
             };
             $scope.toggleRowSpinner(id);
-            dataFactory.postApi('profiles', data, '/qrcode/'+$scope.user.id,).then(function(response) {
+            dataFactory.postApi('profiles', data, '/qrcode/'+$scope.user.id).then(function(response) {
                 dataService.showNotifier({message: $scope._t('success_updated')});
                 
                 var qr = new QRious({

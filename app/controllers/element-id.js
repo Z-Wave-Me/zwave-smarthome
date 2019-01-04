@@ -400,7 +400,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 
 		angular.extend($scope.elementId.input, {
 			iconPath: dataService.assignElementIcon($scope.elementId.input)
-		}, );
+		});
 
 		setAlexa($scope.speechAssistants.Alexa.instance, $scope.elementId.input);
 		setGoogleHome($scope.speechAssistants.GoogleHome.instance, $scope.elementId.input);
