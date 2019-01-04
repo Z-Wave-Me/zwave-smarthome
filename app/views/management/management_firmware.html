@@ -4,21 +4,20 @@
   <!-- Toggle -->
   <button type="button" aria-expanded="false" bb-accordion>
     <span>
-      <i class="fa fa-level-up fa-fw"></i> {{_t('firmware_update')}}
+      <i class="fa fa-level-up fa-fw"></i>{{_t('firmware_update')}}
     </span>
   </button>
-
 </h2>
 <h2 class="accordion-toggle chevron"  ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
     <!-- Toggle -->
     <button type="button">
       <span>
-          <i class="fa fa-exclamation-circle fa-fw text-warning"></i> {{_t('firmware_update')}}
+          <i class="fa fa-exclamation-circle fa-fw text-warning"></i>{{_t('firmware_update')}}
           <em ng-if="cfg.route.os == 'PoppApp_Z_Way'">
-              , {{_t('not_supported_on_mobile')}}
+              ,&nbsp;{{_t('not_supported_on_mobile')}}
           </em>
           <em class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
-              , {{_t('not_supported_on_remote')}}
+              ,&nbsp;{{_t('not_supported_on_remote')}}
           </em>
       </span>
     </button>
@@ -67,7 +66,6 @@
       </button>
     </fieldset>
   </form>
-
   <!-- firmwareUpdateModal -->
   <div id="firmwareUpdateModal" class="appmodal appmodal-90 modal-h-700" ng-if="modalArr.firmwareUpdateModal && firmwareUpdate.show">
     <div class="appmodal-in">
@@ -81,7 +79,6 @@
         <div class="iframe-wrapper">
           <iframe ng-src="{{firmwareUpdate.url}}" height="600" style="width: 100%;" ng-if="firmwareUpdate.loaded"></iframe>
         </div>
-
       </div>
     </div>
   </div>

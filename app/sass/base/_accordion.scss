@@ -32,11 +32,12 @@ $accordion-focus-color: $focus-color;
       @include textOverflow();
       align-items: center;
       display: inline-flex;
-      /*
-       fa:first-of-type {
+      > .fa {
         font-size: 120%;
+        &.fa-fw {
+          margin-right: 10px;
+        }
       }
-      */
     }
 
     &::after{
