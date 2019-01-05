@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Use isso para obter as informações mais recentes sobre o dispositivo e o fornecedor.",
     "device_exists": "O dispositivo já existe. Desinstale o dispositivo e reinstale-o.",
+    "device_key_list": "Device Key List",
     "device_name": "Device name",
     "device_no_event": "Este dispositivo não possui um evento",
     "device_no_smartstart": "This device does not support SmartStart.",
@@ -722,7 +723,10 @@
     "redirect_to_expert": "Será redirecionado para uma interface de utilizador especial dedicada aos instaladores e profissionais da Z-Wave. Se não pertence a este grupo ou não possui conhecimento aprofundado da tecnologia Z-Wave, esta interface do usuário não é para você!",
     "redo_inclusion": "Refazer a inclusão",
     "reform_network": "Reform network",
+<<<<<<< HEAD
     "registered_at": "Registered at",
+=======
+>>>>>>> dev
     "release": "Liberto",
     "reload": "Recarregar",
     "reloading_page": "A recarregar a página...",
@@ -827,6 +831,7 @@
     "speech_assistant_info": "Select a Speech Assistant System.",
     "start": "Começar",
     "start_teachin": "Começar aprendizagem",
+    "start_teachout": "Start Teach-Out",
     "state": "State",
     "stop": "Parar",
     "stop_teachin": "Parar aprendizagem",

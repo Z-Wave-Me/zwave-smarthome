@@ -214,6 +214,7 @@
     "devices_trigger_alarm": "Devices that can trigger the Alarm",
     "device_database_info": "Päivittää laitetietokannan.",
     "device_exists": "Laite on jo olemassa. Poista laitteen asennus ensin ja asenna sitten uudelleen.",
+    "device_key_list": "Device Key List",
     "device_name": "Device name",
     "device_no_event": "Tällä laitteella ei ole tapahtumia",
     "device_no_smartstart": "This device does not support SmartStart.",
@@ -722,7 +723,10 @@
     "redirect_to_expert": "Sinut ohjataan erilliseen Z-Wave-asentajien ja -ammattilaisten käyttöliittymään. Jos et kuulu näihin ryhmiin eikä sinulla ole riittävää Z-Wave-teknologian osaamista, niin tämä toiminto ei ole sinua varten! ",
     "redo_inclusion": "Uudelleenliitä verkkoon",
     "reform_network": "Reform network",
+<<<<<<< HEAD
     "registered_at": "Registered at",
+=======
+>>>>>>> dev
     "release": "vapautettu",
     "reload": "Reload",
     "reloading_page": "Ladataan sivu uudelleen...",
@@ -827,6 +831,7 @@
     "speech_assistant_info": "Select a Speech Assistant System.",
     "start": "Start",
     "start_teachin": "Aloita Teach-In",
+    "start_teachout": "Start Teach-Out",
     "state": "State",
     "stop": "Stop",
     "stop_teachin": "Lopeta Teach-In",
