@@ -723,7 +723,10 @@
     "redirect_to_expert": "Será redirecionado para uma interface de utilizador especial dedicada aos instaladores e profissionais da Z-Wave. Se não pertence a este grupo ou não possui conhecimento aprofundado da tecnologia Z-Wave, esta interface do usuário não é para você!",
     "redo_inclusion": "Refazer a inclusão",
     "reform_network": "Reform network",
+<<<<<<< HEAD
     "registered_at": "Registered at",
+=======
+>>>>>>> dev
     "release": "Liberto",
     "reload": "Recarregar",
     "reloading_page": "A recarregar a página...",

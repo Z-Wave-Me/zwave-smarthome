@@ -89,6 +89,8 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
   $scope.modelRoom;
   $scope.inclusion = {
     promisc: false,
+    smartAckLearnMode: false,
+    smartAckLearnIn: false,
     done: false,
     config: false,
     message: false,
@@ -170,6 +172,8 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
     $scope.inclusion = {
       done: false,
       promisc: true,
+      smartAckLearnMode: false,
+      smartAckLearnIn: false,
       message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
       status: 'alert-warning',
       icon: 'fa-spinner fa-spin'
@@ -186,8 +190,8 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
       var findStr = 'devices';
       dataFactory.refreshEnoceanApiData().then(function (response) {
         if ('controller.data.promisc' in response.data) {
-          var pomisc = response.data['controller.data.promisc'].value;
-          if (pomisc === true) {
+          var promisc = response.data['controller.data.promisc'].value;
+          if (promisc === true) {
             $scope.inclusion = {
               done: false,
               promisc: true,
@@ -199,6 +203,31 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
             $scope.inclusion = {
               done: false,
               promisc: false,
+              message: $scope._t('teachin_canceled'),
+              status: 'alert-warning',
+              icon: 'fa-exclamation-circle'
+            };
+          }
+          return;
+        }
+        if ('controller.data.smartAckLearnMode' in response.data) {
+          var smartAckLearnMode = response.data['controller.data.smartAckLearnMode'].value;
+          if (smartAckLearnMode === true) {
+            $scope.inclusion = {
+              done: false,
+              promisc: false,
+              smartAckLearnMode: true,
+              smartAckLearnIn: response.data['controller.data.smartAckLearnIn'].value || false,
+              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
+              status: 'alert-warning',
+              icon: 'fa-spinner fa-spin'
+            };
+          } else {
+            $scope.inclusion = {
+              done: false,
+              promisc: false,
+              smartAckLearnMode: false,
+              smartAckLearnIn: false,
               message: $scope._t('teachin_canceled'),
               status: 'alert-warning',
               icon: 'fa-exclamation-circle'
@@ -241,6 +270,8 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
       $scope.inclusion = {
         done: false,
         promisc: false,
+        smartAckLearnMode: false,
+        smartAckLearnIn: false,
         message: '<a href="#enocean/manage"><strong>' + $scope._t('device_exists') + '</strong></a>',
         status: 'alert-warning',
         icon: 'fa-exclamation-circle'
@@ -248,11 +279,9 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
       return;
     }
 
-    var rorg = parseInt($scope.device.rorg);
     dataFactory.loadEnoceanApiData(true).then(function (response) {
       angular.forEach(response.data.devices, function (v, k) {
         if (k == id) {
-          // if (v.data.rorg.value == rorg) {
           var name = 'Device ' + k;
           var profile = assignProfile(v.data);
           if (profile) {
@@ -270,8 +299,10 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
           };
 
           $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
-          $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
-          $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
+          if ($scope.device.funcId && $scope.device.typeId) {
+            $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
+            $scope.runCmd('devices["x' + k + '"].data.typeId=' + $scope.device.typeId);
+          }
           $interval.cancel($scope.apiDataInterval);
           $scope.inclusion = {
             done: true,
@@ -284,13 +315,14 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
           $scope.loadApiDevices();
           return;
         }
-        //}
       });
 
     }, function (error) {
       $scope.inclusion = {
         done: false,
         promisc: false,
+        smartAckLearnMode: false,
+        smartAckLearnIn: false,
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
@@ -308,6 +340,8 @@ myAppController.controller('EnoceanAssignController', function ($scope, $interva
       $scope.inclusion = {
         done: false,
         promisc: false,
+        smartAckLearnMode: false,
+        smartAckLearnIn: false,
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
@@ -403,6 +437,8 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
   $scope.modelRoom;
   $scope.inclusion = {
     promisc: false,
+    smartAckLearnMode: false,
+    smartAckLearnIn: false,
     done: false,
     config: false,
     message: false,
@@ -495,13 +531,15 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
 
       $scope.inclusion = {
         done: false,
-        promisc: true,
+        promisc: $routeParams.devices ? true : false,
+        smartAckLearnMode: false,
+        smartAckLearnIn: false,
         message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
         status: 'alert-warning',
         icon: 'fa-spinner fa-spin'
       };
-      $scope.runCmd('controller.data.promisc=true');
-
+      if ($routeParams.devices) // not SmartAck
+        $scope.runCmd('controller.data.promisc=true');
     }, function (error) {
       angular.extend(cfg.route.alert, {
         message: $scope._t('error_load_data')
@@ -519,11 +557,13 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
       var findStr = 'devices';
       dataFactory.refreshEnoceanApiData().then(function (response) {
         if ('controller.data.promisc' in response.data) {
-          var pomisc = response.data['controller.data.promisc'].value;
-          if (pomisc === true) {
+          var promisc = response.data['controller.data.promisc'].value;
+          if (promisc === true) {
             $scope.inclusion = {
               done: false,
               promisc: true,
+              smartAckLearnMode: false,
+              smartAckLearnIn: false,
               message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
               status: 'alert-warning',
               icon: 'fa-spinner fa-spin'
@@ -532,6 +572,8 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
             $scope.inclusion = {
               done: false,
               promisc: false,
+              smartAckLearnMode: false,
+              smartAckLearnIn: false,
               message: $scope._t('teachin_canceled'),
               status: 'alert-warning',
               icon: 'fa-exclamation-circle'
@@ -539,7 +581,41 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
           }
           return;
         }
-        //console.log(response.data)
+        if ('controller.data.smartAckLearnMode' in response.data) {
+          var smartAckLearnMode = response.data['controller.data.smartAckLearnMode'].value;
+          if (smartAckLearnMode === true) {
+            $scope.inclusion = {
+              done: false,
+              promisc: false,
+              smartAckLearnMode: true,
+              smartAckLearnIn: response.data['controller.data.smartAckLearnIn'].value || false,
+              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
+              status: 'alert-warning',
+              icon: 'fa-spinner fa-spin'
+            };
+            return;
+          } else {
+            var teachIn = $scope.inclusion.smartAckLearnIn;
+            $scope.inclusion = {
+              done: false,
+              promisc: false,
+              smartAckLearnMode: false,
+              smartAckLearnIn: false,
+              message: $scope._t('teachin_canceled'),
+              status: 'alert-warning',
+              icon: 'fa-exclamation-circle'
+            };
+            if (!teachIn) {
+              if ('devices' in response.data) {
+                $scope.includedDevices = [];
+                angular.forEach(response.data.devices, function (v, k) {
+                  $scope.includedDevices.push(k);
+                });
+              }
+              return;
+            }
+          }
+        }
         if ('devices' in response.data) {
           angular.forEach(response.data.devices, function (v, k) {
             if ($scope.cfg.enocean_black_list.indexOf(k) === -1) {
@@ -574,17 +650,18 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
       $scope.inclusion = {
         done: false,
         promisc: false,
+        smartAckLearnMode: false,
+        smartAckLearnIn: false,
         message: '<a href="#enocean/manage"><strong>' + $scope._t('device_exists') + '</strong></a>',
         status: 'alert-warning',
         icon: 'fa-exclamation-circle'
       };
       return;
     }
-    var rorg = parseInt($scope.device.rorg);
+    console.log("id:" + id + "   " + lastId);
     dataFactory.loadEnoceanApiData(true).then(function (response) {
       angular.forEach(response.data.devices, function (v, k) {
         if (k === id) {
-          // if (v.data.rorg.value == rorg) {
           var config = false;
           var name = 'Device ' + k;
           var profile = assignProfile(v.data);
@@ -602,8 +679,10 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
             profile: profile
           };
           $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
-          $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
-          $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
+          if ($scope.device.funcId && $scope.device.typeId) {
+            $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
+            $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
+          }
           $interval.cancel($scope.apiDataInterval);
           $scope.inclusion = {
             done: true,
@@ -616,13 +695,14 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
           $scope.loadApiDevices();
           return;
         }
-        //}
       });
 
     }, function (error) {
       $scope.inclusion = {
         done: false,
         promisc: false,
+        smartAckLearnMode: false,
+        smartAckLearnIn: false,
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
@@ -640,6 +720,8 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
       $scope.inclusion = {
         done: false,
         promisc: false,
+        smartAckLearnMode: false,
+        smartAckLearnIn: false,
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
@@ -791,6 +873,8 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
       $scope.inclusion = {
         done: false,
         promisc: false,
+        smartAckLearnMode: false,
+        smartAckLearnIn: false,
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
