@@ -805,6 +805,7 @@
     "select_language": "Select language",
     "select_profile": "Sélectionner le profil du dispositif",
     "sending": "Envoi...",
+    "send_condition_help": "You can choose between 4 different conditions depending on the type of device. (All, On, Off, Level)",
     "sensorBinary": "Capteur Binaire",
     "sensorDiscrete": "Scene Controller",
     "sensorMultilevel": "Capteur Multiniveaux",

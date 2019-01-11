@@ -805,6 +805,7 @@
     "select_language": "Select language",
     "select_profile": "Valitse laiteprofiili",
     "sending": "Lähetetään...",
+    "send_condition_help": "You can choose between 4 different conditions depending on the type of device. (All, On, Off, Level)",
     "sensorBinary": "Binäärisensori",
     "sensorDiscrete": "Scene Controller",
     "sensorMultilevel": "Analoginen sensori",

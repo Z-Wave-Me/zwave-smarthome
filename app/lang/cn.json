@@ -805,6 +805,7 @@
     "select_language": "Select language",
     "select_profile": "请选择一个设备文件",
     "sending": "发送中...",
+    "send_condition_help": "You can choose between 4 different conditions depending on the type of device. (All, On, Off, Level)",
     "sensorBinary": "报警设备",
     "sensorDiscrete": "Scene Controller",
     "sensorMultilevel": "调光\/马达控制",

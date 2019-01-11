@@ -1,0 +1,13 @@
+<!-- sensorMultilevel -->
+<div class="form-group form-inline">
+	<label>{{_t('lb_send_condition')}}</label>
+	<!-- operator -->
+	<select class="form-control" ng-model="v.operator">
+		<option value="{{o}}" ng-repeat="o in mobile.cfg.sensorMultilevel.operator track by $index" ng-selected="o == v.operator">
+	 		{{o}}
+		</option>
+	</select>
+	<!-- level -->
+	<input type="number" class="form-control input-number" min="{{mobile.cfg.sensorMultilevel.min}}" max="{{mobile.cfg.sensorMultilevel.max}}" ng-model="v.level" />
+	<bb-help-text trans="_t('send_condition_help')"></bb-help-text>
+</div>

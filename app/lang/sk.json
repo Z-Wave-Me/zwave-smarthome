@@ -805,6 +805,7 @@
     "select_language": "Select language",
     "select_profile": "Vyberte profil zariadenia",
     "sending": "Odosielanie...",
+    "send_condition_help": "You can choose between 4 different conditions depending on the type of device. (All, On, Off, Level)",
     "sensorBinary": "Zariadenie Alarmu",
     "sensorDiscrete": "Scene Controller",
     "sensorMultilevel": "Analógový Senzor",

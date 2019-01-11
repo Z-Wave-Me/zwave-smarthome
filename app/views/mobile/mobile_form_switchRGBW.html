@@ -1,0 +1,32 @@
+<!-- select -->
+<div class="form-group form-inline">
+    <label for="condition">{{_t('lb_send_condition')}}</label>
+    <!-- select level -->
+    <select id="condition" name="condition" class="form-control" ng-model="v.level" ng-change="v.level = (v.level == 'rgb' ? {r:0,g:0,b:0} : v.level)">
+        <!-- <option value="">---</option> -->
+        <option value="{{o}}" ng-repeat="o in mobile.cfg.switchRGBW.level track by $index" ng-selected="o == v.level">
+            {{o}}
+        </option>
+        <option value="rgb" ng-selected="_.isObject(v.level)">{{_t('colors')}}</option>
+    </select>
+    <!-- level rgb -->
+    <span class="form-inline" ng-hide="v.level.indexOf(v.level) > -1">
+        <!-- red -->
+        <label>
+          {{_t('red')}} <input type="number" class="form-control input-number" min="{{mobile.cfg.switchRGBW.min}}" max="{{mobile.cfg.switchRGBW.max}}"  ng-model="v.level.r" />
+        </label>
+        <!-- green -->
+        <label>
+            {{_t('green')}}
+            <input type="number" class="form-control input-number" min="{{mobile.cfg.switchRGBW.min}}" max="{{mobile.cfg.switchRGBW.max}}"  ng-model="v.level.g" />
+        </label>
+        <!-- blue -->
+        <label>
+            {{_t('blue')}}
+            <input type="number" class="form-control input-number" min="{{mobile.cfg.switchRGBW.min}}" max="{{mobile.cfg.switchRGBW.max}}"  ng-model="v.level.b" />
+        </label>
+        <bb-help-text trans="_t('help_rgbw_value')"></bb-help-text>
+    </span>
+    <bb-help-text trans="_t('send_condition_help')"></bb-help-text>
+</div>
+
