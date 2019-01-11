@@ -46,28 +46,31 @@ appHttp.get('app/lang/' + config_data.cfg.route.lang + '.json').success(function
     angular.extend(config_data.cfg.route, {t: data});
 }).error(function () {
     angular.extend(config_data.cfg.route.alert, {
-      message: 'An unexpected error occurred while loading the language file.',
+        message: 'An unexpected error occurred while loading the language file.',
         hide: true
     });
-
 });
 
 // Create a config constant
 angular.forEach(config_data, function (key, value) {
     config_module.constant(value, key);
 });
+
 // Create an icon constant
 angular.forEach(icon_data, function (key, value) {
     config_module.constant(value, key);
 });
 
-
+// Create an mobile config constant
+angular.forEach(mobile_data, function (key, value) {
+    config_module.constant(value, key);
+});
 
 /**
  * Angular run function
  * @function run
  */
-myApp.run(function ($rootScope,  $route,$location, dataService, dataFactory,cfg) {
+myApp.run(function ($rootScope, $route, $location, dataService, dataFactory, cfg) {
 
     // Run underscore js in views
     $rootScope._ = _;

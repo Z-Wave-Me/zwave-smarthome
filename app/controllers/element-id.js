@@ -8,7 +8,7 @@
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function($scope, $q, $routeParams, $filter, $location, $timeout, cfg, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function($scope, $q, $routeParams, $filter, $location, $timeout, cfg, mobile_cfg, dataFactory, dataService, myCache) {
 	$scope.elementId = {
 		show: false,
 		appType: {},
@@ -33,6 +33,13 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			instance: {}
 		}
 	};
+
+	$scope.mobile = {
+		active: false,
+		input: {},
+		cfg: mobile_cfg,
+		device: {}
+	}
 
 	/**
 	 * Load all promises
@@ -82,6 +89,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			if (instances && instances.state === 'fulfilled') {
 				$scope.elementId.instances = instances.value.data.data;
 				setSpeechAssitants(instances.value.data.data);
+				setMobileAppSupport(instances.value.data.data);
 			}
 
 			// Success - modules
@@ -161,6 +169,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				$scope.updateProfile($scope.user, input.id);
 				$scope.updateAlexaInstance($scope.speechAssistants.Alexa.instance, input);
 				$scope.updateGoogleHomeInstance($scope.speechAssistants.GoogleHome.instance, input);
+				$scope.updateNotification($scope.mobile);
 			}, function(error) {
 				alertify.alertError($scope._t('error_update_data'));
 				$scope.loading = false;
@@ -279,6 +288,54 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				});
 			}
 		}
+	}
+
+	/**
+	 * update MobileAppSupport
+	 * @param  {object} input MobileAppSupport data
+	 */
+	$scope.updateNotification = function(data) {
+		var dev = data.device,
+			input = data.input;
+
+		if(!_.isEmpty(dev)) {
+			// transform data back to original format
+			var obj = {
+                id: dev.id,
+                deviceType: dev.deviceType,
+                msg: dev.msg,
+                level: dev.level == 'lvl' && dev.exact ? dev.exact : dev.level
+            };
+
+            if(dev.operator && dev.level == 'lvl' || dev.deviceType == 'sensorMultilevel') {
+                obj['operator'] = dev.operator;
+            }
+
+            // check if entry exist
+			var find = _.find(input.params.devices, function(d) {
+				return d.id == dev.id;
+			});
+
+			// entry exist
+			if(find) {
+				var index = _.findIndex(input.params.devices, find);
+				// update entry
+				input.params.devices[index] = obj;
+
+			// entry not exist
+			} else {
+				// add entry
+				input.params.devices.push(obj);
+			}
+		}
+
+        console.log("input", input);
+        dataFactory.storeApi('instances', parseInt(input.id, 10), input).then(function(response) {
+            $scope.loading = false;
+        }, function(error) {
+            $scope.loading = false;
+            alertify.alertError($scope._t('error_update_data'));
+        });
 	}
 
 	/**
@@ -407,9 +464,66 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			hide_events: $scope.user.hide_single_device_events.indexOf($scope.elementId.input.id) !== -1 ? true : false
 		});
 
+		setMobile($scope.mobile.input, $scope.elementId.input);
+
 		setAlexa($scope.speechAssistants.Alexa.instance, $scope.elementId.input);
 		setGoogleHome($scope.speechAssistants.GoogleHome.instance, $scope.elementId.input);
 	};
+
+	function setMobile(instance, device) {
+		if (instance.active) {
+			if (instance.params.devices) {
+				var pos = _.findIndex(instance.params.devices, function(dev) {
+						return dev.id == device.id;
+					});
+
+				if (pos > -1) {
+					var dev = instance.params.devices[pos],
+						obj = {
+	                        id: dev.id,
+	                        deviceType: dev.deviceType,
+	                        msg: dev.msg
+	                    };
+
+                    if(!isNaN(dev.level) &&
+                        $scope.mobile.cfg[dev.deviceType].level &&
+                        $scope.mobile.cfg[dev.deviceType].level.indexOf('lvl') > -1)
+                    {
+                        obj['level'] = 'lvl';
+                        obj['exact'] = dev.level;
+                    } else {
+                        obj['level'] = dev.level;
+                    }
+
+                    if(dev.operator) {
+                        obj['operator'] = dev.operator;
+                    }
+                    $scope.mobile.active = true;
+                    $scope.mobile.device = obj;
+				}
+			}
+		}
+	}
+
+	$scope.toggleNotification = function(state) {
+		if(state) {
+			$scope.mobile.device = $scope.mobile.cfg[$scope.elementId.input.deviceType].default;
+			$scope.mobile.device.id = $scope.elementId.input.id;
+		} else {
+			var dev = _.find($scope.mobile.input.params.devices, function(dev) {
+				return dev.id == $scope.mobile.device.id;
+			});
+
+			if(dev) {
+				var index = _.findIndex($scope.mobile.input.params.devices, dev);
+				if(index > -1) {
+					$scope.mobile.input.params.devices = _.without($scope.mobile.input.params.devices, $scope.mobile.input.params.devices[index]);
+				}
+			}
+			$scope.mobile.device = {};
+		}
+	}
+
 
 	function setAlexa(instance, device) {
 		// Alexa
@@ -442,7 +556,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 					callName = instance.params.devices[pos].callName;
 					alexaActivated = true;
 				}
-				console.log($scope.elementId.input.callName);
+
 				if ($scope.elementId.input.callName && $scope.elementId.input.callName !== "") {
 					angular.extend($scope.elementId.input, {
 						alexaActivated: alexaActivated,
@@ -525,6 +639,16 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				$scope.speechAssistants.GoogleHome.active = true;
 			}
 			$scope.speechAssistants.GoogleHome.instance = GoogleHome_instance;
+		}
+	}
+
+	function setMobileAppSupport(instances) {
+		var mobile_instance = _.findWhere(instances, {
+			moduleId: 'MobileAppSupport'
+		});
+
+		if (mobile_instance) {
+			$scope.mobile.input = mobile_instance
 		}
 	}
 

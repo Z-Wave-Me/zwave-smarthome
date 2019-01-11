@@ -148,7 +148,8 @@ var config_data = {
 			'add_dsk_provisioning_list': 'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST
 			'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
 			'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
-			'locations_image': 'ZAutomation/api/v1/locations/image' // delete cutom room image // TODO: add backend
+			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend,
+			'remove_app': 'MobileAppSupportAPI/removeApp' // remove app
 		},
 		// List of remote api URLs
 		'api_remote': {

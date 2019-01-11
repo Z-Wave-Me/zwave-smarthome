@@ -193,6 +193,22 @@
           </a>
         </div>
       </fieldset>
+      <!-- Notification -->
+      <fieldset>
+        <h3>{{_t('notifications')}}</h3>
+        <div class="form-group">
+          <label>{{_t('notification_active')}}</label>
+          <input type="checkbox" ng-model="mobile.active" ng-checked="mobile.active" ng-change="toggleNotification(mobile.active)">
+        </div>
+        <div ng-if="mobile.active">
+          <div class="form-group">
+            <label for="customMessage">{{_t('custom_message')}}</label>
+            <textarea class="form-control" id="customMessage" name="customMessage" ng-model="mobile.device.msg"></textarea>
+            <bb-help-text trans="_t('custom_message_help')"></bb-help-text>
+          </div>
+          <div ng-include="'app/views/mobile/mobile_form_' + elementId.input.deviceType + '.html'" onLoad="v=mobile.device"></div>
+        </div>
+      </fieldset>
       <!-- Submit -->
       <fieldset class="submit-entry">
         <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default" bb-go-back>
@@ -206,8 +222,6 @@
       </fieldset>
     </form>
     <div ng-if="elementAccess(cfg.role_access.admin)" ng-include="'app/views/elements/element_id_icons.html'"></div>
-
   </div>
-
 </div>
 <!-- /ng-controller -->

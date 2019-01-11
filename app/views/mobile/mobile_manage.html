@@ -1,59 +1,59 @@
 <!-- Mobile manage -->
 <div ng-controller="MobileManageController">
 	<bb-loader></bb-loader>
-	<pre>{{mobile.input | json}}</pre>
+	<!--<pre>{{mobile.input | json}}</pre>-->
 	<h2>{{_t('MobileAppSupport')}}</h2>
-	<form class="form form-page" ng-submit="">
+	<form class="form form-page" ng-submit="storeMobile(mobile.input)">
 		<div class="fieldset">
-			<section>
-				<h3>{{_t('Notifications')}}</h3>
-				<div class="fieldset">
-					<div class="form-group">
-						<div>
-							<label for="">
-								<input type="checkbox" name="" id="" ng-modal="">
-								<span></span>
-							</label>
-						</div>
-						<div>
-							<label for="">
-								<input type="checkbox" name="" id="" ng-modal="">
-								<span></span>
-							</label>
-						</div>
-						<bb-help-text trans="_t('TEST')"></bb-help-text>
-					</div>
-				</div>
-			</section>
 			<section>
 				<h3>{{_t('Device List')}}</h3>
 				<div class="fieldset">
-					<section class="accordion-wrap">
+					<section class="accordion-wrap" ng-repeat="v in mobile.input.params.apps track by $index">
 						<!-- Title -->
 						<h2 class="accordion-toggle ellipsis">
 							<!-- Toogle -->
-							<button type="button" aria-expanded="false" bb-accordion>
+							<!-- <button type="button" aria-expanded="false" bb-accordion>
 								<span>
-									{{_t('TEST TEST TEST')}}
+									{{v.title}}
 								</span>
-							</button>
-							<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="">
+							</button> -->
+							<!-- No Toggle -->
+							<span class="no-toggle">
+								<span>
+									{{v.title}}&nbsp;
+									<em>
+										{{_t('os')}}:&nbsp;{{v.os}}
+									</em>
+									<em>
+										{{_t('created_add')}}:&nbsp;{{v.created_formated}}
+									</em>
+									<em>
+										{{_t('last_seen')}}:&nbsp;{{v.last_seen_formated}}
+									</em>
+								</span>
+							</span>
+							<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="removeApp(v.token)">
 								<i class="fa fa-times text-danger"></i>
 							</span>
 						</h2>
 						<!-- Content -->
-						<div class="accordion" hidden>
-
-						</div>
+						<div class="accordion" hidden></div>
 					</section>
 				</div>
+				<div class="fieldset">
+					<button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
+						<i class="fa fa-plus text-success"></i>
+						<span class="btn-name" ng-bind="_t('add_new')"></span>
+					</button>
+				</div>
 			</section>
-			<div class="fieldset">
-				<button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
-					<i class="fa fa-plus text-success"></i>
-					<span class="btn-name" ng-bind="_t('add_new')"></span>
-				</button>
-			</div>
+			<section>
+				<h3>{{_t('notifications')}}</h3>
+				<legend>{{_t('assigned_devices')}}</legend>
+				<fieldset ng-include="'app/views/mobile/mobile_assigned.html'"></fieldset>
+				<legend>{{_t('lb_available_devices')}}</legend>
+				<fieldset ng-include="'app/views/mobile/mobile_available.html'"></fieldset>
+			</section>
 		</div>
 		<div class="fieldset submit-entry is-grid">
 			<span>

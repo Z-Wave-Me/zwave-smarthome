@@ -307,6 +307,7 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 	if ($routeParams.id > 0) {
 		$scope.loadInstance($routeParams.id);
 	}
+
 	/**
 	 * Load rooms
 	 */
