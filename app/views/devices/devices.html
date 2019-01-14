@@ -41,24 +41,24 @@
     <div class="inner-panel">
       <!-- img -->
       <figure class="img">
-        <a ng-href="#module/put/{{mobileAppSupport.instanceId}}">
+        <a ng-href="#mobile/manage">
           <img ng-src="app/img/logo-mobile.svg" alt="img" />
         </a>
       </figure>
       <!-- body -->
       <div class="body">
         <div>
-          <a ng-href="#module/put/{{mobileAppSupport.instanceId}}">{{_t('devices_text_mobile')}}</a>
+          <a ng-href="#mobile/manage">{{_t('devices_text_mobile')}}</a>
         </div>
       </div>
       <!-- control -->
       <div class="control" ng-class="naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'">
         <div class="btn-group">
-          <button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
+          <button class="btn btn-default" ng-click="handleMobileModal($event)" title="{{_t('add_new')}}">
             <i class="fa fa-plus text-success"></i>
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </button>
-          <a class="btn btn-default" href="#module/put/{{mobileAppSupport.instanceId}}" title="{{_t('manage')}}">
+          <a class="btn btn-default" href="#mobile/manage" title="{{_t('manage')}}">
             <i class="fa fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
@@ -222,4 +222,4 @@
 </div>
 <!-- /ng-controller -->
 <!-- qrCodeModal / addMobilePhoneModal -->
-<div ng-include="'app/views/devices/addMobilePhoneModal.html'"></div>
+<div ng-controller="MobileAddController" ng-include="'app/views/mobile/mobile_add_modal.html'"></div>
