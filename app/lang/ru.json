@@ -393,6 +393,7 @@
     "jamesbox_update_update_timeout": "Your confirmation expires after 5 minutes. ",
     "jb_upgrade_info": "Обновление прошивки будет автоматически предложено после перезагрузки. Вам нужно  будет только согласиться на обновление.",
     "keep_password_empty": "Оставьте поле пустым, если не хотите менять пароль.",
+    "last_seen": "Last seen",
     "lb_access_point_settings": "Current access point settings.",
     "lb_action": "Действие",
     "lb_activate": "Запустить",

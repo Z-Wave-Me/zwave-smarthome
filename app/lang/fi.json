@@ -393,6 +393,7 @@
     "jamesbox_update_update_timeout": "Vahvistuksesi umpeutuu 5 minuutin kuluttua. ",
     "jb_upgrade_info": "Firmware-päivitys tulee tarjolle automaattisesti uudelleenkäynnistyksen jälkeen, mikäli sellainen löytyy. Sinun täytyy vain vahvistaa päivitys.",
     "keep_password_empty": "Pidä tyhjänä ellet halua vaihtaa salasanaa",
+    "last_seen": "Last seen",
     "lb_access_point_settings": "Current access point settings.",
     "lb_action": "Toiminto",
     "lb_activate": "Aktivoi",

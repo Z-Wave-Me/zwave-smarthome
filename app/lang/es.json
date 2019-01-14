@@ -393,6 +393,7 @@
     "jamesbox_update_update_timeout": "Su confirmación expirará transcurridos 5 minutos. ",
     "jb_upgrade_info": "La actualización del firmware se facilitará automáticamente tras reiniciar el sistema cuando esté disponible. Únicamente tendrá que confirmar esta actualización.",
     "keep_password_empty": "Manténgalo vacío si no quiere cambiar la contraseña",
+    "last_seen": "Last seen",
     "lb_access_point_settings": "Current access point settings.",
     "lb_action": "Acción",
     "lb_activate": "Activar",

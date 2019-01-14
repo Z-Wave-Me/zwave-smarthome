@@ -393,6 +393,7 @@
     "jamesbox_update_update_timeout": "Ihre Bestätigung läuft in 5 Minuten ab. ",
     "jb_upgrade_info": "Die Firmware wird automatisch während des Neustarts aktualisiert. Bitte bestätigen Sie, ob sie das Update installieren möchten.",
     "keep_password_empty": "Wenn kein neues Passwort gesetzt wird, bleibt das alte bestehen.",
+    "last_seen": "Zuletzt gesehen",
     "lb_access_point_settings": "Aktuelle Einstellungen des Zugangspunktes.",
     "lb_action": "Aktion",
     "lb_activate": "Aktiviere",
