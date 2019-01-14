@@ -1,8 +1,8 @@
 <!-- select -->
 <div class="form-group form-inline">
-    <label for="condition">{{_t('lb_send_condition')}}</label>
+    <label for="condition_{{v.id}}">{{_t('lb_send_condition')}}</label>
     <!-- select level -->
-    <select id="condition" name="condition" class="form-control" ng-model="v.level" ng-change="v.level = (v.level == 'rgb' ? {r:0,g:0,b:0} : v.level)">
+    <select id="condition_{{v.id}}" name="condition" class="form-control" ng-model="v.level" ng-change="v.level = (v.level == 'rgb' ? {r:0,g:0,b:0} : v.level)">
         <!-- <option value="">---</option> -->
         <option value="{{o}}" ng-repeat="o in mobile.cfg.switchRGBW.level track by $index" ng-selected="o == v.level">
             {{o}}

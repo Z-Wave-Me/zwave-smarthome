@@ -25,8 +25,8 @@
 	<!-- Content -->
 	<div class="accordion" ng-if="v.deviceType!='toggleButton'" hidden>
 		<div class="form-group">
-			<label for="customMessage">{{_t('custom_message')}}</label>
-			<textarea class="form-control" id="customMessage" name="customMessage" ng-model="v.msg"></textarea>
+			<label for="customMessage_{{v.id}}">{{_t('custom_message')}}</label>
+			<textarea class="form-control" id="customMessage_{{v.id}}" name="customMessage" ng-model="v.msg"></textarea>
 			<bb-help-text trans="_t('custom_message_help')"></bb-help-text>
 			<!--<label for="previewMessage">{{_t('custom_message_preview')}}</label>
 			<span name="previewMessage"></span>-->

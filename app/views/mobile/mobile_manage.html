@@ -22,10 +22,10 @@
 								<span>
 									{{v.title}}&nbsp;
 									<em>
-										{{_t('os')}}:&nbsp;{{v.os}}
+										{{_t('os')}}:&nbsp;{{_t(v.os)}}
 									</em>
 									<em>
-										{{_t('created_add')}}:&nbsp;{{v.created_formated}}
+										{{_t('added_at')}}:&nbsp;{{v.created_formated}}
 									</em>
 									<em>
 										{{_t('last_seen')}}:&nbsp;{{v.last_seen_formated}}
@@ -41,7 +41,7 @@
 					</section>
 				</div>
 				<div class="fieldset">
-					<button class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
+					<button type="button" class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
 						<i class="fa fa-plus text-success"></i>
 						<span class="btn-name" ng-bind="_t('add_new')"></span>
 					</button>
@@ -74,5 +74,5 @@
 		</div>
 	</form>
 </div>
-<div ng-controller="MobileAddController" ng-include="'app/views/mobile/mobile_add_modal.html'"></div>
+<div ng-include="'app/views/mobile/mobile_add_modal.html'"></div>
 <!-- /ng-controller -->

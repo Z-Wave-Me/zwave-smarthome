@@ -230,7 +230,7 @@ myAppController.controller('MobileManageController', function($scope, $q, $filte
  * The controller that show that show or update the QR-Code.
  * @class MobileAddController
  */
-myAppController.controller('MobileAddController', function ($scope, $timeout, $window, dataFactory, dataService, _) {
+myAppController.controller('MobileAddController', function ($scope, $timeout, $window, $location, dataFactory, dataService, _) {
     $scope.qrcode = "";
 
     /**
@@ -263,5 +263,18 @@ myAppController.controller('MobileAddController', function ($scope, $timeout, $w
                 }
             });
         }).set('type', 'password');
+    }
+
+
+    /**
+     * extend handle Modal function
+     * @param  {string} modal  modal name
+     * @param  {object} $event
+     */
+    $scope.handleMobileModal = function(modal, $event) {
+        $scope.handleModal(modal, $event);
+        if($location.path() == '/mobile/manage') {
+            $scope.reloadData();
+        }
     }
 });
