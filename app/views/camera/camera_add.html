@@ -1,5 +1,6 @@
 <!-- Camera add view -->
 <div ng-controller="CameraAddController">
+  <div ng-include="'app/views/camera/camera_navi.html'"></div>
   <div class="list-panel bcg-active" ng-repeat="v in ipcameraDevices | orderBy:'defaults.title' track by v.moduleName">
     <!-- img -->
     <figure class="img wh-32x32">

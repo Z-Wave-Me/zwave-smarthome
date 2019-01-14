@@ -1,6 +1,7 @@
 <!-- Camera manage view -->
 <div ng-controller="CameraManageController">
-    <div class="list-panel bcg-active" ng-repeat="v in instances |orderBy:'title' track by v.id" 
+    <div ng-include="'app/views/camera/camera_navi.html'"></div>
+    <div class="list-panel bcg-active" ng-repeat="v in instances |orderBy:'title' track by v.id"
     ng-class="v.active ? 'true': 'false'">
         <!-- img -->
         <figure class="img wh-32x32">
@@ -13,7 +14,7 @@
               <a href="#module/put/{{v.id}}">{{v.title}}</a>
           </div>
         </div>
-    
+
         <!-- dots -->
         <div class="l-hide control">
           <!-- expand/collapse -->
@@ -29,7 +30,7 @@
                 ng-click="activateInstance(v, v.active ? false : true)">
                 <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
               </button>
-                <button title="{{_t('lb_remove')}}" 
+                <button title="{{_t('lb_remove')}}"
                         class="btn btn-default"
                         ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
                     <i class="fa fa-remove text-danger"></i>
@@ -38,5 +39,5 @@
         </div>
       </div>
     <div class="device-logo" ng-include="'app/views/camera/camera_nav.html'"></div>
-</div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller -->
 

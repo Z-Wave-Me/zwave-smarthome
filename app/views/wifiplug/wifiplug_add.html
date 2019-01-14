@@ -1,5 +1,6 @@
 <!-- Wifiplug add view -->
 <div ng-controller="WifiPlugAddController">
+    <div ng-include="'app/views/wifiplug/wifi_navi.html'"></div>
     <div class="list-panel bcg-active" ng-repeat="v in wifiplugDevices | orderBy:'defaults.title' track by v.moduleName">
         <!-- img -->
         <figure class="img wh-32x32">
@@ -20,4 +21,4 @@
         </div>
       </div>
     <div class="device-logo" ng-include="'app/views/wifiplug/wifiplug_nav.html'"></div>
-</div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller -->

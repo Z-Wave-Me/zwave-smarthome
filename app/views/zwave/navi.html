@@ -1,5 +1,8 @@
 <div class="tabs-wrap form-inline" ng-if_="devices.show">
   <div class="btn-group btn-group-justified btn-goup-tabs">
+    <a class="btn btn-default" href="#zwave/vendors" title="{{_t('add_new')}}">
+      <i class="fa fa-plus"></i> <span class="btn-name">{{_t('add_new')}}</span>
+    </a>
     <a class="btn btn-default" href="#zwave/devices" title="{{_t('lb_zwave_devices')}}"
       ng-class="routeMatch('/zwave/devices') ? 'active' : ''">
       <i class="fa fa-wifi"></i> <span class="btn-name">{{_t('lb_zwave_devices')}}</span>
