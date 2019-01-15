@@ -8134,7 +8134,7 @@ div.timepicker-picker > table.table-condensed tr td {
 /**
  * alertifyjs 1.4.1 http://alertifyjs.com
  * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.
- * Copyright 2015 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com)
+ * Copyright 2015 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
  * Licensed under MIT <http://opensource.org/licenses/mit-license.php>*/
 .alertify .ajs-dimmer {
   position: fixed;
@@ -9121,14 +9121,14 @@ div.timepicker-picker > table.table-condensed tr td {
 
 /**
  * 	Angular RangeSlider SCSS
- *
+ * 
  *	Version: 0.0.7
  *
  * 	Author: Daniel Crisp, danielcrisp.com
  *
  * 	The rangeSlider has been styled to match the default styling
  * 	of form elements styled using Twitter's Bootstrap
- *
+ * 
  * 	Originally forked from https://github.com/leongersen/noUiSlider
  *
 
@@ -9533,7 +9533,7 @@ th {
   text-align: left;
 }
 
-/* SmartHome UI base
+/* SmartHome UI base 
 -------------------------------------------------- */
 /* Body
 -------------------------------------------------- */
@@ -11046,8 +11046,8 @@ img {
 .table tbody tr {
   /* &:nth-child(2) {
                 td {
-                    border: none;
-                }
+                    border: none; 
+                }   
             } */
 }
 
@@ -11608,6 +11608,19 @@ input:checked + .slider:before {
   /* MAX WIDTH */
 }
 
+.form-control::-moz-placeholder {
+  color: #cccccc;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #cccccc;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #cccccc;
+}
+
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
   /* line-height: 34px; */
   line-height: 1.42857;
@@ -12083,7 +12096,7 @@ fieldset.submit-entry {
   width: 50px;
   height: 50px;
   /* @include mediaQueries(min-small) {
-        height: 60px;
+        height: 60px;    
     } */
   float: left;
   position: relative;
@@ -12654,23 +12667,23 @@ fieldset section, .fieldset section {
         .fa {
           color: #BDBDBD;
           &.text-warning {
-              color: #8a6d3b;
+              color: #8a6d3b;     
           }
         }
-      }
+      }  
     }
 }
 .accordion-entry-title{
-    font-size: $accordion-heading-font-size;
+    font-size: $accordion-heading-font-size; 
     position: relative;
     vertical-align: middle;
     margin: $spacing 0;
     color: $accordion-heading-color;
     cursor: pointer;
     .fa{
-        color: $accordion-icon-color;
+        color: $accordion-icon-color;    
         padding-right: $spacing;
-             font-size: $accordion-icon-size;
+             font-size: $accordion-icon-size;  
         }
     .accordion-arrow{
         position: absolute;
@@ -12683,7 +12696,7 @@ fieldset section, .fieldset section {
 .accordion-entry-ctrl {
     p {
         margin: $spacing-half;
-        padding: $spacing;
+        padding: $spacing;      
     }
 } */
 /* Absolute Center CSS Spinner
@@ -12906,16 +12919,13 @@ http://codepen.io/MattIn4D/pen/LiKFC
 .longpress-true .widget-entry-in:before, .longpress-true .card-room-in:before, .longpress-true .bar-row:before {
   border-top-color: #184B7C;
   border-right-color: #184B7C;
-  transition: width 0.25s ease-out,
- height 0.25s ease-out 0.25s;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
 }
 
 .longpress-true .widget-entry-in:after, .longpress-true .card-room-in:after, .longpress-true .bar-row:after {
   border-bottom-color: #184B7C;
   border-left-color: #184B7C;
-  transition: border-color 0s ease-out 0.5s,
- width 0.25s ease-out 0.5s,
- height 0.25s ease-out 0.75s;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
 }
 
 /* Alert
@@ -14359,7 +14369,7 @@ img.widget-promo-image {
   min-height: 1px;
   width: 33.3333%;
   /* @include mediaQueries(min-esmall) {
-
+        
         width: 33.3333%;
     } */
   /* MIN WIDTH */
@@ -14672,7 +14682,7 @@ img.widget-promo-image {
   min-height: 1px;
   width: 33.3333%;
   /* @include mediaQueries(min-esmall) {
-
+        
         width: 33.3333%;
     } */
   /* MIN WIDTH */
@@ -16300,7 +16310,7 @@ img.widget-promo-image {
 
 /* SmartStart
 -------------------------------------------------- */
-/*
+/* 
 -------------------------------------------------- */
 .smart-start .container {
   padding: 0;
@@ -16810,7 +16820,7 @@ img.widget-promo-image {
   /* MAX WIDTH */
   /*@include mediaQueries(min-large) {
         flex-basis: 25%;
-
+        
       }*/
 }
 
@@ -18265,7 +18275,7 @@ body.night-false {
   margin: 10px 0;
 }
 
-/* Security  Notification
+/* Security  Notification 
 -------------------------------------------------- */
 .automation .notification {
   margin: 20px 0;
