@@ -134,7 +134,9 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		if (!tag || $scope.elementId.input.tags.indexOf(tag) > -1) {
 			return;
 		}
+		var orderBy = $filter('orderBy');
 		$scope.elementId.input.tags.push(tag);
+		$scope.elementId.input.tags = orderBy($scope.elementId.input.tags, 'toString()');
 		$scope.search.text = '';
 		return;
 	};
@@ -458,10 +460,12 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				});
 			}
 		}
+		var orderBy = $filter('orderBy');
 
 		angular.extend($scope.elementId.input, {
 			iconPath: dataService.assignElementIcon($scope.elementId.input),
-			hide_events: $scope.user.hide_single_device_events.indexOf($scope.elementId.input.id) !== -1 ? true : false
+			hide_events: $scope.user.hide_single_device_events.indexOf($scope.elementId.input.id) !== -1 ? true : false,
+			tags: orderBy($scope.elementId.input.tags, 'toString()')
 		});
 
 		setMobile($scope.mobile.input, $scope.elementId.input);
