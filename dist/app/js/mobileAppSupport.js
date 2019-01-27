@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 27-01-2019 22:54:17 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 27-01-2019 22:57:41 */
 /**
  * @overview MobileAppsupport configuration file.
  * @author Michael Hensche
