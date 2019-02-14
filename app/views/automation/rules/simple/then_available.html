@@ -11,7 +11,7 @@
   <!-- Content -->
   <div class="accordion" hidden>
     <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in rule.target.availableDevices track by $index"
-      ng-if="d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
+      ng-if="d.location == r.id && rule.target.assignedDevices.indexOf(d.deviceId) === -1 && d.deviceType != 'notification'" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
       ng-click="assignTargetDevice(d)">
       <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       {{d.deviceName|cutText:true:20}}
