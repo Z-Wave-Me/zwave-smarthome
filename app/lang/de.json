@@ -661,6 +661,7 @@
     "not_existing_skin_token": "Skin Token existiert nicht",
     "not_supported_on_mobile": "Diese Funktion wird auf dem Handy nicht unterstützt.",
     "not_supported_on_remote": "Diese Funktion ist im Fernzugriff nicht verfügbar.",
+    "no_auth_token": "No active sessions",
     "no_cameras": "Es sind keine Kameras verfügbar.",
     "no_comfort_temp_info": "Keine Komfort-Temperatur eingestellt",
     "no_comments": "Es gibt bisher keine Kommentare",
