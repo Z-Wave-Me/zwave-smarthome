@@ -66,6 +66,7 @@ myAppController.controller('ManagementUserController', function ($scope, $cookie
 myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache,cfg) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
+    $scope.devices = [];
     $scope.authTokens = [];
     $scope.show = true;
     $scope.input = {
@@ -77,6 +78,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         "dashboard": [],
         "interval": 1000,
         "rooms": [],
+        "devices": [],
         "expert_view": true,
         "hide_all_device_events": false,
         "hide_system_events": false,
@@ -96,12 +98,14 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('profiles', ($scope.id !== 0 ? '/' + $scope.id : ''), true),
-            dataFactory.getApi('locations')
+            dataFactory.getApi('locations'),
+            dataFactory.getApi('devices')
         ];
 
         $q.allSettled(promises).then(function (response) {
             var profile = response[0];
             var locations = response[1];
+            var devices = response[2];
             $scope.loading = false;
             // Error message
             if (profile.state === 'rejected') {
@@ -114,6 +118,7 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             if (profile.state === 'fulfilled') {
                 if ($scope.id !== 0) {
                     $scope.input = profile.value.data.data;
+                    if (!$scope.input.devices) $scope.input.devices = [];
                     $scope.auth.login = profile.value.data.data.login;
                     $scope.lastEmail = profile.value.data.data.email;
                     $scope.authTokens = profile.value.data.data.authTokens;
@@ -131,6 +136,10 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
 
                     })
                     .value();
+            }
+            // Success - locations
+            if (devices.state === 'fulfilled') {
+                $scope.devices = devices.value.data.data.devices;
             }
         });
     };
@@ -154,6 +163,29 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         angular.forEach(oldList, function (v, k) {
             if (v != roomId) {
                 $scope.input.rooms.push(v);
+            }
+        });
+        return;
+    };
+
+    /**
+     * Assign device to list
+     */
+    $scope.assignDevice = function (assign) {
+        if($scope.input.role !== 1) {
+            $scope.input.devices.push(assign);
+        }
+    };
+
+    /**
+     * Remove device from the list
+     */
+    $scope.removeDevice = function (deviceId) {
+        var oldList = $scope.input.devices;
+        $scope.input.devices = [];
+        angular.forEach(oldList, function (v, k) {
+            if (v != deviceId) {
+                $scope.input.devices.push(v);
             }
         });
         return;
@@ -197,8 +229,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         }else if(globalRoomIndex > -1){
             input.rooms.splice(globalRoomIndex, 1);
         }
-        //console.log(input);
-        //return;
         dataFactory.storeApi('profiles', input.id, input).then(function (response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {
