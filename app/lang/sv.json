@@ -418,6 +418,8 @@
     "lb_anonymous": "Anonym användare",
     "lb_arm": "Larmad",
     "lb_assign_room": "Tilldela till rum",
+    "lb_auth_token": "Acitive sessions",
+    "lb_auth_token_logout": "Logout session",
     "lb_available_devices": "Tillgängliga enheter",
     "lb_available_rooms": "Tillgängliga rum",
     "lb_available_sensors": "Available sensors",

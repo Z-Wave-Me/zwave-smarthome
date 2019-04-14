@@ -66,6 +66,7 @@ myAppController.controller('ManagementUserController', function ($scope, $cookie
 myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache,cfg) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
+    $scope.authTokens = [];
     $scope.show = true;
     $scope.input = {
         "id": 0,
@@ -115,6 +116,10 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
                     $scope.input = profile.value.data.data;
                     $scope.auth.login = profile.value.data.data.login;
                     $scope.lastEmail = profile.value.data.data.email;
+                    $scope.authTokens = profile.value.data.data.authTokens;
+                    $scope.authTokens.forEach(function(token) {
+                        token.date = (new Date(token.date)).toLocaleString();
+                    });
                 }
             }
 
@@ -150,6 +155,27 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             if (v != roomId) {
                 $scope.input.rooms.push(v);
             }
+        });
+        return;
+    };
+
+    /**
+     * Remove auth token
+     */
+    $scope.removeAuthToken = function (profileId, token, message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('profiles', profileId, '/token/' + token).then(function (response) {
+                myCache.remove('profiles');
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.loading = false;
+                $scope.allSettledUserId();
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_delete_data'));
+            });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
         });
         return;
     };

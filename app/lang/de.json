@@ -418,6 +418,8 @@
     "lb_anonymous": "Anonymer Benutzer",
     "lb_arm": "Scharf geschalten",
     "lb_assign_room": "Einen Raum zuweisen",
+    "lb_auth_token": "Acitive sessions",
+    "lb_auth_token_logout": "Logout session",
     "lb_available_devices": "Verfügbare Geräte",
     "lb_available_rooms": "Verfügbare Räume",
     "lb_available_sensors": "Verfügbare Sensoren",

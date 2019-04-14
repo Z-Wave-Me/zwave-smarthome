@@ -418,6 +418,8 @@
     "lb_anonymous": "Utilizador anônimo",
     "lb_arm": "Armado",
     "lb_assign_room": "Atribuir à divisão",
+    "lb_auth_token": "Acitive sessions",
+    "lb_auth_token_logout": "Logout session",
     "lb_available_devices": "Dispositivos disponíveis",
     "lb_available_rooms": "Divisões disponíveis",
     "lb_available_sensors": "Available sensors",

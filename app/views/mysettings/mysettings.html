@@ -125,6 +125,19 @@
       </fieldset>
     </form>
 
+    <!-- Authentication tokens -->
+    <div ng-if="id > 0">
+      <h3>{{_t('lb_auth_token')}}</h3>
+      <div class="device-available-block assigned">
+        <div class="form-group form-inline" ng-repeat="d in authTokens">
+          <a href="" class="btn btn-default btn-tag" ng-click="removeAuthToken(input.id, d.sid, _t('lb_delete_confirm'))">{{d.title|cutText:true:20}}
+            {{_t('lb_auth_token_logout')}}<i class="fa fa-times text-danger"></i>
+          </a>
+          &nbsp;&nbsp;&nbsp;<span ng-bind="d.sid"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.date"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.agent"></span>
+        </div>
+      </div>
+    </div>
+
     <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
     <section>
       <!-- Title -->

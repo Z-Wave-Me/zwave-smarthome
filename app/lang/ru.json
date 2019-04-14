@@ -418,6 +418,8 @@
     "lb_anonymous": "Анонимный пользователь",
     "lb_arm": "Охрана",
     "lb_assign_room": "Назначить в комнату",
+    "lb_auth_token": "Активные сессии",
+    "lb_auth_token_logout": "Выйти из сессии",
     "lb_available_devices": "Доступные устройства",
     "lb_available_rooms": "Доступные комнаты",
     "lb_available_sensors": "Available sensors",

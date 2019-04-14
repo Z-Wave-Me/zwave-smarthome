@@ -418,6 +418,8 @@
     "lb_anonymous": "Anonyymi käyttäjä",
     "lb_arm": "Aktivoitu",
     "lb_assign_room": "Liitä huoneeseen",
+    "lb_auth_token": "Acitive sessions",
+    "lb_auth_token_logout": "Logout session",
     "lb_available_devices": "Käytettävissä olevat laitteet",
     "lb_available_rooms": "Käytettävissä olevat huoneet",
     "lb_available_sensors": "Available sensors",

@@ -418,6 +418,8 @@
     "lb_anonymous": "Anonymný Užívateľ",
     "lb_arm": "Armed",
     "lb_assign_room": "Priradiť k miestnosti",
+    "lb_auth_token": "Acitive sessions",
+    "lb_auth_token_logout": "Logout session",
     "lb_available_devices": "Dostupné zariadenia",
     "lb_available_rooms": "Dostupné miestnosti",
     "lb_available_sensors": "Available sensors",
