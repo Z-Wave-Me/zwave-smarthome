@@ -211,12 +211,13 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 		login: '',
 		rememberme: false
 	};
+
 	/**
 	 * Get session (ie for users holding only a session id, or users that require no login)
 	 */
 	$scope.getSession = function() {
 		var hasCookie = ($cookies.user) ? true : false;
-		if(hasCookie) {
+		if(hasCookie || isRemote($location.host())) {
 			dataFactory.sessionApi().then(function(response) {
 				$scope.processUser(response.data.data);
 				window.location = '#/dashboard';
@@ -270,6 +271,23 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 		!$routeParams.logout ||
 		(path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
 		$scope.getSession();
+	}
+
+	/**
+	 * check is location is remote
+	 * @param  {string}  location host
+	 * @return {Boolean}
+	 */
+	function isRemote(location) {
+		var hosts = $scope.cfg.find_hosts,
+			r = false;
+		for(var i = 0; i < hosts.length; i++) {
+			if(location.indexOf(hosts[i]) > -1) {
+				r = true;
+				break;
+			}
+		};
+		return r;
 	}
 });
 
