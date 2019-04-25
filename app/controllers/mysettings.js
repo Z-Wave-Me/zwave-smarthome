@@ -42,7 +42,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 $scope.lastEmail = profile.value.data.data.email;
                 $scope.authTokens = profile.value.data.data.authTokens;
                 $scope.authTokens.forEach(function(token) {
-                    token.date = (new Date(token.date)).toLocaleString();
+                    token.date_str = (new Date(token.date)).toLocaleString();
+                    token.expire_str = (token.expire === 0 || typeof token.expire == "undefined") ? '-' : (new Date(token.expire)).toLocaleString();
                 });
             }
             // Success - devices
@@ -88,6 +89,27 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             }, function (error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_delete_data'));
+            });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
+        });
+        return;
+    };
+
+    /**
+     * Make auth token permanent
+     */
+    $scope.permanentAuthToken = function (profileId, token, message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            dataFactory.putApi('profiles', profileId, {}, '/token/' + token).then(function (response) {
+                myCache.remove('profiles');
+                dataService.showNotifier({message: $scope._t('success_updated')});
+                $scope.loading = false;
+                $scope.allSettledUserId();
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_update_data'));
             });
         }).setting('labels', {
             'ok': $scope._t('ok')

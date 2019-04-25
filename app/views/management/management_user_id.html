@@ -171,7 +171,10 @@
           <a href="" class="btn btn-default btn-tag" ng-click="removeAuthToken(input.id, d.sid, _t('lb_delete_confirm'))">{{d.title|cutText:true:20}}
             {{_t('lb_auth_token_logout')}}<i class="fa fa-times text-danger"></i>
           </a>
-          &nbsp;&nbsp;&nbsp;<span ng-bind="d.sid"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.date"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.agent"></span>
+          <a href="" class="btn btn-default btn-tag" ng-disabled="!d.expire" ng-click="permanentAuthToken(input.id, d.sid, _t('lb_permanent_token_confirm'))">{{d.title|cutText:true:20}}
+            {{_t('lb_auth_token_permanent')}}<i class="fa fa-hourglass-half"></i>
+          </a>
+          &nbsp;&nbsp;&nbsp;<span ng-bind="d.sid"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.date_str"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.expire_str"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.agent"></span>
         </div>
       </div>
     </div>
