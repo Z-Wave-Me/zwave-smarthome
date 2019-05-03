@@ -433,6 +433,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
 	when('/error403', {
 			templateUrl: 'app/views/error_403.html'
 		}). //Not found
+	when('/oauth2', {
+			templateUrl: 'app/views/auth/oauth2.html',
+			requireLogin: true,
+			roles: cfg.role_access.admin_user
+		}). //OAuth2
 	otherwise({
 		templateUrl: 'app/views/error_404.html'
 	});
