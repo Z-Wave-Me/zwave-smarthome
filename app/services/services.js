@@ -193,6 +193,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	 */
 	this.setUser = function(data) {
 		if (data && !!data) {
+			if (data.authTokens) delete data.authTokens; // remove potentialy big object that might not fit into cookie
 			$cookies.user = angular.toJson(data);
 		} else {
 			delete $cookies['user'];
