@@ -700,6 +700,7 @@
     "operator_and_info": "All conditions must be met.",
     "operator_or_info": "At least one condition is fulfilled.",
     "or": "or",
+    "oauth_new_user_created": "<br>Gratulujeme!<\/br><br>Úspěšně jste vytvořili nový <strong> profil <\/strong>!<\/br><br>Klikněte na tlačítko pro přesměrování.<\/br> ",
     "order_elements": "Custom",
     "page_from": "Page __currentPage__ from __pagesSum__",
     "param": "Param",

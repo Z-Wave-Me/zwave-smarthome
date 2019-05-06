@@ -700,6 +700,7 @@
     "operator_and_info": "All conditions must be met.",
     "operator_or_info": "At least one condition is fulfilled.",
     "or": "or",
+    "oauth_new_user_created":"<br>恭喜！您已经成功创建了一个新的<strong>简介<\/strong>！<\/br><br>点击按钮重定向.<\/br>",
     "order_elements": "Custom",
     "page_from": "Page __currentPage__ from __pagesSum__",
     "param": "Param",

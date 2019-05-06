@@ -700,6 +700,7 @@
     "operator_and_info": "Alle Bedingungen müssen erfüllt sein.",
     "operator_or_info": "Mindestens eine Bedingung ist erfüllt.",
     "or": "oder",
+    "oauth_new_user_created": "<br>herzlichen Glückwunsch!<\/br><br>Sie haben erfolgreich ein neues <strong>Profil<\/strong>erstellt!<\/br><br>Klicken Sie auf die Schaltfläche umleiten.<\/br>",
     "order_elements": "Benutzerdefiniert",
     "page_from": "Seite __currentPage__ von __pagesSum__",
     "param": "Parameter",

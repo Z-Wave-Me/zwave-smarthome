@@ -700,6 +700,7 @@
     "operator_and_info": "Все условия должны быть соблюдены.",
     "operator_or_info": "По крайней мере одно условие выполнено.",
     "or": "или",
+    "oauth_new_user_created": "<br>Поздравляем!<\/br><br>Вы успешно создали новый <strong>профиль<\/strong>!<\/br><br>Нажмите на кнопку, чтобы перейти обратно.<\/br>",
     "order_elements": "Custom",
     "page_from": "Страница __currentPage__ из __pagesSum__",
     "param": "Парам",
