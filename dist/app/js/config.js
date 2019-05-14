@@ -14,7 +14,7 @@ var config_data = {
 		// Application version
 		'app_version': '1.9.1',
 		// Application (DIST) built date
-		'app_built': '24-04-2019 02:13:18',
+		'app_built': '15-05-2019 01:38:33',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -104,6 +104,7 @@ var config_data = {
 			'login': 'ZAutomation/api/v1/login',
 			'logout': 'ZAutomation/api/v1/logout',
 			'session': 'ZAutomation/api/v1/session',
+			'oauth2': 'ZAutomation/api/v1/oauth2',
 			'backup': 'ZAutomation/api/v1/backup',
 			'restore': 'ZAutomation/api/v1/restore',
 			'tokens': 'ZAutomation/api/v1/modules/tokens',
