@@ -19,7 +19,6 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 		count_of_reconnects: 0
 	};
 
-
 	/**
 	 * Login with selected data from server response
 	 */
@@ -220,7 +219,11 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 		if(hasCookie || isRemote($location.host())) {
 			dataFactory.sessionApi().then(function(response) {
 				$scope.processUser(response.data.data);
-				window.location = '#/dashboard';
+				if(cfg.route.previous.length > 1) {
+					window.location = '#' + cfg.route.previous;
+				} else {
+					window.location = '#/dashboard';
+				}
 				$window.location.reload();
 			});
 		}
