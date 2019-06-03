@@ -49,7 +49,7 @@
             </div>
             <h3>{{_t('lb_available_devices')}}</h3>
             <div class="device-available-block">
-              <a href="" class="btn btn-default btn-tag" ng-repeat="d in devices" ng-if="input.devices.indexOf(d.id) === -1" ng-click="assignDevice(d.id)">{{d.metrics.title|cutText:true:20}}
+              <a href="" class="btn btn-default btn-tag" ng-repeat="d in devices" ng-if="input.devices.indexOf(d.id) === -1 && !d.permanently_hidden && d.visibility" ng-click="assignDevice(d.id)">{{d.metrics.title|cutText:true:20}}
                 <i class="fa fa-plus text-success"></i>
               </a>
             </div>
