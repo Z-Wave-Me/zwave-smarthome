@@ -158,6 +158,7 @@ module.exports = function(grunt) {
 					'app/controllers/management-timezone.js',
 					'app/controllers/management-timezone-jb.js',
 					'app/controllers/management-user.js',
+					'app/controllers/management-oauth.js',
 					'app/controllers/mysettings.js',
 					'app/controllers/rss.js',
 					'app/controllers/auth.js',

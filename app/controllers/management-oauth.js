@@ -1,6 +1,10 @@
 /**
+ * @overview Controllers that handle OAuth2 grant page
+ * @author Alexander Avaliani and Serguei Poltorak
+ */
+/**
  * The controller that renders and handles permissions from user.
- * @class ManagementUserOauth2Controller
+ * @class ManagementUserOauthController
  */
 myAppController.controller('ManagementUserOauthController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache, $location) {
     $scope.rooms = {};
