@@ -220,6 +220,11 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 			dataFactory.sessionApi().then(function(response) {
 				$scope.processUser(response.data.data);
 				if(cfg.route.previous.length > 1) {
+					if ($scope._routeParams) {
+						// load parameters to redirect correctly on the first page load
+						cfg.route.previous += "?" + Object.keys($scope._routeParams).map(function(k) { return k + "=" + $scope._routeParams[k]; }).join("&");
+						delete $scope._routeParams;
+					}
 					window.location = '#' + cfg.route.previous;
 				} else {
 					window.location = '#/dashboard';
@@ -273,6 +278,7 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 	} else if (typeof $routeParams.logout === 'undefined' ||
 		!$routeParams.logout ||
 		(path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
+		$scope._routeParams = $routeParams; // save parameters to pass them to redirect (in getSession) correctly on the first page load
 		$scope.getSession();
 	}
 
