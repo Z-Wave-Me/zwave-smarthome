@@ -320,8 +320,6 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 			},
 			sensorMultilevel: {
 				operator: ['=', '!=', '>', '>=', '<', '<='],
-				min: 0,
-				max: 99,
 				default: {
 					deviceId: '',
 					deviceType: 'sensorMultilevel',
