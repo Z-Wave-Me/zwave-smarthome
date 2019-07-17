@@ -8,7 +8,6 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 
 ## Project leader
 Marcel Kermer and Serguei Poltorak
-== SmartHomeUI v1.10.1 ==
 
 ## v1.10.1
 #### Features:
