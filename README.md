@@ -1,13 +1,36 @@
 SmartHome UI
 ===============
 ## LICENSE
-Copyright (C) 2016 z-wave.Me
+Copyright (C) 2019 z-wave.Me
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
 
 ## Project leader
-Marcel Kermer
+Marcel Kermer and Serguei Poltorak
+== SmartHomeUI v1.10.1 ==
+
+## v1.10.1
+#### Features:
+ - OAuth2 support added
+ - Permanent token UI implemented
+ - Per device access for users added
+ - Added sessions list and logout button to securelly unlog a device
+ - Added EnOcean SmartAck Teach In/Out UI
+ - Add Smart Start UI
+
+#### Fixes:
+ - Fixed comparison constraints with sensorMultilevel in Rules
+ - Proper remove ZWAYSession when sending login info
+ - Fixed problem of missing parameters on redirection to the target url on first page load
+ - Fix redirect for find service
+ - fix issue #210 Please make placeholder text color more faint
+ - https://github.com/Z-Wave-Me/zwave-smarthome/issues/202
+ - Fix Hardcoded scheme in firmware update url
+ - "Hide events for this device" lost on device rename
+ - https://github.com/Z-Wave-Me/home-automation/issues/465
+ - fix Checkbox and right label not on the same line issue #255
+ - Fix full screen searchbox modal on mobile-view
 
 ## v1.9.0
 #### New features
