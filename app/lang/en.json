@@ -421,7 +421,7 @@
     "lb_anonymous": "Anonymous User",
     "lb_arm": "Armed",
     "lb_assign_room": "Assign to room",
-    "lb_auth_token": "Acitive sessions",
+    "lb_auth_token": "Active sessions",
     "lb_auth_token_logout": "Logout session",
     "lb_auth_token_permanent": "No expire",
     "lb_available_devices": "Available devices",
