@@ -43,34 +43,39 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
      * Load ext. Peripherals modules (EnOcean, Rf433)
      */
     $scope.loadperipheralsModules = function() {
-        dataFactory.getApi('instances',false,true).then(function(response) {
-            var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
-            if(EnOcean_module){
-                $scope.enocean.installed = true;
-                if (!EnOcean_module.active) {
-                    $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+        if ($scope.user.role === 1) {
+            dataFactory.getApi('instances',false,true).then(function(response) {
+                var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
+                if(EnOcean_module){
+                    $scope.enocean.installed = true;
+                    if (!EnOcean_module.active) {
+                        $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    }
+                    $scope.enocean.active = true;
                 }
-                $scope.enocean.active = true;
-            }
 
-            var RF433_module = _.findWhere(response.data.data,{moduleId:'RF433'});
-            if(RF433_module){
-                $scope.rf433.installed = true;
-                if (!RF433_module.active) {
-                    $scope.rf433.alert = {message: $scope._t('rf433_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                var RF433_module = _.findWhere(response.data.data,{moduleId:'RF433'});
+                if(RF433_module){
+                    $scope.rf433.installed = true;
+                    if (!RF433_module.active) {
+                        $scope.rf433.alert = {message: $scope._t('rf433_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                    }
+                    $scope.rf433.active = true;
                 }
-                $scope.rf433.active = true;
-            }
 
-            var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
-            if(MobileAppSupport_module){
-                $scope.mobileAppSupport.instance = MobileAppSupport_module;
-                $scope.mobileAppSupport.installed = true;
-                $scope.mobileAppSupport.instanceId = MobileAppSupport_module.id;
-                $scope.mobileAppSupport.active = MobileAppSupport_module.active;
-            }
+                var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
+                if(MobileAppSupport_module){
+                    $scope.mobileAppSupport.instance = MobileAppSupport_module;
+                    $scope.mobileAppSupport.installed = true;
+                    $scope.mobileAppSupport.instanceId = MobileAppSupport_module.id;
+                    $scope.mobileAppSupport.active = MobileAppSupport_module.active;
+                }
 
-        });
+            });
+        } else {
+            $scope.mobileAppSupport.installed = true;
+            $scope.mobileAppSupport.active = true;
+        }
     };
 
     $scope.loadperipheralsModules();
@@ -116,14 +121,14 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
 
 
     $scope.handleMobileModal = function($event) {
-        if(!$scope.mobileAppSupport.installed) {
+        if($scope.user.role === 1 && !$scope.mobileAppSupport.installed) {
             $scope.createInstance($scope.mobileAppSupport.module, function(instanceId) {
                 $scope.mobileAppSupport.active = true;
                 $scope.mobileAppSupport.installed = true;
                 $scope.mobileAppSupport.instanceId = instanceId;
                 $scope.handleModal('qrCodeModal', $event);
             });
-        } else if($scope.mobileAppSupport.installed && !$scope.mobileAppSupport.active) {
+        } else if($scope.user.role === 1 && $scope.mobileAppSupport.installed && !$scope.mobileAppSupport.active) {
             $scope.updateInstance($scope.mobileAppSupport.instance, function() {
                 $scope.mobileAppSupport.active = true;
                 $scope.handleModal('qrCodeModal', $event);

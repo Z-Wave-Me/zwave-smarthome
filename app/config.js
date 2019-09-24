@@ -296,7 +296,7 @@ var config_data = {
 			apps_online: [1],
 			customize: [1],
 			module: [1],
-			devices: [1],
+			devices: [1, 2, 3],
 			myaccess: [1, 2, 3],
 			expert_view: [1],
 			remote_access: [1],

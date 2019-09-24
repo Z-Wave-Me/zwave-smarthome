@@ -2,7 +2,7 @@
 <div ng-controller="DeviceController">
   <h2 ng-bind="_t('lb_select_device_type')"></h2>
   <!-- Zwave -->
-  <div class="list-panel panel-devices">
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">
       <!-- img -->
       <figure class="img">
@@ -67,7 +67,7 @@
     </div>
   </div>
   <!-- Camera -->
-  <div class="list-panel panel-devices">
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">
       <!-- img -->
       <figure class="img">
@@ -97,7 +97,7 @@
     </div>
   </div>
   <!-- Speech -->
-  <div class="list-panel panel-devices">
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">
       <!-- img -->
       <figure class="img">
@@ -127,7 +127,7 @@
     </div>
   </div>
   <!-- Enocean -->
-  <div class="list-panel panel-devices" ng-if="enocean.installed">
+  <div class="list-panel panel-devices" ng-if="enocean.installed && elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">
       <!-- img -->
       <figure class="img">
@@ -159,7 +159,7 @@
     </div>
   </div>
   <!-- rf433 -->
-  <div class="list-panel panel-devices" ng-if="rf433.installed">
+  <div class="list-panel panel-devices" ng-if="rf433.installed && elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">
       <!-- img -->
       <figure class="img">
@@ -190,7 +190,7 @@
     </div>
   </div>
   <!-- wifi -->
-  <div class="list-panel panel-devices">
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">
       <!-- img -->
       <figure class="img">
