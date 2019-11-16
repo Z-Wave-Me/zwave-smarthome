@@ -562,6 +562,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				],
 				advanced_apps: [
@@ -617,6 +618,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			},
@@ -653,6 +655,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			},
@@ -689,6 +692,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			}
