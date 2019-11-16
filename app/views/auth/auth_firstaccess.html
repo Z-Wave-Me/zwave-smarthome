@@ -56,7 +56,7 @@
             <bb-help-text trans="_t('password_email_info')"></bb-help-text>
         </fieldset>
         
-        <fieldset ng-if="cfg.app_type === 'jb' && handleTimezone.show">
+        <fieldset ng-if="(cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && handleTimezone.show">
             <!-- Set timezone-->
             <div class="form-group">
                 <label>{{_t('timezone_select')}}</label>

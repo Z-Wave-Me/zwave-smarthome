@@ -48,7 +48,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 			window.location.href = $scope.cfg.expert_url;
 			return;
 		}
-		if (cfg.app_type === 'jb' && user.role === 1) {
+		if ((cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && user.role === 1) {
 			getZwaveApiData(location);
 		} else {
 			window.location = location;
@@ -406,7 +406,7 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			}
 		});
 	};
-	if ($scope.isInArray(['jb'], cfg.app_type)) {
+	if ($scope.isInArray(['zme_hub','jb'], cfg.app_type)) {
 		$scope.allSettled();
 	}
 
@@ -496,7 +496,7 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 					Android.click(input.password);
 				}
 
-				if (cfg.app_type === 'jb' && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
+				if ((cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
 					$scope.updateInstance(instance);
 				} else {
 					$scope.redirectAfterLogin(true, response.data.data, input.password, false, '#/dashboard/firstlogin');

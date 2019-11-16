@@ -12,13 +12,13 @@
 
      <!-- ///////////////////////////// Local Access ///////////////////////////// -->
      <section class="accordion-wrap" ng-include="'app/views/management/management_local.html'"
-          ng-if="cfg.app_type === 'jb'"></section>
+          ng-if="(cfg.app_type === 'zme_hub' || cfg.app_type === 'jb')"></section>
     <!-- ///////////////////////////// Timezone ///////////////////////////// -->
     <section class="accordion-wrap" ng-if="cfg.app_type == 'default' || cfg.app_type === 'popp' || cfg.app_type === 'popphub3'"
          ng-include="'app/views/management/management_timezone.html'"></section>
       <!-- ///////////////////////////// Timezone for JB ///////////////////////////// -->
      <section class="accordion-wrap" ng-include="'app/views/management/management_timezone_jb.html'"
-          ng-if="cfg.app_type === 'jb'"></section>
+          ng-if="(cfg.app_type === 'zme_hub' || cfg.app_type === 'jb')"></section>
 
     <!-- ///////////////////////////// Backup & Restore ///////////////////////////// -->
     <section class="accordion-wrap" ng-include="'app/views/management/management_backup_restore.html'" ng-if="!isMobile"></section>
@@ -26,10 +26,10 @@
      <!-- ///////////////////////////// Factory default  ///////////////////////////// -->
      <section class="accordion-wrap" ng-class="((cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)) ? 'disabled' : ''" ng-include="'app/views/management/management_factory.html'"></section>
     <!-- ///////////////////////////// Firmware update ///////////////////////////// -->
-    <section class="accordion-wrap" ng-if="!isInArray(['wd','jb'],cfg.app_type)"
+    <section class="accordion-wrap" ng-if="!isInArray(['wd','zme_hub','jb'],cfg.app_type)"
             ng-class="((cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)) ? 'disabled' : ''"
          ng-include="'app/views/management/management_firmware.html'"></section>
-    <section class="accordion-wrap" ng-if="cfg.app_type === 'jb' && cfg.route.os !== 'PoppApp_Z_Way'"
+    <section class="accordion-wrap" ng-if="(cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && cfg.route.os !== 'PoppApp_Z_Way'"
            ng-include="'app/views/management/management_firmware_jb.html'"></section>
 
     <!-- ///////////////////////////// App Store access ///////////////////////////// -->

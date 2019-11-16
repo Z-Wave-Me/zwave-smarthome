@@ -391,6 +391,7 @@ var config_data = {
 		// List of the forbidden licence app types
 		'license_forbidden': [
 			'popp',
+			'zme_hub',
 			'jb'
 		],
 		// SmartStart
@@ -525,7 +526,7 @@ var config_data = {
 		// Scroll offset (px) for bind-class-on-scroll directive
 		'scroll_offset': 80,
 		// ---------------------------------- Custom config for specifics app_type ---------------------------------- //
-		// Application type : default/popp/jb/wd
+		// Application type : default/popp/zme_hub/jb/wd
 		'app_type': 'default',
 		// Config
 		'custom_cfg': {
@@ -604,6 +605,43 @@ var config_data = {
 					'SensorValueLogging',
 					'SensorsPollingLogging',
 					'YandexProbki',
+					'InfoWidget',
+					'SensorsPolling',
+					'SwitchControlGenerator',
+					'ZWave',
+					'PhilioHW',
+					'Rules',
+					'Scenes',
+					'Schedules'
+				],
+				featured_apps: [
+					'IfThen',
+					'OpenWeather',
+					'DeviceHistory',
+					'PeriodicalSwitchControl',
+					'EasyScripting',
+					'ScheduledScene'
+				]
+			},
+			'zme_hub': {
+				'boxtype': 'razberry',
+				'logo': 'app-logo-default.png',
+				hidden_apps: [
+					'Cron',
+					'CloudBackup',
+					'BatteryPolling',
+					'CustomUserCode',
+					'CustomUserCodeLoader',
+					'InbandNotifications',
+					'MobileAppSupport',
+					'Notification',
+					'NotificationSMSru',
+					'RemoteAccess',
+					'SecurityMode',
+					'SensorValueLogging',
+					'SensorsPollingLogging',
+					'YandexProbki',
+					'CodeDevice',
 					'InfoWidget',
 					'SensorsPolling',
 					'SwitchControlGenerator',
