@@ -216,7 +216,8 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 	 */
 	$scope.getSession = function() {
 		var hasCookie = ($cookies.user) ? true : false;
-		if(hasCookie || isRemote($location.host())) {
+		var authBearer = typeof $routeParams.authBearer !== 'undefined' && $routeParams.authBearer;
+		if(hasCookie || isRemote($location.host()) || authBearer) {
 			dataFactory.sessionApi().then(function(response) {
 				$scope.processUser(response.data.data);
 				if(cfg.route.previous.length > 1) {
@@ -275,8 +276,8 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 	} else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
 		$scope.login(dataService.getRememberMe());
 		// only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
-	} else if (typeof $routeParams.logout === 'undefined' ||
-		!$routeParams.logout ||
+	} else if (typeof $routeParams.logout === 'undefined' || !$routeParams.logout ||
+		typeof $routeParams.authBearer === 'undefined' || !$routeParams.authBearer ||
 		(path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
 		$scope._routeParams = $routeParams; // save parameters to pass them to redirect (in getSession) correctly on the first page load
 		$scope.getSession();
