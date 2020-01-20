@@ -23,8 +23,6 @@ myAppController.controller('RssController', function ($scope, cfg, dataFactory, 
             boxtype : $scope.getCustomCfgArr('boxtype')
             };
 
-
-            //dataFactory.postToRemote(cfg.api_remote.rss_feed + "/?firmware="+fw+"&uuid="+uuid+"&boxtype="+$scope.getCustomCfgArr('boxtype'), null).then(function () {});
             dataFactory.postToRemote(cfg.api_remote.rss_feed, input).then(function () {});
         });
 

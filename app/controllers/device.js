@@ -33,8 +33,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
             "moduleId":"MobileAppSupport",
             "active": true,
             "params": {
-                "devices": [],
-                "logLevelContainer": {}
+                "devices": []
             }
         }
     };

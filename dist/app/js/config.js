@@ -12,9 +12,9 @@ var config_data = {
 		//Application name
 		'app_name': 'SmartHome UI',
 		// Application version
-		'app_version': '1.10.1',
+		'app_version': '1.10.2',
 		// Application (DIST) built date
-		'app_built': '18-07-2019 01:14:56',
+		'app_built': '20-01-2020 13:17:39',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -296,7 +296,7 @@ var config_data = {
 			apps_online: [1],
 			customize: [1],
 			module: [1],
-			devices: [1],
+			devices: [1, 2, 3],
 			myaccess: [1, 2, 3],
 			expert_view: [1],
 			remote_access: [1],
@@ -391,6 +391,7 @@ var config_data = {
 		// List of the forbidden licence app types
 		'license_forbidden': [
 			'popp',
+			'zme_hub',
 			'jb'
 		],
 		// SmartStart
@@ -525,7 +526,7 @@ var config_data = {
 		// Scroll offset (px) for bind-class-on-scroll directive
 		'scroll_offset': 80,
 		// ---------------------------------- Custom config for specifics app_type ---------------------------------- //
-		// Application type : default/popp/jb/wd
+		// Application type : default/popp/zme_hub/jb/wd
 		'app_type': 'default',
 		// Config
 		'custom_cfg': {
@@ -562,6 +563,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				],
 				advanced_apps: [
@@ -617,6 +619,44 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
+					'ScheduledScene'
+				]
+			},
+			'zme_hub': {
+				'boxtype': 'razberry',
+				'logo': 'app-logo-default.png',
+				hidden_apps: [
+					'Cron',
+					'CloudBackup',
+					'BatteryPolling',
+					'CustomUserCode',
+					'CustomUserCodeLoader',
+					'InbandNotifications',
+					'MobileAppSupport',
+					'Notification',
+					'NotificationSMSru',
+					'RemoteAccess',
+					'SecurityMode',
+					'SensorValueLogging',
+					'SensorsPollingLogging',
+					'YandexProbki',
+					'CodeDevice',
+					'InfoWidget',
+					'SensorsPolling',
+					'SwitchControlGenerator',
+					'ZWave',
+					'PhilioHW',
+					'Rules',
+					'Scenes',
+					'Schedules'
+				],
+				featured_apps: [
+					'IfThen',
+					'OpenWeather',
+					'DeviceHistory',
+					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			},
@@ -653,6 +693,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			},
@@ -689,6 +730,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			}
