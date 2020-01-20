@@ -86,6 +86,7 @@
             PS4: "ps4",
             VITA: "vita",
             POPPAPPZWAY: "PoppApp_Z_Way",
+            IOSWRAPPER: "IOSWRAPPER",
             UNKNOWN: "unknown"
         })
         .constant("DEVICES", {
@@ -100,6 +101,7 @@
             PS4: "ps4",
             VITA: "vita",
             POPPAPPZWAY: "PoppApp_Z_Way",
+            IOSWRAPPER: "IOSWRAPPER",
             UNKNOWN: "unknown"
         })
         .constant("OS", {
@@ -115,6 +117,7 @@
             PS4: "ps4",
             VITA: "vita",
             POPPAPPZWAY: "PoppApp_Z_Way",
+            IOSWRAPPER: "IOSWRAPPER",
             UNKNOWN: "unknown"
         })
         .constant("OS_VERSIONS", {
@@ -169,7 +172,8 @@
                     WINDOWS_PHONE: {or:[/\bIEMobile\b/,/\bWindows Phone\b/]},
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
                     VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
-                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/ 
+                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
+                    IOSWRAPPER: /\bIOSWRAPPER\b/
                 };
 
                 var BROWSERS_RE = {
@@ -181,7 +185,8 @@
                     MS_EDGE: {or: [/\bEdge\b/]},
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
                     VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
-                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/ 
+                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
+                    IOSWRAPPER: /\bIOSWRAPPER\b/
                 };
 
                 var DEVICES_RE = {
@@ -195,7 +200,8 @@
                     WINDOWS_PHONE: {or:[/\bIEMobile\b/,/\bWindows Phone\b/]},
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
                     VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
-                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/ 
+                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
+                    IOSWRAPPER: /\bIOSWRAPPER\b/
                 };
 
                 var OS_VERSIONS_RE = {
@@ -274,7 +280,8 @@
                     OS.WINDOWS_PHONE,
                     OS.PS4,
                     OS.VITA,
-                    OS.POPPAPPZWAY
+                    OS.POPPAPPZWAY,
+                    OS.IOSWRAPPER
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === OS.UNKNOWN && deviceInfo.raw.os[currentValue]) ? currentValue : previousValue;
                     }, OS.UNKNOWN);
@@ -288,7 +295,8 @@
                     BROWSERS.MS_EDGE,
                     BROWSERS.PS4,
                     BROWSERS.VITA,
-                    BROWSERS.POPPAPPZWAY
+                    BROWSERS.POPPAPPZWAY,
+                    BROWSERS.IOSWRAPPER
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === BROWSERS.UNKNOWN && deviceInfo.raw.browser[currentValue]) ? currentValue : previousValue;
                     }, BROWSERS.UNKNOWN);
@@ -304,7 +312,8 @@
                     DEVICES.WINDOWS_PHONE,
                     DEVICES.PS4,
                     DEVICES.VITA,
-                    DEVICES.POPPAPPZWAY
+                    DEVICES.POPPAPPZWAY,
+                    DEVICES.IOSWRAPPER
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === DEVICES.UNKNOWN && deviceInfo.raw.device[currentValue]) ? currentValue : previousValue;
                     }, DEVICES.UNKNOWN);
@@ -351,7 +360,8 @@
                         DEVICES.CHROME_BOOK,
                         DEVICES.WINDOWS_PHONE,
                         DEVICES.VITA,
-                        DEVICES.POPPAPPZWAY
+                        DEVICES.POPPAPPZWAY,
+                        DEVICES.IOSWRAPPER
                     ].some(function (item) {
                             return deviceInfo.device == item;
                         });

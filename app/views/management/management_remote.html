@@ -1,15 +1,16 @@
 <!-- Admin remote view -->
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
-<!-- Toggle -->
-<button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('remote',true)">
-<span>
-  <i class="fa fa-wifi fa-fw"></i> {{_t('remote_access_manage')}}
-</span>
-</button>
+  <!-- Toggle -->
+  <button type="button" aria-expanded="false" bb-accordion>
+    <span>
+      <i class="fa fa-globe fa-fw"></i> {{_t('remote_access_manage')}}
+    </span>
+  </button>
 </h2>
 <!-- Content -->
-<div class="accordion" hidden ng-if="expand.remote" ng-controller="ManagementRemoteController">
+<div class="accordion" hidden ng-controller="ManagementRemoteController">
+  <bb-loader></bb-loader>
   <form name="form_remote" id="form_remote" class="form form-page" ng-if="remoteAccess" ng-submit="putRemoteAccess(remoteAccess, newRemoteAccessPassword)"
     novalidate>
     <fieldset>

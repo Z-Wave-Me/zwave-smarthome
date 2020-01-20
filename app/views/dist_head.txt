@@ -3,5 +3,6 @@
  <!-- App config -->
 <script src="app/js/config.js"></script>
 <script src="app/js/icons.js"></script>
+<script src="app/js/mobileAppSupport.js"></script>
 <!-- JS -->
 <script src="app/js/build.js"></script>

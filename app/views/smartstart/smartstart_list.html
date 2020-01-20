@@ -1,26 +1,45 @@
 <div class="smart-start" ng-controller="SmartStartListController">
+  <bb-loader></bb-loader>
   <div class="container">
+    <!-- <pre>{{ collection.all[0] | json }}</pre>
+    <pre>{{ collection.find | json }}</pre> -->
     <!-- Navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <bb-alert alert="collection.alert"></bb-alert>
+    <div class="fieldset" ng-controller="ZwaveInclusionController">
+      <a class="btn btn-default btn-lg " href="#smartstart" title="{{_t('scan_qrcode')}}">
+            <i class="fa fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')"></span>
+      </a>
+      <!-- Enable SmartStart  -->
+      <button class="btn btn-default btn-lg" ng-show="!smartStartEnabled" ng-click="enableSmartStart()" title="{{_t('enable_smart_start')}}">
+            <i class="fa fa-play-circle text-success"></i><span class="btn-name"> {{_t('enable_smart_start')}}</span>
+      </button>
+      <!-- disable SmartStart -->
+      <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
+            <i class="fa fa-stop-circle text-warning"></i><span class="btn-name"> {{_t('disable_smart_start')}}</span>
+      </button>
+      <!-- reload list -->
+      <button class="btn btn-default btn-lg" ng-click="refreshDSKList()" title="{{_t('reload')}}">
+            <i class="fa fa-refresh text-warning"></i><span class="btn-name"> {{_t('reload')}}</span>
+      </button>
+    </div>
     <div id="table_mobile">
       <table class="table">
         <tbody ng-repeat="v in collection.all track by $index">
           <tr>
             <!-- time -->
             <td data-title="">
-              <span class="text-supp">{{v.added.timeformat}}</span>
+              <span class="text-supp">{{v.added.registred_at}}</span>
             </td>
             <!-- action -->
             <td class="td-action" data-title="">
               <div class="btn-group" ng-show="v.isSmartStart">
                 <!-- update  -->
-                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="collection.find = v;handleModal('dskModal', $event)">
-                  <i class="fa fa-info-circle text-primary"></i>
+                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="setData(v);handleModal('dskModal', $event)">
+                <i class="fa fa-info-circle text-primary"></i>
                 </button>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v,_t('lb_delete_confirm'))">
-                  <i class="fa fa-trash text-danger"></i>
+                <i class="fa fa-trash text-danger"></i>
                 </button>
               </div>
             </td>
@@ -45,27 +64,84 @@
                   </div>
                 </div>
               </div>
-              <div class="dsk" data-dsk-last-pos="{{v.ZW_QR_DSK.substring(35, 41)}}">
-                  <span>{{v.ZW_QR_DSK}}</span>
+              <dl class="inline-dl">
+                <dt>{{_t('device_name')}}</dt>
+                <dd>{{v.givenName}}</dd>
+                <dt>{{_t('lb_room')}}</dt>
+                <dd>{{locations[v.location].title|cutText:true:20}}</dd>
+                <dt>{{_t('brand_name')}}</dt>
+                <dd>{{v.added.brand_name}}</dd>
+                <dt>{{_t('product_name')}}</dt>
+                <dd>{{v.added.product}}</dd>
+                <dt>{{_t('device_type')}}</dt>
+                <dd>{{v.added.device_type}}</dd>
+                <dt>{{_t('added_at')}}</dt>
+                <dd>{{v.added.added_at}}</dd>
+              </dl>
+             <!--  <div class="givenName">
+                <span>{{v.added.givenName}}</span>
               </div>
+              <div class="location">
+                <span>{{locations[v.added.location].title}}</span>
+              </div>
+              <div class="vendor">
+                <span>{{v.added.brand_name}}</span>
+              </div>
+              <div class="device-type">
+                <span>{{v.added.device_type}}</span>
+              </div>
+              <div class="product">
+                <span>{{v.added.product}}</span>
+              </div>
+              <div class="added_at">
+                <span>{{v.added.added_at}}</span>
+              </div> -->
             </td>
           </tr>
-        </tbody>     
+        </tbody>
       </table>
     </div>
     <div id="table_desktop">
-      <table class="table">    
+      <table class="table">
+        <thead>
+          <tr>
+            <th>{{_t('registered_at')}}</th>
+            <th>{{_t('device_name')}}</th>
+            <th>{{_t('lb_room')}}</th>
+            <th>{{_t('brand_name')}}</th>
+            <th>{{_t('device_type')}}</th>
+            <th>{{_t('product_name')}}</th>
+            <th>{{_t('state')}}</th>
+            <th>{{_t('added_at')}}</th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
           <tr ng-repeat="v in collection.all track by $index">
             <!-- time -->
             <td data-title="">
-              <span class="text-supp">{{v.added.timeformat}}</span>
+              <span class="text-supp">{{v.added.registred_at}}</span>
             </td>
-            <!-- DSK -->
-            <td data-title="DSK">
-              <span>{{v.ZW_QR_DSK}}</span> 
+            <!-- Given name -->
+            <td data-title="given_name">
+              <span>{{v.givenName? v.givenName :'-'}}</span>
             </td>
-
+            <!-- Location -->
+            <td data-title="location">
+              <span>{{locations[v.location].title}}</span>
+            </td>
+            <!-- Brand -->
+            <td data-title="brand">
+              <span>{{v.added.brand_name}}</span>
+            </td>
+            <!-- Device type -->
+            <td data-title="device_type">
+              <span>{{v.added.device_type}}</span>
+            </td>
+            <!-- Product -->
+            <td data-title="product">
+              <span>{{v.added.product}}</span>
+            </td>
             <!-- state -->
             <td class="text-center" data-title="">
               <div ng-show="v.isSmartStart">
@@ -79,22 +155,30 @@
                 <i class="fa fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
                 <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
                   <div class="infowindow-in text-center">
-                    <p>This device does not support SmartStart.</p>
-                    <a href="#zwave/vendors" class="btn btn-primary">Add device manually</a>
+                    <p>{{_t('device_no_smartstart')}}</p>
+                    <a href="#zwave/vendors" class="btn btn-primary">{{_('manual_add')}}</a>
                   </div>
                 </div>
               </div>
             </td>
+            <!-- added add -->
+            <td data-title="added_at">
+              <span class="text-supp">{{v.added.added_at}}</span>
+            </td>
             <!-- action -->
             <td class="td-action" data-title="">
-              <div class="btn-group" ng-show="v.isSmartStart">
+              <div class="btn-group">
                 <!-- update  -->
-                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="collection.find = v;handleModal('dskModal', $event)">
-                  <i class="fa fa-info-circle text-primary"></i>
+                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-show="v.isSmartStart" ng-click="setData(v);handleModal('dskModal', $event)">
+                <i class="fa fa-info-circle text-primary"></i>
                 </button>
+                <!-- configure node -->
+                <a class="btn btn-default" ng-if="v.state === 'included'" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
+                    <i class="fa fa-cog text-primary"></i>
+                </a>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="v.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
-                  <i class="fa fa-trash text-danger"></i>
+                <i class="fa fa-trash text-danger"></i>
                 </button>
               </div>
             </td>
@@ -104,6 +188,5 @@
     </div>
   </div>
   <div ng-include="'app/views/smartstart/smartstart_list_modal.html'"></div>
-
 </div>
 <!-- /ng-controller -->

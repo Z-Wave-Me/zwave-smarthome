@@ -66,6 +66,8 @@ myAppController.controller('ManagementUserController', function ($scope, $cookie
 myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache,cfg) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
+    $scope.devices = [];
+    $scope.authTokens = [];
     $scope.show = true;
     $scope.input = {
         "id": 0,
@@ -73,10 +75,10 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         "login": "",
         "name": "",
         "lang": "en",
-        "color": "#dddddd",
         "dashboard": [],
         "interval": 1000,
         "rooms": [],
+        "devices": [],
         "expert_view": true,
         "hide_all_device_events": false,
         "hide_system_events": false,
@@ -96,12 +98,14 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         var promises = [
             dataFactory.getApi('profiles', ($scope.id !== 0 ? '/' + $scope.id : ''), true),
-            dataFactory.getApi('locations')
+            dataFactory.getApi('locations'),
+            dataFactory.getApi('devices')
         ];
 
         $q.allSettled(promises).then(function (response) {
             var profile = response[0];
             var locations = response[1];
+            var devices = response[2];
             $scope.loading = false;
             // Error message
             if (profile.state === 'rejected') {
@@ -114,8 +118,14 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
             if (profile.state === 'fulfilled') {
                 if ($scope.id !== 0) {
                     $scope.input = profile.value.data.data;
+                    if (!$scope.input.devices) $scope.input.devices = [];
                     $scope.auth.login = profile.value.data.data.login;
                     $scope.lastEmail = profile.value.data.data.email;
+                    $scope.authTokens = profile.value.data.data.authTokens;
+                    $scope.authTokens.forEach(function(token) {
+                        token.date_str = (new Date(token.date)).toLocaleString();
+                        token.expire_str = (token.expire === 0 || typeof token.expire == "undefined") ? '-' : (new Date(token.expire)).toLocaleString();
+                    });
                 }
             }
 
@@ -127,6 +137,10 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
 
                     })
                     .value();
+            }
+            // Success - locations
+            if (devices.state === 'fulfilled') {
+                $scope.devices = devices.value.data.data.devices;
             }
         });
     };
@@ -156,6 +170,71 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
     };
 
     /**
+     * Assign device to list
+     */
+    $scope.assignDevice = function (assign) {
+        if($scope.input.role !== 1) {
+            $scope.input.devices.push(assign);
+        }
+    };
+
+    /**
+     * Remove device from the list
+     */
+    $scope.removeDevice = function (deviceId) {
+        var oldList = $scope.input.devices;
+        $scope.input.devices = [];
+        angular.forEach(oldList, function (v, k) {
+            if (v != deviceId) {
+                $scope.input.devices.push(v);
+            }
+        });
+        return;
+    };
+
+    /**
+     * Remove auth token
+     */
+    $scope.removeAuthToken = function (profileId, token, message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
+            dataFactory.deleteApi('profiles', profileId, '/token/' + token).then(function (response) {
+                myCache.remove('profiles');
+                dataService.showNotifier({message: $scope._t('delete_successful')});
+                $scope.loading = false;
+                $scope.allSettledUserId();
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_delete_data'));
+            });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
+        });
+        return;
+    };
+    
+    /**
+     * Make auth token permanent
+     */
+    $scope.permanentAuthToken = function (profileId, token, message) {
+        alertify.confirm(message, function () {
+            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+            dataFactory.putApi('profiles', profileId, {}, '/token/' + token).then(function (response) {
+                myCache.remove('profiles');
+                dataService.showNotifier({message: $scope._t('success_updated')});
+                $scope.loading = false;
+                $scope.allSettledUserId();
+            }, function (error) {
+                $scope.loading = false;
+                alertify.alertError($scope._t('error_update_data'));
+            });
+        }).setting('labels', {
+            'ok': $scope._t('ok')
+        });
+        return;
+    };
+
+    /**
      * Create/Update an item
      */
     $scope.store = function (form, input) {
@@ -172,8 +251,6 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         }else if(globalRoomIndex > -1){
             input.rooms.splice(globalRoomIndex, 1);
         }
-        //console.log(input);
-        //return;
         dataFactory.storeApi('profiles', input.id, input).then(function (response) {
             var id = $filter('hasNode')(response, 'data.data.id');
             if (id) {

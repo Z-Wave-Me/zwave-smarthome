@@ -1,0 +1,36 @@
+<section class="accordion-wrap" ng-repeat="v in mobile.input.params.devices track by $index">
+	<!-- Title -->
+	<h2 class="accordion-toggle ellipsis">
+		<!-- Deleted device -->
+		<span class="no-toggle text-danger" ng-if="!mobile.availableDevices[v.id]">
+				<i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{v.id}})
+		</span>
+		<!-- Toggle -->
+		<button type="button" aria-expanded="false" bb-accordion ng-if="v.deviceType!='toggleButton'" ng-hide="!mobile.availableDevices[v.id]">
+			<span><img class="navi-img" ng-src="{{mobile.availableDevices[v.id].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+				{{mobile.availableDevices[v.id].deviceName}}&nbsp;-&nbsp;
+				<em>{{mobile.availableDevices[v.id].locationName}}</em>
+			</span>
+		</button>
+		<!-- No Toggle -->
+		<span class="no-toggle" ng-if="v.deviceType=='toggleButton'" ng-hide="!mobile.availableDevices[v.id]">
+			<span><img class="navi-img" ng-src="{{mobile.availableDevices[v.id].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+				{{mobile.availableDevices[v.id].deviceName}}&nbsp;-&nbsp;<em>{{mobile.availableDevices[v.id].locationName}}</em>
+			</span>
+		</span>
+		<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice($index,v.id)">
+			<i class="fa fa-times text-danger"></i>
+		</span>
+	</h2>
+	<!-- Content -->
+	<div class="accordion" ng-if="v.deviceType!='toggleButton'" hidden>
+		<div class="form-group">
+			<label for="customMessage_{{v.id}}">{{_t('custom_message')}}</label>
+			<textarea class="form-control" id="customMessage_{{v.id}}" name="customMessage" ng-model="v.msg"></textarea>
+			<bb-help-text trans="_t('custom_message_help')"></bb-help-text>
+			<!--<label for="previewMessage">{{_t('custom_message_preview')}}</label>
+			<span name="previewMessage"></span>-->
+		</div>
+		<div ng-if_="v.logLevel == 'notifications'" ng-include="'app/views/mobile/mobile_form_' + v.deviceType + '.html'"></div>
+	</div>
+</section>

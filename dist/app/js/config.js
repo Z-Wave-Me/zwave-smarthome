@@ -12,9 +12,9 @@ var config_data = {
 		//Application name
 		'app_name': 'SmartHome UI',
 		// Application version
-		'app_version': '1.9.0',
+		'app_version': '1.10.2',
 		// Application (DIST) built date
-		'app_built': '24-09-2018 14:06:32',
+		'app_built': '20-01-2020 13:17:39',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -82,7 +82,7 @@ var config_data = {
 			'login': 'admin',
 			'password': 'admin'
 		},
-		// List of API URLs 
+		// List of API URLs
 		'api': {
 			'devices': 'ZAutomation/api/v1/devices',
 			'hide_devices': 'ZAutomation/api/v1/hidedevices',
@@ -104,6 +104,7 @@ var config_data = {
 			'login': 'ZAutomation/api/v1/login',
 			'logout': 'ZAutomation/api/v1/logout',
 			'session': 'ZAutomation/api/v1/session',
+			'oauth2': 'ZAutomation/api/v1/oauth2',
 			'backup': 'ZAutomation/api/v1/backup',
 			'restore': 'ZAutomation/api/v1/restore',
 			'tokens': 'ZAutomation/api/v1/modules/tokens',
@@ -145,10 +146,11 @@ var config_data = {
 			'update_dsk': 'ZWaveAPI/UpdateDSKEntry', // Update DSK
 			'remove_dsk': 'ZWaveAPI/RemoveDSKEntry?id=', // Remove DSK
 			'get_dsk_provisioning_list': 'ZWaveAPI/GetDSKProvisioningList', // Show ProvisioningList (includes only DSKs)
-			'add_dsk_provisioning_list': 'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST 
+			'add_dsk_provisioning_list': 'ZWaveAPI/AddDSKProvisioningEntry', // Add DSK to ProvisioningList (Response with added DSK) POST
 			'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
 			'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
-			'locations_image': 'ZAutomation/api/v1/locations/image' // delete cutom room image // TODO: add backend
+			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend,
+			'remove_app': 'MobileAppSupportAPI/removeApp' // remove app
 		},
 		// List of remote api URLs
 		'api_remote': {
@@ -294,7 +296,7 @@ var config_data = {
 			apps_online: [1],
 			customize: [1],
 			module: [1],
-			devices: [1],
+			devices: [1, 2, 3],
 			myaccess: [1, 2, 3],
 			expert_view: [1],
 			remote_access: [1],
@@ -378,15 +380,18 @@ var config_data = {
 		// List of the find hosts
 		'find_hosts': [
 			'find.z-wave.me',
-			'find.popp.eu'
+			'find.popp.eu',
+			'remote.popp.eu'
 		],
 		// Redirect to the url after logout
 		'logout_redirect': {
-			'find.z-wave.me': 'https://find.z-wave.me/zboxweb'
+			'find.z-wave.me': 'https://find.z-wave.me/zboxweb',
+			'remote.popp.eu': 'https://remote.popp.eu/',
 		},
 		// List of the forbidden licence app types
 		'license_forbidden': [
 			'popp',
+			'zme_hub',
 			'jb'
 		],
 		// SmartStart
@@ -521,7 +526,7 @@ var config_data = {
 		// Scroll offset (px) for bind-class-on-scroll directive
 		'scroll_offset': 80,
 		// ---------------------------------- Custom config for specifics app_type ---------------------------------- //
-		// Application type : default/popp/jb/wd
+		// Application type : default/popp/zme_hub/jb/wd
 		'app_type': 'default',
 		// Config
 		'custom_cfg': {
@@ -535,6 +540,7 @@ var config_data = {
 					'CustomUserCode',
 					'CustomUserCodeLoader',
 					'InbandNotifications',
+					'MobileAppSupport',
 					'Notification',
 					'NotificationSMSru',
 					'RemoteAccess',
@@ -557,6 +563,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				],
 				advanced_apps: [
@@ -589,6 +596,7 @@ var config_data = {
 					'BatteryPolling',
 					'CustomUserCode',
 					'CustomUserCodeLoader',
+					'MobileAppSupport',
 					'InbandNotifications',
 					'Notification',
 					'NotificationSMSru',
@@ -611,12 +619,13 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			},
-			'jb': {
-				'boxtype': 'popp',
-				'logo': 'app-logo-popp.png',
+			'zme_hub': {
+				'boxtype': 'razberry',
+				'logo': 'app-logo-default.png',
 				hidden_apps: [
 					'Cron',
 					'CloudBackup',
@@ -624,6 +633,7 @@ var config_data = {
 					'CustomUserCode',
 					'CustomUserCodeLoader',
 					'InbandNotifications',
+					'MobileAppSupport',
 					'Notification',
 					'NotificationSMSru',
 					'RemoteAccess',
@@ -646,6 +656,44 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
+					'ScheduledScene'
+				]
+			},
+			'jb': {
+				'boxtype': 'popp',
+				'logo': 'app-logo-popp.png',
+				hidden_apps: [
+					'Cron',
+					'CloudBackup',
+					'BatteryPolling',
+					'CustomUserCode',
+					'CustomUserCodeLoader',
+					'InbandNotifications',
+					'MobileAppSupport',
+					'Notification',
+					'NotificationSMSru',
+					'RemoteAccess',
+					'SecurityMode',
+					'SensorValueLogging',
+					'SensorsPollingLogging',
+					'YandexProbki',
+					'CodeDevice',
+					'InfoWidget',
+					'SensorsPolling',
+					'SwitchControlGenerator',
+					'ZWave',
+					'PhilioHW',
+					'Rules',
+					'Scenes',
+					'Schedules'
+				],
+				featured_apps: [
+					'IfThen',
+					'OpenWeather',
+					'DeviceHistory',
+					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			},
@@ -660,6 +708,7 @@ var config_data = {
 					'CustomUserCode',
 					'CustomUserCodeLoader',
 					'InbandNotifications',
+					'MobileAppSupport',
 					'Notification',
 					'NotificationSMSru',
 					'RemoteAccess',
@@ -681,6 +730,7 @@ var config_data = {
 					'OpenWeather',
 					'DeviceHistory',
 					'PeriodicalSwitchControl',
+					'EasyScripting',
 					'ScheduledScene'
 				]
 			}

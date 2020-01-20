@@ -1,0 +1,10 @@
+<!-- all/on/off -->
+<div class="form-group form-inline">
+	<label for="condition_{{v.id}}">{{_t('lb_send_condition')}}</label>
+	<select id="condition_{{v.id}}" name="condition" class="form-control form-inline" ng-model="v.level">
+		<option value="{{o}}" ng-repeat="o in mobile.cfg.doorlock.level track by $index" ng-selected="o == v.level">
+			{{_t(o)}}
+		</option>
+	</select>
+	<bb-help-text trans="_t('send_condition_help')"></bb-help-text>
+</div>

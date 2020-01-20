@@ -227,6 +227,8 @@ myApp.directive('errSrc', function() {
 					attrs.$set('src', attrs.errSrc);
 				} else if (attrs.errSrc2 && attrs.src != attrs.errSrc2) {
 					attrs.$set('src', attrs.errSrc2);
+				} else if (attrs.errSrc3 && attrs.src != attrs.errSrc2 && attrs.src != attrs.errSrc3 && attrs.errSrc2 != attrs.errSrc3) {
+					attrs.$set('src', attrs.errSrc3);
 				}
 			});
 			// Displays the error image when ngSrc is blank
@@ -235,6 +237,8 @@ myApp.directive('errSrc', function() {
 					attrs.$set('src', attrs.errSrc);
 				} else if (!value && attrs.errSrc2) {
 					attrs.$set('src', attrs.errSrc2);
+				} else if (!value && attrs.errSrc3) {
+					attrs.$set('src', attrs.errSrc3);
 				}
 			});
 		}
@@ -314,7 +318,7 @@ myApp.directive('knob', function() {
 });
 
 /**
- * Displays a knob 
+ * Displays a knob
  * @class myknob
  */
 myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFactory, dataService) {
@@ -351,7 +355,9 @@ myApp.directive('myknob', ['$timeout', 'dataFactory', function($timeout, dataFac
 					if (old != newValue) {
 						//console.log('myKnob directive - Sending request new/old: ',newValue, old)
 						$scope.knobData = newValue;
-						runCmdExact($scope.knobId, newValue);
+						if($scope.knobId.indexOf("#") == -1) {
+							runCmdExact($scope.knobId, newValue);
+						}
 						$scope.$apply();
 					}
 				});
@@ -565,7 +571,7 @@ myApp.directive('bbTab', function () {
       elem.on('click', function (e) {
         var tabId = elem.attr('data-href');
         var wrap = elem.closest('.tab-wrap');
-        // Set all tabs to aria-selected="false" 
+        // Set all tabs to aria-selected="false"
         wrap.find('[role="tab"]').removeAttr('aria-selected');
         // Adding  hidden attr to all tab panels
         wrap.find('[role="tabpanel"]').attr('hidden', true);
@@ -635,4 +641,48 @@ myApp.directive('convertToFloat', function() {
 			// });
 		}
 	};
+});
+
+/**
+ * Handle touchstart event
+ */
+myApp.directive('touchstart', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, elm, attrs) {
+            var touchstartFn = $parse(attrs.touchstart);
+            elm.bind('touchstart', function(evt) {
+                scope.$apply(function() {
+                    touchstartFn(scope, {$event: evt});
+                });
+            });
+            elm.bind('mousedown', function(evt){
+                scope.$apply(function() {
+                    touchstartFn(scope, {$event: evt});
+                });
+            });
+        }
+    };
+});
+
+/**
+ * Handle touchend event
+ */
+myApp.directive('touchend', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, elm, attrs) {
+            var touchendFn = $parse(attrs.touchend);
+            elm.bind('touchend', function(evt) {
+                scope.$apply(function() {
+                    touchendFn(scope, {$event: evt});
+                });
+            });
+            elm.bind('mouseup', function(evt){
+                scope.$apply(function() {
+                    touchendFn(scope, {$event: evt});
+                });
+            });
+        }
+    };
 });

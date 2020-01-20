@@ -287,10 +287,10 @@ myAppController.controller('AlexaSetupController', function($scope, $q, $timeout
 		if (['razberry'].indexOf($scope.getCustomCfgArr('boxtype')) > -1) {
 			$scope.boxtype = $scope._t('lb_z_way');
 		} else {
-			$scope.boxtype = $scope._t('lb_popp'); 
-		}	
+			$scope.boxtype = $scope._t('lb_popp');
+		}
 	}, 0);
-	
+
 
 	$scope.prevNext = function(n) {
 		$scope.currentStep += n;
@@ -380,7 +380,7 @@ myAppController.controller('AlexaManageController', function($scope, $q, $locati
 
 	/**
 	 * Add device to active list
-	 * @param {object} deviceId 
+	 * @param {object} deviceId
 	 */
 	$scope.activateDevice = function(device) {
 		var obj = {},
@@ -391,7 +391,7 @@ myAppController.controller('AlexaManageController', function($scope, $q, $locati
 
 	/**
 	 * Remove device from active list
-	 * @param {string} deviceId 
+	 * @param {string} deviceId
 	 */
 	$scope.deactivateDevice = function(deviceId) {
 		if ($scope.alexa.devices.active[deviceId]) {
@@ -400,7 +400,7 @@ myAppController.controller('AlexaManageController', function($scope, $q, $locati
 	};
 
 	/**
-	 * Store 
+	 * Store
 	 */
 	$scope.store = function() {
 		$scope.loading = {
@@ -528,7 +528,7 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 			message: $scope._t('loading')
 		};
 		var promises = [
-			dataFactory.getApi('instances', false, true),
+			dataFactory.getApi('instances', '/GoogleHome', true),
 			dataFactory.getApi('locations'),
 			dataFactory.getApi('devices')
 		];
@@ -536,18 +536,11 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 		$q.allSettled(promises).then(function(response) {
 			$scope.loading = false;
 
-			var instances = response[0],
+			var instance = response[0],
 				rooms = response[1],
 				devices = response[2];
 			// Error message
-			if (instances.state === 'rejected') {
-				angular.extend(cfg.route.alert, {
-					message: $scope._t('error_load_data')
-				});
-				return;
-			}
-
-			if (alexa_instance.state === 'rejected') {
+			if (instance.state === 'rejected') {
 				angular.extend(cfg.route.alert, {
 					message: $scope._t('error_load_data')
 				});
@@ -574,8 +567,8 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 			}
 
 			// Success - instance
-			if (instances.state === 'fulfilled') {
-				setInstance(instances.value.data.data);
+			if (instance.state === 'fulfilled') {
+				setInstance(instance.value.data.data[0]);
 			}
 
 			// Success - devices
@@ -588,7 +581,7 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 
 	/**
 	 * Add device to active list
-	 * @param {object} deviceId 
+	 * @param {object} deviceId
 	 */
 	$scope.activateDevice = function(device) {
 		var obj = {},
@@ -599,7 +592,7 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 
 	/**
 	 * Remove device from active list
-	 * @param {string} deviceId 
+	 * @param {string} deviceId
 	 */
 	$scope.deactivateDevice = function(deviceId) {
 		if ($scope.google_home.devices.active[deviceId]) {
@@ -608,7 +601,7 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 	};
 
 	/**
-	 * Store 
+	 * Store
 	 */
 	$scope.store = function() {
 		$scope.loading = {
@@ -643,7 +636,7 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 	 * Set devices
 	 */
 	function setDevices(data) {
-		var devices = dataService.getDevicesData(data, true, true, false).map(function(v) {
+		var devs = dataService.getDevicesData(data, true, true, false).map(function(v) {
 			var obj = {
 				deviceId: v.id,
 				deviceName: v.metrics.title,
@@ -651,11 +644,13 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 				probeType: v.probeType,
 				location: v.location,
 				locationName: $scope.google_home.rooms[v.location].title,
-				callName: v.metrics.title
+				callName: v.metrics.title,
+				iconPath: v.iconPath,
+				nodeId: v.nodeId
 			};
 			return obj;
 		});
-		devices = devices.filter(function(dev) {
+		var devices = devs.filter(function(dev) {
 			var wlDev = _.find(cfg.speechAssistants.GoogleHome.deviceTypeWhitelist, function(needle) {
 				if (Object.keys(needle) == dev.deviceType) {
 					return needle;
@@ -670,9 +665,9 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 					return dev;
 				}
 			}
-		});
+		}).indexBy("deviceId").value();
 
-		$scope.google_home.devices.available = devices.indexBy("deviceId").value();
+		$scope.google_home.devices.available = devices;
 
 		if ($scope.google_home.instance.params.devices.length > 0) {
 
@@ -706,14 +701,8 @@ myAppController.controller('GoogleHomeManageController', function($scope, $q, cf
 	 * Set instance
 	 */
 	function setInstance(data) {
-		var GoogleHome = _.findWhere(data, {
-			moduleId: 'GoogleHome'
-		});
-		if (GoogleHome) {
-			$scope.google_home.instance = GoogleHome;
-		}
+		$scope.google_home.instance = data;
 	};
-
 
 });
 

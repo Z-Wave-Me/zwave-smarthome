@@ -173,11 +173,11 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 				}
 			});
 		}
-		//$scope.checkSdkVersion(); 
+		//$scope.checkSdkVersion();
 
 	/**
-	 * Add DSK 
-	 * @returns {undefined} 
+	 * Add DSK
+	 * @returns {undefined}
 	 */
 	$scope.addDskProvisioningList = function() {
 		var dsk = {
@@ -211,127 +211,125 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
  * The controller that displays DSK list.
  * @class SmartStartListController
  */
-myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, cfg, dataFactory, expertService) {
+myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, cfg, $route, dataFactory, dataService, expertService, myCache) {
 
 	$scope.collection = {
 		alert: {},
+		update: false,
 		all: [],
 		find: {},
+		findOrg: {},
 		deviceTypes: {},
-		deviceInfos: {}
+		deviceInfos: {},
+		vendors: {}
 	};
 
-	/**
-	 * Load DeviceClasses.xml from translations
-	 */
-	$scope.loadXml = function() {
+	 /**
+     * Load all promises
+     * @returns {undefined}
+     */
+    $scope.allSettled = function () {
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
+        var promises = [
+            dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'DeviceClasses.xml'),
+            dataFactory.getApi('zwave_devices', '?lang=' + $scope.lang),
+            dataFactory.getApi('get_dsk', null, true),
+            dataFactory.getApi('zwave_vendors'),
+            dataFactory.getApi('locations')
+        ];
 
-		// 
-		dataFactory.xmlToJson(cfg.server_url + cfg.translations_xml_path + 'DeviceClasses.xml').then(function(response) {
-			_.filter(response.DeviceClasses.Generic, function(v) {
-				$scope.collection.deviceTypes[v._id] = expertService.configGetZddxLang($filter('hasNode')(v, 'name.lang'), $scope.lang);
-			})
-		});
-	};
-	$scope.loadXml();
+        $q.allSettled(promises).then(function (response) {
+            // console.log(response)
+            var deviceClassesXML = response[0],
+            	devicesInfo = response[1],
+            	DSKList = response[2],
+            	Vendors = response[3],
+            	locations = response[4]
 
-	/**
-	 * Load device info
-	 */
-	$scope.loadDeviceInfo = function() {
-		dataFactory.getApi('zwave_devices', '?lang=' + $scope.lang).then(function(response) {
-			_.filter(response.data.data.zwave_devices, function(v) {
-				var parts = v.ConfigData.ProductId.split('.');
-				if (parts.length > 3) {
-					parts.pop();
-				}
+            $scope.loading = false;
+            // Error message
+            if (deviceClassesXML.state === 'rejected') {
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
+                return;
+            }
 
-				var id = parts.join('.');
-				$scope.collection.deviceInfos[id] = {
-					BrandName: v.BrandName,
-					Name: v.Name
-				}
-			});
+            // Error message
+            if (devicesInfo.state === 'rejected') {
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
+                return;
+            }
 
-		});
-	}
-	$scope.loadDeviceInfo();
+            // Error message
+            if (DSKList.state === 'rejected') {
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
+                return;
+            }
 
-	/**
-	 * Get DSK Collection - DEMO
-	 */
-	var getDskCollectionDemo = function() {
-		/*dataFactory.getApiLocal('dsk-collection.json').then(function (response) {
-		  var data = response.data;*/
-		dataFactory.getApi('get_dsk', null, true).then(function(response) {
-			var data = response.data;
-			// There are no data
-			if (_.isEmpty(data)) {
-				angular.extend(cfg.route.alert, {
-					message: $scope._t('empty_dsk_list'),
-					icon: 'fa-info-circle text-info'
+            // Error message
+            if (Vendors.state === 'rejected') {
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
+                return;
+            }
+
+            // Error message
+            if (locations.state === 'rejected') {
+                angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
+                return;
+            }
+
+            // Success - DeviceClassesXML
+            if (deviceClassesXML.state === 'fulfilled') {
+               _.filter(deviceClassesXML.value.DeviceClasses.Generic, function(v) {
+					$scope.collection.deviceTypes[v._id] = expertService.configGetZddxLang($filter('hasNode')(v, 'name.lang'), $scope.lang);
 				});
-				return;
-			}
+            }
 
-			// Data collection
-			$scope.collection.all = _.filter(data, function(v) {
-				var typeId = $filter('decToHexString')(parseInt(v.ZW_QR_TLVVAL_PRODUCTID_ZWPRODUCTTYPE), 2, '0x');
-				var pIdArray = v.p_id.split('.');
-				var pId = parseInt(pIdArray[0]) + '.' + parseInt(pIdArray[1]) + '.' + parseInt(pIdArray[2]);
-				//var pId = parseInt(pIdArray[0]) + '.' + parseInt(pIdArray[1]) + '.' + parseInt(pIdArray[2]) + (pIdArray[3] ? '.' + parseInt(pIdArray[3]) : '');
-				//getDeviceInfo(pId);
-				//console.log('pId',pId.map(parseInt,10))
+            // Success - DeviceInfos
+            if(devicesInfo.state === 'fulfilled') {
+            	setDeviceData(devicesInfo.value.data.data.zwave_devices);
+            }
 
-				// Extending an object
-				v.added = {
-					pId: pId,
-					typeId: typeId,
-					dskArray: v.ZW_QR_DSK.split('-'),
-					timeformat: $filter('dateTimeFromTimestamp')(v.timestamp)
+            // Success - VendorList
+            if(Vendors.state === 'fulfilled') {
+            	$scope.collection.vendors = Vendors.value.data.data.zwave_vendors;
+            }
 
-				}
+            // Success - DSKList
+            if(DSKList.state === 'fulfilled') {
+            	setDSKCollection(DSKList.value.data);
+            }
 
+            // Success - locations
+            if(locations.state === 'fulfilled') {
+            	$scope.locations = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+            }
+        });
+
+    };
+    $scope.allSettled();
+
+
+    // check for changes dskArray
+    $scope.$watchCollection("collection.find.added.dskArray", function(newVal, oldVal) {
+    	if(newVal && !_.isEqual($scope.collection.findOrg.added.dskArray, newVal)) {
+    		console.log("change");
+    		$scope.collection.find.DSK = _.map(newVal, function(v) {
 				return v;
-			});
+			}).join('-');
+    	}
+    }), true;
 
-			// console.log($scope.collection.all)
-
-		}, function(error) {
-			angular.extend(cfg.route.alert, {
-				message: $scope._t('error_load_data')
-			});
-		});
-	};
-	$timeout(getDskCollectionDemo);
-	// $scope.getDskCollectionDemo();
 
 	/**
-	 * Get DSK Collection
-	 */
-	/* $scope.getDskCollection = function () {
-	    dataFactory.getApi('get_dsk', null, true).then(function (response) {
-	        
-	        
-	    }, function (error) {
-	        angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
-	    });
-	};
-	$scope.getDskCollection(); */
-
-	/**
-	 * Update DSK 
-	 * @returns {undefined} 
+	 * Update DSK
+	 * @returns {undefined}
 	 */
 	$scope.updateDsk = function(input) {
-		input.ZW_QR_DSK = _.map(input.added.dskArray, function(v) {
+		input.DSK = _.map(input.added.dskArray, function(v) {
 			return v;
 		}).join('-');
 		dataFactory.postApi('update_dsk', _.omit(input, 'added')).then(function(response) {
-
-			myCache.removeAll();
-			$route.reload();
-
+			$scope.allSettled();
 		}, function(error) {
 			alertify.alertError($scope._t('error_update_data'));
 		});
@@ -348,14 +346,19 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 			alertify.alertError($scope._t('delete_no_smartstart_warning'));
 			return;
 		}
-
 		alertify.confirm(message, function() {
-			dataFactory.getApi('remove_dsk', input.id, true).then(function(response) {
+			dataFactory.postApi('remove_dsk', null, input.id).then(function(response) {
 				var index = _.findIndex($scope.collection.all, {
 					id: input.id
 				});
 				if (index > -1) {
 					$scope.collection.all.splice(index, 1);
+					if($scope.collection.all.length == 0) {
+						angular.extend(cfg.route.alert, {
+							message: $scope._t('empty_dsk_list'),
+							icon: 'fa-info-circle text-info'
+						});
+					}
 				}
 			}, function(error) {
 				alertify.alertError($scope._t('error_delete_data'));
@@ -365,6 +368,101 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
         });
 	};
 
+	$scope.closeModal = function(input, modal,$event) {
+		if(!_.isEqual(input, $scope.collection.findOrg)) {
+			alertify.confirm($scope._t('discard_changes'), function() {
+				// discard changes
+				$scope.collection.find = {};
+				$scope.collection.findOrg = {};
+				// close modal
+				$scope.handleModal(modal, $event);
+			});
+		} else {
+			$scope.handleModal(modal, $event);
+		}
+	}
+
+	/**
+	 * Maked a copy of the selecte DSK collection entry
+	 * @param {object} input selected DSK collection entry
+	 */
+	$scope.setData = function(input) {
+		$scope.collection.findOrg = input;
+		$scope.collection.find = angular.copy(input);
+	}
+
+	/**
+	 * set Device Info and grep necessary data
+	 */
+	function setDeviceData(zwave_devices) {
+		_.filter(zwave_devices, function(v) {
+			var parts = v.ConfigData.ProductId.split('.');
+			if (parts.length > 3) {
+				parts.pop();
+			}
+
+			var id = parts.join('.');
+			$scope.collection.deviceInfos[id] = {
+				BrandName: v.BrandName,
+				Name: v.Name,
+				Brandname_Image: v.Brandname_Image.split('/').pop(),
+				Product_Image: v.Product_Image.split('/').pop(),
+				Product_Image_remote: v.Product_Image
+			}
+		});
+	}
+
+	/**
+	 * set DSK collection and extend data
+	 */
+	function setDSKCollection(dsk_list) {
+			if (_.isEmpty(dsk_list)) {
+				angular.extend(cfg.route.alert, {
+					message: $scope._t('empty_dsk_list'),
+					icon: 'fa-info-circle text-info'
+				});
+				return;
+			} else {
+				cfg.route.alert.message = null;
+			}
+
+			// Data collection
+			$scope.collection.all = _.filter(dsk_list, function(v) {
+				var typeId = v.DeviceTypeGenericDeviceClass;
+				var pIdArray = v.PId.split('.');
+				var pId = parseInt(pIdArray[0]) + '.' + parseInt(pIdArray[1]) + '.' + parseInt(pIdArray[2]);
+				var vendor = _.findWhere($scope.collection.vendors, {"ManufacturerId": v.ManufacturerId});
+
+				var brand_name,
+					brand_image;
+
+				brand_image = $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Brandname_Image : (vendor ? vendor.Image : '');
+				brand_name = $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].BrandName : (vendor ? vendor.Name : '-');
+
+				// Extending an object
+				v.added = {
+					pId: pId,
+					device_type: $scope.collection.deviceTypes[typeId] ? $scope.collection.deviceTypes[typeId] : '',
+					dskArray: v.DSK.split('-'),
+					registred_at: $filter('dateTimeFromTimestamp')(v.timestamp),
+					added_at: v.addedAt ? $filter('dateTimeFromTimestamp')(v.addedAt) : '-',
+					product_image: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image : '',
+					product_image_remote: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image_remote : '',
+					brand_name: brand_name,
+					brand_image: brand_image,
+					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-'
+				};
+				return v;
+			});
+	}
+
+	/**
+	 * Update DSK
+	 * @returns {undefined}
+	 */
+	$scope.refreshDSKList = function(){
+		$scope.allSettled();
+	}
 });
 
 
@@ -397,7 +495,7 @@ myAppController.controller('SmartStartQrController', function($scope, $timeout, 
 	}
 
 	/**
-	 * Callback   
+	 * Callback
 	 */
 	$scope.callbackQrCode = function(data) {
 		var index = data.indexOf(":");

@@ -1,41 +1,40 @@
 <!-- Admin factory view -->
 <!-- Title -->
 <h2 class="accordion-toggle chevron"  ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.local)">
-    <!-- Toggle -->
-    <button type="button" aria-expanded="false" bb-accordion  ng-click="expandElement('factory',true)" >
-      <span> 
-          <i class="fa fa-repeat fa-fw"></i> {{_t('factory_default')}}
-      </span> 
-    </button>
-  
-  </h2>
-  
-  <h2 class="accordion-toggle chevron"  ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
-      <!-- Toggle -->
-      <button type="button">
-        <span> 
-            <i class="fa fa-exclamation-circle fa-fw text-warning"></i> {{_t('factory_default')}} 
-            <em ng-if="cfg.route.os == 'PoppApp_Z_Way'">
-                , {{_t('not_supported_on_mobile')}}
-            </em>
-            <em class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
-                , {{_t('not_supported_on_remote')}}
-            </em>
-        </span> 
+  <!-- Toggle -->
+  <button type="button" aria-expanded="false" bb-accordion>
+    <span>
+      <i class="fa fa-repeat fa-fw"></i> {{_t('factory_default')}}
+    </span>
+  </button>
+</h2>
+
+<h2 class="accordion-toggle chevron" ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
+  <!-- Toggle -->
+  <button type="button">
+    <span>
+      <i class="fa fa-exclamation-circle fa-fw text-warning"></i> {{_t('factory_default')}}
+      <em ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+        ,&nbsp;{{_t('not_supported_on_mobile')}}
+      </em>
+      <em class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
+        ,&nbsp;{{_t('not_supported_on_remote')}}
+      </em>
+    </span>
+  </button>
+</h2>
+<!-- Content -->
+<div class="accordion" hidden ng-controller="ManagementFactoryController">
+  <bb-loader></bb-loader>
+  <form name="form_factory_default" id="form_profile" class="form form-page" ng-submit="resetFactoryDefault(_t('factory_default_war'))" novalidate>
+    <fieldset>
+      <p>{{_t('factory_default_info')}}</p>
+    </fieldset>
+    <fieldset class="submit-entry">
+      <button type="submit" class="btn btn-danger" title="{{_t('reset_factory_default')}}">
+        <i class="fa fa-repeat"></i>
+        <span class="btn-name">{{_t('reset_factory_default')}}</span>
       </button>
-    
-    </h2>
-  <!-- Content -->
-  <div class="accordion" hidden ng-if="expand.factory" ng-controller="ManagementFactoryController">
-      <form name="form_factory_default" id="form_profile" class="form form-page" ng-submit="resetFactoryDefault(_t('factory_default_war'))" novalidate>
-          <fieldset>
-              <p>{{_t('factory_default_info')}}</p>
-          </fieldset>
-          <fieldset class="submit-entry">
-              <button type="submit" class="btn btn-danger" title="{{_t('reset_factory_default')}}">
-                  <i class="fa fa-repeat"></i>
-                   <span class="btn-name">{{_t('reset_factory_default')}}</span>
-              </button>
-          </fieldset>
-      </form>
-  </div>
+    </fieldset>
+  </form>
+</div>

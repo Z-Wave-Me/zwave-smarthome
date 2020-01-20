@@ -1,0 +1,22 @@
+<!-- Title -->
+<h2 class="accordion-toggle chevron">
+  <button type="button" aria-expanded="false" bb-accordion>
+    <span class="is-legend">{{_t('advanced_settings')}}</span>
+  </button>
+</h2>
+<div class="accordion no-bcg" hidden>
+  <div class="panel-wrap">
+    <div class="list-panel">
+      <div class="body form-inline">
+        <div class="flex-input-group number-control">
+          <label>{{_t('security_alarm_interval')}}</label>
+          <select class="form-control" ng-model="security.input.params.times.interval">
+            <option value="{{a}}" ng-repeat="a in security.intervals track by $index" ng-selected="security.input.params.times.interval == a">{{_t(a)}}</option>
+          </select>
+          <span>{{_t('security_alarm_interval_unit')}}</span>
+          <bb-help-text trans="_t('help_security_alarm_interval')"></bb-help-text>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

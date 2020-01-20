@@ -12,10 +12,11 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q, cfg, cfgicons, dataFactory, dataService, deviceDetector, myCache, _) {
+myAppController.controller('BaseController', function($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q, $websocket, cfg, cfgicons, dataFactory, dataService, deviceDetector, myCache, _) {
 
     // Global scopes
     $scope.nightMode = false;
+    $scope.color = null;
     $scope.$location = $location;
     $scope.deviceDetector = deviceDetector;
     angular.extend(cfg.route, {
@@ -33,6 +34,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
     };
     $scope.user = dataService.getUser();
     $scope.hostName = $location.host();
+    $scope.hostProtocol = $location.protocol();
     $scope.ZWAYSession = dataService.getZWAYSession();
     $scope.lastLogin = dataService.getLastLogin();
     $scope.rss = {
@@ -96,7 +98,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             $scope.css = cfg.skin.path + $cookies.skin + '/main.css';
 
 
-        } else {
+        } else if(cfg.route.os != 'IOSWRAPPER') {
             dataFactory.getApi('skins_active').then(function(response) {
                 if (response.data.data.name !== 'default') {
                     cfg.skin.active = response.data.data.name;
@@ -120,10 +122,20 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         $scope.user.night_mode = nightMode;
         //$cookies.nightMode = nightMode;
         dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function(response) {
-
+            if(cfg.route.os == 'IOSWRAPPER') {
+                window.location = 'js-call:' + ($scope.user.night_mode ? 'nightmodeTrue' : 'nightmodeFalse');
+            }
         });
     };
 
+    /**
+     * Watch nicht_mode flag to change bowser theme (Firefox OS,Chrome for Android, Opera)
+     */
+    $scope.$watch("user.night_mode", function(newVal, oldVal) {
+        // night_mode true  #24262D
+        // night_mode false #E9E9E9
+        $scope.color = newVal ?  '#24262D' : '#E9E9E9';
+    });
 
     /**
      * Check if route match the pattern.
@@ -305,7 +317,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
                         type: 'system',
                         message: false,
                         info: false,
-                        permanent: false, 
+                        permanent: false,
                         hide: false,
                         icon: 'fa-exclamation-triangle text-danger'
                     });
@@ -615,7 +627,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             $event.stopPropagation();
         }
         $scope.isModal = $scope.modalArr[key];
-    };  
+    };
 
     $scope.expand = {};
     /**
@@ -635,9 +647,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
          angular.forEach($scope.expand,function(v,k){
               if(k != key){
                 $scope.expand[k] = false;
-                
+
               }
-             
+
             });
         }
         $scope.expand[key] = !($scope.expand[key]);
@@ -699,18 +711,49 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
 
 
     $scope.openSideNav = function($event) {
-        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0 && $location.path().indexOf("rooms") == -1 && $location.path().indexOf("events") == -1) {    
+        if($scope.deviceDetector.isMobile() && $(".appmodal").length == 0 && $location.path().indexOf("rooms") == -1 && $location.path().indexOf("events") == -1) {
             $scope.expandNavi('mainNav', $event, true)
         }
     };
 
     $scope.closeSideNav = function($event) {
         if($location.path().indexOf("rooms") == 1 || $location.path().indexOf("events") == 1 && $event.type == "click" && $scope.deviceDetector.isMobile()) {
-            $scope.expandNavi('mainNav', $event, false)  
+            $scope.expandNavi('mainNav', $event, false)
         }
 
         if($location.path().indexOf("rooms") != 1 || $location.path().indexOf("events") != 1 && $scope.deviceDetector.isMobile()) {
             $scope.expandNavi('mainNav', $event, false);
         }
     };
+
+
+    /**
+     * Test Webserver
+     */
+
+    // var ws = $websocket('ws://' + $location.$$host + ':8083/');
+    // var collection = [];
+    // console.log("cfg.server_url", $location.$$host);
+    // ws.onMessage(function(event) {
+    //   //console.log('message: ', event);
+    //   //console.log('message: ', JSON.parse(event.data));
+    //   var event_data = JSON.parse(event.data);
+    //   console.log("event data type", event_data.type);
+    //   console.log("event data data", JSON.parse(event_data.data));
+
+    // });
+
+    // ws.onError(function(event) {
+    //   console.log('connection Error', event);
+    // });
+
+    // ws.onClose(function(event) {
+    //   console.log('connection closed', event);
+    // });
+
+    // ws.onOpen(function() {
+    //   console.log('connection open');
+    // });
+
+
 });

@@ -1,66 +1,45 @@
 SmartHome UI
 ===============
 ## LICENSE
-Copyright (C) 2019 z-wave.Me
+Copyright (C) 2020 Z-Wave.Me
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
 
-## Project leader
+## Project leaders
 Marcel Kermer and Serguei Poltorak
-== SmartHomeUI v1.10.1 ==
+
+## v1.10.2
+#### Features:
+- Added ?authBearer to force UI to check for session in Authorization Bearer token
+- Added zme_hub app_type for Z-Wave.Me Hub
+- Added EasyScripting to featured
+- Devices / Mobile accessible to User role
+
+#### Fixes:
+- Fixed error on save of device info for user
 
 ## v1.10.1
 #### Features:
- - OAuth2 support added
- - Permanent token UI implemented
- - Per device access for users added
- - Added sessions list and logout button to securelly unlog a device
- - Added EnOcean SmartAck Teach In/Out UI
- - Add Smart Start UI
+- OAuth2 support added
+- Permanent token UI implemented
+- Per device access for users added
+- Added sessions list and logout button to securelly unlog a device
+- Added EnOcean SmartAck Teach In/Out UI
+- Add Smart Start UI
 
 #### Fixes:
- - Fixed comparison constraints with sensorMultilevel in Rules
- - Proper remove ZWAYSession when sending login info
- - Fixed problem of missing parameters on redirection to the target url on first page load
- - Fix redirect for find service
- - fix issue #210 Please make placeholder text color more faint
- - https://github.com/Z-Wave-Me/zwave-smarthome/issues/202
- - Fix Hardcoded scheme in firmware update url
- - "Hide events for this device" lost on device rename
- - https://github.com/Z-Wave-Me/home-automation/issues/465
- - fix Checkbox and right label not on the same line issue #255
- - Fix full screen searchbox modal on mobile-view
-
-## v1.9.0
-#### New features
- - Rooms:
-   - uploaded room icon is now removable
- - My Settings:
-   - new dropdown for language selection
-   - night / dark mode added
- - Header Menu:
-   - new Automation Menu (gear wheel)
-   - Automation Menu (gear wheel):
-     - collects basic automation functionalities (Scenes, Rules, Schedules, Heating, Hazard Notification, Security)
-     - menus are logically based on already known Apps like e.g. If>Then/LogicalRules (Rules), Leakage/Fire Protection (Hazard Notification)
-     - all apps are adjusted to use or trigger all actors which makes sence (e.g. binary switch, multilevel switch, scene, RGBW switch)
-     - the new desingned Automation menu, which is independent from Alpaca JS, should help to control your basic automations more easily
- - Elements:
-   - 3 grid layout for mobile devices / smartphones
-   - Adjusting mobile view
-   - Add ON/OFF to mobile RGB Modal
-   - Add new 24h History graph to widget
-   - Add missing Icons
-   - Add Audioplayer support
- - User management: If no rooms exists show info label "No rooms have yet been created" instead of empty fields
- - Active Apps: refactoring of mobile view
- - Online Apps: View refactoring
- - Active apps: expand all button added
- - New device categories: "Speech-assistant", "Wifi", "433Mhz", "Mobile phones" added
- - Add Alexa to system apps
- - Portugese, Italian translation added
- - New setup dialog for factory default devices which explains the new basic features of the software including speech assistent and automation.
+- Fixed comparison constraints with sensorMultilevel in Rules
+- Proper remove ZWAYSession when sending login info
+- Fixed problem of missing parameters on redirection to the target url on first page load
+- Fix redirect for find service
+- fix issue #210 Please make placeholder text color more faint
+- https://github.com/Z-Wave-Me/zwave-smarthome/issues/202
+- Fix Hardcoded scheme in firmware update url
+- "Hide events for this device" lost on device rename
+- https://github.com/Z-Wave-Me/home-automation/issues/465
+- fix Checkbox and right label not on the same line issue #255
+- Fix full screen searchbox modal on mobile-view
 
 ## v1.8.0
 #### New features

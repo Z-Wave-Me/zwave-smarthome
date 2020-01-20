@@ -1,0 +1,84 @@
+/* Grid
+-------------------------------------------------- */
+// https://www.toptal.com/sass/css3-flexbox-sass-grid-tutorial
+// https://mono.software/2016/12/02/building-a-simple-css-grid-with-flexbox/
+// https://zellwk.com/blog/responsive-grid-system/
+.grid {
+  //box-sizing: border-box;
+  @include displayFlex();
+  @include flexWrap(wrap);
+
+  >* {
+    @include flexBasis(100%);
+
+    @if $grid_gutter !='0' {
+      margin: 0 $grid_gutter/2;
+    }
+  }
+
+  // All devices
+  &.auto {
+    >* {
+      flex: 1 1 0;
+    }
+  }
+
+  // Extra Small devices
+  @include mediaQueries($break-usmall) {
+    &.auto-xs {
+      >* {
+        flex: 1 1 0;
+      }
+    }
+  }
+
+  // Small devices
+  @include mediaQueries($break-small) {
+    &.auto-s {
+      >* {
+        flex: 1 1 0;
+      }
+    }
+  }
+
+  // Medium devices
+  @include mediaQueries($break-medium) {
+    &.auto-m {
+      >* {
+        flex: 1 1 0;
+      }
+    }
+  }
+
+  // Large devices
+  @include mediaQueries($break-large) {
+    &.auto-l {
+      >* {
+        flex: 1 1 0;
+      }
+    }
+  }
+}
+
+// Displays cols on all devices
+@include gridColClasses('', $grid_cols, $grid_gutter);
+
+// Displays cols only on Extra Small devices and bigger
+@include mediaQueries($break-usmall) {
+  @include gridColClasses(-xs, $grid_cols, $grid_gutter);
+}
+
+// Displays cols only on Small devices and bigger
+@include mediaQueries($break-small) {
+  @include gridColClasses(-s, $grid_cols, $grid_gutter);
+}
+
+// Displays cols only on Medium devices and bigger
+@include mediaQueries($break-medium) {
+  @include gridColClasses(-m, $grid_cols, $grid_gutter);
+}
+
+// Displays cols only on Large devices and bigger
+@include mediaQueries($break-large) {
+  @include gridColClasses(-l, $grid_cols, $grid_gutter);
+}

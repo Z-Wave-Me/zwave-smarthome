@@ -1,7 +1,6 @@
 <!-- Admin user view -->
 <div ng-controller="ManagementUserIdController">
   <bb-loader></bb-loader>
-
   <div ng-if="show">
     <h2>
       <span ng-bind="_t('lb_user')"></span>:
@@ -124,6 +123,31 @@
         </div>
       </fieldset>
 
+      <fieldset>
+        <h3>{{_t('lb_allow_devices')}}</h3>
+        <div ng-if="input.role === 1">
+          <p>{{_t('lb_allow_access_to_all_devices')}}</p>
+        </div>
+        <div ng-if="input.role !== 1">
+          <div ng-if="!devices.length">
+            <p>{{_t('no_devices')}}</p>
+          </div>
+          <div ng-if="devices.length">
+            <div class="device-available-block assigned">
+              <a href="" class="btn btn-default btn-tag" ng-repeat="d in devices" ng-if="input.devices.indexOf(d.id) > -1" ng-click="removeDevice(d.id)">{{d.metrics.title|cutText:true:20}}
+                <i class="fa fa-times text-danger"></i>
+              </a>
+            </div>
+            <h3>{{_t('lb_available_devices')}}</h3>
+            <div class="device-available-block">
+              <a href="" class="btn btn-default btn-tag" ng-repeat="d in devices" ng-if="input.devices.indexOf(d.id) === -1 && !d.permanently_hidden && d.visibility" ng-click="assignDevice(d.id)">{{d.metrics.title|cutText:true:20}}
+                <i class="fa fa-plus text-success"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
       <fieldset class="submit-entry">
         <button type="button" class="btn btn-default" bb-go-back>
           <i class="fa fa-reply"></i>
@@ -135,6 +159,25 @@
         </button>
       </fieldset>
     </form>
+
+    <!-- Authentication tokens -->
+    <div ng-if="id > 0">
+      <h3>{{_t('lb_auth_token')}}</h3>
+      <div class="device-available-block assigned">
+        <div ng-if="!authTokens.length">
+          <p>{{_t('no_auth_token')}}</p>
+        </div>
+        <div class="form-group form-inline" ng-if="authTokens.length" ng-repeat="d in authTokens">
+          <a href="" class="btn btn-default btn-tag" ng-click="removeAuthToken(input.id, d.sid, _t('lb_delete_confirm'))">{{d.title|cutText:true:20}}
+            {{_t('lb_auth_token_logout')}}<i class="fa fa-times text-danger"></i>
+          </a>
+          <a href="" class="btn btn-default btn-tag" ng-disabled="!d.expire" ng-click="permanentAuthToken(input.id, d.sid, _t('lb_permanent_token_confirm'))">{{d.title|cutText:true:20}}
+            {{_t('lb_auth_token_permanent')}}<i class="fa fa-hourglass-half"></i>
+          </a>
+          &nbsp;&nbsp;&nbsp;<span ng-bind="d.sid"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.date_str"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.expire_str"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.agent"></span>
+        </div>
+      </div>
+    </div>
 
     <!-- ///////////////////////////// Change login and password Form ///////////////////////////// -->
     <div ng-if="id > 0">
@@ -178,6 +221,5 @@
       </form>
     </div>
   </div>
-
 </div>
 <!-- /ng-controller -->

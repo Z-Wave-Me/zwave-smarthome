@@ -63,10 +63,10 @@
             <bb-help-text trans="_t('hide_element_info')"></bb-help-text>
           </div>
         </div>
-        <!-- Add element to today bar -->
-        <div class="form-group" ng-show="cfg.route.os == 'PoppApp_Z_Way'" ng-if="elementId.input.deviceType == 'toggleButton' || 
+        <!-- Add element to Home (Android)-->
+        <div class="form-group" ng-show="cfg.route.os == 'PoppApp_Z_Way'" ng-if="elementId.input.deviceType == 'toggleButton' ||
                            elementId.input.deviceType == 'switchBinary' &&
-                           elementId.input.probeType != 'notification_email' && 
+                           elementId.input.probeType != 'notification_email' &&
                            elementId.input.probeType != 'notification_push'">
           <label>{{_t('lb_add_widget')}}:</label>
           <br>
@@ -78,6 +78,15 @@
             {{_t('lb_off')}}
           </a>
           <bb-help-text trans="_t('info_add_widget')"></bb-help-text>
+        </div>
+        <!-- Add element to Home (IOS)-->
+        <div class="form-group" ng-show="cfg.route.os == 'IOSWRAPPER'" ng-if="(elementId.input.deviceType == 'toggleButton' &&
+              elementId.input.probeType != 'notification_email' &&
+              elementId.input.probeType != 'notification_push')">
+          <a title="{{_t('lb_add_today')}}" class="btn btn-primary" href="/?id={{elementId.input.id}}&name={{elementId.input.metrics.title|stringToSlug}}&type={{elementId.input.deviceType}}&state={{elementId.input.metrics.level}}">
+            {{ _t('lb_add_today')}}
+          </a>
+          <bb-help-text trans="_t('info_add_today')"></bb-help-text>
         </div>
         <!-- Delete element -->
         <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
@@ -169,7 +178,7 @@
             </span>
             <div class="app-dropdown app-dropdown-left" ng-if="suggestions.length">
               <ul>
-                <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions| orderBy:'toString()'">
+                <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions track by $index">
                   <a href="">
                     <i class="fa fa-plus text-success"></i> {{v}}</a>
                 </li>
@@ -178,10 +187,26 @@
           </div>
         </div>
         <div class="form-group last">
-          <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}" ng-repeat="t in elementId.input.tags| orderBy:'toString()'"
+          <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}" ng-repeat="t in elementId.input.tags track by $index"
             ng-click="removeTag($index)">{{t}}
             <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i>
           </a>
+        </div>
+      </fieldset>
+      <!-- Notification -->
+      <fieldset>
+        <h3>{{_t('notifications')}}</h3>
+        <div class="form-group">
+          <label>{{_t('notification_active')}}</label>
+          <input type="checkbox" ng-model="mobile.active" ng-checked="mobile.active" ng-change="toggleNotification(mobile.active)">
+        </div>
+        <div ng-if="mobile.active">
+          <div class="form-group">
+            <label for="customMessage">{{_t('custom_message')}}</label>
+            <textarea class="form-control" id="customMessage" name="customMessage" ng-model="mobile.device.msg"></textarea>
+            <bb-help-text trans="_t('custom_message_help')"></bb-help-text>
+          </div>
+          <div ng-include="'app/views/mobile/mobile_form_' + elementId.input.deviceType + '.html'" onLoad="v=mobile.device"></div>
         </div>
       </fieldset>
       <!-- Submit -->
@@ -197,8 +222,6 @@
       </fieldset>
     </form>
     <div ng-if="elementAccess(cfg.role_access.admin)" ng-include="'app/views/elements/element_id_icons.html'"></div>
-
   </div>
-
 </div>
 <!-- /ng-controller -->

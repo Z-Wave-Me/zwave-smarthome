@@ -2,18 +2,17 @@
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
   <!-- Toggle -->
-  <button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('appstore',true)">
+  <button type="button" aria-expanded="false" bb-accordion>
     <span>
-      <i class="fa fa-cart-plus fa-fw"></i> {{_t('app_store_access')}}
+      <i class="fa fa-cart-plus fa-fw"></i>{{_t('app_store_access')}}
     </span>
   </button>
-
 </h2>
 <!-- Content -->
-<div class="accordion" hidden ng-if="expand.appstore" ng-controller="ManagementAppStoreController">
+<div class="accordion" hidden ng-controller="ManagementAppStoreController">
+  <bb-loader></bb-loader>
   <div class="form form-page">
     <div class="fieldset">{{_t('app_store_access_info')}}</div>
-
     <div class="fieldset">
       <div class="form-group form-inline">
         <div class="input-group">

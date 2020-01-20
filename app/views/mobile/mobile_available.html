@@ -1,0 +1,18 @@
+<section class="accordion-wrap" ng-repeat="r in mobile.rooms track by $index" ng-class="mobile.devicesInRoom[r.id] ? 'available-devices' : 'ng-hide'">
+	<!-- Title -->
+	<h2 class="accordion-toggle chevron">
+		<button type="button" aria-expanded="false" bb-accordion>
+			<span>
+				<img class="navi-img" ng-src="{{r.img_src}}" alt="img" />&nbsp;{{r.title}}
+			</span>
+		</button>
+	</h2>
+	<!-- Content -->
+	<div class="accordion" hidden>
+		<a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in mobile.availableDevices" ng-if="d.location == r.id &&  mobile.assignedDevices.indexOf(d.id) === -1" ng-click="assignDevice(d)">
+			<img class="navi-img" ng-src="{{mobile.availableDevices[d.id].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+				{{d.deviceName|cutText:true:20}}
+			<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+		</a>
+	</div>
+</section>

@@ -36,7 +36,7 @@
 <h3>{{_t('activate_module',{__module__:_t('fire_sensors')})}}</h3>
 <fieldset>
 <label class="switch">
-<input type="checkbox" ng-model="hazardProtection.fire.input.active" ng-checked="hazardProtection.fire.input.active">
+<input type="checkbox" ng-model="hazardProtection.fire.input.active" ng-checked="hazardProtection.fire.input.active" ng-disabled="_.size(hazardProtection.fire.input.params.sensors) < 1">
 <span class="slider"></span>
 </label>
 <span class="switch-label">{{hazardProtection.fire.input.active ? _t('lb_active'): _t('activeASC')}}</span>

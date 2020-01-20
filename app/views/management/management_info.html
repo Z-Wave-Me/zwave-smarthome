@@ -2,15 +2,14 @@
 <!-- Title -->
 <h2 class="accordion-toggle chevron">
   <!-- Toggle -->
-  <button type="button" aria-expanded="false" bb-accordion ng-click="expandElement('appinfo',true)">
+  <button type="button" aria-expanded="false" bb-accordion>
     <span>
       <i class="fa fa-info-circle fa-fw"></i> {{_t('info')}}
     </span>
   </button>
-
 </h2>
 <!-- Content -->
-<div class="accordion" hidden ng-if="expand.appinfo">
+<div class="accordion" hidden>
   <div class="form form-inline form-page">
     <div class="fieldset">
       <h3>{{_t('software_info')}}</h3>

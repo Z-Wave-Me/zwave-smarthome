@@ -83,6 +83,7 @@ module.exports = function(grunt) {
 					'vendor/angular/angular-1.2.28/angular-cookies.min.js',
 					'vendor/angular/angular-1.2.28/angular-touch.js',
 					'vendor/angular/angular-1.2.28/angular-animate.js',
+					'vendor/angular/angular-websocket/angular-websocket.min.js',
 					'vendor/dragdrop/angular-sortable-view.min.js',
 					// Bootstrap
 					'vendor/bootstrap/bootstrap.min.js',
@@ -132,6 +133,7 @@ module.exports = function(grunt) {
 					'app/controllers/skin.js',
 					'app/controllers/icon.js',
 					'app/controllers/device.js',
+					'app/controllers/smartstart.js',
 					'app/controllers/zwave-inclusion.js',
 					'app/controllers/zwave-manage.js',
 					'app/controllers/zwave-exclude.js',
@@ -156,6 +158,7 @@ module.exports = function(grunt) {
 					'app/controllers/management-timezone.js',
 					'app/controllers/management-timezone-jb.js',
 					'app/controllers/management-user.js',
+					'app/controllers/management-oauth.js',
 					'app/controllers/mysettings.js',
 					'app/controllers/rss.js',
 					'app/controllers/auth.js',
@@ -213,6 +216,11 @@ module.exports = function(grunt) {
 					}, {
 						expand: true,
 						src: ['app/icons.js'],
+						dest: 'dist/app/js/',
+						flatten: true
+					}, {
+						expand: true,
+						src: ['app/configs/mobileAppSupport.js'],
 						dest: 'dist/app/js/',
 						flatten: true
 					}, {
@@ -307,7 +315,7 @@ module.exports = function(grunt) {
 					banner: '/* <%= banner %> */'
 				},
 				files: {
-					src: ['dist/app/js/templates.js', 'dist/app/js/config.js', 'dist/app/js/build.js', 'dist/app/js/icons.js']
+					src: ['dist/app/js/templates.js', 'dist/app/js/config.js', 'dist/app/js/build.js', 'dist/app/js/icons.js', 'dist/app/js/mobileAppSupport.js']
 				}
 			},
 			html: {

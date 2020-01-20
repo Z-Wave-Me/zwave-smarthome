@@ -3,7 +3,7 @@
 $ss-brand-color: #eeeeee;
 $ss-dark-color: darken($ss-brand-color,50%);
 $ss-img-w: 64px;
-/* 
+/*
 -------------------------------------------------- */
 .smart-start {
     .container{
@@ -16,7 +16,7 @@ $ss-img-w: 64px;
             margin: 0 0 $spacing-double 0;
             //border: solid 1px $app-border-color;
             .content{
-                margin: $spacing-double; 
+                margin: $spacing-double;
             }
             .image{
                 .fa{
@@ -59,7 +59,7 @@ $ss-img-w: 64px;
                         vertical-align: middle;
                         img {
                             width: 200px;
-                        }    
+                        }
                     }
                 }
                 .entry-content {
@@ -76,7 +76,7 @@ $ss-img-w: 64px;
                             text-align: center;
                         }
                     }
-                    
+
                     .inner {
                         @include mediaQueries(min-small) {
                             margin-left: 50px;
@@ -90,9 +90,9 @@ $ss-img-w: 64px;
                                     height: 50px;
                                 }
                             }
-                        }    
+                        }
                     }
-                    
+
                 }
             }
         }
@@ -102,7 +102,7 @@ $ss-img-w: 64px;
                     td {
                         vertical-align: middle;
                         .td-action {
-                            text-align: right;    
+                            text-align: right;
                         }
                     }
                 }
@@ -140,8 +140,8 @@ $ss-img-w: 64px;
             tr{
                 &:nth-child(2) {
                     td {
-                        border: none; 
-                    }   
+                        border: none;
+                    }
                 }
                 td {
                     .time_string {
@@ -151,7 +151,7 @@ $ss-img-w: 64px;
             }
         }
     }
-   
+
     @include mediaQueries(min-small) {
         display: none;
     }
@@ -181,7 +181,7 @@ $ss-img-w: 64px;
             left: 100%;
             top: 0;
         }
-        
+
     }
 
     span {
@@ -197,12 +197,12 @@ $ss-img-w: 64px;
         width: 100%;
         @include mediaQueries(min-esmall) {
             width: 300px;
-        }    
+        }
 
         height: 300px;
         background-color: grey;
         margin: 10px 0;
-    }    
+    }
 }
 
 #qr-canvas {
@@ -214,3 +214,39 @@ $ss-img-w: 64px;
     display: inline-block;
 }
 
+.given_name {
+    display: inline-block;
+}
+
+.location {
+    display: inline-block;
+}
+
+.vendor {
+    display: inline-block;
+}
+
+.product {
+    display: inline-block;
+}
+
+.device-type {
+    display: inline-block;
+}
+
+// dsk Modal
+.product-image-wrap {
+    text-align: center;
+    padding: 10px;
+    display: table;
+    height: 200px;
+    .product-image {
+        display: table-cell;
+        vertical-align: middle;
+        img {
+            max-height: 200px;
+            width: auto;
+        }
+    }
+
+}

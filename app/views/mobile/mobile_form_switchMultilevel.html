@@ -1,0 +1,18 @@
+<!-- switchMultilevel -->
+<div class="form-group form-inline">
+	<label for="condition_{{v.id}}">{{_t('lb_send_condition')}}</label>
+	<select id="condition_{{v.id}}" name="condition" class="form-control" ng-model="v.level">
+		<option value="{{o}}" ng-repeat="o in mobile.cfg.switchMultilevel.level track by $index" ng-selected="o == v.level">
+			{{_t(o)}}
+		</option>
+	</select>
+	<!-- operator -->
+	<select class="form-control" ng-model="v.operator" ng-if="v.level == 'lvl'">
+		<option value="{{o}}" ng-repeat="o in mobile.cfg.switchMultilevel.operator track by $index" ng-selected="o == v.operator">
+	 		{{o}}
+		</option>
+	</select>
+	<!-- level -->
+	<input type="number" class="form-control input-number" min="{{mobile.cfg.switchMultilevel.min}}" max="{{mobile.cfg.switchMultilevel.max}}" ng-model="v.exact" ng-if="v.level == 'lvl'" />
+	<bb-help-text trans="_t('send_condition_help')"></bb-help-text>
+</div>

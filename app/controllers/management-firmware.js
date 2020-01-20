@@ -8,17 +8,17 @@
  * @class ManagementFirmwareController
  */
 myAppController.controller('ManagementFirmwareController', function ($scope, $sce, $timeout, dataFactory, dataService,cfg) {
-    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
+    $scope.firmwareUpdateUrl = $sce.trustAsResourceUrl($scope.hostProtocol + '://' + $scope.hostName + ':8084/cgi-bin/main.cgi');
     $scope.firmwareUpdate = {
         show: false,
         loaded: false,
-        url: $sce.trustAsResourceUrl('http://' + $scope.hostName + ':8084/cgi-bin/main.cgi')
+        url: $sce.trustAsResourceUrl($scope.hostProtocol + '://' + $scope.hostName + ':8084/cgi-bin/main.cgi')
     };
      $scope.databaseUpdate = {
         updating_vendors: false,
         updating_devices: false
     };
-    $scope.databaseProcess = false; 
+    $scope.databaseProcess = false;
     /**
      * Set access
      */
@@ -83,7 +83,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
      * update device database
      */
     $scope.updateDeviceDatabase = function () {
-        
+
         $scope.databaseUpdate.updating_devices = 'fa-spinner fa-spin';
         dataFactory.getApi('update_device_database').then(function (response) {
              res = response.data;
@@ -98,7 +98,7 @@ myAppController.controller('ManagementFirmwareController', function ($scope, $sc
               alertify.alertError($scope._t('update_device_database_failed'));
         }).finally(function () { // Always execute this on both error and success
              $scope.databaseProcess = false;
-             
+
         });
     };
 

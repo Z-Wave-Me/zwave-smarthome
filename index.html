@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp" ng-controller="BaseController" ng-swipe-left="closeSideNav($event)" ng-swipe-right="openSideNav($event)">
+<html lang="en" ng-app="myApp" ng-controller="BaseController" ng-swipe-left="closeSideNav($event)" ng-swipe-right="openSideNav($event)" ng-click="closeSideNav($event)">
   <head>
     <meta charset="utf-8">
     <title>Z-Wave Smart Home</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="{{color}}">
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <!-- build:section dist_head -->
     <!-- /build -->
@@ -15,6 +16,7 @@
     <!-- App config -->
     <script src="app/config.js"></script>
     <script src="app/icons.js"></script>
+    <script src="app/configs/mobileAppSupport.js"></script>
     <!-- jQuery js -->
     <script src="vendor/jquery/jquery-1.11.3.min.js"></script>
     <script src="vendor/jquery/jquery-ui.min.js"></script>
@@ -44,6 +46,7 @@
     <script src="vendor/angular/angular-1.2.28/angular-animate.js"></script>
     <!-- <script src="vendor/dragdrop/angular-drag-and-drop-lists.js"></script>-->
     <script src="vendor/dragdrop/angular-sortable-view.js"></script>
+    <script src="vendor/angular/angular-websocket/angular-websocket.js"></script>
     <!-- Bootstrap js -->
     <script src="vendor/bootstrap/bootstrap.js"></script>
     <script src="vendor/bootstrap/plugins/bootstrap-datetimepicker.js"></script>
@@ -92,6 +95,7 @@
     <script src="app/controllers/skin.js"></script>
     <script src="app/controllers/icon.js"></script>
     <script src="app/controllers/device.js"></script>
+    <script src="app/controllers/smartstart.js"></script>
     <script src="app/controllers/zwave-inclusion.js"></script>
     <script src="app/controllers/zwave-manage.js"></script>
     <script src="app/controllers/zwave-exclude.js"></script>
@@ -117,12 +121,14 @@
     <script src="app/controllers/management-timezone.js"></script>
     <script src="app/controllers/management-timezone-jb.js"></script>
     <script src="app/controllers/management-user.js"></script>
+    <script src="app/controllers/management-oauth.js"></script>
     <script src="app/controllers/mysettings.js"></script>
     <script src="app/controllers/rss.js"></script>
     <script src="app/controllers/auth.js"></script>
     <script src="app/controllers/zwave-configuration.js"></script>
     <script src="app/controllers/zwave-commands.js"></script>
     <script src="app/controllers/automations.js"></script>
+
     <!-- /build -->
   </head>
   <body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}" ng-class="isModal ? 'appmodal-open': ''">
@@ -130,6 +136,16 @@
     <div id="header" ng-if="user">
       <div id="main_navigation_wrap">
         <div id="main_navigation" class="container">
+          <!-- IOS UI -->
+          <span class="nav_title" ng-if="cfg.route.os == 'IOSWRAPPER'">
+              <h3 ng-if="isActive('dashboard')">{{_t('nav_home')}}</h3>
+              <h3 ng-if="isActive('rooms')">{{_t('nav_rooms')}}</h3>
+              <h3 ng-if="isActive('elements')">{{_t('nav_elements')}}</h3>
+              <h3 ng-if="isActive('events')">{{_t('nav_events')}}</h3>
+              <h3 ng-if="isActive('cameras')">{{_t('nav_cameras')}}</h3>
+              <h3 ng-if="routeMatch('/zwave/batteries')">{{_t('lb_battery_status')}}</h3>
+              <h3 ng-if="routeMatch('/zwave/devices')">{{_t('nav_devices')}}</h3>
+          </span>
           <div id="navigation_left">
             <!-- logo -->
             <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
@@ -196,7 +212,7 @@
       <div id="sub_navigation_wrap" ng-class="naviExpanded.mainNav ? 'active' : ''">
         <div id="sub_navigation" ng-show="naviExpanded.mainNav">
           <div id="sub_navigation_in" ng-click="expandNavi('mainNav', $event)">
-            <div class="container">
+            <div class="container" ng-if="cfg.route.os != 'IOSWRAPPER'">
               <ul>
                 <!-- Apps -->
                 <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
@@ -263,6 +279,51 @@
                   </a>
                 </li>
               </ul>
+            </div>
+            <!-- IOS UI  Navigation-->
+            <div class="container" ng-if="cfg.route.os == 'IOSWRAPPER'">
+                <ul>
+                    <!-- Dashboard -->
+                    <li class="subnavi-apps" ng-class="isActive('dashboard')" ng-if="elementAccess(cfg.role_access.apps)">
+                        <a href="#dashboard"><i class="fa fa-home fa-fw"></i> <span>{{_t('nav_home')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- Rooms -->
+                    <li class="subnavi-rooms" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.apps)">
+                        <a href="#rooms"><i class="fa fa-building-o fa-fw"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- Elements -->
+                    <li class="subnavi-elements" ng-class="isActive('elements')" ng-if="elementAccess(cfg.role_access.apps)">
+                        <a href="#elements"><i class="fa fa-clone fa-fw"></i> <span>{{_t('nav_elements')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- Cameras -->
+                    <li class="subnavi-cameras" ng-class="isActive('cameras')" ng-if="elementAccess(cfg.role_access.apps)">
+                        <a href="#cameras"><i class="fa fa-video-camera fa-fw"></i> <span>{{_t('nav_cameras')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- Events -->
+                    <li class="subnavi-events" ng-class="isActive('events')" ng-if="elementAccess(cfg.role_access.apps)">
+                        <a href="#events"><i class="fa fa-calendar fa-fw"></i> <span>{{_t('nav_events')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- Automation -->
+                    <li class="subnavi-automations" ng-class="isActive('automations')" ng-if="elementAccess(cfg.role_access.apps)">
+                        <a href="#automations"><i class="fa fa-gear fa-fw"></i> <span>{{_t('automation')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- Battery -->
+                    <li class="subnavi-battery" ng-class="routeMatch('/zwave/batteries')  ? 'active' : ''" ng-if="elementAccess(cfg.role_access.apps)">
+                        <a href="#zwave/batteries"><i class="fa fa-battery-half fa-fw"></i> <span>{{_t('lb_battery_status')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- Devices -->
+                    <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
+                        <a href="#devices"><i class="fa fa-cogs fa-fw"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- Apps -->
+                    <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
+                        <a href="#apps/instance"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                    <!-- My access -->
+                    <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
+                        <a href="#myaccess"><i class="fa fa-user fa-fw"></i>  <span>{{_t('nav_myaccess')}}</span><i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                    </li>
+                </ul>
             </div>
           </div>
           <!-- /#subnavigation_in -->

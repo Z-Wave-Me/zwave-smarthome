@@ -7,29 +7,77 @@
       <h3>{{cfg.app_name}}</h3>
     </div>
     <div class="appmodal-body">
-      <dl class="inline-dl">
-        <dt>Vendor</dt>
-        <dd>{{collection.deviceInfos[collection.find.added.pId].BrandName}}</dd>
-        <dt>Product</dt>
-        <dd>{{collection.deviceInfos[collection.find.added.pId].Name}}</dd>
-        <dt>Device type</dt>
-        <dd>{{collection.deviceTypes[collection.find.added.typeId]}}</dd>
-        <dt>State</dt>
-        <dd>{{collection.find.state}}</dd>
-        <dt>Node ID</dt>
-        <dd>{{collection.find.nodeId}}</dd>
-        <dt>Created at</dt>
-        <dd>{{collection.find.added.timeformat}}</dd>
-        <dt>DSK</dt>
-        <dd class="clickable" ng-click="showDskForm = !showDskForm">
-          {{collection.find.ZW_QR_DSK}}
-          <i class="fa" ng-class="showDskForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
-          
-        </dd>
-      </dl>
-      <form name="form_dsk_update" ng-show="showDskForm" ng-submit="handleModal('dskModal', $event);updateDsk(collection.find)">
-
-        <div class="form-group dsk-input-group" bb-dsk-navigate>
+      <form name="form_dsk_update" >
+      <div class="grid">
+        <div class="col-6">
+          <dl class="inline-dl">
+            <dt>{{_t('device_name')}}</dt>
+            <dd>
+              <div class="form-group form-inline is-inline">
+                <span ng-hide="showGivenNameForm">{{collection.find.givenName}}</span>
+                <input class="form-control" ng-show="showGivenNameForm" ng-model="collection.find.givenName" type="text" name="given_name" />
+                <i class="fa clickable" ng-click="showGivenNameForm = !showGivenNameForm" ng-class="showGivenNameForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
+              </div>
+            </dd>
+            <dt>{{_t('lb_room')}}</dt>
+            <dd>
+              <div class="form-group form-inline is-inline" ng-if="elementAccess(cfg.role_access.admin)">
+                <div class="btn-group btn-goup-block btn-goup-1">
+                  <button type="button" class="btn btn-default" ng-click="expandNavi('elidDropDown', $event)">
+                    {{locations[collection.find.location].title|cutText:true:20}}
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="app-dropdown app-dropdown-left dropdown-100" ng-if="naviExpanded.elidDropDown">
+                    <ul>
+                      <li class="clickable" ng-class="collection.find.location == v.id ? 'active' : ''" ng-click="collection.find.location = v.id" ng-repeat="v in locations">
+                        <a>
+                          <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> {{v.title|cutText:true:20}}
+                          <i class="fa fa-check menu-arrow" ng-if="collection.find.location == v.id"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </dd>
+            <dt>{{_t('brand_name')}}</dt>
+            <dd>{{collection.find.added.brand_name}}</dd>
+            <dt>{{_t('product_name')}}</dt>
+            <dd>{{collection.find.added.product}}</dd>
+            <dt>{{_t('device_type')}}</dt>
+            <dd>{{collection.find.added.device_type}}</dd>
+            <dt>{{_t('state')}}</dt>
+            <dd>
+              <span class="label label-primary" ng-class="collection.find.state == 'included' ? 'label-primary':'label-warning'">
+                  <i ng-class="collection.find.state == 'included' ? 'fa fa-check':'fa fa-clock-o'"></i>
+                  {{collection.find.state}}
+              </span>
+            </dd>
+            <dt>{{_t('registered_at')}}</dt>
+            <dd>{{collection.find.added.registred_at}}</dd>
+            <dt>{{_t('dsk')}}</dt>
+            <dd class="clickable" ng-click="showDskForm = !showDskForm">
+              {{collection.find.DSK}}
+              <i class="fa" ng-class="showDskForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
+            </dd>
+          </dl>
+        </div>
+        <!-- Vendor or product image -->
+        <div class="col-6 product-image-wrap">
+          <div class="product-image">
+            <img ng-if="collection.find.added.product_image != ''"
+                ng-src="{{cfg.img.zwavedevices + collection.find.added.product_image}}"
+                err-src="{{cfg.online_device_icon_url + collection.find.added.product_image_remote}}"
+                err-src2="{{collection.find.added.product_image_remote}}"
+                err-src3="{{cfg.img.placeholder}}"
+                alt="{{collection.find.added.product}}"/>
+            <img ng-if="collection.find.added.product_image == ''"
+                ng-src="{{cfg.img.zwavevendors + collection.find.added.brand_image}}"
+                err-src="{{cfg.img.placeholder}}"
+                alt="{{collection.find.added.brand_image}}"/>
+          </div>
+        </div>
+        <div class="form-group dsk-input-group" ng-show="showDskForm" bb-dsk-navigate>
           <span>
             <input id="dsk_1" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[0]"
             />
@@ -62,21 +110,26 @@
             <input id="dsk_8" type="text" maxlength="5" class="form-control dsk-number" ng-model="collection.find.added.dskArray[7]"
             />
           </span>
-          <button type="submit" class="btn btn-submit" title="{{_t('lb_update')}}" ng-click_="handleModal('dskModal', $event)">
-            <i class="fa fa-check"></i>
-            <span>{{_t('lb_update')}}</span>
+          <!-- <button type="submit" class="btn btn-submit" title="{{_t('lb_update')}}" ng-click_="handleModal('dskModal', $event)">
+          <i class="fa fa-check"></i>
+          <span>{{_t('lb_update')}}</span> -->
           </button>
         </div>
-       
+
       </form>
     </div>
     <div class="appmodal-footer">
-      <!-- Close -->
-      <button type="button" class="btn btn-default" ng-click="handleModal('dskModal', $event)">
-        <i class="fa fa-times text-danger"></i>
-        <span class="btn-name">{{_t('lb_close')}}</span>
+      <!-- Cancel -->
+      <button type="button" class="btn btn-default" ng-click="closeModal(collection.find, 'dskModal', $event)">
+        <i class="fa fa-reply"></i>
+        <span class="btn-name">{{_t('lb_cancel')}}</span>
       </button>
-
+      <button type="button" class="btn btn-submit" ng-click="updateDsk(collection.find);handleModal('dskModal', $event)">
+        <i class="fa fa-check"></i>
+        <span class="btn-name">{{_t('lb_save')}}</span>
+      </button>
     </div>
   </div>
 </div>
+
+<!-- ng-submit="handleModal('dskModal', $event);updateDsk(collection.find)" -->

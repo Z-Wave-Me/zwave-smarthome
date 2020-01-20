@@ -1,4 +1,4 @@
-/* Form 
+/* Form
 -------------------------------------------------- */
 // Media queries
 @include mediaQueries(min-small) {
@@ -16,7 +16,10 @@
   font-size: 95%;
   color: lighten($app-body-color, 30%);
   border: solid 1px #CCCCCC;
- 
+
+  // placeholder color
+  @include placeholder(lighten($app-body-color, 75%));
+
   //padding: 6px 12px;
   height: auto;
   // Media queries
@@ -62,19 +65,18 @@ input[type=checkbox] {
     @include checkboxScale(1.3, $spacing);
   }*/
   //padding: $spacing;
-  
 
-  margin: 0px 26px 11px 0;
+  margin: 0px 26px 20px 0;
   font-size: 22px;
   @include mediaQueries(min-small) {
-    margin: 0 6px + $spacing-half 5px 0; 
+    margin: 0 6px + $spacing-half 5px 0;
     font-size: 15px;
 }
   font-family: FontAwesome;
   position: relative;
   border: none;
   background-color: transparent;
-  
+
   &:after {
       margin: -11px $spacing/2 0 0;
       vertical-align: baseline;
@@ -123,7 +125,7 @@ input[type=checkbox] {
 }
 
 input[type=radio] {
-  /* 
+  /*
   @include radioScale(1.6, $spacing);
   // Media queries
   @include mediaQueries(min-small) {
@@ -137,14 +139,14 @@ input[type=radio] {
   position: relative;
   border: none;
   background-color: transparent;
- 
+
   @include mediaQueries(min-small) {
-      margin: 0 10px 10px 0; 
+      margin: 0 10px 10px 0;
       font-size: 12px;
   }
 
- 
-  
+
+
   &:after {
       margin: -11px $spacing/2 0 0;
       vertical-align: baseline;
@@ -178,7 +180,7 @@ input[type=radio] {
 
 .form-page {
   margin-bottom: $spacing-double;
- 
+
   @include mediaQueries(min-small) {
     background-color: #FFFFFF;
     border: solid 1px $app-border-color;
@@ -189,7 +191,7 @@ input[type=radio] {
       margin-bottom: 0;
     }
   }
-  .form-group{ 
+  .form-group {
     &.is-inline{
       margin-bottom: 0;
     }
@@ -211,6 +213,24 @@ input[type=radio] {
   }
 }
 
+.form-group {
+  &.is-inline{
+    margin-bottom: 0;
+  }
+  &:not(.is-inline){
+    border-bottom: solid 1px $app-border-color;
+    padding-bottom: $spacing;
+    &.first {
+      padding-top: $spacing;
+    }
+    &.last {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
 .inputfile {
   // display: inline-block !important;
   width: 0.1px;
@@ -227,14 +247,14 @@ input[type=radio] {
 legend,.legend{
   font-size: 105%;
   font-weight: bold;
-  
+
   @include mediaQueries(min-small) {
     padding: 0 $spacing-double;
   }
   border-bottom: 0;
   &.has-control{
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
   }
 }
 
@@ -253,10 +273,10 @@ fieldset, .fieldset {
   }
   &.expanded{
     padding: $spacing;
-  
+
     .form-group {
       border-bottom: 0;
-      
+
     }
   }
 }

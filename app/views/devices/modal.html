@@ -1,0 +1,54 @@
+<div id="qrCodeModal" class="appmodal" ng-controller="MobileAddController" ng-if="modalArr.qrCodeModal">
+  <div class="appmodal-in">
+    <div class="appmodal-header">
+      <span class="appmodal-close" ng-click="handleModal('qrCodeModal', $event)">
+        <i class="fa fa-times"></i>
+      </span>
+      <h3>{{_t('add_mobile_device')}}</h3>
+    </div>
+    <div class="appmodal-body text-center">
+      <div class="fieldset">
+        <div class="form-group form-inline">
+          <div class="img-wrap">
+            <div id="qrcode">
+              <img width="255" height="255" ng-src="{{qrcode}}">
+            </div>
+            <button class="btn btn-default" ng-if="qrcode != ''" ng-click="addQRCode('update')" ng-disabled="rowSpinner['update']" title="{{_t('lb_update_qrcode')}}">
+              <bb-row-spinner spinner="rowSpinner['update']" label="_t('lb_update_qrcode')" icon="'fa-qrcode'">
+              </bb-row-spinner>
+            </button>
+            <button class="btn btn-default" ng-if="qrcode == ''" ng-click="addQRCode('create')" ng-disabled="rowSpinner['create']" title="{{_t('lb_create_qrcode')}}">
+              <bb-row-spinner spinner="rowSpinner['create']" label="_t('lb_create_qrcode')" icon="'fa-qrcode'">
+              </bb-row-spinner>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="fieldset">
+        <div class="entry-in">
+          <div class="entry-media">
+            <img ng-src="app/img/smartphone.png" alt="Image">
+          </div>
+          <div class="entry-content">
+            <div class="inner">
+              <div class="text">
+                <h1>{{_t('app_name')}}</h1>
+                <p>
+                  {{_t('app_description')}}
+                </p>
+              </div>
+              <div class="badges">
+                <a class="google" href="https://play.google.com/store/apps/details?id=eu.zwave.marvin.z_waywrapper">
+                  <img ng-src="app/img/google-play-badge.png" alt="Goole Play">
+                </a>
+                <a class="apple" href="https://itunes.apple.com/de/app/zway-control/id1033129180?mt=8" target="_blank">
+                  <img ng-src="app/img/apple-store-badges.svg" alt="Apple Store">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -64,8 +64,8 @@ myAppController.controller('HazardNotificationController', function($scope, $rou
 
 	/**
 	 * Activate/Deactivate instance
-	 * @param {object} input 
-	 * @param {boolean} activeStatus 
+	 * @param {object} input
+	 * @param {boolean} activeStatus
 	 */
 	$scope.activateInstance = function(input, state) {
 		input.active = state;
@@ -81,7 +81,7 @@ myAppController.controller('HazardNotificationController', function($scope, $rou
 
 
 	/**
-	 * Clone 
+	 * Clone
 	 * @param {object} input
 	 * @param {string} redirect
 	 * @returns {undefined}
@@ -169,13 +169,14 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			    sendAction: false,
 			    reverseLevel: null
 			  }
-			},			
+			},
 			toggleButton: {
 				default: {}
 			},
 			notification: {
 				default: {
 					target: '',
+					target_custom: '',
 					message: '',
 					firedOn: 'alarm'
 				}
@@ -192,7 +193,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				instanceId: $routeParams.id,
 				id: null,
 				moduleId: "HazardNotification",
-				active: true,
+				active: false,
 				title: "",
 				params: {
 					sensors: [],
@@ -213,7 +214,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				instanceId: $routeParams.id,
 				id: null,
 				moduleId: "HazardNotification",
-				active: true,
+				active: false,
 				title: "",
 				params: {
 					sensors: [],
@@ -227,7 +228,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	};
 
 	/**
-	 *  Reset Original data 
+	 *  Reset Original data
 	 */
 	$scope.orig = {
 		options: {}
@@ -256,7 +257,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 							deviceType: d.deviceType,
 							level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl'): d.level,
 							exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0): undefined,
-							sendAction: d.sendAction					
+							sendAction: d.sendAction
 						};
 					});
 
@@ -362,6 +363,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 					angular.forEach($scope.hazardProtection.availableSensors, function(sensor) {
 						if ($scope.hazardProtection[type].sensors.indexOf(sensor.probeType) !== -1) {
 							$scope.assignSensor(sensor.deviceId, type);
+							$scope.hazardProtection[type].input.active = true;
 						}
 					});
 				}
@@ -387,13 +389,14 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		if ($scope.hazardProtection[type]) {
 			if ($scope.hazardProtection[type].input.params.sensors.indexOf(sensorId) === -1) {
 				$scope.hazardProtection[type].input.params.sensors.push(sensorId);
+				$scope.hazardProtection[type].input.active = true;
 			}
 		}
 	};
 
 	/**
 	 * Remove sensor id from assigned sensors
-	 * @param {string} deviceId 
+	 * @param {string} deviceId
 	 * @param {string} type fire/leakage
 	 */
 	$scope.unassignSensor = function(deviceId, type) {
@@ -401,6 +404,9 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			var deviceIndex = $scope.hazardProtection[type].input.params.sensors.indexOf(deviceId);
 			if (deviceIndex > -1) {
 				$scope.hazardProtection[type].input.params.sensors.splice(deviceIndex, 1);
+			}
+			if (_.size($scope.hazardProtection[type].input.params.sensors) < 1) {
+				$scope.hazardProtection[type].input.active = false;
 			}
 		}
 	};
@@ -425,12 +431,12 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 
 		$scope.hazardProtection[type].assignedDevices.push(device.deviceId);
 		return;
-	};	
+	};
 
 	/**
 	 * Remove device id from assigned device
-	 * @param {int} index 
-	 * @param {string} deviceId 
+	 * @param {int} index
+	 * @param {string} deviceId
 	 */
 	$scope.unassignDevice = function (targetIndex, deviceId, type) {
 		var deviceIndex = $scope.hazardProtection[type].assignedDevices.indexOf(deviceId);
@@ -438,25 +444,29 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		if (deviceIndex > -1) {
 			$scope.hazardProtection[type].assignedDevices.splice(deviceIndex, 1);
 		}
-	};	
+	};
 
 	/**
 	 * Assign notification
-	 * @param  {object} notification 
+	 * @param  {object} notification
 	 * @param  {string} type         fire/leakage
 	 */
 	$scope.assignNotification = function(notification, type) {
 		if ($scope.hazardProtection[type]) {
-			$scope.hazardProtection[type].input.params.sendNotifications.push(notification);
+			var not = {
+				target: notification.target ? notification.target : notification.target_custom,
+				message: notification.message
+			};
+			$scope.hazardProtection[type].input.params.sendNotifications.push(not);
 			$scope.resetOptions();
 		}
 	};
 
 	/**
 	 * Remove notification id from assigned notifications
-	 * @param {int} targetIndex 
+	 * @param {int} targetIndex
 	 * @param {string} deviceId
-	 * @param {string} type fire/leakage 
+	 * @param {string} type fire/leakage
 	 */
 	$scope.unassignNotification = function(targetIndex, deviceId, type) {
 		if ($scope.hazardProtection[type]) {
@@ -484,10 +494,10 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	};
 
 	/**
-	 * Store instances 
+	 * Store instances
 	 * @param  {object} fire        instance data
 	 * @param  {object} leakage     instance data
-	 * @param  {boolean} redirect   if ture redirect 
+	 * @param  {boolean} redirect   if ture redirect
 	 */
 	$scope.storeInstances = function(fire, leakage, redirect) {
 		var fireError = true,
@@ -514,7 +524,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				level: dev.level == 'lvl' ? dev.exact : dev.level,
 				sendAction: dev.sendAction
 			};
-		});				
+		});
 
 		$scope.loading = {
 			status: 'loading-spin',

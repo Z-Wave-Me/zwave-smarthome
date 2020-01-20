@@ -5,7 +5,7 @@
 			startTime: "00:00",
 			endTime: "24:00",
 			widthTimeX: 4, // 1cell
-			widthTime: 600, // 
+			widthTime: 600, //
 			timeLineY: 30, // timeline height(px)
 			timeLineBorder: 1, // timeline height border
 			timeBorder: 1, // border width
@@ -66,7 +66,7 @@
 		this.getTimelineData = function() {
 				return timelineData;
 			}
-			// 
+			//
 		this.getTimeLineNumber = function(top) {
 				var num = 0;
 				var n = 0;
@@ -114,7 +114,6 @@
 
 		this.removeEntry = function(event) {
 			$bar = $(event.target).closest(".sc_Bar");
-			console.log("$bar", $bar);
 			var sc_key = $bar.data("sc_key");
 			$bar.remove();
 			delete scheduleData[sc_key];
@@ -131,7 +130,6 @@
 			var $timeline = $element.find('.sc_main .timeline').eq(data["timeline"]);
 
 			$removeButton.bind("click touch", function(event) {
-				console.log("delete cliked!");
 				that.removeEntry(event);
 			})
 
@@ -229,7 +227,7 @@
 					}
 					currentNode["currentTop"] = ui.position.top;
 					currentNode["currentLeft"] = ui.position.left;
-					// 
+					//
 					element.rewriteBarText($moveNode, scheduleData[sc_key]);
 					return true;
 				},
@@ -345,7 +343,8 @@
 						if ($bar.data("sc_key") != $node.data("sc_key")) {
 							if (that.isCollison($node, $bar)) {
 								collison = true;
-								if (confirm("connect?")) {
+								var msg = setting.confirm();
+								if (confirm(msg)) {
 									connect = true;
 									var newStart = 0,
 										newEnd = 0,
@@ -391,13 +390,13 @@
 
 					if (!connect && !collison && !cancel) {
 
-						// 
+						//
 						element.resetBarPosition(timelineNum);
-						// 
+						//
 						element.rewriteBarText(node, scheduleData[sc_key]);
 
 						node.data("resizeCheck", false);
-						// 
+						//
 						if (setting.change) {
 							setting.change(node, scheduleData[sc_key]);
 						}
@@ -455,7 +454,7 @@
 				}
 			}
 		};
-		// 
+		//
 		this.getScheduleCount = function(n) {
 			var num = 0;
 			for (var i in scheduleData) {
@@ -531,6 +530,10 @@
 
 			$timeline.on("mousedown touchstart", function(event) {
 				event.preventDefault();
+				if(event.which == 3) { // right mouse button
+					return true;
+				}
+
 				// console.log("mousedown");
 				if ($(event.target).hasClass("tl")) {
 					that.clicking = true;
@@ -558,13 +561,20 @@
 				}
 			}).on("mousemove touchmove", function(event) {
 				event.preventDefault();
-				//// console.log("event", event);
-				if (that.clicking == false || $(event.target).data("timeline") !== timelineNum) {
+				//console.log("event", event);
+				if (that.clicking == false /*|| $(event.target).data("timeline") !== timelineNum*/) {
 					return true;
 				}
 
-				var targetIndex = 0;
+				var $ghost_bar = $element.find(".ghost"),
+					targetIndex = 0;
+
 				if (event.type == "touchmove") {
+					if($ghost_bar.length > 0) {
+						$ghost_bar.css({
+							display: "none"
+						});
+					}
 					var myLocation = event.originalEvent.changedTouches[0],
 						realTarget = document.elementFromPoint(myLocation.clientX, myLocation.clientY);
 					if (!$(realTarget).hasClass("tl")) {
@@ -573,6 +583,23 @@
 					targetIndex = $(realTarget).index();
 				} else {
 					targetIndex = $(event.target).index();
+
+					if($ghost_bar.length > 0) {
+						var x = event.clientX,
+							y = event.clientY;
+						$ghost_bar.css({
+							display: "none"
+						});
+						$element.find('.sc_main .timeline').eq(timelineNum).find('.sc_Bar').css({display: 'none'});
+
+						var ele = document.elementFromPoint(x, y);
+
+						if($(ele).hasClass("tl")) {
+							targetIndex = $(ele).index();
+						}
+
+						$element.find('.sc_main .timeline').eq(timelineNum).find('.sc_Bar').css({display: 'block'});
+					}
 				}
 
 				endTime = element.formatTime(tableStartTime + (setting.widthTime * targetIndex));
@@ -580,8 +607,7 @@
 				var st = Math.ceil((element.calcStringTime(startTime) - tableStartTime) / setting.widthTime),
 					et = Math.floor((element.calcStringTime(endTime) - tableStartTime) / setting.widthTime),
 					left = et < st ? (et * setting.widthTimeX) : (st * setting.widthTimeX),
-					width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX),
-					$ghost_bar = $element.find(".ghost");
+					width = et < st ? ((st - et) * setting.widthTimeX) : ((et - st) * setting.widthTimeX);
 
 				if ($ghost_bar.length > 0) {
 					$ghost_bar.css({
@@ -624,7 +650,8 @@
 							//if (confirm("connect?")) {
 							// // console.log("confirm", setting.confirm.call(element));
 							// if (setting.confirm.call(element)) {
-							if (confirm("connect?")) {
+							var msg = setting.confirm();
+							if (confirm(msg)) {
 								connect = true;
 								var newStart = 0,
 									newEnd = 0;
@@ -696,7 +723,7 @@
 				}
 			});
 
-			// 
+			//
 			if (setting.time_click) {
 				var that = this;
 				/*$timeline.find(".tl").click(function(){
@@ -711,7 +738,7 @@
 				$element.find('.sc_data .timeline').eq(id).addClass(row["class"]);
 				$element.find('.sc_main .timeline').eq(id).addClass(row["class"]);
 			}
-			// 
+			//
 			if (row["schedule"]) {
 				for (var i in row["schedule"]) {
 					var bdata = row["schedule"][i];
@@ -754,10 +781,11 @@
 							if (that.isCollison($node, $bar)) {
 								collison = true;
 
-								// $element.append($confirm);   
+								// $element.append($confirm);
 								// // console.log("confirm 2", setting.confirm.call(element));
 								// if (setting.confirm.call(element)) {
-								if (confirm("connect?")) {
+								var msg = setting.confirm();
+								if (confirm(msg)) {
 
 									connect = true;
 									var newStart = 0,
@@ -826,7 +854,7 @@
 					}
 				}
 			});
-			// 
+			//
 			/*if(setting.append){
 			    $element.find('.sc_main .timeline').eq(id).find(".sc_Bar").each(function(){
 			        var node = jQuery(this);
@@ -868,7 +896,7 @@
 			jQuery(node).find(".time").html(html);
 		}
 		this.resetBarPosition = function(n) {
-			// 
+			//
 			var $bar_list = $element.find('.sc_main .timeline').eq(n).find(".sc_Bar");
 			var codes = [];
 			for (var i = 0; i < $bar_list.length; i++) {
@@ -877,7 +905,7 @@
 					x: jQuery($bar_list[i]).position().left
 				};
 			};
-			// 
+			//
 			codes.sort(function(a, b) {
 				if (a["x"] < b["x"]) {
 					return -1;
@@ -921,7 +949,7 @@
 				});
 				check[h][check[h].length] = c1;
 			}
-			// 
+			//
 			this.resizeRow(n, check.length);
 		};
 		this.resizeRow = function(n, height) {
@@ -1009,7 +1037,7 @@
 				this.addRow(i, setting.rows[i]);
 			}
 		};
-		// 
+		//
 		this.init();
 
 		this.debug = function() {

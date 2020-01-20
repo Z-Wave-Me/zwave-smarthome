@@ -100,6 +100,40 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
     }
 
+    /**
+     * Remove cookies from several paths
+     * @param {string} name
+     * @param {array} paths
+     */
+    function expireAllCookies(name, paths) {
+        var expires = new Date(0).toUTCString();
+
+        // expire null-path cookies as well
+        document.cookie = name + '=; expires=' + expires;
+
+        for (var i = 0, l = paths.length; i < l; i++) {
+            document.cookie = name + '=; path=' + paths[i] + '; expires=' + expires;
+        }
+    }
+
+    /**
+     * Remove all cookies from this path and upper
+     * @param {string} name
+     */
+    function expireActiveCookies(name) {
+        var pathname = location.pathname.replace(/\/$/, ''),
+            segments = pathname.split('/'),
+            paths = [];
+
+        for (var i = 0, l = segments.length, path; i < l; i++) {
+            path = segments.slice(0, i + 1).join('/');
+
+            paths.push(path);       // as file
+            paths.push(path + '/'); // as directory
+        }
+
+        expireAllCookies(name, paths);
+    }
 
     /**
      * Handles login process
@@ -107,6 +141,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function logInApi(data) {
+        // remove ZWAYSession just before login not to confuse the server
+        expireActiveCookies("ZWAYSession");
+        
         return $http({
             method: "post",
             data: data,
@@ -569,9 +606,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             }
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
+                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || $filter('hasNode')(response.data, 'updateTime') || Math.round(+new Date() / 1000));
                 
-                var timestamp = response.data.data.updateTime + ((cfg.route.time.timeZoneOffset * -1) * 3600);
+                var timestamp = (response.data.data.updateTime || response.data.updateTime || 0) + ((cfg.route.time.timeZoneOffset * -1) * 3600);
                 cfg.route.time.timestamp = (timestamp);
                 cfg.route.time.string = $filter('setTimeFromBox')(timestamp);
                 cfg.route.time.timeUpdating = true;
@@ -724,7 +761,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || Math.round(+new Date() / 1000));
+                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
                 return response;
             } else {
                 // invalid response
@@ -772,7 +809,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                     "update": response.data
                 };
                 response.data = result;
-                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || Math.round(+new Date() / 1000));
+                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
                 myCache.put(cacheName, apiData);
                 return response;
             } else {
@@ -868,7 +905,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                      }*/
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || Math.round(+new Date() / 1000));
+                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || $filter('hasNode')(response.data, 'updateTime') || Math.round(+new Date() / 1000));
                 return response;
             } else {// invalid response
                 return $q.reject(response);

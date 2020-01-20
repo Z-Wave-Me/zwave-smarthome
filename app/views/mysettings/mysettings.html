@@ -47,15 +47,28 @@
         </div>
       </fieldset>
       <fieldset>
-          <div class="form-group form-inline">
-              <label for="night_mode">
-                <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)" />
-                <span>{{_t('night_mode')}}</span>
-              </label>
-            </div>
-           </fieldset>
+        <div class="form-group form-inline" ng-if="cfg.route.os != 'IOSWRAPPER'">
+          <label for="night_mode">
+            <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)" />
+            <span>{{_t('night_mode')}}</span>
+          </label>
+        </div>
+        <div class="form-group form-inline" ng-if="cfg.route.os == 'IOSWRAPPER'">
+          <label class="switch">
+            <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)">
+            <span class="slider"></span>
+          </label>
+          <span class="switch-label ng-binding">{{_t('night_mode')}}</span>
+        </div>
+      </fieldset>
       <!-- Expert view -->
       <fieldset ng-if="elementAccess(cfg.role_access.expert_view)">
+        <div class="form-group form-inline is-inline">
+          <label for="show_beta">
+            <input type="checkbox" name="show_beta" id="show_beta" ng-model="input.beta" ng-checked="input.beta" />
+            <span>{{_t('lb_show_beta')}}</span>
+          </label>
+        </div>
         <div class="form-group form-inline">
           <label for="expert_view">
             <input type="checkbox" name="expert_view" id="expert_view" ng-model="input.expert_view" ng-checked="input.expert_view" />
@@ -92,6 +105,14 @@
           </a>
         </div>
       </fieldset>
+       <fieldset ng-if="cfg.route.os == 'IOSWRAPPER'">
+        <div class="form-group form-inline">
+          <a class="btn btn-default" href="#ios_setup"><i class="fa fa-sliders fa-fw"></i>{{_t('nav_ios_setup')}}</a>
+        </div>
+        <div class="form-group form-inline">
+          <a class="btn btn-default" href="#ios_reload"><i class="fa fa-refresh fa-fw"></i>{{_t('nav_reload')}}</a>
+        </div>
+      </fieldset>
       <fieldset class="submit-entry">
         <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
           <i class="fa fa-reply"></i>
@@ -103,6 +124,25 @@
         </button>
       </fieldset>
     </form>
+
+    <!-- Authentication tokens -->
+    <div ng-if="id > 0">
+      <h3>{{_t('lb_auth_token')}}</h3>
+      <div class="device-available-block assigned">
+        <div ng-if="!authTokens.length">
+          <p>{{_t('no_auth_token')}}</p>
+        </div>
+        <div class="form-group form-inline" ng-if="authTokens.length" ng-repeat="d in authTokens">
+          <a href="" class="btn btn-default btn-tag" ng-click="removeAuthToken(input.id, d.sid, _t('lb_delete_confirm'))">{{d.title|cutText:true:20}}
+            {{_t('lb_auth_token_logout')}}<i class="fa fa-times text-danger"></i>
+          </a>
+          <a href="" class="btn btn-default btn-tag" ng-disabled="!d.expire" ng-click="permanentAuthToken(input.id, d.sid, _t('lb_permanent_token_confirm'))">{{d.title|cutText:true:20}}
+            {{_t('lb_auth_token_permanent')}}<i class="fa fa-hourglass-half"></i>
+          </a>
+          &nbsp;&nbsp;&nbsp;<span ng-bind="d.sid"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.date_str"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.expire_str"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.agent"></span>
+        </div>
+      </div>
+    </div>
 
     <!-- ///////////////////////////// Change password Form ///////////////////////////// -->
     <section>

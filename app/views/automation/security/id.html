@@ -14,16 +14,18 @@
     </div>
     <!-- ////////////////////////////////////////// Actions  ////////////////////////////////////////// -->
     <div id="tabpanel2" role="tabpanel" hidden>
+      <!-- Silent alarm -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/silent_alarm.html'"></fieldset>
       <!-- Alarm -->
-    <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
-    <!-- Silent alarm -->
-  <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/silent_alarm.html'"></fieldset>
-  <!-- Arming -->
-<fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/arming.html'"></fieldset>
-<!-- Disarming -->
-<fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/disarming.html'"></fieldset>
-<!-- Reset -->
-<fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
+      <!-- Arming -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/arming.html'"></fieldset>
+      <!-- Disarming -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/disarming.html'"></fieldset>
+      <!-- Reset -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
+      <!-- Reset -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/additional.html'"></fieldset>
 </div>
 <!-- ////////////////////////////////////////// Time triggering  ////////////////////////////////////////// -->
 <div id="tabpanel3" role="tabpanel" hidden>
@@ -37,7 +39,7 @@
 <div class="fieldset submit-entry is-grid">
 <span>
 <label class="switch">
-<input type="checkbox" ng-model="security.input.active" ng-disabled="!security.devicesAvailable">
+<input type="checkbox" ng-model="security.input.active" ng-disabled="_.size(security.input.params.input.table) < 1">
 <span class="slider"></span>
 </label>
 <span class="switch-label">{{security.input.active ? _t('lb_active'): _t('activeASC')}}</span>

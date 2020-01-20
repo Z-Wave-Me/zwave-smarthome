@@ -23,12 +23,17 @@
 -------------------------------------------------- */
 html {
   font-size: $app-body-font-size;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-   
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+
   @include mediaQueries(max-small) {
-    -webkit-touch-callout: none; /* Disables long-touch menu */
     -webkit-user-select: none; /* Disable text selection (for Webkit) */
     user-select: none; /* Disable text selection (standard syntax) */
+    -webkit-user-select: none; /* Disable text selection (standard syntax) */
+    -moz-user-select: none; /* Disable text selection (standard syntax) */
+    -ms-user-select: none; /* Disable text selection (standard syntax) */
   }
 }
 
@@ -271,7 +276,7 @@ img {
 }
 
 .bcg-active.false, .bcg-danger {
-  background-color: $app-bcg-danger !important; 
+  background-color: $app-bcg-danger !important;
 }
 
 .clickable {

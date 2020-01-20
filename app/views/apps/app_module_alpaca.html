@@ -1,6 +1,7 @@
 <!-- Appp module ad  view -->
 <div id="page_module_update" ng-controller="AppModuleAlpacaController">
     <bb-loader></bb-loader>
+    <div id="alpaca-spinner" style="display: none;" class="loading-spin"><div class="loading-in"><i class="fa fa-lg fa-spinner fa-spin"></i> <span>{{_t('loading')}}</span></div></div>
     <div  class="form-page" ng-show="showForm">
         <!-- Module info -->
         <div class="fieldset clearfix">
@@ -16,7 +17,7 @@
                 <p class="app-detail-list" ng-if="moduleId.find.author">
                     <i class="fa fa-user"></i>
                     <span ng-show="!moduleId.find.homepage" ng-bind="moduleId.find.author"></span>
-                    <a ng-href="{{moduleId.find.homepage}}" ng-if="moduleId.find.homepage" ng-bind="moduleId.find.author"></a> 
+                    <a ng-href="{{moduleId.find.homepage}}" ng-if="moduleId.find.homepage" ng-bind="moduleId.find.author"></a>
                 </p>
                 <p class="app-detail-list" ng-if="moduleId.find.version">
                     <i class="fa fa-info-circle"></i> <span class="app-version" ng-bind="moduleId.find.version"></span>
@@ -61,8 +62,8 @@
             </div>
             <div class="fieldset submit-entry">
                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
-                <a class="btn btn-submit" title="{{_t('lb_active')}}" href="#apps/instance">
-                    <i class="fa fa-fire"></i> <span class="btn-name">{{_t('active_apps')}}</span>
+                <a class="btn btn-submit" title="{{_t('lb_active_apps')}}" href="#apps/instance">
+                    <i class="fa fa-fire"></i> <span class="btn-name">{{_t('active_apps_apps')}}</span>
                 </a>
             </div>
         </div>
@@ -82,7 +83,7 @@
                 <!--<div class="form-group">
                    <label>{{_t('lb_description')}}</label>
                    <textarea name="description" id="description" class="form-control" ng-model="input.description" placeholder="{{_t('lb_your_notes')}}"></textarea>
-       
+
                </div> -->
             </fieldset>
             <div id="alpaca_data" ng-show="alpacaData" data-module-postrender="{{input.modulePostrender}}"></div>
@@ -95,7 +96,7 @@
                 <button type="submit"
                         title="{{_t('lb_save')}}"
                         id="btn_module_submit_ang"
-                        class="btn btn-submit" 
+                        class="btn btn-submit"
                         ng-click="store(input)"
                         ng-disabled="!moduleId.submit"
                         ng-if="!alpacaData"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
@@ -112,6 +113,6 @@
 
             </fieldset>
 
-        </form><!-- /form --> 
+        </form><!-- /form -->
     </div>
-</div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller -->

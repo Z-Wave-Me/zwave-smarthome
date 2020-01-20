@@ -193,6 +193,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	 */
 	this.setUser = function(data) {
 		if (data && !!data) {
+			if (data.authTokens) delete data.authTokens; // remove potentialy big object that might not fit into cookie
 			$cookies.user = angular.toJson(data);
 		} else {
 			delete $cookies['user'];
@@ -230,7 +231,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			return false;
 		}
 	};
-	
+
 	/**
 	 * Check ZWAY session
 	 * @param {string} sids
@@ -243,7 +244,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			return false;
 		}
 	};
-	
+
 	/**
 	 * Get last login info
 	 * @returns {Sring|Boolean}
@@ -293,8 +294,16 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	this.logOut = function() {
 		this.setUser(null);
 		this.setZWAYSession(null);
+
+		var redirect = false;
 		// Check if host is in the logout redirect list
-		var redirect = cfg.logout_redirect[$location.host()];
+		angular.forEach(cfg.logout_redirect, function(v, k) {
+			if ($location.host().indexOf(k) != -1) {
+				redirect = v;
+				return;
+			}
+		});
+
 		// Redirect to an url from list
 		if (redirect) {
 			$window.location.href = redirect;
@@ -303,7 +312,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		// Redirect to SHUI login page
 		$window.location.href = '#/?logout';
 		$window.location.reload();
-
 	};
 
 	/**
@@ -1135,13 +1143,37 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			// If a custom icon exists set it otherwise set a default icon
 			angular.forEach(defaultIcon.level || defaultIcon, function(v, k) {
 				var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons);
-				obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
+
+				if(cfg.route.os == 'IOSWRAPPER') {
+					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
+                    dyn_dns  = cfg.server_url.indexOf("dyndns");
+
+	                if(customIcon[k] && (remote > -1 || dyn_dns > -1)) {
+	                    obj[k] =  cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon[k];
+	                } else {
+	                    obj[k] = path + v;
+	                }
+				} else {
+					obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
+				}
 			});
 			return obj;
 		} else {
 			// If a custom icon exists set it otherwise set false
 			if (!_.isEmpty(customIcon.default)) {
-				obj['default'] = cfg.img.custom_icons + customIcon['default'];
+				if(cfg.route.os == 'IOSWRAPPER') {
+					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
+                    	dyn_dns  = cfg.server_url.indexOf("dyndns");
+
+	                if(remote > -1 || dyn_dns > -1) {
+	                    obj['default'] = cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon['default'];
+	                } else {
+	                    obj['default'] = cfg.img.custom_icons + customIcon['default'];
+	                }
+				} else {
+					obj['default'] = cfg.img.custom_icons + customIcon['default'];
+				}
+
 				return obj;
 			}
 			return false;
@@ -1200,7 +1232,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			} else if (~keys.indexOf(i) && !angular.isArray(obj[i]) &&
 				typeof obj[i] === 'string' &&
 				obj[i].indexOf("function") === 0) {
-				// overwrite old string with function                
+				// overwrite old string with function
 				// we can only pass a function as string in JSON ==> doing a real function
 				obj[i] = new Function('return ' + obj[i])();
 			}

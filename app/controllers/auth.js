@@ -19,7 +19,6 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 		count_of_reconnects: 0
 	};
 
-
 	/**
 	 * Login with selected data from server response
 	 */
@@ -49,7 +48,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 			window.location.href = $scope.cfg.expert_url;
 			return;
 		}
-		if (cfg.app_type === 'jb' && user.role === 1) {
+		if ((cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && user.role === 1) {
 			getZwaveApiData(location);
 		} else {
 			window.location = location;
@@ -211,18 +210,29 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 		login: '',
 		rememberme: false
 	};
+
 	/**
 	 * Get session (ie for users holding only a session id, or users that require no login)
 	 */
 	$scope.getSession = function() {
 		var hasCookie = ($cookies.user) ? true : false;
-		dataFactory.sessionApi().then(function(response) {
-			$scope.processUser(response.data.data);
-			if (!hasCookie) {
-				window.location = '#/dashboard';
+		var authBearer = typeof $routeParams.authBearer !== 'undefined' && $routeParams.authBearer;
+		if(hasCookie || isRemote($location.host()) || authBearer) {
+			dataFactory.sessionApi().then(function(response) {
+				$scope.processUser(response.data.data);
+				if(cfg.route.previous.length > 1) {
+					if ($scope._routeParams) {
+						// load parameters to redirect correctly on the first page load
+						cfg.route.previous += "?" + Object.keys($scope._routeParams).map(function(k) { return k + "=" + $scope._routeParams[k]; }).join("&");
+						delete $scope._routeParams;
+					}
+					window.location = '#' + cfg.route.previous;
+				} else {
+					window.location = '#/dashboard';
+				}
 				$window.location.reload();
-			}
-		});
+			});
+		}
 	};
 
 	/**
@@ -241,7 +251,7 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 			//angular.extend(cfg, {user: response.data.data});
 			var rememberme = (input.rememberme ? input : null);
 			var location = '#/dashboard';
-			var profile = _.omit(response.data.data, 'color', 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
+			var profile = _.omit(response.data.data, 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
 			if (response.data.data.showWelcome) {
 				location = '#/dashboard/firstlogin';
 				profile = _.omit(profile, 'showWelcome');
@@ -266,10 +276,28 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 	} else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
 		$scope.login(dataService.getRememberMe());
 		// only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
-	} else if (typeof $routeParams.logout === 'undefined' ||
-		!$routeParams.logout ||
+	} else if (typeof $routeParams.logout === 'undefined' || !$routeParams.logout ||
+		typeof $routeParams.authBearer === 'undefined' || !$routeParams.authBearer ||
 		(path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
+		$scope._routeParams = $routeParams; // save parameters to pass them to redirect (in getSession) correctly on the first page load
 		$scope.getSession();
+	}
+
+	/**
+	 * check is location is remote
+	 * @param  {string}  location host
+	 * @return {Boolean}
+	 */
+	function isRemote(location) {
+		var hosts = $scope.cfg.find_hosts,
+			r = false;
+		for(var i = 0; i < hosts.length; i++) {
+			if(location.indexOf(hosts[i]) > -1) {
+				r = true;
+				break;
+			}
+		};
+		return r;
 	}
 });
 
@@ -379,7 +407,7 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			}
 		});
 	};
-	if ($scope.isInArray(['jb'], cfg.app_type)) {
+	if ($scope.isInArray(['zme_hub','jb'], cfg.app_type)) {
 		$scope.allSettled();
 	}
 
@@ -450,7 +478,7 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			'ZWAYSession': $scope.auth.defaultProfile.sid
 		};
 
-		// create speech assistants  
+		// create speech assistants
 		$scope.createSpeechAssistantsInstances();
 
 		//Update auth
@@ -465,8 +493,11 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			profile['lang'] = $scope.loginLang;
 			// Update profile
 			dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function(response) {
-				//$scope.user
-				if (cfg.app_type === 'jb' && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
+				if(cfg.route.os == 'PoppApp_Z_Way') {
+					Android.click(input.password);
+				}
+
+				if ((cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
 					$scope.updateInstance(instance);
 				} else {
 					$scope.redirectAfterLogin(true, response.data.data, input.password, false, '#/dashboard/firstlogin');
