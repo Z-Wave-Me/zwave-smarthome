@@ -16,6 +16,9 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.trustMyNetwork = true;
     $scope.lastEmail = "";
 
+    $scope.currentZWayAuthToken  = $cookies.ZWAYSession;
+    $scope.currentFullAuthToken = $cookies.ZBW_SESSID + "/" + $cookies.ZWAYSession;
+    
     /**
      * Load all promises
      */
