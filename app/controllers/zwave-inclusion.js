@@ -595,7 +595,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             }, function (error) {});
 
 
-        }, 2000);
+        }, 5000);
     }
 
     /**
