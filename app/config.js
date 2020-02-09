@@ -281,6 +281,8 @@ var config_data = {
 		'lang_dir': 'app/lang/',
 		// Android html dir
 		'android_html_dir': '/htdocs/android/index.htm',
+		// iOS html dir
+		'ios_html_dir': '/htdocs/ios/index.htm',
 		// Default language
 		'lang': 'en', // !!!!Do not change it
 		// List of supported languages
