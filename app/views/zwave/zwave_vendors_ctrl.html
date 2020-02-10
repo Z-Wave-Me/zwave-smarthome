@@ -1,6 +1,6 @@
 <!-- Zwave control view -->
 <!--<pre>{{zwaveVendors.filter|json}}</pre>-->
-<div class="page-control form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top" ng-if="cfg.route.os != 'IOSWRAPPER'">
+<div class="page-control form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top" ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
     <!-- Search and autocomplete -->
     <form id="form_search_vendor" class="input-group" ng-submit="setFilter({q: autocomplete.term})" autocomplete="off"
           novalidate>
@@ -35,7 +35,7 @@
     </form>
 </div>
 <!-- IOS UI -->
-<div class="page-control form-inline" ng-if="cfg.route.os == 'IOSWRAPPER'">
+<div class="page-control form-inline" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
     <!-- Search and autocomplete -->
     <form id="form_search_vendor" class="input-group" ng-submit="setFilter({q: autocomplete.term})" autocomplete="off"
           novalidate>

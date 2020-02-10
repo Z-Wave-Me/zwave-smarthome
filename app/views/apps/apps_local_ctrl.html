@@ -3,7 +3,7 @@
 <pre>{{dataHolder.onlineModules.cnt.upgraded|json}}</pre>-->
 <div class="page-control form-inline">
     <!-- IOS UI -->
-    <div id="btn-group-mobile" ng-if="cfg.route.os == 'IOSWRAPPER'" class="btn-group btn-goup-block btn-goup-4">
+    <div id="btn-group-mobile" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'" class="btn-group btn-goup-block btn-goup-4">
         <!--Categories -->
         <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)"
                 ng-class="dataHolder.modules.filter['status'] || dataHolder.modules.filter['q'] ? '':'active' ">

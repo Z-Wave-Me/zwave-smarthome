@@ -87,6 +87,8 @@
             VITA: "vita",
             POPPAPPZWAY: "PoppApp_Z_Way",
             IOSWRAPPER: "IOSWRAPPER",
+            ZWAYMOBILEAPPANDROID:"ZWayMobileAppAndroid",
+            ZWAYMOBILEAPPIOS:"ZWayMobileAppiOS",
             UNKNOWN: "unknown"
         })
         .constant("DEVICES", {
@@ -102,6 +104,8 @@
             VITA: "vita",
             POPPAPPZWAY: "PoppApp_Z_Way",
             IOSWRAPPER: "IOSWRAPPER",
+            ZWAYMOBILEAPPANDROID:"ZWayMobileAppAndroid",
+            ZWAYMOBILEAPPIOS:"ZWayMobileAppiOS",
             UNKNOWN: "unknown"
         })
         .constant("OS", {
@@ -118,6 +122,8 @@
             VITA: "vita",
             POPPAPPZWAY: "PoppApp_Z_Way",
             IOSWRAPPER: "IOSWRAPPER",
+            ZWAYMOBILEAPPANDROID:"ZWayMobileAppAndroid",
+            ZWAYMOBILEAPPIOS:"ZWayMobileAppiOS",
             UNKNOWN: "unknown"
         })
         .constant("OS_VERSIONS", {
@@ -173,7 +179,9 @@
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
                     VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
                     POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
-                    IOSWRAPPER: /\bIOSWRAPPER\b/
+                    IOSWRAPPER: /\bIOSWRAPPER\b/,
+                    ZWAYMOBILEAPPANDROID:/\bZWayMobileAppAndroid\b/,
+                    ZWAYMOBILEAPPIOS:/\bZWayMobileAppiOS\b/
                 };
 
                 var BROWSERS_RE = {
@@ -186,7 +194,9 @@
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
                     VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
                     POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
-                    IOSWRAPPER: /\bIOSWRAPPER\b/
+                    IOSWRAPPER: /\bIOSWRAPPER\b/,
+                    ZWAYMOBILEAPPANDROID:/\bZWayMobileAppAndroid\b/,
+                    ZWAYMOBILEAPPIOS:/\bZWayMobileAppiOS\b/
                 };
 
                 var DEVICES_RE = {
@@ -201,7 +211,9 @@
                     PS4: /\bMozilla\/5.0 \(PlayStation 4\b/,
                     VITA: /\bMozilla\/5.0 \(Play(S|s)tation Vita\b/,
                     POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
-                    IOSWRAPPER: /\bIOSWRAPPER\b/
+                    IOSWRAPPER: /\bIOSWRAPPER\b/,
+                    ZWAYMOBILEAPPANDROID:/\bZWayMobileAppAndroid\b/,
+                    ZWAYMOBILEAPPIOS:/\bZWayMobileAppiOS\b/
                 };
 
                 var OS_VERSIONS_RE = {

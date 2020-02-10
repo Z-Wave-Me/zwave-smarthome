@@ -732,7 +732,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.transformFromMobileToInst = function() {
 		// transform data for Instance
-		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way') {
+		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 			_.each($scope.heating.mobileSchedule, function(data, roomId) {
 				$scope.heating.input.params.roomSettings[roomId].schedule = {};
 				_.each(data, function(d) {
@@ -759,7 +759,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.transformFromInstToMobile = function() {
 		// transform data for mobile view
-		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way') {
+		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 			_.each($scope.heating.input.params.roomSettings, function(data, roomId) {
 				var schedule = data.schedule;
 

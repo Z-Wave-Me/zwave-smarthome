@@ -20,7 +20,7 @@
       <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'">
         <div class="btn-group">
           <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/expert',_t('redirect_to_expert'))"
-            ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'">
+            ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
             <i class="fa fa-external-link"></i>
             <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
           </a>

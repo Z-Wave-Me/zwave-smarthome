@@ -27,10 +27,10 @@
           <div>
             <label for="remote_access">
               <input type="checkbox" name="remote_access" value="true" id="remote_access" ng-model="remoteAccess.params.zbwStatus" ng-checked="remoteAccess.params.zbwStatus"
-              ng-disabled="(cfg.route.os == 'PoppApp_Z_Way' && connection.remote) || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)"
+              ng-disabled="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || connection.remote"
               />
               <span>{{_t('remote_access')}}</span>
-              <span class="help-text" ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.remote) || (cfg.route.os == 'PoppApp_Z_Way' && connection.remote)">
+              <span class="help-text" ng-if="connection.remote">
                 <i class="fa text-info fa-info-circle"></i>
                 {{_t('disable_only_on_local_possible')}}
               </span>

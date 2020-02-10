@@ -52,7 +52,7 @@
 							</div>
 						</div>
 						<!-- schedule -->
-						<div class="schedule-wrap" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'">
+						<div class="schedule-wrap" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
 							<div class="schedule-overlay" ng-if="!heating.input.params.roomSettings[r.id].comfortTemp">
 								<bb-help-text trans="_t('no_comfort_temp_info')"></bb-help-text>
 							</div>
@@ -60,9 +60,9 @@
 							<bb-help-text trans="_t('schedule_info')"></bb-help-text>
 						</div>
 						<!-- mobile view -->
-						<div ng-include="'app/views/automation/heating/mobile_schedule.html'" ng-show="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'"></div>
+						<div ng-include="'app/views/automation/heating/mobile_schedule.html'" ng-show="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'"></div>
 						<!-- copy room settings -->
-						<div class="form-inline" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way'">
+						<div class="form-inline" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
 							<div class="form-group is-inline">
 								<select class="form-control" ng-model="r.copyOption">
 									<option value="null">---</option>

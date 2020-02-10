@@ -72,7 +72,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 
 	if (dataService.getUser()) {
 		$scope.auth.form = false;
-		if (cfg.route.os !== 'PoppApp_Z_Way') {
+		if (cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS') {
 			$timeout(function() {
 				window.location = '#/dashboard';
 			}, 0);
@@ -493,7 +493,7 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			profile['lang'] = $scope.loginLang;
 			// Update profile
 			dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function(response) {
-				if(cfg.route.os == 'PoppApp_Z_Way') {
+				if(cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid') {
 					Android.click(input.password);
 				}
 

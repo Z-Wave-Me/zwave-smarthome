@@ -1,6 +1,6 @@
 <!-- Admin firmware view -->
 <!-- Title -->
-<h2 class="accordion-toggle chevron" ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.local)">
+<h2 class="accordion-toggle chevron" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && connection.local">
   <!-- Toggle -->
   <button type="button" aria-expanded="false" bb-accordion>
     <span>
@@ -8,15 +8,15 @@
     </span>
   </button>
 </h2>
-<h2 class="accordion-toggle chevron"  ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
+<h2 class="accordion-toggle chevron"  ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || connection.remote">
     <!-- Toggle -->
     <button type="button">
       <span>
           <i class="fa fa-exclamation-circle fa-fw text-warning"></i>{{_t('firmware_update')}}
-          <em ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+          <em ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
               ,&nbsp;{{_t('not_supported_on_mobile')}}
           </em>
-          <em class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
+          <em class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && connection.remote">
               ,&nbsp;{{_t('not_supported_on_remote')}}
           </em>
       </span>

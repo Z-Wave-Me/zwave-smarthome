@@ -137,7 +137,7 @@
       <div id="main_navigation_wrap">
         <div id="main_navigation" class="container">
           <!-- IOS UI -->
-          <span class="nav_title" ng-if="cfg.route.os == 'IOSWRAPPER'">
+          <span class="nav_title" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
               <h3 ng-if="isActive('dashboard')">{{_t('nav_home')}}</h3>
               <h3 ng-if="isActive('rooms')">{{_t('nav_rooms')}}</h3>
               <h3 ng-if="isActive('elements')">{{_t('nav_elements')}}</h3>
@@ -212,7 +212,7 @@
       <div id="sub_navigation_wrap" ng-class="naviExpanded.mainNav ? 'active' : ''">
         <div id="sub_navigation" ng-show="naviExpanded.mainNav">
           <div id="sub_navigation_in" ng-click="expandNavi('mainNav', $event)">
-            <div class="container" ng-if="cfg.route.os != 'IOSWRAPPER'">
+            <div class="container" ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
               <ul>
                 <!-- Apps -->
                 <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
@@ -263,7 +263,7 @@
                   </a>
                 </li>
                 <!-- My Hubs -->
-                <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+                <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'">
                   <a ng-href="{{cfg.android_html_dir}}">
                     <i class="fa fa-android fa-fw"></i>
                     <span>{{_t('my_hubs')}}</span>
@@ -271,7 +271,7 @@
                   </a>
                 </li>
                 <!-- Logout -->
-                <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way'">
+                <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid'">
                   <a href="#logout">
                     <i class="fa fa-sign-out fa-fw"></i>
                     <span>{{_t('nav_logout')}}</span>
@@ -281,7 +281,7 @@
               </ul>
             </div>
             <!-- IOS UI  Navigation-->
-            <div class="container" ng-if="cfg.route.os == 'IOSWRAPPER'">
+            <div class="container" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
                 <ul>
                     <!-- Dashboard -->
                     <li class="subnavi-apps" ng-class="isActive('dashboard')" ng-if="elementAccess(cfg.role_access.apps)">
@@ -339,7 +339,7 @@
     <!-- /#header -->
     <!-- Ang Content Container -->
     <div id="main_content" class="container">
-      <div class="blank" ng-if="cfg.route.alert.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way'">
+      <div class="blank" ng-if="cfg.route.alert.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'">
         <figure>
           <i class="fa {{cfg.route.alert.icon}} fa-lg"></i>
         </figure>

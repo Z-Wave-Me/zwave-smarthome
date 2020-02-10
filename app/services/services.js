@@ -1144,7 +1144,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			angular.forEach(defaultIcon.level || defaultIcon, function(v, k) {
 				var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons);
 
-				if(cfg.route.os == 'IOSWRAPPER') {
+				if(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
                     dyn_dns  = cfg.server_url.indexOf("dyndns");
 
@@ -1161,7 +1161,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		} else {
 			// If a custom icon exists set it otherwise set false
 			if (!_.isEmpty(customIcon.default)) {
-				if(cfg.route.os == 'IOSWRAPPER') {
+				if(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
                     	dyn_dns  = cfg.server_url.indexOf("dyndns");
 
