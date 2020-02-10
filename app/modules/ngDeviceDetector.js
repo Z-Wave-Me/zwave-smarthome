@@ -293,7 +293,9 @@
                     OS.PS4,
                     OS.VITA,
                     OS.POPPAPPZWAY,
-                    OS.IOSWRAPPER
+                    OS.IOSWRAPPER,
+                    OS.ZWAYMOBILEAPPANDROID,
+                    OS.ZWAYMOBILEIOS
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === OS.UNKNOWN && deviceInfo.raw.os[currentValue]) ? currentValue : previousValue;
                     }, OS.UNKNOWN);
@@ -308,7 +310,9 @@
                     BROWSERS.PS4,
                     BROWSERS.VITA,
                     BROWSERS.POPPAPPZWAY,
-                    BROWSERS.IOSWRAPPER
+                    BROWSERS.IOSWRAPPER,
+                    BROWSERS.ZWAYMOBILEAPPANDROID,
+                    BROWSERS.ZWAYMOBILEIOS
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === BROWSERS.UNKNOWN && deviceInfo.raw.browser[currentValue]) ? currentValue : previousValue;
                     }, BROWSERS.UNKNOWN);
@@ -325,7 +329,9 @@
                     DEVICES.PS4,
                     DEVICES.VITA,
                     DEVICES.POPPAPPZWAY,
-                    DEVICES.IOSWRAPPER
+                    DEVICES.IOSWRAPPER,
+                    DEVICES.ZWAYMOBILEAPPANDROID,
+                    DEVICES.ZWAYMOBILEIOS
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === DEVICES.UNKNOWN && deviceInfo.raw.device[currentValue]) ? currentValue : previousValue;
                     }, DEVICES.UNKNOWN);
@@ -373,7 +379,9 @@
                         DEVICES.WINDOWS_PHONE,
                         DEVICES.VITA,
                         DEVICES.POPPAPPZWAY,
-                        DEVICES.IOSWRAPPER
+                        DEVICES.IOSWRAPPER,
+                        DEVICES.ZWAYMOBILEAPPANDROID,
+                        DEVICES.ZWAYMOBILEIOS
                     ].some(function (item) {
                             return deviceInfo.device == item;
                         });
