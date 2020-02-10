@@ -295,7 +295,7 @@
                     OS.POPPAPPZWAY,
                     OS.IOSWRAPPER,
                     OS.ZWAYMOBILEAPPANDROID,
-                    OS.ZWAYMOBILEIOS
+                    OS.ZWAYMOBILEAPPIOS
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === OS.UNKNOWN && deviceInfo.raw.os[currentValue]) ? currentValue : previousValue;
                     }, OS.UNKNOWN);
@@ -312,7 +312,7 @@
                     BROWSERS.POPPAPPZWAY,
                     BROWSERS.IOSWRAPPER,
                     BROWSERS.ZWAYMOBILEAPPANDROID,
-                    BROWSERS.ZWAYMOBILEIOS
+                    BROWSERS.ZWAYMOBILEAPPIOS
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === BROWSERS.UNKNOWN && deviceInfo.raw.browser[currentValue]) ? currentValue : previousValue;
                     }, BROWSERS.UNKNOWN);
@@ -331,7 +331,7 @@
                     DEVICES.POPPAPPZWAY,
                     DEVICES.IOSWRAPPER,
                     DEVICES.ZWAYMOBILEAPPANDROID,
-                    DEVICES.ZWAYMOBILEIOS
+                    DEVICES.ZWAYMOBILEAPPIOS
                 ].reduce(function (previousValue, currentValue) {
                         return (previousValue === DEVICES.UNKNOWN && deviceInfo.raw.device[currentValue]) ? currentValue : previousValue;
                     }, DEVICES.UNKNOWN);
@@ -381,7 +381,7 @@
                         DEVICES.POPPAPPZWAY,
                         DEVICES.IOSWRAPPER,
                         DEVICES.ZWAYMOBILEAPPANDROID,
-                        DEVICES.ZWAYMOBILEIOS
+                        DEVICES.ZWAYMOBILEAPPIOS
                     ].some(function (item) {
                             return deviceInfo.device == item;
                         });
