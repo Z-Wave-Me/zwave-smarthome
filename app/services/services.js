@@ -263,31 +263,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	};
 
 	/**
-	 * Get remember me
-	 * @returns {Object|Boolean}
-	 */
-	this.getRememberMe = function() {
-		var user = ($cookies.rememberme && !!$cookies.rememberme && $cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
-		return user;
-	};
-
-	/**
-	 * Set remember me
-	 * @param {object} data
-	 * @returns {Boolean|Object}
-	 */
-	this.setRememberMe = function(data) {
-		if (data && !!data) {
-			$cookies.rememberme = angular.toJson(data);
-		} else {
-			delete $cookies['rememberme'];
-			return false;
-		}
-
-		return data;
-	};
-
-	/**
 	 * Logout from the system
 	 * @returns {undefined}
 	 */

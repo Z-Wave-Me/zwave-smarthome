@@ -152,7 +152,6 @@ myApp.config(function ($provide, $httpProvider) {
                         break;
                     case 401:
                         if (path[1] !== '') {
-                            dataService.setRememberMe(null);
                             dataService.logOut();
                          }
                         break;

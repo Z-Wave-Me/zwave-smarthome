@@ -34,7 +34,6 @@ myAppController.controller('ManagementFactoryController', function ($scope, $win
                     $cookieStore.remove(k);
                     //delete $cookies[k];
                 });
-                //dataService.setRememberMe(null);
                 dataService.logOut();
                 //$window.location.reload();
             }, function (error) {

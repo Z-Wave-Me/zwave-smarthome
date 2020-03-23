@@ -22,7 +22,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 	/**
 	 * Login with selected data from server response
 	 */
-	$scope.processUser = function(user, rememberme) {
+	$scope.processUser = function(user) {
 
 		if (user.lang) { // If user language exits use from profile
 			$cookies.lang = user.lang;
@@ -31,9 +31,6 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 		}
 		dataService.setZWAYSession(user.sid);
 		dataService.setUser(user);
-		if (rememberme) {
-			dataService.setRememberMe(rememberme);
-		}
 
 		$scope.auth.form = false;
 	};
@@ -41,9 +38,9 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 	/**
 	 * Redirect
 	 */
-	$scope.redirectAfterLogin = function(trust, user, password, rememberme, url) {
+	$scope.redirectAfterLogin = function(trust, user, password, url) {
 		var location = url || '#/dashboard';
-		$scope.processUser(user, rememberme);
+		$scope.processUser(user);
 		if ($scope.auth.fromexpert) {
 			window.location.href = $scope.cfg.expert_url;
 			return;
@@ -60,7 +57,6 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 	 * Logout from expert
 	 */
 	$scope.logoutFromExpert = function() {
-		dataService.setRememberMe(null);
 		dataService.setUser(null);
 		dataService.setZWAYSession(null);
 	};
@@ -207,8 +203,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 myAppController.controller('AuthLoginController', function($scope, $location, $window, $routeParams, $cookies, cfg, dataFactory, dataService, _) {
 	$scope.input = {
 		password: '',
-		login: '',
-		rememberme: false
+		login: ''
 	};
 
 	/**
@@ -249,14 +244,13 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 		};
 		dataFactory.logInApi(input).then(function(response) {
 			//angular.extend(cfg, {user: response.data.data});
-			var rememberme = (input.rememberme ? input : null);
 			var location = '#/dashboard';
 			var profile = _.omit(response.data.data, 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
 			if (response.data.data.showWelcome) {
 				location = '#/dashboard/firstlogin';
 				profile = _.omit(profile, 'showWelcome');
 			}
-			$scope.redirectAfterLogin(true, profile, input.password, rememberme, location);
+			$scope.redirectAfterLogin(true, profile, input.password, location);
 		}, function(error) {
 			$scope.loading = false;
 			var message = $scope._t('error_load_data');
@@ -267,14 +261,12 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 		});
 	};
 
-	// Login from url, remember me or session
+	// Login from url or session
 
 	var path = $location.path().split('/');
 
 	if ($routeParams.login && $routeParams.password) {
 		$scope.login($routeParams);
-	} else if (dataService.getRememberMe() && !$scope.auth.firstaccess) {
-		$scope.login(dataService.getRememberMe());
 		// only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
 	} else if (typeof $routeParams.logout === 'undefined' || !$routeParams.logout ||
 		typeof $routeParams.authBearer === 'undefined' || !$routeParams.authBearer ||
@@ -500,7 +492,7 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 				if ((cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
 					$scope.updateInstance(instance);
 				} else {
-					$scope.redirectAfterLogin(true, response.data.data, input.password, false, '#/dashboard/firstlogin');
+					$scope.redirectAfterLogin(true, response.data.data, input.password, '#/dashboard/firstlogin');
 				}
 			}, function(error) {
 				alertify.alertError($scope._t('error_update_data'));
@@ -707,7 +699,6 @@ myAppController.controller('LogoutController', function($scope, dataService, dat
 	 * Logout an user
 	 */
 	$scope.logout = function() {
-		dataService.setRememberMe(null);
 		dataFactory.getApi('logout').then(function(response) {
 			dataService.logOut();
 		});

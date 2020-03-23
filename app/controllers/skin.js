@@ -243,7 +243,6 @@ myAppController.controller('SkinToDefaultController', function ($scope, $cookies
     $scope.resetToDefault = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('skins_reset', null, true).then(function (response) {
-            //dataService.setRememberMe(null);
             dataFactory.getApi('logout').then(function (response) {
                 delete $cookies['skin'];
                 dataService.logOut();
