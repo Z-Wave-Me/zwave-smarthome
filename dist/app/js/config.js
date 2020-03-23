@@ -14,7 +14,7 @@ var config_data = {
 		// Application version
 		'app_version': '1.10.2',
 		// Application (DIST) built date
-		'app_built': '20-01-2020 13:17:39',
+		'app_built': '23-03-2020 13:53:29',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -281,6 +281,8 @@ var config_data = {
 		'lang_dir': 'app/lang/',
 		// Android html dir
 		'android_html_dir': '/htdocs/android/index.htm',
+		// iOS html dir
+		'ios_html_dir': '/htdocs/ios/index.htm',
 		// Default language
 		'lang': 'en', // !!!!Do not change it
 		// List of supported languages
