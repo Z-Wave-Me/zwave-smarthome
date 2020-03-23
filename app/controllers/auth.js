@@ -267,8 +267,8 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
 
 	if ($routeParams.login && $routeParams.password) {
 		$scope.login($routeParams);
-		// only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
 	} else if (typeof $routeParams.logout === 'undefined' || !$routeParams.logout ||
+		// only ask for session forwarding if user is not logged out before or the request comes from trusted hosts
 		typeof $routeParams.authBearer === 'undefined' || !$routeParams.authBearer ||
 		(path[1] === '' && $scope.cfg.find_hosts.indexOf($location.host()) !== -1)) {
 		$scope._routeParams = $routeParams; // save parameters to pass them to redirect (in getSession) correctly on the first page load
