@@ -2,8 +2,8 @@
 <!--<pre>{{dataHolder.modules.filter|json}}</pre>
 <pre>{{dataHolder.onlineModules.cnt.upgraded|json}}</pre>-->
 <div class="page-control form-inline">
-    <!-- IOS UI -->
-    <div id="btn-group-mobile" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'" class="btn-group btn-goup-block btn-goup-4">
+    <!-- For small isplay sizes -->
+    <div id="btn-group-mobile" class="btn-group btn-goup-block btn-goup-4">
         <!--Categories -->
         <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)"
                 ng-class="dataHolder.modules.filter['status'] || dataHolder.modules.filter['q'] ? '':'active' ">
@@ -79,11 +79,11 @@
           autocomplete="off" novalidate>
         <!-- Input -->
         <input id="input_search" type="text" focus="{{dataHolder.modules.filter.q}}"
-               class="form-control"
+               class="s-hide form-control"
                placeholder="{{_t('lb_search')}}"
                ng-model="dataHolder.modules.autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
         <!-- Search button -->
-        <span class="input-group-addon clickable" ng-click="setFilter({q: dataHolder.modules.autocomplete.term})">
+        <span class="input-group-addon clickable s-hide" ng-click="setFilter({q: dataHolder.modules.autocomplete.term})">
             <i class="fa fa-search" ng-class="{'text-success':dataHolder.modules.autocomplete.term}"></i>
         </span>
 
@@ -125,7 +125,7 @@
             <span class="btn-name item-cnt"> ({{dataHolder.onlineModules.cnt.upgraded}})</span>
         </button>
         <!--Categories -->
-        <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)"
+        <button class="btn btn-default s-hide" ng-click="expandNavi('appsCategories', $event)"
                 ng-class="dataHolder.modules.filter['status'] || dataHolder.modules.filter['q'] ? '':'active' ">
             <i class="fa fa-filter"></i>
             <span class="btn-name" ng-if="dataHolder.modules.filter.category">{{dataHolder.modules.categories[dataHolder.modules.filter.category].name|cutText:true:30}}</span>

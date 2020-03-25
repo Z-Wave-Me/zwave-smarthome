@@ -136,16 +136,6 @@
     <div id="header" ng-if="user">
       <div id="main_navigation_wrap">
         <div id="main_navigation" class="container">
-          <!-- IOS UI -->
-          <span class="nav_title" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
-              <h3 ng-if="isActive('dashboard')">{{_t('nav_home')}}</h3>
-              <h3 ng-if="isActive('rooms')">{{_t('nav_rooms')}}</h3>
-              <h3 ng-if="isActive('elements')">{{_t('nav_elements')}}</h3>
-              <h3 ng-if="isActive('events')">{{_t('nav_events')}}</h3>
-              <h3 ng-if="isActive('cameras')">{{_t('nav_cameras')}}</h3>
-              <h3 ng-if="routeMatch('/zwave/batteries')">{{_t('lb_battery_status')}}</h3>
-              <h3 ng-if="routeMatch('/zwave/devices')">{{_t('nav_devices')}}</h3>
-          </span>
           <div id="navigation_left">
             <!-- logo -->
             <a class="nav-logo" href="#home" title="{{_t('nav_home')}}">
@@ -212,7 +202,7 @@
       <div id="sub_navigation_wrap" ng-class="naviExpanded.mainNav ? 'active' : ''">
         <div id="sub_navigation" ng-show="naviExpanded.mainNav">
           <div id="sub_navigation_in" ng-click="expandNavi('mainNav', $event)">
-            <div class="container" ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
+            <div class="container">
               <ul>
                 <!-- Apps -->
                 <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
@@ -270,8 +260,16 @@
                     <i class="fa fa-chevron-right subnavi-arrow"></i>
                   </a>
                 </li>
+                <!-- My Hubs -->
+                <li class="subnavi-myhubs" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+                  <a ng-href="{{cfg.ios_html_dir}}">
+                    <i class="fa fa-apple fa-fw"></i>
+                    <span>{{_t('my_hubs')}}</span>
+                    <i class="fa fa-chevron-right subnavi-arrow"></i>
+                  </a>
+                </li>
                 <!-- Logout -->
-                <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid'">
+                <li class="subnavi-logout" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
                   <a href="#logout">
                     <i class="fa fa-sign-out fa-fw"></i>
                     <span>{{_t('nav_logout')}}</span>
@@ -279,55 +277,6 @@
                   </a>
                 </li>
               </ul>
-            </div>
-            <!-- IOS UI  Navigation-->
-            <div class="container" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
-                <ul>
-                    <!-- Dashboard -->
-                    <li class="subnavi-apps" ng-class="isActive('dashboard')" ng-if="elementAccess(cfg.role_access.apps)">
-                        <a href="#dashboard"><i class="fa fa-home fa-fw"></i> <span>{{_t('nav_home')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- Rooms -->
-                    <li class="subnavi-rooms" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.apps)">
-                        <a href="#rooms"><i class="fa fa-building-o fa-fw"></i> <span>{{_t('nav_rooms')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- Elements -->
-                    <li class="subnavi-elements" ng-class="isActive('elements')" ng-if="elementAccess(cfg.role_access.apps)">
-                        <a href="#elements"><i class="fa fa-clone fa-fw"></i> <span>{{_t('nav_elements')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- Cameras -->
-                    <li class="subnavi-cameras" ng-class="isActive('cameras')" ng-if="elementAccess(cfg.role_access.apps)">
-                        <a href="#cameras"><i class="fa fa-video-camera fa-fw"></i> <span>{{_t('nav_cameras')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- Events -->
-                    <li class="subnavi-events" ng-class="isActive('events')" ng-if="elementAccess(cfg.role_access.apps)">
-                        <a href="#events"><i class="fa fa-calendar fa-fw"></i> <span>{{_t('nav_events')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- Automation -->
-                    <li class="subnavi-automations" ng-class="isActive('automations')" ng-if="elementAccess(cfg.role_access.apps)">
-                        <a href="#automations"><i class="fa fa-gear fa-fw"></i> <span>{{_t('automation')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- Battery -->
-                    <li class="subnavi-battery" ng-class="routeMatch('/zwave/batteries')  ? 'active' : ''" ng-if="elementAccess(cfg.role_access.apps)">
-                        <a href="#zwave/batteries"><i class="fa fa-battery-half fa-fw"></i> <span>{{_t('lb_battery_status')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- Devices -->
-                    <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
-                        <a href="#devices"><i class="fa fa-cogs fa-fw"></i> <span>{{_t('nav_devices')}} </span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- Apps -->
-                    <li class="subnavi-apps" ng-class="isActive('apps')" ng-if="elementAccess(cfg.role_access.apps)">
-                        <a href="#apps/instance"><i class="fa fa-cubes fa-fw"></i> <span>{{_t('nav_apps')}}</span> <i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- My access -->
-                    <li class="subnavi-myaccess" ng-class="isActive('myaccess')" ng-if="elementAccess(cfg.role_access.myaccess)">
-                        <a href="#myaccess"><i class="fa fa-user fa-fw"></i>  <span>{{_t('nav_myaccess')}}</span><i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                    <!-- My Hubs -->
-                    <li class="subnavi-myhubs">
-                      <a ng-href="{{cfg.ios_html_dir}}"><i class="fa fa-apple fa-fw"></i> <span>{{_t('my_hubs')}}</span><i class="fa fa-chevron-right subnavi-arrow"></i></a>
-                    </li>
-                </ul>
             </div>
           </div>
           <!-- /#subnavigation_in -->
@@ -339,7 +288,7 @@
     <!-- /#header -->
     <!-- Ang Content Container -->
     <div id="main_content" class="container">
-      <div class="blank" ng-if="cfg.route.alert.message" ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'">
+      <div class="blank" ng-if="cfg.route.alert.message"> <!-- ng-cloak ng-hide="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'"> -->
         <figure>
           <i class="fa {{cfg.route.alert.icon}} fa-lg"></i>
         </figure>

@@ -22248,7 +22248,7 @@ body.night-false {
 @media only screen and (max-width: 767px) {
   /* line 60, E:/GitHub/zwave-smarthome/app/sass/base/_media_queries.scss */
   .s-hide {
-    display: none;
+    display: none !important;
   }
 }
 
