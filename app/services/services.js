@@ -1121,13 +1121,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 
 				if(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
-                    dyn_dns  = cfg.server_url.indexOf("dyndns");
+						dyn_dns  = cfg.server_url.indexOf("dyndns");
 
-	                if(customIcon[k] && (remote > -1 || dyn_dns > -1)) {
-	                    obj[k] =  cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon[k];
-	                } else {
-	                    obj[k] = path + v;
-	                }
+					if(customIcon[k] && (remote > -1 || dyn_dns > -1)) {
+						obj[k] =  cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon[k];
+					} else {
+						obj[k] = path + v;
+					}
 				} else {
 					obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
 				}
@@ -1138,13 +1138,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			if (!_.isEmpty(customIcon.default)) {
 				if(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
-                    	dyn_dns  = cfg.server_url.indexOf("dyndns");
+						dyn_dns  = cfg.server_url.indexOf("dyndns");
 
-	                if(remote > -1 || dyn_dns > -1) {
-	                    obj['default'] = cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon['default'];
-	                } else {
-	                    obj['default'] = cfg.img.custom_icons + customIcon['default'];
-	                }
+					if(remote > -1 || dyn_dns > -1) {
+					    obj['default'] = cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon['default'];
+					} else {
+					    obj['default'] = cfg.img.custom_icons + customIcon['default'];
+					}
 				} else {
 					obj['default'] = cfg.img.custom_icons + customIcon['default'];
 				}
