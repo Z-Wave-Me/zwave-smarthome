@@ -76,6 +76,8 @@ module.exports = function(grunt) {
 					'vendor/alertify/alertify.min.js',
 					'vendor/qrcode/qrious.min.js',
 					'vendor/scheduler/jq.schedule.js',
+					'vendor/highlight/highlight-textarea.js',
+					'vendor/highlight/highlight.pack.js',
 					// Angular
 					'vendor/angular/angular-1.2.28/angular.min.js',
 					'vendor/upload/angular-file-upload.min.js',
