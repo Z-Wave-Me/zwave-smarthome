@@ -7646,6 +7646,8 @@ Visual Studio-like style based on original C# coloring by Jason Diamond <jason@d
   /* none by default, but block on "open" of the menu */
   float: left;
   min-width: 160px;
+  max-height: 300px;
+  overflow-y: scroll;
   padding: 5px 0;
   margin: 2px 0 0;
   /* override default ul */
@@ -14582,3 +14584,5 @@ body.night-false {
   @media only screen and (min-width: 768px) {
     .l-hide {
       display: none; } }
+
+/*# sourceMappingURL=main.css.map */
