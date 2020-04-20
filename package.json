@@ -6,7 +6,7 @@
   "description": "This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices.",
   "main": "index.html",
   "app_type": "default",
-  "built": "02-04-2020 23:27:40",
+  "built": "20-04-2020 03:30:04",
   "type_cfg": {
     "default": {
       "dir": "dist",

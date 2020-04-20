@@ -402,7 +402,6 @@ module.exports = function(grunt) {
 		modify_json: {
 			file: {
 				expand: true,
-				//cwd: 'test/',
 				src: ['package.json'],
 				options: {
 					add: true,
@@ -424,7 +423,6 @@ module.exports = function(grunt) {
 					templateDir: 'docstemplates'
 				},
 				src: ['app/**/*.js'],
-				//src: ['app/controllers/*.js','app/services/*.js','app/directives/*.js','app/modules/*.js','app/jquery/*.js','app/filters/*.js'],
 				dest: 'docs'
 			}
 		},
