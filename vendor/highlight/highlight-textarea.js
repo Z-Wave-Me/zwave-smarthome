@@ -50,7 +50,7 @@ function correctTextareaHight(element)
 function hightlightSyntax(){
 	var me  = $('.editor');
 	var content = me.val() || '';
-	var codeHolder = $('code');
+	var codeHolder = $('code', me.parent());
 	var escaped = escapeHtml(content);
 	
 	codeHolder.html(escaped);
