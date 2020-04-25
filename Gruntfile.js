@@ -43,6 +43,14 @@ module.exports = function(grunt) {
 				dest: 'dist/app/js/templates.js'
 			}
 		},
+		// SCSS
+		sass: {
+			dist: {
+				files: {
+					'app/css/main.css': 'app/sass/main.scss'
+				}
+			}
+		},
 		// Concat
 		concat: {
 			/*indexhtml: {
@@ -479,6 +487,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-cache-breaker');
 
 	// Default task(s).
-	grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'json_generator', 'copy', 'cssmin', 'skinFolder', 'iconFolder', 'usebanner', 'htmlbuild', 'cachebreaker', 'replace', 'modify_json']);
+	grunt.registerTask('default', ['clean', 'ngtemplates', 'sass', 'concat', 'json_generator', 'copy', 'cssmin', 'skinFolder', 'iconFolder', 'usebanner', 'htmlbuild', 'cachebreaker', 'replace', 'modify_json']);
 
 };
