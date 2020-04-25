@@ -2147,7 +2147,7 @@ input[type="time"],
 input[type="datetime-local"],
 input[type="month"] {
   line-height: 34px;
-  line-height: 1.428571429 \0; }
+  line-height: 1.428571429 \0 ; }
   input[type="date"].input-sm, .form-horizontal .form-group-sm input[type="date"].form-control, .input-group-sm > input[type="date"].form-control,
   .input-group-sm > input[type="date"].input-group-addon,
   .input-group-sm > .input-group-btn > input[type="date"].btn,
@@ -5890,7 +5890,7 @@ a.badge:hover, a.badge:focus {
   cursor: pointer; }
 
 /* Fixes for IE < 8 */
-@media screen\9 {
+@media screen\9  {
   .fileinput-button input {
     filter: alpha(opacity=0);
     font-size: 100%;
@@ -14603,3 +14603,5 @@ body.night-false {
   @media only screen and (min-width: 768px) {
     .l-hide {
       display: none; } }
+
+/*# sourceMappingURL=main.css.map */
