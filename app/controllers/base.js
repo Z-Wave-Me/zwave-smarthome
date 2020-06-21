@@ -350,7 +350,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         /**
          * Set timestamp and ping server if request fails
          */
-        $scope.setTimeStamp();
+        if (!current) {
+            $scope.setTimeStamp();
+        }
 
         angular.copy({}, $scope.naviExpanded);
         angular.copy({}, $scope.autocompleteExpanded);

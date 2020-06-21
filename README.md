@@ -7,7 +7,7 @@ This program is free software: you can redistribute it and/or modify it under th
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
 
 ## Project leaders
-Marcel Kermer and Serguei Poltorak
+Serguei Poltorak
 
 ## v1.10.2
 #### Features:

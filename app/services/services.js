@@ -52,17 +52,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	};
 
 	/**
-	 * Set timestamp and ping server if request fails
-	 * @param {object} next
-	 * @returns {undefined}
-	 */
-	this.setTimeStamp = function() {
-		/* dataFactory.getApi('timezone', null, true).then(function (response) {
-
-		 }, function (error) {});*/
-	};
-
-	/**
 	 * Get a language string by key
 	 * @param {string} key
 	 * @param {object} languages

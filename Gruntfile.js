@@ -123,7 +123,6 @@ module.exports = function(grunt) {
 					'app/filters/filters.js',
 					'app/jquery/postrender.js',
 					'app/controllers/base.js',
-					'app/controllers/controllers.js',
 					'app/controllers/jamesbox.js',
 					'app/controllers/element.js',
 					'app/controllers/element-widget.js',
