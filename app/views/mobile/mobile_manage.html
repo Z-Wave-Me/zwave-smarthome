@@ -32,7 +32,7 @@
 									</em>
 								</span>
 							</span>
-							<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="removeApp(v.token)">
+							<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="removeApp(v.token, v.app_profile)">
 								<i class="fa fa-times text-danger"></i>
 							</span>
 						</h2>
@@ -47,30 +47,6 @@
 					</button>
 				</div>
 			</section>
-			<section>
-				<h3>{{_t('notifications')}}</h3>
-				<legend>{{_t('assigned_devices')}}</legend>
-				<fieldset ng-include="'app/views/mobile/mobile_assigned.html'"></fieldset>
-				<legend>{{_t('lb_available_devices')}}</legend>
-				<fieldset ng-include="'app/views/mobile/mobile_available.html'"></fieldset>
-			</section>
-		</div>
-		<div class="fieldset submit-entry is-grid">
-			<span>
-				<label class="switch">
-					<input type="checkbox" ng-model="mobile.input.active">
-					<span class="slider"></span>
-				</label>
-				<span class="switch-label">{{mobile.input.active ? _t('lb_active'): _t('activeASC')}}</span>
-			</span>
-			<span>
-				<a href="#devices" class="btn btn-default" title="{{_t('lb_cancel')}}"> <i class="fa fa-reply"></i>
-					<span class="btn-name">{{_t('lb_cancel')}}</span>
-				</a>
-				<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit"> <i class="fa fa-check"></i>
-				<span class="btn-name">{{_t('lb_save')}}</span>
-				</button>
-			</span>
 		</div>
 	</form>
 </div>
