@@ -14,7 +14,7 @@ var config_data = {
 		// Application version
 		'app_version': '1.10.2',
 		// Application (DIST) built date
-		'app_built': '26-04-2020 00:59:18',
+		'app_built': '04-08-2020 19:54:33',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -150,7 +150,8 @@ var config_data = {
 			'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
 			'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
 			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend,
-			'remove_app': 'MobileAppSupportAPI/removeApp' // remove app
+			'notificationFiltering': 'ZAutomation/api/v1/notificationFiltering', // get and set NotificationFiltering settings app for a user
+			'remove_app': 'MobileAppSupportAPI/app' // remove app
 		},
 		// List of remote api URLs
 		'api_remote': {
@@ -543,8 +544,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'InbandNotifications',
 					'MobileAppSupport',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
@@ -575,8 +574,6 @@ var config_data = {
 					'CustomUserCodeZWay',
 					'GlobalCache',
 					'InfoWidget',
-					'Notification',
-					'NotificationSMSru',
 					'RGB',
 					'SecurityMode',
 					'SwitchControlGenerator',
@@ -600,8 +597,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'MobileAppSupport',
 					'InbandNotifications',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
@@ -636,8 +631,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'InbandNotifications',
 					'MobileAppSupport',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
@@ -673,8 +666,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'InbandNotifications',
 					'MobileAppSupport',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
@@ -711,8 +702,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'InbandNotifications',
 					'MobileAppSupport',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
