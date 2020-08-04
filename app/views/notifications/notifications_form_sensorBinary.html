@@ -1,0 +1,8 @@
+<!-- sensorBinary -->
+<label for="condition_{{$index}}">{{_t('lb_send_condition')}}</label>
+<select id="condition_{{$index}}" name="condition" class="form-control form-inline" ng-model="v.level">
+	<option value="{{o}}" ng-repeat="o in notifications.cfg.sensorBinary.level" ng-selected="o == v.level">
+		{{_t(o)}}
+	</option>
+</select>
+<bb-help-text trans="_t('send_condition_help')"></bb-help-text>

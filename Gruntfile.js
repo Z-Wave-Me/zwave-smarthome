@@ -230,7 +230,7 @@ module.exports = function(grunt) {
 						flatten: true
 					}, {
 						expand: true,
-						src: ['app/configs/mobileAppSupport.js'],
+						src: ['app/configs/notifications.js'],
 						dest: 'dist/app/js/',
 						flatten: true
 					}, {
@@ -325,7 +325,7 @@ module.exports = function(grunt) {
 					banner: '/* <%= banner %> */'
 				},
 				files: {
-					src: ['dist/app/js/templates.js', 'dist/app/js/config.js', 'dist/app/js/build.js', 'dist/app/js/icons.js', 'dist/app/js/mobileAppSupport.js']
+					src: ['dist/app/js/templates.js', 'dist/app/js/config.js', 'dist/app/js/build.js', 'dist/app/js/icons.js', 'dist/app/js/notifications.js']
 				}
 			},
 			html: {

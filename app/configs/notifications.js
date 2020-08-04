@@ -1,15 +1,15 @@
 /**
- * @overview MobileAppsupport configuration file.
- * @author Michael Hensche
+ * @overview Notifications configuration file.
+ * @author Michael Hensche, Serguei Poltorak
  */
 
 /**
  * Configuration object
- * @class mobile_data
+ * @class notifications_data
  */
 
-var mobile_data = {
-	mobile_cfg: {
+var notifications_data = {
+    notifications_cfg: {
         doorlock: {
             level: ['all', 'open', 'close'],
             default: {
@@ -38,22 +38,21 @@ var mobile_data = {
             }
         },
         switchMultilevel: {
-            level: ['all', 'on', 'off', 'lvl'],
-            operator: ['=', '!=', '>', '>=', '<', '<='],
+            operator: ['all', '=', '!=', '>', '>=', '<', '<='],
             min: 0,
             max: 99,
             default: {
                 id: '',
                 deviceType: 'switchMultilevel',
-                exact: 0,
-                level: 'all',
+                level: 0,
+                operator: '=',
                 msg: ''
             }
         },
         sensorMultilevel: {
-            operator: ['=', '!=', '>', '>=', '<', '<='],
-            min: 0,
-            max: 99,
+            operator: ['all', '=', '!=', '>', '>=', '<', '<='],
+            min: -100000,
+            max: +100000,
             default: {
                 id: '',
                 deviceType: 'sensorMultilevel',
@@ -62,16 +61,38 @@ var mobile_data = {
                 msg: ''
             }
         },
-        thermostat: {
-            level: ['all', 'on', 'off', 'lvl'],
-            operator: ['=', '!=', '>', '>=', '<', '<='],
+        sensorMultiline: {
+            operator: ['all', '=', '!=', '>', '>=', '<', '<='],
+            min: -100000,
+            max: +100000,
+            default: {
+                id: '',
+                deviceType: 'sensorMultiline',
+                level: 0,
+                operator: '=',
+                msg: ''
+            }
+        },
+        switchControl: {
+            operator: ['all', '=', '!=', '>', '>=', '<', '<='],
             min: 0,
-            max: 99,
+            max: 255,
+            default: {
+                id: '',
+                deviceType: 'switchControl',
+                level: 0,
+                operator: '=',
+                msg: ''
+            }
+        },
+        thermostat: {
+            operator: ['all', '=', '!=', '>', '>=', '<', '<='],
+            min: -40,
+            max: +1000,
             default: {
                 id: '',
                 deviceType: 'thermostat',
-                level: 'all',
-                exact: 0,
+                level: 0,
                 operator: '=',
                 msg: ''
             }
