@@ -44,19 +44,19 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			dataFactory.getApi('devices')
 		];
 
-		if ($scope.user.role === 1) {
+		promises.push(dataFactory.getApi('notification_channels', false, true));
+		promises.push(dataFactory.getApi('notification_filtering', false, true));
+		if ($scope.user.role === 1) { // should be last to have same order for user and admin
 			promises.push(dataFactory.getApi('modules', false, true));
 		}
-		promises.push(dataFactory.getApi('namespaces', false, true));
-		promises.push(dataFactory.getApi('notificationFiltering', false, true));
 
 		$q.allSettled(promises).then(function(response) {
 			var device = response[0];
 			var locations = response[1];
 			var devices = response[2];
-			var modules = response[3];
-			var namespaces = response[4];
-			var notificationFiltering = response[5];
+			var notificationChannels = response[3];
+			var notificationFiltering = response[4];
+			var modules = response[5];
 
 
 			$scope.loading = false;
@@ -75,9 +75,9 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			if (devices.state === 'fulfilled') {
 				setTagList(devices.value.data.data.devices);
 			}
-			// Success - namespaces
-			if (namespaces && namespaces.state === 'fulfilled') {
-				$scope.notifications.channels = namespaces.value.data.data.filter(function(ns) { return ns.id == "notificationChannels"; })[0].params.filter(function(nc) { return nc.userId == $scope.user.id; });
+			// Success - notificationChannels
+			if (notificationChannels && notificationChannels.state === 'fulfilled') {
+				$scope.notifications.channels = notificationChannels.value.data.data;
 			}
 			
 			// Success - notificationFiltering
@@ -163,7 +163,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				$scope.user.dashboard = dataService.setArrayValue($scope.user.dashboard, input.id, input.onDashboard);
 				$scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, input.id, input.hide_events);
 				$scope.updateProfile($scope.user, input.id);
-				if ($scope.cfg.role_access.admin.indexOf($scope.user.role) > -1) $scope.updateNotification($scope.notifications);
+				$scope.updateNotification($scope.notifications);
 			}, function(error) {
 				alertify.alertError($scope._t('error_update_data'));
 				$scope.loading = false;
@@ -241,7 +241,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			newData.push(dd);
 		});
 
-		dataFactory.putApi('notificationFiltering', undefined, newData).then(function(response) {
+		dataFactory.putApi('notification_filtering', undefined, newData).then(function(response) {
 			$scope.loading = false;
 		}, function(error) {
 			$scope.loading = false;

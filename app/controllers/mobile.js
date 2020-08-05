@@ -21,15 +21,15 @@ myAppController.controller('MobileManageController', function($scope, $q, $filte
         };
 
         var promises = [
-            dataFactory.getApi('instances', '/MobileAppSupport', true)
+            dataFactory.getApi('mobile_app_support', false, true)
         ];
 
         $q.allSettled(promises).then(function(response) {
             $scope.loading = false;
 
-            var instance = response[0];
+            var result = response[0];
 
-            if(instance.state == 'rejected') {
+            if (result.state == 'rejected') {
                 // Error
                 angular.extend(cfg.route.alert, {
                     message: $scope._t('error_load_data')
@@ -37,19 +37,17 @@ myAppController.controller('MobileManageController', function($scope, $q, $filte
                 return;
             }
 
-            if(instance.state == 'fulfilled') {
-                var instance = instance.value.data.data[0];
-
+            if (result.state == 'fulfilled') {
                 // transform app data
-                instance.params.apps = instance.params.apps.map(function(dev) {
-                    angular.extend(dev, {
-                        last_seen_formated: $filter('dateTimeFromTimestamp')(dev.last_seen),
-                        created_formated: $filter('dateTimeFromTimestamp')(dev.created)
+                var apps = result.value.data.map(function(app) {
+                    angular.extend(app, {
+                        last_seen_formated: $filter('dateTimeFromTimestamp')(app.last_seen),
+                        created_formated: $filter('dateTimeFromTimestamp')(app.created)
                     });
-                    return dev;
+                    return app;
                 });
 
-                angular.extend($scope.mobile.input, instance);
+                $scope.mobile.input.apps = apps;
             }
         });
     }
@@ -64,11 +62,11 @@ myAppController.controller('MobileManageController', function($scope, $q, $filte
             token: token,
             profileId: app_profile
         };
-        dataFactory.deleteApiJSON('remove_app', data).then(function(response) {
-            var apps = $scope.mobile.input.params.apps;
+        dataFactory.deleteApiJSON('mobile_app_support', data).then(function(response) {
+            var apps = $scope.mobile.input.apps;
 
             apps = _.without(apps, _.findWhere(apps, {token: token, app_profile: app_profile}));
-            $scope.mobile.input.params.apps = apps;
+            $scope.mobile.input.apps = apps;
 
             console.log("response", response);
         },function(error) {

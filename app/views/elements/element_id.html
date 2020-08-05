@@ -201,8 +201,8 @@
                   <option value="" ng-selected="v.channel === ''">
                       {{_t('notifications_all_channels')}}
                   </option>
-                  <option value="{{nc.channelId}}" ng-repeat="nc in notifications.channels" ng-selected="nc.channelId == v.channel">
-                      {{nc.channelName}}
+                  <option value="{{nc.id}}" ng-repeat="nc in notifications.channels" ng-selected="nc.id == v.channel">
+                      {{nc.name}}
                   </option>
           </select>
           <bb-help-text trans="_t('send_channel_help')"></bb-help-text>

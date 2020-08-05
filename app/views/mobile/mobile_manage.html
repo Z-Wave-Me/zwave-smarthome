@@ -8,7 +8,7 @@
 			<section>
 				<h3>{{_t('Device List')}}</h3>
 				<div class="fieldset">
-					<section class="accordion-wrap" ng-repeat="v in mobile.input.params.apps track by $index">
+					<section class="accordion-wrap" ng-repeat="v in mobile.input.apps track by $index">
 						<!-- Title -->
 						<h2 class="accordion-toggle ellipsis">
 							<!-- Toogle -->
@@ -20,12 +20,12 @@
 							<!-- No Toggle -->
 							<span class="no-toggle">
 								<span>
-									{{v.title}}&nbsp;
+									{{v.title}},&nbsp;{{v.userName}}&nbsp;
 									<em>
-										{{_t('os')}}:&nbsp;{{_t(v.os)}}
+										{{_t('os')}}:&nbsp;{{_t(v.os)}},
 									</em>
 									<em>
-										{{_t('added_at')}}:&nbsp;{{v.created_formated}}
+										{{_t('added_at')}}:&nbsp;{{v.created_formated}},
 									</em>
 									<em>
 										{{_t('last_seen')}}:&nbsp;{{v.last_seen_formated}}

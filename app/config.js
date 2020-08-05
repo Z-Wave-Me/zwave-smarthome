@@ -150,8 +150,9 @@ var config_data = {
 			'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
 			'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
 			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend,
-			'notificationFiltering': 'ZAutomation/api/v1/notificationFiltering', // get and set NotificationFiltering settings app for a user
-			'remove_app': 'MobileAppSupportAPI/app' // remove app
+			'notification_filtering': 'ZAutomation/api/v1/notificationFiltering', // get and set NotificationFiltering settings app for a user
+			'notification_channels': 'ZAutomation/api/v1/notificationChannels', // get NotificationFiltering channels for the user
+			'mobile_app_support': 'MobileAppSupportAPI/app' // MobileAppSupport
 		},
 		// List of remote api URLs
 		'api_remote': {
