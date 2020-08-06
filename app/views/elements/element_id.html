@@ -202,7 +202,7 @@
                       {{_t('notifications_all_channels')}}
                   </option>
                   <option value="{{nc.id}}" ng-repeat="nc in notifications.channels" ng-selected="nc.id == v.channel">
-                      {{nc.name}}
+                      {{nc.name}} ({{nc.userName}})
                   </option>
           </select>
           <bb-help-text trans="_t('send_channel_help')"></bb-help-text>

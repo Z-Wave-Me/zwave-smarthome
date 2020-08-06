@@ -14,6 +14,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		appType: {},
 		input: {},
 		locations: {},
+		instances: {},
 		modules: {}
 	};
 	$scope.tagList = [];
@@ -47,6 +48,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		promises.push(dataFactory.getApi('notification_channels', false, true));
 		promises.push(dataFactory.getApi('notification_filtering', false, true));
 		if ($scope.user.role === 1) { // should be last to have same order for user and admin
+			promises.push(dataFactory.getApi('instances', false, true));
 			promises.push(dataFactory.getApi('modules', false, true));
 		}
 
@@ -56,8 +58,8 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			var devices = response[2];
 			var notificationChannels = response[3];
 			var notificationFiltering = response[4];
-			var modules = response[5];
-
+			var instances = response[5];
+			var modules = response[6];
 
 			$scope.loading = false;
 			// Error message
@@ -78,14 +80,16 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			// Success - notificationChannels
 			if (notificationChannels && notificationChannels.state === 'fulfilled') {
 				$scope.notifications.channels = notificationChannels.value.data.data;
-			}
-			
+			}			
 			// Success - notificationFiltering
 			if (notificationFiltering && notificationFiltering.state === 'fulfilled') {
 				$scope.notifications.input = notificationFiltering.value.data.data;
 				setNotifications($scope.notifications.input, $scope.elementId.input);
 			}
-
+			// Success - instances
+			if (instances && instances.state === 'fulfilled') {
+				$scope.elementId.instances = instances.value.data.data;
+			}
 			// Success - modules
 			if (modules && modules.state === 'fulfilled') {
 				$scope.elementId.modules = modules.value.data.data;
