@@ -235,7 +235,7 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			notification: {
 				default: {
 					target: '',
-					target_custom: '',
+					targetName: '',
 					message: ''
 				}
 			}
@@ -261,6 +261,9 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			extensions: cfg.upload.icon.extension.toString()
 		},
 		icons: {}
+	};
+	$scope.notifications = {
+		channels: []
 	};
 	/**
 	 * Load instances
@@ -293,6 +296,8 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			});
 
 			angular.forEach(instance.params.notifications, function(d) {
+				var nc = _.findWhere($scope.notifications.channels, { id: d.target });
+				d.targetName = nc ? nc.name : d.target;
 				if (assignedNotifications.indexOf(d.target) === -1) {
 					$scope.scene.assignedNotifications.push(d.target);
 				}
@@ -338,10 +343,6 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 				};
 				return obj;
 			}).filter(function(v) {
-				// Replacing deviceType with "notification"
-				if (v.probeType == 'notification_push') {
-					v.deviceType = 'notification';
-				}
 				return whiteList.indexOf(v.deviceType) > -1;
 			}).indexBy('deviceId').value();
 			if (!_.size($scope.scene.availableDevices)) {
@@ -354,6 +355,21 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 			});
 		}, function(error) {});
 	};
+	/**
+	 * Load notification channels
+	 */
+	$scope.loadNotificationChannels = function(rooms) {
+		dataFactory.getApi('notification_channels', '/all').then(function(response) {
+			$scope.notifications.channels = response.data.data;
+			$scope.scene.input.params.notifications.forEach(function(n) {
+				var nc = _.findWhere($scope.notifications.channels, { id: n.target });
+				if (nc) {
+					n.targetName = nc.name;
+				}
+			});
+		}, function(error) {});
+	};
+	$scope.loadNotificationChannels();
 	/**
 	 * Load already uploaded icons
 	 * @returns {undefined}
@@ -476,8 +492,10 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 	 */
 	$scope.assignNotification = function(notification) {
 		if ((notification.target && $scope.scene.assignedNotifications.indexOf(notification.target) === -1) || (notification.target_custom && $scope.scene.assignedNotifications.indexOf(notification.target_custom) === -1)) {
+			var nc = _.findWhere($scope.notifications.channels, { id: notification.target });
 			var not = {
-				target: notification.target ? notification.target : notification.target_custom,
+				target: notification.target,
+				targetName: nc ? nc.name : notification.target,
 				message: notification.message
 			};
 			$scope.scene.input.params.notifications.push(not);
@@ -485,7 +503,6 @@ myAppController.controller('AutomationSceneIdController', function($scope, $rout
 
 			// reset options
 			$scope.scene.cfg.notification.default.target = '';
-			$scope.scene.cfg.notification.default.target_custom = '';
 			$scope.scene.cfg.notification.default.message = '';
 		}
 
