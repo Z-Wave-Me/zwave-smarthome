@@ -4,7 +4,7 @@
   <!-- Toggle -->
   <button type="button" aria-expanded="false" bb-accordion>
     <span>
-      <i class="fa fa-repeat fa-fw"></i> {{_t('factory_default')}}
+      <i class="fas fa-redo fa-fw"></i> {{_t('factory_default')}}
     </span>
   </button>
 </h2>
@@ -13,7 +13,7 @@
   <!-- Toggle -->
   <button type="button">
     <span>
-      <i class="fa fa-exclamation-circle fa-fw text-warning"></i> {{_t('factory_default')}}
+      <i class="fas fa-exclamation-circle fa-fw text-warning"></i> {{_t('factory_default')}}
       <em ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
         ,&nbsp;{{_t('not_supported_on_mobile')}}
       </em>
@@ -32,7 +32,7 @@
     </fieldset>
     <fieldset class="submit-entry">
       <button type="submit" class="btn btn-danger" title="{{_t('reset_factory_default')}}">
-        <i class="fa fa-repeat"></i>
+        <i class="fas fa-redo"></i>
         <span class="btn-name">{{_t('reset_factory_default')}}</span>
       </button>
     </fieldset>

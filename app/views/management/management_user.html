@@ -4,7 +4,7 @@
   <!-- Toggle -->
   <button type="button" aria-expanded="false" bb-accordion>
     <span>
-      <i class="fa fa-users fa-fw"></i> {{_t('nav_admin')}}
+      <i class="fas fa-users fa-fw"></i> {{_t('nav_admin')}}
     </span>
   </button>
 </h2>
@@ -13,11 +13,11 @@
   <div class="page-control form-inline">
     <div class="btn-group">
       <button class="btn btn-default" ng-click="expandNavi('roomsOrderBy', $event)">
-        <i class="fa fa-sort-alpha-asc"></i>
+        <i class="fas fa-sort-alpha-down"></i>
         <span class="btn-name">{{_t(userProfiles.orderBy) | cutText:true:15}}</span>
       </button>
       <a class="btn btn-success" ng-href="#admin/user/0" title="{{_t('lb_add_user')}}">
-        <i class="fa fa-plus"></i>
+        <i class="fas fa-plus"></i>
         <span class="btn-name">{{_t('lb_add_user')}} </span>
       </a>
     </div>
@@ -54,10 +54,10 @@
     <div class="control" ng-class="naviExpanded['manageUser_' + $index] ? 'expand-true': 'expand-false'">
       <div class="btn-group">
         <a class="btn btn-default" ng-href="#admin/user/{{v.id}}" title="{{_t('lb_update')}}">
-          <i class="fa fa-pencil text-info"></i>
+          <i class="fas fa-pencil-alt text-info"></i>
         </a>
         <button class="btn btn-default" title="{{_t('lb_remove')}}" ng-hide="v.id == 1" ng-click="deleteProfile(v, _t('lb_delete_confirm'), 1)">
-          <i class="fa fa-times text-danger"></i>
+          <i class="fas fa-times text-danger"></i>
         </button>
       </div>
     </div>

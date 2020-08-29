@@ -37,22 +37,22 @@
                             <button class="btn btn-success btn-lg" title="{{_t('btn_teach_in_start')}}"
                                     ng-disabled="inclusion.process"
                                     ng-click="startStopTeachin(true)">
-                                <i class="fa fa-plug"></i> <span class="btn-name">{{_t('btn_teach_in_start')}}</span>
+                                <i class="fas fa-plug"></i> <span class="btn-name">{{_t('btn_teach_in_start')}}</span>
                             </button>
                         </div>
                         <!-- Process -->
                         <div class="inclusion-process" ng-if="inclusion.process">
                             <div class="alert alert-warning">
-                                <i class="fa fa-spinner fa-spin"></i> {{_t('lb_ready_teach_in')}} {{zwaveInclusion.device.find.inc}}
+                                <i class="fas fa-spinner fa-spin"></i> {{_t('lb_ready_teach_in')}} {{zwaveInclusion.device.find.inc}}
                                 <button class="btn btn-danger btn-lg" title="{{_t('btn_teach_in_stop')}}"
                                         ng-click="startStopTeachin(false)">
-                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('btn_teach_in_stop')}}</span>
+                                    <i class="fas fa-ban"></i> <span class="btn-name">{{_t('btn_teach_in_stop')}}</span>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="report-col report-ctrl">
-                        <i class="fa fa-check fa-2x text-success" ng-if="zwaveInclusion.inclusionProcess.done"></i>
+                        <i class="fas fa-check fa-2x text-success" ng-if="zwaveInclusion.inclusionProcess.done"></i>
                     </div>
                 </div><!-- /.report-entry -->
                 <!-- 3 -->
@@ -102,11 +102,11 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-default" ng-click="testCode(row.nano_string)">
-                                            <i class="fa fa-paper-plane"></i>
+                                            <i class="fas fa-paper-plane"></i>
                                             <span class="btn-name">{{_t('btn_test')}}</span>
                                         </button>
                                         <button type="button" class="btn btn-default" ng-click="removeRow($index)">
-                                            <i class="fa fa-minus"></i>
+                                            <i class="fas fa-minus"></i>
                                             <span class="btn-name">{{_t('btn_remove')}}</span>
                                         </button>
                                     </td>
@@ -118,7 +118,7 @@
             </div><!-- /.app-row -->
         </div>
         <div class="fieldset submit-entry">
-            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back><i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back><i class="fas fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
             <button class="btn btn-submit"
                     title="{{_t('save_manage_rf433_devices')}}"
                     ng-disabled="inclusion.process || !inclusion.done"
@@ -126,7 +126,7 @@
                         <span class="btn-name">
                             {{_t('save_manage_rf433_devices')}}
                         </span>
-                        <i class="fa fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right"></i>
             </button>
         </div>
     </div>

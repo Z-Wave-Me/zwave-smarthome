@@ -20,14 +20,14 @@
                 <div class="body">
                   <h2>{{d.deviceNameShort}}</h2>
                   <button type="button" class="btn btn-default" ng-click="assignDevice(d.deviceId,'alarms')">
-                    <i class="fa fa-plus text-success" title="{{_t('lb_remove')}}"></i>
+                    <i class="fas fa-plus text-success" title="{{_t('lb_remove')}}"></i>
                   </button>
                 </div>
               </div>
               <!--  Active card -->
               <div class="flexcard-item back">
                 <span class="close">
-                  <i class="fa fa-times" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'alarms')"></i>
+                  <i class="fas fa-times" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'alarms')"></i>
                 </span>
                 <figure>
                   <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />

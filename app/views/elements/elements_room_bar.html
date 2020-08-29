@@ -15,12 +15,12 @@
         <div class="bar-col bar-body">
             <div class="btn-group">
                 <span class="bar-title swipe">
-                    <i class="fa fa-arrow-left"></i>
+                    <i class="fas fa-arrow-left"></i>
                     <span class="room-title">{{room.title}}</span>
-                    <i class="fa fa-arrow-right"></i>
+                    <i class="fas fa-arrow-right"></i>
                 </span>
                 <span class="bar-title clickable" ng-if="_.size(dataHolder.cnt.rooms) > 0"
-                      ng-click="expandNavi('roomDropDown', $event)">{{room.title}}  <i class="fa fa-caret-down"></i>
+                      ng-click="expandNavi('roomDropDown', $event)">{{room.title}}  <i class="fas fa-caret-down"></i>
                 </span>
                 <span class="bar-title" ng-if="_.size(dataHolder.cnt.rooms) < 1">{{room.title}}</span>
                 <div class="app-dropdown app-dropdown-left dropdown-100" ng-if="naviExpanded.roomDropDown">
@@ -54,7 +54,7 @@
             <!-- Settings -->
             <a class="btn btn-default" href="#config-rooms/{{room.id}}" title="{{_t('lb_update')}}"
                ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0 && dataHolder.mode === 'default'">
-                <i class="fa fa-cog"></i>
+                <i class="fas fa-cog"></i>
             </a>
         </div>
     </div>

@@ -438,15 +438,15 @@ myApp.filter('getBatteryIcon', function (cfg) {
 myApp.filter('getElCategoryIcon', function () {
     return function (input) {
         var array = {
-            text: 'fa-file-text-o',
-            camera: 'fa-video-camera',
-            switchRGBW: 'fa-star-half-o',
+            text: 'fa-file-alt',
+            camera: 'fa-video',
+            switchRGBW: 'fa-star-half',
             switchControl: 'fa-toggle-off',
             switchBinary: 'fa-toggle-on',
             sensorMultiline: 'fa-list-ul',
             switchMultilevel: 'fa-cogs',
-            toggleButton: 'fa-dot-circle-o',
-            sensorMultilevel: 'fa-clock-o',
+            toggleButton: 'fa-dot-circle',
+            sensorMultilevel: 'fa-clock',
             sensorBinary: 'fa-fire'
         };
         // Default icon
@@ -469,17 +469,17 @@ myApp.filter('getAppCategoryIcon', function () {
             legacy_products_workaround: 'fa-wrench',
             support_external_ui: 'fa-object-group',
             support_external_dev: 'fa-cubes',
-            automation_basic: 'fa-refresh',
+            automation_basic: 'fa-sync',
             device_enhancements: 'fa-plus-square',
-            developers_stuff: 'fa-file-code-o',
+            developers_stuff: 'fa-file-code',
             complex_applications: 'fa-link',
             //automation: '',
-            security: 'fa-shield',
+            security: 'fa-shield-alt',
             peripherals: 'fa-bolt',
             logging: 'fa-list-ul',
             //scripting: '',
             devices: 'fa-cogs',
-            scheduling: 'fa-calendar-plus-o',
+            scheduling: 'fa-calendar-plus',
             //climate: '',
             environment: 'fa-puzzle-piece',
             //scenes: '',
@@ -505,7 +505,7 @@ myApp.filter('getAwakeIcon', function () {
             case 'awake':
                 return 'fa-certificate color-orange';
             case 'sleep':
-                return 'fa-moon-o text-primary';
+                return 'fa-moon text-primary';
             default:
                 return '';
         }

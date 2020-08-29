@@ -14,13 +14,13 @@
     <h2 class="accordion-toggle ellipsis">
       <!-- Title -->
       <button type="button">
-        <span ng-if="!rule.namespaces[d.devices[0].deviceId].deviceName"><i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{d.devices[0].deviceId}})</span>
+        <span ng-if="!rule.namespaces[d.devices[0].deviceId].deviceName"><i class="fas fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{d.devices[0].deviceId}})</span>
         <span ng-if="rule.namespaces[d.devices[0].deviceId].deviceName">{{rule.namespaces[d.devices[0].deviceId].deviceName}}&nbsp;
         &nbsp;-&nbsp;<em>{{rule.namespaces[d.devices[0].deviceId].locationName}}</em>
         </span>
       </button>
       <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTestCompare(0,d.devices[0].deviceId,testIndex)">
-        <i class="fa fa-times text-danger"></i>
+        <i class="fas fa-times text-danger"></i>
       </span>
     </h2>
   </section>
@@ -30,13 +30,13 @@
     <h2 class="accordion-toggle ellipsis">
       <!-- Title -->
       <button type="button">
-        <span ng-if="!rule.namespaces[d.devices[1].deviceId].deviceName"><i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{d.devices[1].deviceId}})</span>
+        <span ng-if="!rule.namespaces[d.devices[1].deviceId].deviceName"><i class="fas fa-exclamation-circle"></i>&nbsp;{{_t('device_removed')}}&nbsp;({{d.devices[1].deviceId}})</span>
         <span ng-if="rule.namespaces[d.devices[1].deviceId].deviceName">{{rule.namespaces[d.devices[1].deviceId].deviceName}}&nbsp;
         &nbsp;-&nbsp;<em>{{rule.namespaces[d.devices[1].deviceId].locationName}}</em>
         </span>
       </button>
       <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignAdvancedTestCompare(1,d.devices[1].deviceId,testIndex)">
-        <i class="fa fa-times text-danger"></i>
+        <i class="fas fa-times text-danger"></i>
       </span>
     </h2>
   </section>
@@ -56,7 +56,7 @@
     <!-- Content -->
     <div class="accordion" hidden>
       <button type="button" class="btn btn-default btn-tag" title="{{o.deviceName}}" ng-repeat="o in rule.advanced.tests.availableDevices track by $index" ng-if="o.location == r.id && rule.advanced.tests.assignedDevices.indexOf(o.deviceId) === -1" ng-hide="o.deviceId == rule.input.params.simple.triggerEvent.deviceId || filterDeviceListCompare(o.deviceType,testIndex) " ng-click="assignAdvancedTestCompareDevice(o,testIndex)"><img class="navi-img" ng-src="{{rule.namespaces[o.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-      {{o.deviceName|cutText:true:20}}&nbsp;<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      {{o.deviceName|cutText:true:20}}&nbsp;<i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
       </button>
     </div>
   </section>

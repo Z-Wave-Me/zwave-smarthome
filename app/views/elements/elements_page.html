@@ -11,28 +11,28 @@
     <!-- Categories, Filter, tags, -->
     <div id="btn-group-mobile" class="btn-group btn-goup-block btn-goup-5" ng-if="dataHolder.mode === 'default'">
       <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':''">
-        <i class="fa fa-filter"></i>
+        <i class="fas fa-filter"></i>
         <span class="btn-name" ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span>
         <span class="btn-name" ng-if="dataHolder.devices.filter.visibility === false">{{_t('hidden_elements') | cutText:true:15}}</span>
         <span class="btn-name" ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements') | cutText:true:15}}</span>
         <span class="btn-name item-cnt"> ({{dataHolder.cnt.collection}})</span>
       </button>
       <button class="btn btn-default" ng-click="expandNavi('elTags', $event)" ng-class="dataHolder.devices.filter.tag ? 'active':''">
-        <i class="fa fa-tags"></i>
+        <i class="fas fa-tags"></i>
         <span class="btn-name" ng-if="dataHolder.devices.filter.tag">{{dataHolder.devices.filter.tag|cutText:true:15}}</span>
         <span class="btn-name" ng-if="!dataHolder.devices.filter.tag">{{_t('lb_tags')}}</span>
       </button>
       <button class="btn btn-default" ng-click="expandNavi('elOrderBy', $event)">
-        <i class="fa fa-sort-alpha-asc"></i>
+        <i class="fas fa-sort-alpha-down"></i>
         <span class="btn-name">{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span>
       </button>
       <button type="button" title="{{_t('drag_drop')}}" class="btn btn-default" ng-show="elementAccess(cfg.role_access.admin)"
         ng-class="{'active': dataHolder.mode === 'edit'}" ng-click="changeMode(dataHolder.mode === 'default' ? 'edit' : 'default')">
-        <i class="fa fa-arrows"></i>
+        <i class="fas fa-arrows-alt"></i>
         <span class="btn-name">{{_t('drag_drop')}}</span>
       </button>
       <button type="button" title="{{_t('lb_search')}}" class="btn btn-default" ng-class="{'active': naviExpanded.elSearch}" ng-click="expandNavi('elSearch', $event)">
-        <i class="fa fa-search"></i>
+        <i class="fas fa-search"></i>
         <span class="btn-name">{{_t('lb_search')}}</span>
       </button>
     </div>
@@ -44,7 +44,7 @@
         ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown" />
       <!-- Search button -->
       <span class="input-group-addon clickable" ng-click="setFilter({q: autocomplete.term})">
-        <i class="fa fa-search" ng-class="{'text-success':autocomplete.term}"></i>
+        <i class="fas fa-search" ng-class="{'text-success':autocomplete.term}"></i>
       </span>
       <!-- <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">-->
       <div class="app-dropdown autocomplete" ng-if="autocompleteExpanded.searchElements">
@@ -58,7 +58,7 @@
             <!-- Ctrl -->
             <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
               <a ng-href="#element/{{v.id}}">
-                <i class="fa fa-cog"></i>
+                <i class="fas fa-cog"></i>
               </a>
             </span>
           </li>
@@ -70,24 +70,24 @@
     <!-- Categories, Filter, tags, -->
     <div id="btn-group" class="btn-group btn-goup-block btn-goup-4" ng-if="dataHolder.mode === 'default'">
       <button class="btn btn-default" ng-click="expandNavi('elCategories', $event)" ng-class="!_.isEmpty(dataHolder.devices.filter) ? 'active':''">
-        <i class="fa fa-filter"></i>
+        <i class="fas fa-filter"></i>
         <span class="btn-name" ng-if="dataHolder.devices.filter.deviceType">{{_t(dataHolder.devices.filter.deviceType) | cutText:true:15}}</span>
         <span class="btn-name" ng-if="dataHolder.devices.filter.visibility === false">{{_t('hidden_elements') | cutText:true:15}}</span>
         <span class="btn-name" ng-if="_.isEmpty(dataHolder.devices.filter)">{{_t('all_elements') | cutText:true:15}}</span>
         <span class="btn-name item-cnt"> ({{dataHolder.cnt.collection}})</span>
       </button>
       <button class="btn btn-default" ng-click="expandNavi('elTags', $event)" ng-class="dataHolder.devices.filter.tag ? 'active':''">
-        <i class="fa fa-tags"></i>
+        <i class="fas fa-tags"></i>
         <span class="btn-name" ng-if="dataHolder.devices.filter.tag">{{dataHolder.devices.filter.tag|cutText:true:15}}</span>
         <span class="btn-name" ng-if="!dataHolder.devices.filter.tag">{{_t('lb_tags')}}</span>
       </button>
       <button class="btn btn-default" ng-click="expandNavi('elOrderBy', $event)">
-        <i class="fa fa-sort-alpha-asc"></i>
+        <i class="fas fa-sort-alpha-down"></i>
         <span class="btn-name">{{_t(dataHolder.devices.orderBy) | cutText:true:15}}</span>
       </button>
       <button type="button" title="{{_t('drag_drop')}}" class="btn btn-default" ng-show="elementAccess(cfg.role_access.admin)"
         ng-class="{'active': dataHolder.mode === 'edit'}" ng-click="changeMode(dataHolder.mode === 'default' ? 'edit' : 'default')">
-        <i class="fa fa-arrows"></i>
+        <i class="fas fa-arrows-alt"></i>
         <span class="btn-name">{{_t('drag_drop')}}</span>
       </button>
     </div>
@@ -99,7 +99,7 @@
         ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown" />
       <!-- Search button -->
       <span class="input-group-addon clickable" ng-click="setFilter({q: autocomplete.term})">
-        <i class="fa fa-search" ng-class="{'text-success':autocomplete.term}"></i>
+        <i class="fas fa-search" ng-class="{'text-success':autocomplete.term}"></i>
       </span>
       <!-- <div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">-->
       <div class="app-dropdown autocomplete" ng-if="autocompleteExpanded.searchElements">
@@ -113,7 +113,7 @@
             <!-- Ctrl -->
             <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
               <a ng-href="#element/{{v.id}}">
-                <i class="fa fa-cog"></i>
+                <i class="fas fa-cog"></i>
               </a>
             </span>
           </li>
@@ -129,13 +129,13 @@
       <ul>
         <li ng-repeat="(v,k) in dataHolder.devices.deviceType" ng-class="_.findIndex(dataHolder.devices.filter.list, {deviceType: v}) > -1 ? 'active': ''" ng-click="setListFilter({deviceType: v},$event)">
           <span>
-            <i class="fa {{v|getElCategoryIcon}} fa-fw"></i> {{_t(v) | cutText:true:30}} <span class="item-cnt">({{k}})</span>
+            <i class="fas {{v|getElCategoryIcon}} fa-fw"></i> {{_t(v) | cutText:true:30}} <span class="item-cnt">({{k}})</span>
           </span>
         </li>
         <!-- Show hidden -->
         <li ng-click="showHiddenEl((dataHolder.devices.showHidden ? false:true))" ng-class="{'active':dataHolder.devices.showHidden}">
             <span>
-            <i class="fa fa-eye fa-fw"></i> {{_t('show_hidden')}}</span>
+            <i class="fas fa-eye fa-fw"></i> {{_t('show_hidden')}}</span>
           </span>
         </li>
       </ul>
@@ -171,7 +171,7 @@
   <div ng-if="dataHolder.devices.noDevices" ng-include="'app/views/elements/no_devices.html'"></div>
   <!-- No search result -->
   <div class="alert alert-warning" ng-if="dataHolder.devices.noSearch">
-    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + dataHolder.devices.filter.q + "\""})}}
+    <i class="fas fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + dataHolder.devices.filter.q + "\""})}}
   </div>
   <!-- Device list -->
   <div ng-if="dataHolder.devices.show && !dataHolder.devices.noDevices">

@@ -101,17 +101,17 @@
 
           <a href="" class="btn btn-default btn-tag" title="{{d.metrics.title}}" ng-repeat="d in devices" ng-if="input.hide_single_device_events.indexOf(d.id) > -1"
             ng-click="removeDevice(d.id)">{{d.metrics.title|cutText:true:20}}
-            <i class="fa fa-times text-danger"></i>
+            <i class="fas fa-times text-danger"></i>
           </a>
         </div>
       </fieldset>
       <fieldset class="submit-entry">
         <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-          <i class="fa fa-reply"></i>
+          <i class="fas fa-reply"></i>
           <span class="btn-name">{{_t('lb_cancel')}}</span>
         </button>
         <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}" ng-disabled="form_profile.$invalid">
-          <i class="fa fa-check"></i>
+          <i class="fas fa-check"></i>
           <span class="btn-name">{{_t('lb_save')}}</span>
         </button>
       </fieldset>
@@ -126,10 +126,10 @@
         </div>
         <div class="form-group form-inline" ng-if="authTokens.length" ng-repeat="d in authTokens">
           <a href="" class="btn btn-default btn-tag" ng-click="removeAuthToken(input.id, d.sid, _t('lb_delete_confirm'))">{{d.title|cutText:true:20}}
-            {{_t('lb_auth_token_logout')}}<i class="fa fa-times text-danger"></i>
+            {{_t('lb_auth_token_logout')}}<i class="fas fa-times text-danger"></i>
           </a>
           <a href="" class="btn btn-default btn-tag" ng-disabled="!d.expire" ng-click="permanentAuthToken(input.id, d.sid, _t('lb_permanent_token_confirm'))">{{d.title|cutText:true:20}}
-            {{_t('lb_auth_token_permanent')}}<i class="fa fa-hourglass-half"></i>
+            {{_t('lb_auth_token_permanent')}}<i class="fas fa-hourglass-half"></i>
           </a>
           &nbsp;&nbsp;&nbsp;<span ng-if="currentZWayAuthToken.substr(0,6) == d.sid.substr(0,6)" ng-bind=currentFullAuthToken></span><span ng-if="currentZWayAuthToken.substr(0,6) != d.sid.substr(0,6)" ng-bind="d.sid"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.date_str"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.expire_str"></span>&nbsp;&nbsp;&nbsp;<span ng-bind="d.agent"></span>
         </div>
@@ -142,7 +142,7 @@
       <h2 class="accordion-toggle chevron">
         <button type="button" aria-expanded="false" bb-accordion>
           <span>
-            <i class="fa fa-key fa-fw"></i> {{_t('my_local_access')}}</span>
+            <i class="fas fa-key fa-fw"></i> {{_t('my_local_access')}}</span>
         </button>
 
       </h2>
@@ -176,7 +176,7 @@
           </fieldset>
           <fieldset class="submit-entry">
             <button type="submit" class="btn btn-submit" title="{{_t('lb_change_password')}}" ng-disabled="form_password.$invalid">
-              <i class="fa fa-check"></i>
+              <i class="fas fa-check"></i>
               <span class="btn-name">{{_t('lb_change_password')}}</span>
             </button>
           </fieldset>

@@ -72,7 +72,7 @@
 								</select>
 								<button class="btn btn-default" type="button" ng-click="copySchedule(r.copyOption, r.id, _t('copy_schedule', {__dest_room__: r.title, __src_room__: heating.rooms[r.copyOption].title}))"
 								ng-disabled="(r.copyOption == null || r.copyOption == 'null')">
-								<i class="fa fa-copy"></i> {{_t('copy')}}
+								<i class="fas fa-copy"></i> {{_t('copy')}}
 								</button>
 								<bb-help-text trans="_t('copy_schedule_info')"></bb-help-text>
 							</div>
@@ -128,11 +128,11 @@
 			</span>
 			<span>
 				<a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
-					<i class="fa fa-reply"></i>
+					<i class="fas fa-reply"></i>
 					<span class="btn-name">{{_t('lb_cancel')}}</span>
 				</a>
 				<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit" ng-disabled="!heating.roomsAvailable">
-				<i class="fa fa-check"></i>
+				<i class="fas fa-check"></i>
 				<span class="btn-name">{{_t('lb_save')}}</span>
 				</button>
 			</span>

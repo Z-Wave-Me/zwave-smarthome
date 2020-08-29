@@ -286,9 +286,9 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
             // Try to comlete configuration
             if (interviewRepeatCnt > $scope.zwaveInterview.cfg.checkInterviewRepeat && !$scope.zwaveInterview.done) {
                 $interval.cancel($scope.interval.api);
-                var resetInfo = '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('configuration_cancel') + '</div>';
+                var resetInfo = '<div class="alert alert-warning"> <i class="fas fa-exclamation-circle"></i> ' + $scope._t('configuration_cancel') + '</div>';
                 var batteryInfo = $scope.zwaveInterview.hasBattery
-                        ? '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('error_interview_battery') + '</div>'
+                        ? '<div class="alert alert-warning"> <i class="fas fa-exclamation-circle"></i> ' + $scope._t('error_interview_battery') + '</div>'
                         : '';
 
                 // Error switch

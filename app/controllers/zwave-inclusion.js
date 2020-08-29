@@ -300,7 +300,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             if (checkInterviewCnt > $scope.zwaveInclusion.cfg.checkInterviewRepeat && !$scope.zwaveInclusion.automatedConfiguration.done) {
                 $interval.cancel($scope.interval.api);
                 var batteryInfo = $scope.zwaveInclusion.automatedConfiguration.includedDevice.hasBattery
-                    ? '<div class="alert alert-warning"> <i class="fa fa-exclamation-circle"></i> ' + $scope._t('error_interview_battery') + '</div>'
+                    ? '<div class="alert alert-warning"> <i class="fas fa-exclamation-circle"></i> ' + $scope._t('error_interview_battery') + '</div>'
                     : '';
 
                 // Error switch
@@ -722,7 +722,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                         $scope.zwaveInclusion.s2.alert = {
                             message: $scope._t('auth_successful'),
                             status: 'alert-success',
-                            icon: 'fa-smile-o'
+                            icon: 'fa-smile'
                         };
 
                         $interval.cancel($scope.interval.s2);

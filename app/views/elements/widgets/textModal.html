@@ -2,7 +2,7 @@
 <div id="textModal" class="appmodal" ng-controller="ElementTextController" ng-if="modalArr.textModal">
     <div class="appmodal-in">
         <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('textModal', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="handleModal('textModal', $event)"><i class="fas fa-times"></i></span>
             <h3>{{widgetText.find.metrics.title}}</h3>
         </div>
         <div class="appmodal-body text-center">
@@ -11,7 +11,7 @@
                     <div class="widget-promo-text" ng-bind-html="widgetText.find.metrics.text | toTrusted"></div>
         </div>
         <!--<div class="appmodal-footer">
-            <button type="button" class="btn btn-default" ng-click="handleModal('textModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+            <button type="button" class="btn btn-default" ng-click="handleModal('textModal', $event)"><i class="fas fa-times text-danger"></i> {{_t('lb_close')}}</button>
         </div>-->
     </div>
 </div>

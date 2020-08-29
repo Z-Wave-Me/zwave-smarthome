@@ -7,13 +7,13 @@
     <form name="form_enocean_edit" id="form_enocean_edit" class="form form-page" ng-submit="store(input)" novalidate>
         <fieldset>
                 <!-- name  -->
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('lb_name')"></span></h3>
+                <h3><i class="fas fa-chevron-down"></i> <span ng-bind="_t('lb_name')"></span></h3>
                 <div class="form-group">
                     <input name="name" id="name" type="text" class="form-control" value="{{input.name}}" ng-model="input.name" />
                 </div>
                 
                  <!-- Profile -->
-                 <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('select_profile')"></span></h3>
+                 <h3><i class="fas fa-chevron-down"></i> <span ng-bind="_t('select_profile')"></span></h3>
                 <div class="form-group">
                     <select name="enoceanProfiles" class="form-control" ng-model="input.profileId">
                        <option value="{{manProfile}}" 
@@ -25,7 +25,7 @@
                 </div>
         </fieldset>
         <fieldset class="submit-entry">
-            <button type="submit" class="btn btn-submit"><i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
+            <button type="submit" class="btn btn-submit"><i class="fas fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span></button>
                 </fieldset>
     </form>
     
@@ -49,7 +49,7 @@
          <fieldset>
             <!-- Rooms -->
             <div class="form-group form-inline">
-                <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
+                <h3><i class="fas fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
                 <select class="form-control" ng-model="modelRoom">
                     <option ng-repeat="v in rooms" value="{{v.id}}" ng-bind="(v.id === 0 ? _t(v.title) : v.title)"></option>
                 </select>
@@ -60,7 +60,7 @@
     </form>
      <div class="fieldset submit-entry">
             <button class="btn btn-submit" title="{{_t('continue')}}" bb-go-back>
-                <span class="btn-name">{{_t('continue')}}</span> <i class="fa fa-chevron-right"></i>
+                <span class="btn-name">{{_t('continue')}}</span> <i class="fas fa-chevron-right"></i>
             </button>
         </div>
    </div>

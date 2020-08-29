@@ -1,7 +1,7 @@
 <!-- Local apps widget -->
 <!-- No search result -->
 <div class="alert alert-warning" ng-if="dataHolder.modules.noSearch">
-    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + dataHolder.modules.filter.q + "\""})}}
+    <i class="fas fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + dataHolder.modules.filter.q + "\""})}}
 </div>
 
 <!-- Featured apps -->
@@ -38,7 +38,7 @@
 <!-- Advanced Apps -->
 <div class="app-entry-local" ng-if="dataHolder.modules.cnt.appsCatAdvanced[dataHolder.modules.filter.category] > 0" ng-hide="dataHolder.modules.filter.q">
     <h2 class="app-entry-title clickable" ng-click="expandElement('advanced_apps')">{{_t('advanced_apps')}}
-        <i class="fa accordion-arrow" ng-class="expand.advanced_apps  ? 'fa-chevron-up':'fa-chevron-down'"></i>
+        <i class="fas accordion-arrow" ng-class="expand.advanced_apps  ? 'fa-chevron-up':'fa-chevron-down'"></i>
     </h2>
     <div class="clearfix" ng-if="expand.advanced_apps">
         <div class="localapp" ng-repeat="v in dataHolder.modules.collection|orderBy:cfg.orderby.appslocal[dataHolder.modules.orderBy] | filter:q  track by v.id"

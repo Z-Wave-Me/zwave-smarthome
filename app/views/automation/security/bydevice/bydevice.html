@@ -14,7 +14,7 @@
       </button>
         <!-- delete -->
         <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'controls')">
-          <i class="fa fa-times text-danger"></i>
+          <i class="fas fa-times text-danger"></i>
         </button>
       </div>
       <div class="control-collapsable form-inline" ng-class="expand['securityControl_' + d.devices] ? 'expand-true': 'expand-false'">
@@ -57,7 +57,7 @@
     <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.controls" ng-if="d.location == r.id &&  !security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]" ng-click="assignDevice(d.deviceId,'controls')">
       <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       {{d.deviceName|cutText:true:20}}
-      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
   </div>
 </section>

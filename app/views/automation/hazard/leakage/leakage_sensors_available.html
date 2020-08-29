@@ -1,6 +1,6 @@
 <a href="" class="btn btn-default btn-tag" title="{{d.deviceName}}" ng-repeat="d in hazardProtection.availableSensors" ng-if="hazardProtection.leakage.input.params.sensors.indexOf(d.deviceId) === -1 && hazardProtection.leakage.sensors.indexOf(d.probeType) !== -1" ng-click="assignSensor(d.deviceId, 'leakage')">
-	<i class="fa fa-tint text-primary s-hide" ng-if="hazardProtection.leakage.sensors.indexOf(d.probeType) !== -1"></i>
+	<i class="fas fa-tint text-primary s-hide" ng-if="hazardProtection.leakage.sensors.indexOf(d.probeType) !== -1"></i>
 	&nbsp
 	{{d.deviceName|cutText:true:20}}
-	<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+	<i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
 </a>

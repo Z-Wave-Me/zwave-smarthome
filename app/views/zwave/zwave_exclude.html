@@ -12,7 +12,7 @@
                     <div ng-if="zWaveDevice.lastExcludedDevice != zWaveDevice.id">
                             <button class="btn btn-default btn-lg"
                                     ng-click="resetRemoveDevice('controller.RemoveNodeFromNetwork(1)')">
-                                    <i class="fa fa-refresh text-danger"></i> {{_t('reset_remove')}}
+                                    <i class="fas fa-sync text-danger"></i> {{_t('reset_remove')}}
                                 </button>
                         </div>
                     <bb-help-text trans="_t('reset_remove_info')"></bb-help-text>
@@ -21,14 +21,14 @@
                 <div class="col-sm-6">
                     <button class="btn btn-default btn-lg"
                             ng-click="handleModal('removeModal', $event)">
-                        <i class="fa fa-chain-broken  text-danger"></i> {{_t('lb_remove')}}
+                        <i class="fas fa-unlink  text-danger"></i> {{_t('lb_remove')}}
                     </button>
                     <bb-help-text trans="_t('remove_device_info')"></bb-help-text>
                 </div>
             </div>
             <div class="fieldset submit-entry">
                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-                    <i class="fa fa-reply"></i> <span class="btn-name" ng-bind="_t('lb_cancel')"></span>
+                    <i class="fas fa-reply"></i> <span class="btn-name" ng-bind="_t('lb_cancel')"></span>
                 </button>
             </div>
         </div>
@@ -54,7 +54,7 @@
             <div class="appmodal-footer">
                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}"
                         ng-click="runZwaveCmd('controller.RemoveNodeFromNetwork(0)');zWaveExclude.resetRemove.process = false">
-                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                    <i class="fas fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
                 </button>
             </div>
         </div>
@@ -89,13 +89,13 @@
                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}"
                         ng-disabled="zWaveExclude.remove.process"
                         ng-click="handleModal('removeModal', $event)">
-                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                    <i class="fas fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
                 </button>
                 <!-- Remove -->
                 <button class="btn btn-danger"
                         ng-disabled="zWaveExclude.remove.process"
                         ng-click="removeDevice()">
-                    <i class="fa fa-exclamation-triangle "></i> {{_t('remove_permanently')}}
+                    <i class="fas fa-exclamation-triangle "></i> {{_t('remove_permanently')}}
                 </button>
             </div>
         </div>

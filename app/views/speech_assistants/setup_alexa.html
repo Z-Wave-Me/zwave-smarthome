@@ -126,11 +126,11 @@
             </div>
             <div class="fieldset wizard-controls">
                 <button class="btn btn-submit prev" title="{{_t('lb_prev')}}" ng-hide="currentStep == 1" ng-click="prevNext(-1)">
-                <i class="fa fa-chevron-left"></i>
+                <i class="fas fa-chevron-left"></i>
                 {{_t('lb_prev')}}
                 </button>
                 <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default cancel" ng-if="currentStep !== steps.length" bb-go-back="">
-                <i class="fa fa-reply"></i>
+                <i class="fas fa-reply"></i>
                 {{_t('lb_cancel')}}
                 </button>
                 <button type="button" title="{{_t('ok')}}" class="btn btn-default cancel" ng-if="currentStep == steps.length" bb-go-back="">
@@ -138,12 +138,12 @@
                 </button>
                 <button class="btn btn-submit next" title="{{_t('lb_next')}}" ng-hide="currentStep == steps.length"  ng-click="prevNext(1)">
                 {{_t('lb_next')}}
-                <i class="fa fa-chevron-right"></i>
+                <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
         </div>
         <div id="imageModal" class="appmodal image" ng-if="modalArr.imageModal">
-            <span class="appmodal-close" ng-click="handleModal('imageModal', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="handleModal('imageModal', $event)"><i class="fas fa-times"></i></span>
             <div class="appmodal-in">
                 <img class="" ng-src="{{myImage}}" alt="Image" />
             </div>

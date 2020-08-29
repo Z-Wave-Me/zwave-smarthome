@@ -2,7 +2,7 @@
   <div class="appmodal-in">
     <div class="appmodal-header">
       <span class="appmodal-close" ng-click="handleModal('dskModal', $event)">
-        <i class="fa fa-times"></i>
+        <i class="fas fa-times"></i>
       </span>
       <h3>{{cfg.app_name}}</h3>
     </div>
@@ -16,7 +16,7 @@
               <div class="form-group form-inline is-inline">
                 <span ng-hide="showGivenNameForm">{{collection.find.givenName}}</span>
                 <input class="form-control" ng-show="showGivenNameForm" ng-model="collection.find.givenName" type="text" name="given_name" />
-                <i class="fa clickable" ng-click="showGivenNameForm = !showGivenNameForm" ng-class="showGivenNameForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
+                <i class="fas clickable" ng-click="showGivenNameForm = !showGivenNameForm" ng-class="showGivenNameForm ? 'fa-times text-danger' : 'fa-pencil-alt text-primary'"></i>
               </div>
             </dd>
             <dt>{{_t('lb_room')}}</dt>
@@ -25,14 +25,14 @@
                 <div class="btn-group btn-goup-block btn-goup-1">
                   <button type="button" class="btn btn-default" ng-click="expandNavi('elidDropDown', $event)">
                     {{locations[collection.find.location].title|cutText:true:20}}
-                    <i class="fa fa-caret-down"></i>
+                    <i class="fas fa-caret-down"></i>
                   </button>
                   <div class="app-dropdown app-dropdown-left dropdown-100" ng-if="naviExpanded.elidDropDown">
                     <ul>
                       <li class="clickable" ng-class="collection.find.location == v.id ? 'active' : ''" ng-click="collection.find.location = v.id" ng-repeat="v in locations">
                         <a>
                           <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> {{v.title|cutText:true:20}}
-                          <i class="fa fa-check menu-arrow" ng-if="collection.find.location == v.id"></i>
+                          <i class="fas fa-check menu-arrow" ng-if="collection.find.location == v.id"></i>
                         </a>
                       </li>
                     </ul>
@@ -49,7 +49,7 @@
             <dt>{{_t('state')}}</dt>
             <dd>
               <span class="label label-primary" ng-class="collection.find.state == 'included' ? 'label-primary':'label-warning'">
-                  <i ng-class="collection.find.state == 'included' ? 'fa fa-check':'fa fa-clock-o'"></i>
+                  <i ng-class="collection.find.state == 'included' ? 'fas fa-check':'fas fa-clock'"></i>
                   {{collection.find.state}}
               </span>
             </dd>
@@ -58,7 +58,7 @@
             <dt>{{_t('dsk')}}</dt>
             <dd class="clickable" ng-click="showDskForm = !showDskForm">
               {{collection.find.DSK}}
-              <i class="fa" ng-class="showDskForm ? 'fa-times text-danger' : 'fa-pencil text-primary'"></i>
+              <i class="fa" ng-class="showDskForm ? 'fa-times text-danger' : 'fa-pencil-alt text-primary'"></i>
             </dd>
           </dl>
         </div>
@@ -111,7 +111,7 @@
             />
           </span>
           <!-- <button type="submit" class="btn btn-submit" title="{{_t('lb_update')}}" ng-click_="handleModal('dskModal', $event)">
-          <i class="fa fa-check"></i>
+          <i class="fas fa-check"></i>
           <span>{{_t('lb_update')}}</span> -->
           </button>
         </div>
@@ -121,11 +121,11 @@
     <div class="appmodal-footer">
       <!-- Cancel -->
       <button type="button" class="btn btn-default" ng-click="closeModal(collection.find, 'dskModal', $event)">
-        <i class="fa fa-reply"></i>
+        <i class="fas fa-reply"></i>
         <span class="btn-name">{{_t('lb_cancel')}}</span>
       </button>
       <button type="button" class="btn btn-submit" ng-click="updateDsk(collection.find);handleModal('dskModal', $event)">
-        <i class="fa fa-check"></i>
+        <i class="fas fa-check"></i>
         <span class="btn-name">{{_t('lb_save')}}</span>
       </button>
     </div>

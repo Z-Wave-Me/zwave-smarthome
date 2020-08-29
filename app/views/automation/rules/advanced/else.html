@@ -30,7 +30,7 @@
 
     <!-- control -->
     <div class="control" ng-switch="d.deviceType">
-      <span ng-if="d.level=='lvl'">{{d.exact}}</span><span ng-if="d.level!='lvl'">{{d.level}}</span>&nbsp;<i class="fa fa-arrow-right"></i>
+      <span ng-if="d.level=='lvl'">{{d.exact}}</span><span ng-if="d.level!='lvl'">{{d.level}}</span>&nbsp;<i class="fas fa-arrow-right"></i>
       <!-- switchBinary -->
       <span ng-switch-when="switchBinary" ng-init="d.reverseLevel = getReverseLevel(d)">
         <strong>{{d.reverseLevel}}</strong>

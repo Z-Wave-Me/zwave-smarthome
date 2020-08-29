@@ -2,7 +2,7 @@
 <div id="openWeatherModal" class="appmodal" ng-controller="ElementOpenWeatherController" ng-if="modalArr.openWeatherModal">
     <div class="appmodal-in">
         <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('openWeatherModal', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="handleModal('openWeatherModal', $event)"><i class="fas fa-times"></i></span>
             <h3>{{widgetOpenWeather.find.metrics.title}}, {{widgetOpenWeather.find.metrics.country}} <img ng-src="{{widgetOpenWeather.find.metrics.flag}}"></h3>
         </div>
         <div class="appmodal-body">
@@ -47,7 +47,7 @@
             </table>
         </div>
         <!--<div class="appmodal-footer">
-            <button type="button" class="btn btn-default" ng-click="handleModal('openWeatherModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+            <button type="button" class="btn btn-default" ng-click="handleModal('openWeatherModal', $event)"><i class="fas fa-times text-danger"></i> {{_t('lb_close')}}</button>
         </div>-->
     </div>
 </div>

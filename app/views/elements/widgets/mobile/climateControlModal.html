@@ -3,7 +3,7 @@
 ng-if="modalArr.climateControlModal_m">
     <div class="appmodal-in">
         <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('climateControlModal_m', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="handleModal('climateControlModal_m', $event)"><i class="fas fa-times"></i></span>
             <h3>{{dataHolder.devices.find.metrics.title}}</h3>
         </div>
         <div class="appmodal-body">
@@ -15,7 +15,7 @@ ng-if="modalArr.climateControlModal_m">
                     ng-click="runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[0] + '?room=null', widgetClimateControl.find.id)"
                     ng-class="widgetClimateControl.find.metrics.state == cfg.climate_state[0] ? 'btn-primary': 'btn-default'"
                     title="{{_t(cfg.climate_state[0])}}">
-                    <i class="fa fa-asterisk"></i>
+                    <i class="fas fa-asterisk"></i>
                 </button>
                 <button 
                     class="btn widget-btn-energySave" 
@@ -23,7 +23,7 @@ ng-if="modalArr.climateControlModal_m">
                     ng-click="runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[1] + '?room=null', widgetClimateControl.find.id)"
                    ng-class="widgetClimateControl.find.metrics.state ==cfg.climate_state[1] ? 'btn-primary': 'btn-default'"
                     title="{{_t(cfg.climate_state[1])}}">
-                    <i class="fa fa-moon-o"></i>
+                    <i class="fas fa-moon"></i>
                 </button>
                 <button 
                     class="btn widget-btn-comfort" 
@@ -31,7 +31,7 @@ ng-if="modalArr.climateControlModal_m">
                     ng-click="runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[2] + '?room=null', widgetClimateControl.find.id)"
                     ng-class="widgetClimateControl.find.metrics.state == cfg.climate_state[2] ? 'btn-primary': 'btn-default'"
                     title="{{_t(cfg.climate_state[2])}}">
-                    <i class="fa fa-sun-o"></i>
+                    <i class="fas fa-sun"></i>
                 </button>
                 <button 
                     class="btn widget-btn-schedule" 
@@ -39,7 +39,7 @@ ng-if="modalArr.climateControlModal_m">
                     ng-click="runCmd(widgetClimateControl.find.id + '/command/' + cfg.climate_state[3] + '?room=null', widgetClimateControl.find.id)"
                     ng-class="widgetClimateControl.find.metrics.state == cfg.climate_state[3] ? 'btn-primary': 'btn-default'"
                     title="{{_t(cfg.climate_state[3])}}">
-                    <i class="fa fa-calendar"></i>
+                    <i class="fas fa-calendar"></i>
                 </button>            
             </div>
             <div class="multiline-entry" ng-if="widgetClimateControl.rooms">
@@ -53,7 +53,7 @@ ng-if="modalArr.climateControlModal_m">
                                 <span class="text-primary_">{{n.sensorLevel}}  {{n.scaleTitle}}</span>
                             </td>
                             <td class="text-right">
-                                <i class="fa fa-arrow-right"></i>
+                                <i class="fas fa-arrow-right"></i>
                             </td>
                             <td class="text-right">
                                <span class="text-success">{{n.targetTemp}}  °C</span>

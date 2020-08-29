@@ -266,7 +266,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
                     fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
                         __reload_begintag__: '<div>',
                         __reload_endtag__: '</div>',
-                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
+                        __attention_begintag__: '<div class="alert alert-warning"><i class="fas fa-exclamation-circle"></i>',
                         __attention_endtag__: '<div>'
                     });
                     fatalArray.icon = 'fa-spinner fa-spin text-success';
@@ -684,7 +684,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         alertify.dialog('alertError', function factory() {
             return {
                 build: function() {
-                    var errorHeader = '<span class="fa fa-exclamation-triangle fa-lg text-danger" ' +
+                    var errorHeader = '<span class="fas fa-exclamation-triangle fa-lg text-danger" ' +
                         'style="vertical-align:middle;">' +
                         '</span> ' + cfg.app_name + ' - ERROR';
                     this.setHeader(errorHeader);
@@ -698,7 +698,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         alertify.dialog('alertWarning', function factory() {
             return {
                 build: function() {
-                    var errorHeader = '<span class="fa fa-exclamation-circle fa-lg text-warning" ' +
+                    var errorHeader = '<span class="fas fa-exclamation-circle fa-lg text-warning" ' +
                         'style="vertical-align:middle;">' +
                         '</span> ' + cfg.app_name + ' - WARNING';
                     this.setHeader(errorHeader);

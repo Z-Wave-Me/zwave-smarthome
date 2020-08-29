@@ -2,13 +2,13 @@
 <div id="securityModal" class="appmodal" ng-if="modalArr.securityModal">
 	<div class="appmodal-in">
 		<div class="appmodal-header">
-			<span class="appmodal-close" ng-click="handleModal('securityModal', $event)"><i class="fa fa-times"></i></span>
+			<span class="appmodal-close" ng-click="handleModal('securityModal', $event)"><i class="fas fa-times"></i></span>
 			<h3>{{security.securityModal.title}}</h3>
 		</div>
 		<div class="appmodal-body text-center">
 			<div>
 				<button class="btn btn-default" type="button" ng-click="deleteBar(security.securityModal, $event)">
-				<i class="fa fa-remove text-danger"></i>
+				<i class="fas fa-trash text-danger"></i>
 				{{_t('delete')}}
 				</button>
 			</div>

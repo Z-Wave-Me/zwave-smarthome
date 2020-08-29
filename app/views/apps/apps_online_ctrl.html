@@ -9,7 +9,7 @@
             ng-model="dataHolder.onlineModules.autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown" />
         <!-- Search button -->
         <span class="input-group-addon clickable" ng-click="setFilter({q: dataHolder.onlineModules.autocomplete.term})">
-            <i class="fa fa-search" ng-class="{'text-success':dataHolder.onlineModules.autocomplete.term}"></i>
+            <i class="fas fa-search" ng-class="{'text-success':dataHolder.onlineModules.autocomplete.term}"></i>
         </span>
 
         <!-- <div class="app-dropdown autocomplete" ng-if="dataHolder.onlineModules.autocomplete.results.length">-->
@@ -22,13 +22,13 @@
                         />
                         <span class="aoutocomplete-title">{{v.title|cutText:true:30}}</span>&nbsp;
                         <span ng-if="v.hasInstance">
-                            <i class="fa fa-fire text-success"></i> ({{v.hasInstance}})</span>
+                            <i class="fas fa-fire text-success"></i> ({{v.hasInstance}})</span>
                         <!--(<span class="rating-group">
-                              <i class="fa widget-rating" title="{{r}}"
-                                 ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'"
+                              <i class="fas widget-rating" title="{{r}}"
+                                 ng-class="r > v.rating ? 'fa-star' : 'fa-star israted'"
                                  ng-repeat="r in [1,2,3,4,5]"></i>
                               <span class="widget-rating"> | <i
-                                      class="fa fa-download"></i> {{v.installed}}&times;</span>
+                                      class="fas fa-download"></i> {{v.installed}}&times;</span>
                           </span>)-->
 
                     </span>
@@ -36,7 +36,7 @@
                     <!-- Ctrl -->
                     <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
                         <a ng-href="#apps/online/{{v.id}}">
-                            <i class="fa fa-chevron-circle-right"></i>
+                            <i class="fas fa-chevron-circle-right"></i>
                         </a>
                     </span>
 
@@ -48,14 +48,14 @@
     <div class="btn-group btn-goup-block_ btn-goup-2_" ng-hide="routeMatch('/apps/online')">
         <!--Categories and order by -->
         <button class="btn btn-default" ng-click="expandNavi('appsCategories', $event)" ng-class="!_.isEmpty(dataHolder.onlineModules.filter) ? 'active':'' ">
-            <i class="fa fa-filter"></i>
+            <i class="fas fa-filter"></i>
             <span class="btn-name" ng-if="dataHolder.onlineModules.filter.category">{{dataHolder.modules.categories[dataHolder.onlineModules.filter.category].name|cutText:true:30}}</span>
             <span class="btn-name" ng-if="dataHolder.onlineModules.filter.featured">{{_t('featured_apps')}}</span>
             <span class="btn-name" ng-if="_.isEmpty(dataHolder.onlineModules.filter)">{{_t('all_apps')}}</span>
             <span class="btn-name item-cnt"> ({{dataHolder.onlineModules.cnt.collection}})</span>
         </button>
         <button class="btn btn-default s-hide" ng-click="expandNavi('appsOnlineOrderBy', $event)">
-            <i class="fa fa-sort-alpha-asc"></i>
+            <i class="fas fa-sort-alpha-down"></i>
             <span class="btn-name">{{_t(dataHolder.onlineModules.orderBy) | cutText:true:15}}</span>
         </button>
     </div>
@@ -66,21 +66,21 @@
         <ul>
             <li class="page-cat-0" ng-class="_.isEmpty(dataHolder.onlineModules.filter) == true ? 'active': ''">
                 <a href="" ng-click="setFilter()">
-                    <i class="fa fa-check-circle-o"></i> {{_t('all_apps')}}
+                    <i class="fas fa-check-circle"></i> {{_t('all_apps')}}
                     <span class="btn-name item-cnt"> ({{dataHolder.onlineModules.cnt.apps}})</span>
                     <span class="page-navi-icon">
-                        <i class="fa fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right"></i>
                     </span>
                 </a>
             </li>
             <li class="page-cat-{{v.id}}" ng-repeat="v in dataHolder.modules.categories" ng-if="dataHolder.onlineModules.cnt.appsCat[v.id]"
                 ng-class="dataHolder.onlineModules.filter.category == v.id ? 'active': ''">
                 <a href="" ng-click="setFilter({category: v.id})" ng-switch="v.id">
-                    <i class="fa {{v.id|getAppCategoryIcon}}"></i>
+                    <i class="fas {{v.id|getAppCategoryIcon}}"></i>
                     {{v.name|cutText:true:30}}
                     <span class="item-cnt">({{dataHolder.onlineModules.cnt.appsCat[v.id]}})</span>
                     <span class="page-navi-icon">
-                        <i class="fa fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right"></i>
                     </span>
                 </a>
             </li>
@@ -88,7 +88,7 @@
 
         <div class="page-navi-content">
             <a class="btn btn-default btn-tag" ng-click="hideInstalled((dataHolder.onlineModules.hideInstalled ? false:true))" ng-class="dataHolder.onlineModules.hideInstalled ? 'active': ''">
-                <i class="fa fa-eye-slash"></i> {{_t('hide_installed_apps')}}
+                <i class="fas fa-eye-slash"></i> {{_t('hide_installed_apps')}}
             </a>
 
         </div>

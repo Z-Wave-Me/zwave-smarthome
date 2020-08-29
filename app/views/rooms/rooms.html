@@ -3,13 +3,13 @@
   <bb-loader></bb-loader>
   <div class="page-control form-inline">
     <a class="btn btn-default s-hide" href="#config-rooms/0" ng-if="elementAccess(cfg.role_access.config_rooms)">
-      <i class="fa fa-plus text-success"></i>
+      <i class="fas fa-plus text-success"></i>
       <span class="btn-name">{{_t('lb_add_room')}}</span>
     </a>
     <div class="input-group input-search s-hide">
       <input type="text" ng-model="q" class="form-control form-search" value="{{q}}">
       <span class="input-group-addon">
-        <i class="fa fa-search"></i>
+        <i class="fas fa-search"></i>
       </span>
     </div>
   </div>
@@ -26,7 +26,7 @@
             {{v.title_char}}
           </span>
           <a class="settings" href="#config-rooms/{{v.id}}" title="{{_t('lb_update')}}" ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
-            <i class="fa fa-cog"></i>
+            <i class="fas fa-cog"></i>
           </a>
         </div>
         
@@ -64,7 +64,7 @@
   <!-- Button for mobile devices -->
   <div class="text-center l-hide">
     <a class="btn btn-default btn" href="#config-rooms/0">
-      <i class="fa fa-plus text-success"></i>
+      <i class="fas fa-plus text-success"></i>
       <span class="btn-name_">{{_t('lb_add_room')}}</span>
     </a>
   </div>

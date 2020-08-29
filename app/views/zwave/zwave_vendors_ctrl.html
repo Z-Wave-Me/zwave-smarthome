@@ -11,7 +11,7 @@
                ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
         <!-- Search button -->
         <span class="input-group-addon clickable" ng-click="setFilter({q: autocomplete.term})">
-            <i class="fa fa-search" ng-class="{'text-success':autocomplete.term}"></i>
+            <i class="fas fa-search" ng-class="{'text-success':autocomplete.term}"></i>
         </span>
         <!-- List -->
         <!--<div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">-->
@@ -27,7 +27,7 @@
                         </span>
                     <!-- Ctrl -->
                     <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
-                            <a ng-href="#zwave/inclusion/{{v.id}}"><i class="fa fa-plug text-primary"></i></a>
+                            <a ng-href="#zwave/inclusion/{{v.id}}"><i class="fas fa-plug text-primary"></i></a>
                     </span>
                 </li>
             </ul>

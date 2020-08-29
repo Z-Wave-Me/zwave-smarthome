@@ -11,27 +11,27 @@
         <div class="slider-label">
             <h3 title="{{v.title}}">{{v.title|cutText:true:35}}</h3>
             <div class="slider-footer">
-                <i class="fa widget-rating" title="{{r}}"
-                   ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'"
+                <i class="fas widget-rating" title="{{r}}"
+                   ng-class="r > v.rating ? 'fa-star' : 'fa-star israted'"
                    ng-repeat="r in _.range(1, 6)"></i>
-                <span class="widget-rating"> | <i class="fa fa-download"></i> {{v.installed}}&times;</span>
+                <span class="widget-rating"> | <i class="fas fa-download"></i> {{v.installed}}&times;</span>
 
                 <!-- Download -->
                 <button class="btn btn-default" title="{{_t('lb_download')}}"
                         ng-click="installModule(v, 'online_install')"
                         ng-show="!dataHolder.modules.ids[v.modulename]">
-                    <i class="fa fa-download text-success"></i>
+                    <i class="fas fa-download text-success"></i>
                 </button>
                 <!-- Installed -->
                 <button class="btn btn-disabled" disabled title="{{_t('installed')}}"
                         ng-show="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
-                    <i class="fa fa-check"></i>
+                    <i class="fas fa-check"></i>
                 </button>
                 <!-- Updgrade -->
                 <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}"
                         ng-click="updateModule(v, _t('app_update_confirm'))"
                         ng-show="dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' ">
-                    <i class="fa fa-level-up"></i>
+                    <i class="fas fa-level-up-alt"></i>
                 </button>
             </div>
 

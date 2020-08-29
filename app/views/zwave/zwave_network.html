@@ -32,7 +32,7 @@
              <div ng-repeat="m in v.messages|unique:true">
                  <div class="text-danger" ng-if="m.type !== 'config'">{{m.error}}</div>
                  <button class="btn btn-default" ng-if="!v.interviewDone  && !v.isFailed" ng-click="devices.find = v;handleModal('zwaveNetworkModal', $event)">
-                         <i class="fa fa-refresh text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
+                         <i class="fas fa-sync text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
                     </button>
             </div>
          </div>
@@ -45,12 +45,12 @@
     <div id="zwaveNetworkModal" class="appmodal" ng-controller="ZwaveInterviewController" ng-if="modalArr.zwaveNetworkModal && !_.isEmpty(devices.find)">
       <div class="appmodal-in">
           <div class="appmodal-header">
-              <span class="appmodal-close" ng-click="cancelConfiguration($event)"><i class="fa fa-times"></i></span>
+              <span class="appmodal-close" ng-click="cancelConfiguration($event)"><i class="fas fa-times"></i></span>
               <h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3>
           </div>
           <div class="appmodal-body">
                <div class="alert alert-warning" ng-hide="zwaveInterview.progress > 99">
-                    <i class="fa fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong> 
+                    <i class="fas fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong> 
                 </div>
               <div class="progress">
                 <div class="progress-bar" 
@@ -62,7 +62,7 @@
           </div>
           <div class="appmodal-footer">
               <button type="button" class="btn btn-default" ng-click="cancelConfiguration($event)">
-                  <i class="fa fa-times text-danger"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                  <i class="fas fa-times text-danger"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
               </button>
           </div>
       </div>

@@ -5,7 +5,7 @@
     <div class="btn-group btn-goup-block btn-goup-3">
       <!-- Filter -->
       <button class="btn btn-default" ng-click="expandNavi('evFilter', $event)" ng-class="devices.find.title || currLevel ? 'active':'' ">
-        <i class="fa fa-filter"></i>
+        <i class="fas fa-filter"></i>
         <span class="btn-name" ng-if="!devices.find.title && !currLevel">{{_t('lb_show_all')}}</span>
         <span class="btn-name" ng-if="devices.find.title">{{devices.find.title | cutText:true:15}}</span>
         <span class="btn-name" ng-if="currLevel"> {{_t('lb_notify_' + currLevel)}}</span>
@@ -13,14 +13,14 @@
 
       <!-- Days -->
       <button class="btn btn-default" ng-click="expandNavi('evDays', $event)" ng-switch="timeFilter.day">
-        <i class="fa fa-calendar-check-o"></i>
+        <i class="fas fa-calendar-check"></i>
         <span class="btn-name" ng-switch-when="2">{{_t('lb_yesterday')}}</span>
         <span class="btn-name" ng-switch-when="7">7 {{_t('lb_days')}}</span>
         <span class="btn-name" ng-switch-default>{{_t('lb_today')}}</span>
       </button>
       <!-- Refresh -->
       <button class="btn btn-default" title="{{_t('reload')}}" ng-click="reloadData()">
-        <i class="fa fa-repeat"></i>
+        <i class="fas fa-redo"></i>
       </button>
     </div>
   </div>
@@ -60,7 +60,7 @@
   <!-- Blank - no events-->
   <div class="blank is-info" ng-if="events.state === 'blank'">
     <figure>
-      <i class="fa fa-info-circle"></i>
+      <i class="fas fa-info-circle"></i>
     </figure>
     <div>{{_t('no_events')}}</div>
   </div>
@@ -68,7 +68,7 @@
   <!-- Blank - no source events-->
   <div class="blank is-info" ng-if="devices.find.id && collection.length < 1">
     <figure>
-      <i class="fa fa-info-circle"></i>
+      <i class="fas fa-info-circle"></i>
     </figure>
     <div>{{_t('device_no_event')}}</div>
   </div>
@@ -76,7 +76,7 @@
   <!-- Blank - hidden device/system events-->
   <div class="blank is-info" ng-if="user.hide_all_device_events || user.hide_system_events">
     <figure>
-      <i class="fa fa-info-circle"></i>
+      <i class="fas fa-info-circle"></i>
     </figure>
     <div>{{_t('events_hidden')}}</div>
   </div>
@@ -120,12 +120,12 @@
     <div class="btn-group">
       <!-- Previous -->
       <button class="btn btn-default" on-long-press="goToPage(1)" prevent-click="true" ng-click="swipeMe('right')" ng-disabled="currentPage == 1">
-        <i class="fa fa-chevron-left"></i>
+        <i class="fas fa-chevron-left"></i>
 
       </button>
       <!-- Next -->
       <button class="btn btn-default" on-long-press="goToPage(pagesSum)" prevent-click="true" ng-click="swipeMe('left')" ng-disabled="currentPage >= pagesSum">
-        <i class="fa fa-chevron-right"></i>
+        <i class="fas fa-chevron-right"></i>
       </button>
     </div>
   </div>

@@ -15,7 +15,7 @@
       ng-click="assignTargetDevice(d)">
       <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       {{d.deviceName|cutText:true:20}}
-      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
   </div>
 </section>
@@ -52,7 +52,7 @@
     <div class="form-group">
       <a href="" class="btn btn-default btn-tag" title="{{_t('add_new')}}" ng-click="assignTargetNotification(rule.options.notification.default)">
         {{_t('add_new')}}
-        <i class="fa fa-plus text-success"></i>
+        <i class="fas fa-plus text-success"></i>
       </a>
     </div>
   </div>
