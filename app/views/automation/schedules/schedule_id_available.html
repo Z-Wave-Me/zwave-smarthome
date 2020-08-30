@@ -8,7 +8,7 @@
       </button>
     </h2>
   <!-- Content -->
-  <div class="accordion" hidden> <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in schedule.availableDevices" ng-if="d.location == r.id &&  schedule.assignedDevices.indexOf(d.deviceId) === -1 && d.deviceType != 'notification'" ng-click="assignDevice(d)">
+  <div class="accordion" hidden> <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in schedule.availableDevices" ng-if="d.location == r.id &&  schedule.assignedDevices.indexOf(d.deviceId) === -1" ng-click="assignDevice(d)">
     <img class="navi-img" ng-src="{{schedule.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
     {{d.deviceName|cutText:true:20}}
     <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
@@ -30,14 +30,10 @@
     <!--target  -->
     <div class="form-group form-inline">
       <select class="form-control" ng-model="schedule.cfg.notification.default.target">
-        <option value="">--- {{_t('notification_trigger')}} ---</option>
-        <option value="{{user.email}}" ng-if="schedule.assignedNotifications.indexOf(user.email) === -1 && user.email != ''">{{user.email}}</option>
-        <option value="{{e.deviceId}}" ng-if="e.probeType == 'notification_push' && schedule.assignedNotifications.indexOf(e.deviceId) === -1"
-          ng-repeat="e in schedule.availableDevices track by $index">
-        {{e.deviceName}}</option>
+        <option value="{{nc.id}}" ng-repeat="nc in notifications.channels" ng-selected="nc.id == e.channel">
+          {{nc.name}} ({{nc.userName}})
+        </option>
       </select>
-      &nbsp;
-      <label ng-hide="schedule.cfg.notification.default.target">{{_t('or')}}&nbsp;<input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="schedule.cfg.notification.default.target_custom" /></label>
     </div>
     <!-- mesage -->
     <div class="form-group">

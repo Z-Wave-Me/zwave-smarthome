@@ -130,7 +130,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		hazardsTypes: ['fire', 'leakage'],
 		sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke', 'flood', 'alarm_flood', 'alarmSensor_flood'],
 		devices: ['switchBinary', 'switchMultilevel', 'switchRGBW', 'toggleButton'],
-		notifiers: ['notification_push'],
 		interval: [60, 120, 300, 600, 900, 1800, 3600],
 		firedOn: ['on', 'off', 'alarm', 'revert'],
 		sensorTyp: "",
@@ -176,7 +175,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			notification: {
 				default: {
 					target: '',
-					target_custom: '',
 					message: '',
 					firedOn: 'alarm'
 				}
@@ -185,7 +183,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		},
 		fire: {
 			sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke'],
-			message: 'default_fire_message', // default message label
+			message: $scope._t('default_fire_message'), // default message label
 			instance: false,
 			assignedDevices: [],
 			assignedNotifiers: [],
@@ -206,7 +204,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		},
 		leakage: {
 			sensors: ['flood', 'alarm_flood', 'alarmSensor_flood'],
-			message: 'default_leakage_message', // default message label
+			message: $scope._t('default_leakage_message'), // default message label
 			instance: false,
 			assignedDevices: [],
 			assignedNotifiers: [],
@@ -225,6 +223,9 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				}
 			}
 		}
+	};
+	$scope.notifications = {
+		channels: []
 	};
 
 	/**
@@ -277,9 +278,8 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 
 					// Set assigned devices
 					angular.forEach(instance.params.sendNotifications, function(v, k) {
-						if (v.notifier) {
-							$scope.hazardProtection[instance.params.hazardType].assignedNotifiers.push(v.notifier);
-						}
+						var nc = _.findWhere($scope.notifications.channels, { id: v.target });
+						$scope.hazardProtection[instance.params.hazardType].assignedNotifiers.push(v.notifier);
 					});
 				}
 			});
@@ -291,6 +291,16 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		});
 	};
 	$scope.loadInstances();
+
+	/**
+	 * Load notification channels
+	 */
+	$scope.loadNotificationChannels = function(rooms) {
+		dataFactory.getApi('notification_channels', '/all').then(function(response) {
+			$scope.notifications.channels = response.data.data;
+		}, function(error) {});
+	};
+	$scope.loadNotificationChannels();
 
 	/**
 	 * Load rooms
@@ -330,10 +340,6 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 					if ($scope.hazardProtection.devices.indexOf(v.deviceType) > -1) {
 						$scope.hazardProtection.availableDevices[v.id] = obj;
 					}
-					// Set notifiers
-					if ($scope.hazardProtection.notifiers.indexOf(v.probeType) > -1) {
-						$scope.hazardProtection.availableNotifiers[v.id] = obj;
-					}
 				});
 
 				// load preset for instance
@@ -371,7 +377,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				// set default notification
 				var notification = {};
 				angular.copy($scope.hazardProtection.cfg.notification.default, notification)
-				notification.target = $scope.user.email;
+				notification.target = '';
 				notification.message = $scope._t($scope.hazardProtection[type].message);
 				$scope.hazardProtection[type].input.params.sendNotifications.push(notification);
 				// expand notification
@@ -449,12 +455,13 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 	/**
 	 * Assign notification
 	 * @param  {object} notification
-	 * @param  {string} type         fire/leakage
+	 * @param  {string} type fire/leakage
 	 */
 	$scope.assignNotification = function(notification, type) {
 		if ($scope.hazardProtection[type]) {
+			var nc = _.findWhere($scope.notifications.channels, { id: notification.target });
 			var not = {
-				target: notification.target ? notification.target : notification.target_custom,
+				target: notification.target,
 				message: notification.message
 			};
 			$scope.hazardProtection[type].input.params.sendNotifications.push(not);

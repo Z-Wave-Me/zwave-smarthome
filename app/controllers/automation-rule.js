@@ -769,7 +769,7 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @returns {undefined}
 	 */
 	$scope.assignTargetNotification = function(notification) {
-		if ((notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1)||(notification.target_custom && $scope.rule.target.assignedDevices.indexOf(notification.target_custom) === -1)) {
+		if (notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1) {
 			var nc = _.findWhere($scope.notifications.channels, { id: notification.target });
 			var not = {
 				target: notification.target,

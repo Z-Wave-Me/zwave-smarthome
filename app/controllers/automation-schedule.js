@@ -250,7 +250,7 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 			notification: {
 				default: {
 					target: '',
-					target_custom: '',
+					targetName: '',
 					message: ''
 				}
 			}
@@ -268,6 +268,9 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 				notifications: []
 			}
 		}
+	};
+	$scope.notifications = {
+		channels: []
 	};
 	// Original data
 	$scope.orig = {
@@ -314,8 +317,14 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 				}
 			});
 
+			if (!instance.params.notifications) {
+				instance.params.notifications = [];
+			}
+			
 			angular.forEach(instance.params.notifications, function(d) {
 				if (assignedNotifications.indexOf(d.target) === -1) {
+					var nc = _.findWhere($scope.notifications.channels, { id: d.target });
+					d.targetName = nc ? nc.name : d.target;
 					$scope.schedule.assignedNotifications.push(d.target);
 				}
 			});
@@ -365,10 +374,6 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 					return obj;
 				})
 				.filter(function(v) {
-					// Replacing deviceType with "notification"
-					if (v.probeType == 'notification_push') {
-						v.deviceType = 'notification';
-					}
 					return whiteList.indexOf(v.deviceType) > -1;
 				})
 				.indexBy('deviceId')
@@ -385,6 +390,21 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 		}, function(error) {});
 	};
 
+	/**
+	 * Load notification channels
+	 */
+	$scope.loadNotificationChannels = function(rooms) {
+		dataFactory.getApi('notification_channels', '/all').then(function(response) {
+			$scope.notifications.channels = response.data.data;
+			$scope.schedule.input.params.notifications.forEach(function(n) {
+				var nc = _.findWhere($scope.notifications.channels, { id: n.target });
+				if (nc) {
+					n.targetName = nc.name;
+				}
+			});
+		}, function(error) {});
+	};
+	$scope.loadNotificationChannels();
 
 	/**
 	 * Toggle Weekday
@@ -450,9 +470,11 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 	 * @returns {undefined}
 	 */
 	$scope.assignNotification = function(notification) {
-		if ((notification.target && $scope.schedule.assignedNotifications.indexOf(notification.target) === -1) || (notification.target_custom && $scope.schedule.assignedNotifications.indexOf(notification.target_custom) === -1)) {
+		if (notification.target && $scope.schedule.assignedNotifications.indexOf(notification.target) === -1) {
+			var nc = _.findWhere($scope.notifications.channels, { id: notification.target });
 			var not = {
-				target: notification.target ? notification.target : notification.target_custom,
+				target: notification.target,
+				targetName: nc ? nc.name : notification.target,
 				message: notification.message
 			};
 			$scope.schedule.input.params.notifications.push(not);
@@ -460,10 +482,8 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 
 			// reset options
 			$scope.schedule.cfg.notification.default.target = '';
-			$scope.schedule.cfg.notification.default.target_custom = '';
 			$scope.schedule.cfg.notification.default.message = '';
 		}
-
 	};
 
 	/**
@@ -472,13 +492,11 @@ myAppController.controller('AutomationScheduleIdController', function($scope, $r
 	 * @param {string} deviceId
 	 */
 	$scope.unassignNotification = function(targetIndex, target) {
-
 		var notificationIndex = $scope.schedule.assignedNotifications.indexOf(target);
 		if (targetIndex > -1) {
 			$scope.schedule.input.params.notifications.splice(targetIndex, 1);
 			$scope.schedule.assignedNotifications.splice(notificationIndex, 1);
 		}
-
 	};
 
 	/**
