@@ -402,6 +402,8 @@
     "lb_activate_google_home": "Activate for Google Assistant",
     "lb_active": "Ativo",
     "lb_active_apps": "Active Apps",
+    "lb_advanced": "Advanced",
+    "lb_simple": "Simple",
     "lb_add_app": "Adicionar aplicação",
     "lb_add_call_name": "Add call name",
     "lb_add_dashboard": "Adicionar ao painel inicial",

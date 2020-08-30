@@ -402,6 +402,8 @@
     "lb_activate_alexa": "Aktivieren für Amazon Alexa",
     "lb_activate_google_home": "Aktivieren für Google Assistant",
     "lb_active": "Aktiv",
+    "lb_advanced": "Advanced",
+    "lb_simple": "Simple",
     "lb_add_app": "Neue App",
     "lb_add_call_name": "Rufname hinzufügen",
     "lb_add_dashboard": "Zum Dashboard hinzufügen",

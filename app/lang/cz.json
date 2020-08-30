@@ -402,6 +402,8 @@
     "lb_activate_alexa": "Activate for Amazon Alexa",
     "lb_activate_google_home": "Activate for Google Assistant",
     "lb_active": "Aktivní",
+    "lb_advanced": "Advanced",
+    "lb_simple": "Simple",
     "lb_add_app": "Přidat Aplikaci",
     "lb_add_call_name": "Add call name",
     "lb_add_dashboard": "Přidat na plochu",
