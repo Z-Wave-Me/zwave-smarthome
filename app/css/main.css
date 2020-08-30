@@ -12652,6 +12652,9 @@ http://codepen.io/MattIn4D/pen/LiKFC
     display: table-cell;
     padding: 10px;
     vertical-align: middle; }
+     .appmodal-body .entry-in .entry-content .inner .mobile-app-icon img {
+            height: 150px;
+	    margin-bottom:20px; }
     .appmodal-body .entry-in .entry-content .text {
       max-width: 400px; }
       .appmodal-body .entry-in .entry-content .text h1 {
