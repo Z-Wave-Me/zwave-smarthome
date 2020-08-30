@@ -34,14 +34,10 @@
       <!--target  -->
       <div class="form-group form-inline">
         <select class="form-control" ng-model="rule.options.notification.default.target">
-          <option value="">--- {{_t('notification_trigger')}} ---</option>
-          <option value="{{user.email}}" ng-if="user.email && rule.advanced.target.assignedDevices.indexOf(user.email) === -1">{{user.email}}</option>
-          <option value="{{e.deviceId}}" ng-if="e.probeType == 'notification_push' && rule.advanced.target.assignedDevices.indexOf(e.deviceId) === -1"
-            ng-repeat="e in rule.namespaces track by $index">
-            {{e.deviceName}}</option>
+          <option value="{{nc.id}}" ng-repeat="nc in notifications.channels" ng-selected="nc.id == e.channel">
+            {{nc.name}} ({{nc.userName}})
+          </option>
         </select>
-        &nbsp;
-        <label ng-hide="rule.options.notification.default.target">{{_t('or')}}&nbsp;<input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="rule.options.notification.default.target_custom" /></label>
       </div>
       <!-- mesage -->
       <div class="form-group">
