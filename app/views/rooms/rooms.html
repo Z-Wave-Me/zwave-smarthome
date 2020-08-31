@@ -22,7 +22,7 @@
           <img ng-src="{{v.img_src}}" alt="img" />
         </a>
         <div class="header">
-          <span class="char" ng-show="elementAccess(cfg.role_access.config_rooms)">
+          <span class="char">
             {{v.title_char}}
           </span>
           <a class="settings" href="#config-rooms/{{v.id}}" title="{{_t('lb_update')}}" ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
