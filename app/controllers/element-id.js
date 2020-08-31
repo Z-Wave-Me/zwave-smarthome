@@ -375,7 +375,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 
 		angular.extend($scope.elementId.input, {
 			iconPath: dataService.assignElementIcon($scope.elementId.input),
-			hide_events: $scope.user.hide_single_device_events.indexOf($scope.elementId.input.id) !== -1 ? true : false,
+			hide_events: ($scope.user.hide_single_device_events && $scope.user.hide_single_device_events.indexOf($scope.elementId.input.id) !== -1) ? true : false,
 			tags: orderBy($scope.elementId.input.tags, 'toString()')
 		});
 
