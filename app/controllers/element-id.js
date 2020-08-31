@@ -222,7 +222,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 					break;
 				case "switchBinary":
 				case "sensorBinary":
-				case "doorLock":
+				case "doorlock":
 					dd["dev_" + d.deviceType]["dev_matchValue"] = d.level;
 					break;
 				case "switchControl":
