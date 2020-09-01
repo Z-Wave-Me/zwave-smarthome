@@ -11545,7 +11545,7 @@ input[type=checkbox] {
   font-size: 22px;
   /* MIN WIDTH */
   /* MAX WIDTH */
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
   position: relative;
   border: none;
   background-color: transparent; }
@@ -11600,7 +11600,7 @@ input[type=radio] {
   */
   margin: 0px 22px 24px 0;
   font-size: 22px;
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
   position: relative;
   border: none;
   background-color: transparent;
@@ -13330,7 +13330,7 @@ img.widget-promo-image {
 
 .widget-control.text a:after {
   content: "\f1ea";
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
   font-style: normal;
   font-weight: normal;
   /*--adjust as necessary--*/
