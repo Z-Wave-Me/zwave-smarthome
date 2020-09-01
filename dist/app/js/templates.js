@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave Europe GmbH, Created: 01-09-2020 20:03:53 */
+/* Copyright:  Z-Wave Europe GmbH, Created: 01-09-2020 20:12:06 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -1343,7 +1343,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/mobile/mobile_manage.html',
-    "<div ng-controller=MobileManageController><bb-loader></bb-loader><h2>{{_t('MobileAppSupport')}}</h2><form class=\"form form-page\" ng-submit=storeMobile(mobile.input)><div class=fieldset><section><h3>{{_t('Device List')}}</h3><div class=fieldset><section class=accordion-wrap ng-repeat=\"v in mobile.input.apps track by $index\"><h2 class=\"accordion-toggle ellipsis\"><span class=no-toggle><span>{{v.title}},&nbsp;{{v.userName}}&nbsp; <em>{{_t('os')}}:&nbsp;{{_t(v.os)}}, </em><em>{{_t('added_at')}}:&nbsp;{{v.created_formated}}, </em><em>{{_t('last_seen')}}:&nbsp;{{v.last_seen_formated}} </em></span></span><span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=\"removeApp(v.token, v.app_profile)\"><i class=\"fas fa-times text-danger\"></i></span></h2><div class=accordion hidden></div></section></div><div class=fieldset><button type=button class=\"btn btn-default\" ng-click=\"handleModal('qrCodeModal', $event)\" title=\"{{_t('add_new')}}\"><i class=\"fas fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></button></div></section></div></form></div><div ng-include=\"'app/views/mobile/mobile_add_modal.html'\"></div>"
+    "<div ng-controller=MobileManageController><bb-loader></bb-loader><h2>{{_t('mobile_app_support')}}</h2><form class=\"form form-page\" ng-submit=storeMobile(mobile.input)><div class=fieldset><section><h3>{{_t('mobile_device_list')}}</h3><div class=fieldset><section class=accordion-wrap ng-repeat=\"v in mobile.input.apps track by $index\"><h2 class=\"accordion-toggle ellipsis\"><span class=no-toggle><span>{{v.title}},&nbsp;{{v.userName}}&nbsp; <em>{{_t('os')}}:&nbsp;{{_t(v.os)}}, </em><em>{{_t('added_at')}}:&nbsp;{{v.created_formated}}, </em><em>{{_t('last_seen')}}:&nbsp;{{v.last_seen_formated}} </em></span></span><span class=\"btn btn-text\" title=\"{{_t('lb_remove')}}\" ng-click=\"removeApp(v.token, v.app_profile)\"><i class=\"fas fa-times text-danger\"></i></span></h2><div class=accordion hidden></div></section></div><div class=fieldset><button type=button class=\"btn btn-default\" ng-click=\"handleModal('qrCodeModal', $event)\" title=\"{{_t('add_new')}}\"><i class=\"fas fa-plus text-success\"></i> <span class=btn-name ng-bind=\"_t('add_new')\"></span></button></div></section></div></form></div><div ng-include=\"'app/views/mobile/mobile_add_modal.html'\"></div>"
   );
 
 
