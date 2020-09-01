@@ -208,7 +208,7 @@
     "devices_text_speech_assistant": "Speech Assistants Alexa or Google Home",
     "devices_text_wifi": "Wi-Fi",
     "devices_text_wifi_plug": "Wi-Fi Plugs",
-    "devices_text_zigbee": "Zigbee",
+    "devices_text_zigbee": "ZigBee",
     "devices_text_zwave": "Z-Wave",
     "devices_to_room": "Sposta tutti gli elementi in stanza",
     "devices_triggered_alarm": "Devices controlled by alarm",
@@ -966,7 +966,9 @@
     "works_with_internet": "Funziona soltanto con una connessione internet",
     "wrong_password": "Wrong password",
     "yes": "Si",
-    "zigbee_network": "Zigbee network",
+    "zigbee_network": "ZigBee network",
     "zwave_device_failed": "Il dispositivo Z-Wave non è riuscito",
+    "mobile_app_support": "Mobile devices support",
+    "mobile_device_list": "List of mobile devices",
     "z_way_restart": "Il sistema verrà riavviato automaticamente. Reindirizza al login in __val__ __level__."
 }

@@ -2,11 +2,11 @@
 <div ng-controller="MobileManageController">
 	<bb-loader></bb-loader>
 	<!--<pre>{{mobile.input | json}}</pre>-->
-	<h2>{{_t('MobileAppSupport')}}</h2>
+	<h2>{{_t('mobile_app_support')}}</h2>
 	<form class="form form-page" ng-submit="storeMobile(mobile.input)">
 		<div class="fieldset">
 			<section>
-				<h3>{{_t('Device List')}}</h3>
+				<h3>{{_t('mobile_device_list')}}</h3>
 				<div class="fieldset">
 					<section class="accordion-wrap" ng-repeat="v in mobile.input.apps track by $index">
 						<!-- Title -->

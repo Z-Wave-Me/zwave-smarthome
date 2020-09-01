@@ -968,5 +968,7 @@
     "yes": "Да",
     "zigbee_network": "ZigBee сеть",
     "zwave_device_failed": "Устройство Z-Wave вышло из строя",
+    "mobile_app_support": "Поддержка мобильных устройств",
+    "mobile_device_list": "Список мобильных устройств",
     "z_way_restart": "Система будет автоматически перезапущена. Перенаправить для входа в систему __val__ __level__."
 }
