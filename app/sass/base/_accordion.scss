@@ -76,13 +76,13 @@ $accordion-focus-color: $focus-color;
     > button{
       &[aria-expanded="false"]{
         &::after{
-        font-family: fontawesome;
+        font-family: "Font Awesome 5 Free";
         content: "\f078";
         }
       }
       &[aria-expanded="true"]{
         &::after{
-          font-family: fontawesome;
+          font-family: "Font Awesome 5 Free";
           content: "\f077";
         }
       }
@@ -97,13 +97,13 @@ $accordion-focus-color: $focus-color;
     > button{
       &[aria-expanded="false"]{
         &::after{
-        font-family: fontawesome;
+        font-family: "Font Awesome 5 Free";
         content: "\f142";
         }
       }
       &[aria-expanded="true"]{
         &::after{
-          font-family: fontawesome;
+          font-family: "Font Awesome 5 Free";
           content: "\f141";
         }
       }
@@ -117,13 +117,13 @@ $accordion-focus-color: $focus-color;
       border-bottom: 0;
       &[aria-expanded="false"]{
         &::after{
-        font-family: fontawesome;
+        font-family: "Font Awesome 5 Free";
         content: "\f0d7";
         }
       }
       &[aria-expanded="true"]{
         &::after{
-          font-family: fontawesome;
+          font-family: "Font Awesome 5 Free";
           content: "\f0d8";
         }
       }

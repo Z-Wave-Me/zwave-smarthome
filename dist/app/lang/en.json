@@ -546,6 +546,7 @@
     "send_channel_help": "Send notification to the user via all or one specific channel",
     "lb_send_condition": "Notify on",
     "lb_settings": "Settings",
+    "settings": "Settings",
     "lb_show_all": "Show all",
     "lb_show_beta": "Show beta functions",
     "lb_skip": "Skip",

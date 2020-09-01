@@ -8027,6 +8027,21 @@ readers do not read off random characters that represent icons */
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("../fonts/fa-regular-400.eot");
+  src: url("../fonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("../fonts/fa-regular-400.woff2") format("woff2"), url("../fonts/fa-regular-400.woff") format("woff"), url("../fonts/fa-regular-400.ttf") format("truetype"), url("../fonts/fa-regular-400.svg#fontawesome") format("svg"); }
+.far {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400; }
+
+/*!
+ * Font Awesome Free 5.14.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+@font-face {
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
   font-weight: 400;
@@ -11177,7 +11192,7 @@ img {
           cursor: pointer; }
           .table-responsive .td-accordion-toggle > *:first-child::after {
             font-size: 130%;
-            font-family: fontawesome;
+            font-family: "Font Awesome 5 Free";
             content: "\f142"; }
           .table-responsive .td-accordion-toggle > *:first-child:focus {
             border: 0;
@@ -11287,11 +11302,11 @@ img {
   border: 0;
   background: transparent; }
   .btn.btn-ctrl::after {
-    font-family: fontawesome;
+    font-family: "Font Awesome 5 Free";
     content: "\f142"; }
   .btn.btn-ctrl[aria-expanded="true"]::after {
     color: #5bc0de;
-    font-family: fontawesome;
+    font-family: "Font Awesome 5 Free";
     content: "\f141"; }
 
 .btn-wrap {
@@ -12220,18 +12235,18 @@ fieldset section, .fieldset section {
       .accordion-toggle > button[disabled]::after {
         content: ""; }
   .accordion-toggle.chevron > button[aria-expanded="false"]::after {
-    font-family: fontawesome;
+    font-family: "Font Awesome 5 Free";
     content: "\f078"; }
   .accordion-toggle.chevron > button[aria-expanded="true"]::after {
-    font-family: fontawesome;
+    font-family: "Font Awesome 5 Free";
     content: "\f077"; }
   .accordion-toggle.chevron > button[disabled]::after {
     content: ""; }
   .accordion-toggle.ellipsis > button[aria-expanded="false"]::after {
-    font-family: fontawesome;
+    font-family: "Font Awesome 5 Free";
     content: "\f142"; }
   .accordion-toggle.ellipsis > button[aria-expanded="true"]::after {
-    font-family: fontawesome;
+    font-family: "Font Awesome 5 Free";
     content: "\f141"; }
   .accordion-toggle.inline > button {
     display: block;
@@ -12239,10 +12254,10 @@ fieldset section, .fieldset section {
     font-size: 100%;
     border-bottom: 0; }
     .accordion-toggle.inline > button[aria-expanded="false"]::after {
-      font-family: fontawesome;
+      font-family: "Font Awesome 5 Free";
       content: "\f0d7"; }
     .accordion-toggle.inline > button[aria-expanded="true"]::after {
-      font-family: fontawesome;
+      font-family: "Font Awesome 5 Free";
       content: "\f0d8"; }
   .accordion-toggle.inline + .accordion {
     border-bottom: 0; }
@@ -12878,7 +12893,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
     color: #333333;
     font-weight: bold; }
     #elCategories ul li.active::after {
-      font-family: fontawesome;
+      font-family: "Font Awesome 5 Free";
       content: "\f00c";
       color: #80AD80; }
 

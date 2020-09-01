@@ -37,19 +37,19 @@
             <!-- rooms -->
             <span class="divider-vertical"></span>
             <a href="#rooms" title="{{_t('nav_rooms')}}" ng-class="isActive('rooms')" ng-if="elementAccess(cfg.role_access.rooms)">
-              <i class="fas fa-building"></i>
+              <i class="fas fa-couch"></i>
               <span class="main-nav-text">{{_t('nav_rooms')}}</span>
             </a>
             <!-- elements -->
             <span class="divider-vertical"></span>
             <a href="#elements" title="{{_t('nav_elements')}}" ng-class="isActive('elements')">
-              <i class="fas fa-coins"></i>
+              <i class="fas fa-th"></i>
               <span class="main-nav-text">{{_t('nav_elements')}}</span>
             </a>
             <!-- events -->
             <span class="divider-vertical"></span>
             <a href="#events" title="{{_t('nav_events')}}" ng-class="isActive('events')">
-              <i class="fas fa-clipboard-list"></i>
+              <i class="far fa-clipboard-list"></i>
               <span class="main-nav-text">{{_t('nav_events')}}</span>
             </a>
             <!--<span class="divider-vertical"></span>
@@ -63,7 +63,7 @@
             <!-- rss -->
             <span class="divider-vertical" ng-show="rss.unread > 0"></span>
             <a href="#rss" title="{{_t('news')}}" ng-class="isActive('rss')" ng-show="rss.unread > 0">
-              <i class="fas fa-comment"></i>
+              <i class="fas fa-newspaper"></i>
               <span class="main-nav-text">{{_t('news')}} </span>
               <small class="s-hide">{{rss.unread}}</small>
             </a>
@@ -101,7 +101,7 @@
                 <!-- Devices -->
                 <li class="subnavi-devices" ng-class="isActive('devices')" ng-if="elementAccess(cfg.role_access.devices)">
                   <a href="#devices">
-                    <i class="fas fa-cogs fa-fw"></i>
+                    <i class="fas fa-lightbulb fa-fw"></i>
                     <span>{{_t('nav_devices')}} </span>
                     <i class="fas fa-chevron-right subnavi-arrow"></i>
                   </a>
@@ -109,7 +109,7 @@
                 <!-- Customize -->
                 <li class="subnavi-report" ng-class="isActive('customize')" ng-if="elementAccess(cfg.role_access.customize)">
                   <a href="#customize/skinslocal">
-                    <i class="fas fa-puzzle-piece fa-fw"></i>
+                    <i class="fas fa-pencil-alt fa-fw"></i>
                     <span>{{_t('customize')}}</span>
                     <i class="fas fa-chevron-right subnavi-arrow"></i>
                   </a>
@@ -122,11 +122,11 @@
                     <i class="fas fa-chevron-right subnavi-arrow"></i>
                   </a>
                 </li>
-                <!-- Management -->
+                <!-- Settings -->
                 <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
                   <a href="#admin">
                     <i class="fas fa-wrench fa-fw"></i>
-                    <span>{{_t('management')}}</span>
+                    <span>{{_t('settings')}}</span>
                     <i class="fas fa-chevron-right subnavi-arrow"></i>
                   </a>
                 </li>

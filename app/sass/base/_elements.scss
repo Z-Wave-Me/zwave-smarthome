@@ -13,7 +13,7 @@
         color: $app-a-color;
         font-weight: bold;
         &::after {
-          font-family: fontawesome;
+          font-family: "Font Awesome 5 Free";
           content: "\f00c";
           color: $app-brand-success;
         }
