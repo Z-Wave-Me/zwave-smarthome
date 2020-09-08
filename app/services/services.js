@@ -1002,6 +1002,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			case 'switch':
 				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
 				break;
+				// siren
+			case 'siren':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
 				// motion
 			case 'motion':
 				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
