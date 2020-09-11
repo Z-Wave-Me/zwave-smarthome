@@ -100,6 +100,9 @@ input[type=checkbox] {
   &:checked {
     &:after {
       content: "\f00c";
+      font-family: "Font Awesome 5 Free";
+      font-style: normal;
+      font-weight: bold;
       color: #4e794e;
       -webkit-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
       -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -170,6 +173,9 @@ input[type=radio] {
   &:checked {
     &:after {
       content: "\f111";
+      font-family: "Font Awesome 5 Free";
+      font-style: normal;
+      font-weight: bold;
       color: $app-heading-color;
       -webkit-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
       -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);

@@ -96,7 +96,9 @@
         &::after{
          font-size: 130%;
          font-family: "Font Awesome 5 Free";
-            content: "\f142";
+         font-style: normal;
+         font-weight: bold;
+         content: "\f142";
         }
          &:focus{
            border: 0;

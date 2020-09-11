@@ -58,9 +58,7 @@ $accordion-focus-color: $focus-color;
       }
     }
     &:focus{
-
       &::after{
-        font-weight: bold;
         color: $accordion-focus-color;
       }
 
@@ -77,12 +75,16 @@ $accordion-focus-color: $focus-color;
       &[aria-expanded="false"]{
         &::after{
         font-family: "Font Awesome 5 Free";
+        font-style: normal;
+        font-weight: bold;
         content: "\f078";
         }
       }
       &[aria-expanded="true"]{
         &::after{
           font-family: "Font Awesome 5 Free";
+          font-style: normal;
+          font-weight: bold;
           content: "\f077";
         }
       }
@@ -98,12 +100,16 @@ $accordion-focus-color: $focus-color;
       &[aria-expanded="false"]{
         &::after{
         font-family: "Font Awesome 5 Free";
+        font-style: normal;
+        font-weight: bold;
         content: "\f142";
         }
       }
       &[aria-expanded="true"]{
         &::after{
           font-family: "Font Awesome 5 Free";
+          font-style: normal;
+          font-weight: bold;
           content: "\f141";
         }
       }
@@ -118,12 +124,16 @@ $accordion-focus-color: $focus-color;
       &[aria-expanded="false"]{
         &::after{
         font-family: "Font Awesome 5 Free";
+        font-style: normal;
+        font-weight: bold;
         content: "\f0d7";
         }
       }
       &[aria-expanded="true"]{
         &::after{
           font-family: "Font Awesome 5 Free";
+          font-style: normal;
+          font-weight: bold;
           content: "\f0d8";
         }
       }

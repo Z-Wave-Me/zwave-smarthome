@@ -136,12 +136,16 @@
     background: transparent;
     &::after {
       font-family: "Font Awesome 5 Free";
+      font-style: normal;
+      font-weight: bold;
       content: "\f142";
     }
     &[aria-expanded="true"] {
       &::after {
         color: $focus-color;
         font-family: "Font Awesome 5 Free";
+        font-style: normal;
+        font-weight: bold;
         content: "\f141";
       }
     }
