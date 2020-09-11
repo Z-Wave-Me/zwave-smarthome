@@ -70,14 +70,14 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		},
 		cfg: {
 			energySave: {
-				min: 14,
-				max: 27,
+				min: 5,
+				max: 35,
 				step: 0.5,
 				temp: {}
 			},
 			comfort: {
-				min: 14,
-				max: 27,
+				min: 5,
+				max: 35,
 				step: 0.5,
 				temp: {}
 			},
@@ -88,7 +88,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			},
 			default: { // room template
 				comfortTemp: 21, // default value
-				energySaveTemp: "",
+				energySaveTemp: 18,
 				fallbackTemp: "",
 				sensorId: null,
 				schedule: {}
