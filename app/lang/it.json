@@ -324,7 +324,7 @@
     "google_home_info": "Switch it on if you want to use the device with Google Home.",
     "granted_keys": "Key granted",
     "hardware_konfiguration": "Configurazione Hardware",
-    "hazard_notification": "Smoke\/Leackage Alarm",
+    "hazard_notification": "Smoke\/Leakage Alarm",
     "heading_advanced_rule_then_further_settings": "Trigger the rule check on activation of the following scenes:",
     "heating": "Heating control",
     "help_advanced_rule": "This option links all conditions in the list to a logical OR or AND. With OR, the action is executed if at least one condition applies. With AND, the action is only executed if all conditions apply.",
