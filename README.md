@@ -9,6 +9,15 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.11.1
+#### Fixes:
+- Automation/Security: added switchBinary in sensor list
+- Automation/Smoke/Leakage: added general_purpose type in sensor list
+- Automation/Heating: fixed schedule and default values
+- Automation/Rules: fixed constrains for sensorMultilevel comparison
+- Fixed missing icons
+- Updated default skins
+
 ## v1.11.0
 #### New features:
 - New notification style.
