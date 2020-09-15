@@ -70,14 +70,14 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		},
 		cfg: {
 			energySave: {
-				min: 14,
-				max: 27,
+				min: 5,
+				max: 35,
 				step: 0.5,
 				temp: {}
 			},
 			comfort: {
-				min: 14,
-				max: 27,
+				min: 5,
+				max: 35,
 				step: 0.5,
 				temp: {}
 			},
@@ -88,7 +88,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			},
 			default: { // room template
 				comfortTemp: 21, // default value
-				energySaveTemp: "",
+				energySaveTemp: 18,
 				fallbackTemp: "",
 				sensorId: null,
 				schedule: {}
@@ -732,7 +732,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.transformFromMobileToInst = function() {
 		// transform data for Instance
-		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way') {
+		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 			_.each($scope.heating.mobileSchedule, function(data, roomId) {
 				$scope.heating.input.params.roomSettings[roomId].schedule = {};
 				_.each(data, function(d) {
@@ -759,7 +759,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.transformFromInstToMobile = function() {
 		// transform data for mobile view
-		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way') {
+		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 			_.each($scope.heating.input.params.roomSettings, function(data, roomId) {
 				var schedule = data.schedule;
 

@@ -2,7 +2,7 @@
 <div id="thermostatModal" class="appmodal" ng-controller="ElementThermostatController" ng-if="modalArr.thermostatModal">
     <div class="appmodal-in">
         <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('thermostatModal', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="handleModal('thermostatModal', $event)"><i class="fas fa-times"></i></span>
             <h3>{{widgetThermostat.find.metrics.title}}</h3>
         </div>
         <div class="appmodal-body text-center">
@@ -27,29 +27,29 @@
                     <p>
                     <button class="btn btn-primary"
                                     ng-click="setExactCmd(widgetThermostat.find, '+')"
-                                    ><i class="fa fa-angle-up"></i>
+                                    ><i class="fas fa-angle-up"></i>
                             </button>&nbsp;
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetThermostat.find, widgetThermostat.find.minMax.max)"
-                                    ><i class="fa fa-angle-double-up"></i>
+                                    ><i class="fas fa-angle-double-up"></i>
                             </button>
                      </p>
                      <p>     
                             <button class="btn btn-primary"
                                     ng-click="setExactCmd(widgetThermostat.find, '-')"
-                                    ><i class="fa fa-angle-down"></i>
+                                    ><i class="fas fa-angle-down"></i>
                             </button>&nbsp;
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetThermostat.find, widgetThermostat.find.minMax.min)"
                                     >
-                                <i class="fa fa-angle-double-down"></i>
+                                <i class="fas fa-angle-double-down"></i>
                             </button>
                      </p>  
                 </div>
             </div>
         </div>
         <!--<div class="appmodal-footer">
-            <button type="button" class="btn btn-default" ng-click="handleModal('thermostatModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+            <button type="button" class="btn btn-default" ng-click="handleModal('thermostatModal', $event)"><i class="fas fa-times text-danger"></i> {{_t('lb_close')}}</button>
         </div>-->
     </div>
 </div>

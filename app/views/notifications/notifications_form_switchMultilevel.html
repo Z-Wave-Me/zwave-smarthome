@@ -1,0 +1,11 @@
+<!-- switchMultilevel -->
+<label>{{_t('lb_send_condition')}}</label>
+<!-- operator -->
+<select class="form-control" ng-model="v.operator">
+	<option value="{{o}}" ng-repeat="o in notifications.cfg.switchMultilevel.operator" ng-selected="o == v.operator">
+		{{o}}
+	</option>
+</select>
+<!-- level -->
+<input type="number" class="form-control input-number" min="{{notifications.cfg.switchMultilevel.min}}" max="{{notifications.cfg.switchMultilevel.max}}" ng-model="v.level" ng-if="v.operator != 'all'" />
+<bb-help-text trans="_t('send_condition_help')"></bb-help-text>

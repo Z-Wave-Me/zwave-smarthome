@@ -44,6 +44,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         getApi: getApi,
         deleteApi: deleteApi,
         deleteApiFormdata: deleteApiFormdata,
+        deleteApiJSON: deleteApiJSON,
         postApi: postApi,
         putApi: putApi,
         putApiWithHeaders: putApiWithHeaders,
@@ -426,6 +427,32 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             data: $.param(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept-Language': lang,
+                'ZWAYSession': ZWAYSession
+            }
+        }).then(function (response) {
+            return response;
+        }, function (response) {// something went wrong
+
+            return $q.reject(response);
+        });
+
+    }
+    
+    /**
+     * Delete ZAutomation api data with JSON
+     * @param {string} api
+     * @param {object} data
+     * @param {string} params
+     * @returns {unresolved}
+     */
+    function deleteApiJSON(api, data, params) {
+        return $http({
+            method: 'delete',
+            url: cfg.server_url + cfg.api[api] + (params ? params : ''),
+            data: data,
+            headers: {
+                'Content-Type': 'application/json',
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession
             }

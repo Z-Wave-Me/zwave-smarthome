@@ -2,7 +2,7 @@
 <div id="multiButtonModal" class="appmodal" ng-controller="ElementSensorMultilineController" ng-if="modalArr.multiButtonModal">
     <div class="appmodal-in">
         <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('multiButtonModal', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="handleModal('multiButtonModal', $event)"><i class="fas fa-times"></i></span>
             <h3>{{widgetSensorMultiline.find.metrics.title}}</h3>
         </div>
         <div class="appmodal-body">
@@ -12,7 +12,7 @@
                     <tbody>
                         <!-- <tr class="text-right" ng-if="multiLineDev.data.metrics.multilineType == 'protection'">
                            <td>
-                               <button class="btn btn-default " ng-click="runCmd(multiLineDev.data.id + '/command/update')"> <i class="fa fa-clock-o"></i> <span class="widget-update-time">{{multiLineDev.data.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
+                               <button class="btn btn-default " ng-click="runCmd(multiLineDev.data.id + '/command/update')"> <i class="fas fa-clock"></i> <span class="widget-update-time">{{multiLineDev.data.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span></button>
                            </td>
                         </tr> -->
                         <tr ng-repeat="n in widgetSensorMultiline.find.metrics.sensors track by n.id">
@@ -23,7 +23,7 @@
                                 <span ng-bind="n.metrics.title"/></span>
                             </td>
                             <td class="text-right tbl-widget-ctrl">
-                                <a class="widget-history" href="" ng-click="getDeviceById(n.id);handleModal('modalHistory', $event)" ng-if="n.hasHistory"><i class="fa fa-history"></i></a>&nbsp;
+                                <a class="widget-history" href="" ng-click="getDeviceById(n.id);handleModal('modalHistory', $event)" ng-if="n.hasHistory"><i class="fas fa-history"></i></a>&nbsp;
                                  <div class="btn-group" ng-if="n.deviceType==='switchBinary'">
                                     <button class="btn btn-off"
                                         data-ng-click="runMultilineCmd(n.id + '/command/off', n.id)"
@@ -51,7 +51,7 @@
             </div>
         </div>
         <!--<div class="appmodal-footer">
-            <button type="button" class="btn btn-default" ng-click="handleModal('sensorMultilineModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+            <button type="button" class="btn btn-default" ng-click="handleModal('sensorMultilineModal', $event)"><i class="fas fa-times text-danger"></i> {{_t('lb_close')}}</button>
         </div>-->
     </div>
 </div>

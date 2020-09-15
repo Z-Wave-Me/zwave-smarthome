@@ -63,7 +63,7 @@ myAppController.controller('ManagementUserController', function ($scope, $cookie
  * The controller that renders and handles user detail.
  * @class ManagementUserIdController
  */
-myAppController.controller('ManagementUserIdController', function ($scope, $routeParams, $filter, $q, dataFactory, dataService, myCache,cfg) {
+myAppController.controller('ManagementUserIdController', function ($scope, $cookies, $routeParams, $filter, $q, dataFactory, dataService, myCache,cfg) {
     $scope.id = $filter('toInt')($routeParams.id);
     $scope.rooms = {};
     $scope.devices = [];
@@ -90,6 +90,9 @@ myAppController.controller('ManagementUserIdController', function ($scope, $rout
         password: null
     };
     $scope.lastEmail = "";
+    
+    $scope.currentZWayAuthToken  = $cookies.ZWAYSession;
+    $scope.currentFullAuthToken = $cookies.ZBW_SESSID + "/" + $cookies.ZWAYSession;
 
     /**
      * Load all promises

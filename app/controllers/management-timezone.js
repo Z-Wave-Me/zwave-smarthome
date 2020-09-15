@@ -47,7 +47,6 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
                     if($scope.managementTimezone.countdown === 0){
                         $interval.cancel(myint);
                         //$location.path('/');
-                        dataService.setRememberMe(null);
                         dataFactory.getApi('logout').then(function (response) {
                             dataService.logOut();
                         });

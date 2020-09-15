@@ -8,7 +8,7 @@
  * The controller that handles element detail actions.
  * @class ElementIdController
  */
-myAppController.controller('ElementIdController', function($scope, $q, $routeParams, $filter, $location, $timeout, cfg, mobile_cfg, dataFactory, dataService, myCache) {
+myAppController.controller('ElementIdController', function($scope, $q, $routeParams, $filter, $location, $timeout, cfg, notifications_cfg, dataFactory, dataService, myCache) {
 	$scope.elementId = {
 		show: false,
 		appType: {},
@@ -23,11 +23,11 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 	};
 	$scope.suggestions = [];
 
-	$scope.mobile = {
-		active: false,
-		input: {},
-		cfg: mobile_cfg,
-		device: {}
+	$scope.notifications = {
+		input: [],
+		cfg: notifications_cfg,
+		channels: [],
+		device: []
 	}
 
 	/**
@@ -45,18 +45,21 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			dataFactory.getApi('devices')
 		];
 
-		if ($scope.user.role === 1) {
-			promises.push(dataFactory.getApi('modules', false, true));
+		promises.push(dataFactory.getApi('notification_channels', false, true));
+		promises.push(dataFactory.getApi('notification_filtering', false, true));
+		if ($scope.user.role === 1) { // should be last to have same order for user and admin
 			promises.push(dataFactory.getApi('instances', false, true));
+			promises.push(dataFactory.getApi('modules', false, true));
 		}
 
 		$q.allSettled(promises).then(function(response) {
 			var device = response[0];
 			var locations = response[1];
 			var devices = response[2];
-			var modules = response[3];
-			var instances = response[4];
-
+			var notificationChannels = response[3];
+			var notificationFiltering = response[4];
+			var instances = response[5];
+			var modules = response[6];
 
 			$scope.loading = false;
 			// Error message
@@ -74,12 +77,19 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			if (devices.state === 'fulfilled') {
 				setTagList(devices.value.data.data.devices);
 			}
+			// Success - notificationChannels
+			if (notificationChannels && notificationChannels.state === 'fulfilled') {
+				$scope.notifications.channels = notificationChannels.value.data.data;
+			}			
+			// Success - notificationFiltering
+			if (notificationFiltering && notificationFiltering.state === 'fulfilled') {
+				$scope.notifications.input = notificationFiltering.value.data.data;
+				setNotifications($scope.notifications.input, $scope.elementId.input);
+			}
 			// Success - instances
 			if (instances && instances.state === 'fulfilled') {
 				$scope.elementId.instances = instances.value.data.data;
-				setMobileAppSupport(instances.value.data.data);
 			}
-
 			// Success - modules
 			if (modules && modules.state === 'fulfilled') {
 				$scope.elementId.modules = modules.value.data.data;
@@ -157,7 +167,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				$scope.user.dashboard = dataService.setArrayValue($scope.user.dashboard, input.id, input.onDashboard);
 				$scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, input.id, input.hide_events);
 				$scope.updateProfile($scope.user, input.id);
-				if ($scope.cfg.role_access.admin.indexOf($scope.user.role) > -1) $scope.updateNotification($scope.mobile);
+				$scope.updateNotification($scope.notifications);
 			}, function(error) {
 				alertify.alertError($scope._t('error_update_data'));
 				$scope.loading = false;
@@ -187,51 +197,60 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 	};
 
 	/**
-	 * update MobileAppSupport
-	 * @param  {object} input MobileAppSupport data
+	 * NotificationFiltering API
 	 */
 	$scope.updateNotification = function(data) {
 		var dev = data.device,
 			input = data.input;
 
-		if(!_.isEmpty(dev)) {
-			// transform data back to original format
-			var obj = {
-                id: dev.id,
-                deviceType: dev.deviceType,
-                msg: dev.msg,
-                level: dev.level == 'lvl' && dev.exact ? dev.exact : dev.level
-            };
+		// exclude this device from all notifications
+		var newData = input.filter(function(n) { return n[n["dev_filter"]]["dev_select"] != $scope.elementId.input.id; });
 
-            if(dev.operator && dev.level == 'lvl' || dev.deviceType == 'sensorMultilevel') {
-                obj['operator'] = dev.operator;
-            }
-
-            // check if entry exist
-			var find = _.find(input.params.devices, function(d) {
-				return d.id == dev.id;
-			});
-
-			// entry exist
-			if(find) {
-				var index = _.findIndex(input.params.devices, find);
-				// update entry
-				input.params.devices[index] = obj;
-
-			// entry not exist
-			} else {
-				// add entry
-				input.params.devices.push(obj);
+		// transform data back to original format
+		// and add back this device to notifications
+		dev.forEach(function(d) {
+			var dd = {
+				channel: d.channel,
+				dev_filter: "dev_" + d.deviceType
+			};
+			dd["dev_" + d.deviceType] = {
+				dev_select: d.id,
+				dev_message: d.msg
+			};
+			switch (d.deviceType) {
+				case "toggleButton":
+					break;
+				case "switchBinary":
+				case "sensorBinary":
+				case "doorlock":
+					dd["dev_" + d.deviceType]["dev_matchValue"] = d.level;
+					break;
+				case "switchControl":
+				case "switchMultilevel":
+				case "sensorMultilevel":
+				case "sensorMultiline":
+				case "thermostat":
+					if (d.operator == "all") {
+						dd["dev_" + d.deviceType]["dev_matchValue"] = {};
+					} else {
+						dd["dev_" + d.deviceType]["dev_matchValue"] = {
+							dev_matchValueOperation: d.operator,
+							dev_matchValueOperand: d.level
+						};
+					}
+					break;
+				default:
+					console.log("Error: unknown deviceType " + d.deviceType + " for notification for device " + d.id);
 			}
-		}
+			newData.push(dd);
+		});
 
-        console.log("input", input);
-        dataFactory.storeApi('instances', parseInt(input.id, 10), input).then(function(response) {
-            $scope.loading = false;
-        }, function(error) {
-            $scope.loading = false;
-            alertify.alertError($scope._t('error_update_data'));
-        });
+		dataFactory.putApi('notification_filtering', undefined, newData).then(function(response) {
+			$scope.loading = false;
+		}, function(error) {
+			$scope.loading = false;
+			alertify.alertError($scope._t('error_update_data'));
+		});
 	}
 
 	/**
@@ -298,10 +317,8 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			}
 		}
 
-		if (cfg.route.os == 'PoppApp_Z_Way') {
-			if (($scope.elementId.input.deviceType == 'toggleButton' &&
-					$scope.elementId.input.probeType !== 'notification_push' &&
-					$scope.elementId.input.probeType !== 'notification_email') ||
+		if (cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid') {
+			if ($scope.elementId.input.deviceType == 'toggleButton' ||
 				$scope.elementId.input.deviceType == 'switchBinary') {
 				if ($scope.elementId.input.metrics.level == "on") {
 					var device_on = angular.copy($scope.elementId.input);
@@ -358,77 +375,53 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 
 		angular.extend($scope.elementId.input, {
 			iconPath: dataService.assignElementIcon($scope.elementId.input),
-			hide_events: $scope.user.hide_single_device_events.indexOf($scope.elementId.input.id) !== -1 ? true : false,
+			hide_events: ($scope.user.hide_single_device_events && $scope.user.hide_single_device_events.indexOf($scope.elementId.input.id) !== -1) ? true : false,
 			tags: orderBy($scope.elementId.input.tags, 'toString()')
 		});
 
-		setMobile($scope.mobile.input, $scope.elementId.input);
+		setNotifications($scope.notifications.input, $scope.elementId.input);
 	};
 
-	function setMobile(instance, device) {
-		if (instance.active) {
-			if (instance.params.devices) {
-				var pos = _.findIndex(instance.params.devices, function(dev) {
-						return dev.id == device.id;
-					});
-
-				if (pos > -1) {
-					var dev = instance.params.devices[pos],
-						obj = {
-	                        id: dev.id,
-	                        deviceType: dev.deviceType,
-	                        msg: dev.msg
-	                    };
-
-                    if(!isNaN(dev.level) &&
-                        $scope.mobile.cfg[dev.deviceType].level &&
-                        $scope.mobile.cfg[dev.deviceType].level.indexOf('lvl') > -1)
-                    {
-                        obj['level'] = 'lvl';
-                        obj['exact'] = dev.level;
-                    } else {
-                        obj['level'] = dev.level;
-                    }
-
-                    if(dev.operator) {
-                        obj['operator'] = dev.operator;
-                    }
-                    $scope.mobile.active = true;
-                    $scope.mobile.device = obj;
+	function setNotifications(notifications, device) {
+		$scope.notifications.device = [];
+		notifications.forEach(function(notification) {
+			var dev = notification[notification["dev_filter"]];
+			if (dev["dev_select"] === device.id) {
+				var obj = {
+					id: device.id,
+					channel: notification.channel || "",
+					deviceType: device.deviceType,
+					msg: dev["dev_message"]
+				};
+				
+				if (_.isObject(dev["dev_matchValue"]) && $scope.notifications.cfg[device.deviceType].operator) {
+					var operation = dev["dev_matchValue"]["dev_matchValueOperation"],
+					    operand = dev["dev_matchValue"]["dev_matchValueOperand"];
+					
+					if (!operation || ! operand) {
+						obj['operator'] = 'all';
+					} else {
+						obj['operator'] = operation;
+						obj['level'] = parseInt(operand, 10);
+					}
+				} else {
+					obj['level'] = dev["dev_matchValue"] || 'all';
 				}
+				$scope.notifications.device.push(obj);
 			}
-		}
-	}
-
-	$scope.toggleNotification = function(state) {
-		if(state) {
-			$scope.mobile.device = $scope.mobile.cfg[$scope.elementId.input.deviceType].default;
-			$scope.mobile.device.id = $scope.elementId.input.id;
-		} else {
-			var dev = _.find($scope.mobile.input.params.devices, function(dev) {
-				return dev.id == $scope.mobile.device.id;
-			});
-
-			if(dev) {
-				var index = _.findIndex($scope.mobile.input.params.devices, dev);
-				if(index > -1) {
-					$scope.mobile.input.params.devices = _.without($scope.mobile.input.params.devices, $scope.mobile.input.params.devices[index]);
-				}
-			}
-			$scope.mobile.device = {};
-		}
-	}
-
-	function setMobileAppSupport(instances) {
-		var mobile_instance = _.findWhere(instances, {
-			moduleId: 'MobileAppSupport'
 		});
-
-		if (mobile_instance) {
-			$scope.mobile.input = mobile_instance
-		}
 	}
 
+	$scope.removeNotification = function(index) {
+		$scope.notifications.device.splice(index, 1);
+	};
+	
+	$scope.addNotification = function() {
+		var notification = _.clone($scope.notifications.cfg[$scope.elementId.input.deviceType].default);
+		notification.id = $scope.elementId.input.id;
+		$scope.notifications.device.push(notification);
+	};
+	
 	/**
 	 * Set tag list
 	 */

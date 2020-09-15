@@ -13,13 +13,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
 	$routeProvider. // Login
 	when('/', {
 			templateUrl: 'app/views/auth/auth.html'
-		}). // Autocomplete
-	when('/test', {
-			templateUrl: 'app/views/test.html',
-		}).
-		// Dragdrop
-	when('/dragdrop', {
-			templateUrl: 'app/views/dragdrop.html',
 		}). // Home
 	when('/home', {
 			redirectTo: '/dashboard'

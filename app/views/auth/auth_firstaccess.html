@@ -4,7 +4,7 @@
     <div class="welcome-screen">
         <h1> {{_t('welcome_1')}}  {{auth.remoteId}}</h1>
     </div>
-    <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{_t('password_info')}}</div>
+    <div class="alert alert-warning"><i class="fas fa-exclamation-circle"></i> {{_t('password_info')}}</div>
     <form name="form_password" id="form_password" class="form form-page" ng-submit="updateFirstAccess(form_password, input,handleTimezone.instance)" novalidate>
         <!-- language  -->
         <fieldset>
@@ -13,7 +13,7 @@
                 <button type="button" class="btn btn-default" title="{{_t('lb_language')}}"
                 ng-click="expandNavi('loginLang', $event)">
                 <img class="lang-img" ng-src="app/img/flags/{{loginLang}}.png" alt="{{loginLang}}" />
-                <i class="fa fa-caret-down"></i>
+                <i class="fas fa-caret-down"></i>
                 </button>
                 <div class="app-dropdown dropdown-lang app-dropdown-left" ng-if="naviExpanded.loginLang">
                     <ul>
@@ -123,7 +123,7 @@ ng-model="input.trust_my_network" />
 </fieldset>-->
 <fieldset class="submit-entry">
 <button type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}" ng-disabled="form_password.$invalid">
-<i class="fa fa-check"></i> <span ng-bind="_t('lb_submit')"></span>
+<i class="fas fa-check"></i> <span ng-bind="_t('lb_submit')"></span>
 </button>
 </fieldset>
 </form>

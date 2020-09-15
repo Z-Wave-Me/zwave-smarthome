@@ -34,12 +34,12 @@
                                     class="btn btn-danger"
                                     ng-if="!inclusion.done && inclusion.promisc"
                                     ng-click="runCmd('controller.data.promisc=false')">
-                                    <i class="fa fa-ban"></i> <span class="btn-name">{{_t('stop_teachin')}}</span>
+                                    <i class="fas fa-ban"></i> <span class="btn-name">{{_t('stop_teachin')}}</span>
                                 </button>
                                 <button class="btn btn-success"
                                         ng-if="!inclusion.done && !inclusion.promisc"
                                         ng-click="runCmd('controller.data.promisc=true')">
-                                    <i class="fa fa-plug"></i> <span class="btn-name">{{_t('start_teachin')}}</span>
+                                    <i class="fas fa-plug"></i> <span class="btn-name">{{_t('start_teachin')}}</span>
                                 </button>
                             </div>
                             
@@ -61,7 +61,7 @@
                                     </div>
                                     </fieldset>
                                  <div class="alert alert-warning" ng-if="apiDevices.length < 1">
-                                <i class="fa fa-exclamation-circle"></i> <span ng-bind="_t('enocean_no_settings')"></span>
+                                <i class="fas fa-exclamation-circle"></i> <span ng-bind="_t('enocean_no_settings')"></span>
                                 </div>
                                 <fieldset ng-if="apiDevices">
                                     <div class="form-group form-inline" ng-repeat="e in apiDevices| orderBy:'title':false" ng-init="dev[e.id] = e">
@@ -83,7 +83,7 @@
                                 <fieldset ng-if="apiDevices">
                                     <!-- Rooms -->
                                     <div class="form-group form-inline" ng-if="rooms">
-                                        <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
+                                        <h3><i class="fas fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
                                         <select class="form-control" ng-model="modelRoom">
                                             <option value="">------</option>
                                             <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
@@ -105,7 +105,7 @@
 
         </div>
         <div class="submit-entry save-continue" ng-if="inclusion.done">
-        <a href="#enocean/manage" class="btn btn-info">{{_t('continue')}} <i class="fa fa-chevron-right"></i></a>
+        <a href="#enocean/manage" class="btn btn-info">{{_t('continue')}} <i class="fas fa-chevron-right"></i></a>
         </div>
     </div>
       <div class="device-logo" ng-include="'app/views/enocean/enocean_nav.html'"></div>

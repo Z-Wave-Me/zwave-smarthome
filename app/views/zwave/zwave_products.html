@@ -6,7 +6,7 @@
     <div class="col-sm-6">
       <h3>
         <a ng-href="#/zwave/vendors" class="btn btn-default">
-          <i class="fa fa-arrow-left"></i>
+          <i class="fas fa-arrow-left"></i>
         </a>
         <strong>{{zwaveVendors.products.pageTitle}}</strong>
         | {{_t('products')}}
@@ -23,7 +23,7 @@
   </div>
   <!-- No search result -->
   <div class="alert alert-warning" ng-if="zwaveVendors.products.noSearch">
-    <i class="fa fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + zwaveVendors.products.noSearch + "\""})}}
+    <i class="fas fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + zwaveVendors.products.noSearch + "\""})}}
   </div>
   <!-- List  -->
   <div class="list-panel" ng-repeat="v in zwaveVendors.products.collection | orderBy:'name' track by $index">
@@ -43,13 +43,13 @@
     <!-- control -->
     <div class="control">
         <a ng-href="#zwave/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
-          <i class="fa fa-plug text-primary"></i>
+          <i class="fas fa-plug text-primary"></i>
         </a>
     </div>
   </div>
   <div class="fieldset submit-entry_" ng-show="_.size(zwaveVendors.products.collection) > 10">
     <a ng-href="#/zwave/vendors" class="btn btn-default">
-      <i class="fa fa-arrow-left"></i>
+      <i class="fas fa-arrow-left"></i>
     </a>
   </div>
 </div>

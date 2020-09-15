@@ -28,15 +28,15 @@ myAppController.controller('ManagementLicenceController', function ($scope, cfg,
      */
     function updateCapabilities(data) {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('upgrading_capabilities')};
-        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fa fa-spinner fa-spin'};
+        $scope.proccessUpdate = {'message': $scope._t('upgrading_capabilities'), 'status': 'fas fa-spinner fa-spin'};
         dataFactory.zmeCapabilities(data).then(function (response) {
             $scope.loading = false;
-            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fa fa-check text-success'};
+            $scope.proccessUpdate = {'message': $scope._t('success_capabilities'), 'status': 'fas fa-check text-success'};
             $scope.proccessLicence = false;
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_no_capabilities'));
-            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessUpdate = {'message': $scope._t('error_no_capabilities'), 'status': 'fas fa-exclamation-triangle text-danger'};
             $scope.proccessLicence = false;
         });
     };
@@ -52,7 +52,7 @@ myAppController.controller('ManagementLicenceController', function ($scope, cfg,
             return;
         }
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('verifying_licence_key')};
-        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fa fa-spinner fa-spin'};
+        $scope.proccessVerify = {'message': $scope._t('verifying_licence_key'), 'status': 'fas fa-spinner fa-spin'};
         $scope.proccessLicence = true;
         var input = {
             uuid: $scope.controllerInfo.uuid,
@@ -61,7 +61,7 @@ myAppController.controller('ManagementLicenceController', function ($scope, cfg,
             appVersionMinor: $scope.controllerInfo.appVersionMinor
         };
         dataFactory.getLicense(input).then(function (response) {
-            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fa fa-check text-success'};
+            $scope.proccessVerify = {'message': $scope._t('success_licence_key'), 'status': 'fas fa-check text-success'};
             $scope.loading = false;
             // Update capabilities
             updateCapabilities(response);
@@ -72,7 +72,7 @@ myAppController.controller('ManagementLicenceController', function ($scope, cfg,
             }
             $scope.loading = false;
             alertify.alertError(message);
-            $scope.proccessVerify = {'message': message, 'status': 'fa fa-exclamation-triangle text-danger'};
+            $scope.proccessVerify = {'message': message, 'status': 'fas fa-exclamation-triangle text-danger'};
             $scope.proccessLicence = false;
         });
     };

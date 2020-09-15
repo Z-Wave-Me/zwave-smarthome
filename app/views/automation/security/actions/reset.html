@@ -31,8 +31,8 @@
             {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em>
           </span>
         </span>
-        <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.deviceId,'clean')">
-          <i class="fa fa-times text-danger"></i>
+        <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'clean')">
+          <i class="fas fa-times text-danger"></i>
         </span>
         </h2>
         <!-- Content -->
@@ -73,7 +73,7 @@
     <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.armConfirm" ng-if="d.location == r.id &&  !security.input.params.clean.table[getModelIndex(d.deviceId,'clean.table')]" ng-click="assignDevice(d.deviceId,'clean')">
       <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       {{d.deviceName|cutText:true:20}}
-      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
   </div>
 </section>

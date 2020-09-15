@@ -2,7 +2,7 @@
 <div id="climateControlModal" class="appmodal" ng-controller="ElementClimateControlController" ng-if="modalArr.climateControlModal">
     <div class="appmodal-in">
         <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('climateControlModal', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="handleModal('climateControlModal', $event)"><i class="fas fa-times"></i></span>
             <h3>{{dataHolder.devices.find.metrics.title}}</h3>
         </div>
         <div class="appmodal-body">
@@ -19,7 +19,7 @@
                                 <span class="text-primary_">{{n.sensorLevel}}  {{n.scaleTitle}}</span>
                             </td>
                             <td class="text-right">
-                                <i class="fa fa-arrow-right"></i>
+                                <i class="fas fa-arrow-right"></i>
                             </td>
                             <td class="text-right">
                                <span class="text-success">{{n.targetTemp}}  °C</span>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <!--<div class="appmodal-footer">
-            <button type="button" class="btn btn-default" ng-click="handleModal('climateControlModal', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+            <button type="button" class="btn btn-default" ng-click="handleModal('climateControlModal', $event)"><i class="fas fa-times text-danger"></i> {{_t('lb_close')}}</button>
         </div>-->
     </div>
 </div>

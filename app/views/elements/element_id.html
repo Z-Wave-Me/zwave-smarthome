@@ -10,9 +10,9 @@
       novalidate>
       <fieldset ng-show="elementId.input.isFailed && elementId.appType.zwave">
         <div class="alert alert-danger">
-          <i class="fa fa-exclamation-triangle"></i> {{_t('zwave_device_failed')}}
+          <i class="fas fa-exclamation-triangle"></i> {{_t('zwave_device_failed')}}
           <a ng-href="#zwave/devices" class="btn btn-default" ng-show="elementAccess(cfg.role_access.admin)">
-            <i class="fa fa-edit text-primary"></i> {{_t('manage')}}
+            <i class="fas fa-edit text-primary"></i> {{_t('manage')}}
           </a>
         </div>
       </fieldset>
@@ -33,7 +33,7 @@
             <br>
             <!-- zwave -->
             <a href="#zwave/devices/{{elementId.appType.zwave}}" class="btn btn-default" ng-switch-when="ZWave">
-              <i class="fa fa-cog"></i>
+              <i class="fas fa-cog"></i>
               <span class="btn-name">
                 <strong>{{_t('lb_zwave_device')}}</strong>
                 #{{elementId.appType.zwave}}
@@ -41,13 +41,13 @@
             </a>
             <!-- enocean -->
             <a href="#enocean/manage/{{elementId.appType.enocean}}" class="btn btn-default" ng-switch-when="EnOcean">
-              <i class="fa fa-cog"></i>
+              <i class="fas fa-cog"></i>
               <strong>{{_t('enocean_device')}}</strong>
               #{{elementId.appType.enocean}}
             </a>
             <!-- default -->
             <a class="btn btn-default" ng-href="#module/put/{{elementId.appType.instance.id}}" ng-switch-default>
-              <i class="fa fa-cog"></i>
+              <i class="fas fa-cog"></i>
               <span class="btn-name">
                 <strong>{{elementId.appType.instance.title}}</strong>
               </span>
@@ -64,10 +64,7 @@
           </div>
         </div>
         <!-- Add element to Home (Android)-->
-        <div class="form-group" ng-show="cfg.route.os == 'PoppApp_Z_Way'" ng-if="elementId.input.deviceType == 'toggleButton' ||
-                           elementId.input.deviceType == 'switchBinary' &&
-                           elementId.input.probeType != 'notification_email' &&
-                           elementId.input.probeType != 'notification_push'">
+        <div class="form-group" ng-show="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'" ng-if="elementId.input.deviceType == 'toggleButton' || elementId.input.deviceType == 'switchBinary'">
           <label>{{_t('lb_add_widget')}}:</label>
           <br>
           <a title="{{_t('lb_on')}}" class="btn btn-primary" href="{{elementId.input.addOnUrl}}">
@@ -80,9 +77,7 @@
           <bb-help-text trans="_t('info_add_widget')"></bb-help-text>
         </div>
         <!-- Add element to Home (IOS)-->
-        <div class="form-group" ng-show="cfg.route.os == 'IOSWRAPPER'" ng-if="(elementId.input.deviceType == 'toggleButton' &&
-              elementId.input.probeType != 'notification_email' &&
-              elementId.input.probeType != 'notification_push')">
+        <div class="form-group" ng-show="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'" ng-if="elementId.input.deviceType == 'toggleButton'">
           <a title="{{_t('lb_add_today')}}" class="btn btn-primary" href="/?id={{elementId.input.id}}&name={{elementId.input.metrics.title|stringToSlug}}&type={{elementId.input.deviceType}}&state={{elementId.input.metrics.level}}">
             {{ _t('lb_add_today')}}
           </a>
@@ -91,7 +86,7 @@
         <!-- Delete element -->
         <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
           <button type="button" title="{{_t('delete_element')}}" class="btn btn-danger" ng-click="deleteElement(elementId.input, _t('element_delete_confirm'))">
-            <i class="fa fa-times"></i> {{ _t('delete_element')}}
+            <i class="fas fa-times"></i> {{ _t('delete_element')}}
           </button>
           <bb-help-text trans="_t('deactivate_element_info')"></bb-help-text>
         </div>
@@ -151,7 +146,7 @@
           <div class="btn-group btn-goup-block btn-goup-1">
             <button type="button" class="btn btn-default" ng-click="expandNavi('elidDropDown', $event)">
               {{elementId.locations[elementId.input.location].title|cutText:true:20}}
-              <i class="fa fa-caret-down"></i>
+              <i class="fas fa-caret-down"></i>
             </button>
             <div class="app-dropdown app-dropdown-left dropdown-100" ng-if="naviExpanded.elidDropDown">
               <ul>
@@ -159,7 +154,7 @@
                   ng-repeat="v in elementId.locations">
                   <a>
                     <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> {{v.title|cutText:true:20}}
-                    <i class="fa fa-check menu-arrow" ng-if="elementId.input.location == v.id"></i>
+                    <i class="fas fa-check menu-arrow" ng-if="elementId.input.location == v.id"></i>
                   </a>
                 </li>
               </ul>
@@ -167,6 +162,7 @@
           </div>
         </div>
       </fieldset>
+      <!-- Tags -->
       <fieldset ng-if="elementAccess(cfg.role_access.admin)">
         <div class="form-group form-inline">
           <label>{{_t('lb_tags')}}:</label>
@@ -174,13 +170,13 @@
             <input name="add_tag" id="add_tag" type="text" class="form-control" placeholder="{{_t('lb_add_tag')}}" ng-model="search.text"
               bb-key-event="searchMe()" data-toggle="dropdown" />
             <span class="input-group-addon clickable" title="{{_t('lb_add_tag')}}" ng-click="addTag()">
-              <i class="fa fa-plus text-success"></i>
+              <i class="fas fa-plus text-success"></i>
             </span>
             <div class="app-dropdown app-dropdown-left" ng-if="suggestions.length">
               <ul>
                 <li href="" ng-click="addTag(v)" ng-repeat="v in suggestions track by $index">
                   <a href="">
-                    <i class="fa fa-plus text-success"></i> {{v}}</a>
+                    <i class="fas fa-plus text-success"></i> {{v}}</a>
                 </li>
               </ul>
             </div>
@@ -189,34 +185,47 @@
         <div class="form-group last">
           <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}" ng-repeat="t in elementId.input.tags track by $index"
             ng-click="removeTag($index)">{{t}}
-            <i class="fa fa-times text-danger" title="{{_t('lb_remove')}}"></i>
+            <i class="fas fa-times text-danger" title="{{_t('lb_remove')}}"></i>
           </a>
         </div>
       </fieldset>
       <!-- Notification -->
       <fieldset>
         <h3>{{_t('notifications')}}</h3>
-        <div class="form-group">
-          <label>{{_t('notification_active')}}</label>
-          <input type="checkbox" ng-model="mobile.active" ng-checked="mobile.active" ng-change="toggleNotification(mobile.active)">
+        <div class="form-group form-inline" ng-repeat="n in notifications.device track by $index">
+          <!-- Events -->
+          <div ng-include="'app/views/notifications/notifications_form_' + elementId.input.deviceType + '.html'" onLoad="v=n"></div>
+          <!-- Channel -->
+          <label for="channel_{{v.id}}">{{_t('lb_send_channel')}}</label>
+          <select id="channel_{{v.id}}" name="channel" class="form-control form-inline" ng-model="v.channel">
+                  <option value="" ng-selected="v.channel === ''">
+                      {{_t('notifications_all_channels')}}
+                  </option>
+                  <option value="{{nc.id}}" ng-repeat="nc in notifications.channels" ng-selected="nc.id == v.channel">
+                      {{nc.name}} ({{nc.userName}})
+                  </option>
+          </select>
+          <bb-help-text trans="_t('send_channel_help')"></bb-help-text>
+          <!-- Custom message -->
+          <label for="customMessage">{{_t('custom_message')}}</label>
+          <input class="form-control" id="customMessage" name="customMessage" ng-model="n.msg"></input>
+          <bb-help-text trans="_t('custom_message_help')"></bb-help-text>
+          <button type="button" class="btn btn-danger" ng-click="removeNotification($index)" title="{{_t('btn_remove')}}">
+            <i class="fas fa-times"></i> {{_t('btn_remove')}}
+          </button>
         </div>
-        <div ng-if="mobile.active">
-          <div class="form-group">
-            <label for="customMessage">{{_t('custom_message')}}</label>
-            <textarea class="form-control" id="customMessage" name="customMessage" ng-model="mobile.device.msg"></textarea>
-            <bb-help-text trans="_t('custom_message_help')"></bb-help-text>
-          </div>
-          <div ng-include="'app/views/mobile/mobile_form_' + elementId.input.deviceType + '.html'" onLoad="v=mobile.device"></div>
-        </div>
+        <button type="button" class="btn btn-default" ng-click="addNotification()" title="{{_t('add notificaton')}}">
+          <i class="fas fa-plus text-success"></i> {{_t('add_notification')}}
+        </button>
       </fieldset>
       <!-- Submit -->
       <fieldset class="submit-entry">
         <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default" bb-go-back>
-          <i class="fa fa-reply"></i>
+          <i class="fas fa-reply"></i>
           <span class="btn-name" ng-bind="_t('lb_cancel')"></span>
         </button>
         <button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-          <i class="fa fa-check"></i>
+          <i class="fas fa-check"></i>
           <span class="btn-name" ng-bind="_t('lb_save')"></span>
         </button>
       </fieldset>

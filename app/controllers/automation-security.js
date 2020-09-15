@@ -83,7 +83,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			},
 			input: {
-				deviceType: ['sensorBinary'],
+				deviceType: ['sensorBinary', 'switchBinary'],
 				status: ['on', 'off'],
 				default: {
 					devices: '',
@@ -207,6 +207,10 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		mobileSchedule: []
 	};
 
+	$scope.notifications = {
+		channels: []
+	};
+	
 	/**
 	 *  Schedule
 	 */
@@ -401,12 +405,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			});
 
-			$scope.security.input.params.silentAlarms.notification.target = ($scope.security.input.params.silentAlarms.notification.target == $scope.security.input.params.silentAlarms.notification.target_custom) ? '' : $scope.security.input.params.silentAlarms.notification.target;
-			$scope.security.input.params.alarms.notification.target = ($scope.security.input.params.alarms.notification.target == $scope.security.input.params.alarms.notification.target_custom) ? '' : $scope.security.input.params.alarms.notification.target;
-			$scope.security.input.params.clean.notification.target = ($scope.security.input.params.clean.notification.target == $scope.security.input.params.clean.notification.target_custom) ? '' : $scope.security.input.params.clean.notification.target;
-			$scope.security.input.params.armConfirm.notification.target = ($scope.security.input.params.armConfirm.notification.target == $scope.security.input.params.armConfirm.notification.target_custom) ? '' : $scope.security.input.params.armConfirm.notification.target;
-			$scope.security.input.params.disarmConfirm.notification.target = ($scope.security.input.params.disarmConfirm.notification.target == $scope.security.input.params.disarmConfirm.notification.target_custom) ? '' : $scope.security.input.params.disarmConfirm.notification.target;
-
 			// transform to mobile
 			$scope.transformFromInstToMobile();
 
@@ -418,9 +416,16 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 	};
 
-	if ($routeParams.id > 0) {
-		$scope.loadInstance($routeParams.id);
-	}
+	/**
+	 * Load notification channels
+	 */
+	$scope.loadNotificationChannels = function(rooms) {
+		dataFactory.getApi('notification_channels', '/all').then(function(response) {
+			$scope.notifications.channels = response.data.data;
+		}, function(error) {});
+	};
+	$scope.loadNotificationChannels();
+
 
 	/**
 	 * Load rooms
@@ -576,6 +581,10 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			});
 
+			// it is here to make sure devices are already loaded
+			if ($routeParams.id > 0) {
+				$scope.loadInstance($routeParams.id);
+			}
 		}, function(error) {});
 	};
 
@@ -787,7 +796,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	 * @param  {string} type        arm/disarm
 	 */
 	$scope.timeChanged = function(targetIndex, oldValue, type) {
-
 		var arm = stringToTime($scope.security.mobileSchedule[targetIndex].arm),
 			disarm = stringToTime($scope.security.mobileSchedule[targetIndex].disarm);
 
@@ -945,14 +953,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				clearCondition: dev.clearCondition
 			};
 		});
-
-		// store custom email adresses for notifications
-		input.params.silentAlarms.notification.target = input.params.silentAlarms.notification.target ? input.params.silentAlarms.notification.target : input.params.silentAlarms.notification.target_custom;
-		input.params.alarms.notification.target = input.params.alarms.notification.target ? input.params.alarms.notification.target : input.params.alarms.notification.target_custom;
-		input.params.clean.notification.target = input.params.clean.notification.target ? input.params.clean.notification.target : input.params.clean.notification.target_custom;
-		input.params.armConfirm.notification.target = input.params.armConfirm.notification.target ? input.params.armConfirm.notification.target : input.params.armConfirm.notification.target_custom;
-		input.params.disarmConfirm.notification.target = input.params.disarmConfirm.notification.target ? input.params.disarmConfirm.notification.target : input.params.disarmConfirm.notification.target_custom;
-
 
 		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
 			$scope.loading = false;

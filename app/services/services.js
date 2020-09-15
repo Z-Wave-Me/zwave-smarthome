@@ -52,17 +52,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	};
 
 	/**
-	 * Set timestamp and ping server if request fails
-	 * @param {object} next
-	 * @returns {undefined}
-	 */
-	this.setTimeStamp = function() {
-		/* dataFactory.getApi('timezone', null, true).then(function (response) {
-
-		 }, function (error) {});*/
-	};
-
-	/**
 	 * Get a language string by key
 	 * @param {string} key
 	 * @param {object} languages
@@ -260,31 +249,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	 */
 	this.setLastLogin = function(val) {
 		$cookies.lastLogin = val;
-	};
-
-	/**
-	 * Get remember me
-	 * @returns {Object|Boolean}
-	 */
-	this.getRememberMe = function() {
-		var user = ($cookies.rememberme && !!$cookies.rememberme && $cookies.rememberme !== 'undefined' ? angular.fromJson($cookies.rememberme) : false);
-		return user;
-	};
-
-	/**
-	 * Set remember me
-	 * @param {object} data
-	 * @returns {Boolean|Object}
-	 */
-	this.setRememberMe = function(data) {
-		if (data && !!data) {
-			$cookies.rememberme = angular.toJson(data);
-		} else {
-			delete $cookies['rememberme'];
-			return false;
-		}
-
-		return data;
 	};
 
 	/**
@@ -1038,6 +1002,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			case 'switch':
 				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
 				break;
+				// siren
+			case 'siren':
+				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				break;
 				// motion
 			case 'motion':
 				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
@@ -1144,35 +1112,13 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			angular.forEach(defaultIcon.level || defaultIcon, function(v, k) {
 				var path = (/^https?:\/\//.test(v) ? '' : cfg.img.icons);
 
-				if(cfg.route.os == 'IOSWRAPPER') {
-					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
-                    dyn_dns  = cfg.server_url.indexOf("dyndns");
-
-	                if(customIcon[k] && (remote > -1 || dyn_dns > -1)) {
-	                    obj[k] =  cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon[k];
-	                } else {
-	                    obj[k] = path + v;
-	                }
-				} else {
-					obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
-				}
+				obj[k] = (customIcon[k] ? cfg.img.custom_icons + customIcon[k] : path + v);
 			});
 			return obj;
 		} else {
 			// If a custom icon exists set it otherwise set false
 			if (!_.isEmpty(customIcon.default)) {
-				if(cfg.route.os == 'IOSWRAPPER') {
-					var remote  = cfg.find_hosts.indexOf(cfg.server_url),
-                    	dyn_dns  = cfg.server_url.indexOf("dyndns");
-
-	                if(remote > -1 || dyn_dns > -1) {
-	                    obj['default'] = cfg.server_url + "smarthome/" + cfg.img.custom_icons + customIcon['default'];
-	                } else {
-	                    obj['default'] = cfg.img.custom_icons + customIcon['default'];
-	                }
-				} else {
-					obj['default'] = cfg.img.custom_icons + customIcon['default'];
-				}
+				obj['default'] = cfg.img.custom_icons + customIcon['default'];
 
 				return obj;
 			}

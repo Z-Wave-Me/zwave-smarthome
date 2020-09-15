@@ -98,7 +98,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             $scope.css = cfg.skin.path + $cookies.skin + '/main.css';
 
 
-        } else if(cfg.route.os != 'IOSWRAPPER') {
+        } else {
             dataFactory.getApi('skins_active').then(function(response) {
                 if (response.data.data.name !== 'default') {
                     cfg.skin.active = response.data.data.name;
@@ -121,11 +121,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
     $scope.setNightMode = function(nightMode) {
         $scope.user.night_mode = nightMode;
         //$cookies.nightMode = nightMode;
-        dataFactory.putApi('profiles', $scope.user.id, $scope.user).then(function(response) {
-            if(cfg.route.os == 'IOSWRAPPER') {
-                window.location = 'js-call:' + ($scope.user.night_mode ? 'nightmodeTrue' : 'nightmodeFalse');
-            }
-        });
+        dataFactory.putApi('profiles', $scope.user.id, $scope.user);
     };
 
     /**
@@ -270,7 +266,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
                     fatalArray.info = $scope._t('jamesbox_connection_refused_info', {
                         __reload_begintag__: '<div>',
                         __reload_endtag__: '</div>',
-                        __attention_begintag__: '<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i>',
+                        __attention_begintag__: '<div class="alert alert-warning"><i class="fas fa-exclamation-circle"></i>',
                         __attention_endtag__: '<div>'
                     });
                     fatalArray.icon = 'fa-spinner fa-spin text-success';
@@ -354,7 +350,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         /**
          * Set timestamp and ping server if request fails
          */
-        $scope.setTimeStamp();
+        if (!current) {
+            $scope.setTimeStamp();
+        }
 
         angular.copy({}, $scope.naviExpanded);
         angular.copy({}, $scope.autocompleteExpanded);
@@ -686,7 +684,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         alertify.dialog('alertError', function factory() {
             return {
                 build: function() {
-                    var errorHeader = '<span class="fa fa-exclamation-triangle fa-lg text-danger" ' +
+                    var errorHeader = '<span class="fas fa-exclamation-triangle fa-lg text-danger" ' +
                         'style="vertical-align:middle;">' +
                         '</span> ' + cfg.app_name + ' - ERROR';
                     this.setHeader(errorHeader);
@@ -700,7 +698,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         alertify.dialog('alertWarning', function factory() {
             return {
                 build: function() {
-                    var errorHeader = '<span class="fa fa-exclamation-circle fa-lg text-warning" ' +
+                    var errorHeader = '<span class="fas fa-exclamation-circle fa-lg text-warning" ' +
                         'style="vertical-align:middle;">' +
                         '</span> ' + cfg.app_name + ' - WARNING';
                     this.setHeader(errorHeader);

@@ -4,7 +4,7 @@
   <!-- Toggle -->
   <button type="button" aria-expanded="false" bb-accordion>
     <span>
-      <i class="fa fa-cart-plus fa-fw"></i>{{_t('app_store_access')}}
+      <i class="fas fa-cart-plus fa-fw"></i>{{_t('app_store_access')}}
     </span>
   </button>
 </h2>
@@ -19,14 +19,14 @@
           <input name="appstore_token" id="appstore_token" class="form-control" value="" placeholder="{{_t('add_token')}}" ng-model="appStore.input.token"
           />
           <span class="input-group-addon clickable" title="{{_t('add_new')}}" ng-click="appStoreAddToken()">
-            <i class="fa fa-plus text-success"></i>
+            <i class="fas fa-plus text-success"></i>
           </span>
         </div>
       </div>
       <div class="form-group last">
         <a href="" class="btn btn-default btn-tag" id="tag_{{$index}}" title="{{_t('lb_remove')}}" ng-repeat="v in appStore.tokens track by $index"
           ng-click="appStoreRemoveToken(v, _t('lb_delete_confirm'))">{{v}}
-          <i class="fa fa-times text-danger"></i>
+          <i class="fas fa-times text-danger"></i>
         </a>
       </div>
     </div>

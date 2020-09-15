@@ -1,22 +1,22 @@
 <!-- Admin firmware view -->
 <!-- Title -->
-<h2 class="accordion-toggle chevron" ng-if="(cfg.route.os !== 'PoppApp_Z_Way' && connection.local)">
+<h2 class="accordion-toggle chevron" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && connection.local">
   <!-- Toggle -->
   <button type="button" aria-expanded="false" bb-accordion>
     <span>
-      <i class="fa fa-level-up fa-fw"></i>{{_t('firmware_update')}}
+      <i class="fas fa-level-up-alt fa-fw"></i>{{_t('firmware_update')}}
     </span>
   </button>
 </h2>
-<h2 class="accordion-toggle chevron"  ng-if="(cfg.route.os == 'PoppApp_Z_Way') || (cfg.route.os !== 'PoppApp_Z_Way' && connection.remote)">
+<h2 class="accordion-toggle chevron"  ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || connection.remote">
     <!-- Toggle -->
     <button type="button">
       <span>
-          <i class="fa fa-exclamation-circle fa-fw text-warning"></i>{{_t('firmware_update')}}
-          <em ng-if="cfg.route.os == 'PoppApp_Z_Way'">
+          <i class="fas fa-exclamation-circle fa-fw text-warning"></i>{{_t('firmware_update')}}
+          <em ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
               ,&nbsp;{{_t('not_supported_on_mobile')}}
           </em>
-          <em class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && connection.remote">
+          <em class="infowindow-in" ng-if="cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && connection.remote">
               ,&nbsp;{{_t('not_supported_on_remote')}}
           </em>
       </span>
@@ -40,7 +40,7 @@
     </fieldset>
     <fieldset class="submit-entry">
       <button type="button" class="btn btn-submit" title="{{_t('update_to_latest')}}" ng-click="setAccess('?allow_access=1',true);handleModal('firmwareUpdateModal', $event)">
-        <i class="fa fa-level-up"></i>
+        <i class="fas fa-level-up-alt"></i>
         <span class="btn-name">{{_t('update_to_latest')}}</span>
       </button>
 
@@ -55,13 +55,13 @@
       </p>
       <p ng-repeat="(k,v) in databaseUpdate" ng-show="(v)">
         <strong>{{_t(k)}}
-          <i class="fa fa-lg {{v}}"></i>
+          <i class="fas fa-lg {{v}}"></i>
         </strong>
       </p>
     </fieldset>
     <fieldset class="submit-entry">
       <button type="submit" class="btn btn-submit" title="{{_t('btn_update_device_database')}}" ng-disabled="databaseProcess">
-        <i class="fa fa-level-up"></i>
+        <i class="fas fa-level-up-alt"></i>
         <span class="btn-name">{{_t('btn_update_device_database')}}</span>
       </button>
     </fieldset>
@@ -71,7 +71,7 @@
     <div class="appmodal-in">
       <div class="appmodal-header">
         <span class="appmodal-close" ng-click="setAccess('?allow_access=0');handleModal('firmwareUpdateModal', $event)">
-          <i class="fa fa-times"></i>
+          <i class="fas fa-times"></i>
         </span>
         <h3>{{_t('firmware_update')}}</h3>
       </div>

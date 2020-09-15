@@ -20,16 +20,16 @@
       <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'">
         <div class="btn-group">
           <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/expert',_t('redirect_to_expert'))"
-            ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way'">
-            <i class="fa fa-external-link"></i>
+            ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
+            <i class="fas fa-external-link-alt"></i>
             <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
           </a>
           <a class="btn btn-default" href="#zwave/vendors" title="{{_t('add_new')}}">
-            <i class="fa fa-plus text-success"></i>
+            <i class="fas fa-plus text-success"></i>
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#zwave/devices" title="{{_t('manage')}}">
-            <i class="fa fa-edit text-primary"></i>
+            <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
         </div>
@@ -55,11 +55,11 @@
       <div class="control" ng-class="naviExpanded['devicesMobile'] ? 'expand-true': 'expand-false'">
         <div class="btn-group">
           <button class="btn btn-default" ng-click="handleMobileModal($event)" title="{{_t('add_new')}}">
-            <i class="fa fa-plus text-success"></i>
+            <i class="fas fa-plus text-success"></i>
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </button>
           <a class="btn btn-default" href="#mobile/manage" title="{{_t('manage')}}">
-            <i class="fa fa-edit text-primary"></i>
+            <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
         </div>
@@ -85,11 +85,11 @@
       <div class="control" ng-class="naviExpanded['devicesCamera'] ? 'expand-true': 'expand-false'">
         <div class="btn-group">
           <a class="btn btn-default" href="#camera/add" title="{{_t('add_new')}}">
-            <i class="fa fa-plus text-success"></i>
+            <i class="fas fa-plus text-success"></i>
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#camera/manage" title="{{_t('manage')}}">
-            <i class="fa fa-edit text-primary"></i>
+            <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
         </div>
@@ -115,11 +115,11 @@
       <div class="control" ng-class="naviExpanded['devicesSpeech'] ? 'expand-true': 'expand-false'">
         <div class="btn-group">
           <a class="btn btn-default" href="#speech_assistants/devices" title="{{_t('add_new')}}">
-            <i class="fa fa-plus text-success"></i>
+            <i class="fas fa-plus text-success"></i>
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#speech_assistants/manage" title="{{_t('manage')}}">
-            <i class="fa fa-edit text-primary"></i>
+            <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
         </div>
@@ -140,18 +140,18 @@
         <div>
           <a href="#enocean/manage">{{_t('devices_text_enocean')}}</a>
         </div>
-        <bb-alert-text alert="enocean.alert"></bb-alert-text>
+        <bb-alert-text class="s-hide" alert="enocean.alert"></bb-alert-text>
       </div>
       <!-- control -->
       <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
 
         <div class="btn-group">
           <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
-            <i class="fa fa-plus text-success"></i>
+            <i class="fas fa-plus text-success"></i>
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
-            <i class="fa fa-edit text-primary"></i>
+            <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
         </div>
@@ -178,11 +178,11 @@
       <div class="control" ng-class="naviExpanded['devicesRf433'] ? 'expand-true': 'expand-false'" ng-if="rf433.active">
         <div class="btn-group">
           <a class="btn btn-default" href="#rf433/teachin" title="{{_t('add_new')}}">
-            <i class="fa fa-plus text-success"></i>
+            <i class="fas fa-plus text-success"></i>
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#rf433/manage" title="{{_t('manage')}}">
-            <i class="fa fa-edit text-primary"></i>
+            <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
         </div>
@@ -208,11 +208,11 @@
       <div class="control" ng-class="naviExpanded['devicesWifi'] ? 'expand-true': 'expand-false'">
         <div class="btn-group">
           <a class="btn btn-default" href="#wifiplug/add" title="{{_t('add_new')}}">
-            <i class="fa fa-plus text-success"></i>
+            <i class="fas fa-plus text-success"></i>
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#wifiplug/manage" title="{{_t('manage')}}">
-            <i class="fa fa-edit text-primary"></i>
+            <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
         </div>

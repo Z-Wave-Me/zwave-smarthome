@@ -3,7 +3,7 @@
     <div class="appmodal-in">
         <div class="appmodal-header">
             <span class="appmodal-close" ng-click="resetDevices({byId:{}});handleModal('modalEvent', $event)">
-                <i class="fa fa-times"></i>
+                <i class="fas fa-times"></i>
             </span>
             <h3>{{widgetEvent.find.metrics.title}}</h3>
         </div>
@@ -33,7 +33,7 @@
             <!--<a class="btn btn-default" ng-href="#events/source/{{widgetEvent.find.id}}"-->
             <button class="btn btn-default"
                 ng-click="handleModal('modalEvent', $event);redirectToEvents('events/source/' + widgetEvent.find.id)">
-                {{_t('see_more')}} <i class="fa fa-chevron-right"></i>
+                {{_t('see_more')}} <i class="fas fa-chevron-right"></i>
             </button>
         </div>
     </div>

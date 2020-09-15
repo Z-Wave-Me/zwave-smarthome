@@ -95,8 +95,10 @@
         cursor: pointer;
         &::after{
          font-size: 130%;
-         font-family: fontawesome;
-            content: "\f142";
+         font-family: "Font Awesome 5 Free";
+         font-style: normal;
+         font-weight: bold;
+         content: "\f142";
         }
          &:focus{
            border: 0;

@@ -4,11 +4,11 @@
     <h1>{{_t('hazard_notification')}}</h1>
     <div class="btn-group">
       <a ng-href="#automations" class="btn btn-default" title="{{_t('lb_cancel')}}">
-        <i class="fa fa-reply"></i>
+        <i class="fas fa-reply"></i>
         <span class="btn-name">{{_t('lb_cancel')}}</span>
       </a>
       <a class="btn btn-default" href="#hazard/0">
-        <i class="fa fa-plus text-success"></i>
+        <i class="fas fa-plus text-success"></i>
         <span class="btn-name">{{_t('add_new')}}</span>
       </a>
     </div>
@@ -43,24 +43,24 @@
       <div class="btn-group">
         <!-- test -->
         <!-- <button title="{{_t('btn_test')}}" class="btn btn-default" ng-disabled="!_.contains(hazardProtections.enableTest, v.id)" ng-click="runScheduleTest(v)">
-        <bb-row-spinner spinner="rowSpinner[v.id]" icon="'fa-play-circle-o text-success'">
+        <bb-row-spinner spinner="rowSpinner[v.id]" icon="'fa-play-circle text-success'">
         </bb-row-spinner>
         </button> -->
         <!--edit -->
         <a ng-href="#hazard/{{v.id}}" class="btn btn-default" title="{{_t('lb_update')}}">
-          <i class="fa fa-pencil text-primary"></i>
+          <i class="fas fa-pencil-alt text-primary"></i>
         </a>
         <!-- activate -->
         <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default" ng-click="activateInstance(v, v.active ? false : true)">
-        <i class="fa " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
+        <i class="fas " ng-class="v.active ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
         </button>
         <!-- clone -->
         <button class="btn btn-default" title="{{_t('lb_clone')}}" ng-click="cloneInstance(v)" ng-disabled="!v.active">
-        <i class="fa fa-clone"></i>
+        <i class="fas fa-clone"></i>
         </button>
         <!-- remove -->
         <button title="{{_t('lb_remove')}}" class="btn btn-default" ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
-        <i class="fa fa-remove text-danger"></i>
+        <i class="fas fa-trash text-danger"></i>
         </button>
       </div>
     </div>

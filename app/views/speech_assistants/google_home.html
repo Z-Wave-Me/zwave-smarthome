@@ -25,7 +25,7 @@
 						</span>
 						</button>
 						<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="deactivateDevice(d.deviceId)">
-							<i class="fa fa-times text-danger"></i>
+							<i class="fas fa-times text-danger"></i>
 						</span>
 					</h2>
 					<!-- Content -->
@@ -63,7 +63,7 @@
 				ng-if="d.location == r.id && !google_home.devices.active[d.deviceId]"
 				ng-click="activateDevice(d)">
 					<img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img"/>&nbsp;{{d.deviceName|cutText:true:20}}
-				<i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+				<i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
 			</a>
 		</div>
 	</section>
@@ -71,11 +71,11 @@
 <!--  ////////////////////////////////////////// submit  ////////////////////////////////////////// -->
 <fieldset class="submit-entry">
 	<button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-		<i class="fa fa-reply"></i>
+		<i class="fas fa-reply"></i>
 		<span class="btn-name">{{_t('lb_cancel')}}</span>
 	</button>
 	<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit">
-		<i class="fa fa-check"></i>
+		<i class="fas fa-check"></i>
 		<span class="btn-name">{{_t('lb_save')}}</span>
 	</button>
 </fieldset>

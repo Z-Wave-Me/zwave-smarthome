@@ -14,34 +14,34 @@
                         <p class="app-detail-perex" ng-bind-html="module.defaults.description | toTrusted"></p>
                        
                         <p class="app-detail-list" ng-show="module.category">
-                            <i class="fa fa-list"></i> <span ng-bind="categoryName"></span>
+                            <i class="fas fa-list"></i> <span ng-bind="categoryName"></span>
                         </p>
                         <p class="app-detail-list" ng-show="module.author">
-                            <i class="fa fa-user"></i>
+                            <i class="fas fa-user"></i>
                             <span ng-show="!module.homepage" ng-bind="module.author"></span>
                             <a ng-href="{{module.homepage}}" ng-show="module.homepage" ng-bind="module.author"></a> 
                         </p>
                         <p class="app-detail-list" ng-show="module.version">
-                            <i class="fa fa-info-circle"></i> <span class="app-version" ng-bind="module.version"></span>
+                            <i class="fas fa-info-circle"></i> <span class="app-version" ng-bind="module.version"></span>
                             <span class="label"
                                   ng-class="module.maturity == 'stable' ? 'label-success' : 'label-warning'"
                                   >{{module.maturity}}</span>
                         </p>
                         <p class="app-detail-list" ng-show="_.size(hasInstance)">
-                            <i class="fa fa-fire"></i> ({{_.size(hasInstance)}})
+                            <i class="fas fa-fire"></i> ({{_.size(hasInstance)}})
                         </p>
                          <p class="app-detail-list" ng-show="module.dependencies.length > 0">
-                            <i class="fa fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
+                            <i class="fas fa-link"></i> <strong>{{_t('dependent_modules')}}:</strong> <span ng-repeat="i in module.dependencies">{{i}}, </span>
                         </p>
                     </div>
             </div>
             <div class="fieldset submit-entry">
                 <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back>
-                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                    <i class="fas fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
                 </button>
                 <a class="btn btn-submit" href="#module/post/{{module.id}}" title="{{_t('lb_add_app')}}"
                    ng-disabled="module.singleton && _.size(hasInstance)">
-                    <i class="fa fa-plus"></i> <span class="btn-name">{{_t('lb_add_app')}}</span>
+                    <i class="fas fa-plus"></i> <span class="btn-name">{{_t('lb_add_app')}}</span>
                 </a>
             </div>
         </div>

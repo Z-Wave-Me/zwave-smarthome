@@ -36,17 +36,17 @@
         </ol>
         <div class="fieldset wizard-controls">
             <button class="btn btn-submit prev" ng-hide="currentStep == 1" ng-click="prevNext(-1)">
-            <i class="fa fa-chevron-left"></i>
+            <i class="fas fa-chevron-left"></i>
             {{_t('lb_prev')}}
             </button>
             <button class="btn btn-default cancel" title="_t('lb_skip')" ng-hide="currentStep == steps.length"  ng-click="skip()">
             {{_t('lb_skip')}}
-            <i class="fa fa-chevron-double-right"></i>
+            <i class="fas fa-angle-double-right"></i>
             </button>
-            <a class="btn btn-submit cancel" ng-show="currentStep == steps.length" href="#elements">{{_t('lets_start')}} <i class="fa fa-chevron-right"></i></a>
+            <a class="btn btn-submit cancel" ng-show="currentStep == steps.length" href="#elements">{{_t('lets_start')}} <i class="fas fa-chevron-right"></i></a>
             <button class="btn btn-submit next" ng-hide="currentStep == steps.length"  ng-click="prevNext(1)">
             {{_t('lb_next')}}
-            <i class="fa fa-chevron-right"></i>
+            <i class="fas fa-chevron-right"></i>
             </button>
         </div>
     </div>

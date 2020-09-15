@@ -62,7 +62,7 @@ angular.forEach(icon_data, function (key, value) {
 });
 
 // Create an mobile config constant
-angular.forEach(mobile_data, function (key, value) {
+angular.forEach(notifications_data, function (key, value) {
     config_module.constant(value, key);
 });
 
@@ -152,7 +152,6 @@ myApp.config(function ($provide, $httpProvider) {
                         break;
                     case 401:
                         if (path[1] !== '') {
-                            dataService.setRememberMe(null);
                             dataService.logOut();
                          }
                         break;

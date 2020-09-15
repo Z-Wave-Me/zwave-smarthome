@@ -2,7 +2,7 @@
 <div id="switchMultilevelModal" class="appmodal" ng-controller="ElementSwitchMultilevelController" ng-if="modalArr.switchMultilevelModal_m">
     <div class="appmodal-in">
         <div class="appmodal-header">
-            <span class="appmodal-close" ng-click="handleModal('switchMultilevelModal_m', $event)"><i class="fa fa-times"></i></span>
+            <span class="appmodal-close" ng-click="handleModal('switchMultilevelModal_m', $event)"><i class="fas fa-times"></i></span>
             <h3>{{widgetSwitchMultilevel.find.metrics.title}}</h3>
         </div>
         <div class="appmodal-body text-center">
@@ -28,22 +28,22 @@
                     <p>
                      <button class="btn btn-primary"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, '+')"
-                                    ><i class="fa fa-angle-up"></i>
+                                    ><i class="fas fa-angle-up"></i>
                             </button>&nbsp;
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.max)"
-                                    ><i class="fa fa-angle-double-up"></i>
+                                    ><i class="fas fa-angle-double-up"></i>
                             </button>
                     </p>
                      <p>
                             <button class="btn btn-primary"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, '-')"
-                                    ><i class="fa fa-angle-down"></i>
+                                    ><i class="fas fa-angle-down"></i>
                             </button>&nbsp;
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.min)"
                                     >
-                                <i class="fa fa-angle-double-down"></i>
+                                <i class="fas fa-angle-double-down"></i>
                             </button>
                      </p>
                       <p>
@@ -55,7 +55,7 @@
                                    id="btn_stop_{{ v.id}}"
                                    data-ng-click="runCmd(widgetSwitchMultilevel.find.id + '/command/stop', widgetSwitchMultilevel.find.id)"
                                    title="{{_t('lb_stop')}}">
-                                   <i class="fa fa-square text-danger"></i>
+                                   <i class="fas fa-square text-danger"></i>
                             </button>
                      </p>
                     <div class="btn-group btn-goup-block btn-goup-4" 
@@ -64,32 +64,32 @@
                         <button class="btn btn-default btn-label-on" id="btn_step_backward_{{ widgetSwitchMultilevel.find.id}}"
                                 data-ng-click="runCmd(widgetSwitchMultilevel.find.id + '/command/previous', widgetSwitchMultilevel.find.id)"
                                 title="{{_t('lb_step_backward')}}">
-                            <i class="fa fa-step-backward"></i>
+                            <i class="fas fa-step-backward"></i>
                         </button>
                         <button class="btn btn-default" id="btn_play_pause_{{ widgetSwitchMultilevel.find.id}}"
                                 data-ng-click="runCmd(widgetSwitchMultilevel.find.id + '/command/'+ (widgetSwitchMultilevel.find.metrics.pStatus == 'Play' && widgetSwitchMultilevel.find.metrics.pStatus != 'Stop' ? 'pause' : 'play'), widgetSwitchMultilevel.find.id)"
                                 ng-class="widgetSwitchMultilevel.find.metrics.pStatus =='Play' || widgetSwitchMultilevel.find.metrics.pStatus =='Pause' ? 'btn-primary': 'btn-default'"
                                 title="{{v.metrics.pStatus == 'Play' ? _t('lb_pause') : _t('lb_play')}}">
-                            <i  ng-if="widgetSwitchMultilevel.find.metrics.pStatus == 'Play'" class="fa fa-pause"></i>
-                            <i  ng-if="widgetSwitchMultilevel.find.metrics.pStatus == 'Pause' || widgetSwitchMultilevel.find.metrics.pStatus == 'Stop'" class="fa fa-play"></i>
+                            <i  ng-if="widgetSwitchMultilevel.find.metrics.pStatus == 'Play'" class="fas fa-pause"></i>
+                            <i  ng-if="widgetSwitchMultilevel.find.metrics.pStatus == 'Pause' || widgetSwitchMultilevel.find.metrics.pStatus == 'Stop'" class="fas fa-play"></i>
                         </button>
                         <button class="btn btn-default" id="btn_stop_{{ widgetSwitchMultilevel.find.id}}"
                                 data-ng-click="runCmd(widgetSwitchMultilevel.find.id + '/command/stop', widgetSwitchMultilevel.find.id)"
                                 ng-class="widgetSwitchMultilevel.find.metrics.pStatus =='Stop' ? 'btn-primary': 'btn-default'"
                                 title="{{_t('lb_stop')}}">
-                            <i class="fa fa-stop"></i>
+                            <i class="fas fa-stop"></i>
                         </button>
                         <button class="btn btn-default btn-label-on" id="btn_step_forward _{{ widgetSwitchMultilevel.find.id}}"
                                 data-ng-click="runCmd(widgetSwitchMultilevel.find.id + '/command/next', widgetSwitchMultilevel.find.id)"
                                 title="{{_t('lb_step_forward')}}">
-                            <i class="fa fa-step-forward"></i>
+                            <i class="fas fa-step-forward"></i>
                         </button>
                     </div>
                 </div>
             </div>
          </div>
         <!--<div class="appmodal-footer">
-            <button type="button" class="btn btn-default" ng-click="handleModal('switchMultilevelModal_m', $event)"><i class="fa fa-times text-danger"></i> {{_t('lb_close')}}</button>
+            <button type="button" class="btn btn-default" ng-click="handleModal('switchMultilevelModal_m', $event)"><i class="fas fa-times text-danger"></i> {{_t('lb_close')}}</button>
         </div>-->
     </div>
 </div>

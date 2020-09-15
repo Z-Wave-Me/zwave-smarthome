@@ -27,19 +27,19 @@
                                         class="btn btn-danger"
                                         ng-if="inclusion.smartAckLearnMode"
                                         ng-click="runCmd('smartAckLearnMode(0,0)')">
-                                         <i class="fa fa-ban"></i> <span class="btn-name">{{_t('stop_teachin')}}</span>
+                                         <i class="fas fa-ban"></i> <span class="btn-name">{{_t('stop_teachin')}}</span>
                                     </button>
                                     <button
                                         class="btn btn-success"
                                         ng-if="!inclusion.smartAckLearnMode"
                                         ng-click="runCmd('smartAckLearnMode(1,1)')">
-                                         <i class="fa fa-plug"></i> <span class="btn-name">{{_t('start_teachin')}}</span>
+                                         <i class="fas fa-plug"></i> <span class="btn-name">{{_t('start_teachin')}}</span>
                                     </button>
                                     <button
                                         class="btn btn-success"
                                         ng-if="!inclusion.smartAckLearnMode"
                                         ng-click="runCmd('smartAckLearnMode(1,0)')">
-                                         <i class="fa fa-plug"></i> <span class="btn-name">{{_t('start_teachout')}}</span>
+                                         <i class="fas fa-plug"></i> <span class="btn-name">{{_t('start_teachout')}}</span>
                                     </button>
                                 </div>
                             </td>
@@ -60,7 +60,7 @@
                                         </div>
                                         </fieldset>
                                     <div class="alert alert-warning" ng-if="apiDevices.length < 1">
-                                    <i class="fa fa-exclamation-circle"></i> <span ng-bind="_t('enocean_no_settings')"></span>
+                                    <i class="fas fa-exclamation-circle"></i> <span ng-bind="_t('enocean_no_settings')"></span>
                                     </div>
 
                                     <fieldset ng-if="apiDevices">
@@ -83,7 +83,7 @@
                                     <fieldset ng-if="apiDevices">
                                         <!-- Rooms -->
                                         <div class="form-group form-inline" ng-if="rooms" >
-                                            <h3><i class="fa fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
+                                            <h3><i class="fas fa-chevron-down"></i> <span ng-bind="_t('devices_to_room')"></span></h3>
                                             <select class="form-control" ng-model="modelRoom">
                                                 <option value="">------</option>
                                                 <option ng-repeat="v in rooms" ng-selected_="input.location == v.id" value="{{v.id}}" ng-bind="v.title"></option>
@@ -105,7 +105,7 @@
 
             </div>
         <div class="fieldset submit-entry">
-            <a href="#enocean/manage" class="btn btn-submit"><span class="btn-name">{{_t('manage_enocean_devices')}}</span> <i class="fa fa-chevron-right"></i></a>
+            <a href="#enocean/manage" class="btn btn-submit"><span class="btn-name">{{_t('manage_enocean_devices')}}</span> <i class="fas fa-chevron-right"></i></a>
         </div>
      </div>
     <div class="device-logo" ng-include="'app/views/enocean/enocean_nav.html'"></div>

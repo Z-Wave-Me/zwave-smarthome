@@ -2,13 +2,13 @@
 <div ng-controller="MobileManageController">
 	<bb-loader></bb-loader>
 	<!--<pre>{{mobile.input | json}}</pre>-->
-	<h2>{{_t('MobileAppSupport')}}</h2>
+	<h2>{{_t('mobile_app_support')}}</h2>
 	<form class="form form-page" ng-submit="storeMobile(mobile.input)">
 		<div class="fieldset">
 			<section>
-				<h3>{{_t('Device List')}}</h3>
+				<h3>{{_t('mobile_device_list')}}</h3>
 				<div class="fieldset">
-					<section class="accordion-wrap" ng-repeat="v in mobile.input.params.apps track by $index">
+					<section class="accordion-wrap" ng-repeat="v in mobile.input.apps track by $index">
 						<!-- Title -->
 						<h2 class="accordion-toggle ellipsis">
 							<!-- Toogle -->
@@ -20,20 +20,20 @@
 							<!-- No Toggle -->
 							<span class="no-toggle">
 								<span>
-									{{v.title}}&nbsp;
+									{{v.title}},&nbsp;{{v.userName}}&nbsp;
 									<em>
-										{{_t('os')}}:&nbsp;{{_t(v.os)}}
+										{{_t('os')}}:&nbsp;{{_t(v.os)}},
 									</em>
 									<em>
-										{{_t('added_at')}}:&nbsp;{{v.created_formated}}
+										{{_t('added_at')}}:&nbsp;{{v.created_formated}},
 									</em>
 									<em>
 										{{_t('last_seen')}}:&nbsp;{{v.last_seen_formated}}
 									</em>
 								</span>
 							</span>
-							<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="removeApp(v.token)">
-								<i class="fa fa-times text-danger"></i>
+							<span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="removeApp(v.token, v.app_profile)">
+								<i class="fas fa-times text-danger"></i>
 							</span>
 						</h2>
 						<!-- Content -->
@@ -42,35 +42,11 @@
 				</div>
 				<div class="fieldset">
 					<button type="button" class="btn btn-default" ng-click="handleModal('qrCodeModal', $event)" title="{{_t('add_new')}}">
-						<i class="fa fa-plus text-success"></i>
+						<i class="fas fa-plus text-success"></i>
 						<span class="btn-name" ng-bind="_t('add_new')"></span>
 					</button>
 				</div>
 			</section>
-			<section>
-				<h3>{{_t('notifications')}}</h3>
-				<legend>{{_t('assigned_devices')}}</legend>
-				<fieldset ng-include="'app/views/mobile/mobile_assigned.html'"></fieldset>
-				<legend>{{_t('lb_available_devices')}}</legend>
-				<fieldset ng-include="'app/views/mobile/mobile_available.html'"></fieldset>
-			</section>
-		</div>
-		<div class="fieldset submit-entry is-grid">
-			<span>
-				<label class="switch">
-					<input type="checkbox" ng-model="mobile.input.active">
-					<span class="slider"></span>
-				</label>
-				<span class="switch-label">{{mobile.input.active ? _t('lb_active'): _t('activeASC')}}</span>
-			</span>
-			<span>
-				<a href="#devices" class="btn btn-default" title="{{_t('lb_cancel')}}"> <i class="fa fa-reply"></i>
-					<span class="btn-name">{{_t('lb_cancel')}}</span>
-				</a>
-				<button type="submit" title="{{_t('lb_save')}}" class="btn btn-submit"> <i class="fa fa-check"></i>
-				<span class="btn-name">{{_t('lb_save')}}</span>
-				</button>
-			</span>
 		</div>
 	</form>
 </div>

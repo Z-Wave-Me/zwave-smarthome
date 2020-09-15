@@ -7,7 +7,44 @@ This program is free software: you can redistribute it and/or modify it under th
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
 
 ## Project leaders
-Marcel Kermer and Serguei Poltorak
+Serguei Poltorak
+
+## v1.11.1
+#### Fixes:
+- Automation/Security: added switchBinary in sensor list
+- Automation/Smoke/Leakage: added general_purpose type in sensor list
+- Automation/Heating: fixed schedule and default values
+- Automation/Rules: fixed constrains for sensorMultilevel comparison
+- Fixed missing icons
+- Updated default skins
+
+## v1.11.0
+#### New features:
+- New notification style.
+- Automation section: adopted new notification style.
+- Improved MobileAppSupport and NotificationFiltering
+- Added NotificationFiltering edit form inside device settings
+- Add time to Schedule
+#### Fixes:
+- Adopted new Font Awesome 5
+- Links to new mobile apps
+
+## v1.10.4
+#### New features:
+- Added EasyScripting fetures
+- Added contextMenu
+- Added highlight.js
+#### Fixes:
+- Added SASS/scss to Grunt
+
+## v1.10.3
+#### New features:
+- Added Z-Way Mobile App support
+- Show current authentication token
+#### Fixes:
+- Fix S2 inclusion bug on slow systems like Hub
+- Removed unused Remember me checkbox
+- Fixed probe-type in widged classes
 
 ## v1.10.2
 #### Features:

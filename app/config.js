@@ -150,7 +150,9 @@ var config_data = {
 			'remove_dsk_collection': 'JS/Run/saveObject("zwaydskCollection",null)', // Remove DSK collection
 			'enable_smart_start': 'JS/Run/zway.SmartStartEnable()', // enable SmartStart
 			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend,
-			'remove_app': 'MobileAppSupportAPI/removeApp' // remove app
+			'notification_filtering': 'ZAutomation/api/v1/notificationFiltering', // get and set NotificationFiltering settings app for a user
+			'notification_channels': 'ZAutomation/api/v1/notificationChannels', // get NotificationFiltering channels for the user
+			'mobile_app_support': 'MobileAppSupportAPI/app' // MobileAppSupport
 		},
 		// List of remote api URLs
 		'api_remote': {
@@ -281,6 +283,8 @@ var config_data = {
 		'lang_dir': 'app/lang/',
 		// Android html dir
 		'android_html_dir': '/htdocs/android/index.htm',
+		// iOS html dir
+		'ios_html_dir': '/htdocs/ios/index.htm',
 		// Default language
 		'lang': 'en', // !!!!Do not change it
 		// List of supported languages
@@ -541,8 +545,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'InbandNotifications',
 					'MobileAppSupport',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
@@ -573,8 +575,6 @@ var config_data = {
 					'CustomUserCodeZWay',
 					'GlobalCache',
 					'InfoWidget',
-					'Notification',
-					'NotificationSMSru',
 					'RGB',
 					'SecurityMode',
 					'SwitchControlGenerator',
@@ -598,8 +598,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'MobileAppSupport',
 					'InbandNotifications',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
@@ -634,8 +632,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'InbandNotifications',
 					'MobileAppSupport',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
@@ -671,8 +667,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'InbandNotifications',
 					'MobileAppSupport',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',
@@ -709,8 +703,6 @@ var config_data = {
 					'CustomUserCodeLoader',
 					'InbandNotifications',
 					'MobileAppSupport',
-					'Notification',
-					'NotificationSMSru',
 					'RemoteAccess',
 					'SecurityMode',
 					'SensorValueLogging',

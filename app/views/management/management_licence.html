@@ -4,7 +4,7 @@
   <!-- Toggle -->
   <button type="button" aria-expanded="false" bb-accordion>
     <span>
-        <i class="fa fa-key fa-fw"></i> {{_t('licence_upgrade')}}
+        <i class="fas fa-key fa-fw"></i> {{_t('licence_upgrade')}}
     </span>
   </button>
 </h2>
@@ -15,7 +15,7 @@
     <form name="form_licence" id="form_password" class="form form-page" ng-submit="getLicense(inputLicence)" ng-if="!handleLicense.error" novalidate>
         <fieldset>
             <!-- password -->
-            <div class="alert alert-danger" ng-if="handleLicense.replug"><i class="fa fa-plug"></i> {{_t('replug_device')}}</div>
+            <div class="alert alert-danger" ng-if="handleLicense.replug"><i class="fas fa-plug"></i> {{_t('replug_device')}}</div>
             <p>{{_t('licence_upgrade_key')}}</p>
             <p class="form-inline">
                 <label>{{_t('licence_key_insert')}}:</label>
@@ -38,7 +38,7 @@
         </fieldset>
         <fieldset class="submit-entry">
             <button type="submit" class="btn btn-submit" title="{{_t('btn_licence_verify')}}" ng-disabled="proccessLicence || controllerInfo.isZeroUuid">
-                <i class="fa fa-share"></i> <span class="btn-name">{{_t('btn_licence_verify')}}</span>
+                <i class="fas fa-share"></i> <span class="btn-name">{{_t('btn_licence_verify')}}</span>
             </button>
         </fieldset>
     </form>

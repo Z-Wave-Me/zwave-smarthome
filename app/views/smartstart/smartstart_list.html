@@ -7,19 +7,19 @@
     <div ng-include="'app/views/zwave/navi.html'"></div>
     <div class="fieldset" ng-controller="ZwaveInclusionController">
       <a class="btn btn-default btn-lg " href="#smartstart" title="{{_t('scan_qrcode')}}">
-            <i class="fa fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')"></span>
+            <i class="fas fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')"></span>
       </a>
       <!-- Enable SmartStart  -->
       <button class="btn btn-default btn-lg" ng-show="!smartStartEnabled" ng-click="enableSmartStart()" title="{{_t('enable_smart_start')}}">
-            <i class="fa fa-play-circle text-success"></i><span class="btn-name"> {{_t('enable_smart_start')}}</span>
+            <i class="fas fa-play-circle text-success"></i><span class="btn-name"> {{_t('enable_smart_start')}}</span>
       </button>
       <!-- disable SmartStart -->
       <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
-            <i class="fa fa-stop-circle text-warning"></i><span class="btn-name"> {{_t('disable_smart_start')}}</span>
+            <i class="fas fa-stop-circle text-warning"></i><span class="btn-name"> {{_t('disable_smart_start')}}</span>
       </button>
       <!-- reload list -->
       <button class="btn btn-default btn-lg" ng-click="refreshDSKList()" title="{{_t('reload')}}">
-            <i class="fa fa-refresh text-warning"></i><span class="btn-name"> {{_t('reload')}}</span>
+            <i class="fas fa-sync text-warning"></i><span class="btn-name"> {{_t('reload')}}</span>
       </button>
     </div>
     <div id="table_mobile">
@@ -35,11 +35,11 @@
               <div class="btn-group" ng-show="v.isSmartStart">
                 <!-- update  -->
                 <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="setData(v);handleModal('dskModal', $event)">
-                <i class="fa fa-info-circle text-primary"></i>
+                <i class="fas fa-info-circle text-primary"></i>
                 </button>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v,_t('lb_delete_confirm'))">
-                <i class="fa fa-trash text-danger"></i>
+                <i class="fas fa-trash text-danger"></i>
                 </button>
               </div>
             </td>
@@ -50,13 +50,13 @@
               <!-- state -->
               <div class="state_text" ng-show="v.isSmartStart">
                 <span class="label label-primary" ng-class="v.state == 'included' ? 'label-primary':'label-warning'">
-                  <i ng-class="v.state == 'included' ? 'fa fa-check':'fa fa-clock-o'"></i>
+                  <i ng-class="v.state == 'included' ? 'fas fa-check':'fas fa-clock'"></i>
                   <span class="btn-name">{{v.state}}</span>
                 </span>
               </div>
               <!-- info window -->
               <div class="infowindow-wrap" ng-show="!v.isSmartStart">
-                <i class="fa fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
+                <i class="fas fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
                 <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
                   <div class="infowindow-in text-center">
                     <p>This device does not support SmartStart.</p>
@@ -146,13 +146,13 @@
             <td class="text-center" data-title="">
               <div ng-show="v.isSmartStart">
                 <span class="label label-primary" ng-class="v.state == 'included' ? 'label-primary':'label-warning'">
-                  <i ng-class="v.state == 'included' ? 'fa fa-check':'fa fa-clock-o'"></i>
+                  <i ng-class="v.state == 'included' ? 'fas fa-check':'fas fa-clock'"></i>
                   {{v.state}}
                 </span>
               </div>
               <!-- info window -->
               <div class="infowindow-wrap" ng-show="!v.isSmartStart">
-                <i class="fa fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
+                <i class="fas fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
                 <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
                   <div class="infowindow-in text-center">
                     <p>{{_t('device_no_smartstart')}}</p>
@@ -170,15 +170,15 @@
               <div class="btn-group">
                 <!-- update  -->
                 <button class="btn btn-default" title="{{_t('lb_update')}}" ng-show="v.isSmartStart" ng-click="setData(v);handleModal('dskModal', $event)">
-                <i class="fa fa-info-circle text-primary"></i>
+                <i class="fas fa-info-circle text-primary"></i>
                 </button>
                 <!-- configure node -->
                 <a class="btn btn-default" ng-if="v.state === 'included'" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
-                    <i class="fa fa-cog text-primary"></i>
+                    <i class="fas fa-cog text-primary"></i>
                 </a>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="v.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
-                <i class="fa fa-trash text-danger"></i>
+                <i class="fas fa-trash text-danger"></i>
                 </button>
               </div>
             </td>

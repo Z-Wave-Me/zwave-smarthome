@@ -54,7 +54,7 @@ myApp.directive('bbLoader', function() {
 		restrict: "E",
 		replace: true,
 		template: '<div id="loading" ng-show="loading" ng-class="loading.status"><div class="loading-in">' +
-			'<i class="fa fa-lg" ng-class="loading.icon"></i> <span ng-bind-html="loading.message|toTrusted"></span>' +
+			'<i class="fas fa-lg" ng-class="loading.icon"></i> <span ng-bind-html="loading.message|toTrusted"></span>' +
 			'</div></div>'
 	};
 });
@@ -93,7 +93,7 @@ myApp.directive('bbAlert', function() {
 			alert: '='
 		},
 		template: '<div class="alert" ng-if="alert.message" ng-class="alert.status">' +
-			'<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>' +
+			'<i class="fas fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>' +
 			'</div>'
 	};
 });
@@ -110,7 +110,7 @@ myApp.directive('bbAlertText', function() {
 			alert: '='
 		},
 		template: '<span class="alert" ng-if="alert.message" ng-class="alert.status">' +
-			'<i class="fa fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>' +
+			'<i class="fas fa-lg" ng-class="alert.icon"></i> <span ng-bind-html="alert.message|toTrusted"></span>' +
 			'</span>'
 	};
 });
@@ -124,11 +124,11 @@ myApp.directive('bbHelp', function($sce, dataFactory, cfg) {
 	return {
 		restrict: "E",
 		replace: true,
-		template: '<span class="clickable" ng-click="showHelp();handleModal(\'helpModal\', $event)"><i class="fa fa-question-circle fa-lg text-info"></i>' +
+		template: '<span class="clickable" ng-click="showHelp();handleModal(\'helpModal\', $event)"><i class="fas fa-question-circle fa-lg text-info"></i>' +
 			'<div id="helpModal" class="appmodal" ng-if="modalArr.helpModal"><div class="appmodal-in">' +
 			'<div class="appmodal-header">' +
 			'<h3>{{cfg.app_name}}</h3>' +
-			'<span class="appmodal-close" ng-click="handleModal(\'helpModal\', $event)"><i class="fa fa-times"></i></span>' +
+			'<span class="appmodal-close" ng-click="handleModal(\'helpModal\', $event)"><i class="fas fa-times"></i></span>' +
 			'</div>' +
 			'<div class="appmodal-body" ng-bind-html="getSafeHtml(helpData)"></div>' +
 			'</div></div>' +
@@ -175,7 +175,7 @@ myApp.directive('bbHelpText', function() {
 			trans: '=',
 			icon: '='
 		},
-		template: '<span class="help-text"><i class="fa text-info" ng-class="icon ? icon : \' fa-info-circle\'"></i> {{trans}}</span>'
+		template: '<span class="help-text"><i class="fas text-info" ng-class="icon ? icon : \' fa-info-circle\'"></i> {{trans}}</span>'
 	};
 });
 

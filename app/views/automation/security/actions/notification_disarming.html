@@ -1,17 +1,13 @@
 <!--target  -->
 <div class="form-group form-inline">
   <select class="form-control" ng-model="security.input.params.disarmConfirm.notification.target">
-    <option value="" ng-selected="!model.target">--- {{_t('notification_trigger')}} ---</option>
-    <option value="{{user.email}}" ng-selected="security.input.params.disarmConfirm.notification.target == user.email">{{user.email}}</option>
-    <option value="{{e.deviceId}}" ng-repeat="e in security.devices.notification track by $index" ng-selected="e.deviceId == security.input.params.disarmConfirm.notification.target">
-      {{e.deviceName}}</option>
+    <option value="" ng-selected="'' == security.input.params.disarmConfirm.notification.target">---</option>
+    <option value="{{nc.id}}" ng-repeat="nc in notifications.channels" ng-selected="nc.id == security.input.params.disarmConfirm.notification.target">
+      {{nc.name}} ({{nc.userName}})
+    </option>
   </select>
-  &nbsp;
-  <label ng-hide="security.input.params.disarmConfirm.notification.target">&nbsp;{{_t('or')}}&nbsp;
-    <input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="security.input.params.disarmConfirm.notification.target_custom" />
-  </label>
 </div>
 <!-- mesage -->
-<div class="form-group" ng-if="security.input.params.disarmConfirm.notification.target != ''">
+<div class="form-group" ng-if="security.input.params.disarmConfirm.notification.target && security.input.params.disarmConfirm.notification.target !== ''">
   <textarea name="message" id="content" class="form-control report-content" ng-model="security.input.params.disarmConfirm.notification.message" placeholder="{{_t('message')}}"></textarea>
 </div>

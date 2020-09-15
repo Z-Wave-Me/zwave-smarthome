@@ -1,20 +1,11 @@
 <!-- Zwave device autodetect -->
-<div class="tabs-wrap form-inline device-autodetect" ng-if="cfg.route.os != 'IOSWRAPPER'">
+<div class="tabs-wrap form-inline device-autodetect">
 	<div class="btn-group btn-group-justified">
 		<a href="#zwave/inclusion" class="btn btn-default btn-lg btn-block" title="{{_t('lb_zwave_autodetect')}}">
-			<i class="fa fa-plug text-success"></i> <span class="btn-name">{{_t('lb_zwave_autodetect')}}</span>
+			<i class="fas fa-plug text-success"></i> <span class="btn-name">{{_t('lb_zwave_autodetect')}}</span>
 		</a>
 		<a class="btn btn-default btn-lg btn-block" href="#smartstart" title="{{_t('scan_qrcode')}}" ng-if="user.beta">
-            <i class="fa fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')" ></span>
+            <i class="fas fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')" ></span>
         </a>
 	</div>
-</div>
-<!-- IOS UI -->
-<div class="text-center device-autodetect" ng-if="cfg.route.os == 'IOSWRAPPER'">
-	<a href="#zwave/inclusion" class="btn btn-default btn-lg btn-block" title="{{_t('lb_zwave_autodetect')}}">
-		<i class="fa fa-plug text-success"></i> <span class="btn-name">{{_t('lb_zwave_autodetect')}}</span>
-	</a>
-	<a class="btn btn-default btn-lg btn-block" href="#smartstartdsk" title="{{_t('scan_qrcode')}}">
-		<i class="fa fa-qrcode text-success"></i> <span class="btn-name" ng-bind="_t('scan_qrcode')"></span>
-	</a>
 </div>

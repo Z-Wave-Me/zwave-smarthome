@@ -15,25 +15,25 @@
       ng-click="assignAdvancedTestDevice(d)">
       <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
       {{d.deviceName|cutText:true:20}}
-      <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+      <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
   </div>
 </section>
 <!-- Time, nested -->
 <section class="section">
   <a href="" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('time')">
-    <i class="fa fa-clock-o"></i>
+    <i class="fas fa-clock"></i>
     {{_t('test_time')}}
-    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+    <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
   </a>
   <a href="" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('nested')">
-    <i class="fa fa-code-fork fa-flip-vertical"></i>
+    <i class="fas fa-code-branch fa-flip-vertical"></i>
     {{_t('nested')}}
-    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+    <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
   </a>
   <a href="" class="btn btn-default btn-tag" ng-click="assignAdvancedTestCondition('compare')">
-    <i class="fa fa-code"></i>
+    <i class="fas fa-code"></i>
     {{_t('compare')}}
-    <i class="fa fa-plus text-success" title="{{_t('add_new')}}"></i>
+    <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
   </a>
 </section>

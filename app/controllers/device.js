@@ -31,10 +31,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
         module: {
             "instanceId":"0",
             "moduleId":"MobileAppSupport",
-            "active": true,
-            "params": {
-                "devices": []
-            }
+            "active": true
         }
     };
 

@@ -14,10 +14,10 @@
 
                     </a>
                       <span class="label label-success" ng-if="v.securityType === 'security-1'">
-                          <i class="fa fa-shield"></i>
+                          <i class="fas fa-shield-alt"></i>
                       </span>
                       <span class="label label-success" ng-if="v.securityType === 'security-2'">
-                          <i class="fa fa-shield"></i> <i class="fa fa-shield"></i> S2
+                          <i class="fas fa-shield-alt"></i> <i class="fas fa-shield-alt"></i> S2
                       </span>
 
                    <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZwaveManage_' + v.id]">
@@ -37,10 +37,10 @@
          <div class="report-col report-ctrl" ng-if="elementAccess(cfg.role_access.network)">
              <div class="btn-group">
              <a class="btn btn-default" href="#zwave/devices/{{v.id}}" title="{{_t('lb_configuration')}}">
-                <i class="fa fa-cog text-primary"></i>
+                <i class="fas fa-cog text-primary"></i>
             </a>
              <a class="btn btn-default" href="#zwave/exclude/{{v.id}}" title="{{_t('lb_remove')}}">
-                <i class="fa fa-remove text-danger"></i>
+                <i class="fas fa-trash text-danger"></i>
              </a>
              </div>
          </div>

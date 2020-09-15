@@ -4,7 +4,7 @@
   <!-- Toggle -->
   <button type="button" aria-expanded="false" bb-accordion>
     <span>
-      <i class="fa fa-bug fa-fw"></i> {{_t('nav_report')}}
+      <i class="fas fa-bug fa-fw"></i> {{_t('nav_report')}}
     </span>
   </button>
 
@@ -15,7 +15,7 @@
   <form name="form_report" id="form_profile" class="form form-page" ng-submit="sendReport(form_report,input)" novalidate>
     <fieldset>
       <div class="alert alert-warning">
-        <i class="fa fa-exclamation-circle"></i> {{_t('bugreport_info')}}</div>
+        <i class="fas fa-exclamation-circle"></i> {{_t('bugreport_info')}}</div>
 
       <!-- content -->
       <div class="form-group">
@@ -33,7 +33,7 @@
     </fieldset>
     <fieldset class="submit-entry">
       <button type="submit" class="btn btn-submit" title="{{_t('lb_submit')}}" ng-disabled="form_report.$invalid">
-        <i class="fa fa-check"></i>
+        <i class="fas fa-check"></i>
         <span class="btn-name">{{_t('lb_submit')}}</span>
       </button>
     </fieldset>

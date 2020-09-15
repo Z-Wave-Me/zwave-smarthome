@@ -7,8 +7,7 @@
         <!-- Online Apps control -->
         <!--<div  ng-if="_.isEmpty(dataHolder.onlineModules.filter)" ng-include="'app/views/apps/apps_online_slider.html'"></div>-->
         <!-- Online Apps control -->
-        <div class="app-search" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top"  ng-include="'app/views/apps/apps_online_ctrl.html'" ng-if="cfg.route.os != 'IOSWRAPPER'"></div>
-        <div class="app-search" ng-include="'app/views/apps/apps_online_ctrl.html'" ng-if="cfg.route.os == 'IOSWRAPPER'"></div>
+        <div class="app-search" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top"  ng-include="'app/views/apps/apps_online_ctrl.html'"></div>
         <!-- Online Apps widgets -->
         <div ng-include="'app/views/apps/apps_online_filter_widget.html'"></div>
     </div> <!-- /ng-controller -->

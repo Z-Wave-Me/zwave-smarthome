@@ -1,7 +1,7 @@
 <div ng-show="if" class="form-group form-inline">
   <span>
     <!-- operator -->
-    <select class="form-control" ng-model="model.operator"">
+    <select class="form-control" ng-model="model.operator">
       <option value="{{o}}" ng-repeat="o in rule.options.thermostat.operator track by $index" ng-selected="o == model.operator">
       {{_t(o)}}</option>
     </select>

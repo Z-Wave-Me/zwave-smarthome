@@ -1,0 +1,11 @@
+<!-- thermostat -->
+<label>{{_t('lb_send_condition')}}</label>
+<!-- operator -->
+<select class="form-control" ng-model="v.operator">
+	<option value="{{o}}" ng-repeat="o in notifications.cfg.thermostat.operator" ng-selected="o == v.operator">
+		{{o}}
+	</option>
+</select>
+<!-- level -->
+<input type="number" class="form-control input-number" min="{{notifications.cfg.thermostat.min}}" max="{{notifications.cfg.thermostat.max}}" ng-model="v.level" ng-if="v.operator != 'all'" />
+<bb-help-text trans="_t('send_condition_help')"></bb-help-text>

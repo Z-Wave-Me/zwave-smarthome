@@ -26,16 +26,16 @@
         <div class="control" ng-class="naviExpanded['speech_' + $index] ? 'expand-true': 'expand-false'">
           <div class="btn-group">
             <a href="#speech_assistants/{{v.moduleId}}" class="btn btn-default" title="{{_t('lb_settings')}}">
-              <i class="fa fa-cog"></i>
+              <i class="fas fa-cog"></i>
             </a>
             <button title="{{_t('lb_activate')}}/{{_t('lb_deactivate')}}" class="btn btn-default"
                     ng-click="activateInstance(v, v.active ? false : true)">
-              <i class="fa " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
+              <i class="fas " ng-class="v.active ? 'fa-pause text-danger' : 'fa-play text-success'"></i>
             </button>
             <button title="{{_t('lb_remove')}}" 
                   class="btn btn-default"
                   ng-click="deleteInstance({'id': v.id}, _t('lb_delete_confirm'))">
-              <i class="fa fa-remove text-danger"></i>
+              <i class="fas fa-trash text-danger"></i>
             </button>
           </div>
         </div>

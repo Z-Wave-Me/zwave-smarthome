@@ -2,8 +2,8 @@ module.exports = function(grunt) {
 	var pkg = grunt.file.readJSON('package.json');
 	var app_type = pkg.app_type;
 	var app_cfg = pkg.type_cfg[pkg.app_type];
-	var app_version = pkg.v;
-	var git_message = pkg.v;
+	var app_version = pkg.version;
+	var git_message = pkg.version;
 	var app_rc = (pkg.rc ? pkg.rc + 1 : 0);
 
 	if (app_rc) {
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		// Banner
-		banner: 'Copyright:  Z-Wave Europe GmbH, Created: <%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
+		banner: 'Copyright:  Z-Wave.Me, Created: <%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
 		// Clean dir
 		clean: {
 			options: {
@@ -41,6 +41,14 @@ module.exports = function(grunt) {
 				},
 				src: 'app/views/**/*.html',
 				dest: 'dist/app/js/templates.js'
+			}
+		},
+		// SCSS
+		sass: {
+			dist: {
+				files: {
+					'app/css/main.css': 'app/sass/main.scss'
+				}
 			}
 		},
 		// Concat
@@ -76,6 +84,8 @@ module.exports = function(grunt) {
 					'vendor/alertify/alertify.min.js',
 					'vendor/qrcode/qrious.min.js',
 					'vendor/scheduler/jq.schedule.js',
+					'vendor/highlight/highlight-textarea.js',
+					'vendor/highlight/highlight.pack.js',
 					// Angular
 					'vendor/angular/angular-1.2.28/angular.min.js',
 					'vendor/upload/angular-file-upload.min.js',
@@ -109,10 +119,10 @@ module.exports = function(grunt) {
 					'app/directives/tc-angular-chartjs.js',
 					'app/directives/angular-slider.js',
 					'app/directives/angular-long-press.min.js',
+					'app/directives/contextMenu.js',
 					'app/filters/filters.js',
 					'app/jquery/postrender.js',
 					'app/controllers/base.js',
-					'app/controllers/controllers.js',
 					'app/controllers/jamesbox.js',
 					'app/controllers/element.js',
 					'app/controllers/element-widget.js',
@@ -220,7 +230,7 @@ module.exports = function(grunt) {
 						flatten: true
 					}, {
 						expand: true,
-						src: ['app/configs/mobileAppSupport.js'],
+						src: ['app/configs/notifications.js'],
 						dest: 'dist/app/js/',
 						flatten: true
 					}, {
@@ -315,7 +325,7 @@ module.exports = function(grunt) {
 					banner: '/* <%= banner %> */'
 				},
 				files: {
-					src: ['dist/app/js/templates.js', 'dist/app/js/config.js', 'dist/app/js/build.js', 'dist/app/js/icons.js', 'dist/app/js/mobileAppSupport.js']
+					src: ['dist/app/js/templates.js', 'dist/app/js/config.js', 'dist/app/js/build.js', 'dist/app/js/icons.js', 'dist/app/js/notifications.js']
 				}
 			},
 			html: {
@@ -399,7 +409,6 @@ module.exports = function(grunt) {
 		modify_json: {
 			file: {
 				expand: true,
-				//cwd: 'test/',
 				src: ['package.json'],
 				options: {
 					add: true,
@@ -421,7 +430,6 @@ module.exports = function(grunt) {
 					templateDir: 'docstemplates'
 				},
 				src: ['app/**/*.js'],
-				//src: ['app/controllers/*.js','app/services/*.js','app/directives/*.js','app/modules/*.js','app/jquery/*.js','app/filters/*.js'],
 				dest: 'docs'
 			}
 		},
@@ -478,6 +486,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-cache-breaker');
 
 	// Default task(s).
-	grunt.registerTask('default', ['clean', 'ngtemplates', 'concat', 'json_generator', 'copy', 'cssmin', 'skinFolder', 'iconFolder', 'usebanner', 'htmlbuild', 'cachebreaker', 'replace', 'modify_json']);
+	grunt.registerTask('default', ['clean', 'ngtemplates', 'sass', 'concat', 'json_generator', 'copy', 'cssmin', 'skinFolder', 'iconFolder', 'usebanner', 'htmlbuild', 'cachebreaker', 'replace', 'modify_json']);
 
 };

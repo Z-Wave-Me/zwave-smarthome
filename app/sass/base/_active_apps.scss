@@ -10,7 +10,7 @@
     .accordion-toggle {
       font-size: 100%;
       button {
-        padding: $spacing-half;
+        padding: $spacing;
         >span {
           @include displayFlex();
           @include alignItems(center);
@@ -28,8 +28,9 @@
      
       border-bottom: 0;
       padding-bottom: 0;
+      padding-right: 0;
       @include mediaQueries(min-small) {
-        padding-left: 40px;
+        padding-left: 60px;
       }
     }
   }

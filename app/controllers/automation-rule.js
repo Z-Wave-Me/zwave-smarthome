@@ -398,7 +398,7 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 			notification: {
 				default: {
 					target: '',
-					target_custom: '',
+					targetName: '',
 					message: ''
 				}
 			}
@@ -468,6 +468,10 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 			}
 		}
 	};
+	$scope.notifications = {
+		channels: []
+	};
+
 
 	/**
 	 *  Reset Original data
@@ -526,8 +530,9 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 			});
 			// Set target assigned devices from notifications
 			angular.forEach(instance.params.simple.sendNotifications, function(v, k) {
+				var nc = _.findWhere($scope.notifications.channels, { id: v.target });
+				v.targetName = nc ? nc.name : v.target;
 				$scope.rule.target.assignedDevices.push(v.target);
-
 			});
 			// Set advanced tests assigned devices
 			angular.forEach(instance.params.advanced.tests, function(v, k) {
@@ -620,11 +625,6 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 
 			// Set target devices
 			$scope.rule.target.availableDevices = devices.filter(function(v) {
-					// Replacing deviceType with "notification"
-					if (v.probeType == 'notification_push') {
-						v.deviceType = 'notification';
-					}
-
 					return whiteListTarget.indexOf(v.deviceType) > -1;
 				})
 				.reject(function(v) {
@@ -664,6 +664,21 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 
 		}, function(error) {});
 	};
+	/**
+	 * Load notification channels
+	 */
+	$scope.loadNotificationChannels = function(rooms) {
+		dataFactory.getApi('notification_channels', '/all').then(function(response) {
+			$scope.notifications.channels = response.data.data;
+			$scope.rule.input.params.notifications.forEach(function(n) {
+				var nc = _.findWhere($scope.notifications.channels, { id: n.target });
+				if (nc) {
+					n.targetName = nc.name;
+				}
+			});
+		}, function(error) {});
+	};
+	$scope.loadNotificationChannels();
 
 
 	// ctrl watch ?
@@ -740,7 +755,6 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @param {string} deviceId
 	 */
 	$scope.unassignTargetDevice = function(targetIndex, deviceId) {
-
 		var deviceIndex = $scope.rule.target.assignedDevices.indexOf(deviceId);
 		if (targetIndex > -1) {
 			$scope.rule.input.params.simple.targetElements.splice(targetIndex, 1);
@@ -755,9 +769,11 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @returns {undefined}
 	 */
 	$scope.assignTargetNotification = function(notification) {
-		if ((notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1)||(notification.target_custom && $scope.rule.target.assignedDevices.indexOf(notification.target_custom) === -1)) {
+		if (notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1) {
+			var nc = _.findWhere($scope.notifications.channels, { id: notification.target });
 			var not = {
-				target: notification.target ? notification.target : notification.target_custom,
+				target: notification.target,
+				targetName: nc ? nc.name : notification.target,
 				message: notification.message
 			};
 			$scope.rule.input.params.simple.sendNotifications.push(not);
@@ -774,7 +790,6 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @param {string} deviceId
 	 */
 	$scope.unassignTargetNotification = function(targetIndex, target) {
-
 		var notificationIndex = $scope.rule.target.assignedDevices.indexOf(target);
 		if (targetIndex > -1) {
 			$scope.rule.input.params.simple.sendNotifications.splice(targetIndex, 1);
@@ -1156,14 +1171,16 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	 * @returns {undefined}
 	 */
 	$scope.assignAdvancedTargetNotification = function(notification) {
-		if ((notification.target && $scope.rule.target.assignedDevices.indexOf(notification.target) === -1)||(notification.target_custom && $scope.rule.target.assignedDevices.indexOf(notification.target_custom) === -1)) {
+		if ((notification.target && $scope.rule.advanced.target.assignedDevices.indexOf(notification.target) === -1)) {
+			var nc = _.findWhere($scope.notifications.channels, { id: notification.target });
 			var not = {
-				target: notification.target ? notification.target : notification.target_custom,
+				target: notification.target,
+				targetName: nc ? nc.name : notification.target,
 				message: notification.message
 			};
 
-			$scope.rule.input.params.advanced.sendNotifications.push(notification);
-			$scope.rule.advanced.target.assignedDevices.push(notification.target);
+			$scope.rule.input.params.advanced.sendNotifications.push(not);
+			$scope.rule.advanced.target.assignedDevices.push(not.target);
 			$scope.resetOptions();
 		}
 

@@ -5,8 +5,8 @@
         <div class="fieldset">
             <h2>{{_t('custom_icons')}}</h2>
             <div class="alert alert-warning" ng-if="_.isEmpty(icons.uploaded)">
-                <i class="fa fa-exclamation-circle"></i> {{_t('custom_icons_no_available')}}
-                <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fa fa-upload"></i>
+                <i class="fas fa-exclamation-circle"></i> {{_t('custom_icons_no_available')}}
+                <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fas fa-upload"></i>
                     {{_t('upload_icon')}}</a>
             </div>
 
@@ -39,7 +39,7 @@
                     </div>
                     <!-- Arrow -->
                     <div class="report-col report-body">
-                        <i class="fa fa-long-arrow-right" ng-if="icons.all.custom[k]"></i>
+                        <i class="fas fa-long-arrow-alt-right" ng-if="icons.all.custom[k]"></i>
                     </div>
                     <!-- Custom icon -->
                     <div class="report-col report-media">
@@ -54,13 +54,13 @@
                         <button title="{{_t('lb_update')}}" class="btn btn-default"
                                 ng-disabled="icons.selected === k"
                                 ng-click="setSelectedIcon(k)">
-                            <i class="fa fa-pencil text-primary"></i>
+                            <i class="fas fa-pencil-alt text-primary"></i>
                         </button>
                         <!-- Remove a custom icon -->
                         <button title="{{_t('lb_remove')}}" class="btn btn-default"
                                 ng-if="icons.all.custom[k]"
                                 ng-click="removeCustomIcon(k)">
-                            <i class="fa fa-ban text-danger"></i>
+                            <i class="fas fa-ban text-danger"></i>
                         </button>
 
                     </div>
@@ -85,7 +85,7 @@
             </div>
             <!-- Manage custom icons -->
             <div class="fieldset">
-                <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fa fa-image"></i>
+                <a href="#/customize/iconslocal" class="btn btn-primary"><i class="fas fa-image"></i>
                     {{_t('manage_custom_icons')}}</a>
             </div>
             <!-- Submit -->
@@ -93,12 +93,12 @@
                 <!-- Cancel -->
                 <button type="button" title="{{_t('lb_cancel')}}" class="btn btn-default"
                         ng-click="cancelUpdate()">
-                    <i class="fa fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                    <i class="fas fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
                 </button>
                 <!-- Save -->
                 <button type="button" title="{{_t('lb_save')}}" class="btn btn-submit"
                         ng-click="updateWithCustomIcon()">
-                    <i class="fa fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
+                    <i class="fas fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
                 </button>
             </fieldset>
 

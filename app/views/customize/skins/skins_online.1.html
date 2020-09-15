@@ -12,15 +12,15 @@
       <div class="card-header">
         <!-- Download -->
         <span class="card-icon" title="{{_t('lb_download')}}" ng-if="v.status === 'download'" ng-click="downloadSkin(v)">
-            <i class="fa fa-download text-success"></i>
+            <i class="fas fa-download text-success"></i>
        </span>
        <!-- Upgrade -->
         <span class="card-icon" title="{{_t('upgrade')}}" ng-if="v.status === 'notequal'" ng-click="uupdateSkin(v)">
-            <i class="fa fa-level-up"></i>
+            <i class="fas fa-level-up-alt"></i>
        </span>
        <!-- Installed -->
        <span class="card-icon disabled" title="{{_t('installed')}}" disabled ng-if="v.status === 'equal'">
-            <i class="fa fa-check"></i>
+            <i class="fas fa-check"></i>
        </span> 
       </div>
          <!-- Footer -->
@@ -36,7 +36,7 @@
       <div class="appmodal-in">
         <div class="appmodal-header">
           <span class="appmodal-close" ng-click="handleModal('skinOnlineModal', $event)">
-            <i class="fa fa-times"></i>
+            <i class="fas fa-times"></i>
           </span>
           <h3>{{skins.online.find.title|cutText:true:30}}</h3>
         </div>
@@ -58,17 +58,17 @@
         <div class="appmodal-footer">
           <!-- Close -->
           <button type="button" class="btn btn-default" ng-click="handleModal('skinOnlineModal', $event)">
-            <i class="fa fa-times text-danger"></i>
+            <i class="fas fa-times text-danger"></i>
             <span class="btn-name">{{_t('lb_close')}}</span>
           </button>
           <!-- Download -->
           <button href="" class="btn btn-submit" title="{{_t('lb_download')}}" ng-if="skins.online.find.status === 'download'" ng-click="handleModal('skinOnlineModal', $event);downloadSkin(skins.online.find)">
-            <i class="fa fa-download"></i>
+            <i class="fas fa-download"></i>
             <span class="btn-name">{{_t('lb_download')}}</span>
           </button>
           <!-- Upgrade -->
           <button class="btn btn-danger" title="{{_t('upgrade')}}" ng-if="skins.online.find.status === 'notequal'" ng-click="handleModal('skinOnlineModal', $event);updateSkin(skins.online.find)">
-            <i class="fa fa-level-up"></i>
+            <i class="fas fa-level-up-alt"></i>
             <span class="btn-name">{{_t('upgrade')}}</span>
           </button>
         </div>

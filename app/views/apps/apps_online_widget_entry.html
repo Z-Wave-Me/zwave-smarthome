@@ -14,26 +14,26 @@
         <div class="onlineapp-footer" ng-class="v.id == hasLongPress ? 'has-longpress' : ''" on-long-press="onLongPress()" prevent-click="true">
             <!-- Ratings -->
             <div class="rating-group">
-                <i class="fa widget-rating" title="{{r}}" ng-class="r > v.rating ? 'fa-star-o' : 'fa-star israted'" ng-repeat="r in dataHolder.onlineModules.ratingRange"></i>
+                <i class="fas widget-rating" title="{{r}}" ng-class="r > v.rating ? 'fa-star' : 'fa-star israted'" ng-repeat="r in dataHolder.onlineModules.ratingRange"></i>
                 <span class="widget-rating-download">
-                    <i class="fa fa-download"></i> {{v.installed}}&times;</span>
+                    <i class="fas fa-download"></i> {{v.installed}}&times;</span>
             </div>
             <!-- Buttons -->
             <div class="btn-group group-apps">
                 <!-- Download -->
                 <button href="" class="btn btn-default" title="{{_t('lb_download')}}" ng-click="installModule(v, 'online_install')" ng-if="!dataHolder.modules.ids[v.modulename]">
-                    <i class="fa fa-download text-success"></i>
+                    <i class="fas fa-download text-success"></i>
                     <span class="btn-name">{{_t('lb_download')}}</span>
                 </button>
                 <!-- Installed -->
                 <button class="btn btn-disabled" disabled title="{{_t('installed')}}" ng-if="dataHolder.modules.ids[v.modulename] && dataHolder.modules.ids[v.modulename].version == v.version">
-                    <i class="fa fa-check"></i>
+                    <i class="fas fa-check"></i>
                     <span class="btn-name">{{_t('installed')}}</span>
                 </button>
                 <!-- Updgrade -->
                 <button href="" class="btn btn-danger" title="{{_t('update_to_latest')}}" ng-click="updateModule(v, _t('app_update_confirm'))"
                     ng-if="dataHolder.modules.ids[v.modulename] && v.status == 'upgrade' ">
-                    <i class="fa fa-level-up"></i>
+                    <i class="fas fa-level-up-alt"></i>
                     <span class="btn-name">{{_t('update_to_latest')}}</span>
                 </button>
             </div>

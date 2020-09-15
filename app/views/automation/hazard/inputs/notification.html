@@ -1,13 +1,10 @@
 <!--target  -->
 <div class="form-group form-inline">
   <select class="form-control" ng-model="d.target" ng-required="true">
-    <option value="">--- {{_t('notification_trigger')}} ---</option>
-    <option ng-if="user.email" value="{{user.email}}" ng-selected="d.target == user.email">{{user.email}}</option>
-    <option value="{{e.deviceId}}" ng-repeat="e in hazardProtection.availableNotifiers track by $index" ng-selected="e.deviceId == d.target">
-    {{e.deviceName}}</option>
+    <option value="{{nc.id}}" ng-repeat="nc in notifications.channels" ng-selected="nc.id == d.target">
+      {{nc.name}} ({{nc.userName}})
+    </option>
   </select>
-  &nbsp;
-  <label ng-hide="hazardProtection.availableNotifiers[d.target] || d.target == user.email">&nbsp;{{_t('or')}}&nbsp;<input type="text" class="form-control" placeholder="{{_t('add_email')}}" ng-model="d.target_custom" /></label>
 </div>
 <!-- mesage -->
 <div class="form-group" ng-if="d.target != '' || d.target_custom != ''">

@@ -13,8 +13,10 @@
         color: $app-a-color;
         font-weight: bold;
         &::after {
-          font-family: fontawesome;
+          font-family: "Font Awesome 5 Free";
           content: "\f00c";
+          font-weight: bold;
+          font-style: normal;
           color: $app-brand-success;
         }
       }
@@ -459,7 +461,7 @@ img.widget-promo-image {
 
 .widget-control.text a:after {
   content: "\f1ea";
-  font-family: FontAwesome;
+  font-family: "Font Awesome 5 Free";
   font-style: normal;
   font-weight: normal;
   /*--adjust as necessary--*/
