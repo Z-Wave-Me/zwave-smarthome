@@ -2,8 +2,8 @@ module.exports = function(grunt) {
 	var pkg = grunt.file.readJSON('package.json');
 	var app_type = pkg.app_type;
 	var app_cfg = pkg.type_cfg[pkg.app_type];
-	var app_version = pkg.v;
-	var git_message = pkg.v;
+	var app_version = pkg.version;
+	var git_message = pkg.version;
 	var app_rc = (pkg.rc ? pkg.rc + 1 : 0);
 
 	if (app_rc) {
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		// Banner
-		banner: 'Copyright:  Z-Wave Europe GmbH, Created: <%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
+		banner: 'Copyright:  Z-Wave.Me, Created: <%= grunt.template.today("dd-mm-yyyy HH:MM:ss") %>',
 		// Clean dir
 		clean: {
 			options: {
