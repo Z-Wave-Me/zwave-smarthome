@@ -83,7 +83,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				}
 			},
 			input: {
-				deviceType: ['sensorBinary'],
+				deviceType: ['sensorBinary', 'switchBinary'],
 				status: ['on', 'off'],
 				default: {
 					devices: '',
