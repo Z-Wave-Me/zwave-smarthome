@@ -11193,6 +11193,8 @@ img {
           .table-responsive .td-accordion-toggle > *:first-child::after {
             font-size: 130%;
             font-family: "Font Awesome 5 Free";
+            font-style: normal;
+            font-weight: bold;
             content: "\f142"; }
           .table-responsive .td-accordion-toggle > *:first-child:focus {
             border: 0;
@@ -11303,10 +11305,14 @@ img {
   background: transparent; }
   .btn.btn-ctrl::after {
     font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: bold;
     content: "\f142"; }
   .btn.btn-ctrl[aria-expanded="true"]::after {
     color: #5bc0de;
     font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: bold;
     content: "\f141"; }
 
 .btn-wrap {
@@ -11575,6 +11581,9 @@ input[type=checkbox] {
         padding: 2px 0 2px 1px; } }
   input[type=checkbox]:checked:after {
     content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: bold;
     color: #4e794e;
     -webkit-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
     -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -11632,6 +11641,9 @@ input[type=radio] {
         padding: 3px 0 0 4px; } }
   input[type=radio]:checked:after {
     content: "\f111";
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: bold;
     color: #737373;
     -webkit-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
     -moz-box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -12228,7 +12240,6 @@ fieldset section, .fieldset section {
       .accordion-toggle > button[aria-expanded="true"]::after {
         content: "-"; }
     .accordion-toggle > button:focus::after {
-      font-weight: bold;
       color: #5bc0de; }
     .accordion-toggle > button[disabled] {
       cursor: text; }
@@ -12236,17 +12247,25 @@ fieldset section, .fieldset section {
         content: ""; }
   .accordion-toggle.chevron > button[aria-expanded="false"]::after {
     font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: bold;
     content: "\f078"; }
   .accordion-toggle.chevron > button[aria-expanded="true"]::after {
     font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: bold;
     content: "\f077"; }
   .accordion-toggle.chevron > button[disabled]::after {
     content: ""; }
   .accordion-toggle.ellipsis > button[aria-expanded="false"]::after {
     font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: bold;
     content: "\f142"; }
   .accordion-toggle.ellipsis > button[aria-expanded="true"]::after {
     font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: bold;
     content: "\f141"; }
   .accordion-toggle.inline > button {
     display: block;
@@ -12255,9 +12274,13 @@ fieldset section, .fieldset section {
     border-bottom: 0; }
     .accordion-toggle.inline > button[aria-expanded="false"]::after {
       font-family: "Font Awesome 5 Free";
+      font-style: normal;
+      font-weight: bold;
       content: "\f0d7"; }
     .accordion-toggle.inline > button[aria-expanded="true"]::after {
       font-family: "Font Awesome 5 Free";
+      font-style: normal;
+      font-weight: bold;
       content: "\f0d8"; }
   .accordion-toggle.inline + .accordion {
     border-bottom: 0; }
@@ -12895,6 +12918,8 @@ http://codepen.io/MattIn4D/pen/LiKFC
     #elCategories ul li.active::after {
       font-family: "Font Awesome 5 Free";
       content: "\f00c";
+      font-weight: bold;
+      font-style: normal;
       color: #80AD80; }
 
 /* Elements
@@ -13672,7 +13697,7 @@ img.widget-promo-image {
   #apps_instances .accordion-instances .accordion-toggle {
     font-size: 100%; }
     #apps_instances .accordion-instances .accordion-toggle button {
-      padding: 5px; }
+      padding: 10px; }
       #apps_instances .accordion-instances .accordion-toggle button > span {
         display: -webkit-flex;
         display: flex;
@@ -13687,11 +13712,12 @@ img.widget-promo-image {
   #apps_instances .accordion-instances .accordion {
     border-bottom: 0;
     padding-bottom: 0;
+    padding-right: 0;
     /* MIN WIDTH */
     /* MAX WIDTH */ }
     @media only screen and (min-width: 768px) {
       #apps_instances .accordion-instances .accordion {
-        padding-left: 40px; } }
+        padding-left: 60px; } }
 #apps_instances .accordion-entry {
   background-color: #FFFFFF;
   margin: 0; }
