@@ -128,7 +128,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 		},
 		tab: 'fire',
 		hazardsTypes: ['fire', 'leakage'],
-		sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke', 'flood', 'alarm_flood', 'alarmSensor_flood'],
+		sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke', 'flood', 'alarm_flood', 'alarmSensor_flood', 'general_purpose'],
 		devices: ['switchBinary', 'switchMultilevel', 'switchRGBW', 'toggleButton'],
 		interval: [60, 120, 300, 600, 900, 1800, 3600],
 		firedOn: ['on', 'off', 'alarm', 'revert'],
@@ -182,7 +182,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 
 		},
 		fire: {
-			sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke'],
+			sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke', 'general_purpose'],
 			message: $scope._t('default_fire_message'), // default message label
 			instance: false,
 			assignedDevices: [],
@@ -203,7 +203,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 			}
 		},
 		leakage: {
-			sensors: ['flood', 'alarm_flood', 'alarmSensor_flood'],
+			sensors: ['flood', 'alarm_flood', 'alarmSensor_flood', 'general_purpose'],
 			message: $scope._t('default_leakage_message'), // default message label
 			instance: false,
 			assignedDevices: [],
