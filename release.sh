@@ -2,6 +2,8 @@
 
 LAST_TAG=`git describe --tags --match 'v*' --abbrev=0`
 
+git pull || exit
+
 if [ -n "$1" ]; then
 	TAG="$1"
 	if [ -z "`grep -E '^## '"$TAG"'$' README.md`" ]; then
