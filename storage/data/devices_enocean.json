@@ -535,6 +535,19 @@
   {
     "id": 42,
     "vendor": "Rehau",
+    "name": "Some Rehau device to be filled (id = 42)",
+    "vendorLogo": "rehau.png",
+    "description": "Desciption",
+    "image": "rehau.png",
+    "rorg": "0xa5",
+    "funcId": "0x02",
+    "typeId": "0x05",
+    "inclusion": "How to include",
+    "smartAck": false
+  },
+  {
+    "id": 43,
+    "vendor": "Rehau",
     "name": "Smart Guard XT",
     "vendorLogo": "rehau.png",
     "description": "Smart window sensor with motion sensor and alarm function",
