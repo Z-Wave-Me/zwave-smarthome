@@ -174,6 +174,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         }
         $cookies.events_timeFilter = angular.toJson($scope.timeFilter);
         //$scope.loadData();
+        $interval.cancel($scope.apiDataInterval);
         $scope.allSettled();
     };
 
@@ -327,11 +328,6 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         });
 
         $scope.refreshData();
-        if (_.size($scope.collection) < 1) {
-          $scope.events.state = 'blank';
-            //alertify.alertWarning($scope._t('no_events'));
-            return;
-        }
 
         $scope.pagesSum = Math.ceil($scope.collection.length/$scope.pageSize);
     };
