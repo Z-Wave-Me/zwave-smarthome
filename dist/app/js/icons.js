@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave.Me, Created: 16-09-2020 01:08:42 */
+/* Copyright:  Z-Wave.Me, Created: 30-09-2020 02:13:53 */
 /**
  * @overview The object with default icons.
  * @author Martin Vach
@@ -16,6 +16,12 @@ var icon_data = {
                     level: {
                         open: 'door-open.png',
                         closed: 'door-closed.png'
+                    }
+                },
+                window_tilt: {
+                    level: {
+                        open: 'window-up.png',
+                        closed: 'window-down.png'
                     }
                 },
                 window: {

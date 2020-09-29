@@ -9,7 +9,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },
   {
     "id": 2,
@@ -21,7 +22,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 3,
@@ -33,7 +35,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 4,
@@ -45,7 +48,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   },
   {
     "id": 5,
@@ -57,7 +61,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 6,
@@ -69,7 +74,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 7,
@@ -81,7 +87,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
 {
     "id": 8,
@@ -93,7 +100,8 @@
     "rorg": "0xa5",
     "funcId": "0x08",
     "typeId": "0x01",
-    "inclusion": "Move little blue magnet to the marking on the enclosure and away"
+    "inclusion": "Move little blue magnet to the marking on the enclosure and away",
+    "smartAck": false
   },  
  {
     "id": 9,
@@ -105,7 +113,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },   
  {
     "id": 10,
@@ -117,7 +126,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"    
+    "inclusion": "Hit 'SET' button on enclosure"    ,
+    "smartAck": false
   },     
   {
     "id": 11,
@@ -129,7 +139,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },  
   {
     "id": 12,
@@ -141,7 +152,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   },  
  {
     "id": 13,
@@ -153,7 +165,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },   
  {
     "id": 14,
@@ -165,7 +178,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"    
+    "inclusion": "Hit 'SET' button on enclosure"    ,
+    "smartAck": false
   },     
   {
     "id": 15,
@@ -177,7 +191,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },  
   {
     "id": 16,
@@ -189,7 +204,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   }, 
   {
     "id": 17,
@@ -201,7 +217,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit the rocker"
+    "inclusion": "Hit the rocker",
+    "smartAck": false
   },
  {
     "id": 18,
@@ -213,7 +230,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },      
  {
     "id": 19,
@@ -225,7 +243,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },   
   {
     "id": 20,
@@ -237,7 +256,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   }, 
   {
     "id": 21,
@@ -249,7 +269,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit the rocker"
+    "inclusion": "Hit the rocker",
+    "smartAck": false
   },
   {
     "id": 22,
@@ -261,7 +282,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 23,
@@ -273,7 +295,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 24,
@@ -285,7 +308,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   },
   {
     "id": 25,
@@ -297,7 +321,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 26,
@@ -309,7 +334,8 @@
     "rorg": "0xf6",
     "funcId": "0x03",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 27,
@@ -321,7 +347,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 28,
@@ -333,7 +360,8 @@
     "rorg": "0xf6",
     "funcId": "0x03",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 29,
@@ -345,7 +373,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 30,
@@ -357,7 +386,8 @@
     "rorg": "0xf6",
     "funcId": "0x03",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },  
    {
     "id": 31,
@@ -369,7 +399,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },
   {
     "id": 32,
@@ -381,7 +412,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 33,
@@ -393,7 +425,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 34,
@@ -405,7 +438,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   },
   {
     "id": 35,
@@ -417,7 +451,8 @@
     "rorg": "0xf6",
     "funcId": "0x03",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 36,
@@ -429,7 +464,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Move Magnet"
+    "inclusion": "Move Magnet",
+    "smartAck": false
   },
   {
     "id": 37,
@@ -441,7 +477,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
   },
   {
     "id": 38,
@@ -453,7 +490,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x02",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
   },
   {
     "id": 39,
@@ -465,7 +503,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
   },
   {
     "id": 40,
@@ -477,7 +516,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
   },
   {
     "id": 41,
@@ -489,6 +529,33 @@
     "rorg": "0xa5",
     "funcId": "0x02",
     "typeId": "0x05",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
+  },
+  {
+    "id": 42,
+    "vendor": "Rehau",
+    "name": "Some Rehau device to be filled (id = 42)",
+    "vendorLogo": "rehau.png",
+    "description": "Desciption",
+    "image": "rehau.png",
+    "rorg": "0xa5",
+    "funcId": "0x02",
+    "typeId": "0x05",
+    "inclusion": "How to include",
+    "smartAck": false
+  },
+  {
+    "id": 43,
+    "vendor": "Rehau",
+    "name": "Smart Guard XT",
+    "vendorLogo": "rehau.png",
+    "description": "Smart window sensor with motion sensor and alarm function",
+    "image": "smart-guard-xt.png",
+    "rorg": "0xd2",
+    "funcId": "0x06",
+    "typeId": "0xff",
+    "inclusion": "Insert battery",
+    "smartAck": true
   }
 ]
