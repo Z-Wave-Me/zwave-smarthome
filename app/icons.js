@@ -17,6 +17,12 @@ var icon_data = {
                         closed: 'door-closed.png'
                     }
                 },
+                window_tilt: {
+                    level: {
+                        open: 'window-up.png',
+                        closed: 'window-down.png'
+                    }
+                },
                 window: {
                     level: {
                         down: 'window-down.png',
