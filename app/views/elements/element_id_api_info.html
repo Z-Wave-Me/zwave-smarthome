@@ -1,0 +1,133 @@
+<!-- API INFO -->
+<div ng-controller="ElementApiInfoController">
+    <div class="form form-inline form-page">  
+        <!-- //////////////////////////////// Accordion //////////////////////////////// -->
+        <section class="accordion-instances">
+            <!-- Title -->
+            <h2 class="accordion-toggle chevron" ng-init="dataHolder.instances.expanded = false">
+              <!-- Toggle -->
+              <button type="button" aria-expanded="{{dataHolder.instances.expanded}}" bb-accordion ng-disabled="dataHolder.instances.expanded">
+                <span>
+                  <i class="fieldset fas fa-file-code fa-2x"></i>
+                  {{_t('lb_device_api_info')}}
+              </span>
+              </button>
+            </h2>
+
+            <!-- Content -->
+            <div class="accordion" hidden ng-class="{'ng-show':dataHolder.instances.expanded}">
+                <div class="fieldset app-row app-row-report clearfix">
+                        <div class="report-entry" ng-show="elementId.input.deviceType == 'switchBinary' || 
+                                                             elementId.input.deviceType == 'switchMultilevel' ||
+                                                             elementId.input.deviceType == 'switchControl' ||
+                                                             elementId.input.deviceType == 'toggleButton'">
+                            <div class="report-col report-media">
+                                <h3>ON</h3>
+                            </div>
+                            <div class="report-col report-body">
+                            {{getUrl()}}/ZAutomation/api/v1/devices/{{elementId.input.id}}/command/on
+                            </div>
+                            <div class="report-col report-ctrl">
+                                <button type="button" title="{{_t('lb_on')}}" class="btn btn-default" data-ng-click="runCmd(elementId.input.id, 'on')">
+                                  <i class="fas fa-circle color-green"></i>
+                                  <span class="btn-name" ng-bind="_t('lb_on')"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="report-entry" ng-show="elementId.input.deviceType == 'switchBinary' || 
+                                                             elementId.input.deviceType == 'switchMultilevel' ||
+                                                             elementId.input.deviceType == 'switchControl'">
+                            <div class="report-col report-media">
+                                <h3>OFF</h3>
+                            </div>
+                            <div class="report-col">
+                            {{getUrl()}}/ZAutomation/api/v1/devices/{{elementId.input.id}}/command/off
+                            </div>
+
+                             <div class="report-col report-ctrl">
+                                <button type="button" title="{{_t('lb_off')}}" class="btn btn-default" data-ng-click="runCmd(elementId.input.id, 'off')">
+                                  <i class="fas fa-circle color-red"></i>
+                                  <span class="btn-name" ng-bind="_t('lb_off')"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="report-entry" ng-show="elementId.input.deviceType == 'switchMultilevel' ||
+                                                            elementId.input.deviceType == 'thermostat'">
+                            <div class="report-col report-media">
+                                <h3>SET</h3>
+                            </div>
+
+                            <div class="report-col">
+                            {{getUrl()}}/ZAutomation/api/v1/devices/{{elementId.input.id}}/command/exact?level=20
+                            </div>
+
+                            <div class="report-col report-ctrl">
+                                <button type="button" title="{{_t('lb_set')}}" class="btn btn-default" data-ng-click="runCmd(elementId.input.id, 'exact?level=20')" >
+                                  <i class="fas fa-arrow-up color-orange"></i>
+                                  <span class="btn-name" ng-bind="_t('lb_set')"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="report-entry" ng-show="elementId.input.deviceType == 'doorlock'">
+                            <div class="report-col report-media">
+                                <h3>OPEN</h3>
+                            </div>
+                            <div class="report-col report-body">
+                            {{getUrl()}}/ZAutomation/api/v1/devices/{{elementId.input.id}}/command/open
+                            </div>
+                            <div class="report-col report-ctrl">
+                                <button type="button" title="{{_t('lb_open')}}" class="btn btn-default" data-ng-click="runCmd(elementId.input.id, 'open')">
+                                  <i class="fas fa-lock-open color-green"></i>
+                                  <span class="btn-name" ng-bind="_t('lb_open')"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="report-entry" ng-show="elementId.input.deviceType == 'doorlock'">
+                            <div class="report-col report-media">
+                                <h3>CLOSE</h3>
+                            </div>
+                            <div class="report-col report-body">
+                            {{getUrl()}}/ZAutomation/api/v1/devices/{{elementId.input.id}}/command/close
+                            </div>
+                            <div class="report-col report-ctrl">
+                                <button type="button" title="{{_t('lb_close')}}" class="btn btn-default" data-ng-click="runCmd(elementId.input.id, 'close')">
+                                  <i class="fas fa-lock color-red"></i>
+                                  <span class="btn-name" ng-bind="_t('lb_close')"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="report-entry">
+                            <div class="report-col report-media">
+                                <h3>GET</h3>
+                            </div>
+
+                            <div class="report-col">
+                                <p>{{getUrl()}}/ZAutomation/api/v1/devices/{{elementId.input.id}}</p>
+                            </div>
+
+                            <div class="report-col report-ctrl">
+                                <button type="button" title="{{_t('lb_get')}}" class="btn btn-default" data-ng-click="getData(elementId.input.id)" >
+                                  <i class="fas fa-sync"></i>
+                                  <span class="btn-name" ng-bind="_t('lb_get')"></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="report-entry">
+                            <div class="report-col">
+                            </div>
+                            <div class="report-col">
+                                <pre><code class="syntax-highight hljs" ng-init="getData(elementId.input.id)"></code></pre>
+                            </div>
+                            <div class="report-col">
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

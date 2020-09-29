@@ -455,6 +455,32 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 
 });
 
+myAppController.controller('ElementApiInfoController', function($scope, $timeout, $filter, $location, cfg, dataFactory, dataService) {
+	$scope.getUrl = function(){
+		return $location.protocol() + "://" + $location.host() + ":" + $location.port();
+	};
+
+	$scope.runCmd = function(id, command) {
+		dataFactory.runApiCmd(id + "/command/" + command);
+	};
+
+	$scope.getData = function(id) {
+		dataFactory.runApiCmd(id).then(function(response) {
+				hljsInit(response.data)
+			}, function(error) {
+				hljsInit(response.data)
+		});
+	};
+
+	function hljsInit(data) {
+		document.querySelectorAll(".syntax-highight.hljs").forEach(function(block) {
+			block.innerHTML = JSON.stringify(eval(data), undefined, 2);
+			hljs.initHighlighting.called = false;
+			hljs.initHighlighting();
+		});
+	};
+});
+
 /**
  * The controller that handles custom icon actions in the elemt detail view.
  * @class ElementIconController
