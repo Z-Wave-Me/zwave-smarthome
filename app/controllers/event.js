@@ -72,7 +72,6 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
         var urlParam = '?since=' + ($scope.timeFilter.since * 1000);
 
@@ -326,16 +325,14 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.devices.cnt.deviceEvents =_.countBy(data,function (v) {
             return v.source;
         });
-        // Run refresh only when filter is empty
-        //if(_.isEmpty($scope.filter)){
+
         $scope.refreshData();
-        //}
-        // No data in the collection
         if (_.size($scope.collection) < 1) {
           $scope.events.state = 'blank';
             //alertify.alertWarning($scope._t('no_events'));
             return;
         }
+
         $scope.pagesSum = Math.ceil($scope.collection.length/$scope.pageSize);
     };
 

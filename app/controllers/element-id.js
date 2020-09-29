@@ -107,8 +107,6 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				setDevice(dataService.getDevicesData(arr, true).value()[0]);
 				$scope.elementId.show = true;
 			}
-
-
 		});
 	};
 	$scope.allSettled();

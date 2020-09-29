@@ -465,8 +465,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	 */
 	this.assignElementIcon = function(element) {
 		return assignElementIcon(element);
-
-
 	};
 
 	/**
@@ -982,7 +980,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		switch (iconKey) {
 			// door
 			case 'door':
-				icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+				icon = (element.metrics.level === 'open' || element.metrics.level === 'on') ? iconArray.open : iconArray.closed;
 				break;
 				// window
 			case 'window':
@@ -995,44 +993,44 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 						icon = iconArray.half;
 					}
 				} else {
-					icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+					icon = (element.metrics.level === 'open' || element.metrics.level === 'on') ? iconArray.open : iconArray.closed;
 				}
 				break;
 				// switch
 			case 'switch':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// siren
 			case 'siren':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// motion
 			case 'motion':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// alarm
 			case 'alarm':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// CO alarm
 			case 'alarm_co':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// CO2 alarm
 			case 'alarm_coo':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// flood
 			case 'alarm_flood':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// burglar
 			case 'alarm_burglar':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// tamper
 			case 'tamper':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				//security
 			case 'security':
@@ -1046,7 +1044,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 				break;
 				// smoke
 			case 'alarm_smoke':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// blinds
 			case 'blinds':
@@ -1071,11 +1069,11 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 				break;
 				// gesture
 			case 'gesture':
-				icon = (iconArray[element.metrics.state] || iconArray['press']);
+				icon = iconArray[element.metrics.state] || iconArray['press'];
 				break;
 				// climate control
 			case 'climatecontrol':
-				icon = (iconArray[element.metrics.state] || iconArray['default']);
+				icon = iconArray[element.metrics.state] || iconArray['default'];
 				break;
 				// default
 			default:
