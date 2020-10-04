@@ -119,7 +119,7 @@
 
     <!-- Authentication tokens -->
     <div ng-if="id > 0">
-      <h3>{{_t('lb_auth_token')}}</h3>
+      <h2><i class="fas fa-desktop fa-fw"></i> {{_t('lb_auth_token')}}</h3>
       <div class="form-page">
         <div ng-if="!authTokens.length">
           <p>{{_t('no_auth_token')}}</p>
@@ -170,21 +170,29 @@
     
     <!-- Token for API -->
     <div ng-if="id > 0 && cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
-      <h3>{{_t('lb_auth_token_api')}}</h3>
-      <div class="form-page">
-        <table class="table-responsive">
-          <tr>
-            <td>{{_t('lb_auth_token_scope')}}</td>
-            <td>
-              <span ng-if="!currentFullAuthTokenGlobal"><i class="fas fa-home"></i> {{_t('lb_auth_token_local')}}</span>
-              <span ng-if="currentFullAuthTokenGlobal"><i class="fas fa-globe"></i> {{_t('lb_auth_token_global')}}</span>
-            </td>
-          </tr>
-          <tr>
-            <td>{{_t('lb_auth_token_token')}}</td>
-            <td><span ng-bind="currentFullAuthToken"></span></td>
-          </tr>
-        </table>
+      <h2 class="accordion-toggle chevron">
+        <button type="button" aria-expanded="false" bb-accordion>
+          <span>
+            <i class="fas fa-code fa-fw"></i> {{_t('lb_auth_token_api')}}
+          </span>
+        </button>
+      </h2>
+      <div class="accordion" hidden>
+        <div class="form-page">
+          <table class="table-responsive">
+            <tr>
+              <td>{{_t('lb_auth_token_scope')}}</td>
+              <td>
+                <span ng-if="!currentFullAuthTokenGlobal"><i class="fas fa-home"></i> {{_t('lb_auth_token_local')}}</span>
+                <span ng-if="currentFullAuthTokenGlobal"><i class="fas fa-globe"></i> {{_t('lb_auth_token_global')}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>{{_t('lb_auth_token_token')}}</td>
+              <td><span ng-bind="currentFullAuthToken"></span></td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
     
@@ -196,7 +204,6 @@
           <span>
             <i class="fas fa-key fa-fw"></i> {{_t('my_local_access')}}</span>
         </button>
-
       </h2>
       <!-- Content -->
       <div class="accordion" hidden>
