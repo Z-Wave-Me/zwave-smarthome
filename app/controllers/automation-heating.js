@@ -81,6 +81,12 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				step: 0.5,
 				temp: {}
 			},
+			frostProtection: {
+				min: 5,
+				max: 35,
+				step: 0.5,
+				temp: {}
+			},
 			fallback: {
 				"F": "frost_protection_temp",
 				"E": "energy_save_temp",
@@ -89,6 +95,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			default: { // room template
 				comfortTemp: 21, // default value
 				energySaveTemp: 18,
+				frostProtectionTemp: 5,
 				fallbackTemp: "",
 				sensorId: null,
 				schedule: {}
@@ -378,6 +385,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			label: [$scope._t('frostProtection')]
 		};
 		$scope.heating.cfg.energySave.temp = temperatureArray(obj, $scope.heating.cfg.energySave, "°C");
+		$scope.heating.cfg.frostProtection.temp = temperatureArray(obj, $scope.heating.cfg.frostProtection, "°C");
 		$scope.heating.cfg.comfort.temp = temperatureArray(false, $scope.heating.cfg.comfort, "°C");
 	};
 	$scope.init();

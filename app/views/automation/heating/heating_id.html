@@ -38,6 +38,15 @@
 									{{heating.cfg.energySave.temp.label[$index]}}</option>
 								</select>
 							</div>
+							<!-- frost temp -->
+							<div class="form-group is-inline">
+								<label>{{_t('frost_protection_temp')}}</label>
+								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].frostProtectionTemp" convert-to-float>
+									<option value="">---</option>
+									<option value="{{ft}}" ng-repeat="ft in heating.cfg.frostProtection.temp.temp track by $index" ng-selected="ft == heating.input.params.roomSettings[r.id].frostProtectionTemp">
+									{{heating.cfg.frostProtection.temp.label[$index]}}</option>
+								</select>
+							</div>
 							<!-- main sensor -->
 							<div class="form-group is-inline" ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">
 								<label>{{_t('temp_sensor')}}</label>
