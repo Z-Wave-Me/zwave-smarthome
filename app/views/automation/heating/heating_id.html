@@ -19,9 +19,11 @@
 					<fieldset>
 						<!-- <pre>{{heating.input.params.roomSettings[r.id].schedule | json}}</pre> -->
 						<!-- room settings -->
-						<div class="form-inline">
+						<div class="app-row">
+
 							<!-- comfort temp -->
-							<div class="form-group is-inline">
+							<div class="form-inline is-inline alpaca-array-actionbar">
+								<i class="fas fa-sun"></i>
 								<label>{{_t('comfort_temp')}}</label>
 								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].comfortTemp" convert-to-float>
 									<option value="">---</option>
@@ -29,8 +31,10 @@
 									{{heating.cfg.comfort.temp.label[$index]}}</option>
 								</select>
 							</div>
+
 							<!-- energy save temp -->
-							<div class="form-group is-inline">
+							<div class="form-inline is-inline alpaca-array-actionbar">
+								<i class="fas fa-moon"></i>
 								<label>{{_t('energy_save_temp')}}</label>
 								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].energySaveTemp" convert-to-float>
 									<option value="">---</option>
@@ -38,8 +42,10 @@
 									{{heating.cfg.energySave.temp.label[$index]}}</option>
 								</select>
 							</div>
+
 							<!-- frost temp -->
-							<div class="form-group is-inline">
+							<div class="form-inline is-inline alpaca-array-actionbar">
+								<i class="fas fa-asterisk"></i>
 								<label>{{_t('frost_protection_temp')}}</label>
 								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].frostProtectionTemp" convert-to-float>
 									<option value="">---</option>
@@ -47,8 +53,10 @@
 									{{heating.cfg.frostProtection.temp.label[$index]}}</option>
 								</select>
 							</div>
+
 							<!-- main sensor -->
-							<div class="form-group is-inline" ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">
+							<div class="form-inline is-inline alpaca-array-actionbar" ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">
+								<i class="fas fa-temperature-low"></i>
 								<label>{{_t('temp_sensor')}}</label>
 								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].sensorId">
 									<option value="{{heating.devices.SensorsByRoom[r.id][0].deviceId}}" ng-if="heating.devices.SensorsByRoom[r.id].length == 1">
