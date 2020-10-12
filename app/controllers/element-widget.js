@@ -864,7 +864,6 @@ myAppController.controller('ElementClimateControlController', function($scope, $
 	$scope.loadDeviceId = function() {
 		dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
 			var device = response.data.data;
-			console.log("device", device);
 			if (_.isEmpty(device)) {
 				$scope.widgetSensorMultiline.alert = {
 					message: $scope._t('no_data'),
@@ -878,9 +877,9 @@ myAppController.controller('ElementClimateControlController', function($scope, $
 				.flatten()
 				.filter(function(v) {
 					angular.extend(v, {
-						roomTitle: $scope.dataHolder.devices.rooms[v.room].title
+						roomTitle: $scope.dataHolder.devices.rooms[v.room] ? $scope.dataHolder.devices.rooms[v.room].title : "room deleted"
 					}, {
-						roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src
+						roomIcon: $scope.dataHolder.devices.rooms[v.room] ? $scope.dataHolder.devices.rooms[v.room].img_src : null
 					}, {
 						sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null
 					}, {
