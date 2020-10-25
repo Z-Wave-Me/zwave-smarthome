@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave.Me, Created: 30-09-2020 03:48:48 */
+/* Copyright:  Z-Wave.Me, Created: 25-10-2020 21:01:43 */
 /**
  * @overview Notifications configuration file.
  * @author Michael Hensche, Serguei Poltorak
