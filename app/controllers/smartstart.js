@@ -547,7 +547,7 @@ myAppController.controller('SmartStartQrController', function($scope, $timeout, 
 				$scope.dataHolder.video.obj = document.querySelector('video');
 				$scope.dataHolder.video.mediaStream = stream;
 				// Older browsers may not have srcObject
-				if ("srcObject" in $scope.dataHolder.video) {
+				if ("srcObject" in $scope.dataHolder.video.obj) {
 					$scope.dataHolder.video.obj.srcObject = stream;
 				} else {
 					// Avoid using this in new browsers, as it is going away.
