@@ -703,6 +703,7 @@ myApp.filter('setConfigValue', function () {
  */
 myApp.filter('setRgbColors', function () {
     return function (color) {
+        if (!color) return 'rgb(0,0,0)';
         return 'rgb('+ color.r +',' + color.g  + ',' + color.b  +')';
 
     };
