@@ -15715,7 +15715,8 @@ img.widget-promo-image {
         left: 0;
         bottom: 0;
         background-color: rgba(255, 255, 255, 0.5);
-        width: 100%; }
+        width: 100%;
+        pointer-events: none; }
         .flexgallery > * figure figcaption a, .flexgallery > * .figure figcaption a {
           display: block; }
   .flexgallery .inactive {
