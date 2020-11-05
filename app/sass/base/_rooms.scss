@@ -386,13 +386,13 @@
             display: table;
             width: 100%;
             .fa-arrow-left {
-              display: table-cell;
+              display: none;
               vertical-align: middle;
               text-align: left;
               color: $app-heading-color;
             }
             .fa-arrow-right {
-              display: table-cell;
+              display: none;
               vertical-align: middle;
               text-align: right;
               color: $app-heading-color;
