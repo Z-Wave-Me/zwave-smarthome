@@ -13429,7 +13429,13 @@ img {
 #sub_navigation_wrap #sub_navigation #sub_navigation_in ul li .subnavi-arrow, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li .subnavi-arrow {
   position: absolute;
   right: 1%;
-  display: inline-block;
+  display: none;
+}
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li:hover, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li:hover {
+  background-color: #bfbfbf;
+}
+#sub_navigation_wrap #sub_navigation #sub_navigation_in ul li:hover a, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items li:hover a {
+  text-decoration: none;
 }
 #sub_navigation_wrap #sub_navigation #sub_navigation_in ul .active a, #sub_navigation_wrap #sub_navigation #sub_navigation_in .items .active a {
   color: #b3b3b3;
