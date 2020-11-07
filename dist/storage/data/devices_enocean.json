@@ -557,5 +557,17 @@
     "typeId": "0xff",
     "inclusion": "Insert battery",
     "smartAck": true
+  },
+  {
+    "vendor": "Rehau",
+    "name": "Indoor siren",
+    "vendorLogo": "rehau.png",
+    "description": "Indoor siren with repeater functionality",
+    "image": "rehau-siren.png",
+    "rorg": "0x00",
+    "funcId": "0x00",
+    "typeId": "0x00",
+    "inclusion": "Press LRN-button",
+    "smartAck": false
   }
 ]
