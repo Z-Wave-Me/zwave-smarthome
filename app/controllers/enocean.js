@@ -29,7 +29,15 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
       }else{
         $scope.enocean.vendors = _.uniq(response.data, 'vendor');
       }
-      
+      $scope.enocean.products.forEach(function(product) {
+        if (product.smartAck) {
+          product.teachIn = "smartAck";
+        } else if (product.rorg == 0xB0) {
+          product.teachIn = "genericProfile";
+        } else {
+          product.teachIn = product.id
+        }
+      });
     }, function (error) {});
   };
  

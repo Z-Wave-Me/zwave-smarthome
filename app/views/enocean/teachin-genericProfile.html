@@ -3,8 +3,9 @@
     <!-- Auto inclusion -->
     <div class="form form-inline form-page">
         <div class="fieldset clearfix">
-            <div class="include-device-img" ng-if="device.image">
+            <div class="include-device-img">
                 <img class="include-image-detail" ng-src="storage/img/enocean/devices/{{device.image}}" alt="{{device.name}}" ng-if="device.image" />
+                <img class="include-image-detail" src="storage/img/enocean/vendors/GenericProfile.png" alt="EnOcean Generic Profile" ng-if="!device.image" />
             </div>
 
            <div class="include-device-body">

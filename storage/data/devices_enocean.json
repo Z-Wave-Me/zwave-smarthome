@@ -557,5 +557,18 @@
     "typeId": "0xff",
     "inclusion": "Insert battery",
     "smartAck": true
+  },
+  {
+    "id": 44,
+    "vendor": "Afriso",
+    "name": "Indoor siren",
+    "vendorLogo": "afriso.png",
+    "description": "Indoor siren with repeater functionality",
+    "image": "afriso-siren.png",
+    "rorg": "0xb0",
+    "funcId": "0x00",
+    "typeId": "0x00",
+    "inclusion": "Press LRN-button",
+    "smartAck": false
   }
 ]
