@@ -181,6 +181,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
             dataFactory.putApi('devices', v.id, data).then(function (response) {
             });
         });
+        $scope.runZwaveCmd('devices[' + $scope.zWaveDevice.id + '].RemoveFailedNode()');
         $scope.zWaveExclude.remove.progress = ((done / cnt) * 100).toFixed();
         if($scope.zWaveExclude.remove.devicesCnt == done){
             done++;
