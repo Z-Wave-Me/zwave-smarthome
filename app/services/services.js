@@ -1076,6 +1076,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 			case 'climatecontrol':
 				icon = iconArray[element.metrics.state] || iconArray['default'];
 				break;
+				// valve
+			case 'valve':
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
+				break;
 				// default
 			default:
 				icon = iconArray.default;

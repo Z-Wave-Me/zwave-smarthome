@@ -194,6 +194,12 @@ var icon_data = {
                         frostProtection: 'climatecontrol_frostprotection.png',
                         default: "climatecontrol_default.png" 
                     }
+                },
+                valve: {
+                    level: {
+                        on: 'valve-on.png',
+                        off: 'valve-off.png'
+                    }
                 }
             },
             deviceType: {
