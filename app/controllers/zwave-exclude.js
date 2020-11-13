@@ -14,7 +14,8 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
         id: null,
         name: null,
         apiDataInterval: null,
-        devices: []
+        devices: [],
+        isFailed: false
         /* removeNode: false,
          removeNodeProcess: false,
          find: {}*/
@@ -92,13 +93,12 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
                 $scope.zWaveDevice.controllerState = ZWaveAPIData.value.controller.data.controllerState.value;
                 $scope.zWaveDevice.id = $routeParams.id;
                 $scope.zWaveDevice.name = node.data.givenName.value || 'Device ' + '_' + $routeParams.id;
-
+                $scope.zWaveDevice.isFailed = node.data.isFailed.value;
             }
 
         });
     };
     $scope.allSettled();
-
     /**
      *  Refresh z-wave devices
      */
@@ -165,34 +165,11 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
      * Remove device
      */
     $scope.removeDevice = function () {
-        $scope.zWaveExclude.remove.process = true;
-        var cnt =  ($scope.zWaveExclude.remove.devicesCnt + 1);
-        var done = 0;
-        angular.forEach($scope.zWaveDevice.devices,function(v){
-            var data = {
-                id: v.id,
-                //permanently_hidden: true,
-                metrics: {
-                    removed: true
-                }
-            };
-            // Extending a counter
-            done++;
-            dataFactory.putApi('devices', v.id, data).then(function (response) {
-            });
-        });
         $scope.runZwaveCmd('devices[' + $scope.zWaveDevice.id + '].RemoveFailedNode()');
-        $scope.zWaveExclude.remove.progress = ((done / cnt) * 100).toFixed();
-        if($scope.zWaveExclude.remove.devicesCnt == done){
-            done++;
-            $scope.zWaveExclude.remove.progress = ((done / cnt) * 100).toFixed();
-            myCache.removeAll();
-            dataService.showNotifier({message: $scope._t('reloading_page')});
-            $timeout(function () {
-              $window.location.href = '#/zwave/devices';
-                $window.location.reload();
-            }, 2000);
-        }
-
+        myCache.removeAll();
+        $timeout(function () {
+          $window.location.href = '#/zwave/devices';
+            $window.location.reload();
+        }, 1000);
     };
 });
