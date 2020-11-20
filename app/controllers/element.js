@@ -676,7 +676,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
             //angular.element('#input_search').focus();
             // Set autcomplete term
             $scope.autocomplete.term = $scope.dataHolder.devices.filter.q;
-            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete), 'id');
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, {...$scope.autocomplete, resultLength: 1000}), 'id');
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
                 if (searchResult[v.id]) {
                     return v;
