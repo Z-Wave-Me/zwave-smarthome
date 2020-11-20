@@ -1,0 +1,57 @@
+.wifi-options {
+  cursor: pointer;
+  .wifi-options-box {
+    display: flex;
+    .essid {
+      margin-left: 1rem;
+      flex: 1 1 auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+.wifi-current-connect{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wifi-status {
+  span {
+    padding-right: 2rem;
+  }
+  .available-connections {
+    color: black;
+  }
+  .possible-connections {
+    color: darkgrey;
+  }
+  .current-connection {
+    color: green;
+  }
+}
+.wifi-control-btn-group {
+  display: inline-block;
+}
+
+.wifi-control-input-block,
+.wifi-select {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.2rem;
+  align-items: center;
+}
+.wifi-full-size,
+.wifi-help{
+  width: 100%;
+}
+.wifi-password {
+  min-width: 20rem;
+}
+.hidden-icons {
+  display: none;
+}
+.center {
+  text-align: center;
+}

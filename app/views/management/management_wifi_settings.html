@@ -1,0 +1,126 @@
+<!-- Admin Wifi Settings list view -->
+<!-- Title -->
+<h2 class="accordion-toggle chevron">
+    <!-- Toggle -->
+    <button type="button" aria-expanded="false" bb-accordion>
+    <span>
+      <i class="fas fa-wifi"></i>{{_t('nav_wifi')}}
+    </span>
+    </button>
+</h2>
+<!-- Content-->
+<div class="accordion" hidden ng-controller="ManagementWiFiController">
+    <div class="form form-page" ng-if="currentConnection.length !== 0">
+        <fieldset>
+            <!--        Current connections-->
+            <!--            <i ng-class="{'hidden-icons': !currentConnection.length}" class="fas fa-spinner fa-pulse" ></i>-->
+            <p class="wifi-status">
+                <span ng-repeat="connect in connectionStatus.possibleConnections"
+                      ng-class="colorizeConnections(connect)">
+                    <i class="fa {{connectToStr(connect)[1]}}" aria-hidden="true"></i>
+                    {{ _t(connectToStr(connect)[0])}}
+                </span>
+            </p>
+        </fieldset>
+    </div>
+    <div class="form form-page">
+        <fieldset>
+            <!--        Current connection-->
+            <div class="wifi-current-connect">
+                <div class="wifi-current-name"> {{currentConnect.essid}}</div>
+                <div class="btn btn-danger" ng-click="disconnect()"> {{_t('wifi_disconnect')}}</div>
+            </div>
+        </fieldset>
+    </div>
+    <div ng-show="loadingWiFilist" class="center">
+        <i class="fa fa-spinner fa-pulse"></i>
+    </div>
+    <div ng-show="wifiNets.all.length">
+        <!-- body -->
+        <div ng-hide="connecting.progress" ng-controller="ManagementWiFiSelectController" class="ng-scope wifi-select">
+            <div class="help-text wifi-help">
+                {{enteringPassord ?
+                    _t('wifi_connect_help', {__name__: selectedConnect.essid}) :
+                    _t('wifi_connect_select_help')}}
+            </div>
+            <button class="btn btn-default"
+                    ng-if="!enteringPassord"
+                    ng-click="expandNavi('wifiNetsList', $event)">
+                <i class="fas fa-wifi"></i>
+                {{selectedConnect.essid}}
+            </button>
+            <!-- Page subnavi  select wifi net -->
+            <div class="page-navi" ng-if="naviExpanded.wifiNetsList">
+                <div class="page-navi-in">
+                    <div class="page-navi-content btn-default wifi-options" ng-repeat="v in wifiNets.all">
+                        <div ng-click="selectWiFi(v)" class="wifi-options-box">
+                            <div>{{ v.signal }}</div>
+                            <div class="essid"> {{ v.essid }}</div>
+                            <div><i class="fa fa-lock" ng-style="v.security === 'NONE' && {'display': 'none'}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- control -->
+            <div class="control" ng-class="enteringPassord ? 'wifi-full-size' : ''">
+                <div>
+                    <div ng-show="enteringPassord">
+
+                        <div class="wifi-control">
+                            <div class="wifi-control-input-block">
+                                <div class="wifi-password">
+                                    <input type="{{inputType}}" id="v.id" ng-model="wifiPassword" autocomplete="off"
+                                           placeholder="{{_t('wifi_password')}}">
+                                    <i class="fa"
+                                       ng-class=" showPassword ? 'fa-eye': 'fa-eye-slash'"
+                                       ng-click="showPass()"
+                                       aria-hidden="true"
+                                       title="{{ showPassword ?
+                                   _t('hide_password'):
+                                   _t('show_password')}}"></i>
+                                </div>
+                                <div class="wifi-control-btn-group">
+                                    <button ng-disabled="wifiPassword.length < 8"
+                                            class="btn btn-submit"
+                                            title="{{_t('wifi_continue')}}"
+                                            ng-click="passwordRequest()">
+                                        {{_t('wifi_continue')}}
+                                    </button>
+                                    <button class="btn btn-danger"
+                                            title="{{_t('wifi_cancel')}}"
+                                            ng-click="cancelConnection()">
+                                        {{_t('wifi_cancel')}}
+                                    </button>
+                                </div>
+                                </divwifi-control>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-submit"
+                            title="{{_t('wifi_connect')}}"
+                            ng-disabled="!selectedConnect"
+                            ng-click="connectWiFi()"
+                            ng-hide="enteringPassord">
+                        {{_t('wifi_connect')}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div ng-show="connecting.progress">
+            <p ng-show="connecting.data && connecting.data.error == null">
+                <i class="fas fa-check" style="color: lawngreen"></i>
+                {{ _t('wifi_connect_successfully')}} </p>
+            <p ng-show="connecting.data === null">
+                <i class="fas fa-spinner fa-pulse"></i>
+                {{ _t('wifi_connect_progress', {__net__: selectedConnect.essid})}} </p>
+            <p ng-show="connecting.data && connecting.data.error !== null">
+                <i class="fas fa-times" style="color: darkred"></i>
+                {{ _t('wifi_connect_failed')}} {{connecting.data.error}} </p>
+        </div>
+    </div>
+    <div ng-show="!wifiNets.all.length && !loadingWiFilist">
+        {{_t('no_connections')}}
+    </div>
+</div>
