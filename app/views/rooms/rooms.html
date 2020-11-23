@@ -62,7 +62,7 @@
     </div>
   </div>
   <!-- Button for mobile devices -->
-  <div class="text-center l-hide">
+  <div class="text-center l-hide" ng-show="elementAccess(cfg.role_access.config_rooms) && v.id != 0">
     <a class="btn btn-default btn" href="#config-rooms/0">
       <i class="fas fa-plus text-success"></i>
       <span class="btn-name_">{{_t('lb_add_room')}}</span>
