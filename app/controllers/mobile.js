@@ -95,15 +95,8 @@ myAppController.controller('MobileAddController', function ($scope, $timeout, $w
             dataFactory.postApi('profiles', data, '/qrcode/'+$scope.user.id).then(function(response) {
                 dataService.showNotifier({message: $scope._t('success_updated')});
 
-                var qr = new QRious({
-                  level: 'H',
-                  size: 255,
-                  value: response.data.data
-                });
-                $scope.qrcode = qr.toDataURL();
-
+                QRCode.toDataURL(response.data.data, (err, url) => $scope.qrcode = url);
                 $scope.toggleRowSpinner(id);
-
             }, function(error) {
                 $scope.toggleRowSpinner(id);
                 if(error.data.error == "wrong_password") {
