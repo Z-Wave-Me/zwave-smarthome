@@ -37,6 +37,7 @@
     z-index: $zindex-page-navi;
     border: 1px solid $app-border-color;
     background-color: #FFFFFF;
+    overflow-y: scroll;
     @include appBoxShadow($app-box-shadow);
     @include mediaQueries(max-small) {
       position: fixed;
