@@ -152,7 +152,9 @@ var config_data = {
 			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend,
 			'notification_filtering': 'ZAutomation/api/v1/notificationFiltering', // get and set NotificationFiltering settings app for a user
 			'notification_channels': 'ZAutomation/api/v1/notificationChannels', // get NotificationFiltering channels for the user
-			'mobile_app_support': 'MobileAppSupportAPI/app' // MobileAppSupport
+			'mobile_app_support': 'MobileAppSupportAPI/app', // MobileAppSupport,
+			'wifi_cli': 'ZAutomation/api/v1/system/wifiCli/settings', //WifiCli settings,
+			'wifi_cli_connection_type' : 'ZAutomation/api/v1/system/connectionType' // WiFi connection type
 		},
 		// List of remote api URLs
 		'api_remote': {
