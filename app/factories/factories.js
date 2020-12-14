@@ -1109,7 +1109,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
 
     /**
-     * Resore the system from the backup file
+     * Restore the system from the backup file
      * @param {object} data
      * @returns {unresolved}
      */
