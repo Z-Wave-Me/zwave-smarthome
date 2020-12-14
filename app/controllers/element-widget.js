@@ -336,10 +336,10 @@ myAppController.controller('ElementSwitchMultilevelController', function($scope)
 	 * Load single device
 	 */
 	$scope.loadDeviceId = function() {
-		var device = _.where($scope.dataHolder.devices.collection, {
+		const device = _.where($scope.dataHolder.devices.collection, {
 			id: $scope.dataHolder.devices.find.id
 		});
-		if (!device) {
+		if (device) {
 			$scope.widgetSwitchMultilevel.alert = {
 				message: $scope._t('error_load_data'),
 				status: 'alert-danger',
@@ -347,10 +347,8 @@ myAppController.controller('ElementSwitchMultilevelController', function($scope)
 			};
 			return;
 		}
-		$scope.widgetSwitchMultilevel.find = device[0];
-		return;
+		$scope.widgetSwitchMultilevel.find = angular.copy(device[0]);
 	};
-
 	$scope.loadDeviceId();
 
 });
@@ -386,8 +384,7 @@ myAppController.controller('ElementThermostatController', function($scope) {
 			};
 			return;
 		}
-		$scope.widgetThermostat.find = device[0];
-		return;
+		$scope.widgetThermostat.find = angular.copy(device[0]);
 	};
 	$scope.loadDeviceId();
 
