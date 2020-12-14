@@ -42,15 +42,10 @@
                             </button>&nbsp;
                             <button class="btn btn-info"
                                     ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.min)"
-                                    >
-                                <i class="fas fa-angle-double-down"></i>
+                                    ><i class="fas fa-angle-double-down"></i>
                             </button>
                      </p>
                       <p>
-                            <button class="btn btn-info"
-                                    ng-click="setExactCmd(widgetSwitchMultilevel.find, widgetSwitchMultilevel.find.minMax.max)"
-                                    ng-bind="_t('lb_full')">
-                            </button>
                             <button class="btn btn-default" ng-if="widgetSwitchMultilevel.find.probeType == 'motor'"
                                    id="btn_stop_{{ v.id}}"
                                    data-ng-click="runCmd(widgetSwitchMultilevel.find.id + '/command/stop', widgetSwitchMultilevel.find.id)"
