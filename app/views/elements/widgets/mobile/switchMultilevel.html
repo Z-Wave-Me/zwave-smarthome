@@ -2,7 +2,8 @@
 <div class="widget-img-overlay" 
     ng-show="cfg.element_level_is_number.indexOf(v.deviceType) > -1"
     ng-click="dataHolder.devices.find = v;handleModal('switchMultilevelModal_m', $event)">
-    <span class="widget-level">{{v.metrics.level}}<small>{{v.metrics.scaleTitle}}</small></span> 
-</div>    
+    <span class="widget-level">{{v.metrics.level}}<small>{{v.metrics.scaleTitle}}</small></span>
+</div>
+<i ng-click="handlePower(v)" class="fas fa-power-off widget__power-off_bnt" ng-class="!!(v.metrics.level) ? 'on' : 'off'"></i>
 <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
 err-src="{{cfg.img.placeholder}}" />

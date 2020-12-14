@@ -74,7 +74,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         installOnlineModule: installOnlineModule,
         restoreFromBck: restoreFromBck,
         getHelp: getHelp,
-        getAppBuiltInfo: getAppBuiltInfo
+        getAppBuiltInfo: getAppBuiltInfo,
+        runCmdExact: runCmdExact
     });
 
     /// --- Public functions --- ///
@@ -1169,6 +1170,17 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             return $q.reject(response);
         });
 
+    }
+    /**
+     * Set Multilevel device value by ID
+     *
+     */
+    function runCmdExact(id, val) {
+        var cmd = id + '/command/exact?level=' + val;
+            this.runApiCmd(cmd).then(function(response) {
+        }, function(error) {
+
+        });
     }
 });
 

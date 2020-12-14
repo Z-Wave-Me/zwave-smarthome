@@ -718,8 +718,14 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
 
         }
         $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
-    };
-
+    }
+    $scope.handlePower = function (device) {
+        if(device.metrics.level === 0) {
+            dataFactory.runCmdExact(device.id, device.minMax.max);
+        } else {
+            dataFactory.runCmdExact(device.id, device.minMax.min);
+        }
+    }
 });
 
 

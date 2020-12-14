@@ -56,6 +56,17 @@
         width: 64px;
         height: 64px;
       }
+      .widget__power-off_bnt {
+        position: absolute;
+        right: -.7rem;
+        top: 0;
+        &.off {
+          color: darkgrey;
+        }
+        &.on {
+          color: black;
+        }
+      }
       .widget-img-overlay {
         background-color: rgba(255, 255, 255, 0.8);
         width: 64px;
