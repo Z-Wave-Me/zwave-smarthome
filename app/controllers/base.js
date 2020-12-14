@@ -757,7 +757,6 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
 });
 
 myAppController.controller('GlobalDevicesController', function ($scope, $cookies, $filter, $interval, dataService, dataFactory, $q, $routeParams, cfg) {
-    console.log('it works');
     $scope.dataHolder = {
         mode: 'default',
         firstLogin: false,
