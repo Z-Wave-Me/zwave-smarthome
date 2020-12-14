@@ -14,7 +14,7 @@ var config_data = {
 		// Application version
 		'app_version': 'v1.11.1',
 		// Application (DIST) built date
-		'app_built': '23-11-2020 03:09:04',
+		'app_built': '14-12-2020 23:36:46',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -152,7 +152,9 @@ var config_data = {
 			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend,
 			'notification_filtering': 'ZAutomation/api/v1/notificationFiltering', // get and set NotificationFiltering settings app for a user
 			'notification_channels': 'ZAutomation/api/v1/notificationChannels', // get NotificationFiltering channels for the user
-			'mobile_app_support': 'MobileAppSupportAPI/app' // MobileAppSupport
+			'mobile_app_support': 'MobileAppSupportAPI/app', // MobileAppSupport,
+			'wifi_cli': 'ZAutomation/api/v1/system/wifiCli/settings', //WifiCli settings,
+			'wifi_cli_connection_type' : 'ZAutomation/api/v1/system/connectionType' // WiFi connection type
 		},
 		// List of remote api URLs
 		'api_remote': {

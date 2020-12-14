@@ -10607,6 +10607,7 @@ img {
     z-index: 2101;
     border: 1px solid #cccccc;
     background-color: #FFFFFF;
+    overflow-y: scroll;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -11247,7 +11248,9 @@ img {
 .btn-default {
   color: #0d0d0d;
   background-color: #FFFFFF;
-  border-color: #CCCCCC; }
+  border-color: #CCCCCC;
+  overflow: hidden;
+  text-overflow: ellipsis; }
   .btn-default[disabled] .fa {
     color: #a6a6a6; }
 
@@ -16888,5 +16891,53 @@ body.night-false {
   @media only screen and (min-width: 768px) {
     .l-hide {
       display: none; } }
+
+.wifi-options {
+  cursor: pointer; }
+  .wifi-options .wifi-options-box {
+    display: flex; }
+    .wifi-options .wifi-options-box .essid {
+      margin-left: 1rem;
+      flex: 1 1 auto;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+
+.wifi-current-connect {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.wifi-status span {
+  padding-right: 2rem; }
+.wifi-status .available-connections {
+  color: black; }
+.wifi-status .possible-connections {
+  color: darkgrey; }
+.wifi-status .current-connection {
+  color: green; }
+
+.wifi-control-btn-group {
+  display: inline-block; }
+
+.wifi-control-input-block,
+.wifi-select {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.2rem;
+  align-items: center; }
+
+.wifi-full-size,
+.wifi-help {
+  width: 100%; }
+
+.wifi-password {
+  min-width: 20rem; }
+
+.hidden-icons {
+  display: none; }
+
+.center {
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */
