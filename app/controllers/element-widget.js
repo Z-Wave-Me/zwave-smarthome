@@ -339,7 +339,7 @@ myAppController.controller('ElementSwitchMultilevelController', function($scope)
 		const device = _.where($scope.dataHolder.devices.collection, {
 			id: $scope.dataHolder.devices.find.id
 		});
-		if (device) {
+		if (!device) {
 			$scope.widgetSwitchMultilevel.alert = {
 				message: $scope._t('error_load_data'),
 				status: 'alert-danger',
