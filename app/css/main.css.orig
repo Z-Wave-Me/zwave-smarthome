@@ -12966,6 +12966,14 @@ http://codepen.io/MattIn4D/pen/LiKFC
       .widget-entry-element .widget-entry-in .widget-img {
         width: 64px;
         height: 64px; } }
+    .widget-entry-element .widget-entry-in .widget-img .widget__power-off_bnt {
+      position: absolute;
+      right: -.7rem;
+      top: 0; }
+      .widget-entry-element .widget-entry-in .widget-img .widget__power-off_bnt.off {
+        color: darkgrey; }
+      .widget-entry-element .widget-entry-in .widget-img .widget__power-off_bnt.on {
+        color: black; }
     .widget-entry-element .widget-entry-in .widget-img .widget-img-overlay {
       background-color: rgba(255, 255, 255, 0.8);
       width: 64px;
