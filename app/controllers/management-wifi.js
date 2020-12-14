@@ -12,14 +12,12 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
         orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
     };
     const connectionDict = new Map([
-            ['ethernet', ['wifi_ethernet', 'fa-network-wired' ]],
-            ['wifi', ['wifi_wifi', 'fa-wifi' ]],
-            ['mobile', ['wifi_mobile','fa-mobile']],
-            ['error',['', 'fa-warning']]
-        ]);
-    $scope.currentConnect = {
-        'essid': 'disconnected'
-    };
+        ['ethernet', ['wifi_ethernet', 'fa-network-wired']],
+        ['wifi', ['wifi_wifi', 'fa-wifi']],
+        ['mobile', ['wifi_mobile', 'fa-mobile']],
+        ['error', ['', 'fa-warning']]
+    ]);
+    $scope.currentConnect = null;
     $scope.connectionStatus = {}
     // "currentConnection": "wifi", // <-- зелёным
     // "availableConnections": [
@@ -38,6 +36,10 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
     }
     $scope.loadingWiFilist = true;
 
+    $scope.wifiSignalIcon = function (signal) {
+        const icon = Math.round(signal / 20) + 1;
+        return 'fa-signal' + (icon < 5 ? ('-' + icon) : '');
+    }
     /**
      * Load current wifi connection status
      */
@@ -60,7 +62,7 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
         return 'possible-connections';
     }
     $scope.connectToStr = function (connect) {
-        if (connectionDict.has(connect)){
+        if (connectionDict.has(connect)) {
             return connectionDict.get(connect);
         }
         return connectionDict.get('error');
@@ -68,87 +70,61 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
     /**
      * Load all nets
      */
+    $scope.currentConnectStatus = function (){
+        if ($scope.connecting.progress || $scope.loadingWiFilist) return 'fas fa-spinner fa-pulse';
+        else if ($scope.currentConnect && $scope.currentConnect.signal) return 'fad ' + $scope.wifiSignalIcon($scope.currentConnect.signal);
+        else return 'fad fa-wifi-slash';
+    }
     $scope.loadNets = function () {
         // $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('wifi_cli', null, true).then(function (response) {
             $scope.wifiNets.all = response.data.data;
-            // $scope.loading = false;
             if ($scope.wifiNets.all.length !== 0) {
                 $scope.selectedConnect = $scope.wifiNets.all[0];
+                $scope.currentConnect = $scope.wifiNets.all.find(net => net.saved);
+                $scope.connecting.progress = false;
             }
         }, function (error) {
-            // $scope.loading = false;
             angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
         }).then(() => $scope.loadingWiFilist = false);
-        // $scope.wifiNets.all = {}
     };
     $scope.loadNets();
     let updateList = $interval($scope.loadNets, 30_000);
 
-    const delay = t => new Promise(resolve => setTimeout(resolve, t));
-    const connect_mock = () => delay(4000)
-        .then(() => {
-            $scope.connecting.data = {};
-            $scope.connecting.data.error = null;
-            console.log($scope.connecting);
-        })
-        .then(() => delay(4000))
-        .then(() => {
-            $scope.connecting.data.error = 'error';
-        })
-        .then(() => delay(4000))
-        .then(() => {
-            console.log($scope.connecting);
-            $scope.connecting.progress = false;
-            $scope.connecting.data = {
-                code: 200,
-                data: {},
-                error: null,
-                message: "200 OK"
-            }
-        });
-
     $scope.tryConnect = function (connect, password) {
-
+        $scope.selectedConnect = connect;
         $scope.connecting.progress = true;
-        connect_mock();
-        // later
-        // dataFactory.postApi('wifi_cli', {
-        //     ...connect,
-        //     'password': password
-        // }).then(function (response) {
-        //     $scope.connecting.data = response.data;
-        // }, function (error) {
-        //     // $scope.loading = false;
-        //     angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
-        // }).then(() => setTimeout(() => {
-        //         $scope.connecting.progress = false;
-        //         $scope.connecting.data = {};
-        // }, 2000));
+        dataFactory.postApi('wifi_cli', {
+            ...connect,
+            'password': password
+        }).then(function (response) {
+            $scope.connecting.data = response.data;
+        }, function (error) {
+            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
+        }).then(setTimeout( () => {
+                // $scope.connecting.response = !!$scope.currentConnect;
+                $scope.loadNets();
+            }, 1000)
+        );
     }
     $scope.disconnect = function () {
         dataFactory.postApi('wifi_cli', {
-                'essid' : ''
-            }).then(function (response) {
-               $scope.currentConnect = {
-                   'essid': 'disconnected'
-               }
-                // $scope.connecting.data = response.data;
-            }, function (error) {
-            // $scope.loading = false;
-            angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
-        });
+            'essid': '',
+            'security': '',
+            'encryption': '',
+            'password': ''
+        })
+        $scope.currentConnect = null;
     }
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function () {
         $interval.cancel(updateList);
         $interval.cancel(updateStatus);
     });
 
-})
-;
+});
 
 myAppController.controller('ManagementWiFiSelectController', function ($scope, $cookies, dataFactory, dataService, myCache, cfg) {
-    $scope.enteringPassord = false;
+    $scope.enteringPassword = false;
     $scope.wifiPassword = '';
     $scope.showPassword = false;
     $scope.inputType = 'password';
@@ -156,9 +132,8 @@ myAppController.controller('ManagementWiFiSelectController', function ($scope, $
      * Connect new Net
      */
     $scope.connectWiFi = function () {
-        console.log($scope.selectedConnect, $scope.selectedConnect.security === 'NONE');
         if ($scope.selectedConnect.security !== 'NONE') {
-            $scope.enteringPassord = true;
+            $scope.enteringPassword = true;
         } else {
             $scope.tryConnect($scope.selectedConnect);
         }
@@ -168,16 +143,15 @@ myAppController.controller('ManagementWiFiSelectController', function ($scope, $
      */
 
     $scope.passwordRequest = function () {
-        console.log($scope.wifiPassword);
-        $scope.enteringPassord = false;
+        $scope.enteringPassword = false;
         $scope.tryConnect($scope.selectedConnect, $scope.wifiPassword);
+        $scope.wifiPassword = '';
     }
 
     $scope.cancelConnection = function () {
-        $scope.enteringPassord = false;
+        $scope.enteringPassword = false;
     }
     $scope.selectWiFi = function (wifi) {
-        $scope.wifiPassword = '';
         $scope.selectedConnect = wifi;
     }
     $scope.showPass = function () {
