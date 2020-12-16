@@ -547,22 +547,19 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
      */
     $scope.naviExpanded = {};
     $scope.expandNavi = function(key, $event, status) {
-
-        if ($scope.naviExpanded[key]) {
-            $scope.naviExpanded = {};
-            $event.stopPropagation();
-            return;
-        }
-
-        $scope.naviExpanded = {};
-        if (typeof status === 'boolean') {
-            $scope.naviExpanded[key] = status;
-        } else {
-            $scope.naviExpanded[key] = !$scope.naviExpanded[key];
-        }
         $event.stopPropagation();
+        const keyHolder = !$scope.naviExpanded[key];
+        $scope.naviExpanded = {};
+        if (keyHolder) {
+            $scope.naviExpanded[key] = typeof status === 'boolean'
+                ? status : keyHolder;
+        }
     };
-
+    /**
+     * hold Search bar when get click
+     * @param evt
+     */
+    $scope.elSearchHolder = evt => evt.stopPropagation();
     /**
      * Expand/collapse autocomplete
      * @param {string} key
