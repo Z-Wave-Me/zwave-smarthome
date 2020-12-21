@@ -10907,6 +10907,9 @@ img {
     .widget-entry .widget-entry-in .widget-ctrl.ctrl-right {
       float: right;
       text-align: right; }
+      .widget-entry .widget-entry-in .widget-ctrl.ctrl-right .widget-level,
+      .widget-entry .widget-entry-in .widget-ctrl.ctrl-right .widget-scale {
+        font-size: 2rem; }
       .widget-entry .widget-entry-in .widget-ctrl.ctrl-right .btn-group {
         float: right; }
   .widget-entry.widget-success .widget-entry-in {
@@ -13475,12 +13478,6 @@ img.widget-promo-image {
 @media only screen and (max-width: 767px) {
   .app-search .page-control {
     text-align: left; }
-  .app-search #form_search {
-    width: 80%;
-    display: inline-table; }
-    .app-search #form_search .form-control {
-      min-height: 20px;
-      padding: 6px 8px; }
   .app-search .btn-group {
     vertical-align: baseline; }
     .app-search .btn-group .btn {
@@ -16237,6 +16234,20 @@ img.widget-promo-image {
 /* MAX WIDTH */
 /* MIN WIDTH */
 /* MAX WIDTH */
+.mobile-sessions {
+  padding: 10px !important;
+  display: grid !important;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center; }
+  .mobile-sessions .btn-block {
+    width: auto; }
+  .mobile-sessions .mobile-session-title {
+    justify-self: auto; }
+
+@media only screen and (max-width: 767px) {
+  .table-responsive td::before {
+    content: attr(data-label); } }
 /* SmartHome UI custom
 /* blank - without @import "custom/_skinname"
 /* shui, bayernshui, blueshui, darkshui, homekit
