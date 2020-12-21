@@ -13,10 +13,10 @@ myAppController.controller('MySettingsSessionController', function ($scope, $win
      * Check mobile
      */
     $scope.isMobile = false;
-    const mediaQueryList = window.matchMedia("only screen and (max-width: 767px)");
+    const mediaQueryList = $window.matchMedia("only screen and (max-width: 767px)");
     const handleOrientationChange = mql => $scope.isMobile = mql.matches;
     handleOrientationChange(mediaQueryList);
-    mediaQueryList.addListener(handleOrientationChange);
+    mediaQueryList.addEventListener('change', handleOrientationChange);
     /**
      * Remove auth token
      */
@@ -25,7 +25,7 @@ myAppController.controller('MySettingsSessionController', function ($scope, $win
             myCache.remove('profiles');
             dataService.showNotifier({message: $scope._t('delete_successful')});
             $scope.loading = false;
-            $scope.allSettledUserId();
+            $scope.allSettled();
         }, function (error) {
             $scope.loading = false;
             alertify.alertError($scope._t('error_delete_data'));
@@ -68,7 +68,7 @@ myAppController.controller('MySettingsSessionController', function ($scope, $win
                 myCache.remove('profiles');
                 dataService.showNotifier({message: $scope._t('success_updated')});
                 $scope.loading = false;
-                $scope.allSettledUserId();
+                $scope.allSettled();
             }, function (error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_update_data'));
