@@ -36,14 +36,14 @@ fi
 grunt
 
 if [ "$1" == "dist" ]; then
-	git add app/css/main.css.orig app/info.json package.json dist/ &&
+	git add app/css/main.css.map app/css/main.css app/css/main.css.orig app/info.json package.json dist/ &&
 	git commit -m "dist" &&
 	git push &&
 	git push
 fi
 
 if [ -n "$TAG" ]; then
-	git add README.md app/css/main.css.orig app/info.json package.json dist/ &&
+	git add README.md app/css/main.css.map app/css/main.css app/css/main.css.orig app/info.json package.json dist/ &&
 	git commit -m "dist" && git tag "$TAG" &&
 	git push && git push --tags &&
 	git checkout master && git merge dev && git push && git checkout dev # merge with master
