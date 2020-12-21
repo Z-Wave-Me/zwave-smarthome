@@ -1,0 +1,164 @@
+<div ng-if="id > 0">
+    <h2><i class="fas fa-desktop fa-fw"></i> {{_t('lb_auth_token')}}</h2>
+    <div class="form-page">
+        <div ng-if="!authTokens.length">
+            <p>{{_t('no_auth_token')}}</p>
+        </div>
+        <table class="table-responsive">
+            <thead>
+            <tr>
+                <th>{{_t('lb_auth_token_logout')}}</th>
+                <th>{{_t('lb_auth_token_lifetime')}}</th>
+                <th>{{_t('lb_auth_token_created')}}</th>
+                <th>{{_t('lb_auth_token_expires')}}</th>
+                <th>{{_t('lb_auth_token_user_agent')}}</th>
+                <th>{{_t('lb_auth_token_last_seen')}}</th>
+                <th>{{_t('lb_auth_token_ip')}}</th>
+                <th>{{_t('lb_auth_token_token')}}</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat-start="d in authTokens" ng-show="isMobile">
+                <td colspan="8" class="mobile-sessions">
+                    <div class="mobile-session-title">{{d.ip}}</div>
+                    <div class="btn btn-default"
+                         ng-click="removeAuthToken(input.id, d.sid, _t('lb_delete_confirm'))"
+                         title="{{_t('lb_auth_token_logout')}}">
+                        <i class="fas fa-times text-danger"></i>
+                    </div>
+                    <div class="btn btn-default" ng-if="d.expire"
+                         ng-click="permanentAuthToken(input.id, d.sid, _t('lb_permanent_token_confirm'))"
+                         title="{{_t('lb_auth_token_permanent')}}">
+                        <i class="far fa-hourglass-half"></i></i>
+                    </div>
+                    <div class="btn btn-default" ng-if="!d.expire" ng-disabled="true">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <div class="btn btn-default more_info" ng-click="d.show = !d.show"><i
+                            class="far fa-info-circle"></i></div>
+                </td>
+            </tr>
+            <tr class="form-group form-inline" ng-repeat-end ng-if="authTokens.length"
+                ng-class="currentZWayAuthToken.substring(0,6) == d.sid.substring(0,6) ? 'bg-info' : ''"
+                ng-show="!!d.show || !isMobile">
+                <td ng-hide="isMobile" data-label="{{_t('lb_auth_token_logout')}}">
+                    <a href="" class="btn btn-default btn-block"
+                       ng-click="removeAuthToken(input.id, d.sid, _t('lb_delete_confirm'))"
+                       title="{{_t('lb_auth_token_logout')}}">
+                        <i class="fas fa-times text-danger"></i>
+                    </a>
+                </td>
+                <td ng-hide="isMobile" data-label="{{_t('lb_auth_token_lifetime')}}">
+                    <a href="" class="btn btn-default btn-block" ng-if="d.expire"
+                       ng-click="permanentAuthToken(input.id, d.sid, _t('lb_permanent_token_confirm'))"
+                       title="{{_t('lb_auth_token_permanent')}}">
+                        <i class="fas fa-hourglass-half"></i>
+                    </a>
+                    <a href="" class="btn btn-default btn-block" ng-if="!d.expire" ng-disabled="true">
+                        <i class="fas fa-infinity"></i>
+                    </a>
+                </td>
+                <td data-label="{{_t('lb_auth_token_created')}}"><span ng-bind="d.date_str"></span></td>
+                <td data-label="{{_t('lb_auth_token_expires')}}"><span ng-bind="d.expire_str"></span></td>
+                <td data-label="{{_t('lb_auth_token_user_agent')}}"><span ng-bind="d.agent"></span></td>
+                <td data-label="{{_t('lb_auth_token_last_seen')}}"><span ng-bind="d.lastSeen_str"></span></td>
+                <td data-label="{{_t('lb_auth_token_ip')}}"><span ng-bind="d.ip"></span></td>
+                <td data-label="{{_t('lb_auth_token_token')}}"><span ng-bind="d.sid"></span></td>
+            </tr>
+            <tr class="form-group form-inline" ng-if=authTokens.length>
+                <td colspan="8">
+                    <a href="" class="btn btn-default btn-block"
+                       ng-click="removeAllAuthTokens(input.id, authTokens, _t('lb_delete_confirm_all'))"
+                       title="{{_t('lb_auth_token_logout_all')}}"><i class="btn fa fa-times text-danger"></i>
+                        {{_t('lb_auth_token_logout_all')}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Token for API -->
+<div ng-if="id > 0 && cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
+    <h2 class="accordion-toggle chevron">
+        <button type="button" aria-expanded="false" bb-accordion>
+          <span>
+            <i class="fas fa-code fa-fw"></i> {{_t('lb_auth_token_api')}}
+          </span>
+        </button>
+    </h2>
+    <div class="accordion" hidden>
+        <div class="form-page">
+            <table class="table-responsive">
+                <thead>
+                <tr>
+                    <th>{{_t('lb_auth_token_scope')}}</th>
+                    <th>{{_t('lb_auth_token_token')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-label="{{_t('lb_auth_token_scope')}}">
+                        <span ng-if="!currentFullAuthTokenGlobal"><i class="fas fa-home"></i> {{_t('lb_auth_token_local')}}</span>
+                        <span ng-if="currentFullAuthTokenGlobal"><i class="fas fa-globe"></i> {{_t('lb_auth_token_global')}}</span>
+                    </td>
+                    <td data-label="{{_t('lb_auth_token_token')}}"><span ng-bind="currentFullAuthToken"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ///////////////////////////// Change password Form ///////////////////////////// -->
+<section>
+    <!-- Title -->
+    <h2 class="accordion-toggle chevron">
+        <button type="button" aria-expanded="false" bb-accordion>
+          <span>
+            <i class="fas fa-key fa-fw"></i> {{_t('my_local_access')}}</span>
+        </button>
+    </h2>
+    <!-- Content -->
+    <div class="accordion" hidden>
+        <form name="form_password" id="form_password" class="form form-inline form-page"
+              ng-submit="changePassword(form_password,newPassword)"
+              novalidate>
+            <fieldset>
+                <!-- login  -->
+                <p class="form-control-static">
+                    <span ng-bind="_t('lb_login')"></span>:
+                    <strong ng-bind="input.login"></strong>
+                </p>
+                <!-- password -->
+                <div class="form-group last">
+                    <label class="isrequired">{{_t('lb_new_password')}}: </label>
+                    <input name="password" id="password" type="password" class="form-control" value=""
+                           ng-model="newPassword" ng-blur="passwordBlur = true"
+                           ng-required="true" ng-minlength="6"/>
+                    <bb-validator input-name='form_password.password.$error.required' trans='_t("field_required")'
+                                  has-blur='passwordBlur'></bb-validator>
+                    <bb-validator input-name='form_password.password.$error.minlength' trans='_t("password_valid")'
+                                  has-blur='passwordBlur'></bb-validator>
+
+                </div>
+                <!-- confirm password -->
+                <div class="form-group last">
+                    <label class="isrequired">{{_t('confirm_password')}}: </label>
+                    <input name="password_confirm" id="password_confirm" type="password" class="form-control" value=""
+                           ng-blur="passwordConfirmBlur = true"
+                           ng-model="input.passwordConfirm" bb-compare-to="password"/>
+                    <bb-validator input-name='form_password.password_confirm.$error.compareto'
+                                  trans='_t("passwords_must_match")' has-blur='passwordConfirmBlur'></bb-validator>
+                </div>
+
+            </fieldset>
+            <fieldset class="submit-entry">
+                <button type="submit" class="btn btn-submit" title="{{_t('lb_change_password')}}"
+                        ng-disabled="form_password.$invalid">
+                    <i class="fas fa-check"></i>
+                    <span class="btn-name">{{_t('lb_change_password')}}</span>
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</section>
