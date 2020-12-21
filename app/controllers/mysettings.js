@@ -116,7 +116,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                         myCache.remove('profiles');
                         dataService.showNotifier({message: $scope._t('delete_successful')});
                         $scope.loading = false;
-                        $scope.allSettledUserId();
+                        $scope.allSettled();
                     }, function (error) {
                         $scope.loading = false;
                         alertify.alertError($scope._t('error_delete_data'));
@@ -139,7 +139,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 myCache.remove('profiles');
                 dataService.showNotifier({message: $scope._t('success_updated')});
                 $scope.loading = false;
-                $scope.allSettledUserId();
+                $scope.allSettled();
             }, function (error) {
                 $scope.loading = false;
                 alertify.alertError($scope._t('error_update_data'));
