@@ -4,7 +4,7 @@
         <div ng-if="!authTokens.length">
             <p>{{_t('no_auth_token')}}</p>
         </div>
-        <table class="table-responsive">
+        <table class="table-responsive" ng-if="authTokens.length">
             <thead>
             <tr>
                 <th>{{_t('lb_auth_token_logout')}}</th>
@@ -51,7 +51,7 @@
                     <a href="" class="btn btn-default btn-block" ng-if="d.expire"
                        ng-click="permanentAuthToken(input.id, d.sid, _t('lb_permanent_token_confirm'))"
                        title="{{_t('lb_auth_token_permanent')}}">
-                        <i class="fas fa-hourglass-half"></i>
+                        <i class="far fa-hourglass-half"></i>
                     </a>
                     <a href="" class="btn btn-default btn-block" ng-if="!d.expire" ng-disabled="true">
                         <i class="fas fa-infinity"></i>
