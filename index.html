@@ -126,6 +126,7 @@
     <script src="app/controllers/management-user.js"></script>
     <script src="app/controllers/management-oauth.js"></script>
     <script src="app/controllers/mysettings.js"></script>
+    <script src="app/controllers/mysettings-sessions.js"></script>
     <script src="app/controllers/rss.js"></script>
     <script src="app/controllers/auth.js"></script>
     <script src="app/controllers/zwave-configuration.js"></script>
@@ -135,7 +136,10 @@
 
     <!-- /build -->
   </head>
-  <body id="page_{{getBodyId()}}" class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}" ng-class="isModal ? 'appmodal-open': ''">
+  <body   ng-controller="GlobalDevicesController"
+          id="page_{{getBodyId()}}"
+          class="skin-{{cfg.skin.active}} app-type-{{cfg.app_type}} is-mobile-{{isMobile}} os-{{cfg.route.os}} rss-{{rss.unread}} night-{{user.night_mode||false}}"
+          ng-class="isModal ? 'appmodal-open': ''">
 
     <a class="skinreset" href="#skinreset">Reset skin to default</a>
     <div id="header" ng-if="user">

@@ -39,6 +39,7 @@
           autocomplete="off" novalidate>
         <!-- Input -->
         <input id="input_search" type="text" focus="{{dataHolder.modules.filter.q}}"
+               ng-click="elSearchHolder($event)"
                class="form-control"
                placeholder="{{_t('lb_search')}}"
                ng-model="dataHolder.modules.autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>

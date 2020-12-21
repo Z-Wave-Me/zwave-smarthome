@@ -1,0 +1,23 @@
+.mobile-sessions {
+  padding: 10px !important;
+  display: grid !important;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+
+  .btn-block {
+    width: auto;
+  }
+
+  .mobile-session-title {
+    justify-self: auto;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .table-responsive {
+    td::before {
+      content: attr(data-label);
+    }
+  }
+}

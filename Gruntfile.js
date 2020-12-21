@@ -171,14 +171,13 @@ module.exports = function(grunt) {
 					'app/controllers/management-user.js',
 					'app/controllers/management-oauth.js',
 					'app/controllers/mysettings.js',
+					'app/controllers/mysettings-sessions.js',
 					'app/controllers/rss.js',
 					'app/controllers/auth.js',
 					'app/controllers/zwave-configuration.js',
 					'app/controllers/zwave-commands.js',
-					'app/controllers/welcome.js'
-
-
-
+					'app/controllers/welcome.js',
+					'app/controllers/management-wifi.js'
 				],
 				dest: 'dist/app/js/build.js'
 			}
