@@ -57,6 +57,7 @@
                     ng-click="expandNavi('wifiNetsList', $event)">
                 <i class="fad" ng-class="wifiSignalIcon(selectedConnect.signal)"></i>
                 {{selectedConnect.essid}}
+                <i class="fal fa-caret-down" style="padding-left: 1ch"></i>
             </button>
             <!-- Page subnavi  select wifi net -->
             <div class="page-navi" ng-if="naviExpanded.wifiNetsList">
