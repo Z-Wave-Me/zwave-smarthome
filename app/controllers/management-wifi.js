@@ -19,16 +19,6 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
     ]);
     $scope.currentConnect = null;
     $scope.connectionStatus = {}
-    // "currentConnection": "wifi", // <-- зелёным
-    // "availableConnections": [
-    //     "wifi" ,
-    //     "mobile"// <-- чёрным
-    // ],
-    // "possibleConnections": [
-    //     "ethernet",                // <-- \
-    //     "wifi",                    //     > -- серым
-    //     "mobile"                  // <-- /
-    // ]
     $scope.selectedConnect = null;
     $scope.connecting = {
         data: null,
