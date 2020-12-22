@@ -464,6 +464,19 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
             dataFactory.runCmdExact(device.id, device.minMax.min);
         }
     }
+    $scope.adaptiveFontSize = function (text) {
+        if (typeof text === 'string' && text.length > 0) {
+        let width = document.body.clientWidth;
+        if (width > 1190) {
+            width = 1190;
+        }
+        if (width > 755) {
+            let scaleSize = Math.round(width / 4 / text.length);
+            return {'font-size': (scaleSize > 30 ? 30 : scaleSize) + 'px'};
+        }
+            return {};
+        }
+    }
 });
 
 
