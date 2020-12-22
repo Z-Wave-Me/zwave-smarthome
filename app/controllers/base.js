@@ -1008,6 +1008,8 @@ myAppController.controller('GlobalDevicesController', function ($scope, $cookies
                 });
             }
         };
-        $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+        if (!$scope.apiDataInterval) {
+            $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
+        }
     };
 });
