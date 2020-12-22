@@ -105,6 +105,71 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             });
         }).set('type', 'password');
     }
+    /**
+     * Create/Update a profile
+     */
+    $scope.store = function (form, input) {
+        if (form.$invalid) {
+            return;
+        }
+
+        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
+        dataFactory.putApi('profiles', input.id, input).then(function (response) {
+            var data = response.data.data;
+            if (!data) {
+                alertify.alertError($scope._t('error_update_data'));
+                $scope.loading = false;
+                return;
+            }
+
+            // Email change --> update e-mail cloudbackup if instance exist
+            if ($scope.user.role == 1) {
+                if ($scope.lastEmail != input.email) {
+                    var promises = [
+                        dataFactory.getApi('instances', '/CloudBackup')
+                    ];
+
+                    $q.allSettled(promises).then(function (response) {
+                        var instance = response[0];
+
+                        if (instance.state === 'rejected') {
+                            return;
+                        }
+
+                        if (instance.state === 'fulfilled') {
+                            var instanceData = instance.value.data.data[0];
+                            instanceData.params.email = input.email;
+                            dataFactory.putApi('instances', instanceData.id, instanceData).then(function (response) {
+                                $scope.lastEmail = input.email
+                            }, function (error) {
+                                alertify.alertError($scope._t('error_update_data'));
+                            });
+                        }
+                    });
+                }
+            }
+
+            $scope.loading = false;
+            $cookies.lang = input.lang;
+            myCache.remove('profiles');
+            dataService.setUser(data);
+            dataService.showNotifier({message: $scope._t('success_updated')});
+            $timeout(function () {
+                $scope.loading = {status: 'loading-spin', icon: '--', message: $scope._t('reloading_page')};
+                alertify.dismissAll();
+                $window.location.reload();
+            }, 2000);
+
+        }, function (error) {
+            var message = $scope._t('error_update_data');
+            if (error.status == 409) {
+                message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
+            }
+            alertify.alertError(message);
+            $scope.loading = false;
+        });
+    };
+
 
     /// --- Private functions --- ///
     /**
