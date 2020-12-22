@@ -19409,7 +19409,7 @@ img {
           cursor: pointer; }
           .table-responsive .td-accordion-toggle > *:first-child::after {
             font-size: 130%;
-            font-family: "Font Awesome 5 Free";
+            font-family: "Font Awesome 5 Pro";
             font-style: normal;
             font-weight: bold;
             content: "\f142"; }
@@ -19523,13 +19523,13 @@ img {
   border: 0;
   background: transparent; }
   .btn.btn-ctrl::after {
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-style: normal;
     font-weight: bold;
     content: "\f142"; }
   .btn.btn-ctrl[aria-expanded="true"]::after {
     color: #5bc0de;
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-style: normal;
     font-weight: bold;
     content: "\f141"; }
@@ -19770,7 +19770,7 @@ input[type=checkbox] {
   font-size: 22px;
   /* MIN WIDTH */
   /* MAX WIDTH */
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Pro";
   position: relative;
   border: none;
   background-color: transparent; }
@@ -19800,7 +19800,7 @@ input[type=checkbox] {
         padding: 2px 0 2px 1px; } }
   input[type=checkbox]:checked:after {
     content: "\f00c";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-style: normal;
     font-weight: bold;
     color: #4e794e;
@@ -19828,7 +19828,7 @@ input[type=radio] {
   */
   margin: 0px 22px 24px 0;
   font-size: 22px;
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Pro";
   position: relative;
   border: none;
   background-color: transparent;
@@ -19860,7 +19860,7 @@ input[type=radio] {
         padding: 3px 0 0 4px; } }
   input[type=radio]:checked:after {
     content: "\f111";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-style: normal;
     font-weight: bold;
     color: #737373;
@@ -20465,24 +20465,24 @@ fieldset section, .fieldset section {
       .accordion-toggle > button[disabled]::after {
         content: ""; }
   .accordion-toggle.chevron > button[aria-expanded="false"]::after {
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-style: normal;
     font-weight: bold;
     content: "\f078"; }
   .accordion-toggle.chevron > button[aria-expanded="true"]::after {
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-style: normal;
     font-weight: bold;
     content: "\f077"; }
   .accordion-toggle.chevron > button[disabled]::after {
     content: ""; }
   .accordion-toggle.ellipsis > button[aria-expanded="false"]::after {
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-style: normal;
     font-weight: bold;
     content: "\f142"; }
   .accordion-toggle.ellipsis > button[aria-expanded="true"]::after {
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Pro";
     font-style: normal;
     font-weight: bold;
     content: "\f141"; }
@@ -20492,12 +20492,12 @@ fieldset section, .fieldset section {
     font-size: 100%;
     border-bottom: 0; }
     .accordion-toggle.inline > button[aria-expanded="false"]::after {
-      font-family: "Font Awesome 5 Free";
+      font-family: "Font Awesome 5 Pro";
       font-style: normal;
       font-weight: bold;
       content: "\f0d7"; }
     .accordion-toggle.inline > button[aria-expanded="true"]::after {
-      font-family: "Font Awesome 5 Free";
+      font-family: "Font Awesome 5 Pro";
       font-style: normal;
       font-weight: bold;
       content: "\f0d8"; }
@@ -21135,7 +21135,7 @@ http://codepen.io/MattIn4D/pen/LiKFC
     color: #333333;
     font-weight: bold; }
     #elCategories ul li.active::after {
-      font-family: "Font Awesome 5 Free";
+      font-family: "Font Awesome 5 Pro";
       content: "\f00c";
       font-weight: bold;
       font-style: normal;
@@ -21582,7 +21582,7 @@ img.widget-promo-image {
 
 .widget-control.text a:after {
   content: "\f1ea";
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Pro";
   font-style: normal;
   font-weight: normal;
   /*--adjust as necessary--*/
