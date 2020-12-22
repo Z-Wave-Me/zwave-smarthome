@@ -873,6 +873,38 @@ myAppController.controller('GlobalDevicesController', function ($scope, $cookies
         });
     };
     $scope.allSettled(false);
+    $scope.filterDevices = function (){
+        if ('tag' in $scope.dataHolder.devices.filter) { // Filter by tag
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
+                if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
+                    return v;
+                }
+            });
+        } else if ('q' in $scope.dataHolder.devices.filter) { // Filter by query
+            //angular.element('#input_search').focus();
+            // Set autcomplete term
+            $scope.autocomplete.term = $scope.dataHolder.devices.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, {...$scope.autocomplete, resultLength: 1000}), 'id');
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
+                if (searchResult[v.id]) {
+                    return v;
+                }
+            });
+        } else if ('list' in $scope.dataHolder.devices.filter) { // Filter by list
+            var list = {},
+                key = Object.keys($scope.dataHolder.devices.filter.list[0])[0];
+            _.each($scope.dataHolder.devices.filter.list, function(i) {
+                list[i[key]] = true;
+            });
+
+            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
+                return list[v[key]];
+            }, list);
+
+        } else {
+            $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
+        }
+    }
     function setDevices(devices) {
         // Set tags
         _.filter(devices.value(), function(v) {
@@ -907,36 +939,7 @@ myAppController.controller('GlobalDevicesController', function ($scope, $cookies
             return;
         }
         // Collection
-        if ('tag' in $scope.dataHolder.devices.filter) { // Filter by tag
-            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
-                if (v.tags.indexOf($scope.dataHolder.devices.filter.tag) > -1) {
-                    return v;
-                }
-            });
-        } else if ('q' in $scope.dataHolder.devices.filter) { // Filter by query
-            //angular.element('#input_search').focus();
-            // Set autcomplete term
-            $scope.autocomplete.term = $scope.dataHolder.devices.filter.q;
-            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, {...$scope.autocomplete, resultLength: 1000}), 'id');
-            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
-                if (searchResult[v.id]) {
-                    return v;
-                }
-            });
-        } else if ('list' in $scope.dataHolder.devices.filter) { // Filter by list
-            var list = {},
-                key = Object.keys($scope.dataHolder.devices.filter.list[0])[0];
-            _.each($scope.dataHolder.devices.filter.list, function(i) {
-                list[i[key]] = true;
-            });
-
-            $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
-                return list[v[key]];
-            }, list);
-
-        } else {
-            $scope.dataHolder.devices.collection = _.where($scope.dataHolder.devices.all, $scope.dataHolder.devices.filter);
-        }
+        $scope.filterDevices();
         if (_.isEmpty($scope.dataHolder.devices.collection)) {
             if ($scope.routeMatch('/dashboard')) {
                 $scope.dataHolder.devices.noDashboard = true;

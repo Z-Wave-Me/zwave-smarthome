@@ -8,7 +8,8 @@
  * @class ElementBaseController
  */
 myAppController.controller('ElementBaseController', function($scope, $q, $interval, $cookies, $filter, $routeParams, $timeout, $location, $rootElement, cfg, dataFactory, dataService, myCache) {
-    $scope.dataHolder.devices.filter = null;
+    $scope.dataHolder.devices.filter = {};
+    $scope.filterDevices();
     /**
      * Get device by ID
      */
@@ -488,6 +489,7 @@ myAppController.controller('ElementDashboardController', function($scope, $route
     $scope.dataHolder.devices.filter = {
         onDashboard: true
     };
+    $scope.filterDevices();
     $scope.dataHolder.devices.orderBy = 'order_dashboard';
     $scope.elementDashboard = {
         firstLogin: ($routeParams.firstlogin || false),
@@ -506,6 +508,7 @@ myAppController.controller('ElementRoomController', function($scope, $q, $routeP
     $scope.dataHolder.devices.filter = {
         location: parseInt($routeParams.id)
     };
+    $scope.filterDevices();
     $scope.dataHolder.devices.orderBy = 'order_rooms';
     cfg.route.pageClass = "page-room";
     $scope.swipeTimer = null;
