@@ -33,6 +33,8 @@ else
 	echo "Building test version"
 fi
 
+(cd app/sass; ./compile.sh)
+
 grunt
 
 if [ "$1" == "dist" ]; then
