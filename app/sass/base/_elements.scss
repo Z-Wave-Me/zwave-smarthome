@@ -13,7 +13,7 @@
         color: $app-a-color;
         font-weight: bold;
         &::after {
-          font-family: "Font Awesome 5 Free";
+          font-family: "Font Awesome 5 Pro";
           content: "\f00c";
           font-weight: bold;
           font-style: normal;
@@ -472,7 +472,7 @@ img.widget-promo-image {
 
 .widget-control.text a:after {
   content: "\f1ea";
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Pro";
   font-style: normal;
   font-weight: normal;
   /*--adjust as necessary--*/
