@@ -22413,7 +22413,8 @@ img.widget-promo-image {
     right: 0;
     font-size: 24px;
     text-align: center;
-    width: 32px;
+    min-width: 32px;
+    max-width: calc(100% - 20px);
     height: 32px;
     line-height: 32px;
     color: #737373;
@@ -22422,7 +22423,9 @@ img.widget-promo-image {
     margin: 10px 10px 0 0;
     /* @include mediaQueries(min-medium) {
       margin: $spacing $spacing 0 0;
-    } */ }
+    } */
+    /* MIN WIDTH */
+    /* MAX WIDTH */ }
     .rooms.flexgallery > * figure .header .settings {
       /* MIN WIDTH */
       /* MAX WIDTH */ }
@@ -22437,6 +22440,15 @@ img.widget-promo-image {
       @media only screen and (min-width: 768px) {
         .rooms.flexgallery > * figure .header .char {
           display: none; } }
+    @media only screen and (max-width: 767px) {
+      .rooms.flexgallery > * figure .header.header__long__title {
+        border-radius: 16px;
+        padding: 0 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .rooms.flexgallery > * figure .header.header__long__title-compression {
+        font-size: 18px; } }
   .rooms.flexgallery > * figure .title {
     /* MIN WIDTH */
     /* MAX WIDTH */ }
