@@ -8,6 +8,7 @@
  * @class ElementBaseController
  */
 myAppController.controller('ElementBaseController', function($scope, $q, $interval, $cookies, $filter, $routeParams, $timeout, $location, $rootElement, cfg, dataFactory, dataService, myCache) {
+    $scope.dataHolder.devices.filter = null;
     /**
      * Get device by ID
      */
