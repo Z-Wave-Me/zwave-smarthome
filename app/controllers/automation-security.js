@@ -382,6 +382,14 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						iconPath: dev.iconPath
 					};
 				}
+				else {
+					return {
+						devices: d.devices,
+						deviceName: $scope._t('device_removed') + ": " + d.devices,
+						conditions: d.conditions,
+						iconPath: "storage/img/icons/placeholder.png"
+					};
+				}
 			});
 
 			$scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function(d) {

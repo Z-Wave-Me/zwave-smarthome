@@ -6,48 +6,24 @@
   </h3>
   <!-- List  -->
   <div class="list-panel" ng-repeat="v in enocean.products | orderBy:'name' track by $index">
-    <!-- normal device -->
     <!-- img -->
-    <figure class="img wh-64x64 clickable" ng-if="!v.smartAck">
-      <a href="#enocean/teachin/{{v.id}}">
-        <img class="product-img" ng-src="storage/img/enocean/devices/{{v.image}}" alt="img" err-src="{{cfg.img.placeholder}}" alt="img"
+    <figure class="img wh-64x64 clickable">
+      <a href="#enocean/teachin/{{v.teachIn}}">
+        <img class="product-img" ng-src="storage/img/enocean/devices/{{v.image}}" alt="img" err-src="{{cfg.img.placeholder}}" alt="{{v.name}}"
         />
       </a>
     </figure>
     <!-- body -->
-    <div class="body" ng-if="!v.smartAck">
+    <div class="body">
       <div>
-        <a href="#enocean/teachin/{{v.id}}">
+        <a href="#enocean/teachin/{{v.teachIn}}">
           {{v.name}}
         </a>
       </div>
     </div>
     <!-- control -->
-    <div class="control" ng-if="!v.smartAck">
-      <a href="#enocean/teachin/{{v.id}}" class="btn btn-default" title="{{_t('teach_in')}}">
-        <i class="fas fa-plug text-primary"></i>
-      </a>
-    </div>
-    
-    <!-- Smart Ack -->
-    <!-- img -->
-    <figure class="img wh-64x64 clickable" ng-if="v.smartAck">
-      <a href="#enocean/teachin/smartAck">
-        <img class="product-img" ng-src="storage/img/enocean/devices/{{v.image}}" alt="img" err-src="{{cfg.img.placeholder}}" alt="img"
-        />
-      </a>
-    </figure>
-    <!-- body -->
-    <div class="body" ng-if="v.smartAck">
-      <div>
-        <a href="#enocean/teachin/smartAck">
-          {{v.name}}
-        </a>
-      </div>
-    </div>
-    <!-- control -->
-    <div class="control" ng-if="v.smartAck">
-      <a href="#enocean/teachin/smartAck" class="btn btn-default" title="{{_t('teach_in')}}">
+    <div class="control">
+      <a href="#enocean/teachin/{{v.teachIn}}" class="btn btn-default" title="{{_t('teach_in')}}">
         <i class="fas fa-plug text-primary"></i>
       </a>
     </div>

@@ -14,7 +14,7 @@ var config_data = {
 		// Application version
 		'app_version': 'v1.11.1',
 		// Application (DIST) built date
-		'app_built': '25-10-2020 21:01:43',
+		'app_built': '22-12-2020 18:46:55',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -152,7 +152,9 @@ var config_data = {
 			'locations_image': 'ZAutomation/api/v1/locations/image', // delete cutom room image // TODO: add backend,
 			'notification_filtering': 'ZAutomation/api/v1/notificationFiltering', // get and set NotificationFiltering settings app for a user
 			'notification_channels': 'ZAutomation/api/v1/notificationChannels', // get NotificationFiltering channels for the user
-			'mobile_app_support': 'MobileAppSupportAPI/app' // MobileAppSupport
+			'mobile_app_support': 'MobileAppSupportAPI/app', // MobileAppSupport,
+			'wifi_cli': 'ZAutomation/api/v1/system/wifiCli/settings', //WifiCli settings,
+			'wifi_cli_connection_type' : 'ZAutomation/api/v1/system/connectionType' // WiFi connection type
 		},
 		// List of remote api URLs
 		'api_remote': {
@@ -186,21 +188,21 @@ var config_data = {
 		'upload': {
 			'room': {
 				size: 512000, //Bytes
-				type: ['image/jpeg', 'image/gif'],
-				extension: ['jpg', 'jpeg', 'gif'],
-				dimension: '200 x 200' //px
+				type: ['image/png', 'image/jpeg', 'image/gif'],
+				extension: ['png', 'jpg', 'jpeg', 'gif'],
+				dimension: '512 x 512' //px
 			},
 			'icon': {
 				size: 30720, //Bytes
 				type: ['image/png', 'image/jpeg', 'image/gif'],
 				extension: ['png', 'jpg', 'jpeg', 'gif'],
-				dimension: '64 x 64' //px
+				dimension: '256 x 256' //px
 			},
 			'icon_packed': {
 				size: 2097152, //Bytes
 				type: ['application/x-zip-compressed', 'application/x-gzip'],
 				extension: ['zip', 'gz'],
-				dimension: '64 x 64' //px
+				dimension: '256 x 256' //px
 			},
 			'restore_from_backup': {
 				extension: ['zab']

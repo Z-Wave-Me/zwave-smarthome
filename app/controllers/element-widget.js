@@ -442,6 +442,7 @@ myAppController.controller('ElementSwitchRGBWController', function($scope, dataF
 		};
 		image.src = 'app/img/colorwheel.png';
 
+		if (!input.metrics.color) input.metrics.color = {r: 0, g: 0, b: 0};
 		var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
 		//$('#wheel_picker_preview').css('backgroundColor', defaultColor);
 		$scope.widgetSwitchRGBW.selectedColor = defaultColor;
@@ -560,16 +561,16 @@ myAppController.controller('ElementSwitchRGBWController', function($scope, dataF
 		angular.extend($scope.widgetSwitchRGBW.find, device[0]);
 		var str = "ZWayVDev_zway";
 		if ($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2, 3, 4])) { //TODO next release change
-			var color = $scope.widgetSwitchRGBW.find.metrics.color;
+			var color = $scope.widgetSwitchRGBW.find.metrics.color || {r: 0, g: 0, b: 0};
 			$scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
 			$scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
 		} else {
 			var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
 			var zwayId = automationId.substr(automationId.lastIndexOf('_') + 1);
 			dataFactory.runExpertCmd('devices[' + zwayId + ']').then(function(response) {
-				if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
+				if (response.data.data && typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
 					$scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
-					var color = $scope.widgetSwitchRGBW.find.metrics.color;
+					var color = $scope.widgetSwitchRGBW.find.metrics.color || {r: 0, g: 0, b: 0};
 					$scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
 					$scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
 				} else {

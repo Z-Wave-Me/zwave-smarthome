@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave.Me, Created: 25-10-2020 21:01:43 */
+/* Copyright:  Z-Wave.Me, Created: 22-12-2020 18:46:55 */
 /**
  * @overview The object with default icons.
  * @author Martin Vach
@@ -194,6 +194,12 @@ var icon_data = {
                         energySave: 'climatecontrol_energysave.png',
                         frostProtection: 'climatecontrol_frostprotection.png',
                         default: "climatecontrol_default.png" 
+                    }
+                },
+                valve: {
+                    level: {
+                        on: 'valve-on.png',
+                        off: 'valve-off.png'
                     }
                 }
             },

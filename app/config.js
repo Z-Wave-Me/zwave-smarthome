@@ -188,21 +188,21 @@ var config_data = {
 		'upload': {
 			'room': {
 				size: 512000, //Bytes
-				type: ['image/jpeg', 'image/gif'],
-				extension: ['jpg', 'jpeg', 'gif'],
-				dimension: '200 x 200' //px
+				type: ['image/png', 'image/jpeg', 'image/gif'],
+				extension: ['png', 'jpg', 'jpeg', 'gif'],
+				dimension: '512 x 512' //px
 			},
 			'icon': {
 				size: 30720, //Bytes
 				type: ['image/png', 'image/jpeg', 'image/gif'],
 				extension: ['png', 'jpg', 'jpeg', 'gif'],
-				dimension: '64 x 64' //px
+				dimension: '256 x 256' //px
 			},
 			'icon_packed': {
 				size: 2097152, //Bytes
 				type: ['application/x-zip-compressed', 'application/x-gzip'],
 				extension: ['zip', 'gz'],
-				dimension: '64 x 64' //px
+				dimension: '256 x 256' //px
 			},
 			'restore_from_backup': {
 				extension: ['zab']

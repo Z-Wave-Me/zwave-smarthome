@@ -322,6 +322,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			requireLogin: true,
 			roles: cfg.role_access.devices
 		}). //Enocean Teach-In for SmartAck devices
+	when('/enocean/teachin/genericProfile', {
+			templateUrl: 'app/views/enocean/teachin-genericProfile.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices
+		}). //Enocean Teach-In for Generic Profile devices
 	when('/enocean/teachin/:device', {
 			templateUrl: 'app/views/enocean/teachin.html',
 			requireLogin: true,

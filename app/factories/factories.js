@@ -281,7 +281,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     function postApi(api, data, params) {
         return $http({
             method: "post",
-            data: data,
+            data: data || "", // some POST API have empty body
             url: cfg.server_url + cfg.api[api] + (params ? params : ''),
             headers: {
                 'Accept-Language': lang,
@@ -498,7 +498,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     function runExpertCmd(param) {
         return $http({
             method: 'post',
-            url: cfg.server_url + cfg.zwaveapi_run_url + param
+            url: cfg.server_url + cfg.zwaveapi_run_url + param,
+            data: "" // ZWaveAPI always have empty POST body
         }).then(function (response) {
             return response;
         }, function (response) {// something went wrong
@@ -814,7 +815,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         var result = {};
         return $http({
             method: 'post',
-            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime,
+            data: "" // ZWaveAPI/Data always have empty POST body
         }).then(function (response) {
             if (typeof response.data === 'object' && apiData) {
                 time = response.data.updateTime;
@@ -1108,7 +1110,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
 
     /**
-     * Resore the system from the backup file
+     * Restore the system from the backup file
      * @param {object} data
      * @returns {unresolved}
      */
