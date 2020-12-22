@@ -27,7 +27,7 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
     $scope.loadingWiFilist = true;
 
     $scope.wifiSignalIcon = function (signal) {
-        return 'fa-signal' + (signal > 70 ? '' : (signal > 30 ? '-2' : '-1'));
+        return 'fa-wifi' + (signal > 70 ? '' : (signal > 30 ? '-2' : '-1'));
     }
     /**
      * Load current wifi connection status
