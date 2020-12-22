@@ -7,7 +7,9 @@
   <div id="Widget_{{v.id}}" 
         class="widget-entry widget-entry-element isfailed-{{v.metrics.isFailed}} {{v.deviceType}} probe-type-{{v.probeType}} {{v.metrics.multilineType}} longpress-{{longPressSent}}"
         ng-class="{'widget-success': v.isNew}"
-        ng-repeat="v in dataHolder.devices.collection| orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id"
+        ng-repeat="v in (dataHolder.devices.filter ?
+        (dataHolder.devices.collection | filter: dataHolder.devices.filter) :
+        (dataHolder.devices.collection)) | orderBy: cfg.orderby.elements[dataHolder.devices.orderBy] track by v.id"
         on-long-press="itemOnLongPress(v.id)"
         on-touch-end="itemOnTouchEnd()"
         prevent-click="true"
