@@ -14,21 +14,11 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
     const connectionDict = new Map([
         ['ethernet', ['wifi_ethernet', 'fa-network-wired']],
         ['wifi', ['wifi_wifi', 'fa-wifi']],
-        ['mobile', ['wifi_mobile', 'fa-mobile']],
+        ['mobile', ['wifi_mobile', 'fa-signal']],
         ['error', ['', 'fa-warning']]
     ]);
     $scope.currentConnect = null;
     $scope.connectionStatus = {}
-    // "currentConnection": "wifi", // <-- зелёным
-    // "availableConnections": [
-    //     "wifi" ,
-    //     "mobile"// <-- чёрным
-    // ],
-    // "possibleConnections": [
-    //     "ethernet",                // <-- \
-    //     "wifi",                    //     > -- серым
-    //     "mobile"                  // <-- /
-    // ]
     $scope.selectedConnect = null;
     $scope.connecting = {
         data: null,
@@ -37,8 +27,7 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
     $scope.loadingWiFilist = true;
 
     $scope.wifiSignalIcon = function (signal) {
-        const icon = Math.round(signal / 20) + 1;
-        return 'fa-signal' + (icon < 5 ? ('-' + icon) : '');
+        return 'fa-signal' + (signal > 70 ? '' : (signal > 30 ? '-2' : '-1'));
     }
     /**
      * Load current wifi connection status
