@@ -77,7 +77,8 @@
           right: 0;
           font-size: 24px;
           text-align: center;
-          width: 32px;
+          min-width: 32px;
+          max-width: calc(100% - 20px);
           height: 32px;
           line-height: 32px;
           color: lighten($app-body-color, 40%);
@@ -100,6 +101,18 @@
           .char{
             @include mediaQueries(min-small) {
               display: none;
+            }
+          }
+          @include mediaQueries(max-small) {
+            &.header__long__title {
+              border-radius: 16px;
+              padding: 0 8px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+            &.header__long__title-compression {
+              font-size: 18px;
             }
           }
         }
