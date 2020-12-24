@@ -505,10 +505,12 @@ myAppController.controller('ElementDashboardController', function($scope, $route
  * @class ElementRoomController
  */
 myAppController.controller('ElementRoomController', function($scope, $q, $routeParams, $timeout, $location, cfg) {
+    const id  = parseInt($routeParams.id);
     $scope.dataHolder.devices.filter = {
-        location: parseInt($routeParams.id)
+        location: id
     };
     $scope.filterDevices();
+    $scope.room = $scope.dataHolder.devices.rooms[id] ?? {};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
     cfg.route.pageClass = "page-room";
     $scope.swipeTimer = null;
@@ -591,5 +593,4 @@ myAppController.controller('ElementRoomController', function($scope, $q, $routeP
             }
         }
     }
-
 });
