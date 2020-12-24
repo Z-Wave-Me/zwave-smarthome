@@ -1,11 +1,11 @@
 <!-- Login view -->
 <div ng-controller="AuthLoginController">
     <bb-loader></bb-loader>
-    <div class="welcome-screen">
+    <div class="welcome-screen" ng-hide="(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid')">
         <h1> {{_t('welcome_1')}} {{auth.remoteId}}</h1>
     </div>
     <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>
-        <fieldset>
+        <fieldset ng-hide="(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid')">
             <!-- <h3><span ng-bind="_t('nav_login')"></span></h3> -->
             <!-- login -->
             <div class="form-group">
@@ -26,7 +26,7 @@
         <fieldset class="submit-entry">
             <!-- My Hubs -->
             <a ng-href="{{cfg.android_html_dir}}" style="text-decoration: none">
-                <div class="btn btn-submit" ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'">
+                <div class="btn btn-submit" ng-if="(cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid')">
                     <i class="fas fa-chevron-left subnavi-arrow"></i>
                     <i class="fab fa-android fa-fw"></i>
                         <span>{{_t('my_hubs')}}</span>
@@ -34,14 +34,15 @@
             </a>
             <!-- My Hubs -->
             <a ng-href="{{cfg.ios_html_dir}}" style="text-decoration: none">
-                <div class="btn btn-submit" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+                <div class="btn btn-submit" ng-if="(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS')">
                     <i class="fas fa-chevron-left subnavi-arrow"></i>
                     <i class="fab fa-apple fa-fw"></i>
                     <span>{{_t('my_hubs')}}</span>
                 </div>
             </a>
             <!-- Login -->
-            <button type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}"><i class="fas fa-sign-in-alt"></i> {{_t('lb_enter')}}</button>
+            <button ng-hide="(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid')"
+                    type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}"><i class="fas fa-sign-in-alt"></i> {{_t('lb_enter')}}</button>
         </fieldset>
     </form>
 </div>
