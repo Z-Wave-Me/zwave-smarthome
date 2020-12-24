@@ -94,16 +94,12 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 			icon: 'fa-spinner fa-spin',
 			message: $scope._t('loading')
 		};
-		var promises = [
-			dataFactory.getApi('remote_id'),
+		const promises = [
 			dataFactory.getApi('firstaccess'),
-		    dataService.getUser() ? dataFactory.getApi('ip_address') : null
 		];
 
 		$q.allSettled(promises).then(function(response) {
-			var remoteId = response[0],
-				firstAccess = response[1],
-				ipAddress = response[2];
+			const firstAccess = response[0];
 
 			$scope.loading = false;
 			// Error message
@@ -112,21 +108,14 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 					message: $scope._t('error_load_data')
 				});
 			}
-
 			// Success - remote ID
-			if (remoteId.state === 'fulfilled') {
-				$scope.auth.remoteId = remoteId.value.data.data.remote_id;
-			}
-
-			// Success - first access
 			if (firstAccess.state === 'fulfilled') {
+				$scope.auth.remoteId = firstAccess.value.data.data.remote_id;
+			// Success - first access
 				$scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
 				$scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
-			}
-
 			// Success - IP address
-			if (ipAddress.state === 'fulfilled') {
-				$scope.auth.ipAddress = ipAddress.value.data.data.ip_address;
+				$scope.auth.ipAddress = firstAccess.value.data.data.ip_address;
 			}
 		});
 	};
