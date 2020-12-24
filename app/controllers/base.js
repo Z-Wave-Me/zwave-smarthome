@@ -798,7 +798,7 @@ myAppController.controller('GlobalDevicesController', function ($scope, $cookies
         searchInKeys: 'id,title',
         returnKeys: 'id,title,iconPath',
         strLength: 2,
-        resultLength: 10
+        resultLength: 1000
     };
 
     $scope.cmdTimeouts = [];
