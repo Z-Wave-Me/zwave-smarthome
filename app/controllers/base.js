@@ -872,7 +872,7 @@ myAppController.controller('GlobalDevicesController', function ($scope, $cookies
             }
         });
     };
-    $scope.allSettled(false);
+    if (dataService.getUser()) $scope.allSettled(false);
     $scope.filterDevices = function (){
         if ('tag' in $scope.dataHolder.devices.filter) { // Filter by tag
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {

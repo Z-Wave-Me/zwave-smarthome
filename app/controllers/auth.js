@@ -97,7 +97,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 		var promises = [
 			dataFactory.getApi('remote_id'),
 			dataFactory.getApi('firstaccess'),
-			dataFactory.getApi('ip_address')
+		    dataService.getUser() ? dataFactory.getApi('ip_address') : null
 		];
 
 		$q.allSettled(promises).then(function(response) {
