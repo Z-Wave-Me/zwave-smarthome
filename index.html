@@ -302,8 +302,9 @@
         <div>{{cfg.route.alert.message}}</div>
         <div class="blank-info" ng-if="cfg.route.alert.info" ng-bind-html="cfg.route.alert.info|toTrusted"></div>
       </div>
-      <div id="view_content" ng-hide="cfg.route.alert.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view
-      ng-swipe-left="swipe('left')" ng-swipe-right="swipe('right')"></div>
+      <div id="view_content" ng-hide="cfg.route.alert.hide" class="{{cfg.route.pageClass}} swipe-{{cfg.route.swipeDir}}" ng-view>
+<!--       ng-swipe-left="swipe('left')" ng-swipe-right="swipe('right')" >-->
+      </div>
     </div>
     <div class="clearfix"></div>
     <div id="footer">
