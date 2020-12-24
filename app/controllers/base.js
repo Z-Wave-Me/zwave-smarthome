@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function($scope, $rootScope, $timeout, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q, $websocket, cfg, cfgicons, dataFactory, dataService, deviceDetector, myCache, _) {
+myAppController.controller('BaseController', function($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q, $websocket, cfg, cfgicons, dataFactory, dataService, deviceDetector, myCache, _) {
 
     // Global scopes
     $scope.nightMode = false;
@@ -753,7 +753,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $timeo
 
 });
 
-myAppController.controller('GlobalDevicesController', function ($scope, $cookies, $filter, $interval, dataService, dataFactory, $q, $routeParams, cfg) {
+myAppController.controller('GlobalDevicesController', function ($scope, $timeout, $cookies, $filter, $interval, dataService, dataFactory, $q, $routeParams, cfg) {
     $scope.dataHolder = {
         mode: 'default',
         firstLogin: false,
