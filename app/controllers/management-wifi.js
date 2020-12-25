@@ -50,10 +50,10 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
         return 'possible-connections';
     }
     $scope.connectToStr = function (connect) {
-        if (connectionDict.has(connect)) {
-            return connectionDict.get(connect);
+        if (connectionDict[connect]) {
+            return connectionDict[connect];
         }
-        return connectionDict.get('error');
+        return connectionDict['error'];
     }
     /**
      * Load all nets
@@ -63,18 +63,24 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
         else if ($scope.currentConnect && $scope.currentConnect.signal) return 'fad ' + $scope.wifiSignalIcon($scope.currentConnect.signal);
         else return 'fad fa-wifi-slash';
     }
+    var isSaved = function (network) {
+        return network.hasOwnProperty('saved') && network.saved;
+
+    }
     $scope.loadNets = function () {
         // $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.getApi('wifi_cli', null, true).then(function (response) {
             $scope.wifiNets.all = response.data.data;
             if ($scope.wifiNets.all.length !== 0) {
                 $scope.selectedConnect = $scope.wifiNets.all[0];
-                $scope.currentConnect = $scope.wifiNets.all.find(net => net.saved);
+                $scope.currentConnect = $scope.wifiNets.all.find(isSaved);
                 $scope.connecting.progress = false;
             }
         }, function (error) {
             angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
-        }).then(() => $scope.loadingWiFilist = false);
+        }).then(function () {
+            $scope.loadingWiFilist = false
+        });
     };
     $scope.loadNets();
     var updateList = $interval($scope.loadNets, 30000);
@@ -88,7 +94,7 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
             $scope.connecting.data = response.data;
         }, function (error) {
             angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
-        }).then(setTimeout( () => {
+        }).then(setTimeout( function () {
                 // $scope.connecting.response = !!$scope.currentConnect;
                 $scope.loadNets();
             }, 1000)
@@ -110,7 +116,7 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
 
 });
 
-myAppController.controller('ManagementWiFiSelectController', function ($scope, $cookies, dataFactory, dataService, myCache, cfg) {
+myAppController.controller('ManagementWiFiSelectController', function ($scope) {
     $scope.enteringPassword = false;
     $scope.wifiPassword = '';
     $scope.showPassword = false;
