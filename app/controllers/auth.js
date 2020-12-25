@@ -94,12 +94,12 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 			icon: 'fa-spinner fa-spin',
 			message: $scope._t('loading')
 		};
-		const promises = [
+		var promises = [
 			dataFactory.getApi('firstaccess'),
 		];
 
 		$q.allSettled(promises).then(function(response) {
-			const firstAccess = response[0];
+			var firstAccess = response[0];
 
 			$scope.loading = false;
 			// Error message

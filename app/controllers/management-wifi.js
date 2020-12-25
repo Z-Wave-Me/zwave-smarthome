@@ -11,12 +11,11 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
         all: [],
         orderBy: ($cookies.usersOrderBy ? $cookies.usersOrderBy : 'titleASC')
     };
-    const connectionDict = new Map([
-        ['ethernet', ['wifi_ethernet', 'fa-network-wired']],
-        ['wifi', ['wifi_wifi', 'fa-wifi']],
-        ['mobile', ['wifi_mobile', 'fa-signal']],
-        ['error', ['', 'fa-warning']]
-    ]);
+    var connectionDict = {
+    'ethernet': ['wifi_ethernet', 'fa-network-wired'],
+    'wifi': ['wifi_wifi', 'fa-wifi'],
+    'mobile' : ['wifi_mobile', 'fa-signal'],
+    'error': ['', 'fa-warning']};
     $scope.currentConnect = null;
     $scope.connectionStatus = {}
     $scope.selectedConnect = null;
@@ -40,7 +39,7 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
         });
     }
     $scope.loadConnectionStatus();
-    let updateStatus = $interval($scope.loadConnectionStatus, 10_000);
+    var updateStatus = $interval($scope.loadConnectionStatus, 10_000);
     $scope.colorizeConnections = function (connectionType) {
         if (connectionType === $scope.connectionStatus.currentConnection) {
             return 'current-connection';
@@ -78,15 +77,14 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
         }).then(() => $scope.loadingWiFilist = false);
     };
     $scope.loadNets();
-    let updateList = $interval($scope.loadNets, 30_000);
+    var updateList = $interval($scope.loadNets, 30000);
 
     $scope.tryConnect = function (connect, password) {
         $scope.selectedConnect = connect;
         $scope.connecting.progress = true;
-        dataFactory.postApi('wifi_cli', {
-            ...connect,
-            'password': password
-        }).then(function (response) {
+        var temp = angular.copy(connect, temp);
+        temp.password = password;
+        dataFactory.postApi('wifi_cli', temp).then(function (response) {
             $scope.connecting.data = response.data;
         }, function (error) {
             angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
