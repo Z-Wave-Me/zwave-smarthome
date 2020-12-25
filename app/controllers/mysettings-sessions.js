@@ -13,8 +13,8 @@ myAppController.controller('MySettingsSessionController', function ($scope, $win
      * Check mobile
      */
     $scope.isMobile = false;
-    const mediaQueryList = $window.matchMedia("only screen and (max-width: 767px)");
-    const handleOrientationChange = mql => $scope.isMobile = mql.matches;
+    var mediaQueryList = $window.matchMedia("only screen and (max-width: 767px)");
+    var handleOrientationChange = mql => $scope.isMobile = mql.matches;
     handleOrientationChange(mediaQueryList);
     mediaQueryList.addEventListener('change', handleOrientationChange);
     /**
@@ -46,9 +46,9 @@ myAppController.controller('MySettingsSessionController', function ($scope, $win
     $scope.removeAllAuthTokens = function (profileId, tokens, message) {
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            const curToken = $cookies.ZWAYSession;
+            var curToken = $cookies.ZWAYSession;
             tokens.forEach(d => {
-                const token = d.sid;
+                var token = d.sid;
                 if (curToken.substring(0, 6) !== token.substring(0, 6)) {
                     $scope.removeToken(token, profileId);
                 }
