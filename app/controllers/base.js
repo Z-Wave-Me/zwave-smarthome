@@ -559,7 +559,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
      * hold Search bar when get click
      * @param evt
      */
-    $scope.elSearchHolder = evt => evt.stopPropagation();
+    $scope.elSearchHolder = function (evt) {
+        evt.stopPropagation();
+    }
     /**
      * Expand/collapse autocomplete
      * @param {string} key
@@ -884,7 +886,7 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
             //angular.element('#input_search').focus();
             // Set autcomplete term
             $scope.autocomplete.term = $scope.dataHolder.devices.filter.q;
-            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, {...$scope.autocomplete, resultLength: 1000}), 'id');
+            var searchResult = _.indexBy(dataService.autocomplete($scope.dataHolder.devices.all, $scope.autocomplete), 'id');
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
                 if (searchResult[v.id]) {
                     return v;

@@ -467,12 +467,12 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
     }
     $scope.adaptiveFontSize = function (text) {
         if (typeof text === 'string' && text.length > 0) {
-        let width = document.body.clientWidth;
+        var width = document.body.clientWidth;
         if (width > 1190) {
             width = 1190;
         }
         if (width > 755) {
-            let scaleSize = Math.round(width / 4 / text.length);
+            var scaleSize = Math.round(width / 4 / text.length);
             return {'font-size': (scaleSize > 30 ? 30 : scaleSize) + 'px'};
         }
             return {};
@@ -505,12 +505,12 @@ myAppController.controller('ElementDashboardController', function($scope, $route
  * @class ElementRoomController
  */
 myAppController.controller('ElementRoomController', function($scope, $q, $routeParams, $timeout, $location, cfg) {
-    const id  = parseInt($routeParams.id);
+    var id  = parseInt($routeParams.id);
     $scope.dataHolder.devices.filter = {
         location: id
     };
     $scope.filterDevices();
-    $scope.room = $scope.dataHolder.devices.rooms[id] ?? {};
+    $scope.room = $scope.dataHolder.devices.rooms[id] || {};
     $scope.dataHolder.devices.orderBy = 'order_rooms';
     cfg.route.pageClass = "page-room";
     $scope.swipeTimer = null;
