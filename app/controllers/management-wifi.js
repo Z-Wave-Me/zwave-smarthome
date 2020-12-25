@@ -39,7 +39,7 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
         });
     }
     $scope.loadConnectionStatus();
-    var updateStatus = $interval($scope.loadConnectionStatus, 10_000);
+    var updateStatus = $interval($scope.loadConnectionStatus, 10000);
     $scope.colorizeConnections = function (connectionType) {
         if (connectionType === $scope.connectionStatus.currentConnection) {
             return 'current-connection';

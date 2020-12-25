@@ -548,7 +548,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
     $scope.naviExpanded = {};
     $scope.expandNavi = function(key, $event, status) {
         $event.stopPropagation();
-        const keyHolder = !$scope.naviExpanded[key];
+        var keyHolder = !$scope.naviExpanded[key];
         $scope.naviExpanded = {};
         if (keyHolder) {
             $scope.naviExpanded[key] = typeof status === 'boolean'

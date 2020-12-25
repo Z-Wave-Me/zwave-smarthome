@@ -336,7 +336,7 @@ myAppController.controller('ElementSwitchMultilevelController', function($scope)
 	 * Load single device
 	 */
 	$scope.loadDeviceId = function() {
-		const device = _.where($scope.dataHolder.devices.collection, {
+		var device = _.where($scope.dataHolder.devices.collection, {
 			id: $scope.dataHolder.devices.find.id
 		});
 		if (!device) {
