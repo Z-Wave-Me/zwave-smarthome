@@ -95,7 +95,7 @@ myAppController.controller('MobileAddController', function ($scope, $timeout, $w
             dataFactory.postApi('profiles', data, '/qrcode/'+$scope.user.id).then(function(response) {
                 dataService.showNotifier({message: $scope._t('success_updated')});
 
-                QRCode.toDataURL(response.data.data, (err, url) => $scope.qrcode = url);
+                QRCode.toDataURL(response.data.data, function(err, url) { $scope.qrcode = url; });
                 $scope.toggleRowSpinner(id);
             }, function(error) {
                 $scope.toggleRowSpinner(id);

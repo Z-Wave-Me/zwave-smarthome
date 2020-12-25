@@ -14,13 +14,13 @@ myAppController.controller('MySettingsSessionController', function ($scope, $win
      */
     $scope.isMobile = false;
     var mediaQueryList = $window.matchMedia("only screen and (max-width: 767px)");
-    var handleOrientationChange = mql => $scope.isMobile = mql.matches;
+    var handleOrientationChange = function(mql) { $scope.isMobile = mql.matches };
     handleOrientationChange(mediaQueryList);
     mediaQueryList.addEventListener('change', handleOrientationChange);
     /**
      * Remove auth token
      */
-    $scope.removeToken = (token, profileId) => {
+    $scope.removeToken = function(token, profileId) {
         dataFactory.deleteApi('profiles', profileId, '/token/' + token).then(function (response) {
             myCache.remove('profiles');
             dataService.showNotifier({message: $scope._t('delete_successful')});
@@ -47,7 +47,7 @@ myAppController.controller('MySettingsSessionController', function ($scope, $win
         alertify.confirm(message, function () {
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
             var curToken = $cookies.ZWAYSession;
-            tokens.forEach(d => {
+            tokens.forEach(function(d) {
                 var token = d.sid;
                 if (curToken.substring(0, 6) !== token.substring(0, 6)) {
                     $scope.removeToken(token, profileId);
