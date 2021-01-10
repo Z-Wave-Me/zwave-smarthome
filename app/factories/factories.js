@@ -148,6 +148,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         
         return $http({
             method: "post",
+            headers: {
+                "ZWAYSessionCookieIgnore": "true" // make sure the server ignores cookies that were not deleted above (marked with HTTPOnly flag)
+            },
             data: data,
             url: cfg.server_url + cfg.api['login']
         }).then(function (response) {
