@@ -785,7 +785,9 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
             notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
         },
         dragdrop: {
-            action: $scope.getBodyId(),
+            get action() {
+                return $scope.getBodyId()
+            },
             data: []
         }
     };
@@ -874,7 +876,7 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
             }
         });
     };
-    if (dataService.getUser()) $scope.allSettled(false);
+    if (dataService.getUser()) $scope.allSettled();
     $scope.filterDevices = function (){
         if ('tag' in $scope.dataHolder.devices.filter) { // Filter by tag
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
