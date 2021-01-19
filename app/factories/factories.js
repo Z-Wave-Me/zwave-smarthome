@@ -36,7 +36,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
     var pingInterval = null;
     return({
-         pingServer: pingServer,
+        pingServer: pingServer,
         logInApi: logInApi,
         sessionApi: sessionApi,
         getApiLocal: getApiLocal,

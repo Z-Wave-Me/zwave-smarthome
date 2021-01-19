@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave.Me, Created: 25-12-2020 16:38:55 */
+/* Copyright:  Z-Wave.Me, Created: 19-01-2021 23:04:23 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -118,7 +118,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/auth/auth.html',
-    "<div ng-controller=AuthController><div ng-if=!auth.firstaccess ng-include=\"'app/views/auth/auth_login.html'\"></div><div ng-if=auth.firstaccess ng-include=\"'app/views/auth/auth_firstaccess.html'\"></div></div>"
+    "<div ng-if=!authProcessed ng-controller=AuthController><div ng-if=!auth.firstaccess ng-include=\"'app/views/auth/auth_login.html'\"></div><div ng-if=auth.firstaccess ng-include=\"'app/views/auth/auth_firstaccess.html'\"></div></div>"
   );
 
 

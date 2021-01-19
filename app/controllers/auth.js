@@ -124,7 +124,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 
 	/// --- Private functions --- ///
 	/**
-	 * Gez zwave api data
+	 * Get zwave api data
 	 */
 	function getZwaveApiData(location) {
 		//var location = '#/dashboard';
