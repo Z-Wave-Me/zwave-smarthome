@@ -36,12 +36,13 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
     var pingInterval = null;
     return({
-         pingServer: pingServer,
+        pingServer: pingServer,
         logInApi: logInApi,
         sessionApi: sessionApi,
         getApiLocal: getApiLocal,
         runJs: runJs,
         getApi: getApi,
+        getApiNoToken: getApiNoToken,
         deleteApi: deleteApi,
         deleteApiFormdata: deleteApiFormdata,
         deleteApiJSON: deleteApiJSON,
@@ -148,6 +149,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         
         return $http({
             method: "post",
+            headers: {
+                "ZWAYSessionCookieIgnore": "true" // make sure the server ignores cookies that were not deleted above (marked with HTTPOnly flag)
+            },
             data: data,
             url: cfg.server_url + cfg.api['login']
         }).then(function (response) {
@@ -271,6 +275,36 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             return $q.reject(response);
         });
     }
+
+    /**
+     * Get ZAutomation api data without auth token
+     * @param {string} api
+     * @returns {unresolved}
+     */
+    function getApiNoToken(api) {
+        console.log(">>> getApiNoToken: " + api);
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.api[api],
+            headers: {
+                'Accept-Language': lang,
+                'ZWAYSessionCookieIgnore': "true", // make sure the server ignores cookies that were not deleted above (marked with HTTPOnly flag)
+                'isZWAY': true
+            }
+        }).then(function (response) {
+            if (!angular.isDefined(response.data)) {
+                return $q.reject(response);
+            }
+            if (typeof response.data === 'object') {
+                return response;
+            } else {// invalid response
+                return $q.reject(response);
+            }
+        }, function (response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+    
    /**
     * Post ZAutomation api data
     * @param {string} api

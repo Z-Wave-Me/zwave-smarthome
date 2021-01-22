@@ -85,41 +85,31 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 
 
 	$scope.loginLang = (angular.isDefined($cookies.lang)) ? $cookies.lang : cfg.lang;
-	/**
-	 * Load all promises
-	 */
-	$scope.allSettled = function() {
-		$scope.loading = {
-			status: 'loading-spin',
-			icon: 'fa-spinner fa-spin',
-			message: $scope._t('loading')
-		};
-		var promises = [
-			dataFactory.getApi('firstaccess'),
-		];
-
-		$q.allSettled(promises).then(function(response) {
-			var firstAccess = response[0];
-
-			$scope.loading = false;
-			// Error message
-			if (firstAccess.state === 'rejected') {
-				angular.extend(cfg.route.alert, {
-					message: $scope._t('error_load_data')
-				});
-			}
-			// Success - remote ID
-			if (firstAccess.state === 'fulfilled') {
-				$scope.auth.remoteId = firstAccess.value.data.data.remote_id;
-			// Success - first access
-				$scope.auth.firstaccess = firstAccess.value.data.data.firstaccess;
-				$scope.auth.defaultProfile = firstAccess.value.data.data.defaultProfile;
-			// Success - IP address
-				$scope.auth.ipAddress = firstAccess.value.data.data.ip_address;
-			}
-		});
+	
+	$scope.loading = {
+		status: 'loading-spin',
+		icon: 'fa-spinner fa-spin',
+		message: $scope._t('loading')
 	};
-	$scope.allSettled();
+	
+	$scope.getFirstAccess = function() {
+		dataFactory.getApiNoToken('firstaccess').then(function(response) {
+			$scope.loading = false;
+			
+			$scope.auth.remoteId = response.data.data.remote_id;
+			$scope.auth.firstaccess = response.data.data.firstaccess;
+			$scope.auth.defaultProfile = response.data.data.defaultProfile;
+			$scope.auth.ipAddress = response.data.data.ip_address;
+			
+			$scope.authProcessed = true;
+		}, function(error) {
+			$scope.loading = false;
+			angular.extend(cfg.route.alert, {
+				message: $scope._t('error_load_data')
+			});
+		});
+	}
+	$scope.getFirstAccess();
 
 	/**
 	 * Login language
@@ -134,7 +124,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 
 	/// --- Private functions --- ///
 	/**
-	 * Gez zwave api data
+	 * Get zwave api data
 	 */
 	function getZwaveApiData(location) {
 		//var location = '#/dashboard';
