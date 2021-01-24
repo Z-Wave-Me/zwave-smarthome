@@ -1,11 +1,11 @@
 <!-- Login view -->
 <div ng-controller="AuthLoginController">
     <bb-loader></bb-loader>
-    <div class="welcome-screen" ng-hide="(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid')">
+    <div class="welcome-screen" ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && cfg.route.os != 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid'">
         <h1> {{_t('welcome_1')}} {{auth.remoteId}}</h1>
     </div>
     <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate
-          ng-hide="(cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid')">
+          ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && cfg.route.os != 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid'">
         <fieldset >
             <!-- <h3><span ng-bind="_t('nav_login')"></span></h3> -->
             <!-- login -->
