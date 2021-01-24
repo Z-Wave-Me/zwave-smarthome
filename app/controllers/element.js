@@ -151,11 +151,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
      * Set order by
      */
     $scope.setOrderBy = function(key) {
-        angular.extend($scope.dataHolder.devices, {
-            orderBy: key
-        });
-        $cookies.orderByElements = key;
-        $scope.reloadData();
+        $scope.dataHolder.devices.orderBy = key;
     };
 
     $scope.elementOnLongPress = function() {};
@@ -211,19 +207,14 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
      * Save drag and drop object
      */
     $scope.dragDropSave = function() {
-        /*console.log($scope.dataHolder.dragdrop)*/
-        $interval.cancel($scope.apiDataInterval);
-
         dataFactory.putApi('reorder', false, $scope.dataHolder.dragdrop).then(function(response) {
             $scope.dataHolder.dragdrop.data = [];
-            $scope.mode = 'default';
-            $scope.setOrderBy('order_elements');
-            $scope.reloadData();
-            $scope.refreshDevices();
+            $scope.dataHolder.mode = 'default';
+            $scope.setOrderBy('order_' + $scope.getBodyId());
+            $scope.allSettled(true);
         }, function(error) {
             alertify.alertError($scope._t('error_update_data'));
             $scope.dataHolder.dragdrop.data = [];
-            $scope.refreshDevices();
         });
     }
 
@@ -490,7 +481,6 @@ myAppController.controller('ElementDashboardController', function($scope, $route
         onDashboard: true
     };
     $scope.filterDevices();
-    $scope.dataHolder.devices.orderBy = 'order_dashboard';
     $scope.elementDashboard = {
         firstLogin: ($routeParams.firstlogin || false),
         firstFile: 'app/views/welcome/first_login.html'
@@ -508,7 +498,6 @@ myAppController.controller('ElementRoomController', function($scope, $q, $routeP
     };
     $scope.filterDevices();
     $scope.room = $scope.dataHolder.devices.rooms[id] || {};
-    $scope.dataHolder.devices.orderBy = 'order_rooms';
     cfg.route.pageClass = "page-room";
     $scope.swipeTimer = null;
 

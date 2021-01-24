@@ -275,9 +275,19 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         } else {
             v.messageView = '<span>'+ (typeof v.message == 'string'? v.message : JSON.stringify(v.message))+'</span>';
         }
-
-        v.lvl = $filter('hasNode')(v.message,'l')? $filter('hasNode')(v.message,'l') : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
-
+        var hasL = $filter('hasNode')(v.message,'l');
+        v.lvl = hasL ? hasL : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
+        var device = _.where($scope.dataHolder.devices.collection, {
+            id: v.source
+        });
+        if (device) {
+            var deviceIcons = dataService.getSingleElementIcons(device[0], true);
+            var icons = dataService.setIcon(deviceIcons['default'], deviceIcons['custom']);
+            // // Has device a level icon?
+            if (icons[hasL]) {
+                v.icon = icons[hasL];
+            }
+        }
         return v;
     };
 
