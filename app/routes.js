@@ -17,6 +17,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
 	when('/home', {
 			redirectTo: '/dashboard'
 		}). // Elements Dashboard
+	when('/dashboard', {
+			templateUrl: 'app/views/elements/elements_dashboard.html',
+			requireLogin: true
+		}). // Elements list
 	when('/dashboard/:firstlogin?', {
 			templateUrl: 'app/views/elements/elements_dashboard.html',
 			requireLogin: true
