@@ -494,10 +494,7 @@ myAppController.controller('ElementDashboardController', function($scope, $route
     $scope.elementDashboard = {
         firstLogin: ($routeParams.firstlogin || false),
         firstFile: 'app/views/welcome/first_login.html'
-            //firstFile: ($scope.lang === 'de' ? 'first_login_de.html' : 'first_login_en.html')
     };
-
-
 });
 
 /**

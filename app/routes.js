@@ -20,7 +20,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
 	when('/dashboard', {
 			templateUrl: 'app/views/elements/elements_dashboard.html',
 			requireLogin: true
-		}). // Elements list
+		}). // Elements Dashboard with first login flag
 	when('/dashboard/:firstlogin?', {
 			templateUrl: 'app/views/elements/elements_dashboard.html',
 			requireLogin: true
