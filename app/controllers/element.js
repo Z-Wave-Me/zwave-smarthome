@@ -8,8 +8,6 @@
  * @class ElementBaseController
  */
 myAppController.controller('ElementBaseController', function($scope, $q, $interval, $cookies, $filter, $routeParams, $timeout, $location, $rootElement, cfg, dataFactory, dataService, myCache) {
-    $scope.dataHolder.devices.filter = {};
-    $scope.filterDevices();
     /**
      * Get device by ID
      */
@@ -51,7 +49,6 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
      * @param {string} mode
      */
     $scope.changeMode = function(mode) {
-        $scope.dataHolder.mode = mode;
         if (mode === 'default') {
             $scope.dataHolder.dragdrop.data = [];
         }
@@ -60,7 +57,7 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
         } else {
             $scope.allSettled();
         }
-
+        $scope.dataHolder.mode = mode;
     }
 
     /**
@@ -75,20 +72,11 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
         var empty = (_.values(filter) == '');
 
         if (!filter || empty) { // Remove filter
-            angular.extend($scope.dataHolder.devices, {
-                filter: {}
-            });
-            $cookies.filterElements = angular.toJson({});
+            $scope.dataHolder.devices.filter = {}
         } else { // Set filter
-
-            angular.extend($scope.dataHolder.devices, {
-                filter: filter
-            });
-            $cookies.filterElements = angular.toJson(filter);
+            $scope.dataHolder.devices.filter = filter
         }
         $scope.allSettled();
-
-        //$scope.reloadData();
     };
 
     /**
@@ -113,19 +101,9 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
             list.push(item);
         }
         if (list.length > 0) {
-            angular.extend($scope.dataHolder.devices, {
-                filter: {
-                    list: list
-                }
-            });
-            $cookies.filterElements = angular.toJson({
-                list: list
-            });
+            $scope.dataHolder.devices.filter = {list}
         } else {
-            angular.extend($scope.dataHolder.devices, {
-                filter: {}
-            });
-            $cookies.filterElements = angular.toJson({});
+            $scope.dataHolder.devices.filter = {}
         }
         $scope.allSettled();
     };
@@ -480,7 +458,6 @@ myAppController.controller('ElementDashboardController', function($scope, $route
     $scope.dataHolder.devices.filter = {
         onDashboard: true
     };
-    $scope.filterDevices();
     $scope.elementDashboard = {
         firstLogin: ($routeParams.firstlogin || false),
         firstFile: 'app/views/welcome/first_login.html'
@@ -499,7 +476,6 @@ myAppController.controller('ElementRoomController', function($scope, $q, $routeP
     $scope.dataHolder.devices.filter = {
         location: id
     };
-    $scope.filterDevices();
     $scope.room = $scope.dataHolder.devices.rooms[id] || {};
     cfg.route.pageClass = "page-room";
     $scope.swipeTimer = null;
