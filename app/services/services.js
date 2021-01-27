@@ -611,7 +611,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		};
 		var iconKey = $filter('hasNode')(element, 'metrics.icon');
 		// Set custom icons
-		if (_.size(element.customIcons) > 0) {
+		if (element && _.size(element.customIcons) > 0) {
 			icons.custom = (element.customIcons.level ? element.customIcons.level : element.customIcons);
 		}
 		// Set default icons by metrics.icon
@@ -644,7 +644,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		}
 		// Set default icons by deviceType
 		else {
-			if (cfgicons.element.deviceType[element.deviceType]) {
+			if (element && cfgicons.element.deviceType[element.deviceType]) {
 				icons.default = setDefaultIcon(cfgicons.element.deviceType[element.deviceType]);
 			}
 		}

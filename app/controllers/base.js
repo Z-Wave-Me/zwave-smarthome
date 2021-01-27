@@ -883,6 +883,35 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
         });
     };
     if (dataService.getUser()) $scope.allSettled();
+
+    var filterDevices = function () {
+        var devices = $scope.dataHolder.devices
+        if ('tag' in devices.filter) { // Filter by tag
+            devices.collection = devices.all.filter((v) => v.tags.includes(devices.filter.tag));
+        } else if ('q' in  devices.filter) { // Filter by query
+            //angular.element('#input_search').focus();
+            $scope.autocomplete.term = devices.filter.q;
+            var searchResult = _.indexBy(dataService.autocomplete(devices.all, $scope.autocomplete), 'id');
+            devices.collection = _.filter(devices.all, function(v) {
+                if (searchResult[v.id]) {
+                    return v;
+                }
+            });
+        } else if ('list' in devices.filter) { // Filter by list
+            var list = {},
+                key = Object.keys(devices.filter.list[0])[0];
+            _.each(devices.filter.list, function(i) {
+                list[i[key]] = true;
+            });
+
+            devices.collection = _.filter(devices.all, function(v) {
+                return list[v[key]];
+            }, list);
+
+        } else {
+            devices.collection = _.where(devices.all, devices.filter);
+        }
+    }
     $scope.filterDevices = function (){
         if ('tag' in $scope.dataHolder.devices.filter) { // Filter by tag
             $scope.dataHolder.devices.collection = _.filter($scope.dataHolder.devices.all, function(v) {
@@ -949,7 +978,7 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
             return;
         }
         // Collection
-        $scope.filterDevices();
+        filterDevices();
         if (_.isEmpty($scope.dataHolder.devices.collection)) {
             if ($scope.routeMatch('/dashboard')) {
                 $scope.dataHolder.devices.noDashboard = true;
@@ -989,7 +1018,8 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
                             var index = _.findIndex($scope.dataHolder.devices.all, {
                                 id: v.id
                             });
-                            if (!$scope.dataHolder.devices.all[index]) {
+                            var device;
+                            if (!(device = $scope.dataHolder.devices.all[index])) {
                                 return;
                             }
                             if (v.metrics.level) {
@@ -1011,6 +1041,7 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
                             }, {
                                 updateTime: v.updateTime
                             });
+                            angular.copy(v, device);
                             //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
                         });
                     }
@@ -1020,6 +1051,7 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
 
                 });
             }
+            filterDevices();
         };
         if (!$scope.apiDataInterval) {
             $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
