@@ -781,7 +781,12 @@ myAppController.controller('GlobalDevicesController', function ($scope, $timeout
             tags: [],
             filter: ($cookies.filterElements ? angular.fromJson($cookies.filterElements) : {}),
             rooms: {},
-            orderBy: ($cookies.orderByElements ? $cookies.orderByElements : 'order_elements'),
+            get orderBy() {
+                return ($cookies[$scope.getBodyId()] ? $cookies[$scope.getBodyId()] : 'order_elements');
+            },
+            set orderBy(key) {
+                $cookies[$scope.getBodyId()] = key;
+            },
             showHidden: ($cookies.showHiddenEl ? $filter('toBool')($cookies.showHiddenEl) : false),
             notificationsSince: ($filter('unixStartOfDay')('-', (86400 * 6)) * 1000)
         },
