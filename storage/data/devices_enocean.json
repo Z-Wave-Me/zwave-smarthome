@@ -2,7 +2,7 @@
   {
     "id": 1,
     "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendorLogo": "enocean.svg",
     "name": "STM250",
     "description": "Door Window Sensor",
     "image": "STM250.jpg",
@@ -15,7 +15,7 @@
   {
     "id": 2,
     "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendorLogo": "enocean.svg",
     "name": "EOSC",
     "description": "Sealing Mountable Motion Detector",
     "image": "EOSC.jpg",
@@ -28,7 +28,7 @@
   {
     "id": 3,
     "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendorLogo": "enocean.svg",
     "name": "EOSW",
     "description": "Wall Mountable Motion Detector",
     "image": "EOSW.jpg",
@@ -41,7 +41,7 @@
   {
     "id": 4,
     "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendorLogo": "enocean.svg",
     "name": "EKCS",
     "description": "Key Card Switch",
     "image": "EKCS.jpg",
@@ -54,7 +54,7 @@
   {
     "id": 5,
     "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendorLogo": "enocean.svg",
     "name": "PTM210 - one rocker (two channel)",
     "description": "Universal Switch Insert 2C",
     "image": "PTM250.jpg",
@@ -67,7 +67,7 @@
   {
     "id": 6,
     "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendorLogo": "enocean.svg",
     "name": "PTM215 - two rocker (four channel)",
     "description": "Universal Switch Insert 4C",
     "image": "PTM250.jpg",
@@ -570,5 +570,18 @@
     "typeId": "0x00",
     "inclusion": "Press LRN-button",
     "smartAck": false
+  },
+  {
+    "id": 45,
+    "vendor": "Rehau",
+    "name": "Smart Guard XT",
+    "vendorLogo": "rehau.png",
+    "description": "Smart window sensor with motion sensor and alarm function; Vers. 2 (FW 1.5)",
+    "image": "rehau-smartguard2.png",
+    "rorg": "0xd2",
+    "funcId": "0x06",
+    "typeId": "0x11",
+    "inclusion": "Insert battery",
+    "smartAck": true
   }
 ]
