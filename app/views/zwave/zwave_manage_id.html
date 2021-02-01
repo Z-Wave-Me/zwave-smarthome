@@ -47,7 +47,7 @@
                     <div class="form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}" ng-repeat="e in devices| orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
                         <ng-form name="subForm">
                             <h3>
-                                <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                                <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" />
                                 <span ng-bind="formInput.elements[e.id].metrics.title"></span>
                             </h3>
                             <div class="form-group form-inline">
@@ -63,7 +63,8 @@
                                      ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
                                      ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-primary'"> </a> --> 
                             </div>
-                        </div>
+                            <div class="text-info"><i class="fas fa-info-circle text-info"></i> Id: {{e.id}} </div>
+                    </div>
 
                         <div class="form-group form-inline">
                             <a class="btn btn-primary" href="#deviceconfig/{{zWaveDevice.id}}" title="{{_t('hardware_konfiguration')}}" ng-if="zWaveDevice.cfg.length > 0">
@@ -85,4 +86,4 @@
         </form>
     </div>
     <div class="device-logo" ng-include="'app/views/zwave/zwave_nav.html'"></div>
-</div> <!-- /ng-controller --> 
+</div> <!-- /ng-controller -->
