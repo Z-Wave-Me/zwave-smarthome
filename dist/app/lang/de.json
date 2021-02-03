@@ -821,7 +821,7 @@
     "schedule": "Zeitgesteuert",
     "scheduledscenes_exists": "Es gibt Zeitpläne zum transformieren.",
     "schedules": "Zeitpläne",
-    "schedule_info": "Hinzufügen von neuen Einträgen mit Klick. Verschieben von Einträgen mit drag and drop.",
+    "schedule_info": "Am Ende des Zeitplanzeitraums wird die Energiespartemperatur eingestellt. Ein neuer Zeitplan Zeitraum wird mit einem einzigen Klick hinzugefügt, und Sie können es ändern und verschieben.",
     "seconds": "sekunden",
     "secure_login": "Ich vertraue meinem lokalen Ethernet\/WLAN",
     "security_alarm_interval": "Wiederholung des Alarmereignisses nach",

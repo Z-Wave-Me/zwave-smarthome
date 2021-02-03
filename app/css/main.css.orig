@@ -21783,6 +21783,9 @@ img.widget-promo-image {
 .comment-entry.even {
   background-color: #E9E9E9; }
 
+.ngrs-range-slider {
+  touch-action: none; }
+
 /* Local apps
 -------------------------------------------------- */
 .app-entry-local {
