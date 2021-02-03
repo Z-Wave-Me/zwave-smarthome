@@ -138,6 +138,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		timeLineY: 30, // height(px)
 		verticalScrollbar: 20, // scrollbar (px)
 		timeLineBorder: 2, // border(top and bottom)
+		widthTimeX: 8,
 		rows: {
 			'0': {
 				title: 'day_short_0',
@@ -903,5 +904,11 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		var min = h + i;
 		return min;
 	}
-
+	$scope.zoom = function (id, key) {
+		if (key === 'in') {
+		}
+		if (key === 'out') {
+		}
+		console.log({id, key});
+	}
 });
