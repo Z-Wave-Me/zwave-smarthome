@@ -821,7 +821,7 @@
     "scan_qrcode": "Scan QR code",
     "scenes": "Scenes",
     "schedule": "Time-driven",
-    "schedule_info": "A comfortable temperature is always keeping. Add new entries with a click. Move entries with drag and drop.",
+    "schedule_info": "At the end of the schedule period, the energy saving temperature is set. A new schedule period is added with a single click, and you can change and move it.",
     "scheduledscenes_exists": "There are Schedules to transform.",
     "schedules": "Schedules",
     "seconds": "seconds",
