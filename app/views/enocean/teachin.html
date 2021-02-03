@@ -26,12 +26,12 @@
                                     <button
                                         class="btn btn-danger"
                                         ng-if="!inclusion.done && inclusion.promisc"
-                                        ng-click="runCmd('controller.data.promisc=false')">
+                                        ng-click="AddDeviceStart()">
                                          <i class="fas fa-ban"></i> <span class="btn-name">{{_t('stop_teachin')}}</span>
                                     </button>
                                     <button class="btn btn-success"
                                             ng-if="!inclusion.done && !inclusion.promisc"
-                                            ng-click="runCmd('controller.data.promisc=true')">
+                                            ng-click="AddDeviceStop()">
                                             <i class="fas fa-plug"></i> <span class="btn-name">{{_t('start_teachin')}}</span>
                                     </button>
                                 </div>
