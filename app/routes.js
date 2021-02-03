@@ -351,11 +351,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			requireLogin: true,
 			roles: cfg.role_access.devices
 		}). //Enocean assign profile
-	when('/enocean/assign', {
-		templateUrl: 'app/views/enocean/assign.html',
-		requireLogin: true,
-		roles: cfg.role_access.devices
-	}).
 	when('/rf433/teachin', {
 		templateUrl: 'app/views/rf433/teachin.html',
 		requireLogin: true,
