@@ -15,7 +15,8 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		input: {},
 		locations: {},
 		instances: {},
-		modules: {}
+		modules: {},
+		referenced: [],
 	};
 	$scope.tagList = [];
 	$scope.search = {
@@ -50,6 +51,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		if ($scope.user.role === 1) { // should be last to have same order for user and admin
 			promises.push(dataFactory.getApi('instances', false, true));
 			promises.push(dataFactory.getApi('modules', false, true));
+			promises.push(dataFactory.getApi('devices', '/' + $routeParams.id + '/referenced', true))
 		}
 
 		$q.allSettled(promises).then(function(response) {
@@ -60,7 +62,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			var notificationFiltering = response[4];
 			var instances = response[5];
 			var modules = response[6];
-
+			var referenced = response[7];
 			$scope.loading = false;
 			// Error message
 			if (device.state === 'rejected') {
@@ -107,6 +109,11 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				setDevice(dataService.getDevicesData(arr, true).value()[0]);
 				$scope.elementId.show = true;
 			}
+			if(referenced.state === 'fulfilled') {
+				$scope.elementId.referenced = referenced.value.data.data;
+			}
+			console.log($scope.elementId.referenced);
+
 		});
 	};
 	$scope.allSettled();
