@@ -3,6 +3,5 @@
     <p ng-bind-html="_t('p_welcome_events')|toTrusted"></p>
 </div>
 <div class="image">
-    <img ng-if="!isMobile" src="app/img/welcome/events.png"/>
-    <img ng-if="isMobile" src="app/img/welcome/events_mobile.png"/>
+    <img ng-src="app/img/welcome/events{{sourcePrefix}}.jpg" alt=""/>
 </div>
