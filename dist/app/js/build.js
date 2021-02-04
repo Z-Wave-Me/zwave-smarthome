@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave.Me, Created: 03-02-2021 04:33:38 */
+/* Copyright:  Z-Wave.Me, Created: 05-02-2021 02:28:24 */
 /*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -18860,11 +18860,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			requireLogin: true,
 			roles: cfg.role_access.devices
 		}). //Enocean assign profile
-	when('/enocean/assign', {
-		templateUrl: 'app/views/enocean/assign.html',
-		requireLogin: true,
-		roles: cfg.role_access.devices
-	}).
 	when('/rf433/teachin', {
 		templateUrl: 'app/views/rf433/teachin.html',
 		requireLogin: true,
@@ -19767,7 +19762,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/elements/element_id.html',
-    "<div ng-controller=ElementIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=elementId.show><h2><span ng-bind=\"_t('lb_cfg_view') + ':'\"></span> <span ng-bind=elementId.input.metrics.title></span></h2><form name=form_element id=form_element class=\"form form-page\" autocomplete=off ng-submit=store(elementId.input) novalidate><fieldset ng-show=\"elementId.input.isFailed && elementId.appType.zwave\"><div class=\"alert alert-danger\"><i class=\"fas fa-exclamation-triangle\"></i> {{_t('zwave_device_failed')}} <a ng-href=#zwave/devices class=\"btn btn-default\" ng-show=elementAccess(cfg.role_access.admin)><i class=\"fas fa-edit text-primary\"></i> {{_t('manage')}}</a></div></fieldset><fieldset ng-if=elementAccess(cfg.role_access.admin)><div class=\"form-group_ form-inline\"><label>{{_t('lb_element_name')}}:</label><input name=title id=title class=form-control value={{elementId.input.metrics.title}} placeholder=\"{{_t('lb_element_name')}}\" ng-model=elementId.input.metrics.title></div></fieldset><fieldset><div ng-if=elementAccess(cfg.role_access.admin)><div class=form-group ng-switch=elementId.appType.instance.moduleId ng-hide=\"elementId.appType.instance.category == 'system'\"><label>{{_t('lb_gen_by_module')}}:</label><br><strong>{{elementId.appType.modul.defaults.title}}</strong><br><a href=#zwave/devices/{{elementId.appType.zwave}} class=\"btn btn-default\" ng-switch-when=ZWave><i class=\"fas fa-cog\"></i> <span><strong>{{_t('lb_zwave_device')}}</strong> #{{elementId.appType.zwave}} </span></a><a href=#enocean/manage/{{elementId.appType.enocean}} class=\"btn btn-default\" ng-switch-when=EnOcean><i class=\"fas fa-cog\"></i> <strong>{{_t('enocean_device')}}</strong> #{{elementId.appType.enocean}} </a><a class=\"btn btn-default\" ng-href=#module/put/{{elementId.appType.instance.id}} ng-switch-default><i class=\"fas fa-cog\"></i> <span class=btn-name><strong>{{elementId.appType.instance.title}}</strong></span></a></div><div class=form-group><label for=hide_element><input type=checkbox name=hide_element id=hide_element ng-init=\"visibility.checked = !elementId.input.visibility\" ng-model=visibility.checked ng-change=\"elementId.input.visibility = !visibility.checked\" ng-checked=!elementId.input.visibility> <span>{{_t('hide_element')}}</span></label><bb-help-text trans=\"_t('hide_element_info')\"></bb-help-text></div></div><div class=form-group ng-show=\"cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'\" ng-if=\"elementId.input.deviceType == 'toggleButton' || elementId.input.deviceType == 'switchBinary'\"><label>{{_t('lb_add_widget')}}:</label><br><a title=\"{{_t('lb_on')}}\" class=\"btn btn-primary\" href={{elementId.input.addOnUrl}}>{{_t('lb_on')}} </a>&nbsp <a title=\"{{_t('lb_off')}}\" class=\"btn btn-primary\" ng-if=\"elementId.input.deviceType !== 'toggleButton'\" href={{elementId.input.addOffUrl}}>{{_t('lb_off')}}</a><bb-help-text trans=\"_t('info_add_widget')\"></bb-help-text></div><div class=form-group ng-show=\"cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'\" ng-if=\"elementId.input.deviceType == 'toggleButton'\"><a title=\"{{_t('lb_add_today')}}\" class=\"btn btn-primary\" href=\"/?id={{elementId.input.id}}&name={{elementId.input.metrics.title|stringToSlug}}&type={{elementId.input.deviceType}}&state={{elementId.input.metrics.level}}\">{{ _t('lb_add_today')}}</a><bb-help-text trans=\"_t('info_add_today')\"></bb-help-text></div><div class=form-group ng-if=\"elementAccess(cfg.role_access.admin) && elementId.appType.zwave\"><button type=button title=\"{{_t('delete_element')}}\" class=\"btn btn-danger\" ng-click=\"deleteElement(elementId.input, _t('element_delete_confirm'))\"><i class=\"fas fa-times\"></i> {{ _t('delete_element')}}</button><bb-help-text trans=\"_t('deactivate_element_info')\"></bb-help-text></div><div class=form-group><div><label for=dashboard><input type=checkbox name=dashboard value={{elementId.input.onDashboard}} id=dashboard ng-model=elementId.input.onDashboard ng-checked=elementId.input.onDashboard> <span>{{_t('lb_add_dashboard')}}</span></label></div><div><label for=hide_events><input type=checkbox name=hide_events value={{elementId.input.id}} id=hide_events ng-model=elementId.input.hide_events ng-checked=\"user.hide_single_device_events.indexOf(elementId.input.id) === -1 ? false : true\"> <span>{{_t('lb_hide_events_device')}}</span></label></div></div><div class=form-group ng-if=\"(speechAssistants.Alexa.active && elementId.input.alexaWhitelisted) || speechAssistants.GoogleHome.active\"><div ng-if=\"speechAssistants.Alexa.active && elementId.input.alexaWhitelisted\"><div><label for=activate_alexa><input type=checkbox name=activate_alexa id=activate_alexa ng-model=elementId.input.alexaActivated ng-checked_=\"\"> <span>{{_t('lb_activate_alexa')}}</span></label><bb-help-text trans=\"_t('alexa_info')\"></bb-help-text></div></div><div ng-if=\"speechAssistants.GoogleHome.active && elementId.input.googleHomeWhitelisted\"><div><label for=activate_google_home><input type=checkbox name=activate_google_home id=activate_google_home ng-model=elementId.input.googleHomeActivated ng-checked_=\"\"> <span>{{_t('lb_activate_google_home')}}</span></label><bb-help-text trans=\"_t('google_home_info')\"></bb-help-text></div></div><div ng-if=\"elementId.input.googleHomeActivated || elementId.input.alexaActivated\" class=form-inline><label>{{_t('lb_call_name')}}:</label><input name=google_home_call_name id=google_home_call_name class=form-control value={{elementId.input.callName}} placeholder=\"{{_t('lb_add_call_name')}}\" ng-model=elementId.input.callName><bb-help-text trans=\"_t('call_name_info')\"></bb-help-text><bb-help-text ng-if=\"speechAssistants.Alexa.instance.params.assign_room && elementId.input.location != 0\" trans=\"_t('alexa_room_assigned_info',  {'__call_name__': elementId.input.alexaCallName, '__room_name__': elementId.locations[elementId.input.location].title})|toTrusted\"></bb-help-text></div></div><div class=\"form-group form-inline\" ng-if=elementAccess(cfg.role_access.admin)><label>{{_t('lb_assign_room')}}:</label><div class=\"btn-group btn-goup-block btn-goup-1\"><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('elidDropDown', $event)\">{{elementId.locations[elementId.input.location].title|cutText:true:20}} <i class=\"fas fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left dropdown-100\" ng-if=naviExpanded.elidDropDown><ul><li class=clickable ng-class=\"elementId.input.location == v.id ? 'active' : ''\" ng-click=\"elementId.input.location = v.id\" ng-repeat=\"v in elementId.locations\"><a><img class=navi-img ng-src={{v.img_src}} alt=img> {{v.title|cutText:true:20}} <i class=\"fas fa-check menu-arrow\" ng-if=\"elementId.input.location == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset ng-if=elementAccess(cfg.role_access.admin)><div class=\"form-group form-inline\"><label>{{_t('lb_tags')}}:</label><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_add_tag')}}\" ng-model=search.text bb-key-event=searchMe() data-toggle=dropdown> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fas fa-plus text-success\"></i></span><div class=\"app-dropdown app-dropdown-left\" ng-if=suggestions.length><ul><li href=\"\" ng-click=addTag(v) ng-repeat=\"v in suggestions track by $index\"><a href=\"\"><i class=\"fas fa-plus text-success\"></i> {{v}}</a></li></ul></div></div></div><div class=\"form-group last\"><a href=\"\" class=\"btn btn-default btn-tag\" id=tag_{{$index}} ng-repeat=\"t in elementId.input.tags track by $index\" ng-click=removeTag($index)>{{t}} <i class=\"fas fa-times text-danger\" title=\"{{_t('lb_remove')}}\"></i></a></div></fieldset><fieldset><h3>{{_t('notifications')}}</h3><div class=\"form-group form-inline\" ng-repeat=\"n in notifications.device track by $index\"><div ng-include=\"'app/views/notifications/notifications_form_' + elementId.input.deviceType + '.html'\" onload=\"v=n\"></div><label for=channel_{{v.id}}>{{_t('lb_send_channel')}}</label><select id=channel_{{v.id}} name=channel class=\"form-control form-inline\" ng-model=v.channel><option value=\"\" ng-selected=\"v.channel === ''\">{{_t('notifications_all_channels')}}</option><option value={{nc.id}} ng-repeat=\"nc in notifications.channels\" ng-selected=\"nc.id == v.channel\">{{nc.name}} ({{nc.userName}})</option></select><bb-help-text trans=\"_t('send_channel_help')\"></bb-help-text><label for=customMessage>{{_t('custom_message')}}</label><input class=form-control id=customMessage name=customMessage ng-model=n.msg><bb-help-text trans=\"_t('custom_message_help')\"></bb-help-text><button type=button class=\"btn btn-danger\" ng-click=removeNotification($index) title=\"{{_t('btn_remove')}}\"><i class=\"fas fa-times\"></i> {{_t('btn_remove')}}</button></div><button type=button class=\"btn btn-default\" ng-click=addNotification() title=\"{{_t('add notificaton')}}\"><i class=\"fas fa-plus text-success\"></i> {{_t('add_notification')}}</button></fieldset><fieldset class=submit-entry><button type=button title=\"{{_t('lb_cancel')}}\" class=\"btn btn-default\" bb-go-back><i class=\"fas fa-reply\"></i> <span class=btn-name ng-bind=\"_t('lb_cancel')\"></span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fas fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_save')\"></span></button></fieldset></form><div ng-if=elementAccess(cfg.role_access.admin) ng-include=\"'app/views/elements/element_id_icons.html'\"></div><div ng-if=elementAccess(cfg.role_access.admin) ng-include=\"'app/views/elements/element_id_api_info.html'\"></div></div></div>"
+    "<div ng-controller=ElementIdController class=mobile-padding><bb-loader></bb-loader><div ng-if=elementId.show><h2><span ng-bind=\"_t('lb_cfg_view') + ':'\"></span> <span ng-bind=elementId.input.metrics.title></span></h2><form name=form_element id=form_element class=\"form form-page\" autocomplete=off ng-submit=store(elementId.input) novalidate><fieldset ng-show=\"elementId.input.isFailed && elementId.appType.zwave\"><div class=\"alert alert-danger\"><i class=\"fas fa-exclamation-triangle\"></i> {{_t('zwave_device_failed')}} <a ng-href=#zwave/devices class=\"btn btn-default\" ng-show=elementAccess(cfg.role_access.admin)><i class=\"fas fa-edit text-primary\"></i> {{_t('manage')}}</a></div></fieldset><fieldset ng-if=elementAccess(cfg.role_access.admin)><div class=\"form-group_ form-inline\"><label>{{_t('lb_element_name')}}:</label><input name=title id=title class=form-control value={{elementId.input.metrics.title}} placeholder=\"{{_t('lb_element_name')}}\" ng-model=elementId.input.metrics.title></div></fieldset><fieldset><div ng-if=elementAccess(cfg.role_access.admin)><div class=form-group ng-switch=elementId.appType.instance.moduleId ng-hide=\"elementId.appType.instance.category == 'system'\"><label>{{_t('lb_gen_by_module')}}:</label><br><strong>{{elementId.appType.modul.defaults.title}}</strong><br><a href=#zwave/devices/{{elementId.appType.zwave}} class=\"btn btn-default\" ng-switch-when=ZWave><i class=\"fas fa-cog\"></i> <span><strong>{{_t('lb_zwave_device')}}</strong> #{{elementId.appType.zwave}} </span></a><a href=#enocean/manage/{{elementId.appType.enocean}} class=\"btn btn-default\" ng-switch-when=EnOcean><i class=\"fas fa-cog\"></i> <strong>{{_t('enocean_device')}}</strong> #{{elementId.appType.enocean}} </a><a class=\"btn btn-default\" ng-href=#module/put/{{elementId.appType.instance.id}} ng-switch-default><i class=\"fas fa-cog\"></i> <span><strong>{{elementId.appType.instance.title}}</strong></span></a></div><div ng-if=!!elementId.referenced.length class=form-group><label>{{_t('referenced_in')}}:</label><div class=flex-buttons><div ng-repeat=\"reference in elementId.referenced\" ng-switch=reference.moduleId ng-hide=\"elementId.appType.instance.category == 'system'\"><a class=\"btn btn-default\" ng-href=#module/put/{{reference.instanceId}} ng-switch-default><i class=\"fas fa-cog\"></i> <span><strong>{{reference.instanceTitle}}</strong></span></a></div></div></div><div class=form-group><label for=hide_element><input type=checkbox name=hide_element id=hide_element ng-init=\"visibility.checked = !elementId.input.visibility\" ng-model=visibility.checked ng-change=\"elementId.input.visibility = !visibility.checked\" ng-checked=!elementId.input.visibility> <span>{{_t('hide_element')}}</span></label><bb-help-text trans=\"_t('hide_element_info')\"></bb-help-text></div></div><div class=form-group ng-show=\"cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'\" ng-if=\"elementId.input.deviceType == 'toggleButton' || elementId.input.deviceType == 'switchBinary'\"><label>{{_t('lb_add_widget')}}:</label><br><a title=\"{{_t('lb_on')}}\" class=\"btn btn-primary\" href={{elementId.input.addOnUrl}}>{{_t('lb_on')}} </a>&nbsp <a title=\"{{_t('lb_off')}}\" class=\"btn btn-primary\" ng-if=\"elementId.input.deviceType !== 'toggleButton'\" href={{elementId.input.addOffUrl}}>{{_t('lb_off')}}</a><bb-help-text trans=\"_t('info_add_widget')\"></bb-help-text></div><div class=form-group ng-show=\"cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'\" ng-if=\"elementId.input.deviceType == 'toggleButton'\"><a title=\"{{_t('lb_add_today')}}\" class=\"btn btn-primary\" href=\"/?id={{elementId.input.id}}&name={{elementId.input.metrics.title|stringToSlug}}&type={{elementId.input.deviceType}}&state={{elementId.input.metrics.level}}\">{{ _t('lb_add_today')}}</a><bb-help-text trans=\"_t('info_add_today')\"></bb-help-text></div><div class=form-group ng-if=\"elementAccess(cfg.role_access.admin) && elementId.appType.zwave\"><button type=button title=\"{{_t('delete_element')}}\" class=\"btn btn-danger\" ng-click=\"deleteElement(elementId.input, _t('element_delete_confirm'))\"><i class=\"fas fa-times\"></i> {{ _t('delete_element')}}</button><bb-help-text trans=\"_t('deactivate_element_info')\"></bb-help-text></div><div class=form-group><div><label for=dashboard><input type=checkbox name=dashboard value={{elementId.input.onDashboard}} id=dashboard ng-model=elementId.input.onDashboard ng-checked=elementId.input.onDashboard> <span>{{_t('lb_add_dashboard')}}</span></label></div><div><label for=hide_events><input type=checkbox name=hide_events value={{elementId.input.id}} id=hide_events ng-model=elementId.input.hide_events ng-checked=\"user.hide_single_device_events.indexOf(elementId.input.id) === -1 ? false : true\"> <span>{{_t('lb_hide_events_device')}}</span></label></div></div><div class=form-group ng-if=\"(speechAssistants.Alexa.active && elementId.input.alexaWhitelisted) || speechAssistants.GoogleHome.active\"><div ng-if=\"speechAssistants.Alexa.active && elementId.input.alexaWhitelisted\"><div><label for=activate_alexa><input type=checkbox name=activate_alexa id=activate_alexa ng-model=elementId.input.alexaActivated ng-checked_=\"\"> <span>{{_t('lb_activate_alexa')}}</span></label><bb-help-text trans=\"_t('alexa_info')\"></bb-help-text></div></div><div ng-if=\"speechAssistants.GoogleHome.active && elementId.input.googleHomeWhitelisted\"><div><label for=activate_google_home><input type=checkbox name=activate_google_home id=activate_google_home ng-model=elementId.input.googleHomeActivated ng-checked_=\"\"> <span>{{_t('lb_activate_google_home')}}</span></label><bb-help-text trans=\"_t('google_home_info')\"></bb-help-text></div></div><div ng-if=\"elementId.input.googleHomeActivated || elementId.input.alexaActivated\" class=form-inline><label>{{_t('lb_call_name')}}:</label><input name=google_home_call_name id=google_home_call_name class=form-control value={{elementId.input.callName}} placeholder=\"{{_t('lb_add_call_name')}}\" ng-model=elementId.input.callName><bb-help-text trans=\"_t('call_name_info')\"></bb-help-text><bb-help-text ng-if=\"speechAssistants.Alexa.instance.params.assign_room && elementId.input.location != 0\" trans=\"_t('alexa_room_assigned_info',  {'__call_name__': elementId.input.alexaCallName, '__room_name__': elementId.locations[elementId.input.location].title})|toTrusted\"></bb-help-text></div></div><div class=\"form-group form-inline\" ng-if=elementAccess(cfg.role_access.admin)><label>{{_t('lb_assign_room')}}:</label><div class=\"btn-group btn-goup-block btn-goup-1\"><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('elidDropDown', $event)\">{{elementId.locations[elementId.input.location].title|cutText:true:20}} <i class=\"fas fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left dropdown-100\" ng-if=naviExpanded.elidDropDown><ul><li class=clickable ng-class=\"elementId.input.location == v.id ? 'active' : ''\" ng-click=\"elementId.input.location = v.id\" ng-repeat=\"v in elementId.locations\"><a><img class=navi-img ng-src={{v.img_src}} alt=img> {{v.title|cutText:true:20}} <i class=\"fas fa-check menu-arrow\" ng-if=\"elementId.input.location == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset ng-if=elementAccess(cfg.role_access.admin)><div class=\"form-group form-inline\"><label>{{_t('lb_tags')}}:</label><div class=input-group><input name=add_tag id=add_tag class=form-control placeholder=\"{{_t('lb_add_tag')}}\" ng-model=search.text bb-key-event=searchMe() data-toggle=dropdown> <span class=\"input-group-addon clickable\" title=\"{{_t('lb_add_tag')}}\" ng-click=addTag()><i class=\"fas fa-plus text-success\"></i></span><div class=\"app-dropdown app-dropdown-left\" ng-if=suggestions.length><ul><li href=\"\" ng-click=addTag(v) ng-repeat=\"v in suggestions track by $index\"><a href=\"\"><i class=\"fas fa-plus text-success\"></i> {{v}}</a></li></ul></div></div></div><div class=\"form-group last\"><a href=\"\" class=\"btn btn-default btn-tag\" id=tag_{{$index}} ng-repeat=\"t in elementId.input.tags track by $index\" ng-click=removeTag($index)>{{t}} <i class=\"fas fa-times text-danger\" title=\"{{_t('lb_remove')}}\"></i></a></div></fieldset><fieldset><h3>{{_t('notifications')}}</h3><div class=\"form-group form-inline\" ng-repeat=\"n in notifications.device track by $index\"><div ng-include=\"'app/views/notifications/notifications_form_' + elementId.input.deviceType + '.html'\" onload=\"v=n\"></div><label for=channel_{{v.id}}>{{_t('lb_send_channel')}}</label><select id=channel_{{v.id}} name=channel class=\"form-control form-inline\" ng-model=v.channel><option value=\"\" ng-selected=\"v.channel === ''\">{{_t('notifications_all_channels')}}</option><option value={{nc.id}} ng-repeat=\"nc in notifications.channels\" ng-selected=\"nc.id == v.channel\">{{nc.name}} ({{nc.userName}})</option></select><bb-help-text trans=\"_t('send_channel_help')\"></bb-help-text><label for=customMessage>{{_t('custom_message')}}</label><input class=form-control id=customMessage name=customMessage ng-model=n.msg><bb-help-text trans=\"_t('custom_message_help')\"></bb-help-text><button type=button class=\"btn btn-danger\" ng-click=removeNotification($index) title=\"{{_t('btn_remove')}}\"><i class=\"fas fa-times\"></i> {{_t('btn_remove')}}</button></div><button type=button class=\"btn btn-default\" ng-click=addNotification() title=\"{{_t('add notificaton')}}\"><i class=\"fas fa-plus text-success\"></i> {{_t('add_notification')}}</button></fieldset><fieldset class=submit-entry><button type=button title=\"{{_t('lb_cancel')}}\" class=\"btn btn-default\" bb-go-back><i class=\"fas fa-reply\"></i> <span class=btn-name ng-bind=\"_t('lb_cancel')\"></span></button> <button type=submit title=\"{{_t('lb_save')}}\" class=\"btn btn-submit\"><i class=\"fas fa-check\"></i> <span class=btn-name ng-bind=\"_t('lb_save')\"></span></button></fieldset></form><div ng-if=elementAccess(cfg.role_access.admin) ng-include=\"'app/views/elements/element_id_icons.html'\"></div><div ng-if=elementAccess(cfg.role_access.admin) ng-include=\"'app/views/elements/element_id_api_info.html'\"></div></div></div>"
   );
 
 
@@ -20137,11 +20132,6 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
   );
 
 
-  $templateCache.put('app/views/enocean/assign.html',
-    "<div ng-controller=EnoceanAssignController class=mobile-padding><div ng-include=\"'app/views/enocean/navi.html'\"></div><bb-loader></bb-loader><div class=tab-content><div class=\"col-device app-border app-gradient app-shadow\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><strong ng-bind=\"_t('assign_profile')\"></strong><div class=form-group><select name=enoceanProfiles class=form-control ng-model=profile ng-change=loadDevice(profile) ng-disabled=\"inclusion.promisc || inclusion.done\"><option value={{manProfile}} ng-repeat=\"v in enoceanProfiles| orderBy:'_funcDescription'\" ng-init=\"manProfile = {rorg:v._rorg,funcId: v._func,typeId: v._type}\">{{v._funcDescription}} | rorg: {{v._rorg}} | func: {{v._func}} | type: {{v._type}}</option></select></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('teach_in')\"></strong><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fas fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fas fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">3</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value={{lastIncludedDevice.name}}> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fas fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices| orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=img> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value={{dev[e.id].metrics.title}}> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id, permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fas fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"submit-entry save-continue\" ng-if=inclusion.done><a href=#enocean/manage class=\"btn btn-info\">{{_t('continue')}} <i class=\"fas fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
-  );
-
-
   $templateCache.put('app/views/enocean/controller.html',
     "<div ng-controller=EnoceanControllerController class=mobile-padding><bb-loader></bb-loader><div ng-include=\"'app/views/enocean/navi.html'\"></div><div class=tab-content><table class=\"table table-report table-condensed\"><tbody><tr ng-repeat=\"(k,v) in controller\" id=\"row_controller_{{ v}}\" ng-if=\"controllerShow.indexOf(k) > -1\"><td style=\"width: 30%\" ng-bind=k></td><td ng-bind=v.value></td></tr></tbody></table></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
   );
@@ -20163,7 +20153,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/enocean/navi.html',
-    "<div class=\"tabs-wrap form-inline\"><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" href=#enocean/controller title=\"{{_t('controller_info')}}\" ng-class=\"routeMatch('/enocean/controller') ? 'active' : ''\"><i class=\"fas fa-info-circle\"></i> <span class=btn-name>{{_t('controller_info')}}</span> </a><a class=\"btn btn-default\" href=#enocean/manage title=\"{{_t('manage')}}\" ng-class=\"routeMatch('/enocean/manage') ? 'active' : ''\"><i class=\"fas fa-bolt\"></i> <span class=btn-name>{{_t('manage')}}</span> </a><a class=\"btn btn-default\" href=#enocean/assign title=\"{{_t('teach_in')}}\" ng-class=\"routeMatch('/enocean/assign') ? 'active' : ''\"><i class=\"fas fa-sitemap\"></i> <span class=btn-name>{{_t('teach_in')}}</span></a></div></div>"
+    "<div class=\"tabs-wrap form-inline\"><div class=\"btn-group btn-group-justified btn-goup-tabs\"><a class=\"btn btn-default\" href=#enocean/controller title=\"{{_t('controller_info')}}\" ng-class=\"routeMatch('/enocean/controller') ? 'active' : ''\"><i class=\"fas fa-info-circle\"></i> <span class=btn-name>{{_t('controller_info')}}</span> </a><a class=\"btn btn-default\" href=#enocean/manage title=\"{{_t('manage')}}\" ng-class=\"routeMatch('/enocean/manage') ? 'active' : ''\"><i class=\"fas fa-bolt\"></i> <span class=btn-name>{{_t('manage')}}</span> </a><a class=\"btn btn-default\" href=#enocean/vendors title=\"{{_t('teach_in')}}\" ng-class=\"routeMatch('/enocean/vendors') ? 'active' : ''\"><i class=\"fas fa-sitemap\"></i> <span class=btn-name>{{_t('teach_in')}}</span></a></div></div>"
   );
 
 
@@ -20173,7 +20163,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/enocean/teachin-genericProfile.html',
-    "<div ng-controller=EnoceanTeachinController class=mobile-padding><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=\"fieldset clearfix\"><div class=include-device-img><img class=include-image-detail ng-src=storage/img/enocean/devices/{{device.image}} alt={{device.name}} ng-if=device.image> <img class=include-image-detail src=storage/img/enocean/vendors/GenericProfile.png alt=\"EnOcean Generic Profile\" ng-if=!device.image></div><div class=include-device-body><h1 ng-if=!device.name ng-bind=\"_t('teach_in')\"></h1><h1 ng-if=device.name ng-bind=device.name></h1><p ng-if=device.description ng-bind=device.description></p></div></div><div class=\"fieldset clearfix\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fas fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fas fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value={{lastIncludedDevice.name}}> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fas fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=img> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value={{dev[e.id].metrics.title}}> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fas fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"fieldset submit-entry\"><a href=#enocean/manage class=\"btn btn-submit\"><span class=btn-name>{{_t('manage_enocean_devices')}}</span> <i class=\"fas fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
+    "<div ng-controller=EnoceanTeachinController class=mobile-padding><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=\"fieldset clearfix\"><div class=include-device-img><img class=include-image-detail ng-src=storage/img/enocean/devices/{{device.image}} alt={{device.name}} ng-if=device.image> <img class=include-image-detail src=storage/img/enocean/vendors/GenericProfile.png alt=\"EnOcean Generic Profile\" ng-if=!device.image></div><div class=include-device-body><h1 ng-if=!device.name ng-bind=\"_t('teach_in')\"></h1><h1 ng-if=device.name ng-bind=device.name></h1><p ng-if=device.description ng-bind=device.description></p></div></div><div class=\"fieldset clearfix\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=AddDeviceStop()><i class=\"fas fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=AddDeviceStart()><i class=\"fas fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value={{lastIncludedDevice.name}}> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fas fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=img> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value={{dev[e.id].metrics.title}}> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fas fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"fieldset submit-entry\"><a href=#enocean/manage class=\"btn btn-submit\"><span class=btn-name>{{_t('manage_enocean_devices')}}</span> <i class=\"fas fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
   );
 
 
@@ -20183,7 +20173,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/enocean/teachin.html',
-    "<div ng-controller=EnoceanTeachinController class=mobile-padding><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=\"fieldset clearfix\"><div class=include-device-img ng-if=device.image><img class=include-image-detail ng-src=storage/img/enocean/devices/{{device.image}} alt={{device.name}} ng-if=device.image></div><div class=include-device-body><h1 ng-if=!device.name ng-bind=\"_t('teach_in')\"></h1><h1 ng-if=device.name ng-bind=device.name></h1><p ng-if=device.description ng-bind=device.description></p></div></div><div class=\"fieldset clearfix\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=false')\"><i class=\"fas fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=\"runCmd('controller.data.promisc=true')\"><i class=\"fas fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value={{lastIncludedDevice.name}}> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fas fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=img> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value={{dev[e.id].metrics.title}}> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fas fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"fieldset submit-entry\"><a href=#enocean/manage class=\"btn btn-submit\"><span class=btn-name>{{_t('manage_enocean_devices')}}</span> <i class=\"fas fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
+    "<div ng-controller=EnoceanTeachinController class=mobile-padding><bb-loader></bb-loader><div class=\"form form-inline form-page\"><div class=\"fieldset clearfix\"><div class=include-device-img ng-if=device.image><img class=include-image-detail ng-src=storage/img/enocean/devices/{{device.image}} alt={{device.name}} ng-if=device.image></div><div class=include-device-body><h1 ng-if=!device.name ng-bind=\"_t('teach_in')\"></h1><h1 ng-if=device.name ng-bind=device.name></h1><p ng-if=device.description ng-bind=device.description></p></div></div><div class=\"fieldset clearfix\"><table class=\"table table-report table-inclusion\"><tbody><tr><td><span class=\"badge badge-number\">1</span></td><td><div class=alert ng-if=inclusion.message ng-class=inclusion.status><i class=fa ng-class=inclusion.icon></i> <span ng-bind-html=\"inclusion.message | toTrusted\"></span> <button class=\"btn btn-danger\" ng-if=\"!inclusion.done && inclusion.promisc\" ng-click=AddDeviceStop()><i class=\"fas fa-ban\"></i> <span class=btn-name>{{_t('stop_teachin')}}</span></button> <button class=\"btn btn-success\" ng-if=\"!inclusion.done && !inclusion.promisc\" ng-click=AddDeviceStart()><i class=\"fas fa-plug\"></i> <span class=btn-name>{{_t('start_teachin')}}</span></button></div></td></tr><tr><td><span class=\"badge badge-number\">2</span></td><td><strong ng-bind=\"_t('lb_settings')\"></strong><form name=form_enocean_config id=form_enocean_config class=\"form form-page\" ng-if=inclusion.config novalidate><fieldset><div class=\"form-group form-inline\"><input name=enocean_name id=enocean_name class=\"form-control form-control-md\" ng-model=lastIncludedDevice.name value={{lastIncludedDevice.name}}> <button class=\"btn btn-primary\" ng-click=\"runCmd('devices[\\'x' + lastIncludedDevice.id + '\\'].data.givenName=\\'' + lastIncludedDevice.name + '\\'')\" ng-bind=\"_t('rename_device')\"></button></div></fieldset><div class=\"alert alert-warning\" ng-if=\"apiDevices.length < 1\"><i class=\"fas fa-exclamation-circle\"></i> <span ng-bind=\"_t('enocean_no_settings')\"></span></div><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-repeat=\"e in apiDevices | orderBy:'title':false\" ng-init=\"dev[e.id] = e\"><h3><img id=widget_img_{{v.id}} class=report-img ng-src={{e.iconPath}} alt=img> <span ng-bind=dev[e.id].metrics.title></span></h3><div><input name=fdf class=\"form-control form-control-md\" ng-model=dev[e.id].metrics.title value={{dev[e.id].metrics.title}}> <button class=\"btn btn-primary\" ng-click=updateDevice(dev[e.id]) ng-bind=\"_t('rename_element')\"></button> <button class=btn ng-click=\"updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})\" ng-bind=\"e.permanently_hidden ? _t('show_element') : _t('hide_element')\" ng-class=\"e.permanently_hidden ? 'btn-danger' : 'btn-info'\"></button></div></div></fieldset><fieldset ng-if=apiDevices><div class=\"form-group form-inline\" ng-if=rooms><h3><i class=\"fas fa-chevron-down\"></i> <span ng-bind=\"_t('devices_to_room')\"></span></h3><select class=form-control ng-model=modelRoom><option value=\"\">------</option><option ng-repeat=\"v in rooms\" ng-selected_=\"input.location == v.id\" value={{v.id}} ng-bind=v.title></option></select><button class=\"btn btn-primary\" ng-click=\"devicesToRoom(modelRoom, apiDevices)\" ng-bind=\"_t('lb_save')\"></button></div></fieldset></form></td></tr></tbody></table></div><div class=\"fieldset submit-entry\"><a href=#enocean/manage class=\"btn btn-submit\"><span class=btn-name>{{_t('manage_enocean_devices')}}</span> <i class=\"fas fa-chevron-right\"></i></a></div></div><div class=device-logo ng-include=\"'app/views/enocean/enocean_nav.html'\"></div></div>"
   );
 
 
@@ -20545,42 +20535,42 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/welcome/tab_automation.html',
-    "<h1>{{_t('nav_automation')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_automation')|toTrusted\"></p><ul><li ng-bind-html=\"_t('li_welcome_automation_scenes',{'__title_scenes__':_t('title_scenes')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_rules',{'__title_rules__':_t('title_rules')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_schedules',{'__title_schedules__':_t('title_schedules')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_climate',{'__title_climate__':_t('title_climate')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_hazard_notification',{'__title_leakage_hazard_notification__':_t('title_leakage_hazard_notification')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_security',{'__title_security__':_t('title_security')})|toTrusted\"></li></ul><br><br></div><div class=image><img ng-if=!isMobile src=app/img/welcome/automation_view.png> <img ng-if=isMobile src=app/img/welcome/automation_view_mobile.png></div>"
+    "<h1>{{_t('nav_automation')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_automation')|toTrusted\"></p><ul><li ng-bind-html=\"_t('li_welcome_automation_scenes',{'__title_scenes__':_t('title_scenes')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_rules',{'__title_rules__':_t('title_rules')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_schedules',{'__title_schedules__':_t('title_schedules')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_climate',{'__title_climate__':_t('title_climate')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_hazard_notification',{'__title_leakage_hazard_notification__':_t('title_leakage_hazard_notification')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_automation_security',{'__title_security__':_t('title_security')})|toTrusted\"></li></ul><br><br></div><div class=image><img ng-src=app/img/welcome/automation_view{{sourcePrefix}}.jpg alt=\"\"></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_element_detail_view.html',
-    "<h1>{{_t('nav_elements_detail')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_elements_detail')|toTrusted\"></p></div><div class=image><img ng-if=!isMobile src=app/img/welcome/element_detail_view.png> <img ng-if=isMobile src=app/img/welcome/element_detail_view_mobile.png></div>"
+    "<h1>{{_t('nav_elements_detail')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_elements_detail')|toTrusted\"></p></div><div class=image><img ng-src=app/img/welcome/element_detail_view{{sourcePrefix}}.jpg alt=\"\"></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_elements.html',
-    "<h1>{{_t('nav_elements')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_elements')|toTrusted\"></p><br><ul><li ng-bind-html=\"_t('li_welcome_elements_filter_type')|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_elements_filter_visibility')|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_elements_filter_tags')|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_elements_filter_search')|toTrusted\"></li></ul><br><p ng-bind-html=\"_t('p_welcome_elements_order')|toTrusted\"></p></div><div class=image><img ng-if=!isMobile src=app/img/welcome/elements.png> <img ng-if=isMobile src=app/img/welcome/elements_mobile.png></div>"
+    "<h1>{{_t('nav_elements')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_elements')|toTrusted\"></p><br><ul><li ng-bind-html=\"_t('li_welcome_elements_filter_type')|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_elements_filter_visibility')|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_elements_filter_tags')|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_elements_filter_search')|toTrusted\"></li></ul><br><p ng-bind-html=\"_t('p_welcome_elements_order')|toTrusted\"></p></div><div class=image><img ng-src=app/img/welcome/elements{{sourcePrefix}}.jpg alt=\"\"></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_events.html',
-    "<h1>{{_t('nav_events')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_events')|toTrusted\"></p></div><div class=image><img ng-if=!isMobile src=app/img/welcome/events.png> <img ng-if=isMobile src=app/img/welcome/events_mobile.png></div>"
+    "<h1>{{_t('nav_events')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_events')|toTrusted\"></p></div><div class=image><img ng-src=app/img/welcome/events{{sourcePrefix}}.jpg alt=\"\"></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_lets_start.html',
-    "<h1>{{_t('lets_start')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_lets_start_instruction',{'__btn_dev__':_t('nav_devices')})|toTrusted\"></p><ul><li>{{_t('devices_text_zwave')}}</li><li>{{_t('devices_text_mobile_push')}}</li><li>{{_t('devices_text_camera')}}</li><li>{{_t('devices_text_speech_assistant')}}</li><li>{{_t('devices_text_wifi_plug')}}</li><li>{{_t('devices_text_enocean')}}</li><li>{{_t('devices_text_433')}}</li></ul><br><br><div ng-if=elementAccess(cfg.role_access.admin) ng-bind-html=\"_t('p_welcome_lets_start_apps', {'__btn_apps__':_t('nav_apps')})|toTrusted\"></div></div><div class=image><img ng-if=!isMobile src=app/img/welcome/overview.png></div>"
+    "<h1>{{_t('lets_start')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_lets_start_instruction',{'__btn_dev__':_t('nav_devices')})|toTrusted\"></p><ul><li>{{_t('devices_text_zwave')}}</li><li>{{_t('devices_text_mobile_push')}}</li><li>{{_t('devices_text_camera')}}</li><li>{{_t('devices_text_speech_assistant')}}</li><li>{{_t('devices_text_wifi_plug')}}</li><li>{{_t('devices_text_enocean')}}</li><li>{{_t('devices_text_433')}}</li></ul><br><br><div ng-if=elementAccess(cfg.role_access.admin) ng-bind-html=\"_t('p_welcome_lets_start_apps', {'__btn_apps__':_t('nav_apps')})|toTrusted\"></div></div><div class=image><img ng-src=app/img/welcome/overview{{sourcePrefix}}.jpg alt=\"\"></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_menu.html',
-    "<h1>{{_t('nav_menu')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_menu',{'__nav_menu__':_t('nav_menu')})|toTrusted\"></p><ul><li ng-bind-html=\"_t('li_welcome_menu_applications',{'__nav_apps__':_t('nav_apps')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_devices',{'__nav_devices__':_t('nav_devices')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_design',{'__customize__':_t('customize')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_settings',{'__nav_myaccess__':_t('nav_myaccess')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_managment',{'__management__':_t('management')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_news',{'__news__':_t('news')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_logout',{'__nav_logout__':_t('nav_logout')})|toTrusted\"></li></ul><br><br></div><div class=image><img ng-if=!isMobile src=app/img/welcome/menu_view.png> <img ng-if=isMobile src=app/img/welcome/menu_view_mobile.png></div>"
+    "<h1>{{_t('nav_menu')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_menu',{'__nav_menu__':_t('nav_menu')})|toTrusted\"></p><ul><li ng-bind-html=\"_t('li_welcome_menu_applications',{'__nav_apps__':_t('nav_apps')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_devices',{'__nav_devices__':_t('nav_devices')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_design',{'__customize__':_t('customize')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_settings',{'__nav_myaccess__':_t('nav_myaccess')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_managment',{'__management__':_t('management')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_news',{'__news__':_t('news')})|toTrusted\"></li><li ng-bind-html=\"_t('li_welcome_menu_logout',{'__nav_logout__':_t('nav_logout')})|toTrusted\"></li></ul><br><br></div><div class=image><img ng-src=app/img/welcome/menu_view{{sourcePrefix}}.jpg alt=\"\"></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_rooms.html',
-    "<h1>{{_t('nav_rooms')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_rooms')|toTrusted\"></p></div><div class=image><img ng-if=!isMobile src=app/img/welcome/room_view.png> <img ng-if=isMobile src=app/img/welcome/room_view_mobile.png></div>"
+    "<h1>{{_t('nav_rooms')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_rooms')|toTrusted\"></p></div><div class=image><img ng-src=app/img/welcome/room_view{{sourcePrefix}}.jpg alt=\"\"></div>"
   );
 
 
   $templateCache.put('app/views/welcome/tab_welcome.html',
-    "<h1>{{_t('welcome_1')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_welcome')|toTrusted\"></p></div><div class=image><img ng-if=!isMobile alt=overview src=app/img/welcome/overview.png></div>"
+    "<h1>{{_t('welcome_1')}}</h1><div class=text><p ng-bind-html=\"_t('p_welcome_welcome')|toTrusted\"></p></div><div class=image><img ng-src=app/img/welcome/overview{{sourcePrefix}}.jpg alt=\"\"></div>"
   );
 
 
@@ -20630,7 +20620,7 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
 
   $templateCache.put('app/views/zwave/zwave_manage_id.html',
-    "<div ng-controller=ZwaveManageIdController><bb-loader></bb-loader><div ng-show=formInput.show><h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1><form name=form_network_config id=form_network_config class=\"form form-page\" ng-submit=updateAllDevices(formInput) novalidate><fieldset><label ng-bind=\"_t('rename_device')\"></label><input name=device_name id=device_name class=form-control value={{formInput.deviceName}} ng-model=formInput.deviceName></fieldset><div ng-if=\"devices.length > 0\"><fieldset><div class=\"form-group form-inline\"><div class=input-group><input name=appstore_token id=appstore_token class=form-control placeholder=\"{{_t('lb_add_room')}}\" ng-model=formInput.newRoom> <span class=\"input-group-addon clickable\" title=\"{{_t('add_new')}}\" ng-click=addRoom(formInput.newRoom)><i class=\"fas fa-plus text-success\"></i></span></div></div><div class=\"form-group form-inline\"><label class=display-block ng-bind=\"_t('devices_to_room')\"></label><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('devidDropDown', $event)\">{{rooms[formInput.room].title|cutText:true:20}} <i class=\"fas fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.devidDropDown><ul><li class=clickable ng-click=\"formInput.room = v.id\" ng-repeat=\"v in rooms\"><a><img class=navi-img ng-src={{v.img_src}} alt=img> {{v.title|cutText:true:20}} <i class=\"fas fa-check menu-arrow\" ng-if=\"formInput.room == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset><div class=\"form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}\" ng-repeat=\"e in devices| orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><ng-form name=subForm><h3><img class=report-img-s ng-src={{e.iconPath}} alt=img> <span>(#{{zWaveDevice.id}})</span> <span ng-bind=formInput.elements[e.id].metrics.title></span></h3><div class=\"form-group form-inline\"><input name=title id=title class=form-control ng-model=formInput.elements[e.id].metrics.title value={{formInput.elements[e.id].metrics.title}} ng-blur=\"titleBlur = true\" ng-required=true> <span class=mobile-block><input type=checkbox name=permanently_hidden_{{$index}} id=permanently_hidden_{{$index}} ng-model=formInput.elements[e.id].permanently_hidden ng-checked=formInput.elements[e.id].permanently_hidden><label for=permanently_hidden_{{$index}}>{{_t('lb_deactivate')}}</label></span><bb-validator input-name=subForm.title.$error.required trans='_t(\"field_required\")' has-blur=titleBlur></bb-validator></div></ng-form></div><div class=\"form-group form-inline\"><a class=\"btn btn-primary\" href=#deviceconfig/{{zWaveDevice.id}} title=\"{{_t('hardware_konfiguration')}}\" ng-if=\"zWaveDevice.cfg.length > 0\"><i class=\"fas fa-wrench\"></i> <span class=btn-name ng-bind=\"_t('hardware_konfiguration')\"></span></a></div></fieldset></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" ng-if=!nohistory bb-go-back><i class=\"fas fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_network_config.$invalid><i class=\"fas fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
+    "<div ng-controller=ZwaveManageIdController><bb-loader></bb-loader><div ng-show=formInput.show><h1>(#{{zWaveDevice.id}}) {{formInput.deviceName}}</h1><form name=form_network_config id=form_network_config class=\"form form-page\" ng-submit=updateAllDevices(formInput) novalidate><fieldset><label ng-bind=\"_t('rename_device')\"></label><input name=device_name id=device_name class=form-control value={{formInput.deviceName}} ng-model=formInput.deviceName></fieldset><div ng-if=\"devices.length > 0\"><fieldset><div class=\"form-group form-inline\"><div class=input-group><input name=appstore_token id=appstore_token class=form-control placeholder=\"{{_t('lb_add_room')}}\" ng-model=formInput.newRoom> <span class=\"input-group-addon clickable\" title=\"{{_t('add_new')}}\" ng-click=addRoom(formInput.newRoom)><i class=\"fas fa-plus text-success\"></i></span></div></div><div class=\"form-group form-inline\"><label class=display-block ng-bind=\"_t('devices_to_room')\"></label><div class=btn-group><button type=button class=\"btn btn-default\" ng-click=\"expandNavi('devidDropDown', $event)\">{{rooms[formInput.room].title|cutText:true:20}} <i class=\"fas fa-caret-down\"></i></button><div class=\"app-dropdown app-dropdown-left\" ng-if=naviExpanded.devidDropDown><ul><li class=clickable ng-click=\"formInput.room = v.id\" ng-repeat=\"v in rooms\"><a><img class=navi-img ng-src={{v.img_src}} alt=img> {{v.title|cutText:true:20}} <i class=\"fas fa-check menu-arrow\" ng-if=\"formInput.room == v.id\"></i></a></li></ul></div></div></div></fieldset><fieldset><div class=\"form-group form-inline zwave-hidden-{{formInput.elements[e.id].permanently_hidden}}\" ng-repeat=\"e in devices| orderBy:'title':false track by e.id\" ng-init=\"dev[e.id] = e\"><ng-form name=subForm><h3><img class=report-img-s ng-src={{e.iconPath}} alt=img> <span ng-bind=formInput.elements[e.id].metrics.title></span></h3><div class=\"form-group form-inline is-inline\"><input name=title id=title class=form-control ng-model=formInput.elements[e.id].metrics.title value={{formInput.elements[e.id].metrics.title}} ng-blur=\"titleBlur = true\" ng-required=true> <span class=mobile-block><input type=checkbox name=permanently_hidden_{{$index}} id=permanently_hidden_{{$index}} ng-model=formInput.elements[e.id].permanently_hidden ng-checked=formInput.elements[e.id].permanently_hidden><label for=permanently_hidden_{{$index}}>{{_t('lb_deactivate')}}</label></span><bb-validator input-name=subForm.title.$error.required trans='_t(\"field_required\")' has-blur=titleBlur></bb-validator></div><div class=text-info><i class=\"fas fa-info-circle text-info\"></i> Id: {{e.id}}</div></ng-form></div><div class=\"form-group form-inline\"><a class=\"btn btn-primary\" href=#deviceconfig/{{zWaveDevice.id}} title=\"{{_t('hardware_konfiguration')}}\" ng-if=\"zWaveDevice.cfg.length > 0\"><i class=\"fas fa-wrench\"></i> <span class=btn-name ng-bind=\"_t('hardware_konfiguration')\"></span></a></div></fieldset></div><fieldset class=submit-entry><button type=button class=\"btn btn-default\" title=\"{{_t('lb_cancel')}}\" ng-if=!nohistory bb-go-back><i class=\"fas fa-reply\"></i> <span class=btn-name>{{_t('lb_cancel')}}</span></button> <button type=submit class=\"btn btn-submit\" title=\"{{_t('lb_save')}}\" ng-disabled=form_network_config.$invalid><i class=\"fas fa-check\"></i> <span class=btn-name>{{_t('lb_save')}}</span></button></fieldset></form></div><div class=device-logo ng-include=\"'app/views/zwave/zwave_nav.html'\"></div></div>"
   );
 
 
@@ -20778,6 +20768,8 @@ myAppFactory.factory('_', function () {
  */
 myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $interval,dataService, cfg, _) {
     var updatedTime = 0;
+    var updatedTimeZWave = 0;
+    var updatedTimeEnOcean = 0;
     var lang = cfg.lang;
     var ZWAYSession = dataService.getZWAYSession();
     var user = dataService.getUser();
@@ -20896,7 +20888,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     function logInApi(data) {
         // remove ZWAYSession just before login not to confuse the server
         expireActiveCookies("ZWAYSession");
-        
+
         return $http({
             method: "post",
             headers: {
@@ -21003,8 +20995,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession,
                 'isZWAY': true
-                        //'Accept-Encoding': 'gzip, deflate',
-                        //'Allow-compression': 'gz' 
             }
         }).then(function (response) {
             if (!angular.isDefined(response.data)) {
@@ -21054,7 +21044,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             return $q.reject(response);
         });
     }
-    
+
    /**
     * Post ZAutomation api data
     * @param {string} api
@@ -21223,7 +21213,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
 
     }
-    
+
     /**
      * Delete ZAutomation api data with JSON
      * @param {string} api
@@ -21397,14 +21387,15 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      */
     function refreshApi(api, params, updateTime) {
         if(updateTime || typeof updateTime !== 'undefined') {
-            updatedTime = updateTime;
+            updatedTime = updateTime; // variables looks same, but they differ in 'd' character
         }
+
         if(_.findWhere($http.pendingRequests,{failWait: api})){
             return $q.reject('Pending');
         }
         // Time in notifications is in miliseconds
-         if (api === 'notifications' && updatedTime.toString().length === 10) {
-            updatedTime = updatedTime * 1000;
+         if (api === 'notifications') {
+            updatedTime *= 1000;
         }
 
         return $http({
@@ -21419,10 +21410,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             }
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || $filter('hasNode')(response.data, 'updateTime') || Math.round(+new Date() / 1000));
-                
-                var timestamp = (response.data.data.updateTime || response.data.updateTime || 0) + ((cfg.route.time.timeZoneOffset * -1) * 3600);
-                cfg.route.time.timestamp = (timestamp);
+                updateTime = response.data.data.updateTime || response.data.updateTime || 0;
+                var timestamp = updateTime + ((cfg.route.time.timeZoneOffset * -1) * 3600);
+                cfg.route.time.timestamp = timestamp;
                 cfg.route.time.string = $filter('setTimeFromBox')(timestamp);
                 cfg.route.time.timeUpdating = true;
                 return response;
@@ -21514,7 +21504,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
     }
 
-     
+
 
 
     /**
@@ -21560,7 +21550,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
 
     /**
-     * Get updated data holder from the ZAutomation
+     * Get updated data holder from the ZWaveAPI
      * @returns {unresolved}
      */
     function refreshZwaveApiData() {
@@ -21571,10 +21561,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         return $http({
             method: 'get',
             failWait: cacheName,
-            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTimeZWave
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
+                updatedTimeZWave = response.data.updateTime;
                 return response;
             } else {
                 // invalid response
@@ -21587,7 +21577,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
 
     /**
-     * Get updated ZAutomation data and join it to ZAutomation data holder
+     * Get updated ZWaveAPI data and join it to ZWaveAPIData
      * @param {object} ZWaveAPIData
      * @returns {unresolved}
      */
@@ -21599,7 +21589,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         var result = {};
         return $http({
             method: 'post',
-            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime,
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTimeZWave,
             data: {} // ZWaveAPI/Data always have empty POST body
         }).then(function (response) {
             if (typeof response.data === 'object' && apiData) {
@@ -21623,7 +21613,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                     "update": response.data
                 };
                 response.data = result;
-                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
+                updatedTimeZWave= ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
                 myCache.put(cacheName, apiData);
                 return response;
             } else {
@@ -21709,17 +21699,16 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function refreshEnoceanApiData() {
-        //console.log('?since=' + updatedTime)
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.enocean_data_url + updatedTime
+            url: cfg.server_url + cfg.enocean_data_url + updatedTimeEnOcean
                     /*headers: {
                      'Accept-Language': lang,
                      'ZWAYSession': ZWAYSession
                      }*/
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || $filter('hasNode')(response.data, 'updateTime') || Math.round(+new Date() / 1000));
+                updatedTimeEnOcean = ($filter('hasNode')(response.data, 'data.updateTime') || $filter('hasNode')(response.data, 'updateTime') || Math.round(+new Date() / 1000));
                 return response;
             } else {// invalid response
                 return $q.reject(response);
@@ -21795,7 +21784,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             isRemote:true,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-                        //'ZWAYSession': ZWAYSession 
             }
         }).then(function (response) {
             return response;
@@ -21819,7 +21807,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             isRemote:true,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-                        //'ZWAYSession': ZWAYSession 
             }
         }).then(function (response) {
             return response;
@@ -21967,7 +21954,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
     }
 });
-
 
 /**
  * @overview Stores methods that are used within controllers.
@@ -29706,7 +29692,8 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		input: {},
 		locations: {},
 		instances: {},
-		modules: {}
+		modules: {},
+		referenced: [],
 	};
 	$scope.tagList = [];
 	$scope.search = {
@@ -29741,6 +29728,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		if ($scope.user.role === 1) { // should be last to have same order for user and admin
 			promises.push(dataFactory.getApi('instances', false, true));
 			promises.push(dataFactory.getApi('modules', false, true));
+			promises.push(dataFactory.getApi('devices', '/' + $routeParams.id + '/referenced', true))
 		}
 
 		$q.allSettled(promises).then(function(response) {
@@ -29751,7 +29739,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			var notificationFiltering = response[4];
 			var instances = response[5];
 			var modules = response[6];
-
+			var referenced = response[7];
 			$scope.loading = false;
 			// Error message
 			if (device.state === 'rejected') {
@@ -29798,6 +29786,11 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				setDevice(dataService.getDevicesData(arr, true).value()[0]);
 				$scope.elementId.show = true;
 			}
+			if(referenced.state === 'fulfilled') {
+				$scope.elementId.referenced = referenced.value.data.data;
+			}
+			console.log($scope.elementId.referenced);
+
 		});
 	};
 	$scope.allSettled();
@@ -30298,6 +30291,7 @@ myAppController.controller('ElementIconController', function($scope, $timeout, $
 	};
 
 });
+
 /**
  * @overview Handles all events.
  * @author Martin Vach
@@ -42123,10 +42117,10 @@ myAppController.controller('MobileAddController', function ($scope, $timeout, $w
 });
 /**
  * @overview Controllers that handle EnOcean Services.
- * @author Martin Vach
+ * @author Martin Vach, Serguei Poltorak
  */
 
-/**
+/***************************************************************************************************************************
  * The controller that renders the list of EnOcean vendors or products.
  * @class EnoceanVendorController
  */
@@ -42136,8 +42130,8 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
     vendors: [],
     products:[]
   };
-   $scope.enoceanVendors = [];
-   $scope.enoceanProducts = [];
+  $scope.enoceanVendors = [];
+  $scope.enoceanProducts = [];
 
   /**
    * Load enocean vendors
@@ -42149,7 +42143,7 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
         $scope.enocean.products = _.where(response.data, {
           vendor: brandname
         });
-      }else{
+      } else {
         $scope.enocean.vendors = _.uniq(response.data, 'vendor');
       }
       $scope.enocean.products.forEach(function(product) {
@@ -42163,7 +42157,7 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
       });
     }, function (error) {});
   };
- 
+
 
   /**
    * Load Remote access data
@@ -42200,359 +42194,9 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
   };
 
   $scope.loadEnOceanModule();
-
-
 });
-/**
- * The controller that teach-in a device by the profile.
- * @class EnoceanAssignController
- */
-myAppController.controller('EnoceanAssignController', function ($scope, $interval, dataFactory, dataService, myCache, cfg) {
-  $scope.profile = false;
-  $scope.device = [];
-  $scope.includedDevices = [];
-  $scope.lastIncludedDevice = [];
-  $scope.enoceanDevices = {};
-  $scope.enoceanProfiles = {};
-  $scope.apiDevices = [];
-  $scope.dev = [];
-  $scope.rooms = [];
-  $scope.modelRoom;
-  $scope.inclusion = {
-    promisc: false,
-    smartAckLearnMode: false,
-    smartAckLearnIn: false,
-    done: false,
-    config: false,
-    message: false,
-    status: 'is-hidden',
-    icon: false
-  };
-  $scope.apiDataInterval = null;
 
-  // Cancel interval on page destroy
-  $scope.$on('$destroy', function () {
-    $interval.cancel($scope.apiDataInterval);
-  });
-
-  /**
-   * Load included devices
-   */
-  $scope.loadIncludedDevices = function () {
-    dataFactory.loadEnoceanApiData(true).then(function (response) {
-      angular.forEach(response.data.devices, function (v, k) {
-        $scope.includedDevices.push(k);
-      });
-    }, function (error) {});
-  };
-  $scope.loadIncludedDevices();
-
-  /**
-   * Load EnOcean profiles
-   */
-  $scope.loadProfiles = function () {
-    dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function (response) {
-      $scope.enoceanProfiles = dataService.setEnoProfile(response.Profiles.Profile);
-    }, function (error) {});
-  };
-  $scope.loadProfiles();
-
-  /**
-   * Load locations
-   */
-  $scope.loadLocations = function () {
-    dataFactory.getApi('locations').then(function (response) {
-      $scope.rooms = response.data.data;
-    }, function (error) {});
-  };
-  $scope.loadLocations();
-
-
-  /**
-   * Load devices from the data holder
-   */
-  $scope.loadApiDevices = function () {
-    dataFactory.getApi('devices').then(function (response) {
-      $scope.apiDevices = [];
-      var findZenoStr = "ZEnoVDev_zeno_x";
-      var elements = dataService.getDevicesData(response.data.data.devices, false);
-      angular.forEach(elements.value(), function (v, k) {
-        if (v.id.indexOf(findZenoStr) === -1) {
-          return;
-        }
-        var cmd = v.id.split(findZenoStr)[1].split('_');
-        var zenoId = cmd[0];
-        if (zenoId == $scope.lastIncludedDevice.id) {
-          var obj = v;
-          obj['title'] = v.metrics.title;
-          $scope.apiDevices.push(obj);
-        }
-
-      });
-
-    }, function (error) {});
-  };
-
-
-  /**
-   * Assign profile
-   */
-  $scope.loadDevice = function (profile) {
-    $interval.cancel($scope.apiDataInterval);
-    $scope.device = angular.fromJson(profile);
-    $scope.inclusion = {
-      done: false,
-      promisc: true,
-      smartAckLearnMode: false,
-      smartAckLearnIn: false,
-      message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-      status: 'alert-warning',
-      icon: 'fa-spinner fa-spin'
-    };
-    $scope.runCmd('controller.data.promisc=true');
-    $scope.refreshData();
-  };
-
-  /**
-   * Refresh data
-   */
-  $scope.refreshData = function () {
-    var refresh = function () {
-      var findStr = 'devices';
-      dataFactory.refreshEnoceanApiData().then(function (response) {
-        if ('controller.data.promisc' in response.data) {
-          var promisc = response.data['controller.data.promisc'].value;
-          if (promisc === true) {
-            $scope.inclusion = {
-              done: false,
-              promisc: true,
-              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-              status: 'alert-warning',
-              icon: 'fa-spinner fa-spin'
-            };
-          } else {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              message: $scope._t('teachin_canceled'),
-              status: 'alert-warning',
-              icon: 'fa-exclamation-circle'
-            };
-          }
-          return;
-        }
-        if ('controller.data.smartAckLearnMode' in response.data) {
-          var smartAckLearnMode = response.data['controller.data.smartAckLearnMode'].value;
-          if (smartAckLearnMode === true) {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: true,
-              smartAckLearnIn: response.data['controller.data.smartAckLearnIn'].value || false,
-              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-              status: 'alert-warning',
-              icon: 'fa-spinner fa-spin'
-            };
-          } else {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: false,
-              smartAckLearnIn: false,
-              message: $scope._t('teachin_canceled'),
-              status: 'alert-warning',
-              icon: 'fa-exclamation-circle'
-            };
-          }
-          return;
-        }
-
-        if ('devices' in response.data) {
-          angular.forEach(response.data.devices, function (v, k) {
-            if ($scope.cfg.enocean_black_list.indexOf(k) === -1) {
-              $scope.findDevice(k);
-            }
-
-          });
-          return;
-        }
-        angular.forEach(response.data, function (v, k) {
-          var array = k.split('.');
-          if (array.indexOf(findStr) > -1) {
-            if ($scope.cfg.enocean_black_list.indexOf(array[1]) === -1) {
-              $scope.findDevice(array[1]);
-            }
-
-          }
-        });
-      }, function (error) {});
-    };
-    $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
-  };
-
-
-
-  /**
-   * Find last included device
-   */
-  $scope.findDevice = function (lastId) {
-    var id = lastId.replace(/^(x)/, "");
-    if ($scope.includedDevices.indexOf(id) > -1) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: '<a href="#enocean/manage"><strong>' + $scope._t('device_exists') + '</strong></a>',
-        status: 'alert-warning',
-        icon: 'fa-exclamation-circle'
-      };
-      return;
-    }
-
-    dataFactory.loadEnoceanApiData(true).then(function (response) {
-      angular.forEach(response.data.devices, function (v, k) {
-        if (k == id) {
-          var name = 'Device ' + k;
-          var profile = assignProfile(v.data);
-          if (profile) {
-            name = profile._funcDescription + ' ' + k;
-          }
-
-          $scope.runCmd('controller.data.promisc=false');
-          $scope.lastIncludedDevice = {
-            id: k,
-            rorg: v.data.rorg.value,
-            name: name,
-            data: v.data,
-            deviceProfileId: v.data.rorg.value + '_' + v.data.funcId.value + '_' + v.data.typeId.value,
-            profile: profile
-          };
-
-          $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
-          if ($scope.device.funcId && $scope.device.typeId) {
-            $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
-            $scope.runCmd('devices["x' + k + '"].data.typeId=' + $scope.device.typeId);
-          }
-          $interval.cancel($scope.apiDataInterval);
-          $scope.inclusion = {
-            done: true,
-            config: true,
-            promisc: false,
-            message: $scope._t('inclusion_proces_done'),
-            status: 'alert-success',
-            icon: 'fa-check'
-          };
-          $scope.loadApiDevices();
-          return;
-        }
-      });
-
-    }, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: $scope._t('inclusion_error'),
-        status: 'alert-danger',
-        icon: 'fa-warning'
-      };
-    });
-
-  };
-
-  /**
-   * Run command
-   */
-  $scope.runCmd = function (cmd) {
-    // Run CMD
-    dataFactory.runEnoceanCmd(cmd).then(function (response) {}, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: $scope._t('inclusion_error'),
-        status: 'alert-danger',
-        icon: 'fa-warning'
-      };
-
-    });
-    return;
-  };
-
-  /**
-   * Update device
-   */
-  $scope.updateDevice = function (input) {
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    dataFactory.putApi('devices', input.id, input).then(function (response) {
-      myCache.remove('devices');
-      $scope.loadApiDevices();
-      $scope.loading = false;
-    }, function (error) {
-      alertify.alertError($scope._t('error_update_data'));
-      $scope.loading = false;
-    });
-
-  };
-  /**
-   * Assign devices to the room
-   */
-  $scope.devicesToRoom = function (roomId, devices) {
-    if (!roomId) {
-      return;
-    }
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    for (var i = 0; i <= devices.length; i++) {
-      var v = devices[i];
-      if (!v) {
-        continue;
-      }
-      var input = {
-        id: v.id,
-        location: roomId
-      };
-
-      dataFactory.putApi('devices', v.id, input).then(function (response) {}, function (error) {
-        alertify.alertError($scope._t('error_update_data'));
-        $scope.loading = false;
-        return;
-      });
-    }
-    myCache.remove('devices');
-    $scope.loadApiDevices();
-    $scope.loading = false;
-    return;
-
-  };
-
-  /**
-   * Assign profile to the device
-   */
-  function assignProfile() {
-    var profile = false;
-    var deviceProfileId = parseInt($scope.device.rorg, 16) + '_' + parseInt($scope.device.funcId, 16) + '_' + parseInt($scope.device.typeId, 16);
-    angular.forEach($scope.enoceanProfiles, function (v, k) {
-      if (deviceProfileId == v.id) {
-        profile = v;
-        return;
-      }
-    });
-    return profile;
-  };
-
-});
-/**
+/***************************************************************************************************************************
  * The controller that teach-in a device from the list.
  * @class EnoceanTeachinController
  */
@@ -42577,6 +42221,13 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
     icon: false
   };
   $scope.apiDataInterval = null;
+  $scope.isSmartAck = false;
+
+  $scope.inclusion.update = function(obj) {
+    for (var key in obj) {
+      $scope.inclusion[key] = obj[key];
+    }
+  };
 
   // Cancel interval on page destroy
   $scope.$on('$destroy', function () {
@@ -42619,31 +42270,46 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
    * Load device data holder
    */
   $scope.loadApiDevices = function () {
-    dataFactory.getApi('devices').then(function (response) {
+    dataFactory.getApi('devices', null, true).then(function (response) {
       $scope.apiDevices = [];
       var findZenoStr = "ZEnoVDev_zeno_x";
       var elements = dataService.getDevicesData(response.data.data.devices, false);
       angular.forEach(elements.value(), function (v, k) {
-        if (v.id.indexOf(findZenoStr) === -1) {
+        if (v.id.indexOf(findZenoStr + $scope.lastIncludedDevice.id) === -1) {
           return;
         }
 
-        var cmd = v.id.split(findZenoStr)[1].split('_');
-        var zenoId = cmd[0];
-        if (zenoId == $scope.lastIncludedDevice.id) {
-          var obj = v;
-          //obj['id'] = v.id;
-          obj['title'] = v.metrics.title;
-          /*obj['permanently_hidden'] = v.permanently_hidden;
-          obj['visibility'] = v.visibility;
-          obj['metrics'] = v.metrics;*/
-          $scope.apiDevices.push(obj);
-        }
-
+        v.title = v.metrics.title;
+        $scope.apiDevices.push(v);
       });
 
     }, function (error) {});
   };
+
+  $scope.AddDeviceStart = function () {
+    $scope.runCmd('devices.Add(true,' + $scope.device.rorg + ','  + $scope.device.funcId + ',' + $scope.device.typeId + ')');
+  };
+
+  $scope.AddDeviceStop = function () {
+    $scope.runCmd('devices.Add(false)');
+  };
+
+  // Special handling for Generic Profile page
+  if ($location.$$path === "/enocean/teachin/genericProfile") {
+    $scope.device = {
+      rorg: "0xB0",
+      funcID: "0x00",
+      typeId: "0x00",
+      description: "EnOcean Generic Profile Device",
+      inclusion: "Press LRN-button",
+      smartAck: false
+    }
+  }
+  
+  // Special handling for Smart Ack page
+  if ($location.$$path === "/enocean/teachin/smartAck") {
+    $scope.isSmartAck = true;
+  }
 
   /**
    * Load single device
@@ -42660,24 +42326,21 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
         alertify.alertWarning($scope._t('no_data'));
       }
 
-      $scope.inclusion = {
-        done: false,
-        promisc: $routeParams.devices ? true : false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-        status: 'alert-warning',
-        icon: 'fa-spinner fa-spin'
-      };
-      if ($routeParams.devices) // not SmartAck
-        $scope.runCmd('controller.data.promisc=true');
+      // Smart Ack can be Teach-In and Teach-Out so we don't start by default
+      if (!$scope.isSmartAck) {
+        $scope.AddDeviceStart();
+        $scope.inclusion.update({
+          message: $scope._t('teachin_starting'),
+          status: 'alert-warning',
+          icon: 'fa-spinner fa-spin'
+        });
+      }
     }, function (error) {
       angular.extend(cfg.route.alert, {
         message: $scope._t('error_load_data')
       });
     });
   };
-
   $scope.loadDevice();
 
   /**
@@ -42685,91 +42348,84 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
    */
   $scope.refreshData = function () {
     var refresh = function () {
-      var findStr = 'devices';
       dataFactory.refreshEnoceanApiData().then(function (response) {
-        if ('controller.data.promisc' in response.data) {
-          var promisc = response.data['controller.data.promisc'].value;
-          if (promisc === true) {
-            $scope.inclusion = {
-              done: false,
-              promisc: true,
-              smartAckLearnMode: false,
-              smartAckLearnIn: false,
-              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-              status: 'alert-warning',
-              icon: 'fa-spinner fa-spin'
-            };
-          } else {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: false,
-              smartAckLearnIn: false,
-              message: $scope._t('teachin_canceled'),
-              status: 'alert-warning',
-              icon: 'fa-exclamation-circle'
-            };
+        if (!$scope.apiDataInterval) return; // don't parse if it was stopped (reply might come with a delay)
+
+        if (!$scope.isSmartAck) {
+          var promisc = null;
+          if ('controller' in response.data) {
+            promisc = response.data['controller'].data.promisc.value;
           }
-          return;
-        }
-        if ('controller.data.smartAckLearnMode' in response.data) {
-          var smartAckLearnMode = response.data['controller.data.smartAckLearnMode'].value;
+          if ('controller.data.promisc' in response.data) {
+            promisc = response.data['controller.data.promisc'].value;
+          }
+          if (promisc === true) {
+            if (!$scope.done) {
+              $scope.inclusion.update({
+                promisc: true,
+                message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion || ''),
+                status: 'alert-warning',
+                icon: 'fa-spinner fa-spin'
+              });
+            }
+          } else if (promisc === false) {
+            if (!$scope.done) {
+              $scope.inclusion.update({
+                promisc: false,
+                message: $scope._t('teachin_stopped'),
+                status: 'alert-warning',
+                icon: 'fa-exclamation-circle'
+              });
+            }
+          }
+        } else {
+          var smartAckLearnMode = null, smartAckLearnIn = null;
+          if ('controller' in response.data) {
+            smartAckLearnMode = response.data['controller'].data.smartAckLearnMode.value;
+            smartAckLearnIn = response.data['controller'].data.smartAckLearnIn.value;
+          }
+          if ('controller.data.smartAckLearnMode' in response.data) {
+            smartAckLearnMode = response.data['controller.data.smartAckLearnMode'].value;
+            smartAckLearnIn = response.data['controller.data.smartAckLearnIn'].value;
+          }
           if (smartAckLearnMode === true) {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: true,
-              smartAckLearnIn: response.data['controller.data.smartAckLearnIn'].value || false,
-              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-              status: 'alert-warning',
-              icon: 'fa-spinner fa-spin'
-            };
-            return;
-          } else {
+            if (!$scope.done) {
+              $scope.inclusion.update({
+                smartAckLearnMode: true,
+                smartAckLearnIn: smartAckLearnIn,
+                message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion || ''),
+                status: 'alert-warning',
+                icon: 'fa-spinner fa-spin'
+              });
+            }
+          } else if (smartAckLearnMode === false) {
             var teachIn = $scope.inclusion.smartAckLearnIn;
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: false,
-              smartAckLearnIn: false,
-              message: $scope._t('teachin_canceled'),
-              status: 'alert-warning',
-              icon: 'fa-exclamation-circle'
-            };
-            if (!teachIn) {
-              if ('devices' in response.data) {
-                $scope.includedDevices = [];
-                angular.forEach(response.data.devices, function (v, k) {
-                  $scope.includedDevices.push(k);
-                });
-              }
-              return;
+            if (!$scope.done) {
+              $scope.inclusion.update({
+                smartAckLearnMode: false,
+                smartAckLearnIn: false,
+                message: $scope._t('teachin_stopped'),
+                status: 'alert-warning',
+                icon: 'fa-exclamation-circle'
+              });
             }
           }
         }
+        
         if ('devices' in response.data) {
-          angular.forEach(response.data.devices, function (v, k) {
-            if ($scope.cfg.enocean_black_list.indexOf(k) === -1) {
+          // update the list of included devices in case of structure changes
+          Object.keys(response.data.devices).forEach(function(k) {
+            if ($scope.includedDevices.indexOf(k) === -1) {
+              // new device
               $scope.findDevice(k);
             }
-
           });
-          return;
+          $scope.loadIncludedDevices();
         }
-        angular.forEach(response.data, function (v, k) {
-          var array = k.split('.');
-          if (array.indexOf(findStr) > -1) {
-            if ($scope.cfg.enocean_black_list.indexOf(array[1]) === -1) {
-              $scope.findDevice(array[1]);
-            }
-
-          }
-        });
       }, function (error) {});
     };
     $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
   };
-
   $scope.refreshData();
 
   /**
@@ -42778,18 +42434,9 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
   $scope.findDevice = function (lastId) {
     var id = lastId.replace(/^(x)/, "");
     if ($scope.includedDevices.indexOf(id) > -1) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: '<a href="#enocean/manage"><strong>' + $scope._t('device_exists') + '</strong></a>',
-        status: 'alert-warning',
-        icon: 'fa-exclamation-circle'
-      };
       return;
     }
-    console.log("id:" + id + "   " + lastId);
+    // new device - request more info
     dataFactory.loadEnoceanApiData(true).then(function (response) {
       angular.forEach(response.data.devices, function (v, k) {
         if (k === id) {
@@ -42800,7 +42447,6 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
             name = profile._funcDescription + ' ' + k;
           }
 
-          $scope.runCmd('controller.data.promisc=false');
           $scope.lastIncludedDevice = {
             id: k,
             rorg: v.data.rorg.value,
@@ -42810,36 +42456,24 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
             profile: profile
           };
           $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
-          if ($scope.device.funcId && $scope.device.typeId) {
-            $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
-            $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
-          }
           $interval.cancel($scope.apiDataInterval);
-          $scope.inclusion = {
+          $scope.inclusion.update({
             done: true,
             config: true,
-            promisc: false,
             message: $scope._t('inclusion_proces_done'),
             status: 'alert-success',
             icon: 'fa-check'
-          };
+          });
           $scope.loadApiDevices();
-          return;
         }
       });
-
     }, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
+      $scope.inclusion.update({
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
-      };
+      });
     });
-
   };
 
   /**
@@ -42848,16 +42482,11 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
   $scope.runCmd = function (cmd) {
     // Run CMD
     dataFactory.runEnoceanCmd(cmd).then(function (response) {}, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
+      $scope.inclusion.update({
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
-      };
-
+      });
     });
     return;
   };
@@ -42933,7 +42562,8 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
     return profile;
   };
 });
-/**
+
+/***************************************************************************************************************************
  * The controller that manage EnOcean devices.
  * @class EnoceanManageController
  */
@@ -42943,7 +42573,7 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
   $scope.enoceanDevices = {};
 
   /**
-   * Load API devices
+   * Load ZAutomation devices
    */
   $scope.loadApiDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
@@ -42976,14 +42606,7 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
     };
     dataFactory.loadEnoceanApiData(true).then(function (response) {
       $scope.loading = false;
-      if (Object.keys(response.data.devices).length < 1) {
-        alertify.alertWarning($scope._t('no_data'));
-        return;
-      }
-
       setDevices(response.data.devices, enoceanProfiles);
-      $scope.loading = false;
-
     }, function (error) {
       angular.extend(cfg.route.alert, {
         message: $scope._t('error_load_data')
@@ -42992,28 +42615,6 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
     });
   };
 
-
-
-
-  /**
-   * Run CMD
-   */
-  $scope.runCmd = function (cmd) {
-    // Run CMD
-    dataFactory.runEnoceanCmd(cmd).then(function (response) {}, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: $scope._t('inclusion_error'),
-        status: 'alert-danger',
-        icon: 'fa-warning'
-      };
-
-    });
-    return;
-  };
   /**
    * Delete device
    */
@@ -43026,7 +42627,6 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
           return;
         }
         $(target).fadeOut(500);
-        //$scope.loadData();
       }, function (error) {
         alertify.alertError($scope._t('error_delete_data'));
       });
@@ -43040,24 +42640,17 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
    * Set devices
    */
   function setDevices(devices, profiles) {
-    // console.log(profiles)
     angular.forEach(devices, function (v, k) {
-      if ($scope.cfg.enocean_black_list.indexOf(k) > -1) {
-        return;
-      };
       $scope.enoceanDevices[k] = {
         id: k,
         givenName: v.data.givenName.value,
         data: v.data,
         profile: assignProfile(v.data, profiles),
         elements: getElements($scope.apiDevices, k)
-
       };
-
     });
-
-    //console.log($scope.enoceanDevices)
   };
+
   /**
    * Assign profile to device
    */
@@ -43065,12 +42658,8 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
     var profile = false;
     var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
     angular.forEach(profiles, function (v, k) {
-      //console.log('deviceProfileId: ' + deviceProfileId)
-      //console.log('v.id: ' + v.id)
-      //var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
       if (deviceProfileId == v.id) {
         profile = v;
-        return;
       }
     });
     return profile;
@@ -43091,236 +42680,209 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
       if (zenoId == nodeId) {
         var obj = v;
         obj['title'] = v.metrics.title;
-        /*obj['id'] = v.id;
-        obj['permanently_hidden'] = v.permanently_hidden;
-        obj['metrics'] = v.metrics;*/
         elements.push(obj);
       }
-
     });
     return elements;
   };
 });
-/**
+
+/***************************************************************************************************************************
  * The controller that handles actions on the EnOcean device.
  * @class EnoceanManageDetailController
  */
-myAppController.controller('EnoceanManageDetailController', function ($scope, $routeParams, $filter, dataFactory, dataService, cfg, myCache) {
-  $scope.nodeId = $routeParams.deviceId;
-  $scope.enoceanDevice = [];
-  $scope.enoceanProfiles = {};
-  $scope.input = {};
-  $scope.dev = [];
-  $scope.apiDevices = [];
-  $scope.rooms = [];
-  $scope.modelRoom;
+ myAppController.controller('EnoceanManageDetailController', function ($scope, $routeParams, $filter, dataFactory, dataService, cfg, myCache) {
+   $scope.nodeId = $routeParams.deviceId;
+   $scope.enoceanDevice = [];
+   $scope.enoceanProfiles = {};
+   $scope.input = {};
+   $scope.dev = [];
+   $scope.apiDevices = [];
+   $scope.rooms = [];
+   $scope.modelRoom;
 
-  /**
-   * Load profiles
-   */
-  $scope.loadProfiles = function () {
-    dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function (response) {
-      $scope.enoceanProfiles = dataService.setEnoProfile(response.Profiles.Profile);
-    }, function (error) {});
-  };
-  $scope.loadProfiles();
+   /**
+    * Load profiles
+    */
+   $scope.loadProfiles = function () {
+     dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function (response) {
+       $scope.enoceanProfiles = dataService.setEnoProfile(response.Profiles.Profile);
+     }, function (error) {});
+   };
+   $scope.loadProfiles();
 
-  /**
-   * Load enocean data
-   */
-  $scope.loadData = function () {
-    dataFactory.runEnoceanCmd('zeno.devices["' + $routeParams.deviceId + '"]').then(function (response) {
-      if (response.data == 'null') {
-        console.log('ERROR')
-        return;
-      }
-      var device = response.data;
-      var name = '';
-      var profile = assignProfile(device.data, $scope.enoceanProfiles);
-      if (profile) {
-        //profileId = profile.profileId;
-        name = profile._funcDescription;
-      }
-      $scope.input = {
-        id: device.id.replace(/^(x)/, ""),
-        rorg: device.data.rorg.value,
-        name: device.data.givenName.value || name,
-        deviceProfileId: device.data.rorg.value + '_' + device.data.funcId.value + '_' + device.data.typeId.value,
-        profile: profile,
-        profileId: ''
+   /**
+    * Load enocean data
+    */
+   $scope.loadData = function () {
+     dataFactory.runEnoceanCmd('zeno.devices["' + $routeParams.deviceId + '"]').then(function (response) {
+       if (response.data == 'null') {
+         console.log('ERROR')
+         return;
+       }
+       var device = response.data;
+       var name = '';
+       var profile = assignProfile(device.data, $scope.enoceanProfiles);
+       if (profile) {
+         name = profile._funcDescription;
+       }
+       $scope.input = {
+         id: device.id.replace(/^(x)/, ""),
+         rorg: device.data.rorg.value,
+         name: device.data.givenName.value || name,
+         deviceProfileId: device.data.rorg.value + '_' + device.data.funcId.value + '_' + device.data.typeId.value,
+         profile: profile,
+         profileId: ''
 
-      };
-    }, function (error) {});
-  };
-  $scope.loadData();
+       };
+     }, function (error) {});
+   };
+   $scope.loadData();
 
-  /**
-   * Load devices data holder
-   */
-  $scope.loadApiDevices = function () {
-    dataFactory.getApi('devices', null, true).then(function (response) {
-      $scope.apiDevices = [];
-      var findZenoStr = "ZEnoVDev_zeno_";
-      var elements = dataService.getDevicesData(response.data.data.devices, false);
-      angular.forEach(elements.value(), function (v, k) {
-        if (v.id.indexOf(findZenoStr) === -1) {
-          return;
-        }
-        var cmd = v.id.split(findZenoStr)[1].split('_');
-        var zenoId = cmd[0];
-        if (zenoId == $scope.nodeId) {
-          var obj = v;
-          obj['level'] = $filter('toInt')(v.metrics.level);
-          /*obj['id'] = v.id;
-          obj['permanently_hidden'] = v.permanently_hidden;
-          obj['visibility'] = v.visibility;
-          obj['level'] = $filter('toInt')(v.metrics.level);
-          obj['metrics'] = v.metrics;*/
-          $scope.apiDevices.push(obj);
-        }
+   /**
+    * Load devices data holder
+    */
+   $scope.loadApiDevices = function () {
+     dataFactory.getApi('devices', null, true).then(function (response) {
+       $scope.apiDevices = [];
+       var findZenoStr = "ZEnoVDev_zeno_";
+       var elements = dataService.getDevicesData(response.data.data.devices, false);
+       angular.forEach(elements.value(), function (v, k) {
+         if (v.id.indexOf(findZenoStr) === -1) {
+           return;
+         }
+         var cmd = v.id.split(findZenoStr)[1].split('_');
+         var zenoId = cmd[0];
+         if (zenoId == $scope.nodeId) {
+           var obj = v;
+           obj['level'] = $filter('toInt')(v.metrics.level);
+           $scope.apiDevices.push(obj);
+         }
 
-      });
-      loadLocations();
+       });
+       loadLocations();
 
-    }, function (error) {});
-  };
-  $scope.loadApiDevices();
+     }, function (error) {});
+   };
+   $scope.loadApiDevices();
 
-  /**
-   * Store device data
-   */
-  $scope.store = function (input) {
-    if (input.name == '') {
-      return;
-    }
-    //$scope.input.name = input.name;
-    $scope.runCmd('devices["' + $scope.nodeId + '"].data.givenName=\'' + input.name + '\'');
-    if (input.profileId) {
-      var device = angular.fromJson(input.profileId);
-      $scope.runCmd('devices["' + $scope.nodeId + '"].data.funcId=' + device.funcId);
-      $scope.runCmd('devices["' + $scope.nodeId + '"].data.typeId=' + device.typeId);
-      $scope.input.profileId = device.rorg + '_' + device.funcId + '_' + device.typeId;
-    }
-    $scope.loadData();
-    $scope.loadApiDevices();
-  };
+   /**
+    * Store device data
+    */
+   $scope.store = function (input) {
+     if (input.name == '') {
+       return;
+     }
+     //$scope.input.name = input.name;
+     $scope.runCmd('devices["' + $scope.nodeId + '"].data.givenName=\'' + input.name + '\'');
+     if (input.profileId) {
+       var device = angular.fromJson(input.profileId);
+       $scope.runCmd('devices["' + $scope.nodeId + '"].data.funcId=' + device.funcId);
+       $scope.runCmd('devices["' + $scope.nodeId + '"].data.typeId=' + device.typeId);
+       $scope.input.profileId = device.rorg + '_' + device.funcId + '_' + device.typeId;
+     }
+     $scope.loadData();
+     $scope.loadApiDevices();
+   };
 
-  /**
-   * Update device
-   */
-  $scope.updateDevice = function (input) {
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    dataFactory.putApi('devices', input.id, input).then(function (response) {
-      myCache.remove('devices');
-      $scope.loadApiDevices();
-      $scope.loading = false;
-    }, function (error) {
-      alertify.alertError($scope._t('error_update_data'));
-      $scope.loading = false;
-    });
+   /**
+    * Update device
+    */
+   $scope.updateDevice = function (input) {
+     $scope.loading = {
+       status: 'loading-spin',
+       icon: 'fa-spinner fa-spin',
+       message: $scope._t('updating')
+     };
+     dataFactory.putApi('devices', input.id, input).then(function (response) {
+       myCache.remove('devices');
+       $scope.loadApiDevices();
+       $scope.loading = false;
+     }, function (error) {
+       alertify.alertError($scope._t('error_update_data'));
+       $scope.loading = false;
+     });
 
-  };
+   };
 
-  /**
-   * Assign devices to room
-   */
-  $scope.devicesToRoom = function (roomId, devices) {
-    if (!roomId) {
-      return;
-    }
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    for (var i = 0; i <= devices.length; i++) {
-      var v = devices[i];
-      if (!v) {
-        continue;
-      }
-      var input = {
-        id: v.id,
-        location: roomId
-      };
+   /**
+    * Assign devices to room
+    */
+   $scope.devicesToRoom = function (roomId, devices) {
+     if (!roomId) {
+       return;
+     }
+     $scope.loading = {
+       status: 'loading-spin',
+       icon: 'fa-spinner fa-spin',
+       message: $scope._t('updating')
+     };
+     for (var i = 0; i <= devices.length; i++) {
+       var v = devices[i];
+       if (!v) {
+         continue;
+       }
+       var input = {
+         id: v.id,
+         location: roomId
+       };
 
-      dataFactory.putApi('devices', v.id, input).then(function (response) {}, function (error) {
-        alertify.alertError($scope._t('error_update_data'));
-        $scope.loading = false;
-        return;
-      });
-    }
-    //myCache.remove('devices');
-    $scope.loadApiDevices();
-    $scope.loading = false;
-    return;
+       dataFactory.putApi('devices', v.id, input).then(function (response) {}, function (error) {
+         alertify.alertError($scope._t('error_update_data'));
+         $scope.loading = false;
+         return;
+       });
+     }
+     $scope.loadApiDevices();
+     return;
+   };
 
-  };
+   /**
+    * Run command
+    */
+   $scope.runCmd = function (cmd) {
+     $scope.loading = {
+       status: 'loading-spin',
+       icon: 'fa-spinner fa-spin',
+       message: $scope._t('updating')
+     };
+     // Run CMD
+     dataFactory.runEnoceanCmd(cmd).then(function (response) {
+       $scope.loading = false;
+     }, function (error) {
+       $scope.loading = false;
+     });
+     return;
+   };
 
+   /// --- Private functions --- ///
+   /**
+    * Assign profile to device
+    */
+   function assignProfile(device, profiles) {
+     var profile = false;
+     var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
+     angular.forEach(profiles, function (v, k) {
+       //var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
+       if (deviceProfileId == v.id) {
+         profile = v;
+         return;
+       }
+     });
+     return profile;
+   };
 
+   /**
+    * Load locations
+    */
+   function loadLocations() {
+     dataFactory.getApi('locations').then(function (response) {
+       $scope.rooms = response.data.data;
+     }, function (error) {});
+   };
+ });
 
-  /**
-   * Run command
-   */
-  $scope.runCmd = function (cmd) {
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    // Run CMD
-    dataFactory.runEnoceanCmd(cmd).then(function (response) {
-      $scope.loading = false;
-    }, function (error) {
-      $scope.loading = false;
-
-    });
-    return;
-  };
-
-  /// --- Private functions --- ///
-  /**
-   * Set devices
-   */
-  function setDevices(devices, profiles) {
-    angular.forEach(devices, function (v, k) {
-      $scope.enoceanDevices[v.id] = {
-        id: v.id,
-        data: v.data,
-        profile: assignProfile(v.data, profiles)
-      };
-    });
-    //console.log($scope.deviceCollection)
-  };
-  /**
-   * Assign profile to device
-   */
-  function assignProfile(device, profiles) {
-    var profile = false;
-    var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
-    angular.forEach(profiles, function (v, k) {
-      //var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
-      if (deviceProfileId == v.id) {
-        profile = v;
-        return;
-      }
-    });
-    return profile;
-  };
-
-  /**
-   * Load locations
-   */
-  function loadLocations() {
-    dataFactory.getApi('locations').then(function (response) {
-      $scope.rooms = response.data.data;
-    }, function (error) {});
-  };
-});
-/**
+/***************************************************************************************************************************
  * The controller that renders informations about the controller.
  * @class EnoceanControllerController
  */
@@ -43349,6 +42911,7 @@ myAppController.controller('EnoceanControllerController', function ($scope, $loc
   };
   $scope.loadData();
 });
+
 /**
  * @overview Controllers that handle all Wifi Plug actions – manage and add wifi plugs.
  * @author Karsten Reichel
@@ -47735,7 +47298,7 @@ myAppController.controller('WelcomeController', function($scope) {
 	$scope.skip = function() {
 		$scope.currentStep = $scope.pages;
 	}
-	$scope.isMobile = $scope.deviceDetector.isMobile();
+	$scope.sourcePrefix = $scope.deviceDetector.isMobile() ? '_mobile' : '';
 });
 
 /**

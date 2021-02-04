@@ -21653,6 +21653,11 @@ img.widget-promo-image {
   border-bottom-left-radius: 150px;
   border-bottom-right-radius: 150px; }
 
+.flex-buttons {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap; }
+
 /* Events
 -------------------------------------------------- */
 .events .list-panel .body {
