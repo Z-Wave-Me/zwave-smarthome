@@ -1,9 +1,9 @@
 /**
  * @overview Controllers that handle EnOcean Services.
- * @author Martin Vach
+ * @author Martin Vach, Serguei Poltorak
  */
 
-/**
+/***************************************************************************************************************************
  * The controller that renders the list of EnOcean vendors or products.
  * @class EnoceanVendorController
  */
@@ -13,8 +13,8 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
     vendors: [],
     products:[]
   };
-   $scope.enoceanVendors = [];
-   $scope.enoceanProducts = [];
+  $scope.enoceanVendors = [];
+  $scope.enoceanProducts = [];
 
   /**
    * Load enocean vendors
@@ -26,7 +26,7 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
         $scope.enocean.products = _.where(response.data, {
           vendor: brandname
         });
-      }else{
+      } else {
         $scope.enocean.vendors = _.uniq(response.data, 'vendor');
       }
       $scope.enocean.products.forEach(function(product) {
@@ -40,7 +40,7 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
       });
     }, function (error) {});
   };
- 
+
 
   /**
    * Load Remote access data
@@ -77,11 +77,9 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
   };
 
   $scope.loadEnOceanModule();
-
-
 });
 
-/**
+/***************************************************************************************************************************
  * The controller that teach-in a device from the list.
  * @class EnoceanTeachinController
  */
@@ -350,10 +348,8 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
             icon: 'fa-check'
           });
           $scope.loadApiDevices();
-          return;
         }
       });
-
     }, function (error) {
       $scope.inclusion.update({
         message: $scope._t('inclusion_error'),
@@ -361,7 +357,6 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
         icon: 'fa-warning'
       });
     });
-
   };
 
   /**
@@ -450,7 +445,8 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
     return profile;
   };
 });
-/**
+
+/***************************************************************************************************************************
  * The controller that manage EnOcean devices.
  * @class EnoceanManageController
  */
@@ -460,7 +456,7 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
   $scope.enoceanDevices = {};
 
   /**
-   * Load API devices
+   * Load ZAutomation devices
    */
   $scope.loadApiDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
@@ -502,19 +498,6 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
     });
   };
 
-
-
-
-  /**
-   * Run CMD
-   */
-  $scope.runCmd = function (cmd) {
-    // Run CMD
-    dataFactory.runEnoceanCmd(cmd).then(function (response) {}, function (error) {
-      // show some error
-    });
-    return;
-  };
   /**
    * Delete device
    */
@@ -527,7 +510,6 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
           return;
         }
         $(target).fadeOut(500);
-        //$scope.loadData();
       }, function (error) {
         alertify.alertError($scope._t('error_delete_data'));
       });
@@ -541,7 +523,6 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
    * Set devices
    */
   function setDevices(devices, profiles) {
-    // console.log(profiles)
     angular.forEach(devices, function (v, k) {
       $scope.enoceanDevices[k] = {
         id: k,
@@ -549,13 +530,10 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
         data: v.data,
         profile: assignProfile(v.data, profiles),
         elements: getElements($scope.apiDevices, k)
-
       };
-
     });
-
-    //console.log($scope.enoceanDevices)
   };
+
   /**
    * Assign profile to device
    */
@@ -563,12 +541,8 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
     var profile = false;
     var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
     angular.forEach(profiles, function (v, k) {
-      //console.log('deviceProfileId: ' + deviceProfileId)
-      //console.log('v.id: ' + v.id)
-      //var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
       if (deviceProfileId == v.id) {
         profile = v;
-        return;
       }
     });
     return profile;
