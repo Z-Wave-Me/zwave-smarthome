@@ -10,6 +10,5 @@
 	<p ng-bind-html="_t('p_welcome_elements_order')|toTrusted"></p>
 </div>
 <div class="image">
-	<img ng-if="!isMobile" src="app/img/welcome/elements.png"/>
-	<img ng-if="isMobile" src="app/img/welcome/elements_mobile.png"/>
+	<img ng-src="app/img/welcome/elements{{sourcePrefix}}.jpg" alt=""/>
 </div>

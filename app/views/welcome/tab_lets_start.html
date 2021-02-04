@@ -13,5 +13,5 @@
     <div ng-if="elementAccess(cfg.role_access.admin)" ng-bind-html="_t('p_welcome_lets_start_apps', {'__btn_apps__':_t('nav_apps')})|toTrusted"></div>
 </div>
 <div class="image">
-    <img ng-if="!isMobile" src="app/img/welcome/overview.png"/>
+    <img ng-src="app/img/welcome/overview{{sourcePrefix}}.jpg" alt=""/>
 </div>
