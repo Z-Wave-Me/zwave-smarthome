@@ -146,7 +146,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     function logInApi(data) {
         // remove ZWAYSession just before login not to confuse the server
         expireActiveCookies("ZWAYSession");
-        
+
         return $http({
             method: "post",
             headers: {
@@ -253,8 +253,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession,
                 'isZWAY': true
-                        //'Accept-Encoding': 'gzip, deflate',
-                        //'Allow-compression': 'gz' 
             }
         }).then(function (response) {
             if (!angular.isDefined(response.data)) {
@@ -304,7 +302,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             return $q.reject(response);
         });
     }
-    
+
    /**
     * Post ZAutomation api data
     * @param {string} api
@@ -473,7 +471,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
 
     }
-    
+
     /**
      * Delete ZAutomation api data with JSON
      * @param {string} api
@@ -764,7 +762,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
     }
 
-     
+
 
 
     /**
@@ -810,7 +808,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
 
     /**
-     * Get updated data holder from the ZAutomation
+     * Get updated data holder from the ZWaveAPI
      * @returns {unresolved}
      */
     function refreshZwaveApiData() {
@@ -837,7 +835,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
 
     /**
-     * Get updated ZAutomation data and join it to ZAutomation data holder
+     * Get updated ZWaveAPI data and join it to ZWaveAPIData
      * @param {object} ZWaveAPIData
      * @returns {unresolved}
      */
@@ -959,7 +957,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function refreshEnoceanApiData() {
-        //console.log('?since=' + updatedTime)
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.enocean_data_url + updatedTime
@@ -1045,7 +1042,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             isRemote:true,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-                        //'ZWAYSession': ZWAYSession 
             }
         }).then(function (response) {
             return response;
@@ -1069,7 +1065,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             isRemote:true,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-                        //'ZWAYSession': ZWAYSession 
             }
         }).then(function (response) {
             return response;
@@ -1217,4 +1212,3 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
     }
 });
-
