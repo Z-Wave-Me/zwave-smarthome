@@ -273,8 +273,6 @@ var config_data = {
 		'enocean_run_url': 'EnOceanAPI/Run/',
 		// Url to data Enocean cmd
 		'enocean_data_url': 'EnOceanAPI/Data/',
-		// EnOcean device black list
-		'enocean_black_list': ['81048201'],
 		// Url to config XML file
 		'cfg_xml_url': 'config/Configuration.xml',
 		// Path to to translations XML dir
