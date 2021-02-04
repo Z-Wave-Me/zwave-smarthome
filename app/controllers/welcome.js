@@ -23,5 +23,5 @@ myAppController.controller('WelcomeController', function($scope) {
 	$scope.skip = function() {
 		$scope.currentStep = $scope.pages;
 	}
-	$scope.isMobile = $scope.deviceDetector.isMobile();
+	$scope.sourcePrefix = $scope.deviceDetector.isMobile() ? '_mobile' : '';
 });
