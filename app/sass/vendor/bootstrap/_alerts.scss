@@ -66,3 +66,8 @@
 .alert-danger {
   @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
 }
+.alert-flex{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
