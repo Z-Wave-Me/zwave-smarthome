@@ -98,6 +98,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				frostProtectionTemp: 5,
 				fallbackTemp: "",
 				sensorId: null,
+				state:null,
 				schedule: {}
 			},
 			mobileSchedule_entry: {
