@@ -1075,7 +1075,12 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
                             }, {
                                 updateTime: v.updateTime
                             });
-                            angular.copy({ ...device, ...v}, device);
+                            var updated = {};
+                            angular.copy(device, updated)
+                            Object.keys(v).forEach((key) => {
+                                updated[key] = v[key];
+                            })
+                            angular.copy(updated, device);
                             //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
                         });
                     }
