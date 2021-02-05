@@ -5,10 +5,17 @@
 	<form class="form form-page" ng-submit="storeInstance(true)">
 		<!-- rooms -->
 		<fieldset>
+<!--			 View -->
+			<div style="display: flex">
+				<div class="btn btn-default" ng-click="changeView()" style="margin-left: auto">
+					{{mobileView ? _t('browser_version'):_t('mobile_version')}}
+				</div>
+			</div>
 			<section class="accordion-wrap" ng-repeat="r in heating.rooms track by $index">
 				<!-- Title -->
 				<h2 class="accordion-toggle chevron">
-				<button type="button" aria-expanded="false" bb-accordion ng-click="renderSchedule('#schedule-'+{{r.id}}, r.id)">
+				<button type="button" aria-expanded="false" bb-accordion data-id="{{r.id}}"
+					ng-click="mobileView ? '' : renderSchedule('#schedule-'+ r.id, r.id)">
 				<span>
 					<img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
 				</span>
@@ -69,7 +76,7 @@
 							</div>
 						</div>
 						<!-- schedule -->
-						<div class="schedule-wrap" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+						<div class="schedule-wrap" ng-hide="mobileView">
 							<div class="schedule-overlay" ng-if="!heating.input.params.roomSettings[r.id].comfortTemp">
 								<bb-help-text trans="_t('no_comfort_temp_info')"></bb-help-text>
 							</div>
@@ -77,9 +84,9 @@
 							<bb-help-text trans="_t('schedule_info')"></bb-help-text>
 						</div>
 						<!-- mobile view -->
-						<div ng-include="'app/views/automation/heating/mobile_schedule.html'" ng-show="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'"></div>
+						<div ng-include="'app/views/automation/heating/mobile_schedule.html'" ng-show="mobileView"></div>
 						<!-- copy room settings -->
-						<div class="form-inline" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+						<div class="form-inline" ng-hide="mobileView">
 							<div class="form-group is-inline">
 								<select class="form-control" ng-model="r.copyOption">
 									<option value="null">---</option>
