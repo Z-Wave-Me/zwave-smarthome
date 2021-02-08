@@ -1,5 +1,8 @@
 <div ng-controller="SmartStartDskController">
 	<div ng-if="_.isEmpty(dsk.firmwareAlert) && !dataHolder.video.supported || dataHolder.manual_add">
+		<div class="alert alert-warning">
+			<i class="fas fa-info-circle"></i> {{_t('video_not_supported_smart_start')}}
+		</div>
 		<bb-alert alert="dsk.firmwareAlert"></bb-alert>
 		<!-- Navigation -->
 		<!--<div ng-include="'app/views/smartstart/navi.html'"></div>-->
@@ -16,12 +19,14 @@
 							   maxlength="5"
 							   class="form-control dsk-number"
 							   ng-model="dsk.input['dsk_' + ($index + 1)]"
-							   ng-paste="fillInput($event, $index)" />
+							   ng-paste="fillInput($event, $index)"
+							   ng-change="fixLength($index + 1)"
+						/>
 					</span>
 				</div>
-				
 				<div class="form-group">
-					<button class="btn btn-success btn-block_">
+					<button class="btn btn-block_" ng-disabled="registerDisabled"
+					ng-class="registerDisabled ? 'btn-default': 'btn-success'">
 					<bb-row-spinner
 					spinner="rowSpinner[cfg.api.add_dsk]"
 					label="_t('Register')"
@@ -38,11 +43,12 @@
 				<i class="fas fa-check"></i>  {{_t('smartstart_enter_key_success')}}
 				<div>{{dsk.response}}</div>
 			</div>
-			<!--<ul class="scrollh">
-				<li ng-repeat="v in dsk.list track by $index">
-					{{v}}
-				</li>
-			</ul>-->
+		</div>
+		<div class="entry list" ng-if="dsk.state == 'error-register'">
+			<div class="alert alert-danger">
+				<i class="fa fa-times" style="color: red"></i>  {{_t('smartstart_enter_key_error')}}
+				<div>{{dsk.response}}</div>
+			</div>
 		</div>
 	</div>
 	<div class="entry" ng-if="!dataHolder.video.supported">

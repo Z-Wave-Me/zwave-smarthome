@@ -98,6 +98,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				frostProtectionTemp: 5,
 				fallbackTemp: "",
 				sensorId: null,
+				state:null,
 				schedule: {}
 			},
 			mobileSchedule_entry: {
@@ -514,7 +515,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 						});
 
 					if(scIndex != -1) {
-						$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
+						$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseFloat($scope.heating.tempModal.temp.value);
 
 						var rows_copy = {};
 						angular.copy($scope.scheduleOptions.rows, rows_copy);

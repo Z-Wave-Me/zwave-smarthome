@@ -1,9 +1,9 @@
 /**
  * @overview Controllers that handle EnOcean Services.
- * @author Martin Vach
+ * @author Martin Vach, Serguei Poltorak
  */
 
-/**
+/***************************************************************************************************************************
  * The controller that renders the list of EnOcean vendors or products.
  * @class EnoceanVendorController
  */
@@ -13,8 +13,8 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
     vendors: [],
     products:[]
   };
-   $scope.enoceanVendors = [];
-   $scope.enoceanProducts = [];
+  $scope.enoceanVendors = [];
+  $scope.enoceanProducts = [];
 
   /**
    * Load enocean vendors
@@ -26,7 +26,7 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
         $scope.enocean.products = _.where(response.data, {
           vendor: brandname
         });
-      }else{
+      } else {
         $scope.enocean.vendors = _.uniq(response.data, 'vendor');
       }
       $scope.enocean.products.forEach(function(product) {
@@ -40,7 +40,7 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
       });
     }, function (error) {});
   };
- 
+
 
   /**
    * Load Remote access data
@@ -77,359 +77,9 @@ myAppController.controller('EnoceanVendorController', function ($scope, $routePa
   };
 
   $scope.loadEnOceanModule();
-
-
 });
-/**
- * The controller that teach-in a device by the profile.
- * @class EnoceanAssignController
- */
-myAppController.controller('EnoceanAssignController', function ($scope, $interval, dataFactory, dataService, myCache, cfg) {
-  $scope.profile = false;
-  $scope.device = [];
-  $scope.includedDevices = [];
-  $scope.lastIncludedDevice = [];
-  $scope.enoceanDevices = {};
-  $scope.enoceanProfiles = {};
-  $scope.apiDevices = [];
-  $scope.dev = [];
-  $scope.rooms = [];
-  $scope.modelRoom;
-  $scope.inclusion = {
-    promisc: false,
-    smartAckLearnMode: false,
-    smartAckLearnIn: false,
-    done: false,
-    config: false,
-    message: false,
-    status: 'is-hidden',
-    icon: false
-  };
-  $scope.apiDataInterval = null;
 
-  // Cancel interval on page destroy
-  $scope.$on('$destroy', function () {
-    $interval.cancel($scope.apiDataInterval);
-  });
-
-  /**
-   * Load included devices
-   */
-  $scope.loadIncludedDevices = function () {
-    dataFactory.loadEnoceanApiData(true).then(function (response) {
-      angular.forEach(response.data.devices, function (v, k) {
-        $scope.includedDevices.push(k);
-      });
-    }, function (error) {});
-  };
-  $scope.loadIncludedDevices();
-
-  /**
-   * Load EnOcean profiles
-   */
-  $scope.loadProfiles = function () {
-    dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function (response) {
-      $scope.enoceanProfiles = dataService.setEnoProfile(response.Profiles.Profile);
-    }, function (error) {});
-  };
-  $scope.loadProfiles();
-
-  /**
-   * Load locations
-   */
-  $scope.loadLocations = function () {
-    dataFactory.getApi('locations').then(function (response) {
-      $scope.rooms = response.data.data;
-    }, function (error) {});
-  };
-  $scope.loadLocations();
-
-
-  /**
-   * Load devices from the data holder
-   */
-  $scope.loadApiDevices = function () {
-    dataFactory.getApi('devices').then(function (response) {
-      $scope.apiDevices = [];
-      var findZenoStr = "ZEnoVDev_zeno_x";
-      var elements = dataService.getDevicesData(response.data.data.devices, false);
-      angular.forEach(elements.value(), function (v, k) {
-        if (v.id.indexOf(findZenoStr) === -1) {
-          return;
-        }
-        var cmd = v.id.split(findZenoStr)[1].split('_');
-        var zenoId = cmd[0];
-        if (zenoId == $scope.lastIncludedDevice.id) {
-          var obj = v;
-          obj['title'] = v.metrics.title;
-          $scope.apiDevices.push(obj);
-        }
-
-      });
-
-    }, function (error) {});
-  };
-
-
-  /**
-   * Assign profile
-   */
-  $scope.loadDevice = function (profile) {
-    $interval.cancel($scope.apiDataInterval);
-    $scope.device = angular.fromJson(profile);
-    $scope.inclusion = {
-      done: false,
-      promisc: true,
-      smartAckLearnMode: false,
-      smartAckLearnIn: false,
-      message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-      status: 'alert-warning',
-      icon: 'fa-spinner fa-spin'
-    };
-    $scope.runCmd('controller.data.promisc=true');
-    $scope.refreshData();
-  };
-
-  /**
-   * Refresh data
-   */
-  $scope.refreshData = function () {
-    var refresh = function () {
-      var findStr = 'devices';
-      dataFactory.refreshEnoceanApiData().then(function (response) {
-        if ('controller.data.promisc' in response.data) {
-          var promisc = response.data['controller.data.promisc'].value;
-          if (promisc === true) {
-            $scope.inclusion = {
-              done: false,
-              promisc: true,
-              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-              status: 'alert-warning',
-              icon: 'fa-spinner fa-spin'
-            };
-          } else {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              message: $scope._t('teachin_canceled'),
-              status: 'alert-warning',
-              icon: 'fa-exclamation-circle'
-            };
-          }
-          return;
-        }
-        if ('controller.data.smartAckLearnMode' in response.data) {
-          var smartAckLearnMode = response.data['controller.data.smartAckLearnMode'].value;
-          if (smartAckLearnMode === true) {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: true,
-              smartAckLearnIn: response.data['controller.data.smartAckLearnIn'].value || false,
-              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-              status: 'alert-warning',
-              icon: 'fa-spinner fa-spin'
-            };
-          } else {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: false,
-              smartAckLearnIn: false,
-              message: $scope._t('teachin_canceled'),
-              status: 'alert-warning',
-              icon: 'fa-exclamation-circle'
-            };
-          }
-          return;
-        }
-
-        if ('devices' in response.data) {
-          angular.forEach(response.data.devices, function (v, k) {
-            if ($scope.cfg.enocean_black_list.indexOf(k) === -1) {
-              $scope.findDevice(k);
-            }
-
-          });
-          return;
-        }
-        angular.forEach(response.data, function (v, k) {
-          var array = k.split('.');
-          if (array.indexOf(findStr) > -1) {
-            if ($scope.cfg.enocean_black_list.indexOf(array[1]) === -1) {
-              $scope.findDevice(array[1]);
-            }
-
-          }
-        });
-      }, function (error) {});
-    };
-    $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
-  };
-
-
-
-  /**
-   * Find last included device
-   */
-  $scope.findDevice = function (lastId) {
-    var id = lastId.replace(/^(x)/, "");
-    if ($scope.includedDevices.indexOf(id) > -1) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: '<a href="#enocean/manage"><strong>' + $scope._t('device_exists') + '</strong></a>',
-        status: 'alert-warning',
-        icon: 'fa-exclamation-circle'
-      };
-      return;
-    }
-
-    dataFactory.loadEnoceanApiData(true).then(function (response) {
-      angular.forEach(response.data.devices, function (v, k) {
-        if (k == id) {
-          var name = 'Device ' + k;
-          var profile = assignProfile(v.data);
-          if (profile) {
-            name = profile._funcDescription + ' ' + k;
-          }
-
-          $scope.runCmd('controller.data.promisc=false');
-          $scope.lastIncludedDevice = {
-            id: k,
-            rorg: v.data.rorg.value,
-            name: name,
-            data: v.data,
-            deviceProfileId: v.data.rorg.value + '_' + v.data.funcId.value + '_' + v.data.typeId.value,
-            profile: profile
-          };
-
-          $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
-          if ($scope.device.funcId && $scope.device.typeId) {
-            $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
-            $scope.runCmd('devices["x' + k + '"].data.typeId=' + $scope.device.typeId);
-          }
-          $interval.cancel($scope.apiDataInterval);
-          $scope.inclusion = {
-            done: true,
-            config: true,
-            promisc: false,
-            message: $scope._t('inclusion_proces_done'),
-            status: 'alert-success',
-            icon: 'fa-check'
-          };
-          $scope.loadApiDevices();
-          return;
-        }
-      });
-
-    }, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: $scope._t('inclusion_error'),
-        status: 'alert-danger',
-        icon: 'fa-warning'
-      };
-    });
-
-  };
-
-  /**
-   * Run command
-   */
-  $scope.runCmd = function (cmd) {
-    // Run CMD
-    dataFactory.runEnoceanCmd(cmd).then(function (response) {}, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: $scope._t('inclusion_error'),
-        status: 'alert-danger',
-        icon: 'fa-warning'
-      };
-
-    });
-    return;
-  };
-
-  /**
-   * Update device
-   */
-  $scope.updateDevice = function (input) {
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    dataFactory.putApi('devices', input.id, input).then(function (response) {
-      myCache.remove('devices');
-      $scope.loadApiDevices();
-      $scope.loading = false;
-    }, function (error) {
-      alertify.alertError($scope._t('error_update_data'));
-      $scope.loading = false;
-    });
-
-  };
-  /**
-   * Assign devices to the room
-   */
-  $scope.devicesToRoom = function (roomId, devices) {
-    if (!roomId) {
-      return;
-    }
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    for (var i = 0; i <= devices.length; i++) {
-      var v = devices[i];
-      if (!v) {
-        continue;
-      }
-      var input = {
-        id: v.id,
-        location: roomId
-      };
-
-      dataFactory.putApi('devices', v.id, input).then(function (response) {}, function (error) {
-        alertify.alertError($scope._t('error_update_data'));
-        $scope.loading = false;
-        return;
-      });
-    }
-    myCache.remove('devices');
-    $scope.loadApiDevices();
-    $scope.loading = false;
-    return;
-
-  };
-
-  /**
-   * Assign profile to the device
-   */
-  function assignProfile() {
-    var profile = false;
-    var deviceProfileId = parseInt($scope.device.rorg, 16) + '_' + parseInt($scope.device.funcId, 16) + '_' + parseInt($scope.device.typeId, 16);
-    angular.forEach($scope.enoceanProfiles, function (v, k) {
-      if (deviceProfileId == v.id) {
-        profile = v;
-        return;
-      }
-    });
-    return profile;
-  };
-
-});
-/**
+/***************************************************************************************************************************
  * The controller that teach-in a device from the list.
  * @class EnoceanTeachinController
  */
@@ -454,6 +104,13 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
     icon: false
   };
   $scope.apiDataInterval = null;
+  $scope.isSmartAck = false;
+
+  $scope.inclusion.update = function(obj) {
+    for (var key in obj) {
+      $scope.inclusion[key] = obj[key];
+    }
+  };
 
   // Cancel interval on page destroy
   $scope.$on('$destroy', function () {
@@ -496,31 +153,46 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
    * Load device data holder
    */
   $scope.loadApiDevices = function () {
-    dataFactory.getApi('devices').then(function (response) {
+    dataFactory.getApi('devices', null, true).then(function (response) {
       $scope.apiDevices = [];
       var findZenoStr = "ZEnoVDev_zeno_x";
       var elements = dataService.getDevicesData(response.data.data.devices, false);
       angular.forEach(elements.value(), function (v, k) {
-        if (v.id.indexOf(findZenoStr) === -1) {
+        if (v.id.indexOf(findZenoStr + $scope.lastIncludedDevice.id) === -1) {
           return;
         }
 
-        var cmd = v.id.split(findZenoStr)[1].split('_');
-        var zenoId = cmd[0];
-        if (zenoId == $scope.lastIncludedDevice.id) {
-          var obj = v;
-          //obj['id'] = v.id;
-          obj['title'] = v.metrics.title;
-          /*obj['permanently_hidden'] = v.permanently_hidden;
-          obj['visibility'] = v.visibility;
-          obj['metrics'] = v.metrics;*/
-          $scope.apiDevices.push(obj);
-        }
-
+        v.title = v.metrics.title;
+        $scope.apiDevices.push(v);
       });
 
     }, function (error) {});
   };
+
+  $scope.AddDeviceStart = function () {
+    $scope.runCmd('devices.Add(true,' + $scope.device.rorg + ','  + $scope.device.funcId + ',' + $scope.device.typeId + ')');
+  };
+
+  $scope.AddDeviceStop = function () {
+    $scope.runCmd('devices.Add(false)');
+  };
+
+  // Special handling for Generic Profile page
+  if ($location.$$path === "/enocean/teachin/genericProfile") {
+    $scope.device = {
+      rorg: "0xB0",
+      funcID: "0x00",
+      typeId: "0x00",
+      description: "EnOcean Generic Profile Device",
+      inclusion: "Press LRN-button",
+      smartAck: false
+    }
+  }
+  
+  // Special handling for Smart Ack page
+  if ($location.$$path === "/enocean/teachin/smartAck") {
+    $scope.isSmartAck = true;
+  }
 
   /**
    * Load single device
@@ -537,24 +209,21 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
         alertify.alertWarning($scope._t('no_data'));
       }
 
-      $scope.inclusion = {
-        done: false,
-        promisc: $routeParams.devices ? true : false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-        status: 'alert-warning',
-        icon: 'fa-spinner fa-spin'
-      };
-      if ($routeParams.devices) // not SmartAck
-        $scope.runCmd('controller.data.promisc=true');
+      // Smart Ack can be Teach-In and Teach-Out so we don't start by default
+      if (!$scope.isSmartAck) {
+        $scope.AddDeviceStart();
+        $scope.inclusion.update({
+          message: $scope._t('teachin_starting'),
+          status: 'alert-warning',
+          icon: 'fa-spinner fa-spin'
+        });
+      }
     }, function (error) {
       angular.extend(cfg.route.alert, {
         message: $scope._t('error_load_data')
       });
     });
   };
-
   $scope.loadDevice();
 
   /**
@@ -562,91 +231,84 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
    */
   $scope.refreshData = function () {
     var refresh = function () {
-      var findStr = 'devices';
       dataFactory.refreshEnoceanApiData().then(function (response) {
-        if ('controller.data.promisc' in response.data) {
-          var promisc = response.data['controller.data.promisc'].value;
-          if (promisc === true) {
-            $scope.inclusion = {
-              done: false,
-              promisc: true,
-              smartAckLearnMode: false,
-              smartAckLearnIn: false,
-              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-              status: 'alert-warning',
-              icon: 'fa-spinner fa-spin'
-            };
-          } else {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: false,
-              smartAckLearnIn: false,
-              message: $scope._t('teachin_canceled'),
-              status: 'alert-warning',
-              icon: 'fa-exclamation-circle'
-            };
+        if (!$scope.apiDataInterval) return; // don't parse if it was stopped (reply might come with a delay)
+
+        if (!$scope.isSmartAck) {
+          var promisc = null;
+          if ('controller' in response.data) {
+            promisc = response.data['controller'].data.promisc.value;
           }
-          return;
-        }
-        if ('controller.data.smartAckLearnMode' in response.data) {
-          var smartAckLearnMode = response.data['controller.data.smartAckLearnMode'].value;
+          if ('controller.data.promisc' in response.data) {
+            promisc = response.data['controller.data.promisc'].value;
+          }
+          if (promisc === true) {
+            if (!$scope.done) {
+              $scope.inclusion.update({
+                promisc: true,
+                message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion || ''),
+                status: 'alert-warning',
+                icon: 'fa-spinner fa-spin'
+              });
+            }
+          } else if (promisc === false) {
+            if (!$scope.done) {
+              $scope.inclusion.update({
+                promisc: false,
+                message: $scope._t('teachin_stopped'),
+                status: 'alert-warning',
+                icon: 'fa-exclamation-circle'
+              });
+            }
+          }
+        } else {
+          var smartAckLearnMode = null, smartAckLearnIn = null;
+          if ('controller' in response.data) {
+            smartAckLearnMode = response.data['controller'].data.smartAckLearnMode.value;
+            smartAckLearnIn = response.data['controller'].data.smartAckLearnIn.value;
+          }
+          if ('controller.data.smartAckLearnMode' in response.data) {
+            smartAckLearnMode = response.data['controller.data.smartAckLearnMode'].value;
+            smartAckLearnIn = response.data['controller.data.smartAckLearnIn'].value;
+          }
           if (smartAckLearnMode === true) {
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: true,
-              smartAckLearnIn: response.data['controller.data.smartAckLearnIn'].value || false,
-              message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion ? $scope.device.inclusion : ''),
-              status: 'alert-warning',
-              icon: 'fa-spinner fa-spin'
-            };
-            return;
-          } else {
+            if (!$scope.done) {
+              $scope.inclusion.update({
+                smartAckLearnMode: true,
+                smartAckLearnIn: smartAckLearnIn,
+                message: $scope._t('teachin_ready') + ' ' + ($scope.device.inclusion || ''),
+                status: 'alert-warning',
+                icon: 'fa-spinner fa-spin'
+              });
+            }
+          } else if (smartAckLearnMode === false) {
             var teachIn = $scope.inclusion.smartAckLearnIn;
-            $scope.inclusion = {
-              done: false,
-              promisc: false,
-              smartAckLearnMode: false,
-              smartAckLearnIn: false,
-              message: $scope._t('teachin_canceled'),
-              status: 'alert-warning',
-              icon: 'fa-exclamation-circle'
-            };
-            if (!teachIn) {
-              if ('devices' in response.data) {
-                $scope.includedDevices = [];
-                angular.forEach(response.data.devices, function (v, k) {
-                  $scope.includedDevices.push(k);
-                });
-              }
-              return;
+            if (!$scope.done) {
+              $scope.inclusion.update({
+                smartAckLearnMode: false,
+                smartAckLearnIn: false,
+                message: $scope._t('teachin_stopped'),
+                status: 'alert-warning',
+                icon: 'fa-exclamation-circle'
+              });
             }
           }
         }
+        
         if ('devices' in response.data) {
-          angular.forEach(response.data.devices, function (v, k) {
-            if ($scope.cfg.enocean_black_list.indexOf(k) === -1) {
+          // update the list of included devices in case of structure changes
+          Object.keys(response.data.devices).forEach(function(k) {
+            if ($scope.includedDevices.indexOf(k) === -1) {
+              // new device
               $scope.findDevice(k);
             }
-
           });
-          return;
+          $scope.loadIncludedDevices();
         }
-        angular.forEach(response.data, function (v, k) {
-          var array = k.split('.');
-          if (array.indexOf(findStr) > -1) {
-            if ($scope.cfg.enocean_black_list.indexOf(array[1]) === -1) {
-              $scope.findDevice(array[1]);
-            }
-
-          }
-        });
       }, function (error) {});
     };
     $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
   };
-
   $scope.refreshData();
 
   /**
@@ -655,18 +317,9 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
   $scope.findDevice = function (lastId) {
     var id = lastId.replace(/^(x)/, "");
     if ($scope.includedDevices.indexOf(id) > -1) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: '<a href="#enocean/manage"><strong>' + $scope._t('device_exists') + '</strong></a>',
-        status: 'alert-warning',
-        icon: 'fa-exclamation-circle'
-      };
       return;
     }
-    console.log("id:" + id + "   " + lastId);
+    // new device - request more info
     dataFactory.loadEnoceanApiData(true).then(function (response) {
       angular.forEach(response.data.devices, function (v, k) {
         if (k === id) {
@@ -677,7 +330,6 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
             name = profile._funcDescription + ' ' + k;
           }
 
-          $scope.runCmd('controller.data.promisc=false');
           $scope.lastIncludedDevice = {
             id: k,
             rorg: v.data.rorg.value,
@@ -687,36 +339,24 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
             profile: profile
           };
           $scope.runCmd('devices["x' + k + '"].data.givenName=\'' + name + '\'');
-          if ($scope.device.funcId && $scope.device.typeId) {
-            $scope.runCmd('devices["x' + k + '"].data.funcId=' + $scope.device.funcId);
-            $scope.runCmd('devices["x' + k + '"].data.typeId=' + +$scope.device.typeId);
-          }
           $interval.cancel($scope.apiDataInterval);
-          $scope.inclusion = {
+          $scope.inclusion.update({
             done: true,
             config: true,
-            promisc: false,
             message: $scope._t('inclusion_proces_done'),
             status: 'alert-success',
             icon: 'fa-check'
-          };
+          });
           $scope.loadApiDevices();
-          return;
         }
       });
-
     }, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
+      $scope.inclusion.update({
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
-      };
+      });
     });
-
   };
 
   /**
@@ -725,16 +365,11 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
   $scope.runCmd = function (cmd) {
     // Run CMD
     dataFactory.runEnoceanCmd(cmd).then(function (response) {}, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
+      $scope.inclusion.update({
         message: $scope._t('inclusion_error'),
         status: 'alert-danger',
         icon: 'fa-warning'
-      };
-
+      });
     });
     return;
   };
@@ -810,7 +445,8 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
     return profile;
   };
 });
-/**
+
+/***************************************************************************************************************************
  * The controller that manage EnOcean devices.
  * @class EnoceanManageController
  */
@@ -820,7 +456,7 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
   $scope.enoceanDevices = {};
 
   /**
-   * Load API devices
+   * Load ZAutomation devices
    */
   $scope.loadApiDevices = function () {
     dataFactory.getApi('devices').then(function (response) {
@@ -853,14 +489,7 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
     };
     dataFactory.loadEnoceanApiData(true).then(function (response) {
       $scope.loading = false;
-      if (Object.keys(response.data.devices).length < 1) {
-        alertify.alertWarning($scope._t('no_data'));
-        return;
-      }
-
       setDevices(response.data.devices, enoceanProfiles);
-      $scope.loading = false;
-
     }, function (error) {
       angular.extend(cfg.route.alert, {
         message: $scope._t('error_load_data')
@@ -869,28 +498,6 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
     });
   };
 
-
-
-
-  /**
-   * Run CMD
-   */
-  $scope.runCmd = function (cmd) {
-    // Run CMD
-    dataFactory.runEnoceanCmd(cmd).then(function (response) {}, function (error) {
-      $scope.inclusion = {
-        done: false,
-        promisc: false,
-        smartAckLearnMode: false,
-        smartAckLearnIn: false,
-        message: $scope._t('inclusion_error'),
-        status: 'alert-danger',
-        icon: 'fa-warning'
-      };
-
-    });
-    return;
-  };
   /**
    * Delete device
    */
@@ -903,7 +510,6 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
           return;
         }
         $(target).fadeOut(500);
-        //$scope.loadData();
       }, function (error) {
         alertify.alertError($scope._t('error_delete_data'));
       });
@@ -917,24 +523,17 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
    * Set devices
    */
   function setDevices(devices, profiles) {
-    // console.log(profiles)
     angular.forEach(devices, function (v, k) {
-      if ($scope.cfg.enocean_black_list.indexOf(k) > -1) {
-        return;
-      };
       $scope.enoceanDevices[k] = {
         id: k,
         givenName: v.data.givenName.value,
         data: v.data,
         profile: assignProfile(v.data, profiles),
         elements: getElements($scope.apiDevices, k)
-
       };
-
     });
-
-    //console.log($scope.enoceanDevices)
   };
+
   /**
    * Assign profile to device
    */
@@ -942,12 +541,8 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
     var profile = false;
     var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
     angular.forEach(profiles, function (v, k) {
-      //console.log('deviceProfileId: ' + deviceProfileId)
-      //console.log('v.id: ' + v.id)
-      //var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
       if (deviceProfileId == v.id) {
         profile = v;
-        return;
       }
     });
     return profile;
@@ -968,236 +563,209 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
       if (zenoId == nodeId) {
         var obj = v;
         obj['title'] = v.metrics.title;
-        /*obj['id'] = v.id;
-        obj['permanently_hidden'] = v.permanently_hidden;
-        obj['metrics'] = v.metrics;*/
         elements.push(obj);
       }
-
     });
     return elements;
   };
 });
-/**
+
+/***************************************************************************************************************************
  * The controller that handles actions on the EnOcean device.
  * @class EnoceanManageDetailController
  */
-myAppController.controller('EnoceanManageDetailController', function ($scope, $routeParams, $filter, dataFactory, dataService, cfg, myCache) {
-  $scope.nodeId = $routeParams.deviceId;
-  $scope.enoceanDevice = [];
-  $scope.enoceanProfiles = {};
-  $scope.input = {};
-  $scope.dev = [];
-  $scope.apiDevices = [];
-  $scope.rooms = [];
-  $scope.modelRoom;
+ myAppController.controller('EnoceanManageDetailController', function ($scope, $routeParams, $filter, dataFactory, dataService, cfg, myCache) {
+   $scope.nodeId = $routeParams.deviceId;
+   $scope.enoceanDevice = [];
+   $scope.enoceanProfiles = {};
+   $scope.input = {};
+   $scope.dev = [];
+   $scope.apiDevices = [];
+   $scope.rooms = [];
+   $scope.modelRoom;
 
-  /**
-   * Load profiles
-   */
-  $scope.loadProfiles = function () {
-    dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function (response) {
-      $scope.enoceanProfiles = dataService.setEnoProfile(response.Profiles.Profile);
-    }, function (error) {});
-  };
-  $scope.loadProfiles();
+   /**
+    * Load profiles
+    */
+   $scope.loadProfiles = function () {
+     dataFactory.xmlToJson($scope.cfg.server_url + 'config/Profiles.xml').then(function (response) {
+       $scope.enoceanProfiles = dataService.setEnoProfile(response.Profiles.Profile);
+     }, function (error) {});
+   };
+   $scope.loadProfiles();
 
-  /**
-   * Load enocean data
-   */
-  $scope.loadData = function () {
-    dataFactory.runEnoceanCmd('zeno.devices["' + $routeParams.deviceId + '"]').then(function (response) {
-      if (response.data == 'null') {
-        console.log('ERROR')
-        return;
-      }
-      var device = response.data;
-      var name = '';
-      var profile = assignProfile(device.data, $scope.enoceanProfiles);
-      if (profile) {
-        //profileId = profile.profileId;
-        name = profile._funcDescription;
-      }
-      $scope.input = {
-        id: device.id.replace(/^(x)/, ""),
-        rorg: device.data.rorg.value,
-        name: device.data.givenName.value || name,
-        deviceProfileId: device.data.rorg.value + '_' + device.data.funcId.value + '_' + device.data.typeId.value,
-        profile: profile,
-        profileId: ''
+   /**
+    * Load enocean data
+    */
+   $scope.loadData = function () {
+     dataFactory.runEnoceanCmd('zeno.devices["' + $routeParams.deviceId + '"]').then(function (response) {
+       if (response.data == 'null') {
+         console.log('ERROR')
+         return;
+       }
+       var device = response.data;
+       var name = '';
+       var profile = assignProfile(device.data, $scope.enoceanProfiles);
+       if (profile) {
+         name = profile._funcDescription;
+       }
+       $scope.input = {
+         id: device.id.replace(/^(x)/, ""),
+         rorg: device.data.rorg.value,
+         name: device.data.givenName.value || name,
+         deviceProfileId: device.data.rorg.value + '_' + device.data.funcId.value + '_' + device.data.typeId.value,
+         profile: profile,
+         profileId: ''
 
-      };
-    }, function (error) {});
-  };
-  $scope.loadData();
+       };
+     }, function (error) {});
+   };
+   $scope.loadData();
 
-  /**
-   * Load devices data holder
-   */
-  $scope.loadApiDevices = function () {
-    dataFactory.getApi('devices', null, true).then(function (response) {
-      $scope.apiDevices = [];
-      var findZenoStr = "ZEnoVDev_zeno_";
-      var elements = dataService.getDevicesData(response.data.data.devices, false);
-      angular.forEach(elements.value(), function (v, k) {
-        if (v.id.indexOf(findZenoStr) === -1) {
-          return;
-        }
-        var cmd = v.id.split(findZenoStr)[1].split('_');
-        var zenoId = cmd[0];
-        if (zenoId == $scope.nodeId) {
-          var obj = v;
-          obj['level'] = $filter('toInt')(v.metrics.level);
-          /*obj['id'] = v.id;
-          obj['permanently_hidden'] = v.permanently_hidden;
-          obj['visibility'] = v.visibility;
-          obj['level'] = $filter('toInt')(v.metrics.level);
-          obj['metrics'] = v.metrics;*/
-          $scope.apiDevices.push(obj);
-        }
+   /**
+    * Load devices data holder
+    */
+   $scope.loadApiDevices = function () {
+     dataFactory.getApi('devices', null, true).then(function (response) {
+       $scope.apiDevices = [];
+       var findZenoStr = "ZEnoVDev_zeno_";
+       var elements = dataService.getDevicesData(response.data.data.devices, false);
+       angular.forEach(elements.value(), function (v, k) {
+         if (v.id.indexOf(findZenoStr) === -1) {
+           return;
+         }
+         var cmd = v.id.split(findZenoStr)[1].split('_');
+         var zenoId = cmd[0];
+         if (zenoId == $scope.nodeId) {
+           var obj = v;
+           obj['level'] = $filter('toInt')(v.metrics.level);
+           $scope.apiDevices.push(obj);
+         }
 
-      });
-      loadLocations();
+       });
+       loadLocations();
 
-    }, function (error) {});
-  };
-  $scope.loadApiDevices();
+     }, function (error) {});
+   };
+   $scope.loadApiDevices();
 
-  /**
-   * Store device data
-   */
-  $scope.store = function (input) {
-    if (input.name == '') {
-      return;
-    }
-    //$scope.input.name = input.name;
-    $scope.runCmd('devices["' + $scope.nodeId + '"].data.givenName=\'' + input.name + '\'');
-    if (input.profileId) {
-      var device = angular.fromJson(input.profileId);
-      $scope.runCmd('devices["' + $scope.nodeId + '"].data.funcId=' + device.funcId);
-      $scope.runCmd('devices["' + $scope.nodeId + '"].data.typeId=' + device.typeId);
-      $scope.input.profileId = device.rorg + '_' + device.funcId + '_' + device.typeId;
-    }
-    $scope.loadData();
-    $scope.loadApiDevices();
-  };
+   /**
+    * Store device data
+    */
+   $scope.store = function (input) {
+     if (input.name == '') {
+       return;
+     }
+     //$scope.input.name = input.name;
+     $scope.runCmd('devices["' + $scope.nodeId + '"].data.givenName=\'' + input.name + '\'');
+     if (input.profileId) {
+       var device = angular.fromJson(input.profileId);
+       $scope.runCmd('devices["' + $scope.nodeId + '"].data.funcId=' + device.funcId);
+       $scope.runCmd('devices["' + $scope.nodeId + '"].data.typeId=' + device.typeId);
+       $scope.input.profileId = device.rorg + '_' + device.funcId + '_' + device.typeId;
+     }
+     $scope.loadData();
+     $scope.loadApiDevices();
+   };
 
-  /**
-   * Update device
-   */
-  $scope.updateDevice = function (input) {
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    dataFactory.putApi('devices', input.id, input).then(function (response) {
-      myCache.remove('devices');
-      $scope.loadApiDevices();
-      $scope.loading = false;
-    }, function (error) {
-      alertify.alertError($scope._t('error_update_data'));
-      $scope.loading = false;
-    });
+   /**
+    * Update device
+    */
+   $scope.updateDevice = function (input) {
+     $scope.loading = {
+       status: 'loading-spin',
+       icon: 'fa-spinner fa-spin',
+       message: $scope._t('updating')
+     };
+     dataFactory.putApi('devices', input.id, input).then(function (response) {
+       myCache.remove('devices');
+       $scope.loadApiDevices();
+       $scope.loading = false;
+     }, function (error) {
+       alertify.alertError($scope._t('error_update_data'));
+       $scope.loading = false;
+     });
 
-  };
+   };
 
-  /**
-   * Assign devices to room
-   */
-  $scope.devicesToRoom = function (roomId, devices) {
-    if (!roomId) {
-      return;
-    }
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    for (var i = 0; i <= devices.length; i++) {
-      var v = devices[i];
-      if (!v) {
-        continue;
-      }
-      var input = {
-        id: v.id,
-        location: roomId
-      };
+   /**
+    * Assign devices to room
+    */
+   $scope.devicesToRoom = function (roomId, devices) {
+     if (!roomId) {
+       return;
+     }
+     $scope.loading = {
+       status: 'loading-spin',
+       icon: 'fa-spinner fa-spin',
+       message: $scope._t('updating')
+     };
+     for (var i = 0; i <= devices.length; i++) {
+       var v = devices[i];
+       if (!v) {
+         continue;
+       }
+       var input = {
+         id: v.id,
+         location: roomId
+       };
 
-      dataFactory.putApi('devices', v.id, input).then(function (response) {}, function (error) {
-        alertify.alertError($scope._t('error_update_data'));
-        $scope.loading = false;
-        return;
-      });
-    }
-    //myCache.remove('devices');
-    $scope.loadApiDevices();
-    $scope.loading = false;
-    return;
+       dataFactory.putApi('devices', v.id, input).then(function (response) {}, function (error) {
+         alertify.alertError($scope._t('error_update_data'));
+         $scope.loading = false;
+         return;
+       });
+     }
+     $scope.loadApiDevices();
+     return;
+   };
 
-  };
+   /**
+    * Run command
+    */
+   $scope.runCmd = function (cmd) {
+     $scope.loading = {
+       status: 'loading-spin',
+       icon: 'fa-spinner fa-spin',
+       message: $scope._t('updating')
+     };
+     // Run CMD
+     dataFactory.runEnoceanCmd(cmd).then(function (response) {
+       $scope.loading = false;
+     }, function (error) {
+       $scope.loading = false;
+     });
+     return;
+   };
 
+   /// --- Private functions --- ///
+   /**
+    * Assign profile to device
+    */
+   function assignProfile(device, profiles) {
+     var profile = false;
+     var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
+     angular.forEach(profiles, function (v, k) {
+       //var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
+       if (deviceProfileId == v.id) {
+         profile = v;
+         return;
+       }
+     });
+     return profile;
+   };
 
+   /**
+    * Load locations
+    */
+   function loadLocations() {
+     dataFactory.getApi('locations').then(function (response) {
+       $scope.rooms = response.data.data;
+     }, function (error) {});
+   };
+ });
 
-  /**
-   * Run command
-   */
-  $scope.runCmd = function (cmd) {
-    $scope.loading = {
-      status: 'loading-spin',
-      icon: 'fa-spinner fa-spin',
-      message: $scope._t('updating')
-    };
-    // Run CMD
-    dataFactory.runEnoceanCmd(cmd).then(function (response) {
-      $scope.loading = false;
-    }, function (error) {
-      $scope.loading = false;
-
-    });
-    return;
-  };
-
-  /// --- Private functions --- ///
-  /**
-   * Set devices
-   */
-  function setDevices(devices, profiles) {
-    angular.forEach(devices, function (v, k) {
-      $scope.enoceanDevices[v.id] = {
-        id: v.id,
-        data: v.data,
-        profile: assignProfile(v.data, profiles)
-      };
-    });
-    //console.log($scope.deviceCollection)
-  };
-  /**
-   * Assign profile to device
-   */
-  function assignProfile(device, profiles) {
-    var profile = false;
-    var deviceProfileId = device.rorg.value + '_' + device.funcId.value + '_' + device.typeId.value;
-    angular.forEach(profiles, function (v, k) {
-      //var profileId = parseInt(v._rorg) + '_' + parseInt(v._func) + '_' + parseInt(v._type);
-      if (deviceProfileId == v.id) {
-        profile = v;
-        return;
-      }
-    });
-    return profile;
-  };
-
-  /**
-   * Load locations
-   */
-  function loadLocations() {
-    dataFactory.getApi('locations').then(function (response) {
-      $scope.rooms = response.data.data;
-    }, function (error) {});
-  };
-});
-/**
+/***************************************************************************************************************************
  * The controller that renders informations about the controller.
  * @class EnoceanControllerController
  */

@@ -120,11 +120,10 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
 			});
 
 		} else {
-			console.log('Camera not supported');
+			$scope.dataHolder.video.supported = false;
 		}
 	}
 	$scope.checkWebcam();
-
 
 });
 
@@ -132,7 +131,7 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
  * The controller that include device with DSK.
  * @class SmartStartDskController
  */
-myAppController.controller('SmartStartDskController', function($scope, $timeout, cfg, dataFactory, dataService, _) {
+myAppController.controller('SmartStartDskController', function($scope, $timeout, $filter, cfg, dataFactory, dataService, _) {
 	$scope.dsk = {
 		firmwareAlert: {},
 		input: {
@@ -148,23 +147,36 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 		list: [],
 		response: '',
 	};
+	$scope.registerDisabled = true;
+	var validateInputs = function () {
+		$scope.registerDisabled = Object.values($scope.dsk.input).some(function (input) {
+			return input.length !== 5;
+		})
+	}
 	// Copy original input values
 	$scope.origInput = angular.copy($scope.dsk.input);
+	/**
+	 * Fix length input
+	 */
+	$scope.fixLength = function (id) {
+		var value =  $scope.dsk.input['dsk_' + id].replace(/[^\d]/g,'');
+		$scope.dsk.input['dsk_' + id] = value.substring(0,5);
+		validateInputs();
+	}
 	/**
 	 * Split string into 8 substrings and then fill DSK inputs
 	 */
 	$scope.fillInput = function(e, cell) {
 		e.preventDefault();
 		var txt = e.originalEvent.clipboardData.getData('text/plain');
-		var cleared = txt.replace(/[\W]/g,'');
+		var cleared = txt.replace(/[^\d]/g,'');
 		if (cleared) {
 			for( var i = 0, index = cell + 1; i < cleared.length && index < 9; index++, i += 5) {
-				console.log(index, cleared.substring(i, i + 5));
 				$scope.dsk.input['dsk_' + index] = cleared.substring(i, i + 5);
 			}
 			document.querySelector('#dsk_' + (index - 1)).focus();
 		}
-
+		validateInputs();
 	}
 
 	/**
@@ -207,7 +219,12 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 
 		}, function(error) {
 			$scope.dataHolder.state = null;
-			alertify.alertError($scope._t('error_update_data'));
+			$scope.dsk.state = 'error-register';
+			if (error.status === 409) {
+				$scope.dsk.response = $scope._t('already_exist');
+			} else {
+				alertify.alertError($scope._t('error_update_data'));
+			}
 		}).finally(function() {
 			$timeout($scope.toggleRowSpinner, 1000).then(function (){
 				if ($scope.dsk.state === 'success-register') {

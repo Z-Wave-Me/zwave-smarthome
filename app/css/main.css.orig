@@ -16555,8 +16555,7 @@ legend.alpaca-container-label {
   margin-bottom: 10px; }
 
 .alpaca-array-actionbar {
-  padding-bottom: 10px;
-  height: 40px; }
+  padding-bottom: 10px; }
 
 .alpaca-array-actionbar, .alpaca-array-actionbar.btn-group {
   width: 100%; }
@@ -18817,6 +18816,8 @@ img {
     border: 1px solid #cccccc;
     background-color: #FFFFFF;
     overflow-y: scroll;
+    /* MIN WIDTH */
+    /* MAX WIDTH */
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     -moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -18824,6 +18825,12 @@ img {
     /* MAX WIDTH */
     /* MIN WIDTH */
     /* MAX WIDTH */ }
+    @media only screen and (min-width: 768px) {
+      .page-navi .page-navi-in {
+        -ms-overflow-style: none;
+        scrollbar-width: none; }
+        .page-navi .page-navi-in::-webkit-scrollbar {
+          display: none; } }
     @media only screen and (max-width: 767px) {
       .page-navi .page-navi-in {
         position: fixed;
@@ -21646,6 +21653,11 @@ img.widget-promo-image {
   border-bottom-left-radius: 150px;
   border-bottom-right-radius: 150px; }
 
+.flex-buttons {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap; }
+
 /* Events
 -------------------------------------------------- */
 .events .list-panel .body {
@@ -21775,6 +21787,9 @@ img.widget-promo-image {
 
 .comment-entry.even {
   background-color: #E9E9E9; }
+
+.ngrs-range-slider {
+  touch-action: none; }
 
 /* Local apps
 -------------------------------------------------- */

@@ -28,6 +28,8 @@ myAppFactory.factory('_', function () {
  */
 myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $interval,dataService, cfg, _) {
     var updatedTime = 0;
+    var updatedTimeZWave = 0;
+    var updatedTimeEnOcean = 0;
     var lang = cfg.lang;
     var ZWAYSession = dataService.getZWAYSession();
     var user = dataService.getUser();
@@ -146,7 +148,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     function logInApi(data) {
         // remove ZWAYSession just before login not to confuse the server
         expireActiveCookies("ZWAYSession");
-        
+
         return $http({
             method: "post",
             headers: {
@@ -253,8 +255,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                 'Accept-Language': lang,
                 'ZWAYSession': ZWAYSession,
                 'isZWAY': true
-                        //'Accept-Encoding': 'gzip, deflate',
-                        //'Allow-compression': 'gz' 
             }
         }).then(function (response) {
             if (!angular.isDefined(response.data)) {
@@ -304,7 +304,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             return $q.reject(response);
         });
     }
-    
+
    /**
     * Post ZAutomation api data
     * @param {string} api
@@ -473,7 +473,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
 
     }
-    
+
     /**
      * Delete ZAutomation api data with JSON
      * @param {string} api
@@ -647,14 +647,15 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      */
     function refreshApi(api, params, updateTime) {
         if(updateTime || typeof updateTime !== 'undefined') {
-            updatedTime = updateTime;
+            updatedTime = updateTime; // variables looks same, but they differ in 'd' character
         }
+
         if(_.findWhere($http.pendingRequests,{failWait: api})){
             return $q.reject('Pending');
         }
         // Time in notifications is in miliseconds
-         if (api === 'notifications' && updatedTime.toString().length === 10) {
-            updatedTime = updatedTime * 1000;
+         if (api === 'notifications') {
+            updatedTime *= 1000;
         }
 
         return $http({
@@ -669,10 +670,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             }
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || $filter('hasNode')(response.data, 'updateTime') || Math.round(+new Date() / 1000));
-                
-                var timestamp = (response.data.data.updateTime || response.data.updateTime || 0) + ((cfg.route.time.timeZoneOffset * -1) * 3600);
-                cfg.route.time.timestamp = (timestamp);
+                updateTime = response.data.data.updateTime || response.data.updateTime || 0;
+                var timestamp = updateTime + ((cfg.route.time.timeZoneOffset * -1) * 3600);
+                cfg.route.time.timestamp = timestamp;
                 cfg.route.time.string = $filter('setTimeFromBox')(timestamp);
                 cfg.route.time.timeUpdating = true;
                 return response;
@@ -764,7 +764,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
     }
 
-     
+
 
 
     /**
@@ -810,7 +810,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
 
     /**
-     * Get updated data holder from the ZAutomation
+     * Get updated data holder from the ZWaveAPI
      * @returns {unresolved}
      */
     function refreshZwaveApiData() {
@@ -821,10 +821,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         return $http({
             method: 'get',
             failWait: cacheName,
-            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTimeZWave
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
+                updatedTimeZWave = response.data.updateTime;
                 return response;
             } else {
                 // invalid response
@@ -837,7 +837,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     }
 
     /**
-     * Get updated ZAutomation data and join it to ZAutomation data holder
+     * Get updated ZWaveAPI data and join it to ZWaveAPIData
      * @param {object} ZWaveAPIData
      * @returns {unresolved}
      */
@@ -849,7 +849,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         var result = {};
         return $http({
             method: 'post',
-            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTime,
+            url: cfg.server_url + cfg.zwave_api_url + 'Data/' + updatedTimeZWave,
             data: {} // ZWaveAPI/Data always have empty POST body
         }).then(function (response) {
             if (typeof response.data === 'object' && apiData) {
@@ -873,7 +873,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
                     "update": response.data
                 };
                 response.data = result;
-                updatedTime = ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
+                updatedTimeZWave= ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
                 myCache.put(cacheName, apiData);
                 return response;
             } else {
@@ -959,17 +959,16 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function refreshEnoceanApiData() {
-        //console.log('?since=' + updatedTime)
         return $http({
             method: 'get',
-            url: cfg.server_url + cfg.enocean_data_url + updatedTime
+            url: cfg.server_url + cfg.enocean_data_url + updatedTimeEnOcean
                     /*headers: {
                      'Accept-Language': lang,
                      'ZWAYSession': ZWAYSession
                      }*/
         }).then(function (response) {
             if (typeof response.data === 'object') {
-                updatedTime = ($filter('hasNode')(response.data, 'data.updateTime') || $filter('hasNode')(response.data, 'updateTime') || Math.round(+new Date() / 1000));
+                updatedTimeEnOcean = ($filter('hasNode')(response.data, 'data.updateTime') || $filter('hasNode')(response.data, 'updateTime') || Math.round(+new Date() / 1000));
                 return response;
             } else {// invalid response
                 return $q.reject(response);
@@ -1045,7 +1044,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             isRemote:true,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-                        //'ZWAYSession': ZWAYSession 
             }
         }).then(function (response) {
             return response;
@@ -1069,7 +1067,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             isRemote:true,
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
-                        //'ZWAYSession': ZWAYSession 
             }
         }).then(function (response) {
             return response;
@@ -1217,4 +1214,3 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         });
     }
 });
-
