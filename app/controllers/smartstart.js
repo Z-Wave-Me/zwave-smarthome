@@ -38,7 +38,7 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
 		// with getUserMedia as it would overwrite existing properties.
 		// Here, we will just add the getUserMedia property if it's missing.
 		if (navigator.mediaDevices.getUserMedia === undefined) {
-			navigator.mediaDevices.getUserMedia = function(constraints) {
+			navigator.mediaDevices.getUserMedia = function (constraints) {
 
 				// First get ahold of the legacy getUserMedia, if present
 				var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -50,17 +50,17 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
 				}
 
 				// Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
-				return new Promise(function(resolve, reject) {
+				return new Promise(function (resolve, reject) {
 					getUserMedia.call(navigator, constraints, resolve, reject);
 				});
 			}
 		}
 
 		if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
-			navigator.enumerateDevices = function(callback) {
+			navigator.enumerateDevices = function (callback) {
 				var enumerateDevices = navigator.mediaDevices.enumerateDevices();
 				if (enumerateDevices && enumerateDevices.then) {
-					navigator.mediaDevices.enumerateDevices().then(callback).catch(function() {
+					navigator.mediaDevices.enumerateDevices().then(callback).catch(function () {
 						callback([]);
 					});
 				} else {
@@ -91,34 +91,38 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
 				isGetUserMediaSupported = false;
 			}
 		}
-
-		navigator.enumerateDevices(function(devices) {
-			devices.forEach(function(_device) {
-				var device = {};
-				for (var d in _device) {
-					try {
-						if (typeof _device[d] !== 'function') {
-							device[d] = _device[d];
+		if (navigator.enumerateDevices) {
+			navigator.enumerateDevices(function (devices) {
+				devices.forEach(function (_device) {
+					var device = {};
+					for (var d in _device) {
+						try {
+							if (typeof _device[d] !== 'function') {
+								device[d] = _device[d];
+							}
+						} catch (e) {
 						}
-					} catch (e) {}
-				}
+					}
 
-				if (device.kind === 'videoinput') {
-					hasWebcam = true;
+					if (device.kind === 'videoinput') {
+						hasWebcam = true;
+					}
+				});
+				if (hasWebcam && isGetUserMediaSupported) {
+					$scope.dataHolder.video.supported = true;
+				} else {
+					$scope.dataHolder.video.alert = {
+						message: $scope._t('camera_not_supported'),
+						status: 'alert-warning',
+						icon: 'fa-exclamation-circle'
+					};
 				}
 			});
-			if (hasWebcam && isGetUserMediaSupported) {
-				$scope.dataHolder.video.supported = true;
-			} else {
-				$scope.dataHolder.video.alert = {
-					message: $scope._t('camera_not_supported'),
-					status: 'alert-warning',
-					icon: 'fa-exclamation-circle'
-				};
-			}
-		});
 
-	};
+		} else {
+			console.log('Camera not supported');
+		}
+	}
 	$scope.checkWebcam();
 
 
@@ -149,12 +153,16 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 	/**
 	 * Split string into 8 substrings and then fill DSK inputs
 	 */
-	$scope.fillInput = function(e) {
+	$scope.fillInput = function(e, cell) {
+		e.preventDefault();
 		var txt = e.originalEvent.clipboardData.getData('text/plain');
-		if (txt) {
-			angular.forEach(txt.split('-'), function(v, k) {
-				$scope.dsk.input['dsk_' + (k + 1)] = v.substring(0, 5);
-			});
+		var cleared = txt.replace(/[\W]/g,'');
+		if (cleared) {
+			for( var i = 0, index = cell + 1; i < cleared.length && index < 9; index++, i += 5) {
+				console.log(index, cleared.substring(i, i + 5));
+				$scope.dsk.input['dsk_' + index] = cleared.substring(i, i + 5);
+			}
+			document.querySelector('#dsk_' + (index - 1)).focus();
 		}
 
 	}
@@ -201,7 +209,11 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 			$scope.dataHolder.state = null;
 			alertify.alertError($scope._t('error_update_data'));
 		}).finally(function() {
-			$timeout($scope.toggleRowSpinner, 1000);
+			$timeout($scope.toggleRowSpinner, 1000).then(function (){
+				if ($scope.dsk.state === 'success-register') {
+					window.location.href = '#/smartstartlist';
+				}
+			});
 		});
 	};
 
