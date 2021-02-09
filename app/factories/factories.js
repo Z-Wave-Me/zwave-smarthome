@@ -282,7 +282,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @returns {unresolved}
      */
     function getApiNoToken(api) {
-        console.log(">>> getApiNoToken: " + api);
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.api[api],
@@ -845,7 +844,6 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         var time = Math.round(+new Date() / 1000);
         var cacheName = 'cache_zwaveapidata';
         var apiData = myCache.get(cacheName) || ZWaveAPIData;
-        //console.log(apiData)
         var result = {};
         return $http({
             method: 'post',
