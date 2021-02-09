@@ -141,17 +141,11 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 		}]
 	};
 
-	$timeout(function() {
-		$scope.drawChart();
-	}, 0);
-
-	$scope.drawChart = function() {
-		var canvas = document.getElementById('history_chart'),
-			context = canvas.getContext('2d');
-
+	var drawChart = function() {
+		var canvas = document.getElementById('history_chart');
 		// resize the canvas to fill browser window dynamically
 		$window.addEventListener('resize', resizeCanvas, false);
-
+		var loading = false;
 		function resizeCanvas() {
 			canvas.width = $window.innerWidth;
 			canvas.height = $window.innerHeight;
@@ -160,7 +154,12 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 			 * Your drawings need to be inside this function otherwise they will be reset when 
 			 * you resize the browser window and the canvas goes will be cleared.
 			 */
-			$scope.loadDeviceHistory();
+			if (!loading) {
+				loading = true;
+				loadDeviceHistory().then(function () {
+					loading = false;
+				});
+			}
 		}
 		resizeCanvas();
 	};
@@ -168,7 +167,7 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 	/**
 	 * Load device history
 	 */
-	$scope.loadDeviceHistory = function() {
+	var loadDeviceHistory = function() {
 		var device = !_.isEmpty($scope.dataHolder.devices.byId) ? $scope.dataHolder.devices.byId : $scope.dataHolder.devices.find;
 		if (!device) {
 			$scope.widgetHistory.alert = {
@@ -184,7 +183,7 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 			status: 'alert-warning',
 			icon: 'fa-spinner fa-spin'
 		};
-		dataFactory.getApi('history_get', '?id=' + device.id + '&show=' + $scope.widgetHistory.history_steps, true).then(function(response) {
+		return dataFactory.getApi('history_get', '?id=' + device.id + '&show=' + $scope.widgetHistory.history_steps, true).then(function(response) {
 			if (!response.data.history) {
 				$scope.widgetHistory.alert = {
 					message: $scope._t('no_data'),
@@ -194,8 +193,8 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 				return;
 			}
 			$scope.widgetHistory.alert = {};
-			$scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors, $scope.widgetHistory.history_steps);
-		}, function(error) {
+			return $scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors, $scope.widgetHistory.history_steps);
+			}, function(error) {
 			$scope.widgetHistory.alert = {
 				message: $scope._t('error_load_data'),
 				status: 'alert-danger',
@@ -203,14 +202,12 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 			};
 		});
 	};
-	//$scope.loadDeviceHistory();
 
 	$scope.reloadChart = function(steps) {
-		angular.extend($scope.widgetHistory.chartData, {});
 		$scope.widgetHistory.history_steps = parseInt(steps, 10);
-		$scope.loadDeviceHistory();
-		document.getElementById('history_chart').update();
+		loadDeviceHistory();
 	};
+	drawChart();
 });
 
 /**
