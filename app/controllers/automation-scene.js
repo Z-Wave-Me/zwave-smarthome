@@ -17,7 +17,7 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 	 * Load schedules
 	 * @returns {undefined}
 	 */
-	$scope.loadScenes = function() {
+	var loadScenes = function() {
 		dataFactory.getApi('instances', null, true).then(function(response) {
 			$scope.scenes.all = _.chain(response.data.data).flatten().where({
 				moduleId: 'Scenes'
@@ -49,7 +49,6 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 					return;
 				}
 				$location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
-				return;
 				/*  $scope.scenes.state = 'blank';
 				return; */
 			}
@@ -62,59 +61,43 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 	};
 
 	/**
-	 * Load schedules
+	 * Load oldScenes
 	 * @returns {undefined}
+	 * deprecated
 	 */
-	$scope.loadOldScenes = function() {
+	var loadOldScenes = function() {
 		dataFactory.getApi('instances', '/LightScene', true).then(function(response) {
 			$scope.oldScenes = _.filter(response.data.data, function(v) {
+				console.log(v);
 				return !v.params.moduleAPITransformed;
 			});
-
-			if ($scope.oldScenes.length) {
-				var postData = {
-					source: 'LightScene',
-					target: 'Scenes'
-				}
-				alertify.confirm($scope._t('ligthscenes_exists'))
-					.setting('labels', {
-						'ok': $scope._t('ok_import')
-					})
-					.set('onok', function(closeEvent) { //after clicking OK
-						dataFactory.postApi('modules_transform', postData).then(function(response) {
-							if (response.data && response.data.data) {
-								var newScenes = response.data.data.map(function(entry) {
-									return entry.title
-								});
-								dataService.showNotifier({
-									message: $scope._t('successfully_transformed') + '<br>' + newScenes.join(',<br>')
-								});
-								$scope.loadScenes();
-							}
-
-							$scope.oldScenes = [];
-						}, function(error) {
-							dataService.showNotifier({
-								message: $scope._t('error_transformed'),
-								type: 'error'
-							});
-							$scope.oldScenes = [];
-							$scope.loadScenes();
-						});
-					})
-					.set('oncancel', function(closeEvent) { //after clicking Cancel
-						$scope.oldScenes = [];
-						$scope.loadScenes();
-					});
-			} else {
-				$scope.loadScenes();
-			}
-		}, function(error) {
-			$scope.loadScenes();
 		});
 	};
-	$scope.loadOldScenes();
-
+	loadOldScenes();
+	loadScenes();
+	$scope.convertScene = function () {
+		dataFactory.postApi('modules_transform', {
+			source: 'LightScene',
+			target: 'Scenes'
+		}).then(function(response) {
+			console.log(response);
+			if (response.data && response.data.data) {
+				var newScenes = response.data.data.map(function(entry) {
+					return entry.title
+				});
+				dataService.showNotifier({
+					message: $scope._t('successfully_transformed') + '<br>' + newScenes.join(',<br>')
+				});
+			}
+			$scope.oldScenes = [];
+		}, function(error) {
+			dataService.showNotifier({
+				message: $scope._t('error_transformed'),
+				type: 'error'
+			});
+			$scope.oldScenes = [];
+		}).finally(loadScenes);
+	}
 	/**
 	 * Run test
 	 * @param {object} instance

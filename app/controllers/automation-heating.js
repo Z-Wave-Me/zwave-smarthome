@@ -1,8 +1,8 @@
+'use strict';
 /**
  * @overview
  * @author Michael Hensche
  */
-
 
 /**
  *
@@ -242,10 +242,27 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
 	$scope.jQuery_schedules = {};
 
+	$scope.mobileView = $scope.deviceDetector.isMobile() ||
+		$scope.cfg.route.os === 'PoppApp_Z_Way' ||
+		$scope.cfg.route.os === 'ZWayMobileAppAndroid' ||
+		$scope.cfg.route.os === 'IOSWRAPPER' ||
+		$scope.cfg.route.os === 'ZWayMobileAppiOS';
+
+	$scope.changeView = function() {
+		if ($scope.mobileView)
+		{
+			var elements = angular.element.find("[aria-expanded='true']");
+			elements.map(function (el){
+				var id = el.dataset.id;
+				$scope.renderSchedule('#schedule-'+ id, id)
+			})
+		}
+		$scope.mobileView = !$scope.mobileView;
+	}
 	/**
 	 * [renderSchedule description]
-	 * @param  {[type]} scheduleId [description]
-	 * @param  {[type]} roomId     [description]
+	 * @param  {string} scheduleId [description]
+	 * @param  {string} roomId     [description]
 	 * @return {[type]}            [description]
 	 */
 	$scope.renderSchedule = function(scheduleId, roomId) {
@@ -457,7 +474,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		var hasSC = false;
 		if ($scope.heating.input.params.roomSettings && $scope.heating.input.params.roomSettings[roomId]) {
 			var schedule = $scope.heating.input.params.roomSettings[roomId].schedule;
-			for (sc in schedule) {
+			for (var sc in schedule) {
 				if (schedule[sc].length > 0) {
 					hasSC = true;
 					break;
@@ -618,7 +635,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
 		for (var i = 0; i <= 6; i++) { // days
 			if ($scope.heating.mobileSchedule[roomId][targetIndex][i]) { // day true
-				overlaps = timeOverlaps($scope.heating.mobileSchedule[roomId], stime, etime, i); // check for day
+				var overlaps = timeOverlaps($scope.heating.mobileSchedule[roomId], stime, etime, i); // check for day
 				if (overlaps.length > 0) {
 					$scope.heating.mobileSchedule[roomId][targetIndex][type] = oldValue;
 					alertify.alertWarning($scope._t('data_overlaps'));
@@ -742,7 +759,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.transformFromMobileToInst = function() {
 		// transform data for Instance
-		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
+		// if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 			_.each($scope.heating.mobileSchedule, function(data, roomId) {
 				$scope.heating.input.params.roomSettings[roomId].schedule = {};
 				_.each(data, function(d) {
@@ -761,7 +778,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 					}
 				});
 			});
-		}
+		// }
 	};
 
 	/**
@@ -769,7 +786,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.transformFromInstToMobile = function() {
 		// transform data for mobile view
-		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
+		// if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 			_.each($scope.heating.input.params.roomSettings, function(data, roomId) {
 				var schedule = data.schedule;
 
@@ -798,7 +815,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 					}
 				});
 			});
-		}
+		// }
 	};
 
 
@@ -904,12 +921,5 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		var i = Number(slice[1]) * 60;
 		var min = h + i;
 		return min;
-	}
-	$scope.zoom = function (id, key) {
-		if (key === 'in') {
-		}
-		if (key === 'out') {
-		}
-		console.log({id, key});
 	}
 });

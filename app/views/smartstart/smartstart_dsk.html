@@ -1,5 +1,8 @@
 <div ng-controller="SmartStartDskController">
 	<div ng-if="_.isEmpty(dsk.firmwareAlert) && !dataHolder.video.supported || dataHolder.manual_add">
+		<div class="alert alert-warning">
+			<i class="fas fa-info-circle"></i> {{_t('video_not_supported_smart_start')}}
+		</div>
 		<bb-alert alert="dsk.firmwareAlert"></bb-alert>
 		<!-- Navigation -->
 		<!--<div ng-include="'app/views/smartstart/navi.html'"></div>-->
@@ -10,18 +13,20 @@
 			</p>
 			<form name="form_dsk" class="form-inline_" ng-submit="addDskProvisioningList()">
 				<div class="form-group dsk-input-group" bb-dsk-navigate>
-					<span><input id="dsk_1" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_1" ng-paste="fillInput($event)" /></span>
-					<span><input id="dsk_2" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_2" ng-paste="fillInput($event)" /></span>
-					<span><input id="dsk_3" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_3" ng-paste="fillInput($event)" /></span>
-					<span><input id="dsk_4" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_4" ng-paste="fillInput($event)" /></span>
-					<span><input id="dsk_5" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_5" ng-paste="fillInput($event)" /></span>
-					<span><input id="dsk_6" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_6" ng-paste="fillInput($event)" /></span>
-					<span><input id="dsk_7" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_7" ng-paste="fillInput($event)" /></span>
-					<span><input id="dsk_8" type="text" maxlength="5" class="form-control dsk-number" ng-model="dsk.input.dsk_8" ng-paste="fillInput($event)" ></span>
+					<span ng-repeat="_ in [].constructor(8) track by $index">
+						<input id="dsk_{{$index + 1}}"
+							   type="text"
+							   maxlength="5"
+							   class="form-control dsk-number"
+							   ng-model="dsk.input['dsk_' + ($index + 1)]"
+							   ng-paste="fillInput($event, $index)"
+							   ng-change="fixLength($index + 1)"
+						/>
+					</span>
 				</div>
-				
 				<div class="form-group">
-					<button class="btn btn-success btn-block_">
+					<button class="btn btn-block_" ng-disabled="registerDisabled"
+					ng-class="registerDisabled ? 'btn-default': 'btn-success'">
 					<bb-row-spinner
 					spinner="rowSpinner[cfg.api.add_dsk]"
 					label="_t('Register')"
@@ -38,11 +43,12 @@
 				<i class="fas fa-check"></i>  {{_t('smartstart_enter_key_success')}}
 				<div>{{dsk.response}}</div>
 			</div>
-			<!--<ul class="scrollh">
-				<li ng-repeat="v in dsk.list track by $index">
-					{{v}}
-				</li>
-			</ul>-->
+		</div>
+		<div class="entry list" ng-if="dsk.state == 'error-register'">
+			<div class="alert alert-danger">
+				<i class="fa fa-times" style="color: red"></i>  {{_t('smartstart_enter_key_error')}}
+				<div>{{dsk.response}}</div>
+			</div>
 		</div>
 	</div>
 	<div class="entry" ng-if="!dataHolder.video.supported">
