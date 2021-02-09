@@ -2,10 +2,10 @@
 <div ng-controller="AuthFirstAccessController">
     <bb-loader></bb-loader>
     <div class="welcome-screen">
-        <h1> {{_t('welcome_1')}}  {{auth.remoteId}}</h1>
+        <h1> {{_t('welcome_1')}} {{auth.remoteId}}</h1>
     </div>
     <div class="alert alert-warning"><i class="fas fa-exclamation-circle"></i> {{_t('password_info')}}</div>
-    <form name="form_password" id="form_password" class="form form-page" ng-submit="updateFirstAccess(form_password, input,handleTimezone.instance)" novalidate>
+    <div name="form_password" id="form_password" class="form form-page" novalidate>
         <!-- language  -->
         <fieldset>
             <label>{{_t('select_language')}}: </label>
@@ -91,40 +91,21 @@
                         <input type="checkbox" ng-model="speechAssistans.alexa.input.active">
                         <span class="slider"></span>
                     </label>
-                    <span class="switch-label"><figure class="img wh-32x32">
-                        <img ng-src="{{speechAssistans.alexa.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                    </figure>
-                    {{_t('lb_alexa')}}
-                </span>
+                    <span class="switch-label">
+                        <figure class="img wh-32x32">
+                            <img ng-src="{{speechAssistans.alexa.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                        </figure>
+                        {{_t('lb_alexa')}}
+                    </span>
+                </div>
             </div>
-            <!-- Google Home -->
-            <!-- <div>
-                <label class="switch">
-                    <input type="checkbox" ng-model="speechAssistans.google_home.input.active">
-                    <span class="slider"></span>
-                </label>
-                <span class="switch-label"><figure class="img wh-32x32">
-                    <img ng-src="{{speechAssistans.google_home.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-                </figure>
-                {{_t('lb_google_home')}}
-            </span>
-        </div> -->
+            <bb-help-text trans="_t('speech_assistant_info')"></bb-help-text>
+        </fieldset>
+        <fieldset class="submit-entry">
+            <button type="button" class="btn btn-submit" title="{{_t('lb_enter')}}" ng-disabled="form_password.$invalid"
+                ng-click="updateFirstAccess(form_password, input, handleTimezone.instance)">
+                <i class="fas fa-check"></i> <span ng-bind="_t('lb_submit')"></span>
+            </button>
+        </fieldset>
     </div>
-    <bb-help-text trans="_t('speech_assistant_info')"></bb-help-text>
-<!--<pre>{{speechAssistans.alexa | json}}</pre>
-<pre>{{speechAssistans.google_home | json}}</pre>-->
-</fieldset>
-<!--<fieldset>
-<div class="form-group">
-<input type="checkbox" name="trust_my_network" id="trust_my_network"
-ng-model="input.trust_my_network" />
-<label ng-bind="_t('secure_login')"></label> <bb-help file="secure_login" lang="{{loginLang}}"></bb-help>
-</div>
-</fieldset>-->
-<fieldset class="submit-entry">
-<button type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}" ng-disabled="form_password.$invalid">
-<i class="fas fa-check"></i> <span ng-bind="_t('lb_submit')"></span>
-</button>
-</fieldset>
-</form>
 </div>

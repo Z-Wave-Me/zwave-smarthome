@@ -100,8 +100,6 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 			$scope.auth.firstaccess = response.data.data.firstaccess;
 			$scope.auth.defaultProfile = response.data.data.defaultProfile;
 			$scope.auth.ipAddress = response.data.data.ip_address;
-			
-			$scope.authProcessed = true;
 		}, function(error) {
 			$scope.loading = false;
 			angular.extend(cfg.route.alert, {
@@ -464,21 +462,18 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			profile['lang'] = $scope.loginLang;
 			// Update profile
 			dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function(response) {
-				if(cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid') {
-					Android.click(input.password);
-				}
-
+				var _profile = _.omit(response.data.data, 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
 				if ((cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
 					$scope.updateInstance(instance);
+				} else if (cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS') {
+					$scope.redirectAfterLogin(true, _profile, input.password, '#/dashboard/firstlogin?authBearer');
 				} else {
-					$scope.redirectAfterLogin(true, response.data.data, input.password, '#/dashboard/firstlogin');
+					$scope.redirectAfterLogin(true, _profile, input.password, '#/dashboard/firstlogin');
 				}
 			}, function(error) {
 				alertify.alertError($scope._t('error_update_data'));
 				return;
 			});
-
-
 		}, function(error) {
 			var message = $scope._t('error_update_data');
 			if (error.status == 409) {
