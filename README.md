@@ -9,6 +9,27 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.13.0
+#### New features:
+- EnOcean: reworked Teach-In process, EnOcean logo to the leaf, added support for many new devices
+- Show references in Apps in widgets settings
+- Show widgets id in Z-Wave device settings
+- Added ZWAYSessionCookieIgnore header to the auth API
+#### Fixes:
+- Welcome pages adopted for mobile
+- Improved updates of API data: updatedTime separated for ZAutomation, Z-Wave and EnOcean
+- Fixed sliders on touch interfaces (RGBW was affected)
+- Heating app fixed: energy save instead comfort temperature
+- Accept the temperature with fractional part
+- Removed welcome screen on subsequent loads
+- Faster boot of the UI
+- fixed days name in mobile view
+- Changed icons in event tab like in elements tab
+- remove scroll bar page-navi modal
+- Fixed issue with big profile not fitting in user cookie
+- Improved authentication to fix reloading login window
+- Fixed ordering/sorting in elements
+
 ## v1.12.0
 #### New features:
 - Fast load of Dashboard, Rooms and Elements pages.
