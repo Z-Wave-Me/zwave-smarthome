@@ -292,60 +292,6 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 	};
 	$scope.reboot = false;
 
-	$scope.speechAssistans = {
-		alexa: {
-			iconPath: "",
-			input: {
-				instanceId: "0",
-				id: "0",
-				moduleId: "Alexa",
-				active: false,
-				params: {
-					assign_room: false,
-					devices: []
-				}
-			}
-		},
-		google_home: {
-			iconPath: "",
-			input: {
-				instanceId: "0",
-				id: "0",
-				moduleId: "GoogleHome",
-				active: false,
-				params: {
-					assign_room: false,
-					devices: []
-				}
-			}
-		}
-	}
-
-	$scope.moduleMediaUrl = $scope.cfg.server_url + $scope.cfg.api_url + 'load/modulemedia/';
-
-	$scope.loadSpeechAssistans = function() {
-		var promises = [
-			dataFactory.getApi('modules', '/Alexa'),
-			dataFactory.getApi('modules', '/GoogleHome')
-		];
-
-		$q.allSettled(promises).then(function(response) {
-			var alexa = response[0],
-				google_home = response[1];
-
-			// Success - alexa
-			if (alexa.state === 'fulfilled') {
-				$scope.speechAssistans.alexa.iconPath = $scope.moduleMediaUrl + $scope.speechAssistans.alexa.input.moduleId + '/' + alexa.value.data.data.icon;
-
-			}
-			// Success - google_home
-			if (google_home.state === 'fulfilled') {
-				$scope.speechAssistans.google_home.iconPath = $scope.moduleMediaUrl + $scope.speechAssistans.google_home.input.moduleId + '/' + google_home.value.data.data.icon;
-			}
-		});
-	};
-	$scope.loadSpeechAssistans();
-
 	/**
 	 * Load all promises
 	 */
@@ -380,53 +326,6 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 		$scope.allSettled();
 	}
 
-	$scope.createSpeechAssistantsInstances = function() {
-		var alexa = {
-				done: false,
-				error: true
-			},
-			google_home = {
-				done: false,
-				error: true
-			};
-		// create alexa instance
-		if ($scope.speechAssistans.alexa.input.active) {
-			console.log("$scope.speechAssistans.alexa.input", $scope.speechAssistans.alexa.input);
-			dataFactory.storeApi('instances', parseInt($scope.speechAssistans.alexa.input.instanceId, 10), $scope.speechAssistans.alexa.input).then(function(response) {
-				alexa.done = true;
-				alexa.error = false;
-			}, function(error) {
-				alexa.done = true;
-			});
-		} else {
-			alexa.done = true;
-			alexa.error = false;
-		}
-
-		// create google home instance
-		if ($scope.speechAssistans.google_home.input.active) {
-			console.log("$scope.speechAssistans.google_home.input", $scope.speechAssistans.google_home.input);
-			dataFactory.storeApi('instances', parseInt($scope.speechAssistans.google_home.input.instanceId, 10), $scope.speechAssistans.google_home.input).then(function(response) {
-				google_home.done = true;
-				google_home.error = false;
-			}, function(error) {
-				google_home.done = true;
-			});
-		} else {
-			google_home.done = true;
-			google_home.error = false;
-		}
-
-		var timer = $interval(function() {
-			if (alexa.done && google_home.done) {
-				$interval.cancel(timer);
-				if (alexa.error || google_home.error) {
-					alertify.alertError($scope._t('error_update_data'));
-				}
-			}
-		}, 1000);
-	};
-
 	/**
 	 * Update profile with data from the first access form
 	 */
@@ -446,9 +345,6 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			'Accept-Language': $scope.auth.defaultProfile.lang,
 			'ZWAYSession': $scope.auth.defaultProfile.sid
 		};
-
-		// create speech assistants
-		$scope.createSpeechAssistantsInstances();
 
 		//Update auth
 		dataFactory.putApiWithHeaders('profiles_auth_update', inputAuth.id, $scope.input, headers).then(function(response) {

@@ -90,26 +90,6 @@
                 </div>
             </div>
         </fieldset>
-        <!-- Set speech assitant -->
-        <fieldset>
-            <div class="form-group">
-                <label>{{_t('devices_text_speech')}}: </label>
-                <div>
-                    <!-- Alexa -->
-                    <label class="switch">
-                        <input type="checkbox" ng-model="speechAssistans.alexa.input.active">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="switch-label">
-                        <figure class="img wh-32x32">
-                            <img ng-src="{{speechAssistans.alexa.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img"/>
-                        </figure>
-                        {{_t('lb_alexa')}}
-                    </span>
-                </div>
-            </div>
-            <bb-help-text trans="_t('speech_assistant_info')"></bb-help-text>
-        </fieldset>
         <fieldset class="submit-entry">
             <div class="btn btn-submit" title="{{_t('lb_enter')}}" ng-disabled="form_password.$invalid"
                  ng-click="updateFirstAccess(handleTimezone.instance)">
