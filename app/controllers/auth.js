@@ -430,15 +430,15 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 	/**
 	 * Update profile with data from the first access form
 	 */
-	$scope.updateFirstAccess = function(form, input, instance) {
+	$scope.updateFirstAccess = function(instance) {
 		$scope.loading = {
 			status: 'loading-spin',
 			icon: 'fa-spinner fa-spin',
 			message: $scope._t('updating')
 		};
 		var inputAuth = {
-			id: input.id,
-			password: input.password,
+			id: $scope.input.id,
+			password: $scope.input.password,
 			lang: $scope.loginLang
 
 		};
@@ -451,28 +451,27 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 		$scope.createSpeechAssistantsInstances();
 
 		//Update auth
-		dataFactory.putApiWithHeaders('profiles_auth_update', inputAuth.id, input, headers).then(function(response) {
+		dataFactory.putApiWithHeaders('profiles_auth_update', inputAuth.id, $scope.input, headers).then(function(response) {
 			$scope.loading = false;
 			var profile = response.data.data;
 			if (!profile) {
 				alertify.alertError($scope._t('error_update_data'));
 				return;
 			}
-			profile['email'] = input.email;
+			profile['email'] = $scope.input.email;
 			profile['lang'] = $scope.loginLang;
 			// Update profile
-			dataFactory.putApiWithHeaders('profiles', input.id, profile, headers).then(function(response) {
+			dataFactory.putApiWithHeaders('profiles', inputAuth.id, profile, headers).then(function(response) {
 				var _profile = _.omit(response.data.data, 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
 				if ((cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
 					$scope.updateInstance(instance);
 				} else if (cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS') {
-					$scope.redirectAfterLogin(true, _profile, input.password, '#/dashboard/firstlogin?authBearer');
+					$scope.redirectAfterLogin(true, _profile, inputAuth.password, '#/dashboard/firstlogin?authBearer');
 				} else {
-					$scope.redirectAfterLogin(true, _profile, input.password, '#/dashboard/firstlogin');
+					$scope.redirectAfterLogin(true, _profile, inputAuth.password, '#/dashboard/firstlogin');
 				}
 			}, function(error) {
 				alertify.alertError($scope._t('error_update_data'));
-				return;
 			});
 		}, function(error) {
 			var message = $scope._t('error_update_data');
