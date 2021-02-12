@@ -2,7 +2,7 @@
 <div ng-controller="AuthLoginController">
     <bb-loader></bb-loader>
     <div class="welcome-screen" ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && cfg.route.os != 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid'">
-        <h1> {{_t('welcome_1')}} {{auth.remoteId}}</h1>
+        <h1> {{_t('welcome_1')}} {{authCtrl.remoteId}}</h1>
     </div>
     <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate
           ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && cfg.route.os != 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid'">
@@ -21,7 +21,7 @@
             </div>
             <!-- local IP -->
             <div class="form-group">
-                {{_t('local_ip_address')}}: {{auth.ipAddress}}
+                {{_t('local_ip_address')}}: {{authCtrl.ipAddress}}
             </div>
         </fieldset>
         <fieldset class="submit-entry">

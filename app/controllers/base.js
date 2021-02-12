@@ -32,7 +32,9 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         status: 'is-hidden',
         icon: false
     };
-    $scope.authProcessed = false;
+    $scope.authCtrl = {
+        processed: false
+    }; // for AuthController
     $scope.user = dataService.getUser();
     $scope.hostName = $location.host();
     $scope.hostProtocol = $location.protocol();
