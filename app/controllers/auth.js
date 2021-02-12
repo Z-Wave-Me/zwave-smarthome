@@ -29,8 +29,6 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 		}
 		dataService.setZWAYSession(user.sid);
 		dataService.setUser(user);
-
-		$scope.auth.form = false;
 	};
 
 	/**
@@ -68,7 +66,6 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 
 
 	if (dataService.getUser()) {
-		$scope.auth.form = false;
 		if (cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS') {
 			$timeout(function() {
 				window.location = '#/dashboard';
@@ -290,7 +287,7 @@ myAppController.controller('AuthLoginController', function($scope, $location, $w
  */
 myAppController.controller('AuthFirstAccessController', function($scope, $q, $window, $interval, cfg, dataFactory, dataService) {
 	$scope.input = {
-		id: 1, //$scope.authCtrl.defaultProfile.id,
+		id: $scope.authCtrl.defaultProfile.id,
 		password: '',
 		passwordConfirm: '',
 		email: ''
