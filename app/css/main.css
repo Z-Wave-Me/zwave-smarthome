@@ -3167,6 +3167,11 @@ a.badge:hover, a.badge:focus {
   .alert-danger .alert-link {
     color: #843534; }
 
+.alert-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; }
+
 @-webkit-keyframes progress-bar-stripes {
   from {
     background-position: 40px 0; }
