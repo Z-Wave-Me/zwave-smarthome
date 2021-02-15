@@ -17,7 +17,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     $scope.lastEmail = "";
 
     $scope.currentZWayAuthToken  = $cookies.ZWAYSession;
-    $scope.currentFullAuthToken = $cookies.ZBW_SESSID + "/" + $cookies.ZWAYSession;
+    $scope.currentFullAuthToken = ($cookies.ZBW_SESSID || "") + "/" + $cookies.ZWAYSession;
+    $scope.currentFullAuthTokenGlobal = !!$cookies.ZBW_SESSID;
     
     /**
      * Load all promises
@@ -46,6 +47,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 $scope.authTokens = profile.value.data.data.authTokens;
                 $scope.authTokens.forEach(function(token) {
                     token.date_str = (new Date(token.date)).toLocaleString();
+                    token.lastSeen_str = (new Date(token.lastSeen)).toLocaleString();
                     token.expire_str = (token.expire === 0 || typeof token.expire == "undefined") ? '-' : (new Date(token.expire)).toLocaleString();
                 });
             }
@@ -61,7 +63,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
      */
     $scope.assignDevice = function(assign) {
         $scope.input.hide_single_device_events.push(assign);
-        return;
     };
 
     /**
@@ -75,61 +76,45 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 $scope.input.hide_single_device_events.push(v);
             }
         });
-        return;
     };
 
     /**
-     * Remove auth token
+     *  Add Qrcode
      */
-    $scope.removeAuthToken = function (profileId, token, message) {
-        alertify.confirm(message, function () {
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('deleting')};
-            dataFactory.deleteApi('profiles', profileId, '/token/' + token).then(function (response) {
-                myCache.remove('profiles');
-                dataService.showNotifier({message: $scope._t('delete_successful')});
-                $scope.loading = false;
-                $scope.allSettled();
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_delete_data'));
-            });
-        }).setting('labels', {
-            'ok': $scope._t('ok')
-        });
-        return;
-    };
-
-    /**
-     * Make auth token permanent
-     */
-    $scope.permanentAuthToken = function (profileId, token, message) {
-        alertify.confirm(message, function () {
+    $scope.addQRCode = function() {
+        alertify.prompt($scope._t('verify_qrcode'),$scope._t('lb_password'), function(evt, pass) {
+            console.log("Password", pass)
+            var data = {
+                "password": pass
+            };
             $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('profiles', profileId, {}, '/token/' + token).then(function (response) {
-                myCache.remove('profiles');
+            dataFactory.putApi('profiles', 'qrcode/'+$scope.input.id, data).then(function(response) {
+                $scope.loading = false;
                 dataService.showNotifier({message: $scope._t('success_updated')});
+                $timeout(function () {
+                    $window.location.reload();
+                }, 2000);
+            }, function(error) {
                 $scope.loading = false;
-                $scope.allSettledUserId();
-            }, function (error) {
-                $scope.loading = false;
-                alertify.alertError($scope._t('error_update_data'));
+                console.log(error);
+                if(error.data.error == "wrong_password") {
+                    alertify.alertError($scope._t('wrong_password'));
+                } else {
+                    alertify.alertError($scope._t('error_update_data'));
+                }
             });
-        }).setting('labels', {
-            'ok': $scope._t('ok')
-        });
-        return;
-    };
-
+        }).set('type', 'password');
+    }
     /**
      * Create/Update a profile
      */
-    $scope.store = function(form,input) {
+    $scope.store = function (form, input) {
         if (form.$invalid) {
             return;
         }
 
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        dataFactory.putApi('profiles', input.id, input).then(function(response) {
+        dataFactory.putApi('profiles', input.id, input).then(function (response) {
             var data = response.data.data;
             if (!data) {
                 alertify.alertError($scope._t('error_update_data'));
@@ -138,8 +123,8 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             }
 
             // Email change --> update e-mail cloudbackup if instance exist
-            if($scope.user.role == 1) {
-                if($scope.lastEmail != input.email) {
+            if ($scope.user.role == 1) {
+                if ($scope.lastEmail != input.email) {
                     var promises = [
                         dataFactory.getApi('instances', '/CloudBackup')
                     ];
@@ -175,7 +160,7 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
                 $window.location.reload();
             }, 2000);
 
-        }, function(error) {
+        }, function (error) {
             var message = $scope._t('error_update_data');
             if (error.status == 409) {
                 message = ($filter('hasNode')(error, 'data.error') ? $scope._t(error.data.error) : message);
@@ -186,67 +171,6 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
     };
 
 
-    /**
-     * Change password
-     */
-    $scope.changePassword = function(form,newPassword) {
-        if (form.$invalid) {
-            return;
-        }
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-        var input = {
-            id: $scope.id,
-            password: newPassword
-
-        };
-        dataFactory.putApi('profiles_auth_update', input.id, input).then(function(response) {
-            var data = response.data.data;
-            if (!data) {
-                alertify.alertError($scope._t('error_update_data'));
-                $scope.loading = false;
-                return;
-            }
-            dataService.showNotifier({message: $scope._t('success_updated')});
-            dataService.goBack();
-
-        }, function(error) {
-            alertify.alertError($scope._t('error_update_data'));
-            $scope.loading = false;
-        });
-
-    };
-
-    /**
-     *  Add Qrcode
-     */
-    $scope.addQRCode = function() {
-        alertify.prompt($scope._t('verify_qrcode'),$scope._t('lb_password'), function(evt, pass) {
-            console.log("Password", pass)
-            var data = {
-                "password": pass
-            };
-            $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
-            dataFactory.putApi('profiles', 'qrcode/'+$scope.input.id, data).then(function(response) {
-                $scope.loading = false;
-                dataService.showNotifier({message: $scope._t('success_updated')});
-                $timeout(function () {
-                    $window.location.reload();
-                }, 2000);
-            }, function(error) {
-                $scope.loading = false;
-                console.log(error);
-                if(error.data.error == "wrong_password") {
-                    alertify.alertError($scope._t('wrong_password'));
-                } else {
-                    alertify.alertError($scope._t('error_update_data'));
-                }
-            });
-
-
-
-        }).set('type', 'password');
-    }
-
     /// --- Private functions --- ///
     /**
      * Load devices
@@ -256,6 +180,4 @@ myAppController.controller('MySettingsController', function($scope, $window, $co
             $scope.devices = response.data.data.devices;
         }, function(error) {});
     }
-    ;
-
 });

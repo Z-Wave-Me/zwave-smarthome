@@ -34,7 +34,7 @@
             <!-- zwave -->
             <a href="#zwave/devices/{{elementId.appType.zwave}}" class="btn btn-default" ng-switch-when="ZWave">
               <i class="fas fa-cog"></i>
-              <span class="btn-name">
+              <span>
                 <strong>{{_t('lb_zwave_device')}}</strong>
                 #{{elementId.appType.zwave}}
               </span>
@@ -48,10 +48,25 @@
             <!-- default -->
             <a class="btn btn-default" ng-href="#module/put/{{elementId.appType.instance.id}}" ng-switch-default>
               <i class="fas fa-cog"></i>
-              <span class="btn-name">
+              <span>
                 <strong>{{elementId.appType.instance.title}}</strong>
               </span>
             </a>
+          </div>
+          <!-- referenced-->
+          <div ng-if="!!elementId.referenced.length" class="form-group" >
+            <label>{{_t('referenced_in')}}:</label>
+            <div class="flex-buttons">
+            <div ng-repeat="reference in elementId.referenced" ng-switch="reference.moduleId" ng-hide="elementId.appType.instance.category == 'system'">
+              <!-- default -->
+              <a class="btn btn-default" ng-href="#module/put/{{reference.instanceId}}" ng-switch-default>
+              <i class="fas fa-cog"></i>
+              <span>
+                <strong>{{reference.instanceTitle}}</strong>
+              </span>
+              </a>
+            </div>
+            </div>
           </div>
           <!-- Hide element -->
           <div class="form-group">
@@ -231,6 +246,7 @@
       </fieldset>
     </form>
     <div ng-if="elementAccess(cfg.role_access.admin)" ng-include="'app/views/elements/element_id_icons.html'"></div>
+    <div ng-if="elementAccess(cfg.role_access.admin)" ng-include="'app/views/elements/element_id_api_info.html'"></div>
   </div>
 </div>
 <!-- /ng-controller -->

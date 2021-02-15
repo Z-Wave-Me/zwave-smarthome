@@ -7,14 +7,6 @@
         .page-control {
             text-align: left;
         }
-        #form_search {
-            width: 80%;
-            display: inline-table;
-            .form-control {
-                min-height: 20px;
-                padding: 6px 8px;
-            }
-        }
         .btn-group {
             vertical-align: baseline;
             .btn {
@@ -125,3 +117,7 @@
 
 // Author comment
 .comment-type-1 {}
+
+.ngrs-range-slider{
+    touch-action: none;
+}

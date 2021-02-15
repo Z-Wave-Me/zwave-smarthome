@@ -35,11 +35,14 @@
     <!-- ///////////////////////////// App Store access ///////////////////////////// -->
     <section class="accordion-wrap" ng-include="'app/views/management/management_appstore.html'"></section>
 
+    <!-- ///////////////////////////// Wifi Settings ///////////////////////////// -->
+<!--    ng-if="cfg.app_type ===  'zme_hub'" -->
+    <section class="accordion-wrap" ng-if="cfg.app_type === 'zme_hub'" ng-include="'app/views/management/management_wifi_settings.html'"></section>
+
     <!-- ///////////////////////////// Report ///////////////////////////// -->
     <section class="accordion-wrap" ng-include="'app/views/management/management_report.html'"></section>
 
     <!-- ///////////////////////////// Info ///////////////////////////// -->
     <section class="accordion-wrap" ng-include="'app/views/management/management_info.html'"></section>
-
 
 </div> <!-- /ng-controller -->

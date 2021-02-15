@@ -182,7 +182,10 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	 */
 	this.setUser = function(data) {
 		if (data && !!data) {
-			if (data.authTokens) delete data.authTokens; // remove potentialy big object that might not fit into cookie
+			// remove potentialy big object that might not fit into cookie
+			if (data.authTokens) delete data.authTokens;
+			if (data.hide_single_device_events) delete data.hide_single_device_events;
+			
 			$cookies.user = angular.toJson(data);
 		} else {
 			delete $cookies['user'];
@@ -465,8 +468,6 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	 */
 	this.assignElementIcon = function(element) {
 		return assignElementIcon(element);
-
-
 	};
 
 	/**
@@ -610,7 +611,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		};
 		var iconKey = $filter('hasNode')(element, 'metrics.icon');
 		// Set custom icons
-		if (_.size(element.customIcons) > 0) {
+		if (element && _.size(element.customIcons) > 0) {
 			icons.custom = (element.customIcons.level ? element.customIcons.level : element.customIcons);
 		}
 		// Set default icons by metrics.icon
@@ -643,7 +644,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		}
 		// Set default icons by deviceType
 		else {
-			if (cfgicons.element.deviceType[element.deviceType]) {
+			if (element && cfgicons.element.deviceType[element.deviceType]) {
 				icons.default = setDefaultIcon(cfgicons.element.deviceType[element.deviceType]);
 			}
 		}
@@ -982,7 +983,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		switch (iconKey) {
 			// door
 			case 'door':
-				icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+			case 'window_tilt':
+				icon = (element.metrics.level === 'open' || element.metrics.level === 'on') ? iconArray.open : iconArray.closed;
 				break;
 				// window
 			case 'window':
@@ -995,44 +997,44 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 						icon = iconArray.half;
 					}
 				} else {
-					icon = (element.metrics.level === 'open' || element.metrics.level === 'on' ? iconArray.open : iconArray.closed);
+					icon = (element.metrics.level === 'open' || element.metrics.level === 'on') ? iconArray.open : iconArray.closed;
 				}
 				break;
 				// switch
 			case 'switch':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// siren
 			case 'siren':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// motion
 			case 'motion':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// alarm
 			case 'alarm':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// CO alarm
 			case 'alarm_co':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// CO2 alarm
 			case 'alarm_coo':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// flood
 			case 'alarm_flood':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// burglar
 			case 'alarm_burglar':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// tamper
 			case 'tamper':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				//security
 			case 'security':
@@ -1046,7 +1048,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 				break;
 				// smoke
 			case 'alarm_smoke':
-				icon = (element.metrics.level === 'on' ? iconArray.on : iconArray.off);
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// blinds
 			case 'blinds':
@@ -1071,11 +1073,15 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 				break;
 				// gesture
 			case 'gesture':
-				icon = (iconArray[element.metrics.state] || iconArray['press']);
+				icon = iconArray[element.metrics.state] || iconArray['press'];
 				break;
 				// climate control
 			case 'climatecontrol':
-				icon = (iconArray[element.metrics.state] || iconArray['default']);
+				icon = iconArray[element.metrics.state] || iconArray['default'];
+				break;
+				// valve
+			case 'valve':
+				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
 				break;
 				// default
 			default:

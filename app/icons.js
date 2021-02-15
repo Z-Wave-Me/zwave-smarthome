@@ -17,6 +17,12 @@ var icon_data = {
                         closed: 'door-closed.png'
                     }
                 },
+                window_tilt: {
+                    level: {
+                        open: 'window-up.png',
+                        closed: 'window-down.png'
+                    }
+                },
                 window: {
                     level: {
                         down: 'window-down.png',
@@ -187,6 +193,12 @@ var icon_data = {
                         energySave: 'climatecontrol_energysave.png',
                         frostProtection: 'climatecontrol_frostprotection.png',
                         default: "climatecontrol_default.png" 
+                    }
+                },
+                valve: {
+                    level: {
+                        on: 'valve-on.png',
+                        off: 'valve-off.png'
                     }
                 }
             },

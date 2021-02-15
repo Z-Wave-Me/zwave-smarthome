@@ -173,6 +173,10 @@
             }
         }
         .widget-ctrl.ctrl-right{
+            .widget-level,
+            .widget-scale {
+                font-size: 2rem;
+            }
             float: right;
             text-align: right;
             .btn-group{

@@ -5,10 +5,17 @@
 	<form class="form form-page" ng-submit="storeInstance(true)">
 		<!-- rooms -->
 		<fieldset>
+<!--			 View -->
+			<div style="display: flex">
+				<div class="btn btn-default" ng-click="changeView()" style="margin-left: auto">
+					{{mobileView ? _t('browser_version'):_t('mobile_version')}}
+				</div>
+			</div>
 			<section class="accordion-wrap" ng-repeat="r in heating.rooms track by $index">
 				<!-- Title -->
 				<h2 class="accordion-toggle chevron">
-				<button type="button" aria-expanded="false" bb-accordion ng-click="renderSchedule('#schedule-'+{{r.id}}, r.id)">
+				<button type="button" aria-expanded="false" bb-accordion data-id="{{r.id}}"
+					ng-click="mobileView ? '' : renderSchedule('#schedule-'+ r.id, r.id)">
 				<span>
 					<img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
 				</span>
@@ -19,9 +26,11 @@
 					<fieldset>
 						<!-- <pre>{{heating.input.params.roomSettings[r.id].schedule | json}}</pre> -->
 						<!-- room settings -->
-						<div class="form-inline">
+						<div class="app-row">
+
 							<!-- comfort temp -->
-							<div class="form-group is-inline">
+							<div class="form-inline is-inline alpaca-array-actionbar">
+								<i class="fas fa-sun"></i>
 								<label>{{_t('comfort_temp')}}</label>
 								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].comfortTemp" convert-to-float>
 									<option value="">---</option>
@@ -29,8 +38,10 @@
 									{{heating.cfg.comfort.temp.label[$index]}}</option>
 								</select>
 							</div>
+
 							<!-- energy save temp -->
-							<div class="form-group is-inline">
+							<div class="form-inline is-inline alpaca-array-actionbar">
+								<i class="fas fa-moon"></i>
 								<label>{{_t('energy_save_temp')}}</label>
 								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].energySaveTemp" convert-to-float>
 									<option value="">---</option>
@@ -38,8 +49,21 @@
 									{{heating.cfg.energySave.temp.label[$index]}}</option>
 								</select>
 							</div>
+
+							<!-- frost temp -->
+							<div class="form-inline is-inline alpaca-array-actionbar">
+								<i class="fas fa-asterisk"></i>
+								<label>{{_t('frost_protection_temp')}}</label>
+								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].frostProtectionTemp" convert-to-float>
+									<option value="">---</option>
+									<option value="{{ft}}" ng-repeat="ft in heating.cfg.frostProtection.temp.temp track by $index" ng-selected="ft == heating.input.params.roomSettings[r.id].frostProtectionTemp">
+									{{heating.cfg.frostProtection.temp.label[$index]}}</option>
+								</select>
+							</div>
+
 							<!-- main sensor -->
-							<div class="form-group is-inline" ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">
+							<div class="form-inline is-inline alpaca-array-actionbar" ng-if="heating.devices.SensorsByRoom[r.id].length >= 1">
+								<i class="fas fa-temperature-low"></i>
 								<label>{{_t('temp_sensor')}}</label>
 								<select class="form-control" ng-model="heating.input.params.roomSettings[r.id].sensorId">
 									<option value="{{heating.devices.SensorsByRoom[r.id][0].deviceId}}" ng-if="heating.devices.SensorsByRoom[r.id].length == 1">
@@ -52,7 +76,7 @@
 							</div>
 						</div>
 						<!-- schedule -->
-						<div class="schedule-wrap" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+						<div class="schedule-wrap" ng-hide="mobileView">
 							<div class="schedule-overlay" ng-if="!heating.input.params.roomSettings[r.id].comfortTemp">
 								<bb-help-text trans="_t('no_comfort_temp_info')"></bb-help-text>
 							</div>
@@ -60,9 +84,9 @@
 							<bb-help-text trans="_t('schedule_info')"></bb-help-text>
 						</div>
 						<!-- mobile view -->
-						<div ng-include="'app/views/automation/heating/mobile_schedule.html'" ng-show="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'"></div>
+						<div ng-include="'app/views/automation/heating/mobile_schedule.html'" ng-show="mobileView"></div>
 						<!-- copy room settings -->
-						<div class="form-inline" ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+						<div class="form-inline" ng-hide="mobileView">
 							<div class="form-group is-inline">
 								<select class="form-control" ng-model="r.copyOption">
 									<option value="null">---</option>

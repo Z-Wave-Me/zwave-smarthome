@@ -74,7 +74,7 @@ $accordion-focus-color: $focus-color;
     > button{
       &[aria-expanded="false"]{
         &::after{
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-style: normal;
         font-weight: bold;
         content: "\f078";
@@ -82,7 +82,7 @@ $accordion-focus-color: $focus-color;
       }
       &[aria-expanded="true"]{
         &::after{
-          font-family: "Font Awesome 5 Free";
+          font-family: "Font Awesome 5 Pro";
           font-style: normal;
           font-weight: bold;
           content: "\f077";
@@ -99,7 +99,7 @@ $accordion-focus-color: $focus-color;
     > button{
       &[aria-expanded="false"]{
         &::after{
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-style: normal;
         font-weight: bold;
         content: "\f142";
@@ -107,7 +107,7 @@ $accordion-focus-color: $focus-color;
       }
       &[aria-expanded="true"]{
         &::after{
-          font-family: "Font Awesome 5 Free";
+          font-family: "Font Awesome 5 Pro";
           font-style: normal;
           font-weight: bold;
           content: "\f141";
@@ -123,7 +123,7 @@ $accordion-focus-color: $focus-color;
       border-bottom: 0;
       &[aria-expanded="false"]{
         &::after{
-        font-family: "Font Awesome 5 Free";
+        font-family: "Font Awesome 5 Pro";
         font-style: normal;
         font-weight: bold;
         content: "\f0d7";
@@ -131,7 +131,7 @@ $accordion-focus-color: $focus-color;
       }
       &[aria-expanded="true"]{
         &::after{
-          font-family: "Font Awesome 5 Free";
+          font-family: "Font Awesome 5 Pro";
           font-style: normal;
           font-weight: bold;
           content: "\f0d8";

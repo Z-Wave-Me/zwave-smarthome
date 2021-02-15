@@ -20,6 +20,10 @@
       <div class="form-group">
         <bb-help-text trans="_t('jb_upgrade_info')"></bb-help-text>
       </div>
+      <a class="btn btn-default" href="#/boxupdate" title="{{_t('jamesbox_software_upgrade')}}">
+        <i class="fas fa-download text-success"></i>
+        <span class="btn-name" ng-bind="_t('jamesbox_software_upgrade')"></span>
+      </a>
     </div>
   </div>
   <div id="firmwareUpdateModal" class="appmodal appmodal-100" ng-if="modalArr.firmwareUpdateModal && firmwareUpdate.show">

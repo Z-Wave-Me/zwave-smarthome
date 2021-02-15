@@ -1,75 +1,81 @@
 [
   {
     "id": 1,
-    "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendor": "EnOcean GmbH",
+    "vendorLogo": "enocean.svg",
     "name": "STM250",
     "description": "Door Window Sensor",
     "image": "STM250.jpg",
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },
   {
     "id": 2,
-    "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendor": "EnOcean GmbH",
+    "vendorLogo": "enocean.svg",
     "name": "EOSC",
     "description": "Sealing Mountable Motion Detector",
     "image": "EOSC.jpg",
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 3,
-    "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendor": "EnOcean GmbH",
+    "vendorLogo": "enocean.svg",
     "name": "EOSW",
     "description": "Wall Mountable Motion Detector",
     "image": "EOSW.jpg",
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 4,
-    "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendor": "EnOcean GmbH",
+    "vendorLogo": "enocean.svg",
     "name": "EKCS",
     "description": "Key Card Switch",
     "image": "EKCS.jpg",
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   },
   {
     "id": 5,
-    "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendor": "EnOcean GmbH",
+    "vendorLogo": "enocean.svg",
     "name": "PTM210 - one rocker (two channel)",
     "description": "Universal Switch Insert 2C",
     "image": "PTM250.jpg",
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 6,
-    "vendor": "Encoean GmbH",
-    "vendorLogo": "enocean.png",
+    "vendor": "EnOcean GmbH",
+    "vendorLogo": "enocean.svg",
     "name": "PTM215 - two rocker (four channel)",
     "description": "Universal Switch Insert 4C",
     "image": "PTM250.jpg",
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 7,
@@ -81,7 +87,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
 {
     "id": 8,
@@ -93,7 +100,8 @@
     "rorg": "0xa5",
     "funcId": "0x08",
     "typeId": "0x01",
-    "inclusion": "Move little blue magnet to the marking on the enclosure and away"
+    "inclusion": "Move little blue magnet to the marking on the enclosure and away",
+    "smartAck": false
   },  
  {
     "id": 9,
@@ -105,7 +113,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },   
  {
     "id": 10,
@@ -117,7 +126,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"    
+    "inclusion": "Hit 'SET' button on enclosure"    ,
+    "smartAck": false
   },     
   {
     "id": 11,
@@ -129,7 +139,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },  
   {
     "id": 12,
@@ -141,7 +152,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   },  
  {
     "id": 13,
@@ -153,7 +165,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },   
  {
     "id": 14,
@@ -165,7 +178,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"    
+    "inclusion": "Hit 'SET' button on enclosure"    ,
+    "smartAck": false
   },     
   {
     "id": 15,
@@ -177,7 +191,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },  
   {
     "id": 16,
@@ -189,7 +204,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   }, 
   {
     "id": 17,
@@ -201,7 +217,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit the rocker"
+    "inclusion": "Hit the rocker",
+    "smartAck": false
   },
  {
     "id": 18,
@@ -213,7 +230,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },      
  {
     "id": 19,
@@ -225,7 +243,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },   
   {
     "id": 20,
@@ -237,7 +256,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   }, 
   {
     "id": 21,
@@ -249,7 +269,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit the rocker"
+    "inclusion": "Hit the rocker",
+    "smartAck": false
   },
   {
     "id": 22,
@@ -261,7 +282,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 23,
@@ -273,7 +295,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 24,
@@ -285,7 +308,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   },
   {
     "id": 25,
@@ -297,7 +321,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 26,
@@ -309,7 +334,8 @@
     "rorg": "0xf6",
     "funcId": "0x03",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 27,
@@ -321,7 +347,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 28,
@@ -333,7 +360,8 @@
     "rorg": "0xf6",
     "funcId": "0x03",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 29,
@@ -345,7 +373,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 30,
@@ -357,7 +386,8 @@
     "rorg": "0xf6",
     "funcId": "0x03",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },  
    {
     "id": 31,
@@ -369,7 +399,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Hit button behind hole or move magnet to device and away"
+    "inclusion": "Hit button behind hole or move magnet to device and away",
+    "smartAck": false
   },
   {
     "id": 32,
@@ -381,7 +412,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 33,
@@ -393,7 +425,8 @@
     "rorg": "0xa5",
     "funcId": "0x07",
     "typeId": "0x01",
-    "inclusion": "Hit 'SET' button on enclosure"
+    "inclusion": "Hit 'SET' button on enclosure",
+    "smartAck": false
   },
   {
     "id": 34,
@@ -405,7 +438,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": "Move Key Card into slot and out"
+    "inclusion": "Move Key Card into slot and out",
+    "smartAck": false
   },
   {
     "id": 35,
@@ -417,7 +451,8 @@
     "rorg": "0xf6",
     "funcId": "0x03",
     "typeId": "0x01",
-    "inclusion": "Hit one rocker"
+    "inclusion": "Hit one rocker",
+    "smartAck": false
   },
   {
     "id": 36,
@@ -429,7 +464,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": "Move Magnet"
+    "inclusion": "Move Magnet",
+    "smartAck": false
   },
   {
     "id": 37,
@@ -441,7 +477,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x01",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
   },
   {
     "id": 38,
@@ -453,7 +490,8 @@
     "rorg": "0xf6",
     "funcId": "0x02",
     "typeId": "0x02",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
   },
   {
     "id": 39,
@@ -465,7 +503,8 @@
     "rorg": "0xf6",
     "funcId": "0x04",
     "typeId": "0x01",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
   },
   {
     "id": 40,
@@ -477,7 +516,8 @@
     "rorg": "0xd5",
     "funcId": "0x00",
     "typeId": "0x01",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
   },
   {
     "id": 41,
@@ -489,6 +529,202 @@
     "rorg": "0xa5",
     "funcId": "0x02",
     "typeId": "0x05",
-    "inclusion": ""
+    "inclusion": "",
+    "smartAck": false
+  },
+  {
+    "id": 42,
+    "vendor": "Rehau",
+    "name": "Smart Guard 1",
+    "vendorLogo": "rehau.png",
+    "description": "Smart window sensor with motion sensor and alarm function",
+    "image": "rehau-smartguard1.png",
+    "rorg": "0xd2",
+    "funcId": "0x06",
+    "typeId": "0x10",
+    "inclusion": "Insert battery",
+    "smartAck": true
+  },
+  {
+    "id": 43,
+    "vendor": "Rehau",
+    "name": "Smart Guard XT",
+    "vendorLogo": "rehau.png",
+    "description": "Smart window sensor with motion sensor and alarm function; Vers. 2",
+    "image": "rehau-smartguard2.png",
+    "rorg": "0xd2",
+    "funcId": "0x06",
+    "typeId": "0xff",
+    "inclusion": "Insert battery",
+    "smartAck": true
+  },
+  {
+    "id": 44,
+    "vendor": "Afriso",
+    "name": "Indoor siren",
+    "vendorLogo": "afriso.png",
+    "description": "Indoor siren with repeater functionality",
+    "image": "afriso-siren.png",
+    "rorg": "0xb0",
+    "funcId": "0x00",
+    "typeId": "0x00",
+    "inclusion": "Press LRN-button",
+    "smartAck": false
+  },
+  {
+    "id": 45,
+    "vendor": "Rehau",
+    "name": "Smart Guard XT",
+    "vendorLogo": "rehau.png",
+    "description": "Smart window sensor with motion sensor and alarm function; Vers. 2 (FW 1.5)",
+    "image": "rehau-smartguard2.png",
+    "rorg": "0xd2",
+    "funcId": "0x06",
+    "typeId": "0x11",
+    "inclusion": "Insert battery",
+    "smartAck": true
+  },
+  {
+    "id": 46,
+    "vendor": "Hoppe",
+    "name": "Window Hanlde SecuSignal",
+    "vendorLogo": "Hoppe.jpg",
+    "description": "Window Hanlde SecuSignal",
+    "image": "Hoppe-0530-US952-FK-410.jpg",
+    "rorg": "0xf6",
+    "funcId": "0x10",
+    "typeId": "0x00",
+    "inclusion": "Turn the handle",
+    "smartAck": false
+  },
+  {
+    "id": 47,
+    "vendor": "Hoppe",
+    "name": "Window Hanlde SecuSignal ERP2",
+    "vendorLogo": "Hoppe.jpg",
+    "description": "Window Hanlde SecuSignal ERP2",
+    "image": "Hoppe-0530-US952-FK-410.jpg",
+    "rorg": "0xf6",
+    "funcId": "0x10",
+    "typeId": "0x01",
+    "inclusion": "Turn the handle",
+    "smartAck": false
+  },
+  {
+    "id": 48,
+    "vendor": "Afriso",
+    "name": "Temperature and Humidity Sensor",
+    "vendorLogo": "afriso.png",
+    "description": "Temperature and Humidity Sensor FTM TF or FTM T",
+    "image": "afriso_Temperatur-_und_Feuchtesensor_FTM_TF-1170x1090.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x04",
+    "typeId": "0x01",
+    "inclusion": "Press LRN button",
+    "smartAck": false
+  },
+  {
+    "id": 49,
+    "vendor": "NodOn",
+    "name": "Temperature and Humidity Sensor",
+    "vendorLogo": "nodon.png",
+    "description": "Temperature and Humidity Sensor",
+    "image": "NodOn_STP-2-1-05_EnOcean_680px.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x04",
+    "typeId": "0x01",
+    "inclusion": "Press LRN button",
+    "smartAck": false
+  },
+  {
+    "id": 50,
+    "vendor": "EnOcean GmbH",
+    "name": "Temperature and Humidity Sensor",
+    "vendorLogo": "enocean.svg",
+    "description": "Temperature and Humidity Sensor",
+    "image": "EnOcean-TH.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x04",
+    "typeId": "0x01",
+    "inclusion": "Press LRN button",
+    "smartAck": false
+  },
+  {
+    "id": 51,
+    "vendor": "NodOn",
+    "name": "Temperature",
+    "vendorLogo": "nodon.png",
+    "description": "Temperature",
+    "image": "NodOn_STP-2-1-05_EnOcean_680px.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x02",
+    "typeId": "0x05",
+    "inclusion": "Press LRN button",
+    "smartAck": false
+  },
+  {
+    "id": 52,
+    "vendor": "Eltako Electronics",
+    "name": "Outdoor brightness sensor",
+    "vendorLogo": "eltako_electronics.jpg",
+    "description": "Outdoor brightness sensor FAH63 and newer",
+    "image": "Eltako_FAH63.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x06",
+    "typeId": "0x01",
+    "inclusion": "Move magnet to the square on the side",
+    "smartAck": false
+  },
+  {
+    "id": 52,
+    "vendor": "Eltako Electronics",
+    "name": "Outdoor brightness sensor",
+    "vendorLogo": "eltako_electronics.jpg",
+    "description": "Outdoor motion sensor FAH63AP and newer",
+    "image": "Eltako_FBH63AP.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x08",
+    "typeId": "0x01",
+    "inclusion": "Move magnet to the square on the side",
+    "smartAck": false
+  },
+  {
+    "id": 53,
+    "vendor": "Afriso",
+    "name": "CO2 Sensor",
+    "vendorLogo": "afriso.png",
+    "description": "CO2 Sensor F",
+    "image": "afriso_CO2.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x09",
+    "typeId": "0x04",
+    "inclusion": "Press LRN button",
+    "smartAck": false
+  },
+  {
+    "id": 54,
+    "vendor": "Afriso",
+    "name": "Room Temperature Sensor and Thermostat",
+    "vendorLogo": "afriso.png",
+    "description": "Room Temperature Sensor and Thermostat FT/FTF",
+    "image": "afriso_RoomTempSensorFT-FTF.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x10",
+    "typeId": "0x03",
+    "inclusion": "Press LRN button",
+    "smartAck": false
+  },
+  {
+    "id": 54,
+    "vendor": "Thermokon",
+    "name": "Room Operating Panel",
+    "vendorLogo": "Thermokon.png",
+    "description": "Room Operating Panel SR04",
+    "image": "Thermokon_SR04.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x10",
+    "typeId": "0x05",
+    "inclusion": "Press LRN button",
+    "smartAck": false
   }
 ]

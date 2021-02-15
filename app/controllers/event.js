@@ -72,7 +72,6 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
      */
     $scope.allSettled = function () {
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
-        $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         $scope.timeFilter = (angular.isDefined($cookies.events_timeFilter) ? angular.fromJson($cookies.events_timeFilter) : $scope.timeFilter);
         var urlParam = '?since=' + ($scope.timeFilter.since * 1000);
 
@@ -175,6 +174,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         }
         $cookies.events_timeFilter = angular.toJson($scope.timeFilter);
         //$scope.loadData();
+        $interval.cancel($scope.apiDataInterval);
         $scope.allSettled();
     };
 
@@ -275,9 +275,19 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         } else {
             v.messageView = '<span>'+ (typeof v.message == 'string'? v.message : JSON.stringify(v.message))+'</span>';
         }
-
-        v.lvl = $filter('hasNode')(v.message,'l')? $filter('hasNode')(v.message,'l') : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
-
+        var hasL = $filter('hasNode')(v.message,'l');
+        v.lvl = hasL ? hasL : JSON.stringify({dev: v.message.dev, l: v.message.l, location: v.message.location});
+        var device = _.where($scope.dataHolder.devices.collection, {
+            id: v.source
+        });
+        if (device) {
+            var deviceIcons = dataService.getSingleElementIcons(device[0], true);
+            var icons = dataService.setIcon(deviceIcons['default'], deviceIcons['custom']);
+            // // Has device a level icon?
+            if (icons[hasL]) {
+                v.icon = icons[hasL];
+            }
+        }
         return v;
     };
 
@@ -326,16 +336,9 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.devices.cnt.deviceEvents =_.countBy(data,function (v) {
             return v.source;
         });
-        // Run refresh only when filter is empty
-        //if(_.isEmpty($scope.filter)){
+
         $scope.refreshData();
-        //}
-        // No data in the collection
-        if (_.size($scope.collection) < 1) {
-          $scope.events.state = 'blank';
-            //alertify.alertWarning($scope._t('no_events'));
-            return;
-        }
+
         $scope.pagesSum = Math.ceil($scope.collection.length/$scope.pageSize);
     };
 

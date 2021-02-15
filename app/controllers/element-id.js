@@ -15,7 +15,8 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		input: {},
 		locations: {},
 		instances: {},
-		modules: {}
+		modules: {},
+		referenced: [],
 	};
 	$scope.tagList = [];
 	$scope.search = {
@@ -50,6 +51,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		if ($scope.user.role === 1) { // should be last to have same order for user and admin
 			promises.push(dataFactory.getApi('instances', false, true));
 			promises.push(dataFactory.getApi('modules', false, true));
+			promises.push(dataFactory.getApi('devices', '/' + $routeParams.id + '/referenced', true))
 		}
 
 		$q.allSettled(promises).then(function(response) {
@@ -60,7 +62,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			var notificationFiltering = response[4];
 			var instances = response[5];
 			var modules = response[6];
-
+			var referenced = response[7];
 			$scope.loading = false;
 			// Error message
 			if (device.state === 'rejected') {
@@ -107,7 +109,10 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				setDevice(dataService.getDevicesData(arr, true).value()[0]);
 				$scope.elementId.show = true;
 			}
-
+			if(referenced.state === 'fulfilled') {
+				$scope.elementId.referenced = referenced.value.data.data;
+			}
+			console.log($scope.elementId.referenced);
 
 		});
 	};
@@ -455,6 +460,32 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		return gotText;
 	};
 
+});
+
+myAppController.controller('ElementApiInfoController', function($scope, $timeout, $filter, $location, cfg, dataFactory, dataService) {
+	$scope.getUrl = function(){
+		return $location.protocol() + "://" + $location.host() + ":" + $location.port();
+	};
+
+	$scope.runCmd = function(id, command) {
+		dataFactory.runApiCmd(id + "/command/" + command);
+	};
+
+	$scope.getData = function(id) {
+		dataFactory.runApiCmd(id).then(function(response) {
+				hljsInit(response.data)
+			}, function(error) {
+				hljsInit(response.data)
+		});
+	};
+
+	function hljsInit(data) {
+		document.querySelectorAll(".syntax-highight.hljs").forEach(function(block) {
+			block.innerHTML = JSON.stringify(eval(data), undefined, 2);
+			hljs.initHighlighting.called = false;
+			hljs.initHighlighting();
+		});
+	};
 });
 
 /**

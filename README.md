@@ -9,6 +9,57 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.13.0
+#### New features:
+- EnOcean: reworked Teach-In process, EnOcean logo to the leaf, added support for many new devices
+- Show references in Apps in widgets settings
+- Show widgets id in Z-Wave device settings
+- Added ZWAYSessionCookieIgnore header to the auth API
+#### Fixes:
+- Welcome pages adopted for mobile
+- Improved updates of API data: updatedTime separated for ZAutomation, Z-Wave and EnOcean
+- Fixed sliders on touch interfaces (RGBW was affected)
+- Heating app fixed: energy save instead comfort temperature
+- Accept the temperature with fractional part
+- Removed welcome screen on subsequent loads
+- Faster boot of the UI
+- fixed days name in mobile view
+- Changed icons in event tab like in elements tab
+- remove scroll bar page-navi modal
+- Fixed issue with big profile not fitting in user cookie
+- Improved authentication to fix reloading login window
+- Fixed ordering/sorting in elements
+
+## v1.12.0
+#### New features:
+- Fast load of Dashboard, Rooms and Elements pages.
+- Added support for EnOCean GP
+- WiFi configuration for Z-Wave.Me Hub
+- Better view for user sessions with last access and IP
+- Show current session token for API in user settings
+- Help for API commands for integrators in widget settings
+- Added on/off icon for dimmers in mobile view
+- Added PNG support for rooms images
+#### Fixes:
+- Improved interface load speed and tab switching
+- Removed arrows in mobile view room page
+- Added 'transparent for clicks' panel in the gallery of rooms
+- Fixed crash on wrong color for RGB widget
+- Fixed QR code reading in Smart Start
+- Fixed jumping dimmer level on wheel step up/down.
+- Added prefix to DSK
+- Heating module. If room not exist, title should be: room deleted, img_src = null
+- Beaty list of heating schedule temperatures, frostProtection
+- Fixed events filtering problem
+- EnOcean: Added more devices: Rehau and Afriso as well as Smart Ack and Generic Profile
+- Fixed Remove Devices dialog
+- Removed "metric:removed"
+- Fixed non-working RGBW in mobile app
+- Fixed element search field
+- Improved QR-code generation
+- Fixed search limit on widgets
+- Removed Full button on Switch Multilevel (Dimmer)
+
 ## v1.11.1
 #### Fixes:
 - Automation/Security: added switchBinary in sensor list

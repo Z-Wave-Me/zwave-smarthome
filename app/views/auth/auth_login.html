@@ -1,11 +1,12 @@
 <!-- Login view -->
 <div ng-controller="AuthLoginController">
     <bb-loader></bb-loader>
-    <div class="welcome-screen">
-        <h1> {{_t('welcome_1')}} {{auth.remoteId}}</h1>
+    <div class="welcome-screen" ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && cfg.route.os != 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid'">
+        <h1> {{_t('welcome_1')}} {{authCtrl.remoteId}}</h1>
     </div>
-    <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate>
-        <fieldset>
+    <form name="form_login" id="form_login" class="form form-page" ng-submit="login(input)" novalidate
+          ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS' && cfg.route.os != 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid'">
+        <fieldset >
             <!-- <h3><span ng-bind="_t('nav_login')"></span></h3> -->
             <!-- login -->
             <div class="form-group">
@@ -20,11 +21,30 @@
             </div>
             <!-- local IP -->
             <div class="form-group">
-                {{_t('local_ip_address')}}: {{auth.ipAddress}}
+                {{_t('local_ip_address')}}: {{authCtrl.ipAddress}}
             </div>
         </fieldset>
         <fieldset class="submit-entry">
+            <!-- Login -->
             <button type="submit" class="btn btn-submit" title="{{_t('lb_enter')}}"><i class="fas fa-sign-in-alt"></i> {{_t('lb_enter')}}</button>
         </fieldset>
     </form>
+    <!-- My Hubs -->
+    <a ng-href="{{cfg.android_html_dir}}" style="text-decoration: none"
+       ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'">
+        <div class="btn btn-submit">
+            <i class="fas fa-chevron-left subnavi-arrow"></i>
+            <i class="fab fa-android fa-fw"></i>
+            <span>{{_t('my_hubs')}}</span>
+        </div>
+    </a>
+    <!-- My Hubs -->
+    <a ng-href="{{cfg.ios_html_dir}}" style="text-decoration: none"
+       ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+        <div class="btn btn-submit">
+            <i class="fas fa-chevron-left subnavi-arrow"></i>
+            <i class="fab fa-apple fa-fw"></i>
+            <span>{{_t('my_hubs')}}</span>
+        </div>
+    </a>
 </div>

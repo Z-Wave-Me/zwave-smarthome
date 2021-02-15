@@ -425,7 +425,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         if(!publicKey){
             return '';
         }
-        return (publicKey[(block - 1) * 2] * 256 + publicKey[(block - 1) * 2 + 1]);
+        return ("00000" + (publicKey[(block - 1) * 2] * 256 + publicKey[(block - 1) * 2 + 1])).slice(-5);
     };
 
     /**

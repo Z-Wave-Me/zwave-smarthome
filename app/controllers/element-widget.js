@@ -141,17 +141,11 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 		}]
 	};
 
-	$timeout(function() {
-		$scope.drawChart();
-	}, 0);
-
-	$scope.drawChart = function() {
-		var canvas = document.getElementById('history_chart'),
-			context = canvas.getContext('2d');
-
+	var drawChart = function() {
+		var canvas = document.getElementById('history_chart');
 		// resize the canvas to fill browser window dynamically
 		$window.addEventListener('resize', resizeCanvas, false);
-
+		var loading = false;
 		function resizeCanvas() {
 			canvas.width = $window.innerWidth;
 			canvas.height = $window.innerHeight;
@@ -160,7 +154,12 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 			 * Your drawings need to be inside this function otherwise they will be reset when 
 			 * you resize the browser window and the canvas goes will be cleared.
 			 */
-			$scope.loadDeviceHistory();
+			if (!loading) {
+				loading = true;
+				loadDeviceHistory().then(function () {
+					loading = false;
+				});
+			}
 		}
 		resizeCanvas();
 	};
@@ -168,7 +167,7 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 	/**
 	 * Load device history
 	 */
-	$scope.loadDeviceHistory = function() {
+	var loadDeviceHistory = function() {
 		var device = !_.isEmpty($scope.dataHolder.devices.byId) ? $scope.dataHolder.devices.byId : $scope.dataHolder.devices.find;
 		if (!device) {
 			$scope.widgetHistory.alert = {
@@ -184,7 +183,7 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 			status: 'alert-warning',
 			icon: 'fa-spinner fa-spin'
 		};
-		dataFactory.getApi('history_get', '?id=' + device.id + '&show=' + $scope.widgetHistory.history_steps, true).then(function(response) {
+		return dataFactory.getApi('history_get', '?id=' + device.id + '&show=' + $scope.widgetHistory.history_steps, true).then(function(response) {
 			if (!response.data.history) {
 				$scope.widgetHistory.alert = {
 					message: $scope._t('no_data'),
@@ -194,8 +193,8 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 				return;
 			}
 			$scope.widgetHistory.alert = {};
-			$scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors, $scope.widgetHistory.history_steps);
-		}, function(error) {
+			return $scope.widgetHistory.chartData = dataService.getChartData(response.data.history, $scope.cfg.chart_colors, $scope.widgetHistory.history_steps);
+			}, function(error) {
 			$scope.widgetHistory.alert = {
 				message: $scope._t('error_load_data'),
 				status: 'alert-danger',
@@ -203,14 +202,12 @@ myAppController.controller('ElementHistoryController', function($scope, $window,
 			};
 		});
 	};
-	//$scope.loadDeviceHistory();
 
 	$scope.reloadChart = function(steps) {
-		angular.extend($scope.widgetHistory.chartData, {});
 		$scope.widgetHistory.history_steps = parseInt(steps, 10);
-		$scope.loadDeviceHistory();
-		document.getElementById('history_chart').update();
+		loadDeviceHistory();
 	};
+	drawChart();
 });
 
 /**
@@ -347,10 +344,8 @@ myAppController.controller('ElementSwitchMultilevelController', function($scope)
 			};
 			return;
 		}
-		$scope.widgetSwitchMultilevel.find = device[0];
-		return;
+		$scope.widgetSwitchMultilevel.find = angular.copy(device[0]);
 	};
-
 	$scope.loadDeviceId();
 
 });
@@ -386,8 +381,7 @@ myAppController.controller('ElementThermostatController', function($scope) {
 			};
 			return;
 		}
-		$scope.widgetThermostat.find = device[0];
-		return;
+		$scope.widgetThermostat.find = angular.copy(device[0]);
 	};
 	$scope.loadDeviceId();
 
@@ -445,6 +439,7 @@ myAppController.controller('ElementSwitchRGBWController', function($scope, dataF
 		};
 		image.src = 'app/img/colorwheel.png';
 
+		if (!input.metrics.color) input.metrics.color = {r: 0, g: 0, b: 0};
 		var defaultColor = "rgb(" + input.metrics.color.r + ", " + input.metrics.color.g + ", " + input.metrics.color.b + ")";
 		//$('#wheel_picker_preview').css('backgroundColor', defaultColor);
 		$scope.widgetSwitchRGBW.selectedColor = defaultColor;
@@ -563,16 +558,16 @@ myAppController.controller('ElementSwitchRGBWController', function($scope, dataF
 		angular.extend($scope.widgetSwitchRGBW.find, device[0]);
 		var str = "ZWayVDev_zway";
 		if ($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2, 3, 4])) { //TODO next release change
-			var color = $scope.widgetSwitchRGBW.find.metrics.color;
+			var color = $scope.widgetSwitchRGBW.find.metrics.color || {r: 0, g: 0, b: 0};
 			$scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
 			$scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
 		} else {
 			var automationId = $scope.widgetSwitchRGBW.find.id.substr(0, $scope.widgetSwitchRGBW.find.id.indexOf('-'));
 			var zwayId = automationId.substr(automationId.lastIndexOf('_') + 1);
 			dataFactory.runExpertCmd('devices[' + zwayId + ']').then(function(response) {
-				if (typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
+				if (response.data.data && typeof $scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value] !== 'undefined' &&
 					$scope.cfg.rgb_blacklist[response.data.data.manufacturerId.value].indexOf(response.data.data.manufacturerProductId.value) > -1) {
-					var color = $scope.widgetSwitchRGBW.find.metrics.color;
+					var color = $scope.widgetSwitchRGBW.find.metrics.color || {r: 0, g: 0, b: 0};
 					$scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
 					$scope.loadRgbWheel($scope.widgetSwitchRGBW.find);
 				} else {
@@ -864,7 +859,6 @@ myAppController.controller('ElementClimateControlController', function($scope, $
 	$scope.loadDeviceId = function() {
 		dataFactory.getApi('devices', '/' + $scope.dataHolder.devices.find.id, true).then(function(response) {
 			var device = response.data.data;
-			console.log("device", device);
 			if (_.isEmpty(device)) {
 				$scope.widgetSensorMultiline.alert = {
 					message: $scope._t('no_data'),
@@ -878,9 +872,9 @@ myAppController.controller('ElementClimateControlController', function($scope, $
 				.flatten()
 				.filter(function(v) {
 					angular.extend(v, {
-						roomTitle: $scope.dataHolder.devices.rooms[v.room].title
+						roomTitle: $scope.dataHolder.devices.rooms[v.room] ? $scope.dataHolder.devices.rooms[v.room].title : "room deleted"
 					}, {
-						roomIcon: $scope.dataHolder.devices.rooms[v.room].img_src
+						roomIcon: $scope.dataHolder.devices.rooms[v.room] ? $scope.dataHolder.devices.rooms[v.room].img_src : null
 					}, {
 						sensorLevel: $scope.widgetClimateControl.devicesId[v.mainSensor] ? $scope.widgetClimateControl.devicesId[v.mainSensor].metrics.level : null
 					}, {

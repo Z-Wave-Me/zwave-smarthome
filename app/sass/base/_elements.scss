@@ -13,7 +13,7 @@
         color: $app-a-color;
         font-weight: bold;
         &::after {
-          font-family: "Font Awesome 5 Free";
+          font-family: "Font Awesome 5 Pro";
           content: "\f00c";
           font-weight: bold;
           font-style: normal;
@@ -55,6 +55,17 @@
       @include mediaQueries(min-small) {
         width: 64px;
         height: 64px;
+      }
+      .widget__power-off_bnt {
+        position: absolute;
+        right: -.7rem;
+        top: 0;
+        &.off {
+          color: darkgrey;
+        }
+        &.on {
+          color: black;
+        }
       }
       .widget-img-overlay {
         background-color: rgba(255, 255, 255, 0.8);
@@ -461,7 +472,7 @@ img.widget-promo-image {
 
 .widget-control.text a:after {
   content: "\f1ea";
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 5 Pro";
   font-style: normal;
   font-weight: normal;
   /*--adjust as necessary--*/
@@ -543,4 +554,9 @@ img.widget-promo-image {
     border-bottom-left-radius: 150px;
     border-bottom-right-radius: 150px;
   }
+}
+.flex-buttons {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
 }

@@ -37,11 +37,16 @@
       </button>
     </div>
     <!-- Search and autocomplete -->
-    <form id="form_search_mobile" class="input-group" ng-if="dataHolder.mode === 'default' && naviExpanded.elSearch" ng-submit="setFilter({q: autocomplete.term})"
+    <form id="form_search_mobile"
+          class="input-group"
+          ng-if="dataHolder.mode === 'default' && naviExpanded.elSearch"
+          ng-submit="setFilter({q: autocomplete.term})"
       autocomplete="off" novalidate>
       <!-- Input -->
       <input id="input_search" type="text" focus="{{dataHolder.devices.filter.q}}" class="form-control" placeholder="{{_t('lb_search')}}"
-        ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown" />
+        ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"
+             ng-click="elSearchHolder($event)"
+      />
       <!-- Search button -->
       <span class="input-group-addon clickable" ng-click="setFilter({q: autocomplete.term})">
         <i class="fas fa-search" ng-class="{'text-success':autocomplete.term}"></i>

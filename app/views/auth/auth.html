@@ -1,5 +1,5 @@
 <!-- Auth -->
-<div ng-controller="AuthController">
-    <div ng-if="!auth.firstaccess" ng-include="'app/views/auth/auth_login.html'"></div>
-    <div ng-if="auth.firstaccess" ng-include="'app/views/auth/auth_firstaccess.html'"></div>
+<div ng-if="!authCtrl.processed" ng-controller="AuthController">
+    <div ng-if="!authCtrl.firstaccess" ng-include="'app/views/auth/auth_login.html'"></div>
+    <div ng-if="authCtrl.firstaccess" ng-include="'app/views/auth/auth_firstaccess.html'"></div>
 </div>

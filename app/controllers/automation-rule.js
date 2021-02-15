@@ -670,12 +670,14 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 	$scope.loadNotificationChannels = function(rooms) {
 		dataFactory.getApi('notification_channels', '/all').then(function(response) {
 			$scope.notifications.channels = response.data.data;
-			$scope.rule.input.params.notifications.forEach(function(n) {
-				var nc = _.findWhere($scope.notifications.channels, { id: n.target });
-				if (nc) {
-					n.targetName = nc.name;
-				}
-			});
+			if ($scope.rule.input.params.notifications) {
+				$scope.rule.input.params.notifications.forEach(function(n) {
+					var nc = _.findWhere($scope.notifications.channels, { id: n.target });
+					if (nc) {
+						n.targetName = nc.name;
+					}
+				});
+			}
 		}, function(error) {});
 	};
 	$scope.loadNotificationChannels();

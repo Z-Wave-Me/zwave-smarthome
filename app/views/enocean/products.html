@@ -8,22 +8,22 @@
   <div class="list-panel" ng-repeat="v in enocean.products | orderBy:'name' track by $index">
     <!-- img -->
     <figure class="img wh-64x64 clickable">
-      <a href="#enocean/teachin/{{v.id}}">
-        <img class="product-img" ng-src="storage/img/enocean/devices/{{v.image}}" alt="img" err-src="{{cfg.img.placeholder}}" alt="img"
+      <a href="#enocean/teachin/{{v.teachIn}}">
+        <img class="product-img" ng-src="storage/img/enocean/devices/{{v.image}}" alt="img" err-src="{{cfg.img.placeholder}}" alt="{{v.name}}"
         />
       </a>
     </figure>
     <!-- body -->
     <div class="body">
       <div>
-        <a href="#enocean/teachin/{{v.id}}">
+        <a href="#enocean/teachin/{{v.teachIn}}">
           {{v.name}}
         </a>
       </div>
     </div>
     <!-- control -->
     <div class="control">
-      <a href="#enocean/teachin/{{v.id}}" class="btn btn-default" title="{{_t('teach_in')}}">
+      <a href="#enocean/teachin/{{v.teachIn}}" class="btn btn-default" title="{{_t('teach_in')}}">
         <i class="fas fa-plug text-primary"></i>
       </a>
     </div>

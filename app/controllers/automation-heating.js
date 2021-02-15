@@ -1,8 +1,8 @@
+'use strict';
 /**
  * @overview
  * @author Michael Hensche
  */
-
 
 /**
  *
@@ -81,6 +81,12 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 				step: 0.5,
 				temp: {}
 			},
+			frostProtection: {
+				min: 5,
+				max: 35,
+				step: 0.5,
+				temp: {}
+			},
 			fallback: {
 				"F": "frost_protection_temp",
 				"E": "energy_save_temp",
@@ -89,8 +95,10 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			default: { // room template
 				comfortTemp: 21, // default value
 				energySaveTemp: 18,
+				frostProtectionTemp: 5,
 				fallbackTemp: "",
 				sensorId: null,
+				state:null,
 				schedule: {}
 			},
 			mobileSchedule_entry: {
@@ -131,6 +139,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		timeLineY: 30, // height(px)
 		verticalScrollbar: 20, // scrollbar (px)
 		timeLineBorder: 2, // border(top and bottom)
+		widthTimeX: 8,
 		rows: {
 			'0': {
 				title: 'day_short_0',
@@ -233,10 +242,27 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
 	$scope.jQuery_schedules = {};
 
+	$scope.mobileView = $scope.deviceDetector.isMobile() ||
+		$scope.cfg.route.os === 'PoppApp_Z_Way' ||
+		$scope.cfg.route.os === 'ZWayMobileAppAndroid' ||
+		$scope.cfg.route.os === 'IOSWRAPPER' ||
+		$scope.cfg.route.os === 'ZWayMobileAppiOS';
+
+	$scope.changeView = function() {
+		if ($scope.mobileView)
+		{
+			var elements = angular.element.find("[aria-expanded='true']");
+			elements.map(function (el){
+				var id = el.dataset.id;
+				$scope.renderSchedule('#schedule-'+ id, id)
+			})
+		}
+		$scope.mobileView = !$scope.mobileView;
+	}
 	/**
 	 * [renderSchedule description]
-	 * @param  {[type]} scheduleId [description]
-	 * @param  {[type]} roomId     [description]
+	 * @param  {string} scheduleId [description]
+	 * @param  {string} roomId     [description]
 	 * @return {[type]}            [description]
 	 */
 	$scope.renderSchedule = function(scheduleId, roomId) {
@@ -378,6 +404,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			label: [$scope._t('frostProtection')]
 		};
 		$scope.heating.cfg.energySave.temp = temperatureArray(obj, $scope.heating.cfg.energySave, "°C");
+		$scope.heating.cfg.frostProtection.temp = temperatureArray(obj, $scope.heating.cfg.frostProtection, "°C");
 		$scope.heating.cfg.comfort.temp = temperatureArray(false, $scope.heating.cfg.comfort, "°C");
 	};
 	$scope.init();
@@ -447,7 +474,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		var hasSC = false;
 		if ($scope.heating.input.params.roomSettings && $scope.heating.input.params.roomSettings[roomId]) {
 			var schedule = $scope.heating.input.params.roomSettings[roomId].schedule;
-			for (sc in schedule) {
+			for (var sc in schedule) {
 				if (schedule[sc].length > 0) {
 					hasSC = true;
 					break;
@@ -488,7 +515,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 						});
 
 					if(scIndex != -1) {
-						$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseInt($scope.heating.tempModal.temp.value);
+						$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseFloat($scope.heating.tempModal.temp.value);
 
 						var rows_copy = {};
 						angular.copy($scope.scheduleOptions.rows, rows_copy);
@@ -608,7 +635,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 
 		for (var i = 0; i <= 6; i++) { // days
 			if ($scope.heating.mobileSchedule[roomId][targetIndex][i]) { // day true
-				overlaps = timeOverlaps($scope.heating.mobileSchedule[roomId], stime, etime, i); // check for day
+				var overlaps = timeOverlaps($scope.heating.mobileSchedule[roomId], stime, etime, i); // check for day
 				if (overlaps.length > 0) {
 					$scope.heating.mobileSchedule[roomId][targetIndex][type] = oldValue;
 					alertify.alertWarning($scope._t('data_overlaps'));
@@ -732,7 +759,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.transformFromMobileToInst = function() {
 		// transform data for Instance
-		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
+		// if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 			_.each($scope.heating.mobileSchedule, function(data, roomId) {
 				$scope.heating.input.params.roomSettings[roomId].schedule = {};
 				_.each(data, function(d) {
@@ -751,7 +778,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 					}
 				});
 			});
-		}
+		// }
 	};
 
 	/**
@@ -759,7 +786,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 */
 	$scope.transformFromInstToMobile = function() {
 		// transform data for mobile view
-		if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
+		// if($scope.deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS') {
 			_.each($scope.heating.input.params.roomSettings, function(data, roomId) {
 				var schedule = data.schedule;
 
@@ -788,7 +815,7 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 					}
 				});
 			});
-		}
+		// }
 	};
 
 
@@ -895,5 +922,4 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		var min = h + i;
 		return min;
 	}
-
 });

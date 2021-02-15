@@ -20,48 +20,24 @@
         <button type="button" aria-expanded="false" bb-table-accordion>{{v.stime}}&nbsp; - &nbsp;{{v.etime}}</button>
       </td>
       <!-- time -->
-      <td class="td-header" title="{{_t('time_period')}}" class="form-inline">
+      <td class="td-header" title="{{_t('time_period')}}" data-label="{{_t('time_period')}}" class="form-inline">
         <input type="time" class="form-control" ng-model="v.stime" ng-change="timeChanged(r.id, $index, '{{v.stime}}', 'stime')">
         &nbsp; - &nbsp;
         <input type="time" class="form-control" ng-model="v.etime" ng-change="timeChanged(r.id, $index, '{{v.etime}}', 'etime')">
       </td>
       <!-- temperature -->
-      <td class="td-header" title="{{_t('temperature')}}">
+      <td class="td-header" title="{{_t('temperature')}}" data-label="{{_t('temperature')}}">
         <select class="form-control" ng-model="v.temp" convert-to-float>
           <option value="">---</option>
           <option value="{{ct}}" ng-repeat="ct in heating.cfg.comfort.temp.temp track by $index" ng-selected="ct == v.temp">
           {{heating.cfg.comfort.temp.label[$index]}}</option>
         </select>
       </td>
-      <!-- day 0 -->
-      <td class="td-header" title="{{_t('day_short_0')}}" ng-class="{'active': v[0]}" ng-click="toggleTime(v, 0, r.id, $index)">
-        <i class="fas fa-check"></i>
+      <td ng-repeat="_ in [].constructor(7) track by $index" class="td-header" title="{{_t('day_short_' + $index)}}" data-label="{{_t('day_short_' + $index)}}" ng-class="{'active': v[$index]}" ng-click="toggleTime(v, $index, r.id, $parent.$index)">
+        <i ng-hide="v[$index]" class="far fa-minus"></i>
+        <i ng-show="v[$index]" class="fas fa-check"></i>
       </td>
-      <!-- day 1 -->
-      <td class="td-header" title="{{_t('day_short_1')}}" ng-class="{'active': v[1]}" ng-click="toggleTime(v, 1, r.id, $index)">
-        <i class="fas fa-check"></i>
-      </td>
-      <!-- day 2 -->
-      <td class="td-header" title="{{_t('day_short_2')}}" ng-class="{'active': v[2]}" ng-click="toggleTime(v, 2, r.id, $index)">
-        <i class="fas fa-check"></i>
-      </td>
-      <!-- day 3 -->
-      <td class="td-header" title="{{_t('day_short_3')}}" ng-class="{'active': v[3]}" ng-click="toggleTime(v, 3, r.id, $index)">
-        <i class="fas fa-check"></i>
-      </td>
-      <!-- day 4 -->
-      <td class="td-header" title="{{_t('day_short_4')}}" ng-class="{'active': v[4]}" ng-click="toggleTime(v, 4, r.id, $index)">
-        <i class="fas fa-check"></i>
-      </td>
-      <!-- day 5 -->
-      <td class="td-header" title="{{_t('day_short_5')}}" ng-class="{'active': v[5]}" ng-click="toggleTime(v, 5, r.id, $index)">
-        <i class="fas fa-check"></i>
-      </td>
-      <!-- day 6 -->
-      <td class="td-header" title="{{_t('day_short_6')}}" ng-class="{'active': v[6]}" ng-click="toggleTime(v, 6, r.id, $index)">
-        <i class="fas fa-check"></i>
-      </td>
-      <td class="td-header" title="{{_t('lb_remove')}}" class="td-action">
+      <td class="td-header" title="{{_t('lb_remove')}}" data-label="{{_t('lb_remove')}}" class="td-action">
         <button type="button" class="btn btn-text" title="Remove" ng-click="unassignTimeSchedule(r.id, $index)">
         <i class="fas fa-times text-danger"></i>
         </button>

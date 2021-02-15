@@ -1,5 +1,9 @@
 <!-- Scenes -->
 <div ng-controller="AutomationSceneController">
+	<div class="alert alert-info alert-flex" ng-if="!!oldScenes.length"><i class="fas fa-info-circle"></i>&nbsp
+		{{_t('ligthscenes_exists')}}
+		<div class="btn btn-default" style="margin-left: auto" ng-click="convertScene()">{{_t('ok_import')}}</div>
+	</div>
 	<!-- Topbar -->
 	<section class="page-topbar">
 		<h1>{{_t('scenes')}}</h1>
