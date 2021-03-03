@@ -23,7 +23,7 @@
       </div>
     </div>
     <div data-collapse-all="true">
-      <section class="accordion-wrap" ng-repeat="d in security.input.params.alarms.table" ng-init="model=v">
+      <section class="accordion-wrap" ng-repeat="d in security.input.params.alarms.table" ng-init="model=d">
         <h2 class="accordion-toggle ellipsis">
         <!-- Title -->
         <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'">
@@ -42,7 +42,7 @@
             {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em>
           </span>
         </span>
-        <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(v.devices,'alarms')">
+        <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'alarms')">
           <i class="fas fa-times text-danger"></i>
         </span>
         </h2>
