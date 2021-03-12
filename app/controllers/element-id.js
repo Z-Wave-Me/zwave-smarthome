@@ -192,6 +192,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			myCache.remove('devices');
 			myCache.remove('devices/' + deviceId);
 			myCache.remove('locations');
+			$scope.reloadDevicesFromServer();
 			dataService.goBack();
 
 		}, function(error) {
