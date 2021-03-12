@@ -627,9 +627,11 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 	 * @param  {int} targetIndex entry index
 	 * @param  {string} oldValue    prev time
 	 * @param  {string} type        stime/etime
+	 * @param valid boolean
 	 */
-	$scope.timeChanged = function(roomId, targetIndex, oldValue, type) {
-
+	$scope.timeChanged = function(roomId, targetIndex, oldValue, type, valid) {
+		if(!valid)
+			return;
 		var stime = stringToTime($scope.heating.mobileSchedule[roomId][targetIndex].stime),
 			etime = stringToTime($scope.heating.mobileSchedule[roomId][targetIndex].etime);
 

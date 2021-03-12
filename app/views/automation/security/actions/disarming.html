@@ -11,7 +11,7 @@
   <!-- Assigned -->
   <div class="panel-wrap">
     <div data-collapse-all="true">
-      <section class="accordion-wrap" ng-repeat="d in security.input.params.disarmConfirm.table" ng-init="model=v">
+      <section class="accordion-wrap" ng-repeat="d in security.input.params.disarmConfirm.table" ng-init="model=d">
         <h2 class="accordion-toggle ellipsis">
         <!-- Title -->
         <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'">

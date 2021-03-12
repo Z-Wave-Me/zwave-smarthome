@@ -911,7 +911,7 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
         });
     };
     if (dataService.getUser()) $scope.allSettled();
-
+    $scope.reloadDevicesFromServer = $scope.allSettled;
     var filterDevices = function () {
         if ($scope.dataHolder.mode === 'edit') {
             return;
