@@ -29,7 +29,7 @@ myAppController.controller('RoomController', function($scope, $q, $cookies, $fil
     $scope.allSettled = function() {
         var promises = [
             dataFactory.getApi('locations', null, true),
-            dataFactory.getApi('devices', null, true)
+            // dataFactory.getApi('devices', null, true)
         ];
         
         $q.allSettled(promises).then(function(response) {
@@ -50,12 +50,10 @@ myAppController.controller('RoomController', function($scope, $q, $cookies, $fil
                 $scope.rooms.all = dataService.getRooms(locations.value.data.data).value();
             }
             // Success - devices
-            if (devices.state === 'fulfilled') {
-                $scope.devices.all = dataService.getDevicesData(devices.value.data.data.devices, $scope.rooms.showHidden).value();
-                $scope.rooms.cnt.devices = _.countBy($scope.devices.all, function(v) {
-                    return v.location;
-                });
-            }
+            $scope.devices.all = dataService.getDevicesData($scope.dataHolder.devices.all, $scope.rooms.showHidden).value();
+            $scope.rooms.cnt.devices = _.countBy($scope.devices.all, function(v) {
+                return v.location;
+            });
         });
     };
     $scope.allSettled();
