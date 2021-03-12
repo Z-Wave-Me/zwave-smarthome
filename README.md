@@ -9,6 +9,15 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.13.1
+#### New features:
+#### Fixes:
+- Fix dashboard resistance to add elements
+- Fix bug when add new elements in room
+- Heating app validation added
+- Security app improved
+- Welcome screen translation updated
+
 ## v1.13.0
 #### New features:
 - EnOcean: reworked Teach-In process, EnOcean logo to the leaf, added support for many new devices
