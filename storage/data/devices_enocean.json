@@ -726,5 +726,18 @@
     "typeId": "0x05",
     "inclusion": "Press LRN button",
     "smartAck": false
+  },
+  {
+    "id": 55,
+    "vendor": "NodOn",
+    "name": "Motion Sensor",
+    "vendorLogo": "nodon.png",
+    "description": "Motion and Illimination Sensor",
+    "image": "motion-sensor-nodon-680x680px-enocean.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x07",
+    "typeId": "0x03",
+    "inclusion": "",
+    "smartAck": false
   }
 ]
