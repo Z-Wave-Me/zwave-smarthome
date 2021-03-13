@@ -400,6 +400,7 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
     if (!roomId) {
       return;
     }
+    roomId = parseInt(roomId);
     $scope.loading = {
       status: 'loading-spin',
       icon: 'fa-spinner fa-spin',
@@ -415,7 +416,9 @@ myAppController.controller('EnoceanTeachinController', function ($scope, $routeP
         location: roomId
       };
 
-      dataFactory.putApi('devices', v.id, input).then(function (response) {}, function (error) {
+      dataFactory.putApi('devices', v.id, input).then(function (response) {
+        $scope.loading = false;
+      }, function (error) {
         alertify.alertError($scope._t('error_update_data'));
         $scope.loading = false;
         return;
@@ -695,6 +698,7 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
      if (!roomId) {
        return;
      }
+     roomId = parseInt(roomId);
      $scope.loading = {
        status: 'loading-spin',
        icon: 'fa-spinner fa-spin',
@@ -710,7 +714,9 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
          location: roomId
        };
 
-       dataFactory.putApi('devices', v.id, input).then(function (response) {}, function (error) {
+       dataFactory.putApi('devices', v.id, input).then(function (response) {
+         $scope.loading = false;
+       }, function (error) {
          alertify.alertError($scope._t('error_update_data'));
          $scope.loading = false;
          return;
