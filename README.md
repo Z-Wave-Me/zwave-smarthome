@@ -14,6 +14,7 @@ Serguei Poltorak
 #### Fixes:
 - Fix dashboard resistance to add elements
 - Fix bug when add new elements in room
+- Fixed wrong assignment of newly included devices to rooms
 - Heating app validation added
 - Security app improved
 - Welcome screen translation updated
