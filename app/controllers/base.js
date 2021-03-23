@@ -943,7 +943,30 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
         } else {
             collection = _.where(devices.all, devices.filter);
         }
+        devices.noSearch = false;
+        devices.noDashboard = false;
+        devices.noDevices = false;
+        if (_.isEmpty(collection)) {
+            if ($scope.routeMatch('/dashboard')) {
+                devices.noDashboard = true;
+            } else {
+                if (devices.filter.q) {
+                    devices.noSearch = true;
+                } else {
+                    devices.noDevices = true;
+                }
+            }
+        } else {
+            if ($scope.dataHolder.mode === 'edit') {
+                var nodePath = 'order.' + $scope.dataHolder.dragdrop.action;
+                collection = _.sortBy(collection, function(v) {
+                    return $filter('hasNode')(v, nodePath) || 0;
+                });
+            }
+
+        }
         $scope.dataHolder.devices.collection = collection;
+        $scope.dataHolder.cnt.collection = _.size(collection);
     }
     /**
      * deprecated
@@ -1015,28 +1038,6 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
         }
         // Collection
         filterDevices();
-        if (_.isEmpty($scope.dataHolder.devices.collection)) {
-            if ($scope.routeMatch('/dashboard')) {
-                $scope.dataHolder.devices.noDashboard = true;
-            } else {
-                if ($scope.dataHolder.devices.filter.q) {
-                    $scope.dataHolder.devices.noSearch = true;
-
-                } else {
-                    $scope.dataHolder.devices.noDevices = true;
-                }
-
-            }
-        } else {
-            if ($scope.dataHolder.mode === 'edit') {
-                var nodePath = 'order.' + $scope.dataHolder.dragdrop.action;
-                $scope.dataHolder.devices.collection = _.sortBy($scope.dataHolder.devices.collection, function(v) {
-                    return $filter('hasNode')(v, nodePath) || 0;
-                });
-            }
-
-        }
-        $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
     /**
      * Refresh data
