@@ -466,7 +466,10 @@ myAppController.controller('RoomConfigIdController', function($scope, $routePara
         angular.forEach(devices, function(v, k) {
             dataFactory.storeApi('devices', v, {
                 'location': data.data.id
-            }).then(function(response) {}, function(error) {
+            }).then(function(response) {
+                var device = response.data.data;
+                if (device) $scope.updateDevice(device);
+            }, function(error) {
 
             });
         });

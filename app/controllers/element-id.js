@@ -82,7 +82,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			// Success - notificationChannels
 			if (notificationChannels && notificationChannels.state === 'fulfilled') {
 				$scope.notifications.channels = notificationChannels.value.data.data;
-			}			
+			}
 			// Success - notificationFiltering
 			if (notificationFiltering && notificationFiltering.state === 'fulfilled') {
 				$scope.notifications.input = notificationFiltering.value.data.data;
@@ -168,11 +168,15 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				visibility: input.visibility,
 				permanently_hidden: input.permanently_hidden
 			};
+
 			dataFactory.putApi('devices', input.id, data).then(function(response) {
+				var device = response.data.data;
+				if (device) $scope.updateDevice(device);
 				$scope.user.dashboard = dataService.setArrayValue($scope.user.dashboard, input.id, input.onDashboard);
 				$scope.user.hide_single_device_events = dataService.setArrayValue($scope.user.hide_single_device_events, input.id, input.hide_events);
 				$scope.updateProfile($scope.user, input.id);
 				$scope.updateNotification($scope.notifications);
+
 			}, function(error) {
 				alertify.alertError($scope._t('error_update_data'));
 				$scope.loading = false;
