@@ -912,6 +912,7 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
     };
     if (dataService.getUser()) $scope.allSettled();
     $scope.reloadDevicesFromServer = $scope.allSettled;
+
     var filterDevices = function () {
         if ($scope.dataHolder.mode === 'edit') {
             return;
@@ -943,7 +944,30 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
         } else {
             collection = _.where(devices.all, devices.filter);
         }
+        devices.noSearch = false;
+        devices.noDashboard = false;
+        devices.noDevices = false;
+        if (_.isEmpty(collection)) {
+            if ($scope.routeMatch('/dashboard')) {
+                devices.noDashboard = true;
+            } else {
+                if (devices.filter.q) {
+                    devices.noSearch = true;
+                } else {
+                    devices.noDevices = true;
+                }
+            }
+        } else {
+            if ($scope.dataHolder.mode === 'edit') {
+                var nodePath = 'order.' + $scope.dataHolder.dragdrop.action;
+                collection = _.sortBy(collection, function(v) {
+                    return $filter('hasNode')(v, nodePath) || 0;
+                });
+            }
+
+        }
         $scope.dataHolder.devices.collection = collection;
+        $scope.dataHolder.cnt.collection = _.size(collection);
     }
     /**
      * deprecated
@@ -1015,28 +1039,6 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
         }
         // Collection
         filterDevices();
-        if (_.isEmpty($scope.dataHolder.devices.collection)) {
-            if ($scope.routeMatch('/dashboard')) {
-                $scope.dataHolder.devices.noDashboard = true;
-            } else {
-                if ($scope.dataHolder.devices.filter.q) {
-                    $scope.dataHolder.devices.noSearch = true;
-
-                } else {
-                    $scope.dataHolder.devices.noDevices = true;
-                }
-
-            }
-        } else {
-            if ($scope.dataHolder.mode === 'edit') {
-                var nodePath = 'order.' + $scope.dataHolder.dragdrop.action;
-                $scope.dataHolder.devices.collection = _.sortBy($scope.dataHolder.devices.collection, function(v) {
-                    return $filter('hasNode')(v, nodePath) || 0;
-                });
-            }
-
-        }
-        $scope.dataHolder.cnt.collection = _.size($scope.dataHolder.devices.collection);
     }
     /**
      * Refresh data
@@ -1051,39 +1053,7 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
                     $scope.dataHolder.devices.updateTime = response.data.data.updateTime;
                     if (response.data.data.devices.length > 0) {
                         angular.forEach(response.data.data.devices, function(v, k) {
-                            var index = _.findIndex($scope.dataHolder.devices.all, {
-                                id: v.id
-                            });
-                            var device;
-                            if (!(device = $scope.dataHolder.devices.all[index])) {
-                                return;
-                            }
-                            if (v.metrics.level) {
-                                v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
-                            }
-                            if ($scope.cmdTimeouts[v.id]) {
-                                $timeout.cancel($scope.cmdTimeouts[v.id]);
-                                delete $scope.cmdTimeouts[v.id]
-                                $scope.cmdTimeouts.splice($scope.cmdTimeouts.indexOf(v.id), 1);
-                            }
-                            angular.extend($scope.dataHolder.devices.all[index], {
-                                isFailed: v.metrics.isFailed
-                            }, {
-                                metrics: v.metrics
-                            }, {
-                                progress: false
-                            }, {
-                                iconPath: dataService.assignElementIcon(v)
-                            }, {
-                                updateTime: v.updateTime
-                            });
-                            var updated = {};
-                            angular.copy(device, updated)
-                            Object.keys(v).forEach((key) => {
-                                updated[key] = v[key];
-                            })
-                            angular.copy(updated, device);
-                            //console.log('Updating from server response: device ID: ' + v.id + ', metrics.level: ' + v.metrics.level + ', updateTime: ' + v.updateTime);
+                           $scope.updateDevice(v)
                         });
                     }
                     if (response.data.data.structureChanged === true) {
@@ -1098,4 +1068,39 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
             $scope.apiDataInterval = $interval(refresh, $scope.cfg.interval);
         }
     };
+
+    $scope.updateDevice = function (v) {
+        var index = _.findIndex($scope.dataHolder.devices.all, {
+            id: v.id
+        });
+        var device;
+        if (!(device = $scope.dataHolder.devices.all[index])) {
+            return;
+        }
+        if (v.metrics.level) {
+            v.metrics.level = $filter('numberFixedLen')(v.metrics.level);
+        }
+        if ($scope.cmdTimeouts[v.id]) {
+            $timeout.cancel($scope.cmdTimeouts[v.id]);
+            delete $scope.cmdTimeouts[v.id]
+            $scope.cmdTimeouts.splice($scope.cmdTimeouts.indexOf(v.id), 1);
+        }
+        angular.extend($scope.dataHolder.devices.all[index], {
+            isFailed: v.metrics.isFailed
+        }, {
+            metrics: v.metrics
+        }, {
+            progress: false
+        }, {
+            iconPath: dataService.assignElementIcon(v)
+        }, {
+            updateTime: v.updateTime
+        });
+        var updated = {};
+        angular.copy(device, updated)
+        Object.keys(v).forEach((key) => {
+            updated[key] = v[key];
+        })
+        angular.copy(updated, device);
+    }
 });
