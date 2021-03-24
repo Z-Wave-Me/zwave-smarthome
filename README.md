@@ -13,6 +13,8 @@ Serguei Poltorak
 #### New features:
 #### Fixes:
 - Fix dashboard resistance to add elements
+- Fix empty elements && dashboard bug, when last device removed from room
+- Fix update devices count at rooms page
 - Fix bug when add new elements in room
 - Fixed wrong assignment of newly included devices to rooms
 - Heating app validation added
