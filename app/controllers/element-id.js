@@ -327,7 +327,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			}
 		}
 
-		if (cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid') {
+		if (cfg.route.os == 'ZWayMobileAppAndroid') {
 			if ($scope.elementId.input.deviceType == 'toggleButton' ||
 				$scope.elementId.input.deviceType == 'switchBinary') {
 				if ($scope.elementId.input.metrics.level == "on") {
