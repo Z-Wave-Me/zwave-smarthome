@@ -64,7 +64,7 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         var promises = [
             dataFactory.loadZwaveApiData()
         ];
-        if($scope.isInArray(['zme_hub','jb'],cfg.app_type)){
+        if($scope.isInArray(['zme_hub'],cfg.app_type)){
             promises.push(dataFactory.getApi('instances', '/ZMEOpenWRT'));
         }
         $q.allSettled(promises).then(function (response) {

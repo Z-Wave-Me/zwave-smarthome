@@ -48,8 +48,6 @@ myAppController.controller('ManagementRemoteController', function($scope, dataFa
 
 		if ($scope.getCustomCfgArr('boxtype') == 'razberry') {
 			$scope.findUrl = 'find.z-wave.me';
-		} else if ($scope.getCustomCfgArr('boxtype') == 'popp') {
-			$scope.findUrl = 'find.popp.eu';
 		}
 	};
 
