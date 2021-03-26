@@ -66,7 +66,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 
 
 	if (dataService.getUser()) {
-		if (cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS') {
+		if (cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS') {
 			$timeout(function() {
 				window.location = '#/dashboard';
 			}, 0);
@@ -372,7 +372,7 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 				var _profile = _.omit(response.data.data, 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
 				if ((cfg.app_type === 'zme_hub') && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
 					$scope.updateInstance(instance);
-				} else if (cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS') {
+				} else if (cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS') {
 					$scope.redirectAfterLogin(true, _profile, inputAuth.password, '#/dashboard/firstlogin');
 				} else {
 					$scope.redirectAfterLogin(true, _profile, inputAuth.password, '#/dashboard/firstlogin?authBearer');

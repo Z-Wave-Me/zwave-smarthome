@@ -7,10 +7,10 @@
 	<span class="switch-label">{{_t('security_immediate_activate_schedule')}}</span>
 	<bb-help-text trans="_t('help_security_immediate_activate_schedule')"></bb-help-text>
 </div>
-<div ng-hide="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+<div ng-hide="deviceDetector.isMobile() || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'ZWayMobileAppiOS'">
 	<!-- <pre>{{security.input.params.schedules|json}}</pre> -->
 	<div id="schedule-disarm" class="schedule"></div>
 	<bb-help-text trans="_t('help_security_schedule')"></bb-help-text>
 </div>
-<div ng-if="deviceDetector.isMobile() || cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'" ng-include="'app/views/automation/security/time/mobile_schedule.html'"></div>
+<div ng-if="deviceDetector.isMobile() || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'ZWayMobileAppiOS'" ng-include="'app/views/automation/security/time/mobile_schedule.html'"></div>
 <div ng-include="'app/views/automation/security/time/security_modal.html'"></div>
