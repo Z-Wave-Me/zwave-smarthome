@@ -13,12 +13,38 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 	};
 	$scope.oldSchedules = [];
 
+	$scope.convertSchedules = function () {
+		var postData = {
+			source: 'ScheduledScene',
+			target: 'Schedules'
+		}
+		dataFactory.postApi('modules_transform', postData).then(function(response) {
+			if (response.data && response.data.data) {
+				var newSchedules = response.data.data.map(function(entry) {
+					return entry.title
+				});
+				dataService.showNotifier({
+					message: $scope._t('successfully_transformed') + '<br>' + newSchedules.join(',<br>')
+				});
+				$scope.loadSchedules();
+			}
 
+			$scope.oldSchedules = [];
+		}, function(error) {
+			dataService.showNotifier({
+				message: $scope._t('error_transformed'),
+				type: 'error'
+			});
+			$scope.oldSchedules = [];
+			$scope.loadSchedules();
+		});
+	};
 	/**
 	 * Load schedules
 	 * @returns {undefined}
 	 */
 	$scope.loadSchedules = function() {
+
 		dataFactory.getApi('instances', null, true).then(function(response) {
 			$scope.schedules.all = _.chain(response.data.data).flatten().where({
 				moduleId: 'Schedules'
@@ -37,14 +63,12 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 				}
 				return v;
 			}).value();
-			if (!_.size($scope.schedules.all)) {
+			if (!_.size($scope.schedules.all) && !$scope.oldSchedules.length) {
 				// Previous page is detail - clicked on cancel or page is reloaded - after delete
 				if (cfg.route.previous.indexOf(dataService.getUrlSegment($location.path())) > -1) {
 					$location.path('/automations');
-					return;
-				}
-				$location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
-				return;
+				} else
+					$location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
 			}
 			//$scope.schedules.state = 'success';
 		}, function(error) {
@@ -63,52 +87,11 @@ myAppController.controller('AutomationScheduleController', function($scope, $rou
 			$scope.oldSchedules = _.filter(response.data.data, function(v) {
 				return !v.params.moduleAPITransformed;
 			});
-
-			if ($scope.oldSchedules.length) {
-				var postData = {
-					source: 'ScheduledScene',
-					target: 'Schedules'
-				}
-
-				alertify.confirm($scope._t('scheduledscenes_exists'))
-					.setting('labels', {
-						'ok': $scope._t('ok_import')
-					})
-					.set('onok', function(closeEvent) { //after clicking OK
-						dataFactory.postApi('modules_transform', postData).then(function(response) {
-							if (response.data && response.data.data) {
-								var newSchedules = response.data.data.map(function(entry) {
-									return entry.title
-								});
-								dataService.showNotifier({
-									message: $scope._t('successfully_transformed') + '<br>' + newSchedules.join(',<br>')
-								});
-								$scope.loadSchedules();
-							}
-
-							$scope.oldSchedules = [];
-						}, function(error) {
-							dataService.showNotifier({
-								message: $scope._t('error_transformed'),
-								type: 'error'
-							});
-							$scope.oldSchedules = [];
-							$scope.loadSchedules();
-						});
-					})
-					.set('oncancel', function(closeEvent) { //after clicking Cancel
-						$scope.oldSchedules = [];
-						$scope.loadSchedules();
-					});
-			} else {
-				$scope.loadSchedules();
-			}
 		}, function(error) {
-			$scope.loadSchedules();
 		});
 	};
 	$scope.loadOldSchedules();
-
+	$scope.loadSchedules();
 	/**
 	 * Run schedule test
 	 * @param {object} instance
