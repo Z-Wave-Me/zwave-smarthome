@@ -7,7 +7,7 @@
 <div class="widget-img-overlay" 
 	ng-if="v.hasHistory"
 	ng-click="dataHolder.devices.find = v;handleModal('modalHistory', $event)">
-  <span class="widget-level">{{v.metrics.level}}<small>{{v.metrics.scaleTitle}}</small></span>
+  <span class="widget-level" style="overflow: hidden; text-overflow: ellipsis">{{v.metrics.level}}<small>{{v.metrics.scaleTitle}}</small></span>
 </div>
 <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
 	err-src="{{cfg.img.placeholder}}"
