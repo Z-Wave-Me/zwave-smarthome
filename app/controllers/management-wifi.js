@@ -40,14 +40,14 @@ myAppController.controller('ManagementWiFiController', function ($scope, $cookie
     }
     $scope.loadConnectionStatus();
     var updateStatus = $interval($scope.loadConnectionStatus, 10000);
-    $scope.colorizeConnections = function (connectionType) {
+    $scope.connectInfo = function (connectionType) {
         if (connectionType === $scope.connectionStatus.currentConnection) {
-            return 'current-connection';
+            return {class:'current-connection', description: 'wifi_info_current_connection', status: 'wifi_connected', style: 'color: green'};
         }
         if ($scope.connectionStatus.availableConnections.indexOf(connectionType) !== -1) {
-            return 'available-connections';
+            return {class: 'available-connections', description: 'wifi_info_available_connections', status: 'wifi_connected', style: 'color: green'};
         }
-        return 'possible-connections';
+        return {class: 'possible-connections', description: 'wifi_info_possible_connections', status: 'wifi_disconnected', style: 'color: darkgrey'};
     }
     $scope.connectToStr = function (connect) {
         if (connectionDict[connect]) {

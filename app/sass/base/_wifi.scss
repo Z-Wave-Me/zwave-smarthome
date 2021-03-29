@@ -16,18 +16,21 @@
   justify-content: space-between;
 }
 
-.wifi-status {
-  span {
-    padding-right: 2rem;
-  }
-  .available-connections {
-    color: black;
-  }
-  .possible-connections {
-    color: darkgrey;
-  }
-  .current-connection {
-    color: green;
+.wifi-status__block {
+  display: flex;
+  flex-direction: column;
+  .wifi_status {
+    display: flex;
+    flex-direction: column;
+    .available-connections {
+      color: black;
+    }
+    .possible-connections {
+      color: darkgrey;
+    }
+    .current-connection {
+      color: green;
+    }
   }
 }
 .wifi-control-btn-group {
