@@ -25167,14 +25167,18 @@ body.night-false {
   align-items: center;
   justify-content: space-between; }
 
-.wifi-status span {
-  padding-right: 2rem; }
-.wifi-status .available-connections {
-  color: black; }
-.wifi-status .possible-connections {
-  color: darkgrey; }
-.wifi-status .current-connection {
-  color: green; }
+.wifi-status__block {
+  display: flex;
+  flex-direction: column; }
+  .wifi-status__block .wifi_status {
+    display: flex;
+    flex-direction: column; }
+    .wifi-status__block .wifi_status .available-connections {
+      color: black; }
+    .wifi-status__block .wifi_status .possible-connections {
+      color: darkgrey; }
+    .wifi-status__block .wifi_status .current-connection {
+      color: green; }
 
 .wifi-control-btn-group {
   display: inline-block; }

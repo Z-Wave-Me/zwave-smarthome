@@ -800,7 +800,8 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
             },
             rooms: {},
             get orderBy() {
-                return ($cookies[$scope.getBodyId()] ? $cookies[$scope.getBodyId()] : 'order_elements');
+                const location = $scope.getBodyId();
+                return ($cookies[location] ? $cookies[location] : 'order_' + location);
             },
             set orderBy(key) {
                 $cookies[$scope.getBodyId()] = key;

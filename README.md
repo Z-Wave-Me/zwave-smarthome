@@ -19,6 +19,8 @@ Serguei Poltorak
 - Fixed wrong assignment of newly included devices to rooms
 - Heating app validation added
 - Security app improved
+- Schedule and Rules transofrmation redesigned
+- Adaptive fonts on multilevel widget
 - Welcome screen translation updated
 
 ## v1.13.0

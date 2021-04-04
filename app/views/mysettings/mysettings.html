@@ -47,13 +47,13 @@
         </div>
       </fieldset>
       <fieldset>
-        <div class="form-group form-inline" ng-if="cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'">
+        <div class="form-group form-inline" ng-if="cfg.route.os != 'ZWayMobileAppiOS'">
           <label for="night_mode">
             <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)" />
             <span>{{_t('night_mode')}}</span>
           </label>
         </div>
-        <div class="form-group form-inline" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
+        <div class="form-group form-inline" ng-if="cfg.route.os == 'ZWayMobileAppiOS'">
           <label class="switch">
             <input type="checkbox" name="night_mode" id="night_mode" ng-model="input.night_mode" ng-checked="input.night_mode" ng-change="setNightMode(user.night_mode = !user.night_mode)">
             <span class="slider"></span>

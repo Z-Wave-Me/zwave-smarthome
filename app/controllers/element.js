@@ -436,14 +436,11 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
     }
     $scope.adaptiveFontSize = function (text) {
         if (typeof text === 'string' && text.length > 0) {
-        var width = document.body.clientWidth;
-        if (width > 1190) {
-            width = 1190;
-        }
-        if (width > 755) {
-            var scaleSize = Math.round(width / 4 / text.length);
-            return {'font-size': (scaleSize > 30 ? 30 : scaleSize) + 'px'};
-        }
+            var width = document.querySelector('.widget-entry-in').offsetWidth;
+            if (width > 300) {
+                var scaleSize = Math.min(30, Math.round((width - 134) / text.length / .7));
+                return {'font-size': (scaleSize > 30 ? 30 : scaleSize) + 'px'};
+            }
             return {};
         }
     }
