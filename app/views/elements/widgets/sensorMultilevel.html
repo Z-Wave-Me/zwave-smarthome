@@ -1,12 +1,17 @@
 <!-- sensorMultilevel -->
-<div class="widget-ctrl ctrl-left">
-    <div class="btn-group">
-       <button class="btn btn-default btn-widget-time" title="{{_t('lb_update')}}" 
-               ng-click="runCmd(v.id + '/command/update')"> 
-           <i class="fas fa-clock"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
-       </button>
+<div style="display: flex;
+            justify-content: space-between;
+            align-items: flex-end;">
+    <div class="widget-ctrl ctrl-left">
+        <div class="btn-group">
+           <button class="btn btn-default btn-widget-time" title="{{_t('lb_update')}}"
+                   ng-click="runCmd(v.id + '/command/update')">
+               <i class="fas fa-clock"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
+           </button>
+        </div>
     </div>
-</div>
-<div class="widget-ctrl ctrl-right widget-ctrl-click">
-    <span class="widget-level">{{v.metrics.level}}</span> <span class="widget-scale" ng-style="adaptiveFontSize(v.metrics.scaleTitle)">{{v.metrics.scaleTitle}}</span>
+    <div class="widget-ctrl ctrl-right widget-ctrl-click">
+        <span class="widget-level" ng-style="adaptiveFontSize(v.metrics.scaleTitle + v.metrics.level)">{{v.metrics.level}}</span>
+        <span class="widget-scale" ng-style="adaptiveFontSize(v.metrics.scaleTitle + v.metrics.level)">{{v.metrics.scaleTitle}}</span>
+    </div>
 </div>

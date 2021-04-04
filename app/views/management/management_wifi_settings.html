@@ -1,6 +1,6 @@
 <!-- Admin Wifi Settings list view -->
 <!-- Title -->
-<h2 class="accordion-toggle chevron">
+<h2 class="accordion-toggle chevron" xmlns="http://www.w3.org/1999/html">
     <!-- Toggle -->
     <button type="button" aria-expanded="false" bb-accordion>
     <span>
@@ -11,20 +11,25 @@
 <!-- Content-->
 <div class="accordion" hidden ng-controller="ManagementWiFiController">
     <div class="form form-page" ng-if="currentConnection.length !== 0">
-        <fieldset>
+        <fieldset class="wifi-status__block">
             <!--        Current connections-->
-            <p class="wifi-status">
-                <span ng-repeat="connect in connectionStatus.possibleConnections"
-                      ng-class="colorizeConnections(connect)">
-                    <i class="fa {{ connectToStr(connect)[1] }}" aria-hidden="true"></i>
-                    {{ _t(connectToStr(connect)[0])}}
-                </span>
-            </p>
-            <p class="wifi-status"><span class="help-text ng-binding ng-isolate-scope"><i class="fas text-info  fa-info-circle"></i>
-                <span class="current-connection"> {{_t('wifi_info_current_connection')}} </span>
-                <span class="available-connections"> {{_t('wifi_info_available_connections')}} </span>
-                <span class="possible-connections"> {{_t('wifi_info_possible_connections')}} </span>
-            </span> </p>
+                <div ng-repeat="connect in connectionStatus.possibleConnections" class="wifi_status">
+                    <span>
+                            <span style="font-weight: bold">
+                                    <i class="fa {{ connectToStr(connect)[1] }}" aria-hidden="true"></i>
+                                    {{ _t(connectToStr(connect)[0])}}</span>
+                            <span>-</span>
+                            <span class="{{connectInfo(connect).class}}"> {{_t(connectInfo(connect).description)}} </span>
+                    </span>
+                    <span style="{{connectInfo(connect).style}}">
+                        {{_t(connectInfo(connect).status)}}
+                    </span>
+                </div>
+<!--            <p class="wifi-status"><span class="help-text ng-binding ng-isolate-scope"><i class="fas text-info  fa-info-circle"></i>-->
+<!--                <span class="current-connection"> {{_t('wifi_info_current_connection')}} </span>-->
+<!--                <span class="available-connections"> {{_t('wifi_info_available_connections')}} </span>-->
+<!--                <span class="possible-connections"> {{_t('wifi_info_possible_connections')}} </span>-->
+<!--            </span> </p>-->
         </fieldset>
     </div>
     <div class="form form-page">

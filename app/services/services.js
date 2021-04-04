@@ -154,8 +154,8 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 	/**
 	 * Get x segment from url string
 	 * @param {string} url
-	 * @param {int} index
-	 * @returns {unresolved}
+	 * @param {int?} index
+	 * @returns {string}
 	 */
 	this.getUrlSegment = function(url, index) {
 		index = typeof index !== 'undefined' ? index : 1;

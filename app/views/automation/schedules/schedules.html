@@ -1,5 +1,9 @@
 <!-- Scenes -->
 <div ng-controller="AutomationScheduleController">
+  <div class="alert alert-info alert-flex" ng-if="oldSchedules.length"><i class="fas fa-info-circle"></i>&nbsp
+    {{_t('scheduledscenes_exists')}}
+    <div class="btn btn-default" style="margin-left: auto" ng-click="convertSchedules()">{{_t('ok_import')}}</div>
+  </div>
   <!-- Topbar -->
   <section class="page-topbar">
     <h1>{{_t('schedules')}}</h1>
