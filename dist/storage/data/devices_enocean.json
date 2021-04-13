@@ -726,5 +726,31 @@
     "typeId": "0x05",
     "inclusion": "Press LRN button",
     "smartAck": false
+  },
+  {
+    "id": 55,
+    "vendor": "NodOn",
+    "name": "Motion Sensor",
+    "vendorLogo": "nodon.png",
+    "description": "Motion and Illimination Sensor",
+    "image": "motion-sensor-nodon-680x680px-enocean.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x07",
+    "typeId": "0x03",
+    "inclusion": "",
+    "smartAck": false
+  },
+  {
+    "id": 56,
+    "name": "Motion Sensor",
+    "vendor": "Eltako Electronics",
+    "vendorLogo": "eltako_electronics.jpg",
+    "description": "Motion and Illimination Sensor",
+    "image": "Eltako-FBH65SB-wg-Funk-Bewegungsmelder-Aufputz-Reichweite-max.-im-Freifeld-30m.jpg",
+    "rorg": "0xa5",
+    "funcId": "0x08",
+    "typeId": "0x01",
+    "inclusion": "",
+    "smartAck": false
   }
 ]

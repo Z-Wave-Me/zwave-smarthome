@@ -12,9 +12,9 @@ var config_data = {
 		//Application name
 		'app_name': 'SmartHome UI',
 		// Application version
-		'app_version': 'v1.13.0',
+		'app_version': 'v1.13.1',
 		// Application (DIST) built date
-		'app_built': '11-03-2021 11:56:54',
+		'app_built': '26-03-2021 17:42:57',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -383,20 +383,15 @@ var config_data = {
 		],
 		// List of the find hosts
 		'find_hosts': [
-			'find.z-wave.me',
-			'find.popp.eu',
-			'remote.popp.eu'
+			'find.z-wave.me'
 		],
 		// Redirect to the url after logout
 		'logout_redirect': {
-			'find.z-wave.me': 'https://find.z-wave.me/zboxweb',
-			'remote.popp.eu': 'https://remote.popp.eu/',
+			'find.z-wave.me': 'https://find.z-wave.me/zboxweb'
 		},
 		// List of the forbidden licence app types
 		'license_forbidden': [
-			'popp',
-			'zme_hub',
-			'jb'
+			'zme_hub'
 		],
 		// SmartStart
 		'smart_start': {
@@ -530,7 +525,7 @@ var config_data = {
 		// Scroll offset (px) for bind-class-on-scroll directive
 		'scroll_offset': 80,
 		// ---------------------------------- Custom config for specifics app_type ---------------------------------- //
-		// Application type : default/popp/zme_hub/jb/wd
+		// Application type : default/zme_hub/wd
 		'app_type': 'default',
 		// Config
 		'custom_cfg': {
@@ -586,79 +581,9 @@ var config_data = {
 					'ZMEOpenWRT'
 				]
 			},
-			'popp': {
-				'boxtype': 'popp',
-				'logo': 'app-logo-popp.png',
-				'hidden_apps': [
-					'Cron',
-					'CloudBackup',
-					'CodeDevice',
-					'BatteryPolling',
-					'CustomUserCode',
-					'CustomUserCodeLoader',
-					'MobileAppSupport',
-					'InbandNotifications',
-					'RemoteAccess',
-					'SecurityMode',
-					'SensorValueLogging',
-					'SensorsPollingLogging',
-					'YandexProbki',
-					'InfoWidget',
-					'SensorsPolling',
-					'SwitchControlGenerator',
-					'ZWave',
-					'PhilioHW',
-					'Rules',
-					'Scenes',
-					'Schedules'
-				],
-				featured_apps: [
-					'IfThen',
-					'OpenWeather',
-					'DeviceHistory',
-					'PeriodicalSwitchControl',
-					'EasyScripting',
-					'ScheduledScene'
-				]
-			},
 			'zme_hub': {
 				'boxtype': 'razberry',
 				'logo': 'app-logo-default.png',
-				hidden_apps: [
-					'Cron',
-					'CloudBackup',
-					'BatteryPolling',
-					'CustomUserCode',
-					'CustomUserCodeLoader',
-					'InbandNotifications',
-					'MobileAppSupport',
-					'RemoteAccess',
-					'SecurityMode',
-					'SensorValueLogging',
-					'SensorsPollingLogging',
-					'YandexProbki',
-					'CodeDevice',
-					'InfoWidget',
-					'SensorsPolling',
-					'SwitchControlGenerator',
-					'ZWave',
-					'PhilioHW',
-					'Rules',
-					'Scenes',
-					'Schedules'
-				],
-				featured_apps: [
-					'IfThen',
-					'OpenWeather',
-					'DeviceHistory',
-					'PeriodicalSwitchControl',
-					'EasyScripting',
-					'ScheduledScene'
-				]
-			},
-			'jb': {
-				'boxtype': 'popp',
-				'logo': 'app-logo-popp.png',
 				hidden_apps: [
 					'Cron',
 					'CloudBackup',

@@ -80,19 +80,19 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				setTagList(devices.value.data.data.devices);
 			}
 			// Success - notificationChannels
-			if (notificationChannels && notificationChannels.state === 'fulfilled') {
+			if (notificationChannels.state === 'fulfilled') {
 				$scope.notifications.channels = notificationChannels.value.data.data;
 			}
 			// Success - notificationFiltering
-			if (notificationFiltering && notificationFiltering.state === 'fulfilled') {
+			if (notificationFiltering.state === 'fulfilled') {
 				$scope.notifications.input = notificationFiltering.value.data.data;
 				setNotifications($scope.notifications.input, $scope.elementId.input);
 			}
-			// Success - instances
+			// Success - instances (admin only)
 			if (instances && instances.state === 'fulfilled') {
 				$scope.elementId.instances = instances.value.data.data;
 			}
-			// Success - modules
+			// Success - modules (admin only)
 			if (modules && modules.state === 'fulfilled') {
 				$scope.elementId.modules = modules.value.data.data;
 			}
@@ -109,7 +109,8 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 				setDevice(dataService.getDevicesData(arr, true).value()[0]);
 				$scope.elementId.show = true;
 			}
-			if(referenced.state === 'fulfilled') {
+			// Success - referenced (admin only)
+			if(referenced && referenced.state === 'fulfilled') {
 				$scope.elementId.referenced = referenced.value.data.data;
 			}
 			console.log($scope.elementId.referenced);
@@ -327,7 +328,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			}
 		}
 
-		if (cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid') {
+		if (cfg.route.os == 'ZWayMobileAppAndroid') {
 			if ($scope.elementId.input.deviceType == 'toggleButton' ||
 				$scope.elementId.input.deviceType == 'switchBinary') {
 				if ($scope.elementId.input.metrics.level == "on") {

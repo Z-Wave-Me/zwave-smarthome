@@ -12,24 +12,24 @@
 
      <!-- ///////////////////////////// Local Access ///////////////////////////// -->
      <section class="accordion-wrap" ng-include="'app/views/management/management_local.html'"
-          ng-if="(cfg.app_type === 'zme_hub' || cfg.app_type === 'jb')"></section>
+          ng-if="(cfg.app_type === 'zme_hub')"></section>
     <!-- ///////////////////////////// Timezone ///////////////////////////// -->
-    <section class="accordion-wrap" ng-if="cfg.app_type == 'default' || cfg.app_type === 'popp' || cfg.app_type === 'popphub3'"
+    <section class="accordion-wrap" ng-if="cfg.app_type == 'default'"
          ng-include="'app/views/management/management_timezone.html'"></section>
       <!-- ///////////////////////////// Timezone for JB ///////////////////////////// -->
      <section class="accordion-wrap" ng-include="'app/views/management/management_timezone_jb.html'"
-          ng-if="(cfg.app_type === 'zme_hub' || cfg.app_type === 'jb')"></section>
+          ng-if="(cfg.app_type === 'zme_hub')"></section>
 
     <!-- ///////////////////////////// Backup & Restore ///////////////////////////// -->
     <section class="accordion-wrap" ng-include="'app/views/management/management_backup_restore.html'" ng-if="!isMobile"></section>
 
      <!-- ///////////////////////////// Factory default  ///////////////////////////// -->
-     <section class="accordion-wrap" ng-class="(cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || connection.remote) ? 'disabled' : ''" ng-include="'app/views/management/management_factory.html'"></section>
+     <section class="accordion-wrap" ng-class="(cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'ZWayMobileAppiOS' || connection.remote) ? 'disabled' : ''" ng-include="'app/views/management/management_factory.html'"></section>
     <!-- ///////////////////////////// Firmware update ///////////////////////////// -->
-    <section class="accordion-wrap" ng-if="!isInArray(['wd','zme_hub','jb'],cfg.app_type)"
-            ng-class="(cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS' || connection.remote) ? 'disabled' : ''"
+    <section class="accordion-wrap" ng-if="!isInArray(['wd','zme_hub'],cfg.app_type)"
+            ng-class="(cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'ZWayMobileAppiOS' || connection.remote) ? 'disabled' : ''"
          ng-include="'app/views/management/management_firmware.html'"></section>
-    <section class="accordion-wrap" ng-if="(cfg.app_type === 'zme_hub' || cfg.app_type === 'jb') && cfg.route.os !== 'PoppApp_Z_Way' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'IOSWRAPPER' && cfg.route.os != 'ZWayMobileAppiOS'"
+    <section class="accordion-wrap" ng-if="(cfg.app_type === 'zme_hub') && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'"
            ng-include="'app/views/management/management_firmware_jb.html'"></section>
 
     <!-- ///////////////////////////// App Store access ///////////////////////////// -->
