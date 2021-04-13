@@ -59,10 +59,17 @@ myAppController.controller('JbUpdateController', function ($scope, $q, $location
                 $scope.jamesbox.rule_id = response.data.rule_id;
                 $scope.jamesbox.showConfirm = true;
             } else {
-                alertify.alertError($scope._t('no_update_available')).set('onok', function(closeEvent){ 
-                     alertify.dismissAll();
-                     $location.path("/dashboard");
-                });
+                alertify.success($scope._t('no_update_available'), '', 0, function () {
+                    console.log('hello');
+                    $location.path("/dashboard");
+                })
+                // TODO: deprecated
+                //
+                //     .set('onok', function(closeEvent){
+                //
+                //      alertify.dismissAll();
+                //      $location.path("/dashboard");
+                // });
             }
         }, function (error) { });
     }
