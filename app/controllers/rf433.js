@@ -373,6 +373,7 @@ myAppController.controller('RF433ManageDetailController', function($scope, $rout
         if (!roomId) {
             return;
         }
+        roomId = parseInt(roomId);
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('updating')};
         for (var i = 0; i <= devices.length; i++) {
             var v = devices[i];
@@ -385,6 +386,7 @@ myAppController.controller('RF433ManageDetailController', function($scope, $rout
             };
 
             dataFactory.putApi('devices', v.id, input).then(function(response) {
+                $scope.loading = false;
             }, function(error) {
                 alertify.alertError($scope._t('error_update_data'));
                 $scope.loading = false;

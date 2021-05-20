@@ -286,8 +286,6 @@ myAppController.controller('AlexaSetupController', function($scope, $q, $timeout
 	$timeout(function() {
 		if (['razberry'].indexOf($scope.getCustomCfgArr('boxtype')) > -1) {
 			$scope.boxtype = $scope._t('lb_z_way');
-		} else {
-			$scope.boxtype = $scope._t('lb_popp');
 		}
 	}, 0);
 

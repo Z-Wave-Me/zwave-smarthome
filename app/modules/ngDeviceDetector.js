@@ -96,8 +96,6 @@
             MS_EDGE: "ms-edge",
             PS4: "ps4",
             VITA: "vita",
-            POPPAPPZWAY: "PoppApp_Z_Way",
-            IOSWRAPPER: "IOSWRAPPER",
             ZWAYMOBILEAPPANDROID:"ZWayMobileAppAndroid",
             ZWAYMOBILEAPPIOS:"ZWayMobileAppiOS",
             UNKNOWN: "unknown"
@@ -113,8 +111,6 @@
             WINDOWS_PHONE: "windows-phone",
             PS4: "ps4",
             VITA: "vita",
-            POPPAPPZWAY: "PoppApp_Z_Way",
-            IOSWRAPPER: "IOSWRAPPER",
             ZWAYMOBILEAPPANDROID:"ZWayMobileAppAndroid",
             ZWAYMOBILEAPPIOS:"ZWayMobileAppiOS",
             UNKNOWN: "unknown"
@@ -131,8 +127,6 @@
             WINDOWS_PHONE: "windows-phone",
             PS4: "ps4",
             VITA: "vita",
-            POPPAPPZWAY: "PoppApp_Z_Way",
-            IOSWRAPPER: "IOSWRAPPER",
             ZWAYMOBILEAPPANDROID:"ZWayMobileAppAndroid",
             ZWAYMOBILEAPPIOS:"ZWayMobileAppiOS",
             UNKNOWN: "unknown"
@@ -179,8 +173,6 @@
 
                 var OS_RE = {
                     // Z-Way App specific types first
-                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
-                    IOSWRAPPER: /\bIOSWRAPPER\b/,
                     ZWAYMOBILEAPPANDROID:/\bZ-Way App Android\b.*/,
                     ZWAYMOBILEAPPIOS:/\bZ-Way App iOS\b.*/,
                     WINDOWS: {and: [{or: [/\bWindows|(Win\d\d)\b/, /\bWin 9x\b/]}, {not: /\bWindows Phone\b/}]},
@@ -198,8 +190,6 @@
 
                 var BROWSERS_RE = {
                     // Z-Way App specific types first
-                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
-                    IOSWRAPPER: /\bIOSWRAPPER\b/,
                     ZWAYMOBILEAPPANDROID:/\bZ-Way App Android\b.*/,
                     ZWAYMOBILEAPPIOS:/\bZ-Way App iOS\b.*/,
                     CHROME: {and:[{or: [/\bChrome\b/, /\bCriOS\b/]},{not:{or:[/\bOPR\b/,/\bEdge\b/]}}]},
@@ -213,8 +203,6 @@
                 };
 
                 var DEVICES_RE = {
-                    POPPAPPZWAY: /\bPoppApp_Z_Way\b/,
-                    IOSWRAPPER: /\bIOSWRAPPER\b/,
                     ZWAYMOBILEAPPANDROID:/\bZ-Way App Android\b.*/,
                     ZWAYMOBILEAPPIOS:/\bZ-Way App iOS\b.*/,
                     ANDROID: {and:[/\bAndroid\b/,{not:/Windows Phone/}]},
@@ -294,8 +282,6 @@
                 }, {});
 
                 deviceInfo.os = [
-                    OS.POPPAPPZWAY,
-                    OS.IOSWRAPPER,
                     OS.ZWAYMOBILEAPPANDROID,
                     OS.ZWAYMOBILEAPPIOS,
                     OS.WINDOWS,
@@ -314,8 +300,6 @@
                     }, OS.UNKNOWN);
 
                 deviceInfo.browser = [
-                    BROWSERS.POPPAPPZWAY,
-                    BROWSERS.IOSWRAPPER,
                     BROWSERS.ZWAYMOBILEAPPANDROID,
                     BROWSERS.ZWAYMOBILEAPPIOS,
                     BROWSERS.CHROME,
@@ -331,8 +315,6 @@
                     }, BROWSERS.UNKNOWN);
 
                 deviceInfo.device = [
-                    DEVICES.POPPAPPZWAY,
-                    DEVICES.IOSWRAPPER,
                     DEVICES.ZWAYMOBILEAPPANDROID,
                     DEVICES.ZWAYMOBILEAPPIOS,
                     DEVICES.ANDROID,
@@ -391,8 +373,6 @@
                         DEVICES.CHROME_BOOK,
                         DEVICES.WINDOWS_PHONE,
                         DEVICES.VITA,
-                        DEVICES.POPPAPPZWAY,
-                        DEVICES.IOSWRAPPER,
                         DEVICES.ZWAYMOBILEAPPANDROID,
                         DEVICES.ZWAYMOBILEAPPIOS
                     ].some(function (item) {
