@@ -21,7 +21,7 @@ $(document).on('ready load keyup keydown change', '.editor', function(){
 
 
 /*------------------------------------------
-	Resize textarea based on content  
+	Resize textarea based on content
 ------------------------------------------*/
 function correctTextareaHight(element)
 {
@@ -31,7 +31,7 @@ function correctTextareaHight(element)
       borderTop = parseFloat(self.css("borderTopWidth")),
       borderBottom = parseFloat(self.css("borderBottomWidth")),
       combinedScrollHeight = innerHeight + borderTop + borderBottom;
-  
+
   if(outerHeight < combinedScrollHeight )
   {
     self.height(combinedScrollHeight);
@@ -45,18 +45,18 @@ function correctTextareaHight(element)
 
 
 /*------------------------------------------
-	Run syntax hightlighter  
+	Run syntax hightlighter
 ------------------------------------------*/
 function hightlightSyntax(){
 	var me  = $('.editor');
 	var content = me.val() || '';
 	var codeHolder = $('code', me.parent());
 	var escaped = escapeHtml(content);
-	
+
 	codeHolder.html(escaped);
-	
+
 	$('.syntax-highight').each(function(i, block) {
-		hljs.highlightBlock(block);
+		hljs.highlightElement(block);
 	});
 }
 
