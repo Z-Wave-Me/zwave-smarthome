@@ -505,7 +505,7 @@ myAppController.controller('EnoceanManageController', function ($scope, $locatio
    * Delete device
    */
   $scope.deleteDevice = function (id, target, message) {
-    var cmd = 'delete devices["x' + id + '"]';
+    var cmd = 'unregisterDevice("x' + id + '")';
     alertify.confirm(message, function () {
       dataFactory.runEnoceanCmd(cmd).then(function (response) {
         if (response.data === 'false') {
