@@ -14,6 +14,7 @@ Serguei Poltorak
 #### Fixes:
 - Updated highlite.js to fix slow EasyScripting
 - EnOcean devices do not re-appear with same name and in same room after being added back.
+- Fixed missing rules actions for doorlocks
 
 ## v1.13.1
 #### Fixes:
