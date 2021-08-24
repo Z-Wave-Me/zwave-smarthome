@@ -12,7 +12,7 @@ Serguei Poltorak
 ## v1.13.2
 #### New features:
 #### Fixes:
-- Updated highlite.js
+- Updated highlite.js to fix slow EasyScripting
 - EnOcean devices do not re-appear with same name and in same room after being added back.
 
 ## v1.13.1
