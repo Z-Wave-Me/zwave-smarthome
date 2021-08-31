@@ -60,6 +60,7 @@ myApp.directive('bbLoader', function() {
 });
 
 /**
+ *
  * Displays a spinner
  * @class bbRowSpinner
  */
@@ -70,14 +71,16 @@ myApp.directive('bbRowSpinner', function() {
 		scope: {
 			label: '=',
 			spinner: '=',
-			icon: '='
+			icon: '=',
+			core: '='
 		},
 		template: '<span title="{{label}}"><span class="btn-spin">' +
-			'<i class="fa" ng-class="spinner ? \'fa-spinner fa-spin\':icon"></i>' +
+			'<i ng-class="[core ? core : \'fa\', spinner ? \'fa-spinner fa-spin\' : icon]"></i>' +
 			'</span> ' +
 			'<span class="btn-label" ng-if="label">' +
 			'{{label}}' +
 			'</span></span>'
+
 	};
 });
 
@@ -686,3 +689,4 @@ myApp.directive('touchend', function($parse) {
         }
     };
 });
+
