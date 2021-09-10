@@ -54,8 +54,9 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
         }
         if ($scope.dataHolder.dragdrop.action === 'elements') {
             $scope.setFilter(false);
-        } else {
-            $scope.allSettled();
+        }
+        if (mode === 'edit') {
+            $scope.dataHolder.devices.collection = $filter('orderBy')( $scope.dataHolder.devices.collection, cfg.orderby.elements[$scope.dataHolder.devices.orderBy])
         }
         $scope.dataHolder.mode = mode;
     }

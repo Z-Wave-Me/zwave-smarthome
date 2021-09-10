@@ -1,7 +1,7 @@
 SmartHome UI
 ===============
 ## LICENSE
-Copyright (C) 2020 Z-Wave.Me
+Copyright (C) 2021 Z-Wave.Me
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
@@ -9,8 +9,14 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
-## v1.13.1
+## v1.13.2
 #### New features:
+#### Fixes:
+- Updated highlite.js to fix slow EasyScripting
+- EnOcean devices do not re-appear with same name and in same room after being added back.
+- Fixed missing rules actions for doorlocks
+
+## v1.13.1
 #### Fixes:
 - Fix dashboard resistance to add elements
 - Fix empty elements && dashboard bug, when last device removed from room
