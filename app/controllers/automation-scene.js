@@ -23,16 +23,16 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 				moduleId: 'Scenes'
 			}).filter(function(v) {
 				var size = 0;
-				for (k in v.params.devices) {
+				for (var k in v.params.devices) {
 					if (v.params.devices[k].length) {
 						size++;
 					}
 				}
-				for (k in v.params.notifications) {
+				for (var k in v.params.notifications) {
 						size++;
 				}
 				if (size) {
-					$scope.scenes.enableTest.push(v.id)
+					$scope.scenes.enableTest.push(v.id);
 				}
 				return v;
 			}).value();
@@ -83,7 +83,7 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 			console.log(response);
 			if (response.data && response.data.data) {
 				var newScenes = response.data.data.map(function(entry) {
-					return entry.title
+					return entry.title;
 				});
 				dataService.showNotifier({
 					message: $scope._t('successfully_transformed') + '<br>' + newScenes.join(',<br>')
@@ -97,7 +97,7 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 			});
 			$scope.oldScenes = [];
 		}).finally(loadScenes);
-	}
+	};
 	/**
 	 * Run test
 	 * @param {object} instance
