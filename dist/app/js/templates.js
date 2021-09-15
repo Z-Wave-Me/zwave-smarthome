@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave.Me, Created: 24-08-2021 23:53:35 */
+/* Copyright:  Z-Wave.Me, Created: 15-09-2021 17:46:59 */
 angular.module('myAppTemplates', []).run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -399,6 +399,11 @@ angular.module('myAppTemplates', []).run(['$templateCache', function($templateCa
 
   $templateCache.put('app/views/automation/rules/inputs/notification.html',
     "<div class=form-group><textarea name=message id=content class=\"form-control report-content\" ng-model=model.message placeholder=\"{{_t('message')}}\"></textarea></div>"
+  );
+
+
+  $templateCache.put('app/views/automation/rules/inputs/simple/doorlock.html',
+    "<div class=form-group><label class=switch><input type=checkbox ng-model=model.level ng-checked=\"model.level == 'on'\" ng-true-value=close ng-false-value=open> <span class=slider></span></label><span class=switch-label>{{model.level}}</span></div><div class=form-group ng-if=!hideAction><input type=checkbox name=send_command id=send_command ng-model=model.sendAction ng-checked=model.sendAction><label for=send_command>{{_t('dont_send_on_command')}}</label></div>"
   );
 
 
