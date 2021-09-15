@@ -12,6 +12,8 @@ Serguei Poltorak
 ## v1.13.3
 #### Fixes:
 - Add missing doorlock in rules
+- Fixed rules page
+- Fixed icons
 
 ## v1.13.2
 #### Fixes:
