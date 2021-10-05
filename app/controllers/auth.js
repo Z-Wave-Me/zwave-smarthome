@@ -42,14 +42,15 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 			return;
 		}
 		if ((cfg.app_type === 'zme_hub') && user.role === 1) {
-			getZwaveApiData(location);
+			getZwaveApiData(location)
 		} else {
 			$timeout(function() {
 				$scope.authCtrl.processed = true;
 				window.location = location;
-				$window.location.reload();
+				$window.location.reload()
 			}, 0);
 		}
+
 	};
 
 	/**
@@ -124,7 +125,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 	 */
 	function getZwaveApiData(location) {
 		//var location = '#/dashboard';
-		dataFactory.loadZwaveApiData().then(function(response) {
+		return dataFactory.loadZwaveApiData().then(function(response) {
 			if (!response) {
 				return;
 			}
@@ -303,6 +304,30 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 	};
 	$scope.reboot = false;
 
+	$scope.checkBoxHolder = [];
+
+	(function preSettingsUpdate() {
+		dataFactory.getApi('instances').then(function (response) {
+			return response.data.data;
+		}).then(function (data) {
+
+				const remoteAccess = data.find(function (el) {
+					return el.moduleId === 'RemoteAccess';
+				})
+				if (remoteAccess) {
+					$scope.checkBoxHolder.push(remoteAccess);
+				}
+				const cloudBackup = data.find(function (el) {
+					return el.moduleId === 'CloudBackup';
+				})
+				if (cloudBackup) {
+					cloudBackup.active = false;
+					$scope.checkBoxHolder.push(cloudBackup);
+				}
+			}
+		).catch(function (_) {})
+	})()
+
 	/**
 	 * Load all promises
 	 */
@@ -350,13 +375,18 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			id: $scope.input.id,
 			password: $scope.input.password,
 			lang: $scope.loginLang
-
 		};
 		var headers = {
 			'Accept-Language': $scope.authCtrl.defaultProfile.lang,
 			'ZWAYSession': $scope.authCtrl.defaultProfile.sid
 		};
 
+		// Pre Settings
+		function preSettings() {
+			$scope.checkBoxHolder.map(function (instance) {
+				return dataFactory.putApi('instances', instance.id, instance)
+			})
+		}
 		//Update auth
 		dataFactory.putApiWithHeaders('profiles_auth_update', inputAuth.id, $scope.input, headers).then(function(response) {
 			$scope.loading = false;
@@ -367,19 +397,20 @@ myAppController.controller('AuthFirstAccessController', function($scope, $q, $wi
 			}
 			profile['email'] = $scope.input.email;
 			profile['lang'] = $scope.loginLang;
+			preSettings();
 			// Update profile
 			dataFactory.putApiWithHeaders('profiles', inputAuth.id, profile, headers).then(function(response) {
 				var _profile = _.omit(response.data.data, 'dashboard', 'hide_single_device_events', 'rooms', 'salt');
 				if ((cfg.app_type === 'zme_hub') && $scope.handleTimezone.show && $scope.handleTimezone.changed) {
 					$scope.updateInstance(instance);
 				} else if (cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS') {
-					$scope.redirectAfterLogin(true, _profile, inputAuth.password, '#/dashboard/firstlogin');
+					return $scope.redirectAfterLogin(true, _profile, inputAuth.password, '#/dashboard/firstlogin');
 				} else {
-					$scope.redirectAfterLogin(true, _profile, inputAuth.password, '#/dashboard/firstlogin?authBearer');
+					return $scope.redirectAfterLogin(true, _profile, inputAuth.password, '#/dashboard/firstlogin?authBearer');
 				}
 			}, function(error) {
 				alertify.alertError($scope._t('error_update_data'));
-			});
+			})
 		}, function(error) {
 			var message = $scope._t('error_update_data');
 			if (error.status == 409) {

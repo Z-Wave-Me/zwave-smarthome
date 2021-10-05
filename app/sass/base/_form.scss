@@ -56,6 +56,9 @@ label {
           line-height: 20px;
       }
   }
+  &.disabled {
+    color: #BDBDBD;
+  }
 }
 
 input[type=checkbox] {
