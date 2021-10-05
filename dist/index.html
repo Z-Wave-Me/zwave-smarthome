@@ -8,13 +8,13 @@
     <meta name="theme-color" content="{{color}}">
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
 <!-- CSS -->
-<link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css?rel=v1.13.2">
+<link id="main_css" media="screen" type="text/css" rel="stylesheet" href="app/css/main.css?rel=v1.13.3">
  <!-- App config -->
-<script src="app/js/config.js?rel=v1.13.2"></script>
-<script src="app/js/icons.js?rel=v1.13.2"></script>
+<script src="app/js/config.js?rel=v1.13.3"></script>
+<script src="app/js/icons.js?rel=v1.13.3"></script>
 <script src="app/js/notifications.js"></script>
 <!-- JS -->
-<script src="app/js/build.js?rel=v1.13.2"></script>
+<script src="app/js/build.js?rel=v1.13.3"></script>
 
   </head>
   <body   ng-controller="GlobalDevicesController"
@@ -66,7 +66,7 @@
             <!-- rss -->
             <span class="divider-vertical" ng-show="rss.unread > 0"></span>
             <a href="#rss" title="{{_t('news')}}" ng-class="isActive('rss')" ng-show="rss.unread > 0">
-              <i class="far fa-newspaper"></i>
+              <i class="far fa-newspaper" style="color: red;"></i>
               <span class="main-nav-text">{{_t('news')}} </span>
               <small class="s-hide">{{rss.unread}}</small>
             </a>
@@ -144,7 +144,7 @@
                 <!-- My Hubs -->
                 <li class="subnavi-myhubs" ng-if="cfg.route.os == 'PoppApp_Z_Way' || cfg.route.os == 'ZWayMobileAppAndroid'">
                   <a ng-href="{{cfg.android_html_dir}}">
-                    <i class="fab fa-android fa-fw"></i>
+                    <i class="fas fa-router fa-fw"></i>
                     <span>{{_t('my_hubs')}}</span>
                     <i class="fas fa-chevron-right subnavi-arrow"></i>
                   </a>
@@ -152,7 +152,7 @@
                 <!-- My Hubs -->
                 <li class="subnavi-myhubs" ng-if="cfg.route.os == 'IOSWRAPPER' || cfg.route.os == 'ZWayMobileAppiOS'">
                   <a ng-href="{{cfg.ios_html_dir}}">
-                    <i class="fab fa-apple fa-fw"></i>
+                    <i class="fas fa-router fa-fw"></i>
                     <span>{{_t('my_hubs')}}</span>
                     <i class="fas fa-chevron-right subnavi-arrow"></i>
                   </a>

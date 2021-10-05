@@ -9,8 +9,13 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.13.3
+#### Fixes:
+- Add missing doorlock in rules
+- Fixed rules page
+- Fixed icons
+
 ## v1.13.2
-#### New features:
 #### Fixes:
 - Updated highlite.js to fix slow EasyScripting
 - EnOcean devices do not re-appear with same name and in same room after being added back.
