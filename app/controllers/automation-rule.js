@@ -33,13 +33,13 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 				moduleId: 'Rules'
 			}).filter(function(v) {
 				var size = 0;
-				for (k in v.params.devices) {
+				for (var k in v.params.devices) {
 					if (v.params.devices[k].length) {
 						size++;
 					}
 				}
 				if (size) {
-					$scope.rules.enableTest.push(v.id)
+					$scope.rules.enableTest.push(v.id);
 				}
 				return v;
 			}).value();
@@ -47,8 +47,9 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 			if (!_.size($scope.rules.all) && !$scope.oldLogics.length) {
 				if (cfg.route.previous.indexOf(dataService.getUrlSegment($location.path())) > -1) {
 					$location.path('/automations');
-				} else
+				} else {
 					$location.path('/' + dataService.getUrlSegment($location.path()) + '/0');
+				}
 			}
 			// $scope.rules.state = 'success';
 		}, function(error) {
@@ -91,7 +92,6 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 
 			// Error message
 			if (ifThen.state === 'rejected' && logicalRules.state === 'rejected') {
-				$scope.loadRules();
 				return;
 			}
 
@@ -119,8 +119,8 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 					logicalRulesRes = (hasIfThen && hasLogicalRules) || (!hasIfThen && hasLogicalRules) ? res[0] : undefined,
 					resTitles = [];
 
-				console.log('ifThenRes:', ifThenRes);
-				console.log('logicalRulesRes:', logicalRulesRes);
+				// console.log('ifThenRes:', ifThenRes);
+				// console.log('logicalRulesRes:', logicalRulesRes);
 
 				// Error message
 				if (ifThenRes && ifThenRes.state === 'rejected' && logicalRulesRes && logicalRulesRes.state === 'rejected') {
@@ -135,18 +135,18 @@ myAppController.controller('AutomationRuleController', function($scope, $routePa
 				// Success - modules
 				if (ifThenRes && ifThenRes.state === 'fulfilled') {
 					resTitles = resTitles.concat(ifThenRes.value.data.data.map(function(entry) {
-						return entry.title
+						return entry.title;
 					}));
 				}
 
 				// Success - instances
 				if (logicalRulesRes && logicalRulesRes.state === 'fulfilled') {
 					resTitles = resTitles.concat(logicalRulesRes.value.data.data.map(function(entry) {
-						return entry.title
+						return entry.title;
 					}));
 				}
 
-				console.log('resTitles:', resTitles);
+				// console.log('resTitles:', resTitles);
 
 				if (resTitles.length) {
 					dataService.showNotifier({
