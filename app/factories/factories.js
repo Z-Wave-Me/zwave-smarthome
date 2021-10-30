@@ -233,10 +233,10 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     /**
      * Get ZAutomation api data
      * @param {string} api
-     * @param {string} params
-     * @param {boolean} noCache
-     * @param {boolean} fatalError
-     * @returns {unresolved}
+     * @param {string?} params
+     * @param {boolean?} noCache
+     * @param {boolean?} fatalError
+     * @returns {promise}
      */
     function getApi(api, params, noCache, fatalError) {
         // Cached data
@@ -307,8 +307,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
    /**
     * Post ZAutomation api data
     * @param {string} api
-    * @param {object} data
-    * @param {string} params
+    * @param {object?} data
+    * @param {string?} params
     * @returns {unresolved}
     */
     function postApi(api, data, params) {
@@ -331,9 +331,9 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * Put ZAutomation api data
      * @param {string} api
      * @param {int} id
-     * @param {object} data
-     * @param {string} params
-     * @returns {unresolved}
+     * @param {object?} data
+     * @param {string?} params
+     * @returns {promise}
      */
     function putApi(api, id, data, params) {
         return $http({
@@ -357,8 +357,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
      * @param {int} id
      * @param {object} data
      * @param {object} headers
-     * @param {string} params
-     * @returns {unresolved}
+     * @param {string?} params
+     * @returns {promise}
      */
     function putApiWithHeaders(api, id, data, headers, params) {
         return $http({
@@ -373,6 +373,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
             return $q.reject(response);
         });
     }
+
+
     /**
      * Put ZAutomation api data with x-www-form-urlencoded header
      * @param {string} api
