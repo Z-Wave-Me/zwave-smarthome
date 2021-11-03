@@ -20,6 +20,16 @@
         ng-false-value="off">
         <span class="slider"></span>
       </label>
+      <label class="switch">
+        <input type="checkbox" ng-model="d.armCondition" ng-true-value="on"
+               ng-false-value="off">
+        <span class="slider"></span>
+      </label>
+      <label class="switch">
+        <input type="checkbox" ng-model="d.sensorAtTheEntrance" ng-true-value="on"
+               ng-false-value="off">
+        <span class="slider"></span>
+      </label>
       &nbsp;
       <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'input')">
       <i class="fas fa-times text-danger"></i>
@@ -44,5 +54,15 @@
       {{d.deviceName|cutText:true:20}}
       <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
+  </div>
+  <div class="body form-inline">
+    <div class="flex-input-group number-control">
+      <label>{{_t('security_delay_before_alarm')}}
+        <input class="form-control" type="number" ng-model="security.input.params.times.delaySensorAtTheEntrance">
+      </label>
+      <span>{{_t('seconds')}}</span>
+    </div>
+    <bb-help-text trans="_t('help_security_delay_before_alarm')"></bb-help-text>
+
   </div>
 </section>

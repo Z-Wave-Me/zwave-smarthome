@@ -164,7 +164,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					start: 10,
 					interval: 1,
 					silent: 0,
-					table: []
+					table: [],
+					delaySensorAtTheEntrance: 0
 				},
 				input: {
 					table: []
@@ -388,6 +389,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						// level: _.isNumber(d.level) ? 'lvl' : d.level,
 						// exact: _.isNumber(d.level) ? parseInt(d.level) : null,
 						conditions: d.conditions,
+						armCondition: d.armCondition,
+						sensorAtTheEntrance: d.sensorAtTheEntrance,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
@@ -400,6 +403,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						devices: d.devices,
 						deviceName: $scope._t('device_removed') + ": " + d.devices,
 						conditions: d.conditions,
+						armCondition: d.armCondition,
+						sensorAtTheEntrance: d.sensorAtTheEntrance,
 						iconPath: "storage/img/icons/placeholder.png"
 					};
 				}
@@ -969,7 +974,9 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		input.params.input.table = input.params.input.table.map(function(dev) {
 			return {
 				devices: dev.devices,
-				conditions: dev.conditions
+				conditions: dev.conditions,
+				armCondition: dev.armCondition,
+				sensorAtTheEntrance: dev.sensorAtTheEntrance,
 			};
 		});
 
