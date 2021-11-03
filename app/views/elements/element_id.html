@@ -223,7 +223,7 @@
           <bb-help-text trans="_t('send_channel_help')"></bb-help-text>
           <!-- Custom message -->
           <label for="customMessage">{{_t('custom_message')}}</label>
-          <input class="form-control" id="customMessage" name="customMessage" ng-model="n.msg"></input>
+          <input class="form-control" id="customMessage" name="customMessage" ng-model="n.msg">
           <bb-help-text trans="_t('custom_message_help')"></bb-help-text>
           <button type="button" class="btn btn-danger" ng-click="removeNotification($index)" title="{{_t('btn_remove')}}">
             <i class="fas fa-times"></i> {{_t('btn_remove')}}
