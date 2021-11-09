@@ -89,7 +89,9 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				status: ['on', 'off'],
 				default: {
 					devices: '',
-					conditions: 'on'
+					conditions: 'on',
+					armCondition: 'off',
+					sensorAtTheEntrance: 'off'
 				}
 			},
 			silentAlarms: {
@@ -165,7 +167,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					interval: 1,
 					silent: 0,
 					table: [],
-					delaySensorAtTheEntrance: 0
+					delaySensorAtTheEntrance: 30
 				},
 				input: {
 					table: []
