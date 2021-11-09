@@ -378,7 +378,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					}
 				});
 			});
-
 			$scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function(d) {
 				dev = $scope.getDevice(d.devices, 'input');
 				if (dev)
@@ -685,7 +684,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		if (deviceIndex > -1) {
 			return;
 		}
-
 		if (param == 'silentAlarms') {
 			p = 'alarms';
 		}
@@ -697,13 +695,12 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		}
 
 		dev = $scope.getDevice(deviceId, p);
-
+		console.log(input, dev, param);
 		if (dev)
 		{
-			input = {
+			input = {...input,
 				devices: deviceId,
 				level: dev.level,
-				conditions: dev.level,
 				exact: dev.exact,
 				sendAction: false,
 				deviceName: dev.deviceName,
