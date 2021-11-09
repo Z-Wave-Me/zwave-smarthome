@@ -1011,5 +1011,15 @@
     "zwave_device_failed": "Um dispositivo Z-Wave falhou",
     "mobile_app_support": "Mobile devices support",
     "mobile_device_list": "List of mobile devices",
-    "z_way_restart": "O sistema agora será reiniciado automaticamente. Redirecione para fazer o login em __val__ __level__."
+    "z_way_restart": "O sistema agora será reiniciado automaticamente. Redirecione para fazer o login em __val__ __level__.",
+    "entrance_group_delay": "Entry and exit time delay",
+    "help_entrance_group_delay": "The delay before arming and the delay to activate the alarm when the sensor of the entrance group is triggered.",
+    "sensor_function": "Sensor functions:",
+    "alarm_condition": "Alarm condition",
+    "alarm_condition_help":"The sensor state at which the alarm is activated",
+    "arm_condition_help":"If the sensor is triggered when arming, then an action will be performed from the list Alarm actions -> Arm failure action",
+    "entrance_group": "Entrance group",
+    "entrance_group_help":"The sensor at the entrance activate alarm with delay",
+    "arm_failure_action": "Arm failure action",
+    "devices_triggered_arm_failure_action": "Devices controlled by arm failure action"
 }

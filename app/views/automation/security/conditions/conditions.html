@@ -11,7 +11,6 @@
           {{d.deviceName}} -
           <em class="item-cnt">{{d.locationName}}</em>
         </span>
-        <em class="subhead-info">{{_t('lb_alarm_trigger_device_when_state',{__device__: d.deviceName,__level__:_t(d.conditions)})}}</em>
       </div>
     </div>
     <div class="control">
@@ -55,14 +54,23 @@
       <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
   </div>
+
   <div class="body form-inline">
     <div class="flex-input-group number-control">
-      <label>{{_t('security_delay_before_alarm')}}
+      <div>{{_t('sensor_function')}}</div>
+      <div><b>{{_t('alarm_condition')}}</b> - {{_t('alarm_condition_help')}}</div>
+      <div><b>{{_t('arm_condition')}}</b> - {{_t('arm_condition_help')}}</div>
+      <div><b>{{_t('entrance_group')}}</b> - {{_t('entrance_group_help')}}</div>
+    </div>
+  </div>
+
+  <div class="body form-inline">
+    <div class="flex-input-group number-control">
+      <label>{{_t('entrance_group_delay')}}
         <input class="form-control" type="number" ng-model="security.input.params.times.delaySensorAtTheEntrance">
       </label>
       <span>{{_t('seconds')}}</span>
     </div>
-    <bb-help-text trans="_t('help_security_delay_before_alarm')"></bb-help-text>
-
+    <bb-help-text trans="_t('help_entrance_group_delay')"></bb-help-text>
   </div>
 </section>
