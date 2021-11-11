@@ -1029,8 +1029,5 @@
     "entrance_group_help":"Sensor is located at the entrance and alarm activation is delayed to allow manual Disarm",
     "arm_failure_action": "Failed arming",
     "devices_triggered_arm_failure_action": "Devices controlled by arm failure action",
-    "condition_header": "State for triggering alarm",
-    "arm_condition_header": "Check when arming",
-    "sensor_at_the_entrance_header": "Input group sensor",
-    "device_title": "Device name"
+    "device_title": " "
 }

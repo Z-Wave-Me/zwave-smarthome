@@ -1029,8 +1029,5 @@
     "entrance_group_help":"Датчик при входе включает тревогу с задержкой, чтобы дать возможность вручную снять с охраны",
     "arm_failure_action": "Сбой постановки на охрану",
     "devices_triggered_arm_failure_action": "Устройства включаемые при сбое постановки на охрану",
-    "condition_header": "Состояние для вызова тревоги",
-    "arm_condition_header": "Проверить при постановке на охрану",
-    "sensor_at_the_entrance_header": "Датчик входной группы",
-    "device_title": "Название устройства"
+    "device_title": " "
 }
