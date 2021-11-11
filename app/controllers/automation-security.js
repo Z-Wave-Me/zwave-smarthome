@@ -90,7 +90,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				default: {
 					devices: '',
 					conditions: 'on',
-					armCondition: 'off',
+					armCondition: 'on',
 					sensorAtTheEntrance: 'off'
 				}
 			},

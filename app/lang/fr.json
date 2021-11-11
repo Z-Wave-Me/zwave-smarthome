@@ -1012,7 +1012,7 @@
     "mobile_app_support": "Mobile devices support",
     "mobile_device_list": "List of mobile devices",
     "z_way_restart": "Le système va redémarrer automatiquement. Aller à la page d'ouverture de session dans __val__ __level__.",
-    "entrance_group_delay": "Entry and exit time delay",
+    "entrance_group_delay": "entry and exit time delay",
     "help_entrance_group_delay": "The delay before arming and the delay to activate the alarm when the sensor of the entrance group is triggered.",
     "sensor_function": "Sensor functions:",
     "alarm_condition": "Alarm condition",
@@ -1021,5 +1021,8 @@
     "entrance_group": "Entrance group",
     "entrance_group_help":"The sensor at the entrance activate alarm with delay",
     "arm_failure_action": "Arm failure action",
-    "devices_triggered_arm_failure_action": "Devices controlled by arm failure action"
+    "devices_triggered_arm_failure_action": "Devices controlled by arm failure action",
+    "condition_header": "State for triggering alarm",
+    "arm_condition_header": "Check when arming",
+    "sensor_at_the_entrance_header": "Input group sensor"
 }

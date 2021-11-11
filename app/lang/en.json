@@ -1019,14 +1019,19 @@
     "z_way_restart": "The system will now be automatically restarted. Redirect to login in __val__ __level__.",
     "zigbee_network": "ZigBee network",
     "zwave_device_failed": "Z-Wave device is failed",
-    "entrance_group_delay": "Entry and exit time delay",
+    "entrance_group_delay": "entry and exit time delay",
     "help_entrance_group_delay": "The delay before arming and the delay to activate the alarm when the sensor of the entrance group is triggered.",
     "sensor_function": "Sensor functions:",
     "alarm_condition": "Alarm condition",
     "alarm_condition_help":"The sensor state at which the alarm is activated",
     "arm_condition_help":"If the sensor is triggered when arming, then an action will be performed from the list Alarm actions -> Arm failure action",
+    "condition_header": "State for triggering alarm",
+    "arm_condition_header": "Check when arming",
+    "sensor_at_the_entrance_header": "Input group sensor",
     "entrance_group": "Entrance group",
     "entrance_group_help":"The sensor at the entrance activate alarm with delay",
     "arm_failure_action": "Arm failure action",
-    "devices_triggered_arm_failure_action": "Devices controlled by arm failure action"
+    "devices_triggered_arm_failure_action": "Devices controlled by arm failure action",
+    "device_title": "Device name"
+
 }

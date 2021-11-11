@@ -1,40 +1,53 @@
 <!-- list -->
-<div class="panel-wrap">
-  <div class="list-panel" ng-repeat="d in security.input.params.input.table">
+<div class="panel-wrap" >
+  <div class="form-group condition-panel" ng-if="security.input.params.input.table.length">
+    <div class="condition-body">
+      {{_t('device_title')}}
+    </div>
+    <div class="condition-control">
+      <div>
+        {{_t('condition_header')}}
+      </div>
+      <div>
+        {{_t('arm_condition_header')}}
+      </div>
+      <div>
+        {{_t('sensor_at_the_entrance_header')}}
+      </div>
+    </div>
+  </div>
+  <div class="condition-panel" ng-repeat="d in security.input.params.input.table">
     <!-- img -->
+    <div class="condition-body">
     <figure class="img wh-32x32">
       <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
     </figure>
-    <div class="body">
-      <div>
-        <span>
-          {{d.deviceName}} -
-          <em class="item-cnt">{{d.locationName}}</em>
-        </span>
-      </div>
+    <div>
+      <span>
+        {{d.deviceName}} -
+        <em class="item-cnt">{{d.locationName}}</em>
+      </span>
     </div>
-    <div class="control">
+    </div>
+    <div class="condition-control">
       <label class="switch">
         <input type="checkbox" ng-model="d.conditions" ng-true-value="on"
         ng-false-value="off">
         <span class="slider"></span>
       </label>
-      <label class="switch">
+      <label>
         <input type="checkbox" ng-model="d.armCondition" ng-true-value="on"
                ng-false-value="off">
-        <span class="slider"></span>
       </label>
-      <label class="switch">
+      <label>
         <input type="checkbox" ng-model="d.sensorAtTheEntrance" ng-true-value="on"
                ng-false-value="off">
-        <span class="slider"></span>
       </label>
-      &nbsp;
       <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'input')">
       <i class="fas fa-times text-danger"></i>
       </button>
     </div>
-  </div>
+  </>
 </div>
 <h3>{{_t('devices_trigger_alarm')}}</h3>
 <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.input[r.id] ? 'available-devices' : 'ng-hide'">
@@ -55,7 +68,7 @@
     </a>
   </div>
 
-  <div class="body form-inline">
+  <div class="body form-inline form-group">
     <div class="flex-input-group number-control">
       <div>{{_t('sensor_function')}}</div>
       <div><b>{{_t('alarm_condition')}}</b> - {{_t('alarm_condition_help')}}</div>
@@ -66,10 +79,11 @@
 
   <div class="body form-inline">
     <div class="flex-input-group number-control">
-      <label>{{_t('entrance_group_delay')}}
+      <label>
         <input class="form-control" type="number" ng-model="security.input.params.times.delaySensorAtTheEntrance">
       </label>
       <span>{{_t('seconds')}}</span>
+      <snap>{{_t('entrance_group_delay')}}</snap>
     </div>
     <bb-help-text trans="_t('help_entrance_group_delay')"></bb-help-text>
   </div>
