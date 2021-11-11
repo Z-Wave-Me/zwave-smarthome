@@ -58,7 +58,7 @@
 <!--            <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_silent_alarm.html'" ng-class="!expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>-->
 <!--        </div>-->
     </div>
-    <h3>{{_t('devices_triggered_alarm')}}</h3>
+    <h3>{{_t('devices_triggered_arm_failure_action')}}</h3>
     <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'">
         <!-- Title -->
         <h2 class="accordion-toggle chevron">
