@@ -42,21 +42,21 @@
             </section>
         </div>
         <!-- Notification -->
-<!--        <div class="list-panel">-->
-<!--            &lt;!&ndash; img &ndash;&gt;-->
-<!--            <figure class="img wh-32x32 clickable" ng-click="expandElement('armFailureAction')">-->
-<!--                <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />-->
-<!--            </figure>-->
-<!--            <div class="body clickable" ng-click="expandElement('armFailureAction')">-->
-<!--                <div>{{_t('notification')}}</div>-->
-<!--            </div>-->
-<!--            <div class="control">-->
-<!--                &lt;!&ndash; expand/collapse &ndash;&gt;-->
-<!--                <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['armFailureAction']||false}}" ng-click="expandElement('armFailureAction')">-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_silent_alarm.html'" ng-class="!expand['silentAlarms'] ? 'expand-true': 'expand-false'"></div>-->
-<!--        </div>-->
+        <div class="list-panel">
+            <!-- img -->
+            <figure class="img wh-32x32 clickable" ng-click="expandElement('armFailureAction')">
+                <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
+            </figure>
+            <div class="body clickable" ng-click="expandElement('armFailureAction')">
+                <div>{{_t('notification')}}</div>
+            </div>
+            <div class="control">
+                <!-- expand/collapse -->
+                <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['armFailureAction']||false}}" ng-click="expandElement('armFailureAction')">
+                </button>
+            </div>
+            <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_armFailureAction.html'" ng-class="!expand['armFailureAction'] ? 'expand-true': 'expand-false'"></div>
+        </div>
     </div>
     <h3>{{_t('devices_triggered_arm_failure_action')}}</h3>
     <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.armFailureAction[r.id] ? 'available-devices' : 'ng-hide'">

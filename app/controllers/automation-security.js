@@ -366,14 +366,12 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 
 			// load additional device data
 			_.each(['silentAlarms','alarms','armConfirm','disarmConfirm','clean', 'armFailureAction', 'inputArming'], function(e){
-				console.log(e)
 				$scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function(d) {
 					if (e == 'silentAlarms')
 						e = 'alarms';
 					else if (e == 'disarmConfirm' || e == 'clean')
 						e = 'armConfirm';
 					dev = $scope.getDevice(d.devices, e);
-					console.log(dev, e)
 					if (dev)
 					{
 						return {
