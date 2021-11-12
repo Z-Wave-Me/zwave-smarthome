@@ -59,7 +59,7 @@
 <!--        </div>-->
     </div>
     <h3>{{_t('devices_triggered_arm_failure_action')}}</h3>
-    <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'">
+    <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.armFailureAction[r.id] ? 'available-devices' : 'ng-hide'">
         <!-- Title -->
         <h2 class="accordion-toggle chevron">
             <button type="button" aria-expanded="false" bb-accordion>
@@ -70,7 +70,7 @@
         </h2>
         <!-- Content -->
         <div class="accordion" hidden>
-            <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.alarms" ng-if="d.location == r.id &&  !security.input.params.armFailureAction.table[getModelIndex(d.deviceId,'armFailureAction.table')]" ng-click="assignDevice(d.deviceId,'armFailureAction')">
+            <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.armFailureAction" ng-if="d.location == r.id &&  !security.input.params.armFailureAction.table[getModelIndex(d.deviceId,'armFailureAction.table')]" ng-click="assignDevice(d.deviceId,'armFailureAction')">
                 <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
                 {{d.deviceName|cutText:true:20}}
                 <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>

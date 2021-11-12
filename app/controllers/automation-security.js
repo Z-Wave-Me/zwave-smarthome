@@ -361,18 +361,19 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				title: instance.title,
 				active: instance.active,
 				// TODO add server realisation
-				params: {...instance.params, ...{armFailureAction: {table: [], notification: {}, },inputArming: {table:[]}}}
+				params: {...instance.params, inputArming: {table:[]}}
 			});
 
 			// load additional device data
-
 			_.each(['silentAlarms','alarms','armConfirm','disarmConfirm','clean', 'armFailureAction', 'inputArming'], function(e){
+				console.log(e)
 				$scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function(d) {
 					if (e == 'silentAlarms')
 						e = 'alarms';
 					else if (e == 'disarmConfirm' || e == 'clean')
 						e = 'armConfirm';
 					dev = $scope.getDevice(d.devices, e);
+					console.log(dev, e)
 					if (dev)
 					{
 						return {
@@ -488,7 +489,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 	$scope.loadDevices = function(rooms) {
 		dataFactory.getApi('devices').then(function(response) {
 			var devices = dataService.getDevicesData(response.data.data.devices);
-
 			_.filter(devices.value(), function(v) {
 				var getZwayId = function(deviceId) {
 					var zwaveId = false;
@@ -569,7 +569,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				$scope.security.devicesAvailable = false;
 				$scope.security.alert.message = $scope._t('no_device_installed');
 			}
-
 			_.each(['input','silentAlarms','alarms','armConfirm','disarmConfirm','clean', 'armFailureAction', 'inputArming'], function(e){
 				$scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function(d) {
 					if (e == 'silentAlarms')
