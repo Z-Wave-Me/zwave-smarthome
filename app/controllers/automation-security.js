@@ -52,7 +52,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			armConfirm: [],
 			controls: [],
 			notification: [],
-			armFailureAction: []
+			armFailureAction: [],
+			inputArming: [],
 		},
 		devicesAvailable: true,
 		alert: {
@@ -67,6 +68,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			controls: [],
 			notification: [],
 			armFailureAction: [],
+			inputArming: [],
 		},
 		cfg: {
 			options: {
@@ -98,6 +100,13 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
 				default: {
 					devices: ''
+				}
+			},
+			inputArming: {
+				deviceType: ['sensorBinary', 'switchBinary'],
+				default: {
+					devices: '',
+					conditions: 'on',
 				}
 			},
 			alarms: {
@@ -172,6 +181,9 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				input: {
 					table: []
 				},
+				inputArming: {
+					table: []
+				},
 				silentAlarms: {
 					table: [],
 					notification: {}
@@ -180,6 +192,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					table: [],
 					notification: {}
 				},
+
 				alarms: {
 					table: [],
 					notification: {}
@@ -348,12 +361,12 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				title: instance.title,
 				active: instance.active,
 				// TODO add server realisation
-				params: {...instance.params, ...{armFailureAction: {table: [], notification: {}}}}
+				params: {...instance.params, ...{armFailureAction: {table: [], notification: {}, },inputArming: {table:[]}}}
 			});
 
 			// load additional device data
 
-			_.each(['silentAlarms','alarms','armConfirm','disarmConfirm','clean', 'armFailureAction'], function(e){
+			_.each(['silentAlarms','alarms','armConfirm','disarmConfirm','clean', 'armFailureAction', 'inputArming'], function(e){
 				$scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function(d) {
 					if (e == 'silentAlarms')
 						e = 'alarms';
@@ -391,6 +404,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						// exact: _.isNumber(d.level) ? parseInt(d.level) : null,
 						conditions: d.conditions,
 						armCondition: d.armCondition,
+						inputArming: d.inputArming,
 						sensorAtTheEntrance: d.sensorAtTheEntrance,
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
@@ -405,6 +419,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceName: $scope._t('device_removed') + ": " + d.devices,
 						conditions: d.conditions,
 						armCondition: d.armCondition,
+						inputArming: d.inputArming,
 						sensorAtTheEntrance: d.sensorAtTheEntrance,
 						iconPath: "storage/img/icons/placeholder.png"
 					};
@@ -421,6 +436,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						deviceName: dev.deviceName,
 						deviceNameShort: dev.deviceNameShort,
 						armCondition: d.armCondition,
+						inputArming: d.inputArming,
 						disarmCondition: d.disarmCondition,
 						clearCondition: d.clearCondition,
 						deviceType: dev.deviceType,
@@ -504,6 +520,10 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 					$scope.security.devices.alarms.push(obj);
 				}
 				// Set armFailureAction
+				if ($scope.security.cfg.inputArming.deviceType.indexOf(v.deviceType) > -1) {
+					$scope.security.devices.inputArming.push(obj);
+				}
+				// Set armFailureAction
 				if ($scope.security.cfg.armFailureAction.deviceType.indexOf(v.deviceType) > -1) {
 					$scope.security.devices.armFailureAction.push(obj);
 				}
@@ -529,6 +549,9 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			$scope.security.devicesInRoom.alarms = _.countBy($scope.security.devices.alarms, function(v) {
 				return v.location;
 			});
+			$scope.security.devicesInRoom.inputArming = _.countBy($scope.security.devices.inputArming, function(v) {
+				return v.location;
+			});
 			$scope.security.devicesInRoom.armFailureAction = _.countBy($scope.security.devices.armFailureAction, function(v) {
 				return v.location;
 			});
@@ -547,7 +570,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				$scope.security.alert.message = $scope._t('no_device_installed');
 			}
 
-			_.each(['input','silentAlarms','alarms','armConfirm','disarmConfirm','clean', 'armFailureAction'], function(e){
+			_.each(['input','silentAlarms','alarms','armConfirm','disarmConfirm','clean', 'armFailureAction', 'inputArming'], function(e){
 				$scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function(d) {
 					if (e == 'silentAlarms')
 						e = 'alarms';
@@ -695,7 +718,6 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		}
 
 		dev = $scope.getDevice(deviceId, p);
-		console.log(input, dev, param);
 		if (dev)
 		{
 			input = {...input,
@@ -987,7 +1009,12 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				clearCondition: dev.clearCondition
 			};
 		});
-
+		input.params.inputArming.table = input.params.inputArming.table.map(function(dev) {
+			return {
+				devices: dev.devices,
+				conditions: dev.conditions,
+			};
+		});
 		dataFactory.storeApi('instances', parseInt(input.instanceId, 10), input).then(function(response) {
 			$scope.loading = false;
 			if (redirect) {
