@@ -361,7 +361,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				title: instance.title,
 				active: instance.active,
 				// TODO add server realisation
-				params: {...instance.params, inputArming: {table:[]}}
+				params: {inputArming: {table:[]}, ...instance.params, }
 			});
 
 			// load additional device data
