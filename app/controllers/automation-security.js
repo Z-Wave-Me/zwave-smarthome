@@ -385,7 +385,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 							probeType: dev.probeType,
 							location: dev.location,
 							locationName: dev.locationName,
-							iconPath: dev.iconPath
+							iconPath: dev.iconPath,
+							conditions: d.conditions
 						};
 					}
 				});
