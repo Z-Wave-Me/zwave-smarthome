@@ -19771,6 +19771,8 @@ label {
     @media only screen and (min-width: 768px) {
       label span {
         line-height: 20px; } }
+  label.disabled {
+    color: #BDBDBD; }
 
 input[type=checkbox] {
   /*@include  checkboxScale(1.8,$spacing);
