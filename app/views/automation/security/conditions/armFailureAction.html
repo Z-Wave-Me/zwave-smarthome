@@ -45,13 +45,12 @@
                            ng-false-value="off">
                     <span class="slider"></span>
                 </label>
-                <label>
-                    <input type="checkbox" ng-model="d.armCondition" ng-true-value="on"
-                           ng-false-value="off">
-                </label>
-                <label>
-                    <input type="checkbox" ng-model="d.sensorAtTheEntrance" ng-true-value="on"
-                           ng-false-value="off">
+                <label class="switch-with-text">
+                    <input type="checkbox" ng-model="d.armCondition" ng-true-value="off"
+                           ng-false-value="on">
+                    <span class="slider-with-text"></span>
+                    <span class="right-side-text">{{_t('main_group')}}</span>
+                    <span class="left-side-text">{{_t('entrance_group')}}</span>
                 </label>
                 <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'input')">
                     <i class="fas fa-times text-danger"></i>
