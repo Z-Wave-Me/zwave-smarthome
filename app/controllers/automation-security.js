@@ -994,7 +994,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 				devices: dev.devices,
 				conditions: dev.conditions,
 				armCondition: dev.armCondition,
-				sensorAtTheEntrance: dev.sensorAtTheEntrance,
+				sensorAtTheEntrance: dev.armCondition === 'on' ? 'off': 'on',
 			};
 		});
 
