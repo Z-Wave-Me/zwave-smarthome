@@ -1,13 +1,13 @@
 /*
  *  Angular RangeSlider Directive
- * 
+ *
  *  Version: 0.0.7
  *
  *  Author: Daniel Crisp, danielcrisp.com
  *
  *  The rangeSlider has been styled to match the default styling
  *  of form elements styled using Twitter's Bootstrap
- * 
+ *
  *  Originally forked from https://github.com/leongersen/noUiSlider
  *
 
@@ -110,7 +110,7 @@
                 modelMin: '=?',
                 modelMax: '=?',
                 onHandleDown: '&', // calls optional function when handle is grabbed
-                onHandleUp: '&', // calls optional function when handle is released 
+                onHandleUp: '&', // calls optional function when handle is released
                 orientation: '@', // options: horizontal | vertical | vertical left | vertical right
                 step: '@',
                 decimalPlaces: '@',
@@ -122,7 +122,7 @@
             },
             link: function(scope, element, attrs, controller) {
 
-                /** 
+                /**
                  *  FIND ELEMENTS
                  */
 
@@ -481,11 +481,10 @@
                                 previousClick = currentClick;
 
                             }).bind(offEvent, function () {
-
                                 if (angular.isFunction(scope.onHandleUp)) {
                                     scope.onHandleUp();
                                 }
-
+                                console.log('slider', eventNamespace);
                                 unbind.off(eventNamespace);
 
                                 angular.element('body').removeClass('ngrs-touching');
@@ -555,7 +554,7 @@
             }
         };
     }]);
-    
+
     // requestAnimationFramePolyFill
     // http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
     // shim layer with setTimeout fallback

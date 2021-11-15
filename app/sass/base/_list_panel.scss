@@ -31,6 +31,10 @@
     align-items: center;
     justify-self: stretch;
     text-align: center;
+    .switch-with-text {
+      grid-column-start: 2;
+      grid-column-end: 4;
+    }
   }
 }
 
