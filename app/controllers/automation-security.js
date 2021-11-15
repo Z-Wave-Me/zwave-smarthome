@@ -404,7 +404,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						conditions: d.conditions,
 						armCondition: d.armCondition,
 						inputArming: d.inputArming,
-						sensorAtTheEntrance: d.sensorAtTheEntrance,
+						sensorAtTheEntrance: d.armCondition === 'on' ? 'off': 'on',
 						deviceType: dev.deviceType,
 						probeType: dev.probeType,
 						location: dev.location,
@@ -419,7 +419,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 						conditions: d.conditions,
 						armCondition: d.armCondition,
 						inputArming: d.inputArming,
-						sensorAtTheEntrance: d.sensorAtTheEntrance,
+						sensorAtTheEntrance: d.armCondition === 'on' ? 'off': 'on',
 						iconPath: "storage/img/icons/placeholder.png"
 					};
 				}
