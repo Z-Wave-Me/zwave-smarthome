@@ -1033,5 +1033,6 @@
     "main_group": "Main group",
     "inputArming": "Arming",
     "devicesRequiredForArming": "Devices required for arming",
-    "input_arming_header": "Arming condition"
+    "input_arming_header": "Arming condition",
+    "entrance_detected": "Entrance detected"
 }

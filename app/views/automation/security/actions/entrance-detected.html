@@ -1,0 +1,80 @@
+<!-- Title -->
+<h2 class="accordion-toggle chevron">
+    <button type="button" aria-expanded="false" bb-accordion>
+<span class="is-legend">
+  {{_t('entrance_detected')}}
+  <span class="item-cnt"> ({{_.size(security.input.params.entranceDetected.table)}})</span>
+</span>
+    </button>
+</h2>
+<!-- Content -->
+<div class="accordion no-bcg" hidden>
+    <!-- Assigned -->
+    <div class="panel-wrap">
+        <!-- List -->
+        <div data-collapse-all="true">
+            <section class="accordion-wrap" ng-repeat="d in security.input.params.entranceDetected.table" ng-init="model=d">
+                <h2 class="accordion-toggle ellipsis">
+                    <!-- Title -->
+                    <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'">
+        <span>
+          <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+          {{d.deviceName}}&nbsp;
+          <span ng-if="d.deviceType=='switchRGBW' && _.isObject(d.level)" class="color-picker-show" style="background-color: {{d.level|setRgbColors}};">&nbsp;</span>
+          <span ng-if="d.deviceType!='switchRGBW' || !_.isObject(d.level)"><em>[{{_t(d.level)}}<em ng-if="d.level == 'lvl'">&nbsp;{{d.exact}}</em>]</em></span>&nbsp;
+          -&nbsp;<em>{{d.locationName}}</em>
+        </span>
+                    </button>
+                    <!-- NO Toggle -->
+                    <span class="no-toggle" ng-if="d.deviceType == 'toggleButton'">
+          <span>
+            <img class="navi-img" ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+            {{d.deviceName}}&nbsp;-&nbsp;<em>{{d.locationName}}</em>
+          </span>
+        </span>
+                    <span class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'entranceDetected')">
+          <i class="fas fa-times text-danger"></i>
+        </span>
+                </h2>
+                <!-- Content -->
+                <div class="accordion" ng-include="'app/views/automation/security/inputs/'+ d.deviceType +'.html'" ng-if="d.deviceType != 'toggleButton'"
+                     hidden></div>
+            </section>
+        </div>
+        <!-- Notification -->
+        <div class="list-panel">
+            <!-- img -->
+            <figure class="img wh-32x32 clickable" ng-click="expandElement('entranceDetected')">
+                <img ng-src="{{cfg.img.icons}}security-alarmed.png" err-src="{{cfg.img.placeholder}}" alt="img" />
+            </figure>
+            <div class="body clickable" ng-click="expandElement('entranceDetected')">
+                <div>{{_t('notification')}}</div>
+            </div>
+            <div class="control">
+                <!-- expand/collapse -->
+                <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{!expand['entranceDetected']||false}}" ng-click="expandElement('entranceDetected')">
+                </button>
+            </div>
+            <div class="control-collapsable" ng-include="'app/views/automation/security/actions/notification_silent_alarm.html'" ng-class="!expand['entranceDetected'] ? 'expand-true': 'expand-false'"></div>
+        </div>
+    </div>
+    <h3>{{_t('devices_triggered_alarm')}}</h3>
+    <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.alarms[r.id] ? 'available-devices' : 'ng-hide'">
+        <!-- Title -->
+        <h2 class="accordion-toggle chevron">
+            <button type="button" aria-expanded="false" bb-accordion>
+        <span>
+          <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+        </span>
+            </button>
+        </h2>
+        <!-- Content -->
+        <div class="accordion" hidden>
+            <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.alarms" ng-if="d.location == r.id &&  !security.input.params.entranceDetected.table[getModelIndex(d.deviceId,'entranceDetected.table')]" ng-click="assignDevice(d.deviceId,'entranceDetected')">
+                <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                {{d.deviceName|cutText:true:20}}
+                <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
+            </a>
+        </div>
+    </section>
+</div>

@@ -1033,5 +1033,6 @@
     "main_group": "Основная группа",
     "inputArming": "Постановка на охрану",
     "devicesRequiredForArming": "Устройства необходимые для постановки на охрану",
-    "input_arming_header": "Условие постановки на охрану"
+    "input_arming_header": "Условие постановки на охрану",
+    "entrance_detected": "Сработал датчик входной группы",
 }
