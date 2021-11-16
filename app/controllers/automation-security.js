@@ -107,7 +107,7 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 			entranceDetected:{
 				deviceType: ['toggleButton', 'switchBinary', 'switchMultilevel'],
 				default: {
-					devices: ''
+					devices: '',
 				}
 			},
 			inputArming: {
@@ -738,6 +738,8 @@ myAppController.controller('SecurityIdController', function($scope, $routeParams
 		dev = $scope.getDevice(deviceId, p);
 		if (dev)
 		{
+			if (dev.level === 'off')
+				dev.level = 'on';
 			input = {...input,
 				devices: deviceId,
 				level: dev.level,
