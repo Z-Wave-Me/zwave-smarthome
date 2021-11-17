@@ -33,20 +33,18 @@
 			var slice = string.split(':');
 			var h = Number(slice[0]) * 60 * 60;
 			var i = Number(slice[1]) * 60;
-			var min = h + i;
-			return min;
+			return h + i;
 		};
 		this.formatTime = function(min) {
 			var h = "" + (min / 36000 | 0) + (min / 3600 % 10 | 0);
 			var i = "" + (min % 3600 / 600 | 0) + (min % 3600 / 60 % 10 | 0);
-			var string = h + ":" + i;
-			return string;
+			return h + ":" + i;
 		};
 
 		var setting = $.extend(defaults, options);
 		this.setting = setting;
-		var scheduleData = new Array();
-		var timelineData = new Array();
+		var scheduleData = [];
+		var timelineData = [];
 		var $element = $(this);
 		var element = (this);
 		var tableStartTime = element.calcStringTime(setting.startTime);
