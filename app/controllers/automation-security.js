@@ -149,7 +149,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 }
             },
             controls: {
-                deviceType: ['switchBinary'],
+                deviceType: ['switchBinary', 'switchMultilevel', 'toggleButton'],
                 status: ['on', 'off', 'never'],
                 default: {
                     devices: '',
@@ -252,6 +252,18 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         channels: []
     };
 
+    $scope.binarySwitchFilter = function (source, key) {
+        const test = ['armCondition', 'disarmCondition', 'clearCondition'].filter(function (filed ) {
+            return key !== filed
+        }).map(function (objectKey) {
+            return source[objectKey];
+        })
+        return function (field) {
+            if (field === 'never')
+                return true;
+            return !test.includes(field)
+        }
+    }
     /**
      *  Schedule
      */
@@ -373,6 +385,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 active: instance.active,
             });
             Object.assign($scope.security.input.params, instance.params);
+            // Object.assign($scope.security.input.params, instance.params);
             // load additional device data
             _.each(['silentAlarms', 'alarms', 'armConfirm', 'disarmConfirm', 'clean', 'armFailureAction', 'inputArming', 'entranceDetected'], function (e) {
                 $scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function (d) {
@@ -394,7 +407,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                             location: dev.location,
                             locationName: dev.locationName,
                             iconPath: dev.iconPath,
-                            conditions: d.conditions
+                            conditions: d.conditions,
                         };
                     }
                 });
@@ -435,6 +448,11 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             $scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function (d) {
                 const dev = $scope.getDevice(d.devices, 'controls');
                 if (dev) {
+                    let toggleButton;
+                    ['armCondition', 'disarmCondition', 'clearCondition'].map(function (field) {
+                        if (d[field] === 'on')
+                            toggleButton = field
+                    })
                     return {
                         devices: d.devices,
                         zwaveId: dev.zwaveId,
@@ -448,7 +466,8 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                         probeType: dev.probeType,
                         location: dev.location,
                         locationName: dev.locationName,
-                        iconPath: dev.iconPath
+                        iconPath: dev.iconPath,
+                        toggleButton
                     };
                 }
             });
@@ -963,6 +982,12 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         });
 
         input.params.controls.table = input.params.controls.table.map(function (dev) {
+            if (dev.deviceType === 'toggleButton') {
+                ['armCondition', 'disarmCondition', 'clearCondition'].map(function (filed) {
+                    dev[filed] = 'never'
+                })
+            }
+            dev[dev.toggleButton] = 'on';
             return {
                 devices: dev.devices,
                 armCondition: dev.armCondition,
