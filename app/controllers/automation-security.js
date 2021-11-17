@@ -712,6 +712,14 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         }
         const dev = $scope.getDevice(deviceId, param);
         if (dev) {
+            if (param === 'controls' && ['sensorMultilevel', 'switchMultilevel', 'sensorDiscrete'].includes(dev.deviceType)) {
+                input = {
+                    devices: '',
+                    armCondition: '',
+                    disarmCondition: '',
+                    clearCondition: ''
+                }
+            }
             if (dev.level === 'off')
                 dev.level = 'on';
             Object.assign(input, {

@@ -1,5 +1,4 @@
-<div class="form-control" ng-repeat="field in ['armCondition', 'disarmCondition', 'clearCondition']">
-  <label >{{_t(field)}}
+<ng-container ng-repeat="field in ['armCondition', 'disarmCondition', 'clearCondition']">
+    <label>{{_t(field)}} </label>
     <input type="text" class="form-control" ng-model="d[field]">
-  </label>
-</div>
+</ng-container>
