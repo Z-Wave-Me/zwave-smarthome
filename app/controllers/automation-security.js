@@ -521,35 +521,11 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                     locationName: rooms[v.location].title,
                     iconPath: v.iconPath
                 };
-                // Set input
-                if ($scope.security.cfg.input.deviceType.indexOf(v.deviceType) > -1) {
-                    $scope.security.devices.input.push(obj);
-                }
-                // Set alarm, silent alarm
-                if ($scope.security.cfg.alarms.deviceType.indexOf(v.deviceType) > -1) {
-                    $scope.security.devices.alarms.push(obj);
-                }
-                // Set inputArming
-                if ($scope.security.cfg.inputArming.deviceType.indexOf(v.deviceType) > -1) {
-                    $scope.security.devices.inputArming.push(obj);
-                }
-                // Set entranceDetected
-                if ($scope.security.cfg.entranceDetected.deviceType.indexOf(v.deviceType) > -1) {
-                    $scope.security.devices.entranceDetected.push(obj);
-                }
-                // Set armFailureAction
-                if ($scope.security.cfg.armFailureAction.deviceType.indexOf(v.deviceType) > -1) {
-                    $scope.security.devices.armFailureAction.push(obj);
-                }
-                // Set arm, disarm, clean
-                if ($scope.security.cfg.armConfirm.deviceType.indexOf(v.deviceType) > -1) {
-                    $scope.security.devices.armConfirm.push(obj);
-                }
-                // Set controls
-                if ($scope.security.cfg.controls.deviceType.indexOf(v.deviceType) > -1) {
-
-                    $scope.security.devices.controls.push(obj);
-                }
+                ['input', 'alarms','inputArming','entranceDetected','armFailureAction','armConfirm','controls'].map(function (field) {
+                    if ($scope.security.cfg[field].deviceType.indexOf(v.deviceType) !== -1) {
+                        $scope.security.devices[field].push(obj);
+                    }
+                })
                 // Set notifications
                 if (v.probeType && $scope.security.cfg.notification.probeType.indexOf(v.probeType) > -1) {
                     $scope.security.devices.notification.push(obj);
@@ -557,30 +533,11 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             });
 
             // Set devices in the rooms
-            $scope.security.devicesInRoom.input = _.countBy($scope.security.devices.input, function (v) {
-                return v.location;
-            });
-            $scope.security.devicesInRoom.alarms = _.countBy($scope.security.devices.alarms, function (v) {
-                return v.location;
-            });
-            $scope.security.devicesInRoom.inputArming = _.countBy($scope.security.devices.inputArming, function (v) {
-                return v.location;
-            });
-            $scope.security.devicesInRoom.armFailureAction = _.countBy($scope.security.devices.armFailureAction, function (v) {
-                return v.location;
-            });
-            $scope.security.devicesInRoom.entranceDetected = _.countBy($scope.security.devices.entranceDetected, function (v) {
-                return v.location;
-            });
-            $scope.security.devicesInRoom.armConfirm = _.countBy($scope.security.devices.armConfirm, function (v) {
-                return v.location;
-            });
-            $scope.security.devicesInRoom.controls = _.countBy($scope.security.devices.controls, function (v) {
-                return v.location;
-            });
-            $scope.security.devicesInRoom.notification = _.countBy($scope.security.devices.notification, function (v) {
-                return v.location;
-            });
+            ['input','alarms','inputArming','armFailureAction', 'entranceDetected', 'armConfirm','controls', 'notification'].map(function (field) {
+                $scope.security.devicesInRoom[field] = _.countBy($scope.security.devices[field], function (v) {
+                    return v.location;
+                });
+            })
 
             if (!_.size($scope.security.devices.input)) {
                 $scope.security.devicesAvailable = false;
