@@ -26,7 +26,7 @@
         </div>
         <div ng-repeat="type in security.cfg.controls.deviceType"
              ng-if="d.deviceType === type"
-             ng-include="'app/views/automation/security/bydevice/' + type + '-template.html'"
+             ng-include="'app/views/automation/security/bydevice/' + getTemplate(type)"
              class="control-collapsable form-inline"
              ng-class="expand['securityControl_' + d.devices] ? 'expand-true': 'expand-false'">
         </div>

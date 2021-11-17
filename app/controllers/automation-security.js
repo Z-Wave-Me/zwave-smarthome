@@ -251,9 +251,19 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
     $scope.notifications = {
         channels: []
     };
-
+    $scope.getTemplate = function (deviceType) {
+        if (['sensorBinary', 'switchBinary', 'switchControl'].includes(deviceType)){
+            return 'on-of-never-template.html';
+        }
+        if (['sensorMultilevel', 'switchMultilevel', 'sensorDiscrete'].includes(deviceType)) {
+            return 'switch-template.html';
+        }
+        if (['toggleButton'].includes(deviceType)) {
+            return 'toggle-template.html';
+        }
+    }
     $scope.binarySwitchFilter = function (source, key) {
-        const test = ['armCondition', 'disarmCondition', 'clearCondition'].filter(function (filed ) {
+        const occupied = ['armCondition', 'disarmCondition', 'clearCondition'].filter(function (filed ) {
             return key !== filed
         }).map(function (objectKey) {
             return source[objectKey];
@@ -261,7 +271,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         return function (field) {
             if (field === 'not_used')
                 return true;
-            return !test.includes(field)
+            return !occupied.includes(field)
         }
     }
     /**
@@ -449,10 +459,12 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 const dev = $scope.getDevice(d.devices, 'controls');
                 if (dev) {
                     let toggleButton;
-                    ['armCondition', 'disarmCondition', 'clearCondition'].map(function (field) {
-                        if (d[field] === 'on')
-                            toggleButton = field
-                    })
+                    if (dev.deviceType === "toggleButton") {
+                        ['armCondition', 'disarmCondition', 'clearCondition'].map(function (field) {
+                            if (d[field] === 'on')
+                                toggleButton = field
+                        })
+                    }
                     return {
                         devices: d.devices,
                         zwaveId: dev.zwaveId,
@@ -467,7 +479,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                         location: dev.location,
                         locationName: dev.locationName,
                         iconPath: dev.iconPath,
-                        toggleButton
+                        toggleButton: toggleButton
                     };
                 }
             });
@@ -563,7 +575,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                         e = 'alarms';
                     else if (e === 'disarmConfirm' || e === 'clean')
                         e = 'armConfirm';
-                    dev = $scope.getDevice(d.devices, e);
+                    const dev = $scope.getDevice(d.devices, e);
                     if (dev) {
                         return {
                             devices: d.devices,
@@ -602,7 +614,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                     };
                 }
             });
-
             $scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function (d) {
                 const dev = $scope.getDevice(d.devices, 'controls');
                 if (dev) {
@@ -699,7 +710,6 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         if (param === 'disarmConfirm' || param === 'clean') {
             param = 'armConfirm';
         }
-
         const dev = $scope.getDevice(deviceId, param);
         if (dev) {
             if (dev.level === 'off')
@@ -838,7 +848,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
 
         for (var i = 0; i <= 6; i++) { // days
             if ($scope.security.mobileSchedule[targetIndex][i]) { // day true
-                overlaps = timeOverlaps($scope.security.mobileSchedule, arm, disarm, i); // check for day
+                const overlaps = timeOverlaps($scope.security.mobileSchedule, arm, disarm, i); // check for day
                 if (overlaps.length > 0) {
                     $scope.security.mobileSchedule[targetIndex][type] = oldValue;
                     alertify.alertWarning($scope._t('data_overlaps'));
@@ -986,8 +996,8 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 ['armCondition', 'disarmCondition', 'clearCondition'].map(function (filed) {
                     dev[filed] = 'not_used'
                 })
+                dev[dev.toggleButton] = 'on';
             }
-            dev[dev.toggleButton] = 'on';
             return {
                 devices: dev.devices,
                 armCondition: dev.armCondition,
