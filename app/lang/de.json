@@ -1028,7 +1028,8 @@
     "devicesRequiredForArming": "Devices required for arming",
     "input_arming_header": "Arming condition",
     "entrance_detected": "Entrance detected",
-    "armCondition": "In arming condition",
-    "disarmCondition": "Disarm condition",
-    "clearCondition": "Reset condition"
+    "armCondition": "Arming",
+    "disarmCondition": "Disarming",
+    "clearCondition": "Clear alarm",
+    "not_used": "Not used"
 }

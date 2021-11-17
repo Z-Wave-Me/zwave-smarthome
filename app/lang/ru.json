@@ -1035,7 +1035,8 @@
     "devicesRequiredForArming": "Устройства необходимые для постановки на охрану",
     "input_arming_header": "Условие постановки на охрану",
     "entrance_detected": "Сработал датчик входной группы",
-    "armCondition": "Требуется для постановки на охрану",
-    "disarmCondition": "Условие снятия с охраны",
-    "clearCondition": "Сбросить условие"
+    "armCondition": "Поставить на охрану",
+    "disarmCondition": "Снять с охраны",
+    "clearCondition": "Сброс тревоги",
+    "not_used": "Не используется"
 }
