@@ -150,12 +150,12 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             },
             controls: {
                 deviceType: ['switchBinary', 'switchMultilevel', 'toggleButton', 'switchControl'],
-                status: ['on', 'off', 'never'],
+                status: ['on', 'off', 'not_used'],
                 default: {
                     devices: '',
-                    armCondition: 'never',
-                    disarmCondition: 'never',
-                    clearCondition: 'never'
+                    armCondition: 'not_used',
+                    disarmCondition: 'not_used',
+                    clearCondition: 'not_used'
                 }
             },
             notification: {
@@ -259,7 +259,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             return source[objectKey];
         })
         return function (field) {
-            if (field === 'never')
+            if (field === 'not_used')
                 return true;
             return !test.includes(field)
         }
@@ -984,7 +984,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         input.params.controls.table = input.params.controls.table.map(function (dev) {
             if (dev.deviceType === 'toggleButton') {
                 ['armCondition', 'disarmCondition', 'clearCondition'].map(function (filed) {
-                    dev[filed] = 'never'
+                    dev[filed] = 'not_used'
                 })
             }
             dev[dev.toggleButton] = 'on';
