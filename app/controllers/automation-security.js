@@ -149,7 +149,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 }
             },
             controls: {
-                deviceType: ['switchBinary', 'switchMultilevel', 'toggleButton'],
+                deviceType: ['switchBinary', 'switchMultilevel', 'toggleButton', 'switchControl'],
                 status: ['on', 'off', 'never'],
                 default: {
                     devices: '',
