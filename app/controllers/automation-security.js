@@ -6,7 +6,7 @@
  * Controller that handles list of security instances
  * @class SecurityController
  */
-myAppController.controller('SecurityController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('SecurityController', function ($scope, $routeParams, $location, $timeout, cfg, dataFactory, dataService, _) {
     $scope.security = {
         moduleId: 'Security',
         state: '',
@@ -40,7 +40,8 @@ myAppController.controller('SecurityController', function ($scope, $routeParams,
  * Controller that handles a security detail
  * @class SecurityIdController
  */
-myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _, myCache) {
+myAppController.controller('SecurityIdController', function ($scope, $routeParams, $location, $timeout, $filter, cfg, dataFactory, dataService, _) {
+
     $scope.security = {
         routeId: 0,
         tab: 1,
@@ -301,31 +302,26 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         append: function (node, data) {
         },
         time_click: function (time, data, timeline, timelineData) {
-            var start = this.calcStringTime(data),
-                end = start + 3600,
-                data = {
-                    timeline: parseInt(timeline),
-                    start: start,
-                    end: end,
-                    text: $scope._t('lb_arm')
-                };
-            this.addScheduleData(data);
+            this.addScheduleData({
+                timeline: parseInt(timeline),
+                start: this.calcStringTime(data),
+                end: start + 3600,
+                text: $scope._t('lb_arm')
+            });
             $scope.updateData();
         },
         append_on_click: function (timeline, startTime, endTime) {
             var start = this.calcStringTime(startTime),
                 end = this.calcStringTime(endTime)
 
-            end = end == start ? end + 3600 : end;
+            end = end === start ? end + 3600 : end;
 
-            var data = {
+            this.addScheduleData({
                 timeline: parseInt(timeline),
                 start: start,
                 end: end,
                 text: $scope._t('lb_arm')
-            };
-
-            this.addScheduleData(data);
+            });
             $scope.updateData();
         },
         bar_Click: function (node, timelineData, scheduleIndex) {
@@ -375,17 +371,16 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             angular.extend($scope.security.input, {
                 title: instance.title,
                 active: instance.active,
-                // TODO add server realisation
             });
             Object.assign($scope.security.input.params, instance.params);
             // load additional device data
             _.each(['silentAlarms', 'alarms', 'armConfirm', 'disarmConfirm', 'clean', 'armFailureAction', 'inputArming', 'entranceDetected'], function (e) {
                 $scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function (d) {
-                    if (e == 'silentAlarms')
+                    if (e === 'silentAlarms')
                         e = 'alarms';
-                    else if (e == 'disarmConfirm' || e == 'clean')
+                    else if (e === 'disarmConfirm' || e === 'clean')
                         e = 'armConfirm';
-                    dev = $scope.getDevice(d.devices, e);
+                    const dev = $scope.getDevice(d.devices, e);
                     if (dev) {
                         return {
                             devices: d.devices,
@@ -405,7 +400,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 });
             });
             $scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function (d) {
-                dev = $scope.getDevice(d.devices, 'input');
+                const dev = $scope.getDevice(d.devices, 'input');
                 if (dev) {
                     return {
                         devices: d.devices,
@@ -438,7 +433,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             });
 
             $scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function (d) {
-                dev = $scope.getDevice(d.devices, 'controls');
+                const dev = $scope.getDevice(d.devices, 'controls');
                 if (dev) {
                     return {
                         devices: d.devices,
@@ -545,9 +540,9 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             }
             _.each(['input', 'silentAlarms', 'alarms', 'armConfirm', 'disarmConfirm', 'clean', 'armFailureAction', 'inputArming', 'entranceDetected'], function (e) {
                 $scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function (d) {
-                    if (e == 'silentAlarms')
+                    if (e === 'silentAlarms')
                         e = 'alarms';
-                    else if (e == 'disarmConfirm' || e == 'clean')
+                    else if (e === 'disarmConfirm' || e === 'clean')
                         e = 'armConfirm';
                     dev = $scope.getDevice(d.devices, e);
                     if (dev) {
@@ -570,7 +565,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             });
 
             $scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function (d) {
-                dev = $scope.getDevice(d.devices, 'input');
+                const dev = $scope.getDevice(d.devices, 'input');
                 if (dev) {
                     return {
                         devices: d.devices,
@@ -590,7 +585,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             });
 
             $scope.security.input.params.controls.table = $scope.security.input.params.controls.table.map(function (d) {
-                dev = $scope.getDevice(d.devices, 'controls');
+                const dev = $scope.getDevice(d.devices, 'controls');
                 if (dev) {
                     return {
                         devices: d.devices,
@@ -620,18 +615,18 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
     /**
      * Get model index by device ID
      * @param {string} deviceId
+     * @param node
      * @returns {undefined}
      */
     $scope.getModelIndex = function (deviceId, node) {
-        var index = _.findIndex($filter('hasNode')($scope.security.input.params, node), {
+        return _.findIndex($filter('hasNode')($scope.security.input.params, node), {
             devices: deviceId
         });
-        return index;
     };
 
     /**
      * delete schedule Bar
-     * @param  {obj} input  schedule data
+     * @param  {any} input  schedule data
      * @param  {obj} $event dom event
      */
     $scope.deleteBar = function (input, $event) {
@@ -656,13 +651,13 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
     /**
      * Get device entry by deviceId
      * @param  {string} deviceId
+     * @param param
      * @return {object} device
      */
     $scope.getDevice = function (deviceId, param) {
-        var device = _.findWhere($scope.security.devices[param], {
+        return _.findWhere($scope.security.devices[param], {
             deviceId: deviceId
         });
-        return device;
     }
 
     /**
@@ -679,15 +674,14 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         if (deviceIndex > -1) {
             return;
         }
-        if (param == 'silentAlarms') {
-            p = 'alarms';
-        } else if (param == 'disarmConfirm' || param == 'clean') {
-            p = 'armConfirm';
-        } else {
-            p = param;
+        if (param === 'silentAlarms') {
+            param = 'alarms';
+        }
+        if (param === 'disarmConfirm' || param === 'clean') {
+            param = 'armConfirm';
         }
 
-        dev = $scope.getDevice(deviceId, p);
+        const dev = $scope.getDevice(deviceId, param);
         if (dev) {
             if (dev.level === 'off')
                 dev.level = 'on';
@@ -703,7 +697,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 locationName: dev.locationName,
                 iconPath: dev.iconPath
             })
-            if (p == 'input') {
+            if (param === 'input') {
                 $scope.security.input.active = true;
             }
             $scope.security.input.params[param].table.push(input);
@@ -725,7 +719,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             $scope.security.input.params[param].table.splice(deviceIndex, 1);
         }
 
-        if (param == 'input' && _.size($scope.security.input.params.input.table) < 1) {
+        if (param === 'input' && _.size($scope.security.input.params.input.table) < 1) {
             $scope.security.input.active = false;
         }
     };
@@ -801,14 +795,13 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
      */
     $scope.updateData = function () {
         angular.forEach($scope.jQuerySchedule.getScheduleData(), function (row, day) {
-            var sorted_sc = _.sortBy(row.schedule, 'start'),
-                new_sc = sorted_sc.map(function (sc) {
-                    return {
-                        arm: sc.start,
-                        disarm: sc.end,
-                    };
-                });
-            $scope.security.input.params.schedules[day] = new_sc;
+            var sorted_sc = _.sortBy(row.schedule, 'start');
+            $scope.security.input.params.schedules[day] = sorted_sc.map(function (sc) {
+                return {
+                    arm: sc.start,
+                    disarm: sc.end,
+                };
+            });
         });
         $scope.transformFromInstToMobile();
     };
@@ -895,7 +888,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                         arm: e.arm,
                         disarm: e.disarm
                     });
-                    if (index == -1) {
+                    if (index === -1) {
                         var entry = {};
                         angular.copy($scope.security.cfg.mobileSchedule_entry, entry);
 
@@ -926,10 +919,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
      * Assign a time scheduler
      */
     $scope.assignTimeSchedule = function () {
-        var input = {},
-            obj = {};
-        angular.copy($scope.security.cfg.mobileSchedule_entry, input);
-        $scope.security.mobileSchedule.push(input);
+        $scope.security.mobileSchedule.push(angular.copy($scope.security.cfg.mobileSchedule_entry, {}));
     };
 
     /**
@@ -957,7 +947,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             input.params[e].table = input.params[e].table.map(function (dev) {
                 return {
                     devices: dev.devices,
-                    level: dev.level == 'lvl' ? dev.exact : dev.level,
+                    level: dev.level === 'lvl' ? dev.exact : dev.level,
                     sendAction: dev.sendAction
                 };
             });
@@ -1022,7 +1012,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
      * @param  {[type]} day            day to check
      */
     function timeOverlaps(mobileSchedule, stime, etime, day) {
-        var overlaps = _.filter(mobileSchedule, function (e) {
+        return _.filter(mobileSchedule, function (e) {
             var st = stringToTime(e.arm),
                 et = stringToTime(e.disarm);
 
@@ -1033,19 +1023,17 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 return e;
             }
         });
-        return overlaps;
     }
 
     /**
      * conervet time string 12:40 into mins
-     * @param  {string} time string
      * @return {int}    time in mins
+     * @param string
      */
     function stringToTime(string) {
         var slice = string.split(':');
         var h = Number(slice[0]) * 60 * 60;
         var i = Number(slice[1]) * 60;
-        var min = h + i;
-        return min;
+        return h + i;
     }
 });

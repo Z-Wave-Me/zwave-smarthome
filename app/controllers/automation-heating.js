@@ -335,7 +335,25 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 			}
 		}
 	};
-
+	function updateSchedule(jq_schedule, roomId) {
+		var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule),
+			data = {};
+		angular.copy($scope.scheduleOptions.rows, data);
+		days.forEach(function(day) {
+			$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+				var sc = {
+					start: schedule.stime,
+					end: schedule.etime,
+					text: schedule.temp + " C°",
+					data: {
+						temp: schedule.temp
+					}
+				}
+				data[day].schedule.push(sc);
+			});
+		});
+		jq_schedule.update(data);
+	}
 	/**
 	 * Update the schedule
 	 * @param  {int} scheduleId element ID
@@ -345,23 +363,26 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		if ($scope.jQuery_schedules[scheduleId]) {
 			var jq_schedule = $scope.jQuery_schedules[scheduleId];
 
-			var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule),
-				data = {};
-			angular.copy($scope.scheduleOptions.rows, data);
-			days.forEach(function(day) {
-				$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
-					var sc = {
-						start: schedule.stime,
-						end: schedule.etime,
-						text: schedule.temp + " C°",
-						data: {
-							temp: schedule.temp
-						}
-					}
-					data[day].schedule.push(sc);
-				});
-			});
-			jq_schedule.update(data);
+			updateSchedule(jq_schedule, roomId);
+			// TODO: remove it
+
+			// var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule),
+			// 	data = {};
+			// angular.copy($scope.scheduleOptions.rows, data);
+			// days.forEach(function(day) {
+			// 	$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+			// 		var sc = {
+			// 			start: schedule.stime,
+			// 			end: schedule.etime,
+			// 			text: schedule.temp + " C°",
+			// 			data: {
+			// 				temp: schedule.temp
+			// 			}
+			// 		}
+			// 		data[day].schedule.push(sc);
+			// 	});
+			// });
+			// jq_schedule.update(data);
 		}
 	}
 
@@ -372,23 +393,26 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 		_.each($scope.jQuery_schedules, function(jq_schedule, scheduleId) {
 			var roomId = scheduleId.split("-")[1]
 
-			var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule),
-				data = {};
-			angular.copy($scope.scheduleOptions.rows, data);
-			days.forEach(function(day) {
-				$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
-					var sc = {
-						start: schedule.stime,
-						end: schedule.etime,
-						text: schedule.temp + " C°",
-						data: {
-							temp: schedule.temp
-						}
-					}
-					data[day].schedule.push(sc);
-				});
-			});
-			jq_schedule.update(data);
+			updateSchedule(jq_schedule, roomId);
+			// TODO: remove it
+
+			// var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule),
+			// 	data = {};
+			// angular.copy($scope.scheduleOptions.rows, data);
+			// days.forEach(function(day) {
+			// 	$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+			// 		var sc = {
+			// 			start: schedule.stime,
+			// 			end: schedule.etime,
+			// 			text: schedule.temp + " C°",
+			// 			data: {
+			// 				temp: schedule.temp
+			// 			}
+			// 		}
+			// 		data[day].schedule.push(sc);
+			// 	});
+			// });
+			// jq_schedule.update(data);
 		});
 	}
 
@@ -515,24 +539,26 @@ myAppController.controller('HeatingIdController', function($scope, $routeParams,
 					if(scIndex != -1) {
 						$scope.heating.input.params.roomSettings[roomId].schedule[$scope.heating.tempModal.timeline][scIndex].temp = parseFloat($scope.heating.tempModal.temp.value);
 
-						var rows_copy = {};
-						angular.copy($scope.scheduleOptions.rows, rows_copy);
-
-						var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
-						days.forEach(function(day) {
-							$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
-								var sc = {
-									start: schedule.stime,
-									end: schedule.etime,
-									text: schedule.temp + " C°",
-									data: {
-										temp: schedule.temp
-									}
-								}
-								rows_copy[day].schedule.push(sc);
-							});
-						});
-						jq_schedule.update(rows_copy);
+						updateSchedule(jq_schedule, roomId);
+						// TODO: remove it
+						// var rows_copy = {};
+						// angular.copy($scope.scheduleOptions.rows, rows_copy);
+						//
+						// var days = Object.keys($scope.heating.input.params.roomSettings[roomId].schedule);
+						// days.forEach(function(day) {
+						// 	$scope.heating.input.params.roomSettings[roomId].schedule[day].forEach(function(schedule) {
+						// 		var sc = {
+						// 			start: schedule.stime,
+						// 			end: schedule.etime,
+						// 			text: schedule.temp + " C°",
+						// 			data: {
+						// 				temp: schedule.temp
+						// 			}
+						// 		}
+						// 		rows_copy[day].schedule.push(sc);
+						// 	});
+						// });
+						// jq_schedule.update(rows_copy);
 					}
 				}
 			}
