@@ -697,6 +697,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
      * @returns {undefined}
      */
     $scope.assignDevice = function (deviceId, param) {
+        let p;
         var input = $scope.security.cfg[param].default;
         var deviceIndex = _.findIndex($scope.security.input.params[param].table, {
             devices: deviceId
@@ -705,14 +706,15 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             return;
         }
         if (param === 'silentAlarms') {
-            param = 'alarms';
+            p = 'alarms';
+        } else if (param === 'disarmConfirm' || param === 'clean') {
+            p = 'armConfirm';
+        }else {
+            p = param;
         }
-        if (param === 'disarmConfirm' || param === 'clean') {
-            param = 'armConfirm';
-        }
-        const dev = $scope.getDevice(deviceId, param);
+        const dev = $scope.getDevice(deviceId, p);
         if (dev) {
-            if (param === 'controls' && ['sensorMultilevel', 'switchMultilevel', 'sensorDiscrete'].includes(dev.deviceType)) {
+            if (p === 'controls' && ['sensorMultilevel', 'switchMultilevel', 'sensorDiscrete'].includes(dev.deviceType)) {
                 input = {
                     devices: '',
                     armCondition: '',
