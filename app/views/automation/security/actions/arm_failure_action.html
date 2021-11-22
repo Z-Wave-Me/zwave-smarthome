@@ -13,7 +13,7 @@
     <div class="panel-wrap">
         <!-- List -->
         <div data-collapse-all="true">
-            <section class="accordion-wrap" ng-repeat="d in security.input.params.armFailureAction.table" ng-init="model=d">
+            <section class="accordion-wrap" ng-repeat="d in security.input.params.armFailureAction.table track by $index" ng-init="model=d">
                 <h2 class="accordion-toggle ellipsis">
                     <!-- Title -->
                     <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'">

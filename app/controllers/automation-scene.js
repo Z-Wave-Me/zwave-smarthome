@@ -68,7 +68,6 @@ myAppController.controller('AutomationSceneController', function($scope, $routeP
 	var loadOldScenes = function() {
 		dataFactory.getApi('instances', '/LightScene', true).then(function(response) {
 			$scope.oldScenes = _.filter(response.data.data, function(v) {
-				console.log(v);
 				return !v.params.moduleAPITransformed;
 			});
 		});

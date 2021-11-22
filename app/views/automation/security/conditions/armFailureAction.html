@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="condition-panel" ng-repeat="d in security.input.params.input.table">
+        <div class="condition-panel" ng-repeat="d in security.input.params.input.table track by $index">
             <!-- img -->
             <div class="condition-body">
                 <figure class="img wh-32x32">
@@ -70,7 +70,7 @@
         </h2>
         <!-- Content -->
         <div class="accordion" hidden>
-            <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.input" ng-if="d.location == r.id &&  !security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]" ng-click="assignDevice(d.deviceId,'input')">
+            <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.input track by $index" ng-if="d.location == r.id &&  !security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]" ng-click="assignDevice(d.deviceId,'input')">
                 <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
                 {{d.deviceName|cutText:true:20}}
                 <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>

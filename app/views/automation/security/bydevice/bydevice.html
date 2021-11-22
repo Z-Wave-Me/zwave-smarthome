@@ -1,6 +1,6 @@
 <!-- Assigned -->
 <div class="panel-wrap">
-    <div class="list-panel" ng-repeat="d in security.input.params.controls.table">
+    <div class="list-panel" ng-repeat="d in security.input.params.controls.table track by $index">
         <!-- img -->
         <figure class="img wh-32x32 clickable" ng-click="expandElement('securityControl_' + d.devices)">
             <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img"/>
@@ -24,7 +24,7 @@
                 <i class="fas fa-times text-danger"></i>
             </button>
         </div>
-        <div ng-repeat="type in security.cfg.controls.deviceType"
+        <div ng-repeat="type in security.cfg.controls.deviceType track by $index"
              ng-if="d.deviceType === type"
              ng-include="'app/views/automation/security/bydevice/' + getTemplate(type)"
              class="control-collapsable form-inline"
