@@ -397,6 +397,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
             Object.assign($scope.security.input.params, instance.params);
             // Object.assign($scope.security.input.params, instance.params);
             // load additional device data
+            console.log($scope.security.input);
             _.each(['silentAlarms', 'alarms', 'armConfirm', 'disarmConfirm', 'clean', 'armFailureAction', 'inputArming', 'entranceDetected'], function (e) {
                 $scope.security.input.params[e].table = $scope.security.input.params[e].table.map(function (d) {
                     if (e === 'silentAlarms')
@@ -420,10 +421,20 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                             conditions: d.conditions,
                         };
                     }
+                    return {
+                        devices: d.devices,
+                        deviceName: $scope._t('device_removed') + ": " + d.devices,
+                        conditions: d.conditions,
+                        armCondition: d.armCondition,
+                        inputArming: d.inputArming,
+                        sensorAtTheEntrance: d.armCondition === 'on' ? 'off' : 'on',
+                        iconPath: "storage/img/icons/placeholder.png"
+                    };
                 });
             });
             $scope.security.input.params.input.table = $scope.security.input.params.input.table.map(function (d) {
                 const dev = $scope.getDevice(d.devices, 'input');
+                console.log(dev, d.devices);
                 if (dev) {
                     return {
                         devices: d.devices,
@@ -482,6 +493,15 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                         toggleButton: toggleButton
                     };
                 }
+                return {
+                    devices: d.devices,
+                    deviceName: $scope._t('device_removed') + ": " + d.devices,
+                    conditions: d.conditions,
+                    armCondition: d.armCondition,
+                    inputArming: d.inputArming,
+                    sensorAtTheEntrance: d.armCondition === 'on' ? 'off' : 'on',
+                    iconPath: "storage/img/icons/placeholder.png"
+                };
             });
 
             // transform to mobile
@@ -556,6 +576,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
                 if (v.probeType && $scope.security.cfg.notification.probeType.indexOf(v.probeType) > -1) {
                     $scope.security.devices.notification.push(obj);
                 }
+                // console.log(v, obj, $scope.security.devices.input);
             });
 
             // Set devices in the rooms
@@ -754,6 +775,7 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         var deviceIndex = _.findIndex($scope.security.input.params[param].table, {
             devices: deviceId
         });
+        // console.log(deviceIndex, deviceId, param);
         if (deviceIndex > -1) {
             $scope.security.input.params[param].table.splice(deviceIndex, 1);
         }

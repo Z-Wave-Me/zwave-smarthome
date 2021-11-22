@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="condition-panel" ng-repeat="d in security.input.params.inputArming.table">
+        <div class="condition-panel" ng-repeat="d in security.input.params.inputArming.table track by $index">
             <!-- img -->
             <div class="condition-body">
                 <figure class="img wh-32x32">
