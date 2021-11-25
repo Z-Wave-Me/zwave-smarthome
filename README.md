@@ -9,6 +9,18 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.13.4
+#### New features:
+- Full rework of Security module
+  - Added Entrance group to allow delay for some sensors on armin and disarming
+  - Added support for scenes and buttons for arm/disarm/clear by button
+  - Added Arm condition and Arm failure action to allow checks for sensor state before arming
+  - Handles deleted devices correctly
+- For value less one show 3 significant digits
+- Add remoteAccess && CloudBackup checkbox on first access screen
+#### Fixes:
+- Rules: fix incorrect value for else rule for switchMultilevel devices
+
 ## v1.13.3
 #### Fixes:
 - Add missing doorlock in rules
