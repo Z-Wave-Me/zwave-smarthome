@@ -33,9 +33,9 @@ else
 	echo "Building test version"
 fi
 
-(cd app/sass; ./compile.sh)
+(cd app/sass; ./compile.sh) || exit -1
 
-grunt
+grunt || exit -1
 
 if [ "$1" == "dist" ]; then
 	git add app/css/main.css.map app/css/main.css app/css/main.css.orig app/info.json package.json dist/ &&
