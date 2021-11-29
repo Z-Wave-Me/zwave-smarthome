@@ -482,7 +482,8 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 					deviceType: d.deviceType,
 					level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl') : d.level,
 					exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0) : undefined,
-					sendAction: d.sendAction
+					sendAction: d.sendAction,
+					reverseLevel: d.reverseLevel,
 				};
 			});
 
@@ -492,6 +493,7 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 					deviceType: d.deviceType,
 					level: d.deviceType == 'switchMultilevel' ? (isNaN(d.level) ? d.level : 'lvl') : d.level,
 					exact: d.deviceType == 'switchMultilevel' ? (!isNaN(d.level) ? d.level : 0) : undefined,
+					reverseLevel: d.reverseLevel,
 					sendAction: d.sendAction
 				};
 			});
@@ -800,7 +802,7 @@ myAppController.controller('AutomationRuleIdController', function($scope, $route
 				if (['off', 'on'].indexOf(model.level) > -1) {
 					model.reverseLevel = (model.level == 'on' ? 'off' : 'on');
 				} else {
-					model.reverseLevel = $scope.rule.namespaces[model.deviceId].level;
+					model.reverseLevel = $scope.rule.namespaces[model.deviceId].reverseLevel;
 				}
 				break;
 		}

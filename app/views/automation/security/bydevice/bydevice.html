@@ -1,63 +1,60 @@
- <!-- Assigned -->
- <div class="panel-wrap">
-    <div class="list-panel" ng-repeat="d in security.input.params.controls.table">
-      <!-- img -->
-      <figure class="img wh-32x32 clickable" ng-click="expandElement('securityControl_' + d.devices)" >
-        <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-      </figure>
-      <div class="body clickable" ng-click="expandElement('securityControl_' + d.devices)">
-        <div>{{d.deviceName}}  - <em class="item-cnt">{{d.locationName}}</em></div>
-      </div>
-      <div class="control">
-        <!-- expand/collapse -->
-    <button type="button" class="btn btn-ctrl" title="{{_t('lb_settings')}}" aria-expanded="{{expand['securityControl_' + d.deviceId]||false}}" ng-click="expandElement('securityControl_' + d.deviceId)">
-      </button>
-        <!-- delete -->
-        <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'controls')">
-          <i class="fas fa-times text-danger"></i>
-        </button>
-      </div>
-      <div class="control-collapsable form-inline" ng-class="expand['securityControl_' + d.devices] ? 'expand-true': 'expand-false'">
-          <label>{{_t('arm_condition')}}</label>
-          <select class="form-control" ng-model="d.armCondition">
-            <!-- <option value="" ng-selected="true">{{_t('arm_condition')}}</option> -->
-            <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="d.armCondition == a">
-              {{_t(a)}}</option>
-          </select>
-          <label>{{_t('disarm_condition')}}</label>
-          <select class="form-control" ng-model="d.disarmCondition">
-            <!-- <option value="" ng-selected="true">{{_t('disarm_condition')}}</option> -->
-            <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="d.disarmCondition == a">
-              {{_t(a)}}</option>
-          </select>
-          <label>{{_t('reset_condition')}}</label>
-          <select class="form-control" ng-model="d.clearCondition">
-           <!--  <option value="" ng-selected="true">{{_t('reset_condition')}}</option> -->
-            <option value="{{a}}" ng-repeat="a in security.cfg.controls.status track by $index" ng-selected="d.clearCondition == a">
-              {{_t(a)}}</option>
-          </select>
-      </div>
+<!-- Assigned -->
+<div class="panel-wrap">
+    <div class="list-panel" ng-repeat="d in security.input.params.controls.table track by $index">
+        <!-- img -->
+        <figure class="img wh-32x32 clickable" ng-click="expandElement('securityControl_' + d.devices)">
+            <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img"/>
+        </figure>
+        <div class="body clickable" ng-click="expandElement('securityControl_' + d.devices)">
+            <div>{{d.deviceName}} - <em class="item-cnt">{{d.locationName}}</em></div>
+        </div>
+        <div class="security-control">
+            <!-- expand/collapse -->
+            <!--  -->
+            <button type="button" class="arrow-btn" title="{{_t('lb_settings')}}"
+                    aria-expanded="{{expand['securityControl_' + d.devices]}}"
+                    ng-click="expandElement('securityControl_' + d.devices)">
+                <i ng-if="!expand['securityControl_' + d.devices]" class="fal fa-2x fa-angle-down"></i>
+                <i ng-if="expand['securityControl_' + d.devices]" class="fal fa-2x fa-angle-up"></i>
 
+            </button>
+            <!-- delete -->
+            <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}"
+                    ng-click="unassignDevice(d.devices,'controls')">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div>
+        <div ng-repeat="type in security.cfg.controls.deviceType track by $index"
+             ng-if="d.deviceType === type"
+             ng-include="'app/views/automation/security/bydevice/' + getTemplate(type)"
+             class="control-collapsable form-inline"
+             ng-class="expand['securityControl_' + d.devices] ? 'expand-true': 'expand-false'">
+        </div>
     </div>
-  </div>
 
-<!-- Available devices -->
-<h3>{{_t('devices_disarm_security')}}</h3>
-<section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.controls[r.id] ? 'available-devices' : 'ng-hide'">
-  <!-- Title -->
-  <h2 class="accordion-toggle chevron">
-    <button type="button" aria-expanded="false" bb-accordion>
+    <!-- Available devices -->
+    <h3>{{_t('devices_disarm_security')}}</h3>
+    <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index"
+             ng-class="security.devicesInRoom.controls[r.id] ? 'available-devices' : 'ng-hide'">
+        <!-- Title -->
+        <h2 class="accordion-toggle chevron">
+            <button type="button" aria-expanded="false" bb-accordion>
       <span>
-        <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+        <img class="navi-img" ng-src="{{r.img_src}}" alt="img"/> {{r.title}}
       </span>
-    </button>
-  </h2>
-  <!-- Content -->
-  <div class="accordion" hidden>
-    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.controls" ng-if="d.location == r.id &&  !security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]" ng-click="assignDevice(d.deviceId,'controls')">
-      <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
-      {{d.deviceName|cutText:true:20}}
-      <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
-    </a>
-  </div>
-</section>
+            </button>
+        </h2>
+        <!-- Content -->
+        <div class="accordion" hidden>
+            <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}"
+               ng-repeat="d in security.devices.controls"
+               ng-if="d.location == r.id &&  !security.input.params.controls.table[getModelIndex(d.deviceId,'controls.table')]"
+               ng-click="assignDevice(d.deviceId,'controls')">
+                <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}"
+                     err-src="{{cfg.img.placeholder}}" alt="img"/>
+                {{d.deviceName|cutText:true:20}}
+                <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
+            </a>
+        </div>
+    </section>
+</div>

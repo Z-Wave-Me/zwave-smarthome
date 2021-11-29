@@ -90,6 +90,14 @@
                 </div>
             </div>
         </fieldset>
+        <fieldset ng-if="checkBoxHolder.length" ng-repeat="instance in checkBoxHolder track by $index" >
+            <div class="form-group" >
+                <label ng-class="{disabled: instance.moduleId === 'CloudBackup' && !input.email}">
+                    <input type="checkbox" ng-model="instance.active" ng-disabled="instance.moduleId === 'CloudBackup' && !input.email">
+                    {{_t(instance.moduleId)}}
+                </label>
+            </div>
+        </fieldset>
         <fieldset class="submit-entry">
             <div class="btn btn-submit" title="{{_t('lb_enter')}}" ng-disabled="form_password.$invalid"
                  ng-click="updateFirstAccess(handleTimezone.instance)">

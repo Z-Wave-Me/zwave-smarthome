@@ -41,7 +41,7 @@
       </span>
        <!--switchMultilevel -->
       <!-- <span ng-switch-when="switchMultilevel" ng-init="d.reverseLevel = (d.reverseLevel == null ? rule.namespaces[d.deviceId].level : d.reverseLevel)"> -->
-      <span ng-switch-when="switchMultilevel" ng-init="d.reverseLevel = getReverseLevel(d)">
+      <span ng-switch-when="switchMultilevel" ng-init="d.reverseLevel = d.reverseLevel === undefined ? getReverseLevel(d) : d.reverseLevel">
        <!-- on/off -->
         <strong ng-if="d.level!='lvl' && rule.options.switchMultilevel.level.indexOf(d.level) > -1">{{d.level == 'off' ? 'on' : 'off'}}</strong>
         <!-- level -->

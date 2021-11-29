@@ -192,8 +192,10 @@ myApp.filter('numberFixedLen', function () {
             var num = parseFloat(val);
             if (isNaN(num)) {
                 return val;
-            } else {
+            } else if (num > 1) {
                 return num.toFixed(len);
+            } else {
+                return num.toPrecision(3)
             }
 
         }

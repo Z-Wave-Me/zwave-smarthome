@@ -1,0 +1,98 @@
+<!-- Title armFailureAction -->
+<h2 class="accordion-toggle chevron">
+    <button type="button" aria-expanded="false" bb-accordion>
+<span class="is-legend">
+  {{_t('alarm')}}
+  <span class="item-cnt"> ({{_.size(security.input.params.input.table)}})</span>
+</span>
+    </button>
+</h2>
+<!-- Content  -->
+<div class="accordion no-bcg" hidden>
+    <div class="panel-wrap" >
+        <div class="form-group condition-panel" ng-if="security.input.params.input.table.length">
+            <div class="condition-body">
+                {{_t('device_title')}}
+            </div>
+            <div class="condition-control">
+                <div>
+                    {{_t('alarm_condition')}}
+                </div>
+                <div>
+                    {{_t('arm_condition')}}
+                </div>
+                <div>
+                    {{_t('entrance_group')}}
+                </div>
+            </div>
+        </div>
+        <div class="condition-panel" ng-repeat="d in security.input.params.input.table track by $index">
+            <!-- img -->
+            <div class="condition-body">
+                <figure class="img wh-32x32">
+                    <img ng-src="{{d.iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                </figure>
+                <div>
+      <span>
+        {{d.deviceName}} -
+        <em class="item-cnt">{{d.locationName}}</em>
+      </span>
+                </div>
+            </div>
+            <div class="condition-control">
+                <label class="switch">
+                    <input type="checkbox" ng-model="d.conditions" ng-true-value="on"
+                           ng-false-value="off">
+                    <span class="slider"></span>
+                </label>
+                <label class="switch-with-text">
+                    <input type="checkbox" ng-model="d.armCondition" ng-true-value="off"
+                           ng-false-value="on">
+                    <span class="slider-with-text"></span>
+                    <span class="right-side-text">{{_t('main_group')}}</span>
+                    <span class="left-side-text">{{_t('entrance_group')}}</span>
+                </label>
+                <button type="button" class="btn btn-text" title="{{_t('lb_remove')}}" ng-click="unassignDevice(d.devices,'input')">
+                    <i class="fas fa-times text-danger"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <h3>{{_t('devices_trigger_alarm')}}</h3>
+    <section class="accordion-wrap" ng-repeat="r in security.rooms track by $index" ng-class="security.devicesInRoom.input[r.id] ? 'available-devices' : 'ng-hide'">
+        <!-- Title -->
+        <h2 class="accordion-toggle chevron">
+            <button type="button" aria-expanded="false" bb-accordion>
+      <span>
+        <img class="navi-img" ng-src="{{r.img_src}}" alt="img" /> {{r.title}}
+      </span>
+            </button>
+        </h2>
+        <!-- Content -->
+        <div class="accordion" hidden>
+            <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.input track by $index" ng-if="d.location == r.id &&  !security.input.params.input.table[getModelIndex(d.deviceId,'input.table')]" ng-click="assignDevice(d.deviceId,'input')">
+                <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                {{d.deviceName|cutText:true:20}}
+                <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
+            </a>
+        </div>
+
+        <div class="body form-inline form-group">
+            <div class="flex-input-group number-control">
+                <div>{{_t('sensor_function')}}</div>
+                <div><b>{{_t('alarm_condition')}}</b> - {{_t('alarm_condition_help')}}</div>
+                <div><b>{{_t('main_group')}}</b> - {{_t('arm_condition_help')}}</div>
+                <div><b>{{_t('entrance_group')}}</b> - {{_t('entrance_group_help')}}</div>
+            </div>
+        </div>
+
+        <div class="body form-inline">
+            <div class="flex-input-group number-control">
+                <input class="form-control" type="number" ng-model="security.input.params.times.delaySensorAtTheEntrance">
+                <span>{{_t('entrance_group_delay')}}</span>
+            </div>
+            <bb-help-text trans="_t('help_entrance_group_delay')"></bb-help-text>
+        </div>
+    </section>
+
+</div>

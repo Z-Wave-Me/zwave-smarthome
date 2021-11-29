@@ -13,7 +13,7 @@
   <div class="panel-wrap">
     <!-- List -->
     <div data-collapse-all="true">
-      <section class="accordion-wrap" ng-repeat="d in security.input.params.silentAlarms.table" ng-init="model=d">
+      <section class="accordion-wrap" ng-repeat="d in security.input.params.silentAlarms.table track by $index" ng-init="model=d">
         <h2 class="accordion-toggle ellipsis">
         <!-- Title -->
         <button type="button" aria-expanded="false" bb-accordion ng-if="d.deviceType != 'toggleButton'">
@@ -70,7 +70,7 @@
     </h2>
     <!-- Content -->
     <div class="accordion" hidden>
-      <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.alarms" ng-if="d.location == r.id &&  !security.input.params.silentAlarms.table[getModelIndex(d.deviceId,'silentAlarms.table')]" ng-click="assignDevice(d.deviceId,'silentAlarms')">
+      <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in security.devices.alarms track by $index" ng-if="d.location == r.id &&  !security.input.params.silentAlarms.table[getModelIndex(d.deviceId,'silentAlarms.table')]" ng-click="assignDevice(d.deviceId,'silentAlarms')">
         <img class="navi-img" ng-src="{{security.availableDevices[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
         {{d.deviceName|cutText:true:20}}
         <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>

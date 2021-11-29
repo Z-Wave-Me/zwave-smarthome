@@ -156,7 +156,16 @@
     }
   }
 }
-
+.arrow-btn {
+  border: none;
+  background: inherit;
+}
+.security-control {
+  float: right;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
 /* .table{
   &.security-schedule{
     tbody{

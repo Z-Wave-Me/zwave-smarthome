@@ -20,11 +20,15 @@
       <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/alarm.html'"></fieldset>
       <!-- Arming -->
       <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/arming.html'"></fieldset>
+      <!-- Failed arming -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/arm_failure_action.html'"></fieldset>
       <!-- Disarming -->
       <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/disarming.html'"></fieldset>
       <!-- Reset -->
       <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/reset.html'"></fieldset>
-      <!-- Reset -->
+      <!-- Entrance detected -->
+      <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/entrance-detected.html'"></fieldset>
+      <!-- Additional -->
       <fieldset class="accordion-wrap" ng-include="'app/views/automation/security/actions/additional.html'"></fieldset>
 </div>
 <!-- ////////////////////////////////////////// Time triggering  ////////////////////////////////////////// -->
@@ -60,5 +64,5 @@
 <!-- Tabs  -->
 <!-- <div ng-include="'app/views/automation/security/tabs.html'"></div> -->
 <!-- <pre>{{security.input|json}}</pre> -->
-</div>
+</section>
 <!-- /ng-controller -->

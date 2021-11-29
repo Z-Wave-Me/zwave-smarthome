@@ -3,6 +3,41 @@
 .panel-wrap {
   margin-bottom: $spacing-double;
 }
+.condition-panel {
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  justify-items: center;
+  align-items: center;
+  row-gap: 1rem;
+  margin-bottom: 1rem;
+  label {
+    margin: 0;
+    input[type=checkbox] {
+      margin: 0;
+    }
+  }
+  .condition-body{
+    display: flex;
+    justify-self: normal;
+    align-items: center;
+    figure {
+      margin-right: 1rem;
+    }
+  }
+  .condition-control{
+    display: grid;
+    grid-template-columns: repeat(3,4fr) 1fr;
+    justify-items: center;
+    align-items: center;
+    justify-self: stretch;
+    text-align: center;
+    .switch-with-text {
+      grid-column-start: 2;
+      grid-column-end: 4;
+    }
+  }
+}
+
 
 .list-panel {
   @include appClearFix();

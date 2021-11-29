@@ -636,7 +636,7 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
      * @param {boolean} hidePrevious
      * @returns {undefined}
      */
-    $scope.expandElement = function(key, hidePrevious) {
+    $scope.expandElement = function(key, hidePrevious = false) {
         // Reset if an empty key
         if (!key) {
             $scope.expand = [];
