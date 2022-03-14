@@ -55,12 +55,12 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
         online: false,
         local: false,
         remote: false
-    }
+    };
     $scope.swipeDir = false;
 
     $scope.swipe = function(dir) {
         $scope.$broadcast('swipe', dir);
-    }
+    };
 
     /**
      * Disable contextmenu on mobile devices
@@ -240,12 +240,12 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
             });
 
             var refresh = function() {
-                //var oldTime = cfg.route.time.string;
-                //cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
-                //cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
+                var oldTime = cfg.route.time.string;
+                cfg.route.time.timestamp += (cfg.interval < 1000 ? 1 : cfg.interval / 1000);
+                cfg.route.time.string = $filter('setTimeFromBox')(cfg.route.time.timestamp);
                 if (cfg.route.alert.type === 'network') {
                     $scope.connection.online = false;
-                    //cfg.route.time.string = oldTime;
+                    cfg.route.time.string = oldTime;
                     $scope.reloadAfterError();
                 } else {
                     $scope.connection.online = true;
@@ -384,10 +384,8 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
      * @returns {Boolean}
      */
     $scope.isInArray = function(array, value) {
-        if (array.indexOf(value) > -1) {
-            return true;
-        }
-        return false;
+        return array.indexOf(value) > -1;
+
     };
 
 
@@ -409,12 +407,12 @@ myAppController.controller('BaseController', function($scope, $rootScope, $cooki
 
     /**
      * Load an language file
-     * @param {string} lang
+     * @param {string} inputLang
      * @returns {undefined}
      */
-    $scope.loadLang = function(lang) {
+    $scope.loadLang = function(inputLang) {
         // Is lang in language list?
-        var lang = (cfg.lang_list.indexOf(lang) > -1 ? lang : cfg.lang);
+        var lang = (cfg.lang_list.indexOf(inputLang) > -1 ? inputLang : cfg.lang);
         dataFactory.getLanguageFile(lang).then(function(response) {
             angular.extend($scope.languages, response.data);
             $scope.setAlertifyDefaults();

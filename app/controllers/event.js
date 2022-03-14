@@ -289,7 +289,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             }
         }
         return v;
-    };
+    }
 
     /**
      * Set events data
@@ -311,7 +311,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             angular.forEach(data, function (v, k) {
                 if ($scope.filter && angular.isDefined(v[$scope.filter.param])) {
                     if (v[$scope.filter.param] == $scope.filter.val) {
-                        _v = prepareNotification(v);
+                        var _v = prepareNotification(v);
                         $scope.collection.push(_v);
                     }
                 }
@@ -320,14 +320,14 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
             $scope.filter = $routeParams;
             angular.forEach(data, function (v, k) {
                 if (v.source == $scope.filter.source && v.type == $scope.filter.type) {
-                    _v = prepareNotification(v);
+                    var _v = prepareNotification(v);
                     $scope.collection.push(_v);
                 }
             });
         } else {
             $scope.filter = {};
             angular.forEach(data, function (v, k) {
-                _v = prepareNotification(v);
+                var _v = prepareNotification(v);
                 $scope.collection.push(_v);
             });
         }
@@ -340,7 +340,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
         $scope.refreshData();
 
         $scope.pagesSum = Math.ceil($scope.collection.length/$scope.pageSize);
-    };
+    }
 
     /**
      * Set data
@@ -348,7 +348,7 @@ myAppController.controller('EventController', function ($scope, $routeParams, $i
     function setEvent(obj) {
         if (_.isEmpty($scope.filter) || (obj[$scope.filter.param] === $scope.filter.val)) {
             var findIndex = _.findIndex($scope.collection, {timestamp: obj.timestamp});
-            _obj = prepareNotification(obj);
+            var _obj = prepareNotification(obj);
             if(findIndex > -1){
                 angular.extend($scope.collection[findIndex],_obj);
 
