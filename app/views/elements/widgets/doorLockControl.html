@@ -14,5 +14,5 @@
     </div>
 </div>
 <div class="widget-ctrl ctrl-right widget-ctrl-click" title="{{_t('lb_settings')}}" ng-click="dataHolder.devices.find = v;handleModal('doorLockControlModal', $event)">
-  <i class="fas fa-caret-down"></i> <span class="widget-level">Closed at</span> <span>{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
+  <i class="fas fa-caret-down"></i> <span class="widget-level">Closed at</span> <span>{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday'):cfg.route.time.timeZoneOffset}}</span>
 </div>

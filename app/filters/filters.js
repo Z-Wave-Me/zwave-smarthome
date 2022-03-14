@@ -477,7 +477,7 @@ myApp.filter('unixStartOfDay', function () {
  * @function isToday
  */
 myApp.filter('isToday', function () {
-    return function (input, fromunix, days, yesterday) {
+    return function (input, fromunix, days, yesterday, timeZoneOffset) {
         if (new Date(input) === "Invalid Date" && isNaN(new Date(input))) {
             return '';
         };
@@ -488,7 +488,8 @@ myApp.filter('isToday', function () {
             var d = new Date(input);
             var startDate = new Date(input);  // 2000-01-01
         }
-
+        d.setTime( d.getTime() + (d.getTimezoneOffset() - timeZoneOffset  * 60) * 1000 * 60 );
+        startDate.setTime( d.getTime() + (d.getTimezoneOffset() - timeZoneOffset  * 60) * 1000 * 60 );
 
         var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
         var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
@@ -525,8 +526,9 @@ myApp.filter('isToday', function () {
  * @function eventDate
  */
 myApp.filter('eventDate', function () {
-    return function (input) {
+    return function (input, cfg) {
         var d = new Date(input);
+        d.setTime( d.getTime() + (d.getTimezoneOffset() - cfg.route.time.timeZoneOffset  * 60) * 1000 * 60 );
         var day = d.getDate();
         var mon = d.getMonth() + 1; //Months are zero based
         var year = d.getFullYear();
@@ -536,7 +538,6 @@ myApp.filter('eventDate', function () {
 
         if (d.toDateString() == (new Date()).toDateString()) {
             return hrs + ':' + min;
-
         } else {
             return day + '.' + mon + '. -  ' + hrs + ':' + min;
         }
