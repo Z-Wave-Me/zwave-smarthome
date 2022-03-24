@@ -690,3 +690,56 @@ myApp.directive('touchend', function($parse) {
     };
 });
 
+myApp.directive('tokenButton', function () {
+	return {
+		restrict: 'E',
+		scope: {
+			title: '=',
+			type: '@',
+			profile: '=',
+		},
+		template: `
+		<button ng-if='status === "boot"' class="btn col-xs-12 btn-vertical-space" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" ng-click="getToken()" ng-disabled="type === 'global' && !remote">
+                {{title}}
+            </button>
+    <bb-help-text ng-if='status === "boot" && profile.role === 1' trans="help('boot')"></bb-help-text>
+    <bb-help-text ng-if='status === "boot" && !remote && type === "global"'  trans="help('boot_remote')"></bb-help-text>
+    <button ng-if='status === "loading"' class="btn col-xs-12 btn-vertical-space" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" disabled>
+                <i class="fas fa-spinner fa-spin"></i>
+    </button> 
+    <button ng-if='status === "success"' class="btn btn-success col-xs-12 btn-vertical-space" ng-click="copy()">
+                {{result}} <i class="fal fa-copy" style="float: right; line-height: 1.3rem"></i>
+    </button>
+    <bb-help-text ng-if='status === "success"' trans="help('success')"></bb-help-text>
+    <button ng-if='status === "error"' class="btn btn-danger col-xs-12 btn-vertical-space" disabled>
+                <i class="fas fa-exclamation-triangle" style="float: left; line-height: 1.3rem"></i>{{result}}
+    </button>
+		`,
+		controller: function ($scope, dataService, dataFactory, cfg, $location) {
+				$scope.status = 'boot';
+				$scope.help = function (status) {
+					 return dataService.getLangLine(status + '_help_text', $scope.languages)
+				}
+			$scope.remote = cfg.find_hosts.indexOf($location.host()) > -1;
+				$scope.copy = function () {
+					alertify.set('notifier', 'position', 'top-right');
+					navigator.clipboard.writeText($scope.result).then(function() {
+						alertify.notify(dataService.getLangLine('copy_to_clipboard_success', $scope.languages), 'success', 5);
+					}, function() {
+						alertify.notify(dataService.getLangLine('copy_to_clipboard_error', $scope.languages), 'error', 5);
+					});
+				}
+				$scope.getToken = function () {
+					$scope.status = 'loading';
+					dataFactory.getApi($scope.type + 'Token', $scope.profile.id, true).then(function (response) {
+						$scope.status = 'success';
+						$scope.result = response.data.data;
+					}).catch(function (response) {
+						console.log(response);
+						$scope.status = 'error';
+						$scope.result = angular.isObject(response.data) ? response.data.error : response.data;
+					})
+				}
+		}
+	}
+});
