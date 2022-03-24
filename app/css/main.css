@@ -25530,6 +25530,10 @@ img {
   }
 }
 
+.btn-vertical-space {
+  margin: 5px 0;
+}
+
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
