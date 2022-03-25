@@ -694,24 +694,26 @@ myApp.directive('tokenButton', function () {
 	return {
 		restrict: 'E',
 		scope: {
-			title: '=',
+			titleText: '=',
 			type: '@',
 			profile: '=',
 		},
 		template: `
-		<button ng-if='status === "boot"' class="btn col-xs-12 btn-vertical-space" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" ng-click="getToken()" ng-disabled="type === 'global' && !remote">
-                {{title}}
+		<div  title="{{titleText}}">
+		<button ng-if='status === "boot"' class="btn full-width" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" ng-click="getToken()" ng-disabled="type === 'global' && !remote">
+                {{titleText}}
             </button>
+    </div>
     <bb-help-text ng-if='status === "boot" && profile.role === 1' trans="help('boot')"></bb-help-text>
     <bb-help-text ng-if='status === "boot" && !remote && type === "global"'  trans="help('boot_remote')"></bb-help-text>
-    <button ng-if='status === "loading"' class="btn col-xs-12 btn-vertical-space" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" disabled>
+    <button ng-if='status === "loading"' class="btn full-width" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" disabled>
                 <i class="fas fa-spinner fa-spin"></i>
     </button> 
-    <button ng-if='status === "success"' class="btn btn-success col-xs-12 btn-vertical-space" ng-click="copy()">
+    <button ng-if='status === "success"' title="{{result}}" class="btn btn-success full-width" ng-click="copy()">
                 {{result}} <i class="fal fa-copy" style="float: right; line-height: 1.3rem"></i>
     </button>
     <bb-help-text ng-if='status === "success"' trans="help('success')"></bb-help-text>
-    <button ng-if='status === "error"' class="btn btn-danger col-xs-12 btn-vertical-space" disabled>
+    <button ng-if='status === "error"' title="{{result}}" class="btn btn-danger full-width" disabled>
                 <i class="fas fa-exclamation-triangle" style="float: left; line-height: 1.3rem"></i>{{result}}
     </button>
 		`,
