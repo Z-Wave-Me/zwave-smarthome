@@ -25530,8 +25530,8 @@ img {
   }
 }
 
-.btn-vertical-space {
-  margin: 5px 0;
+.btn-block-spacing {
+  padding: 5px;
 }
 
 /* Switch button
@@ -28371,6 +28371,10 @@ img.widget-promo-image {
 
 .ngrs-range-slider {
   touch-action: none;
+}
+
+.full-width {
+  width: 100%;
 }
 
 /* Local apps
