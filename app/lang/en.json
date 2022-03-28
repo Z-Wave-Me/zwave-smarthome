@@ -160,6 +160,8 @@
     "copy": "Copy",
     "boot_help_text": "This is the administrator of the account, for security reasons it is recommended to use a simple user token",
     "boot_remote_help_text": "You can get the global token only thru find.z-wave.me",
+    "remoteAccessDisabled": "Remote access disabled",
+    "timeZoneChangeWarning": "Attention: The controller will be rebooted!",
     "success_help_text": "Copy the token, after closing the page the token will disappear!",
     "copy_to_clipboard_success": "Copy to clipboard",
     "copy_to_clipboard_error": "Can't copy to clipboard",

@@ -17,10 +17,12 @@
     <!-- Time zone select -->
     <fieldset class="form-inline">
       <label>{{_t('timezone')}}: </label>
-      <select name="time_zone" name="time_zone" class="form-control" ng-model="managementTimezone.input.time_zone">
+      <select name="time_zone" class="form-control" ng-model="managementTimezone.input.time_zone">
         <option ng-repeat="v in cfg.time_zone_list" value="{{v}}" ng-selected="v === managementTimezone.input.time_zone">{{v}}
         </option>
       </select>
+      <div class="alert alert-warning">
+        <i class="fas fa-exclamation-circle"></i> {{_t('timeZoneChangeWarning')}}</div>
     </fieldset>
     <!-- Submit -->
     <fieldset class="submit-entry">
