@@ -68,7 +68,7 @@
                             </button>
                             <button type="button" class="btn btn-default btn-lg" id="btn_force_unsecure_lock"
                                     ng-class="zwaveInclusion.controller.secureInclusion ? 'active' : ''"
-                                    ng-click="setSecureInclusion('controller.data.secureInclusion=' + (zwaveInclusion.controller.secureInclusion ? 'false' : 'true'))"
+                                    ng-click="setSecureInclusion('controller.data.secureInclusion=' + (zwaveInclusion.controller.secureInclusion ? '0' : '2'))"
                                     ng-disabled="zwaveInclusion.exclusionProcess.process || zwaveInclusion.automatedConfiguration.process">
                                 <span ng-if="!zwaveInclusion.controller.secureInclusion" title="{{_t('btn_unsecure')}}">
                                     <i class="fas fa-unlock text-danger"></i> <span class="btn-name">{{_t('btn_unsecure')}}</span>

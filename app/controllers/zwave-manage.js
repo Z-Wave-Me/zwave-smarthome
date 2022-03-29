@@ -492,7 +492,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
      * Set secure inclusion
      */
     function setSecureInclusion(status) {
-        $scope.runZwaveCmd('controller.data.secureInclusion=' + status);
+        $scope.runZwaveCmd('controller.data.secureInclusion=' + (status ? '2' : '0'));
     }
     ;
 });
