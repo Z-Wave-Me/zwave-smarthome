@@ -11,18 +11,6 @@
 <div class="accordion no-bcg" hidden>
   <!-- Assigned -->
   <div class="panel-wrap">
-    <!-- Delay -->
-    <div class="list-panel">
-      <div class="body form-inline">
-        <div class="flex-input-group number-control">
-          <label>{{_t('security_delay_before_arming')}}</label>
-          <input class="form-control" type="number" ng-model="security.input.params.times.start">
-          <span>{{_t('seconds')}}</span>
-        </div>
-        <bb-help-text trans="_t('help_security_delay_before_arming')"></bb-help-text>
-        
-      </div>
-    </div>
     <!-- List -->
     <div data-collapse-all="true">
       <section class="accordion-wrap" ng-repeat="d in security.input.params.armConfirm.table track by $index" ng-init="model=d">
