@@ -741,7 +741,7 @@ myApp.directive('tokenButton', function () {
 			/* This is a function that returns the token. */
 			$scope.getToken = function () {
 				$scope.status = 'loading';
-				dataFactory.getApi($scope.type + 'Token', $scope.profile.id, true).then(function (response) {
+				dataFactory.getApi('localToken', $scope.profile.id, true).then(function (response) {
 					return response.data.data;
 				}).then(function (info) {
 					local = info.token;
