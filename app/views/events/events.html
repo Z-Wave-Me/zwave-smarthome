@@ -91,7 +91,7 @@
       <!-- body -->
       <div class="body">
         
-        <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate"></span>
+        <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}" ng-bind="v.timestamp | eventDate: cfg.route.time.timeZoneOffset"></span>
         &nbsp;
         <span class="event-message" ng-if="v.source && v.message">
           <a ng-href="#element/{{v.source}}" ng-if="elementAccess(cfg.role_access.element) && (cfg.events_clickable.indexOf(v.level) > -1)"

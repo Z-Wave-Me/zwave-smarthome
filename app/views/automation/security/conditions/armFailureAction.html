@@ -76,23 +76,22 @@
                 <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
             </a>
         </div>
-
-        <div class="body form-inline form-group">
-            <div class="flex-input-group number-control">
-                <div>{{_t('sensor_function')}}</div>
-                <div><b>{{_t('alarm_condition')}}</b> - {{_t('alarm_condition_help')}}</div>
-                <div><b>{{_t('main_group')}}</b> - {{_t('arm_condition_help')}}</div>
-                <div><b>{{_t('entrance_group')}}</b> - {{_t('entrance_group_help')}}</div>
-            </div>
-        </div>
-
-        <div class="body form-inline">
-            <div class="flex-input-group number-control">
-                <input class="form-control" type="number" ng-model="security.input.params.times.delaySensorAtTheEntrance">
-                <span>{{_t('entrance_group_delay')}}</span>
-            </div>
-            <bb-help-text trans="_t('help_entrance_group_delay')"></bb-help-text>
-        </div>
     </section>
-
+    <section>
+    <div class="body form-inline form-group">
+        <div class="flex-input-group number-control">
+            <div>{{_t('sensor_function')}}</div>
+            <div><b>{{_t('alarm_condition')}}</b> - {{_t('alarm_condition_help')}}</div>
+            <div><b>{{_t('main_group')}}</b> - {{_t('arm_condition_help')}}</div>
+            <div><b>{{_t('entrance_group')}}</b> - {{_t('entrance_group_help')}}</div>
+        </div>
+    </div>
+    <div class="body form-inline">
+        <div class="flex-input-group number-control">
+            <input class="form-control" type="number" ng-model="security.input.params.times.delaySensorAtTheEntrance">
+            <span>{{_t('entrance_group_delay')}}</span>
+        </div>
+        <bb-help-text trans="_t('help_entrance_group_delay')"></bb-help-text>
+    </div>
+    </section>
 </div>

@@ -4,7 +4,7 @@
     <!-- Zwave navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
     <div class="app-row app-row-report app-row-zwave clearfix">
-         <div id="row_zwave_{{v.id}}" class="report-entry" ng-repeat="v in devices.zw | orderBy:'title':false">
+         <div id="row_zwave_{{v.id}}" class="report-entry" ng-repeat="v in devices.zw | orderBy:'id'">
              <div class="report-col report-body zwave-devices">
                   <div class="btn-group">
                     <span class="network-zwave-title noelements" ng-if="_.size(v.elements) < 1">{{v.title}} (#{{v.id}}) </span>

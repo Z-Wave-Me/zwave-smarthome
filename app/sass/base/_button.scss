@@ -211,7 +211,13 @@
   }
 }
 
+.btn-block-spacing {
+  padding: $spacing-half;
+}
 
+.btn-block-spacing > token-button:not(:first-child) > div {
+    margin-top: 1rem;
+}
 
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp

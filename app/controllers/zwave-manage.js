@@ -39,7 +39,8 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
                 if(!devices.value){
                     return;
                 }
-                $scope.devices.zw = setZwaveApiData(devices.value);
+                $scope.devices.zw = Object.values(setZwaveApiData(devices.value));
+                // $scope.devices.zw =setZwaveApiData(devices.value);
             }
             // Success - elements
             if (elements.state === 'fulfilled') {
@@ -183,8 +184,13 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
             if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
                 cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
                 nodeId = cmd[0];
-                if ($scope.devices.zw[nodeId]) {
-                    $scope.devices.zw[nodeId]['elements'][v.id] = v;
+                const device = $scope.devices.zw.find(({id}) => id === +nodeId)
+                // TODO deprecated 21.01.2022
+                // if ($scope.devices.zw[nodeId]) {
+                //     $scope.devices.zw[nodeId]['elements'][v.id] = v;
+                // }
+                if (device) {
+                    device.elements[v.id] = v
                 }
             }
         });
@@ -486,7 +492,7 @@ myAppController.controller('ZwaveInterviewController', function ($scope, $locati
      * Set secure inclusion
      */
     function setSecureInclusion(status) {
-        $scope.runZwaveCmd('controller.data.secureInclusion=' + status);
+        $scope.runZwaveCmd('controller.data.secureInclusion=' + (status ? '2' : '0'));
     }
     ;
 });

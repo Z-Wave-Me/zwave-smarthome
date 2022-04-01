@@ -6,7 +6,7 @@
         <div class="btn-group">
            <button class="btn btn-default btn-widget-time" title="{{_t('lb_update')}}"
                    ng-click="runCmd(v.id + '/command/update')">
-               <i class="fas fa-clock"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday')}}</span>
+               <i class="fas fa-clock"></i> <span class="widget-update-time">{{v.updateTime|isToday:true:_t('lb_days'):_t('lb_yesterday'):cfg.route.time.timeZoneOffset}}</span>
            </button>
         </div>
     </div>

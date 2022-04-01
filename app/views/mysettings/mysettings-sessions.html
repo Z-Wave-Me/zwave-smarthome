@@ -78,7 +78,24 @@
 </div>
 
 <!-- Token for API -->
+<div ng-if="user.role === 1 && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">
+    <!-- Generate Access tokens -->
+    <h2 class="accordion-toggle chevron">
+        <button type="button" aria-expanded="false" bb-accordion>
+          <span>
+            <i class="fas fa-code fa-fw"></i> {{_t('lb_generate_auth_token')}}
+          </span>
+        </button>
+    </h2>
+    <div class="accordion" hidden>
+        <div class="form-page full-width btn-block-spacing">
+            <token-button title-text="_t('lb_generate_local_auth_token')" type="local" profile="input" ></token-button>
+            <token-button title-text="_t('lb_generate_global_auth_token')" type="global" profile="input"></token-button>
+        </div>
+    </div>
+</div>
 <div ng-if="id > 0 && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">
+    <!-- Current Access token -->
     <h2 class="accordion-toggle chevron">
         <button type="button" aria-expanded="false" bb-accordion>
           <span>

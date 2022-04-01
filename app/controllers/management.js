@@ -125,14 +125,12 @@ myAppController.controller('ManagementController', function ($scope, $interval, 
         $scope.controllerInfo.isZeroUuid = parseInt(ZWaveAPIData.controller.data.uuid.value, 16) === 0;
         $scope.controllerInfo.softwareRevisionVersion = ZWaveAPIData.controller.data.softwareRevisionVersion.value;
         $scope.controllerInfo.manufacturerId = ZWaveAPIData.controller.data.manufacturerId.value;
-        $scope.controllerInfo.capsSubvendor = ((ZWaveAPIData.controller.data.caps.value[0] << 8) + ZWaveAPIData.controller.data.caps.value[1]);
-        $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.caps.value);
-        $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.caps.value[2]).slice(-2));
+        $scope.controllerInfo.capsSubvendor = ((ZWaveAPIData.controller.data.firmware.caps.value[0] << 8) + ZWaveAPIData.controller.data.firmware.caps.value[1]);
+        $scope.controllerInfo.capabillities = caps(ZWaveAPIData.controller.data.firmware.caps.value);
+        $scope.controllerInfo.capsLimited = nodeLimit($filter('dec2hex')(ZWaveAPIData.controller.data.firmware.caps.value[2]).slice(-2));
         $scope.controllerInfo.appVersionMajor = parseInt(appVersion[0], 10);
         $scope.controllerInfo.appVersionMinor = parseInt(appVersion[1], 10);
         setLicenceScratchId($scope.controllerInfo);
-        //console.log(ZWaveAPIData.controller.data.caps.value);
-        //console.log('Limited: ', $scope.controllerInfo.capsLimited);
     };
 
     /**

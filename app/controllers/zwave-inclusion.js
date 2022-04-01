@@ -786,7 +786,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * Set secure inclusion
      */
     function setSecureInclusion(status) {
-        $scope.runZwaveCmd('controller.data.secureInclusion=' + status);
+        $scope.runZwaveCmd('controller.data.secureInclusion=' + (status ? '2' : '0'));
     };
 
     /**
@@ -794,7 +794,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     function setZWaveAPIData(ZWaveAPIData) {
         $scope.zwaveInclusion.controller.controllerState = ZWaveAPIData.controller.data.controllerState.value;
-        $scope.zwaveInclusion.controller.secureInclusion = ZWaveAPIData.controller.data.secureInclusion.value;
+        $scope.zwaveInclusion.controller.secureInclusion = ZWaveAPIData.controller.data.secureInclusion.value > 0;
 
         // check initial include mode
         if ([1,2,3,4].indexOf($scope.zwaveInclusion.controller.controllerState) > -1) {
@@ -851,8 +851,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             }
         }
         if ('controller.data.secureInclusion' in data) {
-            $scope.zwaveInclusion.controller.secureInclusion = data['controller.data.secureInclusion'].value;
-            //console.log('secureInclusion: ', $scope.zwaveInclusion.controller.secureInclusion);
+            $scope.zwaveInclusion.controller.secureInclusion = data['controller.data.secureInclusion'].value > 0;
         }
     }
     ;

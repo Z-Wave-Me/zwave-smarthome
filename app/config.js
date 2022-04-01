@@ -108,6 +108,7 @@ var config_data = {
 			'backup': 'ZAutomation/api/v1/backup',
 			'restore': 'ZAutomation/api/v1/restore',
 			'tokens': 'ZAutomation/api/v1/modules/tokens',
+			'localToken': 'ZAutomation/api/v1/profiles/token/local/',
 			'password_reset': 'ZAutomation/api/v1/auth/forgotten',
 			'remote_id': 'ZAutomation/api/v1/system/remote-id',
 			'ip_address': 'ZAutomation/api/v1/system/ip-address',
