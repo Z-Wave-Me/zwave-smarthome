@@ -95,6 +95,9 @@ myAppController.controller('ManagementUserIdController', function ($scope, $cook
     $scope.currentFullAuthToken = ($cookies.ZBW_SESSID || "") + "/" + $cookies.ZWAYSession;
     $scope.currentFullAuthTokenGlobal = !!$cookies.ZBW_SESSID;
 
+
+    $scope.globalToken = '';
+    $scope.localToken = '';
     /**
      * Load all promises
      */

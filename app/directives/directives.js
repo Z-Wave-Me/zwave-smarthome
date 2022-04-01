@@ -690,3 +690,86 @@ myApp.directive('touchend', function($parse) {
     };
 });
 
+/* The above code is creating a directive that will be used to create a button that will be used to generate a token. */
+myApp.directive('tokenButton', function () {
+	return {
+		restrict: 'E',
+		scope: {
+			titleText: '=',
+			type: '@',
+			profile: '=',
+		},
+		template: `
+		<div  title="{{titleText}}">
+		<button ng-if='status === "boot"' class="btn full-width" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" ng-click="getToken()">
+                {{titleText}}
+            </button>
+    </div>
+    <bb-help-text ng-if='status === "boot" && profile.role === 1' trans="help('boot')"></bb-help-text>
+    <bb-help-text ng-if='status === "boot" && !remote && type === "global"'  trans="help('boot_remote')"></bb-help-text>
+    <button ng-if='status === "loading"' class="btn full-width" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" disabled>
+                <i class="fas fa-spinner fa-spin"></i>
+    </button> 
+    <button ng-if='status === "success"' title="{{result}}" class="btn btn-success full-width" ng-click="copy()">
+                <div style="width: calc(100% - 1.2rem);text-overflow: ellipsis;overflow: hidden;float: left"> 
+                {{result}} </div> <i class="fal fa-copy" style="float: right; line-height: 140%"></i>
+    </button>
+    <bb-help-text ng-if='status === "success"' trans="help('success')"></bb-help-text>
+    <button ng-if='status === "error"' title="{{result}}" class="btn btn-danger full-width" disabled style="margin-bottom: 1rem">
+                <i class="fas fa-exclamation-triangle" style="float: left; line-height: 140%"></i>
+                <div style="width: calc(100% - 1.6rem);text-overflow: ellipsis;overflow: hidden;float: right">{{result}}</div>
+    </button>
+		`,
+		controller: function ($scope, dataService, dataFactory, cfg, $location, $http) {
+				$scope.status = 'boot';
+				var local;
+
+				$scope.help = function (status) {
+					 return dataService.getLangLine(status + '_help_text', $scope.languages)
+				}
+
+				/* Copying the text from the text area to the clipboard. */
+				$scope.copy = function () {
+					alertify.set('notifier', 'position', 'top-right');
+					navigator.clipboard.writeText($scope.result).then(function() {
+						alertify.notify(dataService.getLangLine('copy_to_clipboard_success', $scope.languages), 'success', 5);
+					}, function() {
+						alertify.notify(dataService.getLangLine('copy_to_clipboard_error', $scope.languages), 'error', 5);
+					});
+				}
+
+			/* This is a function that returns the token. */
+			$scope.getToken = function () {
+				$scope.status = 'loading';
+				dataFactory.getApi('localToken', $scope.profile.id, true).then(function (response) {
+					return response.data.data;
+				}).then(function (info) {
+					local = info.token;
+					if ($scope.type === 'global') {
+						if (info.remoteId) {
+							$http.defaults.headers.common.Authorization = 'Bearer /' + info.token;
+							return $http({
+								method: 'HEAD',
+								url: 'https://find.z-wave.me/zboxweb?act=session_login&zboxid=' + info.remoteId,
+							}).then(function (response) {
+								const globalToken = response.headers('X-ZBW-SESSID');
+								if (!globalToken) {
+									throw new Error(dataService.getLangLine('serverNotAvailable', $scope.languages))
+								}
+								return globalToken
+							});
+						} else
+							throw new Error(dataService.getLangLine('remoteAccessDisabled', $scope.languages))
+					}
+					return '';
+				}).then(function (global) {
+					$scope.result = [global, local].join('/');
+					$scope.status = 'success'
+				}).catch(function (response) {
+					$scope.result = response.message || (angular.isObject(response.data) ? response.data.error : response.data);
+					$scope.status = 'error';
+				})
+			}
+		}
+	}
+});

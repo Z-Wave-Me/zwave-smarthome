@@ -16,20 +16,31 @@ myAppController.controller('ManagementTimezoneController', function ($scope, $ti
         countdown: 60
     };
 
-    /**
-     * Load and set zwave configuration
-     * @returns {undefined}
-     */
-    $scope.loadZwaveConfig = function () {
-        // Set config
-        dataFactory.getApi('configget_url', null, true).then(function (response) {
-            $scope.managementTimezone.lastTZ = response.data.time_zone;
-            $scope.managementTimezone.input.time_zone = response.data.time_zone;
-            angular.extend($scope.cfg.zwavecfg, response.data);
+    // /**
+    //  * Load and set zwave configuration
+    //  * @returns {undefined}
+    //  */
+    /* A comment. */
+    // TODO Deprecated 28.03.2022
+    // $scope.loadZwaveConfig = function () {
+    //     // Set config
+    //     dataFactory.getApi('configget_url', null, true).then(function (response) {
+    //         // $scope.managementTimezone.lastTZ = response.data.time_zone;
+    //         // $scope.managementTimezone.input.time_zone = response.data.time_zone;
+    //         angular.extend($scope.cfg.zwavecfg, response.data);
+    //     }, function (error) {});
+    // };
+    //
+    // $scope.loadZwaveConfig();
+
+    /* A function that gets the timezone from the server. */
+    $scope.getTimeZone = function () {
+        dataFactory.getApi('time', null, true).then(function (response) {
+            $scope.managementTimezone.lastTZ = response.data.data.localTimeZone;
+            $scope.managementTimezone.input.timeZone = response.data.data.localTimeZone;
         }, function (error) {});
     };
-
-    $scope.loadZwaveConfig();
+    $scope.getTimeZone();
     /**
      * Set timezone
      */

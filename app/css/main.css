@@ -25530,6 +25530,14 @@ img {
   }
 }
 
+.btn-block-spacing {
+  padding: 5px;
+}
+
+.btn-block-spacing > token-button:not(:first-child) > div {
+  margin-top: 1rem;
+}
+
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
@@ -28367,6 +28375,10 @@ img.widget-promo-image {
 
 .ngrs-range-slider {
   touch-action: none;
+}
+
+.full-width {
+  width: 100%;
 }
 
 /* Local apps

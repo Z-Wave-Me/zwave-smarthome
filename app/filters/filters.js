@@ -476,29 +476,17 @@ myApp.filter('unixStartOfDay', function () {
  * If is today display h:m otherwise d:m:y
  * @function isToday
  */
-myApp.filter('isToday', function () {
+myApp.filter('isToday', function ($filter) {
     return function (input, fromunix, days, yesterday, timeZoneOffset) {
-        if (new Date(input) === "Invalid Date" && isNaN(new Date(input))) {
-            return '';
-        };
-        if (fromunix) {
-            var d = new Date(input * 1000);
-            var startDate = new Date(input * 1000);  // 2000-01-01
-        } else {
-            var d = new Date(input);
-            var startDate = new Date(input);  // 2000-01-01
-        }
+        if (fromunix) input *= 1000;
+        var d = new Date(input);
+        var startDate = new Date(input);  // 2000-01-01
         d.setTime( d.getTime() + (d.getTimezoneOffset() - timeZoneOffset  * 60) * 1000 * 60 );
         startDate.setTime( d.getTime() + (d.getTimezoneOffset() - timeZoneOffset  * 60) * 1000 * 60 );
 
-        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
-        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
-
-        if (d.toDateString() == (new Date()).toDateString()) {
-            return hrs + ':' + min;
-
+        if (d.toDateString() === (new Date()).toDateString()) {
+            return $filter('date')(d, 'HH:mm')
         } else {
-
             var endDate = new Date();              // Today
             var nDays = diffDays(startDate, endDate) + 1;
             var str = '' + (nDays + 1) + ' ' + days;
@@ -525,21 +513,14 @@ myApp.filter('isToday', function () {
  * Renders an event date - If is today display h:m otherwise d:m:y
  * @function eventDate
  */
-myApp.filter('eventDate', function () {
-    return function (input, cfg) {
+myApp.filter('eventDate', function ($filter) {
+    return function (input, timeZoneOffset) {
         var d = new Date(input);
-        d.setTime( d.getTime() + (d.getTimezoneOffset() - cfg.route.time.timeZoneOffset  * 60) * 1000 * 60 );
-        var day = d.getDate();
-        var mon = d.getMonth() + 1; //Months are zero based
-        var year = d.getFullYear();
-        var hrs = (d.getHours() < 10 ? '0' + d.getHours() : d.getHours());
-        var min = (d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes());
-        var sec = (d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds());
-
-        if (d.toDateString() == (new Date()).toDateString()) {
-            return hrs + ':' + min;
+        d.setTime( d.getTime() + (d.getTimezoneOffset() - timeZoneOffset  * 60) * 1000 * 60 );
+        if (d.toDateString() === (new Date()).toDateString()) {
+            return $filter('date')(d, 'HH:mm')
         } else {
-            return day + '.' + mon + '. -  ' + hrs + ':' + min;
+            return $filter('date')(d, 'dd.MM. - HH:mm');
         }
     };
 });
