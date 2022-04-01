@@ -9,6 +9,17 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.13.5
+#### New features:
+- Generate new API token for the selected user from the admin interface
+#### Fixes:
+- Adopted to the new secureInclusion DH
+- Time zone is correctly taken into account in events and devices
+- Time zone is displayed correctly on the settings page
+- Security app fixes
+- Management page load error
+- Sort order in manage devices (setup order by id)
+
 ## v1.13.4
 #### New features:
 - Full rework of Security module
