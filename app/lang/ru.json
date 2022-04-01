@@ -861,6 +861,7 @@
     "sensorMultilevel": "Датчики",
     "sensorMultiline": "Информеры",
     "service_not_available": "__service__ услуга недоступна!",
+    "serverNotAvailable": "Сервер недоступен",
     "set_timezone": "Задать временную зону",
     "settings": "Настройки",
     "show_element": "Показать элемент",

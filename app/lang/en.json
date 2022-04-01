@@ -861,6 +861,7 @@
     "sensorMultilevel": "Analog Sensor",
     "sensorMultiline": "Informer",
     "service_not_available": "__service__ service not available!",
+    "serverNotAvailable": "Server not available",
     "set_timezone": "Set time zone",
     "settings": "Settings",
     "show_element": "Unhide element",
