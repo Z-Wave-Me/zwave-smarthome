@@ -711,7 +711,7 @@ myApp.directive('tokenButton', function () {
                 <i class="fas fa-spinner fa-spin"></i>
     </button> 
     <button ng-if='status === "success"' title="{{result}}" class="btn btn-success full-width" ng-click="copy($event)">
-                <div style="width: calc(100% - 1.2rem);text-overflow: ellipsis;overflow: hidden;float: left;user-select: auto" > 
+                <div style="width: calc(100% - 1.2rem);text-overflow: ellipsis;overflow: hidden;float: left;" class="select-all" > 
                 {{result}} </div> <i class="fal fa-copy" style="float: right; line-height: 140%"></i>
     </button>
     <bb-help-text ng-if='status === "success"' trans="help('success')"></bb-help-text>
