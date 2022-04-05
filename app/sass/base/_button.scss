@@ -219,6 +219,12 @@
     margin-top: 1rem;
 }
 
+.select-all {
+  -moz-user-select: all;
+  -webkit-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
 /* Switch button
 ---------- http://www.w3schools.com/howto/howto_css_switch.asp
 -------------------------------------------------- */
