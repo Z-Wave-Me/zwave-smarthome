@@ -710,8 +710,8 @@ myApp.directive('tokenButton', function () {
     <button ng-if='status === "loading"' class="btn full-width" ng-class="profile.role === 1 ? 'btn-danger': 'btn-default'" disabled>
                 <i class="fas fa-spinner fa-spin"></i>
     </button> 
-    <button ng-if='status === "success"' title="{{result}}" class="btn btn-success full-width" ng-click="copy()">
-                <div style="width: calc(100% - 1.2rem);text-overflow: ellipsis;overflow: hidden;float: left"> 
+    <button ng-if='status === "success"' title="{{result}}" class="btn btn-success full-width" ng-click="copy($event)">
+                <div style="width: calc(100% - 1.2rem);text-overflow: ellipsis;overflow: hidden;float: left;" class="select-all" > 
                 {{result}} </div> <i class="fal fa-copy" style="float: right; line-height: 140%"></i>
     </button>
     <bb-help-text ng-if='status === "success"' trans="help('success')"></bb-help-text>
@@ -729,14 +729,24 @@ myApp.directive('tokenButton', function () {
 				}
 
 				/* Copying the text from the text area to the clipboard. */
-				$scope.copy = function () {
+				$scope.copy = function (event) {
 					alertify.set('notifier', 'position', 'top-right');
-					navigator.clipboard.writeText($scope.result).then(function() {
+					var ssid = angular.element(event.currentTarget).find('div')[0];
+					try {
+						selectText(ssid)
+						document.execCommand('copy');
 						alertify.notify(dataService.getLangLine('copy_to_clipboard_success', $scope.languages), 'success', 5);
-					}, function() {
+					} catch (_) {
 						alertify.notify(dataService.getLangLine('copy_to_clipboard_error', $scope.languages), 'error', 5);
-					});
+					}
 				}
+
+			function selectText(container) {
+					var range = document.createRange();
+					range.selectNodeContents(container);
+					window.getSelection().removeAllRanges();
+					window.getSelection().addRange(range);
+			}
 
 			/* This is a function that returns the token. */
 			$scope.getToken = function () {
