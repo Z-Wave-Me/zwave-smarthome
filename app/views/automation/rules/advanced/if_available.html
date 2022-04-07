@@ -10,10 +10,13 @@
   </h2>
   <!-- Content -->
   <div class="accordion" hidden>
-    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}" ng-repeat="d in rule.advanced.tests.availableDevices track by $index"
-      ng-if="d.location == r.id && rule.advanced.tests.assignedDevices.indexOf(d.deviceId) === -1" ng-hide="d.deviceId == rule.input.params.simple.triggerEvent.deviceId"
-      ng-click="assignAdvancedTestDevice(d)">
-      <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+    <a href="" class="btn btn-default btn-tag" title="{{d.deviceName + ' | ' + _t(d.deviceType)}}"
+       ng-repeat="d in rule.advanced.tests.availableDevices track by $index"
+       ng-if="d.location == r.id && rule.advanced.tests.assignedDevices.indexOf(d.deviceId) === -1"
+       ng-hide="d.deviceId == rule.input.params.advanced.triggerEvent.deviceId"
+       ng-click="assignAdvancedTestDevice(d)">
+      <img class="navi-img" ng-src="{{rule.namespaces[d.deviceId].iconPath}}" err-src="{{cfg.img.placeholder}}"
+           alt="img"/>
       {{d.deviceName|cutText:true:20}}
       <i class="fas fa-plus text-success" title="{{_t('add_new')}}"></i>
     </a>
