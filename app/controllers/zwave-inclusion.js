@@ -284,7 +284,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         if (cancelInterval) {
             $interval.cancel($scope.interval.api);
         }
-    };
+    }
 
 
     /**
@@ -418,14 +418,11 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     /**
      * Get block of DSK
      * @param {array} publicKey
-     * @param {num} block
+     * @param {number} block
      * @returns {string}
      */
     $scope.dskBlock = function(publicKey, block) {
-        if(!publicKey){
-            return '';
-        }
-        return ("00000" + (publicKey[(block - 1) * 2] * 256 + publicKey[(block - 1) * 2 + 1])).slice(-5);
+        return publicKey ? (publicKey[block + 1] * 256 + publicKey[block + 2]).toString().padStart(5, '0') : '';
     };
 
     /**
@@ -787,7 +784,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     function setSecureInclusion(status) {
         $scope.runZwaveCmd('controller.data.secureInclusion=' + (status ? '2' : '0'));
-    };
+    }
 
     /**
      * Set ZWave API Data

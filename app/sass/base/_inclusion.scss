@@ -1,0 +1,16 @@
+.pin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  .sep {
+    font-weight: bold;
+  }
+  &-label{
+    margin: $spacing-half;
+    input {
+      width: 5ch !important;
+      box-sizing: content-box;
+    }
+  }
+}

@@ -9,3 +9,14 @@
     }
   }
 }
+input.hide-arrow::-webkit-outer-spin-button,
+input.hide-arrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.hide-arrow[type=number] {
+  -moz-appearance: textfield;
+}
+

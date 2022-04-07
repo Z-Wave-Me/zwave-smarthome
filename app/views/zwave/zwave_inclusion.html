@@ -233,24 +233,24 @@
                     <!--<pre>{{zwaveInclusion.s2.input|json}}</pre>-->
                     <div class="alert alert-warning">{{zwaveInclusion.s2.verifyDSK.countDown}}s {{_t('remain')}}</div>
                     <label>{{_t('pin')}}</label>
-                    <input name="dsk_pin" id="dsk_pin" type="number" size="5" class="form-control input_number input-valid-{{dskForm.dsk_pin.$valid}}" min="0" max="65533" ng-show="zwaveInclusion.s2.input.publicKeyAuthenticationRequired"
-                           ng-model="zwaveInclusion.s2.input.dskPin" required />
-
-                    <input name="dsk_1" id="dsk_1" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 1)" disabled="true" ng-show="!zwaveInclusion.s2.input.publicKeyAuthenticationRequired" />
-                    -
-                    <input name="dsk_2" id="dsk_2" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 2)" disabled="true" />
-                    -
-                    <input name="dsk_3" id="dsk_3" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 3)" disabled="true" />
-                    -
-                    <input name="dsk_4" id="dsk_4" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 4)" disabled="true" />
-                    -
-                    <input name="dsk_5" id="dsk_5" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 5)" disabled="true" />
-                    -
-                    <input name="dsk_6" id="dsk_6" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 6)" disabled="true" />
-                    -
-                    <input name="dsk_7" id="dsk_7" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 7)" disabled="true" />
-                    -
-                    <input name="dsk_8" id="dsk_8" type="number" size="5" class="form-control input_number" ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, 8)" disabled="true" />
+                    <div class="pin">
+                        <label class="pin-label">
+                            <input name="dsk_pin" id="dsk_pin" type="number" size="5"
+                                   placeholder="00000"
+                                   class="form-control hide-arrow input-valid-{{dskForm.dsk_pin.$valid}}" min="0"
+                                   max="65533" ng-if="zwaveInclusion.s2.input.publicKeyAuthenticationRequired"
+                                   ng-model="zwaveInclusion.s2.input.dskPin" required/>
+                        </label>
+                        <div ng-repeat="_ in [].constructor(14) track by $index">
+                            <span ng-if="$even" class="sep">-</span>
+                            <label class="pin-label" ng-if="$odd">
+                                <input type="text" size="5"
+                                       class="form-control"
+                                       ng-value="dskBlock(zwaveInclusion.s2.input.publicKey, $index)" readonly
+                                       ng-if="zwaveInclusion.s2.input.publicKeyAuthenticationRequired"/>
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div class="appmodal-footer">
                     <!-- Confirm -->
