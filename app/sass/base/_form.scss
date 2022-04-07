@@ -1,5 +1,6 @@
 /* Form
 -------------------------------------------------- */
+@use "sass:math";
 // Media queries
 @include mediaQueries(min-small) {
   .form-check-inline {
@@ -81,7 +82,7 @@ input[type=checkbox] {
   background-color: transparent;
 
   &:after {
-      margin: -11px $spacing/2 0 0;
+      margin: -11px math.div($spacing, 2) 0 0;
       vertical-align: baseline;
       content: ' ';
       padding: 6px 0 0 6px;
@@ -154,7 +155,7 @@ input[type=radio] {
 
 
   &:after {
-      margin: -11px $spacing/2 0 0;
+      margin: -11px math.div($spacing, 2) 0 0;
       vertical-align: baseline;
       content: ' ';
       padding: 6px 0 0 7px;

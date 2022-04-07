@@ -331,7 +331,7 @@ img {
   color: #FFFFFF;
   display: inline-block;
   text-align: center;
-  line-height: 32px - ((32px/2) / 2);
+  line-height: 24px; //32px - ((32px/2) / 2)
   width: 32px;
   height: 32px;
   font-size: 120%;

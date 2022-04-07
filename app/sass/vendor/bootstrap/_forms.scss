@@ -1,7 +1,7 @@
 //
 // Forms
 // --------------------------------------------------
-
+@use "sass:math";
 
 // Normalize non-controls
 //
@@ -508,7 +508,7 @@ input[type="checkbox"] {
   // `position: relative;` on them. Also accounts for the grid gutter padding.
   .has-feedback .form-control-feedback {
     top: 0;
-    right: ($grid-gutter-width / 2);
+    right: math.div($grid-gutter-width, 2);
   }
 
   // Form group sizes
