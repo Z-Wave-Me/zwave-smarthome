@@ -297,7 +297,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             // Error message
             if (Vendors.state === 'rejected') {
                 angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
-                return;
             }
 
             // Error message
