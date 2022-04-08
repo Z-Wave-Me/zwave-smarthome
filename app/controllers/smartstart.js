@@ -507,14 +507,14 @@ myAppController.controller('SmartStartQrController', function($scope, $timeout, 
 		state: 'start',
 		response: ''
 	};
-
+	var active = true;
 	/**
 	 * stop video on page destroy
 	 */
 	$scope.$on('$destroy', function() {
 		$scope.stopStream();
+		active = false;
 	});
-
 	$scope.stopStream = function() {
 		if ($scope.dataHolder.video.mediaStream !== null) {
 			$scope.dataHolder.video.mediaStream.stop();
@@ -623,12 +623,14 @@ myAppController.controller('SmartStartQrController', function($scope, $timeout, 
 	};
 
 	function captureToCanvas() {
-		try {
-			$scope.dataHolder.canvas.gCtx.drawImage($scope.dataHolder.video.obj, 0, 0);
-			qrcode.decode();
-		} catch (e) {
-			console.log(e);
-			setTimeout(captureToCanvas, 500);
-		};
+		if (active) {
+			try {
+				$scope.dataHolder.canvas.gCtx.drawImage($scope.dataHolder.video.obj, 0, 0);
+				qrcode.decode();
+			} catch (e) {
+				console.log(e);
+				setTimeout(captureToCanvas, 500);
+			}
+		}
 	}
 });
