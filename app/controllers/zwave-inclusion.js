@@ -194,40 +194,40 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     $scope.refreshZwaveApiData = function (maxcnt) {
         var cnt = 0;
-        if (typeof maxcnt !== 'undefined') {
-            var refresh = function () {
-                cnt++;
-                dataFactory.refreshZwaveApiData().then(function (response) {
-                    //console.log(response.data);
-                    if(response){
-                        updateController(response.data);
-                    }
-                });
-
-                if (cnt == maxcnt) {
-                    $interval.cancel($scope.interval.api);
-                    $scope.loading = false;
+        // if (typeof maxcnt !== 'undefined') {
+        var refresh = function () {
+            cnt++;
+            dataFactory.refreshZwaveApiData().then(function (response) {
+                //console.log(response.data);
+                if(response){
+                    updateController(response.data);
                 }
-            };
-        } else {
-            var refresh = function () {
-                //console.log('Pending requests: '+ $http.pendingRequests.length);
-                if($http.pendingRequests.length > 0) {
-                    return;
-                }
-                dataFactory.refreshZwaveApiData().then(function (response) {
-                    //console.log(response.data);
-                    if(response){
-                        updateController(response.data);
-                    }
-
-                });
-            };
-        }
-
+            });
+            if (cnt === maxcnt) {
+                $interval.cancel($scope.interval.api);
+                $scope.loading = false;
+            }
+        };
+        // TODO deprecated dead code 08/04/22
+        // } else {
+        //     var refresh = function () {
+        //         //console.log('Pending requests: '+ $http.pendingRequests.length);
+        //         if($http.pendingRequests.length > 0) {
+        //             return;
+        //         }
+        //         dataFactory.refreshZwaveApiData().then(function (response) {
+        //             //console.log(response.data);
+        //             if(response){
+        //                 updateController(response.data);
+        //             }
+        //
+        //         });
+        //     };
+        // }
+        refresh();
         $scope.interval.api = $interval(refresh, $scope.cfg.interval);
     };
-
+    var start;
     /**
      * Start/Stop Process
      */
@@ -248,7 +248,6 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 msg = $scope._t('error_exclusion_time');
                 break;
         }
-
         if(process) {
             resetProcess(type, process, false, cmd);
             $scope.refreshZwaveApiData();
