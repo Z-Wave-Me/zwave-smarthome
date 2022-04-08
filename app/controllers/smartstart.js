@@ -159,7 +159,7 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 	 * Fix length input
 	 */
 	$scope.fixLength = function (id) {
-		var value =  $scope.dsk.input['dsk_' + id].replace(/[^\d]/g,'');
+		var value =  $scope.dsk.input['dsk_' + id].replace(/[\D\s]/g,'');
 		$scope.dsk.input['dsk_' + id] = value.substring(0,5);
 		validateInputs();
 	}
