@@ -832,7 +832,7 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
      * Drop mode on change page
      */
     $rootScope.$on('$routeChangeStart', function($event, next, current) {
-        if (next.$$route.originalPath === '/elements') {
+        if (next.$$route && next.$$route.originalPath === '/elements') {
             filterDevices();
         }
         $scope.dataHolder.mode = 'default';
