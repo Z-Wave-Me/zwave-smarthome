@@ -41,7 +41,7 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
 			navigator.mediaDevices.getUserMedia = function (constraints) {
 
 				// First get ahold of the legacy getUserMedia, if present
-				var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+				var getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia;
 
 				// Some browsers just don't implement it - return a rejected promise with an error
 				// to keep a consistent interface
@@ -346,7 +346,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				return v;
 			}).join('-');
     	}
-    }), true;
+    });
 
 
 	/**
