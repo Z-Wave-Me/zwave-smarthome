@@ -26191,6 +26191,17 @@ fieldset.submit-entry {
   display: inline-block;
 }
 
+input.hide-arrow::-webkit-outer-spin-button,
+input.hide-arrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.hide-arrow[type=number] {
+  -moz-appearance: textfield;
+}
+
 /* Button tabs
 -------------------------------------------------- */
 .btn-goup-tabs {
@@ -32642,6 +32653,22 @@ body.night-false {
 
 .center {
   text-align: center;
+}
+
+.pin {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pin .sep {
+  font-weight: bold;
+}
+.pin-label {
+  margin: 5px;
+}
+.pin-label input {
+  width: 5ch !important;
+  box-sizing: content-box;
 }
 
 /*# sourceMappingURL=main.css.map */
