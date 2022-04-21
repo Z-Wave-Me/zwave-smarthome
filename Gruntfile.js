@@ -111,9 +111,12 @@ module.exports = function(grunt) {
 					'app/modules/httpLatency.js',
 					'app/modules/ngDeviceDetector.min.js',
 					'app/config/settings.js',
+					// Services
 					'app/factories/factories.js',
 					'app/services/services.js',
 					'app/services/services-expert.js',
+					'app/services/mobile-detector.service.js',
+					// Directives
 					'app/directives/directives.js',
 					'app/directives/directives-expert.js',
 					'app/directives/dir-pagination.js',
