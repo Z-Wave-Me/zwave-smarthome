@@ -78,11 +78,11 @@
                                 </span>
                             </button>
                             <!-- Enable SmartStart  -->
-                            <button class="btn btn-default btn-lg" ng-show="!smartStartEnabled" ng-if="cfg.user.beta" ng-click="enableSmartStart()" title="{{_t('enable_smart_start')}}">
+                            <button class="btn btn-default btn-lg" ng-if="!smartStartEnabled" ng-click="enableSmartStart()" title="{{_t('enable_smart_start')}}">
                                     <i class="fas fa-play-circle text-success"></i><span class="btn-name">{{_t('enable_smart_start')}}</span>
                             </button>
                             <!-- Disable SmartStart -->
-                            <button class="btn btn-default btn-lg" ng-show="smartStartEnabled" ng-if="cfg.user.beta" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
+                            <button class="btn btn-default btn-lg" ng-if="smartStartEnabled" ng-click="disableSmartStart()" title="{{_t('disable_smart_start')}}">
                                     <i class="fas fa-stop-circle text-warning"></i><span class="btn-name">{{_t('disable_smart_start')}}</span>
                             </button>
                         </div>
