@@ -1,6 +1,6 @@
 <div ng-controller="SmartStartDskController">
 	<div ng-if="_.isEmpty(dsk.firmwareAlert) && !dataHolder.video.supported || dataHolder.manual_add">
-		<div class="alert alert-warning">
+		<div class="alert alert-warning" ng-if="!dataHolder.video.supported">
 			<i class="fas fa-info-circle"></i> {{_t('video_not_supported_smart_start')}}
 		</div>
 		<bb-alert alert="dsk.firmwareAlert"></bb-alert>
@@ -52,13 +52,18 @@
 			</div>
 		</div>
 	</div>
-	<div class="entry" ng-if="!dataHolder.video.supported">
+	<div class="entry" ng-if="!dataHolder.video.supported && !isMobile">
 		<div class="entry-in">
 			<div class="entry-media">
 				<img ng-src="app/img/smartphone.png" alt="Image">
 			</div>
 			<div class="entry-content">
 				<div class="inner">
+					<div class="mobile-app-icon">
+						<img
+							 alt="Z-Wave.Me Mobile App"
+							 src="app/img/z-wave-me-mobile-app-icon.png">
+					</div>
 					<div class="text">
 						<h1>{{_t('app_name')}}</h1>
 						<p>{{_t('app_description')}}</p>

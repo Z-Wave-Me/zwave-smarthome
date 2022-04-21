@@ -131,7 +131,7 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
  * The controller that include device with DSK.
  * @class SmartStartDskController
  */
-myAppController.controller('SmartStartDskController', function($scope, $timeout, $filter, cfg, dataFactory, dataService, _) {
+myAppController.controller('SmartStartDskController', function($scope, $timeout, $filter, cfg, dataFactory, dataService, mobileDetector, _) {
 	$scope.dsk = {
 		firmwareAlert: {},
 		input: {
@@ -147,6 +147,7 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 		list: [],
 		response: '',
 	};
+	$scope.isMobile = mobileDetector.isMobile()
 	$scope.registerDisabled = true;
 	var validateInputs = function () {
 		$scope.registerDisabled = Object.values($scope.dsk.input).some(function (input) {
