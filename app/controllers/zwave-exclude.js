@@ -66,7 +66,7 @@ myAppController.controller('ZwaveExcludeController', function ($scope, $location
             if (devices.state === 'fulfilled') {
                 _.filter(devices.value.data.data.devices, function (v) {
                     var findZwaveStr = v.id.split('_');
-                    if ((findZwaveStr[0] !== 'ZWayVDev' && findZwaveStr[1] !== 'zway') || v.deviceType === 'battery') {
+                    if (findZwaveStr[0] !== 'ZWayVDev' || v.deviceType === 'battery') {
                         return;
                     }
                     var cmd = findZwaveStr[findZwaveStr.length - 1].split('-');

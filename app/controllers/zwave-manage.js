@@ -657,7 +657,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
 
             angular.forEach(devices, function (v, k) {
                 var findZwaveStr = v.id.split('_');
-                if ((findZwaveStr[0] !== 'ZWayVDev' && findZwaveStr[1] !== 'zway') || v.deviceType === 'battery') {
+                if (findZwaveStr[0] !== 'ZWayVDev' || v.deviceType === 'battery') {
                     return;
                 }
                 var cmd = findZwaveStr[findZwaveStr.length - 1].split('-');

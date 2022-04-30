@@ -556,7 +556,7 @@ myAppController.controller('ElementSwitchRGBWController', function($scope, dataF
 			return;
 		}
 		angular.extend($scope.widgetSwitchRGBW.find, device[0]);
-		var str = "ZWayVDev_zway";
+		var str = "ZWayVDev_";
 		if ($scope.widgetSwitchRGBW.find.id.substr(0, str.length) !== str || $scope.elementAccess([2, 3, 4])) { //TODO next release change
 			var color = $scope.widgetSwitchRGBW.find.metrics.color || {r: 0, g: 0, b: 0};
 			$scope.widgetSwitchRGBW.colorHex = rgbToHex(color.r, color.g, color.b);
