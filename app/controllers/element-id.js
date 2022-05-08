@@ -303,9 +303,9 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 	 * Set device
 	 */
 	function setDevice(device) {
-		var findZwaveStr = "ZWayVDev_zway_";
-		var findZenoStr = "ZEnoVDev_zeno_x";
-		var zwaveId = false;
+		var findZwaveRegEx = /ZWayVDev_([^_]+)_([0-9]+)-.*/;;
+		var findZenoRegEx = /ZEnoVDev_([^_]+)_x([0-9a-f]+)_.*/;
+		
 		$scope.elementId.input = device;
 
 		if ($scope.user.role === 1) {
@@ -320,11 +320,11 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			$scope.elementId.appType['instance'] = instance || null;
 			$scope.elementId.appType['modul'] = modul || null;
 
-			if (device.id.indexOf(findZwaveStr) > -1) {
-				zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
-				$scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
-			} else if (device.id.indexOf(findZenoStr) > -1) {
-				$scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
+			var match;
+			if (match = device.id.match(findZwaveRegEx)) {
+				$scope.elementId.appType['zwave'] = match[2];
+			} else if (match = device.id.match(findZenoRegEx)) {
+				$scope.elementId.appType['enocean'] = match[2];
 			}
 		}
 
