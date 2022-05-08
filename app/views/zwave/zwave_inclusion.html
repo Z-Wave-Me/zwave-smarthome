@@ -115,12 +115,14 @@
                         <!-- S2 Alert  -->
                         <bb-alert alert="zwaveInclusion.s2.alert"></bb-alert>
                         <!-- Process -->
-                        <div class="inclusion-process" ng-if="zwaveInclusion.automatedConfiguration.process">
+                        <div class="inclusion-process" ng-if="zwaveInclusion.automatedConfiguration.process || true">
                             <div class="alert alert-warning" ng-hide="zwaveInclusion.automatedConfiguration.progress > 99">
-                                <i class="fas fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong>
+                                <i class="fas fa-spinner fa-spin"></i><strong><span ng-if="breakTime !== null"> [{{breakTime | date: 'mm:ss'}}]</span> {{_t('configuring_device')}}</strong>
                                 <span>(#{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}})</span></br>
                                 <span ng-if="zwaveInclusion.automatedConfiguration.includedDevice.retryCCInterviews">{{_t('retry_cc_interviews')}}</span>
-                            </div>
+                                <div ng-if="breakTime === 0"><div>{{_t('interviewNotFinish')}}</div>
+                                    <div>{{_t('showInterviewInExpert')}} <a ng-href="../expert/#/configuration/interview/{{zwaveInclusion.automatedConfiguration.includedDevice.nodeId}}" target="_blank"><i class="fas fa-external-link-alt"></i></a></div></div>
+                                </div>
                              <div class="progress">
                                 <div class="progress-bar"
                                      style="min-height:40px;min-width: 2em; width: {{zwaveInclusion.automatedConfiguration.progress}}%;"
@@ -128,7 +130,6 @@
                                     {{zwaveInclusion.automatedConfiguration.progress}}%
                                 </div>
                             </div>
-
                         </div>
                         <!--<pre>{{zwaveInclusion.automatedConfiguration.includedDevice | json}}</pre>-->
                     </div>

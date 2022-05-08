@@ -1049,5 +1049,7 @@
     "armCondition": "Поставить на охрану",
     "disarmCondition": "Снять с охраны",
     "clearCondition": "Сброс тревоги",
-    "not_used": "Не используется"
+    "not_used": "Не используется",
+    "interviewNotFinish": "Интервью не закончено",
+    "showInterviewInExpert": "Посмотреть результаты интервью и пройти вручную можно в Expert интерфейсе"
 }
