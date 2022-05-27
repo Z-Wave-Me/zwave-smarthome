@@ -934,7 +934,9 @@ myAppController.controller('ElementSecurityControlController', function($scope, 
 			icon: false
 		}
 	};
-
+	$scope.device = $scope.dataHolder.devices.all.find(function (device) {
+		return device.id === $scope.dataHolder.devices.find.id;
+	})
 	/**
 	 * Load single device
 	 */

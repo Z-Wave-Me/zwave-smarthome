@@ -48,8 +48,9 @@
             <label class="switch">
                 <input type="checkbox"
                        ng-checked="v.metrics.Clevel === 'cOn'"
-                       ng-model="dataHolder.devices.switchButton[v.id]"
-                       ng-change="runCmd(v.id + '/command/' + (dataHolder.devices.switchButton[v.id] ? 'cOn':'cOff'), v.id)" />
+                       ng-click="v.metrics.Clevel = v.metrics.Clevel === 'cOn' ? 'cOff':'cOn';
+                       runCmd(v.id + '/command/' + v.metrics.Clevel, v.id);"
+                       >
                 <div class="slider round"></div>
             </label>
 
