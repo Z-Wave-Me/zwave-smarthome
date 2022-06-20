@@ -78,7 +78,7 @@
 </div>
 
 <!-- Token for API -->
-<div ng-if="user.role === 1 && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">
+<div ng-if="user.role <= 2 && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">
     <!-- Generate Access tokens -->
     <h2 class="accordion-toggle chevron">
         <button type="button" aria-expanded="false" bb-accordion>
