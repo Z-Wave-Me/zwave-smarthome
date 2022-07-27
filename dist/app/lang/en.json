@@ -1049,5 +1049,7 @@
     "armCondition": "Arming",
     "disarmCondition": "Disarming",
     "clearCondition": "Clear alarm",
-    "not_used": "Not used"
+    "not_used": "Not used",
+    "interviewNotFinish": "Interview not completed",
+    "showInterviewInExpert": "You can view the results of the interview and go through it manually in the Expert interface"
 }
