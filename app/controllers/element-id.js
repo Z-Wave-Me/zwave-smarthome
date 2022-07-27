@@ -329,56 +329,35 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		}
 
 		if (cfg.route.os == 'ZWayMobileAppAndroid') {
-			if ($scope.elementId.input.deviceType == 'toggleButton' ||
-				$scope.elementId.input.deviceType == 'switchBinary') {
-				if ($scope.elementId.input.metrics.level == "on") {
-					var device_on = angular.copy($scope.elementId.input);
-
-					var device_off = angular.copy($scope.elementId.input);
-					device_off.metrics.level = "off";
-				} else if ($scope.elementId.input.metrics.level == "off") {
-					var device_off = angular.copy($scope.elementId.input);
-
-					var device_on = angular.copy($scope.elementId.input);
-					device_on.metrics.level = "on";
-				}
-
-				offIconPath = dataService.assignElementIcon(device_off);
-				onIconPath = dataService.assignElementIcon(device_on);
-
-				var offData = {
-					"id": $scope.elementId.input.id,
-					"name": $filter('stringToSlug')($scope.elementId.input.metrics.title),
-					"device_type": $scope.elementId.input.deviceType,
-					"icon": $scope.elementId.input.metrics.icon,
-					"iconPath": offIconPath,
-					"state": "off"
-				};
-
-				var onData = {
-					"id": $scope.elementId.input.id,
-					"name": $filter('stringToSlug')($scope.elementId.input.metrics.title),
-					"device_type": $scope.elementId.input.deviceType,
-					"icon": $scope.elementId.input.metrics.icon,
-					"iconPath": onIconPath,
-					"state": "on"
-				};
-
-				onParams = Object.keys(onData).map(function(key) {
-					return key + '=' + onData[key];
-				}).join('&');
-
-				offParams = Object.keys(offData).map(function(key) {
-					return key + '=' + offData[key];
-				}).join('&');
-
-				var addOffUrl = "/AndoridWidget?" + offParams;
-				var addOnUrl = "/AndoridWidget?" + onParams;
-
+			var name = $scope.elementId.input.metrics.title;
+			
+			function compileUrl(device, label, command) {
+				var dev = angular.copy(device);
+				dev.metrics.level = command;
+				
+				var iconPath = dataService.assignElementIcon(dev);
+				var name = encodeURIComponent(label, dev.metrics.title);
+				
+				return "/create-shortcut?name=" + name + "&url=/ZAutomation/api/v1/devices/" + dev.id + "/command/" + command + "&icon=" + iconPath;
+			}
+			
+			if ($scope.elementId.input.deviceType == 'toggleButton') {
 				angular.extend($scope.elementId.input, {
-					addOffUrl: addOffUrl
+					addOnUrl: compileUrl($scope.elementId.input, $scope._t('lb_on'), 'on')
+				});
+			}
+			if ($scope.elementId.input.deviceType == 'switchBinary') {
+				angular.extend($scope.elementId.input, {
+					addOnUrl: compileUrl($scope.elementId.input, $scope._t('lb_on'), 'on')
 				}, {
-					addOnUrl: addOnUrl
+					addOffUrl: compileUrl($scope.elementId.input, $scope._t('lb_off'), 'off')
+				});
+			}
+			if ($scope.elementId.input.deviceType == 'doorlock') {
+				angular.extend($scope.elementId.input, {
+					addOpenUrl: compileUrl($scope.elementId.input, $scope._t('lb_open'), 'open')
+				}, {
+					addCloseUrl: compileUrl($scope.elementId.input, $scope._t('lb_close'), 'close')
 				});
 			}
 		}
