@@ -985,7 +985,7 @@
     "verify_qrcode": "Please enter your password to confirm the creation of the QR code",
     "verifying_licence_key": "Verifying the License Key",
     "version": "Version",
-    "video_not_supported_smart_start" : "The webcam is disabled or unavailable, turn on the webcam to scan the QR code",
+    "video_not_supported_smart_start" : "The webcam is disabled or unavailable, turn on the webcam to scan the QR code (log in with find.z-wave.me to unlock the camera)",
     "wait_key_veriffication": "Wait for Key verification....",
     "wakeup_list": "Wakeup Settings",
     "wan_port_access_info": "Access by Ethernet is turned off by factory default. If activated the security of your Z-Wave.Me Hub depends on the security of your cable based home network.",
