@@ -9,6 +9,18 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.14.0
+#### New features:
+- Added Shortcuts for SwitchBinary, SwitchMultilevel and Door lock for Android (on the device settings page)
+- Users can generate access tokens now (to use in integrations)
+- Smart Start, QR scanning and manage of the DSK list
+#### Fixes:
+- UI improvements
+- Correct display of arming status
+- Interview timer fixed
+- Improved work with two or more Z-Wave hardware
+- Time in events
+
 ## v1.13.5
 #### New features:
 - Generate new API token for the selected user from the admin interface
