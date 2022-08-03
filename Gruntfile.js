@@ -124,6 +124,8 @@ module.exports = function(grunt) {
 					'app/directives/angular-slider.js',
 					'app/directives/angular-long-press.min.js',
 					'app/directives/contextMenu.js',
+					'app/directives/elements/shortcut.directive.js',
+
 					'app/filters/filters.js',
 					'app/jquery/postrender.js',
 					'app/controllers/base.js',

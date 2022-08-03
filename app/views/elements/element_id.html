@@ -79,24 +79,7 @@
           </div>
         </div>
         <!-- Add element to Home (Android)-->
-        <div class="form-group" ng-show="cfg.route.os == 'ZWayMobileAppAndroid'" ng-if="elementId.input.deviceType == 'toggleButton' || elementId.input.deviceType == 'switchBinary' || elementId.input.deviceType == 'switchMultilevel' || elementId.input.deviceType == 'doorlock'">
-          <label>{{_t('lb_add_widget')}}:</label>
-          <br>
-          <a title="{{_t('lb_on')}}" class="btn btn-primary" href="{{elementId.input.addOnUrl}}" ng-if="elementId.input.deviceType == 'toggleButton' || elementId.input.deviceType == 'switchBinary' || elementId.input.deviceType == 'switchMultilevel'">
-            {{_t('lb_on')}}
-          </a>
-          <a title="{{_t('lb_open')}}" class="btn btn-primary" href="{{elementId.input.addOpenUrl}}" ng-if="elementId.input.deviceType == 'doorlock'">
-            {{_t('lb_open')}}
-          </a>
-          &nbsp
-          <a title="{{_t('lb_off')}}" class="btn btn-primary" href="{{elementId.input.addOffUrl}}" ng-if="elementId.input.deviceType == 'switchBinary' || elementId.input.deviceType == 'switchMultilevel'">
-            {{_t('lb_off')}}
-          </a>
-          <a title="{{_t('lb_close')}}" class="btn btn-primary" href="{{elementId.input.addCloseUrl}}" ng-if="elementId.input.deviceType == 'doorlock'">
-            {{_t('lb_close')}}
-          </a>
-          <bb-help-text trans="_t('info_add_widget')"></bb-help-text>
-        </div>
+        <z-wave-shortcut ng-if="cfg.route.os === 'ZWayMobileAppAndroid'"></z-wave-shortcut>
         <!-- Delete element -->
         <div class="form-group" ng-if="elementAccess(cfg.role_access.admin) && elementId.appType.zwave">
           <button type="button" title="{{_t('delete_element')}}" class="btn btn-danger" ng-click="deleteElement(elementId.input, _t('element_delete_confirm'))">

@@ -328,39 +328,6 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			}
 		}
 
-		if (cfg.route.os == 'ZWayMobileAppAndroid') {
-			var name = $scope.elementId.input.metrics.title;
-			
-			function compileUrl(device, label, command) {
-				var dev = angular.copy(device);
-				dev.metrics.level = command;
-				
-				var iconPath = dataService.assignElementIcon(dev);
-				var name = encodeURIComponent(label, dev.metrics.title);
-				
-				return "/create-shortcut?name=" + name + "&url=/ZAutomation/api/v1/devices/" + dev.id + "/command/" + command + "&icon=" + iconPath;
-			}
-			
-			if ($scope.elementId.input.deviceType == 'toggleButton') {
-				angular.extend($scope.elementId.input, {
-					addOnUrl: compileUrl($scope.elementId.input, $scope._t('lb_on'), 'on')
-				});
-			}
-			if ($scope.elementId.input.deviceType == 'switchBinary') {
-				angular.extend($scope.elementId.input, {
-					addOnUrl: compileUrl($scope.elementId.input, $scope._t('lb_on'), 'on')
-				}, {
-					addOffUrl: compileUrl($scope.elementId.input, $scope._t('lb_off'), 'off')
-				});
-			}
-			if ($scope.elementId.input.deviceType == 'doorlock') {
-				angular.extend($scope.elementId.input, {
-					addOpenUrl: compileUrl($scope.elementId.input, $scope._t('lb_open'), 'open')
-				}, {
-					addCloseUrl: compileUrl($scope.elementId.input, $scope._t('lb_close'), 'close')
-				});
-			}
-		}
 		var orderBy = $filter('orderBy');
 
 		angular.extend($scope.elementId.input, {
