@@ -1053,5 +1053,7 @@
     "wifi_connected": "Connected",
     "wifi_disconnected": "Disconnected",
     "interviewNotFinish": "Interview not completed",
-    "showInterviewInExpert": "You can view the results of the interview and go through it manually in the Expert interface"
+    "showInterviewInExpert": "You can view the results of the interview and go through it manually in the Expert interface",
+    "authorisationNeeded": "Don't ask for pin/fingerprint/Face ID",
+    "shortcutName": "Shortcut name"
 }
