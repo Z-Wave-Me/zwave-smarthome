@@ -17,7 +17,7 @@ myApp.directive('zWaveShortcut', function(dataService) {
                   <div class="appmodal-body">
                   <div class="form-group">
                   <label>
-                  {{_t('changeName')}}
+                  {{_t('shortcutName')}}
                   <input class="form-control" type="text" ng-model="shortcut.name">
                     </label>
                     </div>

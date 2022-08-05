@@ -1052,5 +1052,8 @@
     "clearCondition": "Сброс тревоги",
     "not_used": "Не используется",
     "interviewNotFinish": "Интервью не закончено",
-    "showInterviewInExpert": "Посмотреть результаты интервью и пройти вручную можно в Expert интерфейсе"
+    "showInterviewInExpert": "Посмотреть результаты интервью и пройти вручную можно в Expert интерфейсе",
+    "authorisationNeeded" : "Не спрашивать пин-код/отпечаток пальца/Face ID",
+    "shortcutName": "Имя ярлыка"
+
 }
