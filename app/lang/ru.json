@@ -475,6 +475,7 @@
     "lb_connecting": "Подключение...",
     "lb_count": "Количество полученных импульсов",
     "lb_create_qrcode": "Создать QR-код",
+    "lb_create": "Создать",
     "lb_days": "дни",
     "lb_deactivate": "Остановить",
     "lb_delete_confirm": "Вы уверены, что хотите удалить это?",
@@ -1051,5 +1052,8 @@
     "clearCondition": "Сброс тревоги",
     "not_used": "Не используется",
     "interviewNotFinish": "Интервью не закончено",
-    "showInterviewInExpert": "Посмотреть результаты интервью и пройти вручную можно в Expert интерфейсе"
+    "showInterviewInExpert": "Посмотреть результаты интервью и пройти вручную можно в Expert интерфейсе",
+    "authorisationNeeded" : "Не спрашивать пин-код/отпечаток пальца/Face ID",
+    "shortcutName": "Имя ярлыка"
+
 }

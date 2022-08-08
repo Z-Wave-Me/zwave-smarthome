@@ -106,7 +106,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $interval.cancel($scope.interval.api);
     });
 
-
+    var timeOutTimer = 180;
     $scope.smartStartEnabled = false;
     /**
      * Start Smart Scan.
@@ -898,7 +898,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         return {
             start: function () {
                 if (!timer)
-                    timer = awaitTimerFactory(120);
+                    timer = awaitTimerFactory(timeOutTimer);
             },
             stop: function () {
                 if (timer) {
@@ -909,7 +909,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             reset: function (){
                 if (timer)
                     timer();
-                timer = awaitTimerFactory(120);
+                timer = awaitTimerFactory(timeOutTimer);
             }
         }
     })()
