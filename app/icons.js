@@ -77,7 +77,10 @@ var icon_data = {
                     default: 'lock-closed.png'
                 },
                 thermostat: {
-                    default: 'thermostat.png'
+                    level: {
+                        on: 'thermostat.png',
+                        off: 'thermostat-off.png'
+                    }
                 },
                 energy: {
                     default: 'energy.png'
