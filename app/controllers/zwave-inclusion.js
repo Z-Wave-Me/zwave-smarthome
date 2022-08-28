@@ -58,14 +58,14 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 interval: false,
                 show: false,
                 done: false,
-                countDown: 20,
+                countDown: 240,
                 anyChecked: false
             },
             verifyDSK: {
                 interval: false,
                 show: false,
                 done: false,
-                countDown: 20
+                countDown: 240
             },
             process: false,
             interviewDone: false,
