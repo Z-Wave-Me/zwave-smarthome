@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave.Me, Created: 08-08-2022 15:14:33 */
+/* Copyright:  Z-Wave.Me, Created: 30-08-2022 17:18:56 */
 /**
  * @overview The object with default icons.
  * @author Martin Vach
@@ -78,7 +78,10 @@ var icon_data = {
                     default: 'lock-closed.png'
                 },
                 thermostat: {
-                    default: 'thermostat.png'
+                    level: {
+                        on: 'thermostat.png',
+                        off: 'thermostat-off.png'
+                    }
                 },
                 energy: {
                     default: 'energy.png'
