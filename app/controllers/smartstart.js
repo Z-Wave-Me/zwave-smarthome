@@ -382,11 +382,11 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				});
 				if (index > -1) {
 					$scope.collection.all.splice(index, 1);
-					if($scope.collection.all.length == 0) {
-						angular.extend(cfg.route.alert, {
+					if($scope.collection.all.length === 0) {
+						$scope.collection.alert = {
 							message: $scope._t('empty_dsk_list'),
 							icon: 'fa-info-circle text-info'
-						});
+						}
 					}
 				}
 			}, function(error) {
@@ -446,13 +446,13 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 	 */
 	function setDSKCollection(dsk_list) {
 			if (_.isEmpty(dsk_list)) {
-				angular.extend(cfg.route.alert, {
+				$scope.collection.alert = {
 					message: $scope._t('empty_dsk_list'),
 					icon: 'fa-info-circle text-info'
-				});
+				}
 				return;
 			} else {
-				cfg.route.alert.message = null;
+				$scope.collection.alert = {};
 			}
 
 			// Data collection

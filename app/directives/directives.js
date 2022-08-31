@@ -72,15 +72,15 @@ myApp.directive('bbRowSpinner', function() {
 			label: '=',
 			spinner: '=',
 			icon: '=',
-			core: '='
+			core: '=',
+			labelClass: '@'
 		},
 		template: '<span title="{{label}}"><span class="btn-spin">' +
-			'<i ng-class="[core ? core : \'fa\', spinner ? \'fa-spinner fa-spin\' : icon]"></i>' +
+			'<i ng-class="spinner ? \'fa fa-spinner fa-spin\' : (icon ? ((core ? core : \'fa\') + \' \' + icon) : \'\')"></i>' +
 			'</span> ' +
-			'<span class="btn-label" ng-if="label">' +
+			'<span class="btn-label" ng-class="labelClass" ng-if="label">' +
 			'{{label}}' +
-			'</span></span>'
-
+			'</span></span>',
 	};
 });
 

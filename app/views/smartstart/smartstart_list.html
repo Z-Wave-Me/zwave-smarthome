@@ -21,6 +21,7 @@
       <button class="btn btn-default btn-lg" ng-click="refreshDSKList()" title="{{_t('reload')}}">
             <i class="fas fa-sync text-warning"></i><span class="btn-name"> {{_t('reload')}}</span>
       </button>
+      <z-wave-controller-mode-switcher />
     </div>
     <div id="table_mobile">
       <table class="table">
@@ -186,6 +187,7 @@
         </tbody>
       </table>
     </div>
+    <bb-alert  alert="collection.alert"></bb-alert>
   </div>
   <div ng-include="'app/views/smartstart/smartstart_list_modal.html'"></div>
 </div>
