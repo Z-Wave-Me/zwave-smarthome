@@ -34,7 +34,6 @@ myApp.directive('zWaveControllerModeSwitcher', function (dataFactory, $interval)
       scope.mode = null;
       scope.enableLongMode = true;
       scope.$on('$destroy', function () {
-        console.log('destroyed');
         $interval.cancel(pooling);
       })
 

@@ -1,11 +1,110 @@
+const zlib = require("zlib");
+const  projectFiles = [
+	//Vendors
+	'vendor/jquery/plugins/jquery.ui.widget.js',
+	'vendor/jquery/plugins/jquery.iframe-transport.js',
+	'vendor/jquery/plugins/jquery.fileupload.js',
+	'vendor/jquery/plugins/jquery.fileupload-process.js',
+	'vendor/jquery/plugins/jquery.fileupload-ui.js',
+	'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
+	'vendor/chartjs/Chart.js',
+	'vendor/knob/jquery.knob.js',
+	'vendor/qrcode_reader/qr_packed.js',
+	'vendor/scheduler/jq.schedule.js',
+	'vendor/highlight/highlight-textarea.js',
+	'vendor/highlight/highlight.pack.js',
+	// ExpertUI configuration js
+	'vendor/zwave/pyzw.js',
+	'vendor/zwave/pyzw_zwave_ui.js',
+	// APP
+	'app/app.js',
+	'app/routes.js',
+	'dist/app/js/templates.js',
+	'app/modules/qAllSettled.js',
+	'app/modules/httpLatency.js',
+	'app/modules/ngDeviceDetector.min.js',
+	'app/config/settings.js',
+	// Services
+	'app/factories/factories.js',
+	'app/services/services.js',
+	'app/services/services-expert.js',
+	'app/services/mobile-detector.service.js',
+	// Directives
+	'app/directives/directives.js',
+	'app/directives/directives-expert.js',
+	'app/directives/dir-pagination.js',
+	'app/directives/tc-angular-chartjs.js',
+	'app/directives/angular-slider.js',
+	'app/directives/angular-long-press.min.js',
+	'app/directives/contextMenu.js',
+	'app/directives/elements/shortcut.directive.js',
+	'app/directives/smartstart/controller-mode-switcher.directive.js',
+
+	'app/filters/filters.js',
+	'app/jquery/postrender.js',
+	'app/controllers/base.js',
+	'app/controllers/jamesbox.js',
+	'app/controllers/element.js',
+	'app/controllers/element-widget.js',
+	'app/controllers/element-id.js',
+	'app/controllers/event.js',
+	'app/controllers/automations.js',
+	'app/controllers/automation-scene.js',
+	'app/controllers/automation-rule.js',
+	'app/controllers/automation-schedule.js',
+	'app/controllers/automation-security.js',
+	'app/controllers/automation-hazard.js',
+	'app/controllers/automation-heating.js',
+	'app/controllers/app.js',
+	'app/controllers/app-local.js',
+	'app/controllers/app-online.js',
+	'app/controllers/app-instance.js',
+	'app/controllers/app-alpaca.js',
+	'app/controllers/skin.js',
+	'app/controllers/icon.js',
+	'app/controllers/device.js',
+	'app/controllers/smartstart.js',
+	'app/controllers/zwave-inclusion.js',
+	'app/controllers/zwave-manage.js',
+	'app/controllers/zwave-exclude.js',
+	'app/controllers/zwave-vendor.js',
+	'app/controllers/camera.js',
+	'app/controllers/speech_assistant.js',
+	'app/controllers/mobile.js',
+	'app/controllers/enocean.js',
+	'app/controllers/wifiplug.js',
+	'app/controllers/rf433.js',
+	'app/controllers/room.js',
+	'app/controllers/management.js',
+	'app/controllers/management-appstore.js',
+	'app/controllers/management-factory.js',
+	'app/controllers/management-firmware.js',
+	'app/controllers/management-licence.js',
+	'app/controllers/management-local.js',
+	'app/controllers/management-remote.js',
+	'app/controllers/management-report.js',
+	'app/controllers/management-restore.js',
+	'app/controllers/management-cloud-backup.js',
+	'app/controllers/management-timezone.js',
+	'app/controllers/management-timezone-jb.js',
+	'app/controllers/management-user.js',
+	'app/controllers/management-oauth.js',
+	'app/controllers/mysettings.js',
+	'app/controllers/mysettings-sessions.js',
+	'app/controllers/rss.js',
+	'app/controllers/auth.js',
+	'app/controllers/zwave-configuration.js',
+	'app/controllers/zwave-commands.js',
+	'app/controllers/welcome.js',
+	'app/controllers/management-wifi.js'
+]
+
 module.exports = function(grunt) {
 	var pkg = grunt.file.readJSON('package.json');
-	var app_type = pkg.app_type;
 	var app_cfg = pkg.type_cfg[pkg.app_type];
 	var app_version = pkg.version;
 	var git_message = pkg.version;
 	var app_rc = (pkg.rc ? pkg.rc + 1 : 0);
-
 	if (app_rc) {
 		app_version += '-RC-' + app_rc;
 		git_message += '-RC-' + pkg.rc;
@@ -21,7 +120,8 @@ module.exports = function(grunt) {
 			options: {
 				force: true
 			},
-			build: ["dist/", "docs/"]
+			build: ["dist/", "docs/"],
+			tmp: ['./tmp']
 		},
 		ngtemplates: {
 			app: {
@@ -65,28 +165,21 @@ module.exports = function(grunt) {
 				],
 				dest: 'dist/app/css/main.css'
 			},
+			custom: {
+				src: projectFiles,
+				dest: './tmp/bundle.js'
+			},
 			js: {
 				src: [
 					// Vendors
 					'vendor/jquery/jquery-1.11.3.min.js',
 					'vendor/jquery/jquery-ui.min.js',
-					'vendor/jquery/plugins/jquery.ui.widget.js',
-					'vendor/jquery/plugins/jquery.iframe-transport.js',
-					'vendor/jquery/plugins/jquery.fileupload.js',
-					'vendor/jquery/plugins/jquery.fileupload-process.js',
-					'vendor/jquery/plugins/jquery.fileupload-ui.js',
 					'vendor/moment/moment-with-locales.min.js',
 					'vendor/underscore/underscore-1.8.3/underscore-min.js',
-					'vendor/chartjs/Chart.js',
-					'vendor/knob/jquery.knob.js',
 					'vendor/handlebars/handlebars-v3.0.3.min.js',
 					'vendor/alpaca/1.5.14/bootstrap/alpaca.min.js',
 					'vendor/alertify/alertify.min.js',
 					'vendor/qrcode/qrcode.min.js',
-					'vendor/qrcode_reader/qr_packed.js',
-					'vendor/scheduler/jq.schedule.js',
-					'vendor/highlight/highlight-textarea.js',
-					'vendor/highlight/highlight.pack.js',
 					// Angular
 					'vendor/angular/angular-1.2.28/angular.min.js',
 					'vendor/upload/angular-file-upload.min.js',
@@ -94,96 +187,14 @@ module.exports = function(grunt) {
 					'vendor/angular/angular-1.2.28/angular-cookies.min.js',
 					'vendor/angular/angular-1.2.28/angular-touch.js',
 					'vendor/angular/angular-1.2.28/angular-animate.js',
-					'vendor/angular/angular-websocket/angular-websocket.min.js',
 					'vendor/dragdrop/angular-sortable-view.min.js',
 					// Bootstrap
 					'vendor/bootstrap/bootstrap.min.js',
-					'vendor/bootstrap/plugins/bootstrap-datetimepicker.js',
 					// ExpertUI configuration js
-					'vendor/zwave/pyzw.js',
-					'vendor/zwave/pyzw_zwave_ui.js',
 					'vendor/xml/xml2json.min.js',
-					// APP
-					'app/app.js',
-					'app/routes.js',
-					'dist/app/js/templates.js',
-					'app/modules/qAllSettled.js',
-					'app/modules/httpLatency.js',
-					'app/modules/ngDeviceDetector.min.js',
-					'app/config/settings.js',
-					// Services
-					'app/factories/factories.js',
-					'app/services/services.js',
-					'app/services/services-expert.js',
-					'app/services/mobile-detector.service.js',
-					// Directives
-					'app/directives/directives.js',
-					'app/directives/directives-expert.js',
-					'app/directives/dir-pagination.js',
-					'app/directives/tc-angular-chartjs.js',
-					'app/directives/angular-slider.js',
-					'app/directives/angular-long-press.min.js',
-					'app/directives/contextMenu.js',
-					'app/directives/elements/shortcut.directive.js',
-					'app/directives/smartstart/controller-mode-switcher.directive.js',
+					//App
+					'./tmp/bundle.babel.min.js'
 
-					'app/filters/filters.js',
-					'app/jquery/postrender.js',
-					'app/controllers/base.js',
-					'app/controllers/jamesbox.js',
-					'app/controllers/element.js',
-					'app/controllers/element-widget.js',
-					'app/controllers/element-id.js',
-					'app/controllers/event.js',
-					'app/controllers/automations.js',
-					'app/controllers/automation-scene.js',
-					'app/controllers/automation-rule.js',
-					'app/controllers/automation-schedule.js',
-					'app/controllers/automation-security.js',
-					'app/controllers/automation-hazard.js',
-					'app/controllers/automation-heating.js',
-					'app/controllers/app.js',
-					'app/controllers/app-local.js',
-					'app/controllers/app-online.js',
-					'app/controllers/app-instance.js',
-					'app/controllers/app-alpaca.js',
-					'app/controllers/skin.js',
-					'app/controllers/icon.js',
-					'app/controllers/device.js',
-					'app/controllers/smartstart.js',
-					'app/controllers/zwave-inclusion.js',
-					'app/controllers/zwave-manage.js',
-					'app/controllers/zwave-exclude.js',
-					'app/controllers/zwave-vendor.js',
-					'app/controllers/camera.js',
-					'app/controllers/speech_assistant.js',
-					'app/controllers/mobile.js',
-					'app/controllers/enocean.js',
-					'app/controllers/wifiplug.js',
-					'app/controllers/rf433.js',
-					'app/controllers/room.js',
-					'app/controllers/management.js',
-					'app/controllers/management-appstore.js',
-					'app/controllers/management-factory.js',
-					'app/controllers/management-firmware.js',
-					'app/controllers/management-licence.js',
-					'app/controllers/management-local.js',
-					'app/controllers/management-remote.js',
-					'app/controllers/management-report.js',
-					'app/controllers/management-restore.js',
-					'app/controllers/management-cloud-backup.js',
-					'app/controllers/management-timezone.js',
-					'app/controllers/management-timezone-jb.js',
-					'app/controllers/management-user.js',
-					'app/controllers/management-oauth.js',
-					'app/controllers/mysettings.js',
-					'app/controllers/mysettings-sessions.js',
-					'app/controllers/rss.js',
-					'app/controllers/auth.js',
-					'app/controllers/zwave-configuration.js',
-					'app/controllers/zwave-commands.js',
-					'app/controllers/welcome.js',
-					'app/controllers/management-wifi.js'
 				],
 				dest: 'dist/app/js/build.js'
 			}
@@ -449,17 +460,37 @@ module.exports = function(grunt) {
 			}
 		},
 		compress: {
-			foo: {
+			build: {
 				options: {
-					archive: '_project/skins/blank.zip',
-					mode: 'zip'
+					mode: 'gzip',
+					level: zlib.constants.Z_BEST_COMPRESSION,
 				},
-				files: [{
-					src: '_project/skins/blank/**'
-				}]
+				expand: true,
+				cwd: 'dist/',
+				src: ['**/*.{js,css,html,json,ico}'],
+				dest: 'dist/',
+				ext: (ext) =>  ext + '.gz'
+			},
+		},
+		uglify : {
+			build: {
+				files: {
+					'./tmp/bundle.babel.min.js': './tmp/bundle.babel.js'
+				}
 			}
-		}
-
+		},
+		babel: {
+			options: {
+				presets: [ '@babel/preset-env'],
+				plugins: ['angularjs-annotate'],
+				compact : true
+			},
+			dist: {
+				files: {
+					'./tmp/bundle.babel.js':'./tmp/bundle.js',
+				},
+			},
+		},
 	});
 	grunt.registerTask('skinFolder', 'Creates an empty .keep file in skins dir', function() {
 		grunt.file.write('dist/user/skins/.keep', '');
@@ -485,13 +516,31 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-json-generator');
 	grunt.loadNpmTasks('grunt-html-build');
 	grunt.loadNpmTasks('grunt-replace');
-	grunt.loadNpmTasks('grunt-modify-json');
 	grunt.loadNpmTasks('grunt-jsdox');
 	grunt.loadNpmTasks('grunt-release-it');
 	grunt.loadNpmTasks('grunt-contrib-compress');
 	grunt.loadNpmTasks('grunt-cache-breaker');
+	grunt.loadNpmTasks('grunt-babel');
 
 	// Default task(s).
-	grunt.registerTask('default', ['clean', 'ngtemplates', 'sass', 'concat', 'json_generator', 'copy', 'cssmin', 'skinFolder', 'iconFolder', 'usebanner', 'htmlbuild', 'cachebreaker', 'replace', 'modify_json']);
-
+	grunt.registerTask('default',
+		['clean:build',
+			'ngtemplates',
+			'sass',
+			'concat:custom',
+			'babel',
+			'uglify:build',
+			'concat:css',
+			'concat:js',
+			'json_generator',
+			'copy',
+			'cssmin',
+			'skinFolder',
+			'iconFolder',
+			'usebanner',
+			'htmlbuild',
+			'cachebreaker',
+			'replace',
+			'clean:tmp',
+			'compress']);
 };

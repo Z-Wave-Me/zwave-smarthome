@@ -7,7 +7,7 @@
  * The controller that renders Z-Wave vendors and products.
  * @class ZwaveVendorController
  */
-myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $cookies, $location, $window, $timeout, dataFactory, dataService,cfg, _) {
+myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $cookies, $location, $window, $timeout, dataFactory, dataService, _) {
     $scope.zwaveVendors = {
         view: false, // default||update
         alert: false,
