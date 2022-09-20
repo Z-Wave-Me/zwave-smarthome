@@ -371,10 +371,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 	 * @returns {undefined}
 	 */
 	$scope.removeDsk = function(input, message) {
-		if (!input.isSmartStart) {
-			alertify.alertError($scope._t('delete_no_smartstart_warning'));
-			return;
-		}
 		alertify.confirm(message, function() {
 			dataFactory.postApi('remove_dsk', null, input.id).then(function(response) {
 				var index = _.findIndex($scope.collection.all, {
