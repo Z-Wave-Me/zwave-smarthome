@@ -493,9 +493,9 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 				if (showAll) {
 					return;
 				} else if (showHidden) {
-					return (v.permanently_hidden === true) || v.metrics.removed === true;
+					return v.permanently_hidden === true;
 				} else {
-					return (v.permanently_hidden === true) || v.metrics.removed === true || (v.visibility === false);
+					return v.permanently_hidden === true || v.visibility === false;
 				}
 
 			})
