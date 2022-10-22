@@ -982,6 +982,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		}
 		switch (iconKey) {
 			// door
+			case 'lock':
 			case 'door':
 			case 'window_tilt':
 				icon = (element.metrics.level === 'open' || element.metrics.level === 'on') ? iconArray.open : iconArray.closed;

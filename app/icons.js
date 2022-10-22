@@ -11,6 +11,12 @@ var icon_data = {
     cfgicons: {
         element: {
             icon: {
+                lock: {
+                    level: {
+                        open: 'lock-open.png',
+                        closed: 'lock-closed.png'
+                    }
+                },
                 door: {
                     level: {
                         open: 'door-open.png',
