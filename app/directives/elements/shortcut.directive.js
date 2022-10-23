@@ -54,7 +54,7 @@ myApp.directive('zWaveShortcut', function(dataService) {
         dev.metrics.level = action.command;
         $scope.shortcut.id = dev.id;
         $scope.shortcut.command = action.command;
-        $scope.shortcut.name = encodeURIComponent($scope._t(action.translateKey) + dev.metrics.title);
+        $scope.shortcut.name = encodeURIComponent($scope._t(action.translateKey) + ' ' + dev.metrics.title);
         $scope.shortcut.authorisation = false;
         $scope.shortcut.iconPath = dataService.assignElementIcon(dev);
         $scope.shortcut.name = $scope._t(action.translateKey) + dev.metrics.title;
@@ -65,7 +65,7 @@ myApp.directive('zWaveShortcut', function(dataService) {
         var a = document.createElement('a');
         a.href = "/create-shortcut?name=" + $scope.shortcut.name +
           "&url=/ZAutomation/api/v1/devices/" + $scope.shortcut.id + "/command/" + $scope.shortcut.command +
-          "&icon=" + $scope.shortcut.iconPath +
+          "&icon=" + window.location.pathname + $scope.shortcut.iconPath +
           "&authenticate=" + $scope.shortcut.authorisation
         a.click();
       }
