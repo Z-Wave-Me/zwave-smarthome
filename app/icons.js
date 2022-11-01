@@ -11,6 +11,12 @@ var icon_data = {
     cfgicons: {
         element: {
             icon: {
+                lock: {
+                    level: {
+                        open: 'lock-open.png',
+                        closed: 'lock-closed.png'
+                    }
+                },
                 door: {
                     level: {
                         open: 'door-open.png',
@@ -77,7 +83,10 @@ var icon_data = {
                     default: 'lock-closed.png'
                 },
                 thermostat: {
-                    default: 'thermostat.png'
+                    level: {
+                        on: 'thermostat.png',
+                        off: 'thermostat-off.png'
+                    }
                 },
                 energy: {
                     default: 'energy.png'

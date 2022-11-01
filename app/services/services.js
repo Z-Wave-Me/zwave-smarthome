@@ -493,9 +493,9 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 				if (showAll) {
 					return;
 				} else if (showHidden) {
-					return (v.permanently_hidden === true) || v.metrics.removed === true;
+					return v.permanently_hidden === true;
 				} else {
-					return (v.permanently_hidden === true) || v.metrics.removed === true || (v.visibility === false);
+					return v.permanently_hidden === true || v.visibility === false;
 				}
 
 			})
@@ -982,6 +982,7 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 		}
 		switch (iconKey) {
 			// door
+			case 'lock':
 			case 'door':
 			case 'window_tilt':
 				icon = (element.metrics.level === 'open' || element.metrics.level === 'on') ? iconArray.open : iconArray.closed;
@@ -1007,6 +1008,9 @@ myAppService.service('dataService', function($filter, $log, $cookies, $window, $
 				// siren
 			case 'siren':
 				icon = element.metrics.level === 'on' ? iconArray.on : iconArray.off;
+				break;
+			case 'thermostat':
+				icon = element.metrics.level === 'off' ? iconArray.off : iconArray.on;
 				break;
 				// motion
 			case 'motion':

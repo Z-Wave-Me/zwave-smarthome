@@ -13,7 +13,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         cfg: {
             checkInterviewTimeout: 3000, // miliseconds
             checkInterviewRepeat: 16, // times
-            inexTimeout: 120000 // Inclusion/Exclusion timeout - miliseconds
+            inexTimeout: 180000 // Inclusion/Exclusion timeout - miliseconds
         },
         device: {
             hasBattery: false,
@@ -58,14 +58,14 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 interval: false,
                 show: false,
                 done: false,
-                countDown: 20,
+                countDown: 240,
                 anyChecked: false
             },
             verifyDSK: {
                 interval: false,
                 show: false,
                 done: false,
-                countDown: 20
+                countDown: 240
             },
             process: false,
             interviewDone: false,
@@ -106,7 +106,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $interval.cancel($scope.interval.api);
     });
 
-
+    var timeOutTimer = 180;
     $scope.smartStartEnabled = false;
     /**
      * Start Smart Scan.
@@ -166,7 +166,6 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
                 return;
             }
-
             // Success - device by id
             if (deviceId.state === 'fulfilled') {
                 var device = dataService.getZwaveDevices([deviceId.value.data.data]).value();
@@ -194,37 +193,37 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     $scope.refreshZwaveApiData = function (maxcnt) {
         var cnt = 0;
-        if (typeof maxcnt !== 'undefined') {
-            var refresh = function () {
-                cnt++;
-                dataFactory.refreshZwaveApiData().then(function (response) {
-                    //console.log(response.data);
-                    if(response){
-                        updateController(response.data);
-                    }
-                });
-
-                if (cnt == maxcnt) {
-                    $interval.cancel($scope.interval.api);
-                    $scope.loading = false;
+        // if (typeof maxcnt !== 'undefined') {
+        var refresh = function () {
+            cnt++;
+            dataFactory.refreshZwaveApiData().then(function (response) {
+                //console.log(response.data);
+                if(response){
+                    updateController(response.data);
                 }
-            };
-        } else {
-            var refresh = function () {
-                //console.log('Pending requests: '+ $http.pendingRequests.length);
-                if($http.pendingRequests.length > 0) {
-                    return;
-                }
-                dataFactory.refreshZwaveApiData().then(function (response) {
-                    //console.log(response.data);
-                    if(response){
-                        updateController(response.data);
-                    }
-
-                });
-            };
-        }
-
+            });
+            if (cnt === maxcnt) {
+                $interval.cancel($scope.interval.api);
+                $scope.loading = false;
+            }
+        };
+        // TODO deprecated dead code 08/04/22
+        // } else {
+        //     var refresh = function () {
+        //         //console.log('Pending requests: '+ $http.pendingRequests.length);
+        //         if($http.pendingRequests.length > 0) {
+        //             return;
+        //         }
+        //         dataFactory.refreshZwaveApiData().then(function (response) {
+        //             //console.log(response.data);
+        //             if(response){
+        //                 updateController(response.data);
+        //             }
+        //
+        //         });
+        //     };
+        // }
+        refresh();
         $scope.interval.api = $interval(refresh, $scope.cfg.interval);
     };
 
@@ -248,7 +247,6 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 msg = $scope._t('error_exclusion_time');
                 break;
         }
-
         if(process) {
             resetProcess(type, process, false, cmd);
             $scope.refreshZwaveApiData();
@@ -284,7 +282,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         if (cancelInterval) {
             $interval.cancel($scope.interval.api);
         }
-    };
+    }
 
 
     /**
@@ -293,6 +291,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     $scope.startConfiguration = function (includedDevice) {
         resetConfiguration(true, false, includedDevice, false, true);
         handleInterview(includedDevice.nodeId);
+
         var refresh = function () {
             var checkInterviewCnt = $scope.zwaveInclusion.automatedConfiguration.includedDevice.checkInterviewCnt;
 
@@ -418,14 +417,11 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     /**
      * Get block of DSK
      * @param {array} publicKey
-     * @param {num} block
+     * @param {number} block
      * @returns {string}
      */
     $scope.dskBlock = function(publicKey, block) {
-        if(!publicKey){
-            return '';
-        }
-        return ("00000" + (publicKey[(block - 1) * 2] * 256 + publicKey[(block - 1) * 2 + 1])).slice(-5);
+        return publicKey ? (publicKey[block + 1] * 256 + publicKey[block + 2]).toString().padStart(5, '0') : '';
     };
 
     /**
@@ -769,7 +765,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
             };
 
         $scope.interval.s2 = $interval(refresh, 5000);
-    };
+    }
 
     /**
      * Set device by ID
@@ -787,7 +783,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      */
     function setSecureInclusion(status) {
         $scope.runZwaveCmd('controller.data.secureInclusion=' + (status ? '2' : '0'));
-    };
+    }
 
     /**
      * Set ZWave API Data
@@ -808,7 +804,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 {process: true, done: false}
             );
         }
-    };
+    }
 
     /**
      * Update controller data
@@ -856,12 +852,12 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     }
     ;
 
-
     /**
      * Reset automated configuration
      */
     function resetConfiguration(process, done, includedDevice, cmd, cancelInterval) {
         /// Set scope
+        awaitTimer.reset();
         angular.extend($scope.zwaveInclusion.automatedConfiguration,
             {process: process, done: done, forceInterview: false, progress: 0}
         );
@@ -881,7 +877,43 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
 
         // reset s2 alert/message
         $scope.zwaveInclusion.s2.alert = false;
-    };
+    }
+    $scope.breakTime = null;
+    function awaitTimerFactory(breakTime) {
+        $scope.breakTime = breakTime * 1000;
+        const timer = $interval(function () {
+            --breakTime;
+            $scope.breakTime = breakTime * 1000;
+            if (breakTime < 1) {
+                $interval.cancel(timer);
+            }
+        }, 1000)
+        return function () {
+            $interval.cancel(timer);
+            $scope.breakTime = null;
+        }
+    }
+    var awaitTimer = (function () {
+        let timer = null;
+        return {
+            start: function () {
+                if (!timer)
+                    timer = awaitTimerFactory(timeOutTimer);
+            },
+            stop: function () {
+                if (timer) {
+                    timer()
+                    timer = null;
+                }
+            },
+            reset: function (){
+                if (timer)
+                    timer();
+                timer = awaitTimerFactory(timeOutTimer);
+            }
+        }
+    })()
+    awaitTimer.reset();
 
     /**
      * Check interview
@@ -1028,6 +1060,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
 
             // All interviews are done
             if (progress >= 100) {
+                awaitTimer.stop();
                 $scope.zwaveInclusion.automatedConfiguration.progress = 100;
                 $scope.zwaveInclusion.automatedConfiguration.initDone = false;
                 resetConfiguration(false, true, null, false, true);

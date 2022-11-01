@@ -23,7 +23,6 @@ var myApp = angular.module('myApp', [
     'ng.deviceDetector',
     'pr.longpress',
     'angular-sortable-view',
-    'ngWebSocket'
 ]);
 
 // App configuration
@@ -77,7 +76,7 @@ myApp.run(function ($rootScope, $route, $location, dataService, dataFactory, cfg
       $rootScope.$on("$routeChangeStart", function (event, next, current) {
 
         var route = {
-            previous: current ? current.$$route.originalPath : false
+            previous: (current && current.$$route) ? current.$$route.originalPath : false
         };
         angular.extend(cfg.route,route);
     });

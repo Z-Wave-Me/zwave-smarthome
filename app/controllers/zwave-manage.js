@@ -181,7 +181,7 @@ myAppController.controller('ZwaveManageController', function ($scope, $cookies, 
         var findZwaveStr, cmd, nodeId;
         angular.forEach(elements.value(), function (v) {
             findZwaveStr = v.id.split('_');
-            if (findZwaveStr[0] === 'ZWayVDev' && findZwaveStr[1] === 'zway') {
+            if (findZwaveStr[0] === 'ZWayVDev') {
                 cmd = findZwaveStr[findZwaveStr.length - 1].split('-');
                 nodeId = cmd[0];
                 const device = $scope.devices.zw.find(({id}) => id === +nodeId)
@@ -657,7 +657,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
 
             angular.forEach(devices, function (v, k) {
                 var findZwaveStr = v.id.split('_');
-                if ((findZwaveStr[0] !== 'ZWayVDev' && findZwaveStr[1] !== 'zway') || v.deviceType === 'battery') {
+                if (findZwaveStr[0] !== 'ZWayVDev' || v.deviceType === 'battery') {
                     return;
                 }
                 var cmd = findZwaveStr[findZwaveStr.length - 1].split('-');

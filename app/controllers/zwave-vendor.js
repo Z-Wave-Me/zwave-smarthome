@@ -7,7 +7,7 @@
  * The controller that renders Z-Wave vendors and products.
  * @class ZwaveVendorController
  */
-myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $cookies, $location, $window, $timeout, dataFactory, dataService,cfg, _) {
+myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $cookies, $location, $window, $timeout, dataFactory, dataService, _) {
     $scope.zwaveVendors = {
         view: false, // default||update
         alert: false,
@@ -64,7 +64,7 @@ myAppController.controller('ZwaveVendorController', function ($scope, $q, cfg, $
             }
             // Error message
             if (vendors.state === 'rejected' || products.state === 'rejected') {
-                var reason = vendors.reason || vendors.reason;
+                var reason = vendors.reason || products.reason;
                 if (reason.status === 404) {
                     $scope.zwaveVendors.view = 'update';
                 } else {

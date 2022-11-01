@@ -12,9 +12,9 @@ var config_data = {
 		//Application name
 		'app_name': 'SmartHome UI',
 		// Application version
-		'app_version': 'v1.13.5',
+		'app_version': 'v1.14.0',
 		// Application (DIST) built date
-		'app_built': '06-04-2022 02:42:35',
+		'app_built': '01-11-2022 05:22:29',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -168,7 +168,7 @@ var config_data = {
 			// JamesBox cancel update
 			'jamesbox_cancel_update': 'https://storage.z-wave.me/zbu_ui_handling.php?action=cancelupdate',
 			// RSS feed
-			'rss_feed': 'https://service.z-wave.me/rssFeed/index.php'
+			'rss_feed': 'https://service.z-wave.me/rssFeed/'
 		},
 		// Skin
 		'skin': {
@@ -255,11 +255,11 @@ var config_data = {
 		// Online vendor icon url
 		'online_vendor_icon_url': 'http://manuals-backend.z-wave.info/img/vendors_logo/',
 		// Post report url
-		'post_report_url': 'https://service.z-wave.me/report/index.php',
+		'post_report_url': 'https://service.z-wave.me/report/',
 		// Postpassword url
-		'post_password_request_url': 'https://service.z-wave.me/password/index.php',
+		'post_password_request_url': 'https://service.z-wave.me/password/',
 		// Get licence scratch id
-		'get_licence_scratchid': 'https://service.z-wave.me/license/index.php',
+		'get_licence_scratchid': 'https://service.z-wave.me/license/',
 		// Url to get a license key
 		'license_url': 'https://service.z-wave.me/license/upgrade.php',
 		// Raz latest version

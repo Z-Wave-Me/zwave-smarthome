@@ -3,6 +3,7 @@
 // https://www.toptal.com/sass/css3-flexbox-sass-grid-tutorial
 // https://mono.software/2016/12/02/building-a-simple-css-grid-with-flexbox/
 // https://zellwk.com/blog/responsive-grid-system/
+@use "sass:math";
 .grid {
   //box-sizing: border-box;
   @include displayFlex();
@@ -12,7 +13,7 @@
     @include flexBasis(100%);
 
     @if $grid_gutter !='0' {
-      margin: 0 $grid_gutter/2;
+      margin: 0 math.div($grid_gutter, 2);
     }
   }
 

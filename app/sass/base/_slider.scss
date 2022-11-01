@@ -1,6 +1,6 @@
 /* Slider:  http://onehungrymind.com/build-sweet-photo-slider-angularjs-animate/
 -------------------------------------------------- */
-
+@use "sass:math";
 
 /* Variables */
 
@@ -85,7 +85,7 @@ $slider-max-h: 200px;
             /* width: $slider-small-w/2;
             height: $slider-small-h;*/
             img {
-                width: $slider-small-w/2;
+                width: math.div($slider-small-w, 2);
                 height: $slider-small-h;
             }
         }
@@ -115,7 +115,7 @@ $slider-max-h: 200px;
         height: $slider-large-h;
         .slide {
             img {
-                width: $slider-large-w/3;
+                width: math.div($slider-large-w, 3);
                 height: $slider-large-h;
             }
         }
@@ -129,7 +129,7 @@ $slider-max-h: 200px;
         height: $slider-max-h;
         .slide {
             img {
-                width: $slider-max-w/3;
+                width: math.div($slider-max-w, 3);
                 height: $slider-max-h;
             }
         }

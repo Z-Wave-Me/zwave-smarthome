@@ -41,7 +41,7 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
 			navigator.mediaDevices.getUserMedia = function (constraints) {
 
 				// First get ahold of the legacy getUserMedia, if present
-				var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+				var getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia;
 
 				// Some browsers just don't implement it - return a rejected promise with an error
 				// to keep a consistent interface
@@ -131,7 +131,7 @@ myAppController.controller('SmartStartBaseController', function($scope, $timeout
  * The controller that include device with DSK.
  * @class SmartStartDskController
  */
-myAppController.controller('SmartStartDskController', function($scope, $timeout, $filter, cfg, dataFactory, dataService, _) {
+myAppController.controller('SmartStartDskController', function($scope, $timeout, $filter, cfg, dataFactory, dataService, mobileDetector, _) {
 	$scope.dsk = {
 		firmwareAlert: {},
 		input: {
@@ -147,6 +147,7 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 		list: [],
 		response: '',
 	};
+	$scope.isMobile = mobileDetector.isMobile()
 	$scope.registerDisabled = true;
 	var validateInputs = function () {
 		$scope.registerDisabled = Object.values($scope.dsk.input).some(function (input) {
@@ -159,7 +160,7 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
 	 * Fix length input
 	 */
 	$scope.fixLength = function (id) {
-		var value =  $scope.dsk.input['dsk_' + id].replace(/[^\d]/g,'');
+		var value =  $scope.dsk.input['dsk_' + id].replace(/[\D\s]/g,'');
 		$scope.dsk.input['dsk_' + id] = value.substring(0,5);
 		validateInputs();
 	}
@@ -297,7 +298,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             // Error message
             if (Vendors.state === 'rejected') {
                 angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
-                return;
             }
 
             // Error message
@@ -346,7 +346,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				return v;
 			}).join('-');
     	}
-    }), true;
+    });
 
 
 	/**
@@ -371,10 +371,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 	 * @returns {undefined}
 	 */
 	$scope.removeDsk = function(input, message) {
-		if (!input.isSmartStart) {
-			alertify.alertError($scope._t('delete_no_smartstart_warning'));
-			return;
-		}
 		alertify.confirm(message, function() {
 			dataFactory.postApi('remove_dsk', null, input.id).then(function(response) {
 				var index = _.findIndex($scope.collection.all, {
@@ -382,11 +378,11 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				});
 				if (index > -1) {
 					$scope.collection.all.splice(index, 1);
-					if($scope.collection.all.length == 0) {
-						angular.extend(cfg.route.alert, {
+					if($scope.collection.all.length === 0) {
+						$scope.collection.alert = {
 							message: $scope._t('empty_dsk_list'),
 							icon: 'fa-info-circle text-info'
-						});
+						}
 					}
 				}
 			}, function(error) {
@@ -446,13 +442,13 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 	 */
 	function setDSKCollection(dsk_list) {
 			if (_.isEmpty(dsk_list)) {
-				angular.extend(cfg.route.alert, {
+				$scope.collection.alert = {
 					message: $scope._t('empty_dsk_list'),
 					icon: 'fa-info-circle text-info'
-				});
+				}
 				return;
 			} else {
-				cfg.route.alert.message = null;
+				$scope.collection.alert = {};
 			}
 
 			// Data collection
@@ -507,14 +503,14 @@ myAppController.controller('SmartStartQrController', function($scope, $timeout, 
 		state: 'start',
 		response: ''
 	};
-
+	var active = true;
 	/**
 	 * stop video on page destroy
 	 */
 	$scope.$on('$destroy', function() {
 		$scope.stopStream();
+		active = false;
 	});
-
 	$scope.stopStream = function() {
 		if ($scope.dataHolder.video.mediaStream !== null) {
 			$scope.dataHolder.video.mediaStream.stop();
@@ -623,12 +619,14 @@ myAppController.controller('SmartStartQrController', function($scope, $timeout, 
 	};
 
 	function captureToCanvas() {
-		try {
-			$scope.dataHolder.canvas.gCtx.drawImage($scope.dataHolder.video.obj, 0, 0);
-			qrcode.decode();
-		} catch (e) {
-			console.log(e);
-			setTimeout(captureToCanvas, 500);
-		};
+		if (active) {
+			try {
+				$scope.dataHolder.canvas.gCtx.drawImage($scope.dataHolder.video.obj, 0, 0);
+				qrcode.decode();
+			} catch (e) {
+				console.log(e);
+				setTimeout(captureToCanvas, 500);
+			}
+		}
 	}
 });

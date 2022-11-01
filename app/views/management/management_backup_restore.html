@@ -16,7 +16,7 @@
   <div class="form form-page">
     <fieldset>
       <h3>{{_t('local_backup')}}</h3>
-      <p ng-bind-html="_t('backup_info', {__link__ : 'http://'+hostName+':8083/expert/#/network/control'}) | toTrusted"></p>
+      <p ng-bind-html="_t('backup_info', {__link__ : '/expert/#/network/control'}) | toTrusted"></p>
     </fieldset>
     <div class="fieldset submit-entry">
       <button class="btn btn-submit" type="button" title="{{_t('nm_backup_download')}}" ng-click="downLoadBackup()" ng-disabled="rowSpinner['downLoadBackup()']">

@@ -1,6 +1,7 @@
 /* Absolute Center CSS Spinner
 http://codepen.io/MattIn4D/pen/LiKFC
 -------------------------------------------------- */
+@use "sass:math";
 #loading, #alpaca-spinner {
     position: fixed;
     z-index: $zindex-loader - 1;
@@ -61,17 +62,17 @@ $widget-loader-foreground: #184B7C;
 $widget-loader-w: 64px + 6;
 $widget-loader-h: 64px + 6;
 $widget-loader-before-h: 64px + 8;
-$widget-loader-before-w: $widget-loader-before-h/2;
+$widget-loader-before-w: math.div($widget-loader-before-h, 2);
 // Large devices
 $widget-loader-w-l: 64px + 6;
 $widget-loader-h-l: 64px + 6;
 $widget-loader-before-h-l: 64px + 8;
-$widget-loader-before-w-l: $widget-loader-before-h-l/2;
+$widget-loader-before-w-l: math.div($widget-loader-before-h-l, 2);
 
 $widget-loader-w-m: 64px + 6;
 $widget-loader-h-m: 64px + 6;
 $widget-loader-before-h-m: 64px + 8;
-$widget-loader-before-w-m: $widget-loader-before-h-m/2;
+$widget-loader-before-w-m: math.div($widget-loader-before-h-m, 2);
 
 .progress-true {
     .widget-preview-img{

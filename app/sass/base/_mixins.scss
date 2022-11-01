@@ -1,7 +1,7 @@
 //
 // Mixins
 // --------------------------------------------------
-
+@use "sass:math";
 // Clearfix
 @mixin appClearFix() {
   &:before,
@@ -109,7 +109,7 @@
   -webkit-transform: scale($scale); /* Safari and Chrome */
   -o-transform: scale($scale); /* Opera */
   padding: $spacing;
-  margin: 0 $spacing/2 0;
+  margin: 0 math.div($spacing, 2) 0;
 
 }
 
@@ -202,7 +202,7 @@
 @mixin gridColClasses($modifier, $cols,$gutter: 0,$class_name:'.col') {
   @for $i from 1 through $cols {
     #{$class_name}#{$modifier}-#{$i} {
-      $width: (100 / ($cols / $i)) * 1%;
+      $width: math.div(100, math.div($cols, $i)) * 1%;
       @if $gutter != 0 {
         @include flexBasis(unquote("calc( #{$width} - #{$gutter} )"));
       }@else {

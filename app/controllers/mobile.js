@@ -8,7 +8,7 @@
  * The controller that manage mobile devices.
  * @class MobileManageController
  */
-myAppController.controller('MobileManageController', function($scope, $q, $filter, dataFactory, dataService, _) {
+myAppController.controller('MobileManageController', function($scope, $q, $filter, dataFactory, dataService, cfg, _) {
     $scope.mobile = {
         input: {}
     };

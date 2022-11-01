@@ -303,9 +303,9 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 	 * Set device
 	 */
 	function setDevice(device) {
-		var findZwaveStr = "ZWayVDev_zway_";
-		var findZenoStr = "ZEnoVDev_zeno_x";
-		var zwaveId = false;
+		var findZwaveRegEx = /ZWayVDev_([^_]+)_([0-9]+)-.*/;;
+		var findZenoRegEx = /ZEnoVDev_([^_]+)_x([0-9a-f]+)_.*/;
+		
 		$scope.elementId.input = device;
 
 		if ($scope.user.role === 1) {
@@ -320,68 +320,14 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			$scope.elementId.appType['instance'] = instance || null;
 			$scope.elementId.appType['modul'] = modul || null;
 
-			if (device.id.indexOf(findZwaveStr) > -1) {
-				zwaveId = device.id.split(findZwaveStr)[1].split('-')[0];
-				$scope.elementId.appType['zwave'] = zwaveId.replace(/[^0-9]/g, '');
-			} else if (device.id.indexOf(findZenoStr) > -1) {
-				$scope.elementId.appType['enocean'] = device.id.split(findZenoStr)[1].split('_')[0];
+			var match;
+			if (match = device.id.match(findZwaveRegEx)) {
+				$scope.elementId.appType['zwave'] = match[2];
+			} else if (match = device.id.match(findZenoRegEx)) {
+				$scope.elementId.appType['enocean'] = match[2];
 			}
 		}
 
-		if (cfg.route.os == 'ZWayMobileAppAndroid') {
-			if ($scope.elementId.input.deviceType == 'toggleButton' ||
-				$scope.elementId.input.deviceType == 'switchBinary') {
-				if ($scope.elementId.input.metrics.level == "on") {
-					var device_on = angular.copy($scope.elementId.input);
-
-					var device_off = angular.copy($scope.elementId.input);
-					device_off.metrics.level = "off";
-				} else if ($scope.elementId.input.metrics.level == "off") {
-					var device_off = angular.copy($scope.elementId.input);
-
-					var device_on = angular.copy($scope.elementId.input);
-					device_on.metrics.level = "on";
-				}
-
-				offIconPath = dataService.assignElementIcon(device_off);
-				onIconPath = dataService.assignElementIcon(device_on);
-
-				var offData = {
-					"id": $scope.elementId.input.id,
-					"name": $filter('stringToSlug')($scope.elementId.input.metrics.title),
-					"device_type": $scope.elementId.input.deviceType,
-					"icon": $scope.elementId.input.metrics.icon,
-					"iconPath": offIconPath,
-					"state": "off"
-				};
-
-				var onData = {
-					"id": $scope.elementId.input.id,
-					"name": $filter('stringToSlug')($scope.elementId.input.metrics.title),
-					"device_type": $scope.elementId.input.deviceType,
-					"icon": $scope.elementId.input.metrics.icon,
-					"iconPath": onIconPath,
-					"state": "on"
-				};
-
-				onParams = Object.keys(onData).map(function(key) {
-					return key + '=' + onData[key];
-				}).join('&');
-
-				offParams = Object.keys(offData).map(function(key) {
-					return key + '=' + offData[key];
-				}).join('&');
-
-				var addOffUrl = "/AndoridWidget?" + offParams;
-				var addOnUrl = "/AndoridWidget?" + onParams;
-
-				angular.extend($scope.elementId.input, {
-					addOffUrl: addOffUrl
-				}, {
-					addOnUrl: addOnUrl
-				});
-			}
-		}
 		var orderBy = $filter('orderBy');
 
 		angular.extend($scope.elementId.input, {

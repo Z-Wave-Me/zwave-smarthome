@@ -72,15 +72,15 @@ myApp.directive('bbRowSpinner', function() {
 			label: '=',
 			spinner: '=',
 			icon: '=',
-			core: '='
+			core: '=',
+			labelClass: '@'
 		},
 		template: '<span title="{{label}}"><span class="btn-spin">' +
-			'<i ng-class="[core ? core : \'fa\', spinner ? \'fa-spinner fa-spin\' : icon]"></i>' +
+			'<i ng-class="spinner ? \'fa fa-spinner fa-spin\' : (icon ? ((core ? core : \'fa\') + \' \' + icon) : \'\')"></i>' +
 			'</span> ' +
-			'<span class="btn-label" ng-if="label">' +
+			'<span class="btn-label" ng-class="labelClass" ng-if="label">' +
 			'{{label}}' +
-			'</span></span>'
-
+			'</span></span>',
 	};
 });
 
@@ -487,24 +487,24 @@ myApp.directive('bbDskNavigate', function() {
 	return {
 		restrict: 'A',
 		link: function(scope, elem, attrs) {
-			elem.find('input').on('keyup', function(e) {
-				//var target = angular.element('#'+e.target.id);
-				switch (e.which) {
-					case 39: // Focus next input with right arrow key
-						$(this).closest('span').next().find('input').focus();
-						break;
-					case 37: // Focus previus input with left arrow key
-						$(this).closest('span').prev().find('input').focus();
-						break;
-					default: // Focus next input if input value length = 5
-						var elLength = $(this).val().length;
-						if (elLength === 5) {
+			setTimeout(function () {
+				elem.find('input').on('keyup', function(e) {
+					switch (e.key) {
+						case 'ArrowRight': // Focus next input with right arrow key
 							$(this).closest('span').next().find('input').focus();
-						}
+							break;
+						case 'ArrowLeft': // Focus previous input with left arrow key
+							$(this).closest('span').prev().find('input').focus();
+							break;
+						default: // Focus next input if input value length = 5
+							if ($(this).val().length === 5) {
+								$(this).closest('span').next().find('input').focus();
+							}
+							break;
+					}
+				});
+			}, 0);
 
-						break;
-				}
-			});
 		}
 	};
 });

@@ -10,9 +10,9 @@
             <div class="switch-wrap">
                 <label class="switch">
                     <input type="checkbox"
-                           ng-checked="widgetSecurityControl.find.metrics.Clevel === 'cOn'"
-                           ng-model="dataHolder.devices.switchButton[widgetSecurityControl.find.id]"
-                           ng-change="runCmd(widgetSecurityControl.find.id + '/command/' + (dataHolder.devices.switchButton[widgetSecurityControl.find.id] ? 'cOn':'cOff'), widgetSecurityControl.find.id)" />
+                           ng-checked="device.metrics.Clevel === 'cOn'"
+                           ng-click="device.metrics.Clevel = device.metrics.Clevel === 'cOn' ? 'cOff': 'cOn';
+                           runCmd(widgetSecurityControl.find.id + '/command/' + device.metrics.Clevel, widgetSecurityControl.find.id)" />
                     <div class="slider round"></div>
                 </label>
             </div>

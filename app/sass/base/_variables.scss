@@ -1,6 +1,6 @@
 /* Global variables
 -------------------------------------------------- */
-
+@use "sass:math";
 /*-------------------------------------*/
 // MEDIA QUERIES
 // Ultra small devices, (old Phones)
@@ -23,7 +23,7 @@ $grid-gutter: 15px;
 $spacing: 10px;
 $spacing-double: $spacing * 2;
 $spacing-third: $spacing * 3;
-$spacing-half: $spacing / 2;
+$spacing-half: math.div($spacing, 2);
 $spacing-fatal-error: 20px 20px 20px 52px;
 
 /*-------------------------------------*/

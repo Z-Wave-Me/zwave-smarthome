@@ -18,7 +18,7 @@
                     <img id="event_img_{{v.id}}" class="report-img-s" ng-src="{{v.iconPath}}" alt="{{v.type}}"/>
                 </td>
                     <td>
-                        <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}">{{v.timestamp | eventDate}}</span>
+                        <span class="text-supp event-date" title="{{v.timestamp| date:'dd.MM.yyyy H:mm'}}">{{v.timestamp | eventDate: cfg.route.time.timeZoneOffset}}</span>
                     </td>
                     <td>
                         <span ng-if="v.message | hasNode:'l'"> <span ng-bind="v.message.dev"></span> : <strong ng-bind="v.message.l"></strong></span>

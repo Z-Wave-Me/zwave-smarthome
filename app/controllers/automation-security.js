@@ -544,13 +544,13 @@ myAppController.controller('SecurityIdController', function ($scope, $routeParam
         dataFactory.getApi('devices', '', true).then(function (response) {
             var devices = dataService.getDevicesData(response.data.data.devices)
             _.filter(devices.value(), function (v) {
-                var getZwayId = function (deviceId) {
-                    var zwaveId = false;
-                    if (deviceId.indexOf("ZWayVDev_zway_") > -1) {
-                        zwaveId = deviceId.split("ZWayVDev_zway_")[1].split('-')[0];
-                        return zwaveId.replace(/[^0-9]/g, '');
-                    }
-                    return zwaveId;
+                function getZwayId(deviceId) {
+                        var match;
+                        if (match = deviceId.match(/ZWayVDev_([^_]+)_([0-9]+)-/)) {
+                                return match[2];
+                        } else {
+                                return false;
+                        }
                 }
                 var obj = {
                     deviceId: v.id,

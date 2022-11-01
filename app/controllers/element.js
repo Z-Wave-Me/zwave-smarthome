@@ -173,12 +173,12 @@ myAppController.controller('ElementBaseController', function($scope, $q, $interv
     }
 
     /**
-     * Function to run when when a user stops moving an element
+     * Function to run when a user stops moving an element
      * @param item - is the item in model which started being moved
      * @param part - is the part from which the $item originates
      * @param index - is the index of the $item in $part
      */
-    $scope.dragDropStop = function(item, part, part) {
+    $scope.dragDropStop = function(item, part) {
         angular.element('.card-element-dragdrop').removeClass('dd-on-start');
     }
 

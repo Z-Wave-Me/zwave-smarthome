@@ -304,7 +304,7 @@ myAppController.controller('AlexaSetupController', function($scope, $q, $timeout
 
 });
 
-myAppController.controller('AlexaManageController', function($scope, $q, $location, cfg, dataFactory, dataService, cfg, _) {
+myAppController.controller('AlexaManageController', function($scope, $q, $location, cfg, dataFactory, dataService, _) {
 	$scope.alexa = {
 		instance: {},
 		devices: {
@@ -501,12 +501,12 @@ myAppController.controller('AlexaManageController', function($scope, $q, $locati
 	 */
 	function setInstance(data) {
 		$scope.alexa.instance = data;
-	};
+	}
 
 
 });
 
-myAppController.controller('GoogleHomeManageController', function($scope, $q, cfg, dataFactory, dataService, cfg, _) {
+myAppController.controller('GoogleHomeManageController', function($scope, $q, cfg, dataFactory, dataService, _) {
 	$scope.google_home = {
 		instance: {},
 		devices: {

@@ -527,8 +527,8 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
 
     /**
      * Post ZWaveAPI run command
-     * @param {type} param
-     * @returns {unresolved}
+     * @param {string} param
+     * @returns {Promise}
      */
     function runExpertCmd(param) {
         return $http({

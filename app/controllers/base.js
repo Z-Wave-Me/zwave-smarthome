@@ -12,7 +12,7 @@ var myAppController = angular.module('myAppController', []);
  * The app base controller.
  * @class BaseController
  */
-myAppController.controller('BaseController', function($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q, $websocket, cfg, cfgicons, dataFactory, dataService, deviceDetector, myCache, _) {
+myAppController.controller('BaseController', function($scope, $rootScope, $cookies, $filter, $location, $route, $window, $interval, $timeout, $http, $q, cfg, cfgicons, dataFactory, dataService, deviceDetector, myCache, _) {
 
     // Global scopes
     $scope.nightMode = false;
@@ -832,7 +832,7 @@ myAppController.controller('GlobalDevicesController', function ($rootScope, $sco
      * Drop mode on change page
      */
     $rootScope.$on('$routeChangeStart', function($event, next, current) {
-        if (next.$$route.originalPath === '/elements') {
+        if (next.$$route && next.$$route.originalPath === '/elements') {
             filterDevices();
         }
         $scope.dataHolder.mode = 'default';
