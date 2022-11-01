@@ -1,4 +1,4 @@
-/* Copyright:  Z-Wave.Me, Created: 30-08-2022 17:18:56 */
+/* Copyright:  Z-Wave.Me, Created: 01-11-2022 05:22:29 */
 /**
  * @overview The object with default icons.
  * @author Martin Vach
@@ -12,6 +12,12 @@ var icon_data = {
     cfgicons: {
         element: {
             icon: {
+                lock: {
+                    level: {
+                        open: 'lock-open.png',
+                        closed: 'lock-closed.png'
+                    }
+                },
                 door: {
                     level: {
                         open: 'door-open.png',

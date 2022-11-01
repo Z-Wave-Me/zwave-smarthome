@@ -14,12 +14,14 @@ Serguei Poltorak
 - Added Shortcuts for SwitchBinary, SwitchMultilevel and Door lock for Android (on the device settings page)
 - Users can generate access tokens now (to use in integrations)
 - Smart Start, QR scanning and manage of the DSK list
+- Faster UI load
 #### Fixes:
 - UI improvements
 - Correct display of arming status
 - Interview timer fixed
 - Improved work with two or more Z-Wave hardware
 - Time in events
+- Thermostat on/off icon
 
 ## v1.13.5
 #### New features:
