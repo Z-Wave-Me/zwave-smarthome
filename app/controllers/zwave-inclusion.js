@@ -489,7 +489,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 var securityS2 = $filter('hasNode')(ZWaveAPIData, 'devices.' + nodeId + '.instances.0.commandClasses.159');
                 //console.log('securityS2: ',securityS2);
                 //console.log('securityS2.data.requestedKeys.value: ',securityS2.data.requestedKeys.value);
-                if(!securityS2.data.requestedKeys.value){
+                if(!securityS2?.data.requestedKeys.value){
                     $scope.startConfiguration({nodeId: nodeId});
                     return;
                 }else{
@@ -563,7 +563,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                                     //console.log("securityS2.data.publicKey.value", securityS2.data.publicKey.value);
                                     $scope.zwaveInclusion.s2.input.publicKey = securityS2.data.publicKey.value;
                                     $scope.zwaveInclusion.s2.input.publicKeyAuthenticationRequired = securityS2.data.publicKeyAuthenticationRequired.value;
-                                    $scope.zwaveInclusion.s2.input.dskPin = $scope.dskBlock($scope.zwaveInclusion.s2.input.publicKey, 1);
+                                    // select two first bites
+                                    $scope.zwaveInclusion.s2.input.dskPin = $scope.dskBlock($scope.zwaveInclusion.s2.input.publicKey, -1);
 
                                     // if S2Autheticated or S2Access show Dialog
                                     if($scope.zwaveInclusion.s2.input.keysRequested.S2Authenticated || $scope.zwaveInclusion.s2.input.keysRequested.S2Access) {
@@ -702,7 +703,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * Check S2 CC interview
      */
     function  checkS2Interview(nodeId) {
-        var maxcnt = 10;
+        var maxcnt = 42;
         var cnt = 0;
         //console.log('interviewDone S2: ', $scope.zwaveInclusion.s2.interviewDone)
             var refresh = function () {
@@ -985,7 +986,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                         /*angular.extend($scope.zwaveInclusion.automatedConfiguration.includedDevice,
                             {interviewDoneCnt: $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt + 1}
                         );*/
-                        $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt ++;
+                        $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt++;
                     } else { // An interview is not done
                         // Extending interviewNotDone
                         $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone[id] = iData;
@@ -1035,7 +1036,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                             $scope.forceInterview($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone);
                         }
                         break;
-                    case 16:
+                    case 42:
                         angular.forEach($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone, function(value, ccKey){
 
                             var commandClass = ccKey.split('_')[1];
