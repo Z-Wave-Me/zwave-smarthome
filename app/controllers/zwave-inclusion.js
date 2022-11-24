@@ -703,7 +703,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
      * Check S2 CC interview
      */
     function  checkS2Interview(nodeId) {
-        var maxcnt = 10;
+        var maxcnt = 42;
         var cnt = 0;
         //console.log('interviewDone S2: ', $scope.zwaveInclusion.s2.interviewDone)
             var refresh = function () {
@@ -986,7 +986,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                         /*angular.extend($scope.zwaveInclusion.automatedConfiguration.includedDevice,
                             {interviewDoneCnt: $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt + 1}
                         );*/
-                        $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt ++;
+                        $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewDoneCnt++;
                     } else { // An interview is not done
                         // Extending interviewNotDone
                         $scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone[id] = iData;
