@@ -489,7 +489,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                 var securityS2 = $filter('hasNode')(ZWaveAPIData, 'devices.' + nodeId + '.instances.0.commandClasses.159');
                 //console.log('securityS2: ',securityS2);
                 //console.log('securityS2.data.requestedKeys.value: ',securityS2.data.requestedKeys.value);
-                if(!securityS2.data.requestedKeys.value){
+                if(!securityS2?.data.requestedKeys.value){
                     $scope.startConfiguration({nodeId: nodeId});
                     return;
                 }else{
