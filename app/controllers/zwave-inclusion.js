@@ -1036,7 +1036,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                             $scope.forceInterview($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone);
                         }
                         break;
-                    case 16:
+                    case 42:
                         angular.forEach($scope.zwaveInclusion.automatedConfiguration.includedDevice.interviewNotDone, function(value, ccKey){
 
                             var commandClass = ccKey.split('_')[1];
