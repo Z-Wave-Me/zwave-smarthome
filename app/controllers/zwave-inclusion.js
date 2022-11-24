@@ -563,7 +563,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
                                     //console.log("securityS2.data.publicKey.value", securityS2.data.publicKey.value);
                                     $scope.zwaveInclusion.s2.input.publicKey = securityS2.data.publicKey.value;
                                     $scope.zwaveInclusion.s2.input.publicKeyAuthenticationRequired = securityS2.data.publicKeyAuthenticationRequired.value;
-                                    $scope.zwaveInclusion.s2.input.dskPin = $scope.dskBlock($scope.zwaveInclusion.s2.input.publicKey, 1);
+                                    // select two first bites
+                                    $scope.zwaveInclusion.s2.input.dskPin = $scope.dskBlock($scope.zwaveInclusion.s2.input.publicKey, -1);
 
                                     // if S2Autheticated or S2Access show Dialog
                                     if($scope.zwaveInclusion.s2.input.keysRequested.S2Authenticated || $scope.zwaveInclusion.s2.input.keysRequested.S2Access) {
