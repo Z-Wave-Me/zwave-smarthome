@@ -164,7 +164,7 @@
     "custom_images_no_available": "Es wurden noch keine benutzerdefinierten Bilder hochgeladen.",
     "custom_image_delete_info": "Ausgewähltes Bild löschen",
     "custom_message": "Benutzerdefinierte Nachricht",
-    "custom_message_help": "Geben Sie hier eine Nachricht ein, die anstelle der eigentlichen Benachrichtung gesendet werden soll. Lassen Sie das Feld leer, um die Systemstandardnachricht zu verwenden.",
+    "custom_message_help": "Geben Sie hier eine Nachricht ein, die anstelle der eigentlichen Benachrichtung gesendet werden soll. Lassen Sie das Feld leer, um die Systemstandardnachricht zu verwenden. Verwenden Sie <devId:property>, um auf eine Eigenschaft eines bestimmten Geräts zu verweisen. Beispiel: <DummyDevice_44:metrics:level> oder <ZWayVDev_zway5_7-0-38:metrics:title> (siehe API-Struktur unten). Wenn devId leer ist, wird das Gerät verwendet, auf dem das Ereignis ausgelöst wurde. Beispiel: \"<:metrics:title> ist <:metrics:level>, und <DummyDevice_44:metrics:title> ist <DummyDevice_44:metrics:level>\" ergibt \"Licht ist on, und Fenster Sensor ist off \"",
     "daily": "täglich",
     "date": "Datum",
     "day_0": "Sonntag",
