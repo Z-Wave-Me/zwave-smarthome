@@ -467,7 +467,7 @@ module.exports = function(grunt) {
 				},
 				expand: true,
 				cwd: 'dist/',
-				src: ['**/*.{js,css,html,json,ico}'],
+				src: ['**/*.{js,css,html,json,ico}', '!**/config.js', '!index.html'],
 				dest: 'dist/',
 				ext: (ext) =>  ext + '.gz'
 			},

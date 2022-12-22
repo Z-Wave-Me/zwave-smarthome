@@ -164,7 +164,7 @@
     "custom_images_no_available": "No custom images have been uploaded yet.",
     "custom_image_delete_info": "Delete selected image",
     "custom_message": "Custom Message",
-    "custom_message_help": "Enter a message that should be sent instead of the actual notification. Leave empty to use system default message.",
+    "custom_message_help": "Enter a message that should be sent instead of the actual notification. Leave empty to use system default message. Use <devId:property> to refer to a property of a specific device. For example, <DummyDevice_44:metrics:level> or <ZWayVDev_zway5_7-0-38:metrics:title> (see API structure below). If devId is empty, the device on which the event has fired is used. For example, \"<:metrics:title> is <:metrics:level>, while <DummyDevice_44:metrics:title> is <DummyDevice_44:metrics:level>\" will produce \"Light is on, while Door sensor is off\"",
     "daily": "diariamente",
     "date": "Data",
     "day_0": "Domingo",

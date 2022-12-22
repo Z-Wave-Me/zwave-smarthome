@@ -9,6 +9,12 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.14.2
+#### New features:
+- Notifications can now include device properties and status (via <dev:metric:name>)
+#### Fixes:
+- Exclude index.html and config.js from .gz archiving
+
 ## v1.14.1
 #### Fixes:
 - Fixed security initerview
