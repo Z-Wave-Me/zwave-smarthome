@@ -1056,6 +1056,8 @@
     "authorisationNeeded" : "Не спрашивать пин-код/отпечаток пальца/Face ID",
     "btn_lr_long_range": "Long Range",
     "btn_lr_classic": "btn_lr_classic",
+    "smartStartRangeHelp": "Выберите режим добавления Classic или Long Range",
+    "smartStartHelp": "Для добавления устройства подайте питание",
     "shortcutName": "Имя ярлыка"
 
 }
