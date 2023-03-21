@@ -24499,7 +24499,7 @@ img {
 }
 @media only screen and (min-width: 768px) {
   .app-row-widget {
-    margin: -10px;
+    margin: 0 -10px;
   }
 }
 
@@ -30110,6 +30110,9 @@ img.widget-promo-image {
   #table_desktop {
     display: block;
   }
+}
+#table_desktop .last-added-device {
+  background-color: #f2dede;
 }
 
 .dsk {
