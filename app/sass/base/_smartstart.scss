@@ -173,6 +173,9 @@ $ss-img-w: 64px;
     @include mediaQueries(min-small) {
         display: block;
     }
+    .last-added-device {
+        background-color: $app-bcg-danger;
+    }
 }
 
 .dsk {

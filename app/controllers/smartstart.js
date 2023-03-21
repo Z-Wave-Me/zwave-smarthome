@@ -251,7 +251,8 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 		findOrg: {},
 		deviceTypes: {},
 		deviceInfos: {},
-		vendors: {}
+		vendors: {},
+		lastRegistered: null,
 	};
 
 	 /**
@@ -269,7 +270,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
         ];
 
         $q.allSettled(promises).then(function (response) {
-            // console.log(response)
+
             var deviceClassesXML = response[0],
             	devicesInfo = response[1],
             	DSKList = response[2],
@@ -286,7 +287,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             // Error message
             if (devicesInfo.state === 'rejected') {
                 angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
-                return;
             }
 
             // Error message
@@ -303,7 +303,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             // Error message
             if (locations.state === 'rejected') {
                 angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
-                return;
             }
 
             // Success - DeviceClassesXML
@@ -322,7 +321,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             if(Vendors.state === 'fulfilled') {
             	$scope.collection.vendors = Vendors.value.data.data.zwave_vendors;
             }
-
             // Success - DSKList
             if(DSKList.state === 'fulfilled') {
             	setDSKCollection(DSKList.value.data);
@@ -464,19 +462,26 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				brand_image = $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Brandname_Image : (vendor ? vendor.Image : '');
 				brand_name = $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].BrandName : (vendor ? vendor.Name : '-');
 
+				if (!$scope.collection.lastRegistered || $scope.collection.lastRegistered < v.timestamp) {
+					$scope.collection.lastRegistered = v.timestamp;
+				}
 				// Extending an object
 				v.added = {
 					pId: pId,
 					device_type: $scope.collection.deviceTypes[typeId] ? $scope.collection.deviceTypes[typeId] : '',
 					dskArray: v.DSK.split('-'),
+					s2pin: v.DSK?.length ? (v.DSK?.slice(0, 5) + '...') : '',
+					timestamp: v.timestamp,
 					registred_at: $filter('dateTimeFromTimestamp')(v.timestamp),
 					added_at: v.addedAt ? $filter('dateTimeFromTimestamp')(v.addedAt) : '-',
 					product_image: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image : '',
 					product_image_remote: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image_remote : '',
 					brand_name: brand_name,
 					brand_image: brand_image,
-					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-'
+					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-',
+					longRangeSupport: Math.random() > .5
 				};
+				console.log(v);
 				return v;
 			});
 	}

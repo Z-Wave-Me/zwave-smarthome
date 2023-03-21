@@ -111,6 +111,7 @@
         <thead>
           <tr>
             <th>{{_t('registered_at')}}</th>
+            <th>{{_t('s2pin')}}</th>
             <th>{{_t('device_name')}}</th>
             <th>{{_t('lb_room')}}</th>
             <th>{{_t('brand_name')}}</th>
@@ -118,14 +119,22 @@
             <th>{{_t('product_name')}}</th>
             <th>{{_t('state')}}</th>
             <th>{{_t('added_at')}}</th>
+            <th>{{_t('btn_lr_long_range')}}</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="v in collection.all track by $index">
+          <tr
+            ng-repeat="v in collection.all track by $index"
+            ng-class="{'last-added-device': collection.lastRegistered === v.timestamp}"
+          >
             <!-- time -->
             <td data-title="">
               <span class="text-supp">{{v.added.registred_at}}</span>
+            </td>
+            <!-- Part DSK -->
+            <td>
+              <span>{{v.added.s2pin}}</span>
             </td>
             <!-- Given name -->
             <td data-title="given_name">
@@ -150,14 +159,26 @@
             <!-- state -->
             <td class="text-center" data-title="">
               <div ng-show="v.isSmartStart">
-                <span class="label label-primary" ng-class="v.state == 'included' ? 'label-primary':'label-warning'">
+                <span
+                  ng-if="v.state === 'pending'"
+                  class="label label-info"
+                >
+                  <i class="fas fa-clock"></i>
+                  {{_t('notIncluded')}}
+                </span>
+
+                <span
+                  ng-if="v.state !== 'pending'"
+                  class="label label-primary"
+                  ng-class="v.state == 'included' ? 'label-primary':'label-warning'"
+                >
                   <i ng-class="v.state == 'included' ? 'fas fa-check':'fas fa-clock'"></i>
-                  {{v.state}}
+                  {{v.added.state}}
                 </span>
               </div>
               <!-- info window -->
-              <div class="infowindow-wrap" ng-show="!v.isSmartStart">
-                <i class="fas fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
+              <div class="infowindow-wrap" ng-if="!v.isSmartStart">
+                <i class="far fa-lg fa-edit clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
                 <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
                   <div class="infowindow-in text-center">
                     <p>{{_t('device_no_smartstart')}}</p>
@@ -169,6 +190,12 @@
             <!-- added add -->
             <td data-title="added_at">
               <span class="text-supp">{{v.added.added_at}}</span>
+            </td>
+            <!-- Long range-->
+            <td>
+              <span class="text-supp">
+                <i class="fas fa-lg" ng-class="v.added.longRangeSupport ? 'fa-check text-success' : 'fa-times text-danger'"></i>
+              </span>
             </td>
             <!-- action -->
             <td class="td-action" data-title="">
