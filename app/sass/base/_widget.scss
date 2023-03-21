@@ -3,7 +3,7 @@
 .app-row-widget {
     // Media queries
     @include mediaQueries(min-small) {
-        margin: 0 -$spacing;
+        margin: 0 (-$spacing);
     }
 }
 .widget-entry{
