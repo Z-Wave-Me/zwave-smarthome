@@ -1058,6 +1058,9 @@
     "btn_lr_classic": "btn_lr_classic",
     "s2pin": "S2 PIN",
     "notIncluded": "не включено",
+    "supported": "Поддерживается",
+    "notSupported": "Не поддерживается",
+    "invalid": "Недействительный",
     "shortcutName": "Имя ярлыка"
 
 }
