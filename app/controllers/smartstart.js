@@ -253,6 +253,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 		deviceInfos: {},
 		vendors: {},
 		lastRegistered: null,
+		hasNotIncludedDevices: false,
 	};
 
 	 /**
@@ -471,6 +472,10 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				}
 
 				v.state = stateMap[v.state] ? stateMap[v.state] : v.state;
+				if (v.state !== 'included') {
+					$scope.hasNotIncludedDevices = true;
+				}
+
 				// Extending an object
 				v.added = {
 					pId: pId,
