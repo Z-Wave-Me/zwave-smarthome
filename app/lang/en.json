@@ -1056,5 +1056,7 @@
     "authorisationNeeded" : "Don't ask for pin/fingerprint/Face ID",
     "btn_lr_long_range": "Long Range",
     "btn_lr_classic": "Classic",
+    "smartStartRangeHelp": "Select mode: Classic or Long Range",
+    "smartStartHelp": "Power on a device",
     "shortcutName": "Shortcut name"
 }
