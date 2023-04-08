@@ -37,10 +37,10 @@
             </td>
             <!-- action -->
             <td class="td-action" data-title="">
-              <div class="btn-group" ng-show="v.isSmartStart">
+              <div class="btn-group">
                 <!-- update  -->
                 <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="setData(v);handleModal('dskModal', $event)">
-                <i class="fas fa-info-circle text-primary"></i>
+                <i class="fas fa-edit text-primary"></i>
                 </button>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v,_t('lb_delete_confirm'))">
@@ -158,33 +158,27 @@
             </td>
             <!-- state -->
             <td class="text-center" data-title="">
-              <div ng-show="v.isSmartStart">
+              <div ng-if="v.isValid">
                 <span
-                  ng-if="v.state === 'pending'"
-                  class="label label-info"
+                        ng-if="v.state == 'included'"
+                  class="label label-primary"
+                >
+                  <i class="fas fa-check"></i>
+                  {{v.state}}
+                </span>
+                <span
+                        ng-if="v.state == 'not included'"
+                        class="label label-info"
                 >
                   <i class="fas fa-clock"></i>
-                  {{_t('notIncluded')}}
-                </span>
-
-                <span
-                  ng-if="v.state !== 'pending'"
-                  class="label label-primary"
-                  ng-class="v.state == 'included' ? 'label-primary':'label-warning'"
-                >
-                  <i ng-class="v.state == 'included' ? 'fas fa-check':'fas fa-clock'"></i>
-                  {{v.added.state}}
+                  {{v.state}}
                 </span>
               </div>
-              <!-- info window -->
-              <div class="infowindow-wrap" ng-if="!v.isSmartStart">
-                <i class="far fa-lg fa-edit clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
-                <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
-                  <div class="infowindow-in text-center">
-                    <p>{{_t('device_no_smartstart')}}</p>
-                    <a href="#zwave/vendors" class="btn btn-primary">{{_t('manual_add')}}</a>
-                  </div>
-                </div>
+              <div ng-if="!v.isValid">
+                <span class="label label-danger">
+                  <i class="fas fa-times"></i>
+                  {{_t('invalid')}}
+                </span>
               </div>
             </td>
             <!-- added add -->
@@ -195,21 +189,22 @@
             <td>
               <span class="text-supp">
                 <i class="fas fa-lg" ng-class="v.added.longRangeSupport ? 'fa-check text-success' : 'fa-times text-danger'"></i>
+                {{v.added.longRangeSupport ? _t('supported') : _t('notSupported')}}
               </span>
             </td>
             <!-- action -->
             <td class="td-action" data-title="">
               <div class="btn-group">
                 <!-- update  -->
-                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-show="v.isSmartStart" ng-click="setData(v);handleModal('dskModal', $event)">
-                <i class="fas fa-info-circle text-primary"></i>
+                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="setData(v);handleModal('dskModal', $event)">
+                <i class="fas fa-edit text-primary"></i>
                 </button>
                 <!-- configure node -->
                 <a class="btn btn-default" ng-if="v.state === 'included'" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
                     <i class="fas fa-cog text-primary"></i>
                 </a>
                 <!-- delete -->
-                <button class="btn btn-default" title="{{_t('btn_remove')}}" ng-click="v.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
+                <button ng-if="v.state !== 'included'" class="btn btn-default" title="{{_t('btn_remove')}}" ng-click="v.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
                 <i class="fas fa-trash text-danger"></i>
                 </button>
               </div>

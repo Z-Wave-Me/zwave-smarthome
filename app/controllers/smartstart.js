@@ -451,10 +451,14 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 
 			// Data collection
 			$scope.collection.all = _.filter(dsk_list, function(v) {
-				var typeId = v.DeviceTypeGenericDeviceClass;
+				var stateMap = {
+					pending: 'not included'
+				}
+
+				var typeId = v.deviceTypeGeneric;
 				var pIdArray = v.PId.split('.');
 				var pId = parseInt(pIdArray[0]) + '.' + parseInt(pIdArray[1]) + '.' + parseInt(pIdArray[2]);
-				var vendor = _.findWhere($scope.collection.vendors, {"ManufacturerId": v.ManufacturerId});
+				var vendor = _.findWhere($scope.collection.vendors, {"ManufacturerId": v.manufacturerId});
 
 				var brand_name,
 					brand_image;
@@ -465,12 +469,14 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				if (!$scope.collection.lastRegistered || $scope.collection.lastRegistered < v.timestamp) {
 					$scope.collection.lastRegistered = v.timestamp;
 				}
+
+				v.state = stateMap[v.state] ? stateMap[v.state] : v.state;
 				// Extending an object
 				v.added = {
 					pId: pId,
 					device_type: $scope.collection.deviceTypes[typeId] ? $scope.collection.deviceTypes[typeId] : '',
-					dskArray: v.DSK.split('-'),
-					s2pin: v.DSK?.length ? (v.DSK?.slice(0, 5) + '...') : '',
+					dskArray: v.DSK?.split('-'),
+					s2pin: v.DSK?.length ? (v.DSK?.slice(0, 5)) : '',
 					timestamp: v.timestamp,
 					registred_at: $filter('dateTimeFromTimestamp')(v.timestamp),
 					added_at: v.addedAt ? $filter('dateTimeFromTimestamp')(v.addedAt) : '-',
@@ -479,9 +485,8 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 					brand_name: brand_name,
 					brand_image: brand_image,
 					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-',
-					longRangeSupport: Math.random() > .5
 				};
-				console.log(v);
+
 				return v;
 			});
 	}

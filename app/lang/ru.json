@@ -1060,6 +1060,9 @@
     "notIncluded": "не включено",
     "smartStartRangeHelp": "Выберите режим добавления: Classic или Long Range",
     "smartStartHelp": "Подайте питание на устройство",
+    "supported": "Поддерживается",
+    "notSupported": "Не поддерживается",
+    "invalid": "Недействительный",
     "shortcutName": "Имя ярлыка"
 
 }
