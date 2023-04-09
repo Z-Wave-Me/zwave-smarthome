@@ -106,6 +106,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $interval.cancel($scope.interval.api);
     });
 
+
+
     var timeOutTimer = 180;
     $scope.smartStartEnabled = false;
     /**
@@ -227,6 +229,11 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $scope.interval.api = $interval(refresh, $scope.cfg.interval);
     };
 
+    if ('active' === $location.search().inclusion) {
+        delete $location.$$search.inclusion;
+        $scope.zwaveInclusion.inclusionProcess.process = true;
+        $scope.refreshZwaveApiData();
+    }
     /**
      * Start/Stop Process
      */

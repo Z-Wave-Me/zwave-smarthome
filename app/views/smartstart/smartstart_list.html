@@ -5,7 +5,7 @@
     <pre>{{ collection.find | json }}</pre> -->
     <!-- Navigation -->
     <div ng-include="'app/views/zwave/navi.html'"></div>
-    <div class="alert alert-warning" ng-if="hasNotIncludedDevices">
+    <div class="alert alert-warning" ng-if="hasNotIncludedDevices && collection.all.length">
       <bb-help-text trans="_t('smartStartRangeHelp')"></bb-help-text>
       <bb-help-text trans="_t('smartStartHelp')"></bb-help-text>
     </div>
@@ -54,9 +54,9 @@
             <td data-title="DSK" colspan="2">
               <!-- state -->
               <div class="state_text" ng-show="v.isSmartStart">
-                <span class="label label-primary" ng-class="v.state == 'included' ? 'label-primary':'label-warning'">
-                  <i ng-class="v.state == 'included' ? 'fas fa-check':'fas fa-clock'"></i>
-                  <span class="btn-name">{{v.state}}</span>
+                <span class="label label-primary" ng-class="v.added.state == 'included' ? 'label-primary':'label-warning'">
+                  <i ng-class="v.added.state == 'included' ? 'fas fa-check':'fas fa-clock'"></i>
+                  <span class="btn-name">{{v.added.state}}</span>
                 </span>
               </div>
               <!-- info window -->
@@ -160,18 +160,18 @@
             <td class="text-center" data-title="">
               <div ng-if="v.isValid">
                 <span
-                        ng-if="v.state == 'included'"
+                        ng-if="v.added.state == 'included'"
                   class="label label-primary"
                 >
                   <i class="fas fa-check"></i>
-                  {{v.state}}
+                  {{v.added.state}}
                 </span>
                 <span
-                        ng-if="v.state == 'not included'"
+                        ng-if="v.added.state == 'not included'"
                         class="label label-info"
                 >
                   <i class="fas fa-clock"></i>
-                  {{v.state}}
+                  {{v.added.state}}
                 </span>
               </div>
               <div ng-if="!v.isValid">
@@ -200,11 +200,11 @@
                 <i class="fas fa-edit text-primary"></i>
                 </button>
                 <!-- configure node -->
-                <a class="btn btn-default" ng-if="v.state === 'included'" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
+                <a class="btn btn-default" ng-if="v.added.state === 'included'" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
                     <i class="fas fa-cog text-primary"></i>
                 </a>
                 <!-- delete -->
-                <button ng-if="v.state !== 'included'" class="btn btn-default" title="{{_t('btn_remove')}}" ng-click="v.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
+                <button ng-if="v.added.state !== 'included'" class="btn btn-default" title="{{_t('btn_remove')}}" ng-click="v.added.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
                 <i class="fas fa-trash text-danger"></i>
                 </button>
               </div>

@@ -241,7 +241,7 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
  * The controller that displays DSK list.
  * @class SmartStartListController
  */
-myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, cfg, $route, dataFactory, dataService, expertService, myCache) {
+myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, $interval, cfg, $route, dataFactory, dataService, expertService, myCache) {
 
 	$scope.collection = {
 		alert: {},
@@ -255,6 +255,33 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 		lastRegistered: null,
 		hasNotIncludedDevices: false,
 	};
+
+	function updateDeviceCollection() {
+		var promise = dataFactory.getApi('get_dsk', null, true);
+		$q.allSettled([promise]).then(function (response) {
+			var DSKList = response[0];
+			if (DSKList.state === 'fulfilled') {
+				DSKList = DSKList.value.data;
+				$scope.collection.all.forEach(function (dksItem) {
+					const candidate = _.findWhere(DSKList, {
+						ZW_QR: dksItem.ZW_QR
+					});
+					if (candidate && candidate.state !== dksItem.state && dksItem.state === 'included') {
+						window.location = '#/zwave/inclusion?inclusion=active';
+						$interval.cancel(updateDeviceCollectionInterval);
+					}
+				})
+			}
+		})
+	}
+
+	$scope.$on('$destroy', function() {
+		$interval.cancel(updateDeviceCollectionInterval);
+	});
+
+	var updateDeviceCollectionInterval = $interval(updateDeviceCollection, 3000);
+
+
 
 	 /**
      * Load all promises
@@ -471,7 +498,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 					$scope.collection.lastRegistered = v.timestamp;
 				}
 
-				v.state = stateMap[v.state] ? stateMap[v.state] : v.state;
 				if (v.state !== 'included') {
 					$scope.hasNotIncludedDevices = true;
 				}
@@ -479,6 +505,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				// Extending an object
 				v.added = {
 					pId: pId,
+					state: stateMap[v.state] ? stateMap[v.state] : v.state,
 					device_type: $scope.collection.deviceTypes[typeId] ? $scope.collection.deviceTypes[typeId] : '',
 					dskArray: v.DSK?.split('-'),
 					s2pin: v.DSK?.length ? (v.DSK?.slice(0, 5)) : '',
