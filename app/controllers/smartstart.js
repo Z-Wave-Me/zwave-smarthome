@@ -266,7 +266,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 					const candidate = _.findWhere(DSKList, {
 						ZW_QR: dksItem.ZW_QR
 					});
-					if (candidate && candidate.state !== dksItem.state && dksItem.state === 'included') {
+					if (candidate && candidate.state !== dksItem.state && candidate.state === 'included') {
 						window.location = '#/zwave/inclusion?inclusion=active';
 						$interval.cancel(updateDeviceCollectionInterval);
 					}
