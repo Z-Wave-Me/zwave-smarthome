@@ -119,7 +119,7 @@
             <th>{{_t('product_name')}}</th>
             <th>{{_t('state')}}</th>
             <th>{{_t('added_at')}}</th>
-            <th>{{_t('btn_lr_long_range')}}</th>
+            <th>{{_t('btn_lr_classic')}} / {{_t('btn_lr_long_range')}}</th>
             <th></th>
           </tr>
         </thead>
@@ -185,11 +185,11 @@
             <td data-title="added_at">
               <span class="text-supp">{{v.added.added_at}}</span>
             </td>
-            <!-- Long range-->
+            <!-- mode supported-->
             <td>
               <span class="text-supp">
-                <i class="fas fa-lg" ng-class="v.added.longRangeSupport ? 'fa-check text-success' : 'fa-times text-danger'"></i>
-                {{v.added.longRangeSupport ? _t('supported') : _t('notSupported')}}
+                <i class="far" ng-class="{'fa-spider-web': v.classicalSupported}"></i> /
+                <i class="far" ng-class="{'fas fa-asterisk': v.longRangeSupported}"></i>
               </span>
             </td>
             <!-- action -->
