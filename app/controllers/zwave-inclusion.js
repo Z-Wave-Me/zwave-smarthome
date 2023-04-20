@@ -229,12 +229,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $scope.interval.api = $interval(refresh, $scope.cfg.interval);
     };
 
-    if ('active' === $location.search().inclusion) {
-        delete $location.$$search.inclusion;
-        $scope.zwaveInclusion.inclusionProcess.process = true;
-        $scope.refreshZwaveApiData();
-        $scope.handleInclusionVerifyDSK(true, false);
-    }
+
     /**
      * Start/Stop Process
      */
@@ -887,6 +882,14 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         // reset s2 alert/message
         $scope.zwaveInclusion.s2.alert = false;
     }
+
+    if ('active' === $location.search().inclusion) {
+        delete $location.$$search.inclusion;
+        $scope.zwaveInclusion.inclusionProcess.process = true;
+        $scope.refreshZwaveApiData();
+        $scope.handleInclusionVerifyDSK(true, false);
+    }
+
     $scope.breakTime = null;
     function awaitTimerFactory(breakTime) {
         $scope.breakTime = breakTime * 1000;
