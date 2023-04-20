@@ -233,7 +233,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         delete $location.$$search.inclusion;
         $scope.zwaveInclusion.inclusionProcess.process = true;
         $scope.refreshZwaveApiData();
-        $scope.startConfiguration();
+        $scope.handleInclusionVerifyDSK(true, false);
     }
     /**
      * Start/Stop Process
