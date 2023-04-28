@@ -212,6 +212,8 @@ var config_data = {
 		// Api url
 		'expert_url': '/expert',
 		// Api url
+		'expert_url': '/zigxpert',
+		// Api url
 		'api_url': 'ZAutomation/api/v1/',
 		// ZWave api url
 		'zwave_api_url': 'ZWaveAPI/',
