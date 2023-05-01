@@ -161,37 +161,6 @@
       </div>
     </div>
   </div>
-  <!-- rf433 -->
-  <div class="list-panel panel-devices" ng-if="rf433.installed && elementAccess(cfg.role_access.apps)">
-    <div class="inner-panel">
-      <!-- img -->
-      <figure class="img">
-        <a ng-href="#rf433/manage">
-          <img ng-src="app/img/433.svg" alt="img" />
-        </a>
-      </figure>
-      <!-- body -->
-      <div class="body">
-        <div>
-          <a href="#rf433/manage">{{_t('devices_text_433')}}</a>
-        </div>
-        <bb-alert-text alert="rf433.alert"></bb-alert-text>
-      </div>
-      <!-- control -->
-      <div class="control" ng-class="naviExpanded['devicesRf433'] ? 'expand-true': 'expand-false'" ng-if="rf433.active">
-        <div class="btn-group">
-          <a class="btn btn-default" href="#rf433/teachin" title="{{_t('add_new')}}">
-            <i class="fas fa-plus text-success"></i>
-            <span class="btn-name" ng-bind="_t('add_new')"></span>
-          </a>
-          <a class="btn btn-default" href="#rf433/manage" title="{{_t('manage')}}">
-            <i class="fas fa-edit text-primary"></i>
-            <span class="btn-name" ng-bind="_t('manage')"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- wifi -->
   <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">

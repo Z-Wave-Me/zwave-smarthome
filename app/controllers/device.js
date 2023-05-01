@@ -23,12 +23,6 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
         alert: {message: false}
     };
 
-    $scope.rf433 = {
-        installed: false,
-        active: false,
-        alert: {message: false}
-    };
-
     $scope.mobileAppSupport = {
         installed: false,
         active: false,
@@ -42,7 +36,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
     };
 
     /**
-     * Load ext. Peripherals modules (Z-Wave, EnOcean, Rf433)
+     * Load ext. Peripherals modules (Z-Wave, EnOcean)
      */
     $scope.loadperipheralsModules = function() {
         if ($scope.user.role === 1) {
@@ -63,15 +57,6 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
                         $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                     }
                     $scope.enocean.active = true;
-                }
-
-                var RF433_module = _.findWhere(response.data.data,{moduleId:'RF433'});
-                if(RF433_module){
-                    $scope.rf433.installed = true;
-                    if (!RF433_module.active) {
-                        $scope.rf433.alert = {message: $scope._t('rf433_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    }
-                    $scope.rf433.active = true;
                 }
 
                 var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
