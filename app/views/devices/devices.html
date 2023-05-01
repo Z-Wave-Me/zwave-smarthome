@@ -39,6 +39,39 @@
       </div>
     </div>
   </div>
+  <!-- Enocean -->
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#enocean/manage">
+          <img ng-src="app/img/logo-enocean.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#enocean/manage">{{_t('devices_text_enocean')}}</a>
+        </div>
+      </div>
+      <!-- control -->
+      <div class="control" ng-if="!enocean.active">
+        <bb-alert-text class="s-hide" alert="enocean.alert"></bb-alert-text>
+      </div>
+      <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
+        <div class="btn-group">
+          <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
+            <i class="fas fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
+            <i class="fas fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Mobile -->
   <div class="list-panel panel-devices">
     <div class="inner-panel">
@@ -122,39 +155,6 @@
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#speech_assistants/manage" title="{{_t('manage')}}">
-            <i class="fas fa-edit text-primary"></i>
-            <span class="btn-name" ng-bind="_t('manage')"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Enocean -->
-  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
-    <div class="inner-panel">
-      <!-- img -->
-      <figure class="img">
-        <a ng-href="#enocean/manage">
-          <img ng-src="app/img/logo-enocean.svg" alt="img" />
-        </a>
-      </figure>
-      <!-- body -->
-      <div class="body">
-        <div>
-          <a href="#enocean/manage">{{_t('devices_text_enocean')}}</a>
-        </div>
-      </div>
-      <!-- control -->
-      <div class="control" ng-if="!enocean.active">
-        <bb-alert-text class="s-hide" alert="enocean.alert"></bb-alert-text>
-      </div>
-      <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
-        <div class="btn-group">
-          <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
-            <i class="fas fa-plus text-success"></i>
-            <span class="btn-name" ng-bind="_t('add_new')"></span>
-          </a>
-          <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
             <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
