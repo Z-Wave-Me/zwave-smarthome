@@ -130,7 +130,7 @@
     </div>
   </div>
   <!-- Enocean -->
-  <div class="list-panel panel-devices" ng-if="enocean.installed && elementAccess(cfg.role_access.apps)">
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">
       <!-- img -->
       <figure class="img">
@@ -143,9 +143,11 @@
         <div>
           <a href="#enocean/manage">{{_t('devices_text_enocean')}}</a>
         </div>
-        <bb-alert-text class="s-hide" alert="enocean.alert"></bb-alert-text>
       </div>
       <!-- control -->
+      <div class="control" ng-if="!enocean.active">
+        <bb-alert-text class="s-hide" alert="enocean.alert"></bb-alert-text>
+      </div>
       <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
         <div class="btn-group">
           <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">

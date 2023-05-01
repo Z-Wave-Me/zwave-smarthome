@@ -53,10 +53,10 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
                 var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
                 if (EnOcean_module){
                     $scope.enocean.installed = true;
-                    if (!EnOcean_module.active) {
-                        $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    }
-                    $scope.enocean.active = true;
+                    $scope.enocean.active = !!EnOcean_module.active;
+                }
+                if (!$scope.enocean.installed || !$scope.enocean.active) {
+                    $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 }
 
                 var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
