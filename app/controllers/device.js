@@ -51,7 +51,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
                 }
 
                 var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
-                if(EnOcean_module){
+                if (EnOcean_module){
                     $scope.enocean.installed = true;
                     if (!EnOcean_module.active) {
                         $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
@@ -60,7 +60,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
                 }
 
                 var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
-                if(MobileAppSupport_module){
+                if (MobileAppSupport_module){
                     $scope.mobileAppSupport.instance = MobileAppSupport_module;
                     $scope.mobileAppSupport.installed = true;
                     $scope.mobileAppSupport.instanceId = MobileAppSupport_module.id;
@@ -80,7 +80,6 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
      * Create instance
      */
     $scope.createInstance = function(module, callback) {
-
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.postApi('instances', module).then(function (response) {
             $scope.loading = false
