@@ -1,0 +1,56 @@
+<!-- Zigbee device view -->
+<div ng-controller="ZigbeeVendorController">
+  <bb-loader></bb-loader>
+  <div class="row">
+    <!-- Info  -->
+    <div class="col-sm-6">
+      <h3>
+        <a ng-href="#/zigbee/vendors" class="btn btn-default">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <strong>{{zigbeeVendors.products.pageTitle}}</strong>
+        | {{_t('products')}}
+        <span class="badge text-primary">{{zigbeeVendors.products.cnt}}</span>
+        | {{_t('frequency')}}
+        <span class="badge">{{zigbeeVendors.frequencyName}}</span>
+        <em ng-class="zigbeeProducts.cnt == 0 ? 'text-danger': '' ">
+
+        </em>
+      </h3>
+    </div>
+    <!-- Control  -->
+    <div class="col-sm-6" ng-include="'app/views/zigbee/zigbee_vendors_ctrl.html'"></div>
+  </div>
+  <!-- No search result -->
+  <div class="alert alert-warning" ng-if="zigbeeVendors.products.noSearch">
+    <i class="fas fa-exclamation-circle"></i>&nbsp;{{_t('no_search_results',{__term__: "\"" + zigbeeVendors.products.noSearch + "\""})}}
+  </div>
+  <!-- List  -->
+  <div class="list-panel" ng-repeat="v in zigbeeVendors.products.collection | orderBy:'name' track by $index">
+    <!-- img -->
+    <figure class="img wh-64x64 clickable">
+        <a ng-href="#zigbee/inclusion/{{v.id}}">
+        <img class="product-img" ng-src="{{cfg.img.zigbeedevices + v.product_image}}" err-src="{{cfg.online_device_icon_url + v.remote_image}}"
+        err-src2="{{cfg.img.placeholder}}" alt="img" />
+      </a>
+    </figure>
+      <!-- body -->
+  <div class="body">
+      <div> <a ng-href="#zigbee/inclusion/{{v.id}}">
+        {{v.name}}
+      </a> <p class="s-hide"><small>{{v.id}}</small></p></div>
+  </div>
+    <!-- control -->
+    <div class="control">
+        <a ng-href="#zigbee/inclusion/{{v.id}}" class="btn btn-default" title="{{_t('lb_include_device')}}">
+          <i class="fas fa-plug text-primary"></i>
+        </a>
+    </div>
+  </div>
+  <div class="fieldset submit-entry_" ng-show="_.size(zigbeeVendors.products.collection) > 10">
+    <a ng-href="#/zigbee/vendors" class="btn btn-default">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+  </div>
+</div>
+<!-- /ng-controller -->

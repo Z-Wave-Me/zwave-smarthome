@@ -1,0 +1,152 @@
+<!-- Include -->
+<div ng-controller="ZigbeeInclusionController" id="zigbee_inclusion">
+    <bb-loader></bb-loader>
+    <div class="form form-inline form-page">
+        <div class="fieldset">
+             <h1>{{_t('add_new_device')}}</h1>
+        </div>
+        <div class="fieldset bar-row inclusion" ng-show="!_.isEmpty(zigbeeInclusion.device.find)">
+            <!-- Bar col -->
+            <div class="bar-col bar-media">
+                <img ng-src="{{cfg.img.zigbeedevices + zigbeeInclusion.device.find.product_image}}" err-src="{{cfg.online_device_icon_url + zigbeeInclusion.device.find.remote_image}}" err-src2="{{cfg.img.placeholder}}" alt="img" />
+            </div>
+            <!-- Bar col -->
+            <div class="bar-col bar-body">
+                <em>{{zigbeeInclusion.device.find.brandname + ' ' + zigbeeInclusion.device.find.name}}</em>
+            </div>
+        </div>
+
+        <div class="fieldset clearfix">
+            <div class="app-row app-row-report clearfix">
+                <!-- 1 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">1</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <div class="inclusion-header" ng-if="!zigbeeInclusion.exclusionProcess.process">
+                            <!-- Header -->
+                            <bb-help-text trans="_t('lb_zigbee_include_preparation')"></bb-help-text>
+                        </div>
+                        </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fas fa-check fa-2x text-success" ng-if="zigbeeInclusion.exclusionProcess.done"></i>
+                    </div>
+                </div><!-- /.report-entry -->
+                <!-- 2 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">2</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <div class="inclusion-header" ng-if="!zigbeeInclusion.inclusionProcess.process">
+                            <!-- Header -->
+                            <button class="btn btn-success btn-lg" title="{{_t('start')}}"
+                                    ng-disabled="zigbeeInclusion.exclusionProcess.process || zigbeeInclusion.automatedConfiguration.includedDevice.nodeId > 0"
+                                    ng-click="startStopProcess('inclusion', true)">
+                                <i class="fas fa-plug"></i> <span class="btn-name">{{_t('start')}}</span>
+                            </button>
+                        </div>
+                        <!-- Process -->
+                        <div class="inclusion-process" ng-if="zigbeeInclusion.inclusionProcess.process">
+                            <div class="alert alert-warning">
+                                <h4><i class="fas fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} </h4>
+                                <p ng-bind-html="zigbeeInclusion.device.find.inc|toTrusted"></p>
+                            </div>
+                            <button class="btn btn-danger btn-lg" title="{{_t('stop')}}"
+                                    ng-click="startStopProcess('inclusion', false)">
+                                <i class="fas fa-ban"></i> <span class="btn-name">{{_t('stop')}}</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fas fa-check fa-2x text-success" ng-if="zigbeeInclusion.inclusionProcess.done"></i>
+                    </div>
+                </div><!-- /.report-entry -->
+                <!-- 3 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">3</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <!-- Header -->
+                        <div class="inclusion-header" ng-if="!zigbeeInclusion.automatedConfiguration.process">
+                            <h3>{{_t('automated_konfiguration')}}</h3>
+                        </div>
+                        <!-- S2 Alert  -->
+                        <bb-alert alert="zigbeeInclusion.s2.alert"></bb-alert>
+                        <!-- Process -->
+                        <div class="inclusion-process" ng-if="zigbeeInclusion.automatedConfiguration.process">
+                            <div class="alert alert-warning" ng-hide="zigbeeInclusion.automatedConfiguration.progress > 99">
+                                <i class="fas fa-spinner fa-spin"></i><strong><span ng-if="breakTime !== null"> [{{breakTime | date: 'mm:ss'}}]</span> {{_t('configuring_device')}}</strong>
+                                <span>(#{{zigbeeInclusion.automatedConfiguration.includedDevice.nodeId}})</span></br>
+                                <span ng-if="zigbeeInclusion.automatedConfiguration.includedDevice.retryCCInterviews">{{_t('retry_cc_interviews')}}</span>
+                                <div ng-if="breakTime === 0"><div>{{_t('interviewNotFinish')}}</div>
+                                    <div>{{_t('showInterviewInExpert')}} <a ng-href="../expert/#/configuration/interview/{{zigbeeInclusion.automatedConfiguration.includedDevice.nodeId}}" target="_blank"><i class="fas fa-external-link-alt"></i></a></div></div>
+                                </div>
+                             <div class="progress">
+                                <div class="progress-bar"
+                                     style="min-height:40px;min-width: 2em; width: {{zigbeeInclusion.automatedConfiguration.progress}}%;"
+                                     ng-class="zigbeeInclusion.automatedConfiguration.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'">
+                                    {{zigbeeInclusion.automatedConfiguration.progress}}%
+                                </div>
+                            </div>
+                        </div>
+                        <!--<pre>{{zigbeeInclusion.automatedConfiguration.includedDevice | json}}</pre>-->
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fas fa-check fa-2x text-success" ng-if="zigbeeInclusion.automatedConfiguration.done"></i>
+                    </div>
+                </div><!-- /.report-entry -->
+                <!-- 4 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">4</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <!-- Header -->
+                        <div class="inclusion-header" ng-if="!zigbeeInclusion.manualConfiguration.process">
+                            <h3>{{_t('manual_konfiguration')}}</h3>
+                        </div>
+                        <!-- Process -->
+                        <div class="inclusion-process" ng-if="zigbeeInclusion.manualConfiguration.process">
+                            <div class="alert alert-warning">
+                                <i class="fas fa-spinner fa-spin"></i> <strong ng-bind="_t('manual_config_prepare')"></strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-col report-ctrl">
+                        <i class="fas fa-check fa-2x text-success" ng-if="zigbeeInclusion.manualConfiguration.done"></i>
+                    </div>
+                </div><!-- /.report-entry -->
+            </div><!-- /.app-row -->
+        </div>
+        <div class="fieldset submit-entry">
+            <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" bb-go-back><i class="fas fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span></button>
+            <!-- <a href="#zigbee/devices" class="btn btn-info">{{_t('continue')}} <i class="fas fa-chevron-right"></i></a> -->
+        </div>
+    </div>
+    <!-- cancelConfigurationModal -->
+    <div id="cancelConfigurationModal" class="appmodal" ng-if="zigbeeInclusion.cancelModal">
+        <div class="appmodal-in">
+            <div class="appmodal-header">
+                <span class="appmodal-close" ng-click="cancelManualConfiguration(true)"><i class="fas fa-times"></i></span>
+                <h3>{{cfg.app_name}}</h3>
+            </div>
+            <div class="appmodal-body">
+                {{_t('configuration_cancel')}}
+            </div>
+            <div class="appmodal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancelManualConfiguration(true)">
+                    <i class="fas fa-sync text-success"></i> {{_t('reset_redo_inclusion')}}
+                </button>
+                <button type="button" class="btn btn-default" ng-click="cancelManualConfiguration(false)">
+                    {{_t('continue_anyway')}}  <i class="fas fa-arrow-right text-primary"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="device-logo" ng-include="'app/views/zigbee/zigbee_nav.html'"></div>
+</div> <!-- /ng-controller -->
+

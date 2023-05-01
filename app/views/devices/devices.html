@@ -39,6 +39,44 @@
       </div>
     </div>
   </div>
+  <!-- Zigbee -->
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#zigbee/manage">
+          <img ng-src="app/img/logo-zigbee.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#zigbee/manage">{{_t('devices_text_zigbee')}}</a>
+        </div>
+      </div>
+      <!-- control -->
+      <div class="control" ng-if="!zigbee.active">
+        <bb-alert-text class="s-hide" alert="zigbee.alert"></bb-alert-text>
+      </div>
+      <div class="control" ng-class="naviExpanded['devicesZigbee'] ? 'expand-true': 'expand-false'" ng-if="zigbee.active">
+        <div class="btn-group">
+          <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/zigxpert',_t('redirect_to_zigxpert'))"
+            ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">
+            <i class="fas fa-external-link-alt"></i>
+            <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
+          </a>
+          <a class="btn btn-default" href="#zigbee/vendors" title="{{_t('add_new')}}">
+            <i class="fas fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#zigbee/devices" title="{{_t('manage')}}">
+            <i class="fas fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Enocean -->
   <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">
