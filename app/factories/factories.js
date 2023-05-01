@@ -222,7 +222,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     function runJs(params) {
       return $http({
          method: "get",
-         url: cfg.server_url + cfg.zwave_jsrun_url + params,
+         url: cfg.server_url + cfg.zway_jsrun_url + params,
          headers: {
           'Accept-Language': lang,
           'ZWAYSession': ZWAYSession

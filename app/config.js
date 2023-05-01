@@ -219,10 +219,10 @@ var config_data = {
 		'zwave_api_url': 'ZWaveAPI/',
 		// ZWave api url
 		'zigbee_api_url': 'ZigbeeAPI/',
-		// ZWave JS url
-		'zwave_js_url': 'JS/',
-		// ZWave run JS url
-		'zwave_jsrun_url': 'JS/Run/',
+		// Z-Way JS url
+		'zway_js_url': 'JS/',
+		// Z-Way run JS url
+		'zway_jsrun_url': 'JS/Run/',
 		// Local data path
 		'local_data_url': 'storage/data/',
 		// Help data path
