@@ -254,6 +254,7 @@
     "enocean_device": "EnOcean zařízení",
     "enocean_nosupport": "Žádný EnOcean Hardware není dostupný. Prosím zkontrolujte vaši konfiguraci hardwaru.",
     "enocean_not_active": "EnOcean aplikaci není aktivována. Prosím Nainstalujte / Aktivujte tuto Aplikaci.",
+    "zwave_not_active": "Z-Wave aplikaci není aktivována. Prosím Nainstalujte / Aktivujte tuto Aplikaci.",
     "enocean_no_settings": "Toto zařízení nelze nastavit",
     "error_403": "403 Zakázáno. Nemáte oprávnění k zobrazení této stránky!",
     "error_404": "The page you're looking for could not be found.",

@@ -254,6 +254,7 @@
     "enocean_device": "EnOcean device",
     "enocean_nosupport": "该硬件不支持EnOcean设备",
     "enocean_not_active": "EnOcean模块未激活，请在软件->激活操作.",
+    "zwave_not_active": "Z-Wave模块未激活，请在软件->激活操作.",
     "enocean_no_settings": "该设备备没有配置选项",
     "error_403": "403 Forbidden. 你没有权限访问该页面!",
     "error_404": "The page you're looking for could not be found.",

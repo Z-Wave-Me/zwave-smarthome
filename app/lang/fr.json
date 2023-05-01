@@ -254,6 +254,7 @@
     "enocean_device": "Dispositif EnOcean",
     "enocean_nosupport": "Aucun matériel EnOcean disponible. Veuillez vérifier la configuration de votre matériel.",
     "enocean_not_active": "L'application EnOcean n'est pas activée. Veuillez Installer/Activer cette application.",
+    "zwave_not_active": "L'application Z-Wave n'est pas activée. Veuillez Installer/Activer cette application.",
     "enocean_no_settings": "Il n'y a pas de configurations pour ce dispositif",
     "error_403": "403 Non authorisé. Vous n'avez pas les droits pour accèder à cette page!",
     "error_404": "The page you're looking for could not be found.",

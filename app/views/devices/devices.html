@@ -17,7 +17,10 @@
         </div>
       </div>
       <!-- control -->
-      <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'">
+      <div class="control" ng-if="!zwave.active">
+        <bb-alert-text class="s-hide" alert="zwave.alert"></bb-alert-text>
+      </div>
+      <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'" ng-if="zwave.active">
         <div class="btn-group">
           <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/expert',_t('redirect_to_expert'))"
             ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">

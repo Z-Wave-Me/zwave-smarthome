@@ -11,6 +11,12 @@
 myAppController.controller('DeviceController', function($scope, $location, dataFactory) {
     $scope.loading = false;
 
+    $scope.zwave = {
+        installed: false,
+        active: false,
+        alert: {message: false}
+    };
+
     $scope.enocean = {
         installed: false,
         active: false,
@@ -36,11 +42,20 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
     };
 
     /**
-     * Load ext. Peripherals modules (EnOcean, Rf433)
+     * Load ext. Peripherals modules (Z-Wave, EnOcean, Rf433)
      */
     $scope.loadperipheralsModules = function() {
         if ($scope.user.role === 1) {
             dataFactory.getApi('instances',false,true).then(function(response) {
+                var ZWave_module = _.findWhere(response.data.data,{moduleId:'ZWave'});
+                if (ZWave_module){
+                    $scope.zwave.installed = true;
+                    $scope.zwave.active = !!ZWave_module.active;
+                }
+                if (!$scope.zwave.installed || !$scope.zwave.active) {
+                    $scope.zwave.alert = {message: $scope._t('zwave_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                }
+
                 var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
                 if(EnOcean_module){
                     $scope.enocean.installed = true;
