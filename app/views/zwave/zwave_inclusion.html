@@ -29,13 +29,13 @@
                         <div class="inclusion-header" ng-if="!zwaveInclusion.exclusionProcess.process">
                             <!-- Header -->
                              <!-- <h3>{{_t('lb_preparation')}}</h3> -->
-                            <!--{{_t('lb_include_preparation')}} -->
-                            <button class="btn btn-default" title="{{_t('lb_include_preparation_start')}}"
+                            <!--{{_t('lb_zwave_include_preparation')}} -->
+                            <button class="btn btn-default" title="{{_t('lb_zwave_include_preparation_start')}}"
                                     ng-disabled="zwaveInclusion.inclusionProcess.process || zwaveInclusion.automatedConfiguration.includedDevice.nodeId > 0"
                                     ng-click="startStopProcess('exclusion',true)">
-                                <i class="fas fa-sync"></i> {{_t('lb_include_preparation_start')}}
+                                <i class="fas fa-sync"></i> {{_t('lb_zwave_include_preparation_start')}}
                             </button>
-                            <bb-help-text trans="_t('lb_include_preparation')"></bb-help-text>
+                            <bb-help-text trans="_t('lb_zwave_include_preparation')"></bb-help-text>
                             <p  ng-if="zwaveInclusion.device.find.prep"><em>{{zwaveInclusion.device.find.prep}}</em></p>
                         </div>
                         <!-- Process -->
