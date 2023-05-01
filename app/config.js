@@ -139,8 +139,6 @@ var config_data = {
 			'configget_url': 'ZWaveAPI/ExpertConfigGet',
 			'configupdate_url': 'ZWaveAPI/ExpertConfigUpdate',
 			'time_zone': 'ZAutomation/api/v1/system/timezone',
-			'get_pulse_trains': 'RF433API/GetPulseTrains',
-			'send_pulse_train': 'RF433API/Send',
 			'reorder': 'ZAutomation/api/v1/devices/reorder',
 			'get_dsk': 'ZWaveAPI/GetDSKCollection', // Get DSK collection
 			'add_dsk': 'ZWaveAPI/AddDSKEntry', // Add DSK

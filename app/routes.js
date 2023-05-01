@@ -388,21 +388,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			requireLogin: true,
 			roles: cfg.role_access.devices
 		}). //Enocean assign profile
-	when('/rf433/teachin', {
-		templateUrl: 'app/views/rf433/teachin.html',
-		requireLogin: true,
-		roles: cfg.role_access.devices
-	}).
-	when('/rf433/manage', {
-		templateUrl: 'app/views/rf433/manage.html',
-		requireLogin: true,
-		roles: cfg.role_access.devices
-	}).
-	when('/rf433/manage/:vDevId', {
-			templateUrl: 'app/views/rf433/manage_detail.html',
-			requireLogin: true,
-			roles: cfg.role_access.devices
-		}). //wifiplug add
 	when('/wifiplug/add', {
 			templateUrl: 'app/views/wifiplug/wifiplug_add.html',
 			requireLogin: true,
