@@ -73,7 +73,6 @@ const  projectFiles = [
 	'app/controllers/mobile.js',
 	'app/controllers/enocean.js',
 	'app/controllers/wifiplug.js',
-	'app/controllers/rf433.js',
 	'app/controllers/room.js',
 	'app/controllers/management.js',
 	'app/controllers/management-appstore.js',
