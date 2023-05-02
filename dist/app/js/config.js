@@ -12,9 +12,9 @@ var config_data = {
 		//Application name
 		'app_name': 'SmartHome UI',
 		// Application version
-		'app_version': 'v1.14.2',
+		'app_version': 'v1.15.0',
 		// Application (DIST) built date
-		'app_built': '22-12-2022 17:35:31',
+		'app_built': '02-05-2023 05:15:31',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -139,8 +139,6 @@ var config_data = {
 			'configget_url': 'ZWaveAPI/ExpertConfigGet',
 			'configupdate_url': 'ZWaveAPI/ExpertConfigUpdate',
 			'time_zone': 'ZAutomation/api/v1/system/timezone',
-			'get_pulse_trains': 'RF433API/GetPulseTrains',
-			'send_pulse_train': 'RF433API/Send',
 			'reorder': 'ZAutomation/api/v1/devices/reorder',
 			'get_dsk': 'ZWaveAPI/GetDSKCollection', // Get DSK collection
 			'add_dsk': 'ZWaveAPI/AddDSKEntry', // Add DSK
@@ -212,13 +210,17 @@ var config_data = {
 		// Api url
 		'expert_url': '/expert',
 		// Api url
+		'expert_url': '/zigxpert',
+		// Api url
 		'api_url': 'ZAutomation/api/v1/',
 		// ZWave api url
 		'zwave_api_url': 'ZWaveAPI/',
-		// ZWave JS url
-		'zwave_js_url': 'JS/',
-		// ZWave run JS url
-		'zwave_jsrun_url': 'JS/Run/',
+		// ZWave api url
+		'zigbee_api_url': 'ZigbeeAPI/',
+		// Z-Way JS url
+		'zway_js_url': 'JS/',
+		// Z-Way run JS url
+		'zway_jsrun_url': 'JS/Run/',
 		// Local data path
 		'local_data_url': 'storage/data/',
 		// Help data path
