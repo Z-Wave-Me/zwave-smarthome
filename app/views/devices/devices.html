@@ -17,7 +17,10 @@
         </div>
       </div>
       <!-- control -->
-      <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'">
+      <div class="control" ng-if="!zwave.active">
+        <bb-alert-text class="s-hide" alert="zwave.alert"></bb-alert-text>
+      </div>
+      <div class="control" ng-class="naviExpanded['devicesZway'] ? 'expand-true': 'expand-false'" ng-if="zwave.active">
         <div class="btn-group">
           <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/expert',_t('redirect_to_expert'))"
             ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">
@@ -29,6 +32,77 @@
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#zwave/devices" title="{{_t('manage')}}">
+            <i class="fas fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Zigbee -->
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#zigbee/manage">
+          <img ng-src="app/img/logo-zigbee.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#zigbee/manage">{{_t('devices_text_zigbee')}}</a>
+        </div>
+      </div>
+      <!-- control -->
+      <div class="control" ng-if="!zigbee.active">
+        <bb-alert-text class="s-hide" alert="zigbee.alert"></bb-alert-text>
+      </div>
+      <div class="control" ng-class="naviExpanded['devicesZigbee'] ? 'expand-true': 'expand-false'" ng-if="zigbee.active">
+        <div class="btn-group">
+          <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/zigxpert',_t('redirect_to_zigxpert'))"
+            ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">
+            <i class="fas fa-external-link-alt"></i>
+            <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
+          </a>
+          <a class="btn btn-default" href="#zigbee/vendors" title="{{_t('add_new')}}">
+            <i class="fas fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#zigbee/devices" title="{{_t('manage')}}">
+            <i class="fas fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Enocean -->
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#enocean/manage">
+          <img ng-src="app/img/logo-enocean.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#enocean/manage">{{_t('devices_text_enocean')}}</a>
+        </div>
+      </div>
+      <!-- control -->
+      <div class="control" ng-if="!enocean.active">
+        <bb-alert-text class="s-hide" alert="enocean.alert"></bb-alert-text>
+      </div>
+      <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
+        <div class="btn-group">
+          <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
+            <i class="fas fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
             <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>
@@ -119,69 +193,6 @@
             <span class="btn-name" ng-bind="_t('add_new')"></span>
           </a>
           <a class="btn btn-default" href="#speech_assistants/manage" title="{{_t('manage')}}">
-            <i class="fas fa-edit text-primary"></i>
-            <span class="btn-name" ng-bind="_t('manage')"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Enocean -->
-  <div class="list-panel panel-devices" ng-if="enocean.installed && elementAccess(cfg.role_access.apps)">
-    <div class="inner-panel">
-      <!-- img -->
-      <figure class="img">
-        <a ng-href="#enocean/manage">
-          <img ng-src="app/img/logo-enocean.svg" alt="img" />
-        </a>
-      </figure>
-      <!-- body -->
-      <div class="body">
-        <div>
-          <a href="#enocean/manage">{{_t('devices_text_enocean')}}</a>
-        </div>
-        <bb-alert-text class="s-hide" alert="enocean.alert"></bb-alert-text>
-      </div>
-      <!-- control -->
-      <div class="control" ng-class="naviExpanded['devicesEnocean'] ? 'expand-true': 'expand-false'" ng-if="enocean.active">
-
-        <div class="btn-group">
-          <a class="btn btn-default" href="#enocean/vendors" title="{{_t('add_new')}}">
-            <i class="fas fa-plus text-success"></i>
-            <span class="btn-name" ng-bind="_t('add_new')"></span>
-          </a>
-          <a class="btn btn-default" href="#enocean/manage" title="{{_t('manage')}}">
-            <i class="fas fa-edit text-primary"></i>
-            <span class="btn-name" ng-bind="_t('manage')"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- rf433 -->
-  <div class="list-panel panel-devices" ng-if="rf433.installed && elementAccess(cfg.role_access.apps)">
-    <div class="inner-panel">
-      <!-- img -->
-      <figure class="img">
-        <a ng-href="#rf433/manage">
-          <img ng-src="app/img/433.svg" alt="img" />
-        </a>
-      </figure>
-      <!-- body -->
-      <div class="body">
-        <div>
-          <a href="#rf433/manage">{{_t('devices_text_433')}}</a>
-        </div>
-        <bb-alert-text alert="rf433.alert"></bb-alert-text>
-      </div>
-      <!-- control -->
-      <div class="control" ng-class="naviExpanded['devicesRf433'] ? 'expand-true': 'expand-false'" ng-if="rf433.active">
-        <div class="btn-group">
-          <a class="btn btn-default" href="#rf433/teachin" title="{{_t('add_new')}}">
-            <i class="fas fa-plus text-success"></i>
-            <span class="btn-name" ng-bind="_t('add_new')"></span>
-          </a>
-          <a class="btn btn-default" href="#rf433/manage" title="{{_t('manage')}}">
             <i class="fas fa-edit text-primary"></i>
             <span class="btn-name" ng-bind="_t('manage')"></span>
           </a>

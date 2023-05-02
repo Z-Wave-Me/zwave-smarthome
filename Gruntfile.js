@@ -95,6 +95,11 @@ const  projectFiles = [
 	'app/controllers/auth.js',
 	'app/controllers/zwave-configuration.js',
 	'app/controllers/zwave-commands.js',
+	'app/controllers/zigbee-inclusion.js',
+	'app/controllers/zigbee-manage.js',
+	'app/controllers/zigbee-vendor.js',
+	'app/controllers/zigbee-configuration.js',
+	'app/controllers/zigbee-commands.js',
 	'app/controllers/welcome.js',
 	'app/controllers/management-wifi.js'
 ]
@@ -121,7 +126,8 @@ module.exports = function(grunt) {
 				force: true
 			},
 			build: ["dist/", "docs/"],
-			tmp: ['./tmp']
+			tmp: ['./tmp'],
+			templates: ['dist/app/js/templates.js']
 		},
 		ngtemplates: {
 			app: {
@@ -291,17 +297,6 @@ module.exports = function(grunt) {
 						dest: 'dist/'
 					}
 					//{expand: true, src: ['app/css/font-awesome-4.4.0/fonts/*'], dest: 'dist/app/fonts/', flatten: true}
-				]
-			},
-			angmap: {
-				files: [{
-						expand: true,
-						src: ['vendor/angular/angular-1.2.16/angular-cookies.min.js.map'],
-						dest: 'dist/app/js/',
-						flatten: true
-					},
-					//{expand:true,src: ['vendor/angular/angular-1.2.16/angular.min.js.map'], dest: 'dist/app/js/',flatten: true},
-					//{expand:true,src: ['vendor/angular/angular-1.2.16/angular-route.min.js.map'], dest: 'dist/app/js/',flatten: true}
 				]
 			},
 			skin: {
@@ -542,5 +537,6 @@ module.exports = function(grunt) {
 			'cachebreaker',
 			'replace',
 			'clean:tmp',
+			'clean:templates',
 			'compress']);
 };

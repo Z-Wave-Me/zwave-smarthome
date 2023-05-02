@@ -1,0 +1,36 @@
+<!-- Zigbee control view -->
+<!--<pre>{{zigbeeVendors.filter|json}}</pre>-->
+<div class="page-control form-inline" bind-class-on-scroll offset="{{cfg.scroll_offset}}" scroll-class="fix-me-top">
+    <!-- Search and autocomplete -->
+    <form id="form_search_vendor" class="input-group" ng-submit="setFilter({q: autocomplete.term})" autocomplete="off"
+          novalidate>
+        <!-- Input -->
+        <input id="input_search" type="text" focus="{{zigbeeVendors.filter.q}}"
+               class="form-control"
+               placeholder="{{_t('lb_search')}}"
+               ng-model="autocomplete.term" bb-key-event="searchMe()" data-toggle="dropdown"/>
+        <!-- Search button -->
+        <span class="input-group-addon clickable" ng-click="setFilter({q: autocomplete.term})">
+            <i class="fas fa-search" ng-class="{'text-success':autocomplete.term}"></i>
+        </span>
+        <!-- List -->
+        <!--<div class="app-dropdown autocomplete" ng-if="autocomplete.results.length">-->
+        <div class="app-dropdown autocomplete" ng-if="autocompleteExpanded.searchProducts">
+            <ul>
+                <li class="dropdown-entry" title="{{v.title}}"
+                    ng-repeat="v in autocomplete.results | orderBy:'name' track by $index">
+                    <!-- Title -->
+                    <span class="dropdown-col" ng-click="setFilter({q: autocomplete.term})">
+                           <img class="report-img-s" ng-src="{{cfg.img.zigbeedevices + v.product_image}}" err-src="{{cfg.img.placeholder}}" alt="img" />
+                            <span class="aoutocomplete-title">{{v.name|cutText:true:30}}</span>&nbsp;
+                         <em class="item-cnt">({{v.brandname}})</em>
+                        </span>
+                    <!-- Ctrl -->
+                    <span class="dropdown-col dropdown-ctrl" title="{{_t('lb_cfg_view')}}">
+                            <a ng-href="#zigbee/inclusion/{{v.id}}"><i class="fas fa-plug text-primary"></i></a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

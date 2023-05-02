@@ -1,0 +1,34 @@
+<!-- Zigbee device view -->
+<div ng-controller="ZigbeeVendorController">
+  <bb-loader></bb-loader>
+  <!-- Autodetect  -->
+  <div class="text-center device-autodetect" ng-include="'app/views/zigbee/zigbee_vendors_autodetect.html'"></div>
+
+  <bb-alert alert="zigbeeVendors.alert"></bb-alert>
+  <!-- Default view -->
+  <!-- TBD
+  <div ng-include="'app/views/zigbee/zigbee_vendors_ctrl.html'" ng-if="zigbeeVendors.view === 'default'"></div>
+
+  <div class="vendors flexgallery" ng-if="zigbeeVendors.view === 'default'">
+    <div ng-click="setFilter({brandid: v.Name})" ng-repeat="(k,v) in zigbeeVendors.all| orderBy:'Name' track by $index" ng-hide="!v.Name || !zigbeeVendors.cnt[v.Name]"
+      ng-if="v.Frequency.indexOf(zigbeeVendors.frequencyName) > -1 || v.Frequency.indexOf('Europe') > -1">
+      <figure>
+          <img title="{{v.Name}}" alt="{{v.Name|cutText:true:20}}" ng-src="{{cfg.img.zigbeevendors + v.Image}}" err-src="{{cfg.online_vendor_icon_url + v.Image}}"  ng-show="v.Image" />
+          <span ng-hide="v.Image">{{v.Name|cutText:true:20}}</span>
+      </figure>
+    </div>
+  </div>
+  -->
+  
+  <!-- Error view -->
+  <!-- TBD
+  <div class="alert alert-warning" ng-if="zigbeeVendors.view === 'update'">
+    <i class="fas fa-database"></i> {{_t('doyou_want_update_db')}}
+    <button class="btn btn-success" ng-click="updateVendorDatabase()">{{_t('yes')}}</button>
+    <button class="btn btn-default" ng-click="disableDatabaseUpdate()">{{_t('no')}}</button>
+  </div>
+  -->
+  <!-- Logo  -->
+  <div class="device-logo" ng-include="'app/views/zigbee/zigbee_nav.html'"></div>
+</div>
+<!-- /ng-controller -->

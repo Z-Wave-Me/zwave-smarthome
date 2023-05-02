@@ -11,13 +11,19 @@
 myAppController.controller('DeviceController', function($scope, $location, dataFactory) {
     $scope.loading = false;
 
-    $scope.enocean = {
+    $scope.zwave = {
         installed: false,
         active: false,
         alert: {message: false}
     };
 
-    $scope.rf433 = {
+    $scope.zigbee = {
+        installed: false,
+        active: false,
+        alert: {message: false}
+    };
+
+    $scope.enocean = {
         installed: false,
         active: false,
         alert: {message: false}
@@ -36,31 +42,40 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
     };
 
     /**
-     * Load ext. Peripherals modules (EnOcean, Rf433)
+     * Load ext. Peripherals modules (Z-Wave, EnOcean, Zigbee)
      */
     $scope.loadperipheralsModules = function() {
         if ($scope.user.role === 1) {
             dataFactory.getApi('instances',false,true).then(function(response) {
-                var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
-                if(EnOcean_module){
-                    $scope.enocean.installed = true;
-                    if (!EnOcean_module.active) {
-                        $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    }
-                    $scope.enocean.active = true;
+                var ZWave_module = _.findWhere(response.data.data,{moduleId:'ZWave'});
+                if (ZWave_module){
+                    $scope.zwave.installed = true;
+                    $scope.zwave.active = !!ZWave_module.active;
+                }
+                if (!$scope.zwave.installed || !$scope.zwave.active) {
+                    $scope.zwave.alert = {message: $scope._t('zwave_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 }
 
-                var RF433_module = _.findWhere(response.data.data,{moduleId:'RF433'});
-                if(RF433_module){
-                    $scope.rf433.installed = true;
-                    if (!RF433_module.active) {
-                        $scope.rf433.alert = {message: $scope._t('rf433_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
-                    }
-                    $scope.rf433.active = true;
+                var Zigbee_module = _.findWhere(response.data.data,{moduleId:'Zigbee'});
+                if (Zigbee_module){
+                    $scope.zigbee.installed = true;
+                    $scope.zigbee.active = !!Zigbee_module.active;
+                }
+                if (!$scope.zigbee.installed || !$scope.zigbee.active) {
+                    $scope.zigbee.alert = {message: $scope._t('zigbee_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                }
+
+                var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
+                if (EnOcean_module){
+                    $scope.enocean.installed = true;
+                    $scope.enocean.active = !!EnOcean_module.active;
+                }
+                if (!$scope.enocean.installed || !$scope.enocean.active) {
+                    $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 }
 
                 var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
-                if(MobileAppSupport_module){
+                if (MobileAppSupport_module){
                     $scope.mobileAppSupport.instance = MobileAppSupport_module;
                     $scope.mobileAppSupport.installed = true;
                     $scope.mobileAppSupport.instanceId = MobileAppSupport_module.id;
@@ -80,7 +95,6 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
      * Create instance
      */
     $scope.createInstance = function(module, callback) {
-
         $scope.loading = {status: 'loading-spin', icon: 'fa-spinner fa-spin', message: $scope._t('loading')};
         dataFactory.postApi('instances', module).then(function (response) {
             $scope.loading = false

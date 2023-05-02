@@ -1,0 +1,40 @@
+<!-- Zigbee device view -->
+<div ng-controller="ZigbeeManageController">
+     <bb-loader></bb-loader>
+    <!-- Zigbee navigation -->
+    <div ng-include="'app/views/zigbee/navi.html'"></div>
+    <div class="app-row app-row-report app-row-zigbee clearfix">
+         <div id="row_zigbee_{{v.id}}" class="report-entry" ng-repeat="v in devices.zw | orderBy:'id'">
+             <div class="report-col report-body zigbee-devices">
+                  <div class="btn-group">
+                    <span class="network-zigbee-title noelements" ng-if="_.size(v.elements) < 1">{{v.title}} (#{{v.id}}) </span>
+                    <a href="" class="network-zigbee-title"
+                       ng-click="expandNavi('accZigbeeManage_' + v.id, $event)" ng-if="_.size(v.elements) > 0">
+                        <i class="fa" ng-class="naviExpanded['accZigbeeManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+
+                    </a>
+                   <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accZigbeeManage_' + v.id]">
+                        <ul>
+                            <li class="zigbee-hidden-{{e.permanently_hidden}}"
+                                ng-init="elUrl = (e.permanently_hidden ? '': '#/element/' + e.id)"
+                                ng-repeat="e in v.elements| orderBy:'metrics.title':false">
+                                <a ng-href="{{elUrl}}" title="{{e.metrics.title}}">
+                                    <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                                    {{e.metrics.title|cutText:true:20}} <span class="zigbee-raquo">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+             <div class="report-col report-ctrl" ng-if="elementAccess(cfg.role_access.network)">
+                  <div class="btn-group">
+                    <a class="btn btn-default" href="#zigbee/devices/{{v.id}}" title="{{_t('lb_configuration')}}">
+                      <i class="fas fa-cog text-primary"></i>
+                    </a>
+                  </div>
+             </div>
+         </div>
+    </div>
+    <div class="device-logo" ng-include="'app/views/zigbee/zigbee_nav.html'"></div>
+</div> <!-- /ng-controller --> 

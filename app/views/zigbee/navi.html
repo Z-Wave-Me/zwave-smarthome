@@ -1,0 +1,23 @@
+<div class="tabs-wrap form-inline" ng-if_="devices.show">
+  <div class="btn-group btn-group-justified btn-goup-tabs">
+    <a class="btn btn-default" href="#zigbee/vendors" title="{{_t('add_new')}}">
+      <i class="fas fa-plus"></i> <span class="btn-name">{{_t('add_new')}}</span>
+    </a>
+    <a class="btn btn-default" href="#zigbee/devices" title="{{_t('lb_zigbee_devices')}}"
+      ng-class="routeMatch('/zigbee/devices') ? 'active' : ''">
+      <i class="fas fa-wifi"></i> <span class="btn-name">{{_t('lb_zigbee_devices')}}</span>
+    </a>
+    <a class="btn btn-default" href="#zigbee/batteries" title="{{_t('lb_battery_status')}}"
+      ng-class="routeMatch('/zigbee/batteries') ? 'active' : ''"
+      ng-if="elementAccess(cfg.role_access.network)">
+      <i class="fas fa-battery-three-quarters"></i> <span class="btn-name">{{_t('lb_battery_status')}}</span>
+    </a>
+    <!-- TBD
+    <a class="btn btn-default" href="#zigbee/network" title="{{_t('lb_network_status')}}"
+      ng-class="routeMatch('/zigbee/network') ? 'active' : ''"
+      ng-if="elementAccess(cfg.role_access.network)">
+      <i class="fas fa-sitemap"></i> <span class="btn-name">{{_t('lb_network_status')}}</span>
+    </a>
+    -->
+  </div>
+</div>

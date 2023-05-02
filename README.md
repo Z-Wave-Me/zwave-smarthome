@@ -1,13 +1,21 @@
 SmartHome UI
 ===============
 ## LICENSE
-Copyright (C) 2022 Z-Wave.Me
+Copyright (C) 2023 Z-Wave.Me
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 This User Interfaces allows to operate a Smart Home Network based on Z-Wave devices. It utilizes the software architecture "Z-Way", certified as Z-Wave Plus Controller.
 
 ## Project leaders
 Serguei Poltorak
+
+## v1.15.0
+#### New features:
+- Zigbee support with Z-Wave.Me hardware
+#### Fixes:
+- Scientific format is shown on widgets for negative numbers
+#### Removed:
+- Deprecated RF433 app
 
 ## v1.14.2
 #### New features:

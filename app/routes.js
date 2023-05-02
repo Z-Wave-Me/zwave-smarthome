@@ -270,6 +270,43 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/zwave/zwave_network.html',
 			requireLogin: true
 		}). //Camera add
+	when('/zigbee/vendors', {
+			templateUrl: 'app/views/zigbee/zigbee_vendors.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices
+		}). //Zwave select devices by vendor id
+	when('/zigbee/products', {
+			templateUrl: 'app/views/zigbee/zigbee_products.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices
+		}). //Include Zwave device
+	when('/zigbee/inclusion/:id?', {
+			templateUrl: 'app/views/zigbee/zigbee_inclusion.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices_include
+		}). //Check interview
+	when('/zigbee/interview/:id', {
+			templateUrl: 'app/views/zigbee/zigbee_interview.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices_include
+		}). //Exclude Zwave device
+	when('/zigbee/devices', {
+			templateUrl: 'app/views/zigbee/zigbee_manage.html',
+			requireLogin: true
+		}). //Zwave devices config
+	when('/zigbee/devices/:nodeId/:nohistory?', {
+			templateUrl: 'app/views/zigbee/zigbee_manage_id.html',
+			requireLogin: true,
+			roles: cfg.role_access.network_config_id
+		}). //Zwave battery
+	when('/zigbee/batteries', {
+			templateUrl: 'app/views/zigbee/zigbee_batteries.html',
+			requireLogin: true
+		}). //Zwave Network
+	when('/zigbee/network', {
+			templateUrl: 'app/views/zigbee/zigbee_network.html',
+			requireLogin: true
+		}). //Camera add
 	when('/camera/add', {
 			templateUrl: 'app/views/camera/camera_add.html',
 			requireLogin: true,
@@ -351,21 +388,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			requireLogin: true,
 			roles: cfg.role_access.devices
 		}). //Enocean assign profile
-	when('/rf433/teachin', {
-		templateUrl: 'app/views/rf433/teachin.html',
-		requireLogin: true,
-		roles: cfg.role_access.devices
-	}).
-	when('/rf433/manage', {
-		templateUrl: 'app/views/rf433/manage.html',
-		requireLogin: true,
-		roles: cfg.role_access.devices
-	}).
-	when('/rf433/manage/:vDevId', {
-			templateUrl: 'app/views/rf433/manage_detail.html',
-			requireLogin: true,
-			roles: cfg.role_access.devices
-		}). //wifiplug add
 	when('/wifiplug/add', {
 			templateUrl: 'app/views/wifiplug/wifiplug_add.html',
 			requireLogin: true,
