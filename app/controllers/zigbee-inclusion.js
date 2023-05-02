@@ -64,39 +64,6 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
     });
 
     var timeOutTimer = 180;
-    $scope.smartStartEnabled = false;
-    /**
-     * Start Smart Scan.
-     * Turns the controller into an Smart Start inclusion mode that allows including a Smart start device.
-     */
-    $scope.enableSmartStart = function () {
-        timeout = 1000;
-        $scope.toggleRowSpinner('zbee.SmartStartEnable()');
-        dataFactory.runZigbeeCmd('zbee.SmartStartEnable()').then(function (response) {
-            $scope.smartStartEnabled = true;
-            $timeout($scope.toggleRowSpinner, timeout);
-        }, function (error) {
-            $scope.toggleRowSpinner();
-            alertify.alertError($scope._t('error_update_data') + '\n' + 'zbee.SmartStartEnable()');
-        });
-    };
-
-    /**
-     * Stop Smart Scan.
-     * Turns the controller back into default mode.
-     */
-    $scope.disableSmartStart = function (cmd) {
-        timeout = 1000;
-        $scope.toggleRowSpinner('controller.RemoveNodeFromNetwork(0)');
-        dataFactory.runZigbeeCmd('controller.RemoveNodeFromNetwork(0)').then(function (response) {
-            $scope.smartStartEnabled = false;
-            $timeout($scope.toggleRowSpinner, timeout);
-        }, function (error) {
-            $scope.toggleRowSpinner();
-            alertify.alertError($scope._t('error_update_data') + '\n' + 'controller.RemoveNodeFromNetwork(0)');
-        });
-    };
-
 
 
     /**
@@ -202,10 +169,10 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
         if(process) {
             resetProcess(type, process, false, cmd);
             $scope.refreshZigbeeApiData();
-            // If Process takes a long time and nothing happens display an alert and reset process
             $timeout(function () {
                 if ($scope.zigbeeInclusion[scope].process && !$scope.zigbeeInclusion[scope].done) {
                     resetProcess(type, false, false, cmd, true);
+                    // may be this will help ? PS // $scope.startStopProcess(type, false);
                     alertify.alertWarning(msg);
                     $scope.reloadData();
                 }
