@@ -8,6 +8,16 @@ $ss-img-w: 64px;
 .smart-start {
     .container{
         padding: 0;
+
+        .control__buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0;
+        }
+        .no-margin {
+            margin: 0;
+        }
         //background-color: $ss-brand-color;
         .entry{
             background-color: $ss-brand-color;
@@ -162,6 +172,9 @@ $ss-img-w: 64px;
     display: none;
     @include mediaQueries(min-small) {
         display: block;
+    }
+    .last-added-device {
+        background-color: $app-bcg-danger;
     }
 }
 

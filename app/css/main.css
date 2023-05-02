@@ -24702,7 +24702,7 @@ img {
 }
 @media only screen and (min-width: 768px) {
   .app-row-widget {
-    margin: -10px;
+    margin: 0 -10px;
   }
 }
 
@@ -30210,6 +30210,15 @@ img.widget-promo-image {
 .smart-start .container {
   padding: 0;
 }
+.smart-start .container .control__buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+}
+.smart-start .container .no-margin {
+  margin: 0;
+}
 .smart-start .container .entry {
   background-color: #eeeeee;
   padding: 20px;
@@ -30351,6 +30360,9 @@ img.widget-promo-image {
   #table_desktop {
     display: block;
   }
+}
+#table_desktop .last-added-device {
+  background-color: #f2dede;
 }
 
 .dsk {

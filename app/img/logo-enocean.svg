@@ -9,11 +9,11 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg4927"
    version="1.1"
-   viewBox="0 0 40.704578 40.704498"
-   height="40.704498mm"
-   width="40.704578mm"
+   viewBox="0 0 40.704577 40.704578"
    sodipodi:docname="logo-enocean.svg"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   width="40.704578"
+   height="40.704578">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -27,13 +27,18 @@
      inkscape:window-height="2032"
      id="namedview873"
      showgrid="false"
-     inkscape:zoom="2.0096532"
-     inkscape:cx="68.98932"
-     inkscape:cy="76.921887"
+     inkscape:zoom="28.559056"
+     inkscape:cx="34.674462"
+     inkscape:cy="10.488259"
      inkscape:window-x="0"
      inkscape:window-y="54"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4927" />
+     inkscape:current-layer="svg4927"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="px" />
   <defs
      id="defs4921">
     <clipPath
@@ -41,7 +46,8 @@
        clipPathUnits="userSpaceOnUse">
       <path
          id="path24"
-         d="m 227.758,386.99 h 87.417 v 52.38 h -87.417 z" />
+         d="m 227.758,386.99 h 87.417 v 52.38 h -87.417 z"
+         inkscape:connector-curvature="0" />
     </clipPath>
   </defs>
   <metadata
@@ -52,7 +58,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,10 +66,10 @@
      inkscape:connector-curvature="0"
      style="opacity:1;vector-effect:none;fill:#202a60;fill-opacity:1;stroke:none;stroke-width:0.19486985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"
      id="path4859"
-     d="M 20.55717,9.5e-4 A 20.352289,20.352289 0 0 1 40.7041,20.49156 20.352289,20.352289 0 0 1 20.27848,40.70437 20.352289,20.352289 0 0 1 0,20.34393 20.352289,20.352289 0 0 1 20.29504,0" />
+     d="M 20.557172,0.00103131 A 20.352289,20.352289 0 0 1 40.704102,20.491642 20.352289,20.352289 0 0 1 20.278482,40.704452 20.352289,20.352289 0 0 1 1.6862577e-6,20.344012 20.352289,20.352289 0 0 1 20.295042,8.1312256e-5" />
   <g
      id="g1464"
-     transform="matrix(1.2735564,0,0,1.2735564,-5.5057529,1.2940179)">
+     transform="matrix(1.2735564,0,0,1.2735564,-5.5057512,1.2940992)">
     <path
        id="path62"
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.39911634"

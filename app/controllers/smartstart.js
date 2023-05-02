@@ -241,7 +241,7 @@ myAppController.controller('SmartStartDskController', function($scope, $timeout,
  * The controller that displays DSK list.
  * @class SmartStartListController
  */
-myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, cfg, $route, dataFactory, dataService, expertService, myCache) {
+myAppController.controller('SmartStartListController', function($scope, $timeout, $filter, $q, $interval, cfg, $route, dataFactory, dataService, expertService, myCache) {
 
 	$scope.collection = {
 		alert: {},
@@ -251,8 +251,37 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 		findOrg: {},
 		deviceTypes: {},
 		deviceInfos: {},
-		vendors: {}
+		vendors: {},
+		lastRegistered: null,
+		hasNotIncludedDevices: false,
 	};
+
+	function updateDeviceCollection() {
+		var promise = dataFactory.getApi('get_dsk', null, true);
+		$q.allSettled([promise]).then(function (response) {
+			var DSKList = response[0];
+			if (DSKList.state === 'fulfilled') {
+				DSKList = DSKList.value.data;
+				$scope.collection.all.forEach(function (dksItem) {
+					const candidate = _.findWhere(DSKList, {
+						ZW_QR: dksItem.ZW_QR
+					});
+					if (candidate && candidate.state !== dksItem.state && candidate.state === 'included') {
+						window.location = '#/zwave/inclusion?inclusion=active';
+						$interval.cancel(updateDeviceCollectionInterval);
+					}
+				})
+			}
+		})
+	}
+
+	$scope.$on('$destroy', function() {
+		$interval.cancel(updateDeviceCollectionInterval);
+	});
+
+	var updateDeviceCollectionInterval = $interval(updateDeviceCollection, 3000);
+
+
 
 	 /**
      * Load all promises
@@ -269,7 +298,7 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
         ];
 
         $q.allSettled(promises).then(function (response) {
-            // console.log(response)
+
             var deviceClassesXML = response[0],
             	devicesInfo = response[1],
             	DSKList = response[2],
@@ -286,7 +315,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             // Error message
             if (devicesInfo.state === 'rejected') {
                 angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
-                return;
             }
 
             // Error message
@@ -303,7 +331,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             // Error message
             if (locations.state === 'rejected') {
                 angular.extend(cfg.route.alert, {message: $scope._t('failed_to_load_data')});
-                return;
             }
 
             // Success - DeviceClassesXML
@@ -322,7 +349,6 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
             if(Vendors.state === 'fulfilled') {
             	$scope.collection.vendors = Vendors.value.data.data.zwave_vendors;
             }
-
             // Success - DSKList
             if(DSKList.state === 'fulfilled') {
             	setDSKCollection(DSKList.value.data);
@@ -453,10 +479,14 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 
 			// Data collection
 			$scope.collection.all = _.filter(dsk_list, function(v) {
-				var typeId = v.DeviceTypeGenericDeviceClass;
+				var stateMap = {
+					pending: 'not included'
+				}
+
+				var typeId = v.deviceTypeGeneric;
 				var pIdArray = v.PId.split('.');
 				var pId = parseInt(pIdArray[0]) + '.' + parseInt(pIdArray[1]) + '.' + parseInt(pIdArray[2]);
-				var vendor = _.findWhere($scope.collection.vendors, {"ManufacturerId": v.ManufacturerId});
+				var vendor = _.findWhere($scope.collection.vendors, {"ManufacturerId": v.manufacturerId});
 
 				var brand_name,
 					brand_image;
@@ -464,19 +494,31 @@ myAppController.controller('SmartStartListController', function($scope, $timeout
 				brand_image = $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Brandname_Image : (vendor ? vendor.Image : '');
 				brand_name = $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].BrandName : (vendor ? vendor.Name : '-');
 
+				if (!$scope.collection.lastRegistered || $scope.collection.lastRegistered < v.timestamp) {
+					$scope.collection.lastRegistered = v.timestamp;
+				}
+
+				if (v.state !== 'included') {
+					$scope.hasNotIncludedDevices = true;
+				}
+
 				// Extending an object
 				v.added = {
 					pId: pId,
+					state: stateMap[v.state] ? stateMap[v.state] : v.state,
 					device_type: $scope.collection.deviceTypes[typeId] ? $scope.collection.deviceTypes[typeId] : '',
-					dskArray: v.DSK.split('-'),
+					dskArray: v.DSK?.split('-'),
+					s2pin: v.DSK?.length ? (v.DSK?.slice(0, 5)) : '',
+					timestamp: v.timestamp,
 					registred_at: $filter('dateTimeFromTimestamp')(v.timestamp),
 					added_at: v.addedAt ? $filter('dateTimeFromTimestamp')(v.addedAt) : '-',
 					product_image: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image : '',
 					product_image_remote: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Product_Image_remote : '',
 					brand_name: brand_name,
 					brand_image: brand_image,
-					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-'
+					product: $scope.collection.deviceInfos[pId] ? $scope.collection.deviceInfos[pId].Name : '-',
 				};
+
 				return v;
 			});
 	}
