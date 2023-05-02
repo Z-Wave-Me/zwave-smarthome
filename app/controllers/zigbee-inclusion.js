@@ -41,8 +41,6 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
                 interviewDoneCnt: 0,
                 checkInterviewCnt: 0,
                 retryCCInterviews: false,
-                security: false,
-                securityInterview: false,
                 errorType: '',
                 interviewNotDone: {}
             },
@@ -172,7 +170,6 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
             $timeout(function () {
                 if ($scope.zigbeeInclusion[scope].process && !$scope.zigbeeInclusion[scope].done) {
                     resetProcess(type, false, false, cmd, true);
-                    // may be this will help ? PS // $scope.startStopProcess(type, false);
                     alertify.alertWarning(msg);
                     $scope.reloadData();
                 }
@@ -361,7 +358,8 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
                 resetProcess('inclusion', false, true, false, true);
                 //dataService.showNotifier({message: $scope._t('lb_new_device_found')});
                 resetConfiguration(true, false, {nodeId: deviceIncId}, cmd, true);
-
+                
+                $scope.startConfiguration({nodeId: deviceIncId});
             }
         }
     }
@@ -437,9 +435,6 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
                 return;
             }
             $scope.zigbeeInclusion.automatedConfiguration.includedDevice.nodeName = node.data.givenName.value || 'Device ' + '_' + nodeId;
-            if (!node.data.nodeInfoFrame.value) {
-                return;
-            }
 
             // Is battery operated?
             if (angular.isDefined(node.endpoints)) {
@@ -453,7 +448,7 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
 
                 for (var iId in node.endpoints) {
                     Object.keys(node.endpoints[iId].clusters).forEach(function (cc){
-                        if (node.endpoints[iId].clusters[cc].data.supported.value) {
+                        if (node.endpoints[iId].clusters[cc].data.inDirection.value) {
                             $scope.zigbeeInclusion.automatedConfiguration.includedDevice.clustersCnt++;
                         }
                     });
@@ -466,9 +461,9 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
                 }
                 //angular.extend($scope.zigbeeInclusion.automatedConfiguration.includedDevice, {clustersCnt: Object.keys(node.endpoints[iId].clusters).length});
                 for (var ccId in node.endpoints[iId].clusters) {
-                    // Skip if CC is not supported
-                    if(!node.endpoints[iId].clusters[ccId].data.supported.value){
-                        //console.log('Not supported', ccId)
+                    // Skip if CC is not inDirection
+                    if(!node.endpoints[iId].clusters[ccId].data.inDirection.value){
+                        //console.log('Not inDirection', ccId)
                         continue;
                     }
                     var cmdClass = node.endpoints[iId].clusters[ccId];
@@ -498,7 +493,8 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
             //console.log('checkInterviewCnt: ', $scope.zigbeeInclusion.automatedConfiguration.includedDevice.checkInterviewCnt);
             $scope.zigbeeInclusion.automatedConfiguration.progress = (progress < 101 ? progress : 99);
 
-            // If no Security or Security ok but Interviews are not complete
+            /* TBD
+            // If interviews are not complete
             if (!_.isEmpty($scope.zigbeeInclusion.automatedConfiguration.includedDevice.interviewNotDone)) {
                 switch ($scope.zigbeeInclusion.automatedConfiguration.includedDevice.checkInterviewCnt) {
                     case 10:
@@ -548,6 +544,7 @@ myAppController.controller('ZigbeeInclusionController', function ($scope, $q, $r
                         break;
                 }
             }
+            */
 
             // All interviews are done
             if (progress >= 100) {
