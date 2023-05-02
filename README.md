@@ -9,6 +9,10 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.15.1
+#### New features:
+- Full rework of Smart Start inclusion section
+
 ## v1.15.0
 #### New features:
 - Zigbee support with Z-Wave.Me hardware

@@ -20,7 +20,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title>zwave</dc:title>
+        <dc:title>zigbee</dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -50,7 +50,7 @@
        id="style834">.cls-1{fill:#1b365d;}.cls-2{fill:#fff;}</style>
   </defs>
   <title
-     id="title838">zwave</title>
+     id="title838">zigbee</title>
   <circle
      class="cls-1"
      cx="125"
