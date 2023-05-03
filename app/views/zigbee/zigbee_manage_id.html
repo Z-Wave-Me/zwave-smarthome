@@ -51,7 +51,7 @@
                                 <span ng-bind="formInput.elements[e.id].metrics.title"></span>
                             </h3>
                             <div class="form-group form-inline is-inline">
-                                <input type="text" name="title" id="title" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" ng-blur="titleBlur = true" ng-required="true"/>
+                                <input type="text" name="title" id="title" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" ng-blur="titleBlur = true" ng-required="true" size="40"/>
                                 <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
                                 <span class="mobile-block">
                                     <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
