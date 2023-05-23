@@ -13,7 +13,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 		show: false,
 		appType: {},
 		input: {},
-		locations: {},
+		locations: [],
 		instances: {},
 		modules: {},
 		referenced: [],
@@ -73,7 +73,7 @@ myAppController.controller('ElementIdController', function($scope, $q, $routePar
 			}
 			// Success - locations
 			if (locations.state === 'fulfilled') {
-				$scope.elementId.locations = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+				$scope.elementId.locations = Object.values(dataService.getRooms(locations.value.data.data).indexBy('id').value());
 			}
 			// Success - devices
 			if (devices.state === 'fulfilled') {

@@ -547,7 +547,7 @@ myAppController.controller('ZwaveManageIdController', function ($scope, $window,
             }
             // Success - locations
             if (locations.state === 'fulfilled') {
-                $scope.rooms = dataService.getRooms(locations.value.data.data).indexBy('id').value();
+                $scope.rooms = Object.values(dataService.getRooms(locations.value.data.data).indexBy('id').value());
 
             }
 

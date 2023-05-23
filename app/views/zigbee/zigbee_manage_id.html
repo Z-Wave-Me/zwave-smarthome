@@ -32,7 +32,7 @@
                                 <ul>
                                     <li class="clickable" 
                                         ng-click="formInput.room = v.id"
-                                        ng-repeat="v in rooms">
+                                        ng-repeat="(_, v) in rooms | orderBy:'title'">
                                         <a>
                                             <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> 
                                             {{v.title|cutText:true:20}} <i class="fas fa-check menu-arrow" ng-if="formInput.room == v.id"></i>
