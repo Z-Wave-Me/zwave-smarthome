@@ -411,9 +411,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/rooms/config_rooms_id.html',
 			requireLogin: true,
 			roles: cfg.role_access.config_rooms_id
-		}). //Device configuration
-	when('/deviceconfig/:nodeId', {
+		}). //Z-Wave device configuration
+	when('/zwavedeviceconfig/:nodeId', {
 			templateUrl: 'app/views/expertui/configuration.html',
+			requireLogin: true
+		}). //Zigbee device configuration
+	when('/zigbeedeviceconfig/:nodeId', {
+			templateUrl: 'app/views/zigxpertui/configuration.html',
 			requireLogin: true
 		}). //Report
 	when('/report', {

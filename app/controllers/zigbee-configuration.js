@@ -5,9 +5,9 @@
 
 /**
  * The controller that handles outputs and inputs.
- * @class ConfigConfigurationController
+ * @class ZBConfigConfigurationController
  */
-myAppController.controller('ConfigConfigurationController', function($scope, $routeParams, $location, $interval, $filter, $timeout, dataFactory, dataService, expertService) {
+myAppController.controller('ZBConfigConfigurationController', function($scope, $routeParams, $location, $interval, $filter, $timeout, dataFactory, dataService, expertService) {
     
     $scope.devices = [];
     $scope.deviceId = 0;

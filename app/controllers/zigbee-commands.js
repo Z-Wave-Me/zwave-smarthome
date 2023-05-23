@@ -4,9 +4,9 @@
  */
 /**
  * The controller that handles outputs and inputs.
- * @class ConfigCommandsController
+ * @class ZBConfigCommandsController
  */
-myAppController.controller('ConfigCommandsController', function ($scope, $routeParams, $location, $cookies, $timeout, $filter,$interval,  dataFactory,dataService, expertService,cfg, _) {
+myAppController.controller('ZBConfigCommandsController', function ($scope, $routeParams, $location, $cookies, $timeout, $filter,$interval,  dataFactory,dataService, expertService,cfg, _) {
     $scope.commands = [];
     $scope.interviewCommands;
     $scope.ccConfiguration = {
