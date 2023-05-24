@@ -407,18 +407,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/rooms/config_rooms.html',
 			requireLogin: true,
 			roles: cfg.role_access.config_rooms
-		}).when('/config-rooms/:id', {
-			templateUrl: 'app/views/rooms/config_rooms_id.html',
-			requireLogin: true,
-			roles: cfg.role_access.config_rooms_id
-		}). //Z-Wave device configuration
-	when('/zwavedeviceconfig/:nodeId', {
-			templateUrl: 'app/views/expertui/configuration.html',
-			requireLogin: true
-		}). //Zigbee device configuration
-	when('/zigbeedeviceconfig/:nodeId', {
-			templateUrl: 'app/views/zigxpertui/configuration.html',
-			requireLogin: true
+		}).
+	when('/config-rooms/:id', {
+		templateUrl: 'app/views/rooms/config_rooms_id.html',
+		requireLogin: true,
+		roles: cfg.role_access.config_rooms_id
 		}). //Report
 	when('/report', {
 			templateUrl: 'app/views/report/report.html',

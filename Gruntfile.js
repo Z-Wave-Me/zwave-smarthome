@@ -13,9 +13,6 @@ const  projectFiles = [
 	'vendor/scheduler/jq.schedule.js',
 	'vendor/highlight/highlight-textarea.js',
 	'vendor/highlight/highlight.pack.js',
-	// ExpertUI configuration js
-	'vendor/zwave/pyzw.js',
-	'vendor/zwave/pyzw_zwave_ui.js',
 	// APP
 	'app/app.js',
 	'app/routes.js',
@@ -92,13 +89,9 @@ const  projectFiles = [
 	'app/controllers/mysettings-sessions.js',
 	'app/controllers/rss.js',
 	'app/controllers/auth.js',
-	'app/controllers/zwave-configuration.js',
-	'app/controllers/zwave-commands.js',
 	'app/controllers/zigbee-inclusion.js',
 	'app/controllers/zigbee-manage.js',
 	'app/controllers/zigbee-vendor.js',
-	'app/controllers/zigbee-configuration.js',
-	'app/controllers/zigbee-commands.js',
 	'app/controllers/welcome.js',
 	'app/controllers/management-wifi.js'
 ]
