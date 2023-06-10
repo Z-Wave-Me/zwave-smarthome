@@ -47,7 +47,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
     $scope.loadperipheralsModules = function() {
         if ($scope.user.role === 1) {
             dataFactory.getApi('instances',false,true).then(function(response) {
-                var ZWave_module = _.findWhere(response.data.data,{moduleId:'ZWave'});
+                var ZWave_module = _.findWhere(response.data.data,{moduleId:'ZWave', active: true});
                 if (ZWave_module){
                     $scope.zwave.installed = true;
                     $scope.zwave.active = !!ZWave_module.active;
@@ -56,7 +56,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
                     $scope.zwave.alert = {message: $scope._t('zwave_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 }
 
-                var Zigbee_module = _.findWhere(response.data.data,{moduleId:'Zigbee'});
+                var Zigbee_module = _.findWhere(response.data.data,{moduleId:'Zigbee', active: true});
                 if (Zigbee_module){
                     $scope.zigbee.installed = true;
                     $scope.zigbee.active = !!Zigbee_module.active;
@@ -65,7 +65,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
                     $scope.zigbee.alert = {message: $scope._t('zigbee_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 }
 
-                var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean'});
+                var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean', active: true});
                 if (EnOcean_module){
                     $scope.enocean.installed = true;
                     $scope.enocean.active = !!EnOcean_module.active;
@@ -74,7 +74,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
                     $scope.enocean.alert = {message: $scope._t('enocean_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 }
 
-                var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport'});
+                var MobileAppSupport_module = _.findWhere(response.data.data,{moduleId:'MobileAppSupport', active: true});
                 if (MobileAppSupport_module){
                     $scope.mobileAppSupport.instance = MobileAppSupport_module;
                     $scope.mobileAppSupport.installed = true;
