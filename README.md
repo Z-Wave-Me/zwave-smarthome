@@ -9,6 +9,16 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.15.2
+#### New features:
+- Add CO/CO2 alarms to Hazard Automation
+#### Fixes:
+- Search for first active app, not just first
+- Replace buttons with links to expert interface
+- Sort locations
+- Hide mobile app block in mobile app
+- Increase the size of input fields
+
 ## v1.15.1
 #### New features:
 - Full rework of Smart Start inclusion section
