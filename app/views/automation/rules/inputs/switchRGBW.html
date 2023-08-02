@@ -1,0 +1,32 @@
+<!-- select -->
+<div class="form-group form-inline">
+  <!-- select level -->
+   <select class="form-control" ng-model="model.level" ng-change="model.level = (model.level == 'rgb' ? {red:0,green:0,blue:0} : model.level)">
+      <!-- <option value="">---</option> -->
+      <option value="{{o}}" ng-repeat="o in rule.options.switchRGBW.level track by $index" ng-selected="o == model.level">
+        {{o}}</option>
+        <option value="rgb" ng-selected="_.isObject(model.level)">{{_t('colors')}}</option>
+    </select>
+    
+   <!-- level rgb -->
+   <span class="form-inline" ng-hide="rule.options.switchRGBW.level.indexOf(model.level) > -1">
+      <!-- red -->
+     <label>
+         {{_t('red')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.red" />
+       </label>
+        <!-- green -->
+     <label>
+         {{_t('green')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.green" />
+       </label>
+        <!-- blue -->
+     <label>
+         {{_t('blue')}} <input type="number" class="form-control input-number" min="{{rule.options.switchRGBW.min}}" max="{{rule.options.switchRGBW.max}}"  ng-model="model.level.blue" />
+       </label>
+       <bb-help-text trans="_t('Choose a value from 0 - 255')"></bb-help-text>
+   </div>
+  </div>
+  <!-- command -->
+  <div class="form-group" ng-if="!hideAction">
+    <input type="checkbox" name="send_command" id="send_command" ng-model="model.sendAction" ng-checked="model.sendAction" />
+    <label for="send_command">{{_t('dont_send_on_command')}}</label>
+  </div>

@@ -1,0 +1,64 @@
+<div class="smart-start" ng-controller="SmartStartListController">
+  <div class="container">
+    <!-- Navigation -->
+    <div ng-include="'app/views/smartstart/navi.html'"></div>
+    <bb-alert alert="collection.alert"></bb-alert>
+    <div id="table_mobile">
+      <table class="table">
+        <!--  <thead>
+                <tr>
+                   <th>DSK</th>
+                   <th>Created</th>
+                   <th>State</th>
+                  <th>&nbsp;</th>
+                </tr>
+            </thead> -->
+        <tbody>
+          <tr ng-repeat="v in collection.all track by $index">
+            <!-- time -->
+            <td data-title="">
+              <span class="text-supp">{{v.added.timeformat}}</span>
+            </td>
+            <!-- DSK -->
+            <td data-title="DSK">
+              <span>{{v.ZW_QR_DSK}}</span>
+            </td>
+
+            <!-- state -->
+            <td class="text-center" data-title="">
+              <div ng-show="v.isSmartStart">
+                <span class="label label-primary" ng-class="v.state == 'included' ? 'label-primary':'label-warning'">{{v.state}}</span>
+              </div>
+              <!-- info window -->
+              <div class="infowindow-wrap" ng-show="!v.isSmartStart">
+                <i class="fa fa-question-circle fa-lg text-info clickable" ng-click="expandNavi('dskInfowindow_' + $index, $event)"></i>
+                <div class="infowindow top" ng-if="naviExpanded['dskInfowindow' + '_' + $index]">
+                  <div class="infowindow-in text-center">
+                    <p>This device does not support SmartStart.</p>
+                    <a href="#zwave/vendors" class="btn btn-primary">Add device manually</a>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <!-- action -->
+            <td class="td-action" data-title="">
+              <div class="btn-group" ng-show="v.isSmartStart">
+                <!-- update  -->
+                <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="collection.find = v;handleModal('dskModal', $event)">
+                  <i class="fa fa-info-circle text-primary"></i>
+                </button>
+                <!-- delete -->
+                <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v,_t('lb_delete_confirm'))">
+                  <i class="fa fa-trash text-danger"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div ng-include="'app/views/smartstart/smartstart_list_modal.html'"></div>
+
+</div>
+<!-- /ng-controller -->

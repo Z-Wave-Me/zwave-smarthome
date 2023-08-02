@@ -199,7 +199,21 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 
 		},
 		fire: {
-			sensors: ['smoke', 'alarm_smoke', 'alarmSensor_smoke', 'general_purpose'],
+			sensors: [
+				// smoke alarm
+				'smoke',
+				'alarm_smoke',
+				'alarmSensor_smoke',
+				// CO alarm
+				'co',
+				'alarm_co',
+				'alarmSensor_co',
+				// CO2 alarm
+				'coo',
+				'alarm_coo',
+				'alarmSensor_coo',
+				'general_purpose'
+			],
 			message: $scope._t('default_fire_message'), // default message label
 			instance: false,
 			assignedDevices: [],

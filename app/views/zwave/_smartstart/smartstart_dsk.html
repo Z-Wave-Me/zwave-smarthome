@@ -1,0 +1,74 @@
+<div class="smart-start" ng-controller="SmartStartDskController">
+    <div class="container" ng-switch="dsk.state">
+        <!-- Navigation -->
+        <div ng-include="'app/views/zwave/smartstart/navi.html'"></div>
+        <!-- Start -->
+        <div class="entry enter-dsk start"  ng-switch-default>
+            <p class="content">
+                Please enter the Key on new Device (DSK - device specific keys), which you find below QR code
+            </p>
+            <form name="form_dsk" class="form-inline_" ng-submit="authenticate()">
+                <p class="form-group_">
+                    <input name="dsk" id="dsk" class="form-control" type="text" placeholder="Enter key here"
+                           ng-minlength_="5"
+                           onKeyPress="if (this.value.length == 5)
+                                               return false;" 
+                           ng-model="dsk.input.dsk" />
+                </p>
+                <p class="form-group_">
+                    <button class="btn btn-success btn-block_">Register</button>
+                    <!--<button class="btn btn-success" ng-disabled="!smartStart.input.dsk || form_dsk.$invalid || smartStart.progress > 0">Install</button>--> 
+                </p>
+            </form>
+
+        </div>
+        <!-- authenticating -->
+        <div class="entry enter-dsk authenticating"  ng-switch-when="authenticating">
+            <div class="image">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+            <p class="content">
+                Authenticating device... please wait
+            </p>
+        </div>
+        <!-- Error -->
+        <div class="entry scan-qrcode error" ng-switch-when="error">
+            <div class="image">
+                <i class="fa fa-exclamation"></i>
+            </div>
+            <p class="content">
+                Something went wrong. What happened and What to do...
+            </p>
+            <button class="btn btn-success" ng-click="resetState()">OK</button>
+        </div>
+        <!-- success-authenticate -->
+        <div class="entry enter-dsk success-authenticate" ng-switch-when="success-authenticate">
+            <div class="image clickable" ng-click="discover()">
+                <i class="fa fa-power-off"></i>
+            </div>
+            <p class="content">
+                Device is ready for inclusion. Install and power up the device
+            </p>
+        </div>
+        <!-- discovering -->
+        <div class="entry scan-qrcode discovering" ng-switch-when="discovering">
+            <div class="image">
+                <i class="fa fa-spinner fa-spin"></i>
+            </div>
+            <p class="content">
+                Discovering device... please wait
+            </p>
+
+        </div>
+        <!-- success-discover -->
+        <div class="entry enter-dsk success-discover" ng-switch-when="success-discover">
+             <div class="image">
+                <i class="fa fa-check"></i>
+            </div>
+            <p class="content">
+                Device has been included in the network and is ready for use
+            </p>
+             <button class="btn btn-success" ng-click="resetState()">OK</button>
+        </div>
+    </div>
+</div> <!-- /ng-controller --> 
