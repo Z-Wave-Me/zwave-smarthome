@@ -407,14 +407,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/rooms/config_rooms.html',
 			requireLogin: true,
 			roles: cfg.role_access.config_rooms
-		}).when('/config-rooms/:id', {
-			templateUrl: 'app/views/rooms/config_rooms_id.html',
-			requireLogin: true,
-			roles: cfg.role_access.config_rooms_id
-		}). //Device configuration
-	when('/deviceconfig/:nodeId', {
-			templateUrl: 'app/views/expertui/configuration.html',
-			requireLogin: true
+		}).
+	when('/config-rooms/:id', {
+		templateUrl: 'app/views/rooms/config_rooms_id.html',
+		requireLogin: true,
+		roles: cfg.role_access.config_rooms_id
 		}). //Report
 	when('/report', {
 			templateUrl: 'app/views/report/report.html',
