@@ -148,6 +148,9 @@ var icon_data = {
                 co: {
                     default: 'co.png'
                 },
+                co2: {
+                    default: 'coo.png'
+                },
                 coo: {
                     default: 'coo.png'
                 },
