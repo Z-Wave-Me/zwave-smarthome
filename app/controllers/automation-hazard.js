@@ -215,7 +215,7 @@ myAppController.controller('HazardNotificationIdController', function($scope, $r
 				'alarmSensor_coo',
 				// general purpose
 				'general_purpose'
-			],,
+			],
 			message: $scope._t('default_fire_message'), // default message label
 			instance: false,
 			assignedDevices: [],
