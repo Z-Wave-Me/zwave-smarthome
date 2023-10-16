@@ -430,6 +430,7 @@
     "lb_add_widget": "Add shortcut",
     "lb_admin": "Admin",
     "lb_advanced": "Advanced",
+    "lb_authorized_ip": "Allow password-free access from this IP",
     "lb_advanced_rule_then_further_settings": "Check the rule for every change of state of a device listed under Conditions",
     "lb_alexa": "Amazon Alexa",
     "lb_allow_access_to_all_devices": "Has access to all devices",
