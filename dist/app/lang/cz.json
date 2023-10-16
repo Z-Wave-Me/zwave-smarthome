@@ -406,6 +406,7 @@
     "lb_activate_google_home": "Activate for Google Assistant",
     "lb_active": "Aktivní",
     "lb_advanced": "Advanced",
+    "lb_authorized_ip": "Allow password-free access from this IP",
     "lb_simple": "Simple",
     "lb_add_app": "Přidat Aplikaci",
     "lb_add_call_name": "Add call name",
