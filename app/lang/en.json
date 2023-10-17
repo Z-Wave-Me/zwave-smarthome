@@ -1058,7 +1058,7 @@
     "not_used": "Not used",
     "interviewNotFinish": "Interview not completed",
     "showInterviewInExpert": "You can view the results of the interview and go through it manually in the Expert interface",
-    "authorisationNeeded" : "Don't ask for pin/fingerprint/Face ID",
+    "authorisationNeeded" : "Ask for pin/fingerprint/Face ID",
     "btn_lr_long_range": "Long Range",
     "btn_lr_classic": "Classic",
     "s2pin": "S2 PIN",
