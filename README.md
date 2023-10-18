@@ -14,6 +14,7 @@ Serguei Poltorak
 - Add CO/CO2 alarms to Hazard Protection Fire sensors
 #### Fixes:
 - Added CO2 icon
+- Fixed shortcut Ask PIN checkbox
 
 ## v1.15.2
 #### New features:

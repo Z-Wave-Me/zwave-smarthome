@@ -14,7 +14,7 @@ var config_data = {
 		// Application version
 		'app_version': 'v1.15.3',
 		// Application (DIST) built date
-		'app_built': '16-10-2023 20:57:32',
+		'app_built': '18-10-2023 03:10:58',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url

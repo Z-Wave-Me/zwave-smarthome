@@ -406,7 +406,6 @@
     "lb_active": "Activa",
     "lb_active_apps": "Active Apps",
     "lb_advanced": "Advanced",
-    "lb_authorized_ip": "Allow password-free access from this IP",
     "lb_simple": "Simple",
     "lb_add_app": "Añadir aplicación",
     "lb_add_call_name": "Add call name",
@@ -1060,7 +1059,7 @@
     "wifi_disconnected": "Disconnected",
     "interviewNotFinish": "Interview not completed",
     "showInterviewInExpert": "You can view the results of the interview and go through it manually in the Expert interface",
-    "authorisationNeeded": "Don't ask for pin/fingerprint/Face ID",
+    "authorisationNeeded": "Ask for pin/fingerprint/Face ID",
     "shortcutName": "Shortcut name",
     "btn_lr_long_range": "Long Range",
     "btn_lr_classic": "Classic"
