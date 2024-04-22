@@ -9,6 +9,11 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.15.4
+#### Fixes:
+- Fixed return to expert mode after logout
+- Fixed 'ask pin' checkbox for shortcuts
+
 ## v1.15.3
 #### New features:
 - Add CO/CO2 alarms to Hazard Protection Fire sensors

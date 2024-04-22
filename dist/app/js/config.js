@@ -12,9 +12,9 @@ var config_data = {
 		//Application name
 		'app_name': 'SmartHome UI',
 		// Application version
-		'app_version': 'v1.15.3',
+		'app_version': 'v1.15.4',
 		// Application (DIST) built date
-		'app_built': '18-10-2023 03:10:58',
+		'app_built': '22-04-2024 23:43:00',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -210,7 +210,7 @@ var config_data = {
 		// Api url
 		'expert_url': '/expert',
 		// Api url
-		'expert_url': '/zigxpert',
+		'zigxpert_url': '/zigxpert',
 		// Api url
 		'api_url': 'ZAutomation/api/v1/',
 		// ZWave api url
