@@ -23,7 +23,7 @@ myApp.directive('zWaveShortcut', function(dataService) {
                     </div>
                   <div class="form-group">
                   <label>
-                  <input type="checkbox" ng-model="shortcut.authorisation">
+                  <input type="checkbox" ng-model="shortcut.authorisation" checked>
                     {{_t('authorisationNeeded')}}
                   </label>
                     </div>
