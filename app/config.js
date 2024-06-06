@@ -212,11 +212,15 @@ var config_data = {
 		// Api url
 		'zigxpert_url': '/zigxpert',
 		// Api url
+		'matterxpert_url': '/matterxpert',
+		// Api url
 		'api_url': 'ZAutomation/api/v1/',
 		// ZWave api url
 		'zwave_api_url': 'ZWaveAPI/',
-		// ZWave api url
+		// Zigbee api url
 		'zigbee_api_url': 'ZigbeeAPI/',
+		// Matter api url
+		'zmatter_api_url': 'ZMatterAPI/',
 		// Z-Way JS url
 		'zway_js_url': 'JS/',
 		// Z-Way run JS url
