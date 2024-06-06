@@ -796,6 +796,7 @@
     "rebooting_system_in": "Перезагрузка системы в __time__",
     "redirect_to_expert": "Вы будете перенаправлены в интерфейс Expert UI",
     "redirect_to_zigxpert": "Вы будете перенаправлены в интерфейс Expert UI",
+    "redirect_to_matterxpert": "Вы будете перенаправлены в интерфейс Expert UI",
     "redo_inclusion": "Пере-включить",
     "referenced_in" : "Используется в",
     "reform_network": "Преобразовать сеть",
@@ -1077,6 +1078,7 @@
     "supported": "Поддерживается",
     "notSupported": "Не поддерживается",
     "invalid": "Недействительный",
+    "matter_invalid_qrcode": "The presented QR code is not a Matter commissioning code. Please scan the right QR code on your Matter device",
     "shortcutName": "Имя ярлыка"
 
 }

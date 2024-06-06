@@ -796,6 +796,7 @@
     "rebooting_system_in": "Rebooting system in __time__",
     "redirect_to_expert": "You will be redirected to a special User Interfae dedicated to Z-Wave Installers and Professionals. If you do now belong to this group or have another deep Z-Wave technology knowledge, this User interface is not for you! ",
     "redirect_to_zigxpert": "You will be redirected to a special User Interfae dedicated to Zigbee Installers and Professionals. If you do now belong to this group or have another deep Zigbee technology knowledge, this User interface is not for you! ",
+    "redirect_to_matterxpert": "You will be redirected to a special User Interfae dedicated to Matter Installers and Professionals. If you do now belong to this group or have another deep Matter technology knowledge, this User interface is not for you! ",
     "redo_inclusion": "Redo inclusion",
     "referenced_in" : "Referenced in",
     "reform_network": "Reform network",
@@ -1077,5 +1078,6 @@
     "notIncluded": "not included",
     "smartStartRangeHelp": "Select mode: Classic or Long Range",
     "smartStartHelp": "Power on a device",
+    "matter_invalid_qrcode": "The presented QR code is not a Matter commissioning code. Please scan the right QR code on your Matter device",
     "shortcutName": "Shortcut name"
 }

@@ -776,6 +776,7 @@
     "reboot_now": "Reiniciar AHORA",
     "redirect_to_expert": "Será redirigido a una interfaz del usuario especial específica para los profesionales e instaladores de Z-Wave. Si no pertenece a este grupo o no posee un conocimiento profundo de la tecnología Z-Wave, esta interfaz del usuario no es para usted. ",
     "redirect_to_zigxpert": "Será redirigido a una interfaz del usuario especial específica para los profesionales e instaladores de Zigbee. Si no pertenece a este grupo o no posee un conocimiento profundo de la tecnología Zigbee, esta interfaz del usuario no es para usted. ",
+    "redirect_to_matterxpert": "Será redirigido a una interfaz del usuario especial específica para los profesionales e instaladores de Matter. Si no pertenece a este grupo o no posee un conocimiento profundo de la tecnología Matter, esta interfaz del usuario no es para usted. ",
     "redo_inclusion": "Rehacer inclusión",
     "reform_network": "Reform network",
     "registered_at": "Registered at",
@@ -1069,6 +1070,7 @@
     "interviewNotFinish": "Interview not completed",
     "showInterviewInExpert": "You can view the results of the interview and go through it manually in the Expert interface",
     "authorisationNeeded": "Ask for pin/fingerprint/Face ID",
+    "matter_invalid_qrcode": "The presented QR code is not a Matter commissioning code. Please scan the right QR code on your Matter device",
     "shortcutName": "Shortcut name",
     "btn_lr_long_range": "Long Range",
     "btn_lr_classic": "Classic"

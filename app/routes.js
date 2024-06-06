@@ -306,6 +306,48 @@ myApp.config(['$routeProvider', function($routeProvider) {
 	when('/zigbee/network', {
 			templateUrl: 'app/views/zigbee/zigbee_network.html',
 			requireLogin: true
+		}). //Matter select vendors
+	when('/matter/vendors', {
+			templateUrl: 'app/views/matter/matter_vendors.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices
+		}). //Matter select devices by vendor id
+	when('/matter/products', {
+			templateUrl: 'app/views/matter/matter_products.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices
+		}). //Include Matter device
+	when('/matter/inclusion/:code?', {
+			templateUrl: 'app/views/matter/matter_inclusion.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices_include
+		}). //Check interview
+	when('/matter/interview/:id', {
+			templateUrl: 'app/views/matter/matter_interview.html',
+			requireLogin: true,
+			roles: cfg.role_access.devices_include
+		}). //Exclude Matter device
+	when('/matter/devices', {
+			templateUrl: 'app/views/matter/matter_manage.html',
+			requireLogin: true
+		}). //Matter devices config
+	when('/matter/devices/:nodeId/:nohistory?', {
+			templateUrl: 'app/views/matter/matter_manage_id.html',
+			requireLogin: true,
+			roles: cfg.role_access.network_config_id
+		}). //Matter battery
+	when('/matter/batteries', {
+			templateUrl: 'app/views/matter/matter_batteries.html',
+			requireLogin: true
+		}). //Matter Network
+	when('/matter/network', {
+			templateUrl: 'app/views/matter/matter_network.html',
+			requireLogin: true
+		}). //Matter Commission
+	when('/matter/commission', {
+			templateUrl: 'app/views/matter/matter_commission.html',
+			requireLogin: true,
+			roles: cfg.role_access.admin
 		}). //Camera add
 	when('/camera/add', {
 			templateUrl: 'app/views/camera/camera_add.html',

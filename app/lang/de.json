@@ -776,6 +776,7 @@
     "reboot_now": "Neustart",
     "redirect_to_expert": "Sie werden zur ExpertUI weitergeleitet.",
     "redirect_to_zigxpert": "Sie werden zur ExpertUI weitergeleitet.",
+    "redirect_to_matterxpert": "Sie werden zur ExpertUI weitergeleitet.",
     "redo_inclusion": "Inklusion wiederholen",
     "reform_network": "Reform network",
     "registered_at": "Registriert am",
@@ -1069,6 +1070,7 @@
     "interviewNotFinish": "Interview not completed",
     "showInterviewInExpert": "You can view the results of the interview and go through it manually in the Expert interface",
     "authorisationNeeded": "Ask for pin/fingerprint/Face ID",
+    "matter_invalid_qrcode": "The presented QR code is not a Matter commissioning code. Please scan the right QR code on your Matter device",
     "shortcutName": "Shortcut name",
     "btn_lr_long_range": "Long Range",
     "btn_lr_classic": "Classic"

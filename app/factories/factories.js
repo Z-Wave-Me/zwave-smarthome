@@ -30,6 +30,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     var updatedTime = 0;
     var updatedTimeZWave = 0;
     var updatedTimeZigbee = 0;
+    var updatedTimeZMatter = 0;
     var updatedTimeEnOcean = 0;
     var lang = cfg.lang;
     var ZWAYSession = dataService.getZWAYSession();
@@ -63,14 +64,18 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         putCfgXml: putCfgXml,
         refreshZwaveApiData: refreshZwaveApiData,
         refreshZigbeeApiData: refreshZigbeeApiData,
+        refreshZMatterApiData: refreshZMatterApiData,
         getSystemCmd: getSystemCmd,
         getLanguageFile: getLanguageFile,
         loadZwaveApiData: loadZwaveApiData,
         loadZigbeeApiData: loadZigbeeApiData,
+        loadZMatterApiData: loadZMatterApiData,
         joinedZwaveData: joinedZwaveData,
         joinedZigbeeData: joinedZigbeeData,
+        joinedZMatterData: joinedZMatterData,
         runZwaveCmd: runZwaveCmd,
         runZigbeeCmd: runZigbeeCmd,
+        runZMatterCmd: runZMatterCmd,
         loadEnoceanApiData: loadEnoceanApiData,
         refreshEnoceanApiData: refreshEnoceanApiData,
         runEnoceanCmd: runEnoceanCmd,

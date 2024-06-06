@@ -1,0 +1,51 @@
+<!-- Matter battery view -->
+<div ng-controller="MatterManageController">
+    <bb-loader></bb-loader>
+    <!-- Matter navigation -->
+    <div ng-include="'app/views/matter/navi.html'"></div>
+    <div class="app-row app-row-report app-row-matter clearfix">
+        <div id="row_battery_{{v.id}}" class="report-entry" ng-repeat="v in devices.zw| orderBy:'title':false" ng-if="v.hasBattery">
+            <div class="report-col report-media">
+                <img class="report-img" ng-src="{{v.batteryCharge|getBatteryIcon}}" alt="img" />
+            </div>
+            <div class="report-col report-body report-col-w30">
+                <span class="network-matter-title noelements" ng-if="_.size(v.elements) < 1">{{v.title}} (#{{v.id}}) </span>
+                 <div class="btn-group"  ng-if="_.size(v.elements) > 0">
+                   <a href="" class="network-matter-title" ng-click="expandNavi('accMatterManage_' + v.id, $event)">
+                        <i class="fa" ng-class="naviExpanded['accMatterManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                    </a>
+                    <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accMatterManage_' + v.id]">
+                        <ul>
+                            <li class="clickable matter-hidden-{{e.permanently_hidden}}"
+                                ng-init="elUrl = (e.permanently_hidden ? '': '#/element/' + e.id)"
+                                ng-repeat="e in v.elements| orderBy:'metrics.title':false">
+                                <a ng-href="{{elUrl}}" title="{{e.metrics.title}}">
+                                    <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                                    {{e.metrics.title|cutText:true:20}} <span class="matter-raquo">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="report-col report-battery-info">
+                <div  ng-if="v.date"><i class="fas fa-clock"></i> {{v.date}}</div>
+                <div ng-if="v.awake">
+                    <i class="fas {{v.awake|getAwakeIcon}}"></i>
+                    <span ng-if="v.sleeping" ng-bind-html="v.sleeping | toTrusted"></span>  
+                </div>
+
+
+
+            </div>
+            <div class="report-col report-ctrl">
+
+                <span class="text-success" ng-show="v.batteryCharge >= 80">{{v.batteryCharge}} %</span>
+                <span class="text-default" ng-show="v.batteryCharge < 80 && v.batteryCharge > 20">{{v.batteryCharge}} %</span>
+                <span class="text-danger" ng-show="v.batteryCharge <= 20"><i class="fas fa-exclamation-triangle"></i> {{v.batteryCharge}} %</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="device-logo" ng-include="'app/views/matter/matter_nav.html'"></div>
+</div> <!-- /ng-controller --> 
