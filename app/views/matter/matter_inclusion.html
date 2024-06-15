@@ -39,6 +39,29 @@
                         <span class="badge badge-number">2</span>
                     </div>
                     <div class="report-col report-body">
+                        {{_t('matter_ble_ext_mode')}}
+                        <div class="btn-group">
+                            <button class="btn" id="btn_bleext"
+                                data-ng-click="setBLEWSExt('controller.data.bleExt.enabled=true')"
+                                ng-class="matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
+                                <i class="fas fa-mobile-alt"></i>
+                            </button>
+                            <button class="btn" id="btn_bleint"
+                                data-ng-click="setBLEWSExt('controller.data.bleExt.enabled=false')"
+                                ng-class="!matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
+                                <i class="fab fa-bluetooth"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="report-col report-ctrl">
+                    </div>
+                </div><!-- /.report-entry -->
+                <!-- 3 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">3</span>
+                    </div>
+                    <div class="report-col report-body">
                         <div class="inclusion-header" ng-if="!matterInclusion.inclusionProcess.process">
                             <!-- Header -->
                             <button class="btn btn-success btn-lg" title="{{_t('start')}}"
@@ -63,10 +86,33 @@
                         <i class="fas fa-check fa-2x text-success" ng-if="matterInclusion.inclusionProcess.done"></i>
                     </div>
                 </div><!-- /.report-entry -->
-                <!-- 3 -->
+                <!-- 4 -->
                 <div class="report-entry">
                     <div class="report-col report-media">
-                        <span class="badge badge-number">3</span>
+                        <span class="badge badge-number">4</span>
+                    </div>
+                    <div class="report-col report-body">
+                        <div ng-if="!matterInclusion.controller.bleExtEnabled">
+                            {{_t('matter_ble_int_mode_comment')}}
+                        </div>
+                        <div ng-if="matterInclusion.controller.bleExtEnabled">
+                            {{_t('matter_ble_ext_mode_comment')}}
+                            <div id="qrcode" ng-if="matterInclusion.controller.bleExtWS && matterInclusion.controller.controllerState == 1">
+                                <img width="255" height="255" ng-src="{{qrcode}}">
+                                <a class="btn btn-default ng-scope" target="_blank" ng-href="{{blews_addr}}">
+                                    <span class="btn-name ng-binding" ng-bind="_t('matter_open_blews')"></span>
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-col report-ctrl">
+                    </div>
+                </div><!-- /.report-entry -->
+                <!-- 5 -->
+                <div class="report-entry">
+                    <div class="report-col report-media">
+                        <span class="badge badge-number">5</span>
                     </div>
                     <div class="report-col report-body">
                         <!-- Header -->
@@ -98,10 +144,10 @@
                         <i class="fas fa-check fa-2x text-success" ng-if="matterInclusion.automatedConfiguration.done"></i>
                     </div>
                 </div><!-- /.report-entry -->
-                <!-- 4 -->
+                <!-- 6 -->
                 <div class="report-entry">
                     <div class="report-col report-media">
-                        <span class="badge badge-number">4</span>
+                        <span class="badge badge-number">6</span>
                     </div>
                     <div class="report-col report-body">
                         <!-- Header -->

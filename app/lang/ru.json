@@ -1078,11 +1078,12 @@
     "supported": "Поддерживается",
     "notSupported": "Не поддерживается",
     "invalid": "Недействительный",
-    "matter_ble_int_mode_comment": "Internal Bluetooth module will be used to commission your Matter device",
-    "matter_ble_ext_mode_comment": "External application will be used to commission your Matter device. Use a mobile phone or a PC with a Bluetooth module and open the link below in Google Chrome. For this, click on the button or scan the QR code. Follow instructions on this page.",
-    "matter_open_blews": "Open commissioner page",
-    "matter_ble_ext_mode": "Use the mobile app or internal Bluetooth",
-    "matter_invalid_qrcode": "The presented QR code is not a Matter commissioning code. Please scan the right QR code on your Matter device",
+    "matter_ble_int_mode_comment": "Для добавления устройства Matter будет использоваться встроенный модуль Bluetooth",
+    "matter_ble_ext_mode_comment": "Для добавления устройства Matter будет использоваться внешнее приложение. Используйте мобильный телефон или ПК с модулем Bluetooth и откройте в Google Chrome ссылку, указанную ниже. Для этого нажмите на кнопку или отсканируйте QR код. Следуйте инструкциям на открывшейся странице",
+    "matter_open_blews": "Открыть страницу добавления устройства",
+    "matter_ble_ext_mode": "Использовать внешнее мобильное приложение или встроенный модуль Bluetooth",
+    "matter_invalid_commissioning_content": "Can't parse the Commissioning code",
+    "matter_invalid_qrcode": "Отсканированный QR код не является кодом устройства Matter. Отсканируйте QR код, размещённый на устройстве и помеченный логотипом Matter.",
     "shortcutName": "Имя ярлыка"
 
 }

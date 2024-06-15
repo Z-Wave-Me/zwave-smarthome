@@ -22,7 +22,11 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         controller: {
             controllerState: 0,
             lastExcludedDevice: null,
-            lastIncludedDeviceId: 0
+            lastIncludedDeviceId: 0,
+            bleExtEnabled: false,
+            bleExtWS: false,
+            bleExtPort: 0,
+            bleExtRxLen: 0
         },
         matterApiData: {},
         inclusionProcess: {
@@ -52,6 +56,10 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
             done: false
         }
     };
+    $scope.sendBLEExtDHQueue = [];
+    $scope.qrcode = '';
+    $scope.blews_addr = '';
+    $scope.matterDev;
     $scope.interval = {
         api: null
     };
@@ -72,7 +80,8 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
 
         var promises = [
             false,
-            dataFactory.loadZMatterApiData(true)
+            dataFactory.loadZMatterApiData(true),
+            dataFactory.runZMatterCmd('controller.SetSetupCode("' + $routeParams.code + '")')
         ];
         // Loading device by ID
         if ($routeParams.id) {
@@ -82,10 +91,16 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         $q.allSettled(promises).then(function (response) {
             var deviceId = response[0];
             var MatterAPIData = response[1];
+            var SetSetupCode = response[2];
             // Error message
             if (MatterAPIData.state === 'rejected') {
                 $scope.loading = false;
                 angular.extend(cfg.route.alert, {message: $scope._t('error_load_data')});
+                return;
+            }
+            if (SetSetupCode.state === 'rejected') {
+                $scope.loading = false;
+                angular.extend(cfg.route.alert, {message: $scope._t('matter_invalid_commissioning_content')});
                 return;
             }
             // Success - device by id
@@ -150,6 +165,17 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
     };
 
     /**
+     * Set inclusion with external BLE
+     * state=true Set as external.
+     * state=false Set as connected adapter.
+     * @param {string} cmd
+     */
+    $scope.setBLEWSExt = function (cmd) {
+        $scope.runMatterCmd(cmd);
+        $scope.refreshZMatterApiData();
+    };
+    
+    /**
      * Start/Stop Process
      */
     $scope.startStopProcess = function (type, process) {
@@ -159,9 +185,12 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
 
         switch(type) {
             case 'inclusion':
-                cmd = process ? 'controller.AddNodeToNetwork("' + $routeParams.code + '")' : 'controller.AddNodeToNetwork("")';
+                cmd = process ? 'controller.AddNodeToNetwork()' : '';
                 scope = 'inclusionProcess';
                 msg = $scope._t('error_inclusion_time');
+                
+                if ($scope.matterInclusion.controller.bleExtEnabled && !$scope.matterInclusion.controller.bleExtWS && process) $scope.bleExtDHInit();
+                
                 break;
         }
         if(process) {
@@ -300,6 +329,20 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
     $scope.runMatterCmd = function (cmd) {
         dataFactory.runZMatterCmd(cmd).then(function () {});
     };
+    
+    /**
+     * Run matter command for the queue
+     */
+    $scope.sendQueuedMatterCmd = function () {
+        if ($scope.sendBLEExtDHQueue.length && $scope.sendBLEExtDHQueue[0] != null) {
+            let cmd = $scope.sendBLEExtDHQueue.shift();
+            $scope.sendBLEExtDHQueue.unshift(null); // block the queue
+            dataFactory.runZMatterCmd(cmd).then(function () {
+                $scope.sendBLEExtDHQueue.shift(); // unblock the queue
+                $scope.sendQueuedMatterCmd();
+            });
+        }
+    };
 
     /**
      * Force interview
@@ -324,6 +367,9 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
      */
     function setMatterAPIData(MatterAPIData) {
         $scope.matterInclusion.controller.controllerState = MatterAPIData.controller.data.controllerState.value;
+        $scope.matterInclusion.controller.bleExtEnabled = MatterAPIData.controller.data.bleExt.enabled.value;
+        $scope.matterInclusion.controller.bleExtWS = MatterAPIData.controller.data.bleExt.ws.value;
+        $scope.matterInclusion.controller.bleExtPort = MatterAPIData.controller.data.bleExt.port.value;
 
         // check initial include mode
         if ([1,2,3,4].indexOf($scope.matterInclusion.controller.controllerState) > -1) {
@@ -341,7 +387,13 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         // Set controller state
         if ('controller.data.controllerState' in data) {
             $scope.matterInclusion.controller.controllerState = data['controller.data.controllerState'].value;
-            //console.log('controllerState: ', $scope.matterInclusion.controller.controllerState);
+            if ($scope.matterInclusion.controller.controllerState == 1) {
+                // Inclusion started, show the QR code if needed
+                if ($scope.matterInclusion.controller.bleExtEnabled) {
+                    $scope.blews_addr = $scope.cfg.matter_blews_url + location.hostname + ":" + $scope.matterInclusion.controller.bleExtPort;
+                    QRCode.toDataURL($scope.blews_addr, function(err, url) { $scope.qrcode = url; });
+                }
+            }
         }
         // Set last included device
         if ('controller.data.lastIncludedDevice' in data) {
@@ -362,8 +414,30 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 $scope.startConfiguration({nodeId: deviceIncId});
             }
         }
-    }
-    ;
+        // BLE Ext
+        if ('controller.data.bleExt.enabled' in data) {
+            $scope.matterInclusion.controller.bleExtEnabled = data['controller.data.bleExt.enabled'].value;
+        }
+        if ('controller.data.bleExt.rx' in data) {
+            let rx = data['controller.data.bleExt.rx'].value;
+            
+            if (rx == null) {
+                $scope.matterInclusion.controller.bleExtRxLen = 0;
+                return;
+            }
+            
+            if ($scope.matterInclusion.controller.bleExtRxLen >= rx.length) {
+                // buffer restarted
+                data = rx;
+            } else {
+                // buffer was appended, take new part only
+                data = rx.slice($scope.matterInclusion.controller.bleExtRxLen);
+            }
+            $scope.matterInclusion.controller.bleExtRxLen = rx.length
+            
+            bleExtDHOnMessage(data);
+        }
+    };
 
     /**
      * Reset automated configuration
@@ -572,6 +646,327 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
             {process: process, done: done}
         );
     };
+    
+    // BLE Ext DH
+    
+    // Logging
+    
+    function blewsLog() {
+        let line = Array.prototype.slice.call(arguments).map(function(argument) {
+            return typeof argument === "string" ? argument : JSON.stringify(argument);
+        }).join(" ");
+    }
+    
+    // Matter BLE Class
+    
+    class ZMatterDevice {
+        constructor(onHandlerRx, onHandlerStatus) {
+            this.device = null;
+            this.serviceUUID = "0000fff6-0000-1000-8000-00805f9b34fb";
+            this.txCharUUID = "18ee2ef5-263d-4559-959f-4f9c429f9d11";
+            this.rxCharUUID = "18ee2ef5-263d-4559-959f-4f9c429f9d12";
+            this.customRx = onHandlerRx;
+            this.customStatus = onHandlerStatus;
+            this.onDisconnected = this.onDisconnected.bind(this);
+            this.onRxNotification = this.onRxNotification.bind(this);
+        }
+        
+        request() {
+            let options = {
+                "acceptAllDevices":true,
+                "optionalServices": [this.serviceUUID]
+                };
+            return navigator.bluetooth.requestDevice(options)
+            .then(device => {
+                this.device = device;
+                this.device.addEventListener("gattserverdisconnected", this.onDisconnected);
+            });
+        }
+    
+        connect() {
+            if (!this.device) {
+                return Promise.reject("Device is not connected.");
+            }
+            return this.device.gatt.connect()
+            .then(server => {
+                blewsLog("Getting GAP Service...");
+                return server.getPrimaryService(this.serviceUUID);
+            }).then(service => {
+                blewsLog("Getting GAP Characteristics...");
+                return service.getCharacteristics();
+            }).then(characteristics => {
+                 let queue = Promise.resolve();
+                 characteristics.forEach(characteristic => {
+                    blewsLog("> Characteristic UUID: " + characteristic.uuid);
+                    if(characteristic.uuid == this.txCharUUID){
+                        this.txChr = characteristic;
+                    } else if(characteristic.uuid == this.rxCharUUID){
+                        this.rxChr = characteristic;
+                    }
+            });
+            if (this.customStatus)
+                this.customStatus(this, "connect", this.isValidConnectedDevice());
+                return queue;
+            }) .catch(error => {
+                blewsLog("Argh! " + error);
+            });
+        }
+        
+        getDeviceName() {
+            return this.device.name;
+        }
+        
+        isValidConnectedDevice() {
+            return this.device && this.txChr && this.rxChr;
+        }
+        
+        subscribe(on) {
+            if (!this.device) {
+                return Promise.reject("Device is not connected.");
+            }
+            
+            if (!this.rxChr) {
+                return Promise.reject("No RxChr found.");
+            }
+            
+            if (on) {
+                return this.rxChr.startNotifications().then(_ => {
+                    blewsLog("> Notifications started");
+                    if (this.customStatus) {
+                        this.customStatus(this, "subscribe", true);
+                    }
+                    this.rxChr.addEventListener("characteristicvaluechanged", this.onRxNotification);
+                });
+            } else {
+                return this.rxChr.stopNotifications().then(_ => {
+                    blewsLog("> Notifications stopped");
+                    if(this.customStatus) {
+                        this.customStatus(this, "unsubscribe", true);
+                    }
+                    this.rxChr.removeEventListener("characteristicvaluechanged", this.onRxNotification);
+                });
+            }
+        }
+        
+        writeTx(data) {
+            if (!this.device) {
+                return Promise.reject("Device is not connected.");
+            }
+            if (!this.rxChr) {
+                return Promise.reject("No TxChr found.");
+            }
+            var res = this.txChr.writeValue(data).then(_ => {
+                if(this.customStatus) {
+                    this.customStatus(this, "write", res);
+                } 
+            });
+            return res;
+        }
+    
+        disconnect() {
+            if (!this.device) {
+                return Promise.reject("Device is not connected.");
+            }
+            return this.subscribe(false).then(_=>{
+                return this.device.gatt.disconnect()
+            });
+        }
+        
+        onRxNotification(event){
+            let value = event.target.value;
+            let a = [];
+            let arr_data = [];
+            
+            // Convert raw data bytes to hex values just for the sake of showing something.
+            // In the real world, you would use data.getUint8, data.getUint16 or even
+            // TextDecoder to process raw data bytes.
+            for (let i = 0; i < value.byteLength; i++) {
+                a.push("0x" + ("00" + value.getUint8(i).toString(16)).slice(-2));
+                arr_data.push(value.getUint8(i));
+            }
+            blewsLog("RX Notify: " + a.join(" "));
+            if (this.customRx) {
+                this.customRx(this, arr_data);
+            }
+        }
+        
+        onDisconnected() {
+            blewsLog("Device is disconnected.");
+            if (this.customStatus) {
+                this.customStatus(this, "disconnect", true);
+            }
+        }
+    }
+
+    let BLEExtDHCommands = {    
+        "unknown": {
+            "type": 0,
+            "iparam": "on"
+        },
+        "connection": {
+            "type": 1,
+            "str_params_0": "name",
+            "str_params_1": "addr"
+        },
+        "rx": {
+            "type": 2,
+            "data": "data"
+        },
+        "tx": {
+            "type": 3
+        },
+        "subscribe": {
+            "type": 4
+        },
+        "rx_ack": {
+            "type": 5
+        },
+        "tx_ack": {
+            "type": 6,
+            "iparam": "status"
+        },
+        "subscribe_ack": {
+            "type": 7,
+            "iparam": "on"
+        },
+        "terminate": {
+            "type": 8,
+            "iparam": "reason"
+        }
+    };
+    
+    function sendBLEExtDHCommand(cmd) {
+        let cmdData = [];
+        let len = 0;
+        let seq = 0;
+        let data = [];
+        
+        let cmdType = BLEExtDHCommands[cmd.type];
+        let type = cmdType.type;
+        
+        if (cmdType.iparam) {
+            let param = cmd[cmdType.iparam];
+            data = [(param >> 24) & 0xff, (param >> 16) & 0xff, (param >> 8) & 0xff, (param >> 0) & 0xff, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            len = 4;
+        } else if (cmdType.data) {
+            data = cmd[cmdType.data];
+            len = data.length;
+        } else if (cmdType.str_params_0 && cmdType.str_params_1) {
+            data = cmd[cmdType.str_params_0].split('').map(c => c.charCodeAt(0));
+            data.push(0); // string null termination
+            len = data.length;
+        } else {
+            console.log("Unhandled command ", JSON.stringify(cmd));
+        }
+        
+        cmdData = cmdData.concat([(type >> 8) & 0xff, (type >> 0) & 0xff, (len >> 8) & 0xff, (len >> 0) & 0xff, (seq >> 24) & 0xff, (seq >> 16) & 0xff, (seq >> 8) & 0xff, (seq >> 0) & 0xff]);
+        cmdData = cmdData.concat(data);
+        
+        $scope.sendBLEExtDHQueue.push("controller.data.bleExt.tx=" + JSON.stringify(cmdData));
+        $scope.sendQueuedMatterCmd();
+    };
+    
+    function BLEStatusHandler(ble_dev, name, result) {
+        if (!result) return;
+        
+        let js_cmd;
+        switch(name) {
+            case "connect":
+                js_cmd = {
+                    "type": "connection",
+                    "addr":"",
+                    "name": ble_dev.getDeviceName()
+                };
+                break;
+                
+            case "write":
+                js_cmd = {
+                    "type":"tx_ack",
+                    "status": 0
+                };
+                break;
+                
+            case "subscribe":
+                js_cmd = {
+                    "type":"subscribe_ack",
+                    "on": 1
+                };
+                break;
+
+            case "unsubscribe":
+                js_cmd = {
+                    "type":"subscribe_ack",
+                    "on": 0
+                };
+                break;
+            
+            case "disconnect":
+                js_cmd = {
+                    "type":"terminate",
+                    "reason": 1
+                };
+                break;
+        }
+        
+        sendBLEExtDHCommand(js_cmd);
+    };
+    
+    function BLERxHandler(ble_dev, value) {
+        let js_cmd = {
+            "type":"rx",
+            "data": value
+        
+        };
+        blewsLog("Sending WS cmd:" + JSON.stringify(js_cmd))
+        sendBLEExtDHCommand(js_cmd);
+    }
+    
+    $scope.bleExtDHInit = function() {
+        $scope.matterDev = new ZMatterDevice(BLERxHandler, BLEStatusHandler);
+        $scope.matterDev.request()
+            .then(_ => $scope.matterDev.connect())
+            .catch(error => { blewsLog(error) });
+    };
+    
+    function bleExtDHUnpack(data, len)
+    {
+        // handle the next packet recursively
+        data = data.slice(8 + len);
+        if (data.length > 0)
+        {
+            if (data.length < 8) {
+                blewsLog("ERROR handling remaining part of the packet ", data);
+                return;
+            }
+            bleExtDHOnMessage(data);
+        }
+    };
+    
+    function bleExtDHOnMessage(data) {
+        let type = (data[0] << 8) + data[1];
+        let len = (data[2] << 8) + data[3];
+        let seq = (data[4] << 24) + (data[5] << 16) + (data[6] << 8) + data[7]; 
+        let typeName = Object.keys(BLEExtDHCommands).filter(k => BLEExtDHCommands[k].type == type)[0];
+        switch (typeName) {
+            case "tx":
+                $scope.matterDev.writeTx(new Uint8Array(data.slice(8, 8 + len))).then(_=>bleExtDHUnpack(data, len));
+                break;
+            case "subscribe":
+                len = 4*4; // iparam[4]
+                $scope.matterDev.subscribe((data[8] << 24) + (data[9] << 16) + (data[10] << 8) + data[11]).then(_=>bleExtDHUnpack(data, len));
+                break;
+            case "terminate":
+                len = 4*4; // iparam[4]
+                $scope.matterDev.disconnect();
+                break;
+            case "rx_ack":
+                // nothing to do
+                len = 4*4; // iparam[4]
+                bleExtDHUnpack(data, len);
+                break;
+            default:
+                blewsLog("Unhandled command type " + type + " " + typeName);
+                return;
+        }
+    }
 });
-
-

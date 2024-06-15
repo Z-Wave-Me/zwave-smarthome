@@ -1,0 +1,67 @@
+<div ng-controller="MatterCommissionCodeController">
+	<div ng-if="!dataHolder.video.supported || dataHolder.manual_add">
+		<div class="alert alert-warning" ng-if="!dataHolder.video.supported">
+			<i class="fas fa-info-circle"></i> {{_t('video_not_supported_smart_start')}}
+		</div>
+		<!-- Navigation -->
+		<!--<div ng-include="'app/views/smartstart/navi.html'"></div>-->
+		<!-- Start -->
+		<!--
+		<div class="entry add-dsk">
+			<p class="content">
+				{{_t('smartstart_enter_key')}}
+			</p>
+			<form name="form_dsk" class="form-inline_" ng-submit="commissionWithCode()">
+				<div class="form-group dsk-input-group" bb-dsk-navigate>
+					<span ng-repeat="_ in [].constructor(8) track by $index">
+						<input id="dsk_{{$index + 1}}"
+							   type="text"
+							   maxlength="5"
+							   class="form-control dsk-number"
+							   ng-model="dsk.input['dsk_' + ($index + 1)]"
+							   ng-paste="fillInput($event, $index)"
+							   ng-change="fixLength($index + 1)"
+							   ng-trim="false"
+						/>
+					</span>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-block_" ng-disabled="registerDisabled"
+					ng-class="registerDisabled ? 'btn-default': 'btn-success'">
+					<bb-row-spinner
+					spinner="rowSpinner[cfg.api.add_dsk]"
+					label="_t('Add')"
+					icon="'fa-plus'">
+					</bb-row-spinner>
+					</button>
+				</div>
+			</form>
+			
+		</div>
+		-->
+	</div>
+	<div class="entry" ng-if="!dataHolder.video.supported && !isMobile">
+		<div class="entry-in">
+			<div class="entry-media">
+				<img ng-src="app/img/smartphone.png" alt="Image">
+			</div>
+			<div class="entry-content">
+				<div class="inner">
+					<div class="mobile-app-icon">
+						<img style="width: 50%;"
+							 alt="Z-Wave.Me Mobile App"
+							 src="app/img/small_logo.svg">
+					</div>
+					<div class="text">
+						<h1>{{_t('app_name')}}</h1>
+						<p>{{_t('app_description')}}</p>
+					</div>
+					<div class="badges">
+						<a class="google" href="https://play.google.com/store/apps/details?id=me.zwave.zway"><img ng-src="app/img/google-play-badge.png" alt="Goole Play"></a>
+						<a class="apple" href="https://apps.apple.com/app/id1513858668" target="_blank"><img ng-src="app/img/apple-store-badges.svg" alt="Apple Store"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div> <!-- /ng-controller -->

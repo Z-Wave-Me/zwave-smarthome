@@ -286,6 +286,8 @@ var config_data = {
 		'translations_xml_path': 'translations/',
 		// Url to update capabilities
 		'license_load_url': 'ZWaveAPI/ZMELicense',
+		// Matter BLEWS External Commissioner
+		'matter_blews_url': 'https://z-wave.me/z-way/matter-commission/?blews=',
 		// Language directory
 		'lang_dir': 'app/lang/',
 		// Android html dir
