@@ -207,27 +207,27 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			requireLogin: true,
 			roles: cfg.role_access.devices
 		}). //SmartStart
-    when('/smartstart', {
-            templateUrl: 'app/views/smartstart/smartstart.html',
-            requireLogin: true,
-            roles: cfg.role_access.admin
-        }). //SmartStart with QR code
-    when('/smartstartqr', {
-            templateUrl: 'app/views/smartstart/smartstart_qr.html',
-            requireLogin: true,
-            roles: cfg.role_access.admin
-        }).
-        //SmartStart with dsk
-    when('/smartstartdsk', {
-            templateUrl: 'app/views/smartstart/smartstart_dsk.html',
-            requireLogin: true,
-            roles: cfg.role_access.admin
-        }). //SmartStart with dsk
-    when('/smartstartlist', {
-            templateUrl: 'app/views/smartstart/smartstart_list.html',
-            requireLogin: true,
-            roles: cfg.role_access.admin
-        }). //Zwave select vendors
+	when('/smartstart', {
+			templateUrl: 'app/views/smartstart/smartstart.html',
+			requireLogin: true,
+			roles: cfg.role_access.admin
+		}). //SmartStart with QR code
+	when('/smartstartqr', {
+			templateUrl: 'app/views/smartstart/smartstart_qr.html',
+			requireLogin: true,
+			roles: cfg.role_access.admin
+		}).
+		//SmartStart with dsk
+	when('/smartstartdsk', {
+			templateUrl: 'app/views/smartstart/smartstart_dsk.html',
+			requireLogin: true,
+			roles: cfg.role_access.admin
+		}). //SmartStart with dsk
+	when('/smartstartlist', {
+			templateUrl: 'app/views/smartstart/smartstart_list.html',
+			requireLogin: true,
+			roles: cfg.role_access.admin
+		}). //Zwave select vendors
 	when('/zwave/vendors', {
 			templateUrl: 'app/views/zwave/zwave_vendors.html',
 			requireLogin: true,
@@ -269,17 +269,17 @@ myApp.config(['$routeProvider', function($routeProvider) {
 	when('/zwave/network', {
 			templateUrl: 'app/views/zwave/zwave_network.html',
 			requireLogin: true
-		}). //Camera add
+		}). //Zigbee select vendors
 	when('/zigbee/vendors', {
 			templateUrl: 'app/views/zigbee/zigbee_vendors.html',
 			requireLogin: true,
 			roles: cfg.role_access.devices
-		}). //Zwave select devices by vendor id
+		}). //Zigbee select devices by vendor id
 	when('/zigbee/products', {
 			templateUrl: 'app/views/zigbee/zigbee_products.html',
 			requireLogin: true,
 			roles: cfg.role_access.devices
-		}). //Include Zwave device
+		}). //Include Zigbee device
 	when('/zigbee/inclusion/:id?', {
 			templateUrl: 'app/views/zigbee/zigbee_inclusion.html',
 			requireLogin: true,
@@ -289,20 +289,20 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/zigbee/zigbee_interview.html',
 			requireLogin: true,
 			roles: cfg.role_access.devices_include
-		}). //Exclude Zwave device
+		}). //Exclude Zigbee device
 	when('/zigbee/devices', {
 			templateUrl: 'app/views/zigbee/zigbee_manage.html',
 			requireLogin: true
-		}). //Zwave devices config
+		}). //Zigbee devices config
 	when('/zigbee/devices/:nodeId/:nohistory?', {
 			templateUrl: 'app/views/zigbee/zigbee_manage_id.html',
 			requireLogin: true,
 			roles: cfg.role_access.network_config_id
-		}). //Zwave battery
+		}). //Zigbee battery
 	when('/zigbee/batteries', {
 			templateUrl: 'app/views/zigbee/zigbee_batteries.html',
 			requireLogin: true
-		}). //Zwave Network
+		}). //Zigbee Network
 	when('/zigbee/network', {
 			templateUrl: 'app/views/zigbee/zigbee_network.html',
 			requireLogin: true
@@ -388,8 +388,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'app/views/speech_assistants/setup_google_home.html',
 			requireLogin: true,
 			roles: cfg.role_access.devices
-		}).
-		//Enocean Vendors
+		}). //Enocean Vendors
 	when('/enocean/vendors', {
 			templateUrl: 'app/views/enocean/vendors.html',
 			requireLogin: true,

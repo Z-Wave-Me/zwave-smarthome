@@ -1,6 +1,6 @@
 /**
  * @overview Handles Zigbee device inclusion actions.
- * @author Martin Vach
+ * @author Serguei Poltorak
  */
 
 /**
