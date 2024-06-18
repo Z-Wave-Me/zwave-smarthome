@@ -28,6 +28,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
             bleExtPort: 0,
             bleExtRxLen: 0
         },
+        bleExtChanging: true,
         matterApiData: {},
         inclusionProcess: {
             process: false,
@@ -165,15 +166,34 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
     };
 
     /**
-     * Set inclusion with external BLE
-     * state=true Set as external.
-     * state=false Set as connected adapter.
-     * @param {string} cmd
+     * Run matter command
      */
-    $scope.setBLEWSExt = function (cmd) {
+    $scope.runMatterCmd = function (cmd) {
+        dataFactory.runZMatterCmd(cmd).then(function () {});
+    };
+    
+    /**
+     * Set inclusion with external BLE
+     * state=true Set as external, false Set as connected adapter.
+     * ws=true Use Websocket, false Use DataHolders
+     * @param {bool} state
+     * @param {bool} ws
+     */
+    $scope.setBLEWSExt = function (state, ws) {
+        var cmd;
+        if (!state) {
+            cmd = "controller.data.bleExt.enabled=false";
+        } else if (ws) {
+            cmd = "controller.data.bleExt.enabled=true;controller.data.bleExt.ws=true";
+        } else {
+            cmd = "controller.data.bleExt.enabled=true;controller.data.bleExt.ws=false";
+        }
+        $scope.matterInclusion.bleExtChanging = true;
         $scope.runMatterCmd(cmd);
         $scope.refreshZMatterApiData();
     };
+    // set initial value
+    $scope.setBLEWSExt(true, false);
     
     /**
      * Start/Stop Process
@@ -324,13 +344,6 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
     };
 
     /**
-     * Run matter command
-     */
-    $scope.runMatterCmd = function (cmd) {
-        dataFactory.runZMatterCmd(cmd).then(function () {});
-    };
-    
-    /**
      * Run matter command for the queue
      */
     $scope.sendQueuedMatterCmd = function () {
@@ -370,6 +383,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         $scope.matterInclusion.controller.bleExtEnabled = MatterAPIData.controller.data.bleExt.enabled.value;
         $scope.matterInclusion.controller.bleExtWS = MatterAPIData.controller.data.bleExt.ws.value;
         $scope.matterInclusion.controller.bleExtPort = MatterAPIData.controller.data.bleExt.port.value;
+        $scope.matterInclusion.bleExtChanging = false;
 
         // check initial include mode
         if ([1,2,3,4].indexOf($scope.matterInclusion.controller.controllerState) > -1) {
@@ -417,6 +431,11 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         // BLE Ext
         if ('controller.data.bleExt.enabled' in data) {
             $scope.matterInclusion.controller.bleExtEnabled = data['controller.data.bleExt.enabled'].value;
+            $scope.matterInclusion.bleExtChanging = false;
+        }
+        if ('controller.data.bleExt.ws' in data) {
+            $scope.matterInclusion.controller.bleExtWS = data['controller.data.bleExt.ws'].value;
+            $scope.matterInclusion.bleExtChanging = false;
         }
         if ('controller.data.bleExt.rx' in data) {
             let rx = data['controller.data.bleExt.rx'].value;

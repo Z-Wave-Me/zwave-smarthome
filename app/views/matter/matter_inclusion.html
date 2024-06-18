@@ -41,13 +41,20 @@
                     <div class="report-col report-body">
                         {{_t('matter_ble_ext_mode')}}
                         <div class="btn-group">
-                            <button class="btn" id="btn_bleext"
-                                data-ng-click="setBLEWSExt('controller.data.bleExt.enabled=true')"
+                            <button class="btn" id="btn_bleextdh"
+                                data-ng-click="setBLEWSExt(true, false)"
                                 ng-class="matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
                                 <i class="fas fa-mobile-alt"></i>
                             </button>
+                            <!-- DH or WS can be set only on MatterBinding start, so here we select only between internal and external only
+                            <button class="btn" id="btn_bleextws"
+                                data-ng-click="setBLEWSExt(true, true)"
+                                ng-class="(matterInclusion.controller.bleExtEnabled && matterInclusion.controller.bleExtWS) ? 'btn-success': 'btn-default'">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                            -->
                             <button class="btn" id="btn_bleint"
-                                data-ng-click="setBLEWSExt('controller.data.bleExt.enabled=false')"
+                                data-ng-click="setBLEWSExt(false)"
                                 ng-class="!matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
                                 <i class="fab fa-bluetooth"></i>
                             </button>
@@ -65,7 +72,7 @@
                         <div class="inclusion-header" ng-if="!matterInclusion.inclusionProcess.process">
                             <!-- Header -->
                             <button class="btn btn-success btn-lg" title="{{_t('start')}}"
-                                    ng-disabled="matterInclusion.exclusionProcess.process || matterInclusion.automatedConfiguration.includedDevice.nodeId > 0"
+                                    ng-disabled="matterInclusion.bleExtChanging || matterInclusion.exclusionProcess.process || matterInclusion.automatedConfiguration.includedDevice.nodeId > 0"
                                     ng-click="startStopProcess('inclusion', true)">
                                 <i class="fas fa-plug"></i> <span class="btn-name">{{_t('start')}}</span>
                             </button>
@@ -95,9 +102,12 @@
                         <div ng-if="!matterInclusion.controller.bleExtEnabled">
                             {{_t('matter_ble_int_mode_comment')}}
                         </div>
-                        <div ng-if="matterInclusion.controller.bleExtEnabled">
-                            {{_t('matter_ble_ext_mode_comment')}}
-                            <div id="qrcode" ng-if="matterInclusion.controller.bleExtWS && matterInclusion.controller.controllerState == 1">
+                        <div ng-if="matterInclusion.controller.bleExtEnabled && !matterInclusion.controller.bleExtWS">
+                            {{_t('matter_ble_ext_dh_mode_comment')}}
+                        </div>
+                        <div ng-if="matterInclusion.controller.bleExtEnabled && matterInclusion.controller.bleExtWS">
+                            {{_t('matter_ble_ext_ws_mode_comment')}}
+                            <div id="qrcode" ng-if="matterInclusion.controller.controllerState == 1">
                                 <img width="255" height="255" ng-src="{{qrcode}}">
                                 <a class="btn btn-default ng-scope" target="_blank" ng-href="{{blews_addr}}">
                                     <span class="btn-name ng-binding" ng-bind="_t('matter_open_blews')"></span>
