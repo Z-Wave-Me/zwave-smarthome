@@ -1083,6 +1083,8 @@
     "matter_ble_ext_ws_mode_comment": "Для добавления устройства Matter будет использоваться внешнее приложение. Используйте мобильный телефон или ПК с модулем Bluetooth и откройте в Google Chrome ссылку, указанную ниже. Для этого нажмите на кнопку или отсканируйте QR код. Следуйте инструкциям на открывшейся странице",
     "matter_open_blews": "Открыть страницу добавления устройства",
     "matter_ble_ext_mode": "Использовать внешнее мобильное приложение или встроенный модуль Bluetooth",
+    "matter_ble_ext_dh_mode_enable_how_to": "Чтобы использовать модуль Bluetooth вашего компьютера/мобильного телефона, необходимо включить поддержку этой функции в Google Chrome. Включите <a href=\"chrome://flags/#enable-experimental-web-platform-features\">экспериментальные функции</a> и перезапустите браузер.",
+    "matter_ble_ext_dh_mode_mobile_how_to": "К сожалению, мобильное приложение пока не поддерживает прямой доступ к Bluetooth. Чтобы добавить устройство Matter с помощью смартфона, откройте этот пользовательский интерфейс в браузере Chrome или Safari, перейдя на страницу find.z-wave.me." ,
     "matter_invalid_commissioning_content": "Can't parse the Commissioning code",
     "matter_invalid_qrcode": "Отсканированный QR код не является кодом устройства Matter. Отсканируйте QR код, размещённый на устройстве и помеченный логотипом Matter.",
     "shortcutName": "Имя ярлыка"

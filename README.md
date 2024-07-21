@@ -9,6 +9,12 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
+## v1.16.1
+#### New features:
+- Matter support added
+#### Fixes:
+- Fixed app instance active state on save
+
 ## v1.15.4
 #### Fixes:
 - Fixed return to expert mode after logout
