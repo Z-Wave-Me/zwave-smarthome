@@ -42,6 +42,7 @@
                         {{_t('matter_ble_ext_mode')}}
                         <div class="btn-group">
                             <button class="btn" id="btn_bleextdh"
+                                ng-disabled="!matterInclusion.controller.bleExtDHSupported"
                                 data-ng-click="setBLEWSExt(true, false)"
                                 ng-class="matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
                                 <i class="fas fa-mobile-alt"></i>
@@ -59,6 +60,8 @@
                                 <i class="fab fa-bluetooth"></i>
                             </button>
                         </div>
+                        <div class="alert alert-warning" ng-if="!matterInclusion.controller.bleExtDHSupported && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'" ng-bind-html="_t('matter_ble_ext_dh_mode_enable_how_to')|toTrusted"></div>
+                        <div class="alert alert-warning" ng-if="!matterInclusion.controller.bleExtDHSupported && (cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'ZWayMobileAppiOS')" ng-bind-html="_t('matter_ble_ext_dh_mode_mobile_how_to')|toTrusted"></div>
                     </div>
                     <div class="report-col report-ctrl">
                     </div>

@@ -23,6 +23,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
             controllerState: 0,
             lastExcludedDevice: null,
             lastIncludedDeviceId: 0,
+            bleExtDHSupported: !!navigator.bluetooth && !!navigator.bluetooth.requestDevice,
             bleExtEnabled: false,
             bleExtWS: false,
             bleExtPort: 0,
@@ -177,7 +178,12 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         $scope.refreshZMatterApiData();
     };
     // set initial value
-    $scope.setBLEWSExt(true, false);
+    if ($scope.matterInclusion.bleExtDHSupported)
+    {
+        $scope.setBLEWSExt(true, false);
+    } else {
+        $scope.setBLEWSExt(false);
+    }
     
     /**
      * Start/Stop Process

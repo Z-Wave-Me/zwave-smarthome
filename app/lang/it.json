@@ -1075,6 +1075,8 @@
     "matter_ble_ext_ws_mode_comment": "External application will be used to commission your Matter device. Use a mobile phone or a PC with a Bluetooth module and open the link below in Google Chrome. For this, click on the button or scan the QR code. Follow instructions on this page.",
     "matter_open_blews": "Open commissioner page",
     "matter_ble_ext_mode": "Use the mobile app or internal Bluetooth",
+    "matter_ble_ext_dh_mode_enable_how_to": "To use the Bluetooth module of your computer/mobile phone, please make sure to enable the support of this feature in Google Chrome. Enable this <a href=\"chrome://flags/#enable-experimental-web-platform-features\">experimental feature</a> and restart the browser.",
+    "matter_ble_ext_dh_mode_mobile_how_to": "Unfortunatelly the mobile app does not yet support direct access to Bluetooth. To add Matter device using your smartphone please open this user interface in your Chrome or Safari browser by navigating to the find.z-wave.me page.",
     "matter_invalid_commissioning_content": "Can't parse the Commissioning code",
     "matter_invalid_qrcode": "The presented QR code is not a Matter commissioning code. Please scan the right QR code on your Matter device",
     "shortcutName": "Shortcut name",
