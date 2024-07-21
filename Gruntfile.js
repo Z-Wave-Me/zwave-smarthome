@@ -92,6 +92,10 @@ const  projectFiles = [
 	'app/controllers/zigbee-inclusion.js',
 	'app/controllers/zigbee-manage.js',
 	'app/controllers/zigbee-vendor.js',
+	'app/controllers/matter-inclusion.js',
+	'app/controllers/matter-manage.js',
+	'app/controllers/matter-vendor.js',
+	'app/controllers/matter-commission.js',
 	'app/controllers/welcome.js',
 	'app/controllers/management-wifi.js'
 ]

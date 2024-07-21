@@ -157,7 +157,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
                     'modulePostrender': modulePR,
                     'instanceId': instance.id,
                     'moduleId': module.data.data.id,
-                    'active': instance.active,
+                    'active': !!instance.active,
                     'title': instance.title,
                     'description': instance.description,
                     'moduleTitle': instance.title,
@@ -275,7 +275,7 @@ myAppController.controller('AppModuleAlpacaController', function ($scope, $route
         var inputData = {
             'id': input.instanceId,
             'moduleId': input.moduleId,
-            'active': input.active,
+            'active': !!input.active,
             'title': input.title,
             'description': input.description,
             'params': params

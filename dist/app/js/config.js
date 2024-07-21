@@ -12,9 +12,9 @@ var config_data = {
 		//Application name
 		'app_name': 'SmartHome UI',
 		// Application version
-		'app_version': 'v1.15.4',
+		'app_version': 'v1.16.1',
 		// Application (DIST) built date
-		'app_built': '22-04-2024 23:43:00',
+		'app_built': '22-07-2024 01:37:28',
 		// Application ID
 		'app_id': 'SmartHomeUI',
 		// Server base url
@@ -212,11 +212,15 @@ var config_data = {
 		// Api url
 		'zigxpert_url': '/zigxpert',
 		// Api url
+		'matterxpert_url': '/matterxpert',
+		// Api url
 		'api_url': 'ZAutomation/api/v1/',
 		// ZWave api url
 		'zwave_api_url': 'ZWaveAPI/',
-		// ZWave api url
+		// Zigbee api url
 		'zigbee_api_url': 'ZigbeeAPI/',
+		// Matter api url
+		'zmatter_api_url': 'ZMatterAPI/',
 		// Z-Way JS url
 		'zway_js_url': 'JS/',
 		// Z-Way run JS url
@@ -282,6 +286,8 @@ var config_data = {
 		'translations_xml_path': 'translations/',
 		// Url to update capabilities
 		'license_load_url': 'ZWaveAPI/ZMELicense',
+		// Matter BLEWS External Commissioner
+		'matter_blews_url': 'https://z-wave.me/z-way/matter-commission/?blews=',
 		// Language directory
 		'lang_dir': 'app/lang/',
 		// Android html dir

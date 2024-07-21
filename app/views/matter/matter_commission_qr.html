@@ -1,0 +1,15 @@
+<div ng-controller="MatterCommissionQrController">
+    <bb-alert alert="dataHolder.video.alert"></bb-alert>
+    <div class="entry scan-qrcode" ng-if="dataHolder.video.supported && qrcode.state !== 'success-register'">
+        <div class="video-wrapper">
+        <video id="video" width="300" height="200"></video>
+    </div>
+    <canvas id="qr-canvas" width="480" height="640"></canvas>
+    <p class="content">
+        {{_t('qr_code_desc')}}
+    </p>
+    <!--
+    <button class="btn btn-success" ng-click="dataHolder.manual_add = !dataHolder.manual_add">{{_t('manual_add')}}</button>
+    -->
+</div>
+</div> <!-- /ng-controller -->

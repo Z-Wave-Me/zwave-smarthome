@@ -23,6 +23,12 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
         alert: {message: false}
     };
 
+    $scope.matter = {
+        installed: false,
+        active: false,
+        alert: {message: false}
+    };
+
     $scope.enocean = {
         installed: false,
         active: false,
@@ -42,7 +48,7 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
     };
 
     /**
-     * Load ext. Peripherals modules (Z-Wave, EnOcean, Zigbee)
+     * Load ext. Peripherals modules (Z-Wave, EnOcean, Zigbee, Matter)
      */
     $scope.loadperipheralsModules = function() {
         if ($scope.user.role === 1) {
@@ -63,6 +69,15 @@ myAppController.controller('DeviceController', function($scope, $location, dataF
                 }
                 if (!$scope.zigbee.installed || !$scope.zigbee.active) {
                     $scope.zigbee.alert = {message: $scope._t('zigbee_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
+                }
+
+                var ZMatter_module = _.findWhere(response.data.data,{moduleId:'ZMatter', active: true});
+                if (ZMatter_module){
+                    $scope.matter.installed = true;
+                    $scope.matter.active = !!ZMatter_module.active;
+                }
+                if (!$scope.matter.installed || !$scope.matter.active) {
+                    $scope.matter.alert = {message: $scope._t('matter_not_active'), status: 'alert-warning', icon: 'fa-exclamation-circle'};
                 }
 
                 var EnOcean_module = _.findWhere(response.data.data,{moduleId:'EnOcean', active: true});

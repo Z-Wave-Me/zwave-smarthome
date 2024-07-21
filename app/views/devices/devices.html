@@ -77,6 +77,44 @@
       </div>
     </div>
   </div>
+  <!-- Matter -->
+  <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
+    <div class="inner-panel">
+      <!-- img -->
+      <figure class="img">
+        <a ng-href="#matter/devices">
+          <img ng-src="app/img/logo-matter.svg" alt="img" />
+        </a>
+      </figure>
+      <!-- body -->
+      <div class="body">
+        <div>
+          <a href="#matter/devices">{{_t('devices_text_matter')}}</a>
+        </div>
+      </div>
+      <!-- control -->
+      <div class="control" ng-if="!matter.active">
+        <bb-alert-text class="s-hide" alert="matter.alert"></bb-alert-text>
+      </div>
+      <div class="control" ng-class="naviExpanded['devicesMatter'] ? 'expand-true': 'expand-false'" ng-if="matter.active">
+        <div class="btn-group">
+          <a class="btn btn-default" href="" title="{{_t('manage_with_expertui')}}" ng-click="toExpert('/matterxpert',_t('redirect_to_matterxpert'))"
+            ng-if="elementAccess(cfg.role_access.admin) && cfg.app_type === 'default' && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'">
+            <i class="fas fa-external-link-alt"></i>
+            <span class="btn-name" ng-bind="_t('manage_with_expertui')"></span>
+          </a>
+          <a class="btn btn-default" href="#matter/vendors" title="{{_t('add_new')}}">
+            <i class="fas fa-plus text-success"></i>
+            <span class="btn-name" ng-bind="_t('add_new')"></span>
+          </a>
+          <a class="btn btn-default" href="#matter/devices" title="{{_t('manage')}}">
+            <i class="fas fa-edit text-primary"></i>
+            <span class="btn-name" ng-bind="_t('manage')"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Enocean -->
   <div class="list-panel panel-devices" ng-if="elementAccess(cfg.role_access.apps)">
     <div class="inner-panel">

@@ -1,6 +1,6 @@
 /**
  * @overview Controllers that manage Zigbee devices.
- * @author Martin Vach
+ * @author Serguei Poltorak
  */
 /**
  * The controller that renders and handles data in the Zigbee/Manage section.

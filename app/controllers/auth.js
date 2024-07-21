@@ -13,6 +13,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 	$scope.authCtrl.defaultProfile = false;
 	$scope.authCtrl.fromexpert = $routeParams.fromexpert;
 	$scope.authCtrl.fromzigxpert = $routeParams.fromzigxpert;
+	$scope.authCtrl.frommatterxpert = $routeParams.frommatterxpert;
 	$scope.jamesbox = {
 		first_start_up: '',
 		count_of_reconnects: 0
@@ -46,6 +47,10 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 			window.location.href = $scope.cfg.zigxpert_url;
 			return;
 		}
+		if ($scope.authCtrl.frommatterxpert) {
+			window.location.href = $scope.cfg.matterxpert_url;
+			return;
+		}
 		if ((cfg.app_type === 'zme_hub') && user.role === 1) {
 			getZwaveApiData(location)
 		} else {
@@ -65,7 +70,7 @@ myAppController.controller('AuthController', function($scope, $routeParams, $loc
 		dataService.setUser(null);
 		dataService.setZWAYSession(null);
 	};
-	if ($scope.authCtrl.fromexpert || $scope.authCtrl.fromzigxpert) {
+	if ($scope.authCtrl.fromexpert || $scope.authCtrl.fromzigxpert || $scope.authCtrl.frommatterxpert) {
 		$scope.logoutFromExpert();
 		return;
 	}

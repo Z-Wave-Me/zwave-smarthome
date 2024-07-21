@@ -1,0 +1,217 @@
+<!-- Matter manage config view -->
+<div ng-controller="MatterManageIdController" class="mobile-padding">
+    <bb-loader></bb-loader> 
+    <div ng-show="formInput.show">
+        <h1>(#{{matterDevice.id}}) {{formInput.deviceName}}</h1>
+        <!-- Matter config form -->
+        <form name="form_network_config" id="form_profile" class="form form-page" ng-submit="updateAllDevices(formInput)" novalidate>
+            <fieldset>
+                <label ng-bind="_t('rename_device')"></label>
+                <input name="device_name" id="device_name" type="text" class="form-control" value="{{formInput.deviceName}}" ng-model="formInput.deviceName" />
+            </fieldset>
+            <div ng-if="devices.length > 0">
+                <fieldset>
+                    <!-- Add room -->
+                    <div class="form-group form-inline">
+                        <div class="input-group">
+                            <input name="appstore_token" id="appstore_token" class="form-control" placeholder="{{_t('lb_add_room')}}" ng-model="formInput.newRoom" /> 
+                            <span class="input-group-addon clickable" title="{{_t('add_new')}}" ng-click="addRoom(formInput.newRoom)">
+                                <i class="fas fa-plus text-success"></i>
+                            </span> 
+                        </div>
+                    </div>
+                    <!-- Rooms -->
+                    <div class="form-group form-inline">
+                        <label class="display-block" ng-bind="_t('devices_to_room')"></label>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default" 
+                                    ng-click="expandNavi('devidDropDown', $event)">
+                                {{rooms[formInput.room].title|cutText:true:20}} <i class="fas fa-caret-down"></i>
+                            </button>
+                            <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded.devidDropDown">
+                                <ul>
+                                    <li class="clickable" 
+                                        ng-click="formInput.room = v.id"
+                                        ng-repeat="v in rooms">
+                                        <a>
+                                            <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> 
+                                            {{v.title|cutText:true:20}} <i class="fas fa-check menu-arrow" ng-if="formInput.room == v.id"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <!-- -------------------------------------------- NEW design -------------------------------------------------- -->
+                <div class="app-row app-row-widget app-row-element clearfix">
+                    <div class="widget-matter-wrap" ng-repeat="e in devices| orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
+                        <!-- -------------------------------------------- Widget -------------------------------------------------- -->
+                        <div id="Widget_{{v.id}}" class="widget-entry widget-entry-element widget-matter">
+                            <div class="widget-entry-in">
+                                <!-- Widget icon -->
+                                <div class="widget-img">
+                                    <img class="widget-preview-img img-circle" ng-src="{{e.metrics.icon|getElementIcon:e:e.level}}" alt="img" />
+                                </div>
+                                <!-- Widget header -->
+                                <div class="widget-header">&nbsp;</div>
+                                <!-- Widget content -->
+                                <div class="widget-content">
+                                    <!-- Widget title -->
+                                    <div class="widget-title">
+                                        <div class="btn-group">
+                                            <!-- Room -->
+                                            <span class="widget-room clickable" ng-click="expandNavi('devidRooms_' + $index, $event)">
+                                                {{rooms[formInput.room].title|cutText:true:20}} <i class="fas fa-caret-down"></i>
+                                            </span>
+                                            <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['devidRooms' + '_' + $index]">
+                                                <ul>
+                                                    <li class="clickable" 
+                                                        ng-click="formInput.room = v.id"
+                                                        ng-repeat="v in rooms">
+                                                        <a>
+                                                            <img class="navi-img" ng-src="{{v.img_src}}" alt="img" /> 
+                                                            {{v.title|cutText:true:20}} <i class="fas fa-check menu-arrow" ng-if="formInput.room == v.id"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- title -->
+                                            <h3 class="clickable" ng-click="expandNaviNotHide('devidTitle_' + $index, $event)">
+                                                {{formInput.elements[e.id].metrics.title|cutText:true:25}} <i class="fas fa-pencil-alt text-info"></i>
+                                            </h3>
+                                            <div class="app-dropdown app-dropdown-left" ng-if="naviExpandedNotHide['devidTitle' + '_' + $index]">
+                                                <div class="app-dropdown-content">
+                                                    <div class="input-group">
+                                                        <input type="text" name="title_{{$index}}" id="title_{{$index}}" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" />
+                                                        <span class="input-group-addon clickable" title="{{_t('lb_save')}}" ng-click="expandNaviNotHide('devidTitle_' + $index, $event, false)">
+                                                            <i class="fas fa-check text-success"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <hr class="bottom-aligner" />
+                                    <!-- Widget footer -->
+                                    <div class="widget-footer" ng-switch="v.deviceType">
+                                        <input type="checkbox" /> Deactivate | <input type="checkbox" /> Hide
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ------------------------------------------- icons ------------------------------------------------- -->
+                        <div id="Widget_{{v.id}}_2" class="widget-entry widget-entry-element widget-matter widget-matter-ctrl">
+                            <div class="widget-entry-in">
+                                <div class="app-row app-row-report app-row-icons clearfix">
+                                    <div class="report-entry">
+                                        <div class="report-col report-media">
+                                            Default
+
+                                        </div>
+                                        <div class="report-col report-body">
+                                            &nbsp;
+                                        </div>
+                                        <div class="report-col report-media">
+                                            Custom
+                                        </div>
+                                        <div class="report-col report-ctrl">
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                    <div class="report-entry clickable"
+                                         ng-class="k === icons.selected ? 'bcg-success' : ''"
+                                         ng-repeat="(k,v) in ['temperature.png','luminosity.png']">
+                                        <!-- Default icon -->
+                                        <div class="report-col report-media">
+                                            <img class="report-img" ng-src="{{cfg.img.icons + v}}" alt="{{v}}"/>
+                                        </div>
+                                        <!-- Arrow -->
+                                        <div class="report-col report-body">
+                                            <i class="fas fa-long-arrow-alt-right"></i>
+                                        </div>
+                                        <!-- Custom icon -->
+                                        <div class="report-col report-media">
+                                             <!--<img class="report-img" ng-src="{{cfg.img.custom_icons + icons.all.custom[k]}}" ng-if="icons.all.custom[k]" alt="{{v.type}}"/> -->
+                                            <img class="report-img img-opacity-50" ng-src="{{cfg.img.icons}}cancel.png" ng-if="!icons.all.custom[k]"  alt="img"/>
+                                        </div>
+                                        <!-- Actions -->
+                                        <div class="report-col report-ctrl">
+                                            <!-- Update a default icon -->
+                                            <button type="button" title="{{_t('lb_update')}}" class="btn btn-default">
+                                                <i class="fas fa-pencil-alt text-primary"></i>
+                                            </button>
+                                            <!-- Remove a custom icon -->
+                                            <button type="button" title="{{_t('lb_remove')}}" class="btn btn-default">
+                                                <i class="fas fa-ban text-danger"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ------------------------------------------- footer ------------------------------------------------- -->
+                        <div class="clearfix"></div>
+                        <div class="widget-matter-footer clearfix">
+                            <div class="widget-matter-50 form-inline">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" 
+                                           value="" placeholder="Add tag" />
+                                    <span class="input-group-addon clickable" title="{{_t('Addd')}}">
+                                        <i class="fas fa-plus text-success"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="widget-matter-50">
+                                <strong>Tags:</strong> tag1, tag2, tag3, tag4
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!-- ------------------------------------------- NEW design ------------------------------------------------- -->
+
+
+                <fieldset>
+                    <div class="form-group form-inline matter-hidden-{{formInput.elements[e.id].permanently_hidden}}" ng-repeat="e in devices| orderBy:'title':false track by e.id" ng-init="dev[e.id] = e">
+
+                        <h3>
+                            <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                            <span ng-bind="formInput.elements[e.id].metrics.title"></span>
+                        </h3>
+                        <div class="form-group form-inline">
+                            <input type="text" name="title_{{$index}}" id="title_{{$index}}" class="form-control" ng-model="formInput.elements[e.id].metrics.title" value="{{formInput.elements[e.id].metrics.title}}" />
+                            <!-- <button class="btn btn-primary" ng-click="updateDevice(dev[e.id])" ng-bind="_t('rename_element')"></button> --> 
+                            <span class="mobile-block">
+                                <input type="checkbox" name="permanently_hidden_{{$index}}" id="permanently_hidden_{{$index}}" ng-model="formInput.elements[e.id].permanently_hidden" ng-checked="formInput.elements[e.id].permanently_hidden" />
+                                <label for="permanently_hidden_{{$index}}">{{_t('lb_deactivate')}}</label>
+                            </span>
+                            <!-- <a class="btn" href="" 
+                                 ng-click="updateDevice({id: e.id,permanently_hidden: e.permanently_hidden ? false : true})" 
+                                 ng-bind="e.permanently_hidden ? _t('show_element') : _t('hide_element')"
+                                 ng-class="e.permanently_hidden ? 'btn-danger' : 'btn-primary'"> </a> --> 
+                        </div>
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <a class="btn btn-primary" href="/matterxpert/#/configuration/configuration/{{matterDevice.id}}" title="{{_t('hardware_konfiguration')}}" ng-if="matterDevice.cfg.length > 0">
+                            <i class="fas fa-wrench"></i> <span class="btn-name" ng-bind="_t('hardware_konfiguration')"></span>
+                        </a>
+                    </div>
+                </fieldset>
+            </div>
+            <fieldset class="submit-entry">
+                <button type="button" class="btn btn-default" title="{{_t('lb_cancel')}}" ng-if="!nohistory" bb-go-back>
+                    <i class="fas fa-reply"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+                </button>
+                <button type="submit" class="btn btn-submit" title="{{_t('lb_save')}}">
+                    <i class="fas fa-check"></i> <span class="btn-name">{{_t('lb_save')}}</span>
+                </button>
+
+            </fieldset>
+        </form>
+    </div>
+    <div class="device-logo" ng-include="'app/views/matter/matter_nav.html'"></div>
+</div> <!-- /ng-controller --> 

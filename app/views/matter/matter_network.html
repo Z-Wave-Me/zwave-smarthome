@@ -1,0 +1,70 @@
+<!-- Matter network view -->
+<div ng-controller="MatterManageController">
+     <bb-loader></bb-loader>
+    <!-- Matter navigation -->
+    <div ng-include="'app/views/matter/navi.html'"></div>
+    <div class="app-row app-row-report app-row-matter clearfix">
+         <div id="row_matter_network_{{v.id}}" class="report-entry" 
+              ng-repeat="v in devices.zw | orderBy:'title':false"
+                   ng-class="v.isFailed ? 'bcg-danger': ''" 
+              ng-if="_.size(v.messages) > 0">
+             <div class="report-col report-body matter-network">
+                  <span class="network-matter-title noelements" ng-if="_.size(v.elements) < 1">{{v.title}} (#{{v.id}}) </span>
+                 <div class="btn-group"  ng-if="_.size(v.elements) > 0">
+                   <a href="" class="network-matter-title" ng-click="expandNavi('accMatterManage_' + v.id, $event)">
+                        <i class="fa" ng-class="naviExpanded['accMatterManage_' + v.id] ? 'fa-chevron-up' : 'fa-chevron-down'"></i> {{v.title}} (#{{v.id}})
+                    </a>
+                    <div class="app-dropdown app-dropdown-left" ng-if="naviExpanded['accMatterManage_' + v.id]">
+                        <ul>
+                            <li class="clickable matter-hidden-{{e.permanently_hidden}}"
+                                ng-init="elUrl = (e.permanently_hidden ? '': '#/element/' + e.id)"
+                                ng-repeat="e in v.elements| orderBy:'metrics.title':false">
+                                <a ng-href="{{elUrl}}" title="{{e.metrics.title}}">
+                                    <img class="report-img-s" ng-src="{{e.iconPath}}" alt="img" /> 
+                                    {{e.metrics.title|cutText:true:20}} <span class="matter-raquo">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+         <div class="report-col report-ctrl">
+             <div ng-repeat="m in v.messages|unique:true">
+                 <div class="text-danger" ng-if="m.type !== 'config'">{{m.error}}</div>
+                 <button class="btn btn-default" ng-if="!v.interviewDone  && !v.isFailed" ng-click="devices.find = v;handleModal('matterNetworkModal', $event)">
+                         <i class="fas fa-sync text-primary"></i> <span class="btn-name">{{_t('configure_device')}}</span>
+                    </button>
+            </div>
+         </div>
+        </div>
+      </div>
+    
+    <div class="device-logo" ng-include="'app/views/matter/matter_nav.html'"></div>
+    
+    <!-- Interview modal -->
+    <div id="matterNetworkModal" class="appmodal" ng-controller="MatterInterviewController" ng-if="modalArr.matterNetworkModal && !_.isEmpty(devices.find)">
+      <div class="appmodal-in">
+          <div class="appmodal-header">
+              <span class="appmodal-close" ng-click="cancelConfiguration($event)"><i class="fas fa-times"></i></span>
+              <h3>{{devices.find.title|cutText:true:25}} (#{{devices.find.id}})</h3>
+          </div>
+          <div class="appmodal-body">
+               <div class="alert alert-warning" ng-hide="matterInterview.progress > 99">
+                    <i class="fas fa-spinner fa-spin"></i> <strong>{{_t('configuring_device')}}</strong> 
+                </div>
+              <div class="progress">
+                <div class="progress-bar" 
+                     style="min-height:40px;min-width: 2em; width: {{matterInterview.progress}}%;"
+                     ng-class="matterInterview.progress < 100 ? 'progress-bar-striped active' : 'progress-bar-success'">
+                    {{matterInterview.progress}}%
+                </div>
+            </div>
+          </div>
+          <div class="appmodal-footer">
+              <button type="button" class="btn btn-default" ng-click="cancelConfiguration($event)">
+                  <i class="fas fa-times text-danger"></i> <span class="btn-name">{{_t('lb_cancel')}}</span>
+              </button>
+          </div>
+      </div>
+  </div>
+</div> <!-- /ng-controller --> 

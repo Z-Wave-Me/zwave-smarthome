@@ -30,6 +30,7 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
     var updatedTime = 0;
     var updatedTimeZWave = 0;
     var updatedTimeZigbee = 0;
+    var updatedTimeZMatter = 0;
     var updatedTimeEnOcean = 0;
     var lang = cfg.lang;
     var ZWAYSession = dataService.getZWAYSession();
@@ -63,14 +64,18 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         putCfgXml: putCfgXml,
         refreshZwaveApiData: refreshZwaveApiData,
         refreshZigbeeApiData: refreshZigbeeApiData,
+        refreshZMatterApiData: refreshZMatterApiData,
         getSystemCmd: getSystemCmd,
         getLanguageFile: getLanguageFile,
         loadZwaveApiData: loadZwaveApiData,
         loadZigbeeApiData: loadZigbeeApiData,
+        loadZMatterApiData: loadZMatterApiData,
         joinedZwaveData: joinedZwaveData,
         joinedZigbeeData: joinedZigbeeData,
+        joinedZMatterData: joinedZMatterData,
         runZwaveCmd: runZwaveCmd,
         runZigbeeCmd: runZigbeeCmd,
+        runZMatterCmd: runZMatterCmd,
         loadEnoceanApiData: loadEnoceanApiData,
         refreshEnoceanApiData: refreshEnoceanApiData,
         runEnoceanCmd: runEnoceanCmd,
@@ -1043,6 +1048,145 @@ myAppFactory.factory('dataFactory', function ($http, $filter, $q, myCache, $inte
         return $http({
             method: 'get',
             url: cfg.server_url + cfg.zigbee_api_url + "Run/" + cmd,
+            failWait: cmd
+        }).then(function (response) {
+            return response;
+        }, function (response) {// something went wrong
+            return $q.reject(response);
+        });
+    }
+
+    /**
+     * Get data holder from ZMatterAPI api
+     * @param {boolean} noCache
+     * @returns {unresolved}
+     */
+    function loadZMatterApiData(noCache) {
+        var deferred = $q.defer();
+        var cacheName = 'cache_zmatterapidata';
+        var cached = myCache.get(cacheName);
+
+        // Cached data
+        if (!noCache && cached) {
+            deferred.resolve(cached);
+            return deferred.promise;
+        }
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.zmatter_api_url + 'Data/0',
+            headers: {'ZWAYSession': ZWAYSession}
+        }).then(function (response) {
+            if (typeof response.data === 'object') {
+                myCache.put(cacheName, response.data);
+                return response.data;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function (response) {
+            // something went wrong
+            if(response.status !== 403){
+                angular.extend(cfg.route.alert, {
+                    message: cfg.route.t['error_zmatter_network'],
+                    info: cfg.route.t['how_to_resolve_zmatter_errors'],
+                    hide: false,
+                    permanent: true
+                });
+            }
+
+            return $q.reject(response);
+        });
+    }
+
+    /**
+     * Get updated data holder from the ZMatterAPI
+     * @returns {unresolved}
+     */
+    function refreshZMatterApiData() {
+        var cacheName = 'refresh_zmatterapidata';
+        if(_.findWhere($http.pendingRequests,{failWait: cacheName})){
+            return $q.reject('Pending');
+        }
+        return $http({
+            method: 'get',
+            failWait: cacheName,
+            url: cfg.server_url + cfg.zmatter_api_url + 'Data/' + updatedTimeZMatter
+        }).then(function (response) {
+            if (typeof response.data === 'object') {
+                updatedTimeZMatter = response.data.updateTime;
+                return response;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function (response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+    }
+
+    /**
+     * Get updated ZMatterAPI data and join it to ZMatterAPIData
+     * @param {object} ZMatterAPIData
+     * @returns {unresolved}
+     */
+    function  joinedZMatterData(ZMatterAPIData) {
+        var time = Math.round(+new Date() / 1000);
+        var cacheName = 'cache_zmatterapidata';
+        var apiData = myCache.get(cacheName) || ZMatterAPIData;
+        var result = {};
+        return $http({
+            method: 'post',
+            url: cfg.server_url + cfg.zmatter_api_url + 'Data/' + updatedTimeZMatter,
+            data: {} // ZMatterAPI/Data always have empty POST body
+        }).then(function (response) {
+            if (typeof response.data === 'object' && apiData) {
+                time = response.data.updateTime;
+                angular.forEach(response.data, function (obj, path) {
+                    if (!angular.isString(path)) {
+                        return;
+                    }
+                    var pobj = apiData;
+//                    if(pobj){
+//                        return;
+//                    }
+                    var pe_arr = path.split('.');
+                    for (var pe in pe_arr.slice(0, -1)) {
+                        pobj = pobj[pe_arr[pe]];
+                    }
+                    pobj[pe_arr.slice(-1)] = obj;
+                });
+                result = {
+                    "joined": apiData,
+                    "update": response.data
+                };
+                response.data = result;
+                updatedTimeZMatter = ($filter('hasNode')(response, 'data.updateTime') || $filter('hasNode')(response, 'updateTime') || Math.round(+new Date() / 1000));
+                myCache.put(cacheName, apiData);
+                return response;
+            } else {
+                // invalid response
+                return $q.reject(response);
+            }
+        }, function (response) {
+            // something went wrong
+            return $q.reject(response);
+        });
+    }
+
+
+    /**
+     * Get ZMatter api command
+     * @param {string} cmd
+     * @returns {unresolved}
+     */
+    function runZMatterCmd(cmd) {
+        if(_.findWhere($http.pendingRequests,{failWait: cmd})){
+            return $q.reject('Pending');
+        }
+        return $http({
+            method: 'get',
+            url: cfg.server_url + cfg.zmatter_api_url + "Run/" + cmd,
             failWait: cmd
         }).then(function (response) {
             return response;
