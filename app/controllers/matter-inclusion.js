@@ -145,22 +145,6 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 $scope.loading = false;
             }
         };
-        // TODO deprecated dead code 08/04/22
-        // } else {
-        //     var refresh = function () {
-        //         //console.log('Pending requests: '+ $http.pendingRequests.length);
-        //         if($http.pendingRequests.length > 0) {
-        //             return;
-        //         }
-        //         dataFactory.refreshZMatterApiData().then(function (response) {
-        //             //console.log(response.data);
-        //             if(response){
-        //                 updateController(response.data);
-        //             }
-        //
-        //         });
-        //     };
-        // }
         refresh();
         $scope.interval.api = $interval(refresh, $scope.cfg.interval);
     };
