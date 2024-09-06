@@ -195,7 +195,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
 
         switch(type) {
             case 'inclusion':
-                cmd = process ? 'controller.AddNodeToNetwork()' : '';
+                cmd = process ? 'controller.AddNodeToNetwork(true)' : 'controller.AddNodeToNetwork(false)';
                 scope = 'inclusionProcess';
                 msg = $scope._t('error_inclusion_time');
                 
@@ -685,10 +685,15 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 "acceptAllDevices":true,
                 "optionalServices": [this.serviceUUID]
                 };
+            
             return navigator.bluetooth.requestDevice(options)
             .then(device => {
                 this.device = device;
                 this.device.addEventListener("gattserverdisconnected", this.onDisconnected);
+            })
+            .catch((error) => {
+                blewsLog("Error selecting device: " + error);
+                $scope.startStopProcess('inclusion', false);
             });
         }
     
