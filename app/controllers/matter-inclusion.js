@@ -178,7 +178,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         $scope.refreshZMatterApiData();
     };
     // set initial value
-    if ($scope.matterInclusion.bleExtDHSupported)
+    if ($scope.matterInclusion.controller.bleExtDHSupported)
     {
         $scope.setBLEWSExt(true, false);
     } else {
