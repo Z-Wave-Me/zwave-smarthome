@@ -671,6 +671,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         let line = Array.prototype.slice.call(arguments).map(function(argument) {
             return typeof argument === "string" ? argument : JSON.stringify(argument);
         }).join(" ");
+        console.log(line);
     }
     
     // Matter BLE Class
