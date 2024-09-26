@@ -85,6 +85,7 @@
                             <div class="alert alert-warning">
                                 <h4><i class="fas fa-spinner fa-spin"></i> {{_t('lb_ready_include')}} </h4>
                                 <p ng-bind-html="matterInclusion.device.find.inc|toTrusted"></p>
+                                <p ng-bind="matterInclusion.controller.commissioningStep"></p>
                             </div>
                             <button class="btn btn-danger btn-lg" title="{{_t('stop')}}"
                                     ng-click="startStopProcess('inclusion', false)">

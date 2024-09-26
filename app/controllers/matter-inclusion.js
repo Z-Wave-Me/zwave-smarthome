@@ -21,6 +21,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         },
         controller: {
             controllerState: 0,
+            commissioningStep: "",
             lastExcludedDevice: null,
             lastIncludedDeviceId: 0,
             bleExtDHSupported: !!navigator.bluetooth && !!navigator.bluetooth.requestDevice,
@@ -373,6 +374,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         $scope.matterInclusion.controller.bleExtEnabled = MatterAPIData.controller.data.bleExt.enabled.value;
         $scope.matterInclusion.controller.bleExtWS = MatterAPIData.controller.data.bleExt.ws.value;
         $scope.matterInclusion.controller.bleExtPort = MatterAPIData.controller.data.bleExt.port.value;
+        $scope.matterInclusion.controller.commissioningStep = MatterAPIData.controller.data.commissioningStep.value || "";
         $scope.matterInclusion.bleExtChanging = false;
 
         // check initial include mode
@@ -397,6 +399,8 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                     $scope.blews_addr = $scope.cfg.matter_blews_url + location.hostname + ":" + $scope.matterInclusion.controller.bleExtPort;
                     QRCode.toDataURL($scope.blews_addr, function(err, url) { $scope.qrcode = url; });
                 }
+            } else if ($scope.matterInclusion.controller.controllerState == 0) {
+                $scope.matterInclusion.inclusionProcess.process = false;
             }
         }
         // Set last included device
@@ -417,6 +421,9 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 
                 $scope.startConfiguration({nodeId: deviceIncId});
             }
+        }
+        if ('controller.data.commissioningStep' in data) {
+            $scope.matterInclusion.controller.commissioningStep = data['controller.data.commissioningStep'].value || "";
         }
         // BLE Ext
         if ('controller.data.bleExt.enabled' in data) {
