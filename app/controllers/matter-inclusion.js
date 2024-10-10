@@ -21,6 +21,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         },
         controller: {
             controllerState: 0,
+            commissioningStep: "",
             lastExcludedDevice: null,
             lastIncludedDeviceId: 0,
             bleExtDHSupported: !!navigator.bluetooth && !!navigator.bluetooth.requestDevice,
@@ -178,7 +179,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         $scope.refreshZMatterApiData();
     };
     // set initial value
-    if ($scope.matterInclusion.bleExtDHSupported)
+    if ($scope.matterInclusion.controller.bleExtDHSupported)
     {
         $scope.setBLEWSExt(true, false);
     } else {
@@ -195,7 +196,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
 
         switch(type) {
             case 'inclusion':
-                cmd = process ? 'controller.AddNodeToNetwork()' : '';
+                cmd = process ? 'controller.AddNodeToNetwork(true)' : 'controller.AddNodeToNetwork(false)';
                 scope = 'inclusionProcess';
                 msg = $scope._t('error_inclusion_time');
                 
@@ -373,6 +374,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         $scope.matterInclusion.controller.bleExtEnabled = MatterAPIData.controller.data.bleExt.enabled.value;
         $scope.matterInclusion.controller.bleExtWS = MatterAPIData.controller.data.bleExt.ws.value;
         $scope.matterInclusion.controller.bleExtPort = MatterAPIData.controller.data.bleExt.port.value;
+        $scope.matterInclusion.controller.commissioningStep = MatterAPIData.controller.data.commissioningStep.value || "";
         $scope.matterInclusion.bleExtChanging = false;
 
         // check initial include mode
@@ -397,6 +399,8 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                     $scope.blews_addr = $scope.cfg.matter_blews_url + location.hostname + ":" + $scope.matterInclusion.controller.bleExtPort;
                     QRCode.toDataURL($scope.blews_addr, function(err, url) { $scope.qrcode = url; });
                 }
+            } else if ($scope.matterInclusion.controller.controllerState == 0) {
+                $scope.matterInclusion.inclusionProcess.process = false;
             }
         }
         // Set last included device
@@ -417,6 +421,9 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 
                 $scope.startConfiguration({nodeId: deviceIncId});
             }
+        }
+        if ('controller.data.commissioningStep' in data) {
+            $scope.matterInclusion.controller.commissioningStep = data['controller.data.commissioningStep'].value || "";
         }
         // BLE Ext
         if ('controller.data.bleExt.enabled' in data) {
@@ -664,6 +671,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         let line = Array.prototype.slice.call(arguments).map(function(argument) {
             return typeof argument === "string" ? argument : JSON.stringify(argument);
         }).join(" ");
+        console.log(line);
     }
     
     // Matter BLE Class
@@ -685,10 +693,15 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 "acceptAllDevices":true,
                 "optionalServices": [this.serviceUUID]
                 };
+            
             return navigator.bluetooth.requestDevice(options)
             .then(device => {
                 this.device = device;
                 this.device.addEventListener("gattserverdisconnected", this.onDisconnected);
+            })
+            .catch((error) => {
+                blewsLog("Error selecting device: " + error);
+                $scope.startStopProcess('inclusion', false);
             });
         }
     
@@ -926,7 +939,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
             "data": value
         
         };
-        blewsLog("Sending WS cmd:" + JSON.stringify(js_cmd))
+        blewsLog("Sending WS cmd: " + JSON.stringify(js_cmd));
         sendBLEExtDHCommand(js_cmd);
     }
     
@@ -952,6 +965,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
     };
     
     function bleExtDHOnMessage(data) {
+        blewsLog("Received WS cmd: " + JSON.stringify(data));
         let type = (data[0] << 8) + data[1];
         let len = (data[2] << 8) + data[3];
         let seq = (data[4] << 24) + (data[5] << 16) + (data[6] << 8) + data[7]; 

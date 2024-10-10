@@ -16,6 +16,7 @@
                 <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/down')" ng-if="widgetCamera.find.metrics.hasDown"><i class="fas fa-arrow-circle-down"></i></a>&nbsp;&nbsp;&nbsp;
                 <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/open')" ng-if="widgetCamera.find.metrics.hasOpen"><i class="fas fa-door-open"></i></a>&nbsp;&nbsp;&nbsp;
                 <a href="" ng-click="runCmd(widgetCamera.find.id + '/command/close')" ng-if="widgetCamera.find.metrics.hasClose"><i class="fas fa-door-closed"></i></a>&nbsp;&nbsp;&nbsp;
+                <a ng-href="{{widgetCamera.find.metrics.externalUrl}}" ng-if="widgetCamera.find.metrics.externalUrl" target="_blank"><i class="fas fa-external-link"></i></a>&nbsp;&nbsp;&nbsp;
             </div>
 
             <div class="camera-img">
