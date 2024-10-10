@@ -939,7 +939,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
             "data": value
         
         };
-        blewsLog("Sending WS cmd:" + JSON.stringify(js_cmd))
+        blewsLog("Sending WS cmd: " + JSON.stringify(js_cmd));
         sendBLEExtDHCommand(js_cmd);
     }
     
@@ -965,6 +965,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
     };
     
     function bleExtDHOnMessage(data) {
+        blewsLog("Received WS cmd: " + JSON.stringify(data));
         let type = (data[0] << 8) + data[1];
         let len = (data[2] << 8) + data[3];
         let seq = (data[4] << 24) + (data[5] << 16) + (data[6] << 8) + data[7]; 
