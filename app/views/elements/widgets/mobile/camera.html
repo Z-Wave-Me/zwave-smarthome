@@ -1,4 +1,9 @@
 <!-- camera -->
 <img class="widget-preview-img img-circle" ng-src="{{v.iconPath}}" alt="img" 
+     ng-if="!v.metrics.screenUrl"
+     err-src="{{cfg.img.placeholder}}"
+     ng-click="dataHolder.devices.find = v;handleModal('cameraModal', $event)" />
+<img class="" ng-src="{{v.metrics.screenUrl}}" alt="img" 
+     ng-if="v.metrics.screenUrl"
      err-src="{{cfg.img.placeholder}}"
      ng-click="dataHolder.devices.find = v;handleModal('cameraModal', $event)" />
