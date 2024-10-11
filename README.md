@@ -9,7 +9,7 @@ This User Interfaces allows to operate a Smart Home Network based on Z-Wave devi
 ## Project leaders
 Serguei Poltorak
 
-## v1.16.3
+## v1.16.4
 #### New features:
 - Added Commissioning Step to the UI
 - Added Matter inclusion stop function
