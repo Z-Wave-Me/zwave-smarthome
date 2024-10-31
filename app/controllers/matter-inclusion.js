@@ -895,10 +895,12 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         let js_cmd;
         switch(name) {
             case "connect":
+                var device_name = ble_dev.getDeviceName();
+                device_name = device_name.split('').map(function(c) { return c.charCodeAt(0) < 255 ? c : " "; }).join('').trim(); // remove special chars
                 js_cmd = {
                     "type": "connection",
                     "addr":"",
-                    "name": ble_dev.getDeviceName()
+                    "name": device_name
                 };
                 break;
                 
