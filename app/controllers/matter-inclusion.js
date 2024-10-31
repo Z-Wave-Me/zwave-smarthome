@@ -950,7 +950,10 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         $scope.matterDev = new ZMatterDevice(BLERxHandler, BLEStatusHandler);
         $scope.matterDev.request()
             .then(_ => $scope.matterDev.connect())
-            .catch(error => { blewsLog(error) });
+            .catch(error => {
+                blewsLog(error);
+                $scope.startStopProcess('inclusion', false);
+            });
     };
     
     function bleExtDHUnpack(data, len)
@@ -975,15 +978,30 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         let typeName = Object.keys(BLEExtDHCommands).filter(k => BLEExtDHCommands[k].type == type)[0];
         switch (typeName) {
             case "tx":
-                $scope.matterDev.writeTx(new Uint8Array(data.slice(8, 8 + len))).then(_=>bleExtDHUnpack(data, len));
+                $scope.matterDev.writeTx(new Uint8Array(data.slice(8, 8 + len)))
+                    .then(_=>bleExtDHUnpack(data, len))
+                    .catch(error => {
+                        blewsLog(error);
+                        $scope.startStopProcess('inclusion', false);
+                    });
                 break;
             case "subscribe":
                 len = 4*4; // iparam[4]
-                $scope.matterDev.subscribe((data[8] << 24) + (data[9] << 16) + (data[10] << 8) + data[11]).then(_=>bleExtDHUnpack(data, len));
+                $scope.matterDev.subscribe((data[8] << 24) + (data[9] << 16) + (data[10] << 8) + data[11])
+                    .then(_=>bleExtDHUnpack(data, len))
+                    .catch(error => {
+                        blewsLog(error);
+                        $scope.startStopProcess('inclusion', false);
+                    });
                 break;
             case "terminate":
                 len = 4*4; // iparam[4]
-                $scope.matterDev.disconnect();
+                $scope.matterDev.disconnect()
+                    .then(_=>bleExtDHUnpack(data, len))
+                    .catch(error => {
+                        blewsLog(error);
+                        $scope.startStopProcess('inclusion', false);
+                    });
                 break;
             case "rx_ack":
                 // nothing to do
