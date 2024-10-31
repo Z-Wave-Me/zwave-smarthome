@@ -444,14 +444,14 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
             
             if ($scope.matterInclusion.controller.bleExtRxLen >= rx.length) {
                 // buffer restarted
-                data = rx;
+                _rx = rx;
             } else {
                 // buffer was appended, take new part only
-                data = rx.slice($scope.matterInclusion.controller.bleExtRxLen);
+                _rx = rx.slice($scope.matterInclusion.controller.bleExtRxLen);
             }
-            $scope.matterInclusion.controller.bleExtRxLen = rx.length
+            $scope.matterInclusion.controller.bleExtRxLen = rx.length;
             
-            bleExtDHOnMessage(data);
+            bleExtDHOnMessage(_rx);
         }
     };
 
