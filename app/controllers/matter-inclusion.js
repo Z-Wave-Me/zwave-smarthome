@@ -731,6 +731,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 return queue;
             }) .catch(error => {
                 blewsLog("Argh! " + error);
+                $scope.startStopProcess('inclusion', false);
             });
         }
         
