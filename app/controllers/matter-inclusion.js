@@ -200,7 +200,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 scope = 'inclusionProcess';
                 msg = $scope._t('error_inclusion_time');
                 
-                if ($scope.matterInclusion.controller.bleExtEnabled && !$scope.matterInclusion.controller.bleExtWS && process) $scope.bleExtDHInit();
+                if ($scope.matterInclusion.controller.isBLE && $scope.matterInclusion.controller.bleExtEnabled && !$scope.matterInclusion.controller.bleExtWS && process) $scope.bleExtDHInit();
                 
                 break;
         }
@@ -370,6 +370,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
      * Set Matter API Data
      */
     function setMatterAPIData(MatterAPIData) {
+        $scope.matterInclusion.controller.isBLE = MatterAPIData.controller.data.setupCode.rendezvousType.value == "ble";
         $scope.matterInclusion.controller.controllerState = MatterAPIData.controller.data.controllerState.value;
         $scope.matterInclusion.controller.bleExtEnabled = MatterAPIData.controller.data.bleExt.enabled.value;
         $scope.matterInclusion.controller.bleExtWS = MatterAPIData.controller.data.bleExt.ws.value;
@@ -424,6 +425,10 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         }
         if ('controller.data.commissioningStep' in data) {
             $scope.matterInclusion.controller.commissioningStep = data['controller.data.commissioningStep'].value || "";
+        }
+        // IP vs BLE
+        if ('ccontroller.data.setupCode.rendezvousType' in data) {
+            $scope.matterInclusion.controller.isBLE = data['controller.data.setupCode.rendezvousType'].value == "ble";
         }
         // BLE Ext
         if ('controller.data.bleExt.enabled' in data) {

@@ -39,29 +39,34 @@
                         <span class="badge badge-number">2</span>
                     </div>
                     <div class="report-col report-body">
-                        {{_t('matter_ble_ext_mode')}}
-                        <div class="btn-group">
-                            <button class="btn" id="btn_bleextdh"
-                                ng-disabled="!matterInclusion.controller.bleExtDHSupported"
-                                data-ng-click="setBLEWSExt(true, false)"
-                                ng-class="matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
-                                <i class="fas fa-mobile-alt"></i>
-                            </button>
-                            <!-- DH or WS can be set only on MatterBinding start, so here we select only between internal and external only
-                            <button class="btn" id="btn_bleextws"
-                                data-ng-click="setBLEWSExt(true, true)"
-                                ng-class="(matterInclusion.controller.bleExtEnabled && matterInclusion.controller.bleExtWS) ? 'btn-success': 'btn-default'">
-                                <i class="fas fa-upload"></i>
-                            </button>
-                            -->
-                            <button class="btn" id="btn_bleint"
-                                data-ng-click="setBLEWSExt(false)"
-                                ng-class="!matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
-                                <i class="fab fa-bluetooth"></i>
-                            </button>
+                        <div ng-if="!matterInclusion.controller.isBLE">
+                            {{_t('matter_ip')}}
                         </div>
-                        <div class="alert alert-warning" ng-if="!matterInclusion.controller.bleExtDHSupported && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'" ng-bind-html="_t('matter_ble_ext_dh_mode_enable_how_to')|toTrusted"></div>
-                        <div class="alert alert-warning" ng-if="!matterInclusion.controller.bleExtDHSupported && (cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'ZWayMobileAppiOS')" ng-bind-html="_t('matter_ble_ext_dh_mode_mobile_how_to')|toTrusted"></div>
+                        <div ng-if="matterInclusion.controller.isBLE">
+                            {{_t('matter_ble_ext_mode')}}
+                            <div class="btn-group">
+                                <button class="btn" id="btn_bleextdh"
+                                    ng-disabled="!matterInclusion.controller.bleExtDHSupported"
+                                    data-ng-click="setBLEWSExt(true, false)"
+                                    ng-class="matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </button>
+                                <!-- DH or WS can be set only on MatterBinding start, so here we select only between internal and external only
+                                <button class="btn" id="btn_bleextws"
+                                    data-ng-click="setBLEWSExt(true, true)"
+                                    ng-class="(matterInclusion.controller.bleExtEnabled && matterInclusion.controller.bleExtWS) ? 'btn-success': 'btn-default'">
+                                    <i class="fas fa-upload"></i>
+                                </button>
+                                -->
+                                <button class="btn" id="btn_bleint"
+                                    data-ng-click="setBLEWSExt(false)"
+                                    ng-class="!matterInclusion.controller.bleExtEnabled ? 'btn-success': 'btn-default'">
+                                    <i class="fab fa-bluetooth"></i>
+                                </button>
+                            </div>
+                            <div class="alert alert-warning" ng-if="!matterInclusion.controller.bleExtDHSupported && cfg.route.os != 'ZWayMobileAppAndroid' && cfg.route.os != 'ZWayMobileAppiOS'" ng-bind-html="_t('matter_ble_ext_dh_mode_enable_how_to')|toTrusted"></div>
+                            <div class="alert alert-warning" ng-if="!matterInclusion.controller.bleExtDHSupported && (cfg.route.os == 'ZWayMobileAppAndroid' || cfg.route.os == 'ZWayMobileAppiOS')" ng-bind-html="_t('matter_ble_ext_dh_mode_mobile_how_to')|toTrusted"></div>
+                        </div>
                     </div>
                     <div class="report-col report-ctrl">
                     </div>
@@ -103,13 +108,16 @@
                         <span class="badge badge-number">4</span>
                     </div>
                     <div class="report-col report-body">
-                        <div ng-if="!matterInclusion.controller.bleExtEnabled">
+                        <div ng-if="!matterInclusion.controller.isBLE">
+                            {{_t('matter_ip_comment')}}
+                        </div>
+                        <div ng-if="matterInclusion.controller.isBLE && !matterInclusion.controller.bleExtEnabled">
                             {{_t('matter_ble_int_mode_comment')}}
                         </div>
-                        <div ng-if="matterInclusion.controller.bleExtEnabled && !matterInclusion.controller.bleExtWS">
+                        <div ng-if="matterInclusion.controller.isBLE && matterInclusion.controller.bleExtEnabled && !matterInclusion.controller.bleExtWS">
                             {{_t('matter_ble_ext_dh_mode_comment')}}
                         </div>
-                        <div ng-if="matterInclusion.controller.bleExtEnabled && matterInclusion.controller.bleExtWS">
+                        <div ng-if="matterInclusion.controller.isBLE && matterInclusion.controller.bleExtEnabled && matterInclusion.controller.bleExtWS">
                             {{_t('matter_ble_ext_ws_mode_comment')}}
                             <div id="qrcode" ng-if="matterInclusion.controller.controllerState == 1">
                                 <img width="255" height="255" ng-src="{{qrcode}}">
