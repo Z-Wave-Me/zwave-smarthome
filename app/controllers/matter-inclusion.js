@@ -674,7 +674,17 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
     
     function blewsLog() {
         let line = Array.prototype.slice.call(arguments).map(function(argument) {
-            return typeof argument === "string" ? argument : JSON.stringify(argument);
+            switch(typeof argument) {
+                case "string":
+                    return argument;
+                case "object":
+                    if (Array.isArray(argument)) {
+                        return "(" + argument.length + ") [" + argument.map(i => ("00"+i.toString(16)).slice(-2)).join(" ") + "]";
+                    }
+                    // fall thru
+                default:
+                    return JSON.stringify(argument);
+            }
         }).join(" ");
         console.log(line);
     }
@@ -812,7 +822,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
                 a.push("0x" + ("00" + value.getUint8(i).toString(16)).slice(-2));
                 arr_data.push(value.getUint8(i));
             }
-            blewsLog("RX Notify: " + a.join(" "));
+            blewsLog("RX Notify:", a.join(" "));
             if (this.customRx) {
                 this.customRx(this, arr_data);
             }
@@ -947,7 +957,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
             "data": value
         
         };
-        blewsLog("Sending WS cmd: " + JSON.stringify(js_cmd));
+        blewsLog("Sending WS date:", value);
         sendBLEExtDHCommand(js_cmd);
     }
     
@@ -968,7 +978,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
         if (data.length > 0)
         {
             if (data.length < 8) {
-                blewsLog("ERROR handling remaining part of the packet ", data);
+                blewsLog("ERROR handling remaining part of the packet", data);
                 return;
             }
             bleExtDHOnMessage(data);
@@ -976,7 +986,7 @@ myAppController.controller('MatterInclusionController', function ($scope, $q, $r
     };
     
     function bleExtDHOnMessage(data) {
-        blewsLog("Received WS cmd: " + JSON.stringify(data));
+        blewsLog("Received WS cmd:", data);
         let type = (data[0] << 8) + data[1];
         let len = (data[2] << 8) + data[3];
         let seq = (data[4] << 24) + (data[5] << 16) + (data[6] << 8) + data[7]; 
