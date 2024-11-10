@@ -192,6 +192,8 @@ module.exports = function(grunt) {
 					'vendor/dragdrop/angular-sortable-view.min.js',
 					// Bootstrap
 					'vendor/bootstrap/bootstrap.min.js',
+					// ExpertUI configuration js
+					'vendor/xml/xml2json.min.js',
 					//App
 					'./tmp/bundle.babel.min.js'
 
