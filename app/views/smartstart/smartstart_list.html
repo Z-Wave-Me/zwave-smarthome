@@ -42,6 +42,10 @@
                 <button class="btn btn-default" title="{{_t('lb_update')}}" ng-click="setData(v);handleModal('dskModal', $event)">
                 <i class="fas fa-edit text-primary"></i>
                 </button>
+                <!-- configure node -->
+                <a class="btn btn-default" ng-if="v.added.state === 'included'" href="#/zwave/devices/{{v.nodeId}}" title="{{_t('lb_configuration')}}">
+                    <i class="fas fa-cog text-primary"></i>
+                </a>
                 <!-- delete -->
                 <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="v.added.state === 'included'? removeDsk(v,_t('delete_no_smartstart_warning')) : removeDsk(v,_t('lb_delete_confirm'))">
                 <i class="fas fa-trash text-danger"></i>
