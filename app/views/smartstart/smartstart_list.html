@@ -43,7 +43,7 @@
                 <i class="fas fa-edit text-primary"></i>
                 </button>
                 <!-- delete -->
-                <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="removeDsk(v,_t('lb_delete_confirm'))">
+                <button class="btn btn-default" title="{{_t('dialog_remove')}}" ng-click="v.added.state === 'included'? removeDsk(v,_t('delete_no_smartstart_warning')) : removeDsk(v,_t('lb_delete_confirm'))">
                 <i class="fas fa-trash text-danger"></i>
                 </button>
               </div>
@@ -204,7 +204,7 @@
                     <i class="fas fa-cog text-primary"></i>
                 </a>
                 <!-- delete -->
-                <button ng-if="v.added.state !== 'included'" class="btn btn-default" title="{{_t('btn_remove')}}" ng-click="v.added.state === 'included'? removeDsk(v,_t('lb_delete_confirm_included_dsk')) : removeDsk(v,_t('lb_delete_confirm'))">
+                <button class="btn btn-default" title="{{_t('btn_remove')}}" ng-click="v.added.state === 'included'? removeDsk(v,_t('delete_no_smartstart_warning')) : removeDsk(v,_t('lb_delete_confirm'))">
                 <i class="fas fa-trash text-danger"></i>
                 </button>
               </div>

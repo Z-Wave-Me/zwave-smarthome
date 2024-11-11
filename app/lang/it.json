@@ -191,7 +191,7 @@
     "delete_confirm_label": "Sei sicuro di cancellare __label__?",
     "delete_element": "Cancella elemento",
     "delete_history": "Cancella lo storico",
-    "delete_no_smartstart_warning": "Device requires to be excluded  manually or reset to factory default in order to leave the Z-Wave Network",
+    "delete_no_smartstart_warning": "Device requires to be excluded manually or reset to factory default in order to leave the Z-Wave Network. Are you sure you want to delete this key?",
     "delete_room": "cancella stanza",
     "delete_successful": "Dato cancellato con successo",
     "deleting": "Cancello...",

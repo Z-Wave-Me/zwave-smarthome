@@ -191,7 +191,7 @@
     "delete_confirm_label": "Tem certeza de que deseja eliminar __label__?",
     "delete_element": "Eliminar elemento",
     "delete_history": "Apagar histórico",
-    "delete_no_smartstart_warning": "O dispositivo precisa de ser excluído manualmente ou reiniciado com as definições de fábrica para sair da rede Z-Wave",
+    "delete_no_smartstart_warning": "O dispositivo precisa de ser excluído manualmente ou reiniciado com as definições de fábrica para sair da rede Z-Wave. Tem certeza de que deseja eliminar isto?",
     "delete_room": "Eliminar divisão",
     "delete_successful": "Os dados foram excluídos com sucesso",
     "deleting": "eliminando...",
