@@ -610,7 +610,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         $interval.cancel($scope.zwaveInclusion.s2.verifyDSK.interval);
 
         var dskPin = parseInt($scope.zwaveInclusion.s2.input.dskPin, 10),
-            nodeId = $scope.zwaveInclusion.controller.lastIncludedDeviceId.toString(10),
+            nodeId = $scope.zwaveInclusion.controller.lastIncludedDeviceId,
             publicKey = [];
 
         dskPin = $filter('zeroFill')(dskPin,5);
@@ -674,7 +674,7 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
 
         // //console.log("$interval.cancel($scope.zwaveInclusion.s2.grantKeys.interval)", $scope.zwaveInclusion.s2.grantKeys.interval);
 
-        var nodeId = $scope.zwaveInclusion.controller.lastIncludedDeviceId.toString(10),
+        var nodeId = $scope.zwaveInclusion.controller.lastIncludedDeviceId,
                 cmd =
                 'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S0=' + keysGranted.S0 + '; ' +
                 'devices[' + nodeId + '].SecurityS2.data.grantedKeys.S2Unauthenticated=' + keysGranted.S2Unauthenticated + '; ' +
