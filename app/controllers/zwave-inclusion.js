@@ -779,6 +779,8 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
     function setZWaveAPIData(ZWaveAPIData) {
         $scope.zwaveInclusion.controller.controllerState = ZWaveAPIData.controller.data.controllerState.value;
         $scope.zwaveInclusion.controller.secureInclusion = ZWaveAPIData.controller.data.secureInclusion.value > 0;
+        $scope.zwaveInclusion.controller.lastIncludedDeviceId = ZWaveAPIData.controller.data.lastIncludedDevice.value;
+        $scope.zwaveInclusion.controller.lastExcludedDeviceId = ZWaveAPIData.controller.data.lastExcludedDevice.value;
 
         // check initial include mode
         if ([1,2,3,4].indexOf($scope.zwaveInclusion.controller.controllerState) > -1) {
@@ -871,7 +873,9 @@ myAppController.controller('ZwaveInclusionController', function ($scope, $q, $ro
         delete $location.$$search.inclusion;
         $scope.zwaveInclusion.inclusionProcess.process = true;
         $scope.refreshZwaveApiData();
-        $scope.handleInclusionVerifyDSK(false, false);
+        $timeout(function() {
+            checkS2Interview($scope.zwaveInclusion.controller.lastIncludedDeviceId);
+        }, 1000); // wait to allow update lastIncludedDevice DH first
     }
 
     $scope.breakTime = null;
