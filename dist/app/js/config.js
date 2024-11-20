@@ -271,7 +271,7 @@ var config_data = {
 		// Raz latest version
 		'raz_latest_version_url': 'https://storage.z-wave.me/z-way/razberry/latest/VERSION',
 		// Find z-wave me box
-		'find_zwaveme_zbox': 'https://find.z-wave.me/',
+		'find_zwaveme_zbox': 'https://find.tridentiot.com/',
 		// Url to zddx xml files
 		'zddx_url': 'ZDDX/',
 		// Url to run ExpertUI cmd
@@ -392,11 +392,11 @@ var config_data = {
 		],
 		// List of the find hosts
 		'find_hosts': [
-			'find.z-wave.me'
+			'find.tridentiot.com'
 		],
 		// Redirect to the url after logout
 		'logout_redirect': {
-			'find.z-wave.me': 'https://find.z-wave.me/zboxweb'
+			'find.tridentiot.com': 'https://find.tridentiot.com/zboxweb'
 		},
 		// List of the forbidden licence app types
 		'license_forbidden': [

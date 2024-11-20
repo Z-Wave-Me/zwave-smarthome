@@ -47,7 +47,7 @@ myAppController.controller('ManagementRemoteController', function($scope, dataFa
 		});
 
 		if ($scope.getCustomCfgArr('boxtype') == 'razberry') {
-			$scope.findUrl = 'find.z-wave.me';
+			$scope.findUrl = 'find.tridentiot.com';
 		}
 	};
 

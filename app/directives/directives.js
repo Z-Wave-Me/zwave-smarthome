@@ -760,7 +760,7 @@ myApp.directive('tokenButton', function () {
 							$http.defaults.headers.common.Authorization = 'Bearer /' + info.token;
 							return $http({
 								method: 'HEAD',
-								url: 'https://find.z-wave.me/zboxweb?act=session_login&zboxid=' + info.remoteId,
+								url: 'https://find.tridentiot.com/zboxweb?act=session_login&zboxid=' + info.remoteId,
 							}).then(function (response) {
 								const globalToken = response.headers('X-ZBW-SESSID');
 								if (!globalToken) {
